@@ -17,30 +17,39 @@
             $proErr = $dt['error'];
             if($proErr['errCode']== 0)
            {
-            $sql = "SELECT id,name FROM tbl_brandid_generator WHERE name='".$detls['product_brand']."'";
-            $res = $this->query($sql);
-	    if($res)
+            $csql = "SELECT id,name FROM tbl_brandid_generator WHERE name='".$detls['product_brand']."'";
+            $cres = $this->query($csql);
+	    if($cres)
             {
-                $cnt1 = $this->numRows($res);
+                $cnt1 = $this->numRows($cres);
 		if(!$cnt1)
 		{
-                    $sql = "INSERT INTO tbl_brandid_generator(name) VALUES('".$detls['product_brand']."')";
+                    $catsql="Select category_name from tbl_categoryid_generator where category_id=".$detls['category_id'];
+                    $catres=$this->query($catsql);
+                    if($catres)
+                    {
+                        while($catrow=$this->fetchData($catres))
+                        {
+                            $catname=$catrow['category_name'];
+                        }
+                    }
+                    $sql = "INSERT INTO tbl_brandid_generator(name,category_name) VALUES('".$detls['product_brand']."','".$catname."')";
                     $res = $this->query($sql);
                     $bid = $this->lastInsertedId();
                     $brandid = ($bid) ? $bid : $detls['brandid'];
                 }
 		else
                 {
-                    $row     = $this->fetchData($res);
-                   $brandid = ($row['id']) ? $row['id'] : $detls['brandid'];
+                    $row     = $this->fetchData($cres);
+                    $brandid = ($row['id']) ? $row['id'] : $detls['brandid'];
                 }
+                
                 $sql  = "SELECT product_id,product_name FROM tbl_productid_generator WHERE product_name = '".$detls['product_name']."' AND product_brand = '".$detls['product_brand']."'";
                 $res  = $this->query($sql);
                 $cnt2 = $this->numRows($res);
                 
                 if(!$cnt2)
                 {
-                    
                   $sql = "INSERT INTO tbl_productid_generator(product_name, product_brand) VALUES('".$detls['product_name']."','".$detls['product_brand']."')";
                   $res = $this->query($sql);
                   $pid = $this->lastInsertedId();
@@ -66,7 +75,7 @@
                     
                         $sql="INSERT INTO tbl_product_master(product_id,barcode,lotref,lotno,product_name,product_display_name,
                                                      product_model,product_brand,prd_price,product_currency,product_keyword,                                                     
-                                                     product_desc,prd_wt,prd_img,category_id,brand_id,product_warranty,
+                                                     product_desc,prd_wt,prd_img,category_id,product_warranty,
                                                      updatedby, updatedon, cdt)
                                                 VALUES (
 							".$pid.",'".$detls['barcode']."','".$detls['lotref']."',".$detls['lotno'].",
@@ -74,7 +83,7 @@
                                                       '".$detls['product_model']."', '".$detls['product_brand']."', ".$detls['product_price'].",
                                                       '".$detls['product_currency']."','".$detls['product_keywords']."', 
                                                       '".$detls['product_desc']."',".$detls['product_wt'].",'".$detls['prd_img']."',".$detls['category_id'].",
-                                                        ".$brandid.",'".$detls['product_warranty']."','CMS USER', now(), now())
+                                                      '".$detls['product_warranty']."','CMS USER', now(), now())
 			  ON DUPLICATE KEY UPDATE
                                                     barcode                      = '".$detls['barcode']."', 
                                                     lotref                       = '".$detls['lotref']."', 
@@ -89,7 +98,6 @@
                                                     prd_wt                       = ".$detls['product_wt'].", 
                                                     prd_img                      = '".$detls['prd_img']."',
                                                     category_id                  = ".$detls['category_id'].",  
-                                                    brand_id 			 = ".$brandid.", 
                                                     product_warranty             ='".$detls['product_warranty']."',
                                                     updatedby 			 =   'CMS USER', 
                                                     updatedon 			 =    now()";
@@ -98,12 +106,12 @@
                     {
                         foreach($attr as $ky => $vl)
                         {
-                            $vls[] = "(".$pid.", ".$vl[$ky].", '".$vl[$ky+1]."', 1, 'CMS_USER',now())";
+                            $vls[] = "(".$pid.", ".$vl[$ky].",".$vl[$ky+1].",'".$vl[$ky+2]."', 1, 'CMS_USER',now())";
                         }
                         if(count($vls))
                         {
                             $vlStr = implode(', ',$vls);
-                            $sql = "INSERT INTO tbl_product_attributes(product_id,attribute_id,value,active_flag,updatedby,updatedon)
+                            $sql = "INSERT INTO tbl_product_attributes(product_id,attribute_id,category_id,value,active_flag,updatedby,updatedon)
                                     VALUES ".$vlStr."
                                     ON DUPLICATE KEY UPDATE
                                                             value       = value, 
@@ -141,7 +149,7 @@
         }
                 
 // Uploading the image method.        
-       /* public function imageUpdate($params)
+    /*    public function imageUpdate($params)
         {
             $results = array();
             $dt      = json_decode($params['dt'],1);
@@ -186,7 +194,8 @@
             }
             $result = array('results' => $results, 'error' => $err);
             return $result;
-        } */
+        }
+        */
         
         public function getPrdByName($params)
         { 
@@ -451,14 +460,15 @@
         
         public function productByDesigner($params)
         {
-            $chksql="SELECT product_id from tbl_product_designer_mapping where desname='".$params['desname']."' and active_flag=1";
+            $chksql="SELECT product_id,logmobile from tbl_designer_product_mapping where desname='".$params['desname']."' and active_flag=1";
             $chkres=$this->query($chksql);
             $cnt_res1 = $this->numRows($chkres);            
             if($cnt_res1>0)
             {   $i=0;
                 while($row1=$this->fetchData($chkres))
                 {   
-                    $arr1[$i]= $row1['contact_mobile'];
+                    $arry1[]= $row1['logmobile'];
+                    $arr1[$i]= $row1['product_id'];
                     $i++;
                 }
                 $pid=implode(',',$arr1);
@@ -487,6 +497,28 @@
             
             }
             $result=array('Result'=>$arr,'error'=>$err);
+            return $result;
+        }
+        
+         public function productByBrand($params)
+        {
+            $chksql="SELECT * from tbl_product_master where product_brand='".$params['bname']."'";
+            $chkres=$this->query($chksql);
+            $cnt_res1 = $this->numRows($chkres);            
+            if($cnt_res1>0)
+            {   
+                while($row1=$this->fetchData($chkres))
+                {   
+                    $arr[]= $row1;
+                }
+                $err=array('Code'=>0,'Msg'=>'Products are successfully fetched from database');
+            }    
+            else
+            {
+                $arr="There is no product yet available with vendors in this city";
+                $err=array('Code'=>1,'Msg'=>'Data not found');
+            }
+            $result=array('result'=>$arr,'error'=>$err);
             return $result;
         }
     }

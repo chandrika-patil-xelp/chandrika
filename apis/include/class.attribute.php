@@ -27,16 +27,8 @@ class attribute extends DB
     
     public function set_attributes_details($params)
     {
-	$name 	= $params['name'];
-	$dname 	= $params['dname'];
-	$unit 	= $params['unit'];
-	$flag 	= $params['flag'];
-	$upos 	= $params['upos'];
-	$vals 	= $params['vals'];
-	$range 	= $params['range'];
-
 	# INSERTING REQUIRED DATA #
-        $sql = "INSERT INTO tb_attribute_master SET attr_name='".$name."',attr_display_name='".$dname."',attr_unit='".$unit."',attr_type_flag='".$flag."',attr_unit_pos='".$upos."',attr_values='".$vals."',attr_range=".$range;
+       $sql = "INSERT INTO tb_attribute_master SET attr_name='".$params['name']."',attr_display_name='".$params['dname']."',attr_unit='".$params['unit']."',attr_type_flag='".$params['flag']."',attr_unit_pos='".$params['upos']."',attr_values='".$params['vals']."',attr_range='".$params['range']."'";
 	$res = $this->query($sql);
 	if($res)
         { 
@@ -77,19 +69,12 @@ class attribute extends DB
 
     public function set_category_mapping($params)
     {
-	$aid 		= $params['aid'];
-	$dflag 		= $params['dflag'];
-	$dpos 		= $params['dpos'];
-	$fil_flag 	= $params['fil_flag'];
-	$fil_pos 	= $params['fil_pos'];
-	$aflag	 	= $params['aflag'];
-	$catid 		= $params['catid'];
-        $chksql="SELECT * from tb_attribute_mapping where attribute_id=".$aid." and category_id=".$catid."";
+        $chksql="SELECT * from tb_attribute_mapping where attribute_id=".$params['aid']." and category_id=".$params['catid']."";
         $ckres=$this->query($chksql);
         $chkres=$this->numRows($ckres);
         if($chkres<1)
         {
-        $sql = "INSERT INTO tb_attribute_mapping SET attribute_id = ".$aid.",attr_display_flag =".$dflag.",attr_display_position=".$dpos.",attr_filter_flag = ".$fil_flag.",attr_filter_position=".$fil_pos.",active_flag=".$aflag.",category_id=".$catid;
+        $sql = "INSERT INTO tb_attribute_mapping SET attribute_id = ".$params['aid'].",attr_display_flag =".$params['dflag'].",attr_display_position=".$dpos.",attr_filter_flag = ".$params['dpos'].",attr_filter_position=".$params['fil_pos'].",active_flag=".$params['aflag'].",category_id=".$params['catid'];
         $res = $this->query($sql);
             if($res)
             { 

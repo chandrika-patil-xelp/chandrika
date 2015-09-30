@@ -62,7 +62,7 @@
         {
           $dob=explode(' ',$params['dob']);
           $params['dob']=implode('-',$dob);
-          $vsql = "UPDATE tbl_registration set userName='".$params['uname']."',usertype=".$params['usertype'].",alt_email='".$params['alt_email']."',dob=STR_TO_DATE('".$params['dob']."','%Y-%m-%d'),working_phone=".$params['work_phone'].",pincode=".$params['pincode'].",fulladdress='".$params['address']."',cityname='".$params['cityname']."',id_type='".$params['idtype']."',id_proof_no='".$params['idproof']."' where logmobile=".$params['logmobile'];
+          $vsql = "UPDATE tbl_registration set userName='".$params['uname']."',alt_email='".$params['alt_email']."',dob=STR_TO_DATE('".$params['dob']."','%Y-%m-%d'),working_phone=".$params['work_phone'].",pincode=".$params['pincode'].",fulladdress='".$params['address']."',cityname='".$params['cityname']."',id_type='".$params['idtype']."',id_proof_no='".$params['idproof']."' where logmobile=".$params['logmobile'];
           $vres=$this->query($vsql);
                 if($vres)
                 {
@@ -200,6 +200,34 @@
                 $arr="User Not Exist";
                 $err=array('code'=>1,'msg'=>'Problem in fetching data');
             }  
+            $result = array('results'=>$arr,'error'=>$err);
+            return $result;
+        }
+        
+        public function iscomp($params) // Activate Status
+        {   
+            $vsql="SELECT is_complete from tbl_registration where logmobile=".$params['mobile']."";
+            $vres=$this->query($vsql);
+            if($this->numRows($vres)==1) //If user is registered
+            {
+                $usql="UPDATE tbl_registration set is_complete=1 where logmobile=".$params['mobile'];
+                $ures=$this->query($usql);
+                if($ures)
+                {
+                    $arr="User profile is completed";
+                    $err=array('code'=>1,'msg'=>'Value has been changed');
+                }
+                else
+                {
+                    $arr="Update operation is not performed";
+                    $err=array('code'=>1,'msg'=>'Error in updating data');
+                }
+            }
+            else
+            {
+                $arr="Data Not Found regarding ur requested parameters";
+                $err=array('code'=>1,'msg'=>'Problem in fetching data');
+            }  // If user is not registered
             $result = array('results'=>$arr,'error'=>$err);
             return $result;
         }

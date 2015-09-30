@@ -6,6 +6,157 @@ class vendor extends DB
     {
         parent::DB($db);
     }
+
+//-----------------Vendor Profile Related-------------------------------    
+    
+    public function regVendor($params)
+    {
+        $dt     = json_decode($params['dt'],1);
+        $detls  = $dt['result'];
+        $proErr = $dt['error'];
+        if($proErr['errCode']== 0)
+        {
+          $idsql="SELECT vendorid,vname,logmob from tbl_vendorid_generator where logmob='".$detls['logmob']."'";
+            $idres1=$this->query($idsql);
+            $chres=$this->numRows($idres1);
+            if(!$chres)
+            {
+                $idgen="INSERT INTO tbl_vendorid_generator(vname,logmob,cdt) values('".$detls['vname']."',".$detls['logmob'].",now())";
+                $idres2=$this->query($idgen);
+                $vid=$this->lastInsertedId();
+                $vendorid=($vid)?$vid:$detls['vid'];
+            }
+            else
+            {
+                $row=$this->fetchData($idres1);
+                $vendorid=$row['vendorid'];
+            }
+           $sql="INSERT INTO tbl_vendor_master(vendorid,vname,pass,email,logmob,wrk_cell,landline,add1,add2,area,city,state,pincode,website,fax,cdt,udt)
+                  VALUES(".$vendorid.",'".$detls['vname']."',MD5('".$detls['pass']."'),'".$detls['email']."',".$detls['logmob'].",
+                         '".$detls['wcell']."','".$detls['lLine']."','".$detls['ad1']."','".$detls['ad2']."',
+                         '".$detls['area']."','".$detls['cty']."','".$detls['st']."',".$detls['pc'].",
+                         '".$detls['wbst']."','".$detls['fax']."',now(),now()
+                        )
+                  ON DUPLICATE KEY UPDATE
+                        email='".$detls['email']."',
+                        wrk_cell='".$detls['wcell']."',
+                        landline='".$detls['lLine']."',
+                        add1='".$detls['ad1']."',
+                        add2='".$detls['ad2']."',
+                        area='".$detls['area']."',
+                        city='".$detls['cty']."',
+                        state='".$detls['st']."',
+                        pincode=".$detls['pc'].",
+                        website='".$detls['wbst']."',
+                        fax='".$detls['fax']."',
+                        udt=now()";
+                        
+            $res=$this->query($sql);
+            if($res)
+            {
+                $arr="Vendor profile is updated";
+                $err=array('Code'=>0,'Msg'=>'Record Created');
+            }
+            else
+            {
+                $arr="Vendor profile update Failed";
+                $err=array('Code'=>0,'Msg'=>'Record not Created');
+            }
+        }
+        else
+        {
+            $arr="Error in passing data";
+            $err=array('Code'=>0,'Msg'=>'Error in fetching data');
+        }
+        $result=array('results'=>$arr,'error'=>$err);
+        return $result;
+    }
+    
+    public function logVendor($params) // Vendor LOGIN CHECK
+    {
+      $vsql="SELECT vendorid,logmob,pass from tbl_vendor_master where logmob=".$params['logmob']." AND pass=MD5('".$params['pass']."') AND aflag=1";
+      $vres=$this->query($vsql);
+        if($this->numRows($vres)==1)
+        {
+            $arr="Welcome and greetings user";
+            $err=array('code'=>1,'msg'=>'Parameters matched');
+        }
+        else
+        {
+            $arr="No Vendor with this mobile is registered";
+            $err=array('code'=>1,'msg'=>'Problem in fetching data');
+        }
+        $result = array('results'=>$arr,'error'=>$err);
+        return $result;
+    }
+    
+    public function upVpass($params)
+    {
+        $vsql="SELECT vendorid,vname from tbl_vendorid_generator where logmob='".$params['logmob']."'";
+        $vres=$this->query($vsql);
+        $chres=$this->numRows($vres);
+        if($chres==1)
+        {    
+            $sql="UPDATE tbl_vendor_master set pass=MD5('".$params['pass']."') where logmob=".$params['logmob']."";
+            $res=$this->query($sql);
+            if($res)
+            {
+                $arr="Password Updated";
+                $err=array('Code'=>0,'Msg'=>'Update query completed');
+            }
+            else
+            {
+                $arr=array();
+                $err=array('Code'=>1,'Msg'=>'Error in updating');
+            }
+        }
+        else
+        {
+                $arr=array();
+                $err=array('Code'=>1,'Msg'=>'No such vendor registered number');
+        }
+        $result=array('results'=>$arr,'error'=>$err);
+        return $result;
+    }
+
+    public function isact($params)
+    {
+        $sql="UPDATE tbl_vendor_master set aflag=".$params['af']." where logmob=".$params['logmob'];
+        $res=$this->query($sql);
+        if($res)
+        {
+            $arr=array();
+            $err=array('Code'=>0,'Msg'=>'Vendor profile is updated');
+        }
+        else
+        {
+            $arr=array();
+            $err=array('Code'=>1,'Msg'=>'Profile status is not updated');
+        }
+        $result=array('reuslts'=>$arr,'error'=>$err);
+        return $result;
+    }
+    
+    public function checkVen($params)
+    {
+        $csql="select logmob from tbl_vendor_master where logmob=".$params['logmob'];
+        $cres=$this->query($csql);
+        $cnt1 = $this->numRows($cres);
+        if($cnt1<1)
+        {
+            $arr='User Not yet Registered';
+            $err=array('Code'=>0,'Msg'=>'No Data matched');
+        }
+        else 
+        {
+        $arr='User is already Registered';
+        $err=array('Code'=>0,'Msg'=>'Data matched');
+        }
+        $result = array('results' => $arr, 'error' => $err);
+        return $result;
+    }
+
+//------------------Product Related---------------------------------------    
     public function addVendorPrdInfo($params)
     {   
         $sql="INSERT INTO tbl_vendor_product_mapping(product_id,vendormobile,vendor_price,vendor_quantity,vendor_currency,vendor_remarks,active_flag,updatedby,updatedon,backendupdate)";
@@ -131,5 +282,55 @@ class vendor extends DB
         $result = array('results'=>$arr,'error'=>$err);  
         return $result;
     }
+    
+    public function getVDetailByPid($params)
+    {
+     $sql1="SELECT * FROM tbl_vendor_product_mapping where product_id=".$params['product_id']." ORDER BY updatedon DESC";
+     $res1=$this->query($sql1);
+     $chkcnt=$this->numRows($res1);
+     if($chkcnt>0)
+     {
+        $i=0;
+        while($row=$this->fetchData($res1))
+        {   $vdet='';
+            $vdet1['vmob'][$i]=$row['vendormobile'];
+            $vdet['vprice']=$row['vendor_price'];
+            $vdet['vquant']=$row['vendor_quantity'];
+            $vdet['vcur']=$row['vendor_currency'];
+            $vdet['vremarks']=$row['vendor_remarks'];
+            $vdetls[]=$vdet;
+            $i++;   
+             }
+
+        $vmob=implode(',',$vdet1['vmob']);        
+        $sql2="SELECT vendorid,vname,logmob,email,wrk_cell,landline,add1,add2,area,city,state,pincode,website,fax from tbl_vendor_master WHERE logmob IN(".$vmob.") and aflg=1";
+        $res2=$this->query($sql2);
+        if($this->numRows($res2)>0)
+        {
+            while ($row1=$this->fetchData($res2)) 
+            {
+            $vresult[] = $row1;
+            }
+            $arr=array('Vendor-Detail'=>$vresult,'Vendor-Product'=>$vdetls);    
+            $err = array('Code' => 0, 'Msg' => 'Details fetched successfully');
+        }
+        else
+        {
+            $arr=array('there is no product with starting with such name in vendor_product list');    
+            $err = array('Code' => 1, 'Msg' => 'No Match Found');
+        }
+     }
+    else
+    {
+        $arr='No such product with this id';    
+        $err = array('Code' => 0, 'Msg' => 'No Match Found');
+    }
+        $result = array('results' => $arr,'error' => $err);
+        return $result;
+        
+    }
+
+//------------------------------------------------------------------------    
+    
 }
 ?>

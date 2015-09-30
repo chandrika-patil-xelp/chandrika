@@ -8,9 +8,39 @@ include APICLUDE.'common/db.class.php';
            parent::DB($db);
        }
        
+//  said= shipping address id, baid =billing address id 
+       public function addOrd($params)
+       {
+           $dt=  json_decode($params['dt'],1);
+           $detls  = $dt['result'];
+           $proErr = $dt['error'];
+           if($proErr['errCode']== 0)
+           {
+               $osql="INSERT INTO tbl_order_master(user_id,cart_id,shipAddId,billAddId,cdt,udt,dflag) VALUES(".$detls['uid'].",".$detls['cid'].",".$dtls['said'].",".$detls['baid'].",now(),now(),1)";
+               $ores=$this->query($osql);
+               if($ores)
+               {
+                   $arr="Order table has been updated";
+                   $err=array('Code'=>0,'Msg'=>'Insert Operation is completed');
+               }
+               else
+               {
+                   $arr="Order is not inserted";
+                   $err=array('Code'=>0,'Msg'=>'Insert Operation error');
+               }
+           }
+           else
+           {
+               $arr="Data not sent in proper manner";
+               $err=array('Code'=>0,'Msg'=>'Error in obtaining data');
+           }
+           $result=array('results'=>$arr,'error'=>$err);
+           return $result;
+        }
+       
        public function ordById($params)
        {
-            $sql ="SELECT * from tbl_order_master WHERE usermobile=".$params['usermobile']." ORDER BY dt DESC";
+            $sql ="SELECT * from tbl_order_master WHERE transid='".$params['tid']."' and dflag=1 ORDER BY cdt DESC";
             $res=$this->query($sql);
             if($this->numRows($res)>0)
             {
@@ -31,7 +61,7 @@ include APICLUDE.'common/db.class.php';
        
        public function actOrdList($params)
        {
-            $sql = "SELECT * from tbl_order_master WHERE usermobile=".$params['usermobile']." and ordstatus=1 ORDER BY usermobile";               
+            $sql = "SELECT * from tbl_order_master WHERE user_id=".$params['uid']." and ordstatus=1 ORDER BY oid";               
             $res = $this->query($sql);
             if($this->numRows($res)>0)
             {
@@ -50,70 +80,70 @@ include APICLUDE.'common/db.class.php';
             return $result;
        }
 
-    /*   public function ordByCat($params)
+# tid = transaction id      paytype=payment by cash,netbank or card       
+# pmode=credit,debit,visa,master,mastero      oid=order id  
+# cuse= card bank name used     cur=currency in 
+# des= description   amt = amount price   
+       public function addtrans($params)
        {
-          $sql = "SELECT 
-                            p.pstatus,
-                            s.quantity,
-                            p.pcode,
-                            p.ptype,
-                            p.cwv,
-                            p.pname,
-                            s.cdt
-                  FROM 
-                            jzeva.order as o
-                  JOIN 
-                            shopcart as s 
-                  ON 
-                            o.shopcartid=s.scid 
-                  JOIN 
-                            jzeva.product as p 
-                  ON 
-                            s.pcode=p.pcode
-                  WHERE 
-                            p.pcode='".$params['pcode']."'
-                  ORDER BY 
-                            s.quantity"; 
-           $res = $this->query($sql);
-          if($this->numRows($res))
-          {
-            while($row=$this->fetchData($res))
-              {
-                $arr[] = $row;
-                $err['error'] = array('code' => 0, 'msg' => 'Details are fetched');
-              }
-          }
-          else
-          {
-              $arr="There is no product in the order";
-              $err['error'] = array('code' => 0, 'msg' => 'no product in order');
-          }
-            $result = array('results' => $arr, 'error' => $err['error']);
-            return $result;
-       }
-       
-       public function ordByAmt($params)
-       {   
-           $sql = "SELECT p.pstatus,s.quantity,p.pcode,p.cwv,p.pname,s.cdt FROM jzeva.order as o JOIN jzeva.shopcart as s ON o.shopcartid=s.scid JOIN jzeva.product as p ON s.pcode=p.pcode WHERE p.pcode='".$params['pcode']."'ORDER BY s.quantity";
-           $res=$this->query($sql);
-           if($this->numRows($res)>0)
+           $dt=  json_decode($params['dt'],1);
+           $detls=$dt['result'];
+           $proErr = $dt['error'];
+           if($proErr['errCode']== 0)
            {
-               while($row=$this->fetchData($res))
+               $isql="INSERT INTO tbl_trans_master(transid,paytype,paymode,card_use,paydate,curr,cdt,tstatus,tdesc,amt)
+                      VALUES('".$detls['tid']."','".$detls['ptyp']."','".$detls['pmode']."','".$detls['cuse']."',now(),'".$detls['cur']."',now(),1,'".$detls['des']."',".$detls['amt'].")";
+
+               $ires=$this->query($isql);
+               if(ires)
                {
-                   $arr[]=$row;
-                   $err['error'] = array('code' => 0, 'msg' => 'Order List with highest cost');
+                   $osql="UPDATE tbl_order_master set transid='".$detls['tid']."' WHERE oid=".$detls['oid']." and user_id=".$detls['uid'];
+                   $ores=$this->query($osql);
+                   if($ores)
+                   {
+                       $arr="Payment is done";
+                       $err=array('Code'=>0,'Msg'=>'Transaction is complete');
+                   }
+                   else
+                   {
+                       $arr="Order table record is not found";
+                       $err=array('Code'=>0,'Msg'=>'Invalid order id or userid');
+                   }
+               }
+               else
+               {
+                   $arr="Error in transaction";
+                   $err=array('Code'=>0,'Msg'=>'Transaction is not done');
                }
            }
            else
            {
-                   $arr[]="No record found";
-                   $err['error'] = array('code' => 0, 'msg' => 'Error in fetching records.');
-               
+               $arr="Data is not obtained in proper form";
+               $err=array('Code'=>0,'Msg'=>'Error in retreiving data');
            }
-            $result = array('results' => $arr, 'error' => $err['error']);
-            return $result;
+           $result=array('results'=>$arr,'error'=>$err);
+           return $result;
         }
-     * 
-     */
-}
+
+       public function viewtrans($params)
+       {
+        $isql="SELECT transid,paytype,paymode,card_use,paydate,curr,cdt,tstatus,tdesc,amt from tbl_trans_master where transid=".$params['tid'];
+        $ires=$this->query($isql);
+        $cntres=$this->numRows($ires);
+        if($cntres>0)
+        {
+            while($row=$this->fetchData($ores));
+            {
+               $arr[]=$row;
+            }
+            $err=array('Code'=>0,'Msg'=>'Transaction Details fetched');
+        }
+        else
+        {
+           $arr="Error in fetching data";
+           $err=array('Code'=>0,'Msg'=>'No records found');
+        }
+   }
+       
+}        
 ?>

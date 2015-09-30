@@ -5,8 +5,8 @@ $params = array_merge($_GET, $_POST);
 $action = $_GET['action'];
         
 switch($action)
-    {        
-//----------------------------User--------------------------------
+{        
+//----------------------------User---------------------------------------
 
 //  localhost/jzevasb/apis/index.php?action=checkUser&mobile=9975887206                
         case 'checkUser':
@@ -112,7 +112,7 @@ switch($action)
             if(empty($params['mobile']))
             {
             $arr=array();
-            $err=array('code'=>1,'Msg'=>'plz provide the email');
+            $err=array('code'=>1,'Msg'=>'plz provide the mobile');
             $result=array('results'=> $arr,'error'=>$err);
             $res=$result;
             break;
@@ -129,8 +129,8 @@ switch($action)
             if(empty($params['mobile']))
             {
             $arr=array();
-            $err=array('code'=>1,'Msg'=>'plz provide the email');
-            $result=array('results'=> $arr,'error'=>$err['error']);
+            $err=array('code'=>1,'Msg'=>'plz provide the mobile');
+            $result=array('results'=> $arr,'error'=>$err);
             $res=$result;
             break;
             }
@@ -139,7 +139,7 @@ switch($action)
             $res= $result;
             break;
 
-// localhost/jzevasb/apis/index.php?action=viewAll&mobile=9975887206            
+//  localhost/jzevasb/apis/index.php?action=viewAll&mobile=9975887206            
         case 'viewAll':
             include APICLUDE.'class.user.php';
             $mobile=(!empty($params['mobile'])) ?  trim($params['mobile']) : '';
@@ -156,71 +156,109 @@ switch($action)
             $res= $result;
             break;
 
-//--------------------------Order---------------------------------------- 
+//  localhost/jzevasb/apis/index.php?action=viewAll&mobile=9975887206          
+        case 'iscomp':
+            include APICLUDE.'class.user.php';
+            $mobile=(!empty($params['mobile'])) ?  trim($params['mobile']) : '';
+            if(empty($params['mobile']))
+            {
+            $arr=array();
+            $err=array('code'=>1,'Msg'=>'plz provide the mobile');
+            $result=array('results'=> $arr,'error'=>$err);
+            $res=$result;
+            break;
+            }
+            $obj=new user($db['jzeva']);
+            $result=$obj->iscomp($params);
+            $res= $result;
+            break;
+            
+//--------------------------Order----------------------------------------
                        
+//  localhost/jzeva/apis/index.php?action=addOrd&dt=
+        case 'addOrd':
+            include APICLUDE.'class.orders.php';
+            $dt=(!empty($params['dt'])) ? trim(empty($params['dt'])) : '';
+            if(empty($dt))
+            {
+                $arr=array();
+                $err=array('Code'=>1,'Msg'=>'Invalid Parameter');
+                $result=array('results'=>$arr,'error'=>$err);
+                $res=$result;
+                break;
+            }
+            $obj=new orders($db['jzeva']);
+            $result=$obj->addOrd($params);
+            $res=$result;
+            break;
+    
 // localhost/jzevasb/apis/index.php?action=ordById&usermobile=9975887206                            
         case 'ordById':
             include APICLUDE.'class.orders.php';
-            $usermobile=(!empty($params['usermobile'])) ? trim(urldecode($params['usermobile'])):'';
-            if(empty($usermobile))
+            $tid=(!empty($params['tid'])) ? trim(urldecode($params['tid'])):'';
+            if(empty($umob) && empty($tid))
             {
                 $res = array();
-                $err = array('Code' => 1, 'Msg' => 'Please mention the user id');
+                $err = array('Code' => 1, 'Msg' => 'Parameter missing');
                 $result = array('results' => $res, 'error' => $err);
+                $res=$result;
                 break;
             }
             $obj= new orders($db['jzeva']);
             $result = $obj->ordById($params);
             $res= $result;
             break;
-
-// localhost/jzevasb/apis/index.php?action=actOrdList&usermobile=9975887206             
+            
+// localhost/jzevasb/apis/index.php?action=actOrdList&uid=9975887206            
         case 'actOrdList':
             include APICLUDE.'class.orders.php';
-            $usermobile=(!empty($params['usermobile'])) ? trim(urldecode($params['usermobile'])):'';
+            $uid=(!empty($params['uid'])) ? trim(urldecode($params['uid'])):'';
+            if(empty($umob) && empty($tid))
+            {
+                $arr = array();
+                $err = array('Code' => 1, 'Msg' => 'Parameter missing');
+                $result = array('results' => $res, 'error' => $err);
+                $res=$result;
+                break;
+            }
+            $obj= new orders($db['jzeva']);
+            $result = $obj->ordById($params);
+            $res= $result;
+            break;
+            
+// localhost/jzevasb/apis/index.php?action=actOrdList&usermobile=9975887206             
+        case 'addtrans':
+            include APICLUDE.'class.orders.php';
+            $dt=(!empty($params['dt'])) ? trim(urldecode($params['dt'])):'';
             if(empty($usermobile))
             {
                 $res = array();
                 $err = array('Code' => 1, 'Msg' => 'Invalid parameters');
                 $result = array('results' => $res, 'error' => $err);
+                $res=$result;
                 break;
             }
             $obj = new orders($db['jzeva']);
             $result=$obj->actOrdList($params);
             $res= $result;
             break;
-                
-/*        case 'ordByCat':
+            
+// localhost/jzevasb/apis/index.php?action=actOrdList&usermobile=9975887206
+        case 'viewtrans':
             include APICLUDE.'class.orders.php';
-            $pid = (!empty($params['product_id'])) ? trim($params['product_id']) : '';
-            if(empty($pid))
-            {
-                $res = array();
-                $err = array('Code' => 1, 'Msg' => 'Please mention the product id');
-                $result = array('results' => $res, 'error' => $err);
-                break;
-            }
-            $obj    = new orders($db['jzeva']);
-            $result = $obj->ordByCat($params);
-            $res = $result;
-            break;
-
-        case 'ordByAmt':
-            include APICLUDE.'class.orders.php';
-            $pid  = (!empty($params['product_id'])) ? trim($params['product_id']) : '';
+            $tid  = (!empty($params['tid'])) ? trim($params['tid']) : '';
             if(empty($pid))
             {
             $res = array();
-            $err = array('Code' => 1, 'Msg' => 'Please mention the product code');
+            $err = array('Code' => 1, 'Msg' => 'Invalid transaction id');
             $result = array('results' => $res, 'error' => $err);
             break;
             }
             $obj= new orders($db['jzeva']);
             $result= $obj->ordByAmt($params);
             $res = $result;
-            break;
-  */          
-//-----------------------------ViewLog----------------------------                
+            break;         
+//-----------------------------ViewLog----------------------------------
 
 //  localhost/jzevasb/apis/index.php?action=filLog&mobile=9975887206&product_id=7            
         case 'filLog':
@@ -257,7 +295,99 @@ switch($action)
             $res = $result;
             break;
             
-//-----------------------------Vendor-----------------------------
+//-----------------------Vendor Profile--------------------------------------
+        
+//  localhost/jzeva/apis/index.php?action=regVendor&dt={%22result%22:%20{%22vname%22:%20%22arun%20singh%22,%22logmob%22:%209421522299,%22pass%22:%20%22singh123%22,%22email%22:%20%22singharun@gmail.com%22,%22wcell%22:%20%22887878788%22,%22lLine%22:%20%220232222132%22,%22ad1%22:%20%22jangalganj%22,%22ad2%22:%20%22rajokumar%22,%22area%22:%20%22ddad%20wdawdad%20adawd%20awda%20wd%22,%22cty%22:%20%22banglore%22,%22st%22:%20%22karnatka%22,%22pc%22:%20323222,%22wbst%22:%20%22yahoo.com%22,%22fax%22:%20%2243322323%22},%22error%22:%20{%22errCode%22:%200}}
+    case 'regVendor':
+        include APICLUDE.'class.vendor.php';
+        $dt=(!empty($params['dt'])) ? trim(urldecode($params['dt'])) : '';
+        if(empty($dt))
+        {
+
+        $arr=array();
+        $err=array('code'=> 1,'Msg'=> 'Invalid parameters');
+        $result=array('results'=> $arr,'error'=>$err);
+        $res=$result;
+        break;
+        }
+        $obj=new vendor($db['jzeva']);
+        $result=$obj->regVendor($params);
+        $res=$result;
+        break;
+            
+//  localhost/jzeva/apis/index.php?action=logVendor&logmob=9421522299&pass=bajpai            
+    case 'logVendor':
+            include APICLUDE.'class.vendor.php';
+            $vmob=(!empty($params['logmob'])) ? trim($params['logmob']) : '';
+            $pass=(!empty($params['pass'])) ? trim($params['pass']) : '';
+            if(empty($vmob) && empty($pass))
+            {
+                $arr=array();
+                $err=array('code'=> 1,'Msg'=> 'Invalid parameters');
+                $result=array('results'=> $arr,'error'=>$err);
+                $res=$result;
+                break;
+            }
+            $obj=new vendor($db['jzeva']);
+            $result=$obj->logVendor($params);
+            $res=$result;
+            break;
+            
+//  localhost/jzeva/apis/index.php?action=upVpass&logmob=9421522299&pass=bajpai&vid=1            
+    case 'upVpass':
+        include APICLUDE.'class.vendor.php';
+        $vmob=(!empty($params['logmob'])) ? trim($params['logmob']) : '';
+        $pass=(!empty($params['pass'])) ? trim($params['pass']) : '';
+        $vid=(!empty($params['vid'])) ? trim($params['vid']) : '';
+        if(empty($vmob) && empty($pass) && empty($vid))
+        {
+            $arr=array();
+            $err=array('code'=> 1,'Msg'=> 'Invalid parameters');
+            $result=array('results'=> $arr,'error'=>$err);
+            $res=$result;
+            break;
+        }
+        $obj=new vendor($db['jzeva']);
+        $result=$obj->upVpass($params);
+        $res=$result;
+        break;
+           
+//  localhost/jzeva/apis/index.php?action=isact&logmob=9421522299&af=1
+    case 'isact':
+        include APICLUDE.'class.vendor.php';
+        $vmob=(!empty($params['logmob'])) ? trim($params['logmob']) : '';
+        $af=(!empty($params['af'])) ? trim($params['af']) : '';
+        if(empty($vmob) && empty($af))
+        {
+            $arr=array();
+            $err=array('code'=> 1,'Msg'=> 'Invalid parameters');
+            $result=array('results'=> $arr,'error'=>$err);
+            $res=$result;
+            break;
+        }
+        $obj=new vendor($db['jzeva']);
+        $result=$obj->isact($params);
+        $res=$result;
+        break;
+   
+//  localhost/jzeva/apis/index.php?action=checkven&logmob=9421522299            
+    case 'checkven':
+            include APICLUDE.'class.vendor.php';
+            $logmob=(!empty($params['logmob'])) ? trim(urldecode($params['logmob'])) : '';
+            if(empty($logmob))
+            {
+                $arr=array();
+                $err=array('Code'=> 1,'Msg'=> 'Invalid parameters');
+                $result=array('results'=> $arr,'error'=>$err);
+                $res=$result;
+            break;
+            }
+            $obj=new vendor($db['jzeva']);
+            $result=$obj->checkven($params);
+            $res=$result;
+            break;             
+            
+//-----------------------------Vendor Product------------------------------------
 
 //  localhost/jzevasb/apis/index.php?action=addVendorPrdInfo&product_id=7&logmobile=9975887206&vendor_price=3300023&vendor_quantity=3&vendor_currency=INR&vendor_remarks=Excellent&active_flag=1            
         case 'addVendorPrdInfo':
@@ -338,8 +468,25 @@ switch($action)
             $result= $obj->updateProductInfo($params);
             $res=$result;
             break;
+            
+//  localhost/jzeva/apis/index.php?action=getVDetailByPid&product_id=7
+        case 'getVDetailByPid':
+            include APICLUDE.'class.vendor.php';
+            $product_id=(!empty($params['product_id'])) ? trim($params['product_id']) : '';
+            if(empty($product_id))
+            {
+                $arr=array();
+                $err=array('Code'=>0,'Msg'=>'Invalid Parameter');
+                $result=array('results'=>$arr,'error'=>$err);
+                $res=$result;
+                break;
+            }
+            $obj=new vendor($db['jzeva']);
+            $result=$obj->getVDetailByPid($params);
+            $res=$result;
+            break;            
 
-//-------------------------Location---------------------------------               
+//-------------------------Location--------------------------------------
             
 // localhost/jzevasb/apis/index.php?action=addCity&cname=Pakistan&sname=Punjab&cityname=lahore            
         case 'addCity':
@@ -432,7 +579,7 @@ switch($action)
             $res=$result;
             break;
 
-//-------------------------CategoryInfo-----------------------------
+//-------------------------CategoryInfo---------------------------------
         
 // localhost/jzevasb/apis/index.php?action=getCatList        
         case 'getCatList': 
@@ -529,7 +676,7 @@ switch($action)
             $res=$result;
             break;
 
-//----------------------BrandInfo------------------------------
+//----------------------BrandInfo----------------------------------------
 
 // localhost/jzevasb/apis/index.php?action=getBrandList           
         case 'getBrandList':
@@ -539,9 +686,9 @@ switch($action)
             $res=$result;
             break;
 
-//-------------------------Auto---------------------------------  
+//-------------------------Auto-------------------------------------------
 
-// localhost/jzevasb/apis/index.php?action=searchbox&srch=p        
+// localhost/jzeva/apis/index.php?action=searchbox&srch=p        
         case 'searchbox':
             include APICLUDE.'class.auto.php';
             $srch=(!empty($params['srch'])) ? trim(urldecode($params['srch'])) : '';
@@ -549,7 +696,7 @@ switch($action)
             {
             $arr=array();
             $err=array('code'=> 1,'Msg'=> 'Invalid parameters');
-            $result=array('results'=> $arr,'error'=>$err['error']);
+            $result=array('results'=> $arr,'error'=>$err);
             $res=$result;
             break;
             }
@@ -558,7 +705,92 @@ switch($action)
             $res=$result;
             break;
 
-//--------------------Product-----------------------------------           
+// localhost/jzeva/apis/index.php?action=suggestCity&srch=p            
+        case 'suggestCity':
+            include APICLUDE.'class.auto.php';
+            $srch=(!empty($params['srch'])) ? trim(urldecode($params['srch'])) : '';
+            if(empty($srch))
+            {
+            $arr=array();
+            $err=array('code'=> 1,'Msg'=> 'Invalid parameters');
+            $result=array('results'=> $arr,'error'=>$err);
+            $res=$result;
+            break;
+            }
+            $obj = new auto($db['jzeva']);
+            $result=$obj->suggestCity($params);
+            $res=$result;
+            break;
+            
+// localhost/jzeva/apis/index.php?action=suggestBrand&srch=p            
+        case 'suggestBrand':
+            include APICLUDE.'class.auto.php';
+            $srch=(!empty($params['srch'])) ? trim(urldecode($params['srch'])) : '';
+            if(empty($srch))
+            {
+            $arr=array();
+            $err=array('code'=> 1,'Msg'=> 'Invalid parameters');
+            $result=array('results'=> $arr,'error'=>$err);
+            $res=$result;
+            break;
+            }
+            $obj = new auto($db['jzeva']);
+            $result=$obj->suggestBrand($params);
+            $res=$result;
+            break;
+
+//  localhost/jzeva/apis/index.php?action=suggestCat&srch=
+        case 'suggestCat':
+            include APICLUDE.'class.auto.php';
+            $srch=(!empty($params['srch'])) ? trim(urldecode($params['srch'])) : '';
+            if(empty($srch))
+            {
+            $arr=array();
+            $err=array('code'=> 1,'Msg'=> 'Invalid parameters');
+            $result=array('results'=> $arr,'error'=>$err);
+            $res=$result;
+            break;
+            }
+            $obj = new auto($db['jzeva']);
+            $result=$obj->suggestCat($params);
+            $res=$result;
+            break;
+            
+//  localhost/jzeva/apis/index.php?action=suggestOff&srch=p
+        case 'suggestOff':
+            include APICLUDE.'class.auto.php';
+            $srch=(!empty($params['srch'])) ? trim(urldecode($params['srch'])) : '';
+            if(empty($srch))
+            {
+            $arr=array();
+            $err=array('code'=> 1,'Msg'=> 'Invalid parameters');
+            $result=array('results'=> $arr,'error'=>$err);
+            $res=$result;
+            break;
+            }
+            $obj = new auto($db['jzeva']);
+            $result=$obj->suggestOff($params);
+            $res=$result;
+            break;    
+            
+//  localhost/jzeva/apis/index.php?action=suggestVendor&srch=p
+        case 'suggestVendor':
+            include APICLUDE.'class.auto.php';
+            $srch=(!empty($params['srch'])) ? trim(urldecode($params['srch'])) : '';
+            if(empty($srch))
+            {
+            $arr=array();
+            $err=array('code'=> 1,'Msg'=> 'Invalid parameters');
+            $result=array('results'=> $arr,'error'=>$err);
+            $res=$result;
+            break;
+            }
+            $obj = new auto($db['jzeva']);
+            $result=$obj->suggestVendor($params);
+            $res=$result;
+            break;
+
+//--------------------Product---------------------------------------------
 
 //  localhost/jzevasb/apis/index.php?action=addNewproduct&dt={%22result%22:%20{%22product_name%22:%20%22bluediamond%22,%22brandid%22:%2011,%22lotref%22:%201123,%22barcode%22:%20%22qw211111%22,%22lotno%22:%201133,%22product_display_name%22:%20%22marveric%20blue%20silver%20diamond%22,%22product_model%22:%20%22rw231%22,%22product_brand%22:%20%22orra%22,%22product_price%22:%2012211223.02,%22product_currency%22:%20%22INR%22,%22product_keywords%22:%20%22blue,silver,diamond%22,%22product_desc%22:%20%22a%20clear%20cut%20solitaire%20diamond%20in%20the%20vault%22,%22product_wt%22:%20223.21,%22prd_img%22:%20%22abc.jpeg%22,%22category_id%22:%201,%22product_warranty%22:%20%221%20year%22},%22attributes%22:%20[[111,%22green%22,1]],%22design%22:%20{%22desmobile%22:%20%22889898989%22,%22desname%22:%20%22shiamak%22},%22error%22:%20{%22errCode%22:%200}}
         case 'addNewproduct':
@@ -576,8 +808,8 @@ switch($action)
             $obj=new product($db['jzeva']);
             $result=$obj->addNewproduct($params);
             $res=$result;
-            break;
-     
+            break;     
+            
             /*case 'imageUpdate':
             include APICLUDE.'class.product.php';
             $dt=(!empty($params['dt'])) ? trim(urldecode($params['dt'])) : '';
@@ -585,7 +817,7 @@ switch($action)
             {
             $arr=array();
             $err=array('code'=> 1,'Msg'=> 'Invalid parameters');
-            $result=array('results'=> $arr,'error'=>$err['error']);
+            $result=array('results'=> $arr,'error'=>$err);
             $res=$result; 
             break;
             }
@@ -671,7 +903,41 @@ switch($action)
             $res=$result;
             break;
             
-//---------------------------Offer---------------------------------------            
+//   localhost/jzevasb/apis/index.php?action=productByBrand&bname=jewel
+        case 'productByBrand':
+            include APICLUDE.'class.product.php';
+            $bname=(!empty($params['bname'])) ? trim($params['bname']): "";
+            if(empty($bname))
+            {
+                $arr=array();
+                $err=array('Code'=>1,'Msg'=>'Invalid Parameters');
+                $result=array('result'=>$arr,'error'=>$err);
+                $res=$result;
+                break;
+            }
+            $obj= new product($db['jzeva']);
+            $result=$obj->productByBrand($params);
+            $res=$result;
+            break;            
+            
+//  localhost/jzeva/apis/index.php?action=productByDesigner&desname=shiamak            
+        case 'productByDesigner':
+            include APICLUDE.'class.product.php';
+            $desname=(!empty($params['desname'])) ? trim($params['desname']): "";
+            if(empty($desname))
+            {
+                $arr=array();
+                $err=array('Code'=>1,'Msg'=>'Invalid Parameters');
+                $result=array('result'=>$arr,'error'=>$err);
+                $res=$result;
+                break;
+            }
+            $obj= new product($db['jzeva']);
+            $result=$obj->productByDesigner($params);
+            $res=$result;
+            break;
+            
+//---------------------------Offer-----------------------------------------
 
 //  localhost/jzevasb/apis/index.php?action=addOffer&offername=diwalidhamaka&des=a well reknown festive offer we are celebrating since ages&amdp=1.1&valid=1 year&vdesc=1123fwhf232
         case 'addOffer':
@@ -683,9 +949,10 @@ switch($action)
             $voucherdesc  =   (!empty($params['vdesc'])) ? trim(urldecode($params['vdesc'])) : '';
             if(empty($offername) && empty($des) && empty($amdp) && empty($valid) && empty($voucherdesc))
             {
-                $res = array();
+                $arr = array();
                 $err = array('Code' => 1, 'Msg' => 'Invalid Parameters');
                 $result = array('results' => $res, 'error' => $err);
+                $res=$result;
                 break;
             }
             $obj    = new offer($db['jzeva']);
@@ -699,9 +966,10 @@ switch($action)
             $offid  = (!empty($params['offid'])) ?  trim($params['offid']) : '';               
             if(empty($offid))
             {
-                $res = array();
+                $arr = array();
                 $err = array('Code' => 1, 'Msg' => 'Please mention the offer id');
-                $result = array('results' => $res, 'error' => $err);
+                $result = array('results' => $arr, 'error' => $err);
+                $res=$result;
                 break;
             }
             $obj    = new offer($db['jzeva']);
@@ -715,9 +983,10 @@ switch($action)
             $offid  = (!empty($params['offid'])) ?  trim($params['offid']) : '';               
             if(empty($offid))
             {
-                $res = array();
+                $arr = array();
                 $err = array('Code' => 1, 'Msg' => 'Please mention the offer id');
-                $result = array('results' => $res, 'error' => $err);
+                $result = array('results' => $arr, 'error' => $err);
+                $res=$result;
                 break;
             }
             $obj    = new offer($db['jzeva']);
@@ -731,9 +1000,10 @@ switch($action)
             $offid  = (!empty($params['offid'])) ?  trim($params['offid']) : '';               
             if(empty($offid))
             {
-                $res = array();
+                $arr = array();
                 $err = array('Code' => 1, 'Msg' => 'Please mention the offer id');
-                $result = array('results' => $res, 'error' => $err);
+                $result = array('results' => $arr, 'error' => $err);
+                $res=$result;
                 break;
             }
             $obj    = new offer($db['jzeva']);
@@ -750,9 +1020,10 @@ switch($action)
             $dflag  = (!empty($params['dispflag'])) ?  trim($params['dispflag']) : '';
             if(empty($offid) && empty($usermobile) && empty($dpos) && empty($dflag))
             {
-                $res = array();
+                $arr = "Some parameters are missing";
                 $err = array('Code' => 1, 'Msg' => 'Invalid parameters');
-                $result = array('results' => $res, 'error' => $err);
+                $result = array('results' => $arr, 'error' => $err);
+                $res=$result;
                 break;
             }
             $obj    = new offer($db['jzeva']);
@@ -777,17 +1048,31 @@ switch($action)
             $res = $result;
             break;    
             
-//----------------------cart------------------------------------------------            
-
-        
-//  localhost/jzevasb/apis/index.php?action=addToCart&usermobile=9975887206&qty=20&pid=7&vendormobile=7309290529        
+//----------------------cart-----------------------------------------------
+                
+//  localhost/jzeva/apis/index.php?action=getcartId&ip=192.168.2.21&umob=9975887206          
+        case 'getcartId':
+            include APICLUDE.'class.cart.php';
+            $ip=(!empty($params['ip'])) ? trim(urldecode($params['ip'])) : '';
+            $umob=(!empty($params['umob'])) ? trim($params['umob']) : '';
+            if(empty($ip) && empty($umob))
+            {
+                $arr=array();
+                $err=array('Code'=>1,'Msg'=>'Invalid Parameters');
+                $result=array('results'=>$arr,'error'=>$err);
+                $res=$result;
+                break;
+            }
+            $obj=new cart($db['jzeva']);
+            $result=$obj->getCartId($params);
+            $res=$result;
+            break;
+            
+//  localhost/jzevasb/apis/index.php?action=addToCart&dt={["logmob":9975887206]}        
         case 'addToCart':
             include APICLUDE.'class.cart.php';
-            $usermobile  = (!empty($params['usermobile']))?  trim($params['usermobile']) : '';
-            $qty  = (!empty($params['qty'])) ? trim($params['qty']) : '';
-            $pid  = (!empty($params['pid'])) ? trim($params['pid']) : '';
-            $vendormobile  =(!empty($params['vendormobile'])) ? trim($params['vendormobile']) : '';
-            if(empty($uid) && empty($qty) && empty($pid) && empty($cartid))
+            $dt  = (!empty($params['dt']))?  trim($params['dt']) : '';
+            if(empty($dt))
             {
             $res = array();
             $err = array('Code' => 1, 'Msg' => 'Invalid Parameters');
@@ -800,16 +1085,17 @@ switch($action)
             break; 
             
 //  localhost/jzevasb/apis/index.php?action=editCart&cart_id=1&quantity=10&product_id=7            
-        case 'editCart':
+        case 'editCart': 
             include APICLUDE.'class.cart.php';
             $cartid  = (!empty($params['cart_id']))?  trim($params['cart_id']) : '';
             $qty  = (!empty($params['quantity'])) ? trim($params['quantity']) : '';
             $pid  = (!empty($params['product_id'])) ? trim($params['product_id']) : '';    
             if(empty($qty) && empty($pid) && empty($cartid))
             {
-            $res = array();
+            $arr = array();
             $err = array('Code' => 1, 'Msg' => 'Invalid Parameters');
             $result = array('results' => $res, 'error' => $err);
+            $res=$result;
             break;
             }
             $obj=new cart($db['jzeva']);
@@ -817,15 +1103,17 @@ switch($action)
             $res=$result;
             break;
 
-//  localhost/jzevasb/apis/index.php?action=readCart&cartid=1            
+//  localhost/jzeva/apis/index.php?action=readCart&ip=192.168.2.21&logmob=9975887206            
         case 'readCart':
             include APICLUDE.'class.cart.php';
-            $cartid =(!empty($params['cartid'])) ? trim($params['cartid']) : '';
-            if(empty($cartid))
+            $ip =(!empty($params['ip'])) ? trim(urldecode($params['ip'])) : '';
+            $logmob=(!empty($params['logmob'])) ? trim(urldecode($params['logmob'])) : '';
+            if(empty($ip))
             {
             $res = array();
-            $err = array('Code' => 1, 'Msg' => 'Please mention the user id');
-            $result = array('results' => $res, 'error' => $err);
+            $err = array('Code' => 1, 'Msg' => 'Invalid Parameter');
+            $result = array('results' =>$res,'error'=>$err);
+            $res= $result;
             break;
             }
             $obj    = new cart($db['jzeva']);
@@ -833,44 +1121,46 @@ switch($action)
             $res= $result;
             break;
 
-//  localhost/jzevasb/apis/index.php?action=delPrd&cartid=1&pid=7
+//  localhost/jzevasb/apis/index.php?action=delPrd&cartid=1&pid=7&vmob=7878787878
         case 'delPrd':
             include APICLUDE.'class.cart.php';
             $pid  = (!empty($params['pid'])) ? trim($params['pid']) : '';
             $cartid  =(!empty($params['cartid'])) ? trim($params['cartid']) : '';
             if(empty($pid) && empty($cartid))
             {
-                $res = array();
+                $arr = array();
                 $err = array('Code' => 1, 'Msg' => 'Invalid Parameters');
                 $result = array('results' => $res, 'error' => $err);
+                $res=$result;
                 break;
             }
             $obj=new cart($db['jzeva']);
             $result=$obj->delPrd($params);
             $res= $result;
             break;
-/*
-//  localhost/jzevasb/apis/index.php?action=cartClr&cartid=1&product_id=7            
+
+//  localhost/jzeva/apis/index.php?action=cartClr&logmobile=9975887206&product_id=9&vendormob=7309290529            
         case 'cartClr':
             include APICLUDE.'class.cart.php';
-            $pid  = (!empty($params['product_id'])) ? trim($params['product_id']) : '';
-            $cartid  = (!empty($params['cartid'])) ?  trim($params['cartid']) : '';
-            if(empty($pid) && empty($cartid))
+            $pid =(!empty($params['product_id'])) ? trim($params['product_id']) : '';
+            $logmobile =(!empty($params['logmobile'])) ?  trim($params['logmobile']) : '';
+            $vendormob=(!empty($params['vendormob'])) ?  trim($params['vendormob']) : '';
+            if(empty($pid) && empty($logmobile) && empty($vendormob))
             {
-                $res = array();
+                $arr = array();
                 $err = array('Code' => 1, 'Msg' => 'Invalid Parameters');
                 $result = array('results'=>$res,'error'=>$err);
+                $res=$result;
                 break;
             }
             $obj= new cart($db['jzeva']);
             $result = $obj->cartClr($params);
             $res= $result;
             break;
-*/
             
-//----------------------Attribute-----------------------------------------------
-
- // localhost/jzevasb/apis/index.php?action=get_attrList            
+//----------------------Attribute------------------------------------------
+ 
+ // localhost/jzevasb/apis/index.php?action=get_attrList           
         case 'get_attrList':
             include APICLUDE.'class.attribute.php';
             $obj = new attribute($db['jzeva']);
@@ -883,12 +1173,7 @@ switch($action)
             include APICLUDE.'class.attribute.php';
             $name=(!empty($params['name'])) ? trim($params['name']):'';
             $dname=(!empty($params['dname'])) ? trim($params['dname']):'';
-            $unit=(!empty($params['unit'])) ? trim($params['unit']):'';
-            $flag=(!empty($params['flag'])) ? trim($params['flag']):'';                
-            $upos=(!empty($params['upos'])) ? trim(urldecode($params['upos'])):'';
-            $vals=(!empty($params['vals'])) ? trim($params['vals']) : '';
-            $range=(!empty($params['range'])) ? trim(urldecode($params['range'])):'';
-            if(empty($name) && empty($dname) && empty($unit) && empty($flag) && empty($upos) && empty($vals) && empty($range))
+            if(empty($name) && empty($dname))
             {
             $arr=array();
             $err=array('code'=> 1,'Msg'=> 'Invalid parameters');
@@ -922,13 +1207,8 @@ switch($action)
         case 'set_category_mapping':
             include APICLUDE.'class.attribute.php';
             $aid =(!empty($params['aid'])) ? trim($params['aid']):'';
-            $dflag =(!empty($params['dflag'])) ? trim($params['dflag']):'';
-            $dpos =(!empty($params['dpos'])) ? trim($params['dpos']):'';
-            $fil_flag =(!empty($params['fil_flag'])) ? trim($params['fil_flag']):'';
-            $fil_pos =(!empty($params['fil_pos'])) ? trim($params['fil_pos']):'';
-            $aflag =(!empty($params['aflag'])) ? trim($params['aflag']):'';
             $catid =(!empty($params['catid'])) ? trim($params['catid']):'';
-            if(empty($aid) && empty($dflag) && empty($dpos) && empty($fil_flag) && empty($fil_pos) && empty($aflag) && empty($catid))
+            if(empty($aid) && empty($catid))
             {
                 $arr=array();
                 $err=array('Code'=>1,'Msg'=>'Invalid Parameters');
@@ -974,12 +1254,353 @@ switch($action)
             $obj= new attribute($db['jzeva']);
             $result=$obj->unset_category_mapping($params);
             $res=$result;
+            break;            
+            
+//--------------------Stylist Appointment----------------------------------
+
+//  localhost/jzeva/apis/index.php?action=makeAppoint&dt=            
+        case 'makeAppoint':
+            include APICLUDE.'class.appoint.php';
+            $dt=(!empty($params['dt'])) ? trim(urldecode($params['dt'])) : '';
+            if(empty($dt))
+            {   
+                $arr = "Some Parameters are missing";
+                $err = array('Code' => 1, 'Msg' => 'Some Parameters are missing');
+                $result = array('results'=>$arr, 'error' => $err);
+                $res=$result;
+                break;
+            }
+            $obj= new appoint($db['jzeva']);
+            $result=$obj->makeAppoint($params);
+            $res=$result;
+            break;    
+
+//  localhost/jzeva/apis/index.php?action=makeAppoint            
+        case 'viewAppoint':
+            include APICLUDE.'class.appoint.php';
+            $obj= new appoint($db['jzeva']);
+            $result=$obj->viewAppoint();
+            $res=$result;
+            break;
+            
+//--------------------Custom Design----------------------------------------
+
+//  localhost/jzeva/apis/index.php?action=showCDes            
+        case 'showCDes':
+            include APICLUDE.'class.custDes.php';
+            $obj= new custDes($db['jzeva']);
+            $result=$obj->showCDes();
+            $res=$result;
             break;
 
-        default :
+//  localhost/jzeva/apis/index.php?action=addCDes
+        case 'addCDes':
+            include APICLUDE.'class.custDes.php';
+            $dt=(!empty($params['dt'])) ? trim(urldecode($params['dt'])) : '';
+            if(empty($dt))
+            {   
+                $arr = "Some Parameters are missing";
+                $err = array('Code' => 1, 'Msg' => 'Some Parameters are missing');
+                $result = array('results'=>$arr, 'error' => $err);
+                $res=$result;
+                break;
+            }
+            $obj= new custDes($db['jzeva']);
+            $result=$obj->addCDes($params);
+            $res=$result;
+            break;
+
+//----------------------Customer Speaks-------------------------------------
+            
+//  localhost/jzeva/apis/index.php?action=addCDes&dt=            
+        case 'addCom':
+            include APICLUDE.'class.speaks.php';
+            $dt=(!empty($params['dt'])) ? trim(urldecode($params['dt'])) : '';
+            if(empty($dt))
+            {   
+                $arr = "Some Parameters are missing";
+                $err = array('Code' => 1, 'Msg' => 'Some Parameters are missing');
+                $result = array('results'=>$arr, 'error' => $err);
+                $res=$result;
+                break;
+            }
+            $obj= new speaks($db['jzeva']);
+            $result=$obj->addCom($params);
+            $res=$result;
+            break;
+
+//  localhost/jzeva/apis/index.php?action=viewCom            
+        case 'viewCom':
+            include APICLUDE.'class.speak.php';
+            $obj= new speak($db['jzeva']);
+            $result=$obj->viewCom();
+            $res=$result;
+            break;
+                        
+//-----------------------Subscribe and Newsletter---------------------------
+
+//  localhost/jzeva/apis/index.php?action=subscribe&logmobile=9975887206        
+        case 'subscribe':
+            include APICLUDE.'class.newsletter.php';
+            $logmobile = (!empty($params['logmobile'])) ? trim($params['logmobile']):'';
+            if(empty($logmobile))
+            {
+                $arr="Invalid Parameter";
+                $err=array('Code'=>1,'Msg'=>'Parameter missing');
+                $result=array('results'=>$arr,'error'=>$err);
+                $res=$result;
+                break;
+            }
+            $obj=new newsletter($db['jzeva']);
+            $result=$obj->subscribe($params);
+            $res=$result;
+            break;
+            
+//  localhost/jzeva/apis/index.php?action=viewSubscribers            
+        case 'viewSubscribers':
+            include APICLUDE.'class.newsletter.php';
+            $dt=(!empty($params['dt'])) ? trim(urldecode($params['dt'])) : '';
+            if(empty($dt))
+            {   
+                $arr = "Some Parameters are missing";
+                $err = array('Code' => 1, 'Msg' => 'Some Parameters are missing');
+                $result = array('results'=>$arr, 'error' => $err);
+                $res=$result;
+                break;
+            }
+            $obj= new speaks($db['jzeva']);
+            $result=$obj->viewSubscribers($params);
+            $res=$result;
+            break;
+
+//  localhost/jzeva/apis/index.php?action=addNewsletter&dt=            
+        case 'addNewsletter':
+            include APICLUDE.'class.newsletter.php';
+            $obj= new speak($db['jzeva']);
+            $result=$obj->addNewsletter();
+            $res=$result;
+            break;
+
+//  localhost/jzeva/apis/index.php?action=unsubscribe&logmobile=        
+        case 'unsubscribe':
+            include APICLUDE.'class.newsletter.php';
+            $logmobile = (!empty($params['logmobile'])) ? trim($params['logmobile']):'';
+            if(empty($logmobile))
+            {
+                $arr="Invalid Parameter";
+                $err=array('Code'=>1,'Msg'=>'Parameter missing');
+                $result=array('results'=>$arr,'error'=>$err);
+                $res=$result;
+                break;
+            }
+            $obj=new newsletter($db['jzeva']);
+            $result=$obj->unSubscribe($params);
+            $res=$result;
+            break;
+                
+//-------------------------Helpdesk--------------------------------------
+
+//  localhost/jzeva/apis/index.php?action=askhelp&dt=            
+        case 'askhelp':
+            include APICLUDE.'class.helpdesk.php';
+            $dt=(!empty($params['dt'])) ? trim(urldecode($params['dt'])) : '';
+            if(empty($dt))
+            {   
+                $arr = "Some Parameters are missing";
+                $err = array('Code' => 1, 'Msg' => 'Some Parameters are missing');
+                $result = array('results'=>$arr, 'error' => $err);
+                $res=$result;
+                break;
+            }
+            $obj= new helpdesk($db['jzeva']);
+            $result=$obj->askhelp($params);
+            $res=$result;
+            break;
+
+//  localhost/jzeva/apis/index.php?action=viewhelp&dt=            
+        case 'viewhelp':
+            include APICLUDE.'class.helpdesk.php';
+            $obj= new helpdesk($db['jzeva']);
+            $result=$obj->viewhelp();
+            $res=$result;
+            break;
+
+//----------------------Address Id and details------------------------------------
+            
+        case 'fillAdd':
+            include APICLUDE.'class.address.php';
+            $dt=(!empty($params['dt'])) ? trim(urldecode($params['dt'])) : '';
+            if(empty($dt))
+            {   
+                $arr = "Some Parameters are missing";
+                $err = array('Code' => 1, 'Msg' => 'Some Parameters are missing');
+                $result = array('results'=>$arr, 'error' => $err);
+                $res=$result;
+                break;
+            }
+            $obj= new helpdesk($db['jzeva']);
+            $result=$obj->fillAdd($params);
+            $res=$result;
+            break;
+
+        case 'getAdd':
+            include APICLUDE.'class.address.php';
+            $addid=(!empty($params['addid'])) ? trim(urldecode($params['addid'])) : '';
+            if(empty($addid))
+            {   
+                $arr = "Some Parameters are missing";
+                $err = array('Code' => 1, 'Msg' => 'Some Parameters are missing');
+                $result = array('results'=>$arr, 'error' => $err);
+                $res=$result;
+                break;
+            }
+            $obj= new helpdesk($db['jzeva']);
+            $result=$obj->getAdd($params);
+            $res=$result;
+            break;
+            
+        case 'getAddByUser':
+            include APICLUDE.'class.address.php';
+            $logid=(!empty($params['logmob'])) ? trim(urldecode($params['lgomob'])) : '';
+            if(empty($logid))
+            {   
+                $arr = "Parameter is missing";
+                $err = array('Code' => 1, 'Msg' => 'Inapproprate data is sent');
+                $result = array('results'=>$arr, 'error' => $err);
+                $res=$result;
+                break;
+            }
+            $obj= new helpdesk($db['jzeva']);
+            $result=$obj->getAddByUser($params);
+            $res=$result;
+            break; 
+        
+        case 'getUserAddID':
+            include APICLUDE.'class.address.php';
+            $logid=(!empty($params['logmob'])) ? trim(urldecode($params['lgomob'])) : '';
+            if(empty($logid))
+            {   
+                $arr = "Parameter is missing";
+                $err = array('Code' => 1, 'Msg' => 'Inapproprate data is sent');
+                $result = array('results'=>$arr, 'error' => $err);
+                $res=$result;
+                break;
+            }
+            $obj= new helpdesk($db['jzeva']);
+            $result=$obj->getUserAddID($params);
+            $res=$result;
+            break;
+            
+//---------------------------filter----------------------------------------
+
+        case 'get_filters':
+            include APICLUDE.'class.filter.php';
+            $category_id=(!empty($params['category_id'])) ? trim($params['category_id']):'';
+            if(empty($category_id))
+            {   
+                $arr = "Parameter is missing";
+                $err = array('Code' => 1, 'Msg' => 'Invalid Parameter');
+                $result = array('results'=>$arr, 'error' => $err);
+                $res=$result;
+                break;
+            }
+            $obj= new filter($db['jzeva']);
+            $result=$obj->get_filters($params);
+            $res=$result;
+            break;
+ 
+            
+        case 'refine':
+            include APICLUDE.'class.filter.php';
+            $dt=(!empty($params['dt'])) ? trim($params['dt']):'';
+            if(empty($dt))
+            {   
+                $arr = "Parameter is missing";
+                $err = array('Code' => 1, 'Msg' => 'Invalid Parameter');
+                $result = array('results'=>$arr, 'error' => $err);
+                $res=$result;
+                break;
+            }
+            $obj= new filter($db['jzeva']);
+            $result=$obj->refine($params);
+            $res=$result;
+            break;
+
+//-------------------------Lineage----------------------------------------
+
+        case 'set_lineage':
+            include APICLUDE.'class.categories.php';
+            $dt=(!empty($params['dt']))? trim($params['dt']):'';
+            if(empty($dt))
+            {
+                $arr="Parameters missing";
+                $err=array('Code'=>1,'Msg'=>'Invalid Parameters');
+                $result=array('results'=>$arr,'error'=>$err);
+                $res=$result;
+                break;
+            }
+            $obj=new lineage($db['jzeva']);
+            $result=$obj->set_lineage($params);
+            $res=$result;
+            break;
+            
+        case 'upd_prd_lineage':
+            include APICLUDE.'class.categories.php';
+            $dt=(!empty($params['dt']))? trim($params['dt']):'';
+            if(empty($dt))
+            {
+                $arr="Parameters missing";
+                $err=array('Code'=>1,'Msg'=>'Invalid Parameters');
+                $result=array('results'=>$arr,'error'=>$err);
+                $res=$result;
+                break;
+            }
+            $obj=new lineage($db['jzeva']);
+            $result=$obj->udt_prd_lineage($params);
+            $res=$result;
+            break;    
+            
+//------------------------Wishlist-------------------------------------------
+        
+        case 'addtowsh':
+            include APICLUDE.'class.wishlist.php';
+            $dt=(!empty($params['dt']))? trim($params['dt']):'';
+            if(empty($dt))
+            {
+                $arr="Parameters missing";
+                $err=array('Code'=>1,'Msg'=>'Invalid Parameters');
+                $result=array('results'=>$arr,'error'=>$err);
+                $res=$result;
+                break;
+            }
+            $obj=new lineage($db['jzeva']);
+            $result=$obj->addtowsh($params);
+            $res=$result;
+            break;
+            
+        case 'viewsh':
+            include APICLUDE.'class.wishlist.php';
+            $dt=(!empty($params['dt']))? trim($params['dt']):'';
+            if(empty($dt))
+            {
+                $arr="Parameters missing";
+                $err=array('Code'=>1,'Msg'=>'Invalid Parameters');
+                $result=array('results'=>$arr,'error'=>$err);
+                $res=$result;
+                break;
+            }
+            $obj=new lineage($db['jzeva']);
+            $result=$obj->viewwsh($params);
+            $res=$result;
+            break;    
+            
+//---------------------------------------------------------------------------                  
+//---------------------------------------------------------------------------
+        
+        default:
         break;
 
-//-----------------------------------------------------------------------------            
+//---------------------------------------------------------------------------
 }    
 echo json_encode($res);
 exit;
