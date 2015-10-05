@@ -37,10 +37,9 @@ class custDes extends DB
        if($proErr['errCode']== 0)
        { 
         $vsql="INSERT INTO tbl_custom_des(cname,cmob,cemail,title,des_img,dflag,udt,cdt)
-               VALUES('".$detls['cname']."',".$detls['cmob'].",'".$detls['cemail']."','".$detls['title']."','".$detls['des_img']."',1,now(),now())";
+               VALUES('".$detls['cname']."',".$detls['cmob'].",'".$detls['cemail']."','".$detls['title']."','".$detls['desimg']."',1,now(),now())";
         $vres=$this->query($vsql);
-        $chksql=$this->numRows($vres);
-            if($chkres>0)
+            if($vres)
             {
                 $arr="The custom design is submited by customer";
                 $err=array('Code'=>0,'Msg'=>'Data is Inserted successfully');

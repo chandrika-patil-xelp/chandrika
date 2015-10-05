@@ -7,14 +7,13 @@ class newsletter extends DB
             parent::DB($db);
     }
                 
-    public function subsribe($params)
+    public function subscribe($params)
     {   
-       $usql = "UPDATE tbl_registration set subscribe=1 where active_flag=1 and logmobile=".$params['mobile'];
+       $usql = "UPDATE tbl_registration set subscribe=1 where active_flag=1 and user_id=".$params['uid'];
        $ures=$this->query($usql);
-       $chkres=$this->numRows($ures);
-       if($chkres>0)
+       if($ures)
        {
-           if($ires)
+           if($ures)
             {
             $arr="Your Subscription is done";
             $err=array('code'=>0,'msg'=>"Update operation Done");
@@ -34,11 +33,18 @@ class newsletter extends DB
         return $result;
     }
     
-    public function viewSubscribers()
+    public function viewSubscribers($params)
     {
-        $vsql="SELECT userName,logmobile,email from tbl_registration where subscribe=1 and active_flag=1";
+        $vsql="SELECT user_id,userName,logmobile,email from tbl_registration where subscribe=1 and active_flag=1";
+        $page   = $params['page'];
+        $limit  = $params['limit'];
+        if (!empty($page))
+        {
+            $start = ($page * $limit) - $limit;
+            $vsql.=" LIMIT " . $start . ",$limit";
+        }
         $vres=$this->query($vsql);
-        $chksql=$this->numRows($vres);
+        $chkres=$this->numRows($vres);
         if($chkres>0)
         {
             while($row=$this->fetchData($vres))
@@ -49,7 +55,7 @@ class newsletter extends DB
         }
         else
         {
-            $arr='There is no appointment request active';
+            $arr='No Subscription yet';
             $err=array('Code'=>1,'Msg'=>'No match found');
         }
         $result=array('results'=>$arr,'error'=>$err);
@@ -60,15 +66,11 @@ class newsletter extends DB
     {
        $dt= json_decode($params['dt'],1);
        $detls  = $dt['result'];
-       $proErr  = $dt['error'];
-       if($proErr['errCode']== 0)
-       {
            $sql="INSERT INTO tbl_newsletter_master(name,descr,content,dflag,cdt,udt)
-                 VALUES('".$detls['name']."','".$detls['des']."','".$params['content']."',1,now(),now())";
-           
+                 VALUES('".$detls['name']."','".$detls['des']."','".$detls['content']."',1,now(),now())";           
            $res=$this->query($sql);
-           $chkres=$this->numRows($res);
-           if($chkres>0)
+          
+           if($res)
            {
                $arr='Newsletter has been added';
                $err=array('Code'=>0,'Msg'=>'Insertion is done successfully');
@@ -78,24 +80,18 @@ class newsletter extends DB
                $arr='Newsletter has not been added';
                $err=array('Code'=>0,'Msg'=>'Insertion unsuccessful');
            }
-       }
-       else
-        {
-           $arr='Error in passing the data';
-           $err=array('Code'=>0,'Msg'=>'data parameters are incomplete');
-        }
         $result=array('result'=>$arr,'error'=>$err);
         return $result;
     }
     
     public function unSubscribe($params)
     {
-        $chksql="SELECT * from tbl_registration where logmobile=".$params['logmobile'];
-        $chkres=$this->query($chkres);
+        $chksql="SELECT * from tbl_registration where user_id=".$params['uid'];
+        $chkres=$this->query($chksql);
         $cntres=$this->numRows($chkres);
         if($cntres==1)
         {
-            $sql="UPDATE tbl_registration set subscribe=0 where logmobile=".$params['logmobile'];
+            $sql="UPDATE tbl_registration set subscribe=0 where user_id=".$params['uid'];
             $res=$this->query($sql);
             $arr="you are unsubscribed from our newsletter facility";
             $err=array('Code'=>0,'msg'=>'Update operation completed');

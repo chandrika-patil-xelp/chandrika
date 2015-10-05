@@ -14,8 +14,18 @@ class appoint extends DB
        $proErr  = $dt['error'];
        if($proErr['errCode']== 0)
        { 
-       $isql = "INSERT INTO tbl_stylist_appoint(cust_mobile,cust_name,cust_email,fulladd,prd_type,category,budget,meet_status,display_flag,cdt,udt)
-                VALUES(".$detls['cmob'].",'".$detls['cname']."','".$detls['cemail']."','".$detls['fulladd']."','".$detls['ptype']."','".$detls['cat']."',".$detls['budget'].",0,0,1,now(),now())";
+        $vsql="SELECT DATE_FORMAT(cdt, '%m/%d/%Y') FROM tbl_stylist_appoint WHERE user_id=".$detls['uid']." AND meet_status=0 AND cdt BETWEEN NOW() - INTERVAL 30 DAY AND NOW()";
+        $vres=$this->query($vsql);
+        $chkres=$this->numRows($vres);
+        if($chkres>0)
+        {
+            $arr="Appointment is already being confirmed by this number";
+            $err=array('code'=>1,'msg'=>"Insertion not done");
+        }
+        else if($chkres=0)
+        {
+       $isql = "INSERT INTO tbl_stylist_appoint(user_id,cust_mobile,cust_name,cust_email,fulladd,prd_type,category,budget,meet_status,display_flag,cdt,udt)
+                VALUES(".$detls['uid'].",".$detls['cmob'].",'".$detls['cname']."','".$detls['cemail']."','".$detls['fulladd']."','".$detls['ptype']."','".$detls['cat']."','".$detls['budget']."',0,1,now(),now())";
         $ires=$this->query($isql);
             if($ires)
             {
@@ -33,15 +43,24 @@ class appoint extends DB
             $arr='Data is not passed properly';
             $err=array('code'=>1,'msg'=>'Error in decoding data');
        }
+       }
         $result = array('results' =>$arr,'error'=>$err);
         return $result;
     }
     
-    public function viewAppoint()
+    public function viewAppoint($params)
     {
         $vsql="SELECT cust_name,cust_mobile,cust_email,fulladd,prd_type,category,budget,cdt from tbl_stylist_appoint where meet_status=0 and display_flag=1";
+        $page=$params['page'];
+        $limit=$params['limit'];
+        if (!empty($page))
+        {
+            $start = ($page * $limit) - $limit;
+            $vsql.=" LIMIT " . $start . ",$limit";
+        }
+        
         $vres=$this->query($vsql);
-        $chksql=$this->numRows($vres);
+        $chkres=$this->numRows($vres);
         if($chkres>0)
         {
             while($row=$this->fetchData($vres))

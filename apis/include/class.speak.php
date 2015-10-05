@@ -9,7 +9,7 @@ class speak extends DB
                 
     public function viewCom()
     {   
-        $sql="select name,city,email,mobile,pimage,opinion,final_opinion from tbl_speak_master where active_flag=1 order by cdt DESC";
+        $sql="select name,city,email,mobile,pimage,opinion,final_opinion from tbl_speak_master where active_flag=1 order by updated_on DESC";
         $res =$this->query($sql);            
         $chkres=$this->numRows($res);
         if($chkres>0)
@@ -32,15 +32,12 @@ class speak extends DB
     public function addCom($params)
     {   
         $dt= json_decode($params['dt'],1);
-       $detls  = $dt['result'];
-       $proErr  = $dt['error'];
-       if($proErr['errCode']== 0)
-       { 
-        $vsql="INSERT INTO tbl_speak(name,city,mobile,email,pimage,opinion,final_opinion,active_flag,upload_time,uploaded_on)
-               VALUES('".$detls['name']."','".$detls['city']."',".$detls['mobile'].",'".$detls['email']."','".$detls['pimage']."','".$detls['opinion']."','".$detls['final_opinion']."',1,now(),now())";
+       $detls  = $dt['result'];       
+       $vsql="INSERT INTO tbl_speak_master(uid,name,city,mobile,email,pimage,opinion,final_opinion,active_flag,upload_time,updated_on)
+               VALUES(".$detls['uid'].",'".$detls['name']."','".$detls['city']."',".$detls['mobile'].",'".$detls['email']."','".$detls['pimage']."','".$detls['opinion']."','".$detls['fop']."',1,now(),now())";
         $vres=$this->query($vsql);
-        $chksql=$this->numRows($vres);
-            if($chkres>0)
+       
+            if($vres)
             {
                 $arr="User Comment is submited";
                 $err=array('Code'=>0,'Msg'=>'Data is Inserted successfully');
@@ -50,12 +47,8 @@ class speak extends DB
                 $arr='Comment is not submited';
                 $err=array('Code'=>1,'Msg'=>'Insert operation is not done');
             }
-       }
-       else
-       {
-           $arr='parameters are not passed properly';
-           $err=array('Code'=>1,'Msg'=>'Insert operation is not done');
-       }
+       
+       
         $result=array('results'=>$arr,'error'=>$err);
         return $result;
     }

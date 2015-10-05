@@ -8,7 +8,7 @@ switch($action)
 {        
 //----------------------------User---------------------------------------
 
-//  localhost/jzevasb/apis/index.php?action=checkUser&mobile=9975887206                
+//  localhost/jzeva/apis/index.php?action=checkUser&mobile=9975887206                
         case 'checkUser':
             include APICLUDE.'class.user.php';
             $mobile=(!empty($params['mobile'])) ? trim($params['mobile']) : '';
@@ -25,7 +25,7 @@ switch($action)
             $res= $result;
             break;
             
-//  localhost/jzevasb/apis/index.php?action=userReg&dt={%22result%22:%20{%22username%22:%20%22Shubham%20Bajpai%22,%22gender%22:%200,%22logmobile%22:%209975887206,%22password%22:%20%22shubham%22,%22usertype%22:%201,%22email%22:%20%22shubham@gmail.com%22,%22alt_email%22:%20%22shubhambaajpai@gmail.com%22,%22dob%22:%20%221990-10-10%22,%22working_phone%22:%207309290529,%22fulladdress%22:%20%22ES%201B/962,Sector%20A,%20Jankipuram%22,%22pincode%22:%20223232,%22cityname%22:%20%22delhi%22,%22id_type%22:%20%22DL%22,%22id_proof_no%22:%20%22VH32323HN%22},%22error%22:%20{%22errCode%22:%200}}
+//  localhost/jzeva/apis/index.php?action=userReg&dt={%22result%22:%20{%22username%22:%20%22Shubham%20Bajpai%22,%22gender%22:%200,%22logmobile%22:%209975887206,%22password%22:%20%22shubham%22,%22usertype%22:%201,%22email%22:%20%22shubham@gmail.com%22,%22alt_email%22:%20%22shubhambaajpai@gmail.com%22,%22dob%22:%20%221990-10-10%22,%22working_phone%22:%207309290529,%22fulladdress%22:%20%22ES%201B/962,Sector%20A,%20Jankipuram%22,%22pincode%22:%20223232,%22cityname%22:%20%22delhi%22,%22id_type%22:%20%22DL%22,%22id_proof_no%22:%20%22VH32323HN%22},%22error%22:%20{%22errCode%22:%200}}
         case 'userReg':
             include APICLUDE.'class.user.php';
             $dt=(!empty($params['dt'])) ? trim(urldecode($params['dt'])) : '';
@@ -42,21 +42,11 @@ switch($action)
             $res= $result;
             break;
             
-//  localhost/jzevasb/apis/index.php?action=udtProfile&uname=Shushrut%20Kumar&usertype=1&alt_email=shubhambaajpai@gmail.com&pincode=232322&address=janakpuri&cityname=Delhi&state=delhi&work_phone=4342423422&dob=1995-12-19&idproof=gsg6667fsf&idtype=driving%20license&logmobile=9975887206
+//  localhost/jzeva/apis/index.php?action=udtProfile&dt={"result": {"dob": "1990-10-28","logmobile": 9096903638,"gen": 1,"alt_email": "shivi@gmail.com","workphone": "80887545","pincode": 226021,"landline": "05222362705","address": "ho ni payega","cityname": "firozabad","idtype": "323222","idproof": "323222","area": "ddad wdawdad adawd awda wd","state": "UP","website": "yahoo.com","fax": "020221313","lat": 32.32344232342,"lng": 1.23123131,"username": "shivangi","utype": 0}}
         case 'udtProfile':
             include APICLUDE.'class.user.php';
-            $logmobile=(!empty($params['logmobile'])) ?  trim($params['logmobile']) : '';
-            $uname=(!empty($params['uname'])) ?  trim(urldecode($params['uname'])) : '';
-            $usertype=(!empty($params['usertype'])) ?  trim($params['usertype']) : '';
-            $alt_email=(!empty($params['alt_email'])) ?  trim($params['alt_email']) : '';
-            $dob=(!empty($params['dob'])) ?  trim($params['dob']) : '';
-            $work_phone=(!empty($params['work_phone'])) ?  trim($params['work_phone']) : '';
-            $pincode=(!empty($params['pincode'])) ? trim($params['pincode']) : '';
-            $address=(!empty($params['address'])) ? trim(urldecode($params['address'])) : '';
-            $cityname=(!empty($params['cityname'])) ?  trim(urldecode($params['cityname'])) : '';
-            $idproof=(!empty($params['idproof'])) ?  trim(urldecode($params['idproof'])) : '';
-            $idtype=(!empty($params['idtype'])) ?  trim(urldecode($params['idtype'])) : '';
-            if(empty($uname) && empty($usertype) && empty($alt_mobile) && empty($dob) && empty($work_phone) && empty($pincode) && empty($address) && empty($cityname)&& empty($idproof) && empty($idtype))
+            $dt=(!empty($params['dt'])) ?  trim($params['dt']) : '';
+            if(empty($dt))
             {   
                 $arr = array();
                 $err = array('Code' => 1, 'Msg' => 'Some parameters missing');
@@ -69,7 +59,7 @@ switch($action)
             $res= $result;
             break;                
             
-//  localhost/jzevasb/apis/index.php?action=logUser&mobile=9975887206&password=bajpai123            
+//  localhost/jzeva/apis/index.php?action=logUser&mobile=9975887206&password=bajpai123            
         case 'logUser':
             include  APICLUDE.'class.user.php';
             $mobile=(!empty($params['mobile'])) ?  trim($params['mobile']) : '';
@@ -87,7 +77,7 @@ switch($action)
             $res= $result;
             break;
 
-// localhost/jzevasb/apis/index.php?action=updatePass&mobile=9975887206&password=shubham            
+// localhost/jzeva/apis/index.php?action=updatePass&mobile=9975887206&password=shubham            
         case 'updatePass':
             include APICLUDE.'class.user.php';
             $password=(!empty($params['passowrd'])) ?  trim(urldecode($params['password'])) : '';
@@ -105,7 +95,7 @@ switch($action)
             $res= $result;
             break;
 
-// localhost/jzevasb/apis/index.php?action=deactUser&mobile=9975887206            
+// localhost/jzeva/apis/index.php?action=deactUser&mobile=9975887206            
         case 'deactUser':
             include APICLUDE.'class.user.php';
             $mobile=(!empty($params['mobile'])) ?  trim($params['mobile']) : '';
@@ -122,7 +112,7 @@ switch($action)
             $res= $result;
             break;
 
-// localhost/jzevasb/apis/index.php?action=actUser&mobile=9975887206                        
+// localhost/jzeva/apis/index.php?action=actUser&mobile=9975887206                        
         case 'actUser':
             include APICLUDE.'class.user.php';
             $mobile=(!empty($params['mobile'])) ?  trim($params['mobile']) : '';
@@ -139,7 +129,7 @@ switch($action)
             $res= $result;
             break;
 
-//  localhost/jzevasb/apis/index.php?action=viewAll&mobile=9975887206            
+//  localhost/jzeva/apis/index.php?action=viewAll&mobile=9975887206            
         case 'viewAll':
             include APICLUDE.'class.user.php';
             $mobile=(!empty($params['mobile'])) ?  trim($params['mobile']) : '';
@@ -156,7 +146,7 @@ switch($action)
             $res= $result;
             break;
 
-//  localhost/jzevasb/apis/index.php?action=viewAll&mobile=9975887206          
+//  localhost/jzeva/apis/index.php?action=viewAll&mobile=9975887206          
         case 'iscomp':
             include APICLUDE.'class.user.php';
             $mobile=(!empty($params['mobile'])) ?  trim($params['mobile']) : '';
@@ -175,10 +165,10 @@ switch($action)
             
 //--------------------------Order----------------------------------------
                        
-//  localhost/jzeva/apis/index.php?action=addOrd&dt=
+//  localhost/jzeva/apis/index.php?action=addOrd&dt={%22result%22:%20{%22uid%22:%2010105,%22cid%22:111,%22said%22:1,%22baid%22:%201,%22tid%22:%20%22singharun@gmail.com%22,%22ost%22:%20%221990-10-08%22},%22error%22:%20{%22errCode%22:%200}}
         case 'addOrd':
             include APICLUDE.'class.orders.php';
-            $dt=(!empty($params['dt'])) ? trim(empty($params['dt'])) : '';
+            $dt=(!empty($params['dt'])) ? trim(urldecode($params['dt'])) : '';
             if(empty($dt))
             {
                 $arr=array();
@@ -192,11 +182,13 @@ switch($action)
             $res=$result;
             break;
     
-// localhost/jzevasb/apis/index.php?action=ordById&usermobile=9975887206                            
+//  localhost/jzeva/apis/index.php?action=ordById&tid=9975887206&page=1&limit=1                            
         case 'ordById':
             include APICLUDE.'class.orders.php';
             $tid=(!empty($params['tid'])) ? trim(urldecode($params['tid'])):'';
-            if(empty($umob) && empty($tid))
+            $page=(!empty($params['page'])) ? trim($params['page']) : '';
+            $limit=(!empty($params['limit'])) ? trim($params['limit']) : '';
+            if(empty($tid) && empty($limit) && empty($page))
             {
                 $res = array();
                 $err = array('Code' => 1, 'Msg' => 'Parameter missing');
@@ -209,11 +201,13 @@ switch($action)
             $res= $result;
             break;
             
-// localhost/jzevasb/apis/index.php?action=actOrdList&uid=9975887206            
+//  localhost/jzeva/apis/index.php?action=actOrdList&tid=9975887206&limit=1&page=1            
         case 'actOrdList':
             include APICLUDE.'class.orders.php';
-            $uid=(!empty($params['uid'])) ? trim(urldecode($params['uid'])):'';
-            if(empty($umob) && empty($tid))
+            $tid=(!empty($params['tid'])) ? trim(urldecode($params['tid'])):'';
+            $page=(!empty($params['page'])) ? trim($params['page']) : '';
+            $limit=(!empty($params['limit'])) ? trim($params['limit']) : '';
+            if(empty($tid) && empty($limit) && empty($page))
             {
                 $arr = array();
                 $err = array('Code' => 1, 'Msg' => 'Parameter missing');
@@ -226,11 +220,11 @@ switch($action)
             $res= $result;
             break;
             
-// localhost/jzevasb/apis/index.php?action=actOrdList&usermobile=9975887206             
+//  localhost/jzeva/apis/index.php?action=addtrans&dt={%22result%22:%20{%22oid%22:1,%22uid%22:10105,%22tid%22:%209975887206,%22ptyp%22:%20%22sadd%22,%22pmode%22:%201,%22cuse%22:%20%22singharun@gmail.com%22,%22cur%22:%20%221990-10-08%22,%22des%22:%20%22sddv%20cd%20qwdd%22,%22amt%22:%20120012},%22error%22:%20{%22errCode%22:%200}}
         case 'addtrans':
             include APICLUDE.'class.orders.php';
             $dt=(!empty($params['dt'])) ? trim(urldecode($params['dt'])):'';
-            if(empty($usermobile))
+            if(empty($dt))
             {
                 $res = array();
                 $err = array('Code' => 1, 'Msg' => 'Invalid parameters');
@@ -239,15 +233,17 @@ switch($action)
                 break;
             }
             $obj = new orders($db['jzeva']);
-            $result=$obj->actOrdList($params);
+            $result=$obj->addtrans($params);
             $res= $result;
             break;
             
-// localhost/jzevasb/apis/index.php?action=actOrdList&usermobile=9975887206
+//  localhost/jzeva/apis/index.php?action=actOrdList&tid=9975887206&page=1&limit=1
         case 'viewtrans':
             include APICLUDE.'class.orders.php';
             $tid  = (!empty($params['tid'])) ? trim($params['tid']) : '';
-            if(empty($pid))
+            $page=(!empty($params['page'])) ? trim($params['page']) : '';
+            $limit=(!empty($params['limit'])) ? trim($params['limit']) : '';
+            if(empty($tid) && empty($page) && empty($limit))
             {
             $res = array();
             $err = array('Code' => 1, 'Msg' => 'Invalid transaction id');
@@ -260,12 +256,13 @@ switch($action)
             break;         
 //-----------------------------ViewLog----------------------------------
 
-//  localhost/jzevasb/apis/index.php?action=filLog&mobile=9975887206&product_id=7            
+//  localhost/jzeva/apis/index.php?action=filLog&uid=&product_id=7&vid=            
         case 'filLog':
             include APICLUDE.'class.viewlog.php';
-            $mobile=(!empty($params['mobile'])) ? trim($params['mobile']) : '';
+            $uid=(!empty($params['uid'])) ? trim($params['uid']) : '';
             $product_id=(!empty($params['product_id'])) ? trim($params['product_id']) : '';
-            if(empty($product_id) && empty($mobile))
+            $vid=(!empty($params['vid'])) ? trim($params['vid']):'';
+            if(empty($product_id) && empty($uid) && empty($vid))
             {
                 $arr = array();
                 $err = array('Code' => 1, 'Msg' => 'Invalid Parameters');
@@ -278,128 +275,32 @@ switch($action)
             $res = $result;
             break;
 
-//  localhost/jzevasb/apis/index.php?action=viewLog&logmobile=7878787878                        
+//  localhost/jzeva/apis/index.php?action=viewLog&vid=7878787878&pid=&page=&limit=                        
         case 'viewLog':
-            include APICLUDE.'class.viewlog.php';
-            $logmobile=(!empty($params['logmobile'])) ? trim($params['logmobile']) : '';
-            if(empty($logmobile))
-            {
-                $arr = array();
-                $err = array('Code' => 1, 'Msg' => 'Invalid Parameters');
-                $result = array('results' => $arr, 'error' => $err);
-                $res=$result;
-                break;
-            }
-            $obj= new viewlog($db['jzeva']);
-            $result= $obj->viewLog($params);
-            $res = $result;
-            break;
-            
-//-----------------------Vendor Profile--------------------------------------
-        
-//  localhost/jzeva/apis/index.php?action=regVendor&dt={%22result%22:%20{%22vname%22:%20%22arun%20singh%22,%22logmob%22:%209421522299,%22pass%22:%20%22singh123%22,%22email%22:%20%22singharun@gmail.com%22,%22wcell%22:%20%22887878788%22,%22lLine%22:%20%220232222132%22,%22ad1%22:%20%22jangalganj%22,%22ad2%22:%20%22rajokumar%22,%22area%22:%20%22ddad%20wdawdad%20adawd%20awda%20wd%22,%22cty%22:%20%22banglore%22,%22st%22:%20%22karnatka%22,%22pc%22:%20323222,%22wbst%22:%20%22yahoo.com%22,%22fax%22:%20%2243322323%22},%22error%22:%20{%22errCode%22:%200}}
-    case 'regVendor':
-        include APICLUDE.'class.vendor.php';
-        $dt=(!empty($params['dt'])) ? trim(urldecode($params['dt'])) : '';
-        if(empty($dt))
-        {
-
-        $arr=array();
-        $err=array('code'=> 1,'Msg'=> 'Invalid parameters');
-        $result=array('results'=> $arr,'error'=>$err);
-        $res=$result;
-        break;
-        }
-        $obj=new vendor($db['jzeva']);
-        $result=$obj->regVendor($params);
-        $res=$result;
-        break;
-            
-//  localhost/jzeva/apis/index.php?action=logVendor&logmob=9421522299&pass=bajpai            
-    case 'logVendor':
-            include APICLUDE.'class.vendor.php';
-            $vmob=(!empty($params['logmob'])) ? trim($params['logmob']) : '';
-            $pass=(!empty($params['pass'])) ? trim($params['pass']) : '';
-            if(empty($vmob) && empty($pass))
-            {
-                $arr=array();
-                $err=array('code'=> 1,'Msg'=> 'Invalid parameters');
-                $result=array('results'=> $arr,'error'=>$err);
-                $res=$result;
-                break;
-            }
-            $obj=new vendor($db['jzeva']);
-            $result=$obj->logVendor($params);
-            $res=$result;
-            break;
-            
-//  localhost/jzeva/apis/index.php?action=upVpass&logmob=9421522299&pass=bajpai&vid=1            
-    case 'upVpass':
-        include APICLUDE.'class.vendor.php';
-        $vmob=(!empty($params['logmob'])) ? trim($params['logmob']) : '';
-        $pass=(!empty($params['pass'])) ? trim($params['pass']) : '';
+        include APICLUDE.'class.viewlog.php';
         $vid=(!empty($params['vid'])) ? trim($params['vid']) : '';
-        if(empty($vmob) && empty($pass) && empty($vid))
+        $page=(!empty($params['page'])) ? trim($params['page']) : '';
+        $limit=(!empty($params['limit'])) ? trim($params['limit']) : '';
+        if(empty($vid) && empty($page) && empty($limit))
         {
-            $arr=array();
-            $err=array('code'=> 1,'Msg'=> 'Invalid parameters');
-            $result=array('results'=> $arr,'error'=>$err);
+            $arr = array();
+            $err = array('Code' => 1, 'Msg' => 'Invalid Parameters');
+            $result = array('results' => $arr, 'error' => $err);
             $res=$result;
             break;
         }
-        $obj=new vendor($db['jzeva']);
-        $result=$obj->upVpass($params);
-        $res=$result;
+        $obj= new viewlog($db['jzeva']);
+        $result= $obj->viewLog($params);
+        $res = $result;
         break;
-           
-//  localhost/jzeva/apis/index.php?action=isact&logmob=9421522299&af=1
-    case 'isact':
-        include APICLUDE.'class.vendor.php';
-        $vmob=(!empty($params['logmob'])) ? trim($params['logmob']) : '';
-        $af=(!empty($params['af'])) ? trim($params['af']) : '';
-        if(empty($vmob) && empty($af))
-        {
-            $arr=array();
-            $err=array('code'=> 1,'Msg'=> 'Invalid parameters');
-            $result=array('results'=> $arr,'error'=>$err);
-            $res=$result;
-            break;
-        }
-        $obj=new vendor($db['jzeva']);
-        $result=$obj->isact($params);
-        $res=$result;
-        break;
-   
-//  localhost/jzeva/apis/index.php?action=checkven&logmob=9421522299            
-    case 'checkven':
-            include APICLUDE.'class.vendor.php';
-            $logmob=(!empty($params['logmob'])) ? trim(urldecode($params['logmob'])) : '';
-            if(empty($logmob))
-            {
-                $arr=array();
-                $err=array('Code'=> 1,'Msg'=> 'Invalid parameters');
-                $result=array('results'=> $arr,'error'=>$err);
-                $res=$result;
-            break;
-            }
-            $obj=new vendor($db['jzeva']);
-            $result=$obj->checkven($params);
-            $res=$result;
-            break;             
             
 //-----------------------------Vendor Product------------------------------------
 
-//  localhost/jzevasb/apis/index.php?action=addVendorPrdInfo&product_id=7&logmobile=9975887206&vendor_price=3300023&vendor_quantity=3&vendor_currency=INR&vendor_remarks=Excellent&active_flag=1            
+//  localhost/jzeva/apis/index.php?action=addVendorPrdInfo&dt={%22result%22:%20{%22pid%22:%201,%22vid%22:%207,%22vp%22:%207309290529,%22vq%22:%201,%22vc%22:%20%22INR%22,%22vr%22:%204.21,%22af%22:%201}}
         case 'addVendorPrdInfo':
             include APICLUDE.'class.vendor.php';            
-            $product_id=(!empty($params['product_id'])) ? trim($params['product_id']) : '';
-            $logmobile=(!empty($params['logmobile'])) ? trim($params['logmobile']) : '';
-            $vendor_price=(!empty($params['vendor_price'])) ? trim($params['vendor_price']) : '';
-            $vendor_quantity=(!empty($params['vendor_quantity'])) ? trim($params['vendor_quantity']) : '';
-            $vendor_currency=(!empty($params['vendor_currency'])) ? trim(urldecode($params['vendor_currency'])) : '';
-            $vendor_remarks=(!empty($params['vendor_remarks'])) ? trim(urldecode($params['vendor_remarks'])) : '';
-            $active_flag=(!empty($params['active_flag'])) ? trim($params['active_flag']) : '';
-            if(empty($product_id)&&empty($logmobile)&&empty($vendor_price)&&empty($vendor_quantity)&&empty($vendor_currency)&&empty($vendor_remarks)&&empty($active_flag)&&empty($updatedby))
+            $dt=(!empty($params['dt'])) ? trim($params['dt']) : '';
+            if(empty($dt))
             {
                 $arr = array();
                 $err = array('Code' => 1, 'Msg' => 'Invalid parameters');
@@ -412,11 +313,13 @@ switch($action)
             $res=$result;
             break;
 
-//  localhost/jzevasb/apis/index.php?action=getVproducts&vendormobile=9975887206  
+//  localhost/jzeva/apis/index.php?action=getVproducts&vid=9975887206&page=&limit=  
         case 'getVproducts':
             include APICLUDE.'class.vendor.php';
-            $vendormobile=(!empty($params['vendormobile'])) ? trim($params['vendormobile']) : '';
-            if(empty($vendormobile))
+            $vid=(!empty($params['vid'])) ? trim($params['vid']) : '';
+            $page=(!empty($params['page'])) ? trim($params['page']) : '';
+            $limit=(!empty($params['limit'])) ? trim($params['limit']) : '';
+            if(empty($vid) && empty($page) && empty($limit))
             {
                 $arr = array();
                 $err = array('Code' => 1, 'Msg' => 'Invalid parameters');
@@ -429,12 +332,13 @@ switch($action)
             $res=$result;
             break;
 
-//  localhost/jzevasb/apis/index.php?action=getVproductsByName&vendormobile=9975887206&prname=blue            
-        case 'getVproductsByName':
+//  localhost/jzeva/apis/index.php?action=getVproductsByName&vid=7&prname=blue&page=1&limit=1        case 'getVproductsByName':
             include APICLUDE.'class.vendor.php';
-            $vendormobile=(!empty($params['vendormobile'])) ? trim($params['vendormobile']) : ''; //user session mobile
+            $vid=(!empty($params['vid'])) ? trim($params['vid']) : ''; //user session mobile
             $prname=(!empty($params['prname'])) ? trim(urldecode($params['prname'])) : '';
-            if(empty($vendormobile)&&empty($vendormobile))
+            $page=(!empty($params['page'])) ? trim($params['page']) : '';
+            $limit=(!empty($params['limit'])) ? trim($params['limit']) : '';
+            if(empty($vid) && empty($prname) && empty($page) && empty($limit))
             {
                 $arr = array();
                 $err = array('Code' => 1, 'Msg' => 'Invalid parameters');
@@ -447,16 +351,15 @@ switch($action)
             $res=$result;
             break;
                         
-//  localhost/jzevasb/apis/index.php?action=updateProductInfo&vendor_id=1&logmobile=9975887206&product_id=7&vendor_price=93323823&vendor_quantity=10&active_flag=1
+//  localhost/jzeva/apis/index.php?action=updateProductInfo&vid=1&logmobile=9975887206&pid=7&vp=93323823&vq=10&af=1
         case 'updateProductInfo':
             include APICLUDE.'class.vendor.php';
-            $vendor_id=(!empty($params['vendor_id'])) ? trim($params['vendor_id']) : '';
-            $logmobile=(!empty($params['logmobile'])) ? trim($params['logmobile']) : '';
-            $product_id=(!empty($params['product_id'])) ? trim($params['product_id']) : '';
-            $vendor_price=(!empty($params['vendor_price'])) ? trim($params['vendor_price']) : '';
-            $vendor_quantity=(!empty($params['vendor_quantity'])) ? trim($params['vendor_quantity']) : '';
-            $active_flag=(!empty($params['active_flag'])) ? trim($params['active_flag']) : '';
-            if(empty($vendor_id)&&empty($product_id)&&empty($logmobile)&&empty($vendor_price)&&empty($vendor_quantity)&&empty($active_flag))
+            $vendor_id=(!empty($params['vid'])) ? trim($params['vid']) : '';
+            $product_id=(!empty($params['pid'])) ? trim($params['pid']) : '';
+            $vendor_price=(!empty($params['vp'])) ? trim($params['vp']) : '';
+            $vendor_quantity=(!empty($params['vq'])) ? trim($params['vq']) : '';
+            $active_flag=(!empty($params['af'])) ? trim($params['af']) : '';
+            if(empty($vendor_id) && empty($product_id) && empty($vendor_price) && empty($vendor_quantity) && empty($active_flag))
             {
                 $arr = array();
                 $err = array('Code' => 1, 'Msg' => 'Invalid parameters');
@@ -469,11 +372,14 @@ switch($action)
             $res=$result;
             break;
             
-//  localhost/jzeva/apis/index.php?action=getVDetailByPid&product_id=7
+//  localhost/jzeva/apis/index.php?action=getVDetailByPid&pid=1&vid=7&page=1&limit=1
         case 'getVDetailByPid':
             include APICLUDE.'class.vendor.php';
-            $product_id=(!empty($params['product_id'])) ? trim($params['product_id']) : '';
-            if(empty($product_id))
+            $product_id=(!empty($params['pid'])) ? trim($params['pid']) : '';
+            $vid=(!empty($params['vid'])) ? trim($params['vid']) : '';
+            $page=(!empty($params['page'])) ? trim($params['page']) : '';
+            $limit=(!empty($params['limit'])) ? trim($params['limit']) : '';
+            if(empty($product_id)&&empty($vid) && empty($page) && empty($limit))
             {
                 $arr=array();
                 $err=array('Code'=>0,'Msg'=>'Invalid Parameter');
@@ -484,17 +390,17 @@ switch($action)
             $obj=new vendor($db['jzeva']);
             $result=$obj->getVDetailByPid($params);
             $res=$result;
-            break;            
+            break;
+   
 
 //-------------------------Location--------------------------------------
-            
-// localhost/jzevasb/apis/index.php?action=addCity&cname=Pakistan&sname=Punjab&cityname=lahore            
+ // localhost/jzeva/apis/index.php?action=addCity&cname=Pakistan&sname=Punjab&cityname=lahore            
         case 'addCity':
             include APICLUDE.'class.location.php';
             $cityname=(!empty($params['cityname'])) ? trim(urldecode($params['cityname'])) : '';
             $sname=(!empty($params['sname'])) ? trim(urldecode($params['sname'])) : '';
             $cname=(!empty($params['cname'])) ? trim(urldecode($params['cname'])) : '';
-            if(empty($cname)&&empty($cityname)&&empty($sname))
+            if(empty($cname) && empty($cityname) && empty($sname))
             {
                 $arr = array();
                 $err = array('Code' => 1, 'Msg' => 'Invalid Parameters');
@@ -506,8 +412,8 @@ switch($action)
             $result= $obj->addCity($params);
             $res=$result;
             break;
-
-// localhost/jzevasb/apis/index.php?action=viewbyCity&cityname=bangalore            
+            
+// localhost/jzeva/apis/index.php?action=viewbyCity&cityname=bangalore            
         case 'viewbyCity':
             include APICLUDE.'class.location.php';
             $cityname=(!empty($params['cityname'])) ? trim(urldecode($params['cityname'])) : '';
@@ -524,12 +430,14 @@ switch($action)
             $res= $result;
             break;
                         
-// localhost/jzevasb/apis/index.php?action=viewbyState&sname=haryana&cname=India                 
+//  localhost/jzeva/apis/index.php?action=viewbyState&sname=punjab&cname=pakistan&page=1&limit=2                 
         case 'viewbyState': 
             include APICLUDE.'class.location.php';
             $sname=(!empty($params['sname'])) ? trim(urldecode($params['sname'])) : '';
             $cname=(!empty($params['cname'])) ? trim(urldecode($params['cname'])) : '';
-            if(empty($sname)&&empty($cname))
+            $page=(!empty($params['page'])) ? trim($params['page']) : '';
+            $limit=(!empty($params['limit'])) ? trim($params['limit']) : '';
+            if(empty($sname) && empty($cname) && empty($page) && empty($limit))
             {
                 $arr = array();
                 $err = array('Code' => 1, 'Msg' => 'Invalid Parameters');
@@ -542,11 +450,13 @@ switch($action)
             $res=$result;
             break;
         
-// localhost/jzevasb/apis/index.php?action=viewbyCountry&cname=lahore            
+//  localhost/jzeva/apis/index.php?action=viewbyCountry&cname=pakistan&page=1&limit=2              
         case 'viewbyCountry':
             include APICLUDE.'class.location.php';
             $cname=(!empty($params['cname'])) ? trim(urldecode($params['cname'])) : '';
-            if(empty($cname))
+            $page=(!empty($params['page'])) ? trim($params['page']) : '';
+            $limit=(!empty($params['limit'])) ? trim($params['limit']) : '';
+            if(empty($cname) && empty($page) && empty($limit))
             {
                 $arr = array();
                 $err = array('Code' => 1, 'Msg' => 'Invalid Parameters');
@@ -559,14 +469,14 @@ switch($action)
             $res=$result;
             break;    
             
-// localhost/jzevasb/apis/index.php?action=updatecity&newcityname=Delhi&oldcityname=delhi&sname=delhi&cname=India            
+//  localhost/jzeva/apis/index.php?action=updatecity&newcityname=Delhi&oldcityname=lahore&sname=delhi&cname=India            
         case 'updatecity':
             include APICLUDE.'class.location.php';
             $newcityname=(!empty($params['newcityname'])) ? trim(urldecode($params['newcityname'])) : '';
             $oldcityname=(!empty($params['oldcityname'])) ? trim(urldecode($params['oldcityname'])) : '';
             $sname=(!empty($params['sname'])) ? trim(urldecode($params['sname'])) : '';
             $cname=(!empty($params['cname'])) ? trim(urldecode($params['cname'])) : '';            
-            if(empty($cname)&& empty($newcityname) && empty($sname) && empty($oldcityname))
+            if(empty($cname) &&  empty($newcityname)  &&  empty($sname)  &&  empty($oldcityname))
             {
                 $arr = array();
                 $err = array('Code' => 1, 'Msg' => 'Invalid Parameters');
@@ -579,21 +489,34 @@ switch($action)
             $res=$result;
             break;
 
-//-------------------------CategoryInfo---------------------------------
+
+//-------------------------CategoryInfo-----------------------------
         
-// localhost/jzevasb/apis/index.php?action=getCatList        
+//   localhost/jzeva/apis/index.php?action=getCatList&page=1&limit=2        
         case 'getCatList': 
             include APICLUDE.'class.categoryInfo.php';
+            $page=(!empty($params['page'])) ? trim($params['page']) : '';
+            $limit=(!empty($params['limit'])) ? trim($params['limit']) : '';
+            if(empty($page) && empty($limit))
+            {
+                $arr = array();
+                $err = array('Code' => 1, 'Msg' => 'Invalid Parameters');
+                $result = array('results' => $arr, 'error' => $err);
+                $res=$result;
+                break;
+            }
             $obj= new categoryInfo($db['jzeva']);
-            $result= $obj->getCatList();
+            $result= $obj->getCatList($params);
             $res=$result;
             break;
         
-// localhost/jzevasb/apis/index.php?action=getCatName&catid=3        
+//  localhost/jzeva/apis/index.php?action=getCatName&catid=10001&page=1&limit=1        
         case 'getCatName':
             include APICLUDE.'class.categoryInfo.php';
             $catid=(!empty($params['catid'])) ? trim($params['catid']) : '';
-            if(empty($catid))
+            $page=(!empty($params['page'])) ? trim($params['page']) : '';
+            $limit=(!empty($params['limit'])) ? trim($params['limit']) : '';
+            if(empty($catid) && empty($page) && empty($limit))
             {
                 $arr=array();
                 $err=array('code'=>1,'Invalid Parameter');
@@ -606,7 +529,7 @@ switch($action)
             $res= $result;
             break;
 
-// localhost/jzevasb/apis/index.php?action=getCatId&catName=jwellery            
+// localhost/jzeva/apis/index.php?action=getCatId&catName=bullion            
         case 'getCatId':
             include APICLUDE.'class.categoryInfo.php';
             $catName=(!empty($params['catName'])) ? trim(urldecode($params['catName'])) : '';
@@ -623,7 +546,7 @@ switch($action)
             $res= $result;
             break;
 
-// localhost/jzevasb/apis/index.php?action=addCat&catName=Diamond       
+// localhost/jzeva/apis/index.php?action=addCat&catName=Diamond       
         case 'addCat':
             include APICLUDE.'class.categoryInfo.php';
             $catName=(!empty($params['catName'])) ? trim(urldecode($params['catName'])) : '';
@@ -641,7 +564,7 @@ switch($action)
             $res=$result;
             break;
         
-// localhost/jzevasb/apis/index.php?action=deleteCat&catid=3                        
+//  localhost/jzeva/apis/index.php?action=deleteCat&catid=1                        
         case 'deleteCat':
             include APICLUDE.'class.categoryInfo.php';
             $catid=(!empty($params['catid'])) ? trim($params['catid']) : '';
@@ -658,12 +581,12 @@ switch($action)
             $res= $result;
             break;
 
-// localhost/jzevasb/apis/index.php?action=updateCat&catid=2&catName=jwellery            
+//  localhost/jzeva/apis/index.php?action=updateCat&catid=1&catName=diamond            
         case 'updateCat':
             include APICLUDE.'class.categoryInfo.php';
             $catid=(!empty($params['catid'])) ? trim($params['catid']) : '';
             $catName=(!empty($params['catName'])) ? trim(urldecode($params['catName'])) : '';
-            if(empty($catid) && empty($catName))
+            if(empty($catid)  &&  empty($catName))
             {
                 $arr=array();
                 $err=array('code'=>1,'Invalid Parameter');
@@ -676,23 +599,35 @@ switch($action)
             $res=$result;
             break;
 
-//----------------------BrandInfo----------------------------------------
+//----------------------BrandInfo------------------------------
 
-// localhost/jzevasb/apis/index.php?action=getBrandList           
+// localhost/jzeva/apis/index.php?action=getBrandList&page=&limit=                  
         case 'getBrandList':
             include APICLUDE.'class.brandInfo.php';
+            $page=(!empty($params['page'])) ? trim($params['page']) : '';
+            $limit=(!empty($params['limit'])) ? trim($params['limit']) : '';
+            if(empty($page) && empty($limit))
+            {
+                $arr = array();
+                $err = array('Code' => 1, 'Msg' => 'Invalid Parameters');
+                $result = array('results' => $arr, 'error' => $err);
+                $res=$result;
+                break;
+            }
             $obj= new brandInfo($db['jzeva']);
-            $result= $obj->getBrandList();
+            $result= $obj->getBrandList($params);
             $res=$result;
             break;
 
-//-------------------------Auto-------------------------------------------
+//-------------------------Auto---------------------------------  
 
-// localhost/jzeva/apis/index.php?action=searchbox&srch=p        
+//  localhost/jzeva/apis/index.php?action=searchbox&srch=b&page=1&limit=1         
         case 'searchbox':
             include APICLUDE.'class.auto.php';
             $srch=(!empty($params['srch'])) ? trim(urldecode($params['srch'])) : '';
-            if(empty($srch))
+            $page=(!empty($params['page'])) ? trim($params['page']) : '';
+            $limit=(!empty($params['limit'])) ? trim($params['limit']) : '';
+            if(empty($srch) && empty($page) && empty($limit))
             {
             $arr=array();
             $err=array('code'=> 1,'Msg'=> 'Invalid parameters');
@@ -705,11 +640,13 @@ switch($action)
             $res=$result;
             break;
 
-// localhost/jzeva/apis/index.php?action=suggestCity&srch=p            
+//  localhost/jzeva/apis/index.php?action=suggestCity&str=de&page=1&limit=3            
         case 'suggestCity':
             include APICLUDE.'class.auto.php';
-            $srch=(!empty($params['srch'])) ? trim(urldecode($params['srch'])) : '';
-            if(empty($srch))
+            $srch=(!empty($params['str'])) ? trim(urldecode($params['str'])) : '';
+            $page=(!empty($params['page'])) ? trim($params['page']) : '';
+            $limit=(!empty($params['limit'])) ? trim($params['limit']) : '';
+            if(empty($srch) && empty($page) && empty($limit))
             {
             $arr=array();
             $err=array('code'=> 1,'Msg'=> 'Invalid parameters');
@@ -722,11 +659,13 @@ switch($action)
             $res=$result;
             break;
             
-// localhost/jzeva/apis/index.php?action=suggestBrand&srch=p            
+//  localhost/jzeva/apis/index.php?action=suggestBrand&str=p&page=1&limit=1            
         case 'suggestBrand':
             include APICLUDE.'class.auto.php';
-            $srch=(!empty($params['srch'])) ? trim(urldecode($params['srch'])) : '';
-            if(empty($srch))
+            $srch=(!empty($params['str'])) ? trim(urldecode($params['str'])) : '';
+            $page=(!empty($params['page'])) ? trim($params['page']) : '';
+            $limit=(!empty($params['limit'])) ? trim($params['limit']) : '';
+            if(empty($srch)  && empty($page) && empty($limit))
             {
             $arr=array();
             $err=array('code'=> 1,'Msg'=> 'Invalid parameters');
@@ -739,11 +678,13 @@ switch($action)
             $res=$result;
             break;
 
-//  localhost/jzeva/apis/index.php?action=suggestCat&srch=
+//  localhost/jzeva/apis/index.php?action=suggestCat&str=2&page=1&limit=2
         case 'suggestCat':
             include APICLUDE.'class.auto.php';
-            $srch=(!empty($params['srch'])) ? trim(urldecode($params['srch'])) : '';
-            if(empty($srch))
+            $srch=(!empty($params['str'])) ? trim(urldecode($params['str'])) : '';
+            $page=(!empty($params['page'])) ? trim($params['page']) : '';
+            $limit=(!empty($params['limit'])) ? trim($params['limit']) : '';
+            if(empty($srch) && empty($page) && empty($limit))
             {
             $arr=array();
             $err=array('code'=> 1,'Msg'=> 'Invalid parameters');
@@ -756,11 +697,14 @@ switch($action)
             $res=$result;
             break;
             
-//  localhost/jzeva/apis/index.php?action=suggestOff&srch=p
+    /*        
+//  localhost/jzeva/apis/index.php?action=suggestOff&str=p&page=1&limit=2      
         case 'suggestOff':
             include APICLUDE.'class.auto.php';
-            $srch=(!empty($params['srch'])) ? trim(urldecode($params['srch'])) : '';
-            if(empty($srch))
+            $srch=(!empty($params['str'])) ? trim(urldecode($params['str'])) : '';
+            $page=(!empty($params['page'])) ? trim(urldecode($params['page'])) : '';
+            $limit=(!empty($params['limit'])) ? trim(urldecode($params['limit'])) : '';
+            if(empty($srch) && empty($limit) && empty($page))
             {
             $arr=array();
             $err=array('code'=> 1,'Msg'=> 'Invalid parameters');
@@ -772,12 +716,15 @@ switch($action)
             $result=$obj->suggestOff($params);
             $res=$result;
             break;    
-            
-//  localhost/jzeva/apis/index.php?action=suggestVendor&srch=p
+      */      
+
+//  localhost/jzeva/apis/index.php?action=suggestVendor&str=p&page=1&limit=1
         case 'suggestVendor':
             include APICLUDE.'class.auto.php';
-            $srch=(!empty($params['srch'])) ? trim(urldecode($params['srch'])) : '';
-            if(empty($srch))
+            $srch=(!empty($params['str'])) ? trim(urldecode($params['str'])) : '';
+            $page=(!empty($params['page'])) ? trim(urldecode($params['page'])) : '';
+            $limit=(!empty($params['limit'])) ? trim(urldecode($params['limit'])) : '';
+            if(empty($srch) && empty($limit) && empty($page))
             {
             $arr=array();
             $err=array('code'=> 1,'Msg'=> 'Invalid parameters');
@@ -788,11 +735,11 @@ switch($action)
             $obj = new auto($db['jzeva']);
             $result=$obj->suggestVendor($params);
             $res=$result;
-            break;
+            break;    
+            
 
 //--------------------Product---------------------------------------------
-
-//  localhost/jzevasb/apis/index.php?action=addNewproduct&dt={%22result%22:%20{%22product_name%22:%20%22bluediamond%22,%22brandid%22:%2011,%22lotref%22:%201123,%22barcode%22:%20%22qw211111%22,%22lotno%22:%201133,%22product_display_name%22:%20%22marveric%20blue%20silver%20diamond%22,%22product_model%22:%20%22rw231%22,%22product_brand%22:%20%22orra%22,%22product_price%22:%2012211223.02,%22product_currency%22:%20%22INR%22,%22product_keywords%22:%20%22blue,silver,diamond%22,%22product_desc%22:%20%22a%20clear%20cut%20solitaire%20diamond%20in%20the%20vault%22,%22product_wt%22:%20223.21,%22prd_img%22:%20%22abc.jpeg%22,%22category_id%22:%201,%22product_warranty%22:%20%221%20year%22},%22attributes%22:%20[[111,%22green%22,1]],%22design%22:%20{%22desmobile%22:%20%22889898989%22,%22desname%22:%20%22shiamak%22},%22error%22:%20{%22errCode%22:%200}}
+//  localhost/jzeva/apis/index.php?action=addNewproduct&dt={%22result%22:%20{%22product_name%22:%20%22bluediamond%22,%22brandid%22:%2011,%22lotref%22:%201123,%22barcode%22:%20%22qw211111%22,%22lotno%22:%201133,%22product_display_name%22:%20%22marveric%20blue%20silver%20diamond%22,%22product_model%22:%20%22rw231%22,%22product_brand%22:%20%22orra%22,%22product_price%22:%2012211223.02,%22product_currency%22:%20%22INR%22,%22product_keywords%22:%20%22blue,silver,diamond%22,%22product_desc%22:%20%22a%20clear%20cut%20solitaire%20diamond%20in%20the%20vault%22,%22product_wt%22:%20223.21,%22prd_img%22:%20%22abc.jpeg%22,%22category_id%22:%201,%22product_warranty%22:%20%221%20year%22},%22attributes%22:%20[[111,3,%22green%22,1]],%22design%22:{%22desname%22:%22jackdeniel%22},%22error%22:%20{%22errCode%22:%200}}
         case 'addNewproduct':
             include APICLUDE.'class.product.php';
             $dt=(!empty($params['dt'])) ? trim(urldecode($params['dt'])) : '';
@@ -801,23 +748,23 @@ switch($action)
                 
             $arr=array();
             $err=array('code'=> 1,'Msg'=> 'Invalid parameters');
-            $result=array('results'=> $arr,'error'=>$err);
+            $result=array('results'=> $arr,'error'=>$err['error']);
             $res=$result;
             break;
             }
             $obj=new product($db['jzeva']);
             $result=$obj->addNewproduct($params);
             $res=$result;
-            break;     
-            
-            /*case 'imageUpdate':
+            break;
+       
+        /*case 'imageUpdate':
             include APICLUDE.'class.product.php';
             $dt=(!empty($params['dt'])) ? trim(urldecode($params['dt'])) : '';
             if(empty($dt))
             {
             $arr=array();
             $err=array('code'=> 1,'Msg'=> 'Invalid parameters');
-            $result=array('results'=> $arr,'error'=>$err);
+            $result=array('results'=> $arr,'error'=>$err['error']);
             $res=$result; 
             break;
             }
@@ -826,15 +773,17 @@ switch($action)
             $res=$result;
             break; */
             
-//  localhost/jzevasb/apis/index.php?action=getPrdByName&prname=blue            
+//  localhost/jzeva/apis/index.php?action=getPrdByName&prname=blue&page=1&limit=1            
         case 'getPrdByName':
             include APICLUDE.'class.product.php';
             $prname=(!empty($params['prname'])) ? trim(urldecode($params['prname'])) : '';
-            if(empty($prname))
+            $page=(!empty($params['page'])) ? trim(urldecode($params['page'])) : '';
+            $limit=(!empty($params['limit'])) ? trim(urldecode($params['limit'])) : '';
+            if(empty($prname) && empty($limit) && empty($page))
             {
             $arr=array();
             $err=array('code'=> 1,'Msg'=> 'Invalid parameters');
-            $result=array('results'=> $arr,'error'=>$err);
+            $result=array('results'=> $arr,'error'=>$err['error']);
             $res=$result;
             break;
             }
@@ -843,15 +792,17 @@ switch($action)
             $res=$result;
             break;
 
-//  localhost/jzevasb/apis/index.php?action=getPrdByCatid&catid=1
-        case 'getPrdByCatid': 
+//  localhost/jzeva/apis/index.php?action=getPrdByCatid&catid=1&page=1&limit=1         
+        case 'getPrdByCatid':
             include APICLUDE.'class.product.php';
+            $page=(!empty($params['page'])) ? trim(urldecode($params['page'])) : '';
+            $limit=(!empty($params['limit'])) ? trim(urldecode($params['limit'])) : '';
             $catid=(!empty($params['catid'])) ? trim($params['catid']) : '';
-            if(empty($catid))
+            if(empty($catid)  && empty($limit) && empty($page))
             {
             $arr=array();
             $err=array('code'=> 1,'Msg'=> 'Invalid parameter');
-            $result=array('results'=> $arr,'error'=>$err);
+            $result=array('results'=> $arr,'error'=>$err['error']);
             $res=$result;
             break;
             }
@@ -860,15 +811,17 @@ switch($action)
             $res=$result;
             break;
 
-//  localhost/jzevasb/apis/index.php?action=getPrdById&prdid=7          
-        case 'getPrdById':            
+//  localhost/jzeva/apis/index.php?action=getPrdById&prdid=2&catid=3&page=1&limit=1         
+        case 'getPrdById':            //designer name is not feeding up
             include APICLUDE.'class.product.php';
             $prdid=(!empty($params['prdid'])) ? trim($params['prdid']):'';
-            if(empty($prdid))
+            $page=(!empty($params['page'])) ? trim(urldecode($params['page'])) : '';
+            $limit=(!empty($params['limit'])) ? trim(urldecode($params['limit'])) : '';
+            if(empty($prdid) && empty($limit) && empty($page))
             {
             $arr=array();
             $err=array('code'=> 1,'Msg'=> 'Invalid parameters');
-            $result=array('results'=> $arr,'error'=>$err);
+            $result=array('results'=> $arr,'error'=>$err['error']);
             $res=$result;
             break;
             }
@@ -877,20 +830,32 @@ switch($action)
             $res= $result;
             break;
             
-//  localhost/jzevasb/apis/index.php?action=getList
+//  localhost/jzeva/apis/index.php?action=getList&page=1&limit=1
         case 'getList':
             include APICLUDE.'class.product.php';
+            $page=(!empty($params['page'])) ? trim(urldecode($params['page'])) : '';
+            $limit=(!empty($params['limit'])) ? trim(urldecode($params['limit'])) : '';
+            if( empty($limit) && empty($page))
+            {
+            $arr=array();
+            $err=array('code'=> 1,'Msg'=> 'Invalid parameters');
+            $result=array('results'=> $arr,'error'=>$err['error']);
+            $res=$result;
+            break;
+            }
             $obj=new product($db['jzeva']);
-            $result=$obj->getList();
+            $result=$obj->getList($params);
             $res=$result;
             break;
 
-//  localhost/jzevasb/apis/index.php?action=productByCity&cityname=lucknow            
+//  localhost/jzeva/apis/index.php?action=productByCity&cityname=DELHI&page=1&limit=1            
         case 'productByCity':
             include APICLUDE.'class.product.php';
-            $cityname   =(!empty($params['cityname'])) ? trim($params['cityname']): "";
-            //$pcode=(!empty($params['product_id'])) ? trim($params['product_id']): "";
-            if(empty($cityname))
+            $cityname=(!empty($params['cityname'])) ? trim($params['cityname']): "";
+            $page=(!empty($params['page'])) ? trim(urldecode($params['page'])) : '';
+            $limit=(!empty($params['limit'])) ? trim(urldecode($params['limit'])) : '';
+//$pcode=(!empty($params['product_id'])) ? trim($params['product_id']): "";
+            if(empty($cityname) && empty($limit) && empty($page))
             {
                 $arr=array();
                 $err=array('Code'=>1,'Msg'=>'Invalid Parameters');
@@ -903,11 +868,13 @@ switch($action)
             $res=$result;
             break;
             
-//   localhost/jzevasb/apis/index.php?action=productByBrand&bname=jewel
+//  localhost/jzeva/apis/index.php?action=productByBrand&bname=orra&page=1&limit=1
         case 'productByBrand':
             include APICLUDE.'class.product.php';
             $bname=(!empty($params['bname'])) ? trim($params['bname']): "";
-            if(empty($bname))
+            $page=(!empty($params['page'])) ? trim(urldecode($params['page'])) : '';
+            $limit=(!empty($params['limit'])) ? trim(urldecode($params['limit'])) : '';            
+            if(empty($bname) && empty($limit) && empty($page))
             {
                 $arr=array();
                 $err=array('Code'=>1,'Msg'=>'Invalid Parameters');
@@ -918,13 +885,15 @@ switch($action)
             $obj= new product($db['jzeva']);
             $result=$obj->productByBrand($params);
             $res=$result;
-            break;            
-            
-//  localhost/jzeva/apis/index.php?action=productByDesigner&desname=shiamak            
+            break;
+
+//  localhost/jzeva/apis/index.php?action=productByDesigner&desname=shiamak&page=1&limit=1            
         case 'productByDesigner':
             include APICLUDE.'class.product.php';
+            $page=(!empty($params['page'])) ? trim(urldecode($params['page'])) : '';
+            $limit=(!empty($params['limit'])) ? trim(urldecode($params['limit'])) : '';
             $desname=(!empty($params['desname'])) ? trim($params['desname']): "";
-            if(empty($desname))
+            if(empty($desname) && empty($limit) && empty($page))
             {
                 $arr=array();
                 $err=array('Code'=>1,'Msg'=>'Invalid Parameters');
@@ -936,10 +905,31 @@ switch($action)
             $result=$obj->productByDesigner($params);
             $res=$result;
             break;
-            
+
+//------------------------------Suggestions str and table name---------------
+   /*     
+//  localhost/jzeva/apis/index.php?action=getsuggestions&tname=tbl_product_master&str=b            
+       case 'getsuggestions':
+            include APICLUDE.'class.product.php';
+            $tblname=(!empty($params['tname']))? trim($params['tname']):'';
+            $str=(!empty($params['str']))? trim($params['str']):'';
+            if(empty($tblname) && empty($tblname))
+            {
+                $arr="Parameters missing";
+                $err=array('Code'=>1,'Msg'=>'Invalid Parameters');
+                $result=array('results'=>$arr,'error'=>$err);
+                $res=$result;
+                break;
+            }
+            $obj=new product($db['jzeva']);
+            $result=$obj->getsuggestions($params);
+            $res=$result;
+            break;            
+       */     
+ 
 //---------------------------Offer-----------------------------------------
 
-//  localhost/jzevasb/apis/index.php?action=addOffer&offername=diwalidhamaka&des=a well reknown festive offer we are celebrating since ages&amdp=1.1&valid=1 year&vdesc=1123fwhf232
+//  localhost/jzeva/apis/index.php?action=addOffer&offername=diwalidhamaka&des=a well reknown festive offer we are celebrating since ages&amdp=1.1&valid=1 year&vdesc=1123fwhf232
         case 'addOffer':
             include APICLUDE.'class.offer.php';
             $offername = (!empty($params['offername'])) ? trim(urldecode($params['offername'])) : '';
@@ -960,10 +950,11 @@ switch($action)
             $res = $result;
             break;
 
-//  localhost/jzevasb/apis/index.php?action=viewOffer&offid=1
+//  localhost/jzeva/apis/index.php?action=viewOffer&offid=1
         case 'viewOffer':
             include APICLUDE.'class.offer.php';
-            $offid  = (!empty($params['offid'])) ?  trim($params['offid']) : '';               
+            $offid  = (!empty($params['offid'])) ?  trim($params['offid']) : '';
+            
             if(empty($offid))
             {
                 $arr = array();
@@ -977,7 +968,7 @@ switch($action)
             $res = $result;
             break;
 
-//  localhost/jzevasb/apis/index.php?action=actOffer&offid=2            
+//  localhost/jzeva/apis/index.php?action=actOffer&offid=2            
         case 'actOffer':
             include APICLUDE.'class.offer.php';
             $offid  = (!empty($params['offid'])) ?  trim($params['offid']) : '';               
@@ -994,7 +985,7 @@ switch($action)
             $res = $result;
             break;
             
-//  localhost/jzevasb/apis/index.php?action=deactOffer&offid=2
+//  localhost/jzeva/apis/index.php?action=deactOffer&offid=2
         case 'deactOffer':
             include APICLUDE.'class.offer.php';
             $offid  = (!empty($params['offid'])) ?  trim($params['offid']) : '';               
@@ -1011,14 +1002,13 @@ switch($action)
             $res = $result;
             break;
 
-//  localhost/jzevasb/apis/index.php?action=offerUserBind&offerid=2&logmobile=9975887206&dispos=999&dispflag=1
+//  localhost/jzeva/apis/index.php?action=offerUserBind&offerid=1&uid=6&dispflag=1
         case 'offerUserBind':
             include APICLUDE.'class.offer.php';
             $offid  = (!empty($params['offid'])) ?  trim($params['offid']) : '';               
-            $usermobile  = (!empty($params['logmobile'])) ?  trim($params['logmobile']) : '';
-            $dpos  = (!empty($params['dispos'])) ?  trim($params['dispos']) : '';               
+            $uid  = (!empty($params['uid'])) ?  trim($params['uid']) : '';
             $dflag  = (!empty($params['dispflag'])) ?  trim($params['dispflag']) : '';
-            if(empty($offid) && empty($usermobile) && empty($dpos) && empty($dflag))
+            if(empty($offid) && empty($uid) && empty($dflag))
             {
                 $arr = "Some parameters are missing";
                 $err = array('Code' => 1, 'Msg' => 'Invalid parameters');
@@ -1031,12 +1021,12 @@ switch($action)
             $res = $result;
             break;
 
-//  localhost/jzevasb/apis/index.php?action=offerUserUnBind&offid=2&logmobile=9975887206
+//  localhost/jzeva/apis/index.php?action=offerUserUnBind&offid=2&uid=6
         case 'offerUserUnBind':
             include APICLUDE.'class.offer.php';
             $offid  = (!empty($params['offid'])) ?  trim($params['offid']) : '';               
-            $usermobile  = (!empty($params['logmobile'])) ?  trim($params['logmobile']) : '';
-            if(empty($offid) && empty($usermobile))
+            $uid  = (!empty($params['uid'])) ?  trim($params['uid']) : '';
+            if(empty($offid) && empty($uid))
             {
                 $res = array();
                 $err = array('Code' => 1, 'Msg' => 'Invalid parameters');
@@ -1068,7 +1058,7 @@ switch($action)
             $res=$result;
             break;
             
-//  localhost/jzevasb/apis/index.php?action=addToCart&dt={["logmob":9975887206]}        
+//  localhost/jzeva/apis/index.php?action=addToCart&dt={%22result%22:%20{%22ip%22:%20%22192.168.2.21%22,%22logmob%22:%209975887206,%22vmob%22:%207309290529,%22qty%22:%201,%22pid%22:%209},%22error%22:%20{%22errCode%22:%200}}        
         case 'addToCart':
             include APICLUDE.'class.cart.php';
             $dt  = (!empty($params['dt']))?  trim($params['dt']) : '';
@@ -1084,7 +1074,7 @@ switch($action)
             $res = $result;
             break; 
             
-//  localhost/jzevasb/apis/index.php?action=editCart&cart_id=1&quantity=10&product_id=7            
+//  localhost/jzeva/apis/index.php?action=editCart&cart_id=1&quantity=10&product_id=7            
         case 'editCart': 
             include APICLUDE.'class.cart.php';
             $cartid  = (!empty($params['cart_id']))?  trim($params['cart_id']) : '';
@@ -1121,7 +1111,7 @@ switch($action)
             $res= $result;
             break;
 
-//  localhost/jzevasb/apis/index.php?action=delPrd&cartid=1&pid=7&vmob=7878787878
+//  localhost/jzeva/apis/index.php?action=delPrd&cartid=1&pid=7&vmob=7878787878
         case 'delPrd':
             include APICLUDE.'class.cart.php';
             $pid  = (!empty($params['pid'])) ? trim($params['pid']) : '';
@@ -1159,25 +1149,40 @@ switch($action)
             break;
             
 //----------------------Attribute------------------------------------------
- 
- // localhost/jzevasb/apis/index.php?action=get_attrList           
+
+ // localhost/jzeva/apis/index.php?action=get_attrList&page=1&limit=1            
         case 'get_attrList':
             include APICLUDE.'class.attribute.php';
+            $page=(!empty($params['page'])) ? trim(urldecode($params['page'])) : '';
+            $limit=(!empty($params['limit'])) ? trim(urldecode($params['limit'])) : '';
+            if(empty($limit) && empty($page))
+            {
+                $arr=array();
+                $err=array('Code'=>1,'Msg'=>'Invalid Parameters');
+                $result=array('result'=>$arr,'error'=>$err);
+                $res=$result;
+                break;
+            }            
             $obj = new attribute($db['jzeva']);
-            $result=$obj->get_attrList();
+            $result=$obj->get_attrList($params);
             $res=$result;
             break;
         
-//  localhost/jzevasb/apis/index.php?action=set_attributes_details&name=flurocent&dname=luminous&unit=10&flag=1&upos=2&vals={10,20,30,40,50,60,70}&range=10        
+//  localhost/jzeva/apis/index.php?action=set_attributes_details&name=flurocent&dname=luminous&unit=10&flag=1&upos=2&vals={10,20,30,40,50,60,70}&range=10        
         case 'set_attributes_details':
             include APICLUDE.'class.attribute.php';
             $name=(!empty($params['name'])) ? trim($params['name']):'';
             $dname=(!empty($params['dname'])) ? trim($params['dname']):'';
-            if(empty($name) && empty($dname))
+            $unit=(!empty($params['unit'])) ? trim($params['unit']):'';
+            $flag=(!empty($params['flag'])) ? trim($params['flag']):'';                
+            $upos=(!empty($params['upos'])) ? trim(urldecode($params['upos'])):'';
+            $vals=(!empty($params['vals'])) ? trim($params['vals']) : '';
+            $range=(!empty($params['range'])) ? trim(urldecode($params['range'])):'';
+            if(empty($name)  &&  empty($dname)  &&  empty($unit)  &&  empty($flag)  &&  empty($upos)  &&  empty($vals)  &&  empty($range))
             {
             $arr=array();
             $err=array('code'=> 1,'Msg'=> 'Invalid parameters');
-            $result=array('results'=> $arr,'error'=>$err['error']);
+            $result=array('results'=> $arr,'error'=>$err);
             $res=$result;
             break;
             }
@@ -1186,7 +1191,7 @@ switch($action)
             $res=$result;
             break; 
 
-//  localhost/jzevasb/apis/index.php?action=fetch_attributes_details&attribid=100012        
+//  localhost/jzeva/apis/index.php?action=fetch_attributes_details&attribid=1        
         case 'fetch_attributes_details':
             include APICLUDE.'class.attribute.php';
             $attrid=(!empty($params['attribid'])) ? trim($params['attribid']):'';
@@ -1203,12 +1208,17 @@ switch($action)
             $res=$result;
             break;
 
-//  localhost/jzevasb/apis/index.php?action=set_category_mapping&aid=43&dflag=1&dpos=999&fil_flag=1&fil_pos=999&aflag=1&catid=3
+//  localhost/jzeva/apis/index.php?action=set_category_mapping&aid=43&dflag=1&dpos=999&fil_flag=1&fil_pos=999&aflag=1&catid=3
         case 'set_category_mapping':
             include APICLUDE.'class.attribute.php';
             $aid =(!empty($params['aid'])) ? trim($params['aid']):'';
+            $dflag =(!empty($params['dflag'])) ? trim($params['dflag']):'';
+            $dpos =(!empty($params['dpos'])) ? trim($params['dpos']):'';
+            $fil_flag =(!empty($params['fil_flag'])) ? trim($params['fil_flag']):'';
+            $fil_pos =(!empty($params['fil_pos'])) ? trim($params['fil_pos']):'';
+            $aflag =(!empty($params['aflag'])) ? trim($params['aflag']):'';
             $catid =(!empty($params['catid'])) ? trim($params['catid']):'';
-            if(empty($aid) && empty($catid))
+            if(empty($aid)  &&  empty($dflag)  &&  empty($dpos)  &&  empty($fil_flag)  &&  empty($fil_pos)  &&  empty($aflag)  &&  empty($catid))
             {
                 $arr=array();
                 $err=array('Code'=>1,'Msg'=>'Invalid Parameters');
@@ -1221,7 +1231,7 @@ switch($action)
             $res=$result;
             break;
             
-//  localhost/jzevasb/apis/index.php?action=fetch_category_mapping&catid=3            
+//  localhost/jzeva/apis/index.php?action=fetch_category_mapping&catid=3            
         case 'fetch_category_mapping':
             include APICLUDE.'class.attribute.php';
             $catid =(!empty($params['catid'])) ? trim($params['catid']):'';
@@ -1238,12 +1248,12 @@ switch($action)
             $res=$result;
             break;
 
-//  localhost/jzevasb/apis/index.php?action=unset_category_mapping&catid=3&aid=12            
+//  localhost/jzeva/apis/index.php?action=unset_category_mapping&catid=3&aid=12            
         case 'unset_category_mapping':
             include APICLUDE.'class.attribute.php';
             $id   =(!empty($params['aid'])) ? trim($params['aid']): "";
             $catid=(!empty($params['catid'])) ? trim($params['catid']): "";
-            if(empty($id)&& empty($catid))
+            if(empty($id) &&  empty($catid))
             {
                 $arr=array();
                 $err=array('Code'=>1,'Msg'=>'Invalid Parameters');
@@ -1254,11 +1264,11 @@ switch($action)
             $obj= new attribute($db['jzeva']);
             $result=$obj->unset_category_mapping($params);
             $res=$result;
-            break;            
+            break;      
             
 //--------------------Stylist Appointment----------------------------------
 
-//  localhost/jzeva/apis/index.php?action=makeAppoint&dt=            
+//  localhost/jzeva/apis/index.php?action=makeAppoint&dt={%22result%22:%20{%22cname%22:%20%22Insane%20Rider%22,%22cemail%22:%20%22rider.insane@motorbikes.com%22,%22cmob%22:%207309290529,%22fulladd%22:%20%22qdqd%20wedwdw%20wcec%20wwwedd%20wdewd%22,%22ptype%22:%20%22earring%22,%22cat%22:%20%22diamond,gold%22,%22budget%22:%20%2210000~6000000%22},%22error%22:%20{%22errCode%22:%200}}
         case 'makeAppoint':
             include APICLUDE.'class.appoint.php';
             $dt=(!empty($params['dt'])) ? trim(urldecode($params['dt'])) : '';
@@ -1278,6 +1288,16 @@ switch($action)
 //  localhost/jzeva/apis/index.php?action=makeAppoint            
         case 'viewAppoint':
             include APICLUDE.'class.appoint.php';
+            $page=(!empty($params['page'])) ? trim(urldecode($params['page'])) : '';
+            $limit=(!empty($params['limit'])) ? trim(urldecode($params['limit'])) : '';
+            if(empty($page) && empty($limit))
+            {   
+                $arr = "Some Parameters are missing";
+                $err = array('Code' => 1, 'Msg' => 'Some Parameters are missing');
+                $result = array('results'=>$arr, 'error' => $err);
+                $res=$result;
+                break;
+            }
             $obj= new appoint($db['jzeva']);
             $result=$obj->viewAppoint();
             $res=$result;
@@ -1293,7 +1313,7 @@ switch($action)
             $res=$result;
             break;
 
-//  localhost/jzeva/apis/index.php?action=addCDes
+//  localhost/jzeva/apis/index.php?action=addCDes&dt={%22result%22:%20{%22cname%22:%20%22Insane%20Rider%22,%22cemail%22:%20%22rider.insane@motorbikes.com%22,%22cmob%22:%207309290529,%22title%22:%20%22qdqd%20wedwdw%20wcec%20wwwedd%20wdewd%22,%22desimg%22:%20%22earring.png%22},%22error%22:%20{%22errCode%22:%200}}
         case 'addCDes':
             include APICLUDE.'class.custDes.php';
             $dt=(!empty($params['dt'])) ? trim(urldecode($params['dt'])) : '';
@@ -1311,10 +1331,10 @@ switch($action)
             break;
 
 //----------------------Customer Speaks-------------------------------------
-            
-//  localhost/jzeva/apis/index.php?action=addCDes&dt=            
+ 
+//  localhost/jzeva/apis/index.php?action=addCom&dt={%22result%22:%20{%22uid%22:10105,%22name%22:%20%22Insane%20Rider%22,%22city%22:%20%22rider.insane@motorbikes.com%22,%22email%22:%20%22adf@fewf.com%22,%22mobile%22:%207309290529,%22pimage%22:%20%22a.png%22,%22fop%22:%20%22earring.png%22,%22opinion%22:%20%22earring.png%22},%22error%22:%20{%22errCode%22:%200}}           
         case 'addCom':
-            include APICLUDE.'class.speaks.php';
+            include APICLUDE.'class.speak.php';
             $dt=(!empty($params['dt'])) ? trim(urldecode($params['dt'])) : '';
             if(empty($dt))
             {   
@@ -1324,7 +1344,7 @@ switch($action)
                 $res=$result;
                 break;
             }
-            $obj= new speaks($db['jzeva']);
+            $obj= new speak($db['jzeva']);
             $result=$obj->addCom($params);
             $res=$result;
             break;
@@ -1339,11 +1359,11 @@ switch($action)
                         
 //-----------------------Subscribe and Newsletter---------------------------
 
-//  localhost/jzeva/apis/index.php?action=subscribe&logmobile=9975887206        
+//  localhost/jzeva/apis/index.php?action=subscribe&uid=6        
         case 'subscribe':
             include APICLUDE.'class.newsletter.php';
-            $logmobile = (!empty($params['logmobile'])) ? trim($params['logmobile']):'';
-            if(empty($logmobile))
+            $uid = (!empty($params['uid'])) ? trim($params['uid']):'';
+            if(empty($uid))
             {
                 $arr="Invalid Parameter";
                 $err=array('Code'=>1,'Msg'=>'Parameter missing');
@@ -1356,8 +1376,27 @@ switch($action)
             $res=$result;
             break;
             
-//  localhost/jzeva/apis/index.php?action=viewSubscribers            
+//  localhost/jzeva/apis/index.php?action=viewSubscribers&page=1&limit=1            
         case 'viewSubscribers':
+            include APICLUDE.'class.newsletter.php';
+            $dt=(!empty($params['dt'])) ? trim(urldecode($params['dt'])) : '';
+            $page=(!empty($params['page'])) ? trim(urldecode($params['page'])) : '';
+            $limit=(!empty($params['limit'])) ? trim(urldecode($params['limit'])) : '';
+            if(empty($dt) && empty($limit) && empty($page))
+            {   
+                $arr = "Some Parameters are missing";
+                $err = array('Code' => 1, 'Msg' => 'Some Parameters are missing');
+                $result = array('results'=>$arr, 'error' => $err);
+                $res=$result;
+                break;
+            }
+            $obj= new newsletter($db['jzeva']);
+            $result=$obj->viewSubscribers($params);
+            $res=$result;
+            break;
+
+//  localhost/jzeva/apis/index.php?action=addNewsletter&dt=            
+        case 'addNewsletter':
             include APICLUDE.'class.newsletter.php';
             $dt=(!empty($params['dt'])) ? trim(urldecode($params['dt'])) : '';
             if(empty($dt))
@@ -1368,24 +1407,16 @@ switch($action)
                 $res=$result;
                 break;
             }
-            $obj= new speaks($db['jzeva']);
-            $result=$obj->viewSubscribers($params);
+            $obj= new newsletter($db['jzeva']);
+            $result=$obj->addNewsletter($params);
             $res=$result;
             break;
 
-//  localhost/jzeva/apis/index.php?action=addNewsletter&dt=            
-        case 'addNewsletter':
-            include APICLUDE.'class.newsletter.php';
-            $obj= new speak($db['jzeva']);
-            $result=$obj->addNewsletter();
-            $res=$result;
-            break;
-
-//  localhost/jzeva/apis/index.php?action=unsubscribe&logmobile=        
+//  localhost/jzeva/apis/index.php?action=unsubscribe&uid=6
         case 'unsubscribe':
             include APICLUDE.'class.newsletter.php';
-            $logmobile = (!empty($params['logmobile'])) ? trim($params['logmobile']):'';
-            if(empty($logmobile))
+            $uid = (!empty($params['uid'])) ? trim($params['uid']):'';
+            if(empty($uid))
             {
                 $arr="Invalid Parameter";
                 $err=array('Code'=>1,'Msg'=>'Parameter missing');
@@ -1400,7 +1431,7 @@ switch($action)
                 
 //-------------------------Helpdesk--------------------------------------
 
-//  localhost/jzeva/apis/index.php?action=askhelp&dt=            
+//  localhost/jzeva/apis/index.php?action=askhelp&dt={%22result%22:%20{%22uid%22:%206,%22cname%22:%20%22Insane%20Rider%22,%22cemail%22:%20%22rider.insane@motorbikes.com%22,%22logmobile%22:%207309290529,%22cquery%22:%20%22qdqd%20wedwdw%20wcec%20wwwedd%20wdewd%22},%22error%22:%20{%22errCode%22:%200}}            
         case 'askhelp':
             include APICLUDE.'class.helpdesk.php';
             $dt=(!empty($params['dt'])) ? trim(urldecode($params['dt'])) : '';
@@ -1417,16 +1448,27 @@ switch($action)
             $res=$result;
             break;
 
-//  localhost/jzeva/apis/index.php?action=viewhelp&dt=            
+//  localhost/jzeva/apis/index.php?action=viewhelp&page=1&limit=1          
         case 'viewhelp':
             include APICLUDE.'class.helpdesk.php';
+            $page=(!empty($params['page'])) ? trim(urldecode($params['page'])) : '';
+            $limit=(!empty($params['limit'])) ? trim(urldecode($params['limit'])) : '';
+            if(empty($limit) && empty($page))
+            {
+                $arr="Parameters missing";
+                $err=array('Code'=>1,'Msg'=>'Invalid Parameters');
+                $result=array('results'=>$arr,'error'=>$err);
+                $res=$result;
+                break;
+            }
             $obj= new helpdesk($db['jzeva']);
-            $result=$obj->viewhelp();
+            $result=$obj->viewhelp($params);
             $res=$result;
             break;
 
 //----------------------Address Id and details------------------------------------
-            
+
+//  localhost/jzeva/apis/index.php?action=fillAdd&dt={%22result%22:%20{%22uid%22:%2010105,%22addtitle%22:%20%22home%22,%22add1%22:%201,%22add2%22:%20%22singharun@gmail.com%22,%22fulladd%22:%20%221990-10-08%22,%22area%22:%20%229696969696%22,%22city%22:%20223232,%22state%22:%20%22Delhi%22,%22country%22:%20%22india%22,%22pcode%22:%20221212},%22error%22:%20{%22errCode%22:%200}}
         case 'fillAdd':
             include APICLUDE.'class.address.php';
             $dt=(!empty($params['dt'])) ? trim(urldecode($params['dt'])) : '';
@@ -1438,11 +1480,12 @@ switch($action)
                 $res=$result;
                 break;
             }
-            $obj= new helpdesk($db['jzeva']);
+            $obj= new address($db['jzeva']);
             $result=$obj->fillAdd($params);
             $res=$result;
             break;
 
+//  localhost/jzeva/apis/index.php?action=getAdd&addid=1            
         case 'getAdd':
             include APICLUDE.'class.address.php';
             $addid=(!empty($params['addid'])) ? trim(urldecode($params['addid'])) : '';
@@ -1454,15 +1497,17 @@ switch($action)
                 $res=$result;
                 break;
             }
-            $obj= new helpdesk($db['jzeva']);
+            $obj= new address($db['jzeva']);
             $result=$obj->getAdd($params);
             $res=$result;
             break;
+
+//  localhost/jzeva/apis/index.php?action=getAddByUser&uid=10105            
             
         case 'getAddByUser':
             include APICLUDE.'class.address.php';
-            $logid=(!empty($params['logmob'])) ? trim(urldecode($params['lgomob'])) : '';
-            if(empty($logid))
+            $uid=(!empty($params['uid'])) ? trim(urldecode($params['uid'])) : '';
+            if(empty($uid))
             {   
                 $arr = "Parameter is missing";
                 $err = array('Code' => 1, 'Msg' => 'Inapproprate data is sent');
@@ -1470,15 +1515,15 @@ switch($action)
                 $res=$result;
                 break;
             }
-            $obj= new helpdesk($db['jzeva']);
+            $obj= new address($db['jzeva']);
             $result=$obj->getAddByUser($params);
             $res=$result;
             break; 
-        
+//  localhost/jzeva/apis/index.php?action=getUserAddID&uid=10105       
         case 'getUserAddID':
             include APICLUDE.'class.address.php';
-            $logid=(!empty($params['logmob'])) ? trim(urldecode($params['lgomob'])) : '';
-            if(empty($logid))
+            $uid=(!empty($params['uid'])) ? trim(urldecode($params['uid'])) : '';
+            if(empty($uid))
             {   
                 $arr = "Parameter is missing";
                 $err = array('Code' => 1, 'Msg' => 'Inapproprate data is sent');
@@ -1486,17 +1531,20 @@ switch($action)
                 $res=$result;
                 break;
             }
-            $obj= new helpdesk($db['jzeva']);
+            $obj= new address($db['jzeva']);
             $result=$obj->getUserAddID($params);
             $res=$result;
             break;
             
 //---------------------------filter----------------------------------------
 
+//  localhost/jzeva/apis/index.php?action=get_filters&category_id=3&page=1&limit=1            
         case 'get_filters':
             include APICLUDE.'class.filter.php';
+            $page=(!empty($params['page'])) ? trim(urldecode($params['page'])) : '';
+            $limit=(!empty($params['limit'])) ? trim(urldecode($params['limit'])) : '';
             $category_id=(!empty($params['category_id'])) ? trim($params['category_id']):'';
-            if(empty($category_id))
+            if(empty($category_id) && empty($limit) && empty($page))
             {   
                 $arr = "Parameter is missing";
                 $err = array('Code' => 1, 'Msg' => 'Invalid Parameter');
@@ -1508,12 +1556,15 @@ switch($action)
             $result=$obj->get_filters($params);
             $res=$result;
             break;
- 
-            
-        case 'refine':
+
+/*  HAve to be changed as per the requirement        */            
+//  localhost/jzeva/apis/index.php?action=refine&catid=1&page=1&limit=1&dt={%22result%22:%20{%22filter_flg%22:%201,%22pfrm%22:%200,%22pto%22:%20120000000,%22catid%22:%204,%22brname%22:%20%22orra%22,%22type%22:%20%22jwellery,gold%22,%22metal%22:%20%22gold%22}}            
+        case 'refine': 
             include APICLUDE.'class.filter.php';
+            $page=(!empty($params['page'])) ? trim(urldecode($params['page'])) : '';
+            $limit=(!empty($params['limit'])) ? trim(urldecode($params['limit'])) : '';
             $dt=(!empty($params['dt'])) ? trim($params['dt']):'';
-            if(empty($dt))
+            if(empty($dt) && empty($limit) && empty($page))
             {   
                 $arr = "Parameter is missing";
                 $err = array('Code' => 1, 'Msg' => 'Invalid Parameter');
@@ -1528,6 +1579,7 @@ switch($action)
 
 //-------------------------Lineage----------------------------------------
 
+//  localhost/jzeva/apis/index.php?action=set_lineage&dt={%22result%22:%20{%22p_catid%22:%200,%22catname%22:%200,%22lvl%22:%209975887206,%22lineage%22:%20%22xyz,abcd,a,b,c,d%22,%22pid%22:%201}}
         case 'set_lineage':
             include APICLUDE.'class.categories.php';
             $dt=(!empty($params['dt']))? trim($params['dt']):'';
@@ -1539,11 +1591,12 @@ switch($action)
                 $res=$result;
                 break;
             }
-            $obj=new lineage($db['jzeva']);
+            $obj=new categories($db['jzeva']);
             $result=$obj->set_lineage($params);
             $res=$result;
             break;
-            
+
+//  localhost/jzeva/apis/index.php?action=upd_prd_lineage&dt={%22result%22:%20{%22pcatid%22:%2012312,%22catname%22:%22bullion%22,%22lvl%22:%209975887206,%22lineage%22:%20%22xyz,abcd,a,b,c,d%22,%22pflag%22:1,%22catid%22:0,%22pid%22:%201}}
         case 'upd_prd_lineage':
             include APICLUDE.'class.categories.php';
             $dt=(!empty($params['dt']))? trim($params['dt']):'';
@@ -1555,13 +1608,14 @@ switch($action)
                 $res=$result;
                 break;
             }
-            $obj=new lineage($db['jzeva']);
-            $result=$obj->udt_prd_lineage($params);
+            $obj=new categories($db['jzeva']);
+            $result=$obj->upd_prd_lineage($params);
             $res=$result;
-            break;    
+            break;
             
 //------------------------Wishlist-------------------------------------------
-        
+
+//  localhost/jzeva/apis/index.php?action=addtowsh&page=1&limit=1&dt={"result": {"uid": 0,"pid": 0,"vid": 9975887206,"wf": 12}}            
         case 'addtowsh':
             include APICLUDE.'class.wishlist.php';
             $dt=(!empty($params['dt']))? trim($params['dt']):'';
@@ -1573,15 +1627,18 @@ switch($action)
                 $res=$result;
                 break;
             }
-            $obj=new lineage($db['jzeva']);
+            $obj=new wishlist($db['jzeva']);
             $result=$obj->addtowsh($params);
             $res=$result;
             break;
-            
+
+//  localhost/jzeva/apis/index.php?action=viewsh&page=1&limit=1&uid=7              
         case 'viewsh':
             include APICLUDE.'class.wishlist.php';
             $dt=(!empty($params['dt']))? trim($params['dt']):'';
-            if(empty($dt))
+            $page=(!empty($params['page'])) ? trim(urldecode($params['page'])) : '';
+            $limit=(!empty($params['limit'])) ? trim(urldecode($params['limit'])) : '';
+            if(empty($dt)  && empty($limit) && empty($page))
             {
                 $arr="Parameters missing";
                 $err=array('Code'=>1,'Msg'=>'Invalid Parameters');
@@ -1589,12 +1646,12 @@ switch($action)
                 $res=$result;
                 break;
             }
-            $obj=new lineage($db['jzeva']);
-            $result=$obj->viewwsh($params);
+            $obj=new wishlist($db['jzeva']);
+            $result=$obj->viewsh($params);
             $res=$result;
             break;    
-            
-//---------------------------------------------------------------------------                  
+                    
+     
 //---------------------------------------------------------------------------
         
         default:

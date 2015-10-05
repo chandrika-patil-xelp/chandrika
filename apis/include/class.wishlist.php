@@ -13,7 +13,7 @@ class wishlist extends DB
    {
        $dt     = json_decode($params['dt'],1);
        $detls  = $dt['result'];
-       $sql="INSERT INTO tbl_wishlist(uid,pid,vid,wf,cdt,udt) VALUES(".$detls['uid'].",".$detls['pid'].",".$detls['vid'].",1,now(),now())";
+       $sql="INSERT INTO tbl_wishlist(user_id,pid,vid,wf,cdt,udt) VALUES(".$detls['uid'].",".$detls['pid'].",".$detls['vid'].",1,now(),now())";
        $res=$this->query($sql);
        if($res)
        {
@@ -31,23 +31,41 @@ class wishlist extends DB
    
    public function viewsh($params)
    {
-       $dt     = json_decode($params['dt'],1);
-       $detls  = $dt['result'];
-       $vsql="SELECT pid from tbl_wishlist where uid=".$detls['uid']."";
+       $vsql="SELECT pid from tbl_wishlist where user_id=".$params['uid']."";
+       $page=$params['page'];
+       $limit=$params['limit'];
+       if (!empty($page))
+        {
+            $start = ($page * $limit) - $limit;
+            $vsql.=" LIMIT " . $start . ",$limit";
+        } 
+         $vsql;
        $vres=$this->query($vsql);
-       if($vres)
-       {
+       $chkres=$this->numRows($vres);
+       
+       if($chkres>0)
+       {   $i=0;
+       
            while($row=$this->fetchData($vres))
-           {
-               $pid[]=$row['pid'];
-           }
-            $pid=implode(',',$pid);
+            {
+               
+            $prid[$i]=$row['pid'];
             
-            $pres="SELECT product_name,product_display_name,product_model,prd_price from tbl_product_master where product_id IN(".$pid.")";    
-            $pres=$this->query($pres);
+            }
+
+            $pid=implode(',',$prid);
+            
+           $pres="SELECT product_name,product_display_name,product_model,prd_price,desname from tbl_product_master where product_id IN(".$pid.")";    
+            $pres.=" LIMIT " . $start . ",$limit";
+           
+           $pres=$this->query($pres);
+            
             if($pres)
             {
-                $arr="Product List is shown";
+                while($row=$this->fetchData($pres))
+                {
+                    $arr=$row;
+                }   
                 $err=array('Code'=>0,'Msg'=>'Select operation done');
             }
             else

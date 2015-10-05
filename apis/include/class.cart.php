@@ -9,11 +9,10 @@ class cart extends DB {
 
     public function getCartId($params)
     {
-      $ip=$params['ip'];
-      $umob=$params['umob'];
-      if(!empty($ip) || !empty($umob))
+      $uid=$params['uid'];
+      if(!empty($umob))
       {
-        $sql="SELECT cart_id from tbl_cartid_generator where ipadd='".$ip."' AND logmobile=".$umob;
+        $sql="SELECT cart_id from tbl_cartid_generator where user_id=".$uid;
         $res=$this->query($sql);
         $chres=$this->numRows($res);
         if($chres>0)
@@ -30,7 +29,7 @@ class cart extends DB {
       }
       else
       {
-        $sql="SELECT cart_id from tbl_cartid_generator where ipadd='".$params['ip']."'";
+        $sql="SELECT cart_id from tbl_cartid_generator where user_id='".$params['uid']."'";
         $res=$this->query($sql);
         $chres=$this->numRows($res);
         if($chres>0)
@@ -79,12 +78,12 @@ class cart extends DB {
                     }
                 }
                 $cartid= $tmp;
-             $crtsql = "SELECT cart_id FROM tbl_cartid_generator WHERE ipadd='".$detls['ip']."' or logmobile=".$detls['logmob']."";
+             $crtsql = "SELECT cart_id FROM tbl_cartid_generator WHERE user_id=".$detls['uid']."";
             $crtres = $this->query($crtsql);
 	    $cnt1 = $this->numRows($crtres);
                 if($cnt1==0)
                 {
-                    $isql = "INSERT INTO tbl_cartid_generator(cart_id,ipadd,logmobile,cdt,udt,aflag) VALUES('".$cartid."','".$detls['ip']."',".$detls['logmob'].",now(),now(),1)";
+                    $isql = "INSERT INTO tbl_cartid_generator(cart_id,user_id,cdt,udt,aflag) VALUES('".$cartid."',".$detls['uid'].",now(),now(),1)";
                     $ires = $this->query($isql);
                 }    
                 else
@@ -93,15 +92,15 @@ class cart extends DB {
                     $cartid=$row['cart_id'];
                 }
             
-           $ssql="SELECT product_id,quantity from tbl_user_cart WHERE usermobile='".$detls['logmob']."' AND product_id =".$detls['pid']." AND vendormobile=".$detls['vmob'];
+           $ssql="SELECT product_id,quantity from tbl_user_cart WHERE user_id='".$detls['uid']."' AND product_id =".$detls['pid']." AND vendor_id=".$detls['vid'];
             $sres=$this->query($ssql);
             $row=$this->fetchData($sres);
            $avlQt=$row['quantity'];
             $cnt2=$this->numRows($sres);
                 if(!$cnt2)
                 {
-                  $ucsql="insert into tbl_user_cart(cart_id,product_id,vendormobile,usermobile,quantity,add_date,update_date,active_flag)
-                         VALUES('".$cartid."',".$detls['pid'].",".$detls['vmob'].",".$detls['logmob'].",".$detls['qty'].",now(),now(),1)";
+                  $ucsql="insert into tbl_user_cart(cart_id,product_id,vendor_id,user_id,quantity,add_date,update_date,active_flag)
+                         VALUES('".$cartid."',".$detls['pid'].",".$detls['vid'].",".$detls['uid'].",".$detls['qty'].",now(),now(),1)";
                 $ucres = $this->query($ucsql);                
                     if($ucres)
                     {
@@ -118,9 +117,9 @@ class cart extends DB {
                 {
                 $row=$this->fetchData($sres);
                 $newqt = $avlQt + $detls['qty'];
-                $usql="UPDATE tbl_user_cart SET quantity=".$newqt.",active_flag=1 WHERE usermobile=".$detls['logmob']." AND product_id =".$detls['pid']." AND vendormobile=".$detls['vmob'];
+                $usql="UPDATE tbl_user_cart SET quantity=".$newqt.",active_flag=1 WHERE user_id=".$detls['uid']." AND product_id =".$detls['pid']." AND vid=".$detls['vid'];
                 $ures=$this->query($usql);
-                    if($ures>0)
+                    if($ures)
                     {
                         $arr="Update Done"; 
                         $err= array('code' => 0, 'msg' => 'Update Successful');
@@ -190,12 +189,12 @@ class cart extends DB {
     
     public function editcart($params)
     {
-        $qry = "UPDATE tbl_user_cart SET quantity=".$params['quantity'].",update_date=now() WHERE cart_id=".$params['cart_id']." AND product_id=".$params['product_id']." AND vendormobile=".$params['vendormobile']." AND active_flag=1";
-        $ret = $this->query($qry);
+      echo $qry = "UPDATE tbl_user_cart SET quantity=".$params['quantity'].",update_date=now() WHERE cart_id='".$params['cart_id']."' AND product_id=".$params['product_id']." AND vendor_id=".$params['vid']." AND active_flag=1";
+       $ret = $this->query($qry);
         if($ret)
         {
             $arr="Product quantity is added";
-            $err=array('Code'=>0,'Msg'=>'Product Added');
+            $err=array('Code'=>0,'Msg'=>'Product Updated');
         }
         else
         {
@@ -208,12 +207,12 @@ class cart extends DB {
     
     public function readcart($params)
     {
-       $csql="SELECT cart_id FROM tbl_cartid_generator WHERE ipadd='".$params['ip']."' or logmobile=".$params['logmob']." AND aflag=1";
+       $csql="SELECT cart_id FROM tbl_cartid_generator WHERE user_id=".$params['uid']." AND aflag=1";
        $cres = $this->query($csql);
        $row=$this->fetchData($cres);
        $cartid=$row['cart_id'];
         
-       $sql = "SELECT cart_id,product_id,vendormobile,usermobile,quantity FROM tbl_user_cart WHERE cart_id='".$cartid."' AND active_flag=1";
+       $sql = "SELECT cart_id,product_id,vendormobile,user_id,quantity FROM tbl_user_cart WHERE cart_id='".$cartid."' AND active_flag=1";
        $res = $this->query($sql);
         if ($res) 
         {
@@ -285,7 +284,7 @@ class cart extends DB {
 
     public function delPrd($params) 
     {
-       $sql = "UPDATE tbl_user_cart SET active_flag=2,update_date=now() WHERE cart_id=".$params['cid']." AND product_id=".$params['pid']." AND vendormobile=".$params['vmob']." AND active_flag = 1";
+       $sql = "UPDATE tbl_user_cart SET active_flag=2,update_date=now() WHERE cart_id=".$params['cid']." AND product_id=".$params['pid']." AND vendor_id=".$params['vid']." AND active_flag = 1";
        $res = $this->query($sql);
         if($res)
         {

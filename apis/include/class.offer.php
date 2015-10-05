@@ -7,20 +7,11 @@ class offer extends DB
         parent::DB($db);
         
     }
+    
     public function addOffer($params)
     {
-          $isql="INSERT
-               INTO 
-                        tbl_offer_master(offername,des,amdp,valid,vdesc,udt,cdt,active_flag)
-               VALUES
-                        ('".$params['offername']."',
-                         '".$params['des']."',
-                         ".$params['amdp'].",
-                         '".$params['valid']."',
-                         '".$params['vdesc']."',
-                         now(),
-                         now(),
-                         0)";
+          $isql="INSERT INTO tbl_offer_master(offername,des,amdp,valid,vdesc,udt,cdt,active_flag) 
+                 VALUES ('".$params['offername']."','".$params['des']."',".$params['amdp'].",'".$params['valid']."','".$params['vdesc']."',now(),now(),0)";
         $ires=$this->query($isql);
         if($ires)
         {
@@ -60,7 +51,7 @@ class offer extends DB
     
     public function actOffer($params)
     {
-       $vsql="UPDATE tbl_offer_master set active_flag=1 WHERE offid=".$params['offid'];
+        $vsql="UPDATE tbl_offer_master set active_flag=1 WHERE offid=".$params['offid'];
         $vres=$this->query($vsql);
         if($vres>0)
            {
@@ -96,17 +87,17 @@ class offer extends DB
     
     public function offerUserBind($params)
     {
-        $chsql="SELECT * from tbl_offer_user_mapping where usermobile=".$params['logmobile']." and offerid=".$params['offerid']."";
+       $chsql="SELECT * from tbl_offer_user_mapping where user_id=".$params['uid']." and offerid=".$params['offerid']."";
         $chrs=$this->query($chsql);
         $chres=$this->numRows($chrs);
         if($chres<1)
         {
-            $isql="INSERT INTO tbl_offer_user_mapping(offerid,usermobile,display_flag,display_position,udt,cdt,active_flag) VALUES(".$params['offerid'].",".$params['logmobile'].",".$params['dispflag'].",".$params['dispos'].",now(),now(),1)";
+          $isql="INSERT INTO tbl_offer_user_mapping(offerid,user_id,display_flag,udt,cdt,active_flag) VALUES(".$params['offerid'].",".$params['uid'].",".$params['dispflag'].",now(),now(),1)";
             $ires=$this->query($isql);
             if($ires)
             {
                 $arr="offer data is Inserted";
-                $err= array('code' => 0, 'msg' => 'Entry done successfully in Size table');
+                $err= array('code' => 0, 'msg' => 'Entry done successfully ');
             }
             else
             {
@@ -125,12 +116,12 @@ class offer extends DB
 
     public function offerUserUnBind($params)
     {
-        $chsql="SELECT * from tbl_offer_user_mapping where usermobile=".$params['logmobile']." and offerid=".$params['offid']."";
+      $chsql="SELECT * from tbl_offer_user_mapping where user_id=".$params['uid']." and offerid=".$params['offid']."";
         $chrs=$this->query($chsql);
         $chres=$this->numRows($chrs);
-        if($chres<1)
+        if($chres==1)
         {
-        $isql="UPDATE tbl_offer_user_mapping SET active_flag=0 where usermobile=".$params['logmobile']." and offerid=".$params['offid']."";
+       $isql="UPDATE tbl_offer_user_mapping SET active_flag=1 where user_id=".$params['uid']." and offerid=".$params['offid']."";
         $ires=$this->query($isql);
         if($ires)
         {

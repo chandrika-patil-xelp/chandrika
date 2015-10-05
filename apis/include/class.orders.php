@@ -16,7 +16,7 @@ include APICLUDE.'common/db.class.php';
            $proErr = $dt['error'];
            if($proErr['errCode']== 0)
            {
-               $osql="INSERT INTO tbl_order_master(user_id,cart_id,shipAddId,billAddId,cdt,udt,dflag) VALUES(".$detls['uid'].",".$detls['cid'].",".$dtls['said'].",".$detls['baid'].",now(),now(),1)";
+          echo     $osql="INSERT INTO tbl_order_master(user_id,cart_id,shipAddId,billAddId,cdt,udt,dflag) VALUES(".$detls['uid'].",".$detls['cid'].",".$detls['said'].",".$detls['baid'].",now(),now(),1)";
                $ores=$this->query($osql);
                if($ores)
                {
@@ -41,6 +41,15 @@ include APICLUDE.'common/db.class.php';
        public function ordById($params)
        {
             $sql ="SELECT * from tbl_order_master WHERE transid='".$params['tid']."' and dflag=1 ORDER BY cdt DESC";
+            $page=$params['page'];
+            $limit=$params['limit'];
+            if (!empty($page))
+            {
+                $start = ($page * $limit) - $limit;
+                $sql.=" LIMIT " . $start . ",$limit";
+            }
+            
+            
             $res=$this->query($sql);
             if($this->numRows($res)>0)
             {
@@ -95,7 +104,7 @@ include APICLUDE.'common/db.class.php';
                       VALUES('".$detls['tid']."','".$detls['ptyp']."','".$detls['pmode']."','".$detls['cuse']."',now(),'".$detls['cur']."',now(),1,'".$detls['des']."',".$detls['amt'].")";
 
                $ires=$this->query($isql);
-               if(ires)
+               if($ires)
                {
                    $osql="UPDATE tbl_order_master set transid='".$detls['tid']."' WHERE oid=".$detls['oid']." and user_id=".$detls['uid'];
                    $ores=$this->query($osql);
@@ -128,6 +137,14 @@ include APICLUDE.'common/db.class.php';
        public function viewtrans($params)
        {
         $isql="SELECT transid,paytype,paymode,card_use,paydate,curr,cdt,tstatus,tdesc,amt from tbl_trans_master where transid=".$params['tid'];
+        $page=$params['page'];
+        $limit=$params['limit'];
+        if (!empty($page))
+        {
+            $start = ($page * $limit) - $limit;
+            $isql.=" LIMIT " . $start . ",$limit";
+        }
+        
         $ires=$this->query($isql);
         $cntres=$this->numRows($ires);
         if($cntres>0)

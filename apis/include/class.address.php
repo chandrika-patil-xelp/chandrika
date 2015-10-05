@@ -14,19 +14,21 @@ class address extends DB
        $proErr = $dt['error'];
        if($proErr['errCode']== 0)
        {
-            $chksql="SELECT addid from tbl_addid_generator where uid=".$detls['logmob']."";
+            $chksql="SELECT addid from tbl_addid_generator where user_id=".$detls['uid']."";
             $chkres=$this->query($chksql);
             $cntres=$this->numRows($chkres);
-            if(!$cntres)
+            if($cntres==0)
             {
-                $isql="INSERT INTO tbl_addid_generator(uid) VALUES(".$detls['logmob'].")";
+                $isql="INSERT INTO tbl_addid_generator(user_id) VALUES(".$detls['uid'].")";
                 $ires=$this->query($isql);
                 $addid=$this->lastInsertedId();
             }
             else
             {
-                $adisql="INSERT INTO tbl_address_master(addid,uid,addtitle,add1,add2,fulladd,area,city,state,pincode,country,cdt,udt,dflag)
-                      VALUES(".$addid.",".$detls['logmob'].",'".$detls['addtitle']."','".$detls['add1']."','".$detls['add2']."','".$detls['fulladd']."',
+                $row=$this->fetchData($chkres);
+                $addid=$row['addid'];
+                $adisql="INSERT INTO tbl_address_master(addid,user_id,addtitle,add1,add2,fulladd,area,city,state,pincode,country,cdt,udt,dflag)
+                      VALUES(".$addid.",".$detls['uid'].",'".$detls['addtitle']."','".$detls['add1']."','".$detls['add2']."','".$detls['fulladd']."',
                       '".$detls['area']."','".$detls['city']."','".$detls['state']."',".$detls['pcode'].",'".$detls['country']."',now(),now(),1)";
 
                 $adires=$this->query($adisql);
@@ -53,7 +55,7 @@ class address extends DB
     
     public function getAdd($params)
     {
-        $sql="SELECT addid,uid,addtitle,add1,add2,fulladd,area,city,state,pincode,country,cdt,udt,dflag from tbl_address_master WHERE addid=".$params['addid'];
+        $sql="SELECT addid,user_id,addtitle,add1,add2,fulladd,area,city,state,pincode,country,cdt,udt,dflag from tbl_address_master WHERE addid=".$params['addid'];
         $res=$this->query($sql);
         if($res)
         {
@@ -74,7 +76,7 @@ class address extends DB
     
     public function getAddByUser($params)
     {
-        $sql="SELECT addid,uid,addtitle,add1,add2,fulladd,area,city,state,pincode,country,cdt,udt,dflag from tbl_address_master WHERE uid=".$params['logmob'];
+        $sql="SELECT addid,user_id,addtitle,add1,add2,fulladd,area,city,state,pincode,country,cdt,udt,dflag from tbl_address_master WHERE user_id=".$params['uid'];
         $res=$this->query($sql);
         if($res)
         {
@@ -95,7 +97,7 @@ class address extends DB
     
     public function getUserAddID($params)
     {
-        $sql="SELECT addid from tbl_addid_generator WHERE uid=".$params['logmob'];
+        $sql="SELECT addid from tbl_addid_generator WHERE user_id=".$params['uid'];
         $res=$this->query($sql);
         if($res)
         {
