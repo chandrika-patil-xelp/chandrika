@@ -25,11 +25,15 @@ switch($action)
             $res= $result;
             break;
             
-//  localhost/jzeva/apis/index.php?action=userReg&dt={%22result%22:%20{%22username%22:%20%22Shubham%20Bajpai%22,%22gender%22:%200,%22logmobile%22:%209975887206,%22password%22:%20%22shubham%22,%22usertype%22:%201,%22email%22:%20%22shubham@gmail.com%22,%22alt_email%22:%20%22shubhambaajpai@gmail.com%22,%22dob%22:%20%221990-10-10%22,%22working_phone%22:%207309290529,%22fulladdress%22:%20%22ES%201B/962,Sector%20A,%20Jankipuram%22,%22pincode%22:%20223232,%22cityname%22:%20%22delhi%22,%22id_type%22:%20%22DL%22,%22id_proof_no%22:%20%22VH32323HN%22},%22error%22:%20{%22errCode%22:%200}}
+// localhost/iftosi/apis/index.php?action=userReg&username=Shushrut Kumar&password=mishra1.234&mobile=7309290529&email=shubham.bajpai@xelpmoc.in&isvendor=1
         case 'userReg':
             include APICLUDE.'class.user.php';
-            $dt=(!empty($params['dt'])) ? trim(urldecode($params['dt'])) : '';
-            if(empty($dt))
+            $username=(!empty($params['username'])) ? trim(urldecode($params['username'])) : '';
+            $password=(!empty($params['password'])) ? trim(urldecode($params['password'])) : '';
+            $mobile=(!empty($params['mobile'])) ? trim($params['mobile']) : '';
+            $email=(!empty($params['email'])) ?  trim(urldecode($params['email'])) : '';
+            $isvendor=(!empty($params['isvendor'])) ? trim($params['isvendor']) : '';
+            if(empty($username)  &&  empty($password)  &&  empty($mobile)  &&  empty($email)  &&  empty($isvendor))
             {   
                 $arr = "Some Parameters missing";
                 $err = array('Code' => 1, 'Msg' => 'Some Parameters missing');
@@ -146,10 +150,10 @@ switch($action)
             $res= $result;
             break;
 
-//  localhost/jzeva/apis/index.php?action=viewAll&mobile=9975887206          
+//  localhost/jzeva/apis/index.php?action=viewAll&uid=9975887206          
         case 'iscomp':
             include APICLUDE.'class.user.php';
-            $mobile=(!empty($params['mobile'])) ?  trim($params['mobile']) : '';
+            $uid=(!empty($params['uid'])) ?  trim($params['uid']) : '';
             if(empty($params['mobile']))
             {
             $arr=array();
@@ -332,7 +336,8 @@ switch($action)
             $res=$result;
             break;
 
-//  localhost/jzeva/apis/index.php?action=getVproductsByName&vid=7&prname=blue&page=1&limit=1        case 'getVproductsByName':
+//  localhost/jzeva/apis/index.php?action=getVproductsByName&vid=7&prname=blue&page=1&limit=1        
+     /*   case 'getVproductsByName':
             include APICLUDE.'class.vendor.php';
             $vid=(!empty($params['vid'])) ? trim($params['vid']) : ''; //user session mobile
             $prname=(!empty($params['prname'])) ? trim(urldecode($params['prname'])) : '';
@@ -350,6 +355,7 @@ switch($action)
             $result=$obj->getVproductsByName($params);
             $res=$result;
             break;
+            */
                         
 //  localhost/jzeva/apis/index.php?action=updateProductInfo&vid=1&logmobile=9975887206&pid=7&vp=93323823&vq=10&af=1
         case 'updateProductInfo':
@@ -1039,7 +1045,7 @@ switch($action)
             break;    
             
 //----------------------cart-----------------------------------------------
-                
+     /*        
 //  localhost/jzeva/apis/index.php?action=getcartId&ip=192.168.2.21&umob=9975887206          
         case 'getcartId':
             include APICLUDE.'class.cart.php';
@@ -1057,6 +1063,7 @@ switch($action)
             $result=$obj->getCartId($params);
             $res=$result;
             break;
+          */ 
             
 //  localhost/jzeva/apis/index.php?action=addToCart&dt={%22result%22:%20{%22ip%22:%20%22192.168.2.21%22,%22logmob%22:%209975887206,%22vmob%22:%207309290529,%22qty%22:%201,%22pid%22:%209},%22error%22:%20{%22errCode%22:%200}}        
         case 'addToCart':
@@ -1096,9 +1103,8 @@ switch($action)
 //  localhost/jzeva/apis/index.php?action=readCart&ip=192.168.2.21&logmob=9975887206            
         case 'readCart':
             include APICLUDE.'class.cart.php';
-            $ip =(!empty($params['ip'])) ? trim(urldecode($params['ip'])) : '';
-            $logmob=(!empty($params['logmob'])) ? trim(urldecode($params['logmob'])) : '';
-            if(empty($ip))
+            $uid=(!empty($params['uid'])) ? trim(urldecode($params['uid'])) : '';
+            if(empty($uid))
             {
             $res = array();
             $err = array('Code' => 1, 'Msg' => 'Invalid Parameter');
@@ -1116,7 +1122,8 @@ switch($action)
             include APICLUDE.'class.cart.php';
             $pid  = (!empty($params['pid'])) ? trim($params['pid']) : '';
             $cartid  =(!empty($params['cartid'])) ? trim($params['cartid']) : '';
-            if(empty($pid) && empty($cartid))
+            $vid  =(!empty($params['vid'])) ? trim($params['vid']) : '';
+            if(empty($pid) && empty($cartid) && empty($vid))
             {
                 $arr = array();
                 $err = array('Code' => 1, 'Msg' => 'Invalid Parameters');
@@ -1128,7 +1135,7 @@ switch($action)
             $result=$obj->delPrd($params);
             $res= $result;
             break;
-
+/*
 //  localhost/jzeva/apis/index.php?action=cartClr&logmobile=9975887206&product_id=9&vendormob=7309290529            
         case 'cartClr':
             include APICLUDE.'class.cart.php';
@@ -1147,6 +1154,8 @@ switch($action)
             $result = $obj->cartClr($params);
             $res= $result;
             break;
+ * */
+ 
             
 //----------------------Attribute------------------------------------------
 
@@ -1379,10 +1388,9 @@ switch($action)
 //  localhost/jzeva/apis/index.php?action=viewSubscribers&page=1&limit=1            
         case 'viewSubscribers':
             include APICLUDE.'class.newsletter.php';
-            $dt=(!empty($params['dt'])) ? trim(urldecode($params['dt'])) : '';
             $page=(!empty($params['page'])) ? trim(urldecode($params['page'])) : '';
             $limit=(!empty($params['limit'])) ? trim(urldecode($params['limit'])) : '';
-            if(empty($dt) && empty($limit) && empty($page))
+            if(empty($limit) && empty($page))
             {   
                 $arr = "Some Parameters are missing";
                 $err = array('Code' => 1, 'Msg' => 'Some Parameters are missing');
@@ -1564,7 +1572,8 @@ switch($action)
             $page=(!empty($params['page'])) ? trim(urldecode($params['page'])) : '';
             $limit=(!empty($params['limit'])) ? trim(urldecode($params['limit'])) : '';
             $dt=(!empty($params['dt'])) ? trim($params['dt']):'';
-            if(empty($dt) && empty($limit) && empty($page))
+            $catid=(!empty($params['catid'])) ? trim($params['catid']):'';
+            if(empty($dt) && empty($limit) && empty($page) && empty($catid))
             {   
                 $arr = "Parameter is missing";
                 $err = array('Code' => 1, 'Msg' => 'Invalid Parameter');
