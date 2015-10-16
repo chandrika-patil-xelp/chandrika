@@ -19,10 +19,10 @@
             }
             else 
             {
-            $arr='User is already Registered';
+            $arr=array();
             $err=array('Code'=>0,'Msg'=>'Data matched');
             }
-            $result = array('results' => $arr, 'error' => $err);
+            $result = array('results'=>$arr,'error'=>$err);
             return $result;
         }
 
@@ -31,34 +31,52 @@
            $dt= json_decode($params['dt'],1);
            $detls  = $dt['result'];
 
-            $isql = "INSERT INTO tbl_registration(userName,logmobile,password,usertype,email,active_flag,cdt,udt,is_complete)
-                    VALUES('".$detls['username']."',".$detls['logmobile'].",MD5('".$detls['password']."'),".$detls['usertype'].",'".$detls['email']."',0,now(),now(),0)";
-           $ires=$this->query($isql);
+            $isql = "INSERT 
+                     INTO 
+                                tbl_registration(userName,logmobile,password,usertype,email,active_flag,
+                                                 date_time,is_complete)
+                    VALUES
+                                (\"".$detls['username']."\",
+                                 \"".$detls['logmobile']."\",
+                             MD5(\"".$detls['password']."\"),
+                                 \"".$detls['usertype']."\",
+                                 \"".$detls['email']."\",
+                                 0,
+                                 now(),
+                                 now(),
+                                 0)";
+            $ires=$this->query($isql);
             $uid=$this->lastInsertedId();
+            
             if($ires)
             {
-                    if($detls['usertype']=1)
+                    if($detls['usertype']=0)
                     {
-                        $isql = "INSERT INTO tbl_user_info(user_id,userName,logmobile,cdt,udt)
-                             VALUES(".$uid.",'".$detls['username']."',".$detls['logmobile'].",now(),now())";
-        
+                        $isql = "INSERT 
+                                 INTO 
+                                            tbl_vendor_master(user_id,vname,logmob,date_time)
+                                            VALUES
+                                            (\"".$uid."\",
+                                             \"".$detls['username']."\",
+                                             \"".$detls['logmobile']."\",
+                                             now(),
+                                             now())";                    
                         $ires2=$this->query($isql);
                     }
-                    if($detls['usertype']=2)
+                    else if($detls['usertype']=1)
                     {
-                        $isql = "INSERT INTO tbl_vendor_master(user_id,vname,logmob,cdt,udt)
-                             VALUES(".$uid.",'".$detls['username']."',".$detls['logmobile'].",now(),now())";                    
-                        $ires2=$this->query($isql);
+                        $arr="Registration process Is Complete";
+                        $err=array('code'=>0,'msg'=>"Insert Operation Done");    
                     }
-                 if($ires)
-                 {
-                    $arr="Registration process Is Complete";
-                    $err=array('code'=>0,'msg'=>"Insert Operation Done");
-                  }
+                    else
+                    {
+                        $arr=array();
+                        $err=array('code'=>1,'msg'=>"Undefined usertype");
+                    }
             }
            else
            {
-                $arr='Registeration not done';
+                $arr=array();
                 $err=array('code'=>1,'msg'=>'Error in registration');
            }
             $result = array('results' =>$arr,'error'=>$err);
@@ -80,45 +98,99 @@
           
           $type=$row['usertype'];
           
-          if($type=1)
+          if($type=0)
           {
-         $vsql = "UPDATE tbl_user_info set userName='".$detls['username']."',gender=".$detls['gen'].",alt_email='".$detls['alt_email']."',dob=STR_TO_DATE('".$detls['dob']."','%Y-%m-%d'),working_phone='".$detls['workphone']."',pincode=".$detls['pincode'].",fulladdress='".$detls['address']."',cityname='".$detls['cityname']."',id_type='".$detls['idtype']."',id_proof_no='".$detls['idproof']."',udt=now() where logmobile=".$detls['logmobile']."";
+          $vsql = "UPDATE 
+                                tbl_vendor_master 
+                   SET 
+                                gender=\"".$detls['gen']."\",
+                                vname=\"".$detls['username']."\",
+                                wrk_cell=\"".$detls['workphone']."\",
+                                landline=\"".$detls['landline']."\",
+                                add1=\"".$detls['address']."\",
+                                area=\"".$detls['area']."\",
+                                city=\"".$detls['cityname']."\",
+                                state=\"".$detls['state']."\",
+                                pincode=\"".$detls['pincode']."\",
+                                website=\"".$detls['website']."\",
+                                fax=\"".$detls['fax']."\",
+                                lat=\"".$detls['lat']."\",
+                                lng=\"".$detls['lng']."\",
+                                udt=now() 
+                   WHERE 
+                                logmob=\"".$detls['logmobile']."\"";
           $vres=$this->query($vsql);
-                if($vres)
-                {
-                    $arr="Profile is updated";
-                    $err=array('code'=>0,'msg'=>'Update operation is done successfully');
-                }
-                else
-                {
-                    $arr="profile is not updated";
-                    $err=array('code'=>0,'msg'=>'Update operation unsuccessfull');
-                }
+          if($vres)
+          {
+                $arr="Profile is updated";
+                $err=array('code'=>0,'msg'=>'Update operation is done successfully');
           }
-          if($type=2)
-          {
-          $vsql = "UPDATE tbl_vendor_master set gender=".$detls['gen'].",vname='".$detls['username']."',wrk_cell='".$detls['workphone']."',landline=".$detls['landline'].",add1='".$detls['address']."',area='".$detls['area']."',city='".$detls['cityname']."',state='".$detls['state']."',pincode=".$detls['pincode'].",website='".$detls['website']."',fax='".$detls['fax']."',lat=".$detls['lat'].",lng=".$detls['lng'].",udt=now() where logmob=".$detls['logmobile']."";
-          $vres=$this->query($vsql);
-                if($vres)
-                {
-                    $arr="Profile is updated";
-                    $err=array('code'=>0,'msg'=>'Update operation is done successfully');
-                }
-                else
-                {
-                    $arr="profile is not updated";
-                    $err=array('code'=>0,'msg'=>'Update operation unsuccessfull');
-                }
+          else
+            {
+                $arr=array();
+                $err=array('code'=>1,'msg'=>'Update operation unsuccessfull');
+            }
           }
           
+          else if($isv=2)
+          {
+             $vsql = "UPDATE 
+                                            tbl_registration 
+                      SET 
+                                            userName=\"".$detls['username']."\",
+                                            email=\"".$detls['email']."\",
+                                            date_time=now(),
+                                            is_complete=is_complete
+                     WHERE 
+                                            user_id=\"".$uid."\"";
+             $vres=$this->query($vsql);
+             if($vres)
+             {
+                $arr="User Profile is updated";
+                $err=array('code'=>0,'msg'=>'Update operation is done successfully');
+             }
+             else
+             {
+                $arr=array();
+                $err=array('code'=>0,'msg'=>'Update operation unsuccessfull');
+             }
+          }
           $result = array('results'=>$arr,'error'=>$err);
           return $result;
         }
                 
         public function logUser($params) // USER LOGIN CHECK
         {
-          $vsql="SELECT logmobile,password,usertype from tbl_registration where logmobile=".$params['mobile']." AND password=MD5('".$params['password']."') AND active_flag=1";
-           
+          if(!empty($params['mobile']))
+          {
+            $vsql="SELECT       
+                                logmobile,
+                                password,
+                                usertype 
+                   FROM 
+                                tbl_registration 
+                   WHERE 
+                                logmobile=".$params['mobile']."
+                   AND 
+                                password=MD5('".$params['password']."') 
+                   AND 
+                                active_flag=1";
+          }
+         else if(!empty($params['email']))
+          {
+            $vsql="SELECT 
+                                    email,
+                                    password,
+                                    usertype 
+                   FROM 
+                                    tbl_registration 
+                   WHERE 
+                                    email=".$params['email']."
+                   AND 
+                                    password=MD5(\"".$params['password']."\") 
+                   AND 
+                                    active_flag=1";
+          }
            $vres=$this->query($vsql);
             if($this->numRows($vres)==1)
             {
@@ -130,30 +202,40 @@
                 if($ut=1)
                 {
                 $arr="Welcome and greetings user";
-                $err['error']=array('code'=>1,'msg'=>'Parameters matched');
+                $err=array('code'=>0,'msg'=>'Parameters matched');
                 }
                else if($ut=2)
                 {
                 $arr="Welcome and greetings Vendor";
-                $err['error']=array('code'=>1,'msg'=>'Parameters matched');
+                $err=array('code'=>0,'msg'=>'Parameters matched');
                 }
             }   
             else
             {
-                $arr="No user with this mobile is registered";
-                $err['error']=array('code'=>1,'msg'=>'Problem in fetching data');
+                $arr=array();
+                $err=array('code'=>1,'msg'=>'Problem in fetching data');
             }
-            $result = array('results'=>$arr,'error'=>$err['error']);
+            $result = array('results'=>$arr,'error'=>$err);
             return $result;
         }
                 
         public function actUser($params) // Activate Status
         {   
-            $vsql="SELECT active_flag from tbl_registration where logmobile=".$params['mobile']."";
+            $vsql="SELECT 
+                                active_flag 
+                    FROM 
+                                tbl_registration 
+                    WHERE 
+                                logmobile=\"".$params['mobile']."\"";
             $vres=$this->query($vsql);
             if($this->numRows($vres)==1) //If user is registered
             {
-                $usql="UPDATE tbl_registration set active_flag=1 where logmobile=".$params['mobile'];
+                $usql="UPDATE 
+                                    tbl_registration 
+                       SET 
+                                    active_flag=1 
+                       WHERE 
+                                    logmobile=".$params['mobile'];
                 $ures=$this->query($usql);
                 if($ures)
                 {
@@ -162,13 +244,13 @@
                 }
                 else
                 {
-                    $arr="Update operation is not performed";
+                    $arr=array();
                     $err=array('code'=>1,'msg'=>'Error in updating data');
                 }
             }
             else
             {
-                $arr="Data Not Found regarding ur requested parameters";
+                $arr=array();
                 $err=array('code'=>1,'msg'=>'Problem in fetching data');
             }  // If user is not registered
             $result = array('results'=>$arr,'error'=>$err);
@@ -177,11 +259,21 @@
 
         public function deactUser($params) // DeActivate Status
         {   
-            $vsql="SELECT active_flag from tbl_registration where logmobile=".$params['mobile']."";
+            $vsql="SELECT 
+                                active_flag 
+                   FROM 
+                                tbl_registration 
+                   WHERE 
+                                logmobile=".$params['mobile']."";
             $vres=$this->query($vsql);
             if($this->numRows($vres)==1) //If user is registered
             {
-            $usql="UPDATE tbl_registration set active_flag=0 where logmobile=".$params['mobile'];
+            $usql="UPDATE 
+                                tbl_registration 
+                   SET 
+                                active_flag=0 
+                   WHERE 
+                                logmobile=".$params['mobile'];
             $ures=$this->query($usql);
                 if($ures)
                 {
@@ -190,13 +282,13 @@
                 }
                 else
                 {
-                $arr="Update operation is not performed";
+                $arr=array();
                 $err=array('code'=>1,'msg'=>'Error in updating data');
                 }
             }
             else
             {
-                $arr="Data Not Found regarding ur requested parameters";
+                $arr=array();
                 $err=array('code'=>1,'msg'=>'Problem in fetching data');
             }  // If user is not registered
             $result = array('results'=>$arr,'error'=>$err);
@@ -205,11 +297,25 @@
 
         public function updatePass($params)
         {
-            $vsql="SELECT logmobile,userName,email from tbl_registration where logmobile=".$params['mobile']." AND active_flag=1";
+            $vsql="SELECT 
+                               logmobile,
+                               userName,
+                               email 
+                   FROM 
+                               tbl_registration 
+                   WHERE 
+                               logmobile=\"".$params['mobile']."\"
+                   AND 
+                                active_flag=1";
             $vres=$this->query($vsql);
             if($this->numRows($vres)==1) //If user is registered
             {
-                $usql="UPDATE tbl_registration set password=MD5('".$params['password']."') where logmobile=".$params['mobile'];
+                $usql="UPDATE 
+                                tbl_registration 
+                       SET 
+                                password=MD5(\"".$params['password']."\")
+                       WHERE 
+                                logmobile=\"".$params['mobile']."\"";
                 $ures=$this->query($usql);
                 if($ures)
                 {
@@ -218,13 +324,13 @@
                 }
                 else
                 {
-                $arr="Password not updated";
+                $arr=array();
                 $err=array('code'=>1,'msg'=>'Error in updating data');
                 }
             }
             else
             {
-                $arr="User Not Exist";
+                $arr=array();
                 $err=array('code'=>1,'msg'=>'Problem in fetching data');
             }  // If user is not registered
             $result = array('results'=>$arr,'error'=>$err);
@@ -233,7 +339,17 @@
         
         public function viewAll($params)   // USERTYPE -- 1- USER    2-VENDOR 
         {
-            $vsql="SELECT user_id,userName,email,usertype from tbl_registration where logmobile=".$params['mobile']." AND active_flag=1";
+            $vsql="SELECT 
+                                user_id,
+                                userName,
+                                email,
+                                usertype 
+                    FROM 
+                                tbl_registration 
+                    WHERE 
+                                logmobile=".$params['mobile']." 
+                    AND 
+                                active_flag=1";
             $vres=$this->query($vsql);
             $chkres=$this->numRows($vres);
             if($chkres>0)//If user is registered and is customer
@@ -247,46 +363,57 @@
                 }
                 if($arr['usertype']==1)    // Customer
                 {
-                    $v2sql="SELECT * from tbl_user_info where logmobile=".$params['mobile']." and user_id=".$arr['user_id']."";
+                    $v2sql="SELECT 
+                                        * 
+                            FROM 
+                                        tbl_registration
+                            WHERE 
+                                        logmobile=".$params['mobile']." 
+                            AND 
+                                        user_id=".$arr['user_id']."";
                     $v2res=$this->query($v2sql);
                     $chkres1=$this->numRows($v2res);
                     if($chkres1>0)//If user is registered and is customer
                     {
                        while($row2=$this->fetchData($v2res))
                        {
-                           $arr['gender']=$row2['gender'];
-                           $arr['alt_email']=$row2['alt_email'];
-                           $arr['dob']=$row2['dob'];
-                           $arr['work_phone']=$row2['working_phone'];
-                           $arr['address']=$row2['fulladdress'];
-                           $arr['pincode']=$row2['pincode'];
-                           $arr['city']=$row2['cityname'];
-                           $arr['id_type']=$row2['id_type'];
-                           $arr['id_proof_no']=$row2['id_proof_no'];
+                           $arr['userName']=$row2['userName'];
+                           $arr['logmobile']=$row2['logmobile'];
+                           $arr['email']=$row2['email'];
+                           $arr['subscribe']=$row2['subscribe'];
                        }
                     }
                 }
                 if($arr['usertype']==0)      // Vendor
                 {
-                    $v2sql="SELECT * from tbl_vendor_master where logmob=".$params['mobile']." and user_id=".$arr['user_id']."";
+                    $v2sql="SELECT 
+                                        * 
+                            FROM 
+                                        tbl_vendor_master 
+                            WHERE 
+                                        logmobile=\"".$params['mobile']."\" 
+                            AND
+                                        user_id=\"".$arr['user_id']."\"";
                     $v2res=$this->query($v2sql);
                     $chkres1=$this->numRows($v2res);
                     if($chkres1>0)//If user is registered and is customer
                     {
                        while($row2=$this->fetchData($v2res))
                        {
-                           $arr['vname']=$row2['vname'];
-                           $arr['wrk_cell']=$row2['wrk_cell'];
-                           $arr['landline']=$row2['landline'];
-                           $arr['add1']=$row2['add1'];                       
+                           $arr['vendor_name']=$row2['vname'];
+                           $arr['work_cell']=$row2['wrk_cell'];
+                           $arr['land_line']=$row2['landline'];
+                           
+                           $arr['fulladdress']=$row2['add1'];                       
+                           
                            $arr['area']=$row2['area'];
                            $arr['city']=$row2['city'];
                            $arr['state']=$row2['state'];
                            $arr['pincode']=$row2['pincode'];
                            $arr['website']=$row2['website'];
                            $arr['fax']=$row2['fax'];
-                           $arr['lat']=$row2['lat'];
-                           $arr['lng']=$row2['lng'];
+                           $arr['latitude']=$row2['lat'];
+                           $arr['longitude']=$row2['lng'];
                            $arr['rating']=$row2['rating'];
                            $arr['gender']=$row2['gender'];
                        }
@@ -297,7 +424,7 @@
             }
             else
             {
-                $arr="User Not Exist";
+                $arr=array();
                 $err=array('code'=>1,'msg'=>'Problem in fetching data');
             }  
             $result = array('results'=>$arr,'error'=>$err);
@@ -306,11 +433,20 @@
         
         public function iscomp($params) // Activate Status
         {   
-            $vsql="SELECT is_complete from tbl_registration where logmobile=".$params['mobile']."";
+            $vsql="SELECT
+                                is_complete 
+                    FROM        tbl_registration
+                    WHERE 
+                                logmobile=".$params['mobile']."";
             $vres=$this->query($vsql);
             if($this->numRows($vres)==1) //If user is registered
             {
-                $usql="UPDATE tbl_registration set is_complete=1 where logmobile=".$params['mobile'];
+                $usql="UPDATE 
+                                    tbl_registration
+                        SET 
+                                    is_complete=1
+                        WHERE 
+                                    logmobile=".$params['mobile'];
                 $ures=$this->query($usql);
                 if($ures)
                 {
@@ -319,13 +455,13 @@
                 }
                 else
                 {
-                    $arr="Update operation is not performed";
+                    $arr=array();
                     $err=array('code'=>1,'msg'=>'Error in updating data');
                 }
             }
             else
             {
-                $arr="Data Not Found regarding ur requested parameters";
+                $arr=array();
                 $err=array('code'=>1,'msg'=>'Problem in fetching data');
             }  // If user is not registered
             $result = array('results'=>$arr,'error'=>$err);

@@ -14,12 +14,12 @@ class address extends DB
        $proErr = $dt['error'];
        if($proErr['errCode']== 0)
        {
-            $chksql="SELECT addid from tbl_addid_generator where user_id=".$detls['uid']."";
+            $chksql="SELECT address_id from tbl_addressid_generator where user_id=".$detls['uid']."";
             $chkres=$this->query($chksql);
             $cntres=$this->numRows($chkres);
             if($cntres==0)
             {
-                $isql="INSERT INTO tbl_addid_generator(user_id) VALUES(".$detls['uid'].")";
+                $isql="INSERT INTO tbl_addressid_generator(user_id,date_time) VALUES(".$detls['uid'].",now())";
                 $ires=$this->query($isql);
                 $addid=$this->lastInsertedId();
             }
@@ -27,9 +27,38 @@ class address extends DB
             {
                 $row=$this->fetchData($chkres);
                 $addid=$row['addid'];
-                $adisql="INSERT INTO tbl_address_master(addid,user_id,addtitle,add1,add2,fulladd,area,city,state,pincode,country,cdt,udt,dflag)
-                      VALUES(".$addid.",".$detls['uid'].",'".$detls['addtitle']."','".$detls['add1']."','".$detls['add2']."','".$detls['fulladd']."',
-                      '".$detls['area']."','".$detls['city']."','".$detls['state']."',".$detls['pcode'].",'".$detls['country']."',now(),now(),1)";
+            }
+            
+                $adisql="INSERT
+                         INTO 
+                                    tbl_address_master
+                                   (address_id,user_id,addtitle,add1,add2,
+                                    fulladd,area,city,state,pincode,country,
+                                    date_time,dflag)
+                      VALUES
+                                (\"".$addid."\",
+                                 \"".$detls['uid']."\",
+                                 \"".$detls['addtitle']."\",
+                                 \"".$detls['add1']."\",
+                                 \"".$detls['add2']."\",
+                                 \"".$detls['fulladd']."\",
+                                 \"".$detls['area']."\",
+                                 \"".$detls['city']."\",
+                                 \"".$detls['state']."\",
+                                 \"".$detls['pcode']."\",
+                                 \"".$detls['country']."\",
+                                 now(),
+                                 1)
+                ON DUPLICATE KEY
+                                addtitle    =\"".$detls['addtitle']."\",
+                                add1        =\"".$detls['add1']."\",
+                                add2        =\"".$detls['add2']."\",
+                                fulladd     =\"".$detls['fulladd']."\",
+                                area        =\"".$detls['area']."\",
+                                city        =\"".$detls['city']."\",
+                                state       =\"".$detls['state']."\",
+                                pincode     =\"".$detls['pcode']."\",
+                                country     =\"".$detls['country']."\"";
 
                 $adires=$this->query($adisql);
                 if($adires)
@@ -39,14 +68,13 @@ class address extends DB
                 }
                 else
                 {
-                    $arr="Address insertion failed";
+                    $arr=array();
                     $err=array('code'=>0,'msg'=>'Values are not inserted');
                 }
-            }
-       }
+        }
        else
        {
-           $arr='Error in obtaining parameters';
+           $arr=array();
            $err=array('Code'=>1,'Msg'=>'Data parameter is not in proper format');
        }
         $result=array('reuslts'=>$arr,'error'=>$err);
@@ -55,7 +83,26 @@ class address extends DB
     
     public function getAdd($params)
     {
-        $sql="SELECT addid,user_id,addtitle,add1,add2,fulladd,area,city,state,pincode,country,cdt,udt,dflag from tbl_address_master WHERE addid=".$params['addid'];
+        $sql="SELECT
+                            address_id,
+                            user_id,
+                            addtitle,
+                            add1,
+                            add2,
+                            fulladd,
+                            area,
+                            city,
+                            state,
+                            pincode,
+                            country,
+                            date_time,
+                            dflag
+                FROM 
+                            tbl_address_master 
+                WHERE 
+                            address_id=".$params['addid']."
+                ORDER BY 
+                            address_id ASC";
         $res=$this->query($sql);
         if($res)
         {
@@ -67,7 +114,7 @@ class address extends DB
         }
         else
         {
-            $arr="Error in fetching data";
+            $arr=array();
             $err=array('Code'=>1,'Msg'=>'Error in selection');
         }
         $result=array('results'=>$arr,'error'=>$err);
@@ -76,7 +123,7 @@ class address extends DB
     
     public function getAddByUser($params)
     {
-        $sql="SELECT addid,user_id,addtitle,add1,add2,fulladd,area,city,state,pincode,country,cdt,udt,dflag from tbl_address_master WHERE user_id=".$params['uid'];
+        $sql="SELECT address_id,user_id,addtitle,add1,add2,fulladd,area,city,state,pincode,country,date_time,dflag from tbl_address_master WHERE user_id=".$params['uid'];
         $res=$this->query($sql);
         if($res)
         {
@@ -88,7 +135,7 @@ class address extends DB
         }
         else
         {
-            $arr="Error in fetching data";
+            $arr=array();
             $err=array('Code'=>1,'Msg'=>'Error in selection');
         }
         $result=array('results'=>$arr,'error'=>$err);
@@ -97,7 +144,15 @@ class address extends DB
     
     public function getUserAddID($params)
     {
-        $sql="SELECT addid from tbl_addid_generator WHERE user_id=".$params['uid'];
+        $sql="SELECT 
+                        address_id,
+                        addtitle 
+              FROM 
+                        tbl_addressid_generator
+              WHERE 
+                        user_id=".$params['uid']."
+              ORDER BY 
+                        address_id ASC";
         $res=$this->query($sql);
         if($res)
         {
@@ -109,11 +164,10 @@ class address extends DB
         }
         else
         {
-            $arr="Error in fetching data";
+            $arr=array();
             $err=array('Code'=>1,'Msg'=>'Error in selection');
         }
         $result=array('results'=>$arr,'error'=>$err);
         return $result;
-    }
-    
+    }  
 }

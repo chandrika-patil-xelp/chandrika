@@ -9,27 +9,16 @@ class cart extends DB {
 
     public function getCartId($params)
     {
+      
       $uid=$params['uid'];
-      if(!empty($umob))
+      if(!empty($uid))
       {
-        $sql="SELECT cart_id from tbl_cartid_generator where user_id=".$uid;
-        $res=$this->query($sql);
-        $chres=$this->numRows($res);
-        if($chres>0)
-        {
-            $row=$this->fetchData($res);
-            $arr=$row['cart_id'];
-            $err=array('Code'=>0,'Msg'=>'Cart id is obtained');
-        }
-        else
-        {
-            $arr=array();
-            $err=array('Code'=>1,'Msg'=>'Cart id is not yet generated');
-        }
-      }
-      else
-      {
-        $sql="SELECT cart_id from tbl_cartid_generator where user_id='".$params['uid']."'";
+        $sql="SELECT 
+                            cart_id 
+              FROM 
+                            tbl_cartid_generator 
+              WHERE 
+                            user_id=\"".$params['uid']."\"";
         $res=$this->query($sql);
         $chres=$this->numRows($res);
         if($chres>0)
@@ -83,7 +72,7 @@ class cart extends DB {
 	    $cnt1 = $this->numRows($crtres);
                 if($cnt1==0)
                 {
-                    $isql = "INSERT INTO tbl_cartid_generator(cart_id,user_id,cdt,udt,aflag) VALUES('".$cartid."',".$detls['uid'].",now(),now(),1)";
+                    $isql = "INSERT INTO tbl_cartid_generator(cart_id,user_id,date_time,active_flag) VALUES('".$cartid."',".$detls['uid'].",now(),1)";
                     $ires = $this->query($isql);
                 }    
                 else
@@ -97,10 +86,10 @@ class cart extends DB {
             $row=$this->fetchData($sres);
            $avlQt=$row['quantity'];
             $cnt2=$this->numRows($sres);
-                if(!$cnt2)
+                if($cnt2==0)
                 {
                   $ucsql="insert into tbl_user_cart(cart_id,product_id,vendor_id,user_id,quantity,add_date,update_date,active_flag)
-                         VALUES('".$cartid."',".$detls['pid'].",".$detls['vid'].",".$detls['uid'].",".$detls['qty'].",now(),now(),1)";
+                         VALUES(\"".$cartid."\",\"".$detls['pid']."\",\"".$detls['vid']."\",\"".$detls['uid']."\",\"".$detls['qty']."\",now(),1)";
                 $ucres = $this->query($ucsql);                
                     if($ucres)
                     {
@@ -109,7 +98,7 @@ class cart extends DB {
                     }
                     else
                     {
-                        $arr="Cart not Updated";
+                        $arr=array();
                         $err=array('Code'=>0,'Msg'=>'Insertion incomplete');
                     }
                 }
@@ -117,7 +106,7 @@ class cart extends DB {
                 {
                 $row=$this->fetchData($sres);
                 $newqt = $avlQt + $detls['qty'];
-                $usql="UPDATE tbl_user_cart SET quantity=".$newqt.",active_flag=1 WHERE user_id=".$detls['uid']." AND product_id =".$detls['pid']." AND vid=".$detls['vid'];
+                $usql="UPDATE tbl_user_cart SET quantity=".$newqt.",active_flag=1 WHERE user_id=".$detls['uid']." AND product_id =".$detls['pid']." AND vendor_id=".$detls['vid'];
                 $ures=$this->query($usql);
                     if($ures)
                     {
@@ -126,14 +115,14 @@ class cart extends DB {
                     }
                     else
                     {
-                        $arr="problem in Updation";
+                        $arr=array();
                         $err= array('code' => 0, 'msg' => 'Update Failure.');
                     }
                 }
            }
         else
         {
-            $arr="Product is not updated in the cart";
+            $arr=array();
             $err=array('Code'=>1,'Msg'=>'Error in updating cart');
         }
             $result = array('results'=>$arr, 'error' => $err);
@@ -189,7 +178,7 @@ class cart extends DB {
     
     public function editcart($params)
     {
-      echo $qry = "UPDATE tbl_user_cart SET quantity=".$params['quantity'].",update_date=now() WHERE cart_id='".$params['cart_id']."' AND product_id=".$params['product_id']." AND vendor_id=".$params['vid']." AND active_flag=1";
+       $qry = "UPDATE tbl_user_cart SET quantity=".$params['quantity']." WHERE cart_id='".$params['cart_id']."' AND product_id=".$params['product_id']." AND vendor_id=".$params['vid']." AND active_flag=1";
        $ret = $this->query($qry);
         if($ret)
         {
@@ -198,7 +187,7 @@ class cart extends DB {
         }
         else
         {
-            $arr="product quantity is not edited";
+            $arr=array();
             $err=array('Code'=>1,'Msg'=>'Error in editing cart quantity');
         }
         $result=array('result'=>$arr,'error'=>$err);
@@ -207,19 +196,19 @@ class cart extends DB {
     
     public function readcart($params)
     {
-       $csql="SELECT cart_id FROM tbl_cartid_generator WHERE user_id=".$params['uid']." AND aflag=1";
+       $csql="SELECT cart_id FROM tbl_cartid_generator WHERE user_id=".$params['uid']." AND active_flag=1";
        $cres = $this->query($csql);
        $row=$this->fetchData($cres);
        $cartid=$row['cart_id'];
         
-       $sql = "SELECT cart_id,product_id,vendormobile,user_id,quantity FROM tbl_user_cart WHERE cart_id='".$cartid."' AND active_flag=1";
+       $sql = "SELECT cart_id,product_id,vendor_id,user_id,quantity FROM tbl_user_cart WHERE cart_id='".$cartid."' AND active_flag=1";
        $res = $this->query($sql);
         if ($res) 
         {
-            $data['total']=$this->numRows($res);
+            $arr['total']=$this->numRows($res);
             while ($row=$this->fetchData($res)) 
             {
-                $data['results'][] = $row;
+                $arr['results'][] = $row;
                 $product_id[] = $row['product_id'];
                 $qty_arr[$row['product_id']] = $row['quantity']; //quantity value in cart
             }
@@ -240,7 +229,7 @@ class cart extends DB {
 
                     while($row=$this->fetchData($res)) 
                     {
-                        $data['products'][$row['product_id']] = $row; //reading all product one by one
+                        $arr['products'][$row['product_id']] = $row; //reading all product one by one
                         $tmp_qty = $qty_arr[$row['product_id']];
                         if($tmp_qty > 1)
                         {
@@ -252,39 +241,39 @@ class cart extends DB {
                             $total_amount += $row['offerprice'];
                             $cur_total = $row['offerprice'];
                         }
-                        $data['products'][$row['product_id']]['cur_total'] = number_format($cur_total, '2', '.', ',');
+                        $arr['products'][$row['product_id']]['cur_total'] = number_format($cur_total, '2', '.', ',');
                         }
                     $err=array('Code'=>0,'Msg'=>'Data is fetched');
                 }
                 else
                 {
 
-                    $data="Values are not fetched as desired";
+                    $arr=array();
                     $err=array('Code'=>1,'Msg'=>'Data is not fetched');
                 }
             }
             else
             {
 
-                $data="Values are not fetched as desired";
+                $arr=array();
                 $err=array('Code'=>1,'Msg'=>'Data is not fetched');
             }
         
-            $data['total_amount'] = $total_amount;
+            $arr['total_amount'] = $total_amount;
         }
         else
         {
-            $data="No product associated in this cart";
+            $arr=array();
             $err=array('code'=>0,'msg'=>'select operation returns no result');
         }
         
-        $result=array('total'=>$data,'error'=>$err);
+        $result=array('total'=>$arr,'error'=>$err);
         return $result;
     }
 
     public function delPrd($params) 
     {
-       $sql = "UPDATE tbl_user_cart SET active_flag=2,update_date=now() WHERE cart_id=".$params['cid']." AND product_id=".$params['pid']." AND vendor_id=".$params['vid']." AND active_flag = 1";
+       $sql = "UPDATE tbl_user_cart SET active_flag=2 WHERE cart_id=".$params['cid']." AND product_id=".$params['pid']." AND vendor_id=".$params['vid']." AND active_flag = 1";
        $res = $this->query($sql);
         if($res)
         {
@@ -293,8 +282,8 @@ class cart extends DB {
         } 
         else
         {
-            $arr = 'Error deleting Cart';
-            $err = array('Code' => 0, 'Msg' => 'Update Not Done');
+            $arr = array();
+            $err = array('Code' => 1, 'Msg' => 'Update Not Done');
         }
             $result = array('results'=>$arr,'error'=>$err);
             return $result;
@@ -311,7 +300,7 @@ class cart extends DB {
         }
         else
         {
-            $arr= 'Error clearing the cart';
+            $arr= array();
             $err= array('code' => 0, 'msg' => 'Cart is not Updated ');
         }
         $result = array('results'=>$arr,'error'=>$err);

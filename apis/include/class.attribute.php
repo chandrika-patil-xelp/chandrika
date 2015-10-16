@@ -10,10 +10,22 @@ class attribute extends DB
     
     public function get_attrList($params)
     {
-        $sql = "SELECT attr_id,attr_name,attr_display_name,attr_unit,attr_type_flag,attr_unit_pos,attr_values,attr_range
-                FROM tb_attribute_master";
-        $page=$params['page'];
-        $limit=$params['limit'];
+        $sql = "SELECT 
+                            attribute_id,
+                            attribute_name,
+                            attribute_display_name,
+                            attribute_unit,
+                            attribute_type_flag,
+                            attribute_unit_position,
+                            attrinute_values,
+                            attribute_range,
+                            use_list
+                FROM 
+                            tbl_attribute_master 
+                ORDER BY 
+                            attribute_id ASC";
+        $page   = ($params['page'] ? $params['page'] : 1);
+        $limit  = ($params['limit'] ? $params['limit'] : 15);
         if (!empty($page))
         {
             $start = ($page * $limit) - $limit;
@@ -42,9 +54,21 @@ class attribute extends DB
 	$upos 	= $params['upos'];
 	$vals 	= $params['vals'];
 	$range 	= $params['range'];
+        $uselist= $params['uselist'];
 
 	# INSERTING REQUIRED DATA #
-        $sql = "INSERT INTO tb_attribute_master SET attr_name='".$name."',attr_display_name='".$dname."',attr_unit='".$unit."',attr_type_flag='".$flag."',attr_unit_pos='".$upos."',attr_values='".$vals."',attr_range=".$range;
+        $sql = "INSERT
+                INTO 
+                            tbl_attribute_master 
+                SET 
+                            attribute_name=\"".$name."\",
+                            attribute_display_name=\"".$dname."\",
+                            attribute_unit=\"".$unit."\",
+                            attribute_type_flag=\"".$flag."\",
+                            attribute_unit_position=\"".$upos."\",
+                            attribute_values=\"".$vals."\",
+                            attribute_range=\"".$range."\",
+                            use_list=\"".$uselist."\"";
 	$res = $this->query($sql);
 	if($res)
         { 
@@ -53,8 +77,8 @@ class attribute extends DB
 	}
         else
         {
-            $err=array('Code'=>0,'Msg'=>'Data Insertion failed');
-            $arr="No Attribute Inserted";
+            $err=array('Code'=>1,'Msg'=>'Data Insertion failed');
+            $arr=array();
         }
         $result=array('result'=>$arr,'error'=>$err);
 	return $result;
@@ -62,8 +86,23 @@ class attribute extends DB
     
     public function fetch_attributes_details($params)
     {
-        $sql = "SELECT  attr_id,attr_name,attr_display_name,attr_unit,attr_type_flag,attr_unit_pos,attr_values,attr_range
-                FROM tb_attribute_master WHERE attr_id=".$params['attribid'];
+        $sql = "SELECT 
+                        attribute_id,
+                        attribute_name,
+                        attribute_display_name,
+                        attribute_unit,
+                        attribute_type_flag,
+                        attribute_unit_position,
+                        attribute_values,
+                        attribute_range,
+                        use_list
+                FROM 
+                        tbl_attribute_master 
+                WHERE 
+                        attribute_id=".$params['attribid']." 
+                ORDER BY 
+                        attribute_id ASC";
+        
 	$res    = $this->query($sql);
         $chkres=$this->numRows($res);
         if($chkres>0)
@@ -76,7 +115,7 @@ class attribute extends DB
         }
         else
         {
-            $arr="There is no attribute with this id";
+            $arr=array();
             $err=array('Code'=>1,'Msg'=>'Error in fetching data');
         }
         $result=array('result'=> $arr,'error'=>$err);
@@ -92,12 +131,22 @@ class attribute extends DB
 	$fil_pos 	= $params['fil_pos'];
 	$aflag	 	= $params['aflag'];
 	$catid 		= $params['catid'];
-        $chksql="SELECT * from tb_attribute_mapping where attribute_id=".$aid." and category_id=".$catid."";
+        $chksql="SELECT count(1) from tbl_attribute_category_mapping where attribute_id=".$aid." and category_id=".$catid."";
         $ckres=$this->query($chksql);
         $chkres=$this->numRows($ckres);
         if($chkres==0)
         {
-        $sql = "INSERT INTO tb_attribute_mapping SET attribute_id=".$aid.",attr_display_flag =".$dflag.",attr_display_position=".$dpos.",attr_filter_flag = ".$fil_flag.",attr_filter_position=".$fil_pos.",active_flag=".$aflag.",category_id=".$catid;
+        $sql = "INSERT 
+                            INTO 
+                            tbl_attribute_category_mapping 
+                SET 
+                            attribute_id=\"".$aid."\",
+                            attribute_display_flag =\"".$dflag."\",
+                            attribute_display_position=\"".$dpos."\",
+                            attribute_filter_flag = \"".$fil_flag."\",
+                            attribute_filter_position=\"".$fil_pos."\",
+                            active_flag=\"".$aflag."\",
+                            category_id=\"".$catid."\"";
         $res = $this->query($sql);
             if($res)
             { 
@@ -106,13 +155,13 @@ class attribute extends DB
             }
             else
             {
-                $arr="Mapping can't be done";
+                $arr=array();
                 $err=array('Code'=>1,'Msg'=>'Problem in Insertion');
             }
         }
         else
         {
-                $arr="Mapping is done already";
+                $arr=array();
                 $err=array('Code'=>1,'Msg'=>'Insert operation not commited');
         }
         $result=array('result'=>$arr,'error'=>$err);
@@ -121,7 +170,14 @@ class attribute extends DB
     
     public function fetch_category_mapping($params)
     {
-        $mapsql="SELECT attribute_id FROM tb_attribute_mapping where category_id=".$params['catid'];
+        $mapsql="SELECT
+                                attribute_id 
+                 FROM 
+                                tbl_attribute_category_mapping
+                 WHERE 
+                                category_id=".$params['catid']."
+                 ORDER BY 
+                                category_id ASC";
         $mapres=$this->query($mapsql);
         $cres=$this->numRows($mapres);
         if($cres>0)
@@ -134,8 +190,21 @@ class attribute extends DB
             }
             $atribs=implode(',',$attributeMap['attrid']);
             
-            $attrsql="SELECT attr_name,attr_display_name,attr_unit,attr_type_flag,attr_unit_pos,attr_values,attr_range
-                      FROM tb_attribute_master where attr_id IN(".$atribs.") ORDER BY attr_id DESC";
+            $attrsql="SELECT 
+                                    attribute_name,
+                                    attribute_display_name,
+                                    attribute_unit,
+                                    attribute_type_flag,
+                                    attribute_unit_position,
+                                    attribute_values,
+                                    attribute_range,
+                                    use_list
+                      FROM 
+                                    tbl_attribute_master
+                      WHERE 
+                                    attribute_id IN(".$atribs.") 
+                     ORDER BY 
+                                    attribute_id ASC";
             $res = $this->query($attrsql); 
             if($res)
             {   
@@ -148,6 +217,7 @@ class attribute extends DB
                     $attrs['attribtue_Unit_Pos']=$row1['attr_unit_pos'];
                     $attrs['attribute_Values']=$row1['attr_values'];
                     $attrs['attribute_Range']=$row1['attr_range'];
+                    $attrs['attribute_uselist']=$row1['use_list'];
                     $attribute[]=$attrs;
                 }
                 $arr=array('attributes'=>$attribute,'attribute_Map'=>$attributeMap);
@@ -155,13 +225,13 @@ class attribute extends DB
             }
             else
             {
-                $arr="There is no attribute detail availed in attribute table";
+                $arr=array();
                 $err=array('Code'=>0,'Msg'=>'Values not found');
             }
         }
         else
         {
-            $arr="There is no attribute mapped with category to show result";
+            $arr=array();
             $err=array('code'=>1,'Msg'=>'Error in fetching data');
         }
         $result=array('results'=>$arr,'error'=>$err);
@@ -170,7 +240,7 @@ class attribute extends DB
     
     function unset_category_mapping($params) 
     {   
-        $sql = "UPDATE tb_attribute_mapping SET active_flag=2 WHERE category_id=".$params['catid']." AND attr_id=".$params['aid'];
+        $sql = "UPDATE tbl_attribute_category_mapping SET active_flag=2 WHERE category_id=".$params['catid']." AND attribute_id=".$params['aid'];
 	$res = $this->query($sql);
 	if($res) 
         { 
@@ -180,7 +250,5 @@ class attribute extends DB
         $result=array('result'=>$arr,'error'=>$err);
 	return $result;
     }
-    
-    
 }
 ?>
