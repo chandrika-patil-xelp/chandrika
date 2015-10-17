@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 17, 2015 at 07:42 AM
+-- Generation Time: Oct 17, 2015 at 08:41 AM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -569,31 +569,31 @@ CREATE TABLE IF NOT EXISTS `tbl_product_category_mapping` (
 
 CREATE TABLE IF NOT EXISTS `tbl_product_master` (
   `product_id` bigint(20) unsigned NOT NULL,
-  `barcode` varchar(8) CHARACTER SET utf8 NOT NULL,
-  `lotref` varchar(12) CHARACTER SET utf8 NOT NULL,
-  `lotno` int(4) unsigned NOT NULL,
+  `product_barcode` varchar(8) CHARACTER SET utf8 NOT NULL,
+  `product_lot_reference` varchar(12) CHARACTER SET utf8 NOT NULL,
+  `product_lot_number` int(4) unsigned NOT NULL,
   `product_name` varchar(250) CHARACTER SET utf8 NOT NULL,
   `product_display_name` varchar(250) CHARACTER SET utf8 NOT NULL COMMENT 'name displayed on web',
   `product_model` varchar(250) CHARACTER SET utf8 NOT NULL,
   `product_brand` varchar(250) CHARACTER SET utf8 NOT NULL,
-  `prd_price` decimal(20,2) NOT NULL,
+  `product_price` decimal(20,2) NOT NULL,
   `product_currency` varchar(10) CHARACTER SET utf8 NOT NULL DEFAULT 'INR',
   `product_keyword` varchar(250) CHARACTER SET utf8 DEFAULT NULL,
   `product_desc` text CHARACTER SET utf8,
-  `prd_wt` decimal(7,3) NOT NULL,
-  `prd_img` text,
+  `product_weight` decimal(7,3) NOT NULL,
+  `product_image` text,
   `product_warranty` varchar(10) CHARACTER SET utf8 DEFAULT NULL,
   `updated_by` varchar(50) DEFAULT NULL,
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Date and time on which it was created',
   `date_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP COMMENT 'Timestamp on which it was last updated''',
-  `desname` varchar(250) NOT NULL
+  `designer_name` varchar(250) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_product_master`
 --
 
-INSERT INTO `tbl_product_master` (`product_id`, `barcode`, `lotref`, `lotno`, `product_name`, `product_display_name`, `product_model`, `product_brand`, `prd_price`, `product_currency`, `product_keyword`, `product_desc`, `prd_wt`, `prd_img`, `product_warranty`, `updated_by`, `update_time`, `date_time`, `desname`) VALUES
+INSERT INTO `tbl_product_master` (`product_id`, `product_barcode`, `product_lot_reference`, `product_lot_number`, `product_name`, `product_display_name`, `product_model`, `product_brand`, `product_price`, `product_currency`, `product_keyword`, `product_desc`, `product_weight`, `product_image`, `product_warranty`, `updated_by`, `update_time`, `date_time`, `designer_name`) VALUES
 (10011, 'qw211111', '1123', 1133, 'bluediamond', 'marveric blue silver diamond', 'rw231', 'orra', '12211223.02', 'INR', 'blue,silver,diamond', 'a clear cut solitaire diamond in the vault', '223.210', 'abc.jpeg', '1 year', 'CMS USER', '2015-10-05 12:15:43', '2015-10-05 17:45:43', 'jackdeniel');
 
 -- --------------------------------------------------------
