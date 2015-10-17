@@ -32,9 +32,9 @@ class address extends DB
                 $adisql="INSERT
                          INTO 
                                     tbl_address_master
-                                   (address_id,user_id,addtitle,add1,add2,
-                                    fulladd,area,city,state,pincode,country,
-                                    date_time,dflag)
+                                   (address_id,user_id,address_title,address1,address2,
+                                    full_address,area,city,state,pincode,country,
+                                    date_time,active_flag)
                       VALUES
                                 (\"".$addid."\",
                                  \"".$detls['uid']."\",
@@ -50,10 +50,10 @@ class address extends DB
                                  now(),
                                  1)
                 ON DUPLICATE KEY
-                                addtitle    =\"".$detls['addtitle']."\",
-                                add1        =\"".$detls['add1']."\",
-                                add2        =\"".$detls['add2']."\",
-                                fulladd     =\"".$detls['fulladd']."\",
+                                adddress_title    =\"".$detls['addtitle']."\",
+                                address1        =\"".$detls['add1']."\",
+                                address2        =\"".$detls['add2']."\",
+                                fulladdress     =\"".$detls['fulladd']."\",
                                 area        =\"".$detls['area']."\",
                                 city        =\"".$detls['city']."\",
                                 state       =\"".$detls['state']."\",
@@ -86,17 +86,17 @@ class address extends DB
         $sql="SELECT
                             address_id,
                             user_id,
-                            addtitle,
-                            add1,
-                            add2,
-                            fulladd,
+                            address_title,
+                            address1,
+                            address2,
+                            full_address,
                             area,
                             city,
                             state,
                             pincode,
                             country,
                             date_time,
-                            dflag
+                            active_flag
                 FROM 
                             tbl_address_master 
                 WHERE 
@@ -123,7 +123,7 @@ class address extends DB
     
     public function getAddByUser($params)
     {
-        $sql="SELECT address_id,user_id,addtitle,add1,add2,fulladd,area,city,state,pincode,country,date_time,dflag from tbl_address_master WHERE user_id=".$params['uid'];
+        $sql="SELECT address_id,user_id,address_title,address1,address2,full_address,area,city,state,pincode,country,date_time,active_flag from tbl_address_master WHERE user_id=".$params['uid'];
         $res=$this->query($sql);
         if($res)
         {
@@ -146,7 +146,7 @@ class address extends DB
     {
         $sql="SELECT 
                         address_id,
-                        addtitle 
+                        address_title 
               FROM 
                         tbl_addressid_generator
               WHERE 

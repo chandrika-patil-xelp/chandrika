@@ -15,7 +15,7 @@ class appoint extends DB
        if($proErr['errCode']== 0)
        { 
         $vsql=" SELECT 
-                            appointid,
+                            appointment_id,
                             DATE_FORMAT(date_time, '%m/%d/%Y') as timespan 
                 FROM 
                             tbl_stylist_appoint 
@@ -37,8 +37,8 @@ class appoint extends DB
        $isql =" INSERT 
                 INTO 
                         tbl_stylist_appoint
-                       (user_id,cust_mobile,cust_name,cust_email,
-                        fulladd,prd_type,category,budget,meet_status,
+                       (user_id,customer_mobile,customer_name,customer_email,
+                        customer_address,product_type,category,budget,meet_status,
                         display_flag,date_time)
                 VALUES
                        (\"".$detls['uid']."\",
@@ -77,11 +77,11 @@ class appoint extends DB
     public function viewAppoint($params)
     {
         $vsql="SELECT 
-                        cust_name AS customer_name,
-                        cust_mobile AS customer_mobile,
-                        cust_email AS customer_email,
-                        fulladd AS full_address,
-                        prd_type AS product_type,
+                        customer_name AS customer_name,
+                        customer_mobile AS customer_mobile,
+                        customer_email AS customer_email,
+                        full_address AS full_address,
+                        product_type AS product_type,
                         category,
                         budget,
                         date_time 

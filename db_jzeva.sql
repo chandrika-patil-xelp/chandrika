@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 16, 2015 at 07:16 AM
+-- Generation Time: Oct 17, 2015 at 07:42 AM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -49,37 +49,37 @@ INSERT INTO `tbl_addressid_generator` (`address_id`, `user_id`, `date_time`, `up
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_address_master` (
-  `addid` bigint(20) unsigned NOT NULL,
+  `address_id` bigint(20) unsigned NOT NULL,
   `user_id` int(11) NOT NULL,
-  `addtitle` int(11) NOT NULL,
-  `add1` int(11) NOT NULL,
-  `add2` text NOT NULL,
-  `fulladd` text NOT NULL,
+  `address_title` int(11) NOT NULL,
+  `address1` text NOT NULL,
+  `address2` text NOT NULL,
+  `full_address` text NOT NULL,
   `area` varchar(250) NOT NULL,
   `city` varchar(250) NOT NULL,
   `state` varchar(250) NOT NULL,
   `pincode` int(6) NOT NULL,
   `country` varchar(250) NOT NULL,
   `date_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'Date and time on',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'timestamp on which it was last updated',
-  `dflag` bit(1) NOT NULL
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'timestamp on which it was last updated',
+  `active_flag` tinyint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_address_master`
 --
 
-INSERT INTO `tbl_address_master` (`addid`, `user_id`, `addtitle`, `add1`, `add2`, `fulladd`, `area`, `city`, `state`, `pincode`, `country`, `date_time`, `update_time`, `dflag`) VALUES
-(1, 10105, 0, 1, 'singharun@gmail.com', '1990 10 08', '9696969696', '223232', 'Delhi', 221212, 'india', '2015-10-05 18:40:59', '2015-10-05 13:10:59', b'1'),
-(1, 10105, 0, 1, 'singharun@gmail.com', '1990 10 08', '9696969696', '223232', 'Delhi', 221212, 'india', '2015-10-05 18:41:43', '2015-10-05 13:11:43', b'1');
+INSERT INTO `tbl_address_master` (`address_id`, `user_id`, `address_title`, `address1`, `address2`, `full_address`, `area`, `city`, `state`, `pincode`, `country`, `date_time`, `update_time`, `active_flag`) VALUES
+(1, 10105, 0, '1', 'singharun@gmail.com', '1990 10 08', '9696969696', '223232', 'Delhi', 221212, 'india', '2015-10-05 18:40:59', '2015-10-05 13:10:59', 1),
+(1, 10105, 0, '1', 'singharun@gmail.com', '1990 10 08', '9696969696', '223232', 'Delhi', 221212, 'india', '2015-10-05 18:41:43', '2015-10-05 13:11:43', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_attribute_mapping`
+-- Table structure for table `tbl_attribute_category_mapping`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_attribute_mapping` (
+CREATE TABLE IF NOT EXISTS `tbl_attribute_category_mapping` (
   `category_id` int(11) NOT NULL,
   `attribute_id` int(4) unsigned NOT NULL,
   `attribute_display_flag` tinyint(4) DEFAULT NULL,
@@ -92,10 +92,10 @@ CREATE TABLE IF NOT EXISTS `tbl_attribute_mapping` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_attribute_mapping`
+-- Dumping data for table `tbl_attribute_category_mapping`
 --
 
-INSERT INTO `tbl_attribute_mapping` (`category_id`, `attribute_id`, `attribute_display_flag`, `attribute_display_position`, `attribute_filter_flag`, `attribute_filter_position`, `active_flag`, `date_time`, `update_time`) VALUES
+INSERT INTO `tbl_attribute_category_mapping` (`category_id`, `attribute_id`, `attribute_display_flag`, `attribute_display_position`, `attribute_filter_flag`, `attribute_filter_position`, `active_flag`, `date_time`, `update_time`) VALUES
 (2, 100012, 1, 999, 1, 999, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (3, 43, 1, 999, 1, 999, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (3, 100014, 111, 999, 1, 999, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
@@ -712,8 +712,8 @@ CREATE TABLE IF NOT EXISTS `tbl_stylist_appoint` (
   `budget` varchar(200) DEFAULT NULL COMMENT '|~|customer budget',
   `stylist_id` bigint(15) unsigned DEFAULT NULL COMMENT 'stylist logmobile',
   `stylist_name` varchar(250) DEFAULT NULL COMMENT 'stylist appointed name',
-  `meet_status` bit(1) NOT NULL DEFAULT b'0' COMMENT '1-still active 0-meet over',
-  `display_flag` bit(1) NOT NULL DEFAULT b'0' COMMENT 'showing flag - 1-Active 0-Inactive',
+  `meet_status` tinyint(2) NOT NULL DEFAULT '0' COMMENT '1-still active 0-meet over',
+  `display_flag` tinyint(2) NOT NULL DEFAULT '0' COMMENT 'showing flag - 1-Active 0-Inactive',
   `date_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'date and time on which it was created',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'timestamp on which it was last updated',
   `customer_mobile` bigint(15) NOT NULL
@@ -724,7 +724,7 @@ CREATE TABLE IF NOT EXISTS `tbl_stylist_appoint` (
 --
 
 INSERT INTO `tbl_stylist_appoint` (`appointment_id`, `user_id`, `customer_name`, `customer_email`, `customer_address`, `product_type`, `category`, `budget`, `stylist_id`, `stylist_name`, `meet_status`, `display_flag`, `date_time`, `update_time`, `customer_mobile`) VALUES
-(1, 7309290529, 'Insane Rider', 'rider.insane@motorbikes.com', 'qdqd wedwdw wcec wwwedd wdewd', 'earring', 'diamond,gold', '10000.00', NULL, NULL, b'0', b'1', '2015-10-01 09:02:03', '2015-10-01 03:32:03', 0);
+(1, 7309290529, 'Insane Rider', 'rider.insane@motorbikes.com', 'qdqd wedwdw wcec wwwedd wdewd', 'earring', 'diamond,gold', '10000.00', NULL, NULL, 0, 1, '2015-10-01 09:02:03', '2015-10-01 03:32:03', 0);
 
 -- --------------------------------------------------------
 

@@ -13,7 +13,9 @@ class auto extends DB
                             product_name,
                             MATCH(product_name) AGAINST (\"".$params['srch']. "*\" IN BOOLEAN MODE) AS startwith
               FROM 
-                            tbl_product_master where MATCH(product_name) AGAINST ('".$params['srch']."*' IN BOOLEAN MODE)
+                            tbl_product_master
+              WHERE
+                            MATCH(product_name) AGAINST ('".$params['srch']."*' IN BOOLEAN MODE)
               ORDER BY 
                             startwith ASC";
         
@@ -26,7 +28,7 @@ class auto extends DB
             $sql.=" LIMIT " . $start . ",$limit";
         }
         $res=$this->query($sql);
-        if($this->numRows($res))
+        if($this->numRows($res)>0)
         {
             while($row=$this->fetchData($res))
             {
