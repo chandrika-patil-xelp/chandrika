@@ -8,9 +8,14 @@ class brandInfo extends DB
         }
     public function getBrandList($params)
     {
-        $sql = "SELECT name,category_name FROM tbl_brandid_generator";
-        $page   = $params['page'];
-        $limit  = $params['limit'];
+        $sql = "SELECT 
+                        name,
+                        category_name 
+                FROM 
+                        tbl_brandid_generator";
+        $page   = ($params['page'] ? $params['page'] : 1);
+        $limit  = ($params['limit'] ? $params['limit'] : 15);
+        
         if (!empty($page))
         {
             $start = ($page * $limit) - $limit;
@@ -24,7 +29,7 @@ class brandInfo extends DB
             {
                 if($row && !empty($row['id']))
                     {
-                        $arr[] = $row;
+                        $arr[] = $reslt;
                     }
             }
                 $err = array('errCode' => 0, 'errMsg' => 'Details fetched successfully');
@@ -36,5 +41,7 @@ class brandInfo extends DB
             $result = array('results'=>$arr,'error'=>$err);
             return $result;
     }
+    
+    
 }
 ?>

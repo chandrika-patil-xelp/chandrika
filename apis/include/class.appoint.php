@@ -37,8 +37,15 @@ class appoint extends DB
        $isql =" INSERT 
                 INTO 
                         tbl_stylist_appoint
-                       (user_id,customer_mobile,customer_name,customer_email,
-                        customer_address,product_type,category,budget,meet_status,
+                        (user_id,
+                        customer_mobile,
+                        customer_name,
+                        customer_email,
+                        customer_address,
+                        product_type,
+                        category,
+                        budget,
+                        meet_status,
                         display_flag,date_time)
                 VALUES
                        (\"".$detls['uid']."\",

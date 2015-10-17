@@ -21,7 +21,13 @@ class viewlog extends DB
    public function filLog($params)
     {  
         $uid=$params['uid'];
-        $udsql="select userName,email from tbl_registration where user_id=".$uid."";
+        $udsql="            SELECT 
+                                        user_name,
+                                        email
+                            FROM 
+                                        tbl_registration 
+                            WHERE
+                                        user_id=".$uid."";
         $udres=$this->query($udsql);
         $chkres=$this->numRows($udres);
         if($chkres=1)
@@ -31,8 +37,25 @@ class viewlog extends DB
                 $udetail['uname']=$row1['userName'];
                 $udetail['email']=$row1['email'];
             }
-          $isql="INSERT INTO tbl_viewlog(user_id,userName,email,product_id,vid,updatedby,udt,cdt)
-                   VALUES(".$uid.",'".$udetail['uname']."','".$udetail['email']."',".$params['pid'].",".$params['vid'].",'customer',now(),now())";
+          $isql="           INSERT INTO
+                                        tbl_viewlog
+                                            (user_id,
+                                            user_name,
+                                            email,
+                                            product_id,
+                                            vendor_id,
+                                            updatedby,
+                                            update_time,
+                                            date_time)
+                            VALUES  
+                                        (".$uid.",
+                                        '".$udetail['uname']."',
+                                        '".$udetail['email']."',
+                                        ".$params['pid'].",
+                                        ".$params['vid'].",
+                                        'customer',
+                                        now(),
+                                        now())";
             $ires=$this->query($isql);
             if($ires)
             {
@@ -57,7 +80,16 @@ class viewlog extends DB
         
         $page   = $params['page'];
         $limit  = $params['limit'];
-        $viewprod="SELECT user_id,userName,email,cdt,product_id from tbl_viewlog where vid=".$params['vid']."";
+        $viewprod="         SELECT 
+                                    user_id,  
+                                    user_name,
+                                    email,
+                                    date_time,
+                                    product_id 
+                            FROM 
+                                    tbl_viewlog 
+                            WHERE
+                                    vendor_id=".$params['vid']."";
         if (!empty($page))
         {
             $start = ($page * $limit) - $limit;

@@ -67,12 +67,19 @@ class cart extends DB {
                     }
                 }
                 $cartid= $tmp;
-             $crtsql = "SELECT cart_id FROM tbl_cartid_generator WHERE user_id=".$detls['uid']."";
+             $crtsql = "SELECT 
+                                cart_id 
+                        FROM 
+                                tbl_cartid_generator 
+                        WHERE 
+                                user_id=".$detls['uid']."";
             $crtres = $this->query($crtsql);
 	    $cnt1 = $this->numRows($crtres);
                 if($cnt1==0)
                 {
-                    $isql = "INSERT INTO tbl_cartid_generator(cart_id,user_id,date_time,active_flag) VALUES('".$cartid."',".$detls['uid'].",now(),1)";
+                    $isql ="INSERT INTO 
+                                    tbl_cartid_generator(cart_id,user_id,date_time,active_flag) 
+                            VALUES('".$cartid."',".$detls['uid'].",now(),1)";
                     $ires = $this->query($isql);
                 }    
                 else
@@ -81,16 +88,38 @@ class cart extends DB {
                     $cartid=$row['cart_id'];
                 }
             
-           $ssql="SELECT product_id,quantity from tbl_user_cart WHERE user_id='".$detls['uid']."' AND product_id =".$detls['pid']." AND vendor_id=".$detls['vid'];
-            $sres=$this->query($ssql);
-            $row=$this->fetchData($sres);
+           $ssql="      SELECT 
+                                product_id,
+                                quantity from tbl_user_cart
+                        WHERE 
+                                user_id='".$detls['uid']."' 
+                                AND product_id =".$detls['pid']." 
+                                AND vendor_id=".$detls['vid'];
+           $sres=$this->query($ssql);
+           $row=$this->fetchData($sres);
            $avlQt=$row['quantity'];
             $cnt2=$this->numRows($sres);
                 if($cnt2==0)
                 {
-                  $ucsql="insert into tbl_user_cart(cart_id,product_id,vendor_id,user_id,quantity,add_date,update_date,active_flag)
-                         VALUES(\"".$cartid."\",\"".$detls['pid']."\",\"".$detls['vid']."\",\"".$detls['uid']."\",\"".$detls['qty']."\",now(),1)";
-                $ucres = $this->query($ucsql);                
+                  $ucsql="  INSERT INTO
+                                    tbl_user_cart
+                                    (cart_id,
+                                    product_id,
+                                    vendor_id,
+                                    user_id,
+                                    quantity,
+                                    add_date,
+                                    update_date,
+                                    active_flag)
+                            VALUES
+                                    (\"".$cartid."\",
+                                     \"".$detls['pid']."\",
+                                     \"".$detls['vid']."\",
+                                     \"".$detls['uid']."\",
+                                     \"".$detls['qty']."\"
+                                     ,now()
+                                     ,1)";
+                    $ucres = $this->query($ucsql);                
                     if($ucres)
                     {
                         $arr="Cart Updated";
@@ -106,7 +135,16 @@ class cart extends DB {
                 {
                 $row=$this->fetchData($sres);
                 $newqt = $avlQt + $detls['qty'];
-                $usql="UPDATE tbl_user_cart SET quantity=".$newqt.",active_flag=1 WHERE user_id=".$detls['uid']." AND product_id =".$detls['pid']." AND vendor_id=".$detls['vid'];
+                $usql=" UPDATE 
+                                tbl_user_cart 
+                        SET 
+                                quantity=".$newqt.",
+                                active_flag=1 
+                        WHERE 
+                                user_id=".$detls['uid']." 
+                                AND product_id =".$detls['pid']." 
+                                AND vendor_id=".$detls['vid'];
+                
                 $ures=$this->query($usql);
                     if($ures)
                     {
@@ -178,7 +216,15 @@ class cart extends DB {
     
     public function editcart($params)
     {
-       $qry = "UPDATE tbl_user_cart SET quantity=".$params['quantity']." WHERE cart_id='".$params['cart_id']."' AND product_id=".$params['product_id']." AND vendor_id=".$params['vid']." AND active_flag=1";
+       $qry = " UPDATE 
+                        tbl_user_cart 
+                SET 
+                        quantity=".$params['quantity']."
+                WHERE 
+                        cart_id='".$params['cart_id']."' 
+                        AND product_id=".$params['product_id']." 
+                        AND vendor_id=".$params['vid']." 
+                        AND active_flag=1";
        $ret = $this->query($qry);
         if($ret)
         {
@@ -196,12 +242,28 @@ class cart extends DB {
     
     public function readcart($params)
     {
-       $csql="SELECT cart_id FROM tbl_cartid_generator WHERE user_id=".$params['uid']." AND active_flag=1";
+       $csql="          SELECT 
+                                cart_id 
+                        FROM 
+                                tbl_cartid_generator
+                        WHERE 
+                            user_id=".$params['uid']." 
+                            AND active_flag=1";
        $cres = $this->query($csql);
        $row=$this->fetchData($cres);
        $cartid=$row['cart_id'];
         
-       $sql = "SELECT cart_id,product_id,vendor_id,user_id,quantity FROM tbl_user_cart WHERE cart_id='".$cartid."' AND active_flag=1";
+       $sql = "         SELECT 
+                                cart_id,
+                                product_id,
+                                vendor_id,
+                                user_id,
+                                quantity 
+                        FROM
+                                tbl_user_cart 
+                        WHERE 
+                                cart_id='".$cartid."' 
+                                AND active_flag=1";
        $res = $this->query($sql);
         if ($res) 
         {
@@ -222,7 +284,20 @@ class cart extends DB {
                 
                 $product_id_str = implode("','", $product_id_arr); //numerous product id
                 
-                $sql = "SELECT product_id as product_id, product_display_name as pdisp, product_model as model, product_brand as brand, prd_price as price, prd_price as offerprice, product_currency as currency FROM tbl_product_master WHERE product_id IN('".$product_id_str."')";
+                $sql = "    SELECT 
+                                    product_id 
+                            AS 
+                                    product_id,
+                                    product_display_name AS pdisp,
+                                    product_model AS model,
+                                    product_brand AS brand,
+                                    product_price AS price, 
+                                    product_price AS offerprice,
+                                    product_currency AS currency 
+                            FROM    
+                                    tbl_product_master
+                            WHERE 
+                                    product_id IN('".$product_id_str."')";
                 $res = $this->query($sql);
                 if($res)
                 {   
@@ -273,7 +348,15 @@ class cart extends DB {
 
     public function delPrd($params) 
     {
-       $sql = "UPDATE tbl_user_cart SET active_flag=2 WHERE cart_id=".$params['cid']." AND product_id=".$params['pid']." AND vendor_id=".$params['vid']." AND active_flag = 1";
+       $sql = "     UPDATE  
+                            tbl_user_cart 
+                    SET 
+                            active_flag=2
+                    WHERE 
+                            cart_id=".$params['cid']." 
+                            AND product_id=".$params['pid']." 
+                            AND vendor_id=".$params['vid']." 
+                            AND active_flag = 1";
        $res = $this->query($sql);
         if($res)
         {
@@ -291,7 +374,11 @@ class cart extends DB {
 
     public function cartClr($params)
     {
-        $sql = "UPDATE tbl_user_cart set active_flag=2 where cart_id='".$params['cid']."'";
+        $sql = "        UPDATE 
+                                tbl_user_cart 
+                        SET 
+                                active_flag=2 
+                                cart_id='".$params['cid']."'";
         $ret = $this->query($sql);
         if($ret) 
         {

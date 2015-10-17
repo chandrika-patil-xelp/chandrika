@@ -13,7 +13,21 @@ class wishlist extends DB
    {
        $dt     = json_decode($params['dt'],1);
        $detls  = $dt['result'];
-       $sql="INSERT INTO tbl_wishlist(user_id,pid,vid,wf,cdt,udt) VALUES(".$detls['uid'].",".$detls['pid'].",".$detls['vid'].",1,now(),now())";
+       $sql="       INSERT INTO 
+                                tbl_wishlist
+                                    (user_id,
+                                    product_id,
+                                    vendor_id,
+                                    wishlist_id,
+                                    date_time,
+                                    update_time)
+                    VALUES
+                                (".$detls['uid'].",
+                                 ".$detls['pid'].",
+                                 ".$detls['vid'].",
+                                 1,
+                                 now(),
+                                 now())";
        $res=$this->query($sql);
        if($res)
        {
@@ -31,7 +45,12 @@ class wishlist extends DB
    
    public function viewsh($params)
    {
-       $vsql="SELECT pid from tbl_wishlist where user_id=".$params['uid']."";
+       $vsql="          SELECT 
+                                    product_id 
+                        FROM 
+                                    tbl_wishlist
+                        WHERE 
+                                    user_id=".$params['uid']."";
        $page=$params['page'];
        $limit=$params['limit'];
        if (!empty($page))
@@ -55,7 +74,16 @@ class wishlist extends DB
 
             $pid=implode(',',$prid);
             
-           $pres="SELECT product_name,product_display_name,product_model,prd_price,desname from tbl_product_master where product_id IN(".$pid.")";    
+           $pres="          SELECT 
+                                        product_name,
+                                        product_display_name,
+                                        product_model,
+                                        product_price,
+                                        product_display_name 
+                            FROM 
+                                        tbl_product_master
+                            WHERE
+                                        product_id IN(".$pid.")";    
             $pres.=" LIMIT " . $start . ",$limit";
            
            $pres=$this->query($pres);
