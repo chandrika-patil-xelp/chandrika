@@ -42,12 +42,13 @@ class categoryInfo extends DB
 			while($row = $this->fetchData($res))
 			{
 				if(!empty($arr) && $row['parent_category_id'] !=0)
-					$arr['subcat'][] = $this->getSubCat($row['catid'],$row);
+                                $arr['subcat'][] = $this->getSubCat($row['category_id'],$row);
 				else
-					$arr['root'][] = $this->getSubCat($row['catid'],$row);
+                                $arr['root'][] = $this->getSubCat($row['category_id'],$row);
 			}
 		}
-		return $arr;
+                $result = array('results'=>$arr);
+                return $result;
 	}
 	
         public function getCatList($params)
@@ -63,7 +64,6 @@ class categoryInfo extends DB
                                             category_id ASC";
 			$page   = ($params['page'] ? $params['page'] : 1);
                         $limit  = ($params['limit'] ? $params['limit'] : 3);
-			
                         if (!empty($page))
 			{
 				$start = ($page * $limit) - $limit;
@@ -120,17 +120,17 @@ class categoryInfo extends DB
                     if($row && !empty($row['catid']))
                         {
                             $reslt['category_name'] = $row['category_name'];
-                            $results[] = $reslt;
+                            $arr[] = $reslt;
                         }
                 }
                 $err = array('Code' => 0, 'Msg' => 'Details fetched successfully');
             }
             else
             {
-                $results=array();
+                $arr=array();
                 $err=array('code'=>1,'msg'=>'Error in fetching data');
             }
-            $result = array('results' => $results, 'error' => $err);
+            $result = array('results' => $arr, 'error' => $err);
             return $result;
         }
         
@@ -178,21 +178,21 @@ class categoryInfo extends DB
             if($cnt==0)
             {
                 $isql="INSERT INTO
-                                tbl_categoryid_generator
+                                     tbl_categoryid_generator
                                     (category_name,
-                                    date_time,
-                                    aflg) 
+                                     date_time,
+                                     active_flag) 
                         VALUES
                                 (\"".$params['catName']."\",
-                                 now(),
-                                 1)";
+                                     now(),
+                                     1)";
                 $ires=$this->query($isql);
                 $catid=$this->lastInsertedId();
                 if($ires)
                 {
                     $csql="     INSERT INTO 
-                                                tbl_category_master
-                                                        (category_id,
+                                                        tbl_category_master
+                                                       (category_id,
                                                         category_name,
                                                         parent_category_id,
                                                         category_level,
@@ -200,7 +200,7 @@ class categoryInfo extends DB
                                                         date_time,
                                                         updated_by)
                                 VALUES
-                                                (\"".$catid."\",
+                                               (\"".$catid."\",
                                                 \"".$params['catName']."\",
                                                 \"".$params['pcatid']."\",
                                                 \"".$params['lvl']."\",
@@ -234,7 +234,7 @@ class categoryInfo extends DB
             $sql = "UPDATE 
                                 tbl_categoryid_generator 
                     SET
-                                aflg=2
+                                active_flag=2
                     WHERE 
                                 category_id=".$params['catid'];
             $res = $this->query($sql);
@@ -259,7 +259,7 @@ class categoryInfo extends DB
                                 tbl_categoryid_generator 
                         SET
                                 category_name='".$params['catName']."',
-                                    aflg=1
+                                    active_flag=1
                         WHERE  
                                 category_id=".$params['catid'];
           $res = $this->query($sql);

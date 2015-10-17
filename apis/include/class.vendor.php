@@ -30,7 +30,7 @@ class vendor extends DB
                                   \"".$detls['vq']."\",
                                   \"".$detls['vc']."\",
                                   \"".$detls['vr']."\",
-                                  \"".$detls['af']."\",
+                                      1,
                                      'vendor',
                                       now())";
         $res = $this->query($sql);
@@ -126,7 +126,7 @@ class vendor extends DB
                     $preslt['product_model'][$j]        = $prow['product_model'];
                     $preslt['product_brand'][$j]        = $prow['product_brand'];
                     $preslt['product_image'][$j]        = $prow['prodct_image'];
-                    $preslt['designer_name'][$j]              = $prow['designer_name'];
+                    $preslt['designer_name'][$j]        = $prow['designer_name'];
                     $presults[] = $preslt;
             }
             if($cnt_res)
@@ -169,8 +169,8 @@ class vendor extends DB
             ORDER BY 
                         startwith DESC,phrasematch DESC";
      
-     $page=$params['page'];
-     $limit=$params['limit'];
+     $page   = ($params['page'] ? $params['page'] : 1);
+     $limit  = ($params['limit'] ? $params['limit'] : 15);
      if (!empty($page))
     {
         $start = ($page * $limit) - $limit;
@@ -227,7 +227,7 @@ class vendor extends DB
         }
         else
         {
-            $arr=array('there is no product with starting with such name in vendor_product list');    
+            $arr=array();    
             $err = array('Code' => 0, 'Msg' => 'No Match Found');
         }
      }
@@ -335,7 +335,7 @@ class vendor extends DB
                 {
                     $vresult[] = $row1;
                 }
-                $arr=array('Vendor-Detail'=>$vresult,'Vendor-Product'=>$vdetls);    
+                $arr=array('Vendor_Detail'=>$vresult,'Vendor_Product'=>$vdetls);    
                 $err = array('Code' => 0, 'Msg' => 'Details fetched successfully');
             }
             else
@@ -433,7 +433,7 @@ class vendor extends DB
                 {
                     $arr1[$row2['vid']] = $row2;
                 }
-                $arr=array('Vendor-Detail'=>$arr1,'Vendor-Product'=>$vdetls);    
+                $arr=array('Vendor_Detail'=>$arr1,'Vendor_Product'=>$vdetls);    
                 $err = array('Code' => 0, 'Msg' => 'Details fetched successfully');
             }
             else

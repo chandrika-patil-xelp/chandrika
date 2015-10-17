@@ -34,7 +34,7 @@ class viewlog extends DB
         {
             while($row1=$this->fetchData($udres)) 
             {
-                $udetail['uname']=$row1['userName'];
+                $udetail['uname']=$row1['user_name'];
                 $udetail['email']=$row1['email'];
             }
           $isql="           INSERT INTO
@@ -44,8 +44,7 @@ class viewlog extends DB
                                             email,
                                             product_id,
                                             vendor_id,
-                                            updatedby,
-                                            update_time,
+                                            updated_by,
                                             date_time)
                             VALUES  
                                         (".$uid.",
@@ -54,7 +53,6 @@ class viewlog extends DB
                                         ".$params['pid'].",
                                         ".$params['vid'].",
                                         'customer',
-                                        now(),
                                         now())";
             $ires=$this->query($isql);
             if($ires)
@@ -64,8 +62,8 @@ class viewlog extends DB
             }
         else
         {
-            $arr="Log entry is not done";
-            $err=array('Code'=>0,'Msg'=>'Error in completing the operation');
+            $arr=array();
+            $err=array('Code'=>1,'Msg'=>'Error in completing the operation');
         }
         }
         $result=array('results'=>$arr,'error'=>$err);
@@ -78,8 +76,8 @@ class viewlog extends DB
     {
         # check the products under the requested vendor
         
-        $page   = $params['page'];
-        $limit  = $params['limit'];
+       $page   = ($params['page'] ? $params['page'] : 1);
+       $limit  = ($params['limit'] ? $params['limit'] : 15);
         $viewprod="         SELECT 
                                     user_id,  
                                     user_name,
@@ -107,7 +105,7 @@ class viewlog extends DB
         }
         else
         {
-            $arr="No one has viewed your products yet";
+            $arr=array();
             $err=array('Code'=>0,'Msg'=>'No Values fetched');
         }
         $result=array('result'=>$arr,'error'=>$err);

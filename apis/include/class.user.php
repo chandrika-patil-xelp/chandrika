@@ -31,45 +31,46 @@
             return $result;
         }
 
-        public function userReg($params) // USER LOGIN PROCESS
+         public function userReg($params) // USER LOGIN PROCESS
         {   
-           $isql = "    INSERT INTO
+           $isql = "INSERT
+                    INTO 
                                 tbl_registration
-                                    (user_name,
-                                    password,
-                                    logmobile,
-                                    email,
-                                    is_vendor,
-                                    is_active,
-                                    date_time,
-                                    update_time,
-                                    updated_by)
-                        VALUES
-                                ('".$params['username']."',
-                                MD5('".$params['password']."'),
-                                ".$params['mobile'].",
+                               (user_name,
+                                password,
+                                logmobile,
+                                email,
+                                user_type,
+                                is_active,
+                                date_time,
+                                updated_by)
+                    VALUES
+                               ('".$params['username']."',
+                                   MD5('".$params['password']."'),
+                                 ".$params['mobile'].",
                                 '".$params['email']."',
-                                ".$params['isvendor'].",
-                                0,
-                                now(),
-                                now(),
+                                 ".$params['usertype'].",
+                                   0,
+                                   now(),
+                                   now(),
                                 '".$params['username']."')";
             $ires=$this->query($isql);
             $uid=$this->lastInsertedId();
             
-            if($params['isvendor']=1)
+            if($params['username']=1)
             {
-            $isql= "    INSERT  INTO 
+            $isql= "INSERT 
+                    INTO 
                                     tbl_vendor_master
-                                        (vendor_id,
-                                        email,
-                                        date_time,
-                                        is_complete)
-                                VALUES
-                                    (".$uid.",
-                                    '".$params['email']."',
-                                    now(),
-                                    0)";
+                                   (vendor_id,
+                                    email,
+                                    date_time,
+                                    is_complete)
+                    VALUES
+                                  (".$uid.",
+                                  '".$params['email']."',
+                                     now(),
+                                     0)";
             $res=$this->query($isql);
                 if($res)
                 {
@@ -82,7 +83,7 @@
                     $err=array('code'=>1,'msg'=>"Error in insert operation");
                 }
             }
-           else if($params['isvendor']=0)
+           else if($params['usertype']=0)
             {
                 $arr="SignUp process Is Complete";
                 $err=array('code'=>0,'msg'=>"Insert Operation Done");            
@@ -101,11 +102,8 @@
             $dt= json_decode($params['dt'],1);
             $detls  = $dt['result'];
             
-            $dob=explode(' ',$detls['dob']);
-            $detls['dob']=implode('-',$dob);
-            
          $sql="     SELECT
-                            is_vendor,
+                            user_type,
                             user_id 
                     FROM
                             tbl_registration
@@ -113,7 +111,7 @@
                             logmobile=".$detls['logmobile']."";
           $res=$this->query($sql);
           $row=$this->fetchData($res);
-          $isv=$row['is_vendor'];
+          $isv=$row['user_type'];
           $uid=$row['user_id'];
           
           if($isv==1)
@@ -165,10 +163,7 @@
              $vsql = "UPDATE tbl_registration 
                       SET 
                                             user_name='".$detls['username']."',
-                                            salutation=".$detls['gen'].",
                                             email='".$detls['email']."',
-                                            dob=STR_TO_DATE('".$detls['dob']."','%Y-%m-%d'),
-                                            update_time=now(),
                                             updatedby='".$detls['username']."',
                                             is_complete=is_complete
                      WHERE 
@@ -181,14 +176,14 @@
              }
              else
              {
-                $arr="profile is not updated";
+                $arr=array();
                 $err=array('code'=>0,'msg'=>'Update operation unsuccessfull');
              }
           }
           else 
           {
-                $arr="profile user type is not defined";
-                $err=array('code'=>0,'msg'=>'Update operation unsuccessfull');
+                $arr=array();
+                $err=array('code'=>1,'msg'=>'Update operation unsuccessfull');
           }
           
             $result = array('results'=>$arr,'error'=>$err);
@@ -197,7 +192,13 @@
                 
         public function logUser($params) // USER LOGIN CHECK
         {
-            $vsql="SELECT logmobile,password,is_vendor from tbl_registration WHERE
+            $vsql="SELECT 
+                          logmobile,
+                          password,
+                          user_type
+                   FROM 
+                          tbl_registration 
+                   WHERE
                           logmobile=".$params['mobile']." 
                    AND 
                           password=MD5('".$params['password']."')
@@ -209,7 +210,7 @@
             {
                 while($row=$this->fetchData($vres))
                 {
-                    $arr['utype']=$row['is_vendor'];
+                    $arr['utype']=$row['user_type'];
                 }
                 $ut=$arr['utype'];
                 if($ut=0)
@@ -253,7 +254,7 @@
                 if($ures)
                 {
                     $arr="User profile is activated";
-                    $err=array('code'=>1,'msg'=>'Value has been changed');
+                    $err=array('code'=>0,'msg'=>'Value has been changed');
                 }
                 else
                 {
@@ -301,7 +302,7 @@
             }
             else
             {
-                $arr="Data Not Found regarding ur requested parameters";
+                $arr=array();
                 $err=array('code'=>1,'msg'=>'Problem in fetching data');
             }  // If user is not registered
             $result = array('results'=>$arr,'error'=>$err);
@@ -310,15 +311,22 @@
 
         public function updatePass($params)
         {
-          $vsql="SELECT logmobile,user_name,email FROM tbl_registration 
+          $vsql="SELECT
+                            logmobile,
+                            user_name,
+                            email
+                 FROM
+                            tbl_registration 
                  WHERE 
-                        logmobile=".$params['mobile']."
+                            logmobile=".$params['mobile']."
                   AND 
-                        is_active=1";
+                            is_active=1";
+          
             $vres=$this->query($vsql);
             if($this->numRows($vres)==1) //If user is registered
             {
-               $usql="UPDATE tbl_registration 
+               $usql="UPDATE 
+                             tbl_registration 
                       SET 
                              password=MD5('".$params['password']."')
                       WHERE 
@@ -347,7 +355,7 @@
         public function viewAll($params)
         {
             $vsql="         SELECT 
-                                    is_vendor,
+                                    user_type,
                                     user_id 
                             FROM 
                                     tbl_registration 
@@ -360,7 +368,7 @@
             {  
                 while($row1=$this->fetchData($vres))
                 {
-                    $arr1['isv']=$row1['is_vendor'];
+                    $arr1['isv']=$row1['user_type'];
                     $arr1['uid']=$row1['user_id'];
                 }
 
@@ -384,7 +392,7 @@
                 else if($arr1['isv']==1)    // check if it is Vendor
                 {
                   $vensql="     SELECT
-                                        ordName,
+                                        orgName,
                                         email,
                                         fulladdress,
                                         contact_person,

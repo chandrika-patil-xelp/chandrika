@@ -135,7 +135,7 @@ class location extends DB
         }
         else
         {
-            $arr="Can't Fetch the values";
+            $arr=array();
             $err=array('code'=>1,'msg'=>'error in fetching data');
         }
         $result=array('results'=>$arr,'error'=>$err);
@@ -201,7 +201,7 @@ class location extends DB
         }
         else
         {
-            $err=array('code'=>0,'msg'=>'There is no such data available');
+            $err=array('code'=>1,'msg'=>'There is no such data available');
             $arr=array();
         }
         $result=array('results'=>$arr,'error'=>$err);

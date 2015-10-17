@@ -75,8 +75,8 @@ include APICLUDE.'common/db.class.php';
                                     active_flag=1 
                    ORDER BY 
                                     date_time DESC";
-            $page=$params['page'];
-            $limit=$params['limit'];
+            $page   = ($params['page'] ? $params['page'] : 1);
+            $limit  = ($params['limit'] ? $params['limit'] : 15);
             if (!empty($page))
             {
                 $start = ($page * $limit) - $limit;
@@ -117,7 +117,7 @@ include APICLUDE.'common/db.class.php';
                     WHERE 
                                     user_id=".$params['uid']." 
                     AND 
-                                    ordstatus=1 
+                                    order_status=1 
                     ORDER BY 
                                     order_id";               
             $res = $this->query($sql);
@@ -151,7 +151,7 @@ include APICLUDE.'common/db.class.php';
            {
                $isql="INSERT 
                       INTO 
-                                            tbl_trans_master
+                                            tbl_transaction
                                            (transaction_id,
                                             payment_type,
                                             payment_mode,
@@ -229,8 +229,8 @@ include APICLUDE.'common/db.class.php';
                                 tbl_transaction_master
                WHERE 
                                 transaction_id=".$params['tid'];
-        $page=$params['page'];
-        $limit=$params['limit'];
+            $page   = ($params['page'] ? $params['page'] : 1);
+            $limit  = ($params['limit'] ? $params['limit'] : 15);
         if (!empty($page))
         {
             $start = ($page * $limit) - $limit;
