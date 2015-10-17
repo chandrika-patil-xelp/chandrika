@@ -9,7 +9,15 @@ class newsletter extends DB
                 
     public function subscribe($params)
     {   
-       $usql = "UPDATE tbl_registration set subscribe=1 where active_flag=1 and user_id=".$params['uid'];
+       $usql = "UPDATE 
+                                tbl_registration 
+                SET 
+                                subscribe=1 
+                WHERE 
+                                active_flag=1
+                AND 
+                                user_id=".$params['uid'];
+       
        $ures=$this->query($usql);
        if($ures)
        {
@@ -20,13 +28,13 @@ class newsletter extends DB
             }
             else
             {       
-                $arr="Problem in Subscribing";
+                $arr=array();
                 $err=array('code'=>1,'msg'=>"Error in update operation");
             }
        }
        else
        {
-            $arr='Data is not passed properly';
+            $arr=array();
             $err=array('code'=>1,'msg'=>'Error in decoding data');
        }
         $result = array('results' =>$arr,'error'=>$err);
@@ -35,7 +43,17 @@ class newsletter extends DB
     
     public function viewSubscribers($params)
     {
-        $vsql="SELECT user_id,userName,logmobile,email from tbl_registration where subscribe=1 and active_flag=1";
+        $vsql="SELECT 
+                                user_id,
+                                user_name,
+                                logmobile,
+                                email
+               FROM 
+                                tbl_registration 
+               WHERE
+                                subscribe=1 
+               AND 
+                                is_active=1";
         $page   = $params['page'];
         $limit  = $params['limit'];
         if (!empty($page))
@@ -55,7 +73,7 @@ class newsletter extends DB
         }
         else
         {
-            $arr='No Subscription yet';
+            $arr=array();
             $err=array('Code'=>1,'Msg'=>'No match found');
         }
         $result=array('results'=>$arr,'error'=>$err);
@@ -66,8 +84,23 @@ class newsletter extends DB
     {
        $dt= json_decode($params['dt'],1);
        $detls  = $dt['result'];
-           $sql="INSERT INTO tbl_newsletter_master(name,descr,content,dflag,cdt,udt)
-                 VALUES('".$detls['name']."','".$detls['des']."','".$detls['content']."',1,now(),now())";           
+           
+           $sql="INSERT 
+                 INTO 
+                                    tbl_newsletter_master
+                                   (news_headline,
+                                    news_description,
+                                    content,
+                                    active_flag,
+                                    date_time)
+                                    
+                 VALUES
+                                (\"".$detls['name']."\",
+                                 \"".$detls['des']."\",
+                                 \"".$detls['content']."\",
+                                     1,
+                                     now(),
+                                     now())";           
            $res=$this->query($sql);
           
            if($res)
@@ -77,7 +110,7 @@ class newsletter extends DB
            }
            else
            {
-               $arr='Newsletter has not been added';
+               $arr=array();
                $err=array('Code'=>0,'Msg'=>'Insertion unsuccessful');
            }
         $result=array('result'=>$arr,'error'=>$err);
@@ -86,19 +119,30 @@ class newsletter extends DB
     
     public function unSubscribe($params)
     {
-        $chksql="SELECT * from tbl_registration where user_id=".$params['uid'];
+        $chksql="SELECT
+                             * 
+                 FROM 
+                             tbl_registration
+                 WHERE 
+                             user_id=".$params['uid'];
         $chkres=$this->query($chksql);
         $cntres=$this->numRows($chkres);
         if($cntres==1)
         {
-            $sql="UPDATE tbl_registration set subscribe=0 where user_id=".$params['uid'];
+            $sql="UPDATE 
+                                    tbl_registration
+                  SET 
+                                    subscribe=0
+                  WHERE 
+                                    user_id=".$params['uid'];
             $res=$this->query($sql);
+            
             $arr="you are unsubscribed from our newsletter facility";
             $err=array('Code'=>0,'msg'=>'Update operation completed');
         }
         else
         {
-            $arr="you are unsubscribed from our newsletter facility";
+            $arr=array();
             $err=array('Code'=>0,'msg'=>'Update operation completed');
         }
         $result=array('result'=>$arr,'error'=>$err);

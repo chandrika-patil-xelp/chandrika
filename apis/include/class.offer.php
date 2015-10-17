@@ -10,8 +10,25 @@ class offer extends DB
     
     public function addOffer($params)
     {
-          $isql="INSERT INTO tbl_offer_master(offername,des,amdp,valid,vdesc,udt,cdt,active_flag) 
-                 VALUES ('".$params['offername']."','".$params['des']."',".$params['amdp'].",'".$params['valid']."','".$params['vdesc']."',now(),now(),0)";
+          $isql="INSERT 
+                 INTO 
+                                 tbl_offer_master
+                                (offer_name,
+                                 offer_description,
+                                 offer_discount_percentage,
+                                 offer_validity_days,
+                                 offer_voucher_description,
+                                 active_flag,
+                                 date_time)
+                                 
+                 VALUES 
+                             (\"".$params['offername']."\",
+                              \"".$params['des']."\",
+                              \"".$params['amdp']."\",
+                              \"".$params['valid']."\",
+                              \"".$params['vdesc']."\",
+                                  1,
+                                  now())";
         $ires=$this->query($isql);
         if($ires)
         {
@@ -20,7 +37,7 @@ class offer extends DB
         }
         else
         {
-            $arr="Some problem in inserting values";
+            $arr=array();
             $err= array('code' => 0, 'msg' => 'error in insert operation');
         }
         $result = array('results' => $arr, 'error' => $err);
@@ -29,7 +46,19 @@ class offer extends DB
     
     public function viewOffer($params)
     {
-        $vsql="SELECT offername,des,amdp,valid,vdesc,cdt FROM tbl_offer_master WHERE offid=".$params['offid']." AND active_flag=1";
+        $vsql="SELECT
+                                offer_name,
+                                offer_description,
+                                offer_discount_percentage,
+                                offer_validity_days,
+                                offer_voucher_description,
+                                date_time
+               FROM 
+                                tbl_offer_master
+               WHERE 
+                                offer_id=".$params['offid']." 
+               AND 
+                                active_flag=1";
         $vres=$this->query($vsql);
         if($this->numRows($vres)>0)
            {
@@ -42,7 +71,7 @@ class offer extends DB
            }
         else
         {
-            $arr="Some problem in fetching values";
+            $arr=array();
             $err= array('code' => 1, 'msg' => 'error in fetching data');
         }
         $result = array('results' => $arr, 'error' => $err);
@@ -51,7 +80,12 @@ class offer extends DB
     
     public function actOffer($params)
     {
-        $vsql="UPDATE tbl_offer_master set active_flag=1 WHERE offid=".$params['offid'];
+        $vsql="UPDATE
+                                tbl_offer_master
+               SET 
+                                active_flag=1
+               WHERE 
+                                offer_id=".$params['offid'];
         $vres=$this->query($vsql);
         if($vres>0)
            {
@@ -60,7 +94,7 @@ class offer extends DB
            }
         else
         {
-            $arr="Some problem in fetching values";
+            $arr=array();
             $err= array('code' => 1, 'msg' => 'error in updating');
         }
         $result = array('results' => $arr, 'error' => $err);
@@ -69,7 +103,12 @@ class offer extends DB
     
     public function deactOffer($params)
     {
-        $vsql="UPDATE tbl_offer_master set active_flag=0 WHERE offid=".$params['offid'];
+        $vsql="UPDATE 
+                            tbl_offer_master
+               SET
+                            active_flag=0 
+               WHERE 
+                            offer_id=".$params['offid'];
         $vres=$this->query($vsql);
         if($vres)
            {
@@ -78,7 +117,7 @@ class offer extends DB
            }
         else
         {
-            $arr="Some problem in updating data";
+            $arr=array();
             $err= array('code' => 1, 'msg' => 'record regarding this id not found');
         }
         $result = array('results' => $arr, 'error' => $err);
@@ -87,12 +126,31 @@ class offer extends DB
     
     public function offerUserBind($params)
     {
-       $chsql="SELECT * from tbl_offer_user_mapping where user_id=".$params['uid']." and offerid=".$params['offerid']."";
+       $chsql="SELECT
+                            * 
+               FROM 
+                            tbl_offer_user_mapping
+               WHERE 
+                            user_id=".$params['uid']." 
+               AND 
+                            offer_id=".$params['offerid']."";
+       
         $chrs=$this->query($chsql);
         $chres=$this->numRows($chrs);
         if($chres<1)
         {
-          $isql="INSERT INTO tbl_offer_user_mapping(offerid,user_id,display_flag,udt,cdt,active_flag) VALUES(".$params['offerid'].",".$params['uid'].",".$params['dispflag'].",now(),now(),1)";
+          $isql="INSERT 
+                 INTO
+                                        tbl_offer_user_mapping
+                                       (offer_id,
+                                        user_id,
+                                        active_flag,
+                                        date_time)
+                 VALUES
+                                     (".$params['offerid'].",
+                                      ".$params['uid'].",
+                                      ".$params['dispflag'].",
+                                        now())";
             $ires=$this->query($isql);
             if($ires)
             {
@@ -101,13 +159,13 @@ class offer extends DB
             }
             else
             {
-                $arr="Some problem in inserting values";
+                $arr=array();
                 $err = array('code' => 0, 'msg' => 'error in insert operation');
             }
         }
         else
         {
-            $arr="Offer is already been provided to user";
+            $arr=array();
             $err = array('code' => 0, 'msg' => 'insertion is not done');
         }
         $result = array('results' => $arr, 'error' => $err);
@@ -116,12 +174,27 @@ class offer extends DB
 
     public function offerUserUnBind($params)
     {
-      $chsql="SELECT * from tbl_offer_user_mapping where user_id=".$params['uid']." and offerid=".$params['offid']."";
+      $chsql="SELECT 
+                            * 
+              FROM 
+                            tbl_offer_user_mapping
+              WHERE
+                            user_id=".$params['uid']." 
+              AND
+                            offerid=".$params['offid']."";
         $chrs=$this->query($chsql);
         $chres=$this->numRows($chrs);
         if($chres==1)
         {
-       $isql="UPDATE tbl_offer_user_mapping SET active_flag=1 where user_id=".$params['uid']." and offerid=".$params['offid']."";
+       $isql="UPDATE 
+                                tbl_offer_user_mapping
+              SET 
+                                active_flag=1
+              WHERE 
+                                user_id=".$params['uid']." 
+              AND 
+                                offerid=".$params['offid']."";
+       
         $ires=$this->query($isql);
         if($ires)
         {
@@ -130,21 +203,18 @@ class offer extends DB
         }
         else
         {
-            $arr="Some problem in inserting values";
+            $arr=array();
             $err = array('code' => 0, 'msg' => 'error in insert operation');
         }
         
         }
         else
         {
-            $arr="Offer is already removed from user";
+            $arr=array();
             $err = array('code' => 0, 'msg' => 'Update is not done');
         }
         $result = array('results' => $arr, 'error' => $err);
-        return $result;
-       
+        return $result;       
+    }    
     }
-    
-    }
-
 ?>

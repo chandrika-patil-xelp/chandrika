@@ -9,7 +9,20 @@ class speak extends DB
                 
     public function viewCom()
     {   
-        $sql="select name,city,email,mobile,pimage,opinion,final_opinion from tbl_speak_master where active_flag=1 order by updated_on DESC";
+        $sql="SELECT 
+                                name,
+                                city,
+                                email,
+                                mobile,
+                                product_image,
+                                opinion,
+                                final_opinion
+               FROM 
+                                tbl_speak_master
+               WHERE 
+                                active_flag=1
+               ORDER BY 
+                                updated_on DESC";
         $res =$this->query($sql);            
         $chkres=$this->numRows($res);
         if($chkres>0)
@@ -22,7 +35,7 @@ class speak extends DB
         }
        else
        {
-            $arr='No record available';
+            $arr=array();
             $err=array('code'=>1,'msg'=>'No record found');
        }
         $result = array('results' =>$arr,'error'=>$err);
@@ -33,10 +46,32 @@ class speak extends DB
     {   
         $dt= json_decode($params['dt'],1);
        $detls  = $dt['result'];       
-       $vsql="INSERT INTO tbl_speak_master(uid,name,city,mobile,email,pimage,opinion,final_opinion,active_flag,upload_time,updated_on)
-               VALUES(".$detls['uid'].",'".$detls['name']."','".$detls['city']."',".$detls['mobile'].",'".$detls['email']."','".$detls['pimage']."','".$detls['opinion']."','".$detls['fop']."',1,now(),now())";
+       $vsql="INSERT
+              INTO 
+                                tbl_speak_master
+                               (user_id,
+                                name,
+                                city,
+                                mobile,
+                                email,
+                                product_image,
+                                opinion,
+                                final_opinion,
+                                active_flag,
+                                date_time)
+               VALUES
+                             (\"".$detls['uid']."\",
+                             \"".$detls['name']."\",
+                             \"".$detls['city']."\",
+                             \"".$detls['mobile']."\",
+                             \"".$detls['email']."\",
+                             \"".$detls['pimage']."\",
+                             \"".$detls['opinion']."\",
+                             \"".$detls['fop']."\",
+                                 1,
+                                 now(),
+                                 now())";
         $vres=$this->query($vsql);
-       
             if($vres)
             {
                 $arr="User Comment is submited";
@@ -44,15 +79,12 @@ class speak extends DB
             }
             else
             {
-                $arr='Comment is not submited';
+                $arr=array();
                 $err=array('Code'=>1,'Msg'=>'Insert operation is not done');
             }
-       
-       
         $result=array('results'=>$arr,'error'=>$err);
         return $result;
     }
-        
 }
 ?>       
         

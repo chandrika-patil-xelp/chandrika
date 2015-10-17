@@ -16,7 +16,24 @@ include APICLUDE.'common/db.class.php';
            $proErr = $dt['error'];
            if($proErr['errCode']== 0)
            {
-          echo     $osql="INSERT INTO tbl_order_master(user_id,cart_id,shipAddId,billAddId,cdt,udt,dflag) VALUES(".$detls['uid'].",".$detls['cid'].",".$detls['said'].",".$detls['baid'].",now(),now(),1)";
+               $osql="INSERT
+                      INTO 
+                                     tbl_order_master
+                                    (user_id,
+                                     cart_id,
+                                     shipping_address_id,
+                                     bill_address_id,
+                                     date_time,
+                                     order_status,
+                                     active_flag)
+                      VALUES
+                                  (".$detls['uid'].",
+                                   ".$detls['cid'].",
+                                   ".$detls['said'].",
+                                   ".$detls['baid'].",
+                                     now(),
+                                     1,
+                                     1)";
                $ores=$this->query($osql);
                if($ores)
                {
@@ -25,14 +42,14 @@ include APICLUDE.'common/db.class.php';
                }
                else
                {
-                   $arr="Order is not inserted";
-                   $err=array('Code'=>0,'Msg'=>'Insert Operation error');
+                   $arr=array();
+                   $err=array('Code'=>1,'Msg'=>'Insert Operation error');
                }
            }
            else
            {
-               $arr="Data not sent in proper manner";
-               $err=array('Code'=>0,'Msg'=>'Error in obtaining data');
+               $arr=array();
+               $err=array('Code'=>1,'Msg'=>'Error in obtaining data');
            }
            $result=array('results'=>$arr,'error'=>$err);
            return $result;
@@ -40,7 +57,24 @@ include APICLUDE.'common/db.class.php';
        
        public function ordById($params)
        {
-            $sql ="SELECT * from tbl_order_master WHERE transid='".$params['tid']."' and dflag=1 ORDER BY cdt DESC";
+            $sql ="SELECT 
+                                    user_id,
+                                    cart_id,
+                                    shipping_address_id,
+                                    bill_address_id,
+                                    transaction_id,
+                                    order_status,
+                                    active_flag,
+                                    update_time,
+                                    date_time
+                   FROM 
+                                    tbl_order_master 
+                   WHERE 
+                                    transaction_id=\"".$params['tid']."\" 
+                   AND 
+                                    active_flag=1 
+                   ORDER BY 
+                                    date_time DESC";
             $page=$params['page'];
             $limit=$params['limit'];
             if (!empty($page))
@@ -48,8 +82,6 @@ include APICLUDE.'common/db.class.php';
                 $start = ($page * $limit) - $limit;
                 $sql.=" LIMIT " . $start . ",$limit";
             }
-            
-            
             $res=$this->query($sql);
             if($this->numRows($res)>0)
             {
@@ -61,7 +93,7 @@ include APICLUDE.'common/db.class.php';
             }
             else
             {
-                $arr = "Some problem in fetching details";
+                $arr = array();
                 $err= array('code' => 0, 'msg' => 'Data Fetched Successfully');
             }
             $result = array('results'=>$arr,'error'=>$err);
@@ -70,7 +102,24 @@ include APICLUDE.'common/db.class.php';
        
        public function actOrdList($params)
        {
-            $sql = "SELECT * from tbl_order_master WHERE user_id=".$params['uid']." and ordstatus=1 ORDER BY oid";               
+            $sql = "SELECT
+                                    user_id,
+                                    cart_id,
+                                    shipping_address_id,
+                                    bill_address_id,
+                                    transaction_id,
+                                    order_status,
+                                    active_flag,
+                                    update_time,
+                                    date_time
+                    FROM 
+                                    tbl_order_master 
+                    WHERE 
+                                    user_id=".$params['uid']." 
+                    AND 
+                                    ordstatus=1 
+                    ORDER BY 
+                                    order_id";               
             $res = $this->query($sql);
             if($this->numRows($res)>0)
             {
@@ -82,8 +131,8 @@ include APICLUDE.'common/db.class.php';
             }
             else
             {
-                $arr[] ="There is no activated List found";
-                $err= array('code' => 1, 'msg' => 'error in fetching data');
+                $arr =array();
+                $err= array('code'=>1,'msg'=>'error in fetching data');
             }
             $result = array('results'=>$arr,'error'=>$err);
             return $result;
@@ -100,13 +149,42 @@ include APICLUDE.'common/db.class.php';
            $proErr = $dt['error'];
            if($proErr['errCode']== 0)
            {
-               $isql="INSERT INTO tbl_trans_master(transid,paytype,paymode,card_use,paydate,curr,cdt,tstatus,tdesc,amt)
-                      VALUES('".$detls['tid']."','".$detls['ptyp']."','".$detls['pmode']."','".$detls['cuse']."',now(),'".$detls['cur']."',now(),1,'".$detls['des']."',".$detls['amt'].")";
+               $isql="INSERT 
+                      INTO 
+                                            tbl_trans_master
+                                           (transaction_id,
+                                            payment_type,
+                                            payment_mode,
+                                            card_use,
+                                            payment_date,
+                                            currency,
+                                            date_time,
+                                            transaction_status,
+                                            transaction_desc,
+                                            amount)
+                      VALUES
+                                        ('".$detls['tid']."',
+                                         '".$detls['ptyp']."',
+                                         '".$detls['pmode']."',
+                                         '".$detls['cuse']."',
+                                            now(),
+                                         '".$detls['cur']."',
+                                            now(),
+                                            1,
+                                         '".$detls['des']."',
+                                          ".$detls['amt'].")";
 
                $ires=$this->query($isql);
                if($ires)
                {
-                   $osql="UPDATE tbl_order_master set transid='".$detls['tid']."' WHERE oid=".$detls['oid']." and user_id=".$detls['uid'];
+                   $osql="UPDATE
+                                            tbl_order_master 
+                          SET 
+                                            transaction_id='".$detls['tid']."' 
+                          WHERE 
+                                            order_id=".$detls['oid']." 
+                          AND 
+                                            user_id=".$detls['uid'];
                    $ores=$this->query($osql);
                    if($ores)
                    {
@@ -115,20 +193,20 @@ include APICLUDE.'common/db.class.php';
                    }
                    else
                    {
-                       $arr="Order table record is not found";
-                       $err=array('Code'=>0,'Msg'=>'Invalid order id or userid');
+                       $arr=array();
+                       $err=array('Code'=>1,'Msg'=>'Invalid order id or userid');
                    }
                }
                else
                {
-                   $arr="Error in transaction";
-                   $err=array('Code'=>0,'Msg'=>'Transaction is not done');
+                   $arr=array();
+                   $err=array('Code'=>1,'Msg'=>'Transaction is not done');
                }
            }
            else
            {
-               $arr="Data is not obtained in proper form";
-               $err=array('Code'=>0,'Msg'=>'Error in retreiving data');
+               $arr=array();
+               $err=array('Code'=>1,'Msg'=>'Error in retreiving data');
            }
            $result=array('results'=>$arr,'error'=>$err);
            return $result;
@@ -136,7 +214,21 @@ include APICLUDE.'common/db.class.php';
 
        public function viewtrans($params)
        {
-        $isql="SELECT transid,paytype,paymode,card_use,paydate,curr,cdt,tstatus,tdesc,amt from tbl_trans_master where transid=".$params['tid'];
+        $isql="SELECT
+                                transaction_id,
+                                payment_type,
+                                payment_mode,
+                                card_use,
+                                payment_date,
+                                currency,
+                                date_time,
+                                transaction_status,
+                                transaction_desc,
+                                amount
+               FROM 
+                                tbl_transaction_master
+               WHERE 
+                                transaction_id=".$params['tid'];
         $page=$params['page'];
         $limit=$params['limit'];
         if (!empty($page))
@@ -157,7 +249,7 @@ include APICLUDE.'common/db.class.php';
         }
         else
         {
-           $arr="Error in fetching data";
+           $arr=array();
            $err=array('Code'=>0,'Msg'=>'No records found');
         }
    }

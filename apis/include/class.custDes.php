@@ -9,7 +9,21 @@ class custDes extends DB
                 
     public function showCDes()
     {   
-        $sql="select title,cname,cmob,des_img,cemail,des_img from tbl_custom_des where dflag=1 order by cdt DESC";
+        $sql="SELECT
+                            title,
+                            customer_name,
+                            customer_mobile,
+                            design_image,
+                            customer_email,
+                            design_image
+               FROM 
+                            tbl_custom_design
+                
+               WHERE 
+                            active_flag=1 
+               ORDER BY 
+                            date_time ASC";
+        
         $res =$this->query($sql);            
         $chkres=$this->numRows($res);
         if($chkres>0)
@@ -22,7 +36,7 @@ class custDes extends DB
         }
        else
        {
-            $arr='There is no pending request available';
+            $arr=array();
             $err=array('code'=>1,'msg'=>'No record found');
        }
         $result = array('results' =>$arr,'error'=>$err);
@@ -36,8 +50,25 @@ class custDes extends DB
        $proErr  = $dt['error'];
        if($proErr['errCode']== 0)
        { 
-        $vsql="INSERT INTO tbl_custom_des(cname,cmob,cemail,title,des_img,dflag,udt,cdt)
-               VALUES('".$detls['cname']."',".$detls['cmob'].",'".$detls['cemail']."','".$detls['title']."','".$detls['desimg']."',1,now(),now())";
+        $vsql="INSERT 
+                                INTO
+                                tbl_custom_design
+                                (customer_name,
+                                 customer_mobile,
+                                 customer_email,
+                                 title,
+                                 design_image,
+                                 active_flag,
+                                 date_time)
+               VALUES
+                             (\"".$detls['cname']."\",
+                              \"".$detls['cmob']."\",
+                              \"".$detls['cemail']."\",
+                              \"".$detls['title']."\",
+                              \"".$detls['desimg']."\",
+                                  1,
+                                  now())";
+        
         $vres=$this->query($vsql);
             if($vres)
             {
@@ -46,13 +77,13 @@ class custDes extends DB
             }
             else
             {
-                $arr='Design is not submited';
+                $arr=array();
                 $err=array('Code'=>1,'Msg'=>'Insert operation is not done');
             }
        }
        else
        {
-           $arr='parameters are not passed properly';
+           $arr=array();
            $err=array('Code'=>1,'Msg'=>'Insert operation is not done');
        }
         $result=array('results'=>$arr,'error'=>$err);

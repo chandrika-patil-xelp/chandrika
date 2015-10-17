@@ -14,8 +14,25 @@ class helpdesk extends DB
        $proErr  = $dt['error'];
        if($proErr['errCode']== 0)
        {
-       $sql="INSERT INTO tbl_contactus_master(cemail,user_id,logmobile,cname,cquery,dflag,cdt,udt)
-                 VALUES('".$detls['cemail']."',".$detls['logmobile'].",".$detls['uid'].",'".$detls['cname']."','".$detls['cquery']."',1,now(),now())";
+       $sql="INSERT 
+             INTO 
+                            tbl_contactus_master
+                           (customer_email,
+                            user_id,
+                            logmobile,
+                            customer_name,
+                            customer_query,
+                            active_flag,
+                            date_time)
+                 VALUES
+                         (\"".$detls['cemail']."\",
+                          \"".$detls['logmobile']."\",
+                          \"".$detls['uid']."\",
+                          \"".$detls['cname']."\",
+                          \"".$detls['cquery']."\",
+                              1,
+                              now(),
+                              now())";
            
            $res=$this->query($sql);
            if($res)
@@ -25,14 +42,14 @@ class helpdesk extends DB
            }
            else
            {
-               $arr='Query has not been added';
-               $err=array('Code'=>0,'Msg'=>'Insertion unsuccessful');
+               $arr=array();
+               $err=array('Code'=>1,'Msg'=>'Insertion unsuccessful');
            }
        }
        else
         {
-           $arr='Error in passing the data';
-           $err=array('Code'=>0,'Msg'=>'data parameters are incomplete');
+           $arr=array();
+           $err=array('Code'=>1,'Msg'=>'data parameters are incomplete');
         }
         $result=array('result'=>$arr,'error'=>$err);
         return $result;
@@ -40,7 +57,14 @@ class helpdesk extends DB
     
     public function viewhelp($params)
     {
-        $chksql="SELECT * from tbl_contactus_master where dflag=1 order by cdt DESC";
+        $chksql="SELECT
+                                * 
+                 FROM 
+                                tbl_contactus_master 
+                 WHERE 
+                                active_flag=1 
+                 ORDER BY 
+                                date_time DESC";
         $page=$params['page'];
         $limit=$params['limit'];
         if (!empty($page))
@@ -60,15 +84,12 @@ class helpdesk extends DB
         }
         else
         {
-            $arr="you are unsubscribed from our newsletter facility";
+            $arr=array();
             $err=array('Code'=>0,'msg'=>'Update operation completed');
         }
         $result=array('result'=>$arr,'error'=>$err);
         return $result;
     }
-
-    
-    
    }
 ?>       
         
