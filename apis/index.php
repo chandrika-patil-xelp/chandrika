@@ -957,7 +957,7 @@ switch($action)
 //  localhost/jzeva/apis/index.php?action=offerUserBind&offerid=1&uid=6&dispflag=1
         case 'offerUserBind':
             include APICLUDE.'class.offer.php';
-            $offid  = (!empty($params['offid'])) ?  trim($params['offid']) : '';               
+            $offid  = (!empty($params['offerid'])) ?  trim($params['offerid']) : '';               
             $uid  = (!empty($params['uid'])) ?  trim($params['uid']) : '';
             $dflag  = (!empty($params['dispflag'])) ?  trim($params['dispflag']) : '';
             if(empty($offid) && empty($uid) && empty($dflag))
@@ -995,9 +995,8 @@ switch($action)
 //  localhost/jzeva/apis/index.php?action=getcartId&ip=192.168.2.21&umob=9975887206          
         case 'getcartId':
             include APICLUDE.'class.cart.php';
-            $ip=(!empty($params['ip'])) ? trim(urldecode($params['ip'])) : '';
-            $umob=(!empty($params['umob'])) ? trim($params['umob']) : '';
-            if(empty($ip) && empty($umob))
+            $uid=(!empty($params['uid'])) ? trim($params['uid']) : '';
+            if(empty($uid))
             {
                 $arr=array();
                 $err=array('Code'=>1,'Msg'=>'Invalid Parameters');
@@ -1032,8 +1031,9 @@ switch($action)
             include APICLUDE.'class.cart.php';
             $cartid  = (!empty($params['cart_id']))?  trim($params['cart_id']) : '';
             $qty  = (!empty($params['quantity'])) ? trim($params['quantity']) : '';
+            $vid  = (!empty($params['vid'])) ? trim($params['vid']) : '';
             $pid  = (!empty($params['product_id'])) ? trim($params['product_id']) : '';    
-            if(empty($qty) && empty($pid) && empty($cartid))
+            if(empty($qty) && empty($pid) && empty($cartid) && empty($vid))
             {
             $arr = array();
             $err = array('Code' => 1, 'Msg' => 'Invalid Parameters');
@@ -1067,7 +1067,7 @@ switch($action)
         case 'delPrd':
             include APICLUDE.'class.cart.php';
             $pid  = (!empty($params['pid'])) ? trim($params['pid']) : '';
-            $cartid  =(!empty($params['cartid'])) ? trim($params['cartid']) : '';
+            $cartid  =(!empty($params['cid'])) ? trim($params['cid']) : '';
             $vid  =(!empty($params['vid'])) ? trim($params['vid']) : '';
             if(empty($pid) && empty($cartid) && empty($vid))
             {
@@ -1085,10 +1085,8 @@ switch($action)
 //  localhost/jzeva/apis/index.php?action=cartClr&logmobile=9975887206&product_id=9&vendormob=7309290529            
         case 'cartClr':
             include APICLUDE.'class.cart.php';
-            $pid =(!empty($params['product_id'])) ? trim($params['product_id']) : '';
-            $logmobile =(!empty($params['logmobile'])) ?  trim($params['logmobile']) : '';
-            $vendormob=(!empty($params['vendormob'])) ?  trim($params['vendormob']) : '';
-            if(empty($pid) && empty($logmobile) && empty($vendormob))
+            $cid =(!empty($params['cid'])) ? trim($params['cid']) : '';
+            if(empty($cid))
             {
                 $arr = array();
                 $err = array('Code' => 1, 'Msg' => 'Invalid Parameters');
@@ -1500,42 +1498,6 @@ switch($action)
             $res=$result;
             break;
 
-//-------------------------Lineage----------------------------------------
-
-//  localhost/jzeva/apis/index.php?action=set_lineage&dt={%22result%22:%20{%22p_catid%22:%200,%22catname%22:%200,%22lvl%22:%209975887206,%22lineage%22:%20%22xyz,abcd,a,b,c,d%22,%22pid%22:%201}}
-        case 'set_lineage':
-            include APICLUDE.'class.categories.php';
-            $dt=(!empty($params['dt']))? trim($params['dt']):'';
-            if(empty($dt))
-            {
-                $arr="Parameters missing";
-                $err=array('Code'=>1,'Msg'=>'Invalid Parameters');
-                $result=array('results'=>$arr,'error'=>$err);
-                $res=$result;
-                break;
-            }
-            $obj=new categories($db['jzeva']);
-            $result=$obj->set_lineage($params);
-            $res=$result;
-            break;
-
-//  localhost/jzeva/apis/index.php?action=upd_prd_lineage&dt={%22result%22:%20{%22pcatid%22:%2012312,%22catname%22:%22bullion%22,%22lvl%22:%209975887206,%22lineage%22:%20%22xyz,abcd,a,b,c,d%22,%22pflag%22:1,%22catid%22:0,%22pid%22:%201}}
-        case 'upd_prd_lineage':
-            include APICLUDE.'class.categories.php';
-            $dt=(!empty($params['dt']))? trim($params['dt']):'';
-            if(empty($dt))
-            {
-                $arr="Parameters missing";
-                $err=array('Code'=>1,'Msg'=>'Invalid Parameters');
-                $result=array('results'=>$arr,'error'=>$err);
-                $res=$result;
-                break;
-            }
-            $obj=new categories($db['jzeva']);
-            $result=$obj->upd_prd_lineage($params);
-            $res=$result;
-            break;
-            
 //------------------------Wishlist-------------------------------------------
 
 //  localhost/jzeva/apis/index.php?action=addtowsh&page=1&limit=1&dt={"result": {"uid": 0,"pid": 0,"vid": 9975887206,"wf": 12}}            

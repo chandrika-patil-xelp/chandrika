@@ -72,14 +72,23 @@ class cart extends DB {
                         FROM 
                                 tbl_cartid_generator 
                         WHERE 
-                                user_id=".$detls['uid']."";
+                                user_id=\"".$detls['uid']."\"";
             $crtres = $this->query($crtsql);
 	    $cnt1 = $this->numRows($crtres);
                 if($cnt1==0)
                 {
-                    $isql ="INSERT INTO 
-                                    tbl_cartid_generator(cart_id,user_id,date_time,active_flag) 
-                            VALUES('".$cartid."',".$detls['uid'].",now(),1)";
+                    $isql ="INSERT
+                            INTO 
+                                        tbl_cartid_generator
+                                       (cart_id,
+                                        user_id,
+                                        date_time,
+                                        active_flag) 
+                            VALUES
+                                       (\"".$cartid."\",
+                                        \"".$detls['uid']."\",
+                                            now(),
+                                            1)";
                     $ires = $this->query($isql);
                 }    
                 else
@@ -92,18 +101,21 @@ class cart extends DB {
                                 product_id,
                                 quantity from tbl_user_cart
                         WHERE 
-                                user_id='".$detls['uid']."' 
-                                AND product_id =".$detls['pid']." 
-                                AND vendor_id=".$detls['vid'];
+                                user_id=\"".$detls['uid']."\" 
+                        AND
+                                product_id =\"".$detls['pid']."\" 
+                        AND 
+                                vendor_id=\"".$detls['vid']."\"";
            $sres=$this->query($ssql);
            $row=$this->fetchData($sres);
            $avlQt=$row['quantity'];
             $cnt2=$this->numRows($sres);
                 if($cnt2==0)
                 {
-                  $ucsql="  INSERT INTO
+                  $ucsql="  INSERT
+                            INTO
                                     tbl_user_cart
-                                    (cart_id,
+                                   (cart_id,
                                     product_id,
                                     vendor_id,
                                     user_id,
@@ -116,9 +128,9 @@ class cart extends DB {
                                      \"".$detls['pid']."\",
                                      \"".$detls['vid']."\",
                                      \"".$detls['uid']."\",
-                                     \"".$detls['qty']."\"
-                                     ,now()
-                                     ,1)";
+                                     \"".$detls['qty']."\",
+                                         now(),
+                                         1)";
                     $ucres = $this->query($ucsql);                
                     if($ucres)
                     {
@@ -141,9 +153,11 @@ class cart extends DB {
                                 quantity=".$newqt.",
                                 active_flag=1 
                         WHERE 
-                                user_id=".$detls['uid']." 
-                                AND product_id =".$detls['pid']." 
-                                AND vendor_id=".$detls['vid'];
+                                user_id=\"".$detls['uid']."\" 
+                        AND 
+                                product_id =\"".$detls['pid']."\" 
+                        AND
+                                vendor_id=\"".$detls['vid']."\"";
                 
                 $ures=$this->query($usql);
                     if($ures)
@@ -219,12 +233,15 @@ class cart extends DB {
        $qry = " UPDATE 
                         tbl_user_cart 
                 SET 
-                        quantity=".$params['quantity']."
+                        quantity=\"".$params['quantity']."\"
                 WHERE 
-                        cart_id='".$params['cart_id']."' 
-                        AND product_id=".$params['product_id']." 
-                        AND vendor_id=".$params['vid']." 
-                        AND active_flag=1";
+                        cart_id=\"".$params['cart_id']."\" 
+                AND 
+                        product_id=\"".$params['product_id']."\" 
+                AND
+                        vendor_id=\"".$params['vid']."\" 
+                AND 
+                        active_flag=1";
        $ret = $this->query($qry);
         if($ret)
         {
@@ -247,8 +264,9 @@ class cart extends DB {
                         FROM 
                                 tbl_cartid_generator
                         WHERE 
-                            user_id=".$params['uid']." 
-                            AND active_flag=1";
+                                user_id=".$params['uid']." 
+                        AND 
+                                active_flag=1";
        $cres = $this->query($csql);
        $row=$this->fetchData($cres);
        $cartid=$row['cart_id'];
@@ -262,8 +280,9 @@ class cart extends DB {
                         FROM
                                 tbl_user_cart 
                         WHERE 
-                                cart_id='".$cartid."' 
-                                AND active_flag=1";
+                                cart_id=\"".$cartid."\" 
+                        AND
+                                active_flag=1";
        $res = $this->query($sql);
         if ($res) 
         {
@@ -297,7 +316,7 @@ class cart extends DB {
                             FROM    
                                     tbl_product_master
                             WHERE 
-                                    product_id IN('".$product_id_str."')";
+                                    product_id IN(\"".$product_id_str."\")";
                 $res = $this->query($sql);
                 if($res)
                 {   

@@ -14,12 +14,24 @@ class address extends DB
        $proErr = $dt['error'];
        if($proErr['errCode']== 0)
        {
-            $chksql="SELECT address_id from tbl_addressid_generator where user_id=".$detls['uid']."";
+            $chksql="SELECT
+                                    address_id 
+                     FROM 
+                                    tbl_addressid_generator 
+                     WHERE 
+                                    user_id=".$detls['uid']."";
             $chkres=$this->query($chksql);
             $cntres=$this->numRows($chkres);
             if($cntres==0)
             {
-                $isql="INSERT INTO tbl_addressid_generator(user_id,date_time) VALUES(".$detls['uid'].",now())";
+                $isql="INSERT 
+                       INTO 
+                                        tbl_addressid_generator
+                                       (user_id,
+                                        date_time)
+                       VALUES
+                                      (\"".$detls['uid']."\",
+                                           now())";
                 $ires=$this->query($isql);
                 $addid=$this->lastInsertedId();
             }
@@ -32,9 +44,19 @@ class address extends DB
                 $adisql="INSERT
                          INTO 
                                     tbl_address_master
-                                   (address_id,user_id,address_title,address1,address2,
-                                    full_address,area,city,state,pincode,country,
-                                    date_time,active_flag)
+                                   (address_id,
+                                    user_id,
+                                    address_title,
+                                    address1,
+                                    address2,
+                                    full_address,
+                                    area,
+                                    city,
+                                    state,
+                                    pincode,
+                                    country,
+                                    date_time,
+                                    active_flag)
                       VALUES
                                 (\"".$addid."\",
                                  \"".$detls['uid']."\",
@@ -47,18 +69,20 @@ class address extends DB
                                  \"".$detls['state']."\",
                                  \"".$detls['pcode']."\",
                                  \"".$detls['country']."\",
-                                 now(),
-                                 1)
-                ON DUPLICATE KEY
-                                adddress_title    =\"".$detls['addtitle']."\",
+                                     now(),
+                                     1)
+                      ON
+                      DUPLICATE
+                      KEY
+                                adddress_title  =\"".$detls['addtitle']."\",
                                 address1        =\"".$detls['add1']."\",
                                 address2        =\"".$detls['add2']."\",
                                 fulladdress     =\"".$detls['fulladd']."\",
-                                area        =\"".$detls['area']."\",
-                                city        =\"".$detls['city']."\",
-                                state       =\"".$detls['state']."\",
-                                pincode     =\"".$detls['pcode']."\",
-                                country     =\"".$detls['country']."\"";
+                                area            =\"".$detls['area']."\",
+                                city            =\"".$detls['city']."\",
+                                state           =\"".$detls['state']."\",
+                                pincode         =\"".$detls['pcode']."\",
+                                country         =\"".$detls['country']."\"";
 
                 $adires=$this->query($adisql);
                 if($adires)
@@ -123,7 +147,24 @@ class address extends DB
     
     public function getAddByUser($params)
     {
-        $sql="SELECT address_id,user_id,address_title,address1,address2,full_address,area,city,state,pincode,country,date_time,active_flag from tbl_address_master WHERE user_id=".$params['uid'];
+        $sql="SELECT
+                            address_id,
+                            user_id,
+                            address_title,
+                            address1,
+                            address2,
+                            full_address,
+                            area,
+                            city,
+                            state,
+                            pincode,
+                            country,
+                            date_time,
+                            active_flag
+              FROM 
+                            tbl_address_master
+              WHERE 
+                            user_id=".$params['uid'];
         $res=$this->query($sql);
         if($res)
         {

@@ -399,8 +399,8 @@ class attribute extends DB
             }
             else
             {
-                $arr="There is no attribute detail availed in attribute table";
-                $err=array('Code'=>0,'Msg'=>'Values not found');
+                $arr=array();
+                $err=array('Code'=>1,'Msg'=>'Values not found');
             }
         }
         else
