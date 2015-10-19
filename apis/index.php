@@ -482,7 +482,7 @@ switch($action)
 
 //-------------------------CategoryInfo-----------------------------
         
-//   localhost/jzeva/apis/index.php?action=getCatList&page=1&limit=2        
+//   localhost/jzeva/apis/index.php?action=getCatList&catid=10001        
         case 'getSubCat': 
             include APICLUDE.'class.categoryInfo.php';
             $obj= new categoryInfo($db['jzeva']);
@@ -502,7 +502,7 @@ switch($action)
 //  localhost/jzeva/apis/index.php?action=getCatName&catid=10001&page=1&limit=1        
         case 'getCatName':
             include APICLUDE.'class.categoryInfo.php';
-            $catid=(!empty($params['catid'])) ? trim($params['catid']) : '';
+            $catid=(!empty($params['category_id'])) ? trim($params['category_id']) : '';
             if(empty($catid))
             {
                 $arr=array();
@@ -537,7 +537,12 @@ switch($action)
         case 'addCat':
             include APICLUDE.'class.categoryInfo.php';
             $catName=(!empty($params['catName'])) ? trim(urldecode($params['catName'])) : '';
-            if(empty($catName))
+            $pcatid=(!empty($params['pcatid'])) ? trim($params['pcatid']) : '';
+            $lvl=(!empty($params['lvl'])) ? trim(urldecode($params['lvl'])) : '';
+            $lineage=(!empty($params['lineage'])) ? trim(urldecode($params['lineage'])) : '';
+            
+            
+            if(empty($catName) && empty($lvl) && empty($lineage) && empty($pcatid))
             {
                 $arr=array();
                 $err=array('code'=>1,'Invalid Parameter');
@@ -555,6 +560,7 @@ switch($action)
         case 'deleteCat':
             include APICLUDE.'class.categoryInfo.php';
             $catid=(!empty($params['catid'])) ? trim($params['catid']) : '';
+            
             if(empty($catid))
             {
                 $arr=array();
@@ -573,7 +579,11 @@ switch($action)
             include APICLUDE.'class.categoryInfo.php';
             $catid=(!empty($params['catid'])) ? trim($params['catid']) : '';
             $catName=(!empty($params['catName'])) ? trim(urldecode($params['catName'])) : '';
-            if(empty($catid)  &&  empty($catName))
+            $pcatid=(!empty($params['pcatid'])) ? trim($params['pcatid']) : '';
+            $lvl=(!empty($params['lvl'])) ? trim(urldecode($params['lvl'])) : '';
+            $lineage=(!empty($params['lineage'])) ? trim(urldecode($params['lineage'])) : '';
+
+            if(empty($catid)  &&  empty($catName) &&  empty($lvl) &&  empty($lineage) &&  empty($pcatid))
             {
                 $arr=array();
                 $err=array('code'=>1,'Invalid Parameter');
@@ -596,7 +606,7 @@ switch($action)
             $res=$result;
             break;
 
-//-------------------------Auto---------------------------------  
+//---------- ---------------Auto---------------------------------  
 
 //  localhost/jzeva/apis/index.php?action=searchbox&srch=b&page=1&limit=1         
         case 'searchbox':
@@ -665,6 +675,24 @@ switch($action)
             $result=$obj->suggestCat($params);
             $res=$result;
             break;
+  /*          
+//  localhost/jzeva/apis/index.php?action=suggestCat&str=2&page=1&limit=2
+        case 'suggestOff':
+            include APICLUDE.'class.auto.php';
+            $srch=(!empty($params['str'])) ? trim(urldecode($params['str'])) : '';
+            if(empty($srch))
+            {
+            $arr=array();
+            $err=array('code'=> 1,'Msg'=> 'Invalid parameters');
+            $result=array('results'=> $arr,'error'=>$err);
+            $res=$result;
+            break;
+            }
+            $obj = new auto($db['jzeva']);
+            $result=$obj->suggestCat($params);
+            $res=$result;
+            break;            
+    */        
             
 //  localhost/jzeva/apis/index.php?action=suggestVendor&str=p&page=1&limit=1
         case 'suggestVendor':

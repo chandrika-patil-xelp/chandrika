@@ -18,8 +18,8 @@ class auto extends DB
               WHERE 
                     MATCH(product_name) AGAINST ('".$params['srch']."*' IN BOOLEAN MODE) 
                     ORDER BY startwith ASC";
-        $page   = $params['page'];
-        $limit  = $params['limit'];
+        $page   = ($params['page'] ? $params['page'] : 1);
+        $limit  = ($params['limit'] ? $params['limit'] : 15);
         if (!empty($page))
         {
             $start = ($page * $limit) - $limit;
@@ -62,8 +62,9 @@ class auto extends DB
                 ORDER BY 
                         startwith DESC";
         
-        $page=$params['page'];
-        $limit=$params['limit'];
+        $page   = ($params['page'] ? $params['page'] : 1);
+        $limit  = ($params['limit'] ? $params['limit'] : 15);
+        
         if (!empty($page))
         {
             $start = ($page * $limit) - $limit;
@@ -98,8 +99,9 @@ class auto extends DB
                         MATCH(name) AGAINST ('".$params['str']."*' IN BOOLEAN MODE) 
                 ORDER BY
                         startwith";
-        $page=$params['page'];
-        $limit=$params['limit'];
+        $page   = ($params['page'] ? $params['page'] : 1);
+        $limit  = ($params['limit'] ? $params['limit'] : 15);
+        
         if (!empty($page))
         {
             $start = ($page * $limit) - $limit;
@@ -133,8 +135,9 @@ class auto extends DB
                         tbl_category_master
                 WHERE 
                         MATCH(category_name) AGAINST ('".$params['str']."*' IN BOOLEAN MODE) ORDER BY startwith ASC";
-        $page=$params['page'];
-        $limit=$params['limit'];
+       $page   = ($params['page'] ? $params['page'] : 1);
+        $limit  = ($params['limit'] ? $params['limit'] : 15);
+        
         if (!empty($page))
         {
             $start = ($page * $limit) - $limit;
@@ -165,9 +168,18 @@ class auto extends DB
     /* 
     public function suggestOff($params)
     {
-	$sql="SELECT offername,MATCH(offername) AGAINST ('" . $params['str'] . "*' IN BOOLEAN MODE) as startwith FROM tbl_offer_master where MATCH(offername) AGAINST ('".$params['str']."*' IN BOOLEAN MODE) ORDER BY startwith DESC LIMIT";
-        $page=$params['page'];
-        $limit=$params['limit'];
+	$sql="SELECT
+                         offername,
+     *                   MATCH(offername) AGAINST ('" . $params['str'] . "*' IN BOOLEAN MODE) as startwith
+     *        FROM 
+     *                   tbl_offer_master
+     *        WHERE 
+     *                   MATCH(offername) AGAINST ('".$params['str']."*' IN BOOLEAN MODE) 
+     *        ORDER BY 
+     *                   startwith DESC LIMIT";
+        $page   = ($params['page'] ? $params['page'] : 1);
+        $limit  = ($params['limit'] ? $params['limit'] : 15);
+        ;
         if (!empty($page))
         {
             $start = ($page * $limit) - $limit;
@@ -204,8 +216,9 @@ class auto extends DB
                 ORDER BY 
                         startwith DESC";
         
-        $page=$params['page'];
-        $limit=$params['limit'];
+        $page   = ($params['page'] ? $params['page'] : 1);
+        $limit  = ($params['limit'] ? $params['limit'] : 15);
+        
         if (!empty($page))
         {
             $start = ($page * $limit) - $limit;
