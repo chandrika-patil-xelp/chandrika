@@ -23,18 +23,22 @@ include APICLUDE.'common/db.class.php';
                                      cart_id,
                                      shipping_address_id,
                                      bill_address_id,
-                                     date_time,
+                                     transaction_id,
                                      order_status,
+                                     date_time,
+                                     update_time,
                                      active_flag)
                       VALUES
                                   (".$detls['uid'].",
                                    ".$detls['cid'].",
                                    ".$detls['said'].",
                                    ".$detls['baid'].",
-                                     now(),
+                                   ".$detls['tid'].",
                                      1,
+                                     now(),
+                                     time(),
                                      1)";
-               $ores=$this->query($osql);
+               $ores=$this->query($osql,1);
                if($ores)
                {
                    $arr="Order table has been updated";

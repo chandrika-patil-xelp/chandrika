@@ -57,7 +57,7 @@
             $ires=$this->query($isql);
             $uid=$this->lastInsertedId();
             
-            if($params['username']=1)
+            if($params['usertype']=1)
             {
             $isql= "INSERT 
                     INTO 
@@ -361,7 +361,8 @@
                                     tbl_registration 
                             WHERE 
                                     user_id=".$params['uid']." 
-                                    AND is_active=1";
+                            AND 
+                                    is_active=1";
             $vres=$this->query($vsql);
             $chkres=$this->numRows($vres);
             if($chkres>0)//If user is registered and is customer

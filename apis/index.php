@@ -7,7 +7,7 @@ $action = $_GET['action'];
 switch($action)
 {        
 //----------------------------User---------------------------------------
-
+// Working
 //  localhost/jzeva/apis/index.php?action=checkUser&mobile=9987867578                
         case 'checkUser':
             include APICLUDE.'class.user.php';
@@ -24,8 +24,8 @@ switch($action)
             $result= $obj->checkUser($params);
             $res= $result;
             break;
-            
-// localhost/jzeva/apis/index.php?action=userReg&username=Shushrut Kumar&password=mishra1.234&mobile=7309290529&email=shubham.bajpai@xelpmoc.in&isvendor=1                                        
+// Working            
+// localhost/jzeva/apis/index.php?action=userReg&username=Shushrut Kumar&password=mishra1.234&mobile=7309290529&email=shubham.bajpai@xelpmoc.in&usertype=1                                        
         case 'userReg':
             include APICLUDE.'class.user.php';
             $username=(!empty($params['username'])) ? trim(urldecode($params['username'])) : '';
@@ -45,7 +45,7 @@ switch($action)
             $result= $obj->userReg($params);
             $res= $result;
             break;
-            
+// Not Working            
 //  localhost/jzeva/apis/index.php?action=udtProfile&dt={%22result%22:{%22logmobile%22:7309290529,%22username%22:%22jummanji%22,%22gen%22:1,%22alt_email%22:%22singharun@gmail.com%22,%22dob%22:%221990-10-08%22,%22workphone%22:%229696969696%22,%22pincode%22:223232,%22area%22:%22janakpuri%20west%22,%22cityname%22:%22DELHI%22,%22state%22:%22Delhi%22,%22country%22:%22india%22,%22address1%22:%22sfwfe%20ewf%20wef%20wfe%22,%22address2%22:%22sfwfe%20ewf%20wef%20wfe%22,%22mobile%22:34235235,%22landline%22:%223242425225%22,%22idtype%22:%22323222%22,%22idproof%22:%22323222%22,%22lat%22:10.224113,%22lng%22:23.74756363245}}            
         case 'udtProfile':
             include APICLUDE.'class.user.php';
@@ -63,12 +63,13 @@ switch($action)
             $result= $obj->udtProfile($params);
             $res= $result;
             break;                
-            
-//  localhost/jzeva/apis/index.php?action=logUser&mobile=7309290529&password=mishra1.234            
+//  Working            
+//  localhost/jzeva/apis/index.php?action=logUser&mobile=8888888888&password=1avbd            
         case 'logUser':
             include  APICLUDE.'class.user.php';
             $mobile=(!empty($params['mobile'])) ?  trim($params['mobile']) : '';
             $password=(!empty($params['password'])) ?  trim(urldecode($params['password'])) : '';
+             $utype=(!empty($params['utype'])) ?  trim(urldecode($params['password'])) : '';
             if(empty($mobile)  &&  empty($password))
             {
                 $arr=array();
@@ -81,8 +82,9 @@ switch($action)
             $result = $obj->logUser($params);
             $res= $result;
             break;
-
-// localhost/jzeva/apis/index.php?action=updatePass&mobile=9975887206&password=bajpai123            
+            
+//Working
+// localhost/jzeva/apis/index.php?action=updatePass&mobile=8888888888&password=1avbd         
         case 'updatePass':
             include APICLUDE.'class.user.php';
             $password=(!empty($params['passowrd'])) ?  trim(urldecode($params['password'])) : '';
@@ -99,8 +101,9 @@ switch($action)
             $result =$obj->updatePass($params);
             $res= $result;
             break;
-
-// localhost/jzeva/apis/index.php?action=deactUser&mobile=9975887206            
+            
+//Working
+// localhost/jzeva/apis/index.php?action=deactUser&mobile=8888888888            
         case 'deactUser':
             include APICLUDE.'class.user.php';
             $mobile=(!empty($params['mobile'])) ?  trim($params['mobile']) : '';
@@ -117,7 +120,8 @@ switch($action)
             $res= $result;
             break;
 
-// localhost/jzeva/apis/index.php?action=actUser&mobile=9975887206                        
+//Working            
+// localhost/jzeva/apis/index.php?action=actUser&mobile=8888888888                        
         case 'actUser':
             include APICLUDE.'class.user.php';
             $mobile=(!empty($params['mobile'])) ?  trim($params['mobile']) : '';
@@ -133,8 +137,8 @@ switch($action)
             $result =  $obj->actUser($params);
             $res= $result;
             break;
-
-//  localhost/jzeva/apis/index.php?action=viewAll&uid=6           
+//  Working
+//  localhost/jzeva/apis/index.php?action=viewAll&uid=1           
         case 'viewAll':
             include APICLUDE.'class.user.php';
             $uid=(!empty($params['uid']))?trim($params['uid']) : '';
@@ -152,8 +156,7 @@ switch($action)
             break;
 //--------------------------Order----------------------------------------
                        
-//  localhost/jzeva/apis/index.php?action=addOrd&dt={%22result%22:%20{%22uid%22:%2010105,%22cid%22:111,%22said%22:1,%22baid%22:%201,%22tid%22:%20%22singharun@gmail.com%22,%22ost%22:%20%221990-10-08%22},%22error%22:%20{%22errCode%22:%200}}
-        case 'addOrd':
+//  localhost/jzeva/apis/index.php?action=addOrd&dt={"uid":123,"cid":123,"said":345,"baid":1,"tid":3434,"cur":"1990-10-08"}
             include APICLUDE.'class.orders.php';
             $dt=(!empty($params['dt'])) ? trim(urldecode($params['dt'])) : '';
             if(empty($dt))
