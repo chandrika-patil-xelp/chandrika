@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.14
+-- version 4.1.14
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 17, 2015 at 03:18 PM
--- Server version: 5.6.26
--- PHP Version: 5.6.12
+-- Generation Time: Oct 19, 2015 at 06:40 AM
+-- Server version: 5.6.17
+-- PHP Version: 5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `db_jzeva`
@@ -29,11 +29,12 @@ USE `db_jzeva`;
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_addressid_generator` (
-  `address_id` bigint(20) NOT NULL COMMENT 'random id generator',
+  `address_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'random id generator',
   `user_id` bigint(20) NOT NULL COMMENT 'user logged in mobile',
   `date_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'Date and time on which it was created',
-  `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP COMMENT 'Timestamp on which it was last updated'
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP COMMENT 'Timestamp on which it was last updated',
+  PRIMARY KEY (`address_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `tbl_addressid_generator`
@@ -108,7 +109,7 @@ INSERT INTO `tbl_attribute_category_mapping` (`category_id`, `attribute_id`, `at
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_attribute_master` (
-  `attribute_id` int(4) unsigned NOT NULL,
+  `attribute_id` int(4) unsigned NOT NULL AUTO_INCREMENT,
   `attribute_name` varchar(250) CHARACTER SET utf8 DEFAULT NULL,
   `attribute_display_name` varchar(250) CHARACTER SET utf8 DEFAULT NULL,
   `attribute_unit` varchar(10) CHARACTER SET utf8 DEFAULT NULL,
@@ -119,8 +120,9 @@ CREATE TABLE IF NOT EXISTS `tbl_attribute_master` (
   `use_list` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
   `active_flag` bit(1) DEFAULT b'1',
   `date_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'Date and time on which it was created ',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Timestamp on which it was last updated'
-) ENGINE=MyISAM AUTO_INCREMENT=100023 DEFAULT CHARSET=latin1 COMMENT='Table Attribute Master';
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Timestamp on which it was last updated',
+  PRIMARY KEY (`attribute_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COMMENT='Table Attribute Master' AUTO_INCREMENT=100023 ;
 
 --
 -- Dumping data for table `tbl_attribute_master`
@@ -162,13 +164,15 @@ CREATE TABLE IF NOT EXISTS `tbl_available_autosuggest_lists` (
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_brandid_generator` (
-  `id` bigint(20) NOT NULL,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) DEFAULT NULL,
   `category_name` varchar(255) NOT NULL DEFAULT '',
   `date_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'Date and time on created',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Timestamp on which it was last updated',
-  `active_flag` tinyint(2) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=100023 DEFAULT CHARSET=latin1;
+  `active_flag` tinyint(2) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `brand_category` (`name`,`category_name`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=100023 ;
 
 --
 -- Dumping data for table `tbl_brandid_generator`
@@ -193,13 +197,14 @@ INSERT INTO `tbl_brandid_generator` (`id`, `name`, `category_name`, `date_time`,
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_cartid_generator` (
-  `id` bigint(20) NOT NULL,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `cart_id` varchar(20) NOT NULL,
   `user_id` bigint(20) unsigned NOT NULL,
   `date_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'Date and time on which it was created',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Timestamp on which it was last updated',
-  `active_flag` tinyint(2) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+  `active_flag` tinyint(2) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `tbl_cartid_generator`
@@ -218,12 +223,14 @@ INSERT INTO `tbl_cartid_generator` (`id`, `cart_id`, `user_id`, `date_time`, `up
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_categoryid_generator` (
-  `category_id` bigint(20) unsigned NOT NULL,
+  `category_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `category_name` varchar(255) NOT NULL DEFAULT '',
   `date_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'Date and time on which it was created',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Timestamp on which it was updated',
-  `active_flag` tinyint(2) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=10008 DEFAULT CHARSET=latin1;
+  `active_flag` tinyint(2) NOT NULL,
+  PRIMARY KEY (`category_id`),
+  UNIQUE KEY `category_name` (`category_name`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10008 ;
 
 --
 -- Dumping data for table `tbl_categoryid_generator`
@@ -253,7 +260,9 @@ CREATE TABLE IF NOT EXISTS `tbl_category_master` (
   `lineage` text COMMENT 'lineage hierarchy',
   `date_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'date and time on which it was created.',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'timestamp on which it was last updated',
-  `updated_by` varchar(150) NOT NULL
+  `updated_by` varchar(150) NOT NULL,
+  KEY `catid` (`category_id`),
+  KEY `p_catid` (`parent_category_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -263,7 +272,7 @@ CREATE TABLE IF NOT EXISTS `tbl_category_master` (
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_city_master` (
-  `cityid` bigint(20) unsigned NOT NULL COMMENT 'city identity',
+  `cityid` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'city identity',
   `cityname` varchar(250) CHARACTER SET utf8 NOT NULL,
   `state_name` varchar(250) NOT NULL,
   `country_name` varchar(250) NOT NULL,
@@ -272,8 +281,9 @@ CREATE TABLE IF NOT EXISTS `tbl_city_master` (
   `date_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'date and time on which it was created.',
   `updatedby` varchar(100) NOT NULL COMMENT 'CMS USER',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'timestamp on which it was last updated.',
-  `active_flag` tinyint(2) NOT NULL DEFAULT '1' COMMENT '1-Active | 0-Inactive'
-) ENGINE=MyISAM AUTO_INCREMENT=1095 DEFAULT CHARSET=latin1;
+  `active_flag` tinyint(2) NOT NULL DEFAULT '1' COMMENT '1-Active | 0-Inactive',
+  PRIMARY KEY (`cityid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1095 ;
 
 --
 -- Dumping data for table `tbl_city_master`
@@ -1385,7 +1395,7 @@ INSERT INTO `tbl_city_master` (`cityid`, `cityname`, `state_name`, `country_name
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_contactus` (
-  `contanctus_id` bigint(20) unsigned NOT NULL COMMENT 'contact id',
+  `contanctus_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'contact id',
   `user_id` bigint(20) unsigned NOT NULL,
   `logmobile` bigint(15) unsigned NOT NULL,
   `customer_name` varchar(250) DEFAULT NULL COMMENT 'customer name',
@@ -1393,8 +1403,10 @@ CREATE TABLE IF NOT EXISTS `tbl_contactus` (
   `customer_query` text NOT NULL COMMENT 'customre query',
   `active_flag` tinyint(2) NOT NULL DEFAULT '1' COMMENT 'display flag{0-Inacive | 1-Active}',
   `date_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'date and time on which it was created',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'timestamp on which it was last updated'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'timestamp on which it was last updated',
+  PRIMARY KEY (`contanctus_id`),
+  KEY `uid` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1403,7 +1415,7 @@ CREATE TABLE IF NOT EXISTS `tbl_contactus` (
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_custom_design` (
-  `custom_id` bigint(20) unsigned NOT NULL COMMENT 'auto incremented custom design',
+  `custom_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'auto incremented custom design',
   `title` char(6) NOT NULL COMMENT 'MR|MRS|MISS|MASTER',
   `customer_name` varchar(150) NOT NULL COMMENT 'customer name',
   `customer_email` varchar(300) NOT NULL COMMENT 'customer email',
@@ -1411,8 +1423,9 @@ CREATE TABLE IF NOT EXISTS `tbl_custom_design` (
   `design_image` text NOT NULL COMMENT '|~| image path name comma separated',
   `active_flag` tinyint(2) NOT NULL DEFAULT '0' COMMENT 'active display flag {0-Inactive | 1-Active}',
   `date_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'Date and time on which it was created ',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Timestamp on which it was last updated'
-) ENGINE=MyISAM AUTO_INCREMENT=9000 DEFAULT CHARSET=latin1;
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Timestamp on which it was last updated',
+  PRIMARY KEY (`custom_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9000 ;
 
 --
 -- Dumping data for table `tbl_custom_design`
@@ -1430,13 +1443,15 @@ INSERT INTO `tbl_custom_design` (`custom_id`, `title`, `customer_name`, `custome
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_designer_product_mapping` (
-  `designer_id` bigint(20) unsigned NOT NULL COMMENT 'Auto incremented designer id',
+  `designer_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Auto incremented designer id',
   `product_id` bigint(20) unsigned NOT NULL COMMENT 'product_code',
   `designer_name` varchar(250) NOT NULL COMMENT 'Designer''s Name',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Timestamp on which it was last updated',
   `date_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'Date and time on which it was created',
-  `active_flag` tinyint(2) NOT NULL COMMENT '{ 0-Inactive| 1-Active }'
-) ENGINE=MyISAM AUTO_INCREMENT=3500 DEFAULT CHARSET=latin1;
+  `active_flag` tinyint(2) NOT NULL COMMENT '{ 0-Inactive| 1-Active }',
+  PRIMARY KEY (`product_id`,`designer_id`),
+  KEY `designer_id` (`designer_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3500 ;
 
 --
 -- Dumping data for table `tbl_designer_product_mapping`
@@ -1482,14 +1497,15 @@ INSERT INTO `tbl_designer_product_mapping` (`designer_id`, `product_id`, `design
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_newsletter_master` (
-  `news_id` bigint(20) unsigned NOT NULL COMMENT 'auto incremented Newsid',
+  `news_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'auto incremented Newsid',
   `news_headline` varchar(250) DEFAULT NULL COMMENT 'news heading',
   `news_description` text COMMENT 'news description',
   `content` longtext COMMENT 'content',
   `active_flag` tinyint(2) NOT NULL COMMENT '{1-Active | 0-Inactive}',
   `date_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'Date and time on which it was created',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Timestamp on which it was last updated'
-) ENGINE=MyISAM AUTO_INCREMENT=1000 DEFAULT CHARSET=latin1;
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Timestamp on which it was last updated',
+  PRIMARY KEY (`news_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1000 ;
 
 -- --------------------------------------------------------
 
@@ -1503,7 +1519,8 @@ CREATE TABLE IF NOT EXISTS `tbl_news_user_map` (
   `active_flag` tinyint(2) NOT NULL COMMENT 'display flag',
   `date_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'Date and time on which it was created',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Timestamp on which it was last updated',
-  `display_position` tinyint(4) unsigned NOT NULL DEFAULT '111' COMMENT 'priority{111-low| 999-high}'
+  `display_position` tinyint(4) unsigned NOT NULL DEFAULT '111' COMMENT 'priority{111-low| 999-high}',
+  PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -1513,7 +1530,7 @@ CREATE TABLE IF NOT EXISTS `tbl_news_user_map` (
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_offer_master` (
-  `offer_id` bigint(20) NOT NULL COMMENT 'offer id',
+  `offer_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'offer id',
   `offer_name` varchar(100) NOT NULL COMMENT 'name of the offer',
   `offer_description` text NOT NULL COMMENT 'description',
   `offer_discount_percentage` decimal(3,2) NOT NULL COMMENT 'amount discount percentage',
@@ -1521,8 +1538,10 @@ CREATE TABLE IF NOT EXISTS `tbl_offer_master` (
   `offer_voucher_description` text NOT NULL COMMENT 'voucher description',
   `active_flag` tinyint(2) NOT NULL COMMENT '{0-Active | 1-Inactive }',
   `date_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP COMMENT 'Date and time on which it was created',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Timestamp on which it was last updated'
-) ENGINE=MyISAM AUTO_INCREMENT=6000 DEFAULT CHARSET=latin1;
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Timestamp on which it was last updated',
+  PRIMARY KEY (`offer_id`),
+  UNIQUE KEY `offid` (`offer_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6000 ;
 
 --
 -- Dumping data for table `tbl_offer_master`
@@ -1542,12 +1561,13 @@ INSERT INTO `tbl_offer_master` (`offer_id`, `offer_name`, `offer_description`, `
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_offer_user_mapping` (
-  `offer_id` bigint(20) unsigned NOT NULL COMMENT 'offer id used by user',
+  `offer_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'offer id used by user',
   `user_id` bigint(20) unsigned NOT NULL COMMENT 'user id',
   `date_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'Date and time on which it was created',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Timestamp on which it was last updated',
-  `active_flag` tinyint(2) NOT NULL COMMENT '1-Active | 0-Inactive'
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  `active_flag` tinyint(2) NOT NULL COMMENT '1-Active | 0-Inactive',
+  PRIMARY KEY (`offer_id`,`user_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `tbl_offer_user_mapping`
@@ -1563,7 +1583,7 @@ INSERT INTO `tbl_offer_user_mapping` (`offer_id`, `user_id`, `date_time`, `updat
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_order_master` (
-  `order_id` bigint(20) unsigned NOT NULL COMMENT 'order id',
+  `order_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'order id',
   `user_id` bigint(20) NOT NULL COMMENT 'login mobile / ip address',
   `cart_id` varchar(30) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL COMMENT 'shopping cart id',
   `shippping_address_id` bigint(15) NOT NULL,
@@ -1572,8 +1592,14 @@ CREATE TABLE IF NOT EXISTS `tbl_order_master` (
   `order_status` tinyint(2) NOT NULL COMMENT '0-InActive | 1-Active',
   `date_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'Date and time on which it was created',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Timestamp on which it was last updated',
-  `active_flag` tinyint(2) NOT NULL DEFAULT '0' COMMENT 'display flag{0-Inacive | 1-Active}'
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `active_flag` tinyint(2) NOT NULL DEFAULT '0' COMMENT 'display flag{0-Inacive | 1-Active}',
+  PRIMARY KEY (`order_id`),
+  KEY `idx_transid` (`transaction_id`),
+  KEY `idx_user_id` (`user_id`),
+  KEY `idx_cart_id` (`cart_id`),
+  KEY `idx_shipAddId` (`shippping_address_id`),
+  KEY `idx_billAddId` (`bill_address_Id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `tbl_order_master`
@@ -1589,12 +1615,14 @@ INSERT INTO `tbl_order_master` (`order_id`, `user_id`, `cart_id`, `shippping_add
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_productid_generator` (
-  `product_id` int(10) unsigned NOT NULL,
+  `product_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `product_name` varchar(255) NOT NULL DEFAULT '',
   `product_brand` varchar(255) DEFAULT '',
   `date_time` datetime NOT NULL COMMENT 'Date and time on which it was created',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Timestamp on which it was last updated'
-) ENGINE=MyISAM AUTO_INCREMENT=10012 DEFAULT CHARSET=latin1;
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Timestamp on which it was last updated',
+  PRIMARY KEY (`product_id`),
+  UNIQUE KEY `name_brand` (`product_name`,`product_brand`) USING BTREE
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10012 ;
 
 --
 -- Dumping data for table `tbl_productid_generator`
@@ -1617,7 +1645,8 @@ CREATE TABLE IF NOT EXISTS `tbl_product_attributes` (
   `active_flag` tinyint(2) NOT NULL,
   `updated_by` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '''timestamp on which it was last updated',
-  `date_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'Date and time on which it was created'
+  `date_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'Date and time on which it was created',
+  PRIMARY KEY (`product_id`,`attribute_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1654,7 +1683,9 @@ CREATE TABLE IF NOT EXISTS `tbl_product_category_mapping` (
   `rating` decimal(2,2) DEFAULT '0.00',
   `display_flag` tinyint(2) NOT NULL DEFAULT '1' COMMENT '1-Active,0-Inactive',
   `date_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'date and time on which it was created',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'timestamp on which it was last updated'
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'timestamp on which it was last updated',
+  KEY `product_id` (`product_id`),
+  KEY `category_id` (`category_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='for lineage and category handling';
 
 -- --------------------------------------------------------
@@ -1682,7 +1713,8 @@ CREATE TABLE IF NOT EXISTS `tbl_product_master` (
   `updated_by` varchar(50) DEFAULT NULL,
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Date and time on which it was created',
   `date_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP COMMENT 'Timestamp on which it was last updated''',
-  `designer_name` varchar(250) NOT NULL
+  `designer_name` varchar(250) NOT NULL,
+  PRIMARY KEY (`product_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -1732,7 +1764,9 @@ CREATE TABLE IF NOT EXISTS `tbl_product_search` (
   `goldwt` decimal(7,3) DEFAULT '0.000',
   `rating` decimal(2,1) DEFAULT '0.0',
   `date_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'date and time on which it was created',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'timestamp on which it was last updated'
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'timestamp on which it was last updated',
+  KEY `product_id` (`product_id`),
+  KEY `product_id_2` (`product_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -1742,24 +1776,31 @@ CREATE TABLE IF NOT EXISTS `tbl_product_search` (
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_registration` (
-  `user_id` bigint(20) unsigned NOT NULL,
+  `user_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `user_name` varchar(100) NOT NULL COMMENT 'Name of User',
   `password` varchar(255) NOT NULL COMMENT 'Password for login',
   `logmobile` bigint(15) NOT NULL COMMENT 'Mobile number of User',
   `email` varchar(255) NOT NULL COMMENT 'Email of user',
-  `is_vendor` tinyint(2) NOT NULL DEFAULT '0' COMMENT '1-Vendor, 0-Not Vendor',
+  `user_type` tinyint(2) NOT NULL DEFAULT '0' COMMENT '1-Vendor, 0-Not Vendor',
   `is_active` tinyint(2) NOT NULL DEFAULT '1' COMMENT '1-Active, 0-Non Active',
   `date_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'Date and Time of registration',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'updated at',
   `updated_by` varchar(100) NOT NULL COMMENT 'Details of the user or vendor who updated details',
-  `subscribe` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '1-Active | 0-Inactive'
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `subscribe` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '1-Active | 0-Inactive',
+  PRIMARY KEY (`user_id`),
+  KEY `idx_user_name` (`user_name`),
+  KEY `idx_mobile` (`logmobile`),
+  KEY `idx_is_active` (`is_active`),
+  KEY `idx_date_time` (`date_time`),
+  KEY `idx_update_time` (`update_time`),
+  KEY `idx_updated_by` (`updated_by`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `tbl_registration`
 --
 
-INSERT INTO `tbl_registration` (`user_id`, `user_name`, `password`, `logmobile`, `email`, `is_vendor`, `is_active`, `date_time`, `update_time`, `updated_by`, `subscribe`) VALUES
+INSERT INTO `tbl_registration` (`user_id`, `user_name`, `password`, `logmobile`, `email`, `user_type`, `is_active`, `date_time`, `update_time`, `updated_by`, `subscribe`) VALUES
 (1, 'White Fire Jewels', '123456', 8888888888, 'whitefirejewels@jwelers.com', 1, 1, '2015-10-15 17:42:32', '2015-10-15 12:08:25', 'User', 0);
 
 -- --------------------------------------------------------
@@ -1769,7 +1810,7 @@ INSERT INTO `tbl_registration` (`user_id`, `user_name`, `password`, `logmobile`,
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_speak_master` (
-  `speak_id` bigint(20) unsigned NOT NULL COMMENT 'auto incremented id',
+  `speak_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'auto incremented id',
   `name` varchar(50) NOT NULL COMMENT 'user name',
   `city` varchar(50) DEFAULT NULL,
   `email` varchar(50) NOT NULL COMMENT 'user email id',
@@ -1780,8 +1821,11 @@ CREATE TABLE IF NOT EXISTS `tbl_speak_master` (
   `active_flag` tinyint(2) DEFAULT '1' COMMENT '0 - Active, 1 - Deleted',
   `date_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'Date time on which it was created / testimonial upload time',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Timestamp on which it was last updated',
-  `user_id` bigint(20) unsigned NOT NULL COMMENT 'user id'
-) ENGINE=MyISAM AUTO_INCREMENT=3000 DEFAULT CHARSET=latin1;
+  `user_id` bigint(20) unsigned NOT NULL COMMENT 'user id',
+  PRIMARY KEY (`speak_id`),
+  KEY `idx_city` (`city`),
+  KEY `idx_mob` (`mobile`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3000 ;
 
 --
 -- Dumping data for table `tbl_speak_master`
@@ -1798,7 +1842,7 @@ INSERT INTO `tbl_speak_master` (`speak_id`, `name`, `city`, `email`, `mobile`, `
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_stylist_appoint` (
-  `appointment_id` bigint(20) unsigned NOT NULL COMMENT 'auto incremented appointment id ',
+  `appointment_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'auto incremented appointment id ',
   `user_id` bigint(20) unsigned NOT NULL COMMENT 'customer logmobile',
   `customer_name` varchar(250) NOT NULL COMMENT 'customer name',
   `customer_email` varchar(300) NOT NULL COMMENT 'email address',
@@ -1812,8 +1856,9 @@ CREATE TABLE IF NOT EXISTS `tbl_stylist_appoint` (
   `display_flag` tinyint(2) NOT NULL DEFAULT '0' COMMENT 'showing flag - 1-Active 0-Inactive',
   `date_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'date and time on which it was created',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'timestamp on which it was last updated',
-  `customer_mobile` bigint(15) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `customer_mobile` bigint(15) NOT NULL,
+  PRIMARY KEY (`appointment_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `tbl_stylist_appoint`
@@ -1864,7 +1909,10 @@ CREATE TABLE IF NOT EXISTS `tbl_user_cart` (
   `quantity` int(10) NOT NULL DEFAULT '1' COMMENT 'quantity of product that is added in cart',
   `date_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'date and time when the product was added in cart',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'date and time when the record was updated',
-  `active_flag` tinyint(2) NOT NULL DEFAULT '1' COMMENT '1 - active, 0 - removed or deleted'
+  `active_flag` tinyint(2) NOT NULL DEFAULT '1' COMMENT '1 - active, 0 - removed or deleted',
+  KEY `idx_cart_id` (`cart_id`),
+  KEY `idx_product_id` (`product_id`),
+  KEY `idx_vendormobile` (`vendor_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='user cart to store incomplete transaction';
 
 --
@@ -1900,7 +1948,8 @@ CREATE TABLE IF NOT EXISTS `tbl_user_info` (
   `id_type` varchar(100) CHARACTER SET latin7 NOT NULL COMMENT 'identity type',
   `id_proof_no` varchar(200) CHARACTER SET latin7 NOT NULL COMMENT 'idproof number',
   `date_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'Date and time when it was created',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Timestamp on which it was updated'
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Timestamp on which it was updated',
+  PRIMARY KEY (`user_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='registration for every user';
 
 --
@@ -1952,7 +2001,8 @@ CREATE TABLE IF NOT EXISTS `tbl_vendor_master` (
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'timestamp on which it was last updated',
   `updatedby` varchar(50) DEFAULT NULL,
   `date_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'date and time on which it was created',
-  `is_complete` tinyint(2) DEFAULT '0' COMMENT '0-Not complete | 1-business Det Complete | 2-Complete'
+  `is_complete` tinyint(2) DEFAULT '0' COMMENT '0-Not complete | 1-business Det Complete | 2-Complete',
+  KEY `vendor_id` (`vendor_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -1978,7 +2028,8 @@ CREATE TABLE IF NOT EXISTS `tbl_vendor_product_mapping` (
   `active_flag` tinyint(2) DEFAULT '0',
   `updated_by` varchar(50) DEFAULT NULL,
   `date_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'Date and time on which it was ceated',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Timestamp on which it was updated'
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Timestamp on which it was updated',
+  PRIMARY KEY (`vendor_id`,`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -2026,14 +2077,15 @@ INSERT INTO `tbl_viewlog` (`user_id`, `user_name`, `email`, `product_id`, `vendo
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_wishlist` (
-  `wishlist_id` bigint(20) unsigned NOT NULL COMMENT 'Auto Incremented ',
+  `wishlist_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Auto Incremented ',
   `user_id` bigint(20) unsigned NOT NULL COMMENT 'user id ',
   `product_id` bigint(20) unsigned NOT NULL COMMENT 'product id',
   `vendor_id` bigint(20) unsigned DEFAULT NULL COMMENT 'vendor id',
   `active_flag` tinyint(2) NOT NULL DEFAULT '0' COMMENT 'wish flag',
   `date_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'Date and time on which it was created',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Timestamp on which it was updated'
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Timestamp on which it was updated',
+  PRIMARY KEY (`wishlist_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `tbl_wishlist`
@@ -2043,296 +2095,6 @@ INSERT INTO `tbl_wishlist` (`wishlist_id`, `user_id`, `product_id`, `vendor_id`,
 (1, 0, 10011, 9975887206, 1, '2015-10-05 18:21:16', '2015-10-05 12:51:16'),
 (2, 0, 0, 9975887206, 1, '2015-10-05 19:18:36', '2015-10-05 13:48:36');
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `tbl_addressid_generator`
---
-ALTER TABLE `tbl_addressid_generator`
-  ADD PRIMARY KEY (`address_id`);
-
---
--- Indexes for table `tbl_attribute_master`
---
-ALTER TABLE `tbl_attribute_master`
-  ADD PRIMARY KEY (`attribute_id`);
-
---
--- Indexes for table `tbl_brandid_generator`
---
-ALTER TABLE `tbl_brandid_generator`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `brand_category` (`name`,`category_name`);
-
---
--- Indexes for table `tbl_cartid_generator`
---
-ALTER TABLE `tbl_cartid_generator`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `tbl_categoryid_generator`
---
-ALTER TABLE `tbl_categoryid_generator`
-  ADD PRIMARY KEY (`category_id`),
-  ADD UNIQUE KEY `category_name` (`category_name`);
-
---
--- Indexes for table `tbl_category_master`
---
-ALTER TABLE `tbl_category_master`
-  ADD KEY `catid` (`category_id`),
-  ADD KEY `p_catid` (`parent_category_id`);
-
---
--- Indexes for table `tbl_city_master`
---
-ALTER TABLE `tbl_city_master`
-  ADD PRIMARY KEY (`cityid`);
-
---
--- Indexes for table `tbl_contactus`
---
-ALTER TABLE `tbl_contactus`
-  ADD PRIMARY KEY (`contanctus_id`),
-  ADD KEY `uid` (`user_id`);
-
---
--- Indexes for table `tbl_custom_design`
---
-ALTER TABLE `tbl_custom_design`
-  ADD PRIMARY KEY (`custom_id`);
-
---
--- Indexes for table `tbl_designer_product_mapping`
---
-ALTER TABLE `tbl_designer_product_mapping`
-  ADD PRIMARY KEY (`product_id`,`designer_id`),
-  ADD KEY `designer_id` (`designer_id`);
-
---
--- Indexes for table `tbl_newsletter_master`
---
-ALTER TABLE `tbl_newsletter_master`
-  ADD PRIMARY KEY (`news_id`);
-
---
--- Indexes for table `tbl_news_user_map`
---
-ALTER TABLE `tbl_news_user_map`
-  ADD PRIMARY KEY (`user_id`);
-
---
--- Indexes for table `tbl_offer_master`
---
-ALTER TABLE `tbl_offer_master`
-  ADD PRIMARY KEY (`offer_id`),
-  ADD UNIQUE KEY `offid` (`offer_id`);
-
---
--- Indexes for table `tbl_offer_user_mapping`
---
-ALTER TABLE `tbl_offer_user_mapping`
-  ADD PRIMARY KEY (`offer_id`,`user_id`);
-
---
--- Indexes for table `tbl_order_master`
---
-ALTER TABLE `tbl_order_master`
-  ADD PRIMARY KEY (`order_id`),
-  ADD KEY `idx_transid` (`transaction_id`),
-  ADD KEY `idx_user_id` (`user_id`),
-  ADD KEY `idx_cart_id` (`cart_id`),
-  ADD KEY `idx_shipAddId` (`shippping_address_id`),
-  ADD KEY `idx_billAddId` (`bill_address_Id`);
-
---
--- Indexes for table `tbl_productid_generator`
---
-ALTER TABLE `tbl_productid_generator`
-  ADD PRIMARY KEY (`product_id`),
-  ADD UNIQUE KEY `name_brand` (`product_name`,`product_brand`) USING BTREE;
-
---
--- Indexes for table `tbl_product_attributes`
---
-ALTER TABLE `tbl_product_attributes`
-  ADD PRIMARY KEY (`product_id`,`attribute_id`);
-
---
--- Indexes for table `tbl_product_category_mapping`
---
-ALTER TABLE `tbl_product_category_mapping`
-  ADD KEY `product_id` (`product_id`),
-  ADD KEY `category_id` (`category_id`);
-
---
--- Indexes for table `tbl_product_master`
---
-ALTER TABLE `tbl_product_master`
-  ADD PRIMARY KEY (`product_id`);
-
---
--- Indexes for table `tbl_product_search`
---
-ALTER TABLE `tbl_product_search`
-  ADD KEY `product_id` (`product_id`),
-  ADD KEY `product_id_2` (`product_id`);
-
---
--- Indexes for table `tbl_registration`
---
-ALTER TABLE `tbl_registration`
-  ADD PRIMARY KEY (`user_id`),
-  ADD KEY `idx_user_name` (`user_name`),
-  ADD KEY `idx_mobile` (`logmobile`),
-  ADD KEY `idx_is_active` (`is_active`),
-  ADD KEY `idx_date_time` (`date_time`),
-  ADD KEY `idx_update_time` (`update_time`),
-  ADD KEY `idx_updated_by` (`updated_by`);
-
---
--- Indexes for table `tbl_speak_master`
---
-ALTER TABLE `tbl_speak_master`
-  ADD PRIMARY KEY (`speak_id`),
-  ADD KEY `idx_city` (`city`),
-  ADD KEY `idx_mob` (`mobile`);
-
---
--- Indexes for table `tbl_stylist_appoint`
---
-ALTER TABLE `tbl_stylist_appoint`
-  ADD PRIMARY KEY (`appointment_id`);
-
---
--- Indexes for table `tbl_user_cart`
---
-ALTER TABLE `tbl_user_cart`
-  ADD KEY `idx_cart_id` (`cart_id`),
-  ADD KEY `idx_product_id` (`product_id`),
-  ADD KEY `idx_vendormobile` (`vendor_id`);
-
---
--- Indexes for table `tbl_user_info`
---
-ALTER TABLE `tbl_user_info`
-  ADD PRIMARY KEY (`user_id`);
-
---
--- Indexes for table `tbl_vendor_master`
---
-ALTER TABLE `tbl_vendor_master`
-  ADD KEY `vendor_id` (`vendor_id`);
-
---
--- Indexes for table `tbl_vendor_product_mapping`
---
-ALTER TABLE `tbl_vendor_product_mapping`
-  ADD PRIMARY KEY (`vendor_id`,`product_id`);
-
---
--- Indexes for table `tbl_wishlist`
---
-ALTER TABLE `tbl_wishlist`
-  ADD PRIMARY KEY (`wishlist_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `tbl_addressid_generator`
---
-ALTER TABLE `tbl_addressid_generator`
-  MODIFY `address_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'random id generator',AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `tbl_attribute_master`
---
-ALTER TABLE `tbl_attribute_master`
-  MODIFY `attribute_id` int(4) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=100023;
---
--- AUTO_INCREMENT for table `tbl_brandid_generator`
---
-ALTER TABLE `tbl_brandid_generator`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=100023;
---
--- AUTO_INCREMENT for table `tbl_cartid_generator`
---
-ALTER TABLE `tbl_cartid_generator`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
---
--- AUTO_INCREMENT for table `tbl_categoryid_generator`
---
-ALTER TABLE `tbl_categoryid_generator`
-  MODIFY `category_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10008;
---
--- AUTO_INCREMENT for table `tbl_city_master`
---
-ALTER TABLE `tbl_city_master`
-  MODIFY `cityid` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'city identity',AUTO_INCREMENT=1095;
---
--- AUTO_INCREMENT for table `tbl_contactus`
---
-ALTER TABLE `tbl_contactus`
-  MODIFY `contanctus_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'contact id';
---
--- AUTO_INCREMENT for table `tbl_custom_design`
---
-ALTER TABLE `tbl_custom_design`
-  MODIFY `custom_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'auto incremented custom design',AUTO_INCREMENT=9000;
---
--- AUTO_INCREMENT for table `tbl_designer_product_mapping`
---
-ALTER TABLE `tbl_designer_product_mapping`
-  MODIFY `designer_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Auto incremented designer id',AUTO_INCREMENT=3500;
---
--- AUTO_INCREMENT for table `tbl_newsletter_master`
---
-ALTER TABLE `tbl_newsletter_master`
-  MODIFY `news_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'auto incremented Newsid',AUTO_INCREMENT=1000;
---
--- AUTO_INCREMENT for table `tbl_offer_master`
---
-ALTER TABLE `tbl_offer_master`
-  MODIFY `offer_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'offer id',AUTO_INCREMENT=6000;
---
--- AUTO_INCREMENT for table `tbl_offer_user_mapping`
---
-ALTER TABLE `tbl_offer_user_mapping`
-  MODIFY `offer_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'offer id used by user',AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `tbl_order_master`
---
-ALTER TABLE `tbl_order_master`
-  MODIFY `order_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'order id',AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `tbl_productid_generator`
---
-ALTER TABLE `tbl_productid_generator`
-  MODIFY `product_id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10012;
---
--- AUTO_INCREMENT for table `tbl_registration`
---
-ALTER TABLE `tbl_registration`
-  MODIFY `user_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `tbl_speak_master`
---
-ALTER TABLE `tbl_speak_master`
-  MODIFY `speak_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'auto incremented id',AUTO_INCREMENT=3000;
---
--- AUTO_INCREMENT for table `tbl_stylist_appoint`
---
-ALTER TABLE `tbl_stylist_appoint`
-  MODIFY `appointment_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'auto incremented appointment id ',AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `tbl_wishlist`
---
-ALTER TABLE `tbl_wishlist`
-  MODIFY `wishlist_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Auto Incremented ',AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
