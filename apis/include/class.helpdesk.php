@@ -16,7 +16,7 @@ class helpdesk extends DB
        {
        $sql="INSERT 
              INTO 
-                            tbl_contactus_master
+                            tbl_contactus
                            (customer_email,
                             user_id,
                             logmobile,
@@ -31,7 +31,6 @@ class helpdesk extends DB
                           \"".$detls['cname']."\",
                           \"".$detls['cquery']."\",
                               1,
-                              now(),
                               now())";
            
            $res=$this->query($sql);

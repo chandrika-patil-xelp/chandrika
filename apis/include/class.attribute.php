@@ -17,7 +17,7 @@ class attribute extends DB
                             attribute_unit,
                             attribute_type_flag,
                             attribute_unit_position,
-                            attrinute_values,
+                            attribute_values,
                             attribute_range,
                             use_list
                 FROM 

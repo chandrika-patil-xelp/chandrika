@@ -24,7 +24,6 @@ class wishlist extends DB
                                 (\"".$detls['uid']."\",
                                  \"".$detls['pid']."\",
                                  \"".$detls['vid']."\",
-                                 1,
                                  now())";
        $res=$this->query($sql);
        if($res)

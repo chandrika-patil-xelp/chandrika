@@ -848,7 +848,7 @@
                         ORDER BY
                                     vendor_id ASC";
                 
-                $res3=$this->query($sql3);
+                $res3=$this->query($sql3,1);
                 
                 while($row3=$this->fetchData($res3))
                 {
@@ -925,18 +925,18 @@
                 {
                     $pid = $row['product_id'];
                     
-                    $reslt[$pid]['product_barcode'] = $row['barcode'];
-                    $reslt[$pid]['product_lotref'] = $row['lotref'];
-                    $reslt[$pid]['product_lotno'] = $row['lotno'];
+                    $reslt[$pid]['product_barcode'] = $row['product_barcode'];
+                    $reslt[$pid]['product_lotref'] = $row['product_lot_reference'];
+                    $reslt[$pid]['product_lotno'] = $row['product_lot_number'];
                     $reslt[$pid]['product_name'] = $row['product_name'];
                     $reslt[$pid]['product_display_name'] = $row['product_display_name'];
                     $reslt[$pid]['product_model'] = $row['product_model'];
                     $reslt[$pid]['product_brand'] = $row['product_brand'];
-                    $reslt[$pid]['product_price'] = $row['prd_price'];
+                    $reslt[$pid]['product_price'] = $row['product_price'];
                     $reslt[$pid]['product_currency'] = $row['product_currency'];
                     $reslt[$pid]['product_warranty'] = $row['product_warranty'];
-                    $reslt[$pid]['product_description'] = $row['product_desc'];
-                    $reslt[$pid]['product_image'] = $row['prd_img'];
+                    $reslt[$pid]['product_description'] = $row['product_desccription'];
+                    $reslt[$pid]['product_image'] = $row['product_image'];
 
                     $reslt[$pid]['category_name'] =$reslt1['category_name'];
 
@@ -976,15 +976,15 @@
             
             $sql = "SELECT 
                             product_id,
-                            barcode as pcode,
+                            product_barcode as pcode,
                             product_name as pname,
                             product_display_name as pdname,
                             product_model as pmodel,
                             product_brand as pbrand,
-                            prd_price as pprice,
+                            product_price as pprice,
                             product_currency as pcur,
-                            desname as product_designer,
-                            prd_img as pimg
+                            designer_name as product_designer,
+                            product_image as pimg
                     FROM 
                             tbl_product_master 
                     ORDER BY 

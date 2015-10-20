@@ -111,7 +111,7 @@ class categoryInfo extends DB
                 $sql.=" LIMIT " . $start . ",$limit";
             }
             
-            $res = $this->query($sql);
+            $res = $this->query($sql,1);
             $chkres=$this->numRows($res);
             if($chkres>0)
             {

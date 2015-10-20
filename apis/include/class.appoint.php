@@ -87,7 +87,7 @@ class appoint extends DB
                         customer_name AS customer_name,
                         customer_mobile AS customer_mobile,
                         customer_email AS customer_email,
-                        full_address AS full_address,
+                        customer_address AS full_address,
                         product_type AS product_type,
                         category,
                         budget,
@@ -99,7 +99,7 @@ class appoint extends DB
                 AND 
                         display_flag=1
                 ORDER BY 
-                        appointid ASC";
+                        appointment_id ASC";
         
         $page   = ($params['page'] ? $params['page'] : 1);
         $limit  = ($params['limit'] ? $params['limit'] : 15);

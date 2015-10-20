@@ -76,7 +76,7 @@ class location extends DB
                FROM 
                             tbl_city_master
                WHERE 
-                            city_name=\"".$params['cityname']."\"";
+                            cityname=\"".$params['cityname']."\"";
         $vres=$this->query($vsql);
         $cres=$this->numRows($vres);
         if($cres!=0)
@@ -189,7 +189,7 @@ class location extends DB
                SET
                             country_name=\"".$params['cname']."\",
                             state_name=\"".$params['sname']."\",
-                            cityname=\"".$params['newcityname']."\",
+                            cityname=\"".$params['newcityname']."\"
                WHERE
                             cityname=\"".$params['oldcityname']."\"";
         

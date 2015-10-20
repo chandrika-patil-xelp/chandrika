@@ -207,12 +207,12 @@ class auto extends DB
     public function suggestVendor($params)
     {
 	$sql="  SELECT 
-                        vendor_name,
-                        MATCH(vendor_name) AGAINST ('" . $params['str'] . "*' IN BOOLEAN MODE) AS startwith 
+                        orgName,
+                        MATCH(orgName) AGAINST ('" . $params['str'] . "*' IN BOOLEAN MODE) AS startwith 
                 FROM 
                         tbl_vendor_master
                 WHERE   
-                        MATCH(vendor_name) AGAINST ('".$params['str']."*' IN BOOLEAN MODE) 
+                        MATCH(orgName) AGAINST ('".$params['str']."*' IN BOOLEAN MODE) 
                 ORDER BY 
                         startwith DESC";
         
@@ -224,7 +224,7 @@ class auto extends DB
             $start = ($page * $limit) - $limit;
             $sql.=" LIMIT " . $start . ",$limit";
         }
-        $res=$this->query($sql);
+        $res=$this->query($sql,1);
         if($this->numRows($res)>0)
         {
             while($row=$this->fetchData($res))

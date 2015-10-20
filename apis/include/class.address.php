@@ -189,12 +189,12 @@ class address extends DB
                         address_id,
                         address_title 
               FROM 
-                        tbl_addressid_generator
+                        tbl_address_master
               WHERE 
                         user_id=".$params['uid']."
               ORDER BY 
                         address_id ASC";
-        $res=$this->query($sql);
+        $res=$this->query($sql,1);
         if($res)
         {
             while($row=$this->fetchData($res))
