@@ -14,7 +14,7 @@ class newsletter extends DB
                 SET 
                                 subscribe=1 
                 WHERE 
-                                active_flag=1
+                                is_active=1
                 AND 
                                 user_id=".$params['uid'];
        
@@ -99,7 +99,6 @@ class newsletter extends DB
                                  \"".$detls['des']."\",
                                  \"".$detls['content']."\",
                                      1,
-                                     now(),
                                      now())";           
            $res=$this->query($sql);
           

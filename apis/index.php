@@ -1311,8 +1311,8 @@ switch($action)
             break;            
         
 //-----------------------Subscribe and Newsletter---------------------------
-
-//  localhost/jzeva/apis/index.php?action=subscribe&uid=6        
+// working
+//  localhost/jzeva/apis/index.php?action=subscribe&uid=1        
         case 'subscribe':
             include APICLUDE.'class.newsletter.php';
             $uid = (!empty($params['uid'])) ? trim($params['uid']):'';
@@ -1328,7 +1328,7 @@ switch($action)
             $result=$obj->subscribe($params);
             $res=$result;
             break;
-            
+// working            
 //  localhost/jzeva/apis/index.php?action=viewSubscribers&page=1&limit=1            
         case 'viewSubscribers':
             include APICLUDE.'class.newsletter.php';
@@ -1347,7 +1347,8 @@ switch($action)
             $res=$result;
             break;
 
-//  localhost/jzeva/apis/index.php?action=addNewsletter&dt=            
+// working            
+//  localhost/jzeva/apis/index.php?action=addNewsletter&dt={%22result%22:%20{%22name%22:%20%22cisfwqqqfqd%22,%22des%22:%20%22wqqdqdqw%22,%22content%22:%20%22singharun@gmail.com%22}}            
         case 'addNewsletter':
             include APICLUDE.'class.newsletter.php';
             $dt=(!empty($params['dt'])) ? trim(urldecode($params['dt'])) : '';
@@ -1363,7 +1364,7 @@ switch($action)
             $result=$obj->addNewsletter($params);
             $res=$result;
             break;
-
+// working
 //  localhost/jzeva/apis/index.php?action=unsubscribe&uid=6
         case 'unsubscribe':
             include APICLUDE.'class.newsletter.php';
