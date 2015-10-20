@@ -19,7 +19,7 @@ class address extends DB
                      FROM 
                                     tbl_addressid_generator 
                      WHERE 
-                                    user_id=".$detls['uid']."";
+                                    user_id=\"".$detls['uid']."\"";
             $chkres=$this->query($chksql);
             $cntres=$this->numRows($chkres);
             if($cntres==0)

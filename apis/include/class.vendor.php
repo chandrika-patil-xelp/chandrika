@@ -11,6 +11,11 @@ class vendor extends DB
         $dt= json_decode($params['dt'],1);
         $detls  = $dt['result'];
         
+        $sql="SELECT city from tbl_vendor_master where vendor_id=\"".$detls['vid']."\"";
+        $res=$this->query($sql);
+        $row=$this->fetchData($res);
+        $city=$row['city'];
+        
         $sql="INSERT
               INTO 
                                     tbl_vendor_product_mapping
@@ -22,6 +27,7 @@ class vendor extends DB
                                     vendor_remarks,
                                     active_flag,
                                     updated_by,
+                                    city,
                                     date_time)";
         $sql.=" VALUES
                                  (\"".$detls['pid']."\",
@@ -30,6 +36,7 @@ class vendor extends DB
                                   \"".$detls['vq']."\",
                                   \"".$detls['vc']."\",
                                   \"".$detls['vr']."\",
+                                  \"".$city."\",
                                       1,
                                      'vendor',
                                       now())";
@@ -74,6 +81,7 @@ class vendor extends DB
                                     vendor_price,
                                     vendor_quantity,
                                     vendor_currency,
+                                    
                                     active_flag 
                    FROM 
                                     tbl_vendor_product_mapping 
@@ -85,9 +93,8 @@ class vendor extends DB
             $vsql.=" LIMIT " . $start . ",$limit";
         }
             
-            $vres=$this->query($vsql);
-            //$prsql.=" LIMIT " . $start . ",$limit";
             
+            $vres=$this->query($vsql);
             $i=-1;
             $vpmap=array();
             while($row1=$this->fetchData($vres)) 
@@ -96,6 +103,7 @@ class vendor extends DB
                 $vpmap['vendor_price'][$i]=$row1['vendor_price'];
                 $vpmap['vendor_quantity'][$i]=$row1['vendor_quantity'];
                 $vpmap['vendor_currency'][$i]=$row1['vendor_currency'];
+                $vpmap['vendor_city'][$i]=$row1['city'];
                 $vpmap['active_flag'][$i]=$row1['active_flag'];
                 $vmap[]=$vpmap;
             }
@@ -291,6 +299,7 @@ class vendor extends DB
                 $vdet['vendor_quantity']=$row['vendor_quantity'];
                 $vdet['vendor_currency']=$row['vendor_currency'];
                 $vdet['vendor_remarks']=$row['vendor_remarks'];
+                $vdet['vendor_city']=$row['city'];
                 $vdetls[]=$vdet;
             }
             $sql2="SELECT 
@@ -383,6 +392,7 @@ class vendor extends DB
                 $vdet['vendor_quantity']=$row['vendor_quantity'];
                 $vdet['vendor_currency']=$row['vendor_currency'];
                 $vdet['vendor_remarks']=$row['vendor_remarks'];
+                $vdet['vendor_city']=$row['city'];
                 $vdetls[]=$vdet;
             }
             

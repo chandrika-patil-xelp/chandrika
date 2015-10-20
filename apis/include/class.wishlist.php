@@ -19,14 +19,12 @@ class wishlist extends DB
                                    (user_id,
                                     product_id,
                                     vendor_id,
-                                    date_time,
-                                    update_time)
+                                    date_time)
                     VALUES
-                                (".$detls['uid'].",
-                                 ".$detls['pid'].",
-                                 ".$detls['vid'].",
+                                (\"".$detls['uid']."\",
+                                 \"".$detls['pid']."\",
+                                 \"".$detls['vid']."\",
                                  1,
-                                 now(),
                                  now())";
        $res=$this->query($sql);
        if($res)

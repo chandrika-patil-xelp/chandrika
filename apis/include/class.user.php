@@ -108,8 +108,8 @@
                     FROM
                             tbl_registration
                     WHERE
-                            logmobile=".$detls['logmobile']."";
-          $res=$this->query($sql);
+                            logmobile=".$detls['logmobile'];
+          $res=$this->query($sql,1);
           $row=$this->fetchData($res);
           $isv=$row['user_type'];
           $uid=$row['user_id'];
@@ -151,7 +151,7 @@
                                         is_complete='is_complete' 
                 WHERE 
                                                 vendor_id=".$uid."";
-             $vres=$this->query($vsql);
+             $vres=$this->query($vsql,1);
             if($vres)
             {
                 $arr="Vendor table is updated";

@@ -251,13 +251,13 @@ class attribute extends DB
                          category_id,
                          date_time)
                 VALUES
-                        (".$aid.",
-                         ".$dflag.",
-                         ".$dpos.",
-                         ".$fil_flag.",
-                         ".$fil_pos.",
+                        (\"".$aid."\",
+                         \"".$dflag."\",
+                         \"".$dpos."\",
+                         \"".$fil_flag."\",
+                         \"".$fil_pos."\",
                            1,
-                         ".$catid.",
+                         \"".$catid."\",
                            now())";
         $res = $this->query($sql);
             if($res)
@@ -414,7 +414,14 @@ class attribute extends DB
     
     function unset_category_mapping($params) 
     {   
-        $sql = "UPDATE tbl_attribute_category_mapping SET active_flag=2 WHERE category_id=".$params['catid']." AND attribute_id=".$params['aid'];
+        $sql = "UPDATE
+                        tbl_attribute_category_mapping
+                SET
+                        active_flag=2
+                WHERE 
+                        category_id=".$params['catid']." 
+                AND 
+                        attribute_id=".$params['aid'];
 	$res = $this->query($sql);
 	if($res) 
         { 
