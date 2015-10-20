@@ -52,7 +52,6 @@ class vendor extends DB
     {              
         $page   = ($params['page'] ? $params['page'] : 1);
         $limit  = ($params['limit'] ? $params['limit'] : 15);
-       
         
         $total_products = 0;
         
@@ -70,7 +69,6 @@ class vendor extends DB
         $chkcnt=$this->numRows($cnt_res);
          if($chkcnt>0)
         {
-             
             $vsql="SELECT 
                                     product_id,
                                     vendor_price,
@@ -81,28 +79,27 @@ class vendor extends DB
                                     tbl_vendor_product_mapping 
                    WHERE 
                                     vendor_id=".$params['vid'];
+        if (!empty($page))
+        {
+            $start = ($page * $limit) - $limit;
+            $vsql.=" LIMIT " . $start . ",$limit";
+        }
             
-            if (!empty($page))
-            {
-                $start = ($page * $limit) - $limit;
-                $vsql.=" LIMIT " . $start . ",$limit";
-            }
             $vres=$this->query($vsql);
-          //  $prsql.=" LIMIT " . $start . ",$limit";
+            //$prsql.=" LIMIT " . $start . ",$limit";
             
             $i=-1;
             $vpmap=array();
             while($row1=$this->fetchData($vres)) 
             {   $i++;    
-               echo $pid['pid']=$row1['product_id'];
+                $vpmap['product_id'][$i]=$row1['product_id'];
                 $vpmap['vendor_price'][$i]=$row1['vendor_price'];
                 $vpmap['vendor_quantity'][$i]=$row1['vendor_quantity'];
                 $vpmap['vendor_currency'][$i]=$row1['vendor_currency'];
                 $vpmap['active_flag'][$i]=$row1['active_flag'];
                 $vmap[]=$vpmap;
             }
-
-            $vmapProd=implode(',',$pid);
+            $vmapProd=implode(',',$vmap[$i]['product_id']);
 
             $prsql="SELECT 
                                         product_id,
@@ -128,7 +125,7 @@ class vendor extends DB
                     $preslt['product_display_name'][$j] = $prow['product_display_name'];
                     $preslt['product_model'][$j]        = $prow['product_model'];
                     $preslt['product_brand'][$j]        = $prow['product_brand'];
-                    $preslt['product_image'][$j]        = $prow['prodct_image'];
+                    $preslt['product_image'][$j]        = $prow['product_image'];
                     $preslt['designer_name'][$j]        = $prow['designer_name'];
                     $presults[] = $preslt;
             }
@@ -140,7 +137,7 @@ class vendor extends DB
                 $total_products = $cnt_row['cnt'];
                 }
             }
-            $arr=array('productdet'=>$presults[$j],'vendor_prod'=>$vmap[$i],'total_products'=>$total_products);    
+            $arr=array('productdet'=>$presults,'vendor_prod'=>$vmap[$i],'total_products'=>$total_products);    
             $err = array('Code' => 0, 'Msg' => 'Details fetched successfully');
           }
              else

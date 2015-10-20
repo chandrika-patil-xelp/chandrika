@@ -298,7 +298,7 @@ switch($action)
             $result= $obj->addVendorPrdInfo($params);
             $res=$result;
             break;
-
+//working  -- make sure product id exsists  
 //  localhost:8080/jzeva/apis/index.php?action=getVproducts&vid=9975887206&page=&limit=  
         case 'getVproducts':
             include APICLUDE.'class.vendor.php';
@@ -336,7 +336,7 @@ switch($action)
             $res=$result;
             break;
             */
-                        
+// working                        
 //  localhost:8080/jzeva/apis/index.php?action=updateProductInfo&vid=1&logmobile=9975887206&pid=7&vp=93323823&vq=10&af=1
         case 'updateProductInfo':
             include APICLUDE.'class.vendor.php';
@@ -357,8 +357,8 @@ switch($action)
             $result= $obj->updateProductInfo($params);
             $res=$result;
             break;
-            
-//  localhost:8080/jzeva/apis/index.php?action=getVDetailByPid&pid=1&vid=7&page=1&limit=1
+ // working           
+//  localhost:8080/jzeva/apis/index.php?action=getVDetailByVidPid&pid=10011&vid=1&page=1&limit=1
         case 'getVDetailByVidPid':
             include APICLUDE.'class.vendor.php';
             $product_id=(!empty($params['pid'])) ? trim($params['pid']) : '';
@@ -372,11 +372,11 @@ switch($action)
                 break;
             }
             $obj=new vendor($db['jzeva']);
-            $result=$obj->getVDetailByPid($params);
+            $result=$obj->getVDetailByVidPid($params);
             $res=$result;
             break;
    
-//  localhost:8080/jzeva/apis/index.php?action=getVDetailByPid&pid=1&vid=7&page=1&limit=1
+//  localhost:8080/jzeva/apis/index.php?action=getVDetailByPid&pid=10011&vid=7&page=1&limit=1
         case 'getVDetailByPid':
             include APICLUDE.'class.vendor.php';
             $product_id=(!empty($params['pid'])) ? trim($params['pid']) : '';
