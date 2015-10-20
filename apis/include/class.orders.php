@@ -14,9 +14,8 @@ include APICLUDE.'common/db.class.php';
            $dt=  json_decode($params['dt'],1);
            $detls  = $dt['result'];
            $proErr = $dt['error'];
-           if($proErr['errCode']== 0)
-           {
-               $osql="INSERT
+             
+            $osql="INSERT
                       INTO 
                                      tbl_order_master
                                     (user_id,
@@ -26,7 +25,6 @@ include APICLUDE.'common/db.class.php';
                                      transaction_id,
                                      order_status,
                                      date_time,
-                                     update_time,
                                      active_flag)
                       VALUES
                                   (".$detls['uid'].",
@@ -36,9 +34,8 @@ include APICLUDE.'common/db.class.php';
                                    ".$detls['tid'].",
                                      1,
                                      now(),
-                                     time(),
                                      1)";
-               $ores=$this->query($osql,1);
+               $ores=$this->query($osql);
                if($ores)
                {
                    $arr="Order table has been updated";
@@ -49,12 +46,7 @@ include APICLUDE.'common/db.class.php';
                    $arr=array();
                    $err=array('Code'=>1,'Msg'=>'Insert Operation error');
                }
-           }
-           else
-           {
-               $arr=array();
-               $err=array('Code'=>1,'Msg'=>'Error in obtaining data');
-           }
+           
            $result=array('results'=>$arr,'error'=>$err);
            return $result;
         }
@@ -164,7 +156,7 @@ include APICLUDE.'common/db.class.php';
                                             currency,
                                             date_time,
                                             transaction_status,
-                                            transaction_desc,
+                                            transcation_desc,
                                             amount)
                       VALUES
                                         ('".$detls['tid']."',
@@ -230,12 +222,12 @@ include APICLUDE.'common/db.class.php';
                                 transaction_desc,
                                 amount
                FROM 
-                                tbl_transaction_master
+                                tbl_transaction
                WHERE 
                                 transaction_id=".$params['tid'];
             $page   = ($params['page'] ? $params['page'] : 1);
             $limit  = ($params['limit'] ? $params['limit'] : 15);
-        if (!empty($page))
+        if(!empty($page))
         {
             $start = ($page * $limit) - $limit;
             $isql.=" LIMIT " . $start . ",$limit";
@@ -243,11 +235,14 @@ include APICLUDE.'common/db.class.php';
         
         $ires=$this->query($isql);
         $cntres=$this->numRows($ires);
+        
         if($cntres>0)
         {
-            while($row=$this->fetchData($ores));
+            while($rows=$this->fetchData($ires))
             {
-               $arr[]=$row;
+                 $arr[]=$rows;   
+                 
+                 
             }
             $err=array('Code'=>0,'Msg'=>'Transaction Details fetched');
         }
@@ -256,6 +251,8 @@ include APICLUDE.'common/db.class.php';
            $arr=array();
            $err=array('Code'=>0,'Msg'=>'No records found');
         }
+        $result=array('result'=>$arr,'error'=>$err);
+        return $result;
    }
        
 }        

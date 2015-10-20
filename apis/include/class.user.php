@@ -120,7 +120,7 @@
                                         tbl_vendor_master 
                     SET 
                                         orgName='".$detls['orgname']."',
-                                        fulladdress=".$detls['fulladd'].",
+                                        fulladdress='".$detls['fulladd']."',
                                         address1='".$detls['add1']."',
                                         area='".$detls['area']."',
                                         postal_code='".$detls['pincode']."',
@@ -148,7 +148,7 @@
                                         lat=".$detls['lat'].",
                                         lng=".$detls['lng'].",
                                         updatedby='vendor',
-                                        is_complete=is_complete 
+                                        is_complete='is_complete' 
                 WHERE 
                                                 vendor_id=".$uid."";
              $vres=$this->query($vsql);

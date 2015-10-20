@@ -8,7 +8,7 @@ switch($action)
 {        
 //----------------------------User---------------------------------------
 // Working
-//  localhost/jzeva/apis/index.php?action=checkUser&mobile=9987867578                
+//  localhost:8080/jzeva/apis/index.php?action=checkUser&mobile=9987867578                
         case 'checkUser':
             include APICLUDE.'class.user.php';
             $mobile=(!empty($params['mobile'])) ? trim($params['mobile']) : '';
@@ -25,7 +25,7 @@ switch($action)
             $res= $result;
             break;
 // Working            
-// localhost/jzeva/apis/index.php?action=userReg&username=Shushrut Kumar&password=mishra1.234&mobile=7309290529&email=shubham.bajpai@xelpmoc.in&usertype=1                                        
+// localhost:8080/jzeva/apis/index.php?action=userReg&username=Shushrut Kumar&password=mishra1.234&mobile=7309290529&email=shubham.bajpai@xelpmoc.in&usertype=1                                        
         case 'userReg':
             include APICLUDE.'class.user.php';
             $username=(!empty($params['username'])) ? trim(urldecode($params['username'])) : '';
@@ -45,8 +45,10 @@ switch($action)
             $result= $obj->userReg($params);
             $res= $result;
             break;
-// Not Working            
-//  localhost/jzeva/apis/index.php?action=udtProfile&dt={%22result%22:{%22logmobile%22:7309290529,%22username%22:%22jummanji%22,%22gen%22:1,%22alt_email%22:%22singharun@gmail.com%22,%22dob%22:%221990-10-08%22,%22workphone%22:%229696969696%22,%22pincode%22:223232,%22area%22:%22janakpuri%20west%22,%22cityname%22:%22DELHI%22,%22state%22:%22Delhi%22,%22country%22:%22india%22,%22address1%22:%22sfwfe%20ewf%20wef%20wfe%22,%22address2%22:%22sfwfe%20ewf%20wef%20wfe%22,%22mobile%22:34235235,%22landline%22:%223242425225%22,%22idtype%22:%22323222%22,%22idproof%22:%22323222%22,%22lat%22:10.224113,%22lng%22:23.74756363245}}            
+//  Working            
+//  localhost:8080/jzeva/apis/index.php?action=udtProfile&dt={"result":{"logmobile":8888888888,"orgname":"Xelpmoc","fulladd":"2ba Mukundnagare","add1":"Mukundnagar 123","area":"Mukundnagar","pincode":"411037","city":"Pune","country":"India","state":"Maharashtra","tel":"0204232623","altmail":"rajesh@yahoo.com","ofcity":"Bangalore","ofcountry":"India","cperson":"Rishi","position":"first","cmobile":9552956854,"email":"raj@yahoo.com","memcert":"Shah Trader","bdbc":"xyz","othbdbc":"pqr","vat":1234,"wbst":"mywebsite.com","landline":"0204232623","mdbw":"mbdw","banker":"city Bank","pan":"121212","tovr":"turnover","lat":10.224113,"lng":23.7475636}}
+
+            
         case 'udtProfile':
             include APICLUDE.'class.user.php';
             $dt=(!empty($params['dt'])) ?  trim(urldecode($params['dt'])) : '';
@@ -64,7 +66,7 @@ switch($action)
             $res= $result;
             break;                
 //  Working            
-//  localhost/jzeva/apis/index.php?action=logUser&mobile=8888888888&password=1avbd            
+//  localhost:8080/jzeva/apis/index.php?action=logUser&mobile=8888888888&password=1avbd            
         case 'logUser':
             include  APICLUDE.'class.user.php';
             $mobile=(!empty($params['mobile'])) ?  trim($params['mobile']) : '';
@@ -84,7 +86,7 @@ switch($action)
             break;
             
 //Working
-// localhost/jzeva/apis/index.php?action=updatePass&mobile=8888888888&password=1avbd         
+// localhost:8080/jzeva/apis/index.php?action=updatePass&mobile=8888888888&password=1avbd         
         case 'updatePass':
             include APICLUDE.'class.user.php';
             $password=(!empty($params['passowrd'])) ?  trim(urldecode($params['password'])) : '';
@@ -103,7 +105,7 @@ switch($action)
             break;
             
 //Working
-// localhost/jzeva/apis/index.php?action=deactUser&mobile=8888888888            
+// localhost:8080/jzeva/apis/index.php?action=deactUser&mobile=8888888888            
         case 'deactUser':
             include APICLUDE.'class.user.php';
             $mobile=(!empty($params['mobile'])) ?  trim($params['mobile']) : '';
@@ -121,7 +123,7 @@ switch($action)
             break;
 
 //Working            
-// localhost/jzeva/apis/index.php?action=actUser&mobile=8888888888                        
+// localhost:8080/jzeva/apis/index.php?action=actUser&mobile=8888888888                        
         case 'actUser':
             include APICLUDE.'class.user.php';
             $mobile=(!empty($params['mobile'])) ?  trim($params['mobile']) : '';
@@ -138,7 +140,7 @@ switch($action)
             $res= $result;
             break;
 //  Working
-//  localhost/jzeva/apis/index.php?action=viewAll&uid=1           
+//  localhost:8080/jzeva/apis/index.php?action=viewAll&uid=1           
         case 'viewAll':
             include APICLUDE.'class.user.php';
             $uid=(!empty($params['uid']))?trim($params['uid']) : '';
@@ -155,11 +157,12 @@ switch($action)
             $res=$result;
             break;
 //--------------------------Order----------------------------------------
-                       
-//  localhost/jzeva/apis/index.php?action=addOrd&dt={"uid":123,"cid":123,"said":345,"baid":1,"tid":3434,"cur":"1990-10-08"}
-            include APICLUDE.'class.orders.php';
+ //working                     
+//  localhost:8080/jzeva/apis/index.php?action=addOrd&dt           
+  case 'addOrd':
+          include APICLUDE.'class.orders.php';
             $dt=(!empty($params['dt'])) ? trim(urldecode($params['dt'])) : '';
-            if(empty($dt))
+           if(empty($dt))
             {
                 $arr=array();
                 $err=array('Code'=>1,'Msg'=>'Invalid Parameter');
@@ -172,7 +175,8 @@ switch($action)
             $res=$result;
             break;
     
-//  localhost/jzeva/apis/index.php?action=ordById&tid=9975887206&page=1&limit=1                            
+ // working
+//  localhost:8080/jzeva/apis/index.php?action=ordById&tid=9975887206&page=1&limit=1                            
         case 'ordById':
             include APICLUDE.'class.orders.php';
             $tid=(!empty($params['tid'])) ? trim(urldecode($params['tid'])):'';
@@ -188,12 +192,12 @@ switch($action)
             $result = $obj->ordById($params);
             $res= $result;
             break;
-            
-//  localhost/jzeva/apis/index.php?action=actOrdList&uid=9975887206&limit=1&page=1            
+ //working           
+//  localhost:8080/jzeva/apis/index.php?action=actOrdList&uid=1&limit=1&page=1            
         case 'actOrdList':
             include APICLUDE.'class.orders.php';
             $uid=(!empty($params['uid'])) ? trim($params['uid']):'';
-            if(empty($oid))
+            if(empty($uid))
             {
                 $arr = array();
                 $err = array('Code' => 1, 'Msg' => 'Parameter missing');
@@ -202,11 +206,11 @@ switch($action)
                 break;
             }
             $obj= new orders($db['jzeva']);
-            $result = $obj->ordById($params);
+            $result = $obj->actOrdList($params);
             $res= $result;
             break;
-            
-//  localhost/jzeva/apis/index.php?action=addtrans&dt={%22result%22:%20{%22oid%22:1,%22uid%22:10105,%22tid%22:%209975887206,%22ptyp%22:%20%22sadd%22,%22pmode%22:%201,%22cuse%22:%20%22singharun@gmail.com%22,%22cur%22:%20%221990-10-08%22,%22des%22:%20%22sddv%20cd%20qwdd%22,%22amt%22:%20120012},%22error%22:%20{%22errCode%22:%200}}
+ // working           
+//  localhost:8080/jzeva/apis/index.php?action=addtrans&dt={%22result%22:%20{%22oid%22:1,%22uid%22:10105,%22tid%22:%20999999206,%22ptyp%22:%20%22sadd%22,%22pmode%22:%201,%22cuse%22:%20%22singharun@gmail.com%22,%22cur%22:%20%221990-10-08%22,%22des%22:%20%22sddv%20cd%20qwdd%22,%22amt%22:%20120012},%22error%22:%20{%22errCode%22:%200}}
         case 'addtrans':
             include APICLUDE.'class.orders.php';
             $dt=(!empty($params['dt'])) ? trim(urldecode($params['dt'])):'';
@@ -222,8 +226,8 @@ switch($action)
             $result=$obj->addtrans($params);
             $res= $result;
             break;
-            
-//  localhost/jzeva/apis/index.php?action=actOrdList&tid=9975887206&page=1&limit=1
+//  working            
+//  localhost:8080/jzeva/apis/index.php?action=viewtrans&tid=9975887206&page=1&limit=1
         case 'viewtrans':
             include APICLUDE.'class.orders.php';
             $tid  = (!empty($params['tid'])) ? trim($params['tid']) : '';
@@ -235,12 +239,12 @@ switch($action)
             break;
             }
             $obj= new orders($db['jzeva']);
-            $result= $obj->ordByAmt($params);
+            $result= $obj->viewtrans($params);
             $res = $result;
             break;         
 //-----------------------------ViewLog----------------------------------
 
-//  localhost/jzeva/apis/index.php?action=filLog&uid=&product_id=7&vid=            
+//  localhost:8080/jzeva/apis/index.php?action=filLog&uid=&product_id=7&vid=1            
         case 'filLog':
             include APICLUDE.'class.viewlog.php';
             $uid=(!empty($params['uid'])) ? trim($params['uid']) : '';
@@ -259,7 +263,7 @@ switch($action)
             $res = $result;
             break;
 
-//  localhost/jzeva/apis/index.php?action=viewLog&vid=7878787878&pid=&page=&limit=                        
+//  localhost:8080/jzeva/apis/index.php?action=viewLog&vid=7878787878&pid=&page=&limit=                        
         case 'viewLog':
         include APICLUDE.'class.viewlog.php';
         $vid=(!empty($params['vid'])) ? trim($params['vid']) : '';
@@ -278,7 +282,7 @@ switch($action)
             
 //-----------------------------Vendor Product------------------------------------
 
-//  localhost/jzeva/apis/index.php?action=addVendorPrdInfo&dt={%22result%22:%20{%22pid%22:%201,%22vid%22:%207,%22vp%22:%207309290529,%22vq%22:%201,%22vc%22:%20%22INR%22,%22vr%22:%204.21,%22af%22:%201}}
+//  localhost:8080/jzeva/apis/index.php?action=addVendorPrdInfo&dt={%22result%22:%20{%22pid%22:%201,%22vid%22:%207,%22vp%22:%207309290529,%22vq%22:%201,%22vc%22:%20%22INR%22,%22vr%22:%204.21,%22af%22:%201}}
         case 'addVendorPrdInfo':
             include APICLUDE.'class.vendor.php';            
             $dt=(!empty($params['dt'])) ? trim($params['dt']) : '';
@@ -295,7 +299,7 @@ switch($action)
             $res=$result;
             break;
 
-//  localhost/jzeva/apis/index.php?action=getVproducts&vid=9975887206&page=&limit=  
+//  localhost:8080/jzeva/apis/index.php?action=getVproducts&vid=9975887206&page=&limit=  
         case 'getVproducts':
             include APICLUDE.'class.vendor.php';
             $vid=(!empty($params['vid'])) ? trim($params['vid']) : '';
@@ -312,7 +316,7 @@ switch($action)
             $res=$result;
             break;
 
-//  localhost/jzeva/apis/index.php?action=getVproductsByName&vid=7&prname=blue&page=1&limit=1        
+//  localhost:8080/jzeva/apis/index.php?action=getVproductsByName&vid=7&prname=blue&page=1&limit=1        
      /*   case 'getVproductsByName':
             include APICLUDE.'class.vendor.php';
             $vid=(!empty($params['vid'])) ? trim($params['vid']) : ''; //user session mobile
@@ -333,7 +337,7 @@ switch($action)
             break;
             */
                         
-//  localhost/jzeva/apis/index.php?action=updateProductInfo&vid=1&logmobile=9975887206&pid=7&vp=93323823&vq=10&af=1
+//  localhost:8080/jzeva/apis/index.php?action=updateProductInfo&vid=1&logmobile=9975887206&pid=7&vp=93323823&vq=10&af=1
         case 'updateProductInfo':
             include APICLUDE.'class.vendor.php';
             $vendor_id=(!empty($params['vid'])) ? trim($params['vid']) : '';
@@ -354,7 +358,7 @@ switch($action)
             $res=$result;
             break;
             
-//  localhost/jzeva/apis/index.php?action=getVDetailByPid&pid=1&vid=7&page=1&limit=1
+//  localhost:8080/jzeva/apis/index.php?action=getVDetailByPid&pid=1&vid=7&page=1&limit=1
         case 'getVDetailByVidPid':
             include APICLUDE.'class.vendor.php';
             $product_id=(!empty($params['pid'])) ? trim($params['pid']) : '';
@@ -372,7 +376,7 @@ switch($action)
             $res=$result;
             break;
    
-//  localhost/jzeva/apis/index.php?action=getVDetailByPid&pid=1&vid=7&page=1&limit=1
+//  localhost:8080/jzeva/apis/index.php?action=getVDetailByPid&pid=1&vid=7&page=1&limit=1
         case 'getVDetailByPid':
             include APICLUDE.'class.vendor.php';
             $product_id=(!empty($params['pid'])) ? trim($params['pid']) : '';
@@ -391,7 +395,7 @@ switch($action)
                
 
 //-------------------------Location--------------------------------------
- // localhost/jzeva/apis/index.php?action=addCity&cname=Pakistan&sname=Punjab&cityname=lahore            
+ // localhost:8080/jzeva/apis/index.php?action=addCity&cname=Pakistan&sname=Punjab&cityname=lahore            
         case 'addCity':
             include APICLUDE.'class.location.php';
             $cityname=(!empty($params['cityname'])) ? trim(urldecode($params['cityname'])) : '';
@@ -410,7 +414,7 @@ switch($action)
             $res=$result;
             break;
             
-// localhost/jzeva/apis/index.php?action=viewbyCity&cityname=bangalore            
+// localhost:8080/jzeva/apis/index.php?action=viewbyCity&cityname=bangalore            
         case 'viewbyCity':
             include APICLUDE.'class.location.php';
             $cityname=(!empty($params['cityname'])) ? trim(urldecode($params['cityname'])) : '';
@@ -427,7 +431,7 @@ switch($action)
             $res= $result;
             break;
                         
-//  localhost/jzeva/apis/index.php?action=viewbyState&sname=punjab&cname=pakistan&page=1&limit=2                 
+//  localhost:8080/jzeva/apis/index.php?action=viewbyState&sname=punjab&cname=pakistan&page=1&limit=2                 
         case 'viewbyState': 
             include APICLUDE.'class.location.php';
             $sname=(!empty($params['sname'])) ? trim(urldecode($params['sname'])) : '';
@@ -445,7 +449,7 @@ switch($action)
             $res=$result;
             break;
         
-//  localhost/jzeva/apis/index.php?action=viewbyCountry&cname=pakistan&page=1&limit=2              
+//  localhost:8080/jzeva/apis/index.php?action=viewbyCountry&cname=pakistan&page=1&limit=2              
         case 'viewbyCountry':
             include APICLUDE.'class.location.php';
             $cname=(!empty($params['cname'])) ? trim(urldecode($params['cname'])) : '';
@@ -462,7 +466,7 @@ switch($action)
             $res=$result;
             break;    
             
-//  localhost/jzeva/apis/index.php?action=updatecity&newcityname=Delhi&oldcityname=lahore&sname=delhi&cname=India            
+//  localhost:8080/jzeva/apis/index.php?action=updatecity&newcityname=Delhi&oldcityname=lahore&sname=delhi&cname=India            
         case 'updatecity':
             include APICLUDE.'class.location.php';
             $newcityname=(!empty($params['newcityname'])) ? trim(urldecode($params['newcityname'])) : '';
@@ -485,7 +489,7 @@ switch($action)
 
 //-------------------------CategoryInfo-----------------------------
         
-//   localhost/jzeva/apis/index.php?action=getCatList&catid=10001        
+//   localhost:8080/jzeva/apis/index.php?action=getCatList&catid=10001        
         case 'getSubCat': 
             include APICLUDE.'class.categoryInfo.php';
             $obj= new categoryInfo($db['jzeva']);
@@ -494,7 +498,7 @@ switch($action)
             break;
         
         
-//   localhost/jzeva/apis/index.php?action=getCatList&page=1&limit=2        
+//   localhost:8080/jzeva/apis/index.php?action=getCatList&page=1&limit=2        
         case 'getCatList': 
             include APICLUDE.'class.categoryInfo.php';
             $obj= new categoryInfo($db['jzeva']);
@@ -502,7 +506,7 @@ switch($action)
             $res=$result;
             break;        
         
-//  localhost/jzeva/apis/index.php?action=getCatName&catid=10001&page=1&limit=1        
+//  localhost:8080/jzeva/apis/index.php?action=getCatName&catid=10001&page=1&limit=1        
         case 'getCatName':
             include APICLUDE.'class.categoryInfo.php';
             $catid=(!empty($params['category_id'])) ? trim($params['category_id']) : '';
@@ -519,7 +523,7 @@ switch($action)
             $res= $result;
             break;
 
-// localhost/jzeva/apis/index.php?action=getCatId&catName=bullion            
+// localhost:8080/jzeva/apis/index.php?action=getCatId&catName=bullion            
         case 'getCatId':
             include APICLUDE.'class.categoryInfo.php';
             $catName=(!empty($params['catName'])) ? trim(urldecode($params['catName'])) : '';
@@ -536,7 +540,7 @@ switch($action)
             $res= $result;
             break;
 
-// localhost/jzeva/apis/index.php?action=addCat&catName=Diamond       
+// localhost:8080/jzeva/apis/index.php?action=addCat&catName=Diamond       
         case 'addCat':
             include APICLUDE.'class.categoryInfo.php';
             $catName=(!empty($params['catName'])) ? trim(urldecode($params['catName'])) : '';
@@ -559,7 +563,7 @@ switch($action)
             $res=$result;
             break;
         
-//  localhost/jzeva/apis/index.php?action=deleteCat&catid=1                        
+//  localhost:8080/jzeva/apis/index.php?action=deleteCat&catid=1                        
         case 'deleteCat':
             include APICLUDE.'class.categoryInfo.php';
             $catid=(!empty($params['catid'])) ? trim($params['catid']) : '';
@@ -577,7 +581,7 @@ switch($action)
             $res= $result;
             break;
 
-//  localhost/jzeva/apis/index.php?action=updateCat&catid=1&catName=diamond            
+//  localhost:8080/jzeva/apis/index.php?action=updateCat&catid=1&catName=diamond            
         case 'updateCat':
             include APICLUDE.'class.categoryInfo.php';
             $catid=(!empty($params['catid'])) ? trim($params['catid']) : '';
@@ -601,7 +605,7 @@ switch($action)
 
 //----------------------BrandInfo------------------------------
 
-// localhost/jzeva/apis/index.php?action=getBrandList&page=&limit=                  
+// localhost:8080/jzeva/apis/index.php?action=getBrandList&page=&limit=                  
         case 'getBrandList':
             include APICLUDE.'class.brandInfo.php';
             $obj= new brandInfo($db['jzeva']);
@@ -611,7 +615,7 @@ switch($action)
 
 //---------- ---------------Auto---------------------------------  
 
-//  localhost/jzeva/apis/index.php?action=searchbox&srch=b&page=1&limit=1         
+//  localhost:8080/jzeva/apis/index.php?action=searchbox&srch=b&page=1&limit=1         
         case 'searchbox':
             include APICLUDE.'class.auto.php';
             $srch=(!empty($params['srch'])) ? trim(urldecode($params['srch'])) : '';
@@ -628,7 +632,7 @@ switch($action)
             $res=$result;
             break;
 
-//  localhost/jzeva/apis/index.php?action=suggestCity&str=de&page=1&limit=3            
+//  localhost:8080/jzeva/apis/index.php?action=suggestCity&str=de&page=1&limit=3            
         case 'suggestCity':
             include APICLUDE.'class.auto.php';
             $srch=(!empty($params['str'])) ? trim(urldecode($params['str'])) : '';
@@ -645,7 +649,7 @@ switch($action)
             $res=$result;
             break;
             
-//  localhost/jzeva/apis/index.php?action=suggestBrand&str=p&page=1&limit=1            
+//  localhost:8080/jzeva/apis/index.php?action=suggestBrand&str=p&page=1&limit=1            
         case 'suggestBrand':
             include APICLUDE.'class.auto.php';
             $srch=(!empty($params['str'])) ? trim(urldecode($params['str'])) : '';
@@ -662,7 +666,7 @@ switch($action)
             $res=$result;
             break;
 
-//  localhost/jzeva/apis/index.php?action=suggestCat&str=2&page=1&limit=2
+//  localhost:8080/jzeva/apis/index.php?action=suggestCat&str=2&page=1&limit=2
         case 'suggestCat':
             include APICLUDE.'class.auto.php';
             $srch=(!empty($params['str'])) ? trim(urldecode($params['str'])) : '';
@@ -679,7 +683,7 @@ switch($action)
             $res=$result;
             break;
   /*          
-//  localhost/jzeva/apis/index.php?action=suggestCat&str=2&page=1&limit=2
+//  localhost:8080/jzeva/apis/index.php?action=suggestCat&str=2&page=1&limit=2
         case 'suggestOff':
             include APICLUDE.'class.auto.php';
             $srch=(!empty($params['str'])) ? trim(urldecode($params['str'])) : '';
@@ -697,7 +701,7 @@ switch($action)
             break;            
     */        
             
-//  localhost/jzeva/apis/index.php?action=suggestVendor&str=p&page=1&limit=1
+//  localhost:8080/jzeva/apis/index.php?action=suggestVendor&str=p&page=1&limit=1
         case 'suggestVendor':
             include APICLUDE.'class.auto.php';
             $srch=(!empty($params['str'])) ? trim(urldecode($params['str'])) : '';
@@ -714,7 +718,7 @@ switch($action)
             $res=$result;
             break;    
 //--------------------Product---------------------------------------------
-//  localhost/jzeva/apis/index.php?action=addNewproduct&dt={%22result%22:%20{%22product_name%22:%20%22bluediamond%22,%22brandid%22:%2011,%22lotref%22:%201123,%22barcode%22:%20%22qw211111%22,%22lotno%22:%201133,%22product_display_name%22:%20%22marveric%20blue%20silver%20diamond%22,%22product_model%22:%20%22rw231%22,%22product_brand%22:%20%22orra%22,%22product_price%22:%2012211223.02,%22product_currency%22:%20%22INR%22,%22product_keywords%22:%20%22blue,silver,diamond%22,%22product_desc%22:%20%22a%20clear%20cut%20solitaire%20diamond%20in%20the%20vault%22,%22product_wt%22:%20223.21,%22prd_img%22:%20%22abc.jpeg%22,%22category_id%22:%201,%22product_warranty%22:%20%221%20year%22},%22attributes%22:%20[[111,3,%22green%22,1]],%22design%22:{%22desname%22:%22jackdeniel%22},%22error%22:%20{%22errCode%22:%200}}
+//  localhost:8080/jzeva/apis/index.php?action=addNewproduct&dt={%22result%22:%20{%22product_name%22:%20%22bluediamond%22,%22brandid%22:%2011,%22lotref%22:%201123,%22barcode%22:%20%22qw211111%22,%22lotno%22:%201133,%22product_display_name%22:%20%22marveric%20blue%20silver%20diamond%22,%22product_model%22:%20%22rw231%22,%22product_brand%22:%20%22orra%22,%22product_price%22:%2012211223.02,%22product_currency%22:%20%22INR%22,%22product_keywords%22:%20%22blue,silver,diamond%22,%22product_desc%22:%20%22a%20clear%20cut%20solitaire%20diamond%20in%20the%20vault%22,%22product_wt%22:%20223.21,%22prd_img%22:%20%22abc.jpeg%22,%22category_id%22:%201,%22product_warranty%22:%20%221%20year%22},%22attributes%22:%20[[111,3,%22green%22,1]],%22design%22:{%22desname%22:%22jackdeniel%22},%22error%22:%20{%22errCode%22:%200}}
         case 'addNewproduct':
             include APICLUDE.'class.product.php';
             $dt=(!empty($params['dt'])) ? trim(urldecode($params['dt'])) : '';
@@ -748,7 +752,7 @@ switch($action)
             $res=$result;
             break; */
             
-//  localhost/jzeva/apis/index.php?action=getPrdByName&prname=blue&page=1&limit=1            
+//  localhost:8080/jzeva/apis/index.php?action=getPrdByName&prname=blue&page=1&limit=1            
         case 'getPrdByName':
             include APICLUDE.'class.product.php';
             $prname=(!empty($params['prname'])) ? trim(urldecode($params['prname'])) : '';
@@ -765,7 +769,7 @@ switch($action)
             $res=$result;
             break;
 
-//  localhost/jzeva/apis/index.php?action=getPrdByCatid&catid=1&page=1&limit=1         
+//  localhost:8080/jzeva/apis/index.php?action=getPrdByCatid&catid=1&page=1&limit=1         
         case 'getPrdByCatid':
             include APICLUDE.'class.product.php';
             $catid=(!empty($params['catid'])) ? trim($params['catid']) : '';
@@ -783,7 +787,7 @@ switch($action)
 			//print_r($res);die;
             break;
 
-//  localhost/jzeva/apis/index.php?action=getPrdById&prdid=2&catid=3&page=1&limit=1         
+//  localhost:8080/jzeva/apis/index.php?action=getPrdById&prdid=2&catid=3&page=1&limit=1         
         case 'getPrdById':            
             include APICLUDE.'class.product.php';
             $prdid=(!empty($params['prdid'])) ? trim($params['prdid']):'';
@@ -801,7 +805,7 @@ switch($action)
             $res= $result;
             break;
             
-//  localhost/jzeva/apis/index.php?action=getList&page=1&limit=1
+//  localhost:8080/jzeva/apis/index.php?action=getList&page=1&limit=1
         case 'getList':
             include APICLUDE.'class.product.php';
             $obj=new product($db['jzeva']);
@@ -809,7 +813,7 @@ switch($action)
             $res=$result;
             break;
 
-//  localhost/jzeva/apis/index.php?action=productByCity&cityname=DELHI&page=1&limit=1            
+//  localhost:8080/jzeva/apis/index.php?action=productByCity&cityname=DELHI&page=1&limit=1            
         case 'productByCity':
             include APICLUDE.'class.product.php';
             $cityname=(!empty($params['cityname'])) ? trim($params['cityname']): "";
@@ -826,7 +830,7 @@ switch($action)
             $res=$result;
             break;
             
-//  localhost/jzeva/apis/index.php?action=productByBrand&bname=orra&page=1&limit=1
+//  localhost:8080/jzeva/apis/index.php?action=productByBrand&bname=orra&page=1&limit=1
         case 'productByBrand':
             include APICLUDE.'class.product.php';
             $bname=(!empty($params['bname'])) ? trim($params['bname']): "";
@@ -843,7 +847,7 @@ switch($action)
             $res=$result;
             break;
 
-//  localhost/jzeva/apis/index.php?action=productByDesigner&desname=shiamak&page=1&limit=1            
+//  localhost:8080/jzeva/apis/index.php?action=productByDesigner&desname=shiamak&page=1&limit=1            
         case 'productByDesigner':
             include APICLUDE.'class.product.php';
             $desname=(!empty($params['desname'])) ? trim($params['desname']): "";
@@ -863,7 +867,7 @@ switch($action)
 
 //------------------------------Suggestions str and table name---------------
    /*     
-//  localhost/jzeva/apis/index.php?action=getsuggestions&tname=tbl_product_master&str=b            
+//  localhost:8080/jzeva/apis/index.php?action=getsuggestions&tname=tbl_product_master&str=b            
        case 'getsuggestions':
             include APICLUDE.'class.product.php';
             $tblname=(!empty($params['tname']))? trim($params['tname']):'';
@@ -884,7 +888,7 @@ switch($action)
  
 //---------------------------Offer-----------------------------------------
 
-//  localhost/jzeva/apis/index.php?action=addOffer&offername=diwalidhamaka&des=a well reknown festive offer we are celebrating since ages&amdp=1.1&valid=1 year&vdesc=1123fwhf232
+//  localhost:8080/jzeva/apis/index.php?action=addOffer&offername=diwalidhamaka&des=a well reknown festive offer we are celebrating since ages&amdp=1.1&valid=1 year&vdesc=1123fwhf232
         case 'addOffer':
             include APICLUDE.'class.offer.php';
             $offername = (!empty($params['offername'])) ? trim(urldecode($params['offername'])) : '';
@@ -905,7 +909,7 @@ switch($action)
             $res = $result;
             break;
 
-//  localhost/jzeva/apis/index.php?action=viewOffer&offid=1
+//  localhost:8080/jzeva/apis/index.php?action=viewOffer&offid=1
         case 'viewOffer':
             include APICLUDE.'class.offer.php';
             $offid  = (!empty($params['offid'])) ?  trim($params['offid']) : '';
@@ -923,7 +927,7 @@ switch($action)
             $res = $result;
             break;
 
-//  localhost/jzeva/apis/index.php?action=actOffer&offid=2            
+//  localhost:8080/jzeva/apis/index.php?action=actOffer&offid=2            
         case 'actOffer':
             include APICLUDE.'class.offer.php';
             $offid  = (!empty($params['offid'])) ?  trim($params['offid']) : '';               
@@ -940,7 +944,7 @@ switch($action)
             $res = $result;
             break;
             
-//  localhost/jzeva/apis/index.php?action=deactOffer&offid=2
+//  localhost:8080/jzeva/apis/index.php?action=deactOffer&offid=2
         case 'deactOffer':
             include APICLUDE.'class.offer.php';
             $offid  = (!empty($params['offid'])) ?  trim($params['offid']) : '';               
@@ -957,7 +961,7 @@ switch($action)
             $res = $result;
             break;
 
-//  localhost/jzeva/apis/index.php?action=offerUserBind&offerid=1&uid=6&dispflag=1
+//  localhost:8080/jzeva/apis/index.php?action=offerUserBind&offerid=1&uid=6&dispflag=1
         case 'offerUserBind':
             include APICLUDE.'class.offer.php';
             $offid  = (!empty($params['offerid'])) ?  trim($params['offerid']) : '';               
@@ -976,7 +980,7 @@ switch($action)
             $res = $result;
             break;
 
-//  localhost/jzeva/apis/index.php?action=offerUserUnBind&offid=2&uid=6
+//  localhost:8080/jzeva/apis/index.php?action=offerUserUnBind&offid=2&uid=6
         case 'offerUserUnBind':
             include APICLUDE.'class.offer.php';
             $offid  = (!empty($params['offid'])) ?  trim($params['offid']) : '';               
@@ -995,7 +999,7 @@ switch($action)
             
 //----------------------cart-----------------------------------------------
      /*        
-//  localhost/jzeva/apis/index.php?action=getcartId&ip=192.168.2.21&umob=9975887206          
+//  localhost:8080/jzeva/apis/index.php?action=getcartId&ip=192.168.2.21&umob=9975887206          
         case 'getcartId':
             include APICLUDE.'class.cart.php';
             $uid=(!empty($params['uid'])) ? trim($params['uid']) : '';
@@ -1013,7 +1017,7 @@ switch($action)
             break;
           */ 
             
-//  localhost/jzeva/apis/index.php?action=addToCart&dt={%22result%22:%20{%22ip%22:%20%22192.168.2.21%22,%22logmob%22:%209975887206,%22vmob%22:%207309290529,%22qty%22:%201,%22pid%22:%209},%22error%22:%20{%22errCode%22:%200}}        
+//  localhost:8080/jzeva/apis/index.php?action=addToCart&dt={%22result%22:%20{%22ip%22:%20%22192.168.2.21%22,%22logmob%22:%209975887206,%22vmob%22:%207309290529,%22qty%22:%201,%22pid%22:%209},%22error%22:%20{%22errCode%22:%200}}        
         case 'addToCart':
             include APICLUDE.'class.cart.php';
             $dt  = (!empty($params['dt']))?  trim($params['dt']) : '';
@@ -1029,7 +1033,7 @@ switch($action)
             $res = $result;
             break; 
             
-//  localhost/jzeva/apis/index.php?action=editCart&cart_id=1&quantity=10&product_id=7            
+//  localhost:8080/jzeva/apis/index.php?action=editCart&cart_id=1&quantity=10&product_id=7            
         case 'editCart': 
             include APICLUDE.'class.cart.php';
             $cartid  = (!empty($params['cart_id']))?  trim($params['cart_id']) : '';
@@ -1049,7 +1053,7 @@ switch($action)
             $res=$result;
             break;
 
-//  localhost/jzeva/apis/index.php?action=readCart&ip=192.168.2.21&logmob=9975887206            
+//  localhost:8080/jzeva/apis/index.php?action=readCart&ip=192.168.2.21&logmob=9975887206            
         case 'readCart':
             include APICLUDE.'class.cart.php';
             $uid=(!empty($params['uid'])) ? trim(urldecode($params['uid'])) : '';
@@ -1066,7 +1070,7 @@ switch($action)
             $res= $result;
             break;
 
-//  localhost/jzeva/apis/index.php?action=delPrd&cartid=1&pid=7&vmob=7878787878
+//  localhost:8080/jzeva/apis/index.php?action=delPrd&cartid=1&pid=7&vmob=7878787878
         case 'delPrd':
             include APICLUDE.'class.cart.php';
             $pid  = (!empty($params['pid'])) ? trim($params['pid']) : '';
@@ -1085,7 +1089,7 @@ switch($action)
             $res= $result;
             break;
 /*
-//  localhost/jzeva/apis/index.php?action=cartClr&logmobile=9975887206&product_id=9&vendormob=7309290529            
+//  localhost:8080/jzeva/apis/index.php?action=cartClr&logmobile=9975887206&product_id=9&vendormob=7309290529            
         case 'cartClr':
             include APICLUDE.'class.cart.php';
             $cid =(!empty($params['cid'])) ? trim($params['cid']) : '';
@@ -1106,7 +1110,7 @@ switch($action)
             
 //----------------------Attribute------------------------------------------
 
- // localhost/jzeva/apis/index.php?action=get_attrList&page=1&limit=1            
+ // localhost:8080/jzeva/apis/index.php?action=get_attrList&page=1&limit=1            
         case 'get_attrList':
             include APICLUDE.'class.attribute.php';
             $obj = new attribute($db['jzeva']);
@@ -1114,7 +1118,7 @@ switch($action)
             $res=$result;
             break;
         
-//  localhost/jzeva/apis/index.php?action=set_attributes_details&name=flurocent&dname=luminous&unit=10&flag=1&upos=2&vals={10,20,30,40,50,60,70}&range=10        
+//  localhost:8080/jzeva/apis/index.php?action=set_attributes_details&name=flurocent&dname=luminous&unit=10&flag=1&upos=2&vals={10,20,30,40,50,60,70}&range=10        
         case 'set_attributes_details':
             include APICLUDE.'class.attribute.php';
             $name=(!empty($params['name'])) ? trim($params['name']):'';
@@ -1137,7 +1141,7 @@ switch($action)
             $res=$result;
             break; 
 
-//  localhost/jzeva/apis/index.php?action=fetch_attributes_details&attribid=1        
+//  localhost:8080/jzeva/apis/index.php?action=fetch_attributes_details&attribid=1        
         case 'fetch_attributes_details':
             include APICLUDE.'class.attribute.php';
             $attrid=(!empty($params['attribid'])) ? trim($params['attribid']):'';
@@ -1154,7 +1158,7 @@ switch($action)
             $res=$result;
             break;
 
-//  localhost/jzeva/apis/index.php?action=set_category_mapping&aid=43&dflag=1&dpos=999&fil_flag=1&fil_pos=999&aflag=1&catid=3
+//  localhost:8080/jzeva/apis/index.php?action=set_category_mapping&aid=43&dflag=1&dpos=999&fil_flag=1&fil_pos=999&aflag=1&catid=3
         case 'set_category_mapping':
             include APICLUDE.'class.attribute.php';
             $aid =(!empty($params['aid'])) ? trim($params['aid']):'';
@@ -1177,7 +1181,7 @@ switch($action)
             $res=$result;
             break;
             
-//  localhost/jzeva/apis/index.php?action=fetch_category_mapping&catid=3            
+//  localhost:8080/jzeva/apis/index.php?action=fetch_category_mapping&catid=3            
         case 'fetch_category_mapping':
             include APICLUDE.'class.attribute.php';
             $catid =(!empty($params['catid'])) ? trim($params['catid']):'';
@@ -1194,7 +1198,7 @@ switch($action)
             $res=$result;
             break;
 
-//  localhost/jzeva/apis/index.php?action=unset_category_mapping&catid=3&aid=12            
+//  localhost:8080/jzeva/apis/index.php?action=unset_category_mapping&catid=3&aid=12            
         case 'unset_category_mapping':
             include APICLUDE.'class.attribute.php';
             $id   =(!empty($params['aid'])) ? trim($params['aid']): "";
@@ -1213,7 +1217,7 @@ switch($action)
             break;
 //--------------------Stylist Appointment----------------------------------
 
-//  localhost/jzeva/apis/index.php?action=makeAppoint&dt={%22result%22:%20{%22cname%22:%20%22Insane%20Rider%22,%22cemail%22:%20%22rider.insane@motorbikes.com%22,%22cmob%22:%207309290529,%22fulladd%22:%20%22qdqd%20wedwdw%20wcec%20wwwedd%20wdewd%22,%22ptype%22:%20%22earring%22,%22cat%22:%20%22diamond,gold%22,%22budget%22:%20%2210000~6000000%22},%22error%22:%20{%22errCode%22:%200}}
+//  localhost:8080/jzeva/apis/index.php?action=makeAppoint&dt={%22result%22:%20{%22cname%22:%20%22Insane%20Rider%22,%22cemail%22:%20%22rider.insane@motorbikes.com%22,%22cmob%22:%207309290529,%22fulladd%22:%20%22qdqd%20wedwdw%20wcec%20wwwedd%20wdewd%22,%22ptype%22:%20%22earring%22,%22cat%22:%20%22diamond,gold%22,%22budget%22:%20%2210000~6000000%22},%22error%22:%20{%22errCode%22:%200}}
         case 'makeAppoint':
             include APICLUDE.'class.appoint.php';
             $dt=(!empty($params['dt'])) ? trim(urldecode($params['dt'])) : '';
@@ -1230,7 +1234,7 @@ switch($action)
             $res=$result;
             break;    
 
-//  localhost/jzeva/apis/index.php?action=makeAppoint            
+//  localhost:8080/jzeva/apis/index.php?action=makeAppoint            
         case 'viewAppoint':
             include APICLUDE.'class.appoint.php';
             $obj= new appoint($db['jzeva']);
@@ -1240,7 +1244,7 @@ switch($action)
             
 //--------------------Custom Design----------------------------------------
 
-//  localhost/jzeva/apis/index.php?action=showCDes            
+//  localhost:8080/jzeva/apis/index.php?action=showCDes            
         case 'showCDes':
             include APICLUDE.'class.custDes.php';
             $obj= new custDes($db['jzeva']);
@@ -1248,7 +1252,7 @@ switch($action)
             $res=$result;
             break;
 
-//  localhost/jzeva/apis/index.php?action=addCDes&dt={%22result%22:%20{%22cname%22:%20%22Insane%20Rider%22,%22cemail%22:%20%22rider.insane@motorbikes.com%22,%22cmob%22:%207309290529,%22title%22:%20%22qdqd%20wedwdw%20wcec%20wwwedd%20wdewd%22,%22desimg%22:%20%22earring.png%22},%22error%22:%20{%22errCode%22:%200}}
+//  localhost:8080/jzeva/apis/index.php?action=addCDes&dt={%22result%22:%20{%22cname%22:%20%22Insane%20Rider%22,%22cemail%22:%20%22rider.insane@motorbikes.com%22,%22cmob%22:%207309290529,%22title%22:%20%22qdqd%20wedwdw%20wcec%20wwwedd%20wdewd%22,%22desimg%22:%20%22earring.png%22},%22error%22:%20{%22errCode%22:%200}}
         case 'addCDes':
             include APICLUDE.'class.custDes.php';
             $dt=(!empty($params['dt'])) ? trim(urldecode($params['dt'])) : '';
@@ -1267,7 +1271,7 @@ switch($action)
 
 //----------------------Customer Speaks-------------------------------------
             
-//  localhost/jzeva/apis/index.php?action=addCDes&dt=            
+//  localhost:8080/jzeva/apis/index.php?action=addCDes&dt=            
         case 'addCom':
             include APICLUDE.'class.speaks.php';
             $dt=(!empty($params['dt'])) ? trim(urldecode($params['dt'])) : '';
@@ -1284,7 +1288,7 @@ switch($action)
             $res=$result;
             break;
 
-//  localhost/jzeva/apis/index.php?action=viewCom            
+//  localhost:8080/jzeva/apis/index.php?action=viewCom            
         case 'viewCom':
             include APICLUDE.'class.speak.php';
             $obj= new speak($db['jzeva']);
@@ -1294,7 +1298,7 @@ switch($action)
         
 //-----------------------Subscribe and Newsletter---------------------------
 
-//  localhost/jzeva/apis/index.php?action=subscribe&uid=6        
+//  localhost:8080/jzeva/apis/index.php?action=subscribe&uid=6        
         case 'subscribe':
             include APICLUDE.'class.newsletter.php';
             $uid = (!empty($params['uid'])) ? trim($params['uid']):'';
@@ -1311,7 +1315,7 @@ switch($action)
             $res=$result;
             break;
             
-//  localhost/jzeva/apis/index.php?action=viewSubscribers&page=1&limit=1            
+//  localhost:8080/jzeva/apis/index.php?action=viewSubscribers&page=1&limit=1            
         case 'viewSubscribers':
             include APICLUDE.'class.newsletter.php';
             $page=(!empty($params['page'])) ? trim(urldecode($params['page'])) : '';
@@ -1329,7 +1333,7 @@ switch($action)
             $res=$result;
             break;
 
-//  localhost/jzeva/apis/index.php?action=addNewsletter&dt=            
+//  localhost:8080/jzeva/apis/index.php?action=addNewsletter&dt=            
         case 'addNewsletter':
             include APICLUDE.'class.newsletter.php';
             $dt=(!empty($params['dt'])) ? trim(urldecode($params['dt'])) : '';
@@ -1346,7 +1350,7 @@ switch($action)
             $res=$result;
             break;
 
-//  localhost/jzeva/apis/index.php?action=unsubscribe&uid=6
+//  localhost:8080/jzeva/apis/index.php?action=unsubscribe&uid=6
         case 'unsubscribe':
             include APICLUDE.'class.newsletter.php';
             $uid = (!empty($params['uid'])) ? trim($params['uid']):'';
@@ -1365,7 +1369,7 @@ switch($action)
                 
 //-------------------------Helpdesk--------------------------------------
 
-//  localhost/jzeva/apis/index.php?action=askhelp&dt={%22result%22:%20{%22uid%22:%206,%22cname%22:%20%22Insane%20Rider%22,%22cemail%22:%20%22rider.insane@motorbikes.com%22,%22logmobile%22:%207309290529,%22cquery%22:%20%22qdqd%20wedwdw%20wcec%20wwwedd%20wdewd%22},%22error%22:%20{%22errCode%22:%200}}            
+//  localhost:8080/jzeva/apis/index.php?action=askhelp&dt={%22result%22:%20{%22uid%22:%206,%22cname%22:%20%22Insane%20Rider%22,%22cemail%22:%20%22rider.insane@motorbikes.com%22,%22logmobile%22:%207309290529,%22cquery%22:%20%22qdqd%20wedwdw%20wcec%20wwwedd%20wdewd%22},%22error%22:%20{%22errCode%22:%200}}            
         case 'askhelp':
             include APICLUDE.'class.helpdesk.php';
             $dt=(!empty($params['dt'])) ? trim(urldecode($params['dt'])) : '';
@@ -1382,7 +1386,7 @@ switch($action)
             $res=$result;
             break;
 
-//  localhost/jzeva/apis/index.php?action=viewhelp&page=1&limit=1          
+//  localhost:8080/jzeva/apis/index.php?action=viewhelp&page=1&limit=1          
         case 'viewhelp':
             include APICLUDE.'class.helpdesk.php';
             $obj= new helpdesk($db['jzeva']);
@@ -1391,7 +1395,7 @@ switch($action)
             break;
 //----------------------Address Id and details------------------------------------
 
-//  localhost/jzeva/apis/index.php?action=fillAdd&dt={%22result%22:%20{%22uid%22:%2010105,%22addtitle%22:%20%22home%22,%22add1%22:%201,%22add2%22:%20%22singharun@gmail.com%22,%22fulladd%22:%20%221990-10-08%22,%22area%22:%20%229696969696%22,%22city%22:%20223232,%22state%22:%20%22Delhi%22,%22country%22:%20%22india%22,%22pcode%22:%20221212},%22error%22:%20{%22errCode%22:%200}}
+//  localhost:8080/jzeva/apis/index.php?action=fillAdd&dt={%22result%22:%20{%22uid%22:%2010105,%22addtitle%22:%20%22home%22,%22add1%22:%201,%22add2%22:%20%22singharun@gmail.com%22,%22fulladd%22:%20%221990-10-08%22,%22area%22:%20%229696969696%22,%22city%22:%20223232,%22state%22:%20%22Delhi%22,%22country%22:%20%22india%22,%22pcode%22:%20221212},%22error%22:%20{%22errCode%22:%200}}
         case 'fillAdd':
             include APICLUDE.'class.address.php';
             $dt=(!empty($params['dt'])) ? trim(urldecode($params['dt'])) : '';
@@ -1408,7 +1412,7 @@ switch($action)
             $res=$result;
             break;
 
-//  localhost/jzeva/apis/index.php?action=getAdd&addid=1            
+//  localhost:8080/jzeva/apis/index.php?action=getAdd&addid=1            
         case 'getAdd':
             include APICLUDE.'class.address.php';
             $addid=(!empty($params['addid'])) ? trim(urldecode($params['addid'])) : '';
@@ -1425,7 +1429,7 @@ switch($action)
             $res=$result;
             break;
 
-//  localhost/jzeva/apis/index.php?action=getAddByUser&uid=10105            
+//  localhost:8080/jzeva/apis/index.php?action=getAddByUser&uid=10105            
             
         case 'getAddByUser':
             include APICLUDE.'class.address.php';
@@ -1442,7 +1446,7 @@ switch($action)
             $result=$obj->getAddByUser($params);
             $res=$result;
             break; 
-//  localhost/jzeva/apis/index.php?action=getUserAddID&uid=10105       
+//  localhost:8080/jzeva/apis/index.php?action=getUserAddID&uid=10105       
         case 'getUserAddID':
             include APICLUDE.'class.address.php';
             $uid=(!empty($params['uid'])) ? trim(urldecode($params['uid'])) : '';
@@ -1461,7 +1465,7 @@ switch($action)
             
 //---------------------------filter----------------------------------------
 
-//  localhost/jzeva/apis/index.php?action=get_filters&category_id=3&page=1&limit=1            
+//  localhost:8080/jzeva/apis/index.php?action=get_filters&category_id=3&page=1&limit=1            
         case 'get_filters':
             include APICLUDE.'class.filter.php';
             $page=(!empty($params['page'])) ? trim(urldecode($params['page'])) : '';
@@ -1481,7 +1485,7 @@ switch($action)
             break;
 
 /*  HAve to be changed as per the requirement        */            
-//  localhost/jzeva/apis/index.php?action=refine&catid=1&page=1&limit=1&dt={%22result%22:%20{%22filter_flg%22:%201,%22pfrm%22:%200,%22pto%22:%20120000000,%22catid%22:%204,%22brname%22:%20%22orra%22,%22type%22:%20%22jwellery,gold%22,%22metal%22:%20%22gold%22}}            
+//  localhost:8080/jzeva/apis/index.php?action=refine&catid=1&page=1&limit=1&dt={%22result%22:%20{%22filter_flg%22:%201,%22pfrm%22:%200,%22pto%22:%20120000000,%22catid%22:%204,%22brname%22:%20%22orra%22,%22type%22:%20%22jwellery,gold%22,%22metal%22:%20%22gold%22}}            
         case 'refine': 
             include APICLUDE.'class.filter.php';
             $page=(!empty($params['page'])) ? trim(urldecode($params['page'])) : '';
@@ -1503,7 +1507,7 @@ switch($action)
 
 //------------------------Wishlist-------------------------------------------
 
-//  localhost/jzeva/apis/index.php?action=addtowsh&page=1&limit=1&dt={"result": {"uid": 0,"pid": 0,"vid": 9975887206,"wf": 12}}            
+//  localhost:8080/jzeva/apis/index.php?action=addtowsh&page=1&limit=1&dt={"result": {"uid": 0,"pid": 0,"vid": 9975887206,"wf": 12}}            
         case 'addtowsh':
             include APICLUDE.'class.wishlist.php';
             $dt=(!empty($params['dt']))? trim($params['dt']):'';
@@ -1520,7 +1524,7 @@ switch($action)
             $res=$result;
             break;
 
-//  localhost/jzeva/apis/index.php?action=viewsh&page=1&limit=1&uid=7              
+//  localhost:8080/jzeva/apis/index.php?action=viewsh&page=1&limit=1&uid=7              
         case 'viewsh':
             include APICLUDE.'class.wishlist.php';
             $dt=(!empty($params['dt']))? trim($params['dt']):'';
