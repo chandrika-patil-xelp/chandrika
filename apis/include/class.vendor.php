@@ -52,11 +52,7 @@ class vendor extends DB
     {              
         $page   = ($params['page'] ? $params['page'] : 1);
         $limit  = ($params['limit'] ? $params['limit'] : 15);
-        if (!empty($page))
-        {
-            $start = ($page * $limit) - $limit;
-            $vsql.=" LIMIT " . $start . ",$limit";
-        }
+       
         
         $total_products = 0;
         
@@ -74,6 +70,7 @@ class vendor extends DB
         $chkcnt=$this->numRows($cnt_res);
          if($chkcnt>0)
         {
+             
             $vsql="SELECT 
                                     product_id,
                                     vendor_price,
@@ -85,21 +82,27 @@ class vendor extends DB
                    WHERE 
                                     vendor_id=".$params['vid'];
             
+            if (!empty($page))
+            {
+                $start = ($page * $limit) - $limit;
+                $vsql.=" LIMIT " . $start . ",$limit";
+            }
             $vres=$this->query($vsql);
-            $prsql.=" LIMIT " . $start . ",$limit";
+          //  $prsql.=" LIMIT " . $start . ",$limit";
             
             $i=-1;
             $vpmap=array();
             while($row1=$this->fetchData($vres)) 
             {   $i++;    
-                $vpmap['product_id'][$i]=$row1['product_id'];
+               echo $pid['pid']=$row1['product_id'];
                 $vpmap['vendor_price'][$i]=$row1['vendor_price'];
                 $vpmap['vendor_quantity'][$i]=$row1['vendor_quantity'];
                 $vpmap['vendor_currency'][$i]=$row1['vendor_currency'];
                 $vpmap['active_flag'][$i]=$row1['active_flag'];
                 $vmap[]=$vpmap;
             }
-            $vmapProd=implode(',',$vmap[$i]['product_id']);
+
+            $vmapProd=implode(',',$pid);
 
             $prsql="SELECT 
                                         product_id,

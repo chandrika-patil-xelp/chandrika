@@ -50,7 +50,7 @@ class viewlog extends DB
                                         (".$uid.",
                                         '".$udetail['uname']."',
                                         '".$udetail['email']."',
-                                        ".$params['pid'].",
+                                        ".$params['product_id'].",
                                         ".$params['vid'].",
                                         'customer',
                                         now())";

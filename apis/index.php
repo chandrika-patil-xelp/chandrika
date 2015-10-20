@@ -243,13 +243,13 @@ switch($action)
             $res = $result;
             break;         
 //-----------------------------ViewLog----------------------------------
-
-//  localhost:8080/jzeva/apis/index.php?action=filLog&uid=&product_id=7&vid=1            
+//working
+//  localhost:8080/jzeva/apis/index.php?action=filLog&uid=1&product_id=7&vid=1         
         case 'filLog':
             include APICLUDE.'class.viewlog.php';
             $uid=(!empty($params['uid'])) ? trim($params['uid']) : '';
             $product_id=(!empty($params['product_id'])) ? trim($params['product_id']) : '';
-            $vid=(!empty($params['vid'])) ? trim($params['vid']):'';
+            $vid=(!empty($params['vid'])) ? trim($params['vid']):'';           
             if(empty($product_id) && empty($uid) && empty($vid))
             {
                 $arr = array();
@@ -262,8 +262,8 @@ switch($action)
             $result= $obj->filLog($params);
             $res = $result;
             break;
-
-//  localhost:8080/jzeva/apis/index.php?action=viewLog&vid=7878787878&pid=&page=&limit=                        
+//working
+//  localhost:8080/jzeva/apis/index.php?action=viewLog&vid=1&pid=1&page=1&limit=1                        
         case 'viewLog':
         include APICLUDE.'class.viewlog.php';
         $vid=(!empty($params['vid'])) ? trim($params['vid']) : '';
@@ -281,8 +281,8 @@ switch($action)
         break;
             
 //-----------------------------Vendor Product------------------------------------
-
-//  localhost:8080/jzeva/apis/index.php?action=addVendorPrdInfo&dt={%22result%22:%20{%22pid%22:%201,%22vid%22:%207,%22vp%22:%207309290529,%22vq%22:%201,%22vc%22:%20%22INR%22,%22vr%22:%204.21,%22af%22:%201}}
+//working  --here prmary key is given to vid and pid
+//  localhost:8080/jzeva/apis/index.php?action=addVendorPrdInfo&dt={%22result%22:%20{%22pid%22:%20232,%22vid%22:%207,%22vp%22:%207309290529,%22vq%22:%201,%22vc%22:%20%22INR%22,%22vr%22:%204.21,%22af%22:%201}}
         case 'addVendorPrdInfo':
             include APICLUDE.'class.vendor.php';            
             $dt=(!empty($params['dt'])) ? trim($params['dt']) : '';
