@@ -1,7 +1,4 @@
 <?php
-
-header('Location: http://'.$_SERVER['HTTP_HOST'].'/jzeva/backend/admin/index.php');
-exit;
 // Version
 define('VERSION', '2.1.0.1');
 
