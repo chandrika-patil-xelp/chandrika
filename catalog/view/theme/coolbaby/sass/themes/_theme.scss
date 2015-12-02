@@ -1,0 +1,9 @@
+/*theme*/
+@import "../helpers/web-font";
+
+$web-fonts-protocol: "http";
+@include web-fonts(("Sintony": ("400", "700")));
+@include web-fonts(("Poiret One"));
+
+$custom-font: 'Sintony', sans-serif;
+$custom-font-1: 'Poiret One', cursive;
