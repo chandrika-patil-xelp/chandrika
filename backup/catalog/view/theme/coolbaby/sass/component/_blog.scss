@@ -1,0 +1,187 @@
+.post-navigation {
+	width:100%;
+	margin:30px 0 35px;
+	overflow:hidden
+}
+.comment {
+	position:relative;
+	color:#000
+}
+.comment .inside {
+	padding:30px 15px 30px 100px;
+	border-top:1px solid #eaeaea;
+	position:relative
+}
+.comment>.inside:before {
+	display:block;
+	position:absolute;
+	top:30px;
+	left:0;
+	color:#e1e1e1;
+	background:#f5f5f5;
+	text-align:center;
+	content:'\e00c';
+	font-family:'Flaticon';
+	font-size:57px;
+	line-height:67px;
+	width:81px;
+	height:77px
+}
+.comment p {
+	margin-bottom:.7em
+}
+.comments .comment {
+	padding-left:10%
+}
+.comments>.comment:first-child {
+	padding-left:0
+}
+.comments>.comment:first-child .inside {
+	border:none
+}
+.comment-form {.form-group { margin-bottom:8px;} input[type=text], textarea { border-left:0; border-top:0; border-right:0; padding: 5px 0; margin-bottom:0; height:38px;}
+textarea { padding: 12px 0; overflow:hidden;}}
+
+.container-widget {
+	border-bottom:1px dotted #eaeaea;
+	margin-bottom:20px;
+	padding-bottom:20px;
+h3 {
+	padding-bottom:.9em
+}
+}
+.twitter-widget-aside ul {
+	margin:0;
+	padding:0 0 0 35px;
+	list-style-type:none;
+	line-height:1.35em
+}
+.twitter-widget-aside ul li {
+	margin:0 0 12px;
+	padding:0 0 12px;
+	border-bottom:1px solid #f4f4f4;
+	position:relative
+}
+.twitter-widget-aside ul li:before {
+	content:"\e053";
+	display:inline;
+	font:1.23em 'Flaticon';
+	position:absolute;
+	top:0;
+	left:-35px;
+	color:$template-color;
+}
+.twitter-widget-aside ul li:last-child {
+	margin-bottom:0;
+	border-bottom:0
+}
+.twitter-widget-aside .link {
+	display:block;
+	padding-top:2px
+}
+.twitter-widget-aside a {
+	color:$template-color;
+	text-decoration:underline
+}
+.twitter-widget-aside .time {
+	font-size:0.917em;
+	display:block;
+	padding-top:7px
+}
+.blog-left { border-right:1px dotted $color-border}
+.blog-posts  div.blog-post {
+  background: none repeat scroll 0 0 #f5f5f5;
+  color: #333;
+  font-size: 14px;
+  line-height: 15px;
+  margin: 0;
+  padding: 10px 10px 5px;
+  text-align: left;
+  text-decoration: none;
+  transform: rotate(-2deg);
+  -webkit-transform: rotate(-2deg);
+  -moz-transform: rotate(-2deg);
+  width: 21%;
+  margin:2%;
+  float:left;
+     @include breakpoint(sm) {  width: 27%; margin: 3%;
+}
+   @include breakpoint(xs) {  width: 40%; margin: 5%;
+}
+     @include breakpoint(xxs) {  width: 80%; margin:5% 10%;
+}
+
+}
+.blog-posts  div.blog-post a{ text-decoration:none;}
+.blog-posts  div.blog-post .date {
+  font-size: 11px;
+  display: block;
+}
+
+.blog-posts  div.blog-post img {
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.blog-posts  div.blog-post {
+  transform: rotate(-2deg);
+  -webkit-transform: rotate(-2deg);
+  -moz-transform: rotate(-2deg);
+}
+
+.blog-posts  div.blog-post:nth-child(even) {
+  transform: rotate(2deg);
+  -webkit-transform: rotate(2deg);
+  -moz-transform: rotate(2deg);
+}
+
+.blog-posts  div.blog-post:nth-child(3n) {
+  -webkit-transform: none;
+  -moz-transform: none;
+  position: relative;
+  top: -5px;
+}
+
+.blog-posts  div.blog-post:nth-child(5n) {
+  transform: rotate(4deg);
+  -webkit-transform: rotate(4deg);
+  -moz-transform: rotate(4deg);
+  position: relative;
+  right: 5px;
+}
+
+.blog-posts  div.blog-post:nth-child(8n) {
+  position: relative;
+  top: 8px;
+  right: 5px;
+}
+
+.blog-posts  div.blog-post:hover {
+  -webkit-transform: scale(1.25);
+  -moz-transform: scale(1.25);
+  position: relative;
+  z-index: 5;
+}
+
+.blog-posts  div.blog-post {
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+}
+.blog-posts:hover  div.blog-post {
+  -o-transition: -o-transform 0.2s linear 0s;
+  -moz-transition: -moz-transform 0.2s linear 0s;
+  -webkit-transition: -webkit-transform 0.2s linear 0s;
+  -ms-transition: -ms-transform 0.2s linear 0s;
+  transition: transform 0.2s linear 0s;
+}
+.blog-posts  div.blog-post:hover {
+  -o-transition: -o-transform 0.2s linear 0s;
+  -moz-transition: -moz-transform 0.2s linear 0s;
+  -webkit-transition: -webkit-transform 0.2s linear 0s;
+  -ms-transition: -ms-transform 0.2s linear 0s;
+  transition: transform 0.2s linear 0s;
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+}
