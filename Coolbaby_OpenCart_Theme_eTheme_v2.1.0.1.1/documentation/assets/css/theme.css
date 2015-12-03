@@ -1,0 +1,22 @@
+.tonylist li{
+    padding-top: 20px;
+}
+
+.tonylist li img{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.tonylist li div.alert{
+    padding-top: 10px;
+    padding-bottom: 10px;    
+}
+.item_padding{padding-top: 30px}
+.item_padding .span9{padding-top: 20px}
+
+.highlight {
+    background: none repeat scroll 0 0 #FFFF00;
+}
+.table-striped{
+    margin-top: 40px
+}

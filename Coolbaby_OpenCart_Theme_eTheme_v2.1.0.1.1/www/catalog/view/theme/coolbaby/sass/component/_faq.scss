@@ -1,0 +1,68 @@
+.accordion-faq {
+	text-align:left;
+	position:relative
+}
+.accordion-faq .panel {
+	border-radius:0;
+	margin-left: 73px;
+	box-shadow:none;
+	-webkit-box-shadow:none;
+	overflow:visible;
+}
+.accordion-faq .panel .panel-heading {
+	padding:0;
+	color:#fff;
+	border-radius:0!important;
+	display: table;
+	width:100%;
+}
+.accordion-faq .panel-heading a {
+	display: table-cell;
+	width:100%;
+	vertical-align: middle;
+	position:relative;
+	background:$bg-grey-light;
+	font-size:0.9167em;
+	padding:10px 5px 12px 15px;
+	border-radius:0;
+	height:61px;
+	min-height:61px;
+	text-transform: uppercase;
+	border: 1px dotted $color-border;
+}
+.accordion-faq .panel-heading a:hover {
+	text-decoration:none
+}
+.accordion-faq .panel:last-child {
+	box-shadow:none;
+	border-bottom:none
+}
+.accordion-faq .arrow-down, .accordion-faq .arrow-up {
+	position:absolute;
+	display:block;
+	width:63px;
+	height:61px;
+	font-size:2em;
+	line-height:59px;
+	text-align:center;
+	top:0;
+	left:-73px;
+	background:$bg-grey-light;
+	border: 1px dotted $color-border;
+}
+.accordion-faq .arrow-down, .accordion-faq .collapsed .arrow-up {
+	display:none
+}
+.accordion-faq .collapsed .arrow-down {
+	display:block
+}
+.accordion-faq .panel-body {
+	border-top:0!important;
+	padding:15px;
+	background:$color-white;	border: 1px dotted $color-border;
+	border-top: none;
+
+}
+.accordion-faq.panel-group .panel+.panel {
+	margin-top:3px
+}

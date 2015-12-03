@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<modification>
+	<id>VQMOD CORE FOR OPENCART - DO NOT REMOVE</id>
+    <version>2.0.2.0</version>
+    <vqmver required="true">2.4.1</vqmver>
+	<author>eTheme</author>
+	
+	<file name="admin/controller/common/menu.php">
+		<operation>
+			<search position="after"><![CDATA[$data['category'] = $this->url->link('catalog/category', 'token=' . $this->session->data['token'], 'SSL');]]></search>
+			<add><![CDATA[$data['category'] = $this->url->link('catalog/mcategory', 'token=' . $this->session->data['token'], 'SSL');			]]></add>
+		</operation>
+		
+		<operation>
+			<search position="after"><![CDATA[$data['product'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'], 'SSL');]]></search>
+			<add><![CDATA[$data['product'] = $this->url->link('catalog/mproduct', 'token=' . $this->session->data['token'], 'SSL');]]></add>
+		</operation>
+		
+	</file>
+	
+</modification>

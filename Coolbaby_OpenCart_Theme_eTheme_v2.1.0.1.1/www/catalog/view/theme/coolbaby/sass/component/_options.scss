@@ -1,0 +1,95 @@
+.icon-size, .icon-color {
+  display: inline-block;
+  margin-right: 7px;
+  margin-bottom: 5px;
+  font-size: .917em;
+  font-style: normal;
+  line-height: 24px;
+  width: 33px;
+  border: 1px solid #b7b7b7;
+  text-transform: uppercase;
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.icon-size:before, .icon-color:after {
+  content: " ";
+  position: absolute;
+  z-index: 1;
+  @include abs-pos(0, 0, 0, 0);
+  border: 1px solid #fff;
+}
+
+.icon-size.disable {
+  border-color: #f1f1f1;
+}
+
+.icon-color.disable {
+  opacity: .8;
+}
+
+.icon-color:before {
+  content: " ";
+  display: inline-block;
+}
+
+.icon-color-brown {
+  background: #7e0506;
+}
+
+.icon-color-grey {
+  background: #444b50;
+}
+
+.icon-color-blue {
+  background: #5ca7db
+}
+
+.icon-color-softyellow {
+  background: #f9e9cc
+}
+
+.icon-color-lightgrey {
+  background: #e1e1e1;
+}
+
+.icon-color-violet {
+  background: #724381;
+}
+
+.icon-color-lightgrayishpink {
+  background: #efdcdc;
+}
+
+.icon-color-green {
+  background: #3a7d05;
+}
+
+.icon-color-magenta {
+  background: #7e054a;
+}
+
+.icon-color-pink {
+  background: #e03a7c;
+}
+
+.icon-color-red {
+  background: #e30000;
+}
+
+.icon-color-white {
+  background: #f8f8f8;
+}
+
+.icon-color-black {
+  background: #000;
+}
+
+.icon-color-beige {
+  background: #eedfcf;
+}
+
+.icon-color-marine {
+  background: #4f98aa;
+}

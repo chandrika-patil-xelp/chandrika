@@ -1,0 +1,41 @@
+.nav-tabs {
+  overflow: hidden;
+  position: relative;
+  white-space: nowrap;
+  border-bottom: none;
+  margin-bottom: -1px;
+}
+
+.nav-tabs > li {
+  display: inline-block;
+  float: none;
+  margin-bottom: 0;
+}
+
+.nav-tabs > li > a {
+  border: 1px solid #d0d0d0;
+  border-bottom: none;
+  border-radius: 0;
+  font: 1em;
+  line-height: 1.25em;
+  margin-right: 2px;
+  padding: 13px 15px;
+  text-transform: uppercase;
+  @include breakpoint(xxs) {
+    padding: 7px 5px;
+  }
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+  background-color: #3a3a3a;
+  border-color: #3a3a3a;
+  color: #fff;
+  cursor: default;
+  border-bottom: none;
+}
+
+.tab-content {
+  border: 1px solid #d0d0d0 !important;
+  margin-bottom: 20px;
+  padding: 20px 20px 15px;
+}

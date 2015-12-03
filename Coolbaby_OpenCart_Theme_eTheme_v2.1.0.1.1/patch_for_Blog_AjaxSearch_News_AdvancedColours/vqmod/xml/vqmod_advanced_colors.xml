@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+	<id>Advanced Colors</id>
+	<version>1.1.0</version>
+	<vqmver>2.4.1</vqmver>
+	<author>eTheme</author>
+
+	<file name="admin/view/template/common/footer.tpl">
+		<operation>
+			<search position="before"><![CDATA[</body></html>]]></search>
+			<add><![CDATA[
+			<?php $this->model('module/advanced_colors');?>
+			<?php $this->registry->get('model_module_advanced_colors')->render();?>
+			]]></add>
+		</operation>
+	</file>
+</modification>
