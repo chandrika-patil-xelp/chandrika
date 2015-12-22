@@ -486,6 +486,7 @@ footer .open .footer-navbar .arrow,footer .footer-navbar .arrow,footer .footer-n
 <script src="catalog/view/theme/<?php echo $config->get('config_template'); ?>/js/cloudzoom.js" type="text/javascript"></script>
 <?php endif; ?>
 
+<script src="catalog/view/theme/<?php echo $config->get('config_template'); ?>/js/cloudzoom.js" type="text/javascript"></script>
 <script src="catalog/view/theme/<?php echo $config->get('config_template'); ?>/js/coolbaby.js" type="text/javascript"></script>
 
 
