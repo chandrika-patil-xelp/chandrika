@@ -351,3 +351,5 @@ INSERT INTO option (`option_id`, `type`, `sort_order`) VALUES
 2015-12-22 11:47:47 - PHP Notice:  Undefined index: currency in /Applications/XAMPP/xamppfiles/htdocs/jzeva/catalog/view/theme/coolbaby/template/product/product.tpl on line 216
 2015-12-22 11:49:01 - PHP Notice:  Undefined index: currency in /Applications/XAMPP/xamppfiles/htdocs/jzeva/catalog/view/theme/coolbaby/template/product/product.tpl on line 216
 2015-12-22 11:49:02 - PHP Notice:  Undefined index: currency in /Applications/XAMPP/xamppfiles/htdocs/jzeva/catalog/view/theme/coolbaby/template/product/product.tpl on line 216
+2015-12-22 11:59:56 - PHP Notice:  Undefined index: currency in /Applications/XAMPP/xamppfiles/htdocs/jzeva/catalog/view/theme/coolbaby/template/product/product.tpl on line 216
+2015-12-22 11:59:57 - PHP Notice:  Undefined index: currency in /Applications/XAMPP/xamppfiles/htdocs/jzeva/catalog/view/theme/coolbaby/template/product/product.tpl on line 216
