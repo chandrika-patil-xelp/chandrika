@@ -22,24 +22,6 @@ if (sizeof($banners)) {
 
 
 ?>
-<section id="carousel<?php echo $module; ?>" class="container content brands-slider">
-    <h6 style="display:none">&nbsp;</h6>
-    <div class="subtitle right-space">
-        <div><span><?php echo (!isset($customisation_translation[$lang]["brands_title"][$store_id]) ? 'BRANDS' : $customisation_translation[$lang]["brands_title"][$store_id]); ?></span></div>
-    </div>
-    <div class="brands-carousel">
-        <div class="slides">
-            <?php foreach ($banners as $banner) : ?>
-            <div>
-                <?php if ($banner['link']) : ?><a href="<?php echo $banner['link']; ?>"><?php endif; ?>
-                    <img width="<?php echo $width_settings; ?>" height="<?php echo $height_settings; ?>" class="img-responsive" src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>">
-                <?php if ($banner['link']) : ?></a><?php endif; ?>
-            </div>
-
-            <?php endforeach; ?>
-        </div>
-    </div>
-</section>
 
 
 <script type="text/javascript">
