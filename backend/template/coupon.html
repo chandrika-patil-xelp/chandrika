@@ -1,0 +1,176 @@
+<?php include 'jBhead.html' ?>
+    <body>
+        <div class="container coupons">
+            <?php include 'jBheader.html' ?>
+            <div class="contents fLeft">
+                <div class="wrapperMax">
+                    <div class="couponCont fLeft">
+                        <div class="prdSearchDiv fLeft fmOpenR">
+                            <div class="commTitle2 fLeft">10 coupons available</div>
+                            <div class="addCouponBtn fRight transition300" onclick="addCoupon();">Add Coupon</div>
+                            <input type="text"  autocomplete="false" class="prdSeachTxt fRight fmOpenR" placeholder=" Search Coupon">
+                        </div>
+                        <div class="cpListHeader fLeft fmOpenR">
+                            <div class="date fLeft">Date</div>
+                            <div class="ccode fLeft">Coupon Code</div>
+                            <div class="cdescrp fLeft">Description</div>
+                            <div class="stDate fLeft">Start Date</div>
+                            <div class="stDate fLeft">End Date</div>
+                            <div class="actt fLeft">Action</div>
+                        </div>
+                        <ul class="couponList fLeft fmOpenR">
+                            <?php for($i=0;$i<15;$i++){?>
+                            <li id='coupon_Jzeva5<?php echo $i;?>'>
+                                <div class="date fLeft txtCenter">
+                                    <span class="upSpan">2016-01-01</span>
+                                    <span class="lwSpan">10:10:29</span>
+                                </div>
+                                <div class="ccode fLeft fmOpenB">Jzeva5<?php echo $i;?></div>
+                                <div class="cdescrp fLeft">50% Off</div>
+                                <div class="stDate fLeft txtCenter">
+                                    2016-01-01
+                                </div>
+                                <div class="enDate fLeft txtCenter">
+                                    2016-01-29
+                                </div>
+                                <div class="actt fLeft">
+                                    <div class="deltBtn fRight transition300" onclick="deleteCoupon('coupon_Jzeva5<?php echo $i;?>');"></div>
+                                    <div class="editBtn fRight transition300" onclick="editCoupon('coupon_Jzeva5<?php echo $i;?>');"></div>
+                                    <div class="toggle-button toggle-button-selected  fLeft">      
+                                        <span class="fActive">On</span>      
+                                        <button class="button"></button>  
+                                        <span class="fDactive">Off</span>   
+                                    </div>
+                                    
+                                </div>
+                            </li>
+                            <?php } ?>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="overlay" class="overlay transition3001 dn"></div>
+        <div id="couponEditDiv" class="cEditPop transition3001 dn">
+            <div class="commTitle2 fLeft fmOpenR">Edit Coupon - <span class="couponCode" id="ccodeEdit">JZEVA50</span></div>
+            <div class="divCon  fLeft fmOpenR">
+                <div class="titleDiv txtCap fLeft">Description*</div>
+                <input name="" type="text" id="descEdit" autocomplete="false" placeholder="Please provide coupon description" class="txtInput fLeft fmOpenR font14 c666">
+            </div>
+            <div class="divCon2  fLeft fmOpenR">
+                <div class="titleDiv txtCap fLeft">Start Date*</div>
+                <input name="" type="text" id="dateEdit" autocomplete="false" placeholder="Please enter start date" class="txtInput fLeft fmOpenR font14 c666">
+            </div>
+            <div class="divCon2  fRight fmOpenR">
+                <div class="titleDiv txtCap fLeft">End Date*</div>
+                <input name="" type="text" id="date2Edit" autocomplete="false" placeholder="Please enter end date" class="txtInput fLeft fmOpenR font14 c666">
+            </div>
+            <div class="btnCont fLeft">
+                <center>
+                    <div class="cancelBtn fmOpenR ripplelink poR" onclick="closeEditBox()">CANCEL</div>
+                    <div class="submitBtn fmOpenR ripplelink poR" onclick="">SUBMIT</div>
+                </center>
+            </div>
+        </div>
+        <div id="couponAddDiv" class="cEditPop transition3001 dn" style="height:536px;">
+            <div class="commTitle2 fLeft fmOpenR">Add Coupon</div>
+            <div class="divCon  fLeft fmOpenR mTop0">
+                <div class="titleDiv txtCap fLeft">Coupon Name *</div>
+                <input name="" type="text" id="coupName" autocomplete="false" placeholder="Please enter coupon name" class="txtInput fLeft fmOpenR font14 c666">
+            </div>
+            <div class="divCon2  fLeft fmOpenR">
+                <div class="titleDiv txtCap fLeft">Discount Type *</div>
+                <select class="txtSelect fLeft fmOpenR font14 c666">
+                    <option>Fixed Amount</option>
+                    <option>Percentage</option>
+                </select>
+            </div>
+            <div class="divCon2  fRight fmOpenR">
+                <div class="titleDiv txtCap fLeft">Discount Amount / %</div>
+                <input name="" type="text" id="amt" autocomplete="false" placeholder="Please enter amount / %" class="txtInput fLeft fmOpenR font14 c666">
+            </div>
+            <div class="divCon  fLeft fmOpenR">
+                <div class="titleDiv txtCap fLeft">Minimum Applicable Amount</div>
+                <input name="" type="text" id="descAdd" autocomplete="false" placeholder="Please enter minimum amount" class="txtInput fLeft fmOpenR font14 c666" onkeypress="return common.isNumberKey(event)">
+            </div>
+            <div class="divCon  fLeft fmOpenR">
+                <div class="titleDiv txtCap fLeft">Description* <span class="fRight font12">50 character max</span></div>
+                <input name="" type="text" id="descAdd" autocomplete="false" placeholder="Please provide coupon description" class="txtInput fLeft fmOpenR font14 c666">
+            </div>
+
+            <div class="divCon2  fLeft fmOpenR">
+                <div class="titleDiv txtCap fLeft">Start Date*</div>
+                <input name="" type="text" id="dateAdd" autocomplete="false" placeholder="Please enter start date" class="txtInput fLeft fmOpenR font14 c666">
+            </div>
+            <div class="divCon2  fRight fmOpenR">
+                <div class="titleDiv txtCap fLeft">End Date*</div>
+                <input name="" type="text" id="date2Add" autocomplete="false" placeholder="Please enter end date" class="txtInput fLeft fmOpenR font14 c666">
+            </div>
+            <div class="btnCont fLeft">
+                <center>
+                    <div class="cancelBtn fmOpenR ripplelink poR" onclick="closeEditBox()">CANCEL</div>
+                    <div class="submitBtn fmOpenR ripplelink poR" onclick="closeEditBox()">SUBMIT</div>
+                </center>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function() {
+                $("#dateEdit,#date2Edit,#dateAdd,#date2Add").datepicker();
+                $('.toggle-button').click(function(){
+                   $(this).toggleClass('toggle-button-selected'); 
+                });
+            });
+                       
+
+            function editCoupon(id) {
+                var ccode = $.trim($('#'+id+" .ccode").text());
+                var desc =  $.trim($('#'+id+" .cdescrp").text());
+                var stDate =$.trim($('#'+id+" .stDate").text());
+                var enDate =$.trim($('#'+id+" .enDate").text());
+
+                $('#ccodeEdit').text(ccode);
+                $('#descEdit').val(desc);
+                $('#dateEdit').val(stDate);
+                $('#date2Edit').val(enDate);
+                openEditBox(1);
+            }
+
+
+            function deleteCoupon(id){
+                alert(id);
+            }
+
+            $('#overlay').velocity({opacity: 0}, {delay: 0, duration: 0});
+            $('#couponEditDiv,#couponAddDiv').velocity({scale: 0,borderRadius:"65%",opacity:0}, {delay: 0, duration:0});
+
+            function openEditBox(type){
+                var ids="";
+                if(type===1)
+                    ids='couponEditDiv';
+                else if(type===2){
+                    ids='couponAddDiv';
+                }
+
+                $('#overlay').removeClass('dn');
+                $('#'+ids).removeClass('dn');
+                setTimeout(function () {
+                    $('#overlay').velocity({opacity: 1}, {delay: 0, duration: 300, ease: 'swing'});
+                    $('#'+ids).velocity({scale: 1,borderRadius:"0",opacity:1}, {delay: 180, duration: 300, ease: 'swing'});
+                }, 10);
+            }
+
+            function closeEditBox() {
+                $('#couponEditDiv,#couponAddDiv').velocity({scale: 0,borderRadius:"65%",opacity:0}, {duration:200,delay: 0, ease: 'swing'});
+                $('#overlay').velocity({opacity: 0}, {delay: 100, ease: 'swing'});
+                setTimeout(function () {
+                    $('#overlay').addClass('dn');
+                }, 400);
+            }
+
+            function addCoupon(){
+                openEditBox(2);
+            }            
+            
+        </script>
+    </body>
+</html>

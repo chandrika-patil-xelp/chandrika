@@ -1,0 +1,114 @@
+<?php include 'jBhead.html' ?>
+<body>
+    <div class="container addProduct">
+        <?php include 'jBheader.html' ?>
+        <div class="contents fLeft">
+            <div class="wrapperMax">
+                <div class="commTitle1 fmOpenL fLeft">Select a category to add a product</div>
+                <div class="divCon  fLeft fmOpenB mTop0">
+                    <center>
+                        <div class="checkDiv">
+                            <input type="radio" name="prd" class="filled-in" value="10008" id="1"> 
+                            <label for="1">Rings</label>
+                        </div>
+                        <div class="checkDiv">
+                            <input type="radio" name="prd" class="filled-in" value="10008" id="2"> 
+                            <label for="2">Earrings</label>
+                        </div>
+                        <div class="checkDiv">
+                            <input type="radio" name="prd" class="filled-in" value="10008" id="3"> 
+                            <label for="3">Pendants</label>
+                        </div>
+                        <div class="checkDiv">
+                            <input type="radio" name="prd" class="filled-in" value="10008" id="4"> 
+                            <label for="4">Chains</label>
+                        </div>
+                        <div class="checkDiv">
+                            <input type="radio" name="prd" class="filled-in" value="10008" id="5"> 
+                            <label for="5">Mens</label>
+                        </div>
+                        <div class="checkDiv">
+                            <input type="radio" name="prd" class="filled-in" value="10008" id="6"> 
+                            <label for="6">Bangles</label>
+                        </div>
+                        <div class="checkDiv">
+                            <input type="radio" name="prd" class="filled-in" value="10008" id="7"> 
+                            <label for="7">Bracelets</label>
+                        </div>
+                        <div class="checkDiv">
+                            <input type="radio" name="prd" class="filled-in" value="10008" id="8"> 
+                            <label for="8">Plain Gold</label>
+                        </div>
+                        <div class="checkDiv">
+                            <input type="radio" name="prd" class="filled-in" value="10008" id="9"> 
+                            <label for="9">Platinum</label>
+                        </div>
+                    </center>
+                </div>
+                <div class="commTitle1 fmOpenL fLeft">Select sub-category</div>
+                <div class="divCon fLeft fmOpenB mTop0">                    
+                    <center>
+                        <div class="checkDiv">
+                            <input type="checkbox" class="filled-in" value="10008" id="t1"> 
+                            <label for="t1">Platinum Type 1</label>
+                        </div>
+                        <div class="checkDiv">
+                            <input type="checkbox" class="filled-in" value="10008" id="t2"> 
+                            <label for="t2">Platinum Type 2</label>
+                        </div>
+                        <div class="checkDiv">
+                            <input type="checkbox" class="filled-in" value="10008" id="t3"> 
+                            <label for="t3">Platinum Type 3</label>
+                        </div>
+                    </center>
+                </div>
+                
+                
+                
+                
+                <div class="btnCont fLeft">
+                    <center>
+                        <div class="cancelBtn fmOpenR ripplelink poR" onclick="">CANCEL</div>
+                        <div class="submitBtn fmOpenR ripplelink poR" onclick="" id="Submitdiv">SUBMIT</div>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        
+        $(document).ready(function(){
+         $('textarea').increaseAuto();
+            
+        });
+        
+        function addTags(evt,val,id,tagCont){
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if(charCode==44  || charCode==13){
+                var str = "<div id='"+id+'_'+val+"' class='tagCommon transition300 fLeft'>";
+                str += "<div class='fLeft txtCap'>" + val + "</div>";
+                str += "<div class='removeTag fRight pointer' onclick=\"removeTag(this)\"></div>";
+                str += "</div>";
+                $('#'+tagCont).append(str);
+                $('#'+tagCont).removeClass('dn');
+               setTimeout(function(){
+                    $('#'+id).val('');
+               },50);
+            }
+
+        }
+
+        function removeTag(obj){
+            $(obj).parent().remove();
+        }
+    
+    
+    
+    
+    </script>
+    
+    
+
+</body>
+</html>
