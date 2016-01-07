@@ -1,6 +1,6 @@
 <?php
 
-include 'config.php';
+include '../config.php';
 $params = array_merge($_GET, $_POST);
 $action = (!empty($params['action'])) ? trim($params['action']) : '';
 $case = (!empty($params['case'])) ? trim($params['case']) : '';
@@ -13,31 +13,31 @@ if($params['debug'])
 switch ($action) {
     case 'products':
         $page = 'products';
-        include TEMPLATE.'products.html';
+        include BTEMPLATE.'products.html';
         break;
     case 'addProduct':
         $page = 'addProduct';
-        include TEMPLATE.'addProduct.html';
+        include BTEMPLATE.'addProduct.html';
         break;
     
     case 'addCategory':
         $page = 'addCategory';
-        include TEMPLATE.'addCategory.html';
+        include BTEMPLATE.'addCategory.html';
         break;
     
     case 'addAttribute':
         $page = 'addAttribute';
-        include TEMPLATE.'addAttribute.html';
+        include BTEMPLATE.'addAttribute.html';
         break;
     
     case 'coupon':
         $page = 'coupon';
-        include TEMPLATE.'coupon.html';
+        include BTEMPLATE.'coupon.html';
         break;
     
     case 'orders':
         $page = 'orders';
-        include TEMPLATE.'orders.html';
+        include BTEMPLATE.'orders.html';
         break;
     
 }
