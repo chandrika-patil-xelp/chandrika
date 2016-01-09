@@ -1,1206 +1,998 @@
 <?php include 'jBhead.html' ?>
-    <body>
-        <div class="container addProduct">
-            <?php include 'jBheader.html' ?>
-            <div class="contents fLeft">
-                <div class="wrapperMax fmOpenR">
-                    <!-----Category Section--!-->
-                    <section id='category_Section'>
-                        <div class="commTitle0 fmOpenR fLeft">Select your category</div>
+<body>
+    <div class="container addProduct">
+        <?php include 'jBheader.html' ?>
+        <div class="contents fLeft">
+            <div class="wrapperMax fmOpenR">
+                <!-----Category Section--!-->
+                <section id='category_Section'>
+                    <div class="commTitle1 fmOpenL fLeft">Select your category*</div>
+                    <div class="divCon  fLeft fmOpenR">
+                            <div class="checkDiv">
+                                <input type="checkbox" name="rprd" class="filled-in" value="10008" id="r1"> 
+                                <label for="r1">Jewellery</label>
+                            </div>
+                            <div class="checkDiv">
+                                <input type="checkbox" name="rprd" class="filled-in" value="10008" id="r2"> 
+                                <label for="r2">Custom Jewellery</label>
+                            </div>
+                    </div>
+                    <div class="breakLine"></div>
+                    <div class="divCon  fLeft fmOpenR mTop0">
+                        <div class="checkDiv">
+                            <input type="checkbox" name="prd" class="filled-in" value="10008" id="1"> 
+                            <label for="1">Rings</label>
+                        </div>
+                        <div class="checkDiv">
+                            <input type="checkbox" name="prd" class="filled-in" value="10008" id="2"> 
+                            <label for="2">Earrings</label>
+                        </div>
+                        <div class="checkDiv">
+                            <input type="checkbox" name="prd" class="filled-in" value="10008" id="3"> 
+                            <label for="3">Pendants</label>
+                        </div>
+                        <div class="checkDiv">
+                            <input type="checkbox" name="prd" class="filled-in" value="10008" id="4"> 
+                            <label for="4">Chains</label>
+                        </div>
+                        <div class="checkDiv">
+                            <input type="checkbox" name="prd" class="filled-in" value="10008" id="5"> 
+                            <label for="5">Mens</label>
+                        </div>
+                        <div class="checkDiv">
+                            <input type="checkbox" name="prd" class="filled-in" value="10008" id="6"> 
+                            <label for="6">Bangles</label>
+                        </div>
+                        <div class="checkDiv">
+                            <input type="checkbox" name="prd" class="filled-in" value="10008" id="7"> 
+                            <label for="7">Bracelets</label>
+                        </div>
+                        <div class="checkDiv">
+                            <input type="checkbox" name="prd" class="filled-in" value="10008" id="8"> 
+                            <label for="8">Plain Gold</label>
+                        </div>
+                        <div class="checkDiv">
+                            <input type="checkbox" name="prd" class="filled-in" value="10008" id="9"> 
+                            <label for="9">Platinum</label>
+                        </div>                        
+                    </div>
+                    <div class="breakLine"></div>
+                    <div class="divCon fLeft fmOpenR mTop0">                    
+                        <div class="checkDiv">
+                            <input type="checkbox" class="filled-in" value="10008" id="t1"> 
+                            <label for="t1">Platinum Type 1</label>
+                        </div>
+                        <div class="checkDiv">
+                            <input type="checkbox" class="filled-in" value="10008" id="t2"> 
+                            <label for="t2">Platinum Type 2</label>
+                        </div>
+                        <div class="checkDiv">
+                            <input type="checkbox" class="filled-in" value="10008" id="t3"> 
+                            <label for="t3">Platinum Type 3</label>
+                        </div>
+                    </div>
+                    <div class="breakLine"></div>
+                    <div class="divCon fLeft">
+                        <div class="divCon2 fLeft mTop0">
+                            <div class="titleDiv txtCap fLeft">Select Vendor</div>
+                            <select id="gemstone_type"  class="txtSelect fLeft fmOpenR font14 c666">
+                                <option value="">Select Gemstone Type</option>
+                                <option value="Patdiam">Patdiam</option>
+                                <option value="Maharani">Maharani</option>
+                                <option value="SP Kulthiya">SP Kulthiya</option>
+                                <option value="BLUE TOPAZ">DN Jewels</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="divCon2 fLeft">
+                        <div class="titleDiv txtCap fLeft">Product Name</div>
+                        <input name="" type="text" id="dpos" autocomplete="false"  placeholder="Enter product name" class="txtInput fLeft fmOpenR font14 c666">
+                    </div>
+                    <div class="divCon2 fRight">
+                        <div class="titleDiv txtCap fLeft">Product Weight in Grms</div>
+                        <input name="" type="text" id="dpos" autocomplete="false"  placeholder="Enter product weight" class="txtInput fLeft fmOpenR font14 c666">
+                    </div>
+                    <div class="divCon fRight">
+                        <div class="titleDiv txtCap fLeft">Product SEO Name</div>
+                        <input name="" type="text" id="dpos" autocomplete="false"  placeholder="Enter product SEO name" class="txtInput fLeft fmOpenR font14 c666">
+                    </div>
+                    <div class="divCon backF0 fLeft ">
+                        <div class="commTitle1 fmOpenL fLeft">Select the stones available in the product</div>
+                        
+                            <div class="checkDiv fmOpenL borderDashed font18">
+                                <input type="checkbox" name="stones" class="filled-in" value="Diamonds" id="stone1">
+                                <label for="stone1">Diamond</label>
+                            </div>
+                            <div class="checkDiv fmOpenL borderDashed font18">
+                                <input type="checkbox" name="stones" class="filled-in" value="Diamonds" id="stone2">
+                                <label for="stone2">Uncut Diamond</label>
+                            </div>
+                            <div class="checkDiv fmOpenL borderDashed font18">
+                                <input type="checkbox" name="stones" class="filled-in" value="Diamonds" id="stone3">
+                                <label for="stone3">Solitaire</label>
+                            </div>
+                            <div class="checkDiv fmOpenL borderDashed font18">
+                                <input type="checkbox" name="stones" class="filled-in" value="Diamonds" id="stone4">
+                                <label for="stone4">Gemstone</label>
+                            </div>
+                        
+
+                    </div>
+
+
+                </section>
+                <!-----Category Section End--!-->
+
+                <!-----Diamond Section--!-->
+                <section id='diamond_Section' class="diamondCont">
+                    <div class="commTitle1 fmOpenL fLeft">Add Diamond</div>
+                    <div class="shapesContComm fLeft">
+                        <div class="allShapes fLeft">
+                            <center>
+                                <div id="Emerald" class="shapeComm transition300 Emerald">
+                                </div><div id="Round" class="shapeComm transition300 Round">
+                                </div><div id="Pear" class="shapeComm transition300 Pear">
+                                </div><div id="Princess" class="shapeComm transition300 Princess">
+                                </div><div id="Marquise" class="shapeComm transition300 Marquise">
+                                </div><div id="Oval" class="shapeComm transition300 Oval">
+                                </div><div id="Cushion" class="shapeComm transition300 Cushion">
+                                </div><div id="Heart" class="shapeComm transition300 Heart">
+                                </div><div id="Radiant" class="shapeComm transition300 Radiant">
+                                </div><div id="Asscher" class="shapeComm transition300 Asscher">
+                                </div>
+                            </center>
+                        </div>
+                    </div>
+
+                    <div class="divCon fLeft fmOpenR">
+                        <div class="titleDiv fLeft wAuto">Is this diamond customizable?</div>
+                        <div class="checkDiv fLeft mTop0">
+                            <input type="radio" name="isDiamondCustz" class="filled-in" value="0" id="dcust1">
+                            <label for="dcust1">Yes</label>
+                        </div>
+                        <div class="checkDiv fLeft mTop0">
+                            <input type="radio" name="isDiamondCustz" class="filled-in" value="1" id="dcust2">
+                            <label for="dcust2">No</label>
+                        </div>
+                    </div>
+                    <div class="qltCLeft fLeft">
                         <div class="divCon  fLeft fmOpenR mTop0">
-                            <center>
-                                <div class="checkDiv">
-                                    <input type="checkbox" name="rprd" class="filled-in" value="10008" id="r1"> 
-                                    <label for="r1">Jewellery</label>
-                                </div>
-                                <div class="checkDiv">
-                                    <input type="checkbox" name="rprd" class="filled-in" value="10008" id="r2"> 
-                                    <label for="r2">Custom Jewellery</label>
-                                </div>
-                            </center>
-                        </div>
-                        <div class="breakLine"></div>
-                        <div class="divCon  fLeft fmOpenR mTop0">
-                            <center>
-                                <div class="checkDiv">
-                                    <input type="checkbox" name="prd" class="filled-in" value="10008" id="1"> 
-                                    <label for="1">Rings</label>
-                                </div>
-                                <div class="checkDiv">
-                                    <input type="checkbox" name="prd" class="filled-in" value="10008" id="2"> 
-                                    <label for="2">Earrings</label>
-                                </div>
-                                <div class="checkDiv">
-                                    <input type="checkbox" name="prd" class="filled-in" value="10008" id="3"> 
-                                    <label for="3">Pendants</label>
-                                </div>
-                                <div class="checkDiv">
-                                    <input type="checkbox" name="prd" class="filled-in" value="10008" id="4"> 
-                                    <label for="4">Chains</label>
-                                </div>
-                                <div class="checkDiv">
-                                    <input type="checkbox" name="prd" class="filled-in" value="10008" id="5"> 
-                                    <label for="5">Mens</label>
-                                </div>
-                                <div class="checkDiv">
-                                    <input type="checkbox" name="prd" class="filled-in" value="10008" id="6"> 
-                                    <label for="6">Bangles</label>
-                                </div>
-                                <div class="checkDiv">
-                                    <input type="checkbox" name="prd" class="filled-in" value="10008" id="7"> 
-                                    <label for="7">Bracelets</label>
-                                </div>
-                                <div class="checkDiv">
-                                    <input type="checkbox" name="prd" class="filled-in" value="10008" id="8"> 
-                                    <label for="8">Plain Gold</label>
-                                </div>
-                                <div class="checkDiv">
-                                    <input type="checkbox" name="prd" class="filled-in" value="10008" id="9"> 
-                                    <label for="9">Platinum</label>
-                                </div>
-                            </center>
-                        </div>
-                        <div class="breakLine"></div>
-                        <div class="divCon fLeft fmOpenR mTop0">                    
-                            <center>
-                                <div class="checkDiv">
-                                    <input type="checkbox" class="filled-in" value="10008" id="t1"> 
-                                    <label for="t1">Platinum Type 1</label>
-                                </div>
-                                <div class="checkDiv">
-                                    <input type="checkbox" class="filled-in" value="10008" id="t2"> 
-                                    <label for="t2">Platinum Type 2</label>
-                                </div>
-                                <div class="checkDiv">
-                                    <input type="checkbox" class="filled-in" value="10008" id="t3"> 
-                                    <label for="t3">Platinum Type 3</label>
-                                </div>
-                            </center>
-                        </div>
-                        <div class="divCon fLeft">
-                            <div class="divCon2 fLeft mTop0">
-                                <div class="titleDiv txtCap fLeft">Select Vendor</div>
-                                <select id="gemstone_type"  class="txtSelect fLeft fmOpenR font14 c666">
-                                    <option value="">Select Gemstone Type</option>
-                                    <option value="Patdiam">Patdiam</option>
-                                    <option value="Maharani">Maharani</option>
-                                    <option value="SP Kulthiya">SP Kulthiya</option>
-                                    <option value="BLUE TOPAZ">DN Jewels</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="divCon2 fLeft">
-                            <div class="titleDiv txtCap fLeft">Product Name</div>
-                            <input name="" type="text" id="dpos" autocomplete="false"  placeholder="Enter product name" class="txtInput fLeft fmOpenR font14 c666">
-                        </div>
-                        <div class="divCon2 fRight">
-                            <div class="titleDiv txtCap fLeft">Product SEO Name</div>
-                            <input name="" type="text" id="dpos" autocomplete="false"  placeholder="Enter product seo name" class="txtInput fLeft fmOpenR font14 c666">
-                        </div>
-
-
-
-                        <div class="divCon fLeft">
-                            <div class="commTitle0 fmOpenR fLeft">Select the stones available in the product</div>
-                            <center>
-                                <div class="checkDiv">
-                                    <input type="checkbox" name="stones" class="filled-in" value="Diamonds" id="stone1">
-                                    <label for="stone1">Diamond</label>
-                                </div>
-                                <div class="checkDiv">
-                                    <input type="checkbox" name="stones" class="filled-in" value="Diamonds" id="stone2">
-                                    <label for="stone2">Uncut Diamond</label>
-                                </div>
-                                <div class="checkDiv">
-                                    <input type="checkbox" name="stones" class="filled-in" value="Diamonds" id="stone3">
-                                    <label for="stone3">Solitaire</label>
-                                </div>
-                                <div class="checkDiv">
-                                    <input type="checkbox" name="stones" class="filled-in" value="Diamonds" id="stone4">
-                                    <label for="stone4">Gemstone</label>
-                                </div>
-                            </center>
-
-                        </div>
-
-
-                    </section>
-                    <!-----Category Section End--!-->
-
-                    <!-----Diamond Section--!-->
-                    <section id='diamond_Section' class="diamondCont">
-                        <div class="commTitle1 fmOpenL fLeft">Add Diamond</div>
-                        <div class="shapesContComm fLeft">
-                            <div class="allShapes fLeft">
-                                <center>
-                                    <div id="Emerald" class="shapeComm transition300 Emerald">
-                                    </div><div id="Round" class="shapeComm transition300 Round">
-                                    </div><div id="Pear" class="shapeComm transition300 Pear">
-                                    </div><div id="Princess" class="shapeComm transition300 Princess">
-                                    </div><div id="Marquise" class="shapeComm transition300 Marquise">
-                                    </div><div id="Oval" class="shapeComm transition300 Oval">
-                                    </div><div id="Cushion" class="shapeComm transition300 Cushion">
-                                    </div><div id="Heart" class="shapeComm transition300 Heart">
-                                    </div><div id="Radiant" class="shapeComm transition300 Radiant">
-                                    </div><div id="Asscher" class="shapeComm transition300 Asscher">
-                                    </div>
-                                </center>
-                            </div>
-                        </div>
-
-                        <div class="divCon fLeft fmOpenR">
-                            <div class="titleDiv txtCap fLeft wAuto">Is Diamond Customizable *</div>
-                            <div class="checkDiv fLeft">
-                                <input type="radio" name="isDiamondCustz" class="filled-in" value="0" id="dcust1">
-                                <label for="dcust1">Yes</label>
-                            </div>
-                            <div class="checkDiv fLeft">
-                                <input type="radio" name="isDiamondCustz" class="filled-in" value="1" id="dcust2">
-                                <label for="dcust2">No</label>
-                            </div>
-                        </div>
-
-                        <div class="divCon  fLeft fmOpenR">
-                            <div class="titleDiv txtCap fLeft">Diamond Quality *</div>
+                            <div class="titleDiv txtCap fLeft">Diamond Quality*</div>
                             <div class="dQuality fLeft">
                                 <div class="checkDiv fLeft minwidth100">
                                     <input type="checkbox" name="dquality_0" class="filled-in" value="IF" id="dquality_0_IF">
-                                    <label for="dquality_0_IF">IF</label>
+                                    <label for="dquality_0_IF">VVS - IF</label>
                                 </div>
-                                <div class="intColors fLeft">
-                                    <div class="checkDiv fLeft availCol">
-                                        Select Color(s) :
-                                    </div>
-                                    <div class="checkDiv fLeft">
-                                        <input type="checkbox" name="color_1" class="filled-in" value="D" id="color_D_1">
-                                        <label for="color_D_1"> D</label>
-                                    </div>
-                                    <div class="checkDiv fLeft">
-                                        <input type="checkbox" name="color_1" class="filled-in" value="E" id="color_E_1">
-                                        <label for="color_E_1">E</label>
-                                    </div>
-                                    <div class="checkDiv fLeft">
-                                        <input type="checkbox" name="color_1" class="filled-in" value="F" id="color_F_1">
-                                        <label for="color_F_1">F</label>
-                                    </div>
-                                    <div class="checkDiv fLeft">
-                                        <input type="checkbox" name="color_1" class="filled-in" value="G" id="color_G_1">
-                                        <label for="color_G_1">G</label>
-                                    </div>
-                                    <div class="checkDiv fLeft">
-                                        <input type="checkbox" name="color_1" class="filled-in" value="H" id="color_H_1">
-                                        <label for="color_H_1">H</label>
-                                    </div>
-                                </div>
-                                <div class="intInp fLeft">
-                                    <input name="" type="text" id="dpos" autocomplete="false" readonly="true" class="txtInput fRight fmOpenR font14 c666">
-                                </div>
+                                <div class="intInp fLeft">&#8377; 45000</div>
                             </div>
                             <div class="dQuality fLeft">
                                 <div class="checkDiv fLeft minwidth100">
                                     <input type="checkbox" name="dquality_0" class="filled-in" value="VVS1" id="dquality_0_VVS1">
-                                    <label for="dquality_0_IF">VVS1</label>
+                                    <label for="dquality_0_IF">VVS - EF</label>
                                 </div>
-                                <div class="intColors fLeft">
-                                    <div class="checkDiv fLeft availCol">
-                                        Select Color(s) :
-                                    </div>
-                                    <div class="checkDiv fLeft">
-                                        <input type="checkbox" name="color_1" class="filled-in" value="D" id="color_D_1">
-                                        <label for="color_D_1"> D</label>
-                                    </div>
-                                    <div class="checkDiv fLeft">
-                                        <input type="checkbox" name="color_1" class="filled-in" value="E" id="color_E_1">
-                                        <label for="color_E_1">E</label>
-                                    </div>
-                                    <div class="checkDiv fLeft">
-                                        <input type="checkbox" name="color_1" class="filled-in" value="F" id="color_F_1">
-                                        <label for="color_F_1">F</label>
-                                    </div>
-                                    <div class="checkDiv fLeft">
-                                        <input type="checkbox" name="color_1" class="filled-in" value="G" id="color_G_1">
-                                        <label for="color_G_1">G</label>
-                                    </div>
-                                    <div class="checkDiv fLeft">
-                                        <input type="checkbox" name="color_1" class="filled-in" value="H" id="color_H_1">
-                                        <label for="color_H_1">H</label>
-                                    </div>
-                                </div>
-                                <div class="intInp fLeft">
-                                    <input name="" type="text" id="dpos" autocomplete="false" readonly="true" class="txtInput fRight fmOpenR font14 c666">
-                                </div>
+                                <div class="intInp fLeft">&#8377; 45000</div>
                             </div>
                             <div class="dQuality fLeft">
                                 <div class="checkDiv fLeft minwidth100">
                                     <input type="checkbox" name="dquality_0" class="filled-in" value="VVS1" id="dquality_0_VVS1">
-                                    <label for="dquality_0_IF">VVS2</label>
+                                    <label for="dquality_0_IF">VVS - GH</label>
                                 </div>
-                                <div class="intColors fLeft">
-                                    <div class="checkDiv fLeft availCol">
-                                        Select Color(s) :
-                                    </div>
-                                    <div class="checkDiv fLeft">
-                                        <input type="checkbox" name="color_1" class="filled-in" value="D" id="color_D_1">
-                                        <label for="color_D_1"> D</label>
-                                    </div>
-                                    <div class="checkDiv fLeft">
-                                        <input type="checkbox" name="color_1" class="filled-in" value="E" id="color_E_1">
-                                        <label for="color_E_1">E</label>
-                                    </div>
-                                    <div class="checkDiv fLeft">
-                                        <input type="checkbox" name="color_1" class="filled-in" value="F" id="color_F_1">
-                                        <label for="color_F_1">F</label>
-                                    </div>
-                                    <div class="checkDiv fLeft">
-                                        <input type="checkbox" name="color_1" class="filled-in" value="G" id="color_G_1">
-                                        <label for="color_G_1">G</label>
-                                    </div>
-                                    <div class="checkDiv fLeft">
-                                        <input type="checkbox" name="color_1" class="filled-in" value="H" id="color_H_1">
-                                        <label for="color_H_1">H</label>
-                                    </div>
-                                </div>
-                                <div class="intInp fLeft">
-                                    <input name="" type="text" id="dpos" autocomplete="false" readonly="true" class="txtInput fRight fmOpenR font14 c666">
-                                </div>
+                               <div class="intInp fLeft">&#8377; 45000</div>
                             </div>
 
                             <div class="dQuality fLeft">
                                 <div class="checkDiv fLeft minwidth100">
                                     <input type="checkbox" name="dquality_0" class="filled-in" value="VVS1" id="dquality_0_VVS1">
-                                    <label for="dquality_0_IF">VS1</label>
+                                    <label for="dquality_0_IF">VS - EF</label>
                                 </div>
-                                <div class="intColors fLeft">
-                                    <div class="checkDiv fLeft availCol">
-                                        Select Color(s) :
-                                    </div>
-                                    <div class="checkDiv fLeft">
-                                        <input type="checkbox" name="color_1" class="filled-in" value="D" id="color_D_1">
-                                        <label for="color_D_1"> D</label>
-                                    </div>
-                                    <div class="checkDiv fLeft">
-                                        <input type="checkbox" name="color_1" class="filled-in" value="E" id="color_E_1">
-                                        <label for="color_E_1">E</label>
-                                    </div>
-                                    <div class="checkDiv fLeft">
-                                        <input type="checkbox" name="color_1" class="filled-in" value="F" id="color_F_1">
-                                        <label for="color_F_1">F</label>
-                                    </div>
-                                    <div class="checkDiv fLeft">
-                                        <input type="checkbox" name="color_1" class="filled-in" value="G" id="color_G_1">
-                                        <label for="color_G_1">G</label>
-                                    </div>
-                                    <div class="checkDiv fLeft">
-                                        <input type="checkbox" name="color_1" class="filled-in" value="H" id="color_H_1">
-                                        <label for="color_H_1">H</label>
-                                    </div>
-                                </div>
-                                <div class="intInp fLeft">
-                                    <input name="" type="text" id="dpos" autocomplete="false" readonly="true" class="txtInput fRight fmOpenR font14 c666">
-                                </div>
+                                <div class="intInp fLeft">&#8377; 45000</div>
                             </div>
                             <div class="dQuality fLeft">
                                 <div class="checkDiv fLeft minwidth100">
                                     <input type="checkbox" name="dquality_0" class="filled-in" value="VVS1" id="dquality_0_VVS1">
-                                    <label for="dquality_0_IF">VS2</label>
+                                    <label for="dquality_0_IF">VS - GH</label>
                                 </div>
-                                <div class="intColors fLeft">
-                                    <div class="checkDiv fLeft availCol">
-                                        Select Color(s) :
-                                    </div>
-                                    <div class="checkDiv fLeft">
-                                        <input type="checkbox" name="color_1" class="filled-in" value="D" id="color_D_1">
-                                        <label for="color_D_1"> D</label>
-                                    </div>
-                                    <div class="checkDiv fLeft">
-                                        <input type="checkbox" name="color_1" class="filled-in" value="E" id="color_E_1">
-                                        <label for="color_E_1">E</label>
-                                    </div>
-                                    <div class="checkDiv fLeft">
-                                        <input type="checkbox" name="color_1" class="filled-in" value="F" id="color_F_1">
-                                        <label for="color_F_1">F</label>
-                                    </div>
-                                    <div class="checkDiv fLeft">
-                                        <input type="checkbox" name="color_1" class="filled-in" value="G" id="color_G_1">
-                                        <label for="color_G_1">G</label>
-                                    </div>
-                                    <div class="checkDiv fLeft">
-                                        <input type="checkbox" name="color_1" class="filled-in" value="H" id="color_H_1">
-                                        <label for="color_H_1">H</label>
-                                    </div>
-                                </div>
-                                <div class="intInp fLeft">
-                                    <input name="" type="text" id="dpos" autocomplete="false" readonly="true" class="txtInput fRight fmOpenR font14 c666">
-                                </div>
+                                <div class="intInp fLeft">&#8377; 45000</div>
                             </div>
                             <div class="dQuality fLeft">
                                 <div class="checkDiv fLeft minwidth100">
                                     <input type="checkbox" name="dquality_0" class="filled-in" value="VVS1" id="dquality_0_VVS1">
-                                    <label for="dquality_0_IF">SI1</label>
+                                    <label for="dquality_0_IF">VS - IJ</label>
                                 </div>
-                                <div class="intColors fLeft">
-                                    <div class="checkDiv fLeft availCol">
-                                        Select Color(s) :
-                                    </div>
-                                    <div class="checkDiv fLeft">
-                                        <input type="checkbox" name="color_1" class="filled-in" value="D" id="color_D_1">
-                                        <label for="color_D_1"> D</label>
-                                    </div>
-                                    <div class="checkDiv fLeft">
-                                        <input type="checkbox" name="color_1" class="filled-in" value="E" id="color_E_1">
-                                        <label for="color_E_1">E</label>
-                                    </div>
-                                    <div class="checkDiv fLeft">
-                                        <input type="checkbox" name="color_1" class="filled-in" value="F" id="color_F_1">
-                                        <label for="color_F_1">F</label>
-                                    </div>
-                                    <div class="checkDiv fLeft">
-                                        <input type="checkbox" name="color_1" class="filled-in" value="G" id="color_G_1">
-                                        <label for="color_G_1">G</label>
-                                    </div>
-                                    <div class="checkDiv fLeft">
-                                        <input type="checkbox" name="color_1" class="filled-in" value="H" id="color_H_1">
-                                        <label for="color_H_1">H</label>
-                                    </div>
-                                </div>
-                                <div class="intInp fLeft">
-                                    <input name="" type="text" id="dpos" autocomplete="false" readonly="true" class="txtInput fRight fmOpenR font14 c666">
-                                </div>
+                                <div class="intInp fLeft">&#8377; 45000</div>
                             </div>
                             <div class="dQuality fLeft">
                                 <div class="checkDiv fLeft minwidth100">
                                     <input type="checkbox" name="dquality_0" class="filled-in" value="VVS1" id="dquality_0_VVS1">
-                                    <label for="dquality_0_IF">SI2</label>
+                                    <label for="dquality_0_IF">SI - EF</label>
                                 </div>
-                                <div class="intColors fLeft">
-                                    <div class="checkDiv fLeft availCol">
-                                        Select Color(s) :
-                                    </div>
-                                    <div class="checkDiv fLeft">
-                                        <input type="checkbox" name="color_1" class="filled-in" value="D" id="color_D_1">
-                                        <label for="color_D_1"> D</label>
-                                    </div>
-                                    <div class="checkDiv fLeft">
-                                        <input type="checkbox" name="color_1" class="filled-in" value="E" id="color_E_1">
-                                        <label for="color_E_1">E</label>
-                                    </div>
-                                    <div class="checkDiv fLeft">
-                                        <input type="checkbox" name="color_1" class="filled-in" value="F" id="color_F_1">
-                                        <label for="color_F_1">F</label>
-                                    </div>
-                                    <div class="checkDiv fLeft">
-                                        <input type="checkbox" name="color_1" class="filled-in" value="G" id="color_G_1">
-                                        <label for="color_G_1">G</label>
-                                    </div>
-                                    <div class="checkDiv fLeft">
-                                        <input type="checkbox" name="color_1" class="filled-in" value="H" id="color_H_1">
-                                        <label for="color_H_1">H</label>
-                                    </div>
-                                </div>
-                                <div class="intInp fLeft">
-                                    <input name="" type="text" id="dpos" autocomplete="false" readonly="true" class="txtInput fRight fmOpenR font14 c666">
-                                </div>
+                                <div class="intInp fLeft">&#8377; 45000</div>
                             </div>
                             <div class="dQuality fLeft">
                                 <div class="checkDiv fLeft minwidth100">
                                     <input type="checkbox" name="dquality_0" class="filled-in" value="VVS1" id="dquality_0_VVS1">
-                                    <label for="dquality_0_IF">I1</label>
+                                    <label for="dquality_0_IF">SI - GH</label>
                                 </div>
-                                <div class="intColors fLeft">
-                                    <div class="checkDiv fLeft availCol">
-                                        Select Color(s) :
-                                    </div>
-                                    <div class="checkDiv fLeft">
-                                        <input type="checkbox" name="color_1" class="filled-in" value="D" id="color_D_1">
-                                        <label for="color_D_1"> D</label>
-                                    </div>
-                                    <div class="checkDiv fLeft">
-                                        <input type="checkbox" name="color_1" class="filled-in" value="E" id="color_E_1">
-                                        <label for="color_E_1">E</label>
-                                    </div>
-                                    <div class="checkDiv fLeft">
-                                        <input type="checkbox" name="color_1" class="filled-in" value="F" id="color_F_1">
-                                        <label for="color_F_1">F</label>
-                                    </div>
-                                    <div class="checkDiv fLeft">
-                                        <input type="checkbox" name="color_1" class="filled-in" value="G" id="color_G_1">
-                                        <label for="color_G_1">G</label>
-                                    </div>
-                                    <div class="checkDiv fLeft">
-                                        <input type="checkbox" name="color_1" class="filled-in" value="H" id="color_H_1">
-                                        <label for="color_H_1">H</label>
-                                    </div>
-                                </div>
-                                <div class="intInp fLeft">
-                                    <input name="" type="text" id="dpos" autocomplete="false" readonly="true" class="txtInput fRight fmOpenR font14 c666">
-                                </div>
+                               <div class="intInp fLeft">&#8377; 45000</div>
                             </div>
-                        </div>
-                        <div class="divCon2 fLeft">
+                            <div class="dQuality fLeft">
+                                <div class="checkDiv fLeft minwidth100">
+                                    <input type="checkbox" name="dquality_0" class="filled-in" value="VVS1" id="dquality_0_VVS1">
+                                    <label for="dquality_0_IF">SI - IJ</label>
+                                </div>
+                               <div class="intInp fLeft">&#8377; 45000</div>
+                            </div>
+                            <div class="dQuality fLeft">
+                                <div class="checkDiv fLeft minwidth100">
+                                    <input type="checkbox" name="dquality_0" class="filled-in" value="VVS1" id="dquality_0_VVS1">
+                                    <label for="dquality_0_IF">SI - JK</label>
+                                </div>
+                               <div class="intInp fLeft">&#8377; 45000</div>
+                            </div>
+                        </div>                            
+                    </div>
+                    <div class="qltCRight fLeft">
+                        <div class="divCon fLeft mTop0">
                             <div class="titleDiv txtCap fLeft">Carat</div>
                             <input name="" type="text" id="dpos" autocomplete="false"  placeholder="Enter weight (carat)" class="txtInput fLeft fmOpenR font14 c666">
                         </div>
-                        <div class="divCon2 fLeft">
+                        <div class="divCon fLeft">
                             <div class="titleDiv txtCap fLeft">No. Of Pieces</div>
                             <input name="" type="text" id="dpos" autocomplete="false"  placeholder="Enter no. of pieces" class="txtInput fLeft fmOpenR font14 c666">
                         </div>
-                        <div class="divCon2 fLeft">
+                        <div class="divCon fLeft">
                             <div class="titleDiv txtCap fLeft">Price / Carat</div>
                             <input name="" type="text" id="dpos" autocomplete="false"  placeholder="Enter price / carat" class="txtInput fLeft fmOpenR font14 c666">
                         </div>
-                        <div class="divCon fLeft">
-                            <div class="addCouponBtn fRight transition300">Add Diamond</div>
-                        </div>
-                    </section>
-                    <!-----Diamond Section End--!-->
+                    </div>
+                    <div class="divCon fLeft">
+                        <center><div class="addBtn transition300">Add Diamond</div></center>
+                    </div>
+                </section>
+                <!-----Diamond Section End--!-->
 
 
-                    <!-----Gemstone Section--!-->
-                    <section id='gemstone_Section' class="gemstoneCont">
-                        <div class="commTitle1 fmOpenL fLeft">Add Gemstone</div>
-                        <div class="divCon2 fLeft">
-                            <div class="titleDiv txtCap fLeft">Select a gemstone</div>
-                            <select id="gemstone_type"  class="txtSelect fLeft fmOpenR font14 c666">
-                                <option value="">Select A Gemstone</option>
-                                <option value="amber">Amber</option>
-                                <option value="amethyst">Amethyst</option>
-                                <option value="aquamarine">Aquamarine</option>
-                                <option value="blue topaz">Blue Topaz</option>
-                                <option value="coral">Coral</option>
-                                <option value="emerald">Emerald</option>
-                                <option value="garnet">Garnet</option>
-                                <option value="golden topaz">Golden Topaz</option>
-                                <option value="hydro">Hydro</option>
-                                <option value="iolite">Iolite</option>
-                                <option value="lemon topaz">Lemon Topaz</option>
-                                <option value="moonstone">Moonstone</option>
-                                <option value="onyx">Onyx</option>
-                                <option value="opal">Opal</option>
-                                <option value="pearl">Pearl</option>
-                                <option value="peridot">Peridot</option>
-                                <option value="rose quartz">Rose Quartz</option>
-                                <option value="rubilite">Rubilite</option>
-                                <option value="ruby">Ruby</option>
-                                <option value="sapphire">Sapphire</option>
-                                <option value="smoky topaz">Smoky topaz</option>
-                                <option value="tanzanite">Tanzanite</option>
-                                <option value="turquoise">Turquoise</option>
-                            </select>
-                        </div>
-                        <div class="divCon2 fLeft">
-                            <div class="titleDiv txtCap fLeft">No. Of Pieces</div>
-                            <input name="" type="text" id="dpos" autocomplete="false"  placeholder="Enter no. of pieces" class="txtInput fLeft fmOpenR font14 c666">
-                        </div>
-                        <div class="divCon2 fLeft">
-                            <div class="titleDiv txtCap fLeft">Carat</div>
-                            <input name="" type="text" id="dpos" autocomplete="false"  placeholder="Enter weight (carat)" class="txtInput fLeft fmOpenR font14 c666">
-                        </div>
-                        <div class="divCon2 fLeft">
-                            <div class="titleDiv txtCap fLeft">Price / carat</div>
-                            <input name="" type="text" id="dpos" autocomplete="false"  placeholder="Enter no. of pieces" class="txtInput fLeft fmOpenR font14 c666">
-                        </div>
-                        <div class="divCon fLeft">
-                            <div class="addCouponBtn fRight transition300">Add Gemstone</div>
-                        </div>
-                    </section>
-                    <!-----Gemstone Section End--!-->
+                <!-----Gemstone Section--!-->
+                <section id='gemstone_Section' class="gemstoneCont">
+                    <div class="commTitle1 fmOpenL fLeft">Add Gemstone</div>
+                    <div class="divCon2 fLeft">
+                        <div class="titleDiv txtCap fLeft">Select a gemstone</div>
+                        <select id="gemstone_type"  class="txtSelect fLeft fmOpenR font14 c666">
+                            <option value="">Select A Gemstone</option>
+                            <option value="amber">Amber</option>
+                            <option value="amethyst">Amethyst</option>
+                            <option value="aquamarine">Aquamarine</option>
+                            <option value="blue topaz">Blue Topaz</option>
+                            <option value="coral">Coral</option>
+                            <option value="emerald">Emerald</option>
+                            <option value="garnet">Garnet</option>
+                            <option value="golden topaz">Metalen Topaz</option>
+                            <option value="hydro">Hydro</option>
+                            <option value="iolite">Iolite</option>
+                            <option value="lemon topaz">Lemon Topaz</option>
+                            <option value="moonstone">Moonstone</option>
+                            <option value="onyx">Onyx</option>
+                            <option value="opal">Opal</option>
+                            <option value="pearl">Pearl</option>
+                            <option value="peridot">Peridot</option>
+                            <option value="rose quartz">Rose Quartz</option>
+                            <option value="rubilite">Rubilite</option>
+                            <option value="ruby">Ruby</option>
+                            <option value="sapphire">Sapphire</option>
+                            <option value="smoky topaz">Smoky topaz</option>
+                            <option value="tanzanite">Tanzanite</option>
+                            <option value="turquoise">Turquoise</option>
+                        </select>
+                    </div>
+                    <div class="divCon2 fLeft">
+                        <div class="titleDiv txtCap fLeft">No. Of Pieces</div>
+                        <input name="" type="text" id="dpos" autocomplete="false"  placeholder="Enter no. of pieces" class="txtInput fLeft fmOpenR font14 c666">
+                    </div>
+                    <div class="divCon2 fLeft">
+                        <div class="titleDiv txtCap fLeft">Carat</div>
+                        <input name="" type="text" id="dpos" autocomplete="false"  placeholder="Enter weight (carat)" class="txtInput fLeft fmOpenR font14 c666">
+                    </div>
+                    <div class="divCon2 fLeft">
+                        <div class="titleDiv txtCap fLeft">Price / carat</div>
+                        <input name="" type="text" id="dpos" autocomplete="false"  placeholder="Enter no. of pieces" class="txtInput fLeft fmOpenR font14 c666">
+                    </div>
+                    <div class="divCon fLeft">
+                        <center><div class="addBtn transition300">Add Gemstone</div></center>
+                    </div>
+                </section>
+                <!-----Gemstone Section End--!-->
 
 
-                    <!-----Uncut Diamond Section--!-->
-                    <section id='uncut_Section' class="uncutCont">
-                        <div class="commTitle1 fmOpenL fLeft">Add Uncut Diamond</div>
-                        <div class="divCon fLeft fmOpenR">
-                            <div class="titleDiv txtCap fLeft">Diamond Color *</div>
-                            <div class="radioCont fLeft"> 
-                                <div class="checkDiv fLeft">
-                                    <input type="checkbox" name="color_1" class="filled-in" value="D" id="color_D_1">
-                                    <label for="color_D_1"> D</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="checkbox" name="color_1" class="filled-in" value="E" id="color_E_1">
-                                    <label for="color_E_1">E</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="checkbox" name="color_1" class="filled-in" value="F" id="color_F_1">
-                                    <label for="color_F_1">F</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="checkbox" name="color_1" class="filled-in" value="G" id="color_G_1">
-                                    <label for="color_G_1">G</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="checkbox" name="color_1" class="filled-in" value="H" id="color_H_1">
-                                    <label for="color_H_1">H</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="checkbox" name="color_1" class="filled-in" value="I" id="color_I_1">
-                                    <label for="color_I_1">I</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="checkbox" name="color_1" class="filled-in" value="J" id="color_J_1">
-                                    <label for="color_J_1">J</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="checkbox" name="color_1" class="filled-in" value="K" id="color_K_1">
-                                    <label for="color_K_1">K</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="checkbox" name="color_1" class="filled-in" value="L" id="color_L_1">
-                                    <label for="color_L_1">L</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="checkbox" name="color_1" class="filled-in" value="M" id="color_M_1">
-                                    <label for="color_M_1">M</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="checkbox" name="color_1" class="filled-in" value="N" id="color_N_1">
-                                    <label for="color_N_1">N</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="checkbox" name="color_1" class="filled-in" value="O" id="color_O_1">
-                                    <label for="color_O_1">O</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="divCon  fLeft fmOpenR">
-                            <div class="titleDiv txtCap fLeft">Diamond Quality *</div>
-                            <div class="radioCont fLeft"> 
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" name="clarity_1" class="filled-in" value="IF" id="clarity_IF_1">
-                                    <label for="clarity_IF_1">IF</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" name="clarity_1" class="filled-in" value="VVS1" id="clarity_VVS1_1">
-                                    <label for="clarity_VVS1_1">VVS1</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" name="clarity_1" class="filled-in" value="VVS2" id="clarity_VVS2_1">
-                                    <label for="clarity_VVS2_1">VVS2</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" name="clarity_1" class="filled-in" value="VS1" id="clarity_VS1_1">
-                                    <label for="clarity_VS1_1">VS1</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" name="clarity_1" class="filled-in" value="VS2" id="clarity_VS2_1">
-                                    <label for="clarity_VS2_1">VS2</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" name="clarity_1" class="filled-in" value="SI1" id="clarity_SI1_1">
-                                    <label for="clarity_SI1_1">SI1</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" name="clarity_1" class="filled-in" value="SI2" id="clarity_SI2_1">
-                                    <label for="clarity_SI2_1">SI2</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" name="clarity_1" class="filled-in" value="I1" id="clarity_I1_1">
-                                    <label for="clarity_I1_1">I1</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="divCon2 fLeft">
-                            <div class="titleDiv txtCap fLeft">No. Of Pieces</div>
-                            <input name="" type="text" id="dpos" autocomplete="false"  placeholder="Enter no. of pieces" class="txtInput fLeft fmOpenR font14 c666">
-                        </div>
-                        <div class="divCon2 fLeft">
-                            <div class="titleDiv txtCap fLeft">Carat</div>
-                            <input name="" type="text" id="dpos" autocomplete="false"  placeholder="Enter weight (carat)" class="txtInput fLeft fmOpenR font14 c666">
-                        </div>
-                        <div class="divCon2 fLeft">
-                            <div class="titleDiv txtCap fLeft">Price / carat</div>
-                            <input name="" type="text" id="dpos" autocomplete="false"  placeholder="Enter no. of pieces" class="txtInput fLeft fmOpenR font14 c666">
-                        </div>
-                        <div class="divCon fLeft">
-                            <div class="addCouponBtn fRight transition300">Add Uncut Diamond</div>
-                        </div>
-                    </section>
-                    <!-----Uncut Diamond Section End--!-->
-
-
-
-                    <!-----Solitaire Section--!-->
-                    <section id='solitaires_Section' class="solitaireCont">
-                        <div class="commTitle1 fmOpenL fLeft">Add Solitaire</div>
-                        <div class="shapesContComm fLeft">
-                            <div class="allShapes fLeft">
-                                <center>
-                                    <div id="Emerald" class="shapeComm transition300 Emerald">
-                                    </div><div id="Round" class="shapeComm transition300 Round">
-                                    </div><div id="Pear" class="shapeComm transition300 Pear">
-                                    </div><div id="Princess" class="shapeComm transition300 Princess">
-                                    </div><div id="Marquise" class="shapeComm transition300 Marquise">
-                                    </div><div id="Oval" class="shapeComm transition300 Oval">
-                                    </div><div id="Cushion" class="shapeComm transition300 Cushion">
-                                    </div><div id="Heart" class="shapeComm transition300 Heart">
-                                    </div><div id="Radiant" class="shapeComm transition300 Radiant">
-                                    </div><div id="Asscher" class="shapeComm transition300 Asscher">
-                                    </div>
-                                </center>
-                            </div>
-                        </div>
-                        <div class="divCon  fLeft ">
-                            <div class="titleDiv txtCap fLeft">Color *</div>
-                            <div class="radioCont fLeft"> 
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" value="D" name="color" autocomplete="false" class="filled-in" id="color_D">
-                                    <label for="color_D">D</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" value="E" name="color" autocomplete="false" class="filled-in" id="color_E">
-                                    <label for="color_E">E</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" value="F" name="color" autocomplete="false" class="filled-in" id="color_F">
-                                    <label for="color_F">F</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" value="G" name="color" autocomplete="false" class="filled-in" id="color_G">
-                                    <label for="color_G">G</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" value="H" name="color" autocomplete="false" class="filled-in" id="color_H">
-                                    <label for="color_H">H</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" value="I" name="color" autocomplete="false" class="filled-in" id="color_I">
-                                    <label for="color_I">I</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" value="J" name="color" autocomplete="false" class="filled-in" id="color_J">
-                                    <label for="color_J">J</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" value="K" name="color" autocomplete="false" class="filled-in" id="color_K">
-                                    <label for="color_K">K</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" value="L" name="color" autocomplete="false" class="filled-in" id="color_L">
-                                    <label for="color_L">L</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" value="M" name="color" autocomplete="false" class="filled-in" id="color_M">
-                                    <label for="color_M">M</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" value="N" name="color" autocomplete="false" class="filled-in" id="color_N">
-                                    <label for="color_N">N</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" value="O" name="color" autocomplete="false" class="filled-in" id="color_O">
-                                    <label for="color_O">O</label>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="divCon  fLeft ">
-                            <div class="titleDiv txtCap fLeft">Clarity *</div>
-                            <div class="radioCont fLeft"> 
-
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" name="clarity" autocomplete="false" class="filled-in" value="IF" id="clarity_If">
-                                    <label for="clarity_If">IF</label>
-                                </div>
-
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" name="clarity" autocomplete="false" class="filled-in" value="VVS1" id="clarity_Vvs1">
-                                    <label for="clarity_Vvs1">VVS1</label>
-                                </div>
-
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" name="clarity" autocomplete="false" class="filled-in" value="VVS2" id="clarity_Vvs2">
-                                    <label for="clarity_Vvs2">VVS2</label>
-                                </div>
-
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" name="clarity" autocomplete="false" class="filled-in" value="VS1" id="clarity_Vs1">
-                                    <label for="clarity_Vs1">VS1</label>
-                                </div>
-
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" name="clarity" autocomplete="false" class="filled-in" value="VS2" id="clarity_Vs2">
-                                    <label for="clarity_Vs2">VS2</label>
-                                </div>
-
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" name="clarity" autocomplete="false" class="filled-in" value="SI1" id="clarity_Si1">
-                                    <label for="clarity_Si1">SI1</label>
-                                </div>
-
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" name="clarity" autocomplete="false" class="filled-in" value="SI2" id="clarity_Si2">
-                                    <label for="clarity_Si2">SI2</label>
-                                </div>
-
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" name="clarity" autocomplete="false" class="filled-in" value="I1" id="clarity_I1">
-                                    <label for="clarity_I1">I1</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="divCon  fLeft ">
-                            <div class="titleDiv txtCap fLeft">Cut *</div>
-                            <div class="radioCont fLeft">    
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" name="cut" autocomplete="false" class="filled-in" value="Excellent" id="cut_Excellent">
-                                    <label for="cut_Excellent"> Excellent</label>
-                                </div>       
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" name="cut" autocomplete="false" class="filled-in" value="Very Good" id="cut_Very Good">
-                                    <label for="cut_Very Good"> Very Good</label>
-                                </div>       
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" name="cut" autocomplete="false" class="filled-in" value="Good" id="cut_Good">
-                                    <label for="cut_Good"> Good</label>
-                                </div>       
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" name="cut" autocomplete="false" class="filled-in" value="Fair" id="cut_Fair">
-                                    <label for="cut_Fair"> Fair</label>
-                                </div>       
-                            </div>
-                        </div>
-                        <div class="divCon  fLeft ">
-                            <div class="titleDiv txtCap fLeft">Symmetry *</div>
-                            <div class="radioCont fLeft"> 
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" name="symmetry" autocomplete="false" class="filled-in" value="Excellent" id="sym_Excellent">
-                                    <label for="sym_Excellent"> Excellent</label>
-                                </div>                                                               
-
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" name="symmetry" autocomplete="false" class="filled-in" value="Very Good" id="sym_Very Good">
-                                    <label for="sym_Very Good"> Very Good</label>
-                                </div>                                                               
-
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" name="symmetry" autocomplete="false" class="filled-in" value="Good" id="sym_Good">
-                                    <label for="sym_Good"> Good</label>
-                                </div>                                                               
-
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" name="symmetry" autocomplete="false" class="filled-in" value="Fair" id="sym_Fair">
-                                    <label for="sym_Fair"> Fair</label>
-                                </div>                                                               
-                            </div>
-                        </div>
-                        <div class="divCon  fLeft ">
-                            <div class="titleDiv txtCap fLeft">Polish *</div>
-                            <div class="radioCont fLeft"> 
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" name="polish" autocomplete="false" class="filled-in" value="Excellent" id="polish_Excellent">
-                                    <label for="polish_Excellent">Excellent</label>
-                                </div>
-
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" name="polish" autocomplete="false" class="filled-in" value="Very Good" id="polish_Very Good">
-                                    <label for="polish_Very Good">Very Good</label>
-                                </div>
-
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" name="polish" autocomplete="false" class="filled-in" value="Good" id="polish_Good">
-                                    <label for="polish_Good">Good</label>
-                                </div>
-
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" name="polish" autocomplete="false" class="filled-in" value="Fair" id="polish_Fair">
-                                    <label for="polish_Fair">Fair</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="divCon  fLeft ">
-                            <div class="titleDiv txtCap fLeft">Fluorescence *</div>
-                            <div class="radioCont fLeft"> 
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" autocomplete="false" name="flourecence" class="filled-in" value="None" id="flourecence_None">
-                                    <label for="flourecence_None">None</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" autocomplete="false" name="flourecence" class="filled-in" value="Faint" id="flourecence_Faint">
-                                    <label for="flourecence_Faint">Faint</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" autocomplete="false" name="flourecence" class="filled-in" value="Medium" id="flourecence_Medium">
-                                    <label for="flourecence_Medium">Medium</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" autocomplete="false" name="flourecence" class="filled-in" value="Strong" id="flourecence_Strong">
-                                    <label for="flourecence_Strong">Strong</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" autocomplete="false" name="flourecence" class="filled-in" value="Very Strong" id="flourecence_Very Strong">
-                                    <label for="flourecence_Very Strong">Very Strong</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="divCon2  fLeft">
-                            <div class="titleDiv txtCap fLeft">Carat *</div>
-                            <input name="carat_weight" autocomplete="false" id="caratweight" type="text" placeholder="eg. 1.00" class="txtInput fLeft fmOpenR font14 c666" maxlength="5" onkeypress="return common.isDecimalNumber(event, this.value);" value="">
-                        </div>
-                        <div class="divCon2  fLeft">
-                            <div class="titleDiv txtCap fLeft">Price / Carat *</div>
-                            <input name="carat_weight" autocomplete="false" id="caratweight" type="text" placeholder="eg. 1.00" class="txtInput fLeft fmOpenR font14 c666" maxlength="5" onkeypress="return common.isDecimalNumber(event, this.value);" value="">
-                        </div>
-                        <div class="divCon2  fLeft">
-                            <div class="titleDiv txtCap fLeft">Table *</div>
-                            <input name="table" id="table" type="text" autocomplete="false" placeholder=" eg. 56" onkeypress="return common.isDecimalNumber(event, this.value);" maxlength="5" class="txtInput fLeft fmOpenR font14 c666" value="">
-                        </div>
-                        <div class="divCon2  fLeft">
-                            <div class="titleDiv txtCap fLeft">Crown Angle *</div>
-                            <input name="crown_angle" id="crownangle" autocomplete="false" type="text" placeholder=" eg. 41" onkeypress="return common.isDecimalNumber(event, this.value);" maxlength="5" class="txtInput fLeft fmOpenR font14 c666" value="">
-                        </div>
-                        <div class="divCon2  fLeft">
-                            <div class="titleDiv txtCap fLeft">Girdle *</div>
-                            <input name="girdle" id="girdle" type="text" autocomplete="false" placeholder=" eg. 1.33" class="txtInput fLeft fmOpenR font14 c666" maxlength="5" onkeypress="return common.isDecimalNumber(event, this.value);" value="">
-                        </div>
-                        <div class="divCon fLeft">
-                            <div class="addCouponBtn fRight transition300">Add Solitaire</div>
-                        </div>
-                    </section>
-                    <!-----Solitaire Section End--!-->
-
-                    <!-----General Section--!-->
-                    <section id='general_Section' class="generalCont">
-                        <div class="divCon fLeft fmOpenR">
-                            <div class="titleDiv txtCap fLeft">Diamond Setting type *</div>
-                            <div class="radioCont fLeft"> 
-                                <div class="checkDiv fLeft">
-                                    <input type="checkbox" name="dsetting" class="filled-in" value="Prong" id="ds1">
-                                    <label for="ds1">Prong</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="checkbox" name="dsetting" class="filled-in" value="Bezel" id="ds2">
-                                    <label for="ds2">Bezel</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="checkbox" name="dsetting" class="filled-in" value="Pave" id="ds3">
-                                    <label for="ds3">Pave</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="checkbox" name="dsetting" class="filled-in" value="Channel" id="ds4">
-                                    <label for="ds4">Channel</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="checkbox" name="dsetting" class="filled-in" value="Invisible" id="ds5">
-                                    <label for="ds5">Invisible</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="checkbox" name="dsetting" class="filled-in" value="Cluster" id="ds6">
-                                    <label for="ds6">Cluster</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="checkbox" name="dsetting" class="filled-in" value="Illusion" id="ds7">
-                                    <label for="ds7">Illusion</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="checkbox" name="dsetting" class="filled-in" value="other" id="ds8">
-                                    <label for="ds8">Other</label>
-                                </div> 
-                                <div class="divCon2 fLeft otherDsetting">
-                                    <input name="" type="text" id="dpos" autocomplete="false" placeholder="Enter other type" class="txtInput fLeft fmOpenR font14 c666">
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="divCon2 fLeft forInp">
-                            <div class="titleDiv txtCap fLeft">Gold Weight (grm) *</div>
-                            <input name="" type="text" id="dpos" autocomplete="false" placeholder="Enter gold weight" class="txtInput fLeft fmOpenR font14 c666">
-                        </div>
-                        <div class="divCon2 fLeft forInp">
-                            <div class="titleDiv txtCap fLeft">Making Charges / grm *</div>
-                            <input name="" type="text" id="dpos" autocomplete="false" placeholder="Enter making charges" class="txtInput fLeft fmOpenR font14 c666">
-                        </div>
-                        <div class="divCon2  fLeft forInp">
-                            <div class="titleDiv txtCap fLeft">Measurement *</div>
-                            <div class="mInputDiv fLeft">
-                                <input name="measurement1" id="measure1" autocomplete="false" type="text" placeholder=" eg. 10" maxlength="5" class="mtxtInput fLeft fmOpenR font14 c666" value="">
-                                <span class="fLeft">X</span>
-                                <input name="measurement2" id="measure2" type="text" autocomplete="false" placeholder=" eg. 20" maxlength="5" class="mtxtInput fLeft fmOpenR font14 c666" value="">
-                            </div>
-                        </div>
-                        <div class="divCon2 fLeft forInp2">
-                            <div class="titleDiv txtCap fLeft">Gold Purity *</div>
+                <!-----Uncut Diamond Section--!-->
+                <section id='uncut_Section' class="uncutCont">
+                    <div class="commTitle1 fmOpenL fLeft">Add Uncut Diamond</div>
+                    <div class="divCon fLeft fmOpenR">
+                        <div class="titleDiv txtCap fLeft">Diamond Color*</div>
+                        <div class="radioCont fLeft"> 
                             <div class="checkDiv fLeft">
-                                <input type="radio" name="isPurityCustz" class="filled-in" value="0" id="cust1">
-                                <label for="cust1">Customizable</label>
-                            </div>
-                            <div class="checkDiv fLeft forInp2">
-                                <input type="radio" name="isPurityCustz" class="filled-in" value="1" id="cust2">
-                                <label for="cust2">Not customizable</label>
-                            </div>
-                        </div>
-                        <div class="divCon2 fRight forInp2">
-                            <div class="titleDiv txtCap fLeft">Gold Color *</div>
-                            <div class="checkDiv fLeft">
-                                <input type="radio" name="isColorCustz" class="filled-in" value="0" id="colorcust1">
-                                <label for="colorcust1">Customizable</label>
+                                <input type="checkbox" name="color_1" class="filled-in" value="D" id="color_D_1">
+                                <label for="color_D_1"> D</label>
                             </div>
                             <div class="checkDiv fLeft">
-                                <input type="radio" name="isColorCustz" class="filled-in" value="1" id="colorcust2">
-                                <label for="colorcust2">Not Customizable</label>
+                                <input type="checkbox" name="color_1" class="filled-in" value="E" id="color_E_1">
+                                <label for="color_E_1">E</label>
                             </div>
-
-                            <div class="innerCont dn fLeft" id='ifcolorNotCustomiz'>
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" name="ifColorNotCustomiz" class="filled-in" value="0" id="colorOp1">
-                                    <label for="colorOp1">Yellow</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" name="ifColorNotCustomiz" class="filled-in" value="1" id="colorOp2">
-                                    <label for="colorOp2">Rose</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="radio" name="ifColorNotCustomiz" class="filled-in" value="2" id="colorOp3">
-                                    <label for="colorOp3">White</label>
-                                </div>
+                            <div class="checkDiv fLeft">
+                                <input type="checkbox" name="color_1" class="filled-in" value="F" id="color_F_1">
+                                <label for="color_F_1">F</label>
                             </div>
-                            <div class="innerCont dn fLeft" id='ifcolorCustomiz'>
-                                <div class="checkDiv fLeft">
-                                    <input type="checkbox" name="ifColorCustomiz" class="filled-in" value="0" id="colorOp4">
-                                    <label for="colorOp4">Yellow</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="checkbox" name="ifColorCustomiz" class="filled-in" value="1" id="colorOp5">
-                                    <label for="colorOp5">Rose</label>
-                                </div>
-                                <div class="checkDiv fLeft">
-                                    <input type="checkbox" name="ifColorCustomiz" class="filled-in" value="2" id="colorOp6">
-                                    <label for="colorOp6">White</label>
-                                </div>
+                            <div class="checkDiv fLeft">
+                                <input type="checkbox" name="color_1" class="filled-in" value="G" id="color_G_1">
+                                <label for="color_G_1">G</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="checkbox" name="color_1" class="filled-in" value="H" id="color_H_1">
+                                <label for="color_H_1">H</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="checkbox" name="color_1" class="filled-in" value="I" id="color_I_1">
+                                <label for="color_I_1">I</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="checkbox" name="color_1" class="filled-in" value="J" id="color_J_1">
+                                <label for="color_J_1">J</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="checkbox" name="color_1" class="filled-in" value="K" id="color_K_1">
+                                <label for="color_K_1">K</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="checkbox" name="color_1" class="filled-in" value="L" id="color_L_1">
+                                <label for="color_L_1">L</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="checkbox" name="color_1" class="filled-in" value="M" id="color_M_1">
+                                <label for="color_M_1">M</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="checkbox" name="color_1" class="filled-in" value="N" id="color_N_1">
+                                <label for="color_N_1">N</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="checkbox" name="color_1" class="filled-in" value="O" id="color_O_1">
+                                <label for="color_O_1">O</label>
                             </div>
                         </div>
-
-                        <div class="divCon  fLeft fmOpenR dn" id='ifpurityCustomiz'>
-                            <div class="titleDiv txtCap fLeft">Gold Purity Customizable *</div>
-                            <div class="dQuality fLeft">
-                                <div class="checkDiv fLeft minwidth100">
-                                    <input type="checkbox" name="gpurityCustomize" class="filled-in" value="IF" id="9carat_custom">
-                                    <label for="9carat_custom">9 carat</label>
-                                </div>
-                                <div class="intInp fLeft">
-                                    <input name="" type="text" id="dpos" autocomplete="false" readonly="true" class="txtInput fRight fmOpenR font14 c666">
-                                </div>
+                    </div>
+                    <div class="divCon  fLeft fmOpenR">
+                        <div class="titleDiv txtCap fLeft">Diamond Quality*</div>
+                        <div class="radioCont fLeft"> 
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="clarity_1" class="filled-in" value="IF" id="clarity_IF_1">
+                                <label for="clarity_IF_1">IF</label>
                             </div>
-                            <div class="dQuality fLeft">
-                                <div class="checkDiv fLeft minwidth100">
-                                    <input type="checkbox" name="gpurityCustomize" class="filled-in" value="IF" id="14carat_custom">
-                                    <label for="14carat_custom">14 carat</label>
-                                </div>
-                                <div class="intInp fLeft">
-                                    <input name="" type="text" id="dpos" autocomplete="false" readonly="true" class="txtInput fRight fmOpenR font14 c666">
-                                </div>
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="clarity_1" class="filled-in" value="VVS1" id="clarity_VVS1_1">
+                                <label for="clarity_VVS1_1">VVS1</label>
                             </div>
-                            <div class="dQuality fLeft">
-                                <div class="checkDiv fLeft minwidth100">
-                                    <input type="checkbox" name="gpurityCustomize" class="filled-in" value="IF" id="18carat_custom">
-                                    <label for="18carat_custom">18 carat</label>
-                                </div>
-                                <div class="intInp fLeft">
-                                    <input name="" type="text" id="dpos" autocomplete="false" readonly="true" class="txtInput fRight fmOpenR font14 c666">
-                                </div>
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="clarity_1" class="filled-in" value="VVS2" id="clarity_VVS2_1">
+                                <label for="clarity_VVS2_1">VVS2</label>
                             </div>
-                            <div class="dQuality fLeft">
-                                <div class="checkDiv fLeft minwidth100">
-                                    <input type="checkbox" name="gpurityCustomize" class="filled-in" value="IF" id="22carat_custom">
-                                    <label for="22carat_custom">22 carat</label>
-                                </div>
-                                <div class="intInp fLeft">
-                                    <input name="" type="text" id="dpos" autocomplete="false" readonly="true" class="txtInput fRight fmOpenR font14 c666">
-                                </div>
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="clarity_1" class="filled-in" value="VS1" id="clarity_VS1_1">
+                                <label for="clarity_VS1_1">VS1</label>
                             </div>
-                            <div class="dQuality fLeft">
-                                <div class="checkDiv fLeft minwidth100">
-                                    <input type="checkbox" name="gpurityCustomize" class="filled-in" value="IF" id="24carat_custom">
-                                    <label for="24carat_custom">24 carat</label>
-                                </div>
-                                <div class="intInp fLeft">
-                                    <input name="" type="text" id="dpos" autocomplete="false" readonly="true" class="txtInput fRight fmOpenR font14 c666">
-                                </div>
-                            </div>                        
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="clarity_1" class="filled-in" value="VS2" id="clarity_VS2_1">
+                                <label for="clarity_VS2_1">VS2</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="clarity_1" class="filled-in" value="SI1" id="clarity_SI1_1">
+                                <label for="clarity_SI1_1">SI1</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="clarity_1" class="filled-in" value="SI2" id="clarity_SI2_1">
+                                <label for="clarity_SI2_1">SI2</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="clarity_1" class="filled-in" value="I1" id="clarity_I1_1">
+                                <label for="clarity_I1_1">I1</label>
+                            </div>
                         </div>
-
-                        <div class="divCon  fLeft fmOpenR dn" id='ifpurityNotCustomiz'>
-                            <div class="titleDiv txtCap fLeft">Gold Purity Not Customizable *</div>
-                            <div class="dQuality fLeft">
-                                <div class="checkDiv fLeft minwidth100">
-                                    <input type="radio" name="gpurityNotCustomize" class="filled-in" value="IF" id="9carat_ncustom">
-                                    <label for="9carat_ncustom">9 carat</label>
-                                </div>
-                                <div class="intInp fLeft">
-                                    <input name="" type="text" id="dpos" autocomplete="false" readonly="true" class="txtInput fRight fmOpenR font14 c666">
-                                </div>
-                            </div>
-                            <div class="dQuality fLeft">
-                                <div class="checkDiv fLeft minwidth100">
-                                    <input type="radio" name="gpurityNotCustomize" class="filled-in" value="IF" id="14carat_ncustom">
-                                    <label for="14carat_ncustom">14 carat</label>
-                                </div>
-                                <div class="intInp fLeft">
-                                    <input name="" type="text" id="dpos" autocomplete="false" readonly="true" class="txtInput fRight fmOpenR font14 c666">
-                                </div>
-                            </div>
-                            <div class="dQuality fLeft">
-                                <div class="checkDiv fLeft minwidth100">
-                                    <input type="radio" name="gpurityNotCustomize" class="filled-in" value="IF" id="18carat_ncustom">
-                                    <label for="18carat_ncustom">18 carat</label>
-                                </div>
-                                <div class="intInp fLeft">
-                                    <input name="" type="text" id="dpos" autocomplete="false" readonly="true" class="txtInput fRight fmOpenR font14 c666">
-                                </div>
-                            </div>
-                            <div class="dQuality fLeft">
-                                <div class="checkDiv fLeft minwidth100">
-                                    <input type="radio" name="gpurityNotCustomize" class="filled-in" value="IF" id="22carat_ncustom">
-                                    <label for="22carat_ncustom">22 carat</label>
-                                </div>
-                                <div class="intInp fLeft">
-                                    <input name="" type="text" id="dpos" autocomplete="false" readonly="true" class="txtInput fRight fmOpenR font14 c666">
-                                </div>
-                            </div>
-                            <div class="dQuality fLeft">
-                                <div class="checkDiv fLeft minwidth100">
-                                    <input type="radio" name="gpurityNotCustomize" class="filled-in" value="IF" id="24carat_ncustom">
-                                    <label for="24carat_ncustom">24 carat</label>
-                                </div>
-                                <div class="intInp fLeft">
-                                    <input name="" type="text" id="dpos" autocomplete="false" readonly="true" class="txtInput fRight fmOpenR font14 c666">
-                                </div>
-                            </div>                        
-                        </div>
-                        
-                        <div class="divCon2 fLeft">
-                            <div class="titleDiv txtCap fLeft">Bangle Sizes</div>
-                            <div class="dQuality fLeft">
-                                <div class="checkDiv fLeft minwidth100">
-                                    <input type="checkbox" name="size" class="filled-in" value="IF" id="size_2_1">
-                                    <label for="size_2_1">2.1</label>
-                                </div>
-                                <div class="intInp fLeft">
-                                    <input name="" type="text" id="dpos" autocomplete="false" placeholder=" Enter quantity "class="txtInput fRight fmOpenR font14 c666">
-                                </div>
-                            </div>   
-                            <div class="dQuality fLeft">
-                                <div class="checkDiv fLeft minwidth100">
-                                    <input type="checkbox" name="size" class="filled-in" value="IF" id="size_2_2">
-                                    <label for="size_2_2">2.2</label>
-                                </div>
-                                <div class="intInp fLeft">
-                                    <input name="" type="text" id="dpos" autocomplete="false" placeholder=" Enter quantity "class="txtInput fRight fmOpenR font14 c666">
-                                </div>
-                            </div>   
-                            <div class="dQuality fLeft">
-                                <div class="checkDiv fLeft minwidth100">
-                                    <input type="checkbox" name="size" class="filled-in" value="IF" id="size_2_4">
-                                    <label for="size_2_4">2.4</label>
-                                </div>
-                                <div class="intInp fLeft">
-                                    <input name="" type="text" id="dpos" autocomplete="false" placeholder=" Enter quantity "class="txtInput fRight fmOpenR font14 c666">
-                                </div>
-                            </div>   
-                        </div>
+                    </div>
+                    <div class="divCon2 fLeft">
+                        <div class="titleDiv txtCap fLeft">No. Of Pieces</div>
+                        <input name="" type="text" id="dpos" autocomplete="false"  placeholder="Enter no. of pieces" class="txtInput fLeft fmOpenR font14 c666">
+                    </div>
+                    <div class="divCon2 fLeft">
+                        <div class="titleDiv txtCap fLeft">Carat</div>
+                        <input name="" type="text" id="dpos" autocomplete="false"  placeholder="Enter weight (carat)" class="txtInput fLeft fmOpenR font14 c666">
+                    </div>
+                    <div class="divCon2 fLeft">
+                        <div class="titleDiv txtCap fLeft">Price / carat</div>
+                        <input name="" type="text" id="dpos" autocomplete="false"  placeholder="Enter no. of pieces" class="txtInput fLeft fmOpenR font14 c666">
+                    </div>
+                    <div class="divCon fLeft">
+                        <center><div class="addBtn transition300">Add Uncut Diamond</div></center>
+                    </div>
+                </section>
+                <!-----Uncut Diamond Section End--!-->
 
 
-                        
-                    </section>
-                    <!-----General Section End--!-->
 
-                    <section id='btn_Section'>
-                        <div class="btnCont fLeft">
+                <!-----Solitaire Section--!-->
+                <section id='solitaires_Section' class="solitaireCont">
+                    <div class="commTitle1 fmOpenL fLeft">Add Solitaire</div>
+                    <div class="shapesContComm fLeft">
+                        <div class="allShapes fLeft">
                             <center>
-                                <div class="cancelBtn fmOpenR ripplelink poR" onclick="">CANCEL</div>
-                                <div class="submitBtn transition300 fmOpenR ripplelink poR" onclick="" id="Submitdiv">SUBMIT</div>
+                                <div id="Emerald" class="shapeComm transition300 Emerald">
+                                </div><div id="Round" class="shapeComm transition300 Round">
+                                </div><div id="Pear" class="shapeComm transition300 Pear">
+                                </div><div id="Princess" class="shapeComm transition300 Princess">
+                                </div><div id="Marquise" class="shapeComm transition300 Marquise">
+                                </div><div id="Oval" class="shapeComm transition300 Oval">
+                                </div><div id="Cushion" class="shapeComm transition300 Cushion">
+                                </div><div id="Heart" class="shapeComm transition300 Heart">
+                                </div><div id="Radiant" class="shapeComm transition300 Radiant">
+                                </div><div id="Asscher" class="shapeComm transition300 Asscher">
+                                </div>
                             </center>
                         </div>
-                    </section>
+                    </div>
+                    <div class="divCon  fLeft ">
+                        <div class="titleDiv txtCap fLeft">Color*</div>
+                        <div class="radioCont fLeft"> 
+                            <div class="checkDiv fLeft">
+                                <input type="radio" value="D" name="color" autocomplete="false" class="filled-in" id="color_D">
+                                <label for="color_D">D</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="radio" value="E" name="color" autocomplete="false" class="filled-in" id="color_E">
+                                <label for="color_E">E</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="radio" value="F" name="color" autocomplete="false" class="filled-in" id="color_F">
+                                <label for="color_F">F</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="radio" value="G" name="color" autocomplete="false" class="filled-in" id="color_G">
+                                <label for="color_G">G</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="radio" value="H" name="color" autocomplete="false" class="filled-in" id="color_H">
+                                <label for="color_H">H</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="radio" value="I" name="color" autocomplete="false" class="filled-in" id="color_I">
+                                <label for="color_I">I</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="radio" value="J" name="color" autocomplete="false" class="filled-in" id="color_J">
+                                <label for="color_J">J</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="radio" value="K" name="color" autocomplete="false" class="filled-in" id="color_K">
+                                <label for="color_K">K</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="radio" value="L" name="color" autocomplete="false" class="filled-in" id="color_L">
+                                <label for="color_L">L</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="radio" value="M" name="color" autocomplete="false" class="filled-in" id="color_M">
+                                <label for="color_M">M</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="radio" value="N" name="color" autocomplete="false" class="filled-in" id="color_N">
+                                <label for="color_N">N</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="radio" value="O" name="color" autocomplete="false" class="filled-in" id="color_O">
+                                <label for="color_O">O</label>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="breakLine"></div>
+                    <div class="divCon  fLeft ">
+                        <div class="titleDiv txtCap fLeft">Clarity*</div>
+                        <div class="radioCont fLeft"> 
+
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="clarity" autocomplete="false" class="filled-in" value="IF" id="clarity_If">
+                                <label for="clarity_If">IF</label>
+                            </div>
+
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="clarity" autocomplete="false" class="filled-in" value="VVS1" id="clarity_Vvs1">
+                                <label for="clarity_Vvs1">VVS1</label>
+                            </div>
+
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="clarity" autocomplete="false" class="filled-in" value="VVS2" id="clarity_Vvs2">
+                                <label for="clarity_Vvs2">VVS2</label>
+                            </div>
+
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="clarity" autocomplete="false" class="filled-in" value="VS1" id="clarity_Vs1">
+                                <label for="clarity_Vs1">VS1</label>
+                            </div>
+
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="clarity" autocomplete="false" class="filled-in" value="VS2" id="clarity_Vs2">
+                                <label for="clarity_Vs2">VS2</label>
+                            </div>
+
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="clarity" autocomplete="false" class="filled-in" value="SI1" id="clarity_Si1">
+                                <label for="clarity_Si1">SI1</label>
+                            </div>
+
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="clarity" autocomplete="false" class="filled-in" value="SI2" id="clarity_Si2">
+                                <label for="clarity_Si2">SI2</label>
+                            </div>
+
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="clarity" autocomplete="false" class="filled-in" value="I1" id="clarity_I1">
+                                <label for="clarity_I1">I1</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="breakLine"></div>
+                    <div class="divCon  fLeft ">
+                        <div class="titleDiv txtCap fLeft">Cut*</div>
+                        <div class="radioCont fLeft">    
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="cut" autocomplete="false" class="filled-in" value="Excellent" id="cut_Excellent">
+                                <label for="cut_Excellent"> Excellent</label>
+                            </div>       
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="cut" autocomplete="false" class="filled-in" value="Very Good" id="cut_Very Good">
+                                <label for="cut_Very Good"> Very Good</label>
+                            </div>       
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="cut" autocomplete="false" class="filled-in" value="Good" id="cut_Good">
+                                <label for="cut_Good"> Good</label>
+                            </div>       
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="cut" autocomplete="false" class="filled-in" value="Fair" id="cut_Fair">
+                                <label for="cut_Fair"> Fair</label>
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="breakLine"></div>
+                    <div class="divCon  fLeft ">
+                        <div class="titleDiv txtCap fLeft">Symmetry*</div>
+                        <div class="radioCont fLeft"> 
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="symmetry" autocomplete="false" class="filled-in" value="Excellent" id="sym_Excellent">
+                                <label for="sym_Excellent"> Excellent</label>
+                            </div>                                                               
+
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="symmetry" autocomplete="false" class="filled-in" value="Very Good" id="sym_Very Good">
+                                <label for="sym_Very Good"> Very Good</label>
+                            </div>                                                               
+
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="symmetry" autocomplete="false" class="filled-in" value="Good" id="sym_Good">
+                                <label for="sym_Good"> Good</label>
+                            </div>                                                               
+
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="symmetry" autocomplete="false" class="filled-in" value="Fair" id="sym_Fair">
+                                <label for="sym_Fair"> Fair</label>
+                            </div>                                                               
+                        </div>
+                    </div>
+                    <div class="breakLine"></div>
+                    <div class="divCon  fLeft ">
+                        <div class="titleDiv txtCap fLeft">Polish*</div>
+                        <div class="radioCont fLeft"> 
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="polish" autocomplete="false" class="filled-in" value="Excellent" id="polish_Excellent">
+                                <label for="polish_Excellent">Excellent</label>
+                            </div>
+
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="polish" autocomplete="false" class="filled-in" value="Very Good" id="polish_Very Good">
+                                <label for="polish_Very Good">Very Good</label>
+                            </div>
+
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="polish" autocomplete="false" class="filled-in" value="Good" id="polish_Good">
+                                <label for="polish_Good">Good</label>
+                            </div>
+
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="polish" autocomplete="false" class="filled-in" value="Fair" id="polish_Fair">
+                                <label for="polish_Fair">Fair</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="breakLine"></div>
+                    <div class="divCon  fLeft ">
+                        <div class="titleDiv txtCap fLeft">Fluorescence*</div>
+                        <div class="radioCont fLeft"> 
+                            <div class="checkDiv fLeft">
+                                <input type="radio" autocomplete="false" name="flourecence" class="filled-in" value="None" id="flourecence_None">
+                                <label for="flourecence_None">None</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="radio" autocomplete="false" name="flourecence" class="filled-in" value="Faint" id="flourecence_Faint">
+                                <label for="flourecence_Faint">Faint</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="radio" autocomplete="false" name="flourecence" class="filled-in" value="Medium" id="flourecence_Medium">
+                                <label for="flourecence_Medium">Medium</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="radio" autocomplete="false" name="flourecence" class="filled-in" value="Strong" id="flourecence_Strong">
+                                <label for="flourecence_Strong">Strong</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="radio" autocomplete="false" name="flourecence" class="filled-in" value="Very Strong" id="flourecence_Very Strong">
+                                <label for="flourecence_Very Strong">Very Strong</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="breakLine"></div>
+                    <div class="divCon2  fLeft">
+                        <div class="titleDiv txtCap fLeft">Carat*</div>
+                        <input name="carat_weight" autocomplete="false" id="caratweight" type="text" placeholder="eg. 1.00" class="txtInput fLeft fmOpenR font14 c666" maxlength="5" onkeypress="return common.isDecimalNumber(event, this.value);" value="">
+                    </div>
+                    <div class="divCon2  fLeft">
+                        <div class="titleDiv txtCap fLeft">Price / Carat*</div>
+                        <input name="carat_weight" autocomplete="false" id="caratweight" type="text" placeholder="eg. 1.00" class="txtInput fLeft fmOpenR font14 c666" maxlength="5" onkeypress="return common.isDecimalNumber(event, this.value);" value="">
+                    </div>
+                    <div class="divCon2  fLeft">
+                        <div class="titleDiv txtCap fLeft">Table*</div>
+                        <input name="table" id="table" type="text" autocomplete="false" placeholder=" eg. 56" onkeypress="return common.isDecimalNumber(event, this.value);" maxlength="5" class="txtInput fLeft fmOpenR font14 c666" value="">
+                    </div>
+                    <div class="divCon2  fLeft">
+                        <div class="titleDiv txtCap fLeft">Crown Angle*</div>
+                        <input name="crown_angle" id="crownangle" autocomplete="false" type="text" placeholder=" eg. 41" onkeypress="return common.isDecimalNumber(event, this.value);" maxlength="5" class="txtInput fLeft fmOpenR font14 c666" value="">
+                    </div>
+                    <div class="divCon2  fLeft">
+                        <div class="titleDiv txtCap fLeft">Girdle*</div>
+                        <input name="girdle" id="girdle" type="text" autocomplete="false" placeholder=" eg. 1.33" class="txtInput fLeft fmOpenR font14 c666" maxlength="5" onkeypress="return common.isDecimalNumber(event, this.value);" value="">
+                    </div>
+                    <div class="divCon fLeft">
+                        <center><div class="addBtn transition300">Add Solitaire</div></center>
+                    </div>
+                </section>
+                <!-----Solitaire Section End--!-->
+
+                <!-----General Section--!-->
+                <section id='general_Section' class="generalCont">
+                    <div class="commTitle1 fmOpenL fLeft">General Information</div>
+                    <div class="divCon fLeft fmOpenR">
+                        <div class="titleDiv txtCap fLeft">Diamond Setting type*</div>
+                        <div class="radioCont fLeft"> 
+                            <div class="checkDiv fLeft">
+                                <input type="checkbox" name="dsetting" class="filled-in" value="Prong" id="ds1">
+                                <label for="ds1">Prong</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="checkbox" name="dsetting" class="filled-in" value="Bezel" id="ds2">
+                                <label for="ds2">Bezel</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="checkbox" name="dsetting" class="filled-in" value="Pave" id="ds3">
+                                <label for="ds3">Pave</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="checkbox" name="dsetting" class="filled-in" value="Channel" id="ds4">
+                                <label for="ds4">Channel</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="checkbox" name="dsetting" class="filled-in" value="Invisible" id="ds5">
+                                <label for="ds5">Invisible</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="checkbox" name="dsetting" class="filled-in" value="Cluster" id="ds6">
+                                <label for="ds6">Cluster</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="checkbox" name="dsetting" class="filled-in" value="Illusion" id="ds7">
+                                <label for="ds7">Illusion</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="checkbox" name="dsetting" class="filled-in" value="other" id="ds8">
+                                <label for="ds8">Other</label>
+                            </div> 
+                            <div class="divCon2 fLeft otherDsetting">
+                                <input name="" type="text" id="dpos" autocomplete="false" placeholder="Enter other type" class="txtInput fLeft fmOpenR font14 c666">
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="divCon2 fLeft forInp">
+                        <div class="titleDiv txtCap fLeft">Metal Weight (grm)*</div>
+                        <input name="" type="text" id="dpos" autocomplete="false" placeholder="Enter gold weight" class="txtInput fLeft fmOpenR font14 c666">
+                    </div>
+                    <div class="divCon2 fLeft forInp">
+                        <div class="titleDiv txtCap fLeft">Making Charges / grm*</div>
+                        <input name="" type="text" id="dpos" autocomplete="false" placeholder="Enter making charges" class="txtInput fLeft fmOpenR font14 c666">
+                    </div>
+                    <div class="divCon2 fLeft forInp">
+                        <div class="titleDiv txtCap fLeft">Procurement Cost*</div>
+                        <input name="" type="text" id="dpos" autocomplete="false" placeholder="Enter making charges" class="txtInput fLeft fmOpenR font14 c666">
+                    </div>
+                    <div class="divCon2 fLeft forInp">
+                        <div class="titleDiv txtCap fLeft">Margin</div>
+                        <input name="" type="text" id="dpos" autocomplete="false" placeholder="Enter making charges" class="txtInput fLeft fmOpenR font14 c666">
+                    </div>
+                    
+                    <div class="divCon2  fLeft forInp">
+                        <div class="titleDiv txtCap fLeft">Measurement*</div>
+                        <div class="mInputDiv fLeft">
+                            <input name="measurement1" id="measure1" autocomplete="false" type="text" placeholder=" eg. 10" maxlength="5" class="mtxtInput fLeft fmOpenR font14 c666" value="">
+                            <span class="fLeft">X</span>
+                            <input name="measurement2" id="measure2" type="text" autocomplete="false" placeholder=" eg. 20" maxlength="5" class="mtxtInput fLeft fmOpenR font14 c666" value="">
+                        </div>
+                    </div>
+                    <div class="divCon2 fLeft forInp2">
+                        <div class="titleDiv txtCap fLeft">Metal Purity*</div>
+                        <div class="checkDiv fLeft">
+                            <input type="radio" name="isPurityCustz" class="filled-in" value="0" id="cust1">
+                            <label for="cust1">Customizable</label>
+                        </div>
+                        <div class="checkDiv fLeft forInp2">
+                            <input type="radio" name="isPurityCustz" class="filled-in" value="1" id="cust2">
+                            <label for="cust2">Not customizable</label>
+                        </div>
+                    </div>
+                    <div class="divCon2 fRight forInp2">
+                        <div class="titleDiv txtCap fLeft">Metal Color*</div>
+                        <div class="checkDiv fLeft">
+                            <input type="radio" name="isColorCustz" class="filled-in" value="0" id="colorcust1">
+                            <label for="colorcust1">Customizable</label>
+                        </div>
+                        <div class="checkDiv fLeft">
+                            <input type="radio" name="isColorCustz" class="filled-in" value="1" id="colorcust2">
+                            <label for="colorcust2">Not Customizable</label>
+                        </div>
+
+                        <div class="innerCont dn fLeft" id='ifcolorNotCustomiz'>
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="ifColorNotCustomiz" class="filled-in" value="0" id="colorOp1">
+                                <label for="colorOp1">Yellow</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="ifColorNotCustomiz" class="filled-in" value="1" id="colorOp2">
+                                <label for="colorOp2">Rose</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="ifColorNotCustomiz" class="filled-in" value="2" id="colorOp3">
+                                <label for="colorOp3">White</label>
+                            </div>
+                        </div>
+                        <div class="innerCont dn fLeft" id='ifcolorCustomiz'>
+                            <div class="checkDiv fLeft">
+                                <input type="checkbox" name="ifColorCustomiz" class="filled-in" value="0" id="colorOp4">
+                                <label for="colorOp4">Yellow</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="checkbox" name="ifColorCustomiz" class="filled-in" value="1" id="colorOp5">
+                                <label for="colorOp5">Rose</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="checkbox" name="ifColorCustomiz" class="filled-in" value="2" id="colorOp6">
+                                <label for="colorOp6">White</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="divCon  fLeft fmOpenR dn divAuto" id='ifpurityCustomiz'>
+                        <div class="titleDiv txtCap fLeft">Metal Purity Customizable*</div>
+                        <div class="dQuality fLeft">
+                            <div class="checkDiv fLeft">
+                                <input type="checkbox" name="gpurityCustomize" class="filled-in" value="IF" id="9carat_custom">
+                                <label for="9carat_custom">9 carat</label>
+                            </div>
+                            <div class="intInp fLeft">&#8377; 45000</div>
+                        </div>
+                        <div class="dQuality fLeft">
+                            <div class="checkDiv fLeft">
+                                <input type="checkbox" name="gpurityCustomize" class="filled-in" value="IF" id="14carat_custom">
+                                <label for="14carat_custom">14 carat</label>
+                            </div>
+                            <div class="intInp fLeft">&#8377; 45000</div>
+                        </div>
+                        <div class="dQuality fLeft">
+                            <div class="checkDiv fLeft">
+                                <input type="checkbox" name="gpurityCustomize" class="filled-in" value="IF" id="18carat_custom">
+                                <label for="18carat_custom">18 carat</label>
+                            </div>
+                            <div class="intInp fLeft">&#8377; 45000</div>
+                        </div>
+                        <div class="dQuality fLeft">
+                            <div class="checkDiv fLeft">
+                                <input type="checkbox" name="gpurityCustomize" class="filled-in" value="IF" id="22carat_custom">
+                                <label for="22carat_custom">22 carat</label>
+                            </div>
+                            <div class="intInp fLeft">&#8377; 45000</div>
+                        </div>
+                        <div class="dQuality fLeft">
+                            <div class="checkDiv fLeft">
+                                <input type="checkbox" name="gpurityCustomize" class="filled-in" value="IF" id="24carat_custom">
+                                <label for="24carat_custom">24 carat</label>
+                            </div>
+                            <div class="intInp fLeft">&#8377; 45000</div>
+                        </div>                        
+                    </div>
+
+                    <div class="divCon  fLeft fmOpenR dn divAuto" id='ifpurityNotCustomiz'>
+                        <div class="titleDiv txtCap fLeft">Metal Purity Not Customizable*</div>
+                        <div class="dQuality fLeft">
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="gpurityNotCustomize" class="filled-in" value="IF" id="9carat_ncustom">
+                                <label for="9carat_ncustom">9 carat</label>
+                            </div>
+                            <div class="intInp fLeft">&#8377; 45000</div>
+                        </div>
+                        <div class="dQuality fLeft">
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="gpurityNotCustomize" class="filled-in" value="IF" id="14carat_ncustom">
+                                <label for="14carat_ncustom">14 carat</label>
+                            </div>
+                            <div class="intInp fLeft">&#8377; 45000</div>
+                        </div>
+                        <div class="dQuality fLeft">
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="gpurityNotCustomize" class="filled-in" value="IF" id="18carat_ncustom">
+                                <label for="18carat_ncustom">18 carat</label>
+                            </div>
+                            <div class="intInp fLeft">&#8377; 45000</div>
+                        </div>
+                        <div class="dQuality fLeft">
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="gpurityNotCustomize" class="filled-in" value="IF" id="22carat_ncustom">
+                                <label for="22carat_ncustom">22 carat</label>
+                            </div>
+                            <div class="intInp fLeft">&#8377; 45000</div>
+                        </div>
+                        <div class="dQuality fLeft">
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="gpurityNotCustomize" class="filled-in" value="IF" id="24carat_ncustom">
+                                <label for="24carat_ncustom">24 carat</label>
+                            </div>
+                            <div class="intInp fLeft">&#8377; 45000</div>
+                        </div>                        
+                    </div>
+
+                    <div class="divCon2 fLeft noBorder">
+                        <div class="titleDiv txtCap fLeft">Bangle Sizes</div>
+                        <div class="dQuality fLeft">
+                            <div class="checkDiv fLeft minwidth60">
+                                <input type="checkbox" name="size" class="filled-in" value="IF" id="size_2_1">
+                                <label for="size_2_1">88.1</label>
+                            </div>
+                            <div class="intInp2 fLeft">
+                                <input name="" type="text" id="dpos" autocomplete="false" placeholder=" Enter quantity "class="txtInput fRight fmOpenR font14 c666">
+                            </div>
+                        </div>   
+                        <div class="dQuality fLeft">
+                            <div class="checkDiv fLeft minwidth60">
+                                <input type="checkbox" name="size" class="filled-in" value="IF" id="size_2_2">
+                                <label for="size_2_2">2.2</label>
+                            </div>
+                            <div class="intInp2 fLeft">
+                                <input name="" type="text" id="dpos" autocomplete="false" placeholder=" Enter quantity "class="txtInput fRight fmOpenR font14 c666">
+                            </div>
+                        </div>   
+                        <div class="dQuality fLeft">
+                            <div class="checkDiv fLeft minwidth60">
+                                <input type="checkbox" name="size" class="filled-in" value="IF" id="size_2_4">
+                                <label for="size_2_4">2.4</label>
+                            </div>
+                            <div class="intInp2 fLeft">
+                                <input name="" type="text" id="dpos" autocomplete="false" placeholder=" Enter quantity "class="txtInput fRight fmOpenR font14 c666">
+                            </div>
+                        </div>   
+                    </div>
+
+
+
+                </section>
+                <!-----General Section End--!-->
+
+                <div class="btnCont fLeft">
+                    <center>
+                        <div class="cancelBtn fmOpenR ripplelink poR" onclick="">CANCEL</div>
+                        <div class="submitBtn transition300 fmOpenR ripplelink poR" onclick="" id="Submitdiv">SUBMIT</div>
+                    </center>
                 </div>
+
             </div>
         </div>
+    </div>
 
-        <script>
-            $(document).ready(function() {
-                $('textarea').increaseAuto();
-                $('.shapeComm').click(function() {
-                    $(this).toggleClass('shapeSelected');
-                    $(this).siblings().removeClass('shapeSelected');
-                });
-
-                /*   
-                 $('#category_Section').hide();
-                 $('#diamond_Section').hide();
-                 $('#gemstone_Section').hide();
-                 $('#uncut_Section').hide();
-                 $('#solitaires_Section').hide();
-                 $('#general_Section').hide();
-                 $('#btn_Section').hide();
-                 */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                $("[name='isPurityCustz']").change(function() {
-                    $("[name='ifpurityNotCustomiz'],[name='ifpurityCustomiz']").prop('checked', false);
-                    var val = $("[name='isPurityCustz']:checked").val();
-                    if (val == 1) {
-                        $('#ifpurityNotCustomiz').removeClass('dn');
-                        $('#ifpurityCustomiz').addClass('dn');
-                    }
-                    else {
-                        $('#ifpurityNotCustomiz').addClass('dn');
-                        $('#ifpurityCustomiz').removeClass('dn');
-
-                    }
-                });
-
-
-                $("[name='isColorCustz']").change(function() {
-                    $("[name='ifColorNotCustomiz'],[name='ifColorCustomiz']").prop('checked', false);
-
-                    var val = $("[name='isColorCustz']:checked").val();
-                    if (val == 1) {
-                        $('#ifcolorNotCustomiz').removeClass('dn');
-                        $('#ifcolorCustomiz').addClass('dn');
-                    }
-                    else {
-                        $('#ifcolorNotCustomiz').addClass('dn');
-                        $('#ifcolorCustomiz').removeClass('dn');
-
-                    }
-                });
+    <script>
+        $(document).ready(function() {
+            $('textarea').increaseAuto();
+            $('.shapeComm').click(function() {
+                $(this).toggleClass('shapeSelected');
+                $(this).siblings().removeClass('shapeSelected');
             });
 
-            function addTags(evt, val, id, tagCont) {
-                var charCode = (evt.which) ? evt.which : evt.keyCode;
-                if (charCode == 44 || charCode == 13) {
-                    var str = "<div id='" + id + '_' + val + "' class='tagCommon transition300 fLeft'>";
-                    str += "<div class='fLeft txtCap'>" + val + "</div>";
-                    str += "<div class='removeTag fRight pointer' onclick=\"removeTag(this)\"></div>";
-                    str += "</div>";
-                    $('#' + tagCont).append(str);
-                    $('#' + tagCont).removeClass('dn');
-                    setTimeout(function() {
-                        $('#' + id).val('');
-                    }, 50);
+            /*   
+             $('#category_Section').hide();
+             $('#diamond_Section').hide();
+             $('#gemstone_Section').hide();
+             $('#uncut_Section').hide();
+             $('#solitaires_Section').hide();
+             $('#general_Section').hide();
+             $('#btn_Section').hide();
+             */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            $("[name='isPurityCustz']").change(function() {
+                $("[name='ifpurityNotCustomiz'],[name='ifpurityCustomiz']").prop('checked', false);
+                var val = $("[name='isPurityCustz']:checked").val();
+                if (val == 1) {
+                    $('#ifpurityNotCustomiz').removeClass('dn');
+                    $('#ifpurityCustomiz').addClass('dn');
                 }
+                else {
+                    $('#ifpurityNotCustomiz').addClass('dn');
+                    $('#ifpurityCustomiz').removeClass('dn');
 
+                }
+            });
+
+
+            $("[name='isColorCustz']").change(function() {
+                $("[name='ifColorNotCustomiz'],[name='ifColorCustomiz']").prop('checked', false);
+
+                var val = $("[name='isColorCustz']:checked").val();
+                if (val == 1) {
+                    $('#ifcolorNotCustomiz').removeClass('dn');
+                    $('#ifcolorCustomiz').addClass('dn');
+                }
+                else {
+                    $('#ifcolorNotCustomiz').addClass('dn');
+                    $('#ifcolorCustomiz').removeClass('dn');
+
+                }
+            });
+        });
+
+        function addTags(evt, val, id, tagCont) {
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode == 44 || charCode == 13) {
+                var str = "<div id='" + id + '_' + val + "' class='tagCommon transition300 fLeft'>";
+                str += "<div class='fLeft txtCap'>" + val + "</div>";
+                str += "<div class='removeTag fRight pointer' onclick=\"removeTag(this)\"></div>";
+                str += "</div>";
+                $('#' + tagCont).append(str);
+                $('#' + tagCont).removeClass('dn');
+                setTimeout(function() {
+                    $('#' + id).val('');
+                }, 50);
             }
 
-            function removeTag(obj) {
-                $(obj).parent().remove();
-            }
-        </script>
-    </body>
+        }
+
+        function removeTag(obj) {
+            $(obj).parent().remove();
+        }
+    </script>
+</body>
 </html>
