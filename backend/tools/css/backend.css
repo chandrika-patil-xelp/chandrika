@@ -60,7 +60,8 @@ a { color: inherit;text-decoration: none; }
 .container{width:100%;height:auto;display: table;padding-bottom:0px;}
 
 .wrapper{width:100%;height:auto;}
-.wrapperMax{width:100%;max-width: 1080px;height:100%;margin: auto;display: table;}
+.wrapperMax{width:100%;max-width: 1200px;height:100%;margin: auto;display: table;}
+.addProduct .wrapperMax{width:100%;max-width: 1080px;height:100%;margin: auto;display: table;}
 
 
 /*Header*/
@@ -416,5 +417,4 @@ section{width:100%;height: auto;border:1px dashed #b3b3b3;float: left;margin:0 0
 
 .mtxtInput {width: 40%;height: 35px;padding: 0 15px;outline: none;outline-style: none;border: 1px solid #d4d4c8;border-radius: 5px;background: #fff;}
 .mInputDiv span {width: 10%;height: 35px;line-height: 35px;color: #4d4d4d;text-align: center;font-size: 13px;font-family: openB;}
-
 .innerCont{width:100%;height: auto;}
