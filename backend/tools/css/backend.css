@@ -65,16 +65,22 @@ a { color: inherit;text-decoration: none; }
 
 
 /*Header*/
-.header{width:100%;height: 50px;position: fixed;top:0;left:0;background: #fff;box-shadow: 0 0 35px 0px rgba(0,0,0,0.2);z-index: 100;}
+.header{width:100%;height:90px;position: fixed;top:0;left:0;background: #fff;box-shadow: 0 0 35px 0px rgba(0,0,0,0.2);z-index: 100;}
 .header .wrapperMax{padding: 0 15px;}
-
 .logoDiv{background: transparent url(../img/logo.png)no-repeat;background-position: left center;background-size: auto 45%;width:200px;height: 50px;}
-.loggedUser{width:auto;height: 100%;line-height: 50px;font-size: 13px;color:#666;}
+.loggedUser{width:auto;height: 50px;line-height: 50px;font-size: 13px;color:#666;}
 .logoutBtn {width: auto;height: 34px;line-height: 34px;margin: 8px 10px;background: #2F665C;padding: 0 25px;color: #fff;font-size: 13px;border-radius: 2px;cursor: pointer;}
+
+.tabsCont{width:100%;height: 40px;background: #fff;}
+.tabsComm{width:auto;height: 40px;margin:0 10px 0 0; color: #2F665C;font-size: 13px;font-family: openR;padding: 0 15px;cursor: pointer;border-bottom: 5px solid #FFF;border-bottom: 5px solid #2F665C;line-height: 40px;border-width: 0px;}
+.tabActive{border-width: 5px;line-height: 35px;}
+.tabsComm:hover{border-width: 5px;line-height: 35px;}
+.tabsComm a{width:100%;height: auto;display: block;}
+
 
 /* Contents */
 
-.contents{width:100%;height:auto;padding:60px 25px 0 25px;}
+.contents{width:100%;height:auto;padding:110px 25px 50px 25px;}
 .commTitle0{width: 100%;height: auto;line-height: 50px;font-size: 22px;text-align: center;margin: 10px 0;color: #2A6869;}
 .commTitle1 {width: 100%;height: auto;line-height: 30px;font-size: 30px;text-align: left;color: #2A6869;border-left: 10px solid #2a6869;padding-left: 15px;}
 .commTitle2{width: 100%;height: 35px;font-size: 25px;color: #4d4d4d;margin: 0;text-align: center;}
@@ -128,11 +134,13 @@ a { color: inherit;text-decoration: none; }
 
 .btnCont{width:100%;height: 40px;margin: 20px 0}
 .submitBtn{width:150px;height: 40px;font-size: 13px;line-height: 40px;text-align: center;display: inline-block;padding: 0;background: #2F665C url(../img/tickCircle.svg)no-repeat;background-position: 150% center;background-size: auto 70%;color:#fff;border-radius: 2px;cursor: pointer;-webkit-appearance: none;-moz-user-select: none;-webkit-user-select: none;-ms-user-select: none;}
-.cancelBtn{width:150px;height: 40px;font-size: 13px;line-height: 40px;text-align: center;display: inline-block;padding: 0;background: #666;color:#fff;border-radius: 2px;cursor: pointer;-webkit-appearance: none;-moz-user-select: none;-webkit-user-select: none;-ms-user-select: none;}
-
-
-
 .submitBtn:hover {background-position: 98% center;}
+
+.cancelBtn{width:150px;height: 40px;font-size: 13px;line-height: 40px;text-align: center;display: inline-block;padding: 0;background: #666 url(../img/tickCancel.svg)no-repeat;background-position: -60% center;background-size: auto 70%;color:#fff;border-radius: 2px;cursor: pointer;-webkit-appearance: none;-moz-user-select: none;-webkit-user-select: none;-ms-user-select: none;}
+.cancelBtn:hover {background-position: 5px center;}
+
+
+
 
 
 .sampleBox{width: 100%;height: 200px;;margin: 0;background: #f0f0f0;padding: 15px;border-radius: 2px;overflow: hidden;margin-top: 20px;}
@@ -190,12 +198,6 @@ a { color: inherit;text-decoration: none; }
 
 
 .radioCont{width:100%;height: auto;}
-
-
-
-
-
-
 
 
 /* Products List*/
@@ -267,7 +269,8 @@ li .acct{border-right: none!important;position: relative;padding: 0 15px 0 0px}
 .prdSeachTxt {width: 200px;height: 35px;border: 1px solid #d4d4c8;outline: none;outline-style: none;padding: 0 15px;border-radius: 5px;font-size: 13px;}
 
 
-.addCouponBtn {width: auto;background: #2F665C url(../img/tickCircle.svg)no-repeat;background-position: 150% center;background-size: auto 70%;margin-left: 10px;color: #fff;height: 35px;line-height: 35px;font-size: 13px;padding: 0 30px;border-radius: 5px;cursor: pointer;}
+.addCouponBtn {width: auto;background: #2F665C url(../img/tickCircle.svg)no-repeat;background-position: 150% center;background-size: auto 70%;margin-left: 10px;color: #fff;height: 35px;line-height: 35px;font-size: 13px;border-radius: 5px;cursor: pointer;}
+.addCouponBtn a{width:100%;height: auto;display: block;padding: 0 30px }
 .addCouponBtn:hover{background-position: 98% center}
 
 .cpListHeader {width: 100%;height: 45px;background: #e6e6e6;text-align: center!important;}
@@ -418,3 +421,88 @@ section{width:100%;height: auto;border:1px dashed #b3b3b3;float: left;margin:0 0
 .mtxtInput {width: 40%;height: 35px;padding: 0 15px;outline: none;outline-style: none;border: 1px solid #d4d4c8;border-radius: 5px;background: #fff;}
 .mInputDiv span {width: 10%;height: 35px;line-height: 35px;color: #4d4d4d;text-align: center;font-size: 13px;font-family: openB;}
 .innerCont{width:100%;height: auto;}
+
+/*Price Cont*/
+.priceCont{}
+.priceHeading{width:100%;height: 40px;background: #f0f0f0}
+.priceHeading div{border-right:1px solid #ccc;line-height: 40px;font-family: openB;font-size: 14px;text-align: left;padding: 0 15px;color:#4d4d4d;}
+
+.forComponent{width:40%; }
+.forRate{width:20%; }
+.forWeight{width:20%; }
+.forPrice{width:20%;border-right:none!important; }
+.pricingul{width:100%;height: auto;margin: 0;padding: 0;list-style: none;}
+.pricingul li{width:100%;height: auto;height: 40px;line-height: 39px;padding:0;border-bottom: 0px solid #ccc;margin: 0;font-size: 14px;float: left;color:#666}
+
+.pricingul li div{height: 100%;}
+.pricingul li .forComponent{width:40%;padding: 0 15px;}
+.pricingul li .forRate{width:20%;padding: 0 15px;}
+.pricingul li .forWeight{width:20%;padding: 0 15px;font-family: openB;height: 100%;}
+.pricingul li .forPrice{width:20%;border-right:none!important;padding: 0 15px;font-family: openB;}
+
+.pl35{padding-left: 35px!important;}
+.pl15{padding-left: 15px!important;}
+
+.gTotal{border-top: 2px solid #2A6869;margin-top: -1px!important;border-bottom: none!important;}
+
+.gTotal .forComponent{color: #2A6869;font-family: openB}
+.gTotal .forPrice{color: #2A6869;font-family: openB}
+.headLi{border-bottom: none!important;color:#666;font-family: openB;height: 30px!important;line-height: 30px!important;}
+
+
+/* Rate Manager*/
+
+.rateManager{}
+.rateManager .wrapperMax{max-width: 600px;}
+.ratHeader{width:100%;height: 40px;background: #f0f0f0;}
+.ratHeader div{border-right:1px solid #ccc;line-height: 40px;font-family: openB;font-size: 14px;text-align: left;padding: 0 15px;color:#4d4d4d;}
+.rComponent{width:60%;}
+.rCprice{width:40%;border-right:none!important; }
+.rateul{width:100%;height: auto;margin: 0;padding: 0;list-style: none;}
+
+.rateul li{width:100%;height: auto;height: 40px;line-height: 39px;padding:0;border-bottom: 0px solid #ccc;margin: 0;font-size: 14px;float: left;color:#666}
+.rateul li div{height: 100%;}
+.rateTxt{width:90%;margin:0 5% 10px 5%;height: 30px;padding: 0 15px;border: 1px solid #ccc;font-size: 14px;border-radius: 2px;color:#666;}
+
+
+.rComponent{font-family: openB;padding: 0 15px!important;}
+.gpcloud{width:24%;height: 30px!important;line-height: 30px;background: #318484;color:#fff;padding: 0 10px;margin:5px 1% 5px 0;font-size: 12px;font-family: openB;text-align: center;border-radius:30px;}
+
+.mBot20{margin-bottom: 20px;}
+
+/* Category List */
+
+.categoryList{padding-bottom: 50px;}
+
+.catListCont{width: 100%;height: auto;background: #fff;padding: 0 15px; }
+.catListCont .commTitle2 {width: auto;text-align: left;}
+.listHeaderCom {width: 100%;height: 45px;background: #e6e6e6;text-align: center!important;}
+.listHeaderCom div{border-right: 1px solid #d4d4c8;height: 100%;line-height: 43px;padding: 0 15px;font-size: 13px;text-align: center!important;color: #4d4d4d;}
+.catName{width:30%;}
+.parentName{width:40%}
+.dPos{width:10%;}
+.cactt{width:20%;border:none!important;}
+
+.commonList{width: 100%;height: auto;margin: 0;padding: 0;list-style: none;}
+.commonList li{width: 100%;height: 50px;line-height: 40px;float: left;color: #4d4d4d;font-size: 13px;border-bottom: 1px solid #e6e6e6;border-top: none;padding: 5px 0;}
+.commonList li .catName{padding-left: 15px;}
+.commonList li .parentName{padding-left: 15px;}
+.commonList li .dPos{text-align: center;}
+
+
+
+
+.attributeList{}
+.attrName{width: 25%;}
+.attrType{width: 15%;}
+.attrMapp{width: 30%;}
+.attrUnit{width: 10%;}
+.cattrAct{width: 20%;border:none!important;}
+
+
+
+.commonList li .attrName{padding-left: 15px;font-family: openB;}
+.commonList li .attrType{padding-left: 15px;text-align: center}
+.commonList li .attrMapp{padding:0 15px;}
+.commonList li .attrUnit{text-align: center}
+.commonList li .cattrAct{}

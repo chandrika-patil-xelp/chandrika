@@ -1,0 +1,61 @@
+<?php include 'jBhead.html'?>
+    <body>
+        <div class="container">
+            <?php include 'jBheader.html'?>
+            <div class="contents fLeft attributeList">
+                <div class="wrapperMax">
+                    <div class="catListCont fLeft">
+                        <div class="prdSearchDiv fLeft fmOpenR">
+                            <div class="commTitle2 fLeft">500 attribute available</div>
+                            <div class="addCouponBtn fRight transition300"><a href='<?php echo BACKDOMAIN;?>?action=addAttribute'>Add Attribute</a></div>
+                            <input type="text"  autocomplete="false" class="prdSeachTxt fRight fmOpenR" placeholder=" Search Attributes">
+                        </div>
+                        <div class="listHeaderCom fLeft fmOpenR">
+                            <div class="attrName fLeft">Attribute Name</div>
+                            <div class="attrType fLeft">Type</div>
+                            <div class="attrUnit fLeft">Unit</div>
+                            <div class="attrMapp fLeft">Mapped</div>
+                            <div class="cattrAct fLeft">Action</div>
+                        </div>
+                        <ul class="commonList fLeft fmOpenR">
+                            <?php for($i=0;$i<15;$i++){?>
+                            <li>
+                                <div class="attrName fLeft">Price</div>
+                                <div class="attrType fLeft">Checkbox</div>
+                                <div class="attrUnit fLeft">Rupees</div>
+                                <div class="attrMapp fLeft">All</div>
+                                <div class="cattrAct fLeft">
+                                    <div class="deltBtn fRight transition300"></div>
+                                    <div class="editBtn fRight transition300"></div>
+                                    <div class="toggle-button toggle-button-selected  fLeft">      
+                                        <span class="fActive">On</span>      
+                                        <button class="button"></button>  
+                                        <span class="fDactive">Off</span>   
+                                    </div>
+                                </div>
+                            </li>
+                            <?php } ?>
+                        </ul>
+                        <div class="fLeft pagination fmOpenR">
+                            <center>
+                                <div class="pPrev poR transition300">Previous</div>
+                                <div class="pgComm poR transition300 pgActive">1</div>
+                                <div class="pgComm poR transition300">2</div>
+                                <div class="pNext poR transition300">Next</div>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function() {
+                $('.toggle-button').click(function(){
+                   $(this).toggleClass('toggle-button-selected'); 
+                });
+            });
+                  
+        
+        </script>
+    </body>
+</html>

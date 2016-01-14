@@ -12,4 +12,10 @@
         <script type="text/javascript" src="<?php echo $jvs['jquery_toast']; ?>"></script>
         <script type="text/javascript" src="<?php echo $jvs['velocity']; ?>"></script>
         <script type="text/javascript" src="<?php echo $jvs['common']; ?>"></script>
+        <script>
+            var BWEBROOT='<?php echo BACKWEBROOT?>';
+            var page='<?php echo $page?>';
+            var tab='<?php echo $tab?>';
+            common.applyTabClass();
+        </script>
     </head>

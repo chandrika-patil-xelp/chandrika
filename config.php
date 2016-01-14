@@ -21,7 +21,7 @@ define('VERSION',1.0);
 
 define('FAVICON', BACKDOMAIN . 'tools/img/common/favicon.ico');
 
-$db['jzeva_backend'] = array('localhost','root','','db_jzeva');
+$db['jzeva'] = array('localhost','root','','db_jzeva');
 
 $css = array();
 $jvs = array();
@@ -42,7 +42,7 @@ $jvs = array();
 #JS End
     
     
-include BINCLUDES.'class.common.php';
+include INCLUDES.'class.common.php';
 $comm = new Common();
 $comm->clearParam($_GET);
 

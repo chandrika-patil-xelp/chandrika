@@ -77,4 +77,21 @@ function Common() {
 
         return flag;
     };
+    
+    this.applyTabClass = function(){
+        setTimeout(function(){
+            $('.tabsComm').each(function(i){
+                var obj=this;
+            var txt=$(this).text();
+            if(tab==txt.toLowerCase()){
+                $('.tabsComm').removeClass('tabActive');
+                $(obj).addClass('tabActive');
+                
+                return;
+            }
+        });
+        },50);
+    };
+    
+    
 }
