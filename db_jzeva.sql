@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 14, 2016 at 03:36 PM
+-- Generation Time: Jan 14, 2016 at 04:35 PM
 -- Server version: 5.5.16
 -- PHP Version: 5.3.8
 
@@ -48,10 +48,10 @@ CREATE TABLE IF NOT EXISTS `tbl_attribute_master` (
 --
 
 INSERT INTO `tbl_attribute_master` (`attributeid`, `attr_name`, `attr_type`, `attr_unit`, `attr_unit_pos`, `attr_pos`, `map_column`, `active_flag`, `createdon`, `updatedon`, `updatedby`) VALUES
-(1, 'price', 1, 'rupees', 0, 1, 'test4', 2, '2016-01-14 12:24:25', '2016-01-14 07:29:02', '6'),
-(2, 'brand', 1, 'rupees', 0, 1, 'test2', 1, '2016-01-14 12:24:26', '2016-01-14 09:56:39', '1'),
-(3, 'color', 1, 'rupees', 0, 1, 'test2', 1, '2016-01-14 12:24:31', '2016-01-14 09:56:48', '1'),
-(4, 'price', 1, 'rupees', 0, 1, 'test2', 1, '2016-01-14 12:24:51', '2016-01-14 07:02:17', '1');
+(1, 'price', 1, 'rupees', 0, 1, 'test4', 2, '2016-01-14 12:24:25', '2016-01-14 01:59:02', '6'),
+(2, 'brand', 1, 'rupees', 0, 1, 'test2', 1, '2016-01-14 12:24:26', '2016-01-14 04:26:39', '1'),
+(3, 'color', 1, 'rupees', 0, 1, 'test2', 1, '2016-01-14 12:24:31', '2016-01-14 04:26:48', '1'),
+(4, 'price', 1, 'rupees', 0, 1, 'test2', 1, '2016-01-14 12:24:51', '2016-01-14 01:32:17', '1');
 
 -- --------------------------------------------------------
 
@@ -75,11 +75,11 @@ CREATE TABLE IF NOT EXISTS `tbl_category_attribute_mapping` (
 --
 
 INSERT INTO `tbl_category_attribute_mapping` (`catid`, `attributeid`, `active_flag`, `createdon`, `updatedon`, `updatedby`) VALUES
-(1, 1, '1', '2016-01-14 13:39:38', '2016-01-14 08:09:38', '6'),
-(1, 3, '1', '2016-01-14 13:42:50', '2016-01-14 09:47:08', '6'),
-(1, 4, '1', '2016-01-14 13:44:03', '2016-01-14 09:47:14', '6'),
-(2, 3, '1', '2016-01-14 14:06:16', '2016-01-14 08:36:16', '6'),
-(2, 4, '1', '2016-01-14 14:06:44', '2016-01-14 08:36:44', '6');
+(1, 1, '1', '2016-01-14 13:39:38', '2016-01-14 02:39:38', '6'),
+(1, 3, '1', '2016-01-14 13:42:50', '2016-01-14 04:17:08', '6'),
+(1, 4, '1', '2016-01-14 13:44:03', '2016-01-14 04:17:14', '6'),
+(2, 3, '1', '2016-01-14 14:06:16', '2016-01-14 03:06:16', '6'),
+(2, 4, '1', '2016-01-14 14:06:44', '2016-01-14 03:06:44', '6');
 
 -- --------------------------------------------------------
 
@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `tbl_category_master` (
   `active_flag` tinyint(4) NOT NULL DEFAULT '1' COMMENT '0 - Not active, 1 - Active, 2 - Deleted',
   `createdon` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'date and time on which it was created.',
   `updatedon` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'timestamp on which it was last updated',
-  `updatedby` varchar(150) NOT NULL,
+  `updatedby` varchar(45) NOT NULL,
   KEY `catid` (`catid`),
   KEY `pcatid` (`pcatid`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
@@ -107,13 +107,13 @@ CREATE TABLE IF NOT EXISTS `tbl_category_master` (
 --
 
 INSERT INTO `tbl_category_master` (`catid`, `pcatid`, `cat_name`, `cat_lvl`, `lineage`, `active_flag`, `createdon`, `updatedon`, `updatedby`) VALUES
-(1, 0, 'jewellery', 0, NULL, 1, '2016-01-14 10:34:18', '2016-01-14 05:04:18', '2'),
-(2, 1, 'rings', 0, NULL, 1, '2016-01-14 10:36:28', '2016-01-14 05:06:28', '2'),
-(3, 1, 'earrings', 0, NULL, 1, '2016-01-14 10:36:38', '2016-01-14 05:06:38', '2'),
-(4, 1, 'pendants', 0, NULL, 1, '2016-01-14 10:38:10', '2016-01-14 05:08:10', '1'),
-(5, 1, 'chains', 0, NULL, 1, '2016-01-14 10:38:15', '2016-01-14 05:08:15', '1'),
-(6, 1, 'bangles', 0, NULL, 1, '2016-01-14 10:38:20', '2016-01-14 05:08:20', '1'),
-(7, 1, 'bracelets', 0, NULL, 1, '2016-01-14 10:38:25', '2016-01-14 05:42:00', '5');
+(1, 0, 'jewellery', 0, NULL, 1, '2016-01-14 10:34:18', '2016-01-13 23:34:18', '2'),
+(2, 1, 'rings', 0, NULL, 1, '2016-01-14 10:36:28', '2016-01-13 23:36:28', '2'),
+(3, 1, 'earrings', 0, NULL, 1, '2016-01-14 10:36:38', '2016-01-13 23:36:38', '2'),
+(4, 1, 'pendants', 0, NULL, 1, '2016-01-14 10:38:10', '2016-01-13 23:38:10', '1'),
+(5, 1, 'chains', 0, NULL, 1, '2016-01-14 10:38:15', '2016-01-13 23:38:15', '1'),
+(6, 1, 'bangles', 0, NULL, 1, '2016-01-14 10:38:20', '2016-01-13 23:38:20', '1'),
+(7, 1, 'bracelets', 0, NULL, 1, '2016-01-14 10:38:25', '2016-01-14 00:12:00', '5');
 
 -- --------------------------------------------------------
 
@@ -135,6 +135,126 @@ CREATE TABLE IF NOT EXISTS `tbl_city_master` (
   `updatedby` varchar(100) NOT NULL COMMENT 'CMS USER',
   PRIMARY KEY (`cityid`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1095 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_metal_color_master`
+--
+
+DROP TABLE IF EXISTS `tbl_metal_color_master`;
+CREATE TABLE IF NOT EXISTS `tbl_metal_color_master` (
+  `id` int(5) NOT NULL,
+  `dname` varchar(45) DEFAULT NULL,
+  `dvalue` varchar(45) DEFAULT NULL,
+  `active_flag` tinyint(2) DEFAULT '1' COMMENT '0 - Not Active, 1 - Active',
+  `createdon` datetime DEFAULT NULL,
+  `updatedon` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updatedby` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_metal_purity_master`
+--
+
+DROP TABLE IF EXISTS `tbl_metal_purity_master`;
+CREATE TABLE IF NOT EXISTS `tbl_metal_purity_master` (
+  `id` int(5) NOT NULL,
+  `dname` varchar(45) DEFAULT NULL,
+  `dvalue` varchar(45) DEFAULT NULL,
+  `active_flag` tinyint(2) DEFAULT '1' COMMENT '0 - Not Active, 1 - Active',
+  `createdon` datetime DEFAULT NULL,
+  `updatedon` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updatedby` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_product_category_mapping`
+--
+
+DROP TABLE IF EXISTS `tbl_product_category_mapping`;
+CREATE TABLE IF NOT EXISTS `tbl_product_category_mapping` (
+  `catid` bigint(20) NOT NULL,
+  `productid` bigint(20) NOT NULL,
+  `active_flag` tinyint(2) DEFAULT '1' COMMENT '0 - Not Active, 1 - Active',
+  `createdon` datetime DEFAULT NULL,
+  `updatedon` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updatedby` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`catid`,`productid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_product_color_purity_mapping`
+--
+
+DROP TABLE IF EXISTS `tbl_product_color_purity_mapping`;
+CREATE TABLE IF NOT EXISTS `tbl_product_color_purity_mapping` (
+  `productid` bigint(20) NOT NULL,
+  `id` int(5) NOT NULL,
+  `createdon` datetime DEFAULT NULL,
+  `updatedon` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updatedby` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`productid`,`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_product_master`
+--
+
+DROP TABLE IF EXISTS `tbl_product_master`;
+CREATE TABLE IF NOT EXISTS `tbl_product_master` (
+  `productid` bigint(20) NOT NULL,
+  `product_code` varchar(45) DEFAULT NULL,
+  `vendorid` int(10) DEFAULT NULL,
+  `product_name` varchar(60) DEFAULT NULL,
+  `product_seo_name` varchar(150) DEFAULT NULL,
+  `product_weight` double DEFAULT NULL,
+  `diamond_setting` varchar(255) DEFAULT NULL,
+  `metal_weight` double DEFAULT NULL,
+  `making_charges` double DEFAULT NULL,
+  `procurement_cost` double DEFAULT NULL,
+  `margin` double DEFAULT NULL,
+  `measurement` varchar(45) DEFAULT NULL,
+  `customise_purity` tinyint(2) DEFAULT '0' COMMENT '0 - Customisable,1 - Not customisable',
+  `customise_color` tinyint(2) DEFAULT '0' COMMENT '0 - Customisable,1 - Not customisable',
+  `size` decimal(3,3) DEFAULT NULL,
+  `certificate` varchar(45) DEFAULT NULL,
+  `has_diamond` tinyint(2) DEFAULT NULL COMMENT '0 - No diamond, 1 - has diamond',
+  `has_solitaire` tinyint(2) DEFAULT NULL COMMENT '0 - No solitaire, 1 - has solitaire',
+  `has_uncut` tinyint(2) DEFAULT NULL COMMENT '0 - No uncut diamonds, 1 - has uncut diamonds',
+  `has_gemstone` tinyint(2) DEFAULT NULL COMMENT '0 - No gemstone, 1 - has gemstone',
+  `createdon` datetime DEFAULT NULL,
+  `updatedon` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updatedby` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`productid`),
+  UNIQUE KEY `productid_UNIQUE` (`productid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_product_metal_purity_mapping`
+--
+
+DROP TABLE IF EXISTS `tbl_product_metal_purity_mapping`;
+CREATE TABLE IF NOT EXISTS `tbl_product_metal_purity_mapping` (
+  `productid` bigint(20) NOT NULL,
+  `id` int(5) NOT NULL,
+  `createdon` datetime DEFAULT NULL,
+  `updatedon` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updatedby` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`productid`,`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
