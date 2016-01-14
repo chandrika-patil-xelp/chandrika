@@ -42,7 +42,7 @@ $jvs = array();
 #JS End
     
     
-include INCLUDES.'class.common.php';
+include APICLUDE.'common/class.common.php';
 $comm = new Common();
 $comm->clearParam($_GET);
 
