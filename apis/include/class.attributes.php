@@ -58,7 +58,7 @@ class attributes extends DB
     public function getAttributeList()
     {
         
-        $sql="SELECT attr_name,attr_type,attr_unit,attr_unit_pos,attr_pos,map_column FROM tbl_attribute_master WHERE active_flag=1";
+        $sql="SELECT attributeid,attr_name,attr_type,attr_unit,attr_unit_pos,attr_pos,map_column FROM tbl_attribute_master WHERE active_flag=1 ORDER By attributeid";
         $res=$this->query($sql);
         
         if($res)
@@ -66,6 +66,7 @@ class attributes extends DB
             while ($row=$this->fetchData($res))
             {
                
+                $reslt['id']         = $row['attributeid'];
                 $reslt['name']       = $row['attr_name'];
                 $reslt['type']       = intval($row['attr_type']);
                 $reslt['unit']       = $row['attr_unit'];

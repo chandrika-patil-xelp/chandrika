@@ -93,8 +93,6 @@ switch($action)
         $res = $result;
     break;
     
-    
-    
     case 'getAttributeList':
         include APICLUDE.'class.attributes.php';
         $obj	= new attributes($db['jzeva']);

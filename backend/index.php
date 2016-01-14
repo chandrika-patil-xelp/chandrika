@@ -52,6 +52,12 @@ switch ($action) {
         include BTEMPLATE.'coupon.html';
         break;
     
+    case 'discounts':
+        $page = 'discounts';
+        $tab = 'discounts';
+        include BTEMPLATE.'discounts.html';
+        break;
+    
     case 'orders':
         $page = 'orders';
         $tab = 'orders';

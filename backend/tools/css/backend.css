@@ -251,20 +251,13 @@ li .acct{border-right: none!important;position: relative;padding: 0 15px 0 0px}
 /* For Pagination */
 
 
-
-
-
-
-
-
-
-
 /* Coupons*/
 .coupons{}
 .couponCont{width:100%;height: auto;background: #fff;padding: 0 15px;}
 .coupons .commTitle2{width: auto;text-align: left;}
 
 .p015{padding: 0 15px;}
+.p030{padding: 0 30px;}
 .prdSearchDiv {width: 100%;height: 55px;background: #fff;padding: 10px 0px;margin-top: 0px;}
 .prdSeachTxt {width: 200px;height: 35px;border: 1px solid #d4d4c8;outline: none;outline-style: none;padding: 0 15px;border-radius: 5px;font-size: 13px;}
 
@@ -453,7 +446,8 @@ section{width:100%;height: auto;border:1px dashed #b3b3b3;float: left;margin:0 0
 /* Rate Manager*/
 
 .rateManager{}
-.rateManager .wrapperMax{max-width: 600px;}
+.rateManager .wrapperMax{max-width: 600px;width: 100%;height: auto;padding: 30px 30px 15px 30px;border-radius: 5px;box-shadow: 2px 0px 6px 5px rgba(0,0,0,0.1);}
+
 .ratHeader{width:100%;height: 40px;background: #f0f0f0;}
 .ratHeader div{border-right:1px solid #ccc;line-height: 40px;font-family: openB;font-size: 14px;text-align: left;padding: 0 15px;color:#4d4d4d;}
 .rComponent{width:60%;}
@@ -506,3 +500,24 @@ section{width:100%;height: auto;border:1px dashed #b3b3b3;float: left;margin:0 0
 .commonList li .attrMapp{padding:0 15px;}
 .commonList li .attrUnit{text-align: center}
 .commonList li .cattrAct{}
+
+
+/* Discounts*/
+.discounts{}
+.discounts .commTitle2 {width: auto;text-align: left;}
+.discounts .date{width: 15%;text-align: left!important;}
+.discounts .stockCode{width: 15%;text-align: left!important;}
+.discounts .cdescrp{width: 20%;}
+.discounts .stDate{width: 15%;}
+.discounts .enDate{width: 15%;}
+.discounts .actt{width: 20%;border-right: none!important}
+
+
+
+.commonList li .date{padding-left: 15px;}
+.commonList li .stockCode{padding-left: 15px;}
+.commonList li .cdescrp{padding-left: 15px;}
+.commonList li .stDate{text-align: center}
+.commonList li .enDate{text-align: center}
+.commonList li .actt{width: 20%;border-right: none!important}
+
