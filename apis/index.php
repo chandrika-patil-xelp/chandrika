@@ -21,9 +21,9 @@ switch($action)
         include APICLUDE.'class.category.php';
         $obj	= new category($db['jzeva']);
         if($params['catid'])        
-            $tmpparams=array('pcatid'=>$params['pcatid'],'cat_name'=>$params['cat_name'],'userid'=>$params['userid'],'catid'=>$params['catid']);
+            $tmpparams=array('pcatid'=>$params['pcatid'],'cat_name'=>$params['cat_name'],'userid'=>$params['userid'],'catid'=>$params['catid'],'attrs'=>$params['attrs']);
         else
-            $tmpparams=array('pcatid'=>$params['pcatid'],'cat_name'=>$params['cat_name'],'userid'=>$params['userid']);
+            $tmpparams=array('pcatid'=>$params['pcatid'],'cat_name'=>$params['cat_name'],'userid'=>$params['userid'],'attrs'=>$params['attrs']);
         $result	=$obj->addCategory($tmpparams);
         $res = $result;
     break;
@@ -72,6 +72,14 @@ switch($action)
         $obj	= new category($db['jzeva']);
         $tmpparams=array('catid'=>$params['catid']);
         $result	=$obj->getCatMapping($tmpparams);
+        $res = $result;
+    break;
+
+    case 'getCatAttrsIds':
+        include APICLUDE.'class.category.php';
+        $obj	= new category($db['jzeva']);
+        $catid=9;;
+        $result	=$obj->getCatAttrsIds($catid);
         $res = $result;
     break;
 

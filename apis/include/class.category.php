@@ -8,10 +8,9 @@ class category extends DB
             parent::DB($db);
     }
     
-    
-    
     public function addCategory($params)
     {   
+        $arrs=explode(",", $params['attrs']);
         if(!$params['catid'])
         {
             $sql="INSERT INTO "
@@ -28,6 +27,30 @@ class category extends DB
         }
         
         $res=$this->query($sql);
+        
+        if(!$params['catid'])
+        {
+            
+            $catid=  $this->lastInsertedId();
+            foreach ($arrs as $val)
+            {   
+                $aflag=1;
+                $tmparams=  array('catid'=>$catid,'attributeid'=>$val,'userid'=>$params['userid'],'active_flag'=>$aflag);
+                $this->addCatAttrMapping($tmparams);
+            }
+        }
+        else
+        {
+            $catid=$params['catid'];
+            $activesql="UPDATE tbl_category_attribute_mapping SET active_flag =1  WHERE catid=".$catid." AND attributeid IN(".$params['attrs'].")";
+            $dactivesql="UPDATE tbl_category_attribute_mapping SET active_flag =2  WHERE catid=".$catid." AND attributeid NOT IN(".$params['attrs'].")";
+            
+            $ares=  $this->query($activesql);
+            $dares=  $this->query($dactivesql);
+        }
+        
+
+        
         $result=array();
         if($res)
         {
@@ -99,7 +122,11 @@ class category extends DB
                 . "'".$params['catid']."',"
                 . "'".$params['attributeid']."',"
                 ."now(),"
-                . "'".$params['userid']."')";
+                . "'".$params['userid']."')"
+                . " ON DUPLICATE KEY UPDATE"
+                . " active_flag = '".$params['active_flag']."',"
+                . "createdon = now(),"
+                . "updatedby = '".$params['userid']."'";
         
         $res=$this->query($sql);
         $result=array();
@@ -196,10 +223,8 @@ class category extends DB
         }
         $results=array('result'=>$result,'error'=>$err);
         return $results;
-    
         
     }
-    
     
 }
 ?>
