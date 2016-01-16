@@ -83,11 +83,6 @@ switch($action)
         $res = $result;
     break;
 
-
-
-
-
-
     #Attributes
     
     case 'addAttribute':
@@ -121,6 +116,25 @@ switch($action)
         $obj	= new attributes($db['jzeva']);
         $tmpparams=array('attributeid'=>$params['attributeid']);
         $result	=$obj->getAttributeDetails($tmpparams);
+        $res = $result;
+    break;
+
+    #Product
+    
+    case 'addProduct':
+        include APICLUDE.'class.product.php';
+        $obj=new product($db['jzeva']);
+        $result	=$obj->addProduct();
+        $res = $result;
+    break;
+
+//getSizeIdByValue($params)
+    
+    case 'getSizeIdByValue':
+        include APICLUDE.'class.product.php';
+        $obj	= new product($db['jzeva']);
+        $tmpparams=array('size_value'=>$params['size_value'],'catid'=>$params['catid']);
+        $result	=$obj->getSizeIdByValue($tmpparams);
         $res = $result;
     break;
 
