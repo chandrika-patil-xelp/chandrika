@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 14, 2016 at 04:35 PM
+-- Generation Time: Jan 16, 2016 at 11:18 AM
 -- Server version: 5.5.16
 -- PHP Version: 5.3.8
 
@@ -79,7 +79,16 @@ INSERT INTO `tbl_category_attribute_mapping` (`catid`, `attributeid`, `active_fl
 (1, 3, '1', '2016-01-14 13:42:50', '2016-01-14 04:17:08', '6'),
 (1, 4, '1', '2016-01-14 13:44:03', '2016-01-14 04:17:14', '6'),
 (2, 3, '1', '2016-01-14 14:06:16', '2016-01-14 03:06:16', '6'),
-(2, 4, '1', '2016-01-14 14:06:44', '2016-01-14 03:06:44', '6');
+(2, 4, '1', '2016-01-14 14:06:44', '2016-01-14 03:06:44', '6'),
+(9, 1, '2', '2016-01-15 13:56:35', '2016-01-15 09:15:35', '1'),
+(9, 2, '2', '2016-01-15 13:56:35', '2016-01-15 09:15:35', '1'),
+(9, 3, '2', '2016-01-15 13:56:35', '2016-01-15 09:15:35', '1'),
+(9, 4, '2', '2016-01-15 13:56:35', '2016-01-15 09:15:35', '1'),
+(9, 5, '0', '2016-01-15 13:50:52', '2016-01-15 09:15:54', '1'),
+(10, 1, '1', '2016-01-15 14:49:25', '2016-01-15 09:19:25', '8'),
+(10, 2, '1', '2016-01-15 14:49:26', '2016-01-15 09:19:26', '8'),
+(10, 3, '1', '2016-01-15 14:49:26', '2016-01-15 09:19:26', '8'),
+(10, 4, '2', '2016-01-15 14:49:26', '2016-01-15 09:19:53', '8');
 
 -- --------------------------------------------------------
 
@@ -100,7 +109,7 @@ CREATE TABLE IF NOT EXISTS `tbl_category_master` (
   `updatedby` varchar(45) NOT NULL,
   KEY `catid` (`catid`),
   KEY `pcatid` (`pcatid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `tbl_category_master`
@@ -113,7 +122,27 @@ INSERT INTO `tbl_category_master` (`catid`, `pcatid`, `cat_name`, `cat_lvl`, `li
 (4, 1, 'pendants', 0, NULL, 1, '2016-01-14 10:38:10', '2016-01-13 23:38:10', '1'),
 (5, 1, 'chains', 0, NULL, 1, '2016-01-14 10:38:15', '2016-01-13 23:38:15', '1'),
 (6, 1, 'bangles', 0, NULL, 1, '2016-01-14 10:38:20', '2016-01-13 23:38:20', '1'),
-(7, 1, 'bracelets', 0, NULL, 1, '2016-01-14 10:38:25', '2016-01-14 00:12:00', '5');
+(7, 1, 'bracelets', 0, NULL, 1, '2016-01-14 10:38:25', '2016-01-14 00:12:00', '5'),
+(8, 12, 'rings', 0, NULL, 1, '2016-01-15 12:07:28', '2016-01-15 06:37:28', '1'),
+(9, 12, 'earrings', 0, NULL, 1, '2016-01-15 13:56:35', '2016-01-15 08:26:35', '1'),
+(10, 12, 'men rings', 0, NULL, 1, '2016-01-15 14:49:53', '2016-01-15 09:19:53', '8');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_category_product_mapping`
+--
+
+DROP TABLE IF EXISTS `tbl_category_product_mapping`;
+CREATE TABLE IF NOT EXISTS `tbl_category_product_mapping` (
+  `catid` bigint(20) NOT NULL,
+  `productid` bigint(20) NOT NULL,
+  `active_flag` tinyint(2) DEFAULT '1' COMMENT '0 - Not Active, 1 - Active',
+  `createdon` datetime DEFAULT NULL,
+  `updatedon` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updatedby` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`catid`,`productid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -135,6 +164,60 @@ CREATE TABLE IF NOT EXISTS `tbl_city_master` (
   `updatedby` varchar(100) NOT NULL COMMENT 'CMS USER',
   PRIMARY KEY (`cityid`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1095 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_diamond_quality_mapping`
+--
+
+DROP TABLE IF EXISTS `tbl_diamond_quality_mapping`;
+CREATE TABLE IF NOT EXISTS `tbl_diamond_quality_mapping` (
+  `diamond_id` bigint(20) NOT NULL,
+  `id` int(5) NOT NULL,
+  `active_flag` tinyint(2) DEFAULT '1' COMMENT '0 - Not Active, 1 - Active',
+  `createdon` datetime DEFAULT NULL,
+  `updatedon` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updatedby` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`diamond_id`,`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_diamond_quality_master`
+--
+
+DROP TABLE IF EXISTS `tbl_diamond_quality_master`;
+CREATE TABLE IF NOT EXISTS `tbl_diamond_quality_master` (
+  `id` int(5) NOT NULL,
+  `dname` varchar(45) DEFAULT NULL,
+  `dvalue` varchar(45) DEFAULT NULL,
+  `price_per_carat` double DEFAULT NULL,
+  `active_flag` tinyint(2) DEFAULT '1' COMMENT '0 - Not Active, 1 - Active',
+  `createdon` datetime DEFAULT NULL,
+  `updatedon` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updatedby` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_gemstone_master`
+--
+
+DROP TABLE IF EXISTS `tbl_gemstone_master`;
+CREATE TABLE IF NOT EXISTS `tbl_gemstone_master` (
+  `id` int(4) NOT NULL,
+  `gemstone_name` varchar(45) DEFAULT NULL,
+  `description` blob,
+  `active_flag` tinyint(2) DEFAULT '1',
+  `createdon` datetime DEFAULT NULL,
+  `updatedon` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updatedby` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -208,6 +291,46 @@ CREATE TABLE IF NOT EXISTS `tbl_product_color_purity_mapping` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_product_diamond_mapping`
+--
+
+DROP TABLE IF EXISTS `tbl_product_diamond_mapping`;
+CREATE TABLE IF NOT EXISTS `tbl_product_diamond_mapping` (
+  `productid` bigint(20) NOT NULL,
+  `diamond_id` bigint(20) NOT NULL,
+  `shape` varchar(45) DEFAULT NULL,
+  `carat` double DEFAULT NULL,
+  `total_no` int(5) DEFAULT NULL,
+  `createdon` datetime DEFAULT NULL,
+  `updatedon` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updatedby` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`productid`,`diamond_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_product_gemstone_mapping`
+--
+
+DROP TABLE IF EXISTS `tbl_product_gemstone_mapping`;
+CREATE TABLE IF NOT EXISTS `tbl_product_gemstone_mapping` (
+  `productid` bigint(20) NOT NULL,
+  `gemstone_id` bigint(20) NOT NULL,
+  `genstone_name` varchar(45) DEFAULT NULL,
+  `total_no` int(5) DEFAULT NULL,
+  `carat` double DEFAULT NULL,
+  `price_per_carat` double DEFAULT NULL,
+  `active_flag` tinyint(2) DEFAULT '1' COMMENT '0 - Not Active, 1 - Active',
+  `createdon` datetime DEFAULT NULL,
+  `updatedon` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updatedby` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`productid`,`gemstone_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_product_master`
 --
 
@@ -243,6 +366,23 @@ CREATE TABLE IF NOT EXISTS `tbl_product_master` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_product_metal_color_mapping`
+--
+
+DROP TABLE IF EXISTS `tbl_product_metal_color_mapping`;
+CREATE TABLE IF NOT EXISTS `tbl_product_metal_color_mapping` (
+  `productid` bigint(20) NOT NULL,
+  `id` int(5) NOT NULL,
+  `active_flag` tinyint(2) DEFAULT '1' COMMENT '0 - Not Active, 1 - Active',
+  `createdon` datetime DEFAULT NULL,
+  `updatedon` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updatedby` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`productid`,`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_product_metal_purity_mapping`
 --
 
@@ -254,6 +394,93 @@ CREATE TABLE IF NOT EXISTS `tbl_product_metal_purity_mapping` (
   `updatedon` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updatedby` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`productid`,`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_product_size_mapping`
+--
+
+DROP TABLE IF EXISTS `tbl_product_size_mapping`;
+CREATE TABLE IF NOT EXISTS `tbl_product_size_mapping` (
+  `productid` bigint(20) NOT NULL,
+  `size_id` int(5) NOT NULL,
+  `quantity` int(5) DEFAULT NULL,
+  `createdon` datetime DEFAULT NULL,
+  `updatedon` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updatedby` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`productid`,`size_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_product_solitaire_mapping`
+--
+
+DROP TABLE IF EXISTS `tbl_product_solitaire_mapping`;
+CREATE TABLE IF NOT EXISTS `tbl_product_solitaire_mapping` (
+  `productid` bigint(20) NOT NULL,
+  `solitaire_id` bigint(20) NOT NULL,
+  `shape` varchar(45) DEFAULT NULL,
+  `color` varchar(10) DEFAULT NULL,
+  `clarity` varchar(10) DEFAULT NULL,
+  `cut` varchar(15) DEFAULT NULL,
+  `symmetry` varchar(15) DEFAULT NULL,
+  `polish` varchar(15) DEFAULT NULL,
+  `fluorescence` varchar(15) DEFAULT NULL,
+  `carat` double DEFAULT NULL,
+  `price_per_carat` double DEFAULT NULL,
+  `table` varchar(45) DEFAULT NULL,
+  `crown_angle` varchar(45) DEFAULT NULL,
+  `girdle` varchar(45) DEFAULT NULL,
+  `active_flag` tinyint(2) DEFAULT '1' COMMENT '0 - Not Active, 1 - Active',
+  `createdon` datetime DEFAULT NULL,
+  `updatedon` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updatedby` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`productid`,`solitaire_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_product_uncut_mapping`
+--
+
+DROP TABLE IF EXISTS `tbl_product_uncut_mapping`;
+CREATE TABLE IF NOT EXISTS `tbl_product_uncut_mapping` (
+  `productid` bigint(20) NOT NULL,
+  `uncut_id` bigint(20) NOT NULL,
+  `color` varchar(10) DEFAULT NULL,
+  `quality` varchar(10) DEFAULT NULL,
+  `total_no` int(5) DEFAULT NULL,
+  `carat` double DEFAULT NULL,
+  `price_per_carat` double DEFAULT NULL,
+  `active_flag` tinyint(2) DEFAULT '1' COMMENT '0 - Not Active, 1 - Active',
+  `createdon` datetime DEFAULT NULL,
+  `updatedon` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updatedby` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`productid`,`uncut_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_size_master`
+--
+
+DROP TABLE IF EXISTS `tbl_size_master`;
+CREATE TABLE IF NOT EXISTS `tbl_size_master` (
+  `id` int(5) NOT NULL,
+  `name` varchar(45) DEFAULT NULL,
+  `size_value` decimal(3,1) DEFAULT NULL,
+  `catid` bigint(20) DEFAULT NULL,
+  `active_flag` tinyint(2) DEFAULT NULL COMMENT '0 - not active, 1 - active, 2 - deleted',
+  `createdon` datetime DEFAULT NULL,
+  `updatedon` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updatedby` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
