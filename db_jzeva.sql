@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 16, 2016 at 11:18 AM
+-- Generation Time: Jan 16, 2016 at 02:19 PM
 -- Server version: 5.5.16
 -- PHP Version: 5.3.8
 
@@ -168,6 +168,29 @@ CREATE TABLE IF NOT EXISTS `tbl_city_master` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_coupon_master`
+--
+
+DROP TABLE IF EXISTS `tbl_coupon_master`;
+CREATE TABLE IF NOT EXISTS `tbl_coupon_master` (
+  `coupon_id` bigint(10) NOT NULL,
+  `coupon_code` varchar(45) DEFAULT NULL,
+  `discount_type` tinyint(2) DEFAULT NULL COMMENT '1 - Fixed Amount, 2 - Percentage',
+  `discount_amount` double DEFAULT NULL,
+  `minimum_amount` double DEFAULT NULL,
+  `Description` varchar(250) DEFAULT NULL,
+  `start_date` date DEFAULT NULL,
+  `end_date` date DEFAULT NULL,
+  `active_flag` tinyint(2) DEFAULT '1' COMMENT '0 - Not Active, 1 - Active, 2 - Deleted',
+  `createdon` datetime DEFAULT NULL,
+  `updatedon` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updatedby` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`coupon_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_diamond_quality_mapping`
 --
 
@@ -199,6 +222,26 @@ CREATE TABLE IF NOT EXISTS `tbl_diamond_quality_master` (
   `updatedon` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updatedby` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_discount_master`
+--
+
+DROP TABLE IF EXISTS `tbl_discount_master`;
+CREATE TABLE IF NOT EXISTS `tbl_discount_master` (
+  `productid` bigint(20) NOT NULL,
+  `discount_type` tinyint(2) DEFAULT NULL COMMENT '1 - Fixed Amount, 2 - Percentage',
+  `discount_amount` double DEFAULT NULL,
+  `start_date` date DEFAULT NULL,
+  `end_date` date DEFAULT NULL,
+  `active_flag` tinyint(2) NOT NULL COMMENT '0 - Not Active, 1 - Active, 2 - Deleted',
+  `createdon` datetime DEFAULT NULL,
+  `updatedon` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updatedby` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`productid`,`active_flag`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
