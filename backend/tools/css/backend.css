@@ -521,3 +521,6 @@ section{width:100%;height: auto;border:1px dashed #b3b3b3;float: left;margin:0 0
 .commonList li .enDate{text-align: center}
 .commonList li .actt{width: 20%;border-right: none!important}
 
+.tagcloud {width: auto;height: 30px!important;line-height: 30px;background: #fff url(../img/cancelBlack.svg)no-repeat;background-position: 95% 5px;background-size: auto 70%;color: #4d4d4d;padding: 0 25px 0 10px;margin: 5px 1% 5px 0;font-size: 11px;font-family: openB;text-align: center;border-radius: 2px;border: 1px solid #666;position: relative;}
+.tagcloud::after {content: '';width: 24px;height: 28px;position: absolute;right: 0;top: 0;cursor: pointer;}
+.attrValues {width:100%;height: auto;}

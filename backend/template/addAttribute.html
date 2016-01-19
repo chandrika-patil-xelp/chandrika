@@ -34,14 +34,9 @@
                             <input name="" type="text" id="catname" autocomplete="false"  placeholder="Please enter attribute name" class="txtInput fLeft fmOpenR font14 c666">
                         </div>
                         <div class="divCon  fLeft">
-                            <div class="titleDiv txtCap fLeft">Map Attribute Column*</div>
-                            <select class="txtSelect fLeft fmOpenR font14 c666">
-                                <option>Column 1</option>
-                                <option>Column 2</option>
-                                <option>Column 3</option>
-                                <option>Column 4</option>
-                                <option>Column 5</option>
-                            </select>
+                            <div class="titleDiv txtCap fLeft">Add Attribute Values*</div>
+                            <input name="" type="text" id="attrinpVal" autocomplete="false"  placeholder="Add comma seperated values for filtering this attribute" class="txtInput fLeft fmOpenR font14 c666">
+                            <div class="attrValues fLeft" id='attrValues'></div>
                         </div>
                         <div class="btnCont fLeft">
                             <center>
@@ -53,5 +48,47 @@
                 </div>
             </div>
         </div>
+        <script>
+            var tagArray=new Array();
+            $(document).ready(function(){
+                $('#attrinpVal').on('keypress',function(evt){
+                    var charCode = (evt.which) ? evt.which : evt.keyCode;
+                    if(charCode == 13 || charCode == 44)
+                        addAttrValues();
+
+                });
+            });
+            
+            function addAttrValues(){
+                var vals=$('#attrinpVal').val();
+                var txtid="attr_val_"+vals
+                if(tagArray.indexOf(txtid)==-1){
+                    var str="<div id='"+txtid+"' class='tagcloud fLeft'>"+vals+"</div>";
+                    $('#attrValues').append(str);
+                    tagArray.push(txtid);
+                    bindTags();
+                    setTimeout(function(){
+                        $('#attrinpVal').val('');
+                    },100);
+                }else{
+                    setTimeout(function(){
+                        $('#attrinpVal').val('');
+                    },100);
+                }
+            }
+                
+            function bindTags(){
+                $('.tagcloud').click(function(){
+                    var id=$(this).attr('id');
+                    var _th=this;
+                    setTimeout(function(){
+                        $(_th).remove();
+                        var removeItem = id;
+                        tagArray = jQuery.grep(tagArray, function(value) {return value !== removeItem;});
+                    },100);
+                });
+            }        
+            
+        </script>
     </body>
 </html>
