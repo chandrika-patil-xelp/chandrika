@@ -22,6 +22,12 @@ switch ($action) {
         include BTEMPLATE.'addProduct.html';
         break;
     
+    case 'productPreview':
+        $page = 'productPreview';
+        $tab = 'products';
+        include BTEMPLATE.'productPreview.html';
+        break;
+    
     case 'category':
         $page = 'category';
         $tab = 'category';

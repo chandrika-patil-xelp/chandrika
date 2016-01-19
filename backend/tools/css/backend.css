@@ -431,7 +431,7 @@ section{width:100%;height: auto;border:1px dashed #b3b3b3;float: left;margin:0 0
 .pricingul li .forComponent{width:40%;padding: 0 15px;}
 .pricingul li .forRate{width:20%;padding: 0 15px;}
 .pricingul li .forWeight{width:20%;padding: 0 15px;font-family: openB;height: 100%;}
-.pricingul li .forPrice{width:20%;border-right:none!important;padding: 0 15px;font-family: openB;}
+.pricingul li .forPrice{width:20%;border-right:none!important;padding: 0 15px;font-family: openB;text-align: right;}
 
 .pl35{padding-left: 35px!important;}
 .pl15{padding-left: 15px!important;}
@@ -524,3 +524,27 @@ section{width:100%;height: auto;border:1px dashed #b3b3b3;float: left;margin:0 0
 .tagcloud {width: auto;height: 30px!important;line-height: 30px;background: #fff url(../img/cancelBlack.svg)no-repeat;background-position: 95% 5px;background-size: auto 70%;color: #4d4d4d;padding: 0 25px 0 10px;margin: 5px 1% 5px 0;font-size: 11px;font-family: openB;text-align: center;border-radius: 2px;border: 1px solid #666;position: relative;}
 .tagcloud::after {content: '';width: 24px;height: 28px;position: absolute;right: 0;top: 0;cursor: pointer;}
 .attrValues {width:100%;height: auto;}
+
+
+/*Product Preview*/
+.productPreview{}
+.wrapLeft{width:70%;height: auto;margin-bottom:0px;border-right:1px solid #ccc;}
+.wrapRight{width:30%;height: auto;padding-left: 30px;}
+.wrapRight .checkDiv{width:50%;;float: left;}
+
+
+
+.productPreview .commTitle1{margin: 15px 0 0 0;font-size: 20px}
+.w100{width:100%!important;}
+.productPreview .titleDiv {width: auto;font-size: 12px;color:#2F665C;font-family: openR; padding-right: 5px;}
+
+
+.prData{width:auto;height: auto;margin: 0 0 5px 0;color:#666;padding-right: 20px; font-family: openR; font-size: 14px;border-right:0px solid #ccc;}
+
+.prDataCont{width:auto;height: auto;margin:0 20px 5px 0;}
+
+
+.cardComm{width:95%;height: auto;background: #fff;border: 1px dashed #b3b3b3;margin:15px 0;padding: 15px 15px 5px 15px;}
+.cardComm .prDataCont {width: 33%;height: auto;margin: 0 0px 5px 0;}
+
+.cardComm.w25 .prDataCont {width: 25%;}
