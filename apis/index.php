@@ -128,15 +128,36 @@ switch($action)
         $res = $result;
     break;
 
-//getSizeIdByValue($params)
-    
-    case 'getSizeIdByValue':
+    case 'getMetalColorIdByValue':
         include APICLUDE.'class.product.php';
         $obj	= new product($db['jzeva']);
-        $tmpparams=array('size_value'=>$params['size_value'],'catid'=>$params['catid']);
-        $result	=$obj->getSizeIdByValue($tmpparams);
+        $result	=$obj->getMetalColorIdByValue();
         $res = $result;
     break;
+
+    case 'getVendorList':
+        include APICLUDE.'class.product.php';
+        $obj	= new product($db['jzeva']);
+        $result	=$obj->getVendorList();
+        $res = $result;
+    break;
+
+    case 'getVendorDetailsById':
+        include APICLUDE.'class.product.php';
+        $obj	= new product($db['jzeva']);
+        $vid=$params['vid'];
+        $result	=$obj->getVendorDetailsById($vid);
+        $res = $result;
+    break;
+
+    case 'getVendorDetailsByName':
+        include APICLUDE.'class.product.php';
+        $obj	= new product($db['jzeva']);
+        $name=$params['name'];
+        $result	=$obj->getVendorDetailsByName($name);
+        $res = $result;
+    break;
+
 
 
     
