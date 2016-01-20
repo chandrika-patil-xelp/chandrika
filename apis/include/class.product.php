@@ -61,10 +61,6 @@ class product extends DB {
         $gemstone4 = array('gvalue' => 4, 'total_no' => 4, 'carat' => 4.2, 'price_per_carat' => 1300);
 
         $gemstones = array($gemstone1, $gemstone2, $gemstone3, $gemstone4);
-
-
-
-
         $details = array('vendorid' => '1', 'product_name' => '22k ring golden',
             'product_seo_name' => '22K Gold Office Wear Ring', 'gender' => 0, 'product_weight' => 5.5, 'diamond_setting' => 'prong', 'metal_weight' => 4,
             'making_charges' => 12500.56, 'procurement_cost' => 11000.52, 'margin' => 5, 'measurement' => '10X50', 'certificate' => 'SGL');
@@ -74,16 +70,21 @@ class product extends DB {
         $userid = $params['userid'];
 
         #echo "<pre>";  print_r($params);  echo "</pre>";die;
+        
+        
         #ADDING CATEGORY MAPPING FOR CURRENT PRODUCT
+        
         $catids = explode(",", $params['catid']);
         $tmpcatparams = array('catid' => $params['catid'], 'userid' => $userid, 'pid' => $pid);
         $catres = $this->addCatProductMapping($tmpcatparams);
-        if ($catres['error']['err_code'] == 0) {
+        if ($catres['error']['err_code'] == 0) 
+        {
 
             $sizeparams = array('productid' => $params['productid'], 'updatedby' => $userid, 'sizes' => $params['sizes']);
             $sizeres = $this->addProductSizeMApping($sizeparams);
 
-            if ($sizeres['error']['err_code'] == '0') {
+            if ($sizeres['error']['err_code'] == '0') 
+            {
 
 
                 #Product Metal Purity Mapping
@@ -183,30 +184,45 @@ class product extends DB {
                             $results = array('result' => $result, 'error' => $err);
                             return $results;
                         }
-                    } else {
+                    }
+                    else 
+                    {
                         $result = array();
                         $err = array('err_code' => 1, 'err_msg' => 'Error in adding product metal color');
                         $results = array('result' => $result, 'error' => $err);
                         return $results;
                     }
-                } else {
+                } 
+                else 
+                {
                     $result = array();
                     $err = array('err_code' => 1, 'err_msg' => 'Error in adding product metal purity');
                     $results = array('result' => $result, 'error' => $err);
                     return $results;
                 }
-            } else {
+            } 
+            else
+            {
                 $result = array();
                 $err = array('err_code' => 1, 'err_msg' => 'Error in adding product sizes');
                 $results = array('result' => $result, 'error' => $err);
                 return $results;
             }
-        } else {
+        } 
+        else
+        {
             $result = array();
             $err = array('err_code' => 1, 'err_msg' => 'Error in adding category');
             $results = array('result' => $result, 'error' => $err);
             return $results;
         }
+        
+        
+        $result = array('product id' =>$params['productid']);
+        $err = array('err_code' => 0, 'err_msg' => 'Product Added Successfully');
+        $results = array('result' => $result, 'error' => $err);
+        return $results;
+        
     }
 
     public function addCatProductMapping($params) {
