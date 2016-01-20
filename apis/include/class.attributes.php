@@ -8,6 +8,32 @@ class attributes extends DB
             parent::DB($db);
     }
     
+    public function columnNames()
+    {
+        $sql = "SHOW COLUMNS FROM tbl_product_master";
+        $res = $this->query($sql);
+        while($row = $this->fetchData($res))
+        {
+            /* if($row['Field'] != 'productid' && $row['Field'] != 'has_diamond' && $row['Field'] != 'has_solitaire' && $row['Field'] != 'has_uncut' && $row['Field'] != 'has_gemstone' && $row['Field'] != 'createdon' && $row['Field'] != 'updatedon' && $row['Field'] != 'updatedby' && $row['Field'] != 'product_code' && $row['Field'] != 'vendorid')
+            {
+                $tmp['field'] = 'tbl_';
+                $tmp['name'] = 'On Price Field';
+                $arr[] = $tmp;
+                
+                //price
+                //purity
+                //material
+                //gemstone
+                //diamond
+                //gemstone color
+                //size
+                //gender
+            } */
+            $arr = array('Price','Purity','Material','Gemstone','Diamond Type','Gemstone Color','Size','Gender');
+        }
+        return $arr;
+    }
+    
     public function addAttribute($params)
     {
         if(!$params['attributeid'])

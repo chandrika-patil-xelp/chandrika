@@ -49,6 +49,10 @@ switch ($action) {
     case 'addAttribute':
         $page = 'addAttribute';
         $tab = 'attribute';
+        include APICLUDE.'class.attributes.php';
+        $obj = new attributes($db['jzeva']);
+        $colm = $obj->columnNames();
+        //echo "<pre>";print_r($colm);die;
         include BTEMPLATE.'addAttribute.html';
         break;
     
