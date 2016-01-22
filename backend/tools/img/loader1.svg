@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" x="0px" y="0px" viewBox="892 910.5 688 779.8" enable-background="new 892 910.5 688 779.8" xml:space="preserve">
+  <g id="Layer_x0020_1">
+    <g>
+      <path fill="#379496" d="M1353.2 1073c60.9 30.5 102.8 70.8 130.2 131.8l-33.7 16.3c-21.6-44.4-67.8-90.6-112.7-112.7L1353.2 1073zM1353.2 1073L1353.2 1073 1353.2 1073z">
+        <animate fill="remove" calcMode="linear" begin="0s" repeatCount="indefinite" restart="always" accumulate="none" additive="replace" dur="1s" attributeName="fill" values="#379496;#25c1c4;#379496;#379496"/>
+      </path>
+    </g>
+    <g>
+      <path fill="#379496" d="M1493.3 1224.2c21.5 64.6 22.6 122.8-1.1 185.2l-35.4-12.3c16.2-46.7 16.2-112 0-159.4L1493.3 1224.2zM1493.3 1224.2L1493.3 1224.2 1493.3 1224.2z">
+        <animate fill="remove" calcMode="linear" begin="0.125s" repeatCount="indefinite" restart="always" accumulate="none" additive="replace" dur="1s" attributeName="fill" values="#379496;#25c1c4;#379496;#379496"/>
+      </path>
+    </g>
+    <g>
+      <path fill="#379496" d="M1483.9 1429c-30.5 60.9-70.8 102.8-131.8 130.2l-16.3-33.7c44.4-21.6 90.6-67.8 112.7-112.7L1483.9 1429zM1483.9 1429L1483.9 1429 1483.9 1429z">
+        <animate fill="remove" calcMode="linear" begin="0.250s" repeatCount="indefinite" restart="always" accumulate="none" additive="replace" dur="1s" attributeName="fill" values="#379496;#25c1c4;#379496;#379496"/>
+      </path>
+    </g>
+    <g>
+      <path fill="#379496" d="M1332.2 1568.3c-64.6 21.5-122.8 22.6-185.2-1.1l12.3-35.4c46.7 16.2 112 16.2 159.4 0L1332.2 1568.3zM1332.2 1568.3L1332.2 1568.3 1332.2 1568.3z">
+        <animate fill="remove" calcMode="linear" begin="0.375s" repeatCount="indefinite" restart="always" accumulate="none" additive="replace" dur="1s" attributeName="fill" values="#379496;#25c1c4;#379496;#379496"/>
+      </path>
+    </g>
+    <g>
+      <path fill="#379496" d="M1127.4 1562c-60.9-30.5-102.8-70.8-130.2-131.8l33.7-16.3c21.6 44.4 67.8 90.6 112.7 112.7L1127.4 1562zM1127.4 1562L1127.4 1562 1127.4 1562z">
+        <animate fill="remove" calcMode="linear" begin="0.500s" repeatCount="indefinite" restart="always" accumulate="none" additive="replace" dur="1s" attributeName="fill" values="#379496;#25c1c4;#379496;#379496"/>
+      </path>
+    </g>
+    <g>
+      <path fill="#379496" d="M986.7 1411.2c-21.5-64.6-22.6-122.8 1.1-185.2l35.4 12.3c-16.2 46.7-16.2 112 0 159.4L986.7 1411.2zM986.7 1411.2L986.7 1411.2 986.7 1411.2z">
+        <animate fill="remove" calcMode="linear" begin="0.625s" repeatCount="indefinite" restart="always" accumulate="none" additive="replace" dur="1s" attributeName="fill" values="#379496;#25c1c4;#379496;#379496"/>
+      </path>
+    </g>
+    <g>
+      <path fill="#379496" d="M995.5 1204.7c30.5-60.9 70.8-102.8 131.8-130.2l16.3 33.7c-44.4 21.6-90.6 67.8-112.7 112.7L995.5 1204.7zM995.5 1204.7L995.5 1204.7 995.5 1204.7z">
+        <animate fill="remove" calcMode="linear" begin="0.750s" repeatCount="indefinite" restart="always" accumulate="none" additive="replace" dur="1s" attributeName="fill" values="#379496;#25c1c4;#379496;#379496"/>
+      </path>
+    </g>
+    <g>
+      <path fill="#379496" d="M1147.4 1064.8c64.6-21.5 122.8-22.6 185.2 1.1l-12.3 35.4c-46.7-16.2-112-16.2-159.4 0L1147.4 1064.8zM1147.4 1064.8L1147.4 1064.8 1147.4 1064.8z">
+        <animate fill="remove" calcMode="linear" begin="0.875s" repeatCount="indefinite" restart="always" accumulate="none" additive="replace" dur="1s" attributeName="fill" values="#379496;#25c1c4;#379496;#379496"/>
+      </path>
+    </g>
+  </g>
+</svg>

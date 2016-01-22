@@ -3,6 +3,7 @@ error_reporting(0);
 
 
 define('DOMAIN','http://'.$_SERVER['HTTP_HOST'].'/jzeva/');
+define('APIDOMAIN','http://'.$_SERVER['HTTP_HOST'].'/jzeva/apis/');
 define('BACKDOMAIN','http://'.$_SERVER['HTTP_HOST'].'/jzeva/backend/');
 define('WEBROOT',$_SERVER['DOCUMENT_ROOT'].'/jzeva/');
 define('BACKWEBROOT',$_SERVER['DOCUMENT_ROOT'].'/jzeva/backend/');
@@ -11,7 +12,7 @@ define('BTEMPLATE',BACKWEBROOT.'template/');
 define('BINCLUDES',BACKWEBROOT.'include/');
 define('BAPICLUDE',BACKWEBROOT.'apis/include/');
 
-define('TEMPLATE',WEBROOT.'template/');
+define('TEMPLATE',WEBROOT.'frontend/template/');
 define('INCLUDES',WEBROOT.'include/');
 define('APICLUDE',WEBROOT.'apis/include/');
 
@@ -39,7 +40,16 @@ $jvs = array();
     $jvs['jquery_toast'] 	= BACKDOMAIN.'tools/js/lib/jquery.toast.min.js?v='.VERSION;
     $jvs['velocity']            = BACKDOMAIN.'tools/js/lib/velocity.js?v='.VERSION;
     $jvs['common']              = BACKDOMAIN.'tools/js/Common.js?v='.VERSION;
+    
+    
+        #CMS PAGES JS
+        $jvs['addProduct']          = BACKDOMAIN.'tools/js/cms/addProduct.js?v='.VERSION;
 #JS End
+        
+        
+        
+        #FRONTEND
+            $css['home']             = DOMAIN.'frontend/tools/css/home.css?v='.VERSION;
     
     
 include APICLUDE.'common/class.common.php';

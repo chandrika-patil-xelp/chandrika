@@ -7,81 +7,13 @@
                 <!-----Category Section--!-->
                 <section id='category_Section'>
                     <div class="commTitle1 fmOpenL fLeft">Select your category*</div>
-                    <div class="divCon  fLeft fmOpenR">
-                        <div class="checkDiv">
-                            <input type="checkbox" name="rprd" class="filled-in" value="10008" id="r1"> 
-                            <label for="r1">Jewellery</label>
-                        </div>
-                        <div class="checkDiv">
-                            <input type="checkbox" name="rprd" class="filled-in" value="10008" id="r2"> 
-                            <label for="r2">Custom Jewellery</label>
-                        </div>
-                    </div>
+                    <div class="divCon  fLeft fmOpenR" id='parentCatg'></div>
                     <div class="breakLine"></div>
-                    <div class="divCon  fLeft fmOpenR mTop0">
-                        <div class="checkDiv">
-                            <input type="checkbox" name="prd" class="filled-in" value="10008" id="1"> 
-                            <label for="1">Rings</label>
-                        </div>
-                        <div class="checkDiv">
-                            <input type="checkbox" name="prd" class="filled-in" value="10008" id="2"> 
-                            <label for="2">Earrings</label>
-                        </div>
-                        <div class="checkDiv">
-                            <input type="checkbox" name="prd" class="filled-in" value="10008" id="3"> 
-                            <label for="3">Pendants</label>
-                        </div>
-                        <div class="checkDiv">
-                            <input type="checkbox" name="prd" class="filled-in" value="10008" id="4"> 
-                            <label for="4">Chains</label>
-                        </div>
-                        <div class="checkDiv">
-                            <input type="checkbox" name="prd" class="filled-in" value="10008" id="5"> 
-                            <label for="5">Mens</label>
-                        </div>
-                        <div class="checkDiv">
-                            <input type="checkbox" name="prd" class="filled-in" value="10008" id="6"> 
-                            <label for="6">Bangles</label>
-                        </div>
-                        <div class="checkDiv">
-                            <input type="checkbox" name="prd" class="filled-in" value="10008" id="7"> 
-                            <label for="7">Bracelets</label>
-                        </div>
-                        <div class="checkDiv">
-                            <input type="checkbox" name="prd" class="filled-in" value="10008" id="8"> 
-                            <label for="8">Plain Gold</label>
-                        </div>
-                        <div class="checkDiv">
-                            <input type="checkbox" name="prd" class="filled-in" value="10008" id="9"> 
-                            <label for="9">Platinum</label>
-                        </div>                        
-                    </div>
-                    <div class="breakLine"></div>
-                    <div class="divCon fLeft fmOpenR mTop0">                    
-                        <div class="checkDiv">
-                            <input type="checkbox" class="filled-in" value="10008" id="t1"> 
-                            <label for="t1">Platinum Type 1</label>
-                        </div>
-                        <div class="checkDiv">
-                            <input type="checkbox" class="filled-in" value="10008" id="t2"> 
-                            <label for="t2">Platinum Type 2</label>
-                        </div>
-                        <div class="checkDiv">
-                            <input type="checkbox" class="filled-in" value="10008" id="t3"> 
-                            <label for="t3">Platinum Type 3</label>
-                        </div>
-                    </div>
-                    <div class="breakLine"></div>
+                    
                     <div class="divCon fLeft">
                         <div class="divCon2 fLeft mTop0">
                             <div class="titleDiv txtCap fLeft">Select Vendor</div>
-                            <select id="gemstone_type"  class="txtSelect fLeft fmOpenR font14 c666">
-                                <option value="">Select Vendor</option>
-                                <option value="Patdiam">Patdiam</option>
-                                <option value="Maharani">Maharani</option>
-                                <option value="SP Kulthiya">SP Kulthiya</option>
-                                <option value="BLUE TOPAZ">DN Jewels</option>
-                            </select>
+                            <select id="vendorList"  class="txtSelect fLeft fmOpenR font14 c666"></select>
                         </div>
                     </div>
                     <div class="divCon2 fLeft">
@@ -359,6 +291,10 @@
                         <div class="titleDiv txtCap fLeft">Girdle*</div>
                         <input name="girdle" id="girdle" type="text" autocomplete="false" placeholder=" eg. 1.33" class="txtInput fLeft fmOpenR font14 c666" maxlength="5" onkeypress="return common.isDecimalNumber(event, this.value);" value="">
                     </div>
+                    
+                    <div class="newElements fLeft" id="newSolitaires"></div>
+                    
+                    
                     <div class="divCon fLeft">
                         <center><div class="addBtn transition300">Add Solitaire</div></center>
                     </div>
@@ -400,77 +336,8 @@
                     <div class="qltCLeft fLeft">
                         <div class="divCon  fLeft fmOpenR mTop0">
                             <div class="titleDiv txtCap fLeft">Diamond Quality*</div>
-                            <div class="dQuality fLeft">
-                                <div class="checkDiv fLeft minwidth100">
-                                    <input type="checkbox" name="dquality_0" class="filled-in" value="IF" id="dquality_0_IF">
-                                    <label for="dquality_0_IF">VVS - IF</label>
-                                </div>
-                                <div class="intInp fLeft">&#8377; 45000</div>
-                            </div>
-                            <div class="dQuality fLeft">
-                                <div class="checkDiv fLeft minwidth100">
-                                    <input type="checkbox" name="dquality_0" class="filled-in" value="VVS1" id="dquality_0_VVS1">
-                                    <label for="dquality_0_IF">VVS - EF</label>
-                                </div>
-                                <div class="intInp fLeft">&#8377; 45000</div>
-                            </div>
-                            <div class="dQuality fLeft">
-                                <div class="checkDiv fLeft minwidth100">
-                                    <input type="checkbox" name="dquality_0" class="filled-in" value="VVS1" id="dquality_0_VVS1">
-                                    <label for="dquality_0_IF">VVS - GH</label>
-                                </div>
-                                <div class="intInp fLeft">&#8377; 45000</div>
-                            </div>
-
-                            <div class="dQuality fLeft">
-                                <div class="checkDiv fLeft minwidth100">
-                                    <input type="checkbox" name="dquality_0" class="filled-in" value="VVS1" id="dquality_0_VVS1">
-                                    <label for="dquality_0_IF">VS - EF</label>
-                                </div>
-                                <div class="intInp fLeft">&#8377; 45000</div>
-                            </div>
-                            <div class="dQuality fLeft">
-                                <div class="checkDiv fLeft minwidth100">
-                                    <input type="checkbox" name="dquality_0" class="filled-in" value="VVS1" id="dquality_0_VVS1">
-                                    <label for="dquality_0_IF">VS - GH</label>
-                                </div>
-                                <div class="intInp fLeft">&#8377; 45000</div>
-                            </div>
-                            <div class="dQuality fLeft">
-                                <div class="checkDiv fLeft minwidth100">
-                                    <input type="checkbox" name="dquality_0" class="filled-in" value="VVS1" id="dquality_0_VVS1">
-                                    <label for="dquality_0_IF">VS - IJ</label>
-                                </div>
-                                <div class="intInp fLeft">&#8377; 45000</div>
-                            </div>
-                            <div class="dQuality fLeft">
-                                <div class="checkDiv fLeft minwidth100">
-                                    <input type="checkbox" name="dquality_0" class="filled-in" value="VVS1" id="dquality_0_VVS1">
-                                    <label for="dquality_0_IF">SI - EF</label>
-                                </div>
-                                <div class="intInp fLeft">&#8377; 45000</div>
-                            </div>
-                            <div class="dQuality fLeft">
-                                <div class="checkDiv fLeft minwidth100">
-                                    <input type="checkbox" name="dquality_0" class="filled-in" value="VVS1" id="dquality_0_VVS1">
-                                    <label for="dquality_0_IF">SI - GH</label>
-                                </div>
-                                <div class="intInp fLeft">&#8377; 45000</div>
-                            </div>
-                            <div class="dQuality fLeft">
-                                <div class="checkDiv fLeft minwidth100">
-                                    <input type="checkbox" name="dquality_0" class="filled-in" value="VVS1" id="dquality_0_VVS1">
-                                    <label for="dquality_0_IF">SI - IJ</label>
-                                </div>
-                                <div class="intInp fLeft">&#8377; 45000</div>
-                            </div>
-                            <div class="dQuality fLeft">
-                                <div class="checkDiv fLeft minwidth100">
-                                    <input type="checkbox" name="dquality_0" class="filled-in" value="VVS1" id="dquality_0_VVS1">
-                                    <label for="dquality_0_IF">SI - JK</label>
-                                </div>
-                                <div class="intInp fLeft">&#8377; 45000</div>
-                            </div>
+                                <div class="divCon  fLeft fmOpenR mTop0" id='custQuality'></div>
+                                <div class="divCon  fLeft fmOpenR mTop0 dn" id='notcustQuality'></div>
                         </div>                            
                     </div>
                     <div class="qltCRight fLeft">
@@ -609,32 +476,7 @@
                     <div class="commTitle1 fmOpenL fLeft">Add Gemstone</div>
                     <div class="divCon2 fLeft">
                         <div class="titleDiv txtCap fLeft">Select a gemstone</div>
-                        <select id="gemstone_type"  class="txtSelect fLeft fmOpenR font14 c666">
-                            <option value="">Select A Gemstone</option>
-                            <option value="amber">Amber</option>
-                            <option value="amethyst">Amethyst</option>
-                            <option value="aquamarine">Aquamarine</option>
-                            <option value="blue topaz">Blue Topaz</option>
-                            <option value="coral">Coral</option>
-                            <option value="emerald">Emerald</option>
-                            <option value="garnet">Garnet</option>
-                            <option value="golden topaz">Metalen Topaz</option>
-                            <option value="hydro">Hydro</option>
-                            <option value="iolite">Iolite</option>
-                            <option value="lemon topaz">Lemon Topaz</option>
-                            <option value="moonstone">Moonstone</option>
-                            <option value="onyx">Onyx</option>
-                            <option value="opal">Opal</option>
-                            <option value="pearl">Pearl</option>
-                            <option value="peridot">Peridot</option>
-                            <option value="rose quartz">Rose Quartz</option>
-                            <option value="rubilite">Rubilite</option>
-                            <option value="ruby">Ruby</option>
-                            <option value="sapphire">Sapphire</option>
-                            <option value="smoky topaz">Smoky topaz</option>
-                            <option value="tanzanite">Tanzanite</option>
-                            <option value="turquoise">Turquoise</option>
-                        </select>
+                        <select id="gemstone_type"  class="txtSelect fLeft fmOpenR font14 c666"></select>
                     </div>
                     <div class="divCon2 fLeft">
                         <div class="titleDiv txtCap fLeft">No. Of Pieces</div>
@@ -748,139 +590,40 @@
                             <input name="measurement2" id="measure2" type="text" autocomplete="false" placeholder=" eg. 20" maxlength="5" class="mtxtInput fLeft fmOpenR font14 c666" value="">
                         </div>
                     </div>
-                    <div class="divCon2 fLeft forInp2">
-                        <div class="titleDiv txtCap fLeft">Metal Purity*</div>
-                        <div class="checkDiv fLeft">
-                            <input type="radio" name="isPurityCustz" class="filled-in" value="0" id="cust1">
+                    <div class="divCon fLeft">
+                        <div class="titleDiv txtCap fLeft wAuto">Metal Purity*</div>
+                        <div class="checkDiv fLeft mTop0">
+                            <input type="radio" name="isPurityCustz" class="filled-in" value="0" id="cust1" checked="">
                             <label for="cust1">Customizable</label>
                         </div>
-                        <div class="checkDiv fLeft forInp2">
+                        <div class="checkDiv fLeft mTop0">
                             <input type="radio" name="isPurityCustz" class="filled-in" value="1" id="cust2">
                             <label for="cust2">Not customizable</label>
                         </div>
                     </div>
-                    <div class="divCon2 fRight forInp2">
-                        <div class="titleDiv txtCap fLeft">Metal Color*</div>
-                        <div class="checkDiv fLeft">
-                            <input type="radio" name="isColorCustz" class="filled-in" value="0" id="colorcust1">
+                    <div class="divCon  fLeft fmOpenR divAuto" id='ifpurityCustomiz'></div>
+                    <div class="divCon  fLeft fmOpenR dn divAuto" id='ifpurityNotCustomiz'></div>
+
+                    
+                    <div class="divCon fRight">
+                        <div class="titleDiv txtCap fLeft wAuto">Metal Color*</div>
+                        <div class="checkDiv fLeft mTop0">
+                            <input type="radio" name="isColorCustz" class="filled-in" value="0" id="colorcust1" checked>
                             <label for="colorcust1">Customizable</label>
                         </div>
-                        <div class="checkDiv fLeft">
+                        <div class="checkDiv fLeft mTop0">
                             <input type="radio" name="isColorCustz" class="filled-in" value="1" id="colorcust2">
                             <label for="colorcust2">Not Customizable</label>
                         </div>
-
-                        <div class="innerCont dn fLeft" id='ifcolorNotCustomiz'>
-                            <div class="checkDiv fLeft">
-                                <input type="radio" name="ifColorNotCustomiz" class="filled-in" value="0" id="colorOp1">
-                                <label for="colorOp1">Yellow</label>
-                            </div>
-                            <div class="checkDiv fLeft">
-                                <input type="radio" name="ifColorNotCustomiz" class="filled-in" value="1" id="colorOp2">
-                                <label for="colorOp2">Rose</label>
-                            </div>
-                            <div class="checkDiv fLeft">
-                                <input type="radio" name="ifColorNotCustomiz" class="filled-in" value="2" id="colorOp3">
-                                <label for="colorOp3">White</label>
-                            </div>
-                        </div>
-                        <div class="innerCont dn fLeft" id='ifcolorCustomiz'>
-                            <div class="checkDiv fLeft">
-                                <input type="checkbox" name="ifColorCustomiz" class="filled-in" value="0" id="colorOp4">
-                                <label for="colorOp4">Yellow</label>
-                            </div>
-                            <div class="checkDiv fLeft">
-                                <input type="checkbox" name="ifColorCustomiz" class="filled-in" value="1" id="colorOp5">
-                                <label for="colorOp5">Rose</label>
-                            </div>
-                            <div class="checkDiv fLeft">
-                                <input type="checkbox" name="ifColorCustomiz" class="filled-in" value="2" id="colorOp6">
-                                <label for="colorOp6">White</label>
-                            </div>
-                        </div>
+                        
+                        <div class="innerCont fLeft" id='ifcolorCustomiz'></div>
+                        <div class="innerCont dn fLeft" id='ifcolorNotCustomiz'></div>
                     </div>
 
-                    <div class="divCon  fLeft fmOpenR dn divAuto" id='ifpurityCustomiz'>
-                        <div class="titleDiv txtCap fLeft">Metal Purity Customizable*</div>
-                        <div class="dQuality fLeft">
-                            <div class="checkDiv fLeft">
-                                <input type="checkbox" name="gpurityCustomize" class="filled-in" value="IF" id="9carat_custom">
-                                <label for="9carat_custom">9 carat</label>
-                            </div>
-                            <div class="intInp fLeft">&#8377; 45000</div>
-                        </div>
-                        <div class="dQuality fLeft">
-                            <div class="checkDiv fLeft">
-                                <input type="checkbox" name="gpurityCustomize" class="filled-in" value="IF" id="14carat_custom">
-                                <label for="14carat_custom">14 carat</label>
-                            </div>
-                            <div class="intInp fLeft">&#8377; 45000</div>
-                        </div>
-                        <div class="dQuality fLeft">
-                            <div class="checkDiv fLeft">
-                                <input type="checkbox" name="gpurityCustomize" class="filled-in" value="IF" id="18carat_custom">
-                                <label for="18carat_custom">18 carat</label>
-                            </div>
-                            <div class="intInp fLeft">&#8377; 45000</div>
-                        </div>
-                        <div class="dQuality fLeft">
-                            <div class="checkDiv fLeft">
-                                <input type="checkbox" name="gpurityCustomize" class="filled-in" value="IF" id="22carat_custom">
-                                <label for="22carat_custom">22 carat</label>
-                            </div>
-                            <div class="intInp fLeft">&#8377; 45000</div>
-                        </div>
-                        <div class="dQuality fLeft">
-                            <div class="checkDiv fLeft">
-                                <input type="checkbox" name="gpurityCustomize" class="filled-in" value="IF" id="24carat_custom">
-                                <label for="24carat_custom">24 carat</label>
-                            </div>
-                            <div class="intInp fLeft">&#8377; 45000</div>
-                        </div>                        
-                    </div>
 
-                    <div class="divCon  fLeft fmOpenR dn divAuto" id='ifpurityNotCustomiz'>
-                        <div class="titleDiv txtCap fLeft">Metal Purity Not Customizable*</div>
-                        <div class="dQuality fLeft">
-                            <div class="checkDiv fLeft">
-                                <input type="radio" name="gpurityNotCustomize" class="filled-in" value="IF" id="9carat_ncustom">
-                                <label for="9carat_ncustom">9 carat</label>
-                            </div>
-                            <div class="intInp fLeft">&#8377; 45000</div>
-                        </div>
-                        <div class="dQuality fLeft">
-                            <div class="checkDiv fLeft">
-                                <input type="radio" name="gpurityNotCustomize" class="filled-in" value="IF" id="14carat_ncustom">
-                                <label for="14carat_ncustom">14 carat</label>
-                            </div>
-                            <div class="intInp fLeft">&#8377; 45000</div>
-                        </div>
-                        <div class="dQuality fLeft">
-                            <div class="checkDiv fLeft">
-                                <input type="radio" name="gpurityNotCustomize" class="filled-in" value="IF" id="18carat_ncustom">
-                                <label for="18carat_ncustom">18 carat</label>
-                            </div>
-                            <div class="intInp fLeft">&#8377; 45000</div>
-                        </div>
-                        <div class="dQuality fLeft">
-                            <div class="checkDiv fLeft">
-                                <input type="radio" name="gpurityNotCustomize" class="filled-in" value="IF" id="22carat_ncustom">
-                                <label for="22carat_ncustom">22 carat</label>
-                            </div>
-                            <div class="intInp fLeft">&#8377; 45000</div>
-                        </div>
-                        <div class="dQuality fLeft">
-                            <div class="checkDiv fLeft">
-                                <input type="radio" name="gpurityNotCustomize" class="filled-in" value="IF" id="24carat_ncustom">
-                                <label for="24carat_ncustom">24 carat</label>
-                            </div>
-                            <div class="intInp fLeft">&#8377; 45000</div>
-                        </div>                        
-                    </div>
-
-                    <div class="divCon2 fLeft noBorder">
+                    <div class="divCon2 fLeft noBorder" id='cat_sizes'>
                         <div class="titleDiv txtCap fLeft">Bangle Sizes</div>
-                        <div class="dQuality fLeft">
+<!--                        <div class="dQuality fLeft">
                             <div class="checkDiv fLeft minwidth60">
                                 <input type="checkbox" name="size" class="filled-in" value="IF" id="size_2_1">
                                 <label for="size_2_1">88.1</label>
@@ -906,14 +649,14 @@
                             <div class="intInp2 fLeft">
                                 <input name="" type="text" id="dpos" autocomplete="false" placeholder=" Enter quantity "class="txtInput fRight fmOpenR font14 c666">
                             </div>
-                        </div>   
+                        </div>   -->
                     </div>
                 </section>
                 <!-----General Section End--!-->
 
 
                 <!-----Price Section--!-->
-                <section id='general_Section' class="priceCont">
+                <section id='price_Section' class="priceCont">
                     <div class="commTitle1 fmOpenL fLeft">Price Breakup</div>
                     <div class="divCon fLeft">
 
@@ -991,77 +734,14 @@
                 </div>
             </div>
         </div>
+        
+        <div class="overlay dn"></div>
+        <div class="loader dn"></div>
     </div>
-
+    <script type="text/javascript" src="<?php echo $jvs['addProduct']; ?>"></script>
+     
     <script>
-        $(document).ready(function() {
-            $('textarea').increaseAuto();
-            $('.shapeComm').click(function() {
-                $(this).toggleClass('shapeSelected');
-                $(this).siblings().removeClass('shapeSelected');
-            });
-
-            /*   
-             $('#category_Section').hide();
-             $('#diamond_Section').hide();
-             $('#gemstone_Section').hide();
-             $('#uncut_Section').hide();
-             $('#solitaires_Section').hide();
-             $('#general_Section').hide();
-             $('#btn_Section').hide();
-             */
-
-
-            $("[name='isPurityCustz']").change(function() {
-                $("[name='ifpurityNotCustomiz'],[name='ifpurityCustomiz']").prop('checked', false);
-                var val = $("[name='isPurityCustz']:checked").val();
-                if (val == 1) {
-                    $('#ifpurityNotCustomiz').removeClass('dn');
-                    $('#ifpurityCustomiz').addClass('dn');
-                }
-                else {
-                    $('#ifpurityNotCustomiz').addClass('dn');
-                    $('#ifpurityCustomiz').removeClass('dn');
-
-                }
-            });
-
-
-            $("[name='isColorCustz']").change(function() {
-                $("[name='ifColorNotCustomiz'],[name='ifColorCustomiz']").prop('checked', false);
-
-                var val = $("[name='isColorCustz']:checked").val();
-                if (val == 1) {
-                    $('#ifcolorNotCustomiz').removeClass('dn');
-                    $('#ifcolorCustomiz').addClass('dn');
-                }
-                else {
-                    $('#ifcolorNotCustomiz').addClass('dn');
-                    $('#ifcolorCustomiz').removeClass('dn');
-
-                }
-            });
-        });
-
-        function addTags(evt, val, id, tagCont) {
-            var charCode = (evt.which) ? evt.which : evt.keyCode;
-            if (charCode == 44 || charCode == 13) {
-                var str = "<div id='" + id + '_' + val + "' class='tagCommon transition300 fLeft'>";
-                str += "<div class='fLeft txtCap'>" + val + "</div>";
-                str += "<div class='removeTag fRight pointer' onclick=\"removeTag(this)\"></div>";
-                str += "</div>";
-                $('#' + tagCont).append(str);
-                $('#' + tagCont).removeClass('dn');
-                setTimeout(function() {
-                    $('#' + id).val('');
-                }, 50);
-            }
-
-        }
-
-        function removeTag(obj) {
-            $(obj).parent().remove();
-        }
+        
     </script>
 </body>
 </html>

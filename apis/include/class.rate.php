@@ -1,0 +1,188 @@
+<?php
+
+include_once APICLUDE . 'common/db.class.php';
+
+class rate extends DB {
+
+    function __construct($db) {
+        parent::DB($db);
+    }
+
+    
+    public function addRates()
+    {
+        
+        $dmdrates= array(1=>1500,2=>2500,3=>3500,4=>4500,5=>5500,6=>6500,7=>7500,8=>8500,9=>9500,10=>10500,);
+        $params=array('grate' =>99999,'diamondrates' =>$dmdrates,'userid'=>55);
+      
+        $dres=$this->addDmdQualityRates($params);
+        $gres=$this->addGoldRate($params);
+        
+        $result = array();
+        if($dres['error']['err_code'] == '1' || $gres['error']['err_code'] == '1')
+        {
+            
+            $err = array('err_code' => 1, 'err_msg' => 'Error in adding rates');
+            
+            
+        }     
+        else
+        {
+            $err = array('err_code' => 0, 'err_msg' => 'Rates added successfully');
+        }   
+        $results = array('result' => $result, 'error' => $err);
+        return $results;
+        
+    }
+    
+    
+    public function addGoldRate($params)
+    {
+        
+        $crt24=  floatval($params['grate']);
+        $crtR22=  floatval(($crt24*91.6)/100);
+        $crtR18=floatval(($crt24*75.1)/100);
+        $crtR14=floatval(($crt24*58.3)/100);
+        $crtR9=floatval(($crt24*37.5)/100);
+        
+        $sql="INSERT INTO tbl_metal_purity_master(id,price,createdon,updatedby) VALUES(1,$crtR9,now(),".$params['userid']."),(2,$crtR14,now(),".$params['userid']."),(3,$crtR18,now(),".$params['userid']."),(4,$crtR22,now(),".$params['userid']."),(5,$crt24,now(),".$params['userid'].") "
+                . "ON DUPLICATE KEY UPDATE price = VALUES(price), updatedby = VALUES(updatedby )";
+        
+        $res=$this->query($sql);
+        if ($res) {
+            $err = array('err_code' => 0, 'err_msg' => 'Data inserted successfully');
+        } else {
+            $err = array('err_code' => 1, 'err_msg' => 'Error in inserting');
+        }
+        $results = array('result' => $result, 'error' => $err);
+        return $results;
+        
+    }
+    
+    
+    public function addDmdQualityRates($params)
+    {
+        $sql = "INSERT INTO tbl_diamond_quality_master (id,price_per_carat,createdon,updatedby) VALUES ";
+        
+        foreach ($params['diamondrates'] as $key=>$val)
+        {
+           
+            $tmpparams= array('id' =>$key,'price_per_carat'=>$val,'updatedby'=>$params['userid']);
+                
+            
+           $sql.="(" . $tmpparams['id'] . "," . $tmpparams['price_per_carat'] . ",now()," . $tmpparams['updatedby'] . "),";
+        }
+
+        $sql = trim($sql, ",");
+        $sql.=" ON DUPLICATE KEY UPDATE id = VALUES(id), price_per_carat = VALUES(price_per_carat),updatedby=VALUES(updatedby)";
+
+        
+        $res=$this->query($sql);
+        if ($res) 
+        {
+            $err = array('err_code' => 0, 'err_msg' => 'Data inserted successfully');
+        }
+        else
+        {
+            $err = array('err_code' => 1, 'err_msg' => 'Error in inserting');
+        }
+        $results = array('result' => $result, 'error' => $err);
+        return $results;
+       
+    }
+    
+    
+    public function getGoldRates()
+    {
+        $sql= "SELECT id,dname,dvalue,price FROM tbl_metal_purity_master WHERE active_flag = 1";
+        $res = $this->query($sql);
+        
+        
+        if($res)
+        {
+            while($row = $this->fetchData($res))
+            {
+                $reslt['id']        =     $row['id'];
+                $reslt['name']     =     $row['dname'];
+                $reslt['value']    =     $row['dvalue'];
+                $reslt['price']     = floatval($row['price']);
+                $result[]= $reslt;
+
+            }
+            $err = array('err_code' => 0, 'err_msg' => 'Data fetched successfully');
+        }
+        else
+        {
+            $err = array('err_code' => 1, 'err_msg' => 'Error in fetching successfully');
+        }
+        $results = array('result' => $result, 'error' => $err);
+        return $results;
+        
+    }
+    
+    public function getDmdRates()
+    {
+        $sql= "SELECT id,dname,dvalue,price_per_carat FROM tbl_diamond_quality_master WHERE active_flag = 1";
+        $res = $this->query($sql);
+        
+        if($res)
+        {
+            while($row = $this->fetchData($res))
+            {
+                $reslt['id']        =     $row['id'];
+                $reslt['name']     =     $row['dname'];
+                $reslt['value']    =     $row['dvalue'];
+                $reslt['price']     = floatval($row['price_per_carat']);
+                $result[]= $reslt;
+
+            }
+            $err = array('err_code' => 0, 'err_msg' => 'Data fetched successfully');
+        }
+        else
+        {
+            $err = array('err_code' => 1, 'err_msg' => 'Error in fetching successfully');
+        }
+        $results = array('result' => $result, 'error' => $err);
+        return $results;
+    }
+    
+    
+    
+    public function getAllRates()
+    {
+        
+        $grates=$this->getGoldRates();
+        $dmdrates=$this->getDmdRates();
+        
+        
+        if($grates['error']['err_code'] == '1' || $dmdrates['error']['err_code'] == '1')
+        {
+            
+            $err = array('err_code' => 1, 'err_msg' => 'Error in fetching rates');
+            
+            
+        }     
+        else
+        {
+            $err = array('err_code' => 0, 'err_msg' => 'Data fetched successfully');
+            $result['goldRates']=$grates['result'];
+            $result['diamondRates']=$dmdrates['result'];
+        }   
+        
+        
+        
+        
+        $results = array('result' => $result, 'error' => $err);
+        return $results;
+        
+        
+        
+        
+    }
+    
+    
+}
+
+
+
+?>

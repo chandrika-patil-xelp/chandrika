@@ -408,6 +408,8 @@ class product extends DB {
             return $purityid;
         }
     }
+    
+    
 
     public function addProductMetalColorMapping($params) {
 
@@ -447,6 +449,34 @@ class product extends DB {
             return $colorid;
         }
     }
+    
+    public function getMetalColorList() {
+        $sql = "SELECT id,dname,dvalue FROM tbl_metal_color_master WHERE active_flag = 1";
+        $res = $this->query($sql);
+        $result = array();
+
+        if($res)
+        {
+            while($row = $this->fetchData($res))
+            {
+                $reslt['id'] =$row['id'];
+                $reslt['name'] = $row['dname'];
+                $reslt['value'] = $row['dvalue']; 
+                $result[]=$reslt;
+
+            }
+            $err = array('err_code' => 0, 'err_msg' => 'Data fetched successfully');
+        } 
+        else
+        {
+            $err = array('err_code' => 1, 'err_msg' => 'Error in inserting');
+        }
+        $results = array('result' => $result, 'error' => $err);
+        return $results;
+    }
+    
+    
+    
 
     public function getVendorList() {
         $sql = "SELECT vendorid,name,city,mobile,email,lng,lat FROM  tbl_vendor_master";
@@ -632,6 +662,38 @@ class product extends DB {
             return $qid;
         }
     }
+    
+    public function getDiamondQualityList()
+    {
+        $sql= "SELECT id,dname,dvalue,price_per_carat FROM tbl_diamond_quality_master";
+        $res=$this->query($sql);
+        
+        if($res)
+        {
+            while($row = $this->fetchData($res))
+            {
+                $reslt['id'] =$row['id'];
+                $reslt['name'] = $row['dname'];
+                $reslt['value'] = $row['dvalue']; 
+                $reslt['price'] =  intval($row['price_per_carat']);
+                $result[]=$reslt;
+
+            }
+            $err = array('err_code' => 0, 'err_msg' => 'Data fetched successfully');
+        } 
+        else
+        {
+            $err = array('err_code' => 1, 'err_msg' => 'Error in inserting');
+        }
+        $results = array('result' => $result, 'error' => $err);
+        return $results;
+        
+    }
+    
+    
+    
+    
+    
 
     public function addUncutDiamond($params) {
 
@@ -707,6 +769,96 @@ class product extends DB {
         $results = array('result' => $result, 'error' => $err);
         return $results;
     }
+    
+    
+    
+    public function getGemstoneList() {
+
+        $sql = "SELECT id,gemstone_name,description FROM tbl_gemstone_master";
+        $res = $this->query($sql);
+
+        if ($res) 
+        {
+            while($row = $this->fetchData($res))
+            {
+                $reslt['id'] = $row['id'];
+                $reslt['name'] = $row['gemstone_name'];
+                $reslt['desc'] = $row['description'];
+                $result[] = $reslt;
+            }
+            
+            $err = array('err_code' => 0, 'err_msg' => 'Data fetched successfully');
+        }
+            
+        else
+        {
+            $err = array('err_code' => 1, 'err_msg' => 'Error in fetching data');
+        }
+        $results = array('result' => $result, 'error' => $err);
+        return $results;
+    }
+    
+    
+    public function getSizeListByCat($params)
+    {
+        
+        $sql="SELECT id,name,size_value,catid FROM tbl_size_master  WHERE active_flag = 1 AND catid = ".$params['catid'];
+        $res =$this->query($sql);
+        
+        if($res)
+        {
+            while($row = $this->fetchData($res))
+            {
+                $reslt['id'] = $row['id'];
+                $reslt['name'] = $row['name'];
+                $reslt['sval'] = $row['size_value'];
+                $result[] = $reslt;
+            }
+            
+            $err = array('err_code' => 0, 'err_msg' => 'Data fetched successfully');
+        }
+            
+        else
+        {
+            $err = array('err_code' => 1, 'err_msg' => 'Error in fetching data');
+        }
+        $results = array('result' => $result, 'error' => $err);
+        return $results;
+        
+    }
+    
+    public function getSizeList()
+    {
+        
+        $sql="SELECT id,name,size_value,catid FROM tbl_size_master  WHERE active_flag";
+        $res =$this->query($sql);
+        
+        if($res)
+        {
+            while($row = $this->fetchData($res))
+            {
+                $reslt['id'] = $row['id'];
+                $reslt['name'] = $row['name'];
+                $reslt['sval'] = $row['size_value'];
+                $reslt['catid'] = $row['catid'];
+                $result[] = $reslt;
+            }
+            
+            $err = array('err_code' => 0, 'err_msg' => 'Data fetched successfully');
+        }
+            
+        else
+        {
+            $err = array('err_code' => 1, 'err_msg' => 'Error in fetching data');
+        }
+        $results = array('result' => $result, 'error' => $err);
+        return $results;
+        
+    }
+    
+    
+    
+    
 
 }
 ?>

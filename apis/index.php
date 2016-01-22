@@ -158,9 +158,86 @@ switch($action)
         $res = $result;
     break;
 
+    case 'getDiamondQualityList':
+        include APICLUDE.'class.product.php';
+        $obj	= new product($db['jzeva']);
+        $result	=$obj->getDiamondQualityList();
+        $res = $result;
+    break;
+
+    case 'getGemstoneList':
+        include APICLUDE.'class.product.php';
+        $obj	= new product($db['jzeva']);
+        $result	=$obj->getGemstoneList();
+        $res = $result;
+    break;
+
+    case 'getSizeListByCat':
+        include APICLUDE.'class.product.php';
+        $obj	= new product($db['jzeva']);
+        $tmpparams=array('catid'=>$params['catid']);
+        $result	=$obj->getSizeListByCat($tmpparams);
+        $res = $result;
+    break;
+
+    case 'getSizeList':
+        include APICLUDE.'class.product.php';
+        $obj	= new product($db['jzeva']);
+        $result	=$obj->getSizeList();
+        $res = $result;
+    break;
+
+
+    #Rate
+
+    case 'addRates':
+        include APICLUDE.'class.rate.php';
+        $obj	= new rate($db['jzeva']);
+        $result	=$obj->addRates();
+        $res = $result;
+    break;
+
+    case 'addGoldRate':
+        include APICLUDE.'class.rate.php';
+        $obj	= new rate($db['jzeva']);
+        $tmpparams= array('rate'=>$params['rate']);
+        $result	=$obj->addGoldRate($tmpparams);
+        $res = $result;
+    break;
+
+    case 'getGoldRates':
+        include APICLUDE.'class.rate.php';
+        $obj	= new rate($db['jzeva']);
+        $result	=$obj->getGoldRates();
+        $res = $result;
+    break;
+
+    case 'getDmdRates':
+        include APICLUDE.'class.rate.php';
+        $obj	= new rate($db['jzeva']);
+        $result	=$obj->getDmdRates();
+        $res = $result;
+    break;
+
+    case 'getAllRates':
+        include APICLUDE.'class.rate.php';
+        $obj	= new rate($db['jzeva']);
+        $result	=$obj->getAllRates();
+        $res = $result;
+    break;
+
+    case 'getMetalColorList':
+        include APICLUDE.'class.product.php';
+        $obj	= new product($db['jzeva']);
+        $result	=$obj->getMetalColorList();
+        $res = $result;
+    break;
 
 
     
+
+
+
 
     default :
 
