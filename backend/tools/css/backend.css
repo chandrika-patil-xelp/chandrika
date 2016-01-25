@@ -553,6 +553,8 @@ section{width:100%;height: auto;border:1px dashed #b3b3b3;float: left;margin:0 0
 .loader{width:200px;height: 200px;background: url(../img/loader1.svg)no-repeat;background-position: center;background-size: auto 100px;position: fixed;top:0;left:0;right:0;bottom:0;margin: auto;z-index: 110;}
 
 .allChildCatg{width:100%;height: auto;min-height: 200px;border:1px solid #333;}
+.op0{opacity: 0!important;cursor: default;}
 
 
-.newElements{width:100%;height: 200px;border: 1px solid #333;}
+.commCont{width:100%;height: auto;}
+.newElements{width:100%;height:auto;border: 0px solid #333;}

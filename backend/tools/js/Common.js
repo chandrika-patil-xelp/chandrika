@@ -92,6 +92,21 @@ function Common() {
         });
         },50);
     };
-    
+    this.toast = function (mType, msg) {
+        $('.close').click();
+        $.toast.config.width = 400;
+        $.toast.config.closeForStickyOnly = false;
+        if (mType == 0)
+        {
+            $.toast(msg, {duration: 5000, type: "danger"});
+        } 
+        else if (mType == 1)
+        {
+            $.toast(msg, {duration: 5000, type: "success"});
+        }
+        setTimeout(function () {
+            $('.close').click();
+        }, 5000);
+    };
     
 }

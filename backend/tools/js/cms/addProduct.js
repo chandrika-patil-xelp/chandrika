@@ -4,6 +4,20 @@ var dqulaity= new Array();
 var gemstonelist= new Array();
 var catLen=0;
 
+var has_solitaire=false;
+var has_diamond=false;
+var has_uncut=false;
+var has_gemstone=false;
+
+
+var solitaireCnt=1;
+var diamondCnt=1;
+var unctCnt=1;
+var gemstoneCnt=1;
+var mpurity=new Array();
+var mcolor=new Array();
+
+
 function getCategories()
 {
     var URL =APIDOMAIN+"index.php?action=getCatgoryList";
@@ -14,20 +28,22 @@ function getCategories()
             res=JSON.parse(res);
             categories=res['result'];
             var vstr = getChildCat(res,0);
-           //console.log(vstr);
             $('#parentCatg').html(vstr);
             getAllChilds(res);
         }
     });
 }
+
+
 function getChildCat(res,id)
 {
     var str = generateHtml(res,id);
     return str;
 }
+
+
 function generateHtml(res,id)
 {
-//    console.log(res);
     var str = '';
     $.each(res.result, function(i,v) {
         if(v.pid == id)
@@ -40,6 +56,8 @@ function generateHtml(res,id)
     });
     return str;
 }
+
+
 function getAllChilds(res)
 {
     $("input[name='prtcateg']").unbind();
@@ -61,8 +79,8 @@ function getAllChilds(res)
 }
 
 
-
-function bindRemove(){
+function bindRemove()
+{
     $("input[name='prtcateg']").bind('click', function(event) {
         stopPropGate();
         if(!$(this).is(":checked"))
@@ -118,7 +136,6 @@ function vendorListCalllBack(data)
         });
  
         $('#vendorList').html(str);
-        
     }
     
 }
@@ -134,7 +151,7 @@ function getDiamondQuality()
         success:function(res){
             res=JSON.parse(res);
             dqulaity=res['result'];
-            diamondQltyCalllBack(res);
+            //diamondQltyCalllBack(res);
         }
     });
     
@@ -184,8 +201,8 @@ function getGemstoneList()
         type:"POST",
         success:function(res){
             res=JSON.parse(res);
-            gemstonelist = res;
-            gemstoneListCalllBack(res);
+            gemstonelist = res.result;
+            //gemstoneListCalllBack(res);
         }
     });
     
@@ -207,8 +224,6 @@ function gemstoneListCalllBack(data)
         
     }
 }
-
-
 
 
 function getMetalPurity()
@@ -277,6 +292,7 @@ function getMetalColors()
     
 }
 
+
 function metalcolorCalllBack(data)
 {
     
@@ -305,10 +321,11 @@ function metalcolorCalllBack(data)
     
 }
 
+
 function getSizeList()
 {
     
-    //var URL = APIDOMAIN+"index.php?action=getSizeListByCat&catid=2";
+    //var URL = APIDOMAIN+"index.php?action=getSizeListByCat&catid=5";
     var URL = APIDOMAIN+"index.php?action=getSizeList";
     $.ajax({
         url:URL,
@@ -328,8 +345,7 @@ function sizeListCalllBack(data)
     {
         var str= "";
         
-        $.each(data.result, function(i,v) {
-        
+        $.each(data.result, function(i,v) {        
 
             str+="<div class='dQuality fLeft'>";
             str+="<div class='checkDiv fLeft minwidth60'>";
@@ -337,7 +353,7 @@ function sizeListCalllBack(data)
             str+="<label for='size_"+v.id+"'>"+v.sval+"</label>";
             str+="</div>";
             str+="<div class='intInp2 fLeft'>";
-            str+="<input name='' type='text' id='sizeVal_"+v.id+"' autocomplete='false' placeholder=' Enter quantity ' class='txtInput fRight fmOpenR font14 c666'>";
+            str+="<input name='sizeQty' type='text' id='size_"+v.id+"_qty' autocomplete='false' placeholder=' Enter quantity ' class='txtInput fRight fmOpenR font14 c666'>";
             str+="</div>";
             str+="</div>";
         
@@ -356,7 +372,8 @@ getMetalColors();
 getGemstoneList();
 getSizeList();
 
-function stopPropGate(event){
+function stopPropGate(event)
+{
     if (event && $.isFunction(event.stopImmediatePropagation))
         event.stopImmediatePropagation();
     else 
@@ -364,61 +381,168 @@ function stopPropGate(event){
 }
 
 
-$(document).ready(function() {
-    
-    
-    
-    
-    $('textarea').increaseAuto();
-    $('.shapeComm').click(function() {
+function bindShapes()
+{
+    $('.shapeComm').unbind();
+    $('.shapeComm').bind('click',function() {
+        var id= $(this).attr('id');
         $(this).toggleClass('shapeSelected');
         $(this).siblings().removeClass('shapeSelected');
     });
+    
+}
+
+var metalPurityCust=true;
+var metalColorCust=true;
+$(document).ready(function() {
+    $('textarea').increaseAuto();
+    
+     bindShapes();
 
 
 
-//    $('#diamond_Section').hide();
+//    $('#diamond_Section').addClass('dn');
 //    $('#gemstone_Section').hide();
 //    $('#uncut_Section').hide();
 //    $('#solitaires_Section').hide();
 //    $('#price_Section').hide();
 
 
-
+//gpurityCustomize
 
 
     $("[name='isPurityCustz']").change(function() {
-        $("[name='ifpurityNotCustomiz'],[name='ifpurityCustomiz']").prop('checked', false);
+       
+        $("[name='gpurityNotCustomize'],[name='gpurityNotCustomize']").prop('checked', false);
+        mpurity=new Array();
         var val = $("[name='isPurityCustz']:checked").val();
         if (val == 1) {
             $('#ifpurityNotCustomiz').removeClass('dn');
             $('#ifpurityCustomiz').addClass('dn');
+            metalPurityCust=false;
         }
         else {
             $('#ifpurityNotCustomiz').addClass('dn');
             $('#ifpurityCustomiz').removeClass('dn');
+            metalPurityCust=true;
 
         }
+        
+        console.log(metalPurityCust);
     });
 
 
     $("[name='isColorCustz']").change(function() {
         $("[name='ifColorNotCustomiz'],[name='ifColorCustomiz']").prop('checked', false);
-
+        mcolor=new Array();
         var val = $("[name='isColorCustz']:checked").val();
         if (val == 1) {
             $('#ifcolorNotCustomiz').removeClass('dn');
             $('#ifcolorCustomiz').addClass('dn');
+             metalColorCust=false;
         }
         else {
             $('#ifcolorNotCustomiz').addClass('dn');
             $('#ifcolorCustomiz').removeClass('dn');
+            metalColorCust=true;
 
         }
+        
     });
+    
+    
+    var sflag=true;
+    var dflag=true;
+    var uflag=true;
+    var gflag=true;
+    $("#stone1,#stone2,#stone3,#stone4").change(function(){
+        var id=$(this).attr('id');
+        var flag=$(this).is(':CHECKED');
+        
+        
+        
+        if(id=='stone1' && flag==true)
+        {
+            if(sflag)
+                addSolitaire();
+            $('#solitaires_Section').removeClass('dn');
+            sflag=false;
+            has_solitaire=true;
+        }
+        if(id=='stone1' && !flag)
+        {
+            $('#solitaires_Section').addClass('dn');
+            has_solitaire=false;
+        }
+        if(id=='stone2' && flag)
+        {
+            if(dflag)
+                addDiamond();
+            $('#diamond_Section').removeClass('dn');
+            dflag=false;
+            has_diamond=true;
+
+        }
+        if(id=='stone2' && !flag)
+        {
+            $('#diamond_Section').addClass('dn');
+            has_diamond=false;
+            
+
+        }
+        if(id=='stone3' && flag)
+        {
+            if(uflag)
+                addUncut();
+            $('#uncut_Section').removeClass('dn');
+            uflag=false;
+            has_uncut=true;
+        }
+        if(id=='stone3' && !flag)
+        {
+            $('#uncut_Section').addClass('dn');
+            has_uncut=false;
+        }
+        if(id=='stone4' && flag)
+        {
+            if(gflag)
+                addGemstone();
+            $('#gemstone_Section').removeClass('dn');
+            gflag=false;
+            has_gemstone=true;
+        }
+        if(id=='stone4' && !flag)
+        {
+            $('#gemstone_Section').addClass('dn');
+            has_gemstone=false;
+        }
+    });
+    
+    
+    $("[name='diamond_setting']").bind('click',function() {
+        
+        var id=$(this).attr('id');
+        stopPropGate();
+        if($(this).is(":checked") && id!=='ds8')
+        {
+            //$('#otherdsType').addClass('dn');   
+        }
+        else if($(this).is(":checked") && id=='ds8'){
+            
+            $('#otherdsType').removeClass('op0');   
+        }
+        else if(!$(this).is("checked") && id=='ds8'){
+            
+            $('#otherdsType').addClass('op0');   
+        }
+        
+    });
+    
+    
 });
 
-function addTags(evt, val, id, tagCont) {
+function addTags(evt, val, id, tagCont) 
+{
     var charCode = (evt.which) ? evt.which : evt.keyCode;
     if (charCode == 44 || charCode == 13) {
         var str = "<div id='" + id + '_' + val + "' class='tagCommon transition300 fLeft'>";
@@ -434,16 +558,1141 @@ function addTags(evt, val, id, tagCont) {
 
 }
 
-function removeTag(obj) {
+function removeTag(obj)
+{
     $(obj).parent().remove();
 }
 
 
-
-function showLoader(){
+function showLoader()
+{
     $('.overlay,.loader').removeClass('dn');
 }
 
-function hideLoader(){
+function hideLoader()
+{
     $('.overlay,.loader').addClass('dn');
+}
+
+
+function addSolitaire()
+{
+    var soltColor =new Array('D','E','F','G','H','I','J','K','L','M','N','O');
+    var soltClarity =new Array('IF','VVS1','VVS2','VS1','VS2','SI1','SI2','I1');
+    var soltGeneral =new Array('Excellent','Very Good','Good','Fair');
+    
+    
+    var str="<div class='commCont fLeft' id='solitaireComm_"+solitaireCnt+"'>";
+    str+=generateShapes('solitaire');
+    str+=generateColors('solitaire',soltColor);
+    str+=generateClarity(soltClarity);
+    str+=generateGeneral(soltGeneral);
+    str+=generateFluorescence();
+    str+=generateSoliTxtBox();
+    
+    str+="</div><div class='breakLine'></div>";
+    $('#newSolitaires').append(str);
+    bindShapes();
+    solitaireCnt++;
+    
+    
+}
+
+
+function generateShapes(type)
+{   var id="";
+    if(type=='solitaire')
+    {
+        id='solitaire'+solitaireCnt+'_shape';  
+    }
+    else if(type=='diamond'){
+        id='diamond'+diamondCnt+'_shape';
+    }
+    
+    var str="";
+    str+="<div class='shapesContComm fLeft'>";
+    str+="<div class='allShapes fLeft'>";
+    str+="<center>";
+    str+="<div id='"+id+"_Emerald' class='shapeComm transition300 Emerald'>";
+    str+="</div><div id='"+id+"_Round' class='shapeComm transition300 Round'>";
+    str+="</div><div id='"+id+"_Pear' class='shapeComm transition300 Pear'>";
+    str+="</div><div id='"+id+"_Princess' class='shapeComm transition300 Princess'>";
+    str+="</div><div id='"+id+"_Marquise' class='shapeComm transition300 Marquise'>";
+    str+="</div><div id='"+id+"_Oval' class='shapeComm transition300 Oval'>";
+    str+="</div><div id='"+id+"_Cushion' class='shapeComm transition300 Cushion'>";
+    str+="</div><div id='"+id+"_Heart' class='shapeComm transition300 Heart'>";
+    str+="</div><div id='"+id+"_Radiant' class='shapeComm transition300 Radiant'>";
+    str+="</div><div id='"+id+"_Asscher' class='shapeComm transition300 Asscher'>";
+    str+="</div>";
+    str+="</center>";
+    str+="</div>";
+    str+="</div>";
+    
+    return str;
+    
+}
+
+
+function generateColors(type,colors)
+{
+    
+    var cLen= colors.length;
+    
+    var str ="<div class='divCon  fLeft' id='solitaireColors_"+solitaireCnt+"_Cont'><div class='titleDiv txtCap fLeft'>Color*</div><div class='radioCont fLeft'>";
+    
+    var i=0;
+    while(i < cLen){
+        str+="<div class='checkDiv fLeft'>";
+        str+="<input type='radio' value='"+colors[i]+"' name='solitaireColors_"+solitaireCnt+"' class='filled-in' id='soliColors_"+solitaireCnt+"_Color_"+colors[i]+"'>";
+        str+="<label for='soliColors_"+solitaireCnt+"_Color_"+colors[i]+"''>"+colors[i]+"</label>";
+        str+="</div>";
+        i++;
+    }
+    
+    str+="</div></div><div class='breakLine'></div>";
+    
+    return str;
+    
+}
+
+
+function generateClarity(clarity)
+{
+    var cLen= clarity.length;
+    
+    var str ="<div class='divCon  fLeft' id='solitaireClarity_"+solitaireCnt+"_Cont'><div class='titleDiv txtCap fLeft'>Clarity*</div><div class='radioCont fLeft'>";
+    
+    var i=0;
+    while(i < cLen){
+        str+="<div class='checkDiv fLeft'>";
+        str+="<input type='radio' value='"+clarity[i]+"' name='solitaireclarity_"+solitaireCnt+"' class='filled-in' id='soliclarity_"+solitaireCnt+"_clarity_"+clarity[i]+"'>";
+        str+="<label for='soliclarity_"+solitaireCnt+"_clarity_"+clarity[i]+"''>"+clarity[i]+"</label>";
+        str+="</div>";
+        i++;
+    }
+    str+="</div></div><div class='breakLine'></div>";
+    return str;
+    
+}
+
+
+function generateGeneral(general)
+{
+    var cLen= general.length;
+    var ids=['cut','symmetry','polish'];
+    var str ="";
+    for(var i=0;i<3;i++)
+    {
+        str +="<div class='divCon  fLeft' id='solitaire"+ids[i]+"_"+solitaireCnt+"_Cont'><div class='titleDiv txtCap fLeft'>"+ids[i]+"*</div><div class='radioCont fLeft'>";
+        var j=0;
+        while(j < cLen){
+            str+="<div class='checkDiv fLeft'>";
+            str+="<input type='radio' value='"+general[j]+"' name='solitaire"+ids[i]+"_"+solitaireCnt+"' class='filled-in' id='soli"+ids[i]+"_"+solitaireCnt+"_"+ids[i]+"_"+general[j]+"'>";
+            str+="<label for='soli"+ids[i]+"_"+solitaireCnt+"_"+ids[i]+"_"+general[j]+"''>"+general[j]+"</label>";
+            str+="</div>";
+            j++;
+        }
+        str+="</div></div>";
+        
+    }
+    
+    return str;
+   
+}
+
+
+
+function generateFluorescence()
+{
+    
+    var fvals=['None','Faint','Medium','Strong','Very Strong'];
+    var cLen=fvals.length;
+    var str ="";
+        str +="<div class='divCon  fLeft' id='solitairefluorescence_"+solitaireCnt+"_Cont'><div class='titleDiv txtCap fLeft'>Fluorescence*</div><div class='radioCont fLeft'>";
+        var j=0;
+        while(j < cLen){
+            str+="<div class='checkDiv fLeft'>";
+            str+="<input type='radio' value='"+fvals[j]+"' name='solitaireFluorescence_"+solitaireCnt+"' class='filled-in' id='soliFluorescence_"+solitaireCnt+"_"+fvals[j]+"'>";
+            str+="<label for='soliFluorescence_"+solitaireCnt+"_"+fvals[j]+"'>"+fvals[j]+"</label>";
+            str+="</div>";
+            j++;
+        }
+        str+="</div></div><div class='breakLine'></div>";
+        
+    
+    
+    return str;
+   
+}
+
+
+function generateSoliTxtBox()
+{
+    var str= "";    
+    str+="<div class='divCon2  fLeft'>";
+    str+="<div class='titleDiv txtCap fLeft'>Carat*</div>";
+    str+="<input  name='solitaireCarat' id='solcaratweight"+solitaireCnt+"' type='text' placeholder='eg. 1.00' class='txtInput fLeft fmOpenR font14 c666' maxlength='5' onkeypress='return common.isDecimalKey(event, this.value);'>";
+    str+="</div>";
+    str+="<div class='divCon2  fLeft'>";
+    str+="<div class='titleDiv txtCap fLeft'>Price / Carat*</div>";
+    str+="<input name='solitairePriceCarat' id='solpricecarat"+solitaireCnt+"'' type='text' placeholder='eg. 1000' class='txtInput fLeft fmOpenR font14 c666' onkeypress='return common.isDecimalKey(event, this.value);'>";
+    str+="</div>";
+    str+="<div class='divCon2  fLeft'>";
+    str+="<div class='titleDiv txtCap fLeft'>Table*</div>";
+    str+="<input name='solitaireTable' id='soltable"+solitaireCnt+"'' type='text' placeholder='eg. 1000' class='txtInput fLeft fmOpenR font14 c666'>";
+    str+="</div>";
+    str+="<div class='divCon2  fLeft'>";
+    str+="<div class='titleDiv txtCap fLeft'>Crown Angle*</div>";
+    str+="<input name='solitaireCrownAngle' id='solCrownAngle"+solitaireCnt+"'' type='text' placeholder='eg. 52' class='txtInput fLeft fmOpenR font14 c666'>";
+    str+="</div>";
+    str+="<div class='divCon2  fLeft'>";
+    str+="<div class='titleDiv txtCap fLeft'>Girdle*</div>";
+    str+="<input name='solitaireGirdle' id='solGirdle"+solitaireCnt+"'' type='text' placeholder='eg. 1.22' class='txtInput fLeft fmOpenR font14 c666'>";
+    str+="</div>";
+    
+    return str;    
+}
+
+
+function addDiamond()
+{
+    
+    var str="<div class='commCont fLeft' id='diamondComm_"+diamondCnt+"'>";
+    str+=generateShapes('diamond');
+    str+="<div class='divCon fLeft fmOpenR'>";
+    str+="<div class='titleDiv fLeft wAuto'>Is this diamond customizable?</div>";
+    str+="<div class='checkDiv fLeft mTop0'>";
+    str+="<input type='radio' name='isDiamondCustz_"+diamondCnt+"' class='filled-in' value='1' id='dcust_"+diamondCnt+"' checked>";
+    str+="<label for='dcust_"+diamondCnt+"'>Yes</label>";
+    str+="</div>";
+    str+="<div class='checkDiv fLeft mTop0'>";
+    str+="<input type='radio' name='isDiamondCustz_"+diamondCnt+"' class='filled-in' value='0' id='dNotcust_"+diamondCnt+"'>";
+    str+="<label for='dNotcust_"+diamondCnt+"'>No</label>";
+    str+="</div>";
+    str+="</div>";
+    str+="<div class='qltCLeft fLeft' id='dmdLeftPanael"+diamondCnt+"'>";
+    str+=generateDiamondQuality();
+    str+="</div>";
+    str+="<div class='qltCRight fLeft' id='dmdRightPanael"+diamondCnt+"'>";
+    str+=generateDiamondTxtBox();
+    str+="</div>";
+    str+="</div><div class='breakLine'></div>";
+    $('#newDiamonds').append(str);
+    bindShapes();
+    bindDmdQuaity();
+    diamondCnt++;
+    
+}
+
+
+function generateDiamondTxtBox()
+{
+    
+    var str= "";    
+    str+="<div class='divCon  fLeft'>";
+    str+="<div class='titleDiv txtCap fLeft'>Carat*</div>";
+    str+="<input  name='diamondCarat' id='dmdcaratweight"+diamondCnt+"' type='text' placeholder='eg. 1.00' class='txtInput fLeft fmOpenR font14 c666' maxlength='5' onkeypress='return common.isDecimalKey(event, this.value);'>";
+    str+="</div>";
+    
+    str+="<div class='divCon  fLeft'>";
+    str+="<div class='titleDiv txtCap fLeft'>No. Of Pieces*</div>";
+    str+="<input name='diamondPieces' id='dmdPieces"+diamondCnt+"'' type='text' placeholder='eg. 5' class='txtInput fLeft fmOpenR font14 c666'>";
+    str+="</div>";
+    
+    return str;
+    
+}
+
+
+function generateDiamondQuality()
+{
+    var tstr="<div class='titleDiv txtCap fLeft'>Diamond Quality*</div>";
+    var str1="";
+    var str2="";
+    str1+="<div class='divCon  fLeft fmOpenR mTop0' id='custQuality"+diamondCnt+"''>";
+        
+        $.each(dqulaity, function(i,v) {
+            str1+="<div class='dQuality fLeft'>";
+            str1+="<div class='checkDiv fLeft minwidth100'>";
+            str1+="<input type='checkbox' name='dmdquality_cust"+diamondCnt+"' class='filled-in' value='"+v.id+"' id='dql_"+diamondCnt+"_"+v.id+"'>";
+            str1+="<label for='dql_"+diamondCnt+"_"+v.id+"'>"+v.name+"</label>";
+            str1+="</div>";
+            str1+="<div class='intInp fLeft'>&#8377; "+v.price+"</div>";
+            str1+="</div>";
+        });
+    
+    str1+="</div>";
+    
+    str2+="<div class='divCon  fLeft fmOpenR mTop0 dn' id='notcustQuality"+diamondCnt+"'>";
+        $.each(dqulaity, function(i,v) {
+            str2+="<div class='dQuality fLeft'>";
+            str2+="<div class='checkDiv fLeft minwidth100'>";
+            str2+="<input type='radio' name='dmdquality_notCust"+diamondCnt+"' class='filled-in' value='"+v.id+"' id='dqRadio_"+diamondCnt+"_"+v.id+"'>";
+            str2+="<label for='dqRadio_"+diamondCnt+"_"+v.id+"'>"+v.name+"</label>";
+            str2+="</div>";
+            str2+="<div class='intInp fLeft'>&#8377; "+v.price+"</div>";
+            str2+="</div>";
+        });
+        
+    str2+="</div>";
+    var str=tstr+str1+str2;
+    
+    return str;
+    
+}
+
+
+function addUncut()
+{
+    
+    var colors =new Array('D','E','F','G','H','I','J','K','L','M','N','O');
+    var clarity =new Array('IF','VVS1','VVS2','VS1','VS2','SI1','SI2','I1');
+    var cLen= colors.length;
+    
+    
+    var str1 ="<div class='divCon  fLeft' id='uncutColors_"+unctCnt+"_Cont'><div class='titleDiv txtCap fLeft'>Diamond Color*</div><div class='radioCont fLeft'>";
+    
+    var i=0;
+    while(i < cLen){
+        str1+="<div class='checkDiv fLeft'>";
+        str1+="<input type='checkbox' value='"+colors[i]+"' name='uncutColors_"+unctCnt+"' class='filled-in' id='uncutColors_"+unctCnt+"_Color_"+colors[i]+"'>";
+        str1+="<label for='uncutColors_"+unctCnt+"_Color_"+colors[i]+"''>"+colors[i]+"</label>";
+        str1+="</div>";
+        i++;
+    }
+    
+    str1+="</div></div>";
+    
+    var tstr="<div class='divCon  fLeft' id='uncutQuality_"+unctCnt+"_Cont'><div class='titleDiv txtCap fLeft'>Diamond Quality*</div>";
+    var str2="";
+    str2+="<div class='divCon  fLeft fmOpenR mTop0' id='custQuality"+diamondCnt+"''>";
+   
+        $.each(clarity, function(i,v) {
+            str2+="<div class='checkDiv fLeft minwidth100'>";
+            str2+="<input type='radio' name='uncutquality_"+unctCnt+"' class='filled-in' value='"+v+"' id='uncutQulRadio_"+unctCnt+"_"+v+"'>";
+            str2+="<label for='uncutQulRadio_"+unctCnt+"_"+v+"'>"+v+"</label>";
+            str2+="</div>";
+        });
+        
+    str2+="</div></div>";
+    
+    var str3="";
+    str3+="<div class='divCon2  fLeft'>";
+    str3+="<div class='titleDiv txtCap fLeft'>Carat*</div>";
+    str3+="<input  name='uncutCarat' id='uncutcaratweight"+unctCnt+"' type='text' placeholder='eg. 1.00' class='txtInput fLeft fmOpenR font14 c666' maxlength='5' onkeypress='return common.isDecimalKey(event, this.value);'>";
+    str3+="</div>";
+    str3+="<div class='divCon2  fLeft'>";
+    str3+="<div class='titleDiv txtCap fLeft'>Price / Carat*</div>";
+    str3+="<input name='uncutPriceCarat' id='uncutpricecarat"+unctCnt+"'' type='text' placeholder='eg. 1000' class='txtInput fLeft fmOpenR font14 c666' onkeypress='return common.isDecimalKey(event, this.value);'>";
+    str3+="</div>";
+    str3+="<div class='divCon2  fLeft'>";
+    str3+="<div class='titleDiv txtCap fLeft'>No. Of Pieces*</div>";
+    str3+="<input name='uncutPieces' id='uncutPieces"+unctCnt+"'' type='text' placeholder='eg. 5' class='txtInput fLeft fmOpenR font14 c666'>";
+    str3+="</div>";
+    
+    var str="<div class='commCont fLeft' id='uncutComm_"+unctCnt+"'>"+str1+tstr+str2+str3+"</div>";
+    
+    
+   $('#newUncutDiamonds').append(str);
+    unctCnt++;
+}
+
+
+function addGemstone()
+{
+    
+    var str="<div class='commCont fLeft' id='gemstoneComm_"+gemstoneCnt+"'>";
+    str+="<div class='divCon2 fLeft'>";
+    str+="<div class='titleDiv txtCap fLeft'>Select a gemstone</div>";
+    
+    str+="<select id='gemstone_type"+gemstoneCnt+"' class='txtSelect fLeft fmOpenR font14 c666'>";
+    
+    str+= "<option value='-1'>Select A Gemstone</option>";
+    $.each(gemstonelist, function(i,v) {
+        str+="<option value='"+v.id+"'>"+v.name+"</option>";
+    });
+
+    str+="</select></div>";
+    
+    str+="<div class='divCon2  fLeft'>";
+    str+="<div class='titleDiv txtCap fLeft'>Carat*</div>";
+    str+="<input  name='gemstoneCarat' id='gemstonecaratweight"+gemstoneCnt+"' type='text' placeholder='eg. 1.00' class='txtInput fLeft fmOpenR font14 c666' maxlength='5' onkeypress='return common.isDecimalKey(event, this.value);'>";
+    str+="</div>";
+    str+="<div class='divCon2  fLeft'>";
+    str+="<div class='titleDiv txtCap fLeft'>Price / Carat*</div>";
+    str+="<input name='gemstonePriceCarat' id='gemstonepricecarat"+gemstoneCnt+"'' type='text' placeholder='eg. 1000' class='txtInput fLeft fmOpenR font14 c666' onkeypress='return common.isDecimalKey(event, this.value);'>";
+    str+="</div>";
+    str+="<div class='divCon2  fLeft'>";
+    str+="<div class='titleDiv txtCap fLeft'>No. Of Pieces*</div>";
+    str+="<input name='gemstonePieces' id='gemstonePieces"+gemstoneCnt+"'' type='text' placeholder='eg. 5' class='txtInput fLeft fmOpenR font14 c666'>";
+    str+="</div>";
+    str+="</div><div class='breakLine'></div>";
+    $('#newGemstone').append(str);
+
+    gemstoneCnt++;
+    
+}
+
+
+
+function bindDmdQuaity()
+{
+    
+    
+    $('[name*=isDiamondCustz_]').bind('change',function(){
+        var name=$(this).attr('name');
+        var val=$(this).val();
+        
+        console.log(name +" --- "+ val);
+        // 1 -> Customizabale   0 -> NOt Customizable
+        var cnt=name.split("_");
+        cnt=cnt[1];
+        if(val==1)
+        {
+            $('#notcustQuality'+cnt).addClass('dn');
+            $('#custQuality'+cnt).removeClass('dn');
+            
+        }
+        else{
+            
+            $('#custQuality'+cnt).addClass('dn');
+            $('#notcustQuality'+cnt).removeClass('dn');
+        }
+        
+        
+        $('[name*=dmdquality_notCust]').prop('checked', false);
+        $('[name*=dmdquality_cust]').prop('checked', false);
+    });
+    
+}
+
+function addProduct()
+{
+    var flag=validateForm();
+    
+    if(flag)
+    {
+        var catArray=new Array();
+        var dmdSetting=new Array();
+        var sizesArray=new Array();
+        var solitaires=new Array();
+        var diamonds=new Array();
+        var uncut=new Array();
+        var gemstone=new Array();
+        var userid='1';
+
+        $('[name=prtcateg]').each(function(){
+            if($(this).is(':CHECKED'))
+                catArray.push($(this).val());
+
+            else if(!$(this).is(':CHECKED')){
+                var removeItem = $(this).val();
+                catArray = jQuery.grep(catArray, function(value) {return value !== removeItem;});
+            }
+
+        });
+
+        var vid=$('#vendorList').val();
+        var product_name=$('#product_name').val();
+        var product_seo_name=$('#product_seo_name').val();
+        var product_weight=$('#product_weight').val();
+        var gender=$('[name*=gender]:Checked').val();
+        var certificate="";
+        var metal_weight=$('#metal_weight').val();
+        var making_charges=$('#making_charges').val();
+        var procurement_cost=$('#procurement_cost').val();
+        var margin=$('#margin').val();
+        var mt1=$('#measure1').val();
+        var mt2=$('#measure2').val();
+        var measurement=mt1+"X"+mt2;
+
+        $('[name=diamond_setting]').each(function(){
+            if($(this).is(':CHECKED'))
+            {
+
+                if($(this).attr('id')=='ds8'){
+                    $('#ds8').val($('#diamond_settingOth').val());
+                }
+
+                dmdSetting.push($(this).val());
+            }
+
+            else if(!$(this).is(':CHECKED')){
+                var removeItem = $(this).val();
+                dmdSetting = jQuery.grep(dmdSetting, function(value) {return value !== removeItem;});
+            }
+
+        });
+
+        $('[name=certificate]').each(function(){
+            if($(this).is(':CHECKED'))
+                certificate=$(this).val();
+        });
+
+        if(metalPurityCust)
+        {
+            $('[name=gpurityCustomize]').each(function(){
+                if($(this).is(':CHECKED'))
+                    mpurity.push($(this).val());
+                else if(!$(this).is(':CHECKED')){
+                        var removeItem = $(this).val();
+                        mpurity = jQuery.grep(mpurity, function(value) {return value !== removeItem;});
+                }
+
+            });
+        }
+        else if(!metalPurityCust)
+        {
+            mpurity.push($('[name=gpurityNotCustomize]:CHECKED').val());
+        }
+
+        if(metalColorCust)
+        {
+            $('[name=gcolorCustomize]').each(function(){
+            if($(this).is(':CHECKED'))
+                mcolor.push($(this).val());
+
+                else if(!$(this).is(':CHECKED')){
+                    var removeItem = $(this).val();
+                    mcolor = jQuery.grep(mcolor, function(value) {return value !== removeItem;});
+                }
+
+            });
+        }
+        else if(!metalColorCust)
+        {
+            mcolor.push($('[name=gcolorNotCustomize]:CHECKED').val());
+        }
+
+
+        $('[name=size]').each(function(){
+            if($(this).is(':CHECKED'))
+            {
+                var ids=$(this).attr('id');
+                var qty=$('#'+ids+"_qty").val();
+                var id=ids.split("_");
+
+                values ={};
+                values['id']=id[1];
+                values['qty']=qty;
+                console.log(values);
+                sizesArray.push(values);
+
+            }
+            else if(!$(this).is(':CHECKED')){
+                var ids=$(this).attr('id');
+                var id=ids.split("_");
+                var removeItem = id[1];
+                sizesArray = jQuery.grep(sizesArray, function(value) {return value !== removeItem;});
+            }
+
+        });
+
+
+        if(has_solitaire)
+        {
+            $('[id*=solitaireComm_]').each(function(){
+                values = {};
+                var id=$(this).attr('id');
+                var ids=id.split("solitaireComm_");
+                ids=ids[1];
+
+                var shape=$('#solitaireComm_'+ids+' .shapeSelected').attr('id').split("shape_");
+                var color= $('[name=solitaireColors_'+ids+']:checked').val();
+                var clarity=$('[name=solitaireclarity_'+ids+']:checked').val();
+                var cut=$('[name=solitairecut_'+ids+']:checked').val();
+                var symmetry=$('[name=solitairesymmetry_'+ids+']:checked').val();
+                var polish=$('[name=solitairepolish_'+ids+']:checked').val();
+                var fluorescence=$('[name=solitaireFluorescence_'+ids+']:checked').val();
+                var carat=$('#solcaratweight'+ids+'').val();
+                var price_per_carat=$('#solpricecarat'+ids+'').val();
+                var table=$('#soltable'+ids+'').val();
+                var crown_angle=$('#solCrownAngle'+ids+'').val();
+                var girdle=$('#solGirdle'+ids+'').val();
+
+                values['shape']=shape[1];
+                values['color']=color;
+                values['clarity']=clarity;
+                values['cut']=cut;
+                values['symmetry']=symmetry;
+                values['polish']=polish;
+                values['fluorescence']=fluorescence;
+                values['carat']=carat;
+                values['price_per_carat']=price_per_carat;
+                values['table']=table;
+                values['crown_angle']=crown_angle;
+                values['girdle']=girdle;
+
+                solitaires.push(values);
+            });
+
+        }
+        if(!has_solitaire)
+        {
+                solitaires = [];
+        }
+
+        if(has_diamond)
+        {
+
+            $('[id*=diamondComm_]').each(function(){
+                var id=$(this).attr('id');
+                var ids=id.split("diamondComm_");
+                ids=ids[1];
+                values = {};
+
+                var shape=$('#diamondComm_'+ids+' .shapeSelected').attr('id').split("shape_");
+                var customiz=$('[name*=isDiamondCustz_'+ids+']:checked').val();
+                var dquality=new Array();
+                if(customiz==1)
+                {
+
+                    $('[name=dmdquality_cust'+ids+']').each(function(){
+
+                        if($(this).is(':CHECKED'))
+                        {
+                            dquality.push($(this).val());                            
+
+                        }
+                        else if(!$(this).is(':CHECKED')){
+                            var removeItem = $(this).val();
+                            dquality = jQuery.grep(dquality, function(value) {return value !== removeItem;});
+                        }
+
+                    });
+
+                }
+                else if(customiz==0)
+                {
+                    dquality.push($('[name*=dmdquality_notCust'+ids+']:checked').val());
+                }
+
+
+                var carat=$('#dmdcaratweight'+ids+'').val();
+                var total_no=$('#dmdPieces'+ids+'').val();
+
+                values['shape']=shape[1];
+                values['carat']=carat;
+                values['total_no']=total_no;
+                values['quality']=dquality;
+
+                diamonds.push(values);
+            });
+
+        }
+        if(!has_diamond)
+        {
+            diamonds = [];
+        }
+
+        if(has_uncut)
+        {
+
+            $('[id*=uncutComm_]').each(function(){
+                values = {};
+                var id=$(this).attr('id');
+                var ids=id.split("uncutComm_");
+                ids=ids[1];
+                var uncutColor=new Array();
+
+                $('[name=uncutColors_'+ids+']').each(function(){
+
+                    if($(this).is(':CHECKED'))
+                    {
+                        uncutColor.push($(this).val());                            
+
+                    }
+                    else if(!$(this).is(':CHECKED')){
+                        var removeItem = $(this).val();
+                        uncutColor = jQuery.grep(uncutColor, function(value) {return value !== removeItem;});
+                    }
+
+                });
+
+
+                var quality= $('[name=uncutquality_'+ids+']:checked').val();
+                var carat=$('#uncutcaratweight'+ids+'').val();
+                var price=$('#uncutpricecarat'+ids+'').val();
+                var total_no=$('#uncutPieces'+ids+'').val();
+
+                values['color']=uncutColor;
+                values['carat']=carat;
+                values['total_no']=total_no;
+                values['quality']=quality;
+                values['price_per_carat']=price;
+
+                uncut.push(values);
+
+            });
+        }
+
+        if(!has_uncut)
+        {
+            uncut = [];
+        }
+
+
+        if(has_gemstone)
+        {
+
+            $('[id*=gemstoneComm_]').each(function(){
+                values = {};
+                var id=$(this).attr('id');
+                var ids=id.split("gemstoneComm_");
+                ids=ids[1];
+
+                var gvalue = $('#gemstone_type'+ids+'').val();
+                var carat=$('#gemstonecaratweight'+ids+'').val();
+                var price=$('#gemstonepricecarat'+ids+'').val();
+                var total_no=$('#gemstonePieces'+ids+'').val();
+
+
+                values['gvalue']=gvalue;
+                values['carat']=carat;
+                values['total_no']=total_no;
+                values['price_per_carat']=price;
+
+                gemstone.push(values);
+
+            });
+        }
+        if(!has_gemstone)
+        {
+            gemstone = [];
+        }
+
+
+
+
+        var prd= [];
+
+
+        general = {};
+        general['vendorid']= vid;
+        general['product_name']= product_name;
+        general['product_seo_name']= product_seo_name;
+        general['gender']= gender;
+        general['product_weight']= product_weight;
+        general['certificate']= certificate;
+        general['metal_weight']= metal_weight;
+        general['making_charges']= making_charges;
+        general['procurement_cost']= procurement_cost;
+        general['margin']= margin;
+        general['measurement']= measurement;
+        general['dmdSetting']= dmdSetting;
+
+
+        prd['mpurity']=mpurity;
+        prd['metalcolor']=mcolor;
+        prd['sizes']=sizesArray;
+        prd['has_solitaire']=has_solitaire;
+        prd['has_diamond']=has_diamond;
+        prd['has_uncut']=has_uncut;
+        prd['has_gemstone']=has_gemstone;
+        prd['solitaires']=solitaires;
+        prd['diamonds']=diamonds;
+        prd['uncut']=uncut;
+        prd['gemstone']=gemstone;
+        prd['details']=general;
+        prd['userid']=userid;
+        prd['catid']=catArray.toString();
+
+        var product=prd;
+    }
+        console.log(product);
+    
+}
+
+
+function validateForm()
+{
+ return true;
+    if($('[name=prtcateg]:checked').length===0)
+    {
+        common.toast(0,"Select a category");
+        return false;
+    }
+    
+    if($('#vendorList').val()==-1)
+    {
+        common.toast(0,"Select vendor");
+        return false;
+    }
+    
+    if($('#product_name').val()=="")
+    {
+        common.toast(0,"Enter Product Name");
+        return false;
+    }
+    
+    if($('#product_seo_name').val()=="")
+    {
+        common.toast(0,"Enter Product SEO Name");
+        return false;
+    }
+    
+    if($('#product_weight').val()=="")
+    {
+        common.toast(0,"Enter Product Weight");
+        return false;
+    }
+    
+    if(has_solitaire)
+    {
+        
+        $('[id*=solitaireComm_]').each(function(){
+            
+            var id=$(this).attr('id');
+            var ids=id.split("solitaireComm_");
+            ids=ids[1];
+            
+            if($('#solitaireComm_'+ids+' .shapeSelected').length==0)
+            {
+                common.toast(0,"Select Shape For Solitaire "+ids);
+                return false;
+            }
+            
+            if($('[name=solitaireColors_'+ids+']:checked').length==0)
+            {
+                common.toast(0,"Select Color For Solitaire "+ids);
+                return false;                
+            }
+            
+            if($('[name=solitaireclarity_'+ids+']:checked').length==0)
+            {
+                common.toast(0,"Select Clarity For Solitaire "+ids);
+                return false;
+             
+            }
+            
+            if($('[name=solitairecut_'+ids+']:checked').length==0)
+            {
+                common.toast(0,"Select Cut For Solitaire "+ids);
+                return false;
+             
+            }
+            
+            if($('[name=solitairesymmetry_'+ids+']:checked').length==0)
+            {
+                common.toast(0,"Select Symmetry For Solitaire "+ids);
+                return false;
+             
+            }
+            
+            if($('[name=solitairepolish_'+ids+']:checked').length==0)
+            {
+                common.toast(0,"Select Polish For Solitaire "+ids);
+                return false;
+             
+            }
+            
+            if($('[name=solitaireFluorescence_'+ids+']:checked').length==0)
+            {
+                common.toast(0,"Select Fluorescence For Solitaire "+ids);
+                return false;
+             
+            }
+            if($('#solcaratweight'+ids+'').val()=="")
+            {
+                common.toast(0,"Enter Carat Weight For Solitaire "+ids);
+                return false;
+            }
+            if($('#solpricecarat'+ids+'').val()=="")
+            {
+                common.toast(0,"Enter Price / Carat For Solitaire "+ids);
+                return false;
+            }
+            if($('#soltable'+ids+'').val()=="")
+            {
+                common.toast(0,"Enter Table For Solitaire "+ids);
+                return false;
+            }
+            if($('#solCrownAngle'+ids+'').val()=="")
+            {
+                common.toast(0,"Enter Crown Angle For Solitaire "+ids);
+                return false;
+            }
+            if($('#solGirdle'+ids+'').val()=="")
+            {
+                common.toast(0,"Enter Girdle For Solitaire "+ids);
+                return false;
+            }
+            
+            
+        });
+        
+        
+    }
+    
+    if(has_diamond)
+    {
+        
+        
+        $('[id*=diamondComm_]').each(function(){
+            var id=$(this).attr('id');
+            var ids=id.split("diamondComm_");
+            ids=ids[1];
+            
+            if($('#diamondComm_'+ids+' .shapeSelected').length==0)
+            {
+                common.toast(0,"Select Shape For Diamond "+ids);
+                return false;
+            }
+            
+            if($('[name*=isDiamondCustz_'+ids+']:checked').val()==1)
+            {
+
+                if($('[name=dmdquality_cust'+ids+']:checked').length==0)
+                {
+                    common.toast(0,"Select Customizable Diamond Quality For "+ids);
+                    return false;
+                }
+            }
+
+            if($('[name*=isDiamondCustz_'+ids+']:checked').val()==0)
+            {
+
+                if($('[name=dmdquality_notCust'+ids+']:checked').length==0)
+                {
+                    common.toast(0,"Select Not Customizable Diamond Quality For "+ids);
+                    return false;
+                }
+
+            }
+            
+            
+            if($('#dmdcaratweight'+ids+'').val()=="")
+            {
+                common.toast(0,"Enter Diamond Weight For "+ids);
+                return false;
+            }
+            
+            if($('#dmdPieces'+ids+'').val()=="")
+            {
+                common.toast(0,"Enter Total Diamonds For "+ids);
+                return false;
+            }
+        
+        }); 
+        
+    }
+    
+    if(has_uncut)
+    {
+        
+        $('[id*=uncutComm_]').each(function(){
+            var id=$(this).attr('id');
+            var ids=id.split("uncutComm_");
+            ids=ids[1];
+            
+            if($('[name=uncutColors_'+ids+']:checked').length==0)
+            {
+                
+                common.toast(0,"Select Color For Uncut "+ids);
+                return false;
+                
+            }
+                        
+            if($('[name=uncutquality_'+ids+']:checked').length==0)
+            {
+                
+                common.toast(0,"Select Quality For Uncut "+ids);
+                return false;
+                
+            }
+            
+            if($('#uncutcaratweight'+ids+'').val()=="")
+            {
+                common.toast(0,"Enter Uncut Diamond Weight For "+ids);
+                return false;
+            }
+            if($('#uncutpricecarat'+ids+'').val()=="")
+            {
+                common.toast(0,"Enter Price For "+ids);
+                return false;
+            }
+            if($('#uncutPieces'+ids+'').val()=="")
+            {
+                
+                common.toast(0,"Enter Total Uncut Diamonds For "+ids);
+                return false;
+                
+            }
+            
+        });       
+        
+    }
+    
+    
+    if(has_gemstone)
+    {
+        
+        $('[id*=gemstoneComm_]').each(function(){
+            var id=$(this).attr('id');
+            var ids=id.split("gemstoneComm_");
+            ids=ids[1];
+            
+            if($('#gemstone_type'+ids+'').val()==-1)
+            {
+                common.toast(0,"Select Gemstone Type For "+ids);
+                return false;
+                
+            }
+            
+            if($('#gemstonecaratweight'+ids+'').val()=="")
+            {
+                common.toast(0,"Enter Gemstone Weight For "+ids);
+                return false;
+            }
+            
+            if($('#gemstonepricecarat'+ids+'').val()=="")
+            {
+                common.toast(0,"Enter Price For Gemstone "+ids);
+                return false;
+                
+            }
+            if($('#gemstonePieces'+ids+'').val()=="")
+            {
+                common.toast(0,"Enter Total Gemstone Pieces For "+ids);
+                return false;
+                
+            }
+        
+        });
+        
+    }
+    
+    if($('[name=diamond_setting]:checked').length===0)
+    {
+        common.toast(0,"Select diamond settings type");
+        return false;
+    }
+    
+    if($('#ds8').is(':checked'))
+    {
+        if($('#diamond_settingOth').val()=="")
+        {
+            common.toast(0,"Enter value for other diamond settings type");
+        }
+        return false;
+    }
+    
+    
+    if($('[name=certificate]:checked').length===0)
+    {
+        common.toast(0,"Select product certificate type");
+        return false;
+    }
+    
+    if($('#metal_weight').val()=="")
+    {
+        common.toast(0,"Enter Metal Weight");
+        return false;
+    }
+    
+    if($('#making_charges').val()=="")
+    {
+        common.toast(0,"Enter Making Charge");
+        return false;
+    }
+    
+    if($('#procurement_cost').val()=="")
+    {
+        common.toast(0,"Enter Procurement Cost");
+        return false;
+    }
+    
+    if($('#margin').val()=="")
+    {
+        common.toast(0,"Enter Margin");
+        return false;
+    }
+    
+    if($('#measure1').val()=="")
+    {
+        common.toast(0,"Enter Height");
+        return false;
+    }
+    
+    if($('#measure2').val()=="")
+    {
+        common.toast(0,"Enter Width");
+        return false;
+    }
+    
+    
+    if($('[name=isPurityCustz]:checked').val()==0)
+    {
+    
+        if($('[name=gpurityCustomize]:checked').length==0)
+        {
+            common.toast(0,"Select Customizable Metal Purity Type");
+            return false;
+        }
+    }
+    
+    if($('[name=isPurityCustz]:checked').val()==1)
+    {
+    
+        if($('[name=gpurityNotCustomize]:checked').length==0)
+        {
+            common.toast(0,"Select Not Customizable Metal Purity Type");
+            return false;
+        }
+        
+    }
+    
+    if($('[name=isColorCustz]:checked').val()==0)
+    {
+    
+        if($('[name=gcolorCustomize]:checked').length==0)
+        {
+            common.toast(0,"Select Customizable Metal Color");
+            return false;
+        }
+    }
+    
+    if($('[name=isColorCustz]:checked').val()==1)
+    {
+    
+        if($('[name=gcolorNotCustomize]:checked').length==0)
+        {
+            common.toast(0,"Select Not Customizable Metal Color");
+            return false;
+        }
+        
+    }
+    
+    
+    
+    if($('[name=size]:checked').length==0)
+    {
+        common.toast(0,"Select Product Size");
+        return false;
+    }
+   
+    if($('[name=size]:checked').length>0)
+    {
+        
+        var sizeLen=$('[name=size]:checked').length;
+        var sizeValCnt=0;
+        $('[name=sizeQty]').each(function(){
+            
+            if($(this).val()!=="")
+            {
+                sizeValCnt++;
+            }
+            
+        });
+        
+        if(sizeLen!=sizeValCnt)
+        {
+            common.toast(0,"Selected Size & Quantity Count Dosen't Match");
+            return false;
+
+        }
+        
+    }
+    
+    return true;
 }
