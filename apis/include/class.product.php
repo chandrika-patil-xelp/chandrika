@@ -21,11 +21,13 @@ class product extends DB {
         return $pcode;
     }
 
-    public function addProduct() {
-
+    public function addProduct($params) {
+        $params= (json_decode($params[0],1));
+        
+        
         $pid = $this->generateId();
 
-        $sizeArray = array('4' => 20, '4.5' => 22, '6' => 5, '7' => 2, '8' => 3, '9' => 1, '10' => 7,);
+  /*      $sizeArray = array('4' => 20, '4.5' => 22, '6' => 5, '7' => 2, '8' => 3, '9' => 1, '10' => 7,);
         $metalColorArray = array('white', 'rose');
         $metalPurityArray = array('22 carat', '14 carat', '18 carat', '24 carat');
 
@@ -65,11 +67,14 @@ class product extends DB {
             'product_seo_name' => '22K Gold Office Wear Ring', 'gender' => 0, 'product_weight' => 5.5, 'diamond_setting' => 'prong', 'metal_weight' => 4,
             'making_charges' => 12500.56, 'procurement_cost' => 11000.52, 'margin' => 5, 'measurement' => '10X50', 'certificate' => 'SGL');
 
-
-        $params = array('catid' => '1,2,3,4,5', 'userid' => '55', 'productid' => $pid, 'sizes' => $sizeArray, 'metalpurity' => $metalPurityArray, 'metalcolor' => $metalColorArray, 'has_solitaire' => 1, 'solitaires' => $solitaires, 'has_diamond' => 1, 'diamonds' => $diamonds, 'has_uncut' => 1, 'uncut' => $uncuts, 'has_gemstone' => 1, 'gemstone' => $gemstones, 'details' => $details);
+*/
+//        $params = array('catid' => '1,2,3,4,5', 'userid' => '55', 'productid' => $pid, 'sizes' => $sizeArray, 'metalpurity' => $metalPurityArray, 'metalcolor' => $metalColorArray, 'has_solitaire' => 1, 'solitaires' => $solitaires, 'has_diamond' => 1, 'diamonds' => $diamonds, 'has_uncut' => 1, 'uncut' => $uncuts, 'has_gemstone' => 1, 'gemstone' => $gemstones, 'details' => $details);
+//        $userid = $params['userid'];
+        
+        $params['productid']=$pid;
         $userid = $params['userid'];
-
-        #echo "<pre>";  print_r($params);  echo "</pre>";die;
+        
+        #echo "<pre>";print_r($params);  echo "</pre>";die;
         
         
         #ADDING CATEGORY MAPPING FOR CURRENT PRODUCT
@@ -85,22 +90,26 @@ class product extends DB {
 
             if ($sizeres['error']['err_code'] == '0') 
             {
-
-
+                
+               
+                
                 #Product Metal Purity Mapping
-                $mprLen = sizeof($params['metalpurity']);
+                $mprLen = sizeof($params['mpurity']);
 
                 if ($mprLen > 1) {
                     $customise_purity = 0;
                 } else {
                     $customise_purity = 1;
                 }
-                $metalPurityparams = array('productid' => $params['productid'], 'updatedby' => $userid, 'metalpurity' => $params['metalpurity']);
+                $metalPurityparams = array('productid' => $params['productid'], 'updatedby' => $userid, 'metalpurity' => $params['mpurity']);
                 $mpurityres = $this->addProductMetalPurityMapping($metalPurityparams);
 
                 if ($mpurityres['error']['err_code'] == 0) {
                     #Product Metal Color Mapping
                     $mclrLen = sizeof($params['metalcolor']);
+                    
+                   
+                    
                     if ($mclrLen > 1) {
                         $customise_color = 0;
                     } else {
@@ -281,11 +290,11 @@ class product extends DB {
                 . "(" . $params['productid'] . ","
                 . "'" . $params['product_code'] . "'"
                 . "," . $params['details']['vendorid'] . ""
-                . ",'" . $params['details']['product_name'] . "'"
-                . ",'" . $params['details']['product_seo_name'] . "'"
+                . ",'" . urldecode($params['details']['product_name']) . "'"
+                . ",'" . urldecode($params['details']['product_seo_name']) . "'"
                 . ",'" . $params['details']['gender'] . "'"
                 . "," . $params['details']['product_weight'] . ""
-                . ",'" . $params['details']['diamond_setting'] . "'"
+                . ",'" . urldecode($params['details']['diamond_setting']) . "'"
                 . "," . $params['details']['metal_weight'] . ""
                 . "," . $params['details']['making_charges'] . ""
                 . "," . $params['details']['procurement_cost'] . ""
@@ -338,15 +347,18 @@ class product extends DB {
 
         $sql = "INSERT INTO tbl_product_size_mapping (productid,size_id,quantity,createdon,updatedby) VALUES ";
         foreach ($params['sizes'] as $key => $val) {
-            $sid = $this->getSizeIdByValue($key);
-            $tmpparams = array('size_id' => $sid, 'updatedby' => $params['updatedby'], 'productid' => $params['productid'], 'quantity' => $val);
-
-            $sql.="(" . $tmpparams['productid'] . "," . $tmpparams['size_id'] . "," . $tmpparams['quantity'] . ",now()," . $tmpparams['updatedby'] . "),";
+            
+            foreach ($val as $key1 => $val1) 
+            {
+                $tmpparams = array('size_id' => $key1, 'updatedby' => $params['updatedby'], 'productid' => $params['productid'], 'quantity' => $val1);
+                $sql.="(" . $tmpparams['productid'] . "," . $key1 . "," . $val1 . ",now()," . $tmpparams['updatedby'] . "),";
+                  
+            }
         }
         $sql = trim($sql, ",");
         $sql.=" ON DUPLICATE KEY UPDATE quantity = VALUES(quantity),updatedby=VALUES(updatedby)";
 
-
+        
         $res = $this->query($sql);
         $result = array();
         if ($res) {
@@ -371,12 +383,13 @@ class product extends DB {
     }
 
     public function addProductMetalPurityMapping($params) {
-
+        
         $sql = "INSERT INTO tbl_product_metal_purity_mapping (productid,id,createdon,updatedby) VALUES";
 
         foreach ($params['metalpurity'] as $key => $val) {
 
-            $purityid = $this->getMetalPurityIdByValue($val);
+            #$purityid = $this->getMetalPurityIdByValue($val);
+            $purityid =$val;
             $tmpparams = array('id' => $purityid, 'updatedby' => $params['updatedby'], 'productid' => $params['productid']);
 
             $sql.="(" . $tmpparams['productid'] . "," . $tmpparams['id'] . ",now()," . $tmpparams['updatedby'] . "),";
@@ -417,7 +430,8 @@ class product extends DB {
 
         foreach ($params['metalcolors']as $key => $val) {
 
-            $colorid = $this->getMetalColorIdByValue($val);
+            #$colorid = $this->getMetalColorIdByValue($val);
+            $colorid = $val;
             $tmpparams = array('id' => $colorid, 'updatedby' => $params['updatedby'], 'productid' => $params['productid']);
 
             $sql.="(" . $tmpparams['productid'] . "," . $tmpparams['id'] . ",now()," . $tmpparams['updatedby'] . "),";
@@ -558,7 +572,7 @@ class product extends DB {
         foreach ($params['solitaires'] as $solt) {
 
             $solid = $this->generateId();
-            $tmpparams = array('shape' => $solt['shape'], 'color' => $solt['color'], 'clarity' => $solt['clarity'], 'cut' => $solt['cut'], 'symmetry' => $solt['symmetry'], 'polish' => $solt['polish'], 'fluorescence' => $solt['fluorescence'], 'carat' => $solt['carat'], 'price_per_carat' => $solt['price_per_carat'], 'table' => $solt['table'], 'crown_angle' => $solt['crown_angle'], 'girdle' => $solt['girdle'], 'solitaire_id' => $solid, 'updatedby' => $params['updatedby'], 'productid' => $params['productid']);
+            $tmpparams = array('shape' => $solt['shape'], 'color' => $solt['color'], 'clarity' => $solt['clarity'], 'cut' => urldecode($solt['cut']), 'symmetry' => urldecode($solt['symmetry']), 'polish' => urldecode($solt['polish']), 'fluorescence' => urldecode($solt['fluorescence']), 'carat' => $solt['carat'], 'price_per_carat' => $solt['price_per_carat'], 'table' => $solt['table'], 'crown_angle' => $solt['crown_angle'], 'girdle' => $solt['girdle'], 'solitaire_id' => $solid, 'updatedby' => $params['updatedby'], 'productid' => $params['productid']);
 
             $sql.="(" . $tmpparams['productid'] . "," . $tmpparams['solitaire_id'] . ",'" . $tmpparams['shape'] . "','" . $tmpparams['color'] . "'," . "'" . $tmpparams['clarity'] . "'," . "'" . $tmpparams['cut'] . "'," . "'" . $tmpparams['symmetry'] . "'," . "'" . $tmpparams['polish'] . "'," . "'" . $tmpparams['fluorescence'] . "'," . "" . $tmpparams['carat'] . "," . "" . $tmpparams['price_per_carat'] . "," . "'" . $tmpparams['table'] . "'," . "'" . $tmpparams['crown_angle'] . "'," . "'" . $tmpparams['girdle'] . "'," . "now()," . "" . $params['updatedby'] . "" . "),";
         }
@@ -592,8 +606,8 @@ class product extends DB {
 
 
             foreach ($dmd['quality'] as $dqul) {
-                $qulid = $this->getDiamondQualityIdByValue($dqul);
-                $qltmpparams = array('diamond_id' => $dmdid, 'updatedby' => $params['updatedby'], 'id' => $qulid);
+                #$qulid = $this->getDiamondQualityIdByValue($dqul);
+                $qltmpparams = array('diamond_id' => $dmdid, 'updatedby' => $params['updatedby'], 'id' => $dqul);
 
                 $qulsql.="(" . $qltmpparams['diamond_id'] . "," . $qltmpparams['id'] . ",now()," . $qltmpparams['updatedby'] . "" . "),";
             }
@@ -689,10 +703,6 @@ class product extends DB {
         return $results;
         
     }
-    
-    
-    
-    
     
 
     public function addUncutDiamond($params) {
@@ -857,11 +867,17 @@ class product extends DB {
     }
     
     
+    public function test()
+    {
+        #$data=array('dt' =>'{"mpurity":["1"],"metalcolor":["1","2","3"],"sizes":[{"id":"1","qty":"10"},{"id":"3","qty":"20"},{"id":"5","qty":"30"}],"solitaires":[{"shape":"Emerald","color":"D","clarity":"VVS1","cut":"Very%20Good","symmetry":"Very%20Good","polish":"Very%20Good","fluorescence":"Medium","carat":"100","price_per_carat":"10000","table":"522","crown_angle":"100","girdle":"100"}],"has_solitaire":1,"has_diamond":0,"has_gemstone":0,"details":{"vendorid":"1","product_name":"18K%20Gold%20Ring","product_seo_name":"18K%20White%20Gold%20Ring","gender":"0","product_weight":"10","certificate":"IGI","metal_weight":"10","making_charges":"15000","procurement_cost":"150","margin":"10","measurement":"10X20","dmdSetting":"Prong,Bezel,Pave,Test%20Diamond%20Setting"},"userid":"1","catid":"1,11,2,3,4,10"}');
+        $data=array('dt' =>'{"mpurity":["1"],"metalcolor":["1","2","3"],"sizes":[{"1":"10"},{"3":"12"},{"5":"15"}],"solitaires":[{"shape":"Emerald","color":"D","clarity":"VVS1","cut":"Very%20Good","symmetry":"Very%20Good","polish":"Very%20Good","fluorescence":"Medium","carat":"100","price_per_carat":"10000","table":"522","crown_angle":"100","girdle":"100"}],"has_solitaire":1,"has_diamond":0,"has_gemstone":0,"details":{"vendorid":"1","product_name":"18K%20Gold%20Ring","product_seo_name":"18K%20White%20Gold%20Ring","gender":"0","product_weight":"10","certificate":"IGI","metal_weight":"10","making_charges":"15000","procurement_cost":"150","margin":"10","measurement":"10X20","dmdSetting":"Prong,Bezel,Pave,Test%20Diamond%20Setting"},"userid":"1","catid":"1,11,2,3,4,10"}');
+        
+        echo "<pre>";
+        print_r(json_decode($data['dt'],1));
+        echo "</pre>";
     
+    }
     
 
 }
 ?>
-
-
-

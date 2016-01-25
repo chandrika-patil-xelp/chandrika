@@ -18,6 +18,7 @@ var mpurity=new Array();
 var mcolor=new Array();
 
 
+
 function getCategories()
 {
     var URL =APIDOMAIN+"index.php?action=getCatgoryList";
@@ -993,8 +994,8 @@ function addProduct()
         });
 
         var vid=$('#vendorList').val();
-        var product_name=$('#product_name').val();
-        var product_seo_name=$('#product_seo_name').val();
+        var product_name=encodeURIComponent($('#product_name').val());
+        var product_seo_name=encodeURIComponent($('#product_seo_name').val());
         var product_weight=$('#product_weight').val();
         var gender=$('[name*=gender]:Checked').val();
         var certificate="";
@@ -1014,7 +1015,7 @@ function addProduct()
                     $('#ds8').val($('#diamond_settingOth').val());
                 }
 
-                dmdSetting.push($(this).val());
+                dmdSetting.push(encodeURIComponent($(this).val()));
             }
 
             else if(!$(this).is(':CHECKED')){
@@ -1030,7 +1031,8 @@ function addProduct()
         });
 
         if(metalPurityCust)
-        {
+        {   
+            mpurity=[];
             $('[name=gpurityCustomize]').each(function(){
                 if($(this).is(':CHECKED'))
                     mpurity.push($(this).val());
@@ -1048,6 +1050,7 @@ function addProduct()
 
         if(metalColorCust)
         {
+            mcolor= [];
             $('[name=gcolorCustomize]').each(function(){
             if($(this).is(':CHECKED'))
                 mcolor.push($(this).val());
@@ -1073,8 +1076,10 @@ function addProduct()
                 var id=ids.split("_");
 
                 values ={};
-                values['id']=id[1];
-                values['qty']=qty;
+//                values['id']=id[1];
+//                values['qty']=qty;
+                
+                values[id[1]]=qty;
                 console.log(values);
                 sizesArray.push(values);
 
@@ -1113,10 +1118,10 @@ function addProduct()
                 values['shape']=shape[1];
                 values['color']=color;
                 values['clarity']=clarity;
-                values['cut']=cut;
-                values['symmetry']=symmetry;
-                values['polish']=polish;
-                values['fluorescence']=fluorescence;
+                values['cut']=encodeURIComponent(cut);
+                values['symmetry']=encodeURIComponent(symmetry);
+                values['polish']=encodeURIComponent(polish);
+                values['fluorescence']=encodeURIComponent(fluorescence);
                 values['carat']=carat;
                 values['price_per_carat']=price_per_carat;
                 values['table']=table;
@@ -1215,7 +1220,7 @@ function addProduct()
                 var price=$('#uncutpricecarat'+ids+'').val();
                 var total_no=$('#uncutPieces'+ids+'').val();
 
-                values['color']=uncutColor;
+                values['color']=uncutColor.toString();
                 values['carat']=carat;
                 values['total_no']=total_no;
                 values['quality']=quality;
@@ -1264,10 +1269,8 @@ function addProduct()
 
 
 
-        var prd= [];
-
-
-        general = {};
+       
+        var general = {};
         general['vendorid']= vid;
         general['product_name']= product_name;
         general['product_seo_name']= product_seo_name;
@@ -1279,28 +1282,77 @@ function addProduct()
         general['procurement_cost']= procurement_cost;
         general['margin']= margin;
         general['measurement']= measurement;
-        general['dmdSetting']= dmdSetting;
+        general['dmdSetting']= dmdSetting.toString();
 
 
+        var prd = {};
         prd['mpurity']=mpurity;
         prd['metalcolor']=mcolor;
         prd['sizes']=sizesArray;
+        
+        
+        if(has_solitaire)
+        {
+            has_solitaire=1;
+            prd['solitaires']=solitaires;
+        }
+        if(!has_solitaire)
+        {
+            has_solitaire=0;
+        }
         prd['has_solitaire']=has_solitaire;
+        
+        
+        if(has_diamond)
+        {
+            has_diamond=1;
+            prd['diamonds']=diamonds;
+        }
+        if(!has_diamond)
+        {
+            has_diamond=0;
+        }
         prd['has_diamond']=has_diamond;
+        
+        
+        if(has_uncut)
+        {
+            has_uncut=1;
+            prd['uncut']=uncut;
+        }
+        if(!has_uncut)
+        {
+            has_uncut=0;
+        }
         prd['has_uncut']=has_uncut;
-        prd['has_gemstone']=has_gemstone;
-        prd['solitaires']=solitaires;
-        prd['diamonds']=diamonds;
-        prd['uncut']=uncut;
-        prd['gemstone']=gemstone;
+        
+        if(has_gemstone)
+        {
+            has_gemstone=1;
+            prd['gemstone']=gemstone;
+        }
+        if(!has_gemstone)
+        {
+            has_gemstone=0;
+        }
+        prd['has_gemstone']=has_gemstone;        
+        
         prd['details']=general;
         prd['userid']=userid;
         prd['catid']=catArray.toString();
 
-        var product=prd;
+        var dt=JSON.stringify(prd);
+        
+        var URL =APIDOMAIN+"index.php?action=addProduct";
+        $.ajax({
+            url:URL,
+            type:'POST',
+            data:{dt:dt},
+            success:function (res){
+                console.log(res);  
+            }
+        });
     }
-        console.log(product);
-    
 }
 
 
@@ -1420,7 +1472,6 @@ function validateForm()
             
             
         });
-        
         
     }
     

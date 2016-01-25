@@ -124,7 +124,8 @@ switch($action)
     case 'addProduct':
         include APICLUDE.'class.product.php';
         $obj=new product($db['jzeva']);
-        $result	=$obj->addProduct();
+        $tmpaparams = array($params['dt']);
+        $result	=$obj->addProduct($tmpaparams);
         $res = $result;
     break;
 
@@ -230,6 +231,15 @@ switch($action)
         include APICLUDE.'class.product.php';
         $obj	= new product($db['jzeva']);
         $result	=$obj->getMetalColorList();
+        $res = $result;
+    break;
+
+
+    
+    case 'test':
+        include APICLUDE.'class.product.php';
+        $obj	= new product($db['jzeva']);
+        $result	=$obj->test();
         $res = $result;
     break;
 
