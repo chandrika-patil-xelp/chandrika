@@ -13,7 +13,7 @@
                 <div class="fiveStpWRP fLeft fmSansR">
                         <div class="fiveStpCont fLeft">
                             <div class="cAreaLeft1 fLeft">
-                                <div class="ordrTab fLeft borderClass" id="step1">
+                                <div class="ordrTab fLeft borderClass" id="step1" onclick="chaungeiTab('clk1st')">
                                     <div class="tabIcnDv fLeft">
                                         <center>
                                             <div class="regIcon"></div>
@@ -21,7 +21,7 @@
                                     </div>
                                     <div class="icnAbtTxt fLeft">Registration</div>
                                 </div>
-                                <div class="ordrTab fLeft" id="step2">
+                                <div class="ordrTab fLeft" id="step2" onclick="chaungeiTab('clk2nd')">
                                     <div class="tabIcnDv fLeft">
                                         <center>
                                             <div class="dAddressIcon"></div>
@@ -29,7 +29,7 @@
                                     </div>
                                     <div class="icnAbtTxt fLeft">Delivery Address</div>
                                 </div>
-                                <div class="ordrTab fLeft" id="step3">
+                                <div class="ordrTab fLeft" id="step3" onclick="chaungeiTab('clk3rd')">
                                     <div class="tabIcnDv fLeft">
                                         <center>
                                             <div class="dOptionIcon"></div>
@@ -37,7 +37,7 @@
                                     </div>
                                     <div class="icnAbtTxt fLeft">Delivery Option</div>
                                 </div>
-                                 <div class="ordrTab fLeft" id="step4">
+                                 <div class="ordrTab fLeft" id="step4" onclick="chaungeiTab('clk4th')">
                                     <div class="tabIcnDv fLeft">
                                         <center>
                                             <div class="cOrderIcon"></div>
@@ -45,7 +45,7 @@
                                     </div>
                                     <div class="icnAbtTxt fLeft">Confirm Order</div>
                                 </div>
-                                <div class="ordrTab fLeft" id="step5">
+                                <div class="ordrTab fLeft" id="step5" onclick="chaungeiTab('clk5th')">
                                     <div class="tabIcnDv fLeft">
                                         <center>
                                             <div class="paymentIcon"></div>
@@ -56,13 +56,14 @@
                                 <div class="loginTxtWrp fLeft fmSansR" id="clk1st">
                                     <div class="loginAreaLft fLeft">
                                         <div class="loginHdngTxt fLeft">Log in</div>
-                                        <div class="inptAndTxtCnt fLeft">
-                                            <div class="inputHdng fLeft">User Name</div>
-                                            <input type="text" class="inptTxt fLeft userNameIcn">
+                                        <div class="inptAndTxtCnt fLeft transition300">
+                                            <input type="text" class="inptTxt fLeft userNameIcn" id="un">
+                                            <label for="un" class="label-txt">User Name</label>
                                         </div>
-                                        <div class="inptAndTxtCnt fLeft">
-                                            <div class="inputHdng fLeft">Password</div>
-                                            <input type="text" class="inptTxt fLeft passwordIcn">
+                                        <div class="inptAndTxtCnt fLeft transition300">
+                                            
+                                            <input type="text" class="inptTxt fLeft passwordIcn" id="pswrd">
+                                            <label for="pswrd" class="label-txt">password</label>
                                         </div>
                                         <div class="fgotPswrd fLeft">forgot password</div>
                                         <div class="divHolder fLeft">
@@ -80,56 +81,56 @@
                                 <div class="addressFrmCnt fLeft fmSansR dn" id="clk2nd">
                                     <div class="addressFrmWrp fLeft">
                                      <div class="loginAreaLft fLeft">
-                                        <div class="inptAndTxtCnt fLeft">
-                                            <div class="inputHdng fLeft">First Name</div>
-                                            <input type="text" class="inptTxt fLeft">
+                                        <div class="inptAndTxtCnt fLeft transition300">
+                                            <input type="text" class="inptTxt fLeft" id="fn">
+                                             <label for="fn" class="label-txt">First Name</label>
                                         </div>
-                                        <div class="inptAndTxtCnt fLeft">
-                                            <div class="inputHdng fLeft">Last Name</div>
-                                            <input type="text" class="inptTxt fLeft">
+                                        <div class="inptAndTxtCnt fLeft transition300">
+                                            
+                                            <input type="text" class="inptTxt fLeft" id="ln">
+                                             <label for="ln" class="label-txt">Last Name</label>
                                         </div>
-                                         <div class="inptAndTxtCnt fLeft">
-                                            <div class="inputHdng fLeft">Password</div>
-                                            <input type="text" class="inptTxt fLeft ">
+                                         <div class="inptAndTxtCnt fLeft transition300">
+                                            <input type="text" class="inptTxt fLeft" id="pswrd1">
+                                             <label for="pswrd1" class="label-txt">Password</label>
                                         </div>
-                                         <div class="inptAndTxtCnt fLeft">
-                                            <div class="inputHdng fLeft">Mobile Number</div>
-                                            <input type="text" class="inptTxt fLeft ">
+                                         <div class="inptAndTxtCnt fLeft transition300">
+                                            <input type="text" class="inptTxt fLeft" id="mn">
+                                             <label for="mn" class="label-txt">Mobile Number</label>
                                         </div>
-                                         <div class="inptAndTxtCnt fLeft">
-                                            <div class="inputHdng fLeft">Street</div>
-                                            <input type="text" class="inptTxt fLeft ">
+                                         <div class="inptAndTxtCnt fLeft transition300">
+                                            <input type="text" class="inptTxt fLeft" id="street">
+                                             <label for="street" class="label-txt">Street</label>
                                         </div>
-                                         <div class="inptAndTxtCnt fLeft">
-                                            <div class="inputHdng fLeft">State</div>
-                                            <input type="text" class="inptTxt fLeft">
+                                         <div class="inptAndTxtCnt fLeft transition300">
+                                            <input type="text" class="inptTxt fLeft" id="state">
+                                             <label for="state" class="label-txt">State</label>
                                         </div>
                                         
                                     </div> 
                                     <div class="loginAreaRight fLeft">
                                         <div class="inptAndTxtCnt fLeft">
-                                            <div class="inputHdng fLeft">Date of Birth</div>
                                             <input type="text" class="ddtxt fLeft" placeholder="dd">
                                             <input type="text" class="ddtxt fLeft" placeholder="mm">
                                             <input type="text" class="yrTxt fLeft" placeholder="yy"
                                         </div>
                                     </div>
-                                    <div class="inptAndTxtCnt fLeft">
-                                            <div class="inputHdng fLeft">Email Address</div>
-                                            <input type="text" class="inptTxt fLeft">
+                                    <div class="inptAndTxtCnt fLeft transition300">
+                                            <input type="text" class="inptTxt fLeft" id="ea">
+                                             <label for="ea" class="label-txt">Email Address</label>
                                         </div>
-                                    <div class="inptAndTxtCnt fLeft">
-                                            <div class="inputHdng fLeft">Confirm password</div>
-                                            <input type="text" class="inptTxt fLeft">
+                                    <div class="inptAndTxtCnt fLeft transition300">
+                                            <input type="text" class="inptTxt fLeft" id="cp">
+                                             <label for="cp" class="label-txt">Confirm password</label>
                                         </div>
                                     <div class="mngeDv fLeft"></div>
-                                    <div class="inptAndTxtCnt fLeft">
-                                            <div class="inputHdng fLeft">Zip code</div>
-                                            <input type="text" class="inptTxt fLeft">
+                                    <div class="inptAndTxtCnt fLeft transition300">
+                                            <input type="text" class="inptTxt fLeft" id="zc">
+                                             <label for="zc" class="label-txt">Zip code</label>
                                         </div>
-                                    <div class="inptAndTxtCnt fLeft">
-                                            <div class="inputHdng fLeft">Country</div>
-                                            <input type="text" class="inptTxt fLeft">
+                                    <div class="inptAndTxtCnt fLeft transition300">
+                                            <input type="text" class="inptTxt fLeft" id="country">
+                                             <label for="country" class="label-txt">Country</label>
                                         </div>
                                 </div>
                                 <div class="fgotPswrd fLeft">required field</div>
@@ -142,39 +143,39 @@
                                 </div>
                                 <div class="addressFrmWrp fLeft">
                                        <div class="loginAreaLft fLeft">
-                                        <div class="inptAndTxtCnt fLeft">
-                                            <div class="inputHdng fLeft">First Name</div>
-                                            <input type="text" class="inptTxt fLeft">
+                                        <div class="inptAndTxtCnt fLeft transition300">
+                                            <input type="text" class="inptTxt fLeft" id="fn1">
+                                             <label for="fn1" class="label-txt">First Name</label>
                                         </div>
-                                        <div class="inptAndTxtCnt fLeft">
-                                            <div class="inputHdng fLeft">Last Name</div>
-                                            <input type="text" class="inptTxt fLeft">
+                                        <div class="inptAndTxtCnt fLeft transition300">
+                                            <input type="text" class="inptTxt fLeft" id="ln1">
+                                             <label for="ln1" class="label-txt">Last Name</label>
                                         </div>
-                                         <div class="inptAndTxtCnt fLeft">
-                                            <div class="inputHdng fLeft">Street</div>
-                                            <input type="text" class="inptTxt fLeft ">
+                                         <div class="inptAndTxtCnt fLeft transition300">
+                                            <input type="text" class="inptTxt fLeft" id="street1">
+                                             <label for="street1" class="label-txt">Street</label>
                                         </div>
-                                         <div class="inptAndTxtCnt fLeft">
-                                            <div class="inputHdng fLeft">state</div>
-                                            <input type="text" class="inptTxt fLeft ">
+                                         <div class="inptAndTxtCnt fLeft transition300">
+                                            <input type="text" class="inptTxt fLeft" id="state1">
+                                             <label for="state1" class="label-txt">State</label>
                                          </div>
                                     </div>
                                     <div class="loginAreaRight fLeft">
-                                          <div class="inptAndTxtCnt fLeft">
-                                            <div class="inputHdng fLeft">Mobile Number</div>
+                                          <div class="inptAndTxtCnt fLeft transition300">
+                                            <input type="text" class="inptTxt fLeft" id="mn1">
+                                             <label for="mn1" class="label-txt">Mobile Number</label>
+                                        </div>
+                                        <div class="inptAndTxtCnt fLeft transition300">
                                             <input type="text" class="inptTxt fLeft">
+                                             <label for="ea1" class="label-txt">Email Address</label>
                                         </div>
-                                        <div class="inptAndTxtCnt fLeft">
-                                            <div class="inputHdng fLeft">Email Address</div>
-                                            <input type="text" class="inptTxt fLeft">
+                                         <div class="inptAndTxtCnt fLeft transition300">
+                                            <input type="text" class="inptTxt fLeft" id="zc1">
+                                             <label for="zc1" class="label-txt">Zip Code</label>
                                         </div>
-                                         <div class="inptAndTxtCnt fLeft">
-                                            <div class="inputHdng fLeft">Zip code</div>
-                                            <input type="text" class="inptTxt fLeft ">
-                                        </div>
-                                         <div class="inptAndTxtCnt fLeft">
-                                            <div class="inputHdng fLeft">Country</div>
-                                            <input type="text" class="inptTxt fLeft ">
+                                         <div class="inptAndTxtCnt fLeft transition300">
+                                            <input type="text" class="inptTxt fLeft" id="country1">
+                                             <label for="country1" class="label-txt">Country</label>
                                          </div>
                                     </div>
                                     <div class="fgotPswrd fLeft">required field</div>
@@ -265,111 +266,261 @@
                                 </div>
                                 </div>
                             </div>
+                                  <div class="paymentWrp fLeft fmSansR dn" id="clk5th">
+                                <div class="pOptnLft fLeft">
+                                  <div class="optionByChk fLeft">
+                                         <input type="checkbox" class="chkBox" value="payment" >
+                                        Credit card
+                                     </div>
+                                    <div class="optionByChk fLeft">
+                                         <input type="checkbox" class="chkBox" value="payment" >
+                                       Net Banking
+                                     </div>
+                                    <div class="optionByChk fLeft">
+                                         <input type="checkbox" class="chkBox" value="payment" >
+                                       Debit Card
+                                     </div>
+                                    <div class="optionByChk fLeft">
+                                         <input type="checkbox" class="chkBox" value="payment" >
+                                       Cash On Delivery
+                                     </div>
+                                    <div class="optionByChk fLeft">
+                                         <input type="checkbox" class="chkBox" value="payment" >
+                                       EMI
+                                     </div> 
+                                </div>
+                                <div class="pOptnRight fLeft">
+                                     <div class="inptAndTxtCnt fLeft transition300">
+                                            <input type="text" class="inptTxt fLeft " id="cn">
+                                             <label for="cn" class="label-txt">Card Number</label>
+                                         </div>
+                                    <div class="inptAndTxtCnt fLeft transition300">
+                                        <div class="expDate fLeft">
+                                            <input type="tetx" class="edTxt fLeft" id="ed">
+                                            <label for="ed" class="label-exp">Expire Date</label>
+                                        </div>
+                                         <div class="expDate fLeft">
+                                            <input type="tetx" class="edTxt fLeft" id="cvv">
+                                             <label for="cvv" class="label-exp1">CVV</label>
+                                        </div>
+                                    </div>
+                                     <div class="inptAndTxtCnt fLeft transition300">
+                                            <input type="text" class="inptTxt fLeft" id="noc">
+                                             <label for="noc" class="label-txt">Name Of Card</label>
+                                         </div>
+                                </div>
+                                 <div class="cheackAndnxt fLeft">
+                                    <div class="nxtStp fRight">FINISH YOUR ORDER</div>
+                                    
+                                </div>
+                            </div>
                         </div>
                             <div class="careaRight1 fLeft fmSansR">
+                                <div class="rightMnuWrp fLeft" id="rmenu1">
                                 <div class="listDiv fLeft">Invoice</div>
                                 <div class="listDiv fLeft">Delivery Address</div>
                                  <div class="listDiv fLeft">Delivery Option</div>
                                  <div class="listDiv fLeft">Payment</div>
+                                </div>
+                                <div class="rightMnuWrp1 fLeft dn" id="rmenu2">
+                                    <div class="rmnuHdng fLeft">Invoice</div>
+                                    <div class="abtInvc fLeft bBottom">
+                                        <ul class="ulInvc">
+                                            <li class="liInvc">Ankur Gala</li>
+                                            <li class="liInvc">Xelpmoc</li>
+                                            <li class="liInvc">HSR layout</li>
+                                            <li class="liInvc">Bengalore,Karnataka,5006543</li>
+                                            <li class="liInvc">India</li>
+                                            <li class="liInvc">Mobile: 7797553117</li>
+                                        </ul>
+                                    </div>
+                                    <div class="rmnuHdng fLeft">Delivery Address</div>
+                                     <div class="abtInvc fLeft bBottom">
+                                        <ul class="ulInvc">
+                                            <li class="liInvc">Ankur Gala</li>
+                                            <li class="liInvc">Xelpmoc</li>
+                                            <li class="liInvc">HSR layout</li>
+                                            <li class="liInvc">Bengalore,Karnataka,5006543</li>
+                                            <li class="liInvc">India</li>
+                                            <li class="liInvc">Mobile: 7797553117</li>
+                                        </ul>
+                                    </div>
+                                    <div class="rmnuHdng fLeft bBottom">Delivery Option</div>
+                                    <div class="rmnuHdng fLeft bBottom">Payment</div>
+                                </div>
+                                <div class="rightMnuWrp1 fLeft dn" id="rmenu3">
+                                    <div class="rmnuHdng fLeft">Invoice</div>
+                                    <div class="abtInvc fLeft bBottom">
+                                        <ul class="ulInvc">
+                                            <li class="liInvc">Ankur Gala</li>
+                                            <li class="liInvc">Xelpmoc</li>
+                                            <li class="liInvc">HSR layout</li>
+                                            <li class="liInvc">Bengalore,Karnataka,5006543</li>
+                                            <li class="liInvc">India</li>
+                                            <li class="liInvc">Mobile: 7797553117</li>
+                                        </ul>
+                                    </div>
+                                    <div class="rmnuHdng fLeft">Delivery Address</div>
+                                     <div class="abtInvc fLeft bBottom">
+                                        <ul class="ulInvc">
+                                            <li class="liInvc">Ankur Gala</li>
+                                            <li class="liInvc">Xelpmoc</li>
+                                            <li class="liInvc">HSR layout</li>
+                                            <li class="liInvc">Bengalore,Karnataka,5006543</li>
+                                            <li class="liInvc">India</li>
+                                            <li class="liInvc">Mobile: 7797553117</li>
+                                        </ul>
+                                    </div>
+                                    <div class="rmnuHdng fLeft">Delivery Option</div>
+                                     <div class="abtInvc fLeft bBottom">
+                                        <ul class="ulInvc">
+                                            <li class="liInvc">1 day delivery</li>
+                                        </ul>
+                                    </div>
+                                    <div class="rmnuHdng fLeft bBottom">Payment</div>
+                                </div>
+                                    <div class="rightMnuWrp1 fLeft dn" id="rmenu4">
+                                    <div class="rmnuHdng fLeft">Invoice</div>
+                                    <div class="abtInvc fLeft bBottom">
+                                        <ul class="ulInvc">
+                                            <li class="liInvc">Ankur Gala</li>
+                                            <li class="liInvc">Xelpmoc</li>
+                                            <li class="liInvc">HSR layout</li>
+                                            <li class="liInvc">Bengalore,Karnataka,5006543</li>
+                                            <li class="liInvc">India</li>
+                                            <li class="liInvc">Mobile: 7797553117</li>
+                                        </ul>
+                                    </div>
+                                    <div class="rmnuHdng fLeft">Delivery Address</div>
+                                     <div class="abtInvc fLeft bBottom">
+                                        <ul class="ulInvc">
+                                            <li class="liInvc">Ankur Gala</li>
+                                            <li class="liInvc">Xelpmoc</li>
+                                            <li class="liInvc">HSR layout</li>
+                                            <li class="liInvc">Bengalore,Karnataka,5006543</li>
+                                            <li class="liInvc">India</li>
+                                            <li class="liInvc">Mobile: 7797553117</li>
+                                        </ul>
+                                    </div>
+                                    <div class="rmnuHdng fLeft">Delivery Option</div>
+                                     <div class="abtInvc fLeft bBottom">
+                                        <ul class="ulInvc">
+                                            <li class="liInvc">1 day delivery</li>
+                                        </ul>
+                                    </div>
+                                    <div class="rmnuHdng fLeft ">Payment</div>
+                                    <div class="abtInvc fLeft bBottom">
+                                        <ul class="ulInvc">
+                                            <li class="liInvc">Cash on delivery</li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                 </div>
-                <div class="footer4Reg fLeft fmSansR">
-                    
-                        <div class="divHolder fLeft">
-                            <center>
-                                <div class="footerCat1">
-                                    <div class="txtFtr fLeft">MY ACCOUNT</div>
-                                    <div class="txtFtr1 fLeft">About</div>
-                                    <div class="txtFtr1 fLeft">Information</div>
-                                     <div class="txtFtr1 fLeft">Find Us</div>
-                                     <div class="txtFtr1 fLeft">Customer Service</div>
-                                </div>
-                                <div class="footerCat1">
-                                    <div class="txtFtr fLeft">INFORMATION</div>
-                                    <div class="txtFtr1 fLeft">About</div>
-                                    <div class="txtFtr1 fLeft">Information</div>
-                                     <div class="txtFtr1 fLeft">Find Us</div>
-                                     <div class="txtFtr1 fLeft">Customer Service</div>
-                                </div>
-                                 <div class="footerCat1">
-                                    <div class="txtFtr fLeft">FIND US</div>
-                                    <div class="txtFtr1 fLeft">About</div>
-                                    <div class="txtFtr1 fLeft">Information</div>
-                                     <div class="txtFtr1 fLeft">Find Us</div>
-                                     <div class="txtFtr1 fLeft">Customer Service</div>
-                                </div>
-                                 <div class="footerCat1">
-                                    <div class="txtFtr fLeft">CUSTOMER SERVICE</div>
-                                    <div class="txtFtr1 fLeft">About</div>
-                                    <div class="txtFtr1 fLeft">Information</div>
-                                     <div class="txtFtr1 fLeft">Find Us</div>
-                                     <div class="txtFtr1 fLeft">Customer Service</div>
-                                </div>
-                                <div class="footerCat2">
-                                    <div class="txtFtr fLeft">SUBSCRIBE TO OUR NEWS LETTER</div>
-                                    <div class="scrchInftr fLeft">
-                                        <div class="subscribeBtn">SUBSCRIBE</div>
-                                        <input type="text" class="textFrScrch fLeft">
-                                    </div>
-                                     <div class="txtFtr1 fLeft">You will get an email about once in month</div>
-                                      <div class="txtFtr1 fLeft">You will never share your address</div>
-                                </div>
-                            </center>
-                        </div>
-                    
-                </div>
-                <div class="lfooter4Reg fLeft fmSansR">
-                        <div class="mobileNmbr fLeft">022-2546822</div>
-                        <div class="msgTxt fLeft">info@jzeva.com</div>
-                </div>
             </div>
                 </div>
+             <?php include 'jFooter.html'; ?>
         </div>
         </div>
         <script>
-            $(document).ready(function(){
-                $("#step1").click(function(){
-                  $("#clk1st").removeClass("dn");
-                  $("#clk2nd").addClass("dn");
-                  $("#clk3rd").addClass("dn");
-                  $("#clk4th").addClass("dn");
-                  $("#step1").addClass("borderClass");
-                   $("#step2").removeClass("borderClass");
-                    $("#step3").removeClass("borderClass");
-                    $("#step4").removeClass("borderClass");
-                });
-                $("#step2").click(function(){
-                  $("#clk1st").addClass("dn");
-                  $("#clk3rd").addClass("dn");
-                  $("#clk4th").addClass("dn");
-                  $("#clk2nd").removeClass("dn");
-                   $("#step2").addClass("borderClass");
-                    $("#step1").removeClass("borderClass");
-                     $("#step3").removeClass("borderClass");
-                     $("#step4").removeClass("borderClass");
-                });
-                 $("#step3").click(function(){
-                  $("#clk1st").addClass("dn");
-                  $("#clk2nd").addClass("dn");
-                  $("#clk4th").addClass("dn");
-                  $("#clk3rd").removeClass("dn");
-                   $("#step2").removeClass("borderClass");
-                    $("#step1").removeClass("borderClass");
-                    $("#step3").addClass("borderClass");
-                     $("#step4").removeClass("borderClass");
-                });
-                 $("#step4").click(function(){
-                  $("#clk1st").addClass("dn");
-                  $("#clk2nd").addClass("dn");
-                  $("#clk3rd").addClass("dn");
-                   $("#clk4th").removeClass("dn");
-                   $("#step2").removeClass("borderClass");
-                    $("#step1").removeClass("borderClass");
-                    $("#step3").removeClass("borderClass");
-                    $("#step4").addClass("borderClass");
-                });
-            });
+              function chaungeiTab(id){
+                switch (id){
+                case "clk1st":
+                 $("#clk2nd,#clk3rd,#clk4th,#clk5th").addClass("dn");
+                  $("#rmenu4,#rmenu3,#rmenu2").addClass("dn");
+                  $("#rmenu1").removeClass("dn");
+                $("#clk1st").removeClass("dn");
+                $("#step1").addClass("borderClass");
+                 $("#step2").removeClass("borderClass");
+                 $("#step3").removeClass("borderClass");
+                 $("#step4").removeClass("borderClass");
+                 $("#step5").removeClass("borderClass");
+                break;
+              case "clk2nd":
+                $("#clk1st,#clk3rd,#clk4th,#clk5th").addClass("dn"); 
+                 $("#rmenu4,#rmenu3,#rmenu2").addClass("dn");
+                 $("#rmenu1").removeClass("dn");
+                $("#clk2nd").removeClass("dn");
+                $("#step2").addClass("borderClass");
+                 $("#step1").removeClass("borderClass");
+                  $("#step3").removeClass("borderClass");
+                  $("#step4").removeClass("borderClass");
+                  $("#step5").removeClass("borderClass");
+                break;
+                 case "clk3rd":
+                $("#clk1st,#clk2nd,#clk4th,#clk5th").addClass("dn"); 
+                 $("#rmenu4,#rmenu3,#rmenu1").addClass("dn");
+                 $("#rmenu2").removeClass("dn");
+                $("#clk3rd").removeClass("dn");
+                $("#step3").addClass("borderClass");
+                 $("#step1").removeClass("borderClass");
+                 $("#step2").removeClass("borderClass");
+                  $("#step4").removeClass("borderClass");
+                  $("#step5").removeClass("borderClass");
+                break;
+                 case "clk4th":
+                $("#clk1st,#clk2nd,#clk3rd,#clk5th").addClass("dn");
+                 $("#rmenu4,#rmenu2,#rmenu1").addClass("dn");
+                  $("#rmenu3").removeClass("dn");
+                $("#clk4th").removeClass("dn");
+                $("#step4").addClass("borderClass");
+                 $("#step1").removeClass("borderClass");
+                 $("#step2").removeClass("borderClass");
+                  $("#step3").removeClass("borderClass");
+                   $("#step5").removeClass("borderClass");
+                break;
+                 case "clk5th":
+                $("#clk1st,#clk2nd,#clk3rd,#clk4th").addClass("dn");
+                 $("#rmenu3,#rmenu2,#rmenu1").addClass("dn");
+                  $("#rmenu4").removeClass("dn");
+                $("#clk5th").removeClass("dn");
+                $("#step5").addClass("borderClass");
+                 $("#step1").removeClass("borderClass");
+                 $("#step2").removeClass("borderClass");
+                  $("#step3").removeClass("borderClass");
+                   $("#step4").removeClass("borderClass");
+                break;
+            };
+        };
+        var input_selector = 'input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=number], input[type=search], textarea, input[type=radio]';
+
+var input_hidden = 'input[type=hidden]';
+
+$(document).on('focus', input_selector, function() {
+    $(this).siblings('label, i').addClass('lablTrnst');
+    $(this).addClass('borderTrnst');
+  $(this).addClass('borderTrnst');
+});
+
+$(document).on('blur', input_selector, function() {
+    if ($(this).val().length === 0 && $(this).attr('placeholder') === undefined) {
+        $(this).siblings('label, i').removeClass('lablTrnst');
+        $(this).removeClass('borderTrnst');
+    } 
+});
+$(document).ready(function(){
+    $("#ed").focus(function(){
+        $(this).addClass('borderTrnst');
+        $(".label-exp").addClass("lablTrnst");
+    });
+     $("#ed").blur(function(){
+       if ($(this).val().length === 0 && $(this).attr('placeholder') === undefined) {
+        $(this).siblings('label, i').removeClass('lablTrnst');
+         $(this).removeClass('borderTrnst');
+    }  
+    });
+     $("#cvv").focus(function(){
+         $(this).addClass('borderTrnst');
+        $(".label-exp1").addClass("lablTrnst");
+    });
+     $("#cvv").blur(function(){
+       if ($(this).val().length === 0 && $(this).attr('placeholder') === undefined) {
+        $(this).siblings('label, i').removeClass('lablTrnst');
+         $(this).removeClass('borderTrnst');
+    }  
+    });
+});
         </script>
     </body>
 </html>
