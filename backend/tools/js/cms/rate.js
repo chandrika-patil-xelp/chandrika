@@ -39,12 +39,8 @@ function GetRates() {
 function getRatesCallBack(data)
 {
 
-    console.log(data['result']['diamondRates']);
-    console.log(data['result']['goldRates']);
     var dlen = data['result']['diamondRates'].length;
-
     var grt = data['result']['goldRates'][4].price;
-
 
     $('#24crtRate').val(grt);
     setGoldRates();
@@ -56,7 +52,9 @@ function getRatesCallBack(data)
         $('#rate' + j).val(data['result']['diamondRates'][i].price);
         i++;
     }
+
 }
+
 var userid = 1;
 function updateRates()
 {

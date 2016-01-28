@@ -425,10 +425,10 @@ section{width:100%;height: auto;border:1px dashed #b3b3b3;float: left;margin:0 0
 .forWeight{width:20%; }
 .forPrice{width:20%;border-right:none!important; }
 .pricingul{width:100%;height: auto;margin: 0;padding: 0;list-style: none;}
-.pricingul li{width:100%;height: auto;height: 40px;line-height: 39px;padding:0;border-bottom: 0px solid #ccc;margin: 0;font-size: 14px;float: left;color:#666}
+.pricingul li{width:100%;height: auto;height: 40px;line-height: 39px;padding:0;border-bottom: 1px dashed #ccc;;margin: 0;font-size: 14px;float: left;color:#666}
 
 .pricingul li div{height: 100%;}
-.pricingul li .forComponent{width:40%;padding: 0 15px;}
+.pricingul li .forComponent{width:40%;padding: 0 0px;}
 .pricingul li .forRate{width:20%;padding: 0 15px;}
 .pricingul li .forWeight{width:20%;padding: 0 15px;font-family: openB;height: 100%;}
 .pricingul li .forPrice{width:20%;border-right:none!important;padding: 0 15px;font-family: openB;text-align: right;}
@@ -558,3 +558,5 @@ section{width:100%;height: auto;border:1px dashed #b3b3b3;float: left;margin:0 0
 
 .commCont{width:100%;height: auto;}
 .newElements{width:100%;height:auto;border: 0px solid #333;}
+
+.priceCont select{width: 100%;height: 38px;border: none;font-size: 14px;color: #666;background: url(../img/down_arrow.svg)no-repeat;background-position:right center;background-size: auto 40px;cursor: pointer;}
