@@ -44,6 +44,7 @@ $jvs = array();
     
         #CMS PAGES JS
         $jvs['addProduct']          = BACKDOMAIN.'tools/js/cms/addProduct.js?v='.VERSION;
+        $jvs['rate']          = BACKDOMAIN.'tools/js/cms/rate.js?v='.VERSION;
 #JS End
         
         

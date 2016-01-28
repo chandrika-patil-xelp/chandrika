@@ -1,7 +1,7 @@
-<?php include 'jBhead.html'?>
+<?php include 'jBhead.html' ?>
     <body>
         <div class="container">
-            <?php include 'jBheader.html'?>
+            <?php include 'jBheader.html' ?>
             <div class="contents fLeft rateManager">
                 <div class="wrapperMax">
                     <div class="ratHeader fLeft">
@@ -9,118 +9,93 @@
                         <div class="rCprice fLeft">Price / grm or carat</div>
                     </div>
                     <ul class='rateul fLeft fmOpenR'>
-                       <li><div class="rComponent fLeft">Gold</div></li>
+                        <li><div class="rComponent fLeft">Gold</div></li>
                         <li class="pl15">
                             <div class="rComponent fLeft">24 carat</div>
                             <div class="rCprice fLeft">
                                 <input type="text" class="rateTxt fLeft" id='24crtRate'>
                             </div>
                         </li>
-                       <li>
+                        <li>
                             <div class="gpcloud fLeft">22 ct = <span id='22crtRate'>NA</span></div>
                             <div class="gpcloud fLeft">18 ct = <span id='18crtRate'>NA</span></div>
                             <div class="gpcloud fLeft">14 ct = <span id='14crtRate'>NA</span></div>
                             <div class="gpcloud fLeft">9 ct =  <span id='9crtRate'>NA</span></div>
                         </li>
-                       <li>
+                        <li>
                             <div class="rComponent fLeft">Diamonds</div>
                         </li>
-                       <li class="pl15">
+                        <li class="pl15">
                             <div class="rComponent fLeft">VVS - IF</div>
                             <div class="rCprice fLeft">
-                                <input type="text" class="rateTxt fLeft">
+                                <input type="text" class="rateTxt fLeft" id="rate1">
                             </div>
                         </li>
-                       <li class="pl15">
+                        <li class="pl15">
                             <div class="rComponent fLeft">VVS - EF</div>
                             <div class="rCprice fLeft">
-                                <input type="text" class="rateTxt fLeft">
+                                <input type="text" class="rateTxt fLeft" id="rate2">
                             </div>
                         </li>
-                       <li class="pl15">
+                        <li class="pl15">
                             <div class="rComponent fLeft">VVS - GH</div>
                             <div class="rCprice fLeft">
-                                <input type="text" class="rateTxt fLeft">
+                                <input type="text" class="rateTxt fLeft" id="rate3">
                             </div>
                         </li>
-                       <li class="pl15">
+                        <li class="pl15">
                             <div class="rComponent fLeft">VS - EF</div>
                             <div class="rCprice fLeft">
-                                <input type="text" class="rateTxt fLeft">
+                                <input type="text" class="rateTxt fLeft" id="rate4">
                             </div>
                         </li>
-                       <li class="pl15">
+                        <li class="pl15">
                             <div class="rComponent fLeft">VS - GH</div>
                             <div class="rCprice fLeft">
-                                <input type="text" class="rateTxt fLeft">
+                                <input type="text" class="rateTxt fLeft" id="rate5">
                             </div>
                         </li>
-                       <li class="pl15">
+                        <li class="pl15">
                             <div class="rComponent fLeft">VS - IJ</div>
                             <div class="rCprice fLeft">
-                                <input type="text" class="rateTxt fLeft">
+                                <input type="text" class="rateTxt fLeft" id="rate6">
                             </div>
                         </li>
-                       <li class="pl15">
+                        <li class="pl15">
                             <div class="rComponent fLeft">SI - EF</div>
                             <div class="rCprice fLeft">
-                                <input type="text" class="rateTxt fLeft">
+                                <input type="text" class="rateTxt fLeft" id="rate7">
                             </div>
                         </li>
-                       <li class="pl15">
+                        <li class="pl15">
                             <div class="rComponent fLeft">SI - GH</div>
                             <div class="rCprice fLeft">
-                                <input type="text" class="rateTxt fLeft">
+                                <input type="text" class="rateTxt fLeft" id="rate8">
                             </div>
                         </li>
-                       <li class="pl15">
+                        <li class="pl15">
                             <div class="rComponent fLeft">SI - IJ</div>
                             <div class="rCprice fLeft">
-                                <input type="text" class="rateTxt fLeft">
+                                <input type="text" class="rateTxt fLeft" id="rate9">
                             </div>
                         </li>
-                       <li class="pl15">
+                        <li class="pl15">
                             <div class="rComponent fLeft">SI - JK</div>
                             <div class="rCprice fLeft">
-                                <input type="text" class="rateTxt fLeft">
+                                <input type="text" class="rateTxt fLeft" id="rate10">
                             </div>
                         </li>
                     </ul>
-                    
+
                     <div class="btnCont fLeft">
                         <center>
                             <div class="cancelBtn transition300 fmOpenR poR" onclick="">CANCEL</div>
-                            <div class="submitBtn transition300 fmOpenR poR" onclick="" id="Submitdiv">UPDATE</div>
+                            <div class="submitBtn transition300 fmOpenR poR" onclick="updateRates();" id="Submitdiv">UPDATE</div>
                         </center>
                     </div>
                 </div>
             </div>
         </div>
-            <script>                     
-                $(document).ready(function(){
-                    $('#24crtRate').change(function(){
-                        setGoldRates();
-                    });
-                });
-                
-                function setGoldRates(){
-                    var val=parseFloat($('#24crtRate').val());
-                    
-                    if(val!==""){
-                        var crtR22=(val*91.6)/100;
-                        var crtR18=(val*75.1)/100;
-                        var crtR14=(val*58.3)/100;
-                        var crtR9=(val*37.5)/100;
-
-                        $('#22crtRate').html('&#8377;'+crtR22);
-                        $('#18crtRate').html('&#8377;'+crtR18);
-                        $('#14crtRate').html('&#8377;'+crtR14);
-                        $('#9crtRate'). html('&#8377;'+crtR9);
-                    }
-                    
-                }
-                
-                
-            </script>
+        <script type="text/javascript" src="<?php echo $jvs['addProduct']; ?>"></script>
     </body>
 </html>

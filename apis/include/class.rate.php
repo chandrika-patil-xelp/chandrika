@@ -9,14 +9,11 @@ class rate extends DB {
     }
 
     
-    public function addRates()
+    public function addRates($params)
     {
-        
-        $dmdrates= array(1=>1500,2=>2500,3=>3500,4=>4500,5=>5500,6=>6500,7=>7500,8=>8500,9=>9500,10=>10500,);
-        $params=array('grate' =>99999,'diamondrates' =>$dmdrates,'userid'=>55);
-      
-        $dres=$this->addDmdQualityRates($params);
-        $gres=$this->addGoldRate($params);
+    $tparams = json_decode($params[0],1);
+        $dres=$this->addDmdQualityRates($tparams);
+        $gres=$this->addGoldRate($tparams);
         
         $result = array();
         if($dres['error']['err_code'] == '1' || $gres['error']['err_code'] == '1')
@@ -67,7 +64,7 @@ class rate extends DB {
         foreach ($params['diamondrates'] as $key=>$val)
         {
            
-            $tmpparams= array('id' =>$key,'price_per_carat'=>$val,'updatedby'=>$params['userid']);
+            $tmpparams= array('id' =>  intval($key+1),'price_per_carat'=>$val,'updatedby'=>$params['userid']);
                 
             
            $sql.="(" . $tmpparams['id'] . "," . $tmpparams['price_per_carat'] . ",now()," . $tmpparams['updatedby'] . "),";
@@ -169,15 +166,9 @@ class rate extends DB {
             $result['diamondRates']=$dmdrates['result'];
         }   
         
-        
-        
-        
         $results = array('result' => $result, 'error' => $err);
         return $results;
-        
-        
-        
-        
+       
     }
     
     

@@ -194,7 +194,8 @@ switch($action)
     case 'addRates':
         include APICLUDE.'class.rate.php';
         $obj	= new rate($db['jzeva']);
-        $result	=$obj->addRates();
+        $tmpaparams = array($params['dt']);
+        $result	=$obj->addRates($tmpaparams);
         $res = $result;
     break;
 
