@@ -13,27 +13,10 @@
                         <div class="listHeaderCom fLeft fmOpenR">
                             <div class="catName fLeft">Category Name</div>
                             <div class="parentName fLeft">Parents</div>
-                            <div class="dPos fLeft">Display Pos.</div>
+                            <div class="dPos fLeft op0">Display Pos.</div>
                             <div class="cactt fLeft">Action</div>
                         </div>
-                        <ul class="commonList fLeft fmOpenR">
-                            <?php for($i=0;$i<15;$i++){?>
-                            <li>
-                                <div class="catName fLeft">Office Wear Rings</div>
-                                <div class="parentName fLeft">Jewellery,Rings</div>
-                                <div class="dPos fLeft">0</div>
-                                <div class="cactt fLeft">
-                                    <div class="deltBtn fRight transition300"></div>
-                                    <div class="editBtn fRight transition300"></div>
-                                    <div class="toggle-button toggle-button-selected  fLeft">      
-                                        <span class="fActive">On</span>      
-                                        <button class="button"></button>  
-                                        <span class="fDactive">Off</span>   
-                                    </div>
-                                </div>
-                            </li>
-                            <?php } ?>
-                        </ul>
+                        <ul class="commonList fLeft fmOpenR"></ul>
                         <div class="fLeft pagination fmOpenR">
                             <center>
                                 <div class="pPrev poR transition300">Previous</div>
@@ -46,14 +29,6 @@
                 </div>
             </div>
         </div>
-        <script>
-            $(document).ready(function() {
-                $('.toggle-button').click(function(){
-                   $(this).toggleClass('toggle-button-selected'); 
-                });
-            });
-                  
-        
-        </script>
+        <script type="text/javascript" src="<?php echo $jvs['category']; ?>"></script>
     </body>
 </html>

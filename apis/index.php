@@ -38,7 +38,8 @@ switch($action)
     case 'changeCategoryStatus':
         include APICLUDE.'class.category.php';
         $obj	= new category($db['jzeva']);
-        $tmpparams=array('active_flag'=>$params['active_flag'],'userid'=>$params['userid'],'catid'=>$params['catid']);
+        $tmpparams=array($params['dt']);
+        //$tmpparams=array('active_flag'=>$params['active_flag'],'userid'=>$params['userid'],'catid'=>$params['catid']);
         $result	=$obj->changeCategoryStatus($tmpparams);
         $res = $result;
     break;

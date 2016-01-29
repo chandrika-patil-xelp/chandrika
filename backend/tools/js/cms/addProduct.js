@@ -47,7 +47,7 @@ function generateHtml(res, id)
 {
     var str = '';
     $.each(res.result, function(i, v) {
-        if (v.pid == id)
+        if (v.pid == id && v.active=="1")
         {
             str += "<div class='checkDiv txtCap'>";
             str += "<input type='checkbox' name='prtcateg' class='filled-in isparent' value='" + v.cid + "' id='cat_" + v.cid + "'>";
@@ -395,7 +395,7 @@ function bindShapes()
 
 var metalPurityCust = true;
 var metalColorCust = true;
-$(document).ready(function() {
+$(document).ready(function() {lo
     $('textarea').increaseAuto();
 
     bindShapes();
@@ -407,8 +407,6 @@ $(document).ready(function() {
 //    $('#uncut_Section').hide();
 //    $('#solitaires_Section').hide();
 //    $('#price_Section').hide();
-
-
 //gpurityCustomize
 
 

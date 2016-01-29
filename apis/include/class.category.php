@@ -67,10 +67,10 @@ class category extends DB
     {
         
         $sql="SELECT "
-                . "catid,pcatid,cat_name "
+                . "catid,pcatid,cat_name,active_flag "
                     . "FROM"
-                        . " tbl_category_master "
-                            . "WHERE active_flag = 1";
+                        . " tbl_category_master ";
+                            
         
         $res=  $this->query($sql);
         if($res)
@@ -80,6 +80,7 @@ class category extends DB
                 $reslt['cid']       =    $row['catid'];
                 $reslt['pid']       =    $row['pcatid'];
                 $reslt['name']      =    $row['cat_name'];
+                $reslt['active']      =    $row['active_flag'];
                 $result[]=$reslt;
                 
             }
@@ -97,6 +98,8 @@ class category extends DB
     
     public function changeCategoryStatus($params)
     {
+        
+        $params=json_decode($params[0],1);
         $sql="UPDATE "
                 . "tbl_category_master "
                     . "SET "
