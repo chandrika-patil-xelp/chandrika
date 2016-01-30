@@ -37,6 +37,19 @@ switch ($action) {
     case 'addCategory':
         $page = 'addCategory';
         $tab = 'category';
+        $edit=0;
+        include BTEMPLATE.'addCategory.html';
+        break;
+    
+    case 'editCategory':
+        $page = 'addCategory';
+        $tab = 'category';
+        $cid=$params['cid'];
+        $url = APIDOMAIN . "index.php?action=getCategoryDetails&catid=" . $cid;
+        $res = $comm->executeCurl($url);
+        $data = $res['result'];
+        $data= json_encode($data);
+        $edit=1;
         include BTEMPLATE.'addCategory.html';
         break;
     
@@ -51,8 +64,6 @@ switch ($action) {
         $tab = 'attribute';
         include APICLUDE.'class.attributes.php';
         $obj = new attributes($db['jzeva']);
-        $colm = $obj->columnNames();
-        //echo "<pre>";print_r($colm);die;
         include BTEMPLATE.'addAttribute.html';
         break;
     

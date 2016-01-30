@@ -1,6 +1,6 @@
 <?php
 
-include APICLUDE.'common/db.class.php';
+require_once APICLUDE.'common/db.class.php';
 class category extends DB
 {
     function __construct($db) 
@@ -10,54 +10,52 @@ class category extends DB
     
     public function addCategory($params)
     {   
-        $arrs=explode(",", $params['attrs']);
+        $params = json_decode($params[0],1);
+        $catid=0;
         if(!$params['catid'])
         {
-            $sql="INSERT INTO "
-                    . "tbl_category_master "
-                    . "(pcatid,cat_name,createdon,updatedby) "
-                    . "VALUES(".$params['pcatid'].",'".$params['cat_name']."',now(),".$params['userid'].")";
-        }
-        else        
-        {
-            $sql="Update "
-                    . "tbl_category_master "
-                    . "SET  "
-                    . "pcatid =".$params['pcatid'].",cat_name='".$params['cat_name']."',createdon=now(),updatedby='".$params['userid']."' WHERE catid=".$params['catid']."";
-        }
+            global $comm;
+            $params['catid']=$comm->generateId();
         
-        $res=$this->query($sql);
-        
-        if(!$params['catid'])
-        {
-            
-            $catid=  $this->lastInsertedId();
-            foreach ($arrs as $val)
-            {   
-                $aflag=1;
-                $tmparams=  array('catid'=>$catid,'attributeid'=>$val,'userid'=>$params['userid'],'active_flag'=>$aflag);
-                $this->addCatAttrMapping($tmparams);
-            }
         }
         else
         {
-            $catid=$params['catid'];
-            $activesql="UPDATE tbl_category_attribute_mapping SET active_flag =1  WHERE catid=".$catid." AND attributeid IN(".$params['attrs'].")";
-            $dactivesql="UPDATE tbl_category_attribute_mapping SET active_flag =2  WHERE catid=".$catid." AND attributeid NOT IN(".$params['attrs'].")";
-            
-            $ares=  $this->query($activesql);
-            $dares=  $this->query($dactivesql);
+            $catid= $params['catid'];
         }
         
-
+        $sql="INSERT INTO "
+                . "tbl_category_master (catid,pcatid,cat_name,createdon,updatedby)"
+                . " VALUES("
+                        . "'".urldecode($params['catid'])."',"
+                        . "'".urldecode($params['pcatid'])."',"
+                        . "'".urldecode($params['cat_name'])."',"
+                        . "now(),"
+                        . "".$params['userid'].") "
+                        . "ON DUPLICATE KEY UPDATE "
+                                . "pcatid=VALUES(pcatid),"
+                                . "cat_name=VALUES(cat_name),"
+                                . "updatedby=VALUES(updatedby)";
+        
+        
+        $res=$this->query($sql);
+        
+        $attrs=  urldecode($params['attrs']);
+        
+            $attrsAr =explode(",",$attrs);
+            $tmparams=  array('catid'=>$params['catid'],'attributeids'=>$attrsAr,'userid'=>$params['userid']);
+            $this->addCatAttrMapping($tmparams);
+        
         
         $result=array();
         if($res)
         {
             $err=array('err_code'=>0,'err_msg'=>'Data inserted successfully');
-        }else{
+        }
+        else
+        {
             $err=array('err_code'=>1,'err_msg'=>'Error in inserting');
         }
+        
         $results=array('result'=>$result,'error'=>$err);
         return $results;
     }
@@ -69,7 +67,7 @@ class category extends DB
         $sql="SELECT "
                 . "catid,pcatid,cat_name,active_flag "
                     . "FROM"
-                        . " tbl_category_master ";
+                        . " tbl_category_master ORDER BY createdon DESC";
                             
         
         $res=  $this->query($sql);
@@ -121,15 +119,18 @@ class category extends DB
     
     public function addCatAttrMapping($params)
     {
-        $sql="INSERT INTO tbl_category_attribute_mapping (catid,attributeid,createdon,updatedby) VALUES("
-                . "'".$params['catid']."',"
-                . "'".$params['attributeid']."',"
-                ."now(),"
-                . "'".$params['userid']."')"
-                . " ON DUPLICATE KEY UPDATE"
-                . " active_flag = '".$params['active_flag']."',"
-                . "createdon = now(),"
-                . "updatedby = '".$params['userid']."'";
+        $dactivesql="UPDATE tbl_category_attribute_mapping SET active_flag =2  WHERE catid=".$params['catid'];
+        $dares=  $this->query($dactivesql);
+                
+        $sql="INSERT INTO tbl_category_attribute_mapping (catid,attributeid,createdon,updatedby) VALUES";
+        foreach($params['attributeids'] as $key=>$val)
+        {
+            $tmpparams = array('catid' => $params['catid'],'attributeid'=>$val,'userid' => $params['userid']);
+            $sql.="('" . $tmpparams['catid'] . "','" . $tmpparams['attributeid'] . "',now()," . $tmpparams['userid'] . "),";
+        }
+            
+        $sql = trim($sql, ",");
+        $sql.=" ON DUPLICATE KEY UPDATE updatedby=VALUES(updatedby),active_flag=1";
         
         $res=$this->query($sql);
         $result=array();
@@ -144,6 +145,8 @@ class category extends DB
         return $results;
         
     }
+    
+    
     
     public function manageCatAttrMapping($params)
     {
@@ -165,12 +168,11 @@ class category extends DB
     
     public function getCategoryDetails($params)
     {   
-        
-        $sql="SELECT catid,pcatid,cat_name,cat_lvl,lineage,active_flag,createdon,updatedon,updatedby FROM tbl_category_master  WHERE catid="."'".$params['catid']."'";
-        $res=  $this->query($sql);
+        $sql  = "SELECT catid,pcatid,cat_name,cat_lvl,lineage,active_flag,createdon,updatedon,updatedby FROM tbl_category_master WHERE catid='".$params['catid']."'";
+        $res  = $this->query($sql);
         if($res)
         {
-            $row=  $this->fetchData($res);            
+            $row                        =  $this->fetchData($res);
             $catreslt['id']             =  $row['catid'];
             $catreslt['pid']            =  $row['pcatid'];
             $catreslt['name']           =  $row['cat_name'];
@@ -187,13 +189,14 @@ class category extends DB
         {
             $err=array('err_code'=>1,'err_msg'=>'Error in fetching data');
         }
-        
-        $mapreslt=$this->getCatMapping($params['catid']);
+       
+        $mapreslt=$this->getCatMapping($params);
         
         $result['category']=$catreslt;
         $result['mapping']=$mapreslt['result'];
         
         $results=array('result'=>$result,'error'=>$err);
+        
         return $results;
         
     }
@@ -201,17 +204,19 @@ class category extends DB
     
     public function getCatMapping($params)
     {
+        global $db;
+        require_once APICLUDE.'class.attributes.php';
+        $attrobj=new attributes($db['jzeva']);
         
-        $sql="Select catid,attributeid from tbl_category_attribute_mapping  WHERE active_flag=1 AND catid="."'".$params['catid']."'";
+        $sql="Select catid,attributeid from tbl_category_attribute_mapping  WHERE active_flag=1 AND catid='".$params['catid']."'";
         $res=$this->query($sql);
         
         if($res)
         {
+            
             while ($row=$this->fetchData($res))
             {
-                global $db;
-                include_once APICLUDE.'class.attributes.php';
-                $attrobj=new attributes($db['jzeva']);
+                
                 $atrparm=array('attributeid'=>$row['attributeid']);
                 $attreslt=$attrobj->getAttributeDetails($atrparm);
                 $reslt['attributes']=$attreslt['result'];

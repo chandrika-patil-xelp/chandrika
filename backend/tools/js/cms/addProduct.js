@@ -395,7 +395,7 @@ function bindShapes()
 
 var metalPurityCust = true;
 var metalColorCust = true;
-$(document).ready(function() {lo
+$(document).ready(function() {
     $('textarea').increaseAuto();
 
     bindShapes();

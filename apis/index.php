@@ -6,28 +6,22 @@ $action = $_GET['action'];
 
 if($params['debug'])
 {
-    echo "<pre>";
-    print_r($params);
-    echo "</pre>";
+    echo "<pre>";    print_r($params);  echo "</pre>";
     
 }
+
 
 
 switch($action)
 {
     #Category
-    
     case 'addCategory':
         include APICLUDE.'class.category.php';
         $obj	= new category($db['jzeva']);
-        if($params['catid'])        
-            $tmpparams=array('pcatid'=>$params['pcatid'],'cat_name'=>$params['cat_name'],'userid'=>$params['userid'],'catid'=>$params['catid'],'attrs'=>$params['attrs']);
-        else
-            $tmpparams=array('pcatid'=>$params['pcatid'],'cat_name'=>$params['cat_name'],'userid'=>$params['userid'],'attrs'=>$params['attrs']);
+        $tmpparams = array($params['dt']);
         $result	=$obj->addCategory($tmpparams);
         $res = $result;
-    break;
-    
+    break;    
     case 'getCatgoryList':
         include APICLUDE.'class.category.php';
         $obj	= new category($db['jzeva']);
@@ -89,11 +83,16 @@ switch($action)
     case 'addAttribute':
         include APICLUDE.'class.attributes.php';
         $obj	= new attributes($db['jzeva']);
-        if($params['attributeid'])        
-            $tmpparams=array('attributeid'=>$params['attributeid'],'attr_name'=>$params['attr_name'],'attr_type'=>$params['attr_type'],'attr_unit'=>$params['attr_unit'],'attr_unit_pos'=>$params['attr_unit_pos'],'attr_pos'=>$params['attr_pos'],'map_column'=>$params['map_column'],'userid'=>$params['userid']);
-        else
-            $tmpparams=array('attr_name'=>$params['attr_name'],'attr_type'=>$params['attr_type'],'attr_unit'=>$params['attr_unit'],'attr_unit_pos'=>$params['attr_unit_pos'],'attr_pos'=>$params['attr_pos'],'map_column'=>$params['map_column'],'userid'=>$params['userid']);
-        $result	=$obj->addAttribute($tmpparams);
+        
+//        if($params['attributeid'])        
+//            $tmpparams=array('attributeid'=>$params['attributeid'],'attr_name'=>$params['attr_name'],'attr_type'=>$params['attr_type'],'attr_unit'=>$params['attr_unit'],'attr_unit_pos'=>$params['attr_unit_pos'],'attr_pos'=>$params['attr_pos'],'attr_values'=>$params['attr_values'],'userid'=>$params['userid']);
+//        else
+//            $tmpparams=array('attr_name'=>$params['attr_name'],'attr_type'=>$params['attr_type'],'attr_unit'=>$params['attr_unit'],'attr_unit_pos'=>$params['attr_unit_pos'],'attr_pos'=>$params['attr_pos'],'attr_values'=>$params['attr_values'],'userid'=>$params['userid']);
+//        
+        $tmpaparams = array($params['dt']);
+        
+      
+        $result	=$obj->addAttribute($tmpaparams);
         $res = $result;
     break;
     
@@ -107,7 +106,7 @@ switch($action)
     case 'changeAttributeStatus':
         include APICLUDE.'class.attributes.php';
         $obj	= new attributes($db['jzeva']);
-        $tmpparams=array('active_flag'=>$params['active_flag'],'userid'=>$params['userid'],'attributeid'=>$params['attributeid']);
+        $tmpparams=array($params['dt']);
         $result	=$obj->changeAttributeStatus($tmpparams);
         $res = $result;
     break;
@@ -239,10 +238,9 @@ switch($action)
 
     
     case 'test':
-        include APICLUDE.'class.product.php';
-        $obj	= new product($db['jzeva']);
-        $result	=$obj->test();
-        $res = $result;
+        include APICLUDE.'class.attributes.php';
+        $obj	= new category($db['jzeva']);
+        $result	=$obj->getCatgoryList();
     break;
 
 

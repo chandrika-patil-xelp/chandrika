@@ -47,6 +47,9 @@ $jvs = array();
         $jvs['rate']                    = BACKDOMAIN.'tools/js/cms/rate.js?v='.VERSION;
         $jvs['category']                = BACKDOMAIN.'tools/js/cms/category.js?v='.VERSION;
         $jvs['addCategory']             = BACKDOMAIN.'tools/js/cms/addCategory.js?v='.VERSION;
+        $jvs['addAttribute']            = BACKDOMAIN.'tools/js/cms/addAttribute.js?v='.VERSION;
+        $jvs['attribute']               = BACKDOMAIN.'tools/js/cms/attribute.js?v='.VERSION;
+        
 #JS End
         
         

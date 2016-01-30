@@ -51,7 +51,7 @@ function categoryCallBack(data)
         str += "<div class='dPos fLeft op0'>0</div>";
         str += "<div class='cactt fLeft'>";
         str += "<div class='deltBtn fRight transition300' onclick=\"changeStatus('" + categories[i]['cid'] + "',this,3)\"></div>";
-        str += "<div class='editBtn fRight transition300'></div>";
+        str += "<a href='"+DOMAIN+"backend/?action=editCategory&cid=" + categories[i]['cid'] + "'><div class='editBtn fRight transition300'></div></a>";
 
         if (categories[i]['active'] == "1")
         {
@@ -148,4 +148,15 @@ function getCatName(cid) {
         }
     });
     return name;
+}
+
+
+
+function editCat(cid)
+{
+    //alert(cid);
+    var URL =APIDOMAIN + "index.php?action=getCategoryDetails&catid="+cid;
+    
+    
+    
 }

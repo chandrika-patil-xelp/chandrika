@@ -8,7 +8,8 @@
                         <div class="commTitle1 fLeft fmOpenL">Add a new attribute</div>
                         <div class="divCon  fLeft">
                             <div class="titleDiv txtCap fLeft">Select Attribute Type</div>
-                            <select class="txtSelect fLeft fmOpenR font14 c666">
+                            <select class="txtSelect fLeft fmOpenR font14 c666" id="attr_type">
+                                <option value="0">Textbox</option>
                                 <option value="1">Checkbox</option>
                                 <option value="2">Radio Button</option>
                                 <option value="3">Dropdown</option>
@@ -18,22 +19,22 @@
                         </div>
                         <div class="divCon  fLeft">
                             <div class="titleDiv txtCap fLeft">Attribute Name *</div>
-                            <input name="" type="text" id="catname" autocomplete="false"  placeholder="Please enter attribute name" class="txtInput fLeft fmOpenR font14 c666">
+                            <input name="" type="text" id="name" autocomplete="false"  placeholder="Please enter attribute name" class="txtInput fLeft fmOpenR font14 c666">
                         </div>
                         <div class="divCon  fLeft">
                             <div class="titleDiv txtCap fLeft">Attribute Unit</div>
-                            <input name="" type="text" id="catname" autocomplete="false"  placeholder="Please enter attribute name" class="txtInput fLeft fmOpenR font14 c666">
+                            <input name="" type="text" id="unit" autocomplete="false"  placeholder="Please enter attribute name" class="txtInput fLeft fmOpenR font14 c666">
                         </div>
                         <div class="divCon  fLeft">
                             <div class="titleDiv txtCap fLeft">Attribute Unit Position</div>
-                            <select class="txtSelect fLeft fmOpenR font14 c666">
-                                <option value="prefix">Prefix</option>
-                                <option value="postfix">Postfix</option>
+                            <select class="txtSelect fLeft fmOpenR font14 c666" id="upos">
+                                <option value="0">Prefix</option>
+                                <option value="1">Postfix</option>
                             </select>
                         </div>
                         <div class="divCon  fLeft">
                             <div class="titleDiv txtCap fLeft">Attribute Position</div>
-                            <input name="" type="text" id="catname" autocomplete="false"  placeholder="Please enter attribute name" class="txtInput fLeft fmOpenR font14 c666">
+                            <input name="" type="text" id="apos" autocomplete="false"  placeholder="Please enter attribute name" class="txtInput fLeft fmOpenR font14 c666" onkeypress="return common.isDecimalKey(event, this.value);">
                         </div>
                         <div class="divCon  fLeft">
                             <div class="titleDiv txtCap fLeft">Add Attribute Values*</div>
@@ -43,54 +44,14 @@
                         <div class="btnCont fLeft">
                             <center>
                                 <div class="cancelBtn transition300 fmOpenR poR" onclick="">CANCEL</div>
-                                <div class="submitBtn transition300 fmOpenR poR" onclick="" id="Submitdiv">SUBMIT</div>
+                                <div class="submitBtn transition300 fmOpenR poR" onclick="addAttribute()" id="Submitdiv">SUBMIT</div>
                             </center>
                         </div>                        
                     </div>
                 </div>
             </div>
         </div>
-        <script>
-            var tagArray=new Array();
-            $(document).ready(function(){
-                $('#attrinpVal').on('keypress',function(evt){
-                    var charCode = (evt.which) ? evt.which : evt.keyCode;
-                    if(charCode == 13 || charCode == 44)
-                        addAttrValues();
-
-                });
-            });
-            
-            function addAttrValues(){
-                var vals=$('#attrinpVal').val();
-                var txtid="attr_val_"+vals
-                if(tagArray.indexOf(txtid)==-1){
-                    var str="<div id='"+txtid+"' class='tagcloud fLeft'>"+vals+"</div>";
-                    $('#attrValues').append(str);
-                    tagArray.push(txtid);
-                    bindTags();
-                    setTimeout(function(){
-                        $('#attrinpVal').val('');
-                    },100);
-                }else{
-                    setTimeout(function(){
-                        $('#attrinpVal').val('');
-                    },100);
-                }
-            }
-                
-            function bindTags(){
-                $('.tagcloud').click(function(){
-                    var id=$(this).attr('id');
-                    var _th=this;
-                    setTimeout(function(){
-                        $(_th).remove();
-                        var removeItem = id;
-                        tagArray = jQuery.grep(tagArray, function(value) {return value !== removeItem;});
-                    },100);
-                });
-            }        
-            
-        </script>
+        <script type="text/javascript" src="<?php echo $jvs['addAttribute']; ?>"></script>
+        <script>var attributeid="";</script>
     </body>
 </html>

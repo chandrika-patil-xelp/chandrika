@@ -68,5 +68,15 @@
                 }
                     return strrev($m);
                 }
+                
+                
+                
+                public function generateId() {
+                    $curdate = date('YmdHis');
+                    $rNo = mt_rand(11, 99);
+
+                    $genId = $rNo . $curdate;
+                    return $genId;
+                }
     }
 ?>

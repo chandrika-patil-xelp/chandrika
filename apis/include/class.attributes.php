@@ -1,6 +1,6 @@
 <?php
 
-include_once  APICLUDE.'common/db.class.php';
+require_once 'class.category.php';
 class attributes extends DB
 {
     function __construct($db) 
@@ -8,71 +8,56 @@ class attributes extends DB
             parent::DB($db);
     }
     
-    public function columnNames()
-    {
-        $sql = "SHOW COLUMNS FROM tbl_product_master";
-        $res = $this->query($sql);
-        while($row = $this->fetchData($res))
-        {
-            /* if($row['Field'] != 'productid' && $row['Field'] != 'has_diamond' && $row['Field'] != 'has_solitaire' && $row['Field'] != 'has_uncut' && $row['Field'] != 'has_gemstone' && $row['Field'] != 'createdon' && $row['Field'] != 'updatedon' && $row['Field'] != 'updatedby' && $row['Field'] != 'product_code' && $row['Field'] != 'vendorid')
-            {
-                $tmp['field'] = 'tbl_';
-                $tmp['name'] = 'On Price Field';
-                $arr[] = $tmp;
-                
-                //price
-                //purity
-                //material
-                //gemstone
-                //diamond
-                //gemstone color
-                //size
-                //gender
-            } */
-            $arr = array('Price','Purity','Material','Gemstone','Diamond Type','Gemstone Color','Size','Gender');
-        }
-        return $arr;
-    }
+    
     
     public function addAttribute($params)
     {
+        
+        $params = json_decode($params[0],1);
         if(!$params['attributeid'])
         {
-        $sql="INSERT INTO"
-                . " tbl_attribute_master "
-                    . "(attr_name,attr_type,attr_unit,attr_unit_pos,attr_pos,map_column,createdon,updatedby)"
-                    . "VALUES("
-                        . "'".$params['attr_name']."',"
-                        . "".$params['attr_type'].","
-                        . "'".$params['attr_unit']."',"
-                        . "".$params['attr_unit_pos'].","
-                        . "".$params['attr_pos'].","
-                        . "'".$params['map_column']."',"
-                        . "now(),"
-                        . "".$params['userid'].")";
+            global $comm;
+            $params['attributeid']=$comm->generateId();
+        
         }
         else
         {
-            $sql="UPDATE tbl_attribute_master "
-                    . "SET "
-                            ."attr_name='".$params['attr_name']
-                            ."',attr_type=".$params['attr_type']
-                            .",attr_unit='".$params['attr_unit']
-                            ."',attr_unit_pos=".$params['attr_unit_pos']
-                            .",attr_pos=".$params['attr_pos']
-                            .",map_column='".$params['map_column']
-                            ."',updatedby='".$params['userid']
-                            ."'"
-                        ."WHERE "
-                            . "attributeid=".$params['attributeid']."";
+            $attributeid= $params['attributeid'];
+            
         }
+                
+        $sql="INSERT INTO"
+                . " tbl_attribute_master "
+                    . "(attributeid,attr_name,attr_type,attr_unit,attr_unit_pos,attr_pos,attr_values,createdon,updatedby)"
+                    . "VALUES("
+                        . "'".urldecode($params['attributeid'])."',"
+                        . "'".urldecode($params['attr_name'])."',"
+                        . "".$params['attr_type'].","
+                        . "'".$params['attr_unit']."',"
+                        . "'".$params['attr_unit_pos']."',"
+                        . "'".$params['attr_pos']."',"
+                        . "'".urldecode($params['attr_values'])."',"
+                        . "now(),"
+                        . "".$params['userid'].") "
+                . "ON DUPLICATE KEY UPDATE "
+                        . "attr_name = VALUES(attr_name),"
+                        . "attr_type=VALUES(attr_type),"
+                        . "attr_unit=VALUES(attr_unit),"
+                        . "attr_unit_pos=VALUES(attr_unit_pos),"
+                        . "attr_pos=VALUES(attr_pos),"
+                        . "attr_values = VALUES(attr_values),"
+                        . "updatedby=VALUES(updatedby)";
+        
+        
         
         $res=$this->query($sql);
         $result=array();
         if($res)
         {
             $err=array('err_code'=>0,'err_msg'=>'Data inserted successfully');
-        }else{
+        }
+        else
+        {
             $err=array('err_code'=>1,'err_msg'=>'Error in inserting');
         }
         $results=array('result'=>$result,'error'=>$err);
@@ -84,22 +69,25 @@ class attributes extends DB
     public function getAttributeList()
     {
         
-        $sql="SELECT attributeid,attr_name,attr_type,attr_unit,attr_unit_pos,attr_pos,map_column FROM tbl_attribute_master WHERE active_flag=1 ORDER By attributeid";
-        $res=$this->query($sql);
+        $sql1="SELECT attributeid,attr_name,attr_type,attr_unit,attr_unit_pos,attr_pos,attr_values,active_flag FROM tbl_attribute_master ORDER BY createdon DESC";
+        $res1=$this->query($sql1);
         
-        if($res)
+        if($res1)
         {
-            while ($row=$this->fetchData($res))
+            while ($row1=$this->fetchData($res1))
             {
-               
-                $reslt['id']         = $row['attributeid'];
-                $reslt['name']       = $row['attr_name'];
-                $reslt['type']       = intval($row['attr_type']);
-                $reslt['unit']       = $row['attr_unit'];
-                $reslt['upos']       = intval($row['attr_unit_pos']);
-                $reslt['apos']       = intval($row['attr_pos']);
-                $reslt['col']        = $row['map_column'];
+                
+                $reslt['id']            = $row1['attributeid'];
+                $reslt['name']          = $row1['attr_name'];
+                $reslt['type']          = intval($row1['attr_type']);
+                $reslt['unit']          = $row1['attr_unit'];
+                $reslt['upos']          = intval($row1['attr_unit_pos']);
+                $reslt['apos']          = intval($row1['attr_pos']);
+                $reslt['vals']          = $row1['attr_values'];
+                $reslt['active']        = $row1['active_flag'];
+                $reslt['catg']          = $this->getMappedCatg($row1['attributeid']);
                 $result[]=$reslt;
+                
             }
             $err=array('err_code'=>0,'err_msg'=>'Data fetched successfully');
         }
@@ -114,10 +102,36 @@ class attributes extends DB
     }
     
     
+    public function getMappedCatg($aid)
+    {
+        global $db;
+        $sql="SELECT catid FROM tbl_category_attribute_mapping WHERE attributeid=".$aid."";
+        $res = $this->query($sql);        
+        if($res)
+        {
+           
+            $catobj=new category($db['jzeva']);
+            $catg=array();
+            while ($row = $this->fetchData($res))
+            {
+                $cparams= array('catid'=>$row['catid']);
+                $cres=$catobj->getCategoryDetails($cparams);
+                $name=$cres['result']['category']['name'];
+                array_push($catg, $name);
+                
+            }
+            $ct=implode($catg,",");
+            return $ct;
+        }
+        
+    }
+    
     
     public function changeAttributeStatus($params)
     {
-
+        
+        $params= json_decode($params[0],1);
+        
         $sql="UPDATE tbl_attribute_master "
                     . "SET "
                             ."active_flag='".$params['active_flag']
@@ -143,7 +157,7 @@ class attributes extends DB
     
     public function getAttributeDetails($params)
     {
-        $sql="SELECT attributeid,attr_name,attr_type,attr_unit,attr_unit_pos,attr_pos,map_column,active_flag,createdon,updatedon,updatedby FROM tbl_attribute_master WHERE attributeid="."'".$params['attributeid']."'";
+        $sql="SELECT attributeid,attr_name,attr_type,attr_unit,attr_unit_pos,attr_pos,attr_values,active_flag,createdon,updatedon,updatedby FROM tbl_attribute_master WHERE attributeid="."'".$params['attributeid']."'";
         
         $res=  $this->query($sql);
         if($res)
@@ -156,7 +170,7 @@ class attributes extends DB
             $reslt['unit']= $row['attr_unit'];
             $reslt['upos']= $row['attr_unit_pos'];
             $reslt['apos']= $row['attr_pos'];
-            $reslt['col']= $row['map_column'];
+            $reslt['values']= $row['attr_values'];
             $reslt['aflag']= $row['active_flag'];
             $reslt['createdon']= $row['createdon'];
             $reslt['updatedon']= $row['updatedon'];
