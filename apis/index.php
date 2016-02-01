@@ -235,6 +235,16 @@ switch($action)
         $res = $result;
     break;
 
+    // Get product details list with mapping
+    //localhost:8080/jzeva/apis/?action=getProductById&pid=1720160125153911
+    case 'getProductById':
+        include APICLUDE.'class.product.php';
+        $obj	= new product($db['jzeva']);
+        $tmpParams = array('pid'=>$params['pid']);
+        $result	=$obj->getProductById($tmpParams);
+        $res = $result;
+    break;
+
 
     
     case 'test':

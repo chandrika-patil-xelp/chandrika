@@ -145,6 +145,7 @@ class rate extends DB {
     
     
     
+    
     public function getAllRates()
     {
         

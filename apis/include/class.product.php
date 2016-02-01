@@ -865,8 +865,620 @@ class product extends DB {
         return $results;
         
     }
-    
-    
+
+    public function getProductById($params) {
+
+        try {
+            $productSql = "SELECT 
+                                *
+                        FROM 
+                                tbl_product_master
+                        WHERE 
+                               productid = " . $params['pid'] . " ";
+            // WHERE active_flag=1 ";
+            $res = $this->query($productSql);
+            if ($res) {
+                while ($row = $this->fetchData($res)) {
+
+                    $arr['prdId'] = $row['productid'];
+                    $arr['prdCod'] = $row['product_code'];
+                    $arr['vndId'] = $row['vendorid'];
+                    $arr['prdNm'] = $row['product_name'];
+                    $arr['prdSeo'] = $row['product_seo_name'];
+                    $arr['gender'] = $row['gender'];
+                    $arr['prdWgt'] = $row['product_weight'];
+                    $arr['dmdStng'] = $row['diamond_setting'];
+                    $arr['mtlWgt'] = $row['metal_weight'];
+                    $arr['mkngCrg'] = $row['making_charges'];
+                    $arr['procmtCst'] = $row['procurement_cost'];
+                    $arr['mrgn'] = $row['margin'];
+                    $arr['mesmnt'] = $row['measurement'];
+                    $arr['custPurty'] = $row['customise_purity'];
+                    $arr['custClor'] = $row['customise_color'];
+                    $arr['crtficte'] = $row['certificate'];
+                    $arr['hasDmd'] = $row['has_diamond'];
+                    $arr['hasSol'] = $row['has_solitaire'];
+                    $arr['hasUnct'] = $row['has_uncut'];
+                    $arr['hasGem'] = $row['has_gemstone'];
+                    $arr['crtdOn'] = $row['createdon'];
+                    $arr['updtOn'] = $row['updatedon'];
+                    $arr['updtBy'] = $row['updatedby'];
+                }
+
+                $gemstone = $this->getProductGemstone($params);
+                $solitaire = $this->getProductSolitaire($params);
+                $uncut = $this->getProductUncut($params);
+                $size = $this->getProductSize($params);
+                $vendor = $this->getProductVendor($params);
+                $metalColor = $this->getProductMetalColor($params);
+                $metalPurity = $this->getProductMetalPurity($params);
+                $discount = $this->getProductDiscount($params);
+                $dimond = $this->getProductDiamond($params);
+                $catAttr = $this->getCatMap($params);
+                // $sizeMaster = $this->getProductSizeMaster($params);
+
+                $result = array(
+                    'basicDetails' => $arr,
+                    'gamestone' => $gemstone,
+                    'solitaire' => $solitaire,
+                    'uncut' => $uncut,
+                    'size' => $size,
+                    'vendor' => $vendor,
+                    'metalColor' => $metalColor,
+                    'metalPurity' => $metalPurity,
+                    'discount' => $discount,
+                    'dimond' => $dimond,
+                    'catAttr' => $catAttr
+                );
+                $err = array('err_code' => 0, 'err_msg' => 'Data fetched successfully');
+            } else {
+                $err = array('err_code' => 1, 'err_msg' => 'Error in fetching data');
+            }
+            $results = array('results' => $result, 'error' => $err);
+        } catch (Exception $e) {
+            echo 'Exection in API getProductById message : ' . $e->getMessage();
+        }
+        return $results;
+    }
+
+    public function getProductGemstone($params) {
+        try {
+            $count = 0;
+            $sql = "SELECT 
+                                *
+                        FROM 
+                                tbl_product_gemstone_mapping
+                        WHERE 
+                                productid = " . $params['pid'] . " ";
+            // WHERE active_flag=1 ";
+            $res = $this->query($sql);
+            if ($res) {
+                while ($row = $this->fetchData($res)) {
+                    $arr['prdId'] = $row['productid'];
+                    $arr['gemId'] = $row['gemstone_id'];
+                    $arr['gemNm'] = $row['gemstone_name'];
+                    $arr['totNo'] = $row['total_no'];
+                    $arr['crat'] = $row['carat'];
+                    $arr['prcPrCrat'] = $row['price_per_carat'];
+                    $arr['actFlg'] = $row['active_flag'];
+                    $arr['crtdOn'] = $row['createdon'];
+                    $arr['updtOn'] = $row['updatedon'];
+                    $arr['updtBy'] = $row['updatedby'];
+                    $count++;
+                }
+            }
+
+            return array('count' => $count, 'results' => $arr);
+        } catch (Exception $e) {
+            echo 'Exection in function getProductGemstone message : ' . $e->getMessage();
+        }
+    }
+
+    public function getProductDiscount($params) {
+        try {
+            $count = 0;
+            $sql = "SELECT 
+                                *
+                        FROM 
+                                tbl_discount_master
+                        WHERE 
+                                productid = " . $params['pid'] . " ";
+            // WHERE active_flag=1 ";
+            $res = $this->query($sql);
+            if ($res) {
+                while ($row = $this->fetchData($res)) {
+                    $arr['prdId'] = $row['productid'];
+                    $arr['disType'] = $row['discount_type'];
+                    $arr['disAmt'] = $row['discount_amount'];
+                    $arr['strtDate'] = $row['start_date'];
+                    $arr['endDate'] = $row['end_date'];
+                    $arr['actFlg'] = $row['active_flag'];
+                    $arr['crtdOn'] = $row['createdon'];
+                    $arr['updtOn'] = $row['updatedon'];
+                    $arr['updtBy'] = $row['updatedby'];
+                    $count++;
+                }
+            }
+            return array('count' => $count, 'results' => $arr);
+        } catch (Exception $e) {
+            echo 'Exection in function getProductDiscount message : ' . $e->getMessage();
+        }
+    }
+
+    public function getProductSolitaire($params) {
+        try {
+            $count = 0;
+            $sql = "SELECT 
+                                *
+                        FROM 
+                                tbl_product_solitaire_mapping
+                        WHERE 
+                                productid = " . $params['pid'] . " ";
+            // WHERE active_flag=1 ";
+            $res = $this->query($sql);
+            if ($res) {
+                while ($row = $this->fetchData($res)) {
+                    $arr['prdId'] = $row['productid'];
+                    $arr['soliId'] = $row['solitaire_id'];
+                    $arr['shape'] = $row['shape'];
+                    $arr['colr'] = $row['color'];
+                    $arr['clrty'] = $row['clarity'];
+                    $arr['cut'] = $row['cut'];
+                    $arr['symty'] = $row['symmetry'];
+                    $arr['polish'] = $row['polish'];
+                    $arr['flresce'] = $row['fluorescence'];
+                    $arr['carat'] = $row['carat'];
+                    $arr['prcPrCrat'] = $row['price_per_carat'];
+                    $arr['tblNo'] = $row['table_no'];
+                    $arr['crwnAngle'] = $row['crown_angle'];
+                    $arr['girdle'] = $row['girdle'];
+                    $arr['actFlg'] = $row['active_flag'];
+                    $arr['crtdOn'] = $row['createdon'];
+                    $arr['updtOn'] = $row['updatedon'];
+                    $arr['updtBy'] = $row['updatedby'];
+                    $count++;
+                }
+            }
+            return array('count' => $count, 'results' => $arr);
+        } catch (Exception $e) {
+            echo 'Exection in function getProductSolitaire message : ' . $e->getMessage();
+        }
+    }
+
+    public function getProductUncut($params) {
+        try {
+            $count = 0;
+            $sql = "SELECT 
+                                *
+                        FROM 
+                                tbl_product_uncut_mapping
+                        WHERE 
+                                productid = " . $params['pid'] . " ";
+            // WHERE active_flag=1 ";
+            $res = $this->query($sql);
+            if ($res) {
+                while ($row = $this->fetchData($res)) {
+                    $arr['prdId'] = $row['productid'];
+                    $arr['unctId'] = $row['uncut_id'];
+                    $arr['clor'] = $row['color'];
+                    $arr['qulty'] = $row['quality'];
+                    $arr['totNo'] = $row['total_no'];
+                    $arr['crat'] = $row['carat'];
+                    $arr['prcPrCrat'] = $row['price_per_carat'];
+                    $arr['actFlg'] = $row['active_flag'];
+                    $arr['crtdOn'] = $row['createdon'];
+                    $arr['updtOn'] = $row['updatedon'];
+                    $arr['updtBy'] = $row['updatedby'];
+                    $count++;
+                }
+            }
+            return array('count' => $count, 'results' => $arr);
+        } catch (Exception $e) {
+            echo 'Exection in function getProductUncut message : ' . $e->getMessage();
+        }
+    }
+
+    public function getProductSize($params) {
+        try {
+            $count = 0;
+            $sql = "
+                    SELECT 
+                                *
+                        FROM 
+                                tbl_product_size_mapping
+                        WHERE 
+                                productid = " . $params['pid'] . " ";
+            // WHERE active_flag=1 ";
+            $res = $this->query($sql);
+            if ($res) {
+                while ($row = $this->fetchData($res)) {
+                    $arr['prdId'] = $row['productid'];
+                    $arr['sizId'] = $row['size_id'];
+                    $arr['qnty'] = $row['quantity'];
+                    $arr['crtdOn'] = $row['createdon'];
+                    $arr['updtOn'] = $row['updatedon'];
+                    $arr['updtBy'] = $row['updatedby'];
+                    $arr['sizeMaster'] = $this->getSizeMasterByID(array('size_id' => $row['size_id']));
+                    $count++;
+                }
+            }
+            return array('count' => $count, 'results' => $arr);
+        } catch (Exception $e) {
+            echo 'Exection in function getProductSize message : ' . $e->getMessage();
+        }
+    }
+
+    public function getProductDiamond($params) {
+        try {
+            $count = 0;
+            $sql = "
+                    SELECT 
+                                *
+                        FROM 
+                                tbl_product_diamond_mapping
+                        WHERE 
+                                productid = " . $params['pid'] . "
+                                 
+                                    ";
+            // AND active_flag=1 ";
+            $res = $this->query($sql);
+            if ($res) {
+                while ($row = $this->fetchData($res)) {
+                    $arr['prdId'] = $row['productid'];
+                    $arr['dmdId'] = $row['diamond_id'];
+                    $arr['shap'] = $row['shape'];
+                    $arr['crat'] = $row['carat'];
+                    $arr['totNo'] = $row['total_no'];
+                    $arr['crtdOn'] = $row['createdon'];
+                    $arr['updtOn'] = $row['updatedon'];
+                    $arr['updtBy'] = $row['updatedby'];
+                    $arr['QualityMaster'] = $this->getQualityMap(array('diamond_id' => $row['diamond_id']));
+                    $count++;
+                }
+            }
+            return array('count' => $count, 'results' => $arr);
+        } catch (Exception $e) {
+            echo 'Exection in function getProductDiamond message : ' . $e->getMessage();
+        }
+    }
+
+    public function getCatMap($params) {
+        try {
+
+            $count = 0;
+            $sql = "
+                SELECT 
+                        * 
+                    FROM
+                         tbl_category_master
+                    WHERE
+                            active_flag =1
+                        AND
+                            catid IN(
+                                        SELECT 
+                                                catid
+                                        FROM 
+                                                tbl_category_product_mapping
+                                        WHERE
+                                                productid =" . $params['pid'] . " 
+                                        AND
+                                                active_flag =1
+                                    )
+                         ";
+            // WHERE active_flag=1 ";
+            $res = $this->query($sql);
+            if ($res) {
+                while ($row = $this->fetchData($res)) {
+                    $arr['catId'] = $row['catid'];
+                    $arr['pcatId'] = $row['pcatid'];
+                    $arr['catNm'] = $row['cat_name'];
+                    $arr['catLvl'] = $row['cat_lvl'];
+                    $arr['lineage'] = $row['lineage'];
+                    $arr['actFlg'] = $row['active_flag'];
+                    $arr['crtdOn'] = $row['createdon'];
+                    $arr['updtOn'] = $row['updatedon'];
+                    $arr['updtBy'] = $row['updatedby'];
+                    $arr['attrMaster'] = $this->getCatAttr(array('catid' => $row['catid']));
+                    $count++;
+                }
+            }
+            return array('count' => $count, 'results' => $arr);
+        } catch (Exception $e) {
+            echo 'Exection in function getCatMap message : ' . $e->getMessage();
+        }
+    }
+
+    public function getCatAttr($params) {
+        try {
+            $count = 0;
+            $sql = "
+                    SELECT 
+                        * 
+                    FROM
+                         tbl_attribute_master
+                    WHERE
+                            active_flag =1
+                        AND
+                            attributeid IN(
+                                        SELECT 
+                                                attributeid
+                                        FROM 
+                                                tbl_category_attribute_mapping
+                                        WHERE
+                                                catid =" . $params['catid'] . " 
+                                        AND
+                                                active_flag =1
+                                    )
+                          ";
+            // AND active_flag=1 ";
+            $res = $this->query($sql);
+            if ($res) {
+                while ($row = $this->fetchData($res)) {
+                    $arr['atrId'] = $row['attributeid'];
+                    $arr['atrNm'] = $row['attr_name'];
+                    $arr['atrValus'] = $row['attr_values'];
+                    $arr['atrTyp'] = $row['attr_type'];
+                    $arr['atrUnt'] = $row['attr_unit'];
+                    $arr['atrUntPos'] = $row['attr_unit_pos'];
+                    $arr['atrPos'] = $row['attr_pos'];
+                    $arr['actFlg'] = $row['active_flag'];
+                    $arr['crtdOn'] = $row['createdon'];
+                    $arr['updtOn'] = $row['updatedon'];
+                    $arr['updtBy'] = $row['updatedby'];
+                    $count++;
+                }
+            }
+            return array('count' => $count, 'results' => $arr);
+        } catch (Exception $e) {
+            echo 'Exection in function getCatAttr message : ' . $e->getMessage();
+        }
+    }
+
+    public function getQualityMap($params) {
+        try {
+
+            $count = 0;
+            $sql = "
+                SELECT 
+                        * 
+                    FROM
+                         tbl_diamond_quality_master
+                    WHERE
+                            active_flag =1
+                        AND
+                            id IN(
+                                        SELECT 
+                                                id
+                                        FROM 
+                                                tbl_diamond_quality_mapping
+                                        WHERE
+                                                diamond_id =" . $params['diamond_id'] . " 
+                                        AND
+                                                active_flag =1
+                                    )
+                         ";
+            // WHERE active_flag=1 ";
+            $res = $this->query($sql);
+            if ($res) {
+                while ($row = $this->fetchData($res)) {
+                    $arr['id'] = $row['id'];
+                    $arr['dNm'] = $row['dname'];
+                    $arr['dVal'] = $row['dvalue'];
+                    $arr['prcPrCrat'] = $row['price_per_carat'];
+                    $arr['actFlg'] = $row['active_flag'];
+                    $arr['crtdOn'] = $row['createdon'];
+                    $arr['updtOn'] = $row['updatedon'];
+                    $arr['updtBy'] = $row['updatedby'];
+                    $count++;
+                }
+            }
+            return array('count' => $count, 'results' => $arr);
+        } catch (Exception $e) {
+            echo 'Exection in function getQualityMap message : ' . $e->getMessage();
+        }
+    }
+
+    public function getSizeMasterByID($params) {
+        try {
+            $count = 0;
+            $sql = "
+                    SELECT 
+                                *
+                        FROM 
+                                tbl_size_master
+                        WHERE
+                                id =" . $params['size_id'] . " 
+                         ";
+            // WHERE active_flag=1 ";
+            $res = $this->query($sql);
+            if ($res) {
+                while ($row = $this->fetchData($res)) {
+                    $arr['id'] = $row['id'];
+                    $arr['nm'] = $row['name'];
+                    $arr['sizVal'] = $row['size_value'];
+                    $arr['catId'] = $row['catid'];
+                    $arr['actFlg'] = $row['active_flag'];
+                    $arr['crtdOn'] = $row['createdon'];
+                    $arr['updtOn'] = $row['updatedon'];
+                    $arr['updtBy'] = $row['updatedby'];
+                    $count++;
+                }
+            }
+            return array('count' => $count, 'results' => $arr);
+        } catch (Exception $e) {
+            echo 'Exection in function getSizeMasterByID message : ' . $e->getMessage();
+        }
+    }
+
+    public function getProductSizeMaster($params) {
+        try {
+            $count = 0;
+            $sql = "       SELECT 
+                                *
+                        FROM 
+                                tbl_size_master
+                        WHERE
+                                    
+                                active_flag = 1 
+                        AND
+                            id IN  (
+                                        SELECT 
+                                                id
+                                        FROM 
+                                                tbl_product_size_mapping
+                                        WHERE 
+                                                productid = " . $params['pid'] . " 
+                                        AND            
+                                                active_flag = 1 
+                                    )";
+            // WHERE active_flag=1 ";
+            $res = $this->query($sql);
+            if ($res) {
+                while ($row = $this->fetchData($res)) {
+                    $arr['id'] = $row['id'];
+                    $arr['nm'] = $row['name'];
+                    $arr['sizVal'] = $row['size_value'];
+                    $arr['catId'] = $row['catid'];
+                    $arr['actFlg'] = $row['active_flag'];
+                    $arr['crtdOn'] = $row['createdon'];
+                    $arr['updtOn'] = $row['updatedon'];
+                    $arr['updtBy'] = $row['updatedby'];
+                    $count++;
+                }
+            }
+            return array('count' => $count, 'results' => $arr);
+        } catch (Exception $e) {
+            echo 'Exection in function getProductSizeMaster message : ' . $e->getMessage();
+        }
+    }
+
+    public function getProductVendor($params) {
+        try {
+            $count = 0;
+            $sql = "       SELECT 
+                                *
+                        FROM 
+                                tbl_vendor_master
+                        WHERE   
+                                                active_flag = 1 
+                        AND
+                            vendorid IN  (
+                                        SELECT 
+                                                vendorid
+                                        FROM 
+                                                tbl_product_master
+                                        WHERE 
+                                                productid = " . $params['pid'] . " 
+                                       
+                                    )";
+            // WHERE active_flag=1 ";
+            $res = $this->query($sql);
+            if ($res) {
+                while ($row = $this->fetchData($res)) {
+                    $arr['venId'] = $row['vendorid'];
+                    $arr['nm'] = $row['name'];
+                    $arr['ct'] = $row['city'];
+                    $arr['mob'] = $row['mobile'];
+                    $arr['email'] = $row['email'];
+                    $arr['ldlne'] = $row['landline'];
+                    $arr['lng'] = $row['lng'];
+                    $arr['lat'] = $row['lat'];
+                    $arr['actFlg'] = $row['active_flag'];
+                    $arr['crtdOn'] = $row['createdon'];
+                    $arr['updtOn'] = $row['updatedon'];
+                    $arr['updtBy'] = $row['updatedby'];
+                    $count++;
+                }
+            }
+            return array('count' => $count, 'results' => $arr);
+        } catch (Exception $e) {
+            echo 'Exection in function getProductVendor message : ' . $e->getMessage();
+        }
+    }
+
+    public function getProductMetalColor($params) {
+        try {
+            $count = 0;
+            $sql = "       SELECT 
+                                *
+                        FROM 
+                                tbl_metal_color_master
+                        WHERE   
+                                 active_flag = 1 
+                        AND
+                            id IN  (
+                                        SELECT 
+                                                id
+                                        FROM 
+                                                tbl_product_metal_color_mapping
+                                        WHERE 
+                                                productid = " . $params['pid'] . " 
+                                            AND
+                                                active_flag=1
+                                       
+                                    )";
+            // WHERE active_flag=1 ";
+            $res = $this->query($sql);
+            if ($res) {
+                while ($row = $this->fetchData($res)) {
+                    $arr['id'] = $row['id'];
+                    $arr['dNm'] = $row['dname'];
+                    $arr['dVal'] = $row['dvalue'];
+                    $arr['actFlg'] = $row['active_flag'];
+                    $arr['crtdOn'] = $row['createdon'];
+                    $arr['updtOn'] = $row['updatedon'];
+                    $arr['updtBy'] = $row['updatedby'];
+                    $count++;
+                }
+            }
+            return array('count' => $count, 'results' => $arr);
+        } catch (Exception $e) {
+            echo 'Exection in function getProductMetalColor message : ' . $e->getMessage();
+        }
+    }
+
+    public function getProductMetalPurity($params) {
+        try {
+            $count = 0;
+            $sql = "       SELECT 
+                                *
+                        FROM 
+                                tbl_metal_purity_master
+                        WHERE   
+                                 active_flag = 1 
+                        AND
+                            id IN  (
+                                        SELECT 
+                                                id
+                                        FROM 
+                                                tbl_product_metal_purity_mapping
+                                        WHERE 
+                                                productid = " . $params['pid'] . " 
+                                            AND
+                                                active_flag=1
+                                       
+                                    )";
+            // WHERE active_flag=1 ";
+            $res = $this->query($sql);
+            if ($res) {
+                while ($row = $this->fetchData($res)) {
+                    $arr['id'] = $row['id'];
+                    $arr['dNm'] = $row['dname'];
+                    $arr['dVal'] = $row['dvalue'];
+                    $arr['actFlg'] = $row['active_flag'];
+                    $arr['crtdOn'] = $row['createdon'];
+                    $arr['updtOn'] = $row['updatedon'];
+                    $arr['updtBy'] = $row['updatedby'];
+                    $arr['prc'] = $row['price'];
+                    $count++;
+                }
+            }
+            return array('count' => $count, 'results' => $arr);
+        } catch (Exception $e) {
+            echo 'Exection in function getProductMetalPurity message : ' . $e->getMessage();
+        }
+    }
+
     public function test()
     {
         #$data=array('dt' =>'{"mpurity":["1"],"metalcolor":["1","2","3"],"sizes":[{"id":"1","qty":"10"},{"id":"3","qty":"20"},{"id":"5","qty":"30"}],"solitaires":[{"shape":"Emerald","color":"D","clarity":"VVS1","cut":"Very%20Good","symmetry":"Very%20Good","polish":"Very%20Good","fluorescence":"Medium","carat":"100","price_per_carat":"10000","table":"522","crown_angle":"100","girdle":"100"}],"has_solitaire":1,"has_diamond":0,"has_gemstone":0,"details":{"vendorid":"1","product_name":"18K%20Gold%20Ring","product_seo_name":"18K%20White%20Gold%20Ring","gender":"0","product_weight":"10","certificate":"IGI","metal_weight":"10","making_charges":"15000","procurement_cost":"150","margin":"10","measurement":"10X20","dmdSetting":"Prong,Bezel,Pave,Test%20Diamond%20Setting"},"userid":"1","catid":"1,11,2,3,4,10"}');
