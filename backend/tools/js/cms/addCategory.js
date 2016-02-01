@@ -20,9 +20,6 @@ if(edit==1)
 {
     
     dts=JSON.parse(data);
-    var attr=new Array();
-    console.log(dts);
-
     $('#catname').val(dts['category'].name);
     
     
@@ -38,7 +35,7 @@ if(edit==1)
         catid=dts['category'].id;
         
         
-        bindAttrCheck();
+       // bindAttrCheck();
     },50);
         
 }

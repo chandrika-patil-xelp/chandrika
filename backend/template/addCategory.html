@@ -8,7 +8,11 @@ echo "<script>var edit=$edit; var data= '$data';</script>";
             <div class="contents fLeft addCategory">
                 <div class="wrapperMax">
                     <div class="ctgForm fmOpenR">
-                        <div class="commTitle1 fLeft fmOpenL">Add a new category</div>
+                        <?php if($edit==0) {?>
+                            <div class="commTitle1 fLeft fmOpenL">Add a new category</div>
+                        <?php }  if($edit==1) { ?>
+                            <div class="commTitle1 fLeft fmOpenL">Update category</div>
+                        <?php }?>
                         <div class="divCon  fLeft">
                             <div class="titleDiv txtCap fLeft">Category Name *</div>
                             <input name="" type="text" id="catname" autocomplete="false"  placeholder="Please enter category name" class="txtInput fLeft fmOpenR font14 c666">

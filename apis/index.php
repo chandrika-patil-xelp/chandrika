@@ -83,15 +83,7 @@ switch($action)
     case 'addAttribute':
         include APICLUDE.'class.attributes.php';
         $obj	= new attributes($db['jzeva']);
-        
-//        if($params['attributeid'])        
-//            $tmpparams=array('attributeid'=>$params['attributeid'],'attr_name'=>$params['attr_name'],'attr_type'=>$params['attr_type'],'attr_unit'=>$params['attr_unit'],'attr_unit_pos'=>$params['attr_unit_pos'],'attr_pos'=>$params['attr_pos'],'attr_values'=>$params['attr_values'],'userid'=>$params['userid']);
-//        else
-//            $tmpparams=array('attr_name'=>$params['attr_name'],'attr_type'=>$params['attr_type'],'attr_unit'=>$params['attr_unit'],'attr_unit_pos'=>$params['attr_unit_pos'],'attr_pos'=>$params['attr_pos'],'attr_values'=>$params['attr_values'],'userid'=>$params['userid']);
-//        
         $tmpaparams = array($params['dt']);
-        
-      
         $result	=$obj->addAttribute($tmpaparams);
         $res = $result;
     break;

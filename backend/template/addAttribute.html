@@ -1,11 +1,18 @@
 <?php include 'jBhead.html'?>
+<?php
+echo "<script>var edit=$edit; var data= '$data';</script>";
+?>
     <body>
         <div class="container">
             <?php include 'jBheader.html'?>
             <div class="contents fLeft">
                 <div class="wrapperMax">
                     <div class="ctgForm fmOpenR">
-                        <div class="commTitle1 fLeft fmOpenL">Add a new attribute</div>
+                        <?php if($edit==0) {?>
+                            <div class="commTitle1 fLeft fmOpenL">Add a new attribute</div>
+                        <?php }  if($edit==1) { ?>
+                            <div class="commTitle1 fLeft fmOpenL">Update attribute</div>
+                        <?php }?>
                         <div class="divCon  fLeft">
                             <div class="titleDiv txtCap fLeft">Select Attribute Type</div>
                             <select class="txtSelect fLeft fmOpenR font14 c666" id="attr_type">

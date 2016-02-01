@@ -62,8 +62,21 @@ switch ($action) {
     case 'addAttribute':
         $page = 'addAttribute';
         $tab = 'attribute';
+        $edit=0;
         include APICLUDE.'class.attributes.php';
-        $obj = new attributes($db['jzeva']);
+        include BTEMPLATE.'addAttribute.html';
+        break;
+    
+    case 'editAttribute':
+        $page = 'addAttribute';
+        $tab = 'attribute';
+        $aid=$params['aid'];
+        $url = APIDOMAIN . "index.php?action=getAttributeDetails&attributeid=" . $aid;
+        $res = $comm->executeCurl($url);
+        $data = $res['result'];
+        $data= json_encode($data);
+        $edit=1;        
+        include APICLUDE.'class.attributes.php';
         include BTEMPLATE.'addAttribute.html';
         break;
     

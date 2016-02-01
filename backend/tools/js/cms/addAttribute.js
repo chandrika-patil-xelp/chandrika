@@ -47,7 +47,7 @@ function addAttrCallBack(data)
         common.toast(1, 'Attribute added successfully');
 
         setTimeout(function() {
-            location.reload();
+            location.href=DOMAIN+"backend/?action=attributes";
         }, 300);
 
     }
@@ -96,10 +96,6 @@ function validateData()
     return true;
 }
 
-
-
-
-
 var tagArray = new Array();
 $(document).ready(function() {
     $('#attrinpVal').on('keypress', function(evt) {
@@ -142,3 +138,48 @@ function bindTags() {
         }, 100);
     });
 }   
+
+
+
+var dts;
+if(edit==1)
+{
+    
+    dts=JSON.parse(data);
+    console.log(dts);
+    setTimeout(function(){
+        attributeid=dts.attrid;
+        $('#name').val(dts.name);
+        $('#unit').val(dts.unit);
+        $('#apos').val(dts.apos);
+        
+        $('#attr_type option').each(function() {
+            if ($(this).val() == dts.type)
+            {
+                $(this).attr('selected', 'selected');
+            }
+        });
+
+        $('#upos option').each(function() {
+            if ($(this).val() == dts.upos)
+            {
+                $(this).attr('selected', 'selected');
+            }
+        });
+        
+        console.log(dts['values']);
+        var tagValues=dts['values'].split(',');
+        
+        var str="";
+        $(tagValues).each(function(i){
+            var aval = tagValues[i].split("_").join(" ");
+            var avals = tagValues[i].split(" ").join("_");
+            var txtid = "attr_val_" + avals;
+            str += "<div id='" + txtid + "' class='tagcloud fLeft'>" + aval + "</div>";
+            tagArray.push(txtid);
+        });
+        $('#attrValues').append(str);      
+        bindTags();
+    },50);
+}
+
