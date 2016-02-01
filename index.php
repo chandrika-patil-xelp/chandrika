@@ -22,6 +22,18 @@ switch ($action) {
         $page = 'index';
         include TEMPLATE.'index.html';
         break;
+     case 'gemstone':
+        $page = 'gemstone';
+        include TEMPLATE.'gemstone.html';
+        break;
+    case 'gem_desc':
+        $page = 'gem_desc';
+        include TEMPLATE.'gem_desc.html';
+        break;
+    case 'gem_desc2':
+        $page = 'gem_desc2';
+        include TEMPLATE.'gem_desc2.html';
+        break;
     
     case 'orders':
         $page = 'orders';
