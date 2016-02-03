@@ -39,6 +39,15 @@ switch ($action) {
         $page = 'orders';
         include TEMPLATE.'orders.html';
         break;
+     case 'track':
+        $page = 'track';
+        include TEMPLATE.'track_order.html';
+        break;
+      case 'confirmation':
+        $page = 'confirmation';
+        include TEMPLATE.'confirmation.html';
+        break;
+    
     
     
 }
