@@ -1,6 +1,23 @@
 
 <?php include 'jhead.html' ?>
     <body>
+        <div class="lmenu4mble trnst-100 transition300">
+            <div class="lmnuHdng fLeft">
+                <center>
+                    <div class="hdrLgo"></div>
+                </center>
+            </div> 
+            <div class="lmnuLIstDv fLeft fmSansR">
+                <ul class="ulSabcat ">
+                    <li class="liSubCat">JEWELLERY</li>
+                    <li class="liSubCat">SOLITARIES</li>
+                    <li class="liSubCat">DESIGNER</li>
+                    <li class="liSubCat">VINTAGE</li>
+                    <li class="liSubCat">BRIDAL</li>
+                </ul>
+            </div>
+        </div>
+        <div class="dragTrgt" id="dragTrgt"></div>
         <div class="container">
             <div class="wrapper">
                 <?php include 'jHeader.html'; ?>
@@ -10,11 +27,130 @@
                         <div class="homeLogo fLeft"></div>
                         <div class="navStpDiv fLeft">MY ACCOUNT</div>
                       </div> 
-                        
+                        <div class="confrmCont fLeft fmSansR">
+                            <div class="cnfrmLmenu fLeft">
+                                <div class="cnFrmLhDng fLeft">My Jzeva account</div>
+                                <div class="lstLmnu fLeft">Orders</div>
+                                <div class="lstLmnu fLeft">My Saved Cards</div>
+                                <div class="lstLmnu fLeft">Wishlist</div>
+                                <div class="lstLmnu fLeft">My Reviews</div>
+                                <div class="cnFrmLhDng fLeft">My Account Setting</div>
+                                 <div class="lstLmnu fLeft">Personal Info</div>
+                                <div class="lstLmnu fLeft">Change Password</div>
+                                <div class="lstLmnu fLeft">Update Contact</div>
+                            </div>
+                            <div class="cnfrmRmenu fLeft">
+                                <div class="orderAndSrch fLeft">
+                                    <div class="mYoRdr fLeft">My Order</div>
+                                    <div class="scrChDv fRight">
+                                        <div class="icnScrch"></div>
+                                        <input type="text" class="cnfrmInptScrch fLeft">
+                                    </div>
+                                </div>
+                                <div class="orderAndSrch fLeft">
+                                    <div class="part1Ordr fLeft">Orders</div>
+                                    <div class="part2Opnad fLeft">Open Orders</div>
+                                    <div class="part2Opnad fLeft">Canceled Orders</div>
+                                </div>
+                                <div class="totalCnfrmWrp fLeft">
+                                <div class="cnfrmIdCnt fLeft">
+                                    <span class="spClass1 fLeft">Order Id:</span>
+                                    <span class="spClass2 fLeft">Od204765434567</span>
+                                    <span class="spClass1 fRight">Delivered 11- Dec-15</span>
+                                </div>
+                                <div class="cnfrmDtlsDv fLeft">
+                                    <div class="ordrDtlsandOptn fLeft">
+                                        <div class="ordrImg"></div>
+                                        <div class="txtAbtPrdct fLeft">
+                                            <div class="cnfrmpTxt1 fLeft">
+                                                <div class="displayTxt fLeft">Joker & witch elegant charmer for women</div>
+                                                <div class="displayTxt fLeft"><span style="color:#379496">&#2352; 84,200 - quantity: 1</span></div>
+                                                <div class="displayTxt fLeft">
+                                                    <span class="spClass3 fLeft">Seller:</span>
+                                                    <span class="fLeft spClass4">JZEVA Signature Jewelcrafts Private Limited</span>
+                                                </div>
+                                                <div class="displayTxt fLeft">Amount Paid: <span style="color:#379496"> Rs. 2205</span></div>
+                                                <div class="odBtn fLeft">Order Details</div>
+                                                  <div class="odBtn fRight">Invoice</div>
+                                            </div>
+                                            <div class="cnfrmpTxt1 fLeft">
+                                                <div class="displayTxt fLeft">Your package was delivered</div>
+                                                 <div class="displayTxt fLeft">The delivery receipt was signed by Ankur Gala</div>
+                                            </div>
+                                            <div class="cnfrmpTxt1 fLeft">
+                                                <div class="optnDiv fLeft">Track Order</div>
+                                                <div class="optnDiv fLeft">Return or replace item</div>
+                                                <div class="optnDiv fLeft">Leave seller feedback</div>
+                                                <div class="optnDiv fLeft">Product reviews</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                                  <div class="totalCnfrmWrp fLeft">
+                                <div class="cnfrmIdCnt fLeft">
+                                    <span class="spClass1 fLeft">Order Id:</span>
+                                    <span class="spClass2 fLeft">Od204765434567</span>
+                                    <span class="spClass1 fRight">Delivered 11- Dec-15</span>
+                                </div>
+                                <div class="cnfrmDtlsDv fLeft">
+                                    <div class="ordrDtlsandOptn fLeft">
+                                        <div class="ordrImg"></div>
+                                        <div class="txtAbtPrdct fLeft">
+                                            <div class="cnfrmpTxt1 fLeft">
+                                                <div class="displayTxt fLeft">Joker & witch elegant charmer for women</div>
+                                                <div class="displayTxt fLeft"><span style="color:#379496">&#2352; 84,200 - quantity: 1</span></div>
+                                                <div class="displayTxt fLeft">
+                                                    <span class="spClass3 fLeft">Seller:</span>
+                                                    <span class="fLeft spClass4">JZEVA Signature Jewelcrafts Private Limited</span>
+                                                </div>
+                                                <div class="displayTxt fLeft">Amount Paid: <span style="color:#379496"> Rs. 2205</span></div>
+                                                <div class="odBtn fLeft">Order Details</div>
+                                                  <div class="odBtn fRight">Invoice</div>
+                                            </div>
+                                            <div class="cnfrmpTxt1 fLeft">
+                                                <div class="displayTxt fLeft">Your package was delivered</div>
+                                                 <div class="displayTxt fLeft">The delivery receipt was signed by Ankur Gala</div>
+                                            </div>
+                                            <div class="cnfrmpTxt1 fLeft">
+                                                <div class="optnDiv fLeft">Track Order</div>
+                                                <div class="optnDiv fLeft">Return or replace item</div>
+                                                <div class="optnDiv fLeft">Leave seller feedback</div>
+                                                <div class="optnDiv fLeft">Product reviews</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                                
+                            </div>
+                        </div> 
                     </div>
                 </div>
                  <?php include 'jFooter.html'; ?>
             </div>
         </div>
+        <script>
+             $(document).ready(function(){
+                $("#dragTrgt").click(function(){
+         $('.lmenu4mble').addClass('trnst-100');
+        $('body').removeClass('pFixed');
+        $('.dragTrgt').css({width: '20px', left: '0px'});
+    });
+            });
+                   function showLeftMenu(flag) {
+    if (flag) {
+        $('.lmenu4mble').removeClass('trnst-100');
+        $('body').addClass('pFixed');
+        $('.dragTrgt').css({width: '50%', left: '250px'});
+
+    }
+    else {
+        $('.lmenu4mble').addClass('trnst-100');
+        $('body').removeClass('pFixed');
+        $('.dragTrgt').css({width: '20px', left: '0px'});
+    }
+}
+        </script>
     </body>
     </html>

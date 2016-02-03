@@ -1,5 +1,22 @@
 <?php include 'jhead.html' ?>
     <body>
+          <div class="lmenu4mble trnst-100 transition300">
+            <div class="lmnuHdng fLeft">
+                <center>
+                    <div class="hdrLgo"></div>
+                </center>
+            </div> 
+            <div class="lmnuLIstDv fLeft fmSansR">
+                <ul class="ulSabcat ">
+                    <li class="liSubCat">JEWELLERY</li>
+                    <li class="liSubCat">SOLITARIES</li>
+                    <li class="liSubCat">DESIGNER</li>
+                    <li class="liSubCat">VINTAGE</li>
+                    <li class="liSubCat">BRIDAL</li>
+                </ul>
+            </div>
+        </div>
+        <div class="dragTrgt" id="dragTrgt"></div>
         <div class="container">
             <div class="wrapper">
                 <?php include 'jHeader.html'; ?>
@@ -74,7 +91,7 @@
                                 </center>
                             </div>
                         </div>
-                        <div class='largePrdct fLeft fmSansR'>
+                        <div class='largePrdct fLeft fmSansR width100'>
                             <div class='lrgeTxtDV fRight'>
                                 <div class='smpleTxt fLeft'>Earrings</div>
                                 <div class='prdctAbtTxt fLeft'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </div>
@@ -126,5 +143,28 @@
                 </div>
             </div>
         </div>
+        <script>
+            $(document).ready(function(){
+                $("#dragTrgt").click(function(){
+         $('.lmenu4mble').addClass('trnst-100');
+        $('body').removeClass('pFixed');
+        $('.dragTrgt').css({width: '20px', left: '0px'});
+    });
+            });
+                   function showLeftMenu(flag) {
+    if (flag) {
+        $('.lmenu4mble').removeClass('trnst-100');
+        $('body').addClass('pFixed');
+        $('.dragTrgt').css({width: '50%', left: '250px'});
+
+    }
+    else {
+        $('.lmenu4mble').addClass('trnst-100');
+        $('body').removeClass('pFixed');
+        $('.dragTrgt').css({width: '20px', left: '0px'});
+    }
+}
+            
+        </script>
     </body>
 </html>

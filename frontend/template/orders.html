@@ -1,10 +1,28 @@
 <?php include 'jhead.html' ?>
-    <body>
+<body >
+        <div class="lmenu4mble trnst-100 transition300">
+            <div class="lmnuHdng fLeft">
+                <center>
+                    <div class="hdrLgo"></div>
+                </center>
+            </div> 
+            <div class="lmnuLIstDv fLeft fmSansR">
+                <ul class="ulSabcat ">
+                    <li class="liSubCat">JEWELLERY</li>
+                    <li class="liSubCat">SOLITARIES</li>
+                    <li class="liSubCat">DESIGNER</li>
+                    <li class="liSubCat">VINTAGE</li>
+                    <li class="liSubCat">BRIDAL</li>
+                </ul>
+            </div>
+        </div>
+        <div class="dragTrgt" id="dragTrgt"></div>
         <div class="container">
             <div class="wrapper">
                 <?php include 'jHeader.html'; ?>
+               
                 <div class="totalCont fLeft">
-                    <div class="wrapperMax">
+                    <div class="wrapperMax" >
                 <div class="navBar2nd fLeft fmSansR">
                         <div class="homeLogo fLeft"></div>
                         <div class="navStpDiv fLeft">MY ACCOUNT</div>
@@ -56,14 +74,14 @@
                                 <div class="loginTxtWrp fLeft fmSansR" id="clk1st">
                                     <div class="loginAreaLft fLeft">
                                         <div class="loginHdngTxt fLeft">Log in</div>
-                                        <div class="inptAndTxtCnt fLeft transition300">
-                                            <input type="text" class="inptTxt fLeft userNameIcn" id="un">
-                                            <label for="un" class="label-txt">User Name</label>
+                                        <div class="inptAndTxtCnt fLeft">
+                                            <input type="text" class="inptTxt fLeft " id="un">
+                                            <label for="un" class="label-txt transition300">User Name</label>
                                         </div>
-                                        <div class="inptAndTxtCnt fLeft transition300">
+                                        <div class="inptAndTxtCnt fLeft ">
                                             
-                                            <input type="text" class="inptTxt fLeft passwordIcn" id="pswrd">
-                                            <label for="pswrd" class="label-txt">password</label>
+                                            <input type="text" class="inptTxt fLeft" id="pswrd">
+                                            <label for="pswrd" class="label-txt transition300">password</label>
                                         </div>
                                         <div class="fgotPswrd fLeft">forgot password</div>
                                         <div class="divHolder fLeft">
@@ -83,28 +101,28 @@
                                      <div class="loginAreaLft fLeft">
                                         <div class="inptAndTxtCnt fLeft transition300">
                                             <input type="text" class="inptTxt fLeft" id="fn">
-                                             <label for="fn" class="label-txt">First Name</label>
+                                             <label for="fn" class="label-txt transition300">First Name</label>
                                         </div>
-                                        <div class="inptAndTxtCnt fLeft transition300">
+                                        <div class="inptAndTxtCnt fLeft ">
                                             
                                             <input type="text" class="inptTxt fLeft" id="ln">
-                                             <label for="ln" class="label-txt">Last Name</label>
+                                             <label for="ln" class="label-txt transition300">Last Name</label>
                                         </div>
-                                         <div class="inptAndTxtCnt fLeft transition300">
+                                         <div class="inptAndTxtCnt fLeft">
                                             <input type="text" class="inptTxt fLeft" id="pswrd1">
-                                             <label for="pswrd1" class="label-txt">Password</label>
+                                             <label for="pswrd1" class="label-txt transition300">Password</label>
                                         </div>
-                                         <div class="inptAndTxtCnt fLeft transition300">
+                                         <div class="inptAndTxtCnt fLeft">
                                             <input type="text" class="inptTxt fLeft" id="mn">
-                                             <label for="mn" class="label-txt">Mobile Number</label>
+                                             <label for="mn" class="label-txt transition300">Mobile Number</label>
                                         </div>
-                                         <div class="inptAndTxtCnt fLeft transition300">
+                                         <div class="inptAndTxtCnt fLeft">
                                             <input type="text" class="inptTxt fLeft" id="street">
-                                             <label for="street" class="label-txt">Street</label>
+                                             <label for="street" class="label-txt transition300">Street</label>
                                         </div>
-                                         <div class="inptAndTxtCnt fLeft transition300">
+                                         <div class="inptAndTxtCnt fLeft">
                                             <input type="text" class="inptTxt fLeft" id="state">
-                                             <label for="state" class="label-txt">State</label>
+                                             <label for="state" class="label-txt transition300">State</label>
                                         </div>
                                         
                                     </div> 
@@ -112,25 +130,25 @@
                                         <div class="inptAndTxtCnt fLeft">
                                             <input type="text" class="ddtxt fLeft" placeholder="dd">
                                             <input type="text" class="ddtxt fLeft" placeholder="mm">
-                                            <input type="text" class="yrTxt fLeft" placeholder="yy"
-                                        </div>
+                                            <input type="text" class="yrTxt fLeft" placeholder="yy">
+                                       
                                     </div>
-                                    <div class="inptAndTxtCnt fLeft transition300">
+                                    <div class="inptAndTxtCnt fLeft">
                                             <input type="text" class="inptTxt fLeft" id="ea">
-                                             <label for="ea" class="label-txt">Email Address</label>
+                                             <label for="ea" class="label-txt transition300">Email Address</label>
                                         </div>
-                                    <div class="inptAndTxtCnt fLeft transition300">
+                                    <div class="inptAndTxtCnt fLeft">
                                             <input type="text" class="inptTxt fLeft" id="cp">
-                                             <label for="cp" class="label-txt">Confirm password</label>
+                                             <label for="cp" class="label-txt transition300">Confirm password</label>
                                         </div>
                                     <div class="mngeDv fLeft"></div>
-                                    <div class="inptAndTxtCnt fLeft transition300">
+                                    <div class="inptAndTxtCnt fLeft">
                                             <input type="text" class="inptTxt fLeft" id="zc">
-                                             <label for="zc" class="label-txt">Zip code</label>
+                                             <label for="zc" class="label-txt transition300">Zip code</label>
                                         </div>
-                                    <div class="inptAndTxtCnt fLeft transition300">
+                                    <div class="inptAndTxtCnt fLeft">
                                             <input type="text" class="inptTxt fLeft" id="country">
-                                             <label for="country" class="label-txt">Country</label>
+                                             <label for="country" class="label-txt transition300">Country</label>
                                         </div>
                                 </div>
                                 <div class="fgotPswrd fLeft">required field</div>
@@ -143,39 +161,39 @@
                                 </div>
                                 <div class="addressFrmWrp fLeft">
                                        <div class="loginAreaLft fLeft">
-                                        <div class="inptAndTxtCnt fLeft transition300">
+                                        <div class="inptAndTxtCnt fLeft">
                                             <input type="text" class="inptTxt fLeft" id="fn1">
-                                             <label for="fn1" class="label-txt">First Name</label>
+                                             <label for="fn1" class="label-txt transition300">First Name</label>
                                         </div>
-                                        <div class="inptAndTxtCnt fLeft transition300">
+                                        <div class="inptAndTxtCnt fLeft">
                                             <input type="text" class="inptTxt fLeft" id="ln1">
-                                             <label for="ln1" class="label-txt">Last Name</label>
+                                             <label for="ln1" class="label-txt transition300">Last Name</label>
                                         </div>
-                                         <div class="inptAndTxtCnt fLeft transition300">
+                                         <div class="inptAndTxtCnt fLeft">
                                             <input type="text" class="inptTxt fLeft" id="street1">
-                                             <label for="street1" class="label-txt">Street</label>
+                                             <label for="street1" class="label-txt transition300">Street</label>
                                         </div>
-                                         <div class="inptAndTxtCnt fLeft transition300">
+                                         <div class="inptAndTxtCnt fLeft">
                                             <input type="text" class="inptTxt fLeft" id="state1">
-                                             <label for="state1" class="label-txt">State</label>
+                                             <label for="state1" class="label-txt transition300">State</label>
                                          </div>
                                     </div>
                                     <div class="loginAreaRight fLeft">
-                                          <div class="inptAndTxtCnt fLeft transition300">
+                                          <div class="inptAndTxtCnt fLeft">
                                             <input type="text" class="inptTxt fLeft" id="mn1">
-                                             <label for="mn1" class="label-txt">Mobile Number</label>
+                                             <label for="mn1" class="label-txt transition300">Mobile Number</label>
                                         </div>
-                                        <div class="inptAndTxtCnt fLeft transition300">
+                                        <div class="inptAndTxtCnt fLeft">
                                             <input type="text" class="inptTxt fLeft">
-                                             <label for="ea1" class="label-txt">Email Address</label>
+                                             <label for="ea1" class="label-txt transition300">Email Address</label>
                                         </div>
-                                         <div class="inptAndTxtCnt fLeft transition300">
+                                         <div class="inptAndTxtCnt fLeft">
                                             <input type="text" class="inptTxt fLeft" id="zc1">
-                                             <label for="zc1" class="label-txt">Zip Code</label>
+                                             <label for="zc1" class="label-txt transition300">Zip Code</label>
                                         </div>
-                                         <div class="inptAndTxtCnt fLeft transition300">
+                                         <div class="inptAndTxtCnt fLeft">
                                             <input type="text" class="inptTxt fLeft" id="country1">
-                                             <label for="country1" class="label-txt">Country</label>
+                                             <label for="country1" class="label-txt transition300">Country</label>
                                          </div>
                                     </div>
                                     <div class="fgotPswrd fLeft">required field</div>
@@ -250,7 +268,7 @@
                                             </div>
                                             <div class="orderSum fLeft">&#2352; 84,200
                                                 <ul class='ulq'>
-                                                    <li class='liq'>&#2352; 100</li>
+                                                    <li class='liq mtop20'>&#2352; 100</li>
                                                     <li class='liq'>&#2352; 2,000</li>
                                                 </ul>
                                             </div>
@@ -290,23 +308,23 @@
                                      </div> 
                                 </div>
                                 <div class="pOptnRight fLeft">
-                                     <div class="inptAndTxtCnt fLeft transition300">
+                                     <div class="inptAndTxtCnt fLeft">
                                             <input type="text" class="inptTxt fLeft " id="cn">
-                                             <label for="cn" class="label-txt">Card Number</label>
+                                             <label for="cn" class="label-txt transition300">Card Number</label>
                                          </div>
-                                    <div class="inptAndTxtCnt fLeft transition300">
+                                    <div class="inptAndTxtCnt fLeft ">
                                         <div class="expDate fLeft">
-                                            <input type="tetx" class="edTxt fLeft" id="ed">
-                                            <label for="ed" class="label-exp">Expire Date</label>
+                                            <input type="text" class="edTxt fLeft" id="ed">
+                                            <label for="ed" class="label-exp transition300">Expire Date</label>
                                         </div>
                                          <div class="expDate fLeft">
-                                            <input type="tetx" class="edTxt fLeft" id="cvv">
-                                             <label for="cvv" class="label-exp1">CVV</label>
+                                            <input type="text" class="edTxt fLeft" id="cvv">
+                                             <label for="cvv" class="label-exp1 transition300">CVV</label>
                                         </div>
                                     </div>
-                                     <div class="inptAndTxtCnt fLeft transition300">
+                                     <div class="inptAndTxtCnt fLeft">
                                             <input type="text" class="inptTxt fLeft" id="noc">
-                                             <label for="noc" class="label-txt">Name Of Card</label>
+                                             <label for="noc" class="label-txt transition300">Name Of Card</label>
                                          </div>
                                 </div>
                                  <div class="cheackAndnxt fLeft">
@@ -317,13 +335,23 @@
                         </div>
                             <div class="careaRight1 fLeft fmSansR">
                                 <div class="rightMnuWrp fLeft" id="rmenu1">
-                                <div class="listDiv fLeft">Invoice</div>
-                                <div class="listDiv fLeft">Delivery Address</div>
-                                 <div class="listDiv fLeft">Delivery Option</div>
-                                 <div class="listDiv fLeft">Payment</div>
+                                <div class="listDiv fLeft">Invoice
+                                    <div class="icnSetting"></div>
+                                </div>
+                                <div class="listDiv fLeft">Delivery Address
+                                     <div class="icnSetting"></div>
+                                </div>
+                                 <div class="listDiv fLeft">Delivery Option
+                                      <div class="icnSetting"></div>
+                                 </div>
+                                 <div class="listDiv fLeft">Payment
+                                      <div class="icnSetting"></div>
+                                 </div>
                                 </div>
                                 <div class="rightMnuWrp1 fLeft dn" id="rmenu2">
-                                    <div class="rmnuHdng fLeft">Invoice</div>
+                                    <div class="rmnuHdng fLeft">Invoice
+                                        <div class="icnSetting"></div>
+                                    </div>
                                     <div class="abtInvc fLeft bBottom">
                                         <ul class="ulInvc">
                                             <li class="liInvc">Ankur Gala</li>
@@ -334,7 +362,9 @@
                                             <li class="liInvc">Mobile: 7797553117</li>
                                         </ul>
                                     </div>
-                                    <div class="rmnuHdng fLeft">Delivery Address</div>
+                                    <div class="rmnuHdng fLeft">Delivery Address
+                                        <div class="icnSetting"></div>
+                                    </div>
                                      <div class="abtInvc fLeft bBottom">
                                         <ul class="ulInvc">
                                             <li class="liInvc">Ankur Gala</li>
@@ -345,11 +375,17 @@
                                             <li class="liInvc">Mobile: 7797553117</li>
                                         </ul>
                                     </div>
-                                    <div class="rmnuHdng fLeft bBottom">Delivery Option</div>
-                                    <div class="rmnuHdng fLeft bBottom">Payment</div>
+                                    <div class="rmnuHdng fLeft bBottom">Delivery Option
+                                        <div class="icnSetting"></div>
+                                    </div>
+                                    <div class="rmnuHdng fLeft bBottom">Payment
+                                        <div class="icnSetting"></div>
+                                    </div>
                                 </div>
                                 <div class="rightMnuWrp1 fLeft dn" id="rmenu3">
-                                    <div class="rmnuHdng fLeft">Invoice</div>
+                                    <div class="rmnuHdng fLeft">Invoice
+                                        <div class="icnSetting"></div>
+                                    </div>
                                     <div class="abtInvc fLeft bBottom">
                                         <ul class="ulInvc">
                                             <li class="liInvc">Ankur Gala</li>
@@ -360,7 +396,9 @@
                                             <li class="liInvc">Mobile: 7797553117</li>
                                         </ul>
                                     </div>
-                                    <div class="rmnuHdng fLeft">Delivery Address</div>
+                                    <div class="rmnuHdng fLeft">Delivery Address
+                                        <div class="icnSetting"></div>
+                                    </div>
                                      <div class="abtInvc fLeft bBottom">
                                         <ul class="ulInvc">
                                             <li class="liInvc">Ankur Gala</li>
@@ -371,16 +409,22 @@
                                             <li class="liInvc">Mobile: 7797553117</li>
                                         </ul>
                                     </div>
-                                    <div class="rmnuHdng fLeft">Delivery Option</div>
+                                    <div class="rmnuHdng fLeft">Delivery Option
+                                        <div class="icnSetting"></div>
+                                    </div>
                                      <div class="abtInvc fLeft bBottom">
                                         <ul class="ulInvc">
                                             <li class="liInvc">1 day delivery</li>
                                         </ul>
                                     </div>
-                                    <div class="rmnuHdng fLeft bBottom">Payment</div>
+                                    <div class="rmnuHdng fLeft bBottom">Payment
+                                        <div class="icnSetting"></div>
+                                    </div>
                                 </div>
                                     <div class="rightMnuWrp1 fLeft dn" id="rmenu4">
-                                    <div class="rmnuHdng fLeft">Invoice</div>
+                                    <div class="rmnuHdng fLeft">Invoice
+                                        <div class="icnSetting"></div>
+                                    </div>
                                     <div class="abtInvc fLeft bBottom">
                                         <ul class="ulInvc">
                                             <li class="liInvc">Ankur Gala</li>
@@ -391,7 +435,9 @@
                                             <li class="liInvc">Mobile: 7797553117</li>
                                         </ul>
                                     </div>
-                                    <div class="rmnuHdng fLeft">Delivery Address</div>
+                                    <div class="rmnuHdng fLeft">Delivery Address
+                                        <div class="icnSetting"></div>
+                                    </div>
                                      <div class="abtInvc fLeft bBottom">
                                         <ul class="ulInvc">
                                             <li class="liInvc">Ankur Gala</li>
@@ -402,13 +448,17 @@
                                             <li class="liInvc">Mobile: 7797553117</li>
                                         </ul>
                                     </div>
-                                    <div class="rmnuHdng fLeft">Delivery Option</div>
+                                    <div class="rmnuHdng fLeft">Delivery Option
+                                        <div class="icnSetting"></div>
+                                    </div>
                                      <div class="abtInvc fLeft bBottom">
                                         <ul class="ulInvc">
                                             <li class="liInvc">1 day delivery</li>
                                         </ul>
                                     </div>
-                                    <div class="rmnuHdng fLeft ">Payment</div>
+                                    <div class="rmnuHdng fLeft ">Payment
+                                        <div class="icnSetting"></div>
+                                    </div>
                                     <div class="abtInvc fLeft bBottom">
                                         <ul class="ulInvc">
                                             <li class="liInvc">Cash on delivery</li>
@@ -520,7 +570,53 @@ $(document).ready(function(){
          $(this).removeClass('borderTrnst');
     }  
     });
+    $("#dragTrgt").click(function(){
+         $('.lmenu4mble').addClass('trnst-100');
+        $('body').removeClass('pFixed');
+        $('.dragTrgt').css({width: '20px', left: '0px'});
+    });
 });
+// function menuOpen() {
+//                if($('.lmenu4mble').hasClass('trnst-100'))
+//                {
+//                    $('.lmenu4mble').removeClass('trnst-100');
+//                    
+//                   
+//                }
+//                else
+//                {
+//                    $('.lmenu4mble').addClass('trnst-100');
+//                   
+//                     
+//                }
+//                 if($('.dragTrgt').hasClass('dragTrgtTrnst'))
+//                {
+//                    $('.dragTrgt').removeClass('dragTrgtTrnst');
+//                    
+//                   
+//                }
+//                else
+//                {
+//                    $('.dragTrgt').addClass('dragTrgtTrnst');
+//                   
+//                     
+//                }
+//                
+//            }
+           
+           function showLeftMenu(flag) {
+    if (flag) {
+        $('.lmenu4mble').removeClass('trnst-100');
+        $('body').addClass('pFixed');
+        $('.dragTrgt').css({width: '50%', left: '250px'});
+
+    }
+    else {
+        $('.lmenu4mble').addClass('trnst-100');
+        $('body').removeClass('pFixed');
+        $('.dragTrgt').css({width: '20px', left: '0px'});
+    }
+}
         </script>
     </body>
 </html>

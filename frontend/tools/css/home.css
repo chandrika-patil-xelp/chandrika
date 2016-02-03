@@ -12,11 +12,12 @@ body{padding:0;margin:0;}
 .fLeft{float:left;}
 .fRight{float:right;}
 .dn{display:none !important;}
+.pFixed{position:fixed !important;}
 .transition300{transition:300ms;-moz-transition:300ms;-webkit-transition:300ms;}
 .btnStyle{background-color:rgba(0,0,0,0.1) !important;border:2px solid #fff !important;}
 .icnmsg{background:url(../img/msg.svg)no-repeat;background-size:auto 100%;background-position: left center;}
 .icnArrow{background:url(../img/arrow.svg)no-repeat;background-size:auto 90%;background-position:left center;}
-.container{width:100%;height:100%;background-color:#fff;}
+.container{width:100%;height:100%;background-color:#fff;overflow: hidden;}
 .paddingAll{padding:140px 30px 30px 30px !important;}
 .wrapper{width:100%;height:100%;display:inline-block;}
 .wrapperMax{width:100%;height:auto;max-width:1400px;margin:auto;}
@@ -27,10 +28,10 @@ body{padding:0;margin:0;}
 .subCatHtop{width:25%;height:100%;}
 .logoHolderDv{width:50%;height:100%;}
 .logo{width:200px;height:50px;background:url(../img/jzevalogo.svg)no-repeat;background-size:auto 70%;background-position:center center;display:inline-block;}
-.iconCont{width:40px;height:40px;margin-right:5px;background-color:rgba(0,0,0,0.8);}
-.icn1{width:40px;height:40px;background:url(../img/my_account.svg)no-repeat;background-size:auto 100%;display:inline-block;}
-.icn2{width:40px;height:40px;background:url(../img/cart.svg)no-repeat;background-size:auto 100%;display:inline-block;}
-.icn3{width:40px;height:40px;background:url(../img/search.svg)no-repeat;background-size:auto 100%;display:inline-block;}
+.iconCont{width:35px;height:35px;margin-right:5px;background-color:rgba(0,0,0,0.8);}
+.icn1{width:35px;height:35px;background:url(../img/my_account.svg)no-repeat;background-size:auto 100%;display:inline-block;}
+.icn2{width:35px;height:35px;background:url(../img/cart.svg)no-repeat;background-size:auto 100%;display:inline-block;}
+.icn3{width:35px;height:35px;background:url(../img/search.svg)no-repeat;background-size:auto 100%;display:inline-block;}
 .threeStpBar{width:100%;height:60px;padding:10px 0px ;}
 .stp1{width:auto;position:relative;height:40px;display:inline-block;margin: 0px 55px;}
 .icn4{width:30px;height:40px;position:absolute;background:url(../img/shipping.svg)no-repeat;background-size:auto 100%;background-position: center center;left:0;}
@@ -74,11 +75,11 @@ body{padding:0;margin:0;}
 .cAreaLeft1{width:80%;height:auto;border-right: 1px solid #ccc;min-height: 580px;}
 .ordrTab{width:20%;height:auto;padding:10px 0px;border-bottom:1px solid #ccc;}
 .tabIcnDv{width:100%;height:auto;}
-.regIcon{width:70px;height:70px;background:url(../img/registration.svg)no-repeat;background-size:auto 90%;background-position:6px center;display:inline-block;border: 1px solid #ccc;border-radius: 50%}
-.dAddressIcon{width:70px;height:70px;background:url(../img/delivery_address.svg)no-repeat;background-size:auto 90%;background-position:6px center;display:inline-block;border: 1px solid #ccc;border-radius: 50%}
-.dOptionIcon{width:70px;height:70px;background:url(../img/delivery_option.svg)no-repeat;background-size:auto 90%;background-position:6px center;display:inline-block;border: 1px solid #ccc;border-radius: 50%}
-.cOrderIcon{width:70px;height:70px;background:url(../img/confrm_order.svg)no-repeat;background-size:auto 90%;background-position:6px center;display:inline-block;border: 1px solid #ccc;border-radius: 50%}
-.paymentIcon{width:70px;height:70px;background:url(../img/payment.svg)no-repeat;background-size:auto 90%;background-position:6px center;display:inline-block;border: 1px solid #ccc;border-radius: 50%}
+.regIcon{width:70px;height:70px;background:url(../img/registration.svg)no-repeat;background-size:auto 75%;background-position:center center;display:inline-block;border: 1px solid #ccc;border-radius: 50%}
+.dAddressIcon{width:70px;height:70px;background:url(../img/delivery_address.svg)no-repeat;background-size:auto 75%;background-position:center center;display:inline-block;border: 1px solid #ccc;border-radius: 50%}
+.dOptionIcon{width:70px;height:70px;background:url(../img/delivery_option.svg)no-repeat;background-size:auto 75%;background-position:center center;display:inline-block;border: 1px solid #ccc;border-radius: 50%}
+.cOrderIcon{width:70px;height:70px;background:url(../img/confrm_order.svg)no-repeat;background-size:auto 75%;background-position:center center;display:inline-block;border: 1px solid #ccc;border-radius: 50%}
+.paymentIcon{width:70px;height:70px;background:url(../img/payment.svg)no-repeat;background-size:auto 75%;background-position:center center;display:inline-block;border: 1px solid #ccc;border-radius: 50%}
 .userNameIcn{background:url(../img/username.svg)no-repeat;background-size:auto 100%;background-position:left center;}
 .passwordIcn{background:url(../img/password.svg)no-repeat;background-size:auto 100%;background-position:left center;}
 .loginIcn{background:url(../img/login.svg)no-repeat;background-size:auto 100%;background-position: 7px center;}
@@ -88,13 +89,13 @@ body{padding:0;margin:0;}
 .loginAreaLft{width:50%;height:auto;padding-right:30px;}
 .loginHdngTxt{width:100%;height:auto;font-size:13px;color:#666;font-weight:bold;line-height:19px;margin-bottom: 10px;}
 .inptAndTxtCnt{width:100%;height:auto;margin-bottom:15px;position:relative}
-.label-txt{width:auto;height:auto;font-size:13px;color:#666;position:absolute;left:40px;top:13px;}
-.label-exp{width:auto;height:auto;font-size:13px;color:#666;position:absolute;left:10px;top:13px;}
-.label-exp1{width:auto;height:auto;font-size:13px;color:#666;position:absolute;left:10px;top:13px;}
+.label-txt{width:auto;height:auto;font-size:13px;color:#666;position:absolute;left:20px;top:13px;}
+.label-exp{width:auto;height:auto;font-size:13px;color:#666;position:absolute;left:20px;top:13px;}
+.label-exp1{width:auto;height:auto;font-size:13px;color:#666;position:absolute;left:20px;top:13px;}
 .lablTrnst{transform:translateY(-10px);font-size:10px;}
 .borderTrnst{border:1px solid #379496 !important;}
 .inputHdng{width:100%;height:auto;font-size:13px;color:#666;line-height:17px;margin-bottom:5px;}
-.inptTxt{width:100%;height:45px;outline:none;border:1px solid #ccc;padding-left:40px;border-radius: 3px;}
+.inptTxt{width:100%;height:45px;outline:none;border:1px solid #ccc;padding-left:20px;border-radius: 3px;}
 .fgotPswrd{width:100%;height:auto;font-size:13px;line-height:17px;color:#666;margin-top:15px;text-align:right;font-style:italic;}
 .divHolder{width:100%;height:auto;margin-top:15px;}
 .loginBtn{width:auto;height:35px;padding:0px 20px 0px 40px;line-height:35px;color:#fff;background-color:#379496;font-size:13px;}
@@ -103,7 +104,8 @@ body{padding:0;margin:0;}
 .infrmTex{width:100%;height:auto;line-height:20px;font-size:13px;color:#666;margin-top: 10px;min-height: 150px;}
 .careaRight1{width:20%;height:auto;padding-left:30px;}
 .rightMnuWrp{width:100%;height:auto;}
-.listDiv{width:100%;height:auto;font-size:13px;line-height:30px;color:#379496;border-bottom:1px solid #ccc;margin-bottom: 5px;}
+.listDiv{width:100%;height:auto;font-size:13px;line-height:30px;color:#379496;border-bottom:1px solid #ccc;margin-bottom: 5px;position:relative;}
+.icnSetting{width:30px;height:30px;background:url(../img/setting.svg)no-repeat;background-size:auto 85%;background-position:center center;position:absolute;right:0;top:0;cursor:pointer;}
 .footer4Reg{width:100%;height:auto;padding:5px 0px 20px 0px;border-top: 2px solid #ccc;border-bottom: 2px solid #ccc;}
 .footerCat1{width:13%;height:auto;padding:0px 10px;display:inline-block;}
 .txtFtr{width:100%;height:auto;line-height:30px;font-size:15px;color:#379496;text-align:left;}
@@ -123,7 +125,7 @@ body{padding:0;margin:0;}
 .loginAreaRight{width:50%;height:auto;padding-left: 30px;}
 .ddtxt{width:50px;height:45px;outline:none;border:1px solid #ccc;margin-right:10px;padding-left:15px;border-radius:2px;}
 .yrTxt{width:70px;height:45px;outline:none;border:1px solid #ccc;padding-left:25px;border-radius: 2px;}
-.mngeDv{width:100%;height:40px;margin-bottom: 10px;}
+.mngeDv{width:100%;height:50px;margin-bottom: 10px;}
 .cheackAndnxt{width:100%;height:auto;padding:20px 0px;}
 .cheackTxt{width:auto;height:35px;position:relative;padding-left:25px;color:#666;font-style: italic;font-size:13px;padding-right:20px;line-height: 35px;}
 .chkBox{width:15px;height:15px;border:1px solid #ccc;outline: none;position:absolute;left:0;top: 9px;margin: 0px;}
@@ -140,8 +142,8 @@ body{padding:0;margin:0;}
 .optionByChk{width:100%;height:auto;line-height:30px;color:#666;position:relative;padding:2px 0px 0px 30px;font-size:13px;}
 .chngeoRdlt{width:auto;height:auto;font-size:13px;line-height:26px;color:#379496;}
 .rightMnuWrp1{width:100%;height:auto;}
-.rmnuHdng{width:100%;height:auto;font-size:13px;color:#379496;line-height:30px;}
-.abtInvc{width:100%;height:auto;margin-bottom: 10px;}
+.rmnuHdng{width:100%;height:auto;font-size:13px;color:#379496;line-height:30px;position:relative;}
+.abtInvc{width:100%;height:auto;margin-bottom: 5px;}
 .ulInvc{width:100%;height:auto;padding:0;margin:0;list-style-type: none;padding-bottom: 10px;}
 .liInvc{width:100%;height:auto;line-height:20px;color:#666;font-size:13px;text-align:left;}
 
@@ -167,8 +169,8 @@ body{padding:0;margin:0;}
 .paymentWrp{width:100%;height:auto;padding:20px 40px;}
 .pOptnLft{width:30%;height:auto;padding-top:20px;border-right:1px dashed #ccc;}
 .pOptnRight{width:70%;height:auto;padding-left:50px;}
-.expDate{width:16%;height:auto;padding-right:10px;position: relative;}
-.edTxt{width:100%;height:45px;outline:none;border:1px solid #ccc;padding-left:10px;border-radius:3px;}
+.expDate{width:22%;height:auto;padding-right:10px;position: relative;}
+.edTxt{width:100%;height:45px;outline:none;border:1px solid #ccc;padding-left:20px;border-radius:3px;}
 
 
 /*track page*/
@@ -191,7 +193,7 @@ body{padding:0;margin:0;}
 .aftrTrkJwl{width:25%;height:0;padding-bottom:25%;position:absolute;left:30px;background:url(../img/ring-01-01.png)no-repeat;background-size:auto 100%;background-position:center center;border:2px solid #f0f0f0;}
 .crspndngTxt{width:100%;height:auto;min-height:167px;padding-left:34%;}
 .displayTxt{width:100%;height:auto;color:#666;line-height:18px;font-size:13px;margin-bottom:5px;}
-.rvwBtn{width:auto;height:35px;line-height:35px;color:#fff;background-color:#379496;padding:0px 30px;}
+.rvwBtn{width:auto;height:35px;line-height:35px;color:#fff;background-color:#379496;padding:0px 30px;font-size:13px;}
 .infoAbtCstmr{width:100%;height:auto;color:#666;font-size:13px;line-height:20px;}
 .shpngStpCont{width:100%;height:auto;padding:20px 0px;border-bottom: 1px dashed #ccc;}
 .shpngStpDV{width:100%;height:80px;position:relative;}
@@ -221,8 +223,365 @@ body{padding:0;margin:0;}
  
  
  /*confirmation*/
- .confrmCont{width:100%;height:auto;padding:20px 40px;}
- .cnfrmLmenu{width:20%;height:auto;padding-right:15px;}
- .cnFrmLhDng{width:100%;height:auto;font-size:15px;line-height:30px;color:#379496;margin-bottom:10px;}
+ .confrmCont{width:100%;height:auto;padding:20px 40px 0px 40px;}
+ .cnfrmLmenu{width:20%;height:auto;padding-right:40px;}
+ .cnFrmLhDng{width:100%;height:auto;font-size:15px;line-height:30px;color:#379496;margin-bottom:2px;}
  .lstLmnu{width:100%;height:auto;font-size:13px;line-height:26px;color:#666;border-bottom:1px dashed #ccc;margin-bottom:8px;}
- .cnfrmRmenu{width:80%;height:auto;min-height:450px;padding-left:15px;}
+ .cnfrmRmenu{width:80%;height:auto;min-height:450px;padding-left:40px;border-left:1px solid #ccc;padding-bottom: 60px;}
+ .orderAndSrch{width:100%;height:auto;margin-bottom:10px;}
+ .mYoRdr{width:auto;height:auto;font-size:15px;color:#666;line-height:20px;}
+ .scrChDv{width:25%;height:35px;position:relative;}
+ .icnScrch{width:30px;height:35px;background:url(../img/search.svg)no-repeat;background-size:auto 100%;background-position:center center;position:absolute;right:0;border-right:1px solid #ccc;background-color: #ccc}
+ .cnfrmInptScrch{width:100%;height:35px;outline:none;border: 1px solid #ccc;padding-right:30px;padding-left:20px;}
+ .part1Ordr{width:auto;height:35px;font-size:13px;line-height:35px;background-color:#379496;padding:0px 30px;color:#fff;border:1px solid #379496;margin-right:8px;}
+ .part2Opnad{width:auto;height:35px;line-height:35px;color:#666;border:1px solid #ccc;font-size:13px;padding:0px 30px;margin-right:8px;}
+ .totalCnfrmWrp{width:100%;height:auto;margin-top:15px;}
+ .cnfrmDtlsDv{width:100%;height:auto;padding: 30px 0px 30px 30px;border-bottom: 1px dashed #ccc;}
+ .cnfrmIdCnt{width:100%;height:auto;padding:5px 30px;background-color:#f7f7f7;border:1px solid #f7f7f7;}
+ .spClass1{width:auto;font-size:15px;line-height:30px;color:#666;height:auto;}
+ .spClass2{width:auto;font-size:15px;line-height:30px;color:#666;height:auto;padding-left: 20px;}
+ .spClass3{width:20%;height:auto;line-height:18px;font-size:13px;color:#666;}
+ .spClass4{width:80%;height:auto;line-height:18px;font-size:13px;color:#666;}
+ .ordrDtlsandOptn{width:100%;height:auto;min-height:200px;position:relative;}
+ .ordrImg{width:14%;height:0;padding-bottom:14%;background:url(../img/ring-01-01.png)no-repeat;background-size:auto 90%;background-position:center center;position:absolute;left:0;border: 2px solid #f0f0f0;}
+ .txtAbtPrdct{width:100%;height:auto;min-height: 200px;padding-left:16%;}
+ .cnfrmpTxt1{width:33%;height:auto;padding-right:20px;}
+ .odBtn{width:auto;height:35px;line-height:35px;color:#666;padding:0px 25px;border:1px solid #ccc;font-size:13px;}
+ .optnDiv{width:100%;height:35px;font-size:13px;color:#fff;background-color:#379496;line-height:35px;font-size:13px;padding-left:20px;box-shadow: 0px 9px 3px -5px rgba(38, 35, 38, 0.36);margin-bottom:15px;}
+ 
+ /*mobile menu*/
+ .opnMnuLogo{width:50px;height:50px;background:url(../img/menu.svg)no-repeat;background-size:auto 100%;background-position:center center;display:none;}
+ .dragTrgt{width:20px;height:100%;position:fixed;z-index:10;left:0;}
+ .dragTrgtTrnst{width:50%;left:250px;}
+ .trnst-100{transform:translateX(-110%);}
+ .lmenu4mble{width:250px;height:100%;background-color:#fff;position:fixed;top:0;z-index:15;display:none;box-shadow: 0px 0px 20px 5px rgba(0,0,0,0.3);-webkit-box-shadow: 0px 0px 20px 5px rgba(0,0,0,0.3);}
+ .lmnuHdng{width:100%;height:110px;background:url(../img/back.png)no-repeat;background-size:cover;background-position:center center;}
+ .hdrLgo{width:200px;height:80px;background:url(../img/jzevalogo.svg)no-repeat;background-size:auto 45%;background-position:center center;display:inline-block;}
+ .lmnuLIstDv{width:100%;height:auto;padding-top:15px;}
+ .ulSabcat{width:100%;height:auto;padding:0;margin:0;list-style-type: none;}
+ .liSubCat{width:100%;height:auto;font-size:13px;color:#666;padding:10px 0px 10px 10px;border-bottom:1px solid #ccc;text-align:left;line-height:15px;}
+ 
+ 
+ 
+ 
+ @media only screen and (min-width: 320px) and (max-width: 479px){
+     /*home*/
+     .header {height: 110px;}
+     .headerTop{padding: 30px 30px 0px 30px;}
+     .opnMnuLogo{display:block;}
+     .logoHolderDv {width: 80%;}
+     .logo {background-size: auto 60%;background-position: 0px center;}
+     .headerLower{display:none;}
+     .threeStpBar{height:auto;}
+     .stepTxt{width:100%;padding: 0px 10px 0px 40px;display: none;}
+     .prdctAdd1{width:100%;padding-top: 90%;}
+     .prdctAdd2{width:100%;}
+     .middleDiv{width:100%;}
+     .largePrdct{width:100%;}
+     .lrgeTxtDV{width:100%;}
+     .subCatHtop{display:none;}
+     .footer1{padding: 30px 0px;}
+     .footer2{padding: 20px 0px;}
+     .footerTab {font-size: 13px;}
+     .inputAndBtn {width: 85%;}
+     .searchInpt { width: 100%;padding-right: 100px;}
+        .stp1{margin: 0px 40px;}
+        
+        .lmenu4mble{display:block;}
+     
+     
+     /*confirmation*/
+     .confrmCont{padding: 20px 20px 0px 20px;}
+     .cnfrmLmenu{width: 100%;padding-right:0px !important;}
+     .cnfrmRmenu{width: 100%;padding-left:0px;border-left:none;}
+     .scrChDv {width: 60%;}
+     .cnfrmInptScrch {width: 100%;}
+     .part1Ordr {padding: 0px 12px;margin-right: 4px;}
+     .part2Opnad {padding: 0px 4px;margin-right: 4px;}
+     .spClass1{font-size: 11px;}
+     .cnfrmIdCnt{padding: 5px 10px;}
+     .spClass2{font-size: 12px;padding-left: 6px;}
+     .ordrImg{width: 100%;padding-bottom: 60%;position: relative;background-size: auto 90%;margin-bottom: 10px;}
+     .txtAbtPrdct{padding-left:0px !important;}
+     .footerCat1 {width: 45%;padding:0px !important;}
+     .txtFtr {font-size: 14px;}
+     .footerCat2 {width: 90%; padding:0px !important;}
+     .subscribeBtn{padding: 0px 15px;}
+     .textFrScrch {width: 100%;padding-right: 100px;}
+     .lfooter4Reg{padding: 20px 20px;}
+     .odBtn{padding: 0px 30px;}
+     .cnfrmDtlsDv{padding: 30px 0px 0px 0px;}
+     .cnfrmpTxt1 {width: 100%;padding-right:0px !important;margin-bottom: 10px;}
+     .mobileNmbr{padding-left: 5px;line-height: 30px;}
+     .msgTxt{    line-height: 30px;}
+     
+     /*track*/
+     .navBar2nd{padding: 10px 10px 10px 10px;}
+     .homeLogo{margin-right:0px;}
+     .navStpDiv{padding-right:0px;font-size: 10px;padding-left: 26px;}
+     .lgn4trckCnt{width: 100%;padding: 20px 30px 20px 30px;display:inline-block;position:relative;margin:0px;border:none;}
+     .tracFlft{padding-right:0px;border-right:none;width: 100%;}
+     .cheackAndnxt{padding: 10px 0px;}
+     .trckFrght{width: 100%;    padding: 0px 0px 0px 0px;}
+     .centerDvHldr{padding:0px;}
+     .afterTrckPage{padding: 0px 20px 0px 20px;}
+     .aftrTrckStpbr{ padding: 5px 0px 5px 5px;}
+     .trckStp1{font-size: 11px;}
+     .trckdtlsDv{padding: 20px 0px;border-bottom:none;}
+     .dtls1{width: 100%;padding:0px;border-right:none;}
+     .aftrTrkJwl {width: 100%;padding-bottom: 50%;position:relative;left:0px;}
+     .crspndngTxt{width: 100%;min-height: 100px;padding-left:0px;}
+     .rvwBtn{padding: 0px 40px;}
+     .shpngStpCont{padding:0px !important;}
+     .shpngStpWrp{padding:0px;}
+     .shStpIcnHldr {width: 45px;height: 45px;top: 7px;}
+     .tagTxt{font-size: 13px;}
+     .shStpIcnHldr1 { width: 45px;height: 45px;left: 29%;top: 7px;}
+     .tagTxt1{font-size: 13px;left: 26%;}
+     .shStpIcnHldr2 {width: 45px; height: 45px;right: 30%;top: 7px;}
+     .tagTxt2{font-size: 13px;right: 30%;}
+     .shStpIcnHldr3 {width: 45px;height: 45px;top: 7px;}
+     .tagTxt3{font-size: 13px;}
+     .shPngStpInfrm{width: 100%;}
+     .sStp1 {width: 100%;padding-left:0px !important;min-height: 50px;margin-bottom: 10px;}
+     .cntrMkngDv { width: 100%;}
+     .btn {width: 35%;}
+     
+     /*orders*/
+     .fiveStpCont {padding: 0px 20px;}
+     .careaRight1 {display:none;}
+     .loginTxtWrp {padding: 20px 0px;}
+     .cAreaLeft1 {width: 100%;border-right:none;}
+     .regIcon {width: 45px;height: 45px;}
+     .dAddressIcon {width: 45px;height: 45px;}
+     .dOptionIcon {width: 45px; height: 45px;}
+     .cOrderIcon {width: 45px;height: 45px;}
+     .paymentIcon {width: 45px;height: 45px;}
+     .icnAbtTxt {display:none;}
+     .loginAreaLft {width: 100%;padding-right:0px;}
+     .textAreaRight {width: 100%;padding-left:0px;}
+     .addressFrmCnt {padding: 20px 0px;}
+     .loginAreaRight {width: 100%;padding-left:0px;}
+     .delivryWrp {padding: 20px 0px;}
+     .chngeoRdlt {width: 100%;}
+     .delivrPrdct{padding-left:0px;}
+     .cOrderWrp {padding: 20px 0px 20px 0px;}
+     .cOrdrStpbr {padding: 5px 5px;}
+     .stepBar1 {font-size: 12px;}
+     .stepBar2 {font-size: 12px;}
+     .prdctLogo {width: 100%;padding-bottom: 50%;position: relative;left:0;}
+     .prdctDtls {padding-left:0px;min-height:125px;padding-top: 5px}
+     .orderPname {width: 25%;padding-left:0px;}
+     .orderPrice {width: 25%;padding-left:0px;}
+     .mtop20 {margin-top:20px !important;}
+     .paymentWrp {padding: 20px 0px;}
+     .pOptnLft {width: 100%;border-right:none;}
+     .pOptnRight {width: 100%;padding-left:0px;}
+     .expDate {width: 40%;}
+ }
+ @media only screen and (min-width: 480px) and (max-width: 767px){
+     /*home*/
+     .headerTop{padding: 30px 20px 0px 20px;}
+     .navLst{padding: 0px 10px;font-size: 12px;}
+     .iconCont{width: 30px;height: 30px;}
+     .icn3 {width: 30px;height: 30px;}
+     .icn2 { width: 30px;height: 30px;}
+     .icn1 {width: 30px;height: 30px;}
+     .stp1 {margin: 0px 0px;}
+     .stepTxt {padding: 0px 16px 0px 30px;font-size: 11px;}
+     .prdctAdd1 {width: 100%;padding-top: 45%;}
+     .middleDiv {width: 100%;}
+     .largePrdct {width: 100%;}
+     .lrgeTxtDV {width: 100%;}
+     .prdctAdd2 {width: 100%;}
+     .footer1 {padding: 40px 0px;}
+     .inputAndBtn {width: 450px;}
+     .footer2 {padding: 20px 0px;}
+     .footerTab {padding: 0px 18px;font-size: 13px;}
+     .icnArrow {background-size: auto 70%;}
+    
+     
+     /*track*/
+     
+      .loginCnt {margin-bottom:0px !important;}
+     .lgn4trckCnt {width: 100%;position: relative;display: inline-block;border:none;}
+     .tracFlft {width: 100%;padding-right:0px;border-right:none;}
+     .trckFrght {width: 100%;padding:0px !important;padding:0px !important;}
+     .footerCat1 {width: 45%;}
+     .footerCat2 { width: 90%;}
+     .lfooter4Reg {padding: 20px 20px;}
+     .dtls1 {width: 100%;border-right:none;}
+     .shpngStpWrp {padding: 0px 0px;}
+     .shStpIcnHldr { width: 45px;height: 45px;top: 5px;}
+     .tagTxt{font-size: 13px;top: 55px;}
+     .shStpIcnHldr1 {width: 45px;height: 45px;top: 5px;}
+     .tagTxt1 {font-size: 13px;top: 55px;}
+     .shStpIcnHldr2 {width: 45px;height: 45px;top: 5px;}
+     .tagTxt2{font-size: 13px;top: 55px;}
+     .shStpIcnHldr3 {width: 45px;height: 45px;top: 5px;}
+     .tagTxt3{font-size: 13px;top: 55px;}
+     .infoAbtCstmr {width: 100%;font-size: 12px;}
+     .prcsdTxtFlft {width: 100%}
+     .prcsdTxtFrght {width: 100%;}
+     .sStp1 {padding-left: 0px;}
+     .pLeft45{padding-left: 45px;}
+     .cntrMkngDv { width: 75%;}
+     .afterTrckPage {padding: 0px 20px 0px 20px;}
+     .trckStp1 {font-size: 13px;}
+      .navStpDiv {padding-right: 10px;}
+     
+     /*confirmation*/
+     .cnfrmLmenu {display: none;}
+     .cnfrmRmenu {width: 100%;padding-left:0px;border-left:none;}
+     .txtAbtPrdct {padding-left:0px;}
+     .confrmCont{padding: 20px 20px 0px 20px;}
+     .scrChDv { width: 40%;}
+     .cnfrmDtlsDv {padding: 30px 0px 30px 0px;}
+     .ordrImg {width: 100%;padding-bottom: 50%;position: relative;}
+     .cnfrmpTxt1 {width: 100%;padding-right: 0px;}
+     .odBtn {padding: 0px 50px;}
+     
+     /*orders*/
+     .fiveStpCont {padding: 0px 20px;}
+     .careaRight1 {display:none;}
+     .cAreaLeft1 {width:100%;border-right:none;}
+     .regIcon {width: 60px;height: 60px;}
+     .dAddressIcon {width: 60px; height: 60px;}
+     .dOptionIcon { width: 60px;height: 60px;}
+     .cOrderIcon {width: 60px;height: 60px;}
+     .paymentIcon {width: 60px;height: 60px;}
+     .icnAbtTxt { font-size: 11px;}
+     .loginTxtWrp {padding: 20px 0px;}
+     .loginAreaLft {padding-right: 0px;}
+     .textAreaRight {padding-left: 15px;}
+     .addressFrmCnt {padding: 20px 0px;}
+     .delivryWrp {padding: 20px 0px;}
+     .loginAreaRight {padding-left: 15px;}
+     .cOrderWrp {padding: 20px 0px 20px 0px;}
+     .paymentWrp {padding: 20px 0px;}
+     .pOptnRight {padding-left: 25px;}
+     .expDate {width: 35%;}
+ }
+ @media only screen and (min-width: 768px) and (max-width: 959px){
+     /*home*/
+     .prdctAdd1 {width: 50%;}
+     .middleDiv { width: 50%}
+     .prdctAdd1 {width: 50%;padding-top: 35%;}
+     .largePrdct {width: 50%;}
+     .prdctAdd2 {width: 50%;}
+     .lrgeTxtDV {width: 100%;}
+     .width100{width:100% !important;}
+     .navLst {padding: 0px 25px;font-size: 13px;}
+     .stp1 {margin: 0px 15px;}
+     .stepTxt {padding: 0px 30px 0px 40px;}
+     
+     /*confirmation*/
+     .confrmCont {padding: 20px 20px 0px 20px;}
+     .cnfrmLmenu {padding-right: 10px;}
+     .cnfrmRmenu {padding-left: 10px;padding-bottom: 40px;}
+     .scrChDv {width: 35%;}
+     .cnfrmDtlsDv {padding: 30px 0px 30px 30px;}
+     .cnfrmpTxt1 {padding-right: 10px;}
+     .spClass3 {width: 100%;}
+     .spClass4 {width: 100%;}
+     .odBtn {padding: 0px 5px;font-size: 12px;}
+     
+     /*track*/
+     .lgn4trckCnt {width: 86%;}
+     .afterTrckPage {padding: 0px 20px 0px 20px;}
+     .dtls1{padding: 0px 25px;}
+     .rvwBtn {padding: 0px 12px;font-size: 12px;}
+     .dlvrTxtWrp {padding-left: 0px;}
+     .infoAbtCstmr {width: 100%;}
+     .prcsdTxtFlft {width: 100%;}
+     .prcsdTxtFrght {width: 100%;}
+     .cntrMkngDv { width: 50%;}
+     
+     /*orders*/
+     .fiveStpCont {padding: 0px 20px;}
+     .careaRight1 {display: none;}
+     .cAreaLeft1 {width: 100%;border-right:none;}
+     .loginTxtWrp {padding: 20px 0px;}
+     .loginAreaLft {padding-right: 20px;}
+     .textAreaRight {padding-left: 20px;}
+     .addressFrmCnt {padding: 20px 0px;}
+     .loginAreaRight {padding-left: 20px;}
+     .delivryWrp {padding: 20px 0px;}
+     .paymentWrp {padding: 20px 0px;}
+     .pOptnRight {padding-left: 25px;}
+     .expDate {width: 30%;}
+     
+     /*footer*/
+     .divHolder {margin-top: 10px;}
+     .footerCat1 {width: 23%;padding: 0px 13px;}
+     .footerCat2 {width: 45%;padding: 0px 15px;}
+         
+ }
+ @media only screen and (min-width: 960px) and (max-width: 1023px){
+     /*home*/
+     .lrgeTxtDV {width: 100%;}
+     .prdctAdd1 {padding-top: 35%;}
+     .smpleTxt {font-size: 30px;}
+     
+     /*confirmation*/
+     .confrmCont {padding: 20px 30px 0px 30px;}
+     .scrChDv {width: 30%;}
+     .cnfrmLmenu {padding-right: 20px;}
+     .cnfrmRmenu {padding-left: 20px;}
+     .cnfrmpTxt1 {padding-right: 10px;}
+     .odBtn {padding: 0px 11px;}
+     
+     /*orders*/
+     .fiveStpCont {padding: 0px 30px;}
+     .loginTxtWrp {padding: 20px 20px;}
+     .careaRight1 {padding-left: 25px;}
+     .addressFrmCnt {padding: 20px 20px;}
+     .loginAreaLft {padding-right: 25px;}
+     .loginAreaRight {padding-left: 25px;}
+     .delivryWrp { padding: 20px 20px;}
+     .paymentWrp {padding: 20px 20px;}
+     .expDate {width: 30%;}
+     .cOrderWrp {padding: 20px 20px 20px 0px;}
+     .pOptnRight {padding-left: 30px;}
+     
+     /*track*/
+     .lgn4trckCnt {width: 70%;}
+     .rvwBtn {padding: 0px 19px;}
+     .cntrMkngDv {width: 45%}
+     
+     /*footer*/
+     .footerCat1 {width: 17%;padding: 0px 6px;}
+     .footerCat2 {width: 26%;padding: 0px 5px;}
+ }
+ @media only screen and (min-width: 1025px) and (max-width: 1279px){
+     /*home*/
+     .prdctAdd1 {padding-top: 29%;}
+     .lrgeTxtDV {width: 50%;}
+     .footer1 {padding: 40px 0px;}
+     .footer2 {padding: 20px 0px;}
+     
+     
+     /*confirmation*/
+     .confrmCont {padding: 20px 20px 0px 20px;}
+     .cnfrmLmenu {padding-right: 20px;}
+     .cnfrmRmenu {padding-left: 20px;}
+     .odBtn {padding: 0px 14px;}
+     
+     /*orders*/
+     .fiveStpCont {padding: 0px 20px;}
+     .loginTxtWrp {padding: 20px 20px}
+     .textAreaRight {padding-left: 30px;}
+     .careaRight1 {padding-left: 20px;}
+     .addressFrmCnt {padding: 20px 20px;}
+     .ddtxt {width: 60px;}
+     .delivryWrp {padding: 20px 20px;}
+     .paymentWrp {padding: 20px 20px;}
+     .pOptnRight {padding-left: 30px;}
+     .expDate {width: 25%;}
+     
+     
+     /*footer*/
+     .footerCat1 {width: 17%;}
+ }
+ 
+ 

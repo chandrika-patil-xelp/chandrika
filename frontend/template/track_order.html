@@ -1,6 +1,23 @@
 
 <?php include 'jhead.html' ?>
     <body>
+        <div class="lmenu4mble trnst-100 transition300">
+            <div class="lmnuHdng fLeft">
+                <center>
+                    <div class="hdrLgo"></div>
+                </center>
+            </div> 
+            <div class="lmnuLIstDv fLeft fmSansR">
+                <ul class="ulSabcat ">
+                    <li class="liSubCat">JEWELLERY</li>
+                    <li class="liSubCat">SOLITARIES</li>
+                    <li class="liSubCat">DESIGNER</li>
+                    <li class="liSubCat">VINTAGE</li>
+                    <li class="liSubCat">BRIDAL</li>
+                </ul>
+            </div>
+        </div>
+        <div class="dragTrgt" id="dragTrgt"></div>
         <div class="container">
             <div class="wrapper">
                 <?php include 'jHeader.html'; ?>
@@ -91,7 +108,7 @@
                                         <div class="infoAbtCstmr fLeft">Your order has been placed</div>
                                         <div class="infoAbtCstmr fLeft">Wed 23, 2015, 1:15pm</div>
                                     </div>
-                                    <div class="sStp1 fLeft">
+                                    <div class="sStp1 fLeft pLeft45">
                                         <div class="prcsdTxt fLeft">
                                             <div class="prcsdTxtFlft fLeft">
                                                 <div class="infoAbtCstmr fLeft">10:20 AM</div>
@@ -152,6 +169,11 @@
                     
                   $("#aftrTrck").slideDown("slow");  
                 });
+                 $("#dragTrgt").click(function(){
+         $('.lmenu4mble').addClass('trnst-100');
+        $('body').removeClass('pFixed');
+        $('.dragTrgt').css({width: '20px', left: '0px'});
+    });
             });
             
              var input_selector = 'input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=number], input[type=search], textarea, input[type=radio]';
@@ -169,6 +191,19 @@ $(document).on('blur', input_selector, function() {
          $(this).removeClass('borderTrnst');
     } 
 });
+  function showLeftMenu(flag) {
+    if (flag) {
+        $('.lmenu4mble').removeClass('trnst-100');
+        $('body').addClass('pFixed');
+        $('.dragTrgt').css({width: '50%', left: '250px'});
+
+    }
+    else {
+        $('.lmenu4mble').addClass('trnst-100');
+        $('body').removeClass('pFixed');
+        $('.dragTrgt').css({width: '20px', left: '0px'});
+    }
+}
         </script>
     </body>
     </html>
