@@ -237,8 +237,43 @@ switch($action)
         $res = $result;
     break;
 
+    
+    #COUPONS
+    
+    case 'addCoupon':
+        include APICLUDE.'class.coupon.php';
+        $obj	= new coupon($db['jzeva']);
+        $tmpparams = array($params['dt']);
+        $result	=$obj->addCoupon($tmpparams);
+        $res = $result;
+    break;
+    
+    case 'getCouponList':
+        include APICLUDE.'class.coupon.php';
+        $obj	= new coupon($db['jzeva']);
+        $result	=$obj->getCouponList();
+        $res = $result;
+    break;
+
+    case 'getCouponDetailsById':
+        include APICLUDE.'class.coupon.php';
+        $obj	= new coupon($db['jzeva']);
+        $result	=$obj->getCouponDetailsById();
+        $res = $result;
+    break;
+    
 
     
+    case 'updateCouponStatus':
+        include APICLUDE.'class.coupon.php';
+        $obj	= new coupon($db['jzeva']);
+        $tmpparams = array($params['dt']);
+        $result	=$obj->updateCouponStatus($tmpparams);
+        $res = $result;
+    break;
+    
+
+
     case 'test':
         include APICLUDE.'class.attributes.php';
         $obj	= new category($db['jzeva']);

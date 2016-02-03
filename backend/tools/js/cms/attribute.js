@@ -35,6 +35,7 @@ function attributeListCallBack()
 
     if (attributes.length > 0)
     {
+        $('#attrCount').html(attributes.length);
         var str = "";
         $(attributes).each(function(i, v) {
 

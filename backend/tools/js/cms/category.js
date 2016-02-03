@@ -33,7 +33,7 @@ getCategories();
 function categoryCallBack(data)
 {
     var str = "";
-
+    $('#catCount').html(categories.length);
     $(categories).each(function(i) {
         str += "<li>";
         str += "<div class='catName fLeft txtCap'>" + categories[i]['name'] + "</div>";

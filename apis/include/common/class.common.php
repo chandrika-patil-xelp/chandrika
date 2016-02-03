@@ -1,6 +1,13 @@
 <?php
-    class Common
-    {
+    require_once APICLUDE.'common/db.class.php';
+    class Common extends DB 
+{
+    
+    function __construct($db) {
+        parent::DB($db);
+    }
+    
+        
         function executeCurl($url, $isRaw = false, $tm = false, $postData = false, $fromWhere = false, $authData = false, $sslCurl = false)
         {
             $ch = curl_init($url);
@@ -77,6 +84,19 @@
 
                     $genId = $rNo . $curdate;
                     return $genId;
+                }
+                
+                
+                public function makeDate($params)
+                {
+                    $sql = "SELECT date_format('".urldecode($params)."','%D %b,%Y|%h:%i %p') as dateForm";
+                    $res = $this->query($sql);
+                    if($res)
+                    {
+                        $row = $this->fetchData($res);
+                        $otpt = $row['dateForm'];
+                        return $otpt;
+                    }
                 }
     }
 ?>

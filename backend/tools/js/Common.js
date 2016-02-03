@@ -108,5 +108,11 @@ function Common() {
             $('.close').click();
         }, 5000);
     };
+    this.bindToggle = function()
+    {
+        $('.toggle-button').click(function() {
+            $(this).toggleClass('toggle-button-selected');
+        });
+    };
     
 }
