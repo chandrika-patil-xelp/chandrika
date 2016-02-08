@@ -33,60 +33,62 @@ getAttributeList();
 function attributeListCallBack()
 {
 
+    var attcnt=0;
     if (attributes.length > 0)
     {
-        $('#attrCount').html(attributes.length);
+        
         var str = "";
         $(attributes).each(function(i, v) {
-
-
-            str += "<li>";
-            str += "<div class='attrName fLeft'>" + v.name + "</div>";
-            var type = attrType(v.type);
-            str += "<div class='attrType fLeft'>" + type + "</div>";
-
-            if (v.unit == "")
+            if (attributes[i]['active'] !="2")
             {
-                str += "<div class='attrUnit fLeft'>NA</div>";
-            }
-            else
-            {
-                str += "<div class='attrUnit fLeft'>" + v.unit + "</div>";
-            }
-            if (v.catg == "")
-            {
-                str += "<div class='attrMapp fLeft'>NA</div>";
-            }
-            else
-            {
-                str += "<div class='attrMapp fLeft'>" + v.catg + "</div>";
-            }
+
+                str += "<li>";
+                str += "<div class='attrName fLeft'>" + v.name + "</div>";
+                var type = attrType(v.type);
+                str += "<div class='attrType fLeft'>" + type + "</div>";
+
+                if (v.unit == "")
+                {
+                    str += "<div class='attrUnit fLeft'>NA</div>";
+                }
+                else
+                {
+                    str += "<div class='attrUnit fLeft'>" + v.unit + "</div>";
+                }
+                if (v.catg == "")
+                {
+                    str += "<div class='attrMapp fLeft'>NA</div>";
+                }
+                else
+                {
+                    str += "<div class='attrMapp fLeft'>" + v.catg + "</div>";
+                }
 
 
 
-            str += "<div class='cattrAct fLeft'>";
-            str += "<div class='deltBtn fRight transition300'  onclick=\"changeStatus('" + v.id + "',this,3)\"></div>";
-            str += "<a href='" + DOMAIN + "backend/?action=editAttribute&aid=" + v.id + "'><div class='editBtn fRight transition300'></div></a>";
-            if (v.active == "1")
-            {
-                str += "<div class='toggle-button toggle-button-selected  fLeft' onclick=\"changeStatus('" + v.id + "',this)\">";
-            }
-            else
-            {
-                str += "<div class='toggle-button  fLeft' onclick=\"changeStatus('" + v.id + "',this)\">";
-            }
+                str += "<div class='cattrAct fLeft'>";
+                str += "<div class='deltBtn fRight transition300'  onclick=\"changeStatus('" + v.id + "',this,3)\"></div>";
+                str += "<a href='" + DOMAIN + "backend/?action=editAttribute&aid=" + v.id + "'><div class='editBtn fRight transition300'></div></a>";
+                if (v.active == "1")
+                {
+                    str += "<div class='toggle-button toggle-button-selected  fLeft' onclick=\"changeStatus('" + v.id + "',this)\">";
+                }
+                else
+                {
+                    str += "<div class='toggle-button  fLeft' onclick=\"changeStatus('" + v.id + "',this)\">";
+                }
 
 
-            str += "<span class='fActive'>On</span>";
-            str += "<button class='button'></button>";
-            str += "<span class='fDactive'>Off</span>";
-            str += "</div>";
-            str += "</div>";
-            str += "</li>";
-
-
+                str += "<span class='fActive'>On</span>";
+                str += "<button class='button'></button>";
+                str += "<span class='fDactive'>Off</span>";
+                str += "</div>";
+                str += "</div>";
+                str += "</li>";
+                attcnt++;
+            }  
         });
-
+        $('#attrCount').html(attcnt);
         $('.commonList').html(str);
         bindToggle();
     }
@@ -154,11 +156,12 @@ function changeStatusCallBack(data)
     if (data['error']['err_code'] == '0')
     {
         common.toast(1, 'Status updated successfully');
+        getAttributeList();
     }
     else
     {
         common.toast(0, 'Error in updating status');
-        getCategories();
+        getAttributeList();
     }
 }
 

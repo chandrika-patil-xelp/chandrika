@@ -34,8 +34,6 @@ if(edit==1)
         
         catid=dts['category'].id;
         
-        
-       // bindAttrCheck();
     },50);
         
 }
@@ -82,7 +80,13 @@ function attributeListCallBack()
         });
 
         $('#attrCont').html(str);
-        bindAttrCheck();
+        
+        
+        
+        if(edit==1)
+        {
+            bindAttrCheck();
+        }
     }
     
 }
@@ -123,34 +127,37 @@ var mapattrs = new Array();
 var catid = "";
 function addCategory()
 {
+    var vFlag=validateForm();
+    if(vFlag)
+    {
+        values = {};
+        values['catid'] = encodeURIComponent(catid);
+        values['cat_name'] = encodeURIComponent($('#catname').val());
+        values['pcatid'] = $('#catSelect').val();
+        values['pcatid'] = $('#catSelect').val();
+        values['userid'] = 1;
+        mapattrs = [];
+        $('[name=subcat_type]:CHECKED').each(function(i) {
+            mapattrs.push($(this).val());
 
-    values = {};
-    values['catid'] = encodeURIComponent(catid);
-    values['cat_name'] = encodeURIComponent($('#catname').val());
-    values['pcatid'] = $('#catSelect').val();
-    values['pcatid'] = $('#catSelect').val();
-    values['userid'] = 1;
-    mapattrs = [];
-    $('[name=subcat_type]:CHECKED').each(function(i) {
-        mapattrs.push($(this).val());
+        });
+        values['attrs'] = encodeURIComponent(mapattrs.toString());
+        var data = values;
+        var dt = JSON.stringify(data);
+        console.log(dt);
 
-    });
-    values['attrs'] = encodeURIComponent(mapattrs.toString());
-    var data = values;
-    var dt = JSON.stringify(data);
-    console.log(dt);
-
-    var URL = APIDOMAIN + "index.php?action=addCategory";
-    $.ajax({
-        url: URL,
-        type: 'POST',
-        data: {dt: dt},
-        success: function(res) {
-            res = JSON.parse(res);
-            console.log(res);
-            addCatCallBack(res);
-        }
-    });
+        var URL = APIDOMAIN + "index.php?action=addCategory";
+        $.ajax({
+            url: URL,
+            type: 'POST',
+            data: {dt: dt},
+            success: function(res) {
+                res = JSON.parse(res);
+                console.log(res);
+                addCatCallBack(res);
+            }
+        });
+    }
 
 }
 
@@ -171,4 +178,25 @@ function addCatCallBack(data)
 
     }
 
+}
+
+
+function validateForm()
+{
+    if($('#catname').val()==""){
+        common.toast(0, "Enter category name");
+        return false;
+        
+    }
+    var aLen=0;
+    $('[name=subcat_type]:CHECKED').each(function(i) {
+       aLen++; 
+    });
+    if(aLen<1){
+        common.toast(0, "Please map attributes.");
+        return false;
+    }
+    
+    return true;
+    
 }
