@@ -14,6 +14,7 @@ function bindToggle()
 var categories = new Array();
 function getCategories()
 {
+    categories = [];
     var URL = APIDOMAIN + "index.php?action=getCatgoryList";
     $.ajax({
         url: URL,
@@ -21,7 +22,7 @@ function getCategories()
         success: function(res) {
             res = JSON.parse(res);
             categories = res['result'];
-            console.log(categories);
+            //console.log(categories);
             categoryCallBack(res);
         }
     });
@@ -32,44 +33,48 @@ getCategories();
 
 function categoryCallBack(data)
 {
+    var catcnt=0;
     var str = "";
-    $('#catCount').html(categories.length);
     $(categories).each(function(i) {
-        str += "<li>";
-        str += "<div class='catName fLeft txtCap'>" + categories[i]['name'] + "</div>";
-
-        if (categories[i]['pid'] == "0")
+        if (categories[i]['active'] !="2")
         {
-            str += "<div class='parentName fLeft'>NA</div>";
-        }
-        else
-        {
-            var name = getCatName(categories[i]['pid']);
-            str += "<div class='parentName fLeft txtCap'>" + name + "</div>";
+            str += "<li>";
+            str += "<div class='catName fLeft txtCap'>" + categories[i]['name'] + "</div>";
 
-        }
-        str += "<div class='dPos fLeft op0'>0</div>";
-        str += "<div class='cactt fLeft'>";
-        str += "<div class='deltBtn fRight transition300' onclick=\"changeStatus('" + categories[i]['cid'] + "',this,3)\"></div>";
-        str += "<a href='"+DOMAIN+"backend/?action=editCategory&cid=" + categories[i]['cid'] + "'><div class='editBtn fRight transition300'></div></a>";
+            if (categories[i]['pid'] == "0")
+            {
+                str += "<div class='parentName fLeft'>NA</div>";
+            }
+            else
+            {
+                var name = getCatName(categories[i]['pid']);
+                str += "<div class='parentName fLeft txtCap'>" + name + "</div>";
 
-        if (categories[i]['active'] == "1")
-        {
-            str += "<div class='toggle-button toggle-button-selected  fLeft' onclick=\"changeStatus('" + categories[i]['cid'] + "',this)\">";
-        }
-        else
-        {
-            str += "<div class='toggle-button  fLeft' onclick=\"changeStatus('" + categories[i]['cid'] + "',this)\">";
-        }
+            }
+            str += "<div class='dPos fLeft op0'>0</div>";
+            str += "<div class='cactt fLeft'>";
+            str += "<div class='deltBtn fRight transition300' onclick=\"changeStatus('" + categories[i]['cid'] + "',this,3)\"></div>";
+            str += "<a href='"+DOMAIN+"backend/?action=editCategory&cid=" + categories[i]['cid'] + "'><div class='editBtn fRight transition300'></div></a>";
 
-        str += "<span class='fActive'>On</span>";
-        str += "<button class='button'></button>";
-        str += "<span class='fDactive'>Off</span>";
-        str += "</div>";
-        str += "</div>";
-        str += "</li>";
+            if (categories[i]['active'] == "1")
+            {
+                str += "<div class='toggle-button toggle-button-selected  fLeft' onclick=\"changeStatus('" + categories[i]['cid'] + "',this)\">";
+            }
+            else
+            {
+                str += "<div class='toggle-button  fLeft' onclick=\"changeStatus('" + categories[i]['cid'] + "',this)\">";
+            }
+
+            str += "<span class='fActive'>On</span>";
+            str += "<button class='button'></button>";
+            str += "<span class='fDactive'>Off</span>";
+            str += "</div>";
+            str += "</div>";
+            str += "</li>";
+            catcnt++;
+        }
     });
-
+    $('#catCount').html(catcnt);
     $('.commonList').html(str);
     bindToggle();
 }
@@ -118,6 +123,7 @@ function changeStatus(cid, obj, dst) {
                 res = JSON.parse(res);
                 console.log(res);
                 changeStatusCallBack(res);
+                
             }
         });
     }, 350);
@@ -130,6 +136,7 @@ function changeStatusCallBack(data)
     if (data['error']['err_code'] == '0')
     {
         common.toast(1, 'Status updated successfully');
+        getCategories();
     }
     else
     {
