@@ -26,7 +26,6 @@ switch ($action) {
         $pid = $_GET['pid'];
         $page = 'upload';
         setcookie("back", $_SERVER['HTTP_REFERER']);
-        //echo "<pre>";print_r($_SERVER);die;
         include 'image-upload/index.html';
         break;
     
