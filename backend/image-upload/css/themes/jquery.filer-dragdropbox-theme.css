@@ -120,14 +120,14 @@
 /* blue */
 .jFiler-input-choose-btn.blue {
     color: #fff;
-    border: 1px solid #8A0044;
-    background: #8a0044;
+    border: 1px solid #2F665C;
+    background: #2F665C;
 }
 
 
 
 .jFiler-input-choose-btn.blue:hover {
-    background: #8a0044;
+    background: #2F665C;
 }
 
 .jFiler-input-choose-btn.blue:active {
