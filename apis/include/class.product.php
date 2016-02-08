@@ -1479,6 +1479,84 @@ class product extends DB {
         }
     }
 
+   
+    public function pageList($param) {
+        try {
+            $sql = "SELECT 
+                             createdon, 
+                             product_code,
+                             metal_weight,
+			     product_seo_name seo,
+			     product_name pName,	
+
+                             productid AS id,
+                             IF(has_diamond=1,
+                                    (
+                                        SELECT 
+                                                SUM(carat) 
+                                        FROM 
+                                            tbl_product_diamond_mapping
+                                        WHERE 
+                                            productid =id
+                                    ),
+                                    0) AS diamondW,
+                            IF(product_seo_name = NULL OR product_seo_name='',
+                                product_name,
+                            product_seo_name) AS prdName
+                            FROM 
+                                tbl_product_master";
+
+
+            $page = ($params['page'] ? $params['page'] : 1);
+            $limit = ($params['limit'] ? $params['limit'] : 20);
+
+            //Making sure that query has limited rows 
+            if ($limit > 20) {
+                $limit = 20;
+            }
+
+            if (!empty($page)) {
+                $start = ($page * $limit) - $limit;
+                $sql.=" LIMIT " . $start . ",$limit";
+            }
+            $res = $this->query($sql);
+
+            if ($res && $this->numRows($res) > 0) {
+                while ($row = $this->fetchData($res)) {
+
+                    //Date format is not specified so it matches with default mysql
+                    $arr['creDate'] = $row['createdon'];
+
+                    //Product code 
+                    $arr['prdCode'] = $row['product_code'];
+
+                    //Total sum weight of diamonds in product
+                    $arr['diaWgt'] = $row['diamondW'];
+
+                    $arr['mtlWgt'] = $row['metal_weight'];
+
+                    //Product name is SEO name, if seo name is blank then product name
+                    $arr['prdName'] = $row['prdName'];
+
+                    // Getting product image from differnt API internally in array
+                    $imageDtl = $this->getImagesByPid(array('pid' => $row['id']));
+
+                    //Active flag is not included in database schema so given hardcoded value
+                    $arr['isActive'] = 1;
+                    $arr['imgDtl'] = $imageDtl;
+                    $result[] = $arr;
+                }
+                $err = array('err_code' => 0, 'err_msg' => 'Data fetched successfully');
+            } else {
+                $err = array('err_code' => 1, 'err_msg' => 'Error in fetching data');
+            }
+            $results = array('results' => $result, 'error' => $err);
+        } catch (Exception $e) {
+            echo 'Exection in API getProductById message : ' . $e->getMessage();
+        }
+        return $results;
+    }
+
     public function test()
     {
         #$data=array('dt' =>'{"mpurity":["1"],"metalcolor":["1","2","3"],"sizes":[{"id":"1","qty":"10"},{"id":"3","qty":"20"},{"id":"5","qty":"30"}],"solitaires":[{"shape":"Emerald","color":"D","clarity":"VVS1","cut":"Very%20Good","symmetry":"Very%20Good","polish":"Very%20Good","fluorescence":"Medium","carat":"100","price_per_carat":"10000","table":"522","crown_angle":"100","girdle":"100"}],"has_solitaire":1,"has_diamond":0,"has_gemstone":0,"details":{"vendorid":"1","product_name":"18K%20Gold%20Ring","product_seo_name":"18K%20White%20Gold%20Ring","gender":"0","product_weight":"10","certificate":"IGI","metal_weight":"10","making_charges":"15000","procurement_cost":"150","margin":"10","measurement":"10X20","dmdSetting":"Prong,Bezel,Pave,Test%20Diamond%20Setting"},"userid":"1","catid":"1,11,2,3,4,10"}');
@@ -1649,5 +1727,32 @@ class product extends DB {
         $result = array('results' => $arr, 'error' => $err);
         return $result;
     }
+    public function getImagesByPid($params) {
+        try {
+            $count = 0;
+            $sql = "SELECT 
+                        product_image
+                FROM 
+                        tbl_product_image_mapping
+                WHERE 
+                        product_id = " . $params['pid'] . " 
+              ";
+
+            $res = $this->query($sql);
+            if ($res) {
+                while ($row = $this->fetchData($res)) {
+                    $image = DOMAIN . $row['product_image'];
+                    $images[] = $image;
+                    $count++;
+                }
+            }
+            $result = array('count' => $count, 'images' => $images);
+
+            return $result;
+        } catch (Exception $e) {
+            echo 'Exection in API getProductById message : ' . $e->getMessage();
+        }
+    }
+
 }
 ?>
