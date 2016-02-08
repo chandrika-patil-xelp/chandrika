@@ -21,6 +21,14 @@ switch ($action) {
         $tab = 'products';
         include BTEMPLATE.'addProduct.html';
         break;
+
+    case 'upload':
+        $pid = $_GET['pid'];
+        $page = 'upload';
+        setcookie("back", $_SERVER['HTTP_REFERER']);
+        //echo "<pre>";print_r($_SERVER);die;
+        include 'image-upload/index.html';
+        break;
     
     case 'productPreview':
         $page = 'productPreview';

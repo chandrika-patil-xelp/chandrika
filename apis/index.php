@@ -237,6 +237,29 @@ switch($action)
         $res = $result;
     break;
 
+	
+// http://localhost/jzeva/backend/index.php?action=upload&pid=1	
+    case 'imageupdate':
+        include APICLUDE.'class.product.php';
+        $obj	= new product($db['jzeva']);
+        $result	= $obj->imageUpdate($params);
+        $res= $result;
+    break;
+
+    case 'imageremove':
+        include APICLUDE.'class.product.php';
+        $obj	= new product($db['jzeva']);
+        $result	= $obj->imageRemove($params);
+        $res= $result;
+    break;
+
+    case 'imagedisplay':
+        include APICLUDE.'class.product.php';
+        $obj	= new product($db['jzeva']);
+        $result	= $obj->imageDisplay($params);
+        $res= $result;
+    break;
+
     
     #COUPONS
     
@@ -280,13 +303,7 @@ switch($action)
         $result	=$obj->getCatgoryList();
     break;
 
-
-    
-
-
-
-
-    default :
+default :
 
         break;
 }

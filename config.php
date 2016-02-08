@@ -1,7 +1,6 @@
 <?php
 error_reporting(0);
 
-
 define('DOMAIN','http://'.$_SERVER['HTTP_HOST'].'/jzeva/');
 define('APIDOMAIN','http://'.$_SERVER['HTTP_HOST'].'/jzeva/apis/');
 define('BACKDOMAIN','http://'.$_SERVER['HTTP_HOST'].'/jzeva/backend/');
@@ -15,6 +14,7 @@ define('BAPICLUDE',BACKWEBROOT.'apis/include/');
 define('TEMPLATE',WEBROOT.'frontend/template/');
 define('INCLUDES',WEBROOT.'include/');
 define('APICLUDE',WEBROOT.'apis/include/');
+define('IMGDOMAIN','http://'.$_SERVER['HTTP_HOST'].'/jzeva/backend/image-upload/');
 
 define('VERSION',1.0);
 
@@ -31,6 +31,7 @@ $jvs = array();
 #CSS
     $css['jquery_toast']        = BACKDOMAIN.'tools/css/lib/jquery.toast.min.css?v='.VERSION;
     $css['backend']             = BACKDOMAIN.'tools/css/backend.css?v='.VERSION;
+    
 #CSS End
 
 #JS

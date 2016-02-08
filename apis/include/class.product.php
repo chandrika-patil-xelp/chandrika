@@ -1490,6 +1490,164 @@ class product extends DB {
     
     }
     
+    
+    public function imageUpdate($params)
+    {
+        $err = array('errCode' => 0, 'errMsg' => 'Details updated successfully');
+        $pid = $params['pid'];
+        $img = $params['imgpath'];
 
+        $sql = "SELECT
+                        product_image,
+                        image_sequence
+                FROM
+                        tbl_product_image_mapping
+                WHERE 
+                        product_id = " . $pid . " 
+                AND 
+                        active_flag = 0 
+                ORDER BY
+                        image_sequence ASC";
+        $res = $this->query($sql);
+        $cnt = $this->numRows($res);
+        $flag = true;
+        if ($cnt)
+        {
+            while ($row = $this->fetchData($res))
+            {
+                if (strtolower($row['product_image']) == strtolower($img))
+                {
+                    $err = array('errCode' => 1, 'errMsg' => 'No results updated');
+                    $flag = false;
+                }
+                $image_sequence = $row['image_sequence'];
+            }
+        }
+        $sequence = ($image_sequence ? $image_sequence + 1 : 1);
+        if ($flag) {
+            $sql = "INSERT
+                    INTO 
+                        tbl_product_image_mapping 
+                        (
+                                product_id,
+                                product_image,
+                                active_flag,
+                                image_sequence,
+                                upload_date,
+                                update_date
+                        )
+                        VALUES
+                        (
+                                " . $pid . ",
+                                \"" . $img . "\",
+                                0,
+                                " . $sequence . ",
+                                NOW(),
+                                NOW()
+                        )";
+            $res2 = $this->query($sql);
+        }
+
+        $arr = array();
+        $result = array('results' => $arr, 'error' => $err);
+        return $result;
+    }
+
+    public function imageRemove($params)
+    {
+        $pid = $params['pid'];
+
+        $sql = "SELECT 
+                        product_image
+                FROM 
+                        tbl_product_image_mapping
+                WHERE 
+                        product_id = ".$pid." 
+                AND
+                        active_flag in (0, 1)";
+        $res = $this->query($sql);
+        $cnt = $this->numRows($res);
+
+        if($res)
+        {
+            while($row = $this->fetchData($res))
+            {
+                    if(stristr($row['product_image'], $params['file']) !== FALSE)
+                    {
+                        $sql = "UPDATE 
+                                                tbl_product_image_mapping 
+                                        SET 
+                                                active_flag = 2 
+                                        WHERE 
+                                                product_id = ".$pid." 
+                                        AND 
+                                                product_image = \"".$row['product_image']."\"";
+                        $res = $this->query($sql);
+                        $err = array('errCode' => 0, 'errMsg' => 'Details updated successfully');
+                    }
+                    else
+                    {
+                            $err = array('errCode' => 1, 'errMsg' => 'No results updated');
+                    }
+            }
+            $arr = array();
+            $result = array('results' => $arr, 'error' => $err);
+            return $result;
+        }
+    }
+		
+    public function imageDisplay($params)
+    {
+        $af = (!empty($params['af'])) ? trim(urldecode($params['af'])) : 1;
+
+        $arr = array();
+        $pid = $params['pid'];
+        $prdSql = " SELECT
+                            vendor_id 
+                    FROM 
+                            tbl_vendor_product_mapping
+                    WHERE
+                            product_id = ".$pid."";
+        $prdRes = $this->query($prdSql);
+        $Vcnt = $this->numRows($prdRes);
+
+        if($Vcnt)
+        {
+            $row = $this->fetchData($prdRes);
+            if($row['vendor_id'] == $params['vid'])
+            {
+                $extn = " AND active_flag not in (2) ";
+            }
+        }
+               $extn = " AND active_flag not in (2) ";                       
+        $sql = "SELECT 
+                        product_image
+                FROM 
+                        tbl_product_image_mapping
+                WHERE 
+                        product_id = ".$pid." ".$extn." 
+                ORDER BY
+                        image_sequence ASC";
+        $res = $this->query($sql);
+        if($res)
+        {
+                while($row = $this->fetchData($res))
+                {
+                        $arr[] = $row['product_image'];
+                }
+
+        }
+
+        if(!empty($arr))
+        {
+                $err = array('errCode' => 0, 'errMsg' => 'Details fetched successfully');
+        }
+        else
+        {
+                $err = array('errCode' => 1, 'errMsg' => 'No results found');
+        }
+        $result = array('results' => $arr, 'error' => $err);
+        return $result;
+    }
 }
 ?>
