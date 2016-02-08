@@ -1552,7 +1552,7 @@ class product extends DB {
             }
             $results = array('results' => $result, 'error' => $err);
         } catch (Exception $e) {
-            echo 'Exection in API getProductById message : ' . $e->getMessage();
+            echo 'Exection in API pageList message : ' . $e->getMessage();
         }
         return $results;
     }
@@ -1747,10 +1747,9 @@ class product extends DB {
                 }
             }
             $result = array('count' => $count, 'images' => $images);
-
             return $result;
         } catch (Exception $e) {
-            echo 'Exection in API getProductById message : ' . $e->getMessage();
+            echo 'Exection in API getImagesByPid message : ' . $e->getMessage();
         }
     }
 
