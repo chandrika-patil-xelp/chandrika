@@ -179,6 +179,17 @@ switch($action)
         $result	=$obj->getSizeList();
         $res = $result;
     break;
+  
+    case 'changeProductStatus':
+        include APICLUDE.'class.product.php';
+        $obj	= new product($db['jzeva']);
+        $tmpparams=array($params['dt']);
+        $result	=$obj->changeProductStatus($tmpparams);
+        $res = $result;
+    break;
+    
+
+
 
 
     #Rate

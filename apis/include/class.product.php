@@ -24,54 +24,14 @@ class product extends DB {
     public function addProduct($params) {
         $params= (json_decode($params[0],1));
         
+        if(!$params['productid'])
+        {
+            $pid = $this->generateId();
+            $params['productid']=$pid;
+            $pcode = $this->generateProductCode();
+            $params['product_code']=$pcode;
+        }       
         
-        $pid = $this->generateId();
-
-  /*      $sizeArray = array('4' => 20, '4.5' => 22, '6' => 5, '7' => 2, '8' => 3, '9' => 1, '10' => 7,);
-        $metalColorArray = array('white', 'rose');
-        $metalPurityArray = array('22 carat', '14 carat', '18 carat', '24 carat');
-
-        $solitaire1 = array('shape' => 'Round', 'color' => 'D', 'clarity' => 'IF', 'cut' => 'very good', 'symmetry' => 'very good', 'polish' => 'good', 'fluorescence' => 'none', 'carat' => 0.5, 'price_per_carat' => 5005.25, 'table' => '56', 'crown_angle' => '25', 'girdle' => '25');
-        $solitaire2 = array('shape' => 'Pear', 'color' => 'E', 'clarity' => 'VVS1', 'cut' => 'very good', 'symmetry' => 'good', 'polish' => 'good', 'fluorescence' => 'none', 'carat' => 0.6, 'price_per_carat' => 5005.25, 'table' => '56', 'crown_angle' => '25', 'girdle' => '25');
-        $solitaire3 = array('shape' => 'Heart', 'color' => 'F', 'clarity' => 'IF', 'cut' => 'very good', 'symmetry' => 'good', 'polish' => 'good', 'fluorescence' => 'none', 'carat' => 0.7, 'price_per_carat' => 5005.25, 'table' => '56', 'crown_angle' => '25', 'girdle' => '25');
-        $solitaire4 = array('shape' => 'Oval', 'color' => 'G', 'clarity' => 'VVS2', 'cut' => 'very good', 'symmetry' => 'fair', 'polish' => 'good', 'fluorescence' => 'none', 'carat' => 0.8, 'price_per_carat' => 5005.25, 'table' => '56', 'crown_angle' => '25', 'girdle' => '25');
-        $solitaire5 = array('shape' => 'Cushion', 'color' => 'H', 'clarity' => 'VS2', 'cut' => 'very good', 'symmetry' => 'very good', 'polish' => 'good', 'fluorescence' => 'none', 'carat' => 0.9, 'price_per_carat' => 5005.25, 'table' => '56', 'crown_angle' => '25', 'girdle' => '25');
-
-        $solitaires = array($solitaire1, $solitaire2, $solitaire3, $solitaire4, $solitaire5);
-
-
-        $d1Quality = array('VVS - GH', 'VVS - EF');
-        $diamond1 = array('shape' => 'Pear', 'quality' => $d1Quality, 'carat' => 5.5, 'total_no' => 5);
-        $d2Quality = array('VVS - IF', 'VS - IJ', 'SI - EF');
-        $diamond2 = array('shape' => 'oval', 'quality' => $d2Quality, 'carat' => 2.5, 'total_no' => 15);
-
-        $diamonds = array($diamond1, $diamond2);
-
-
-
-        $uncut1 = array('color' => 'D', 'quality' => 'IF', 'carat' => 0.1, 'price_per_carat' => 1000.25, 'total_no' => 1);
-        $uncut2 = array('color' => 'E', 'quality' => 'GH', 'carat' => 0.2, 'price_per_carat' => 1015.25, 'total_no' => 2);
-        $uncut3 = array('color' => 'F', 'quality' => 'JK', 'carat' => 0.3, 'price_per_carat' => 1025.25, 'total_no' => 3);
-
-        $uncuts = array($uncut1, $uncut2, $uncut3);
-
-
-
-        $gemstone1 = array('gvalue' => 1, 'total_no' => 1, 'carat' => 1.2, 'price_per_carat' => 1000);
-        $gemstone2 = array('gvalue' => 2, 'total_no' => 2, 'carat' => 2.2, 'price_per_carat' => 1100);
-        $gemstone3 = array('gvalue' => 3, 'total_no' => 3, 'carat' => 3.2, 'price_per_carat' => 1200);
-        $gemstone4 = array('gvalue' => 4, 'total_no' => 4, 'carat' => 4.2, 'price_per_carat' => 1300);
-
-        $gemstones = array($gemstone1, $gemstone2, $gemstone3, $gemstone4);
-        $details = array('vendorid' => '1', 'product_name' => '22k ring golden',
-            'product_seo_name' => '22K Gold Office Wear Ring', 'gender' => 0, 'product_weight' => 5.5, 'diamond_setting' => 'prong', 'metal_weight' => 4,
-            'making_charges' => 12500.56, 'procurement_cost' => 11000.52, 'margin' => 5, 'measurement' => '10X50', 'certificate' => 'SGL');
-
-*/
-//        $params = array('catid' => '1,2,3,4,5', 'userid' => '55', 'productid' => $pid, 'sizes' => $sizeArray, 'metalpurity' => $metalPurityArray, 'metalcolor' => $metalColorArray, 'has_solitaire' => 1, 'solitaires' => $solitaires, 'has_diamond' => 1, 'diamonds' => $diamonds, 'has_uncut' => 1, 'uncut' => $uncuts, 'has_gemstone' => 1, 'gemstone' => $gemstones, 'details' => $details);
-//        $userid = $params['userid'];
-        
-        $params['productid']=$pid;
         $userid = $params['userid'];
         
         #echo "<pre>";print_r($params);  echo "</pre>";die;
@@ -183,8 +143,8 @@ class product extends DB {
 
 
                         #Adding General Product Details
-                        $pcode = $this->generateProductCode();
-                        $genDetails = array('productid' => $params['productid'], 'product_code' => $pcode, 'customise_purity' => $customise_purity, 'customise_color' => $customise_color, 'has_diamond' => $params['has_diamond'], 'has_solitaire' => $params['has_solitaire'], 'has_uncut' => $params['has_uncut'], 'has_gemstone' => $params['has_gemstone'], 'updatedby' => $userid, 'details' => $params['details']);
+                        
+                        $genDetails = array('productid' => $params['productid'], 'product_code' => $params['product_code'], 'customise_purity' => $customise_purity, 'customise_color' => $customise_color, 'has_diamond' => $params['has_diamond'], 'has_solitaire' => $params['has_solitaire'], 'has_uncut' => $params['has_uncut'], 'has_gemstone' => $params['has_gemstone'], 'updatedby' => $userid, 'details' => $params['details']);
                         $renres = $this->addProductGeneralDetails($genDetails);
 
                         if ($renres['error']['err_code'] == "1") {
@@ -878,8 +838,7 @@ class product extends DB {
             // WHERE active_flag=1 ";
             $res = $this->query($productSql);
             if ($res) {
-                while ($row = $this->fetchData($res)) {
-
+                if($row = $this->fetchData($res)){
                     $arr['prdId'] = $row['productid'];
                     $arr['prdCod'] = $row['product_code'];
                     $arr['vndId'] = $row['vendorid'];
@@ -903,6 +862,7 @@ class product extends DB {
                     $arr['crtdOn'] = $row['createdon'];
                     $arr['updtOn'] = $row['updatedon'];
                     $arr['updtBy'] = $row['updatedby'];
+                    
                 }
 
                 $gemstone = $this->getProductGemstone($params);
@@ -915,6 +875,7 @@ class product extends DB {
                 $discount = $this->getProductDiscount($params);
                 $dimond = $this->getProductDiamond($params);
                 $catAttr = $this->getCatMap($params);
+                $imageDtl = $this->getImagesByPid(array('pid' => $row['productid']));
                 // $sizeMaster = $this->getProductSizeMaster($params);
 
                 $result = array(
@@ -928,7 +889,9 @@ class product extends DB {
                     'metalPurity' => $metalPurity,
                     'discount' => $discount,
                     'dimond' => $dimond,
-                    'catAttr' => $catAttr
+                    'catAttr' => $catAttr,
+                    'images' =>$imageDtl
+                        
                 );
                 $err = array('err_code' => 0, 'err_msg' => 'Data fetched successfully');
             } else {
@@ -1481,15 +1444,18 @@ class product extends DB {
 
    
     public function pageList($param) {
+        global $comm;
         try {
             $sql = "SELECT 
-                             createdon, 
-                             product_code,
-                             metal_weight,
-			     product_seo_name seo,
-			     product_name pName,	
+                            productid,
+                            createdon, 
+                            product_code,
+                            metal_weight,
+                            product_seo_name seo,
+                            product_name pName,	
+                            active_flag,
 
-                             productid AS id,
+                            productid AS id,
                              IF(has_diamond=1,
                                     (
                                         SELECT 
@@ -1525,7 +1491,7 @@ class product extends DB {
                 while ($row = $this->fetchData($res)) {
 
                     //Date format is not specified so it matches with default mysql
-                    $arr['creDate'] = $row['createdon'];
+                    $arr['creDate'] = $comm->makeDate($row['createdon']);
 
                     //Product code 
                     $arr['prdCode'] = $row['product_code'];
@@ -1536,13 +1502,14 @@ class product extends DB {
                     $arr['mtlWgt'] = $row['metal_weight'];
 
                     //Product name is SEO name, if seo name is blank then product name
-                    $arr['prdName'] = $row['prdName'];
+                    $arr['prdName'] = $row['seo'];
+                    $arr['pid'] = $row['productid'];
 
                     // Getting product image from differnt API internally in array
                     $imageDtl = $this->getImagesByPid(array('pid' => $row['id']));
 
                     //Active flag is not included in database schema so given hardcoded value
-                    $arr['isActive'] = 1;
+                    $arr['isActive'] = $row['active_flag'];
                     $arr['imgDtl'] = $imageDtl;
                     $result[] = $arr;
                 }
@@ -1741,7 +1708,8 @@ class product extends DB {
             $res = $this->query($sql);
             if ($res) {
                 while ($row = $this->fetchData($res)) {
-                    $image = DOMAIN . $row['product_image'];
+                    #$image = DOMAIN . $row['product_image'];
+                    $image = IMGDOMAIN.$row['product_image'];
                     $images[] = $image;
                     $count++;
                 }
@@ -1751,6 +1719,24 @@ class product extends DB {
         } catch (Exception $e) {
             echo 'Exection in API getImagesByPid message : ' . $e->getMessage();
         }
+    }
+    
+    
+    public function changeProductStatus($params)
+    {
+        $params= (json_decode($params[0],1));
+        
+        $sql="UPDATE tbl_product_master set active_flag='".$params['active_flag']."'   WHERE productid = '".$params['pid']."'";
+        $res = $this->query($sql);
+        $result = array();
+        if ($res) {
+            $err = array('err_code' => 0, 'err_msg' => 'Data updated successfully');
+        } else {
+            $err = array('err_code' => 1, 'err_msg' => 'Error in updating');
+        }
+        $results = array('result' => $result, 'error' => $err);
+        return $results;
+        
     }
 
 }

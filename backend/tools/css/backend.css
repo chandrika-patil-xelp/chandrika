@@ -207,11 +207,9 @@ a { color: inherit;text-decoration: none; }
 
 .allProducts .date{width: 10%;}
 .allProducts .stockCode{width: 13%;}
-.allProducts .metal{width: 10%;}
-.allProducts .catg{width: 10%;}
+.allProducts .prdName{width: 33%;}
 .allProducts .dmdWt{width: 10%;}
 .allProducts .metalWt {width: 10%;}
-.allProducts .price{width: 13%;}
 .allProducts .acct{width: 24%;border-right: none!important;position: relative}
 
 
