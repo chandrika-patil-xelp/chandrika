@@ -1388,7 +1388,6 @@ function addPrdCallBack(data)
 
 function validateForm()
 {
-    return true;
     if ($('[name=prtcateg]:checked').length === 0)
     {
         common.toast(0, "Select a category");
