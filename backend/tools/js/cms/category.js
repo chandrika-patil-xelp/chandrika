@@ -74,6 +74,16 @@ function categoryCallBack(data)
             catcnt++;
         }
     });
+    
+    
+    if (catcnt == 0)
+    {
+        $('#noresults').removeClass('dn');
+    }
+    else
+    {
+        $('#noresults').addClass('dn');
+    }
     $('#catCount').html(catcnt);
     $('.commonList').html(str);
     bindToggle();
