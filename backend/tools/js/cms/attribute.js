@@ -88,6 +88,14 @@ function attributeListCallBack()
                 attcnt++;
             }  
         });
+        if (attcnt == 0)
+        {
+            $('#noresults').removeClass('dn');
+        }
+        else
+        {
+            $('#noresults').addClass('dn');
+        }
         $('#attrCount').html(attcnt);
         $('.commonList').html(str);
         bindToggle();
