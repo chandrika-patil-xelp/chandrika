@@ -274,7 +274,14 @@ function couponCallBack(data)
         }
 
     });
-    
+    if (copcnt == 0)
+    {
+        $('#noresults').removeClass('dn');
+    }
+    else
+    {
+        $('#noresults').addClass('dn');
+    }
     $('#couponCount').html(copcnt);
     $('.couponList').html(str);
     common.bindToggle();

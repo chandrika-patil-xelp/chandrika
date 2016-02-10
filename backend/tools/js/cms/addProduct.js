@@ -18,7 +18,6 @@ var mpurity = new Array();
 var mcolor = new Array();
 
 
-
 function getCategories()
 {
     var URL = APIDOMAIN + "index.php?action=getCatgoryList";
@@ -28,6 +27,20 @@ function getCategories()
         success: function(res) {
             res = JSON.parse(res);
             categories = res['result'];
+            var active=0;
+            $(categories).each(function(i,v){
+                if(v.active==1){
+                    active++;
+                }
+            });
+            
+            if(active<1){
+                $('#noresults').removeClass('dn');
+                $('#category_Section,#general_Section,#price_Section,.btnCont').addClass('dn');
+            }else{
+                $('#noresults').addClass('dn');
+                $('#category_Section,#general_Section,#price_Section,.btnCont').removeClass('dn');
+            }
             var vstr = getChildCat(res, 0);
             $('#parentCatg').html(vstr);
             getAllChilds(res);
@@ -38,6 +51,7 @@ function getCategories()
 
 function getChildCat(res, id)
 {
+    console.log(res);
     var str = generateHtml(res, id);
     return str;
 }

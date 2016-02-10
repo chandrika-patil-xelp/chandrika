@@ -5,7 +5,12 @@
         <div class="contents fLeft">
             <div class="wrapperMax fmOpenR">
                 <!-----Category Section--!-->
-                <section id='category_Section'>
+                <div class="noresDiv fLeft dn" id='noresults'>
+                    <div class="noresults font25 fLeft">There are no categories available.</div>
+                    <div class="noresults font20 fLeft">Please add categories.</div>
+                </div>
+                
+                <section id='category_Section' class="dn">
                     <div class="commTitle1 fmOpenL fLeft">Select your category*</div>
                     <div class="divCon  fLeft fmOpenR" id='parentCatg'></div>
                     <div class="breakLine"></div>
@@ -87,10 +92,6 @@
                 </section>
                 <!-----Diamond Section End--!-->
 
-
-
-
-
                 <!-----Uncut Diamond Section--!-->
                 <section id='uncut_Section' class="uncutCont dn">
                     <div class="commTitle1 fmOpenL fLeft">Add Uncut Diamond</div>
@@ -114,7 +115,7 @@
                 <!-----Gemstone Section End--!-->
 
                 <!-----General Section--!-->
-                <section id='general_Section' class="generalCont">
+                <section id='general_Section' class="generalCont dn">
                     <div class="commTitle1 fmOpenL fLeft">General Information</div>
                     <div class="divCon fLeft fmOpenR">
                         <div class="titleDiv txtCap fLeft">Diamond Setting type*</div>
@@ -245,7 +246,7 @@
                 <!-----General Section End--!-->
 
                 <!-----Price Section--!-->
-                <section id='price_Section' class="priceCont dn1">
+                <section id='price_Section' class="priceCont dn">
                     <div class="commTitle1 fmOpenL fLeft">Price Breakup</div>
                     <div class="divCon fLeft">
 
@@ -259,7 +260,7 @@
                     </div> 
                 </section>
                 <!-----Price Section End--!-->
-                <div class="btnCont fLeft">
+                <div class="btnCont fLeft dn">
                     <center>
                         <div class="cancelBtn transition300 fmOpenR poR" onclick="">CANCEL</div>
                         <div class="submitBtn transition300 fmOpenR poR" onclick="addProduct()" id="Submitdiv">SUBMIT</div>
