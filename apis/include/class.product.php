@@ -1487,7 +1487,8 @@ class product extends DB {
             }
             $res = $this->query($sql);
 
-            if ($res && $this->numRows($res) > 0) {
+            if ($res) 
+                {
                 while ($row = $this->fetchData($res)) {
 
                     //Date format is not specified so it matches with default mysql
