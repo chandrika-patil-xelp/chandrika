@@ -19,7 +19,11 @@
                             <div class="acct fLeft">Action</div>
                         </div>
                         <ul class="couponList fLeft fmOpenR" id='productList'></ul>
+                        <div class="noresDiv fLeft dn" id='noresults'>
+                            <div class="noresults font25 fLeft">There are no products available.</div>
+                        </div>
                     </div>
+                    
                     <div class="fLeft pagination fmOpenR dn">
                         <center>
                             <div class="pPrev poR transition300">Previous</div>
@@ -155,6 +159,15 @@
                             str+="</li>";
                         }    
                     });
+                    
+                    if(prdCnt==0)
+                    {
+                        $('#noresults').removeClass('dn');
+                    }
+                    else
+                    {
+                        $('#noresults').addClass('dn');
+                    }
                     
                     $('#productList').html(str);
                     $('#productCnt').html(prdCnt);
