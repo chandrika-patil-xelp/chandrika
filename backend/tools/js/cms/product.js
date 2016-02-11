@@ -106,13 +106,13 @@ function getProducsCallback(data)
                 {
                     str += "<select class='backtxtSelect fmOpenR fRight inStockPrd' onchange=\"inStock(this,'" + v.pid + "')\">";
                     str += "<option value='1' selected='selected'>Active</option>";
-                    str += "<option value='0'>Dactive</option>";
+                    str += "<option value='0'>Deactive</option>";
                 }
                 if (v.isActive == 0)
                 {
                     str += "<select class='backtxtSelect fmOpenR fRight outStockPrd' onchange=\"inStock(this,'" + v.pid + "')\">";
                     str += "<option value='1'>Active</option>";
-                    str += "<option value='0' selected='selected'>Dactive</option>";
+                    str += "<option value='0' selected='selected'>Deactive</option>";
                 }
                 str += "</select>";
                 str += "</div>";
