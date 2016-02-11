@@ -93,6 +93,23 @@ switch ($action) {
         include BTEMPLATE.'coupon.html';
         break;
     
+    case 'product_List':
+        $page = 'product_list';
+        $tab = 'product';
+        include BTEMPLATE.'product_list.html';
+        break;
+    
+    case 'thumbnail':
+        $page = 'thumbnail';
+        
+        $url = APIDOMAIN . 'index.php?action=getImgByProd&pid='.$params['pid'];
+        $res = $comm->executeCurl($url);
+        $result = $res['results'];
+        
+        $tab = 'thumbnail';
+        include BTEMPLATE.'thumbnail.html';
+        break;
+    
     /*case 'discounts':
         $page = 'discounts';
         $tab = 'discounts';

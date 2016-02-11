@@ -319,7 +319,25 @@ switch($action)
         $res = $result;
     break;
     
+/* FOR image moderation */
+    case 'getProdList':
+        include APICLUDE.'class.admin.php';
+        
+        $obj=   new admin($db['jzeva']);
+        $res=   $obj->getProdList($params);
+        break;
 
+    case 'getImgByProd':
+        include APICLUDE.'class.admin.php';
+        $obj=new admin($db['jzeva']);
+        $res=$obj->getImgByProd($params);
+        break;
+
+    case 'updateImageData':
+        include APICLUDE.'class.admin.php';
+        $obj=new admin($db['jzeva']);
+        $res=$obj->updateImageData($params);
+        break;
 
     case 'test':
         include APICLUDE.'class.attributes.php';
