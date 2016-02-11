@@ -51,7 +51,6 @@ function getCategories()
 
 function getChildCat(res, id)
 {
-    console.log(res);
     var str = generateHtml(res, id);
     return str;
 }
@@ -1400,46 +1399,116 @@ function addPrdCallBack(data)
 }
 
 
+function highlight(id,type)
+{
+    console.log(id);
+    var sc= $('#'+id).position().top-130;
+    $('body').animate({scrollTop:sc},300,"swing");
+    setTimeout(function(){
+        
+        if(type==0)        
+            $('#'+id).addClass('error');
+        
+        
+        else if(type==1)
+            $('#'+id).next('label').addClass('error');
+        
+        
+        else if(type==2)
+            $('#'+id+' center').addClass('error');
+            
+        
+        
+        bindError();
+    },350);
+   
+  
+   
+}
+
+
+function bindError()
+{
+
+    $('.txtSelect.error').bind('click',function(){
+        $(this).removeClass('error');
+        $(this).unbind();
+    });
+    
+    $('label.error').bind('click',function(){
+        $(this).removeClass('error');
+        $(this).unbind();
+    });
+    
+    $('label').bind('click',function(){
+        var name=$(this).siblings('input').attr('name');
+        if( $('[name='+name+']').siblings('label').hasClass('error'))
+        {
+            $('[name='+name+']').siblings('label').removeClass('error');
+        }
+    });
+    
+    $('.txtInput.error,.mtxtInput.error').bind('focus',function(){
+        $(this).removeClass('error');
+        $(this).unbind();
+    });
+    
+    $('.shapeComm').bind('click',function(){
+        var flag=$(this).parent('center').hasClass('error');
+        if(flag)
+            $(this).siblings('.shapeComm').parent('center').removeClass('error');
+        
+    });
+    
+    
+    
+    
+    
+    
+}
+
+
 function validateForm()
 {
     if ($('[name=prtcateg]:checked').length === 0)
     {
         common.toast(0, "Select a category");
-        $('[name=prtcateg]').focus();
+        var id=$('[name=prtcateg]').eq(0).attr('id');
+        highlight(id,1);
         return false;
     }
 
     if ($('#vendorList').val() == -1)
     {
         common.toast(0, "Select vendor");
-        $('#vendorList').focus();
+        highlight('vendorList',0);
         return false;
     }
 
     if ($('#product_name').val() == "")
     {
         common.toast(0, "Enter Product Name");
-        $('#product_name').focus();
+        highlight('product_name',0);
         return false;
     }
 
     if ($('#product_seo_name').val() == "")
     {
         common.toast(0, "Enter Product SEO Name");
-        $('#product_seo_name').focus();
+        highlight('product_seo_name',0);
         return false;
     }
 
     if ($('#product_weight').val() == "")
     {
         common.toast(0, "Enter Product Weight");
-        $('#product_weight').focus();
+        highlight('product_weight',0);
         return false;
     }
 
     if (has_solitaire)
     {
-
+        var isValid=true;
         $('[id*=solitaireComm_]').each(function() {
 
             var id = $(this).attr('id');
@@ -1449,7 +1518,8 @@ function validateForm()
             if ($('#solitaireComm_' + ids + ' .shapeSelected').length == 0)
             {
                 common.toast(0, "Select Shape For Solitaire " + ids);
-                $('#solitaireComm_' + ids + ' .shapeSelected').focus();
+                highlight('solitaireComm_' + ids,2);                
+                isValid=false;
                 return false;
             }
 
@@ -1457,14 +1527,18 @@ function validateForm()
             {
                 common.toast(0, "Select Color For Solitaire " + ids);
                 $('[name=solitaireColors_' + ids + ']').focus();
+                var id=$('[name=solitaireColors_' + ids + ']').eq(0).attr('id');
+                highlight(id,1);
+                isValid=false;
                 return false;
             }
 
             if ($('[name=solitaireclarity_' + ids + ']:checked').length == 0)
             {
                 common.toast(0, "Select Clarity For Solitaire " + ids);
-                $('[name=solitaireclarity_' + ids + ']').focus();
-                
+                var id=$('[name=solitaireclarity_' + ids + ']').eq(0).attr('id');
+                highlight(id,1);
+                isValid=false;
                 return false;
 
             }
@@ -1472,7 +1546,9 @@ function validateForm()
             if ($('[name=solitairecut_' + ids + ']:checked').length == 0)
             {
                 common.toast(0, "Select Cut For Solitaire " + ids);
-                $('[name=solitairecut_' + ids + ']').focus();
+                var id=$('[name=solitairecut_' + ids + ']').eq(0).attr('id');
+                highlight(id,1);
+                isValid=false;
                 return false;
 
             }
@@ -1480,7 +1556,9 @@ function validateForm()
             if ($('[name=solitairesymmetry_' + ids + ']:checked').length == 0)
             {
                 common.toast(0, "Select Symmetry For Solitaire " + ids);
-                $('[name=solitairesymmetry_' + ids + ']').focus();
+                var id=$('[name=solitairesymmetry_' + ids + ']').eq(0).attr('id');
+                highlight(id,1);
+                isValid=false;
                 return false;
 
             }
@@ -1488,7 +1566,9 @@ function validateForm()
             if ($('[name=solitairepolish_' + ids + ']:checked').length == 0)
             {
                 common.toast(0, "Select Polish For Solitaire " + ids);
-                $('[name=solitairepolish_' + ids + ']').focus();
+                var id=$('[name=solitairepolish_' + ids + ']').eq(0).attr('id');
+                highlight(id,1);
+                isValid=false;
                 return false;
 
             }
@@ -1496,50 +1576,58 @@ function validateForm()
             if ($('[name=solitaireFluorescence_' + ids + ']:checked').length == 0)
             {
                 common.toast(0, "Select Fluorescence For Solitaire " + ids);
-                $('[name=solitaireFluorescence_' + ids + ']').focus();
+                var id=$('[name=solitaireFluorescence_' + ids + ']').eq(0).attr('id');
+                highlight(id,1);
+                isValid=false;                
                 return false;
 
             }
             if ($('#solcaratweight' + ids + '').val() == "")
             {
                 common.toast(0, "Enter Carat Weight For Solitaire " + ids);
+                highlight('solcaratweight' + ids,0);
+                isValid=false;
                 return false;
             }
             if ($('#solpricecarat' + ids + '').val() == "")
             {
                 common.toast(0, "Enter Price / Carat For Solitaire " + ids);
-                $('#solcaratweight' + ids + '').focus();
+                highlight('solpricecarat' + ids,0);
+                isValid=false;
                 return false;
             }
             if ($('#soltable' + ids + '').val() == "")
             {
                 common.toast(0, "Enter Table For Solitaire " + ids);
-                $('#soltable' + ids + '').focus();
+                highlight('soltable' + ids,0);
+                isValid=false;
                 return false;
             }
             if ($('#solCrownAngle' + ids + '').val() == "")
             {
                 common.toast(0, "Enter Crown Angle For Solitaire " + ids);
-                $('#solCrownAngle' + ids + '').focus();
+                highlight('solCrownAngle' + ids,0);
+                isValid=false;
                 return false;
             }
             if ($('#solGirdle' + ids + '').val() == "")
             {
                 common.toast(0, "Enter Girdle For Solitaire " + ids);
-                $('#solGirdle' + ids + '').focus();
-                
+                highlight('solGirdle' + ids,0);
+                isValid=false;                
                 return false;
             }
 
 
         });
-
+        return isValid;
     }
+    
 
     if (has_diamond)
     {
 
-
+        var isValid=true;
         $('[id*=diamondComm_]').each(function() {
             var id = $(this).attr('id');
             var ids = id.split("diamondComm_");
@@ -1548,7 +1636,8 @@ function validateForm()
             if ($('#diamondComm_' + ids + ' .shapeSelected').length == 0)
             {
                 common.toast(0, "Select Shape For Diamond " + ids);
-                $('#diamondComm_' + ids + '').focus();
+                highlight('diamondComm_' + ids,2);                
+                isValid=false;
                 return false;
             }
 
@@ -1558,7 +1647,9 @@ function validateForm()
                 if ($('[name=dmdquality_cust' + ids + ']:checked').length == 0)
                 {
                     common.toast(0, "Select Customizable Diamond Quality For " + ids);
-                    $('[name=dmdquality_cust' + ids + ']').focus();
+                    var id=$('[name=dmdquality_cust' + ids + ']').eq(0).attr('id');
+                    highlight(id,1);
+                    isValid=false;
                     return false;
                 }
             }
@@ -1569,7 +1660,9 @@ function validateForm()
                 if ($('[name=dmdquality_notCust' + ids + ']:checked').length == 0)
                 {
                     common.toast(0, "Select Not Customizable Diamond Quality For " + ids);
-                    $('[name=dmdquality_notCust' + ids + ']').focus();
+                    var id=$('[name=dmdquality_notCust' + ids + ']').eq(0).attr('id');
+                    highlight(id,1);
+                    isValid=false;
                     return false;
                 }
 
@@ -1579,24 +1672,28 @@ function validateForm()
             if ($('#dmdcaratweight' + ids + '').val() == "")
             {
                 common.toast(0, "Enter Diamond Weight For " + ids);
-                $('#dmdcaratweight' + ids + '').focus();
+                highlight('dmdcaratweight' + ids,0);
+                isValid=false;   
+                
                 return false;
             }
 
             if ($('#dmdPieces' + ids + '').val() == "")
             {
                 common.toast(0, "Enter Total Diamonds For " + ids);
-                $('#dmdPieces' + ids + '').focus();
+                highlight('dmdPieces' + ids,0);
+                isValid=false;   
                 return false;
             }
 
         });
+        return isValid;
 
     }
 
     if (has_uncut)
     {
-
+        var isValid=true;
         $('[id*=uncutComm_]').each(function() {
             var id = $(this).attr('id');
             var ids = id.split("uncutComm_");
@@ -1606,7 +1703,9 @@ function validateForm()
             {
 
                 common.toast(0, "Select Color For Uncut " + ids);
-                $('[name=uncutColors_' + ids + ']').focus();
+                var id=$('[name=uncutColors_' + ids + ']').eq(0).attr('id');
+                highlight(id,1);
+                isValid=false;
                 return false;
 
             }
@@ -1615,7 +1714,9 @@ function validateForm()
             {
 
                 common.toast(0, "Select Quality For Uncut " + ids);
-                $('[name=uncutquality_' + ids + ']').focus();
+                var id=$('[name=uncutquality_' + ids + ']').eq(0).attr('id');
+                highlight(id,1);
+                isValid=false;
                 return false;
 
             }
@@ -1623,31 +1724,34 @@ function validateForm()
             if ($('#uncutcaratweight' + ids + '').val() == "")
             {
                 common.toast(0, "Enter Uncut Diamond Weight For " + ids);
-                $('#uncutcaratweight' + ids + '').focus();
+                highlight('uncutcaratweight' + ids,0);
+                isValid=false;
                 return false;
             }
             if ($('#uncutpricecarat' + ids + '').val() == "")
             {
                 common.toast(0, "Enter Price For " + ids);
-                $('#uncutpricecarat' + ids + '').focus();
+                highlight('uncutpricecarat' + ids,0);
+                isValid=false;
                 return false;
             }
             if ($('#uncutPieces' + ids + '').val() == "")
             {
                 common.toast(0, "Enter Total Uncut Diamonds For " + ids);
-                $('#uncutPieces' + ids + '').focus();
+                highlight('uncutPieces' + ids,0);
+                isValid=false;
                 return false;
 
             }
 
         });
-
+        return isValid;
     }
 
 
     if (has_gemstone)
     {
-
+        var isValid =true;
         $('[id*=gemstoneComm_]').each(function() {
             var id = $(this).attr('id');
             var ids = id.split("gemstoneComm_");
@@ -1656,7 +1760,8 @@ function validateForm()
             if ($('#gemstone_type' + ids + '').val() == -1)
             {
                 common.toast(0, "Select Gemstone Type For " + ids);
-                $('#gemstone_type' + ids + '').focus();
+                highlight('gemstone_type'+ids,0);
+                isValid=false;
                 return false;
 
             }
@@ -1664,33 +1769,42 @@ function validateForm()
             if ($('#gemstonecaratweight' + ids + '').val() == "")
             {
                 common.toast(0, "Enter Gemstone Weight For " + ids);
-                $('#gemstonecaratweight' + ids + '').focus();
+                highlight('gemstonecaratweight' + ids,0);
+                isValid=false;
                 return false;
             }
 
             if ($('#gemstonepricecarat' + ids + '').val() == "")
             {
                 common.toast(0, "Enter Price For Gemstone " + ids);
-                $('#gemstonepricecarat' + ids + '').focus();
+                highlight('gemstonepricecarat' + ids,0);
+                isValid=false;                
                 return false;
 
             }
             if ($('#gemstonePieces' + ids + '').val() == "")
             {
                 common.toast(0, "Enter Total Gemstone Pieces For " + ids);
-                $('#gemstonePieces' + ids + '').focus();
+                highlight('gemstonePieces' + ids,0);
+                isValid=false;
                 return false;
 
             }
 
         });
-
+        return isValid;
     }
+    
+    
+
 
     if ($('[name=diamond_setting]:checked').length === 0)
     {
         common.toast(0, "Select diamond settings type");
         $('[name=diamond_setting]').focus();
+        var id=$('[name=diamond_setting]').eq(0).attr('id');
+        highlight(id,1);
+        
         return false;
     }
 
@@ -1699,7 +1813,7 @@ function validateForm()
         if ($('#diamond_settingOth').val() == "")
         {
             common.toast(0, "Enter value for other diamond settings type");
-            $('#diamond_settingOth').focus();
+            highlight('diamond_settingOth',0);
         }
         return false;
     }
@@ -1708,60 +1822,75 @@ function validateForm()
     if ($('[name=certificate]:checked').length === 0)
     {
         common.toast(0, "Select product certificate type");
-        $('[name=certificate]').focus();
+        var id=$('[name=certificate]').eq(0).attr('id');
+        highlight(id,1);
+        
         return false;
     }
 
     if ($('#metal_weight').val() == "")
     {
         common.toast(0, "Enter Metal Weight");
-        $('#metal_weight').focus();
+        highlight('metal_weight',0);
         return false;
     }
 
     if ($('#making_charges').val() == "")
     {
         common.toast(0, "Enter Making Charge");
-        $('#making_charges').focus();
+        highlight('making_charges',0);
         return false;
     }
 
     if ($('#procurement_cost').val() == "")
     {
         common.toast(0, "Enter Procurement Cost");
-        $('#procurement_cost').focus();
+        highlight('procurement_cost',0);
         return false;
     }
 
     if ($('#margin').val() == "")
     {
         common.toast(0, "Enter Margin");
-        $('#margin').focus();
+        highlight('margin',0);
         return false;
     }
 
     if ($('#measure1').val() == "")
     {
         common.toast(0, "Enter Height");
-        $('#measure1').focus();
+        highlight('measure1',0);
         return false;
     }
 
     if ($('#measure2').val() == "")
     {
         common.toast(0, "Enter Width");
-        $('#measure2').focus();
+        highlight('measure2',0);
         return false;
     }
-
-
+    
+    
+    
+    if ($('[name=isPurityCustz]:checked').length === 0)
+    {
+        common.toast(0, "Select Metal Purity Type");
+        var id=$('[name=isPurityCustz]').eq(0).attr('id');
+        highlight(id,1);
+        return false;
+    }
+    
+    
+    
+    
     if ($('[name=isPurityCustz]:checked').val() == 0)
     {
 
         if ($('[name=gpurityCustomize]:checked').length == 0)
         {
             common.toast(0, "Select Customizable Metal Purity Type");
-            $('[name=gpurityCustomize]').focus();
+            var id=$('[name=gpurityCustomize]').eq(0).attr('id');
+            highlight(id,1);            
             return false;
         }
     }
@@ -1772,10 +1901,19 @@ function validateForm()
         if ($('[name=gpurityNotCustomize]:checked').length == 0)
         {
             common.toast(0, "Select Not Customizable Metal Purity Type");
-            $('[name=gpurityNotCustomize]').focus();
+            var id=$('[name=gpurityNotCustomize]').eq(0).attr('id');
+            highlight(id,1);
             return false;
         }
 
+    }
+    
+    if ($('[name=isColorCustz]:checked').length === 0)
+    {
+        common.toast(0, "Select Metal Color Type");
+        var id=$('[name=isColorCustz]').eq(0).attr('id');
+        highlight(id,1);
+        return false;
     }
 
     if ($('[name=isColorCustz]:checked').val() == 0)
@@ -1784,7 +1922,8 @@ function validateForm()
         if ($('[name=gcolorCustomize]:checked').length == 0)
         {
             common.toast(0, "Select Customizable Metal Color");
-            $('[name=gcolorCustomize]').focus();
+            var id=$('[name=gcolorCustomize]').eq(0).attr('id');
+            highlight(id,1);
             return false;
         }
     }
@@ -1795,18 +1934,19 @@ function validateForm()
         if ($('[name=gcolorNotCustomize]:checked').length == 0)
         {
             common.toast(0, "Select Not Customizable Metal Color");
-            $('[name=gcolorNotCustomize]').focus();
+            var id=$('[name=gcolorNotCustomize]').eq(0).attr('id');
+            highlight(id,1);
             return false;
         }
 
     }
 
-
-
     if ($('[name=size]:checked').length == 0)
     {
         common.toast(0, "Select Product Size");
         $('[name=size]').focus();
+        var id=$('[name=size]').eq(0).attr('id');
+        highlight(id,1);
         return false;
     }
 
@@ -1827,14 +1967,16 @@ function validateForm()
         if (sizeLen != sizeValCnt)
         {
             common.toast(0, "Selected Size & Quantity Count Dosen't Match");
-            
+            $('[name=size]:checked').each(function(){
+                
+                var txid=$(this).attr('id')+"_qty";
+                highlight(txid,0);
+            });
             return false;
-
         }
 
     }
-
-    return true;
+    return false;
 }
 
 GetRates();
@@ -1849,7 +1991,6 @@ function GetRates() {
         success: function(res) {
             res = JSON.parse(res);
             allrates = res['result'];
-            console.log(allrates);
         }
     });
 }
