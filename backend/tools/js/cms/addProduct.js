@@ -1428,7 +1428,7 @@ function highlight(id,type)
 {
     console.log(id);
     var sc= $('#'+id).position().top-130;
-    $('body').animate({scrollTop:sc},300,"swing");
+    $('body,html').animate({scrollTop:sc},300,"swing");
     setTimeout(function(){
         
         if(type==0)        
