@@ -1530,6 +1530,16 @@ function validateForm()
         highlight('product_weight',0);
         return false;
     }
+    
+    if (!checkForZero('product_weight'))
+    {
+        common.toast(0, "Product Weight can not be 0");
+        highlight('product_weight',0);
+        return false;
+    }
+    
+    
+    
 
     if (has_solitaire)
     {
@@ -1614,6 +1624,16 @@ function validateForm()
                 isValid=false;
                 return false;
             }
+            
+            if (!checkForZero('solcaratweight' + ids))
+            {
+                common.toast(0, "Carat weight can not be 0");
+                highlight('solcaratweight' + ids,0);
+                return false;
+            }
+            
+            
+            
             if ($('#solpricecarat' + ids + '').val() == "")
             {
                 common.toast(0, "Enter Price / Carat For Solitaire " + ids);
@@ -1621,6 +1641,16 @@ function validateForm()
                 isValid=false;
                 return false;
             }
+            
+            if (!checkForZero('solpricecarat' + ids))
+            {
+                common.toast(0, "Price / carat can not be 0");
+                highlight('solpricecarat' + ids,0);
+                return false;
+            }
+            
+            
+            
             if ($('#soltable' + ids + '').val() == "")
             {
                 common.toast(0, "Enter Table For Solitaire " + ids);
@@ -1628,6 +1658,7 @@ function validateForm()
                 isValid=false;
                 return false;
             }
+            
             if ($('#solCrownAngle' + ids + '').val() == "")
             {
                 common.toast(0, "Enter Crown Angle For Solitaire " + ids);
@@ -1635,11 +1666,27 @@ function validateForm()
                 isValid=false;
                 return false;
             }
+            
+            if (!checkForZero('solCrownAngle' + ids))
+            {
+                common.toast(0, "Crown Angle can not be 0");
+                highlight('solCrownAngle' + ids,0);
+                return false;
+            }
+            
+            
             if ($('#solGirdle' + ids + '').val() == "")
             {
                 common.toast(0, "Enter Girdle For Solitaire " + ids);
                 highlight('solGirdle' + ids,0);
                 isValid=false;                
+                return false;
+            }
+            
+            if (!checkForZero('solGirdle' + ids))
+            {
+                common.toast(0, "Girdle can not be 0");
+                highlight('solGirdle'+ ids,0);
                 return false;
             }
 
@@ -1702,12 +1749,28 @@ function validateForm()
                 
                 return false;
             }
-
+            
+            if (!checkForZero('dmdcaratweight' + ids))
+            {
+                common.toast(0, "Carat weight can not be 0");
+                highlight('dmdcaratweight' + ids,0);
+                return false;
+            }
+            
+            
             if ($('#dmdPieces' + ids + '').val() == "")
             {
                 common.toast(0, "Enter Total Diamonds For " + ids);
                 highlight('dmdPieces' + ids,0);
                 isValid=false;   
+                return false;
+            }
+            
+            
+            if (!checkForZero('dmdPieces' + ids))
+            {
+                common.toast(0, "Pieces can not be 0");
+                highlight('dmdPieces' + ids,0);
                 return false;
             }
 
@@ -1753,6 +1816,15 @@ function validateForm()
                 isValid=false;
                 return false;
             }
+            
+            if (!checkForZero('uncutcaratweight' + ids))
+            {
+                common.toast(0, "Uncut Carat weight can not be 0");
+                highlight('uncutcaratweight' + ids,0);
+                return false;
+            }
+            
+            
             if ($('#uncutpricecarat' + ids + '').val() == "")
             {
                 common.toast(0, "Enter Price For " + ids);
@@ -1760,6 +1832,15 @@ function validateForm()
                 isValid=false;
                 return false;
             }
+            
+            if (!checkForZero('uncutpricecarat' + ids))
+            {
+                common.toast(0, "Price / carat can not be 0");
+                highlight('uncutpricecarat' + ids,0);
+                return false;
+            }
+            
+            
             if ($('#uncutPieces' + ids + '').val() == "")
             {
                 common.toast(0, "Enter Total Uncut Diamonds For " + ids);
@@ -1768,6 +1849,14 @@ function validateForm()
                 return false;
 
             }
+            
+            if (!checkForZero('uncutPieces' + ids))
+            {
+                common.toast(0, "Uncut Pieces can not be 0");
+                highlight('uncutPieces' + ids,0);
+                return false;
+            }
+            
 
         });
         return isValid;
@@ -1798,6 +1887,13 @@ function validateForm()
                 isValid=false;
                 return false;
             }
+            
+            if (!checkForZero('gemstonecaratweight' + ids))
+            {
+                common.toast(0, "Gemstone Carat weight can not be 0");
+                highlight('gemstonecaratweight' + ids,0);
+                return false;
+            }
 
             if ($('#gemstonepricecarat' + ids + '').val() == "")
             {
@@ -1807,6 +1903,14 @@ function validateForm()
                 return false;
 
             }
+            
+            if (!checkForZero('gemstonepricecarat' + ids))
+            {
+                common.toast(0, "Price / Carat can not be 0");
+                highlight('gemstonepricecarat' + ids,0);
+                return false;
+            }
+            
             if ($('#gemstonePieces' + ids + '').val() == "")
             {
                 common.toast(0, "Enter Total Gemstone Pieces For " + ids);
@@ -1814,6 +1918,13 @@ function validateForm()
                 isValid=false;
                 return false;
 
+            }
+            
+            if (!checkForZero('gemstonePieces' + ids))
+            {
+                common.toast(0, "Gemstone pieces can not be 0");
+                highlight('gemstonePieces' + ids,0);
+                return false;
             }
 
         });
@@ -1859,13 +1970,29 @@ function validateForm()
         highlight('metal_weight',0);
         return false;
     }
-
+    
+    if (!checkForZero('metal_weight'))
+    {
+        common.toast(0, "Metal Weight can not be 0");
+        highlight('metal_weight',0);
+        return false;
+    }
+    
+    
     if ($('#making_charges').val() == "")
     {
         common.toast(0, "Enter Making Charge");
         highlight('making_charges',0);
         return false;
     }
+    if (!checkForZero('making_charges'))
+    {
+        common.toast(0, "Making Charges can not be 0");
+        highlight('making_charges',0);
+        return false;
+    }
+    
+    
 
     if ($('#procurement_cost').val() == "")
     {
@@ -1873,17 +2000,32 @@ function validateForm()
         highlight('procurement_cost',0);
         return false;
     }
+    
+    
+    if (!checkForZero('procurement_cost'))
+    {
+        common.toast(0, "Procurement cost can not be 0");
+        highlight('procurement_cost',0);
+        return false;
+    }
 
-    if ($('#margin').val() == "")
+    /*if ($('#margin').val() == "")
     {
         common.toast(0, "Enter Margin");
         highlight('margin',0);
         return false;
-    }
+    }*/
 
     if ($('#measure1').val() == "")
     {
         common.toast(0, "Enter Height");
+        highlight('measure1',0);
+        return false;
+    }
+    
+    if (!checkForZero('measure1'))
+    {
+        common.toast(0, "Height can not be 0");
         highlight('measure1',0);
         return false;
     }
@@ -1895,6 +2037,12 @@ function validateForm()
         return false;
     }
     
+    if (!checkForZero('measure2'))
+    {
+        common.toast(0, "Width can not be 0");
+        highlight('measure2',0);
+        return false;
+    }
     
     
     if ($('[name=isPurityCustz]:checked').length === 0)
@@ -2003,6 +2151,17 @@ function validateForm()
     }
     return false;
 }
+
+function checkForZero(id)
+{
+    var val=$('#'+id).val();
+    if(parseFloat(val)*1==0)
+        return false;
+    else
+        return true;
+}
+
+
 
 GetRates();
 var allrates = new Array();
