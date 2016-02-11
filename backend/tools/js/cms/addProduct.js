@@ -587,6 +587,12 @@ function hideLoader()
     $('.overlay,.loader').addClass('dn');
 }
 
+function deleteThis(id)
+{
+    $('#'+id).next('.breakLine').remove();
+    $('#'+id).remove();
+    
+}
 
 function addSolitaire()
 {
@@ -596,6 +602,10 @@ function addSolitaire()
 
 
     var str = "<div class='commCont fLeft' id='solitaireComm_" + solitaireCnt + "'>";
+    if(solitaireCnt>1)
+    {
+        str+="<div class='deleteElements fRight transition300' onclick=\"deleteThis('solitaireComm_" + solitaireCnt + "')\"></div>";
+    }
     str += generateShapes('solitaire');
     str += generateColors('solitaire', soltColor);
     str += generateClarity(soltClarity);
@@ -607,7 +617,6 @@ function addSolitaire()
     $('#newSolitaires').append(str);
     bindShapes();
     solitaireCnt++;
-
 
 }
 
@@ -772,6 +781,10 @@ function addDiamond()
 {
 
     var str = "<div class='commCont fLeft' id='diamondComm_" + diamondCnt + "'>";
+    if(diamondCnt>1)
+    {
+        str+="<div class='deleteElements fRight transition300' onclick=\"deleteThis('diamondComm_" + diamondCnt + "')\"></div>";
+    }
     str += generateShapes('diamond');
     str += "<div class='divCon fLeft fmOpenR'>";
     str += "<div class='titleDiv fLeft wAuto'>Is this diamond customizable?</div>";
@@ -904,8 +917,15 @@ function addUncut()
     str3 += "<input name='uncutPieces' id='uncutPieces" + unctCnt + "'' type='text' placeholder='eg. 5' class='txtInput fLeft fmOpenR font14 c666'>";
     str3 += "</div>";
 
-    var str = "<div class='commCont fLeft' id='uncutComm_" + unctCnt + "'>" + str1 + tstr + str2 + str3 + "</div>";
-
+    var delStr="<div class='deleteElements fRight transition300' onclick=\"deleteThis('uncutComm_" + unctCnt + "')\"></div>";
+    var str="";
+    if(unctCnt>1)
+    {
+        str += "<div class='commCont fLeft' id='uncutComm_" + unctCnt + "'>"+delStr+tstr + str2 + str3 + "</div>";
+    }
+    else{
+        str += "<div class='commCont fLeft' id='uncutComm_" + unctCnt + "'>"+tstr + str2 + str3 + "</div>";
+    }
 
     $('#newUncutDiamonds').append(str);
     unctCnt++;
@@ -916,6 +936,12 @@ function addGemstone()
 {
 
     var str = "<div class='commCont fLeft' id='gemstoneComm_" + gemstoneCnt + "'>";
+    
+    if(gemstoneCnt>1)
+    {
+        str+="<div class='divCon fLeft mTop0'><div class='deleteElements fRight transition300' onclick=\"deleteThis('gemstoneComm_" + gemstoneCnt + "')\"></div></div>";
+    }
+    
     str += "<div class='divCon2 fLeft'>";
     str += "<div class='titleDiv txtCap fLeft'>Select a gemstone</div>";
 
@@ -927,7 +953,6 @@ function addGemstone()
     });
 
     str += "</select></div>";
-
     str += "<div class='divCon2  fLeft'>";
     str += "<div class='titleDiv txtCap fLeft'>Carat*</div>";
     str += "<input  name='gemstoneCarat' id='gemstonecaratweight" + gemstoneCnt + "' type='text' placeholder='eg. 1.00' class='txtInput fLeft fmOpenR font14 c666' maxlength='5' onkeypress='return common.isDecimalKey(event, this.value);'>";
