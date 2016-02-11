@@ -1488,7 +1488,7 @@ class product extends DB {
             $res = $this->query($sql);
 
             if ($res) 
-                {
+            {
                 while ($row = $this->fetchData($res)) {
 
                     //Date format is not specified so it matches with default mysql
@@ -1515,7 +1515,8 @@ class product extends DB {
                     $result[] = $arr;
                 }
                 $err = array('err_code' => 0, 'err_msg' => 'Data fetched successfully');
-            } else {
+            }
+            else {
                 $err = array('err_code' => 1, 'err_msg' => 'Error in fetching data');
             }
             $results = array('results' => $result, 'error' => $err);
