@@ -322,7 +322,6 @@ switch($action)
 /* FOR image moderation */
     case 'getProdList':
         include APICLUDE.'class.admin.php';
-        
         $obj=   new admin($db['jzeva']);
         $res=   $obj->getProdList($params);
         break;

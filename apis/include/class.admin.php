@@ -16,13 +16,15 @@ class admin extends DB
 
         $subQuery = "   SELECT 
                                 product_id AS id,
-                                update_date,
+                                (select product_seo_name from tbl_product_master WHERE productid = product_id) as pname,
+                                (select product_code from tbl_product_master WHERE productid = product_id) as pcode,
+                                (SELECT date_format(a.update_date,'%D %b,%Y|%h:%i %p') as dateForm) as date,
                                 count(product_id) AS total_img,
                                 sum(active_flag = 0) as pend_img,
                                 sum(active_flag = 1) as appr_img,
                                 sum(active_flag = 3) as rej_img
                         FROM
-                                tbl_product_image_mapping
+                                tbl_product_image_mapping as a
                         GROUP BY
                                 product_id
                         ORDER BY

@@ -95,18 +95,17 @@ switch ($action) {
     
     case 'product_List':
         $page = 'product_list';
-        $tab = 'product';
+        $tab = 'products';
         include BTEMPLATE.'product_list.html';
+        #include BTEMPLATE.'product_list1.html';
         break;
     
     case 'thumbnail':
         $page = 'thumbnail';
-        
+        $tab = 'products';
         $url = APIDOMAIN . 'index.php?action=getImgByProd&pid='.$params['pid'];
         $res = $comm->executeCurl($url);
         $result = $res['results'];
-        
-        $tab = 'thumbnail';
         include BTEMPLATE.'thumbnail.html';
         break;
     

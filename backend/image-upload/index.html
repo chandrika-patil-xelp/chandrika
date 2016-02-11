@@ -1,76 +1,42 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title><?php echo strtoupper($page)?></title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <script>
-        var DOMAIN    = "<?php echo DOMAIN.'backend/';?>";
-        var IMGDOMAIN = "<?php echo IMGDOMAIN;?>";
-        
-    </script>        
-    <!--Stylesheets-->
-    <link href="<?php echo IMGDOMAIN;?>css/jquery.filer.css" type="text/css" rel="stylesheet" />
-    <link href="<?php echo IMGDOMAIN;?>css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
+    <head>
+        <title><?php echo strtoupper($page) ?></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <script>
+            var DOMAIN = "<?php echo DOMAIN . 'backend/'; ?>";
+            var IMGDOMAIN = "<?php echo IMGDOMAIN; ?>";
+        </script>        
 
-    <!--jQuery-->
-    <script type="text/javascript" src="<?php echo $jvs['jqry'];?>"></script>
-    <script type="text/javascript" src="<?php echo IMGDOMAIN;?>js/jquery.filer.min.js?v=1.0.5"></script>
-    <script type="text/javascript" src="<?php echo IMGDOMAIN;?>js/custom.js?v=1.0.5"></script>
+        <link href="<?php echo IMGDOMAIN; ?>css/jquery.filer.css" type="text/css" rel="stylesheet" />
+        <link href="<?php echo IMGDOMAIN; ?>css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
+        <link rel="stylesheet" href="<?php echo $css['backend'];?>">
+        <!--jQuery-->
+        <script type="text/javascript" src="<?php echo $jvs['jqry']; ?>"></script>
+        <script type="text/javascript" src="<?php echo IMGDOMAIN; ?>js/jquery.filer.min.js?v=1.0.5"></script>
+        <script type="text/javascript" src="<?php echo IMGDOMAIN; ?>js/custom.js?v=1.0.5"></script>
 
-    <!--[if IE]>
-              <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <style>
-            body {
-
-            }
-
-            #content {
-                    width: 100%;   
-            }
-    </style>
-	
+        <!--[if IE]>
+                  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
     <body>
-        <div class="vndTabs fLeft fmOpenR"  style="margin-top: 50px;">
+        <div class="header uploadHeader">
             <div class="wrapperMax">
-                <div class="vndTabs fLeft fmOpenR">
-                    <div class="wrapperMax">
-                        <div class="heading font22 fmOpenR fLeft" style="color:#fff;width:auto">Upload Product Images</div>
-<!--                        <a href="<?php echo $vendor_landing;?>"><div class="addPrdBtn  fRight transition300">SKIP</div></a>
-                        <a href="<?php echo $vendor_landing;?>"><div class="addPrdBtn  fRight transition300">PROCEED</div></a>-->
-
-                    </div>
+                <div class="logoDiv fLeft"></div>
+                <div class="loggedUser fmOpenR fRight">
+                    <div class="fRight logoutBtn fmOpenB">Logout</div>
+                    <div class="fRight">Hi, Karan Mehta</div>
+                </div>
+                <div class="headerBtns fRight fmOpenB">
+                    <a href="<?php echo ($_SERVER['HTTP_REFERER'] ? $_SERVER['HTTP_REFERER'] : $_COOKIE['back']); ?>"><div id="" class="hSubmitBtn hbtn transition100 fRight">Proceed</div></a>
+                    <a href="<?php echo ($_SERVER['HTTP_REFERER'] ? $_SERVER['HTTP_REFERER'] : $_COOKIE['back']); ?>"><div class="hBackBtn hbtn transition100 fRight">Back</div></a>
                 </div>
             </div>
         </div>
-            <div id="content">
-                <input type="file" name="files[]" id="filer_input2" multiple="multiple" accept="image/png,image/jpeg">
-                <input type="hidden" name="pid" id="pid" value="<?php echo $pid;?>">
-            </div>
-        <div class="btnConta fmOpenR dn">
-<?php
-            $backUrl=($_SERVER['HTTP_REFERER'] ? $_SERVER['HTTP_REFERER'] : $_COOKIE['back']);
-?>
-<!--                <a href="<?php echo $backUrl; ?>"><div class="skipBtn btnComm fLeft">BACK</div></a>
-                <a href="<?php echo ($_SERVER['HTTP_REFERER'] ? $_SERVER['HTTP_REFERER'] : $_COOKIE['back']);?>"><div class="finishBtn btnComm fRight">PROCEED</div></a>-->
-            
-        </div>
-<!--        <script>
-        (function(window, location) {
-            history.replaceState(null, document.title, location.pathname+"#!/stealingyourhistory");
-            history.pushState(null, document.title, location.pathname);
-
-            window.addEventListener("popstate", function() {
-              if(location.hash === "#!/stealingyourhistory") {
-                    history.replaceState(null, document.title, location.pathname);
-                    setTimeout(function(){
-                      location.replace('<?php echo $backUrl;?>');
-                    },0);
-              }
-            }, false);
-        }(window, location));
-        </script>-->
+        <div id="content">
+            <input type="file" name="files[]" id="filer_input2" multiple="multiple" accept="image/png,image/jpeg">
+            <input type="hidden" name="pid" id="pid" value="<?php echo $pid; ?>">
+        </div>        
     </body>
 </html>

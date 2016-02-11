@@ -446,3 +446,23 @@ span.jFiler-icon-file.f-audio:after {
 .skipBtn{background: #8A0044;}
 .finishBtn{background: rgba(0,0,0,0.2);}
 .finishBtn:hover{background: rgba(0,0,0,0.4);}
+
+
+
+#content{width:100%;height: auto;}
+
+
+.headerBtns{width:auto;height: 34px;margin: 0 ;line-height: 35px;font-size: 12px;}
+.hbtn{width:auto;height: 35px;padding: 0 35px;color:#fff;margin: 8px 10px;}
+.headerBtns .hbtn{margin-left:5px;}
+
+
+.hBackBtn{background: #2F665C;cursor: pointer;border-radius: 2px;position: relative;}
+.hBackBtn::before{content: "";width: 30px;height: 34px;position: absolute;left: 15px;background: url(backArrow.svg)no-repeat;background-size: auto 11px;background-position: center;opacity: 0;transition: 100ms ease-in-out; -moz-transition:100ms ease-in-out ; -ms-transition:100ms ease-in-out ; -webkit-transition:100ms ease-in-out ; -o-transition:100ms ease-in-out;}
+.hBackBtn:hover.hBackBtn::before{content: "";width: 30px;height: 34px;position: absolute;left: 5px;background: url(backArrow.svg)no-repeat;background-size: auto 11px;background-position: center;opacity: 1;transition: 100ms ease-in-out; -moz-transition:100ms ease-in-out ; -ms-transition:100ms ease-in-out ; -webkit-transition:100ms ease-in-out ; -o-transition:100ms ease-in-out;}
+
+.hSubmitBtn{background: #2F665C;cursor: pointer;border-radius: 2px;position: relative;}
+.hSubmitBtn::before{content: "";width: 30px;height: 34px;position: absolute;right: 15px;background: url(tickCircle2.svg)no-repeat;background-size: auto 20px;background-position: center;opacity: 0;transition: 100ms ease-in-out; -moz-transition:100ms ease-in-out ; -ms-transition:100ms ease-in-out ; -webkit-transition:100ms ease-in-out ; -o-transition:100ms ease-in-out;}
+.hSubmitBtn:hover.hSubmitBtn::before{content: "";width: 30px;height: 34px;position: absolute;right: 5px;background: url(tickCircle2.svg)no-repeat;background-size: auto 20px;background-position: center;opacity: 1;transition: 100ms ease-in-out; -moz-transition:100ms ease-in-out ; -ms-transition:100ms ease-in-out ; -webkit-transition:100ms ease-in-out ; -o-transition:100ms ease-in-out;}
+
+.header.uploadHeader {width: 100%;height: 51px;}

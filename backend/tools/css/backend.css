@@ -216,6 +216,7 @@ a { color: inherit;text-decoration: none; }
 .stockCode .lwSpan{color: #8A0044;font-size: 11px;font-family: openB;}
 li div{overflow: hidden;text-overflow: ellipsis;white-space: nowrap}
 li .date{text-align: left;padding: 0 10px;}
+li .prdName{text-align: left;padding: 0 10px;}
 li .stockCode{text-align: left;padding: 0 10px;}
 li .metal{text-align: center;}
 li .catg{padding: 0 10px;}
@@ -267,6 +268,7 @@ li .acct{border-right: none!important;position: relative;padding: 0 15px 0 0px}
 
 .cpListHeader {width: 100%;height: 45px;background: #e6e6e6;text-align: center!important;}
 .cpListHeader div{border-right:1px solid #d4d4c8;height: 100%;line-height: 43px;padding: 0 15px;font-size: 13px;text-align: center!important;color:#4d4d4d;}
+.cpListHeader  div:last-child{border: none!important;}
 
 .coupons .date{width: 15%;}
 .coupons .ccode{width: 15%;}
@@ -568,9 +570,7 @@ section{width:100%;height: auto;border:1px dashed #b3b3b3;float: left;margin:0 0
 
 
 /* Error */
-
 .error{}
-
 .shapesContComm center{border:1px solid #fff;}
 .txtSelect.error{border-color: #e00000!important;}
 .txtInput.error{border-color: #e00000!important;}
@@ -582,3 +582,39 @@ label.error{color:#e00000!important;}
 
 .deleteElements {width: 40px;height: 40px;background: url(../img/delete.svg)no-repeat;background-size: auto 100%;cursor: pointer;border-radius: 2px;}
 .deleteElements:hover {background-color:#f0f0f0;}
+
+
+
+/* Image Moderation */
+.thumbnilPage{}
+.thumbnilPage .prdSearchDiv{width: 70%;margin: 0 15%;border-bottom: 1px solid #ccc;}
+.thumbnailCont{width:100%;height: auto;}
+.thumbnilComm {width: 70%;height: 120px;border-bottom: 1px dotted #ccc;border-radius: 2px;padding: 10px 0;margin: 0 15% 10px 15%;}
+.actThumbnail {width: 100px;height: 100px;border: 0px solid #ccc;cursor: pointer;}
+.comment {width: 30%;height: 100px;padding: 0;border-radius: 3px;}
+.txtComment {width: 100%;height: 80px;padding: 0;line-height: 16px;font-size: 13px;resize: none;border: none;color: #666;border: 1px solid #ccc;border-radius: 2px;padding: 5px;}
+.seqTitle {width: 100%;height: 20px;line-height: 20px;color: #666;font-size: 12px;font-family: openB;}
+.seqTxt {width: 35px;height: 35px;color: #666;border: 1px solid #ccc;border-radius: 2px;padding: 0;text-align: center;line-height: 35px;}
+.seq {width: 100px;height: 60px;margin: 0 10px;padding: 0 15px;}
+
+
+/* Product Images*/
+
+.prdName2 {width: 30%;}
+.prdTotalImg {width:10%}
+.prdPendImg{width:8%}
+.prdAccptImg {width:8%}
+.prdRejImg{width:10%}
+.prdViewImgBtn{width:11%}
+
+li div:last-child{border: none!important;}
+
+
+li .prdName2 {padding: 0 15px}
+li .prdTotalImg {text-align: center;}
+li .prdPendImg{text-align: center;}
+li .prdAccptImg {text-align: center;}
+li .prdRejImg{text-align: center;}
+li .prdViewImgBtn{}
+.viewImgB {display: inline-block;width: auto;height: 34px;line-height: 34px;color: #fff;background: #2f665c;padding: 0 15px;font-size: 12px;border-radius: 2px;cursor: pointer;vertical-align: top;margin: 3px 0;}
+

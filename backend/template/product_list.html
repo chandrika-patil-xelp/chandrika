@@ -1,98 +1,86 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title><?php echo strtoupper($page)?></title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<link rel='stylesheet' type="text/css" href='<?php echo DOMAIN;?>backend/image-upload/css/backend.css'>
-<script>
-        var DOMAIN    = "<?php echo DOMAIN;?>";
-        var IMGDOMAIN = "<?php echo IMGDOMAIN;?>";
-</script>
-</head>
- <body>
-<div class="mainContainer fLeft">
-    <div id="product" class="contentCont fLeft">
-        <div class="wrapperMax">
-            <div  class="forPrds fLeft fmOpenR">
-                <div class="prdResults fRight">
-                    <div id="dmdS" class="prdSearchDiv fLeft">
-                        <div class="formTitle fLeft fmOpenR m0"><span id="totalProducts">0</span> product(s) listed</div>
-<!--                        <input type="text" onkeyup="searchBarcode(this.value);" autocomplete="off" class="prdSeachTxt fRight fmOpenR" placeholder="Search Product">-->
+<?php include 'jBhead.html' ?>
+<body>
+    <div class="container allProducts">
+        <?php include 'jBheader.html' ?>
+        <div class="contents fLeft">
+            <div class="wrapperMax">
+                <div class="couponCont fLeft">
+                    <div class="prdSearchDiv fLeft fmOpenR">
+                        <div class="commTitle2 fLeft"><span id='productCnt'>NA</span> products listed with images</div>
                     </div>
-                    <div class="prdListHeader fLeft fmOpenR">
+                    <div class="cpListHeader fLeft fmOpenR">
                         <div class="date fLeft">Date</div>
-                        <div class="barcode fLeft">Barcode</div>
-                        <div class="btype fLeft">Jeweller Name</div>
-                        <div class="catg fLeft">Category </div>
-                        <div class="shape fLeft">Total Images</div>
-                        <div class="date fLeft">Pending</div>
-                        <div class="shape fLeft">Accepted</div>
-                        <div class="shape fLeft">Rejected</div>
-                        <div class="acct2 fLeft"></div>
+                        <div class="stockCode fLeft">Stock Code</div>
+                        <div class="prdName2 fLeft">Product Name</div>
+                        <div class="prdTotalImg fLeft">Total Images</div>
+                        <div class="prdPendImg fLeft">Pending</div>
+                        <div class="prdAccptImg fLeft">Accepted</div>
+                        <div class="prdRejImg fLeft">Rejected</div>
+                        <div class="prdViewImgBtn fLeft">Action</div>
                     </div>
-
-                    <ul class="prdul fLeft fmOpenR" id="PoductsList">
-                        <li class="noRecords"><span >Sorry! No Enquiries Found!</span></li>
-                    </ul>
+                    <ul class="couponList fLeft fmOpenR" id='productList'></ul>
+                    <div class="noresDiv fLeft dn" id='noresults'>
+                        <div class="noresults font25 fLeft">There are no products available.</div>
+                    </div>
+                </div>
+                <div class="fLeft pagination fmOpenR dn">
+                    <center>
+                        <div class="pPrev poR transition300">Previous</div>
+                        <div class="pgComm poR transition300 pgActive">1</div>
+                        <div class="pgComm poR transition300">2</div>
+                        <div class="pNext poR transition300">Next</div>
+                    </center>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<script type="text/javascript" src='<?php echo DOMAIN;?>backend/tools/js/lib/jquery.js'></script>
-<script>
-    var uid = 1;
-    var is_vendor = 2;
-    var userName = 'name';
-    //var pgno = customStorage.readFromStorage('pgno');
-    var pgno = 1;
-    
-    $('#userName').html(userName);
-    
-    if (uid == '' || is_vendor!=2)
-    {
-        window.location.assign(DOMAIN);
-    }
-    
-    var loadProduct = true;
-    var currentPage = 1;
-    
+    <script>
+
+        var pgno = 1;
+        var currentPage = 1;
 
 
-function loadProducts(pgno) {
-    var tmstmp = new Date().getTime();
-    $.ajax({url:  DOMAIN+"apis/index.php?action=getProdList&page=" + pgno + "&limit=50&timestamp="+tmstmp, success: function (result) {
-        loadProductsCallback(result,pgno);
-    }});
-}
-function loadProductsCallback(res,pgno) {
-    var obj = jQuery.parseJSON(res);
-    if (obj['results'] != '') {
-        $('#pgno').val(pgno);
-        var total = obj['results']['total_products'];
-        $('#totalProducts').text(total);
-        var total_pages = obj['results']['total_pages'];
-        
-        var str = '';
-        if(total!=0) {
-            if(total_pages==currentPage) {
-                loadProduct = false;
-            }
-            var len = obj['results']['products'].length;
-            var i = 0;
-            while (i < len) {
-                str += generatProductsList(obj['results']['products'][i]);
-                i++;
-            }
-			var html = pagination(obj,pgno);
-        } else {
-            str = '<p class="noRecords"><span>Sorry! No Products Found!</span></p>';
+        function loadProducts(pgno) {
+            var tmstmp = new Date().getTime();
+            $.ajax({
+                url: DOMAIN + "apis/index.php?action=getProdList&page=" + pgno + "&limit=50&timestamp=" + tmstmp,
+                success: function(result) {
+                    loadProductsCallback(result, pgno);
+                }});
+        }
+
+
+        function loadProductsCallback(res, pgno) {
+            var obj = jQuery.parseJSON(res);
+            if (obj['results'] != '') {
+                $('#pgno').val(pgno);
+                var total = obj['results']['total_products'];
+                $('#productCnt').text(total);
+                var total_pages = obj['results']['total_pages'];
+
+                var str = '';
+                if (total != 0)
+                {
+                    if (total_pages == currentPage)
+                    {
+                        loadProduct = false;
+                    }
+                    var len = obj['results']['products'].length;
+                    var i = 0;
+                    while (i < len) {
+                        str += generatProductsList(obj['results']['products'][i]);
+                        i++;
+                    }
+                    var html = pagination(obj, pgno);
+                }
+                else
+                {
+                    str = '<div class="noresDiv fLeft dn" id="noresults"><div class="noresults font25 fLeft">There are no products available.</div></div>';
                     loadProduct = false;
                 }
-                $('#PoductsList').html(str);
-                $('#PoductsList').append(html);
-                $('.pgComm').click(function () {
+                $('#productList').html(str);
+                $('#productList').append(html);
+                $('.pgComm').click(function() {
 
                     $('.pgComm').removeClass('pgActive');
                     $(this).addClass('pgActive');
@@ -106,238 +94,39 @@ function loadProductsCallback(res,pgno) {
         }
         function generatProductsList(obj) {
             var tempUrl = '';
-                console.log(obj);
-                var date = obj['update_date'].split(' ');
-                var str = '<li>';
-                str += '<div class="date fLeft"> ';
-                str += '<span class="upSpan">' + date[0] + '</span>';
-                str += '<span class="lwSpan">' + date[1] + '</span>';
-                str += '</div>';
-                str += '<div class="barcode fLeft">';
-                str += '<span class="upSpan">Barcode </span>';
-                str += '<span class="lwSpan"><a href="' + DOMAIN + tempUrl +obj['id']+ '" target="_blank">View Details</a></span>';
-                str += '</div>';
-                str += '<div class="btype fLeft textOverflow" title=" orgName">OrgName</div>';
-                str += '<div class="catg fLeft textOverflow" title="Category">category</div>';
-                str += '<div class="shape fLeft">' + obj['total_img'] + '</div>';
-                str += '<div class="date fLeft">' + obj['pend_img'] + '</div>';
-                str += '<div class="shape fLeft">' + obj['appr_img'] + '</div>';
-                str += '<div class="shape fLeft">' + obj['rej_img'] + '</div>';
-                str += '<div class="acct2 fLeft">';
-                str += '<a href="' + DOMAIN + 'backend/index.php?action=thumbnail&pid=' + obj.id + '"><div class="viewDetBtn poR ripplelink fmOpenR fRight">View Images</div></a>';
-                str += '</div>';
-                str += '</li>';
-                str += '';
-                return str;
+            var str = "";
+            var cdat = obj['date'].split("|");
+            str += "<li>";
+            str += "<div class='date fLeft'>";
+            str += "<span class='upSpan'>" + cdat[0] + "</span>";
+            str += "<span class='lwSpan'>" + cdat[1] + "</span>";
+            str += "</div>";
+            str += "<div class='stockCode fLeft'>";
+            str += "<span class='upSpan fmOpenB'>" + obj['pcode'] + "</span>";
+            str += "<span class='lwSpan'><a href='" + APIDOMAIN + "?action=getProductById&pid=" + obj['id'] + "'>View Details</a></span>";
+            str += "</div>";
+            str += "<div class='prdName2 fLeft'>" + obj['pname'] + "</div>";
+            str += "<div class='prdTotalImg fLeft'>" + obj['total_img'] + "</div>";
+            str += "<div class='prdPendImg fLeft'>" + obj['pend_img'] + "</div>";
+            str += "<div class='prdAccptImg fLeft'>" + obj['appr_img'] + "</div>";
+            str += "<div class='prdRejImg fLeft'>" + obj['rej_img'] + "</div>";
+            str += '<a href="' + DOMAIN + 'backend/index.php?action=thumbnail&pid=' + obj['id'] + '" target="_blank"><div class="prdViewImgBtn fLeft"><center><div class="viewImgB">View Images</div></center></div></a>';
+            str += '</li>';
+            return str;
         }
+
 
         function pagination(data, pgno) {
-            /* For Pagintion */
-            pgno = pgno * 1;
-            var html = '';
-            var tc = data.results.total_products;
-            var lastpg = Math.ceil(tc / 50);
-            var adjacents = 2;
-            $('#total_pageno').val(lastpg);
-
-            if (lastpg > 1)
-            {
-                html += '<div class="fLeft pagination fmOpenR">';
-                html += '<center>';
-                html += '<div class="pPrev poR ripplelink">Previous</div>';
-                if (lastpg < 7 + (adjacents * 2))
-                {
-                    for (var i = 1; i <= lastpg; i++)
-                    {
-                        if (i == pgno)
-                        {
-                            html += '<div class="pgComm poR ripplelink pgActive">' + i + '</div>';
-                        }
-                        else
-                        {
-                            html += '<div class="pgComm poR ripplelink">' + i + '</div>';
-                        }
-                    }
-                }
-                else if (lastpg > 5 + (adjacents * 2))
-                {
-                    if (pgno < 1 + (adjacents * 2))
-                    {
-                        for (var i = 1; i < 4 + (adjacents * 2); i++)
-                        {
-                            if (i == pgno)
-                            {
-                                html += '<div class="pgComm poR ripplelink pgActive">' + i + '</div>';
-                            }
-                            else
-                            {
-                                html += '<div class="pgComm poR ripplelink">' + i + '</div>';
-                            }
-                        }
-                        html += '<div class="pgEmpty"></div>';
-                        html += '<div class="pgEmpty"></div>';
-                        html += '<div class="pgEmpty"></div>';
-                        html += '<div class="pgComm poR ripplelink">' + lastpg + '</div>';
-                    }
-                    else if (lastpg - (adjacents * 2) > pgno && pgno > (adjacents * 2))
-                    {
-                        html += '<div class="pgComm poR ripplelink">1</div>';
-                        html += '<div class="pgEmpty"></div>';
-                        html += '<div class="pgEmpty"></div>';
-                        html += '<div class="pgEmpty"></div>';
-                        for (var i = pgno - adjacents; i <= pgno + adjacents; i++)
-                        {
-                            if (i == pgno)
-                            {
-                                html += '<div class="pgComm poR ripplelink pgActive">' + i + '</div>';
-                            }
-                            else
-                            {
-                                html += '<div class="pgComm poR ripplelink">' + i + '</div>';
-                            }
-                        }
-                        html += '<div class="pgEmpty"></div>';
-                        html += '<div class="pgEmpty"></div>';
-                        html += '<div class="pgEmpty"></div>';
-                        html += '<div class="pgComm poR ripplelink">' + lastpg + '</div>';
-                    }
-                    else
-                    {
-                        html += '<div class="pgComm poR ripplelink">1</div>';
-                        html += '<div class="pgEmpty"></div>';
-                        html += '<div class="pgEmpty"></div>';
-                        html += '<div class="pgEmpty"></div>';
-                        for (var i = lastpg - (2 + (adjacents * 2)); i <= lastpg; i++)
-                        {
-                            if (i == pgno)
-                            {
-                                html += '<div class="pgComm poR ripplelink pgActive">' + i + '</div>';
-                            }
-                            else
-                            {
-                                html += '<div class="pgComm poR ripplelink">' + i + '</div>';
-                            }
-                        }
-                    }
-                }
-                html += '<div class="pNext poR ripplelink">Next</div>';
-                html += '</center>';
-                html += '</div>';
-            }
-            return html;
+            return "";
         }
+        function paginationPrevNext() {
+        }
+        $(document).ready(function() {
+            loadProducts(1);
+        });
 
-function paginationPrevNext()
-{
-    $('.pPrev').bind('click', function() {
-        
-            var curpgno = parseInt($('#pgno').val());
-                var pgval = curpgno - 1;
-		if(curpgno > 1)
-		{
-			$('#pgno').val(pgval);
-			if(pageName.indexOf("product_list") !== -1)
-			{
-				/*if(typeof $('.productstab') !== 'undefined')
-				{
-					$(".productstab").each(function(){
-						if($(this).hasClass('sel'))
-						{
-							loadProducts($(this).attr('id'),pgval);
-						}
-					});
-				}*/
-                                loadProducts(pgval);
-			}
-			else
-			{   
-				loadProducts(1);
-			}
-		}
-            });
-            	$('.pNext').bind('click', function() {
-		var curpgno = parseInt($('#pgno').val());
-		var pgval = curpgno + 1;
 
-		if(curpgno < parseInt($('#total_pageno').val()))
-		{
-			$('#pgno').val(pgval);
-			if(pageName.indexOf("product_list") !== -1)
-			{
-				/*if(typeof $('.wishTabComm') !== 'undefined')
-				{
-					$(".productstab").each(function(){
-						if($(this).hasClass('sel'))
-						{
-							loadProducts($(this).attr('id'),pgval);
-						}
-					});
-				}*/
-                                loadProducts(pgval);
-			}
-			else
-			{
-				loadProducts(1);
-			}
-		}
-	});
-}
-$(document).ready(function() {	
-    loadProducts(1);
-        $('.pPrev').bind('click', function() {
 
-            var curpgno = parseInt($('#pgno').val());
-            	var pgval = curpgno - 1;
-		if(curpgno > 1)
-		{
-			$('#pgno').val(pgval);
-			if(pageName.indexOf("product_list") !== -1)
-			{
-				/*if(typeof $('.productstab') !== 'undefined')
-				{
-					$(".productstab").each(function(){
-						if($(this).hasClass('sel'))
-						{
-							loadProducts($(this).attr('id'),pgval);
-						}
-					});
-				}*/
-                                loadProducts(pgval);
-			}
-			else
-			{   
-				loadProducts(1);
-			}
-		}
-	});
-
-	$('.pNext').bind('click', function() {
-		var curpgno = parseInt($('#pgno').val());
-		var pgval = curpgno + 1;
-		if(curpgno < parseInt($('#total_pageno').val()))
-		{
-			$('#pgno').val(pgval);
-			
-			if(pageName.indexOf("product_list") !== -1)
-			{
-				/*if(typeof $('.wishTabComm') !== 'undefined')
-				{
-					$(".productstab").each(function(){
-						if($(this).hasClass('sel'))
-						{
-							loadProducts($(this).attr('id'),pgval);
-						}
-					});
-				}*/
-                                loadProducts(pgval);
-			}
-			else
-			{
-				loadProducts(1);
-			}
-		}
-	});
-    });
-</script>
+    </script>
 </body>
 </html>
