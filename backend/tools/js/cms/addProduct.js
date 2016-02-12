@@ -2544,15 +2544,15 @@ function calcGrandTotal(type)
     });
 
     vat = (1.20 / 100) * total;
-    var vat1 =  vat.toFixed(2); 
+   var vat1 = vat;
     if(!isNaN(vat)){
-        //vat=vat.toFixed(2);
+         var vat1 =  vat.toFixed(2); 
     }
     
     var gtotal = total + vat;
-    var gtotal1 =  gtotal.toFixed(2); 
+    var gtotal1 = gtotal;
     if(!isNaN(gtotal)){
-        //gtotal=gtotal.toFixed(2);
+        var gtotal1 =  gtotal.toFixed(2); 
     }
     
     if (type == 1)
