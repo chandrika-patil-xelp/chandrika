@@ -24,6 +24,7 @@ class product extends DB {
     public function addProduct($params) {
         $params= (json_decode($params[0],1));
         
+       
         if(!$params['productid'])
         {
             $pid = $this->generateId();
@@ -927,11 +928,12 @@ class product extends DB {
                     $arr['crtdOn'] = $row['createdon'];
                     $arr['updtOn'] = $row['updatedon'];
                     $arr['updtBy'] = $row['updatedby'];
+                    $resArr[] = $arr;
                     $count++;
                 }
             }
 
-            return array('count' => $count, 'results' => $arr);
+            return array('count' => $count, 'results' => $resArr);
         } catch (Exception $e) {
             echo 'Exection in function getProductGemstone message : ' . $e->getMessage();
         }
@@ -959,10 +961,11 @@ class product extends DB {
                     $arr['crtdOn'] = $row['createdon'];
                     $arr['updtOn'] = $row['updatedon'];
                     $arr['updtBy'] = $row['updatedby'];
+                    $resArr[] = $arr;
                     $count++;
                 }
             }
-            return array('count' => $count, 'results' => $arr);
+            return array('count' => $count, 'results' => $resArr);
         } catch (Exception $e) {
             echo 'Exection in function getProductDiscount message : ' . $e->getMessage();
         }
@@ -999,10 +1002,11 @@ class product extends DB {
                     $arr['crtdOn'] = $row['createdon'];
                     $arr['updtOn'] = $row['updatedon'];
                     $arr['updtBy'] = $row['updatedby'];
+                    $resArr[]=$arr;
                     $count++;
                 }
             }
-            return array('count' => $count, 'results' => $arr);
+            return array('count' => $count, 'results' => $resArr);
         } catch (Exception $e) {
             echo 'Exection in function getProductSolitaire message : ' . $e->getMessage();
         }
@@ -1032,10 +1036,11 @@ class product extends DB {
                     $arr['crtdOn'] = $row['createdon'];
                     $arr['updtOn'] = $row['updatedon'];
                     $arr['updtBy'] = $row['updatedby'];
+                    $resArr[] = $arr;
                     $count++;
                 }
             }
-            return array('count' => $count, 'results' => $arr);
+            return array('count' => $count, 'results' => $resArr);
         } catch (Exception $e) {
             echo 'Exection in function getProductUncut message : ' . $e->getMessage();
         }
@@ -1062,10 +1067,11 @@ class product extends DB {
                     $arr['updtOn'] = $row['updatedon'];
                     $arr['updtBy'] = $row['updatedby'];
                     $arr['sizeMaster'] = $this->getSizeMasterByID(array('size_id' => $row['size_id']));
+                    $resArr[] = $arr;
                     $count++;
                 }
             }
-            return array('count' => $count, 'results' => $arr);
+            return array('count' => $count, 'results' => $resArr);
         } catch (Exception $e) {
             echo 'Exection in function getProductSize message : ' . $e->getMessage();
         }
@@ -1142,10 +1148,11 @@ class product extends DB {
                     $arr['updtOn'] = $row['updatedon'];
                     $arr['updtBy'] = $row['updatedby'];
                     $arr['attrMaster'] = $this->getCatAttr(array('catid' => $row['catid']));
+                    $resArr[] = $arr;
                     $count++;
                 }
             }
-            return array('count' => $count, 'results' => $arr);
+            return array('count' => $count, 'results' => $resArr);
         } catch (Exception $e) {
             echo 'Exection in function getCatMap message : ' . $e->getMessage();
         }
@@ -1188,10 +1195,12 @@ class product extends DB {
                     $arr['crtdOn'] = $row['createdon'];
                     $arr['updtOn'] = $row['updatedon'];
                     $arr['updtBy'] = $row['updatedby'];
+                    $resArr[] = $arr;
+                    
                     $count++;
                 }
             }
-            return array('count' => $count, 'results' => $arr);
+            return array('count' => $count, 'results' => $resArr);
         } catch (Exception $e) {
             echo 'Exection in function getCatAttr message : ' . $e->getMessage();
         }
@@ -1232,10 +1241,11 @@ class product extends DB {
                     $arr['crtdOn'] = $row['createdon'];
                     $arr['updtOn'] = $row['updatedon'];
                     $arr['updtBy'] = $row['updatedby'];
+                    $resArr[] = $arr;
                     $count++;
                 }
             }
-            return array('count' => $count, 'results' => $arr);
+            return array('count' => $count, 'results' => $resArr);
         } catch (Exception $e) {
             echo 'Exection in function getQualityMap message : ' . $e->getMessage();
         }
@@ -1264,10 +1274,11 @@ class product extends DB {
                     $arr['crtdOn'] = $row['createdon'];
                     $arr['updtOn'] = $row['updatedon'];
                     $arr['updtBy'] = $row['updatedby'];
+                    $resArray[] = $arr;
                     $count++;
                 }
             }
-            return array('count' => $count, 'results' => $arr);
+            return array('count' => $count, 'results' => $resArray);
         } catch (Exception $e) {
             echo 'Exection in function getSizeMasterByID message : ' . $e->getMessage();
         }
@@ -1306,10 +1317,11 @@ class product extends DB {
                     $arr['crtdOn'] = $row['createdon'];
                     $arr['updtOn'] = $row['updatedon'];
                     $arr['updtBy'] = $row['updatedby'];
+                    $resArr[] = $arr;
                     $count++;
                 }
             }
-            return array('count' => $count, 'results' => $arr);
+            return array('count' => $count, 'results' => $resArr);
         } catch (Exception $e) {
             echo 'Exection in function getProductSizeMaster message : ' . $e->getMessage();
         }
@@ -1350,10 +1362,11 @@ class product extends DB {
                     $arr['crtdOn'] = $row['createdon'];
                     $arr['updtOn'] = $row['updatedon'];
                     $arr['updtBy'] = $row['updatedby'];
+                     $resArr[] = $arr;
                     $count++;
                 }
             }
-            return array('count' => $count, 'results' => $arr);
+            return array('count' => $count, 'results' => $resArr);
         } catch (Exception $e) {
             echo 'Exection in function getProductVendor message : ' . $e->getMessage();
         }
@@ -1391,10 +1404,11 @@ class product extends DB {
                     $arr['crtdOn'] = $row['createdon'];
                     $arr['updtOn'] = $row['updatedon'];
                     $arr['updtBy'] = $row['updatedby'];
+                    $resArr[] = $arr;
                     $count++;
                 }
             }
-            return array('count' => $count, 'results' => $arr);
+            return array('count' => $count, 'results' => $resArr);
         } catch (Exception $e) {
             echo 'Exection in function getProductMetalColor message : ' . $e->getMessage();
         }
@@ -1433,10 +1447,11 @@ class product extends DB {
                     $arr['updtOn'] = $row['updatedon'];
                     $arr['updtBy'] = $row['updatedby'];
                     $arr['prc'] = $row['price'];
+                    $resArr[] = $arr;
                     $count++;
                 }
             }
-            return array('count' => $count, 'results' => $arr);
+            return array('count' => $count, 'results' => $resArr);
         } catch (Exception $e) {
             echo 'Exection in function getProductMetalPurity message : ' . $e->getMessage();
         }
