@@ -1095,7 +1095,9 @@ function addProduct()
             }
 
         });
-
+        
+        
+        
         $('[name=certificate]').each(function() {
             if ($(this).is(':CHECKED'))
                 certificate = $(this).val();
@@ -1363,6 +1365,8 @@ function addProduct()
         general['procurement_cost'] = procurement_cost;
         general['margin'] = margin;
         general['measurement'] = measurement;
+        
+        console.log(dmdSetting);
         general['dmdSetting'] = dmdSetting.toString();
 
 
@@ -2536,12 +2540,12 @@ function calcGrandTotal(type)
     vat = (1.20 / 100) * total;
     
     if(!isNaN(vat)){
-        vat=vat.toFixed(2);
+        //vat=vat.toFixed(2);
     }
     
     var gtotal = total + vat;
     if(!isNaN(gtotal)){
-        gtotal=gtotal.toFixed(2);
+        //gtotal=gtotal.toFixed(2);
     }
     
     if (type == 1)

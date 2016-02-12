@@ -220,7 +220,7 @@ class product extends DB {
     public function addProductGeneralDetails($params) {
 
 
-        #echo "<pre>";        print_r($params);        echo "</pre>";    die;
+       #echo "<pre>";        print_r($params);        echo "</pre>";    die;
 
 
         $sql = "INSERT INTO "
@@ -255,7 +255,7 @@ class product extends DB {
                 . ",'" . urldecode($params['details']['product_seo_name']) . "'"
                 . ",'" . $params['details']['gender'] . "'"
                 . "," . $params['details']['product_weight'] . ""
-                . ",'" . urldecode($params['details']['diamond_setting']) . "'"
+                . ",'" . urldecode($params['details']['dmdSetting']) . "'"
                 . "," . $params['details']['metal_weight'] . ""
                 . "," . $params['details']['making_charges'] . ""
                 . "," . $params['details']['procurement_cost'] . ""
