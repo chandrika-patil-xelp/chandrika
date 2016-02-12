@@ -44,6 +44,7 @@ function getCategories()
             var vstr = getChildCat(res, 0);
             $('#parentCatg').html(vstr);
             getAllChilds(res);
+            bindAllForPrice();
         }
     });
 }
@@ -150,6 +151,7 @@ function vendorListCalllBack(data)
         });
 
         $('#vendorList').html(str);
+        bindAllForPrice();
     }
 
 }
@@ -375,6 +377,7 @@ function sizeListCalllBack(data)
     }
 
     $('#cat_sizes').html(str);
+    bindAllForPrice();
 
 }
 
@@ -409,17 +412,32 @@ function bindShapes()
 var metalPurityCust = true;
 var metalColorCust = true;
 
-var input_selector = 'input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=number], input[type=search], textarea, input[type=radio]';
+var txt_selector = ['input[type=text],textarea'];
+var radioCh_selector = ['input[type=radio],input[type=checkbox],label'];
 
 
+function bindAllForPrice(){
+    console.log("0");
+    $(txt_selector).bind('blur',function(){
+        genPriceSection();
+    });
+    $('label').bind('click',function(){
+        genPriceSection();
+    });
+
+}
 
 $(document).ready(function() {
     $('textarea').increaseAuto();
 
     bindShapes();
+    bindAllForPrice();
     /*$("[name='isColorCustz']").change(function() {
         genPriceSection();
     });*/
+    
+    
+    
 
 
 //    $('#diamond_Section').addClass('dn');
@@ -2507,18 +2525,24 @@ function setGoldPrice()
 function calcGrandTotal(type)
 {
     var total = 0;
+    var vat =0;
     $('li .calc').each(function() {
         var val = $(this).text();
         val = parseFloat(val.slice(1));
         total += val;
 
-
     });
 
-    var vat = (1.20 / 100) * total;
-    vat=vat.toFixed(2);
+    vat = (1.20 / 100) * total;
+    
+    if(!isNaN(vat)){
+        vat=vat.toFixed(2);
+    }
+    
     var gtotal = total + vat;
-    gtotal=gtotal.toFixed(2);
+    if(!isNaN(gtotal)){
+        gtotal=gtotal.toFixed(2);
+    }
     
     if (type == 1)
     {
