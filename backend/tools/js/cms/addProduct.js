@@ -369,7 +369,7 @@ function sizeListCalllBack(data)
             str += "<label for='size_" + v.id + "'>" + v.sval + "</label>";
             str += "</div>";
             str += "<div class='intInp2 fLeft'>";
-            str += "<input name='sizeQty' type='text' id='size_" + v.id + "_qty' autocomplete='false' placeholder=' Enter quantity ' class='txtInput fRight fmOpenR font14 c666'>";
+            str += "<input name='sizeQty' type='text' id='size_" + v.id + "_qty' autocomplete='false' placeholder=' Enter quantity ' class='txtInput fRight fmOpenR font14 c666' onkeypress='return common.isDecimalKey(event, this.value);' maxlength='3'>";
             str += "</div>";
             str += "</div>";
 
@@ -2218,6 +2218,9 @@ function validateForm()
                 if(val=="")
                 {
                     highlight(txid,0);
+                    isValid = false;
+                    return false;
+                    
                 }
                 
                 
