@@ -2512,8 +2512,10 @@ function calcGrandTotal(type)
     });
 
     var vat = (1.20 / 100) * total;
+    vat=vat.toFixed(2);
     var gtotal = total + vat;
-
+    gtotal=gtotal.toFixed(2);
+    
     if (type == 1)
     {
         var vstr = "<li id='makingCharge'>";
