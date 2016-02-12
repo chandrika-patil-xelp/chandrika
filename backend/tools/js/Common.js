@@ -114,5 +114,4 @@ function Common() {
             $(this).toggleClass('toggle-button-selected');
         });
     };
-    
 }

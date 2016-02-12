@@ -62,19 +62,30 @@ function submitEditedDet() {
 function validateEditForm(){
     if($('#descEdit').val()==""){
         common.toast(0, 'Enter coupon description');
+        highlight('descEdit',0);
         return false;
     }
+  
     if($('#dateEdit').val()==""){
         common.toast(0, 'Enter coupon start date');
+        highlight('dateEdit',0);
         return false;        
     }
     if($('#date2Edit').val()==""){
         common.toast(0, 'Enter coupon end date');
+        highlight('date2Edit',0);
+        return false;        
+    }
+    
+    var d1=$('#dateEdit').val();
+    var d2=$('#date2Edit').val()
+    if((new Date(d1).getTime() > new Date(d2).getTime())){
+        common.toast(0, 'End date can not be less then start date');
+        highlight('date2Edit',0);
         return false;        
     }
     
     return true;   
-    
 }
 
 
@@ -174,6 +185,7 @@ function validateAddForm()
 
     if($('#coupName').val()==""){
         common.toast(0, 'Enter coupon name');
+        highlight('coupName',0);
         return false;
     }
     if($('#amt').val()==""){
@@ -181,22 +193,35 @@ function validateAddForm()
         common.toast(0, 'Enter discount amount');
         else
         common.toast(0, 'Enter discount percentage');
+        highlight('amt',0);
         return false;
     }
     if($('#minimum_amount').val()==""){
         common.toast(0, 'Enter minimum amount');
+        highlight('minimum_amount',0);
         return false;
     }
     if($('#descAdd').val()==""){
         common.toast(0, 'Enter coupon description');
+        highlight('descAdd',0);
         return false;
     }
     if($('#dateAdd').val()==""){
         common.toast(0, 'Enter coupon start date');
+        highlight('dateAdd',0);
         return false;        
     }
     if($('#date2Add').val()==""){
         common.toast(0, 'Enter coupon end date');
+        highlight('date2Add',0);
+        return false;        
+    }
+    
+    var d1=$('#dateAdd').val();
+    var d2=$('#date2Add').val()
+    if((new Date(d1).getTime() > new Date(d2).getTime())){
+        common.toast(0, 'End date can not be less then start date');
+        highlight('date2Add',0);
         return false;        
     }
     
@@ -353,4 +378,34 @@ function changeStatusCallBack(data)
         common.toast(0, 'Error in updating status');
         getCoupounList();
     }
+}
+
+
+function highlight(id,type)
+{
+        if(type==0)        
+            $('#'+id).addClass('error');
+        
+        
+        else if(type==1)
+            $('#'+id).next('label').addClass('error');
+        
+        bindError();
+    
+}
+
+
+function bindError()
+{
+
+    $('.txtSelect.error').bind('click',function(){
+        $(this).removeClass('error');
+        $(this).unbind();
+    });
+    
+    $('.txtInput.error').bind('click',function(){
+        $(this).removeClass('error');
+        //$(this).unbind();
+    });
+    
 }

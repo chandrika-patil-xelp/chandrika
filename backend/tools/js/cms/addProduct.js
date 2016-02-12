@@ -1007,10 +1007,14 @@ function bindDmdQuaity()
 
 function addProduct()
 {
+    showLoader();
+    
     var flag = validateForm();
-
+    if(!flag)
+        hideLoader();
     if (flag)
     {
+        
         var catArray = new Array();
         var dmdSetting = new Array();
         var sizesArray = new Array();
@@ -1415,10 +1419,12 @@ function addPrdCallBack(data)
     if (data['error']['err_code'] == '0')
     {
         common.toast(1, 'Product added successfully');
+        //redirect 
     }
     else
     {
         common.toast(0, 'Error in adding product');
+        hideLoader();
     }
 
 }
@@ -1426,7 +1432,6 @@ function addPrdCallBack(data)
 
 function highlight(id,type)
 {
-    console.log(id);
     var sc= $('#'+id).position().top-130;
     $('body,html').animate({scrollTop:sc},300,"swing");
     setTimeout(function(){
@@ -1441,13 +1446,9 @@ function highlight(id,type)
         
         else if(type==2)
             $('#'+id+' center').addClass('error');
-            
-        
         
         bindError();
     },350);
-   
-  
    
 }
 
