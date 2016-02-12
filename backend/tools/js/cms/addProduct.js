@@ -408,11 +408,18 @@ function bindShapes()
 
 var metalPurityCust = true;
 var metalColorCust = true;
+
+var input_selector = 'input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=number], input[type=search], textarea, input[type=radio]';
+
+
+
 $(document).ready(function() {
     $('textarea').increaseAuto();
 
     bindShapes();
-
+    /*$("[name='isColorCustz']").change(function() {
+        genPriceSection();
+    });*/
 
 
 //    $('#diamond_Section').addClass('dn');
@@ -2226,9 +2233,6 @@ function GetRates() {
 }
 
 
-$("[name='isColorCustz']").change(function() {
-    genPriceSection();
-});
 
 
 
