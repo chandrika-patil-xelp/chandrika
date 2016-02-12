@@ -1458,7 +1458,7 @@ class product extends DB {
     }
 
    
-    public function pageList($param) {
+    public function pageList($params) {
         global $comm;
         try {
             $sql = "SELECT 
@@ -1485,22 +1485,27 @@ class product extends DB {
                                 product_name,
                             product_seo_name) AS prdName
                             FROM 
-                                tbl_product_master ORDER BY updatedon";
+                                tbl_product_master ORDER BY updatedon DESC";
 
-
+/*  Limit is removed for some time till pagination module is done
+ * 
             $page = ($params['page'] ? $params['page'] : 1);
-            $limit = ($params['limit'] ? $params['limit'] : 20);
+            $limit = ($params['limit'] ? $params['limit'] : 1000);
 
             //Making sure that query has limited rows 
-            if ($limit > 20) {
-                $limit = 20;
+            if ($limit >1000 ) {
+                $limit = 1000;
             }
 
             if (!empty($page)) {
                 $start = ($page * $limit) - $limit;
                 $sql.=" LIMIT " . $start . ",$limit";
             }
+*/
             $res = $this->query($sql);
+
+
+
 
             if ($res) 
             {

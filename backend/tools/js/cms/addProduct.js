@@ -231,7 +231,7 @@ function gemstoneListCalllBack(data)
     if (data['error']['err_code'] == '0')
     {
 
-        var str = "<option value='-1'>Select A Gemstone</option>";
+        var str = "<option value='-1'>Select A Gemstone*</option>";
         $.each(data.result, function(i, v) {
             str += "<option value='" + v.id + "'>" + v.name + "</option>";
         });
@@ -239,7 +239,7 @@ function gemstoneListCalllBack(data)
         $('#gemstone_type').html(str);
 
     }
-}
+} 
 
 
 function getMetalPurity()
@@ -1438,6 +1438,9 @@ function addProduct()
                 addPrdCallBack(res);
             }
         });
+        
+         console.log(dt);
+       
     }
 }
 
