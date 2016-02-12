@@ -2544,12 +2544,13 @@ function calcGrandTotal(type)
     });
 
     vat = (1.20 / 100) * total;
-    
+    var vat1 =  vat.toFixed(2); 
     if(!isNaN(vat)){
         //vat=vat.toFixed(2);
     }
     
     var gtotal = total + vat;
+    var gtotal1 =  gtotal.toFixed(2); 
     if(!isNaN(gtotal)){
         //gtotal=gtotal.toFixed(2);
     }
@@ -2560,21 +2561,21 @@ function calcGrandTotal(type)
         vstr += "<div class='forComponent fLeft pl15'>VAT (1.20%)</div>";
         vstr += "<div class='forRate fLeft'></div>";
         vstr += "<div class='forWeight fLeft'></div>";
-        vstr += "<div class='forPrice fLeft' id='tvat'>&#8377;" + vat + "</div>";
+        vstr += "<div class='forPrice fLeft' id='tvat'>&#8377;" + vat1 + "</div>";
         vstr += "</li>";
 
         vstr += "<li class='gTotal'>";
         vstr += "<div class='forComponent fLeft'>Grand Total</div>";
         vstr += "<div class='forRate fLeft'></div>";
         vstr += "<div class='forWeight fLeft'></div>";
-        vstr += "<div class='forPrice fLeft' id='grandTotal'>&#8377; " + gtotal + "</div>";
+        vstr += "<div class='forPrice fLeft' id='grandTotal'>&#8377; " + gtotal1 + "</div>";
         vstr += "</li>";
         $('.pricingul').append(vstr);
     }
     else
     {
-        $('#tvat').html("&#8377;" + vat);
-        $('#grandTotal').html("&#8377;" + gtotal);
+        $('#tvat').html("&#8377;" + vat1);
+        $('#grandTotal').html("&#8377;" + gtotal1);
 
     }
 }
