@@ -79,7 +79,7 @@ function getAllChilds(res)
     var str = "<div class='breakLine'></div>";
     str += "<div class='divCon  fLeft fmOpenR mTop0'>";
     $("input[name='prtcateg']").bind('click', function(event) {
-        stopPropGate();
+        stopPropGate(event);
         if ($(this).is(":checked"))
         {
             var vstr = generateHtml(res, $(this).attr("id").replace('cat_', ''));
@@ -97,7 +97,7 @@ function getAllChilds(res)
 function bindRemove()
 {
     $("input[name='prtcateg']").bind('click', function(event) {
-        stopPropGate();
+        stopPropGate(event);
         if (!$(this).is(":checked"))
         {
             console.log($(this).attr("id") + " to be removed");
@@ -557,10 +557,10 @@ $(document).ready(function() {
     });
 
 
-    $("[name='diamond_setting']").bind('click', function() {
+    $("[name='diamond_setting']").bind('click', function(e) {
 
         var id = $(this).attr('id');
-        stopPropGate();
+        stopPropGate(e);
         if ($(this).is(":checked") && id !== 'ds8')
         {
             //$('#otherdsType').addClass('dn');   
