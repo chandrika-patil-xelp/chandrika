@@ -1419,6 +1419,7 @@ function addPrdCallBack(data)
     if (data['error']['err_code'] == '0')
     {
         common.toast(1, 'Product added successfully');
+          hideLoader();
         //redirect 
     }
     else
