@@ -1008,7 +1008,7 @@ function bindDmdQuaity()
 function addProduct()
 {
     showLoader();
-    
+    $('.forScrollBtn').removeClass('op0');
     var flag = validateForm();
     if(!flag)
         hideLoader();
@@ -1460,6 +1460,7 @@ function bindError()
     $('.txtSelect.error').bind('click',function(){
         $(this).removeClass('error');
         $(this).unbind();
+        
     });
     
     $('label.error').bind('click',function(){
@@ -1484,14 +1485,19 @@ function bindError()
         var flag=$(this).parent('center').hasClass('error');
         if(flag)
             $(this).siblings('.shapeComm').parent('center').removeClass('error');
-        
     });
     
-    
-    
-    
-    
-    
+}
+
+function moveDown()
+{
+    var lsc=$('.btnCont').position().top;
+    $('body,html').animate({scrollTop:lsc},300,"swing");
+}
+
+function moveUp()
+{
+    $('body,html').animate({scrollTop:0},300,"swing");
 }
 
 
