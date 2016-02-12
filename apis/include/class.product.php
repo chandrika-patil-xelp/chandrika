@@ -1485,7 +1485,7 @@ class product extends DB {
                                 product_name,
                             product_seo_name) AS prdName
                             FROM 
-                                tbl_product_master";
+                                tbl_product_master ORDER BY updatedon";
 
 
             $page = ($params['page'] ? $params['page'] : 1);
