@@ -54,7 +54,6 @@ function getCategories()
 
 function generateCats(res,id)
 {
-   
     var result = res.result;
     var html = '';
     $.each(result, function(i, vl) {
@@ -433,7 +432,6 @@ function sizeListCalllBack(data)
 
 }
 
-var jsonRes;
 
 
 function stopPropGate(event)
@@ -474,12 +472,6 @@ function bindAllForPrice(){
 }
 
 $(document).ready(function() {
-    
-    if(edit==1)
-    {
-        oneditmode();
-    }
-
     getCategories();
     getVendorList();
     getDiamondQuality();
@@ -487,11 +479,13 @@ $(document).ready(function() {
     getMetalColors();
     getGemstoneList();
     getSizeList();
-    
-    
-    
-    
-    
+
+
+    if(edit==1)
+    {
+        oneditmode();
+    }
+
     
     
     $('textarea').increaseAuto();
@@ -2637,6 +2631,8 @@ function calcGrandTotal(type)
     }
 }
 
+
+
 function oneditmode()
 {
     showLoader();
@@ -2646,7 +2642,6 @@ function oneditmode()
         type:'POST',
         success:function(res){
             res=JSON.parse(res);
-            console.log(res);
             oneditmodeCallBack(res);
         }
     });
@@ -2956,10 +2951,6 @@ function oneditmodeCallBack(data)
             $('#gemstone_Section').removeClass('dn');
 
         }
-        
-        var catg=dt['catAttr']['results'];
-        
-        console.log(catg);
         
         genPriceSection();
 
