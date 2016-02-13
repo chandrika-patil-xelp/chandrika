@@ -1,5 +1,39 @@
 <div class="header fLeft fmSansR">
                     <div class="wrapperMax">
+                        <div class="checkout__order"id="cart">
+                        <div class="cart_head">
+                          <div class="iconCont fLeft">
+                                  <div class="icn2" ></div>
+                          </div>
+                          <div class="iconCont fRight">
+                                  <div class="icn1"id="close_cart"></div>
+                          </div>
+                        </div>
+                        <div class="cart_head">
+                            <div class="col60">Your Order</div>
+                            <div class="col40">Price</div>
+                        </div>
+                        <div class="cart_row">
+                          <div class="col60">Star Light</div>
+                          <div class="col40">&#8377 23000</div>
+                        </div>
+                        <div class="cart_row">
+                          <div class="col60">Nakshatra</div>
+                          <div class="col40">&#8377 32000</div>
+                        </div>
+                        <div class="cart_row">
+                          <div class="col60">Alexandra</div>
+                          <div class="col40">&#8377 47000</div>
+                        </div>
+                        <div class="cart_row">
+                          <div class="col60">Mangalsutra</div>
+                          <div class="col40">&#8377 33000</div>
+                        </div>
+                        <div class="cart_row">
+                          <div class="col60">Reaper17</div>
+                          <div class="col40">&#8377 24000</div></div>
+                        <div class="cart_head"></div>
+                     </div>
                         <div class="headerTop fLeft">
                             <div class="subCatHtop fLeft"></div>
                             <div class="opnMnuLogo fLeft" id="oml" onclick="showLeftMenu(true)"></div>
@@ -22,14 +56,28 @@
                         </div>
                         <div class="headerLower fLeft">
                             <center>
-                                <div class="navLst">JEWELRY</div>
-                                <div class="navLst">SOLITARIES</div>
-                                <div class="navLst">DESIGNER</div>
-                                <div class="navLst">VINTAGE</div>
-                                <div class="navLst">BRIDAL</div>
-                                <div class="navLst">JEWELRY</div>
+                                <a href="#"><div class="navLst">JEWELRY</div></a>
+                                <a href="#"> <div class="navLst">SOLITARIES</div></a>
+                                <a href="#"><div class="navLst">DESIGNER</div></a>
+                                <a href="#"><div class="navLst">VINTAGE</div></a>
+                                <a href="#"><div class="navLst">BRIDAL</div></a>
+                                <a href="#"> <div class="navLst">JEWELRY</div></a>
                             </center>
                         </div>
                     </div>
                 </div>
+<script>
+    $(".icn2").click(function(){
+
+                  $("#cart").addClass("checkout--active ");
+
+                });
+                $("#close_cart").click(function(){
+
+                  $("#cart").removeClass("checkout--active ");
+
+                });
+
+
+</script>
                 
