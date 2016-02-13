@@ -2961,7 +2961,9 @@ function oneditmodeCallBack(data)
         genPriceSection();
 
         $.each(catAttr.results, function(i,vl) {
-            $('#cat_'+vl.cid).click();
+            setTimeout( function() {
+                $('#cat_'+vl.cid).click();
+            },150);
         });
 
     }
