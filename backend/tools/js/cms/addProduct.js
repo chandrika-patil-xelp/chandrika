@@ -1601,7 +1601,7 @@ function moveUp()
 
 function validateForm()
 {
-    return true;
+    //return true;
     var isValid=true;
     if ($('[name=prtcateg]:checked').length === 0)
     {
@@ -1654,157 +1654,7 @@ function validateForm()
 
     if (has_solitaire)
     {
-
-        $('[id*=solitaireComm_]').each(function() {
-
-            var id = $(this).attr('id');
-            var ids = id.split("solitaireComm_");
-            ids = ids[1];
-
-            if ($('#solitaireComm_' + ids + ' .shapeSelected').length == 0)
-            {
-                common.toast(0, "Select Shape For Solitaire " + ids);
-                highlight('solitaireComm_' + ids,2);
-                isValid=false;
-                return false;
-            }
-
-            if ($('[name=solitaireColors_' + ids + ']:checked').length == 0)
-            {
-                common.toast(0, "Select Color For Solitaire " + ids);
-                $('[name=solitaireColors_' + ids + ']').focus();
-                var id=$('[name=solitaireColors_' + ids + ']').eq(0).attr('id');
-                highlight(id,1);
-                isValid=false;
-                return false;
-            }
-
-            if ($('[name=solitaireclarity_' + ids + ']:checked').length == 0)
-            {
-                common.toast(0, "Select Clarity For Solitaire " + ids);
-                var id=$('[name=solitaireclarity_' + ids + ']').eq(0).attr('id');
-                highlight(id,1);
-                isValid=false;
-                return false;
-
-            }
-
-            if ($('[name=solitairecut_' + ids + ']:checked').length == 0)
-            {
-                common.toast(0, "Select Cut For Solitaire " + ids);
-                var id=$('[name=solitairecut_' + ids + ']').eq(0).attr('id');
-                highlight(id,1);
-                isValid=false;
-                return false;
-
-            }
-
-            if ($('[name=solitairesymmetry_' + ids + ']:checked').length == 0)
-            {
-                common.toast(0, "Select Symmetry For Solitaire " + ids);
-                var id=$('[name=solitairesymmetry_' + ids + ']').eq(0).attr('id');
-                highlight(id,1);
-                isValid=false;
-                return false;
-
-            }
-
-            if ($('[name=solitairepolish_' + ids + ']:checked').length == 0)
-            {
-                common.toast(0, "Select Polish For Solitaire " + ids);
-                var id=$('[name=solitairepolish_' + ids + ']').eq(0).attr('id');
-                highlight(id,1);
-                isValid=false;
-                return false;
-
-            }
-
-            if ($('[name=solitaireFluorescence_' + ids + ']:checked').length == 0)
-            {
-                common.toast(0, "Select Fluorescence For Solitaire " + ids);
-                var id=$('[name=solitaireFluorescence_' + ids + ']').eq(0).attr('id');
-                highlight(id,1);
-                isValid=false;
-                return false;
-
-            }
-            if ($('#solcaratweight' + ids + '').val() == "")
-            {
-                common.toast(0, "Enter Carat Weight For Solitaire " + ids);
-                highlight('solcaratweight' + ids,0);
-                isValid=false;
-                return false;
-            }
-
-            if (!checkForZero('solcaratweight' + ids))
-            {
-                common.toast(0, "Carat weight can not be 0");
-                highlight('solcaratweight' + ids,0);
-                isValid=false;
-                return false;
-            }
-
-
-
-            if ($('#solpricecarat' + ids + '').val() == "")
-            {
-                common.toast(0, "Enter Price / Carat For Solitaire " + ids);
-                highlight('solpricecarat' + ids,0);
-                isValid=false;
-                return false;
-            }
-
-            if (!checkForZero('solpricecarat' + ids))
-            {
-                common.toast(0, "Price / carat can not be 0");
-                highlight('solpricecarat' + ids,0);
-                isValid=false;
-                return false;
-            }
-
-
-
-            if ($('#soltable' + ids + '').val() == "")
-            {
-                common.toast(0, "Enter Table For Solitaire " + ids);
-                highlight('soltable' + ids,0);
-                isValid=false;
-                return false;
-            }
-
-            if ($('#solCrownAngle' + ids + '').val() == "")
-            {
-                common.toast(0, "Enter Crown Angle For Solitaire " + ids);
-                highlight('solCrownAngle' + ids,0);
-                isValid=false;
-                return false;
-            }
-
-            if (!checkForZero('solCrownAngle' + ids))
-            {
-                common.toast(0, "Crown Angle can not be 0");
-                highlight('solCrownAngle' + ids,0);
-                isValid=false;
-                return false;
-            }
-
-
-            if ($('#solGirdle' + ids + '').val() == "")
-            {
-                common.toast(0, "Enter Girdle For Solitaire " + ids);
-                highlight('solGirdle' + ids,0);
-                isValid=false;
-                return false;
-            }
-
-            if (!checkForZero('solGirdle' + ids))
-            {
-                common.toast(0, "Girdle can not be 0");
-                highlight('solGirdle'+ ids,0);
-                isValid=false;
-                return false;
-            }
-        });
+        var isValid=validateSolAdd();        
         if(!isValid)
             return isValid;
     }
@@ -3022,5 +2872,169 @@ function deleteSolitaire(obj)
         });
     
     }
+    
+}
+
+
+function validateSolAdd()
+{
+    var isValid=true;
+    $('[id*=solitaireComm_]').each(function() {
+
+            var id = $(this).attr('id');
+            var ids = id.split("solitaireComm_");
+            ids = ids[1];
+
+            if ($('#solitaireComm_' + ids + ' .shapeSelected').length == 0)
+            {
+                common.toast(0, "Select Shape For Solitaire " + ids);
+                highlight('solitaireComm_' + ids,2);
+                isValid=false;
+                return false;
+            }
+
+            if ($('[name=solitaireColors_' + ids + ']:checked').length == 0)
+            {
+                common.toast(0, "Select Color For Solitaire " + ids);
+                $('[name=solitaireColors_' + ids + ']').focus();
+                var id=$('[name=solitaireColors_' + ids + ']').eq(0).attr('id');
+                highlight(id,1);
+                isValid=false;
+                return false;
+            }
+
+            if ($('[name=solitaireclarity_' + ids + ']:checked').length == 0)
+            {
+                common.toast(0, "Select Clarity For Solitaire " + ids);
+                var id=$('[name=solitaireclarity_' + ids + ']').eq(0).attr('id');
+                highlight(id,1);
+                isValid=false;
+                return false;
+
+            }
+
+            if ($('[name=solitairecut_' + ids + ']:checked').length == 0)
+            {
+                common.toast(0, "Select Cut For Solitaire " + ids);
+                var id=$('[name=solitairecut_' + ids + ']').eq(0).attr('id');
+                highlight(id,1);
+                isValid=false;
+                return false;
+
+            }
+
+            if ($('[name=solitairesymmetry_' + ids + ']:checked').length == 0)
+            {
+                common.toast(0, "Select Symmetry For Solitaire " + ids);
+                var id=$('[name=solitairesymmetry_' + ids + ']').eq(0).attr('id');
+                highlight(id,1);
+                isValid=false;
+                return false;
+
+            }
+
+            if ($('[name=solitairepolish_' + ids + ']:checked').length == 0)
+            {
+                common.toast(0, "Select Polish For Solitaire " + ids);
+                var id=$('[name=solitairepolish_' + ids + ']').eq(0).attr('id');
+                highlight(id,1);
+                isValid=false;
+                return false;
+
+            }
+
+            if ($('[name=solitaireFluorescence_' + ids + ']:checked').length == 0)
+            {
+                common.toast(0, "Select Fluorescence For Solitaire " + ids);
+                var id=$('[name=solitaireFluorescence_' + ids + ']').eq(0).attr('id');
+                highlight(id,1);
+                isValid=false;
+                return false;
+
+            }
+            if ($('#solcaratweight' + ids + '').val() == "")
+            {
+                common.toast(0, "Enter Carat Weight For Solitaire " + ids);
+                highlight('solcaratweight' + ids,0);
+                isValid=false;
+                return false;
+            }
+
+            if (!checkForZero('solcaratweight' + ids))
+            {
+                common.toast(0, "Carat weight can not be 0");
+                highlight('solcaratweight' + ids,0);
+                isValid=false;
+                return false;
+            }
+
+
+
+            if ($('#solpricecarat' + ids + '').val() == "")
+            {
+                common.toast(0, "Enter Price / Carat For Solitaire " + ids);
+                highlight('solpricecarat' + ids,0);
+                isValid=false;
+                return false;
+            }
+
+            if (!checkForZero('solpricecarat' + ids))
+            {
+                common.toast(0, "Price / carat can not be 0");
+                highlight('solpricecarat' + ids,0);
+                isValid=false;
+                return false;
+            }
+
+
+
+            if ($('#soltable' + ids + '').val() == "")
+            {
+                common.toast(0, "Enter Table For Solitaire " + ids);
+                highlight('soltable' + ids,0);
+                isValid=false;
+                return false;
+            }
+
+            if ($('#solCrownAngle' + ids + '').val() == "")
+            {
+                common.toast(0, "Enter Crown Angle For Solitaire " + ids);
+                highlight('solCrownAngle' + ids,0);
+                isValid=false;
+                return false;
+            }
+
+            if (!checkForZero('solCrownAngle' + ids))
+            {
+                common.toast(0, "Crown Angle can not be 0");
+                highlight('solCrownAngle' + ids,0);
+                isValid=false;
+                return false;
+            }
+
+
+            if ($('#solGirdle' + ids + '').val() == "")
+            {
+                common.toast(0, "Enter Girdle For Solitaire " + ids);
+                highlight('solGirdle' + ids,0);
+                isValid=false;
+                return false;
+            }
+
+            if (!checkForZero('solGirdle' + ids))
+            {
+                common.toast(0, "Girdle can not be 0");
+                highlight('solGirdle'+ ids,0);
+                isValid=false;
+                return false;
+            }
+        });
+        
+        if(!isValid)
+            return isValid;
+        
+        else{
+            addSolitaire();
+        }
     
 }
