@@ -16,7 +16,7 @@ var unctCnt = 1;
 var gemstoneCnt = 1;
 var mpurity = new Array();
 var mcolor = new Array();
-
+var allrates = new Array();
 var prdid="";
 function getCategories()
 {
@@ -43,11 +43,6 @@ function getCategories()
             }
 
             generateCats(res,0);
-
-            //var vstr = getChildCat(res, 0);
-            //$('#parentCatg').html(vstr);
-            //getAllChilds(res);
-            //bindAllForPrice();
         }
     });
 }
@@ -479,7 +474,7 @@ $(document).ready(function() {
     getMetalColors();
     getGemstoneList();
     getSizeList();
-
+    GetRates();
 
     if(edit==1)
     {
@@ -2295,8 +2290,7 @@ function checkForZero(id)
 
 
 
-GetRates();
-var allrates = new Array();
+
 
 function GetRates() {
     var URL = APIDOMAIN + "index.php?action=getAllRates";
