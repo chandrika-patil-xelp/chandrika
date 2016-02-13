@@ -1,3 +1,4 @@
+var userid = '1';
 var categories = new Array();
 var vendorList = new Array();
 var dqulaity = new Array();
@@ -78,10 +79,11 @@ function removeCats(id)
 }
 function bindCheckBox(res)
 {
-    $("input[type=checkbox]").unbind();
+    
     $("input[type=checkbox]").each( function() {
         if($(this).attr('id').indexOf("cat_") != -1)
         {
+            $(this).unbind();
             var id = $(this).attr('id');
             $('#'+id).bind('click', function() {
                 if($(this).is(':checked'))
@@ -608,8 +610,7 @@ $(document).ready(function() {
     });
 
 
-    $("[name='diamond_setting']").bind('click', function(e) {
-
+    $("[name='diamond_setting']").bind('click', function(e) {        
         var id = $(this).attr('id');
         stopPropGate(e);
         if ($(this).is(":checked") && id !== 'ds8')
@@ -624,8 +625,10 @@ $(document).ready(function() {
 
             $('#otherdsType').addClass('op0');
         }
-
     });
+    
+    
+    
 });
 
 function addTags(evt, val, id, tagCont)
@@ -675,10 +678,10 @@ function addSolitaire()
     var soltGeneral = new Array('Excellent', 'Very Good', 'Good', 'Fair');
 
 
-    var str = "<div class='commCont fLeft' id='solitaireComm_" + solitaireCnt + "'>";
+    var str = "<div class='commCont fLeft' id='solitaireComm_" + solitaireCnt + "' db-id=''>";
     if(solitaireCnt>1)
     {
-        str+="<div class='deleteElements fRight transition300' onclick=\"deleteThis('solitaireComm_" + solitaireCnt + "')\"></div>";
+        str+="<div class='deleteElements fRight transition300' onclick=\"deleteThis('solitaireComm_" + solitaireCnt + "');deleteSolitaire(this)\"></div>";
     }
     str += generateShapes('solitaire');
     str += generateColors('solitaire', soltColor);
@@ -1098,7 +1101,7 @@ function addProduct()
         var diamonds = new Array();
         var uncut = new Array();
         var gemstone = new Array();
-        var userid = '1';
+       
 
         $('[name=prtcateg]').each(function() {
             if ($(this).is(':CHECKED'))
@@ -1132,7 +1135,7 @@ function addProduct()
             {
 
                 if ($(this).attr('id') == 'ds8') {
-                    $('#ds8').val($('#diamond_settingOth').val());
+                    $('#ds8').val('other_'+$('#diamond_settingOth').val());
                 }
 
                 dmdSetting.push(encodeURIComponent($(this).val()));
@@ -1231,7 +1234,8 @@ function addProduct()
                 var id = $(this).attr('id');
                 var ids = id.split("solitaireComm_");
                 ids = ids[1];
-
+                
+                var sId=    $('#solitaireComm_' + ids).attr('db-id');
                 var shape = $('#solitaireComm_' + ids + ' .shapeSelected').attr('id').split("shape_");
                 var color = $('[name=solitaireColors_' + ids + ']:checked').val();
                 var clarity = $('[name=solitaireclarity_' + ids + ']:checked').val();
@@ -1244,7 +1248,12 @@ function addProduct()
                 var table = $('#soltable' + ids + '').val();
                 var crown_angle = $('#solCrownAngle' + ids + '').val();
                 var girdle = $('#solGirdle' + ids + '').val();
-
+                
+                
+                if(sId!=="")
+                {
+                    values['solitaire_id'] = sId;
+                }
                 values['shape'] = shape[1];
                 values['color'] = color;
                 values['clarity'] = clarity;
@@ -1406,10 +1415,7 @@ function addProduct()
 
         var general = {};
 
-        if(prdid!=="")
-        {
-            general['productid'] = prdid;
-        }
+       
 
         general['vendorid'] = vid;
         general['product_name'] = product_name;
@@ -1478,6 +1484,11 @@ function addProduct()
         prd['has_gemstone'] = has_gemstone;
 
         prd['details'] = general;
+        if(prdid!=="")
+        {
+            prd['productid'] = prdid;
+        }
+        
         prd['userid'] = userid;
         prd['catid'] = catArray.toString();
 
@@ -2654,7 +2665,6 @@ function oneditmode()
 
 function oneditmodeCallBack(data)
 {
-    console.log(data);
     if (data['error']['err_code'] == '0')
     {
         var dt=data['results'];
@@ -2677,7 +2687,16 @@ function oneditmodeCallBack(data)
         $(dmdsetting).each(function(i){
             $('[name=diamond_setting]').each(function(){
                 var val =$(this).val();
-
+                var oth=dmdsetting[i].split("_");
+                if(oth[0]=='other')
+                {
+                    $('#ds8').attr('checked',true);
+                    $('#diamond_settingOth').val(oth[1]);
+                    $('#otherdsType').removeClass('op0');
+                    
+                    
+                }
+                
                 if(dmdsetting[i]==val){
                     $(this).attr('checked',true);
                 }
@@ -2792,7 +2811,7 @@ function oneditmodeCallBack(data)
 
 
 
-        if(basic.hasSol)
+        if(basic.hasSol==1)
         {
             has_solitaire=true;
             $('#stone1').attr('checked',true);
@@ -2802,7 +2821,10 @@ function oneditmodeCallBack(data)
                 var ids=i+1;
                 var solt=solts[i];
                 addSolitaire();
+                
+                
                 $('#solitaireComm_'+ids).find('.shapeComm.'+solt.shape).click();
+                $('#solitaireComm_'+ids).attr('db-id',solt.soliId)
 
                 $('[name=solitaireColors_'+ids+']').each(function(){
                     var val =$(this).val();
@@ -2852,7 +2874,7 @@ function oneditmodeCallBack(data)
 
         }
 
-        if(basic.hasDmd)
+        if(basic.hasDmd==1)
         {
             has_diamond=true;
             $('#stone2').attr('checked',true);
@@ -2892,7 +2914,7 @@ function oneditmodeCallBack(data)
 
         }
 
-        if(basic.hasUnct)
+        if(basic.hasUnct==1)
         {
             has_uncut=true;
             $('#stone3').attr('checked',true);
@@ -2931,7 +2953,7 @@ function oneditmodeCallBack(data)
         }
 
 
-        if(basic.hasGem)
+        if(basic.hasGem==1)
         {
             has_gemstone=true;
             $('#stone4').attr('checked',true);
@@ -2969,4 +2991,36 @@ function oneditmodeCallBack(data)
     }
     hideLoader();
 
+}
+
+
+function deleteSolitaire(obj)
+{
+    var sid=$(obj).parent().attr('db-id');
+    
+    if(sid!=="")
+    {
+        var URL= APIDOMAIN+"?action=changeSolitaireStatus";
+    
+        values= {};
+        values['solitaire_id'] = sid;
+        values['productid'] = prdid;
+        values['updatedby'] = userid;
+        values['active_flag'] = 2;
+        
+        
+        var dt = JSON.stringify(values);
+    
+        $.ajax({
+            url:URL,
+            type:'POST',
+            data:{dt:dt},
+            success:function(res){
+                res=JSON.parse(res);
+                console.log(res);
+            }
+        });
+    
+    }
+    
 }

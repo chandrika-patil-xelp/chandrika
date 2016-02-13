@@ -187,6 +187,16 @@ switch($action)
         $result	=$obj->changeProductStatus($tmpparams);
         $res = $result;
     break;
+
+    case 'changeSolitaireStatus':
+        include APICLUDE.'class.product.php';
+        $obj	= new product($db['jzeva']);
+        $tmpparams=array($params['dt']);
+        $result	=$obj->changeSolitaireStatus($tmpparams);
+        $res = $result;
+    break;
+
+
     
 
 

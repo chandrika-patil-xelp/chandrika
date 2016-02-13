@@ -23,8 +23,7 @@ class product extends DB {
 
     public function addProduct($params) {
         $params= (json_decode($params[0],1));
-
-
+        
         if(!$params['productid'])
         {
             $pid = $this->generateId();
@@ -35,13 +34,13 @@ class product extends DB {
 
         $userid = $params['userid'];
 
-        #echo "<pre>";print_r($params);  echo "</pre>";die;
+        echo "<pre>";print_r($params);  echo "</pre>";#die
 
 
         #ADDING CATEGORY MAPPING FOR CURRENT PRODUCT
 
         $catids = explode(",", $params['catid']);
-        $tmpcatparams = array('catid' => $params['catid'], 'userid' => $userid, 'pid' => $pid);
+        $tmpcatparams = array('catid' => $params['catid'], 'userid' => $userid, 'pid' => $params['productid']);
         $catres = $this->addCatProductMapping($tmpcatparams);
         if ($catres['error']['err_code'] == 0)
         {
@@ -273,7 +272,6 @@ class product extends DB {
 
 
         $sql.=" ON DUPLICATE KEY UPDATE "
-                . "product_code = VALUES(product_code),"
                 . "vendorid = VALUES(vendorid),"
                 . "product_name = VALUES(product_name),"
                 . "product_seo_name = VALUES(product_seo_name),"
@@ -305,7 +303,9 @@ class product extends DB {
     }
 
     public function addProductSizeMApping($params) {
-
+        $dactivesql="DELETE FROM  tbl_product_size_mapping  WHERE productid=".$params['productid'];
+        $dares=  $this->query($dactivesql);
+        
         $sql = "INSERT INTO tbl_product_size_mapping (productid,size_id,quantity,createdon,updatedby) VALUES ";
         foreach ($params['sizes'] as $key => $val) {
 
@@ -344,7 +344,9 @@ class product extends DB {
     }
 
     public function addProductMetalPurityMapping($params) {
-
+        $dactivesql="DELETE FROM  tbl_product_metal_purity_mapping  WHERE productid=".$params['productid'];
+        $dares=  $this->query($dactivesql);
+        
         $sql = "INSERT INTO tbl_product_metal_purity_mapping (productid,id,createdon,updatedby) VALUES";
 
         foreach ($params['metalpurity'] as $key => $val) {
@@ -357,7 +359,7 @@ class product extends DB {
         }
 
         $sql = trim($sql, ",");
-        $sql.=" ON DUPLICATE KEY UPDATE id = VALUES(id),updatedby=VALUES(updatedby)";
+        $sql.=" ON DUPLICATE KEY UPDATE updatedby=VALUES(updatedby)";
 
 
         $res = $this->query($sql);
@@ -386,7 +388,10 @@ class product extends DB {
 
 
     public function addProductMetalColorMapping($params) {
-
+        $dactivesql="DELETE FROM  tbl_product_metal_color_mapping  WHERE productid=".$params['productid'];
+        $dares=  $this->query($dactivesql);
+        
+        
         $sql = "INSERT INTO tbl_product_metal_color_mapping (productid,id,createdon,updatedby) VALUES";
 
         foreach ($params['metalcolors']as $key => $val) {
@@ -531,15 +536,21 @@ class product extends DB {
         $sql = "INSERT INTO tbl_product_solitaire_mapping (productid,solitaire_id,shape,color,clarity,cut,symmetry,polish,fluorescence,carat,price_per_carat,table_no,crown_angle,girdle,createdon,updatedby) Values";
 
         foreach ($params['solitaires'] as $solt) {
-
-            $solid = $this->generateId();
+            
+            if(!$solt['solitaire_id']){
+                $solid = $this->generateId();
+            }else{
+                $solid = $solt['solitaire_id'];
+            }
+            
+            
             $tmpparams = array('shape' => $solt['shape'], 'color' => $solt['color'], 'clarity' => $solt['clarity'], 'cut' => urldecode($solt['cut']), 'symmetry' => urldecode($solt['symmetry']), 'polish' => urldecode($solt['polish']), 'fluorescence' => urldecode($solt['fluorescence']), 'carat' => $solt['carat'], 'price_per_carat' => $solt['price_per_carat'], 'table' => $solt['table'], 'crown_angle' => $solt['crown_angle'], 'girdle' => $solt['girdle'], 'solitaire_id' => $solid, 'updatedby' => $params['updatedby'], 'productid' => $params['productid']);
 
-            $sql.="(" . $tmpparams['productid'] . "," . $tmpparams['solitaire_id'] . ",'" . $tmpparams['shape'] . "','" . $tmpparams['color'] . "'," . "'" . $tmpparams['clarity'] . "'," . "'" . $tmpparams['cut'] . "'," . "'" . $tmpparams['symmetry'] . "'," . "'" . $tmpparams['polish'] . "'," . "'" . $tmpparams['fluorescence'] . "'," . "" . $tmpparams['carat'] . "," . "" . $tmpparams['price_per_carat'] . "," . "'" . $tmpparams['table'] . "'," . "'" . $tmpparams['crown_angle'] . "'," . "'" . $tmpparams['girdle'] . "'," . "now()," . "" . $params['updatedby'] . "" . "),";
+            $sql.="('" . $tmpparams['productid'] . "','" . $tmpparams['solitaire_id'] . "','" . $tmpparams['shape'] . "','" . $tmpparams['color'] . "'," . "'" . $tmpparams['clarity'] . "'," . "'" . $tmpparams['cut'] . "'," . "'" . $tmpparams['symmetry'] . "'," . "'" . $tmpparams['polish'] . "'," . "'" . $tmpparams['fluorescence'] . "'," . "" . $tmpparams['carat'] . "," . "" . $tmpparams['price_per_carat'] . "," . "'" . $tmpparams['table'] . "'," . "'" . $tmpparams['crown_angle'] . "'," . "'" . $tmpparams['girdle'] . "'," . "now()," . "" . $params['updatedby'] . "" . "),";
         }
 
         $sql = trim($sql, ",");
-        $sql.=" ON DUPLICATE KEY UPDATE color = VALUES(color),cut = VALUES(cut),symmetry = VALUES(symmetry),polish= VALUES(polish),fluorescence = VALUES(fluorescence),carat = VALUES(carat),price_per_carat = VALUES(price_per_carat), table_no = VALUES(table_no),crown_angle = VALUES(crown_angle), girdle = VALUES(girdle), updatedby=VALUES(updatedby)";
+        $sql.=" ON DUPLICATE KEY UPDATE shape = VALUES(shape),color = VALUES(color),clarity = VALUES(clarity),cut = VALUES(cut),symmetry = VALUES(symmetry),polish= VALUES(polish),fluorescence = VALUES(fluorescence),carat = VALUES(carat),price_per_carat = VALUES(price_per_carat), table_no = VALUES(table_no),crown_angle = VALUES(crown_angle), girdle = VALUES(girdle), updatedby=VALUES(updatedby)";
 
         $res = $this->query($sql);
         $result = array();
@@ -551,6 +562,26 @@ class product extends DB {
         $results = array('result' => $result, 'error' => $err);
         return $results;
     }
+    
+    
+    public function changeSolitaireStatus($params)
+    {
+        $params= json_decode($params[0]);
+        $sql = "UPDATE tbl_product_solitaire_mapping SET active_flag=".$params['active_flag'].", updatedby = '".$params['updatedby']."' WHERE  productid = '".$params['productid']."' AND solitaire_id = '".$params['solitaire_id']."'";
+        $res = $this->query($sql,1);
+        $result = array();
+        if ($res) {
+            $err = array('err_code' => 0, 'err_msg' => 'Data updated successfully');
+        } else {
+            $err = array('err_code' => 1, 'err_msg' => 'Error in updating');
+        }
+        $results = array('result' => $result, 'error' => $err);
+        return $results;
+        
+    }
+    
+    
+    
 
     public function addDiamond($params) {
 
@@ -981,6 +1012,9 @@ class product extends DB {
                         FROM
                                 tbl_product_solitaire_mapping
                         WHERE
+                                active_flag !=2 
+                                
+                            AND
                                 productid = " . $params['pid'] . " ";
             // WHERE active_flag=1 ";
             $res = $this->query($sql);
