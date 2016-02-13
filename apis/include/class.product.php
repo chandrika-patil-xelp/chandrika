@@ -699,7 +699,8 @@ class product extends DB {
         foreach ($params['gemstone'] as $arr) {
             $garr = $this->getGemstoneDetailsById($arr['gvalue']);
             $gname = $garr['result']['name'];
-            $gemstoneid = $this->generateId();
+            //$gemstoneid = $this->generateId();
+            $gemstoneid =$params['gvalue'];
 
             $tmpparams = array('productid' => $params['productid'], 'total_no' => $arr['total_no'], 'carat' => $arr['carat'], 'price_per_carat' => $arr['price_per_carat'], 'updatedby' => $params['updatedby']);
 
@@ -1095,17 +1096,18 @@ class product extends DB {
                 while ($row = $this->fetchData($res)) {
                     $arr['prdId'] = $row['productid'];
                     $arr['dmdId'] = $row['diamond_id'];
-                    $arr['shap'] = $row['shape'];
+                    $arr['shape'] = $row['shape'];
                     $arr['crat'] = $row['carat'];
                     $arr['totNo'] = $row['total_no'];
                     $arr['crtdOn'] = $row['createdon'];
                     $arr['updtOn'] = $row['updatedon'];
                     $arr['updtBy'] = $row['updatedby'];
-                    $arr['QualityMaster'] = $this->getQualityMap(array('diamond_id' => $row['diamond_id']));
+                    $arr['QMast'] = $this->getQualityMap(array('diamond_id' => $row['diamond_id']));
+                    $result[]=$arr;
                     $count++;
                 }
             }
-            return array('count' => $count, 'results' => $arr);
+            return array('count' => $count, 'results' => $result);
         } catch (Exception $e) {
             echo 'Exection in function getProductDiamond message : ' . $e->getMessage();
         }

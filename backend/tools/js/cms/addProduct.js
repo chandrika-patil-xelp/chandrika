@@ -17,7 +17,7 @@ var gemstoneCnt = 1;
 var mpurity = new Array();
 var mcolor = new Array();
 
-
+var prdid="";
 function getCategories()
 {
     var URL = APIDOMAIN + "index.php?action=getCatgoryList";
@@ -218,7 +218,7 @@ function getGemstoneList()
         success: function(res) {
             res = JSON.parse(res);
             gemstonelist = res.result;
-            //gemstoneListCalllBack(res);
+            gemstoneListCalllBack(res);
         }
     });
 
@@ -417,7 +417,6 @@ var radioCh_selector = ['input[type=radio],input[type=checkbox],label'];
 
 
 function bindAllForPrice(){
-    console.log("0");
     $(txt_selector).bind('blur',function(){
         genPriceSection();
     });
@@ -463,8 +462,6 @@ $(document).ready(function() {
             metalPurityCust = true;
 
         }
-
-        console.log(metalPurityCust);
     });
 
 
@@ -900,9 +897,11 @@ function addUncut()
     var colors = new Array('D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O');
     var clarity = new Array('IF', 'VVS1', 'VVS2', 'VS1', 'VS2', 'SI1', 'SI2', 'I1');
     var cLen = colors.length;
-
-
-    var str1 = "<div class='divCon  fLeft' id='uncutColors_" + unctCnt + "_Cont'><div class='titleDiv txtCap fLeft'>Diamond Color*</div><div class='radioCont fLeft'>";
+    var cl="";
+    if(unctCnt>1){
+        cl='mTop0';
+    }
+    var str1 = "<div class='divCon "+cl+" fLeft' id='uncutColors_" + unctCnt + "_Cont'><div class='titleDiv txtCap fLeft'>Diamond Color*</div><div class='radioCont fLeft'>";
 
     var i = 0;
     while (i < cLen) {
@@ -946,10 +945,10 @@ function addUncut()
     var str="";
     if(unctCnt>1)
     {
-        str += "<div class='commCont fLeft' id='uncutComm_" + unctCnt + "'>"+delStr + str1+ tstr + str2 + str3 + "</div>";
+        str += "<div class='commCont fLeft' id='uncutComm_" + unctCnt + "'>"+delStr + str1+ tstr + str2 + str3 + "<div class='breakLine'></div></div>";
     }
     else{
-        str += "<div class='commCont fLeft' id='uncutComm_" + unctCnt + "'>"+str1+tstr + str2 + str3 + "</div>";
+        str += "<div class='commCont fLeft' id='uncutComm_" + unctCnt + "'>"+str1+tstr + str2 + str3 + "<div class='breakLine'></div></div>";
     }
 
     $('#newUncutDiamonds').append(str);
@@ -1354,6 +1353,12 @@ function addProduct()
 
 
         var general = {};
+        
+        if(prdid!=="")
+        {
+            general['productid'] = prdid;
+        }
+        
         general['vendorid'] = vid;
         general['product_name'] = product_name;
         general['product_seo_name'] = product_seo_name;
@@ -1365,8 +1370,6 @@ function addProduct()
         general['procurement_cost'] = procurement_cost;
         general['margin'] = margin;
         general['measurement'] = measurement;
-        
-        console.log(dmdSetting);
         general['dmdSetting'] = dmdSetting.toString();
 
 
@@ -1535,6 +1538,7 @@ function moveUp()
 
 function validateForm()
 {
+    return true;
     var isValid=true;
     if ($('[name=prtcateg]:checked').length === 0)
     {
@@ -2579,3 +2583,336 @@ function calcGrandTotal(type)
 
     }
 }
+
+
+if(edit==1)
+{
+    oneditmode();
+}
+
+function oneditmode()
+{
+    showLoader();
+    var URL=APIDOMAIN+"?action=getProductById&pid="+pid;
+    $.ajax({
+        url:URL,
+        type:'POST',
+        success:function(res){
+            res=JSON.parse(res);
+            oneditmodeCallBack(res);
+        }
+    });
+}
+
+
+function oneditmodeCallBack(data)
+{
+    if (data['error']['err_code'] == '0')
+    {
+        var dt=data['results'];
+        var basic=dt['basicDetails'];
+        prdid =basic.prdId;
+        
+        $('#vendorList option').each(function(){
+            var id=$(this).val();
+            if(basic.vndId==id){
+                $(this).attr('selected',true);
+            }
+        });
+        
+        $('#product_name').val(basic.prdNm);
+        $('#product_seo_name').val(basic.prdSeo);
+        $('#product_weight').val(basic.prdWgt);
+        
+        var dmdsetting=basic.dmdStng.split(",");
+        $(dmdsetting).each(function(i){
+            $('[name=diamond_setting]').each(function(){
+                var val =$(this).val();
+
+                if(dmdsetting[i]==val){
+                    $(this).attr('checked',true);
+                }
+            });
+            
+        });
+        
+        $('[name=gender]').each(function(){
+            var val =$(this).val();
+            
+            if(basic.gender==val){
+                $(this).attr('checked',true);
+            }
+        });
+        $('[name=certificate]').each(function(){
+            var val =$(this).val();
+            
+            if(basic.crtficte==val){
+                $(this).attr('checked',true);
+            }
+        });
+        
+        $('#metal_weight').val(basic.mtlWgt);
+        $('#making_charges').val(basic.mkngCrg);
+        $('#procurement_cost').val(basic.procmtCst);
+        $('#margin').val(basic.mrgn);
+       
+       var measure=basic.mesmnt.split("X");
+       
+       $('#measure1').val(measure[0]);
+       $('#measure2').val(measure[1]);
+       
+        $('[name=isPurityCustz]').each(function(){
+            var val =$(this).val();
+            if(basic.custPurty==val){
+                $(this).click();
+            }
+        });
+        
+        var murity=dt['metalPurity'];
+        
+        if(basic.custPurty==1)
+        {
+            var mprid=murity['results'][0].id;
+            $('[name=gpurityNotCustomize]').each(function(){
+                var val =$(this).val();
+                if(mprid==val){
+                    $(this).attr('checked',true);
+                }
+            });
+        }
+        
+        if(basic.custPurty==0)
+        {
+            $(murity['results']).each(function(i){
+                var mprid=murity['results'][i].id;
+                $('[name=gpurityCustomize]').each(function(){
+                    var val =$(this).val();
+                    if(mprid==val){
+                        $(this).attr('checked',true);
+                    }
+                });
+            });           
+        }
+        
+        $('[name=isColorCustz]').each(function(){
+            var val =$(this).val();
+            if(basic.custClor==val){
+                $(this).click();
+            }
+        });
+        
+        
+       var murity=dt['metalColor'];
+        
+        if(basic.custClor==1)
+        {
+            var mprid=murity['results'][0].id;
+            $('[name=gcolorNotCustomize]').each(function(){
+                var val =$(this).val();
+                if(mprid==val){
+                    $(this).attr('checked',true);
+                }
+            });
+        }
+        
+        if(basic.custClor==0)
+        {
+            $(murity['results']).each(function(i){
+                var mprid=murity['results'][i].id;
+                $('[name=gcolorCustomize]').each(function(){
+                    var val =$(this).val();
+                    if(mprid==val){
+                        $(this).attr('checked',true);
+                    }
+                });
+            });           
+        }
+       
+        var sizes =dt['size']['results'];
+        $(sizes).each(function(i){
+            var sid=sizes[i].sizId;
+            var qty=sizes[i].qnty;
+            $('[name=size]').each(function(){
+                var val =$(this).val();
+                if(sid==val){
+                    $(this).attr('checked',true);
+                    $('#size_'+sid+'_qty').val(qty);
+                }
+            });
+        });
+        
+        
+        
+        if(basic.hasSol)
+        {
+            has_solitaire=true;
+            $('#stone1').attr('checked',true);
+            var solts=dt['solitaire']['results'];
+            
+            $(solts).each(function(i){
+                var ids=i+1;
+                var solt=solts[i];
+                addSolitaire();
+                $('#solitaireComm_'+ids).find('.shapeComm.'+solt.shape).click();
+                
+                $('[name=solitaireColors_'+ids+']').each(function(){
+                    var val =$(this).val();
+                    if(solt.colr==val)                    
+                        $(this).attr('checked',true);
+                });
+                
+                $('[name=solitaireclarity_'+ids+']').each(function(){
+                    var val =$(this).val();
+                    if(solt.clrty==val)                    
+                        $(this).attr('checked',true);
+                });
+                
+                
+                $('[name=solitairecut_'+ids+']').each(function(){
+                    var val =$(this).val();
+                    if(solt.cut==val)                    
+                        $(this).attr('checked',true);
+                });
+                
+                $('[name=solitairesymmetry_'+ids+']').each(function(){
+                    var val =$(this).val();
+                    if(solt.symty==val)                    
+                        $(this).attr('checked',true);
+                });
+                
+                $('[name=solitairepolish_'+ids+']').each(function(){
+                    var val =$(this).val();
+                    if(solt.polish==val)                    
+                        $(this).attr('checked',true);
+                });
+                
+                $('[name=solitaireFluorescence_'+ids+']').each(function(){
+                    var val =$(this).val();
+                    if(solt.flresce==val)                    
+                        $(this).attr('checked',true);
+                });
+                
+                $('#solcaratweight'+ids).val(solt.carat);
+                $('#solpricecarat'+ids).val(solt.prcPrCrat);
+                $('#soltable'+ids).val(solt.tblNo);
+                $('#solGirdle'+ids).val(solt.girdle);
+                $('#solCrownAngle'+ids).val(solt.crwnAngle);
+                
+            });
+            $('#solitaires_Section').removeClass('dn');
+            
+        }
+               
+        if(basic.hasDmd)
+        {
+            has_diamond=true;
+            $('#stone2').attr('checked',true);
+            var dmd=dt['dimond']['results'];
+            
+            $(dmd).each(function(i){
+                var ids=i+1;
+                var dm=dmd[i];
+                addDiamond();
+                $('#diamondComm_'+ids).find('.shapeComm.'+dm.shape).click();
+                var cnt=   dm.QMast.count;
+                var dqlty=dm.QMast.results;
+                var isDCustz=0;
+                var dqname='dmdquality_notCust';
+                if(cnt>1){
+                    isDCustz=1;
+                    dqname='dmdquality_cust';
+                }
+                $('[name=isDiamondCustz_'+ids+']').each(function(){
+                    var val =$(this).val();
+                    if(val==isDCustz)                    
+                        $(this).click();
+                });
+                
+                $(dqlty).each(function(i){
+                    $('[name='+dqname+ids+']').each(function(){
+                        var val =$(this).val();
+                        if(dqlty[i].id==val)                    
+                            $(this).attr('checked',true);
+                    });
+                });
+                
+                $('#dmdcaratweight'+ids).val(dm.crat);
+                $('#dmdPieces'+ids).val(dm.totNo);
+            });
+            $('#diamond_Section').removeClass('dn');
+            
+        }
+        
+        if(basic.hasUnct)
+        {
+            has_uncut=true;
+            $('#stone3').attr('checked',true);
+            var unct=dt['uncut']['results'];
+            
+            $(unct).each(function(i){
+                var ids=i+1;
+                var un=unct[i];
+                addUncut();
+                var colors=un.clor.split(",");
+                
+                
+                $(colors).each(function(i){
+                    $('[name=uncutColors_'+ids+']').each(function(){
+                        var val =$(this).val();
+                        if(colors[i]==val)                    
+                            $(this).attr('checked',true);
+                    });
+                });
+                
+                
+                $('[name=uncutquality_'+ids+']').each(function(){
+                    var val =$(this).val();
+                    if(un.qulty==val)                    
+                        $(this).attr('checked',true);
+                });
+                
+                $('#uncutcaratweight'+ids).val(un.crat);
+                $('#uncutpricecarat'+ids).val(un.prcPrCrat);
+                $('#uncutPieces'+ids).val(un.totNo);
+                
+            
+            });
+            $('#uncut_Section').removeClass('dn');
+           
+        }
+        
+        
+        if(basic.hasGem)
+        {
+            has_gemstone=true;
+            $('#stone4').attr('checked',true);
+            var gemst=dt['gamestone']['results'];
+            
+            $(gemst).each(function(i){
+                var ids=i+1;
+                var gem=gemst[i];
+                addGemstone();
+                
+                $('#gemstone_type'+ids+' option').each(function(){
+                    var val =$(this).val();
+                    if(gem.gemId==val)                    
+                        $(this).attr('selected',true);
+                    
+                });
+                
+                $('#gemstonecaratweight'+ids).val(gem.crat);
+                $('#gemstonepricecarat'+ids).val(gem.prcPrCrat);
+                $('#gemstonePieces'+ids).val(gem.totNo);
+        
+            });
+            $('#gemstone_Section').removeClass('dn');
+           
+        }
+        
+        genPriceSection();
+        
+    }
+    hideLoader();
+    
+}
+            

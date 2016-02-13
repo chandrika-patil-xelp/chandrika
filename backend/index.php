@@ -19,6 +19,14 @@ switch ($action) {
     case 'addProduct':
         $page = 'addProduct';
         $tab = 'products';
+        $edit=0;
+        include BTEMPLATE.'addProduct.html';
+        break;
+    case 'editProduct':
+        $page = 'addProduct';
+        $tab = 'products';
+        $edit=1;
+        $pid=$_GET['pid'];
         include BTEMPLATE.'addProduct.html';
         break;
 

@@ -61,7 +61,7 @@ function changeStatusCallBack(data)
 function getProducs()
 {
     prdCnt = 0;
-    var URL = APIDOMAIN + "?action=pageList&page1&limit=20";
+    var URL = APIDOMAIN + "?action=pageList&page1&limit=1000";
     $.ajax({
         url: URL,
         type: 'POST',
@@ -100,7 +100,7 @@ function getProducsCallback(data)
                 str += "<div class='metalWt fLeft'>" + v.mtlWgt + " gms</div>";
                 str += "<div class='acct fLeft'>";
                 str += "<div class='deltBtn fRight transition300'  onclick=\"changePrdStatus(2,'" + v.pid + "')\"></div>";
-                str += "<div class='editBtn fRight transition300'></div>";
+                str += "<div class='editBtn fRight transition300' onclick=\"editProduct('"+v.pid+"')\"></div>";
                 str += "<a href='" + DOMAIN + "backend/?action=upload&pid=" + v.pid + "' target='+blank'><div class='uploadBtn fRight transition300'></div></a>";
                 if (v.isActive == 1)
                 {
@@ -139,4 +139,9 @@ function getProducsCallback(data)
         getProducs();
     }
 
+}
+function editProduct(pid)
+{
+    window.location.href=DOMAIN+"backend/?action=editProduct&pid="+pid;
+    
 }
