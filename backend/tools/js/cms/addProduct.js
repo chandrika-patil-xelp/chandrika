@@ -54,6 +54,7 @@ function getCategories()
 
 function generateCats(res,id)
 {
+   
     var result = res.result;
     var html = '';
     $.each(result, function(i, vl) {
@@ -83,10 +84,11 @@ function removeCats(id)
 }
 function bindCheckBox(res)
 {
-    $("input[type=checkbox]").unbind();
+   
     $("input[type=checkbox]").each( function() {
         if($(this).attr('id').indexOf("cat_") != -1)
         {
+            $(this).unbind();
             var id = $(this).attr('id');
             $('#'+id).bind('click', function() {
                 if($(this).is(':checked'))
@@ -217,7 +219,7 @@ function getDiamondQuality()
         success: function(res) {
             res = JSON.parse(res);
             dqulaity = res['result'];
-            //diamondQltyCalllBack(res);
+            diamondQltyCalllBack(res);
         }
     });
 
@@ -431,13 +433,8 @@ function sizeListCalllBack(data)
 
 }
 
-getCategories();
-getVendorList();
-getDiamondQuality();
-getMetalPurity();
-getMetalColors();
-getGemstoneList();
-getSizeList();
+var jsonRes;
+
 
 function stopPropGate(event)
 {
@@ -477,24 +474,30 @@ function bindAllForPrice(){
 }
 
 $(document).ready(function() {
+    
+    if(edit==1)
+    {
+        oneditmode();
+    }
+
+    getCategories();
+    getVendorList();
+    getDiamondQuality();
+    getMetalPurity();
+    getMetalColors();
+    getGemstoneList();
+    getSizeList();
+    
+    
+    
+    
+    
+    
+    
     $('textarea').increaseAuto();
 
     bindShapes();
     bindAllForPrice();
-    /*$("[name='isColorCustz']").change(function() {
-        genPriceSection();
-    });*/
-
-
-
-
-
-//    $('#diamond_Section').addClass('dn');
-//    $('#gemstone_Section').hide();
-//    $('#uncut_Section').hide();
-//    $('#solitaires_Section').hide();
-//    $('#price_Section').hide();
-//gpurityCustomize
 
 
     $("[name='isPurityCustz']").change(function() {
@@ -540,7 +543,9 @@ $(document).ready(function() {
     var dflag = true;
     var uflag = true;
     var gflag = true;
+    
     $("#stone1,#stone2,#stone3,#stone4").change(function() {
+        
         var id = $(this).attr('id');
         var flag = $(this).is(':CHECKED');
 
@@ -1586,7 +1591,7 @@ function moveUp()
 
 function validateForm()
 {
-    return true;
+    //return true;
     var isValid=true;
     if ($('[name=prtcateg]:checked').length === 0)
     {
@@ -2632,12 +2637,6 @@ function calcGrandTotal(type)
     }
 }
 
-
-if(edit==1)
-{
-    oneditmode();
-}
-
 function oneditmode()
 {
     showLoader();
@@ -2647,6 +2646,7 @@ function oneditmode()
         type:'POST',
         success:function(res){
             res=JSON.parse(res);
+            console.log(res);
             oneditmodeCallBack(res);
         }
     });
@@ -2791,7 +2791,7 @@ function oneditmodeCallBack(data)
 
 
 
-        if(basic.hasSol)
+        if(basic.hasSol==1)
         {
             has_solitaire=true;
             $('#stone1').attr('checked',true);
@@ -2851,7 +2851,7 @@ function oneditmodeCallBack(data)
 
         }
 
-        if(basic.hasDmd)
+        if(basic.hasDmd==1)
         {
             has_diamond=true;
             $('#stone2').attr('checked',true);
@@ -2891,7 +2891,7 @@ function oneditmodeCallBack(data)
 
         }
 
-        if(basic.hasUnct)
+        if(basic.hasUnct==1)
         {
             has_uncut=true;
             $('#stone3').attr('checked',true);
@@ -2930,7 +2930,7 @@ function oneditmodeCallBack(data)
         }
 
 
-        if(basic.hasGem)
+        if(basic.hasGem==1)
         {
             has_gemstone=true;
             $('#stone4').attr('checked',true);
@@ -2956,7 +2956,11 @@ function oneditmodeCallBack(data)
             $('#gemstone_Section').removeClass('dn');
 
         }
-
+        
+        var catg=dt['catAttr']['results'];
+        
+        console.log(catg);
+        
         genPriceSection();
 
     }

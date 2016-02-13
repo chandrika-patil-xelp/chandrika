@@ -693,18 +693,19 @@ class product extends DB {
     }
 
     public function addGemstone($params) {
-
+      
+        
         $sql = "INSERT INTO tbl_product_gemstone_mapping (productid,gemstone_id,gemstone_name,total_no,carat,price_per_carat,createdon,updatedby) VALUES";
 
         foreach ($params['gemstone'] as $arr) {
             $garr = $this->getGemstoneDetailsById($arr['gvalue']);
             $gname = $garr['result']['name'];
             //$gemstoneid = $this->generateId();
-            $gemstoneid =$params['gvalue'];
+            $gemstoneid =$arr['gvalue'];
 
             $tmpparams = array('productid' => $params['productid'], 'total_no' => $arr['total_no'], 'carat' => $arr['carat'], 'price_per_carat' => $arr['price_per_carat'], 'updatedby' => $params['updatedby']);
 
-            $sql.="(" . $tmpparams['productid'] . "," . $gemstoneid . ",'" . $gname . "'," . $tmpparams['total_no'] . "," . $tmpparams['carat'] . "," . $tmpparams['price_per_carat'] . ",now()," . $tmpparams['updatedby'] . "" . "),";
+            $sql.="('" . $tmpparams['productid'] . "'," . $gemstoneid . ",'" . $gname . "'," . $tmpparams['total_no'] . "," . $tmpparams['carat'] . "," . $tmpparams['price_per_carat'] . ",now()," . $tmpparams['updatedby'] . "" . "),";
         }
         $sql = trim($sql, ",");
 
@@ -1140,12 +1141,12 @@ class product extends DB {
             $res = $this->query($sql);
             if ($res) {
                 while ($row = $this->fetchData($res)) {
-                    $arr['catId'] = $row['catid'];
-                    $arr['pcatId'] = $row['pcatid'];
-                    $arr['catNm'] = $row['cat_name'];
+                    $arr['cid'] = $row['catid'];
+                    $arr['pid'] = $row['pcatid'];
+                    $arr['name'] = $row['cat_name'];
                     $arr['catLvl'] = $row['cat_lvl'];
                     $arr['lineage'] = $row['lineage'];
-                    $arr['actFlg'] = $row['active_flag'];
+                    $arr['active'] = $row['active_flag'];
                     $arr['crtdOn'] = $row['createdon'];
                     $arr['updtOn'] = $row['updatedon'];
                     $arr['updtBy'] = $row['updatedby'];

@@ -136,7 +136,6 @@ function getProducsCallback(data)
     else
     {
         common.toast(0, 'Error in fetching products');
-        getProducs();
     }
 
 }
