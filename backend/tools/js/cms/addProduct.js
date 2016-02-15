@@ -668,8 +668,67 @@ function deleteThis(id)
 {
     $('#'+id).next('.breakLine').remove();
     $('#'+id).remove();
+    
+    if($("div[id^='solitaireComm_']").length==0)
+    {
+        $('#solitaires_Section').addClass('dn');
+        $('#stone1').attr('checked',false);
+        has_solitaire=false;
+        changePrdPropertyStatus(1);
+    }
+    
+    if($("div[id^='diamondComm_']").length==0)
+    {
+        $('#diamond_Section').addClass('dn');
+        $('#stone2').attr('checked',false);
+        has_diamond=false;
+        changePrdPropertyStatus(2);
+    }
+    
+    if($("div[id^='uncutComm_']").length==0)
+    {
+        $('#uncut_Section').addClass('dn');
+        $('#stone3').attr('checked',false);
+        has_uncut=false;
+        changePrdPropertyStatus(3);
+    }
+    
+    if($("div[id^='gemstoneComm_']").length==0)
+    {
+        $('#gemstone_Section').addClass('dn');
+        $('#stone4').attr('checked',false);
+        has_gemstone=false;
+        changePrdPropertyStatus(4);
+    }
 
 }
+
+
+function changePrdPropertyStatus(type)
+{
+        var URL= APIDOMAIN+"?action=changePrdPropertyStatus";
+        values= {};
+        values['type'] = type;
+        values['pid'] = prdid;
+        values['updatedby'] = userid;
+        
+        
+        var dt = JSON.stringify(values);
+    
+        $.ajax({
+            url:URL,
+            type:'POST',
+            data:{dt:dt},
+            success:function(res){
+                res=JSON.parse(res);
+                console.log(res);
+            }
+        });
+    
+}
+
+
+
 
 function addSolitaire()
 {
@@ -679,10 +738,10 @@ function addSolitaire()
 
 
     var str = "<div class='commCont fLeft' id='solitaireComm_" + solitaireCnt + "' db-id=''>";
-    if(solitaireCnt>1)
-    {
+//    if(solitaireCnt>1 || edit==1)
+//    {
         str+="<div class='deleteElements fRight transition300' onclick=\"deleteThis('solitaireComm_" + solitaireCnt + "');deleteSolitaire(this)\"></div>";
-    }
+    //}
     str += generateShapes('solitaire');
     str += generateColors('solitaire', soltColor);
     str += generateClarity(soltClarity);
@@ -857,11 +916,11 @@ function generateSoliTxtBox()
 function addDiamond()
 {
 
-    var str = "<div class='commCont fLeft' id='diamondComm_" + diamondCnt + "'>";
-    if(diamondCnt>1)
-    {
-        str+="<div class='deleteElements fRight transition300' onclick=\"deleteThis('diamondComm_" + diamondCnt + "')\"></div>";
-    }
+    var str = "<div class='commCont fLeft' id='diamondComm_" + diamondCnt + "' db-id=''>";
+    //if(diamondCnt>1 || edit==1)
+    //{
+        str+="<div class='deleteElements fRight transition300' onclick=\"deleteThis('diamondComm_" + diamondCnt + "');deleteDiamond(this)\"></div>";
+    //}
     str += generateShapes('diamond');
     str += "<div class='divCon fLeft fmOpenR'>";
     str += "<div class='titleDiv fLeft wAuto'>Is this diamond customizable?</div>";
@@ -996,15 +1055,15 @@ function addUncut()
     str3 += "<input name='uncutPieces' id='uncutPieces" + unctCnt + "'' type='text' placeholder='eg. 5' class='txtInput fLeft fmOpenR font14 c666'>";
     str3 += "</div>";
 
-    var delStr="<div class='deleteElements fRight transition300' onclick=\"deleteThis('uncutComm_" + unctCnt + "')\"></div>";
+    var delStr="<div class='deleteElements fRight transition300' onclick=\"deleteThis('uncutComm_" + unctCnt + "');deleteUncut(this)\"></div>";
     var str="";
-    if(unctCnt>1)
-    {
-        str += "<div class='commCont fLeft' id='uncutComm_" + unctCnt + "'>"+delStr + str1+ tstr + str2 + str3 + "<div class='breakLine'></div></div>";
-    }
-    else{
-        str += "<div class='commCont fLeft' id='uncutComm_" + unctCnt + "'>"+str1+tstr + str2 + str3 + "<div class='breakLine'></div></div>";
-    }
+    //if(unctCnt>1)
+    //{
+        str += "<div class='commCont fLeft' id='uncutComm_" + unctCnt + "' db-id=''>"+delStr + str1+ tstr + str2 + str3 + "<div class='breakLine'></div></div>";
+    //}
+//    else{
+//        str += "<div class='commCont fLeft' id='uncutComm_" + unctCnt + "'>"+str1+tstr + str2 + str3 + "<div class='breakLine'></div></div>";
+//    }
 
     $('#newUncutDiamonds').append(str);
     unctCnt++;
@@ -1014,12 +1073,12 @@ function addUncut()
 function addGemstone()
 {
 
-    var str = "<div class='commCont fLeft' id='gemstoneComm_" + gemstoneCnt + "'>";
+    var str = "<div class='commCont fLeft' id='gemstoneComm_" + gemstoneCnt + "' db-id=''>";
 
-    if(gemstoneCnt>1)
-    {
-        str+="<div class='divCon fLeft mTop0'><div class='deleteElements fRight transition300' onclick=\"deleteThis('gemstoneComm_" + gemstoneCnt + "')\"></div></div>";
-    }
+    //if(gemstoneCnt>1)
+    //{
+        str+="<div class='divCon fLeft mTop0'><div class='deleteElements fRight transition300' onclick=\"deleteThis('gemstoneComm_" + gemstoneCnt + "');deleteGemstone(this)\"></div></div>";
+    //}
 
     str += "<div class='divCon2 fLeft'>";
     str += "<div class='titleDiv txtCap fLeft'>Select a gemstone</div>";
@@ -1316,7 +1375,12 @@ function addProduct()
 
                 var carat = $('#dmdcaratweight' + ids + '').val();
                 var total_no = $('#dmdPieces' + ids + '').val();
-
+                var dId=    $('#diamondComm_' + ids).attr('db-id');
+                
+                if(dId!=="")
+                {
+                    values['diamond_id'] = dId;
+                }
                 values['shape'] = shape[1];
                 values['carat'] = carat;
                 values['total_no'] = total_no;
@@ -1362,7 +1426,12 @@ function addProduct()
                 var carat = $('#uncutcaratweight' + ids + '').val();
                 var price = $('#uncutpricecarat' + ids + '').val();
                 var total_no = $('#uncutPieces' + ids + '').val();
-
+                var unid=    $('#uncutComm_' + ids).attr('db-id');
+                
+                if(unid!=="")
+                {
+                    values['uncut_id'] = unid;
+                }
                 values['color'] = uncutColor.toString();
                 values['carat'] = carat;
                 values['total_no'] = total_no;
@@ -1601,7 +1670,6 @@ function moveUp()
 
 function validateForm()
 {
-    //return true;
     var isValid=true;
     if ($('[name=prtcateg]:checked').length === 0)
     {
@@ -1662,168 +1730,15 @@ function validateForm()
 
     if (has_diamond)
     {
-        $('[id*=diamondComm_]').each(function() {
-            var id = $(this).attr('id');
-            var ids = id.split("diamondComm_");
-            ids = ids[1];
-
-            if ($('#diamondComm_' + ids + ' .shapeSelected').length == 0)
-            {
-                common.toast(0, "Select Shape For Diamond " + ids);
-                highlight('diamondComm_' + ids,2);
-                isValid=false;
-                return false;
-            }
-
-            if ($('[name*=isDiamondCustz_' + ids + ']:checked').val() == 1)
-            {
-
-                if ($('[name=dmdquality_cust' + ids + ']:checked').length == 0)
-                {
-                    common.toast(0, "Select Customizable Diamond Quality For " + ids);
-                    var id=$('[name=dmdquality_cust' + ids + ']').eq(0).attr('id');
-                    highlight(id,1);
-                    isValid=false;
-                    return false;
-                }
-            }
-
-            if ($('[name*=isDiamondCustz_' + ids + ']:checked').val() == 0)
-            {
-
-                if ($('[name=dmdquality_notCust' + ids + ']:checked').length == 0)
-                {
-                    common.toast(0, "Select Not Customizable Diamond Quality For " + ids);
-                    var id=$('[name=dmdquality_notCust' + ids + ']').eq(0).attr('id');
-                    highlight(id,1);
-                    isValid=false;
-                    return false;
-                }
-
-            }
-
-
-            if ($('#dmdcaratweight' + ids + '').val() == "")
-            {
-                common.toast(0, "Enter Diamond Weight For " + ids);
-                highlight('dmdcaratweight' + ids,0);
-                isValid=false;
-                return false;
-            }
-
-            if (!checkForZero('dmdcaratweight' + ids))
-            {
-                common.toast(0, "Carat weight can not be 0");
-                highlight('dmdcaratweight' + ids,0);
-                isValid=false;
-                return false;
-            }
-
-
-            if ($('#dmdPieces' + ids + '').val() == "")
-            {
-                common.toast(0, "Enter Total Diamonds For " + ids);
-                highlight('dmdPieces' + ids,0);
-                isValid=false;
-                return false;
-            }
-
-
-            if (!checkForZero('dmdPieces' + ids))
-            {
-                common.toast(0, "Pieces can not be 0");
-                highlight('dmdPieces' + ids,0);
-                isValid=false;
-                return false;
-            }
-
-        });
+        var isValid=validateDiamondAdd();        
         if(!isValid)
             return isValid;
+        
     }
 
     if (has_uncut)
     {
-        $('[id*=uncutComm_]').each(function() {
-            var id = $(this).attr('id');
-            var ids = id.split("uncutComm_");
-            ids = ids[1];
-
-            if ($('[name=uncutColors_' + ids + ']:checked').length == 0)
-            {
-
-                common.toast(0, "Select Color For Uncut " + ids);
-                var id=$('[name=uncutColors_' + ids + ']').eq(0).attr('id');
-                highlight(id,1);
-                isValid=false;
-                return false;
-
-            }
-
-            if ($('[name=uncutquality_' + ids + ']:checked').length == 0)
-            {
-
-                common.toast(0, "Select Quality For Uncut " + ids);
-                var id=$('[name=uncutquality_' + ids + ']').eq(0).attr('id');
-                highlight(id,1);
-                isValid=false;
-                return false;
-
-            }
-
-            if ($('#uncutcaratweight' + ids + '').val() == "")
-            {
-                common.toast(0, "Enter Uncut Diamond Weight For " + ids);
-                highlight('uncutcaratweight' + ids,0);
-                isValid=false;
-                return false;
-            }
-
-            if (!checkForZero('uncutcaratweight' + ids))
-            {
-                common.toast(0, "Uncut Carat weight can not be 0");
-                highlight('uncutcaratweight' + ids,0);
-                isValid=false;
-                return false;
-            }
-
-
-            if ($('#uncutpricecarat' + ids + '').val() == "")
-            {
-                common.toast(0, "Enter Price For " + ids);
-                highlight('uncutpricecarat' + ids,0);
-                isValid=false;
-                return false;
-            }
-
-            if (!checkForZero('uncutpricecarat' + ids))
-            {
-                common.toast(0, "Price / carat can not be 0");
-                highlight('uncutpricecarat' + ids,0);
-                isValid=false;
-                return false;
-            }
-
-
-            if ($('#uncutPieces' + ids + '').val() == "")
-            {
-                common.toast(0, "Enter Total Uncut Diamonds For " + ids);
-                highlight('uncutPieces' + ids,0);
-                isValid=false;
-                return false;
-
-            }
-
-            if (!checkForZero('uncutPieces' + ids))
-            {
-                common.toast(0, "Uncut Pieces can not be 0");
-                highlight('uncutPieces' + ids,0);
-                isValid=false;
-                return false;
-            }
-
-
-        });
+        var isValid=validateUncutAdd();        
         if(!isValid)
             return isValid;
     }
@@ -1831,72 +1746,7 @@ function validateForm()
 
     if (has_gemstone)
     {
-        var isValid =true;
-        $('[id*=gemstoneComm_]').each(function() {
-            var id = $(this).attr('id');
-            var ids = id.split("gemstoneComm_");
-            ids = ids[1];
-
-            if ($('#gemstone_type' + ids + '').val() == -1)
-            {
-                common.toast(0, "Select Gemstone Type For " + ids);
-                highlight('gemstone_type'+ids,0);
-                isValid=false;
-                return false;
-
-            }
-
-            if ($('#gemstonecaratweight' + ids + '').val() == "")
-            {
-                common.toast(0, "Enter Gemstone Weight For " + ids);
-                highlight('gemstonecaratweight' + ids,0);
-                isValid=false;
-                return false;
-            }
-
-            if (!checkForZero('gemstonecaratweight' + ids))
-            {
-                common.toast(0, "Gemstone Carat weight can not be 0");
-                highlight('gemstonecaratweight' + ids,0);
-                isValid=false;
-                return false;
-            }
-
-            if ($('#gemstonepricecarat' + ids + '').val() == "")
-            {
-                common.toast(0, "Enter Price For Gemstone " + ids);
-                highlight('gemstonepricecarat' + ids,0);
-                isValid=false;
-                return false;
-
-            }
-
-            if (!checkForZero('gemstonepricecarat' + ids))
-            {
-                common.toast(0, "Price / Carat can not be 0");
-                highlight('gemstonepricecarat' + ids,0);
-                isValid=false;
-                return false;
-            }
-
-            if ($('#gemstonePieces' + ids + '').val() == "")
-            {
-                common.toast(0, "Enter Total Gemstone Pieces For " + ids);
-                highlight('gemstonePieces' + ids,0);
-                isValid=false;
-                return false;
-
-            }
-
-            if (!checkForZero('gemstonePieces' + ids))
-            {
-                common.toast(0, "Gemstone pieces can not be 0");
-                highlight('gemstonePieces' + ids,0);
-                isValid=false;
-                return false;
-            }
-
-        });
+        var isValid =validateGemstoneAdd();
         if(!isValid)
             return isValid;
     }
@@ -2496,8 +2346,6 @@ function calcGrandTotal(type)
     }
 }
 
-
-
 function oneditmode()
 {
     showLoader();
@@ -2511,7 +2359,6 @@ function oneditmode()
         }
     });
 }
-
 
 function oneditmodeCallBack(data)
 {
@@ -2674,7 +2521,7 @@ function oneditmodeCallBack(data)
                 
                 
                 $('#solitaireComm_'+ids).find('.shapeComm.'+solt.shape).click();
-                $('#solitaireComm_'+ids).attr('db-id',solt.soliId)
+                $('#solitaireComm_'+ids).attr('db-id',solt.soliId);
 
                 $('[name=solitaireColors_'+ids+']').each(function(){
                     var val =$(this).val();
@@ -2735,6 +2582,7 @@ function oneditmodeCallBack(data)
                 var dm=dmd[i];
                 addDiamond();
                 $('#diamondComm_'+ids).find('.shapeComm.'+dm.shape).click();
+                $('#diamondComm_'+ids).attr('db-id',dm.dmdId);
                 var cnt=   dm.QMast.count;
                 var dqlty=dm.QMast.results;
                 var isDCustz=0;
@@ -2791,7 +2639,8 @@ function oneditmodeCallBack(data)
                     if(un.qulty==val)
                         $(this).attr('checked',true);
                 });
-
+                
+                $('#uncutComm_'+ids).attr('db-id',un.unctId);
                 $('#uncutcaratweight'+ids).val(un.crat);
                 $('#uncutpricecarat'+ids).val(un.prcPrCrat);
                 $('#uncutPieces'+ids).val(un.totNo);
@@ -2820,7 +2669,8 @@ function oneditmodeCallBack(data)
                         $(this).attr('selected',true);
 
                 });
-
+                
+                $('#gemstoneComm_'+ids).attr('db-id',gem.gemId);
                 $('#gemstonecaratweight'+ids).val(gem.crat);
                 $('#gemstonepricecarat'+ids).val(gem.prcPrCrat);
                 $('#gemstonePieces'+ids).val(gem.totNo);
@@ -2842,7 +2692,6 @@ function oneditmodeCallBack(data)
     hideLoader();
 
 }
-
 
 function deleteSolitaire(obj)
 {
@@ -2875,6 +2724,97 @@ function deleteSolitaire(obj)
     
 }
 
+function deleteDiamond(obj)
+{
+    var did=$(obj).parent().attr('db-id');
+    
+    if(did!=="")
+    {
+        var URL= APIDOMAIN+"?action=changeDiamondStatus";
+    
+        values= {};
+        values['diamond_id'] = did;
+        values['productid'] = prdid;
+        values['updatedby'] = userid;
+        values['active_flag'] = 2;
+        
+        
+        var dt = JSON.stringify(values);
+    
+        $.ajax({
+            url:URL,
+            type:'POST',
+            data:{dt:dt},
+            success:function(res){
+                res=JSON.parse(res);
+                console.log(res);
+            }
+        });
+    
+    }
+    
+}
+
+function deleteUncut(obj)
+{
+    var uid=$(obj).parent().attr('db-id');
+    
+    if(uid!=="")
+    {
+        var URL= APIDOMAIN+"?action=changeUncutStatus";
+    
+        values= {};
+        values['uncut_id'] = uid;
+        values['productid'] = prdid;
+        values['updatedby'] = userid;
+        values['active_flag'] = 2;
+        
+        
+        var dt = JSON.stringify(values);
+    
+        $.ajax({
+            url:URL,
+            type:'POST',
+            data:{dt:dt},
+            success:function(res){
+                res=JSON.parse(res);
+                console.log(res);
+            }
+        });
+    
+    }
+    
+}
+
+function deleteGemstone(obj)
+{
+    var gid=$(obj).parent().parent().attr('db-id');
+    if(gid!=="")
+    {
+        var URL= APIDOMAIN+"?action=changeGemstoneStatus";
+    
+        values= {};
+        values['gemstone_id'] = gid;
+        values['productid'] = prdid;
+        values['updatedby'] = userid;
+        values['active_flag'] = 2;
+        
+        
+        var dt = JSON.stringify(values);
+    
+        $.ajax({
+            url:URL,
+            type:'POST',
+            data:{dt:dt},
+            success:function(res){
+                res=JSON.parse(res);
+                console.log(res);
+            }
+        });
+    
+    }
+    
+}
 
 function validateSolAdd()
 {
@@ -3037,4 +2977,255 @@ function validateSolAdd()
             addSolitaire();
         }
     
+}
+
+function  validateDiamondAdd()
+{   
+        var isValid=true;
+        $('[id*=diamondComm_]').each(function() {
+            var id = $(this).attr('id');
+            var ids = id.split("diamondComm_");
+            ids = ids[1];
+
+            if ($('#diamondComm_' + ids + ' .shapeSelected').length == 0)
+            {
+                common.toast(0, "Select Shape For Diamond " + ids);
+                highlight('diamondComm_' + ids,2);
+                isValid=false;
+                return false;
+            }
+
+            if ($('[name*=isDiamondCustz_' + ids + ']:checked').val() == 1)
+            {
+
+                if ($('[name=dmdquality_cust' + ids + ']:checked').length == 0)
+                {
+                    common.toast(0, "Select Customizable Diamond Quality For " + ids);
+                    var id=$('[name=dmdquality_cust' + ids + ']').eq(0).attr('id');
+                    highlight(id,1);
+                    isValid=false;
+                    return false;
+                }
+            }
+
+            if ($('[name*=isDiamondCustz_' + ids + ']:checked').val() == 0)
+            {
+
+                if ($('[name=dmdquality_notCust' + ids + ']:checked').length == 0)
+                {
+                    common.toast(0, "Select Not Customizable Diamond Quality For " + ids);
+                    var id=$('[name=dmdquality_notCust' + ids + ']').eq(0).attr('id');
+                    highlight(id,1);
+                    isValid=false;
+                    return false;
+                }
+
+            }
+
+
+            if ($('#dmdcaratweight' + ids + '').val() == "")
+            {
+                common.toast(0, "Enter Diamond Weight For " + ids);
+                highlight('dmdcaratweight' + ids,0);
+                isValid=false;
+                return false;
+            }
+
+            if (!checkForZero('dmdcaratweight' + ids))
+            {
+                common.toast(0, "Carat weight can not be 0");
+                highlight('dmdcaratweight' + ids,0);
+                isValid=false;
+                return false;
+            }
+
+
+            if ($('#dmdPieces' + ids + '').val() == "")
+            {
+                common.toast(0, "Enter Total Diamonds For " + ids);
+                highlight('dmdPieces' + ids,0);
+                isValid=false;
+                return false;
+            }
+
+
+            if (!checkForZero('dmdPieces' + ids))
+            {
+                common.toast(0, "Pieces can not be 0");
+                highlight('dmdPieces' + ids,0);
+                isValid=false;
+                return false;
+            }
+
+        });
+        
+        if(!isValid)
+            return isValid;
+        
+        else{
+            addDiamond();
+        }
+}
+
+function validateUncutAdd()
+{
+    var isValid=true;
+     $('[id*=uncutComm_]').each(function() {
+            var id = $(this).attr('id');
+            var ids = id.split("uncutComm_");
+            ids = ids[1];
+
+            if ($('[name=uncutColors_' + ids + ']:checked').length == 0)
+            {
+
+                common.toast(0, "Select Color For Uncut " + ids);
+                var id=$('[name=uncutColors_' + ids + ']').eq(0).attr('id');
+                highlight(id,1);
+                isValid=false;
+                return false;
+
+            }
+
+            if ($('[name=uncutquality_' + ids + ']:checked').length == 0)
+            {
+
+                common.toast(0, "Select Quality For Uncut " + ids);
+                var id=$('[name=uncutquality_' + ids + ']').eq(0).attr('id');
+                highlight(id,1);
+                isValid=false;
+                return false;
+
+            }
+
+            if ($('#uncutcaratweight' + ids + '').val() == "")
+            {
+                common.toast(0, "Enter Uncut Diamond Weight For " + ids);
+                highlight('uncutcaratweight' + ids,0);
+                isValid=false;
+                return false;
+            }
+
+            if (!checkForZero('uncutcaratweight' + ids))
+            {
+                common.toast(0, "Uncut Carat weight can not be 0");
+                highlight('uncutcaratweight' + ids,0);
+                isValid=false;
+                return false;
+            }
+
+
+            if ($('#uncutpricecarat' + ids + '').val() == "")
+            {
+                common.toast(0, "Enter Price For " + ids);
+                highlight('uncutpricecarat' + ids,0);
+                isValid=false;
+                return false;
+            }
+
+            if (!checkForZero('uncutpricecarat' + ids))
+            {
+                common.toast(0, "Price / carat can not be 0");
+                highlight('uncutpricecarat' + ids,0);
+                isValid=false;
+                return false;
+            }
+
+
+            if ($('#uncutPieces' + ids + '').val() == "")
+            {
+                common.toast(0, "Enter Total Uncut Diamonds For " + ids);
+                highlight('uncutPieces' + ids,0);
+                isValid=false;
+                return false;
+
+            }
+
+            if (!checkForZero('uncutPieces' + ids))
+            {
+                common.toast(0, "Uncut Pieces can not be 0");
+                highlight('uncutPieces' + ids,0);
+                isValid=false;
+                return false;
+            }
+
+
+        });
+        if(!isValid)
+            return isValid;
+        else
+            addUncut();
+}
+
+function validateGemstoneAdd()
+{
+    var isValid=true;
+    $('[id*=gemstoneComm_]').each(function() {
+            var id = $(this).attr('id');
+            var ids = id.split("gemstoneComm_");
+            ids = ids[1];
+
+            if ($('#gemstone_type' + ids + '').val() == -1)
+            {
+                common.toast(0, "Select Gemstone Type For " + ids);
+                highlight('gemstone_type'+ids,0);
+                isValid=false;
+                return false;
+
+            }
+
+            if ($('#gemstonecaratweight' + ids + '').val() == "")
+            {
+                common.toast(0, "Enter Gemstone Weight For " + ids);
+                highlight('gemstonecaratweight' + ids,0);
+                isValid=false;
+                return false;
+            }
+
+            if (!checkForZero('gemstonecaratweight' + ids))
+            {
+                common.toast(0, "Gemstone Carat weight can not be 0");
+                highlight('gemstonecaratweight' + ids,0);
+                isValid=false;
+                return false;
+            }
+
+            if ($('#gemstonepricecarat' + ids + '').val() == "")
+            {
+                common.toast(0, "Enter Price For Gemstone " + ids);
+                highlight('gemstonepricecarat' + ids,0);
+                isValid=false;
+                return false;
+
+            }
+
+            if (!checkForZero('gemstonepricecarat' + ids))
+            {
+                common.toast(0, "Price / Carat can not be 0");
+                highlight('gemstonepricecarat' + ids,0);
+                isValid=false;
+                return false;
+            }
+
+            if ($('#gemstonePieces' + ids + '').val() == "")
+            {
+                common.toast(0, "Enter Total Gemstone Pieces For " + ids);
+                highlight('gemstonePieces' + ids,0);
+                isValid=false;
+                return false;
+
+            }
+
+            if (!checkForZero('gemstonePieces' + ids))
+            {
+                common.toast(0, "Gemstone pieces can not be 0");
+                highlight('gemstonePieces' + ids,0);
+                isValid=false;
+                return false;
+            }
+
+        });
+        if(!isValid)
+            return isValid;
+        else
+            addGemstone();
 }

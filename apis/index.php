@@ -196,6 +196,38 @@ switch($action)
         $res = $result;
     break;
 
+    case 'changeDiamondStatus':
+        include APICLUDE.'class.product.php';
+        $obj	= new product($db['jzeva']);
+        $tmpparams=array($params['dt']);
+        $result	=$obj->changeDiamondStatus($tmpparams);
+        $res = $result;
+    break;
+
+    case 'changeUncutStatus':
+        include APICLUDE.'class.product.php';
+        $obj	= new product($db['jzeva']);
+        $tmpparams=array($params['dt']);
+        $result	=$obj->changeUncutStatus($tmpparams);
+        $res = $result;
+    break;
+
+    case 'changeGemstoneStatus':
+        include APICLUDE.'class.product.php';
+        $obj	= new product($db['jzeva']);
+        $tmpparams=array($params['dt']);
+        $result	=$obj->changeGemstoneStatus($tmpparams);
+        $res = $result;
+    break;
+
+    case 'changePrdPropertyStatus':
+        include APICLUDE.'class.product.php';
+        $obj	= new product($db['jzeva']);
+        $tmpparams=array($params['dt']);
+        $result	=$obj->changePrdPropertyStatus($tmpparams);
+        $res = $result;
+    break;
+
 
     
 

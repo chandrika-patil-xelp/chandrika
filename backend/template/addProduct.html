@@ -91,7 +91,7 @@ echo "<script>var edit=$edit; var pid= '$pid';</script>";
                     <div class="commTitle1 fmOpenL fLeft">Add Diamond</div>
                     <div class="newElements fLeft" id="newDiamonds"></div>
                     <div class="divCon fLeft">
-                        <center><div class="addBtn transition300" onclick="addDiamond()">Add Diamond</div></center>
+                        <center><div class="addBtn transition300" onclick="validateDiamondAdd()">Add Diamond</div></center>
                     </div>
                 </section>
                 <!-----Diamond Section End--!-->
@@ -101,7 +101,7 @@ echo "<script>var edit=$edit; var pid= '$pid';</script>";
                     <div class="commTitle1 fmOpenL fLeft">Add Uncut Diamond</div>
                     <div class="newElements fLeft" id="newUncutDiamonds"></div>
                     <div class="divCon fLeft">
-                        <center><div class="addBtn transition300" onclick="addUncut()">Add Uncut Diamond</div></center>
+                        <center><div class="addBtn transition300" onclick="validateUncutAdd()">Add Uncut Diamond</div></center>
                     </div>
                 </section>
                 <!-----Uncut Diamond Section End--!-->
@@ -113,7 +113,7 @@ echo "<script>var edit=$edit; var pid= '$pid';</script>";
                     <div class="commTitle1 fmOpenL fLeft">Add Gemstone</div>
                     <div class="newElements fLeft" id="newGemstone"></div>
                     <div class="divCon fLeft">
-                        <center><div class="addBtn transition300" onclick="addGemstone()">Add Gemstone</div></center>
+                        <center><div class="addBtn transition300" onclick="validateGemstoneAdd()">Add Gemstone</div></center>
                     </div>
                 </section>
                 <!-----Gemstone Section End--!-->
@@ -272,8 +272,8 @@ echo "<script>var edit=$edit; var pid= '$pid';</script>";
             </div>
         </div>
 
-        <div class="forScrollBtn op0" onclick="moveUp()"></div>
-        <div class="forScrollBtn op0 forScDown" onclick="moveDown()"></div>
+        <div class="forScrollBtn op01" onclick="moveUp()"></div>
+        <div class="forScrollBtn op01 forScDown" onclick="moveDown()"></div>
         <div class="overlay dn"></div>
         <div class="loader dn"></div>
     </div>

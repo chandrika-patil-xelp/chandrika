@@ -8,7 +8,8 @@ class product extends DB {
         parent::DB($db);
     }
 
-    private function generateId() {
+    private function generateId() 
+    {
         $curdate = date('YmdHis');
         $rNo = mt_rand(11, 99);
 
@@ -16,12 +17,14 @@ class product extends DB {
         return $genId;
     }
 
-    private function generateProductCode() {
+    private function generateProductCode() 
+    {
         $pcode = "JZEVA0525604585";
         return $pcode;
     }
 
-    public function addProduct($params) {
+    public function addProduct($params)
+    {
         $params= (json_decode($params[0],1));
         
         if(!$params['productid'])
@@ -194,7 +197,8 @@ class product extends DB {
 
     }
 
-    public function addCatProductMapping($params) {
+    public function addCatProductMapping($params)
+    {
 
         $catids = explode(",", $params['catid']);
         $sql = "INSERT INTO tbl_category_product_mapping (catid,productid,createdon,updatedby) VALUES ";
@@ -216,12 +220,8 @@ class product extends DB {
         return $results;
     }
 
-    public function addProductGeneralDetails($params) {
-
-
-       #echo "<pre>";        print_r($params);        echo "</pre>";    die;
-
-
+    public function addProductGeneralDetails($params) 
+    {
         $sql = "INSERT INTO "
                 . "tbl_product_master "
                 . "(productid,"
@@ -302,7 +302,8 @@ class product extends DB {
         return $results;
     }
 
-    public function addProductSizeMApping($params) {
+    public function addProductSizeMApping($params)
+    {
         $dactivesql="DELETE FROM  tbl_product_size_mapping  WHERE productid=".$params['productid'];
         $dares=  $this->query($dactivesql);
         
@@ -331,7 +332,8 @@ class product extends DB {
         return $results;
     }
 
-    public function getSizeIdByValue($size) {
+    public function getSizeIdByValue($size) 
+    {
         $sql = "SELECT id FROM tbl_size_master WHERE size_value=" . $size;
         $res = $this->query($sql);
         $result = array();
@@ -343,7 +345,8 @@ class product extends DB {
         }
     }
 
-    public function addProductMetalPurityMapping($params) {
+    public function addProductMetalPurityMapping($params)
+    {
         $dactivesql="DELETE FROM  tbl_product_metal_purity_mapping  WHERE productid=".$params['productid'];
         $dares=  $this->query($dactivesql);
         
@@ -373,7 +376,8 @@ class product extends DB {
         return $results;
     }
 
-    public function getMetalPurityIdByValue($value) {
+    public function getMetalPurityIdByValue($value) 
+    {
         $sql = "SELECT id FROM tbl_metal_purity_master WHERE dname='" . strtolower($value) . "'";
         $res = $this->query($sql);
         $result = array();
@@ -385,9 +389,8 @@ class product extends DB {
         }
     }
 
-
-
-    public function addProductMetalColorMapping($params) {
+    public function addProductMetalColorMapping($params) 
+    {
         $dactivesql="DELETE FROM  tbl_product_metal_color_mapping  WHERE productid=".$params['productid'];
         $dares=  $this->query($dactivesql);
         
@@ -418,7 +421,8 @@ class product extends DB {
         return $results;
     }
 
-    public function getMetalColorIdByValue($value) {
+    public function getMetalColorIdByValue($value) 
+    {
         $sql = "SELECT id FROM tbl_metal_color_master WHERE dname='" . strtolower($value) . "'";
         $res = $this->query($sql);
         $result = array();
@@ -430,7 +434,8 @@ class product extends DB {
         }
     }
 
-    public function getMetalColorList() {
+    public function getMetalColorList()
+    {
         $sql = "SELECT id,dname,dvalue FROM tbl_metal_color_master WHERE active_flag = 1";
         $res = $this->query($sql);
         $result = array();
@@ -455,10 +460,8 @@ class product extends DB {
         return $results;
     }
 
-
-
-
-    public function getVendorList() {
+    public function getVendorList() 
+    {
         $sql = "SELECT vendorid,name,city,mobile,email,lng,lat FROM  tbl_vendor_master";
         $res = $this->query($sql);
         $result = array();
@@ -483,7 +486,8 @@ class product extends DB {
         return $results;
     }
 
-    public function getVendorDetailsById($vid) {
+    public function getVendorDetailsById($vid)
+    {
         $sql = "SELECT vendorid,name,city,mobile,email,lng,lat FROM  tbl_vendor_master WHERE vendorid='" . $vid . "'";
         $res = $this->query($sql);
         $result = array();
@@ -507,7 +511,8 @@ class product extends DB {
         return $results;
     }
 
-    public function getVendorDetailsByName($name) {
+    public function getVendorDetailsByName($name)
+    {
         $sql = "SELECT vendorid,name,city,mobile,email,lng,lat FROM  tbl_vendor_master WHERE name='" . $name . "'";
         $res = $this->query($sql);
         $result = array();
@@ -531,7 +536,8 @@ class product extends DB {
         return $results;
     }
 
-    public function addSolitaire($params) {
+    public function addSolitaire($params)
+    {
 
         $sql = "INSERT INTO tbl_product_solitaire_mapping (productid,solitaire_id,shape,color,clarity,cut,symmetry,polish,fluorescence,carat,price_per_carat,table_no,crown_angle,girdle,createdon,updatedby) Values";
 
@@ -566,9 +572,9 @@ class product extends DB {
     
     public function changeSolitaireStatus($params)
     {
-        $params= json_decode($params[0]);
+        $params= json_decode($params[0],1);
         $sql = "UPDATE tbl_product_solitaire_mapping SET active_flag=".$params['active_flag'].", updatedby = '".$params['updatedby']."' WHERE  productid = '".$params['productid']."' AND solitaire_id = '".$params['solitaire_id']."'";
-        $res = $this->query($sql,1);
+        $res = $this->query($sql);
         $result = array();
         if ($res) {
             $err = array('err_code' => 0, 'err_msg' => 'Data updated successfully');
@@ -580,21 +586,40 @@ class product extends DB {
         
     }
     
-    
+    public function changeDiamondStatus($params)
+    {
+        $params= json_decode($params[0],1);
+        $sql = "UPDATE tbl_product_diamond_mapping SET active_flag=".$params['active_flag'].", updatedby = '".$params['updatedby']."' WHERE  productid = '".$params['productid']."' AND diamond_id = '".$params['diamond_id']."'";
+        $res = $this->query($sql);
+        $result = array();
+        if ($res) {
+            $err = array('err_code' => 0, 'err_msg' => 'Data updated successfully');
+        } else {
+            $err = array('err_code' => 1, 'err_msg' => 'Error in updating');
+        }
+        $results = array('result' => $result, 'error' => $err);
+        return $results;
+        
+    }
     
 
     public function addDiamond($params) {
-
+        
         $sql = "INSERT INTO tbl_product_diamond_mapping (productid,diamond_id,shape,carat,total_no,createdon,updatedby) VALUES";
 
         $qulsql = "INSERT INTO tbl_diamond_quality_mapping (diamond_id,id,createdon,updatedby) VALUES";
 
         foreach ($params['diamonds'] as $dmd) {
-
-            $dmdid = $this->generateId();
+            
+            if(!$dmd['diamond_id']){
+                $dmdid = $this->generateId();
+            }else{
+                $dmdid = $dmd['diamond_id'];
+            }
+            
             $tmpparams = array('quality' => $dmd['quality'], 'shape' => $dmd['shape'], 'carat' => $dmd['carat'], 'total_no' => $dmd['total_no'], 'diamond_id' => $dmdid, 'updatedby' => $params['updatedby'], 'productid' => $params['productid']);
 
-            $sql.="(" . $tmpparams['productid'] . "," . $tmpparams['diamond_id'] . ",'" . $tmpparams['shape'] . "'," . $tmpparams['carat'] . "," . $tmpparams['total_no'] . ",now()," . $tmpparams['updatedby'] . "" . "),";
+            $sql.="('" . $tmpparams['productid'] . "','" . $tmpparams['diamond_id'] . "','" . $tmpparams['shape'] . "'," . $tmpparams['carat'] . "," . $tmpparams['total_no'] . ",now()," . $tmpparams['updatedby'] . "" . "),";
 
 
             foreach ($dmd['quality'] as $dqul) {
@@ -612,10 +637,11 @@ class product extends DB {
         $qulsql = trim($qulsql, ",");
         $qulsql.=" ON DUPLICATE KEY UPDATE updatedby=VALUES(updatedby)";
 
-
+        $dsql="DELETE FROM tbl_diamond_quality_mapping WHERE diamond_id ='".$dmdid."'";
+        $dres = $this->query($dsql);
         $dmdprdRes = $this->addPrdDiamondMapping($sql);
         $dmdQltRes = $this->addDiamondQualityMapping($qulsql);
-
+        
 
         if ($dmdprdRes['error']['err_code'] == 0 && $dmdQltRes['error']['err_code'] == 0) {
             $err = array('err_code' => 0, 'err_msg' => 'Data inserted successfully');
@@ -632,7 +658,6 @@ class product extends DB {
     }
 
     public function addPrdDiamondMapping($sql) {
-
         $res = $this->query($sql);
         $result = array();
         if ($res) {
@@ -645,7 +670,6 @@ class product extends DB {
     }
 
     public function addDiamondQualityMapping($sql) {
-
         $res = $this->query($sql);
         $result = array();
         if ($res) {
@@ -698,13 +722,17 @@ class product extends DB {
 
 
     public function addUncutDiamond($params) {
-
+        
         $sql = "INSERT INTO tbl_product_uncut_mapping (productid,uncut_id,color,quality,total_no,carat,price_per_carat,createdon,updatedby) VALUES";
 
         foreach ($params['uncut'] as $arr) {
-
-            $uncutid = $this->generateId();
-            $tmpparams = array('productid' => $params['productid'], 'color' => $arr['color'], 'quality' => $arr['quality'], 'carat' => $arr['carat'], 'price_per_carat' => $arr['price_per_carat'], 'total_no' => $arr['total_no'], 'updatedby' => $params['updatedby']);
+            if(!$arr['uncut_id']){
+                $uncutid = $this->generateId();
+            }else{
+                $uncutid = $arr['uncut_id'];
+            }
+            
+            $tmpparams = array('productid' => $params['productid'],'uncut_id' => $uncutid, 'color' => $arr['color'], 'quality' => $arr['quality'], 'carat' => $arr['carat'], 'price_per_carat' => $arr['price_per_carat'], 'total_no' => $arr['total_no'], 'updatedby' => $params['updatedby']);
 
             $sql.="(" . $tmpparams['productid'] . "," . $uncutid . ",'" . $tmpparams['color'] . "','" . $tmpparams['quality'] . "'," . $tmpparams['total_no'] . "," . $tmpparams['carat'] . "," . $tmpparams['price_per_carat'] . ",now()," . $tmpparams['updatedby'] . "" . "),";
         }
@@ -722,16 +750,49 @@ class product extends DB {
         $results = array('result' => $result, 'error' => $err);
         return $results;
     }
+    
+    public function changeUncutStatus($params)
+    {
+        $params= json_decode($params[0],1);
+        $sql = "UPDATE tbl_product_uncut_mapping SET active_flag=".$params['active_flag'].", updatedby = '".$params['updatedby']."' WHERE  productid = '".$params['productid']."' AND uncut_id = '".$params['uncut_id']."'";
+        $res = $this->query($sql);
+        $result = array();
+        if ($res) {
+            $err = array('err_code' => 0, 'err_msg' => 'Data updated successfully');
+        } else {
+            $err = array('err_code' => 1, 'err_msg' => 'Error in updating');
+        }
+        $results = array('result' => $result, 'error' => $err);
+        return $results;
+        
+    }
+    
+    public function changeGemstoneStatus($params)
+    {
+        $params= json_decode($params[0],1);
+        $sql = "UPDATE tbl_product_gemstone_mapping SET active_flag=".$params['active_flag'].", updatedby = '".$params['updatedby']."' WHERE  productid = '".$params['productid']."' AND gemstone_id = '".$params['gemstone_id']."'";
+        $res = $this->query($sql);
+        $result = array();
+        if ($res) {
+            $err = array('err_code' => 0, 'err_msg' => 'Data updated successfully');
+        } else {
+            $err = array('err_code' => 1, 'err_msg' => 'Error in updating');
+        }
+        $results = array('result' => $result, 'error' => $err);
+        return $results;
+        
+    }
+    
 
     public function addGemstone($params) {
-
+        $dsql="UPDATE tbl_product_gemstone_mapping SET active_flag = 0 WHERE productid ='".$params['productid']."'";
+        $dres = $this->query($dsql);
 
         $sql = "INSERT INTO tbl_product_gemstone_mapping (productid,gemstone_id,gemstone_name,total_no,carat,price_per_carat,createdon,updatedby) VALUES";
 
         foreach ($params['gemstone'] as $arr) {
             $garr = $this->getGemstoneDetailsById($arr['gvalue']);
             $gname = $garr['result']['name'];
-            //$gemstoneid = $this->generateId();
             $gemstoneid =$arr['gvalue'];
 
             $tmpparams = array('productid' => $params['productid'], 'total_no' => $arr['total_no'], 'carat' => $arr['carat'], 'price_per_carat' => $arr['price_per_carat'], 'updatedby' => $params['updatedby']);
@@ -740,9 +801,9 @@ class product extends DB {
         }
         $sql = trim($sql, ",");
 
-        $sql.=" ON DUPLICATE KEY UPDATE total_no = VALUES(total_no),carat = VALUES(carat),price_per_carat = VALUES(price_per_carat),updatedby=VALUES(updatedby)";
+        $sql.=" ON DUPLICATE KEY UPDATE total_no = VALUES(total_no),carat = VALUES(carat),price_per_carat = VALUES(price_per_carat),updatedby=VALUES(updatedby),active_flag = 1";
 
-        $res = $this->query($sql);
+        $res = $this->query($sql,1);
         $result = array();
         if ($res) {
             $err = array('err_code' => 0, 'err_msg' => 'Data inserted successfully');
@@ -946,7 +1007,7 @@ class product extends DB {
                         FROM
                                 tbl_product_gemstone_mapping
                         WHERE
-                                productid = " . $params['pid'] . " ";
+                                productid = " . $params['pid'] . " AND active_flag=1";
             // WHERE active_flag=1 ";
             $res = $this->query($sql);
             if ($res) {
@@ -1048,16 +1109,18 @@ class product extends DB {
         }
     }
 
-    public function getProductUncut($params) {
+    public function getProductUncut($params) 
+    {
         try {
             $count = 0;
             $sql = "SELECT
                                 *
                         FROM
-                                tbl_product_uncut_mapping
+                            tbl_product_uncut_mapping
                         WHERE
-                                productid = " . $params['pid'] . " ";
-            // WHERE active_flag=1 ";
+                            active_flag=1 
+                                    AND
+                                        productid = " . $params['pid'] . " ";
             $res = $this->query($sql);
             if ($res) {
                 while ($row = $this->fetchData($res)) {
@@ -1122,7 +1185,9 @@ class product extends DB {
                         FROM
                                 tbl_product_diamond_mapping
                         WHERE
-                                productid = " . $params['pid'] . "
+                            active_flag=1 
+                                AND 
+                                    productid = " . $params['pid'] . "
 
                                     ";
             // AND active_flag=1 ";
@@ -1246,7 +1311,8 @@ class product extends DB {
         }
     }
 
-    public function getQualityMap($params) {
+    public function getQualityMap($params)
+    {
         try {
 
             $count = 0;
@@ -1324,7 +1390,8 @@ class product extends DB {
         }
     }
 
-    public function getProductSizeMaster($params) {
+    public function getProductSizeMaster($params) 
+    {
         try {
             $count = 0;
             $sql = "       SELECT
@@ -1367,7 +1434,8 @@ class product extends DB {
         }
     }
 
-    public function getProductVendor($params) {
+    public function getProductVendor($params) 
+    {
         try {
             $count = 0;
             $sql = "       SELECT
@@ -1800,6 +1868,48 @@ class product extends DB {
         return $results;
 
     }
+    
+    
+    public function changePrdPropertyStatus($params)
+    {
+        $params= (json_decode($params[0],1));
+
+        $sql1="UPDATE tbl_product_master set has_solitaire='0' AND updatedby='".$params['updatedby']."'  WHERE productid = '".$params['pid']."'";
+        
+        $sql2="UPDATE tbl_product_master set has_diamond='0' AND updatedby='".$params['updatedby']."'  WHERE productid = '".$params['pid']."'";
+        
+        $sql3="UPDATE tbl_product_master set has_uncut='0' AND updatedby='".$params['updatedby']."' WHERE productid = '".$params['pid']."'";
+        
+        $sql4="UPDATE tbl_product_master set has_gemstone='0' AND updatedby='".$params['updatedby']."'  WHERE productid = '".$params['pid']."'";
+        
+        if($params['type']==1)        
+            $sql=$sql1;
+        
+        if($params['type']==2)        
+            $sql=$sql2;
+        
+        if($params['type']==3)        
+            $sql=$sql3;
+        
+        if($params['type']==4)        
+            $sql=$sql4;
+        
+        
+        $res = $this->query($sql);
+        $result = array();
+        if ($res) {
+            $err = array('err_code' => 0, 'err_msg' => 'Data updated successfully');
+        } else {
+            $err = array('err_code' => 1, 'err_msg' => 'Error in updating');
+        }
+        $results = array('result' => $result, 'error' => $err);
+        return $results;
+
+    }
+    
+    
+    
+    
 
 }
 ?>
