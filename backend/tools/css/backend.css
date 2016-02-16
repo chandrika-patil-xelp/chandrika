@@ -620,3 +620,24 @@ li .prdViewImgBtn{}
 
 .forScrollBtn {width: 40px;height: 40px;position: fixed;bottom: 60px;right: 20px;background: #333 url(../img/scrollTop.svg)no-repeat;background-size: auto 60%;background-position: center;z-index: 10101;border-radius: 5px;opacity: 0.5;cursor:pointer;}
 .forScDown{-webkit-transform: rotate(180deg);-moz-transform: rotate(180deg);-ms-transform: rotate(180deg);-o-transform: rotate(180deg);transform: rotate(180deg);bottom: 10px;}
+
+
+/*preview page*/
+.preview{}
+.halfContr{width: 50%;float: left;height: auto;}
+.w50{width:50%;}
+.w60{width:60%;}
+.color69{color: #2A6869;}
+.fieldTitle{padding: 10px 0px 10px 0px;font-size: 13px;width:100%;height: auto;}
+.textcenter{text-align: center;}
+.padR15{padding-right:15%;}
+.outContr{width:100%;height:auto;display:inline-block;padding: 10px;}
+.preview section{border: 1px solid #b3b3b3;padding: 0px;margin-left:10px;float:none;}
+.preview .priceHeading{line-height: 40px;padding: 0 15px;font-size:14px;color: #4d4d4d;}
+.shapeCont{width:20%;height:auto;}
+.preview .shapeComm{width:72%!important;padding-bottom:75%; }
+.product{}
+.product .halfContr{width:35%;}
+.width40{width:40%;}
+.preview .commTitle1{border-left: none;padding-left: 10px;}
+
