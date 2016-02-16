@@ -11,7 +11,7 @@
 
         <link href="<?php echo IMGDOMAIN; ?>css/jquery.filer.css" type="text/css" rel="stylesheet" />
         <link href="<?php echo IMGDOMAIN; ?>css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
-        <link rel="stylesheet" href="<?php echo $css['backend'];?>">
+        <link rel="stylesheet" href="<?php echo $css['backend']; ?>">
         <!--jQuery-->
         <script type="text/javascript" src="<?php echo $jvs['jqry']; ?>"></script>
         <script type="text/javascript" src="<?php echo IMGDOMAIN; ?>js/jquery.filer.min.js?v=1.0.5"></script>
@@ -37,6 +37,22 @@
         <div id="content">
             <input type="file" name="files[]" id="filer_input2" multiple="multiple" accept="image/png,image/jpeg">
             <input type="hidden" name="pid" id="pid" value="<?php echo $pid; ?>">
+
         </div>        
+        <div class="overlay dn"></div>
+        <div class="loader dn"></div>
+        <script type="text/javascript">
+            function showLoader()
+            {
+                $('.overlay,.loader').removeClass('dn');
+            }
+
+            function hideLoader()
+            {
+                $('.overlay,.loader').addClass('dn');
+            }
+        </script>
     </body>
+
+
 </html>

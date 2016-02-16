@@ -120,7 +120,11 @@ $(document).ready(function() {
 			onRemove: function(itemEl, file, id, listEl, boxEl, newInputEl, inputEl){
 				var pid = $('#pid').val();
 				var file = file.name;
+                                showLoader();
 				$.post(DOMAIN+"image-upload/php/remove_file.php", {file: file, pid: pid});
+                                setTimeout(function(){
+                                    hideLoader();
+                                    },1200);
 			},
 			onEmpty: null,
 			options: null,
@@ -141,6 +145,4 @@ $(document).ready(function() {
 	});
     
     //Example 2
-    
-    
 });

@@ -58,7 +58,7 @@ class admin extends DB
     
     public function getImgByProd($params)
     {
-        $query="SELECT * FROM tbl_product_image_mapping WHERE product_id = ".$params['pid']." ORDER BY image_sequence ";
+        $query="SELECT * FROM tbl_product_image_mapping WHERE product_id = ".$params['pid']." ORDER BY image_sequence ASC";
         $res = $this->query($query);
         $total=$this->numRows($res);
         if($total>0) {
