@@ -28,8 +28,15 @@ function getCategories()
         type: "POST",
         success: function(res) {
             res = JSON.parse(res);
+            
+//            if(res['result']==null)
+//            {
+//                return;
+//            }
             categories = res['result'];
             var active=0;
+            
+            
             $(categories).each(function(i,v){
                 if(v.active==1){
                     active++;
@@ -52,6 +59,12 @@ function getCategories()
 function generateCats(res,id)
 {
     var result = res.result;
+    
+    
+    if(res['result']==null)
+    {
+        return;
+    }
     var html = '';
     $.each(result, function(i, vl) {
         if(vl.pid == id)
