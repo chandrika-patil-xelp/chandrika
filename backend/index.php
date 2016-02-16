@@ -134,6 +134,11 @@ switch ($action) {
         $tab = 'rate manager';
         include BTEMPLATE.'rateManager.html';
         break;
+     case 'preview':
+        $page = 'preview';
+        $tab = 'Preview';
+        include BTEMPLATE.'preview.html';
+        break;
     
 }
 ?>
