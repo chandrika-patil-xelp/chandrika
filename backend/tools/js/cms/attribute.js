@@ -32,10 +32,14 @@ getAttributeList();
 
 function attributeListCallBack()
 {
-
+    if(attributes!=null)
+    {
+        
+    
     var attcnt=0;
     if (attributes.length > 0)
     {
+        $('#noresults').addClass('dn');
         
         var str = "";
         $(attributes).each(function(i, v) {
@@ -99,6 +103,11 @@ function attributeListCallBack()
         $('#attrCount').html(attcnt);
         $('.commonList').html(str);
         bindToggle();
+    }
+    }
+    else{
+        
+        $('#noresults').removeClass('dn');
     }
 
 }
