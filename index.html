@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JZEVA</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+        <link rel="stylesheet" href="assets/css/home.css">
+        <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+        
+    </head>
+    <body>
+        <div id='cont' class="container transition5 bgTransit">
+            <div class="overlay">
+                <div class="logo"></div>
+                <div id="tagLine" class="tagline transition3000 op05">embrace <span>luxury</span></div>
+            </div>
+        </div>
+
+        <script>
+            
+        var count=1;
+        var pw=$(window).width();
+        var time=20000;
+        if(pw<960){
+            time=12000;
+        }
+        
+        $(document).ready(function(){
+            $('#cont').removeClass('bgTransit');
+            setInterval(function(){
+               moveBg();
+            },time);
+            
+            setTimeout(function(){
+                $('#tagLine').removeClass('op05');
+            },2000);
+            
+            
+        });
+        
+        
+        function moveBg(){
+            var max=2;
+            if(count<max){
+                count++;
+                $('#cont').toggleClass('bgTransit');
+            }
+        }
+        </script>
+    </body>
+</html>
