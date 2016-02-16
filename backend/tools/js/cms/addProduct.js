@@ -19,6 +19,7 @@ var mpurity = new Array();
 var mcolor = new Array();
 var allrates = new Array();
 var prdid="";
+var previewData;
 function getCategories()
 {
     var URL = APIDOMAIN + "index.php?action=getCatgoryList";
@@ -1152,7 +1153,7 @@ function addProduct()
         hideLoader();
     if (flag)
     {
-
+        
         var catArray = new Array();
         var dmdSetting = new Array();
         var sizesArray = new Array();
@@ -1478,14 +1479,7 @@ function addProduct()
             gemstone = [];
         }
 
-
-
-
-
         var general = {};
-
-       
-
         general['vendorid'] = vid;
         general['product_name'] = product_name;
         general['product_seo_name'] = product_seo_name;
@@ -1560,9 +1554,15 @@ function addProduct()
         
         prd['userid'] = userid;
         prd['catid'] = catArray.toString();
-
-        var dt = JSON.stringify(prd);
-
+        
+        previewData=prd;
+        
+        console.log(previewData);
+        
+        showpreview(previewData);
+        
+        
+/*
         var URL = APIDOMAIN + "index.php?action=addProduct";
         $.ajax({
             url: URL,
@@ -1574,10 +1574,45 @@ function addProduct()
             }
         });
 
-         console.log(dt);
+*/         
 
     }
 }
+
+
+function hidePreview()
+{
+    $('#previewDiv').addClass('dn');
+    $('#prdForm').removeClass('dn');   
+    
+}
+
+
+
+
+function submitData()
+{   
+    showLoader();
+    var dt = JSON.stringify(previewData);
+    var URL = APIDOMAIN + "index.php?action=addProduct";
+    $.ajax({
+        url: URL,
+        type: 'POST',
+        data: {dt: dt},
+        success: function(res) {
+            res = JSON.parse(res);
+            addPrdCallBack(res);
+        }
+    });
+    
+}
+
+
+
+
+
+
+
 
 
 function addPrdCallBack(data)
@@ -1586,7 +1621,8 @@ function addPrdCallBack(data)
     if (data['error']['err_code'] == '0')
     {
         common.toast(1, 'Product added successfully');
-          hideLoader();
+            hideLoader();
+            window.location.href=DOMAIN+"backend/index.php?action=products";
         //redirect
     }
     else
@@ -1656,9 +1692,12 @@ function bindError()
 
 }
 
+var lsc=0;
+
 function moveDown()
 {
-    var lsc=$('.btnCont').position().top;
+    if(lsc==0)
+        lsc=$('.btnCont').position().top;
     $('body,html').animate({scrollTop:lsc},300,"swing");
 }
 
@@ -2969,13 +3008,7 @@ function validateSolAdd()
                 return false;
             }
         });
-        
-        if(!isValid)
-            return isValid;
-        
-        else{
-            addSolitaire();
-        }
+        return isValid;
     
 }
 
@@ -3058,13 +3091,7 @@ function  validateDiamondAdd()
             }
 
         });
-        
-        if(!isValid)
-            return isValid;
-        
-        else{
-            addDiamond();
-        }
+        return isValid;
 }
 
 function validateUncutAdd()
@@ -3150,10 +3177,8 @@ function validateUncutAdd()
 
 
         });
-        if(!isValid)
-            return isValid;
-        else
-            addUncut();
+        return isValid;
+        
 }
 
 function validateGemstoneAdd()
@@ -3224,8 +3249,39 @@ function validateGemstoneAdd()
             }
 
         });
-        if(!isValid)
-            return isValid;
-        else
-            addGemstone();
+        return isValid;
+        
+}
+
+
+
+function checkSolAdd()
+{
+    if(validateSolAdd()){
+        addSolitaire();
+    }
+    
+}
+
+function checkDmdAdd()
+{
+    if(validateDiamondAdd()){
+        addDiamond();
+    }
+    
+}
+
+function checkUncutAdd()
+{
+    if(validateUncutAdd()){
+        addUncut();
+    }
+    
+}
+function checkGemsAdd()
+{
+    if(validateGemstoneAdd()){
+        addGemstone();
+    }
+    
 }

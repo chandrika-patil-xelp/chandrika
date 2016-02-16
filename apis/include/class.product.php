@@ -37,7 +37,7 @@ class product extends DB {
 
         $userid = $params['userid'];
 
-        echo "<pre>";print_r($params);  echo "</pre>";#die
+        #echo "<pre>";print_r($params);  echo "</pre>";#die
 
 
         #ADDING CATEGORY MAPPING FOR CURRENT PRODUCT
@@ -803,7 +803,7 @@ class product extends DB {
 
         $sql.=" ON DUPLICATE KEY UPDATE total_no = VALUES(total_no),carat = VALUES(carat),price_per_carat = VALUES(price_per_carat),updatedby=VALUES(updatedby),active_flag = 1";
 
-        $res = $this->query($sql,1);
+        $res = $this->query($sql);
         $result = array();
         if ($res) {
             $err = array('err_code' => 0, 'err_msg' => 'Data inserted successfully');
