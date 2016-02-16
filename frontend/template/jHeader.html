@@ -4,6 +4,7 @@
                         <div class="cart_head">
                           <div class="iconCont fLeft">
                                   <div class="icn2" ></div>
+
                           </div>
                           <div class="iconCont fRight">
                                   <div class="icn1"id="close_cart"></div>
@@ -51,6 +52,7 @@
                                 </div>
                                  <div class="iconCont fRight">
                                         <div class="icn3"></div>
+                                        <input class="searchBox  fmSansR" placeholder="Looking For Something ?"/>
                                 </div>
                             </div>
                         </div>
@@ -67,17 +69,23 @@
                     </div>
                 </div>
 <script>
+var flag=1;
     $(".icn2").click(function(){
-
                   $("#cart").addClass("checkout--active ");
-
                 });
                 $("#close_cart").click(function(){
-
                   $("#cart").removeClass("checkout--active ");
-
                 });
+                  $(".icn3").click(function(){
 
-
+                    if(flag==1){
+                    $(this).closest(".iconCont").css({'width':'200px'});
+                    $(this).siblings('.searchBox').focus();
+                   flag=2;
+                  }
+              else{
+                  $(this).closest(".iconCont").css({'width':'35px'});
+                  flag=1;
+              }
+            });
 </script>
-                
