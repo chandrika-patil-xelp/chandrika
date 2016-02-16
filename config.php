@@ -1,11 +1,28 @@
 <?php
 error_reporting(0);
 
-define('DOMAIN','http://'.$_SERVER['HTTP_HOST'].'/jzeva/');
-define('APIDOMAIN','http://'.$_SERVER['HTTP_HOST'].'/jzeva/apis/');
-define('BACKDOMAIN','http://'.$_SERVER['HTTP_HOST'].'/jzeva/backend/');
-define('WEBROOT',$_SERVER['DOCUMENT_ROOT'].'/jzeva/');
-define('BACKWEBROOT',$_SERVER['DOCUMENT_ROOT'].'/jzeva/backend/');
+if(stristr($_SERVER['HTTP_HOST'], 'jzeva.com'))
+{
+	define('DOMAIN','http://'.$_SERVER['HTTP_HOST'].'/');
+	define('APIDOMAIN','http://'.$_SERVER['HTTP_HOST'].'/apis/');
+	define('BACKDOMAIN','http://'.$_SERVER['HTTP_HOST'].'/backend/');
+	define('WEBROOT',$_SERVER['DOCUMENT_ROOT'].'/');
+	define('BACKWEBROOT',$_SERVER['DOCUMENT_ROOT'].'/backend/');
+	define('IMGDOMAIN','http://'.$_SERVER['HTTP_HOST'].'/backend/image-upload/');
+
+	$db['jzeva'] = array('localhost','root','developer@jzeva','db_jzeva');
+}
+else
+{
+	define('DOMAIN','http://'.$_SERVER['HTTP_HOST'].'/jzeva/');
+	define('APIDOMAIN','http://'.$_SERVER['HTTP_HOST'].'/jzeva/apis/');
+	define('BACKDOMAIN','http://'.$_SERVER['HTTP_HOST'].'/jzeva/backend/');
+	define('WEBROOT',$_SERVER['DOCUMENT_ROOT'].'/jzeva/');
+	define('BACKWEBROOT',$_SERVER['DOCUMENT_ROOT'].'/jzeva/backend/');
+	define('IMGDOMAIN','http://'.$_SERVER['HTTP_HOST'].'/jzeva/backend/image-upload/');
+
+	$db['jzeva'] = array('localhost','root','','db_jzeva');
+}
 
 define('BTEMPLATE',BACKWEBROOT.'template/');
 define('BINCLUDES',BACKWEBROOT.'include/');
@@ -14,15 +31,12 @@ define('BAPICLUDE',BACKWEBROOT.'apis/include/');
 define('TEMPLATE',WEBROOT.'frontend/template/');
 define('INCLUDES',WEBROOT.'include/');
 define('APICLUDE',WEBROOT.'apis/include/');
-define('IMGDOMAIN','http://'.$_SERVER['HTTP_HOST'].'/jzeva/backend/image-upload/');
 
 define('VERSION',1.0);
 
 
 
 define('FAVICON', BACKDOMAIN . 'tools/img/common/favicon.ico');
-
-$db['jzeva'] = array('localhost','root','','db_jzeva');
 
 $css = array();
 $jvs = array();
