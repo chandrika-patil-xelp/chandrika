@@ -100,7 +100,7 @@ textarea:focus, input:focus{
 .img1 {background: url(../img/img1.jpg)no-repeat;background-size: 110% auto;transition: 3000ms;-moz-transition: 3000ms;-webkit-transition: 3000ms;}
 .easing {-webkit-transition-timing-function: ease-in-out;-moz-transition-timing-function: ease-in-out;-o-transition-timing-function: ease-in-out;transition-timing-function: ease-in-out;}
 
-.viewIcnDV{width:70%;height:50px;position:absolute;bottom:185px;left:0;right:0;margin:auto;transition:350ms;-moz-transition:350ms;-webkit-transition:350ms; top: 8vw;   bottom: 0;}
+.viewIcnDV{width:70%;height:4vw;position:absolute;bottom:185px;left:0;right:0;margin:auto;transition:350ms;-moz-transition:350ms;-webkit-transition:350ms; top: 8vw;   bottom: 0;}
 .icn4show{width:19%;height:3vw;background:url(../img/ne.svg)no-repeat;background-size:115%;background-position:center center;display:inline-block;opacity:0;transition:300ms;   }
 .prdctAdd1:hover .icn4show{opacity:1;}
 .icn4show:nth-child(1){-webkit-transition-delay: 0ms;transition-delay: 0ms;}
@@ -544,7 +544,7 @@ transition-delay: 0.15s;
 
  @media only screen and (min-width: 320px) and (max-width: 479px){
      /*home*/
-     .header {height: 110px;}
+     .header {height: 100px;}
      .headerTop{padding: 30px 20px 0px 20px;}
      .opnMnuLogo{display:block;}
      .logoHolderDv {width: 80%;}
@@ -659,7 +659,7 @@ transition-delay: 0.15s;
  }
  @media only screen and (min-width: 320px) and (max-width: 767px){
      /*home*/
-     .headerTop{padding: 30px 20px 0px 20px;}
+     .headerTop{padding: 25px 20px 0px 20px;}
      .navLst{padding: 0px 10px;font-size: 12px;}
      .iconCont{width: 30px;height: 30px;}
      .icn3 {width: 30px;height: 30px;}
