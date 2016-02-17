@@ -1,13 +1,13 @@
 <?php
     require_once APICLUDE.'common/db.class.php';
-    class Common extends DB 
+    class Common extends DB
 {
-    
+
     function __construct($db) {
         parent::DB($db);
     }
-    
-        
+
+
         function executeCurl($url, $isRaw = false, $tm = false, $postData = false, $fromWhere = false, $authData = false, $sslCurl = false)
         {
             $ch = curl_init($url);
@@ -44,7 +44,7 @@
 
             return $result;
         }
-		
+
 		public function clearParam($d)
 		{
 			if(count($d))
@@ -75,9 +75,9 @@
                 }
                     return strrev($m);
                 }
-                
-                
-                
+
+
+
                 public function generateId() {
                     $curdate = date('YmdHis');
                     $rNo = mt_rand(11, 99);
@@ -85,18 +85,12 @@
                     $genId = $rNo . $curdate;
                     return $genId;
                 }
-                
-                
+
+
                 public function makeDate($params)
                 {
-                    $sql = "SELECT date_format('".urldecode($params)."','%D %b,%Y|%h:%i %p') as dateForm";
-                    $res = $this->query($sql);
-                    if($res)
-                    {
-                        $row = $this->fetchData($res);
-                        $otpt = $row['dateForm'];
-                        return $otpt;
-                    }
+                    $params = urldecode($params);
+                    return $ddate = date('jS M,Y|h:i A', strtotime($params));
                 }
     }
 ?>
