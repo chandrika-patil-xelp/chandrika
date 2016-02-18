@@ -19,7 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_jzeva`
 --
-
+/*create database db_jzeva_shubham;*/
+/*use db_jzeva_shubham;*/
 -- --------------------------------------------------------
 
 --
