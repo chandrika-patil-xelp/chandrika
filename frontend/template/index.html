@@ -55,7 +55,7 @@
                         <div class="middleDiv fLeft">
                           <div class="lrgeTxtDV">
                             <div class="txtsample fLeft">Engagement Ring</div>
-                            
+
                             <div class='prdctAbtTxt fLeft'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </div>
                             <div class='btnWRp fLeft'>
                                 <center>
@@ -191,7 +191,18 @@
         $('.dragTrgt').css({width: '20px', left: '0px'});
     }
 }
-
+   $('.p_cont').velocity({opacity:[0]}, { delay:0 , duration:0});
+$('.prdctAdd1').mouseenter(function(){
+  $(this).find('.p_cont').addClass('fadeI');
+  $('.fadeI').velocity({opacity:[1,0],translateY:[0,-50]}, {duration:400, easing:"ease-in-out"});
+});
+$('.prdctAdd1').mouseleave(function (){
+  $('.fadeI').velocity('reverse');
+      $(this).find('.p_cont').removeClass('fadeI');
+    });
+// $('.prdctAdd1').mouseout(function(){
+//   $(this).find('.p_cont').velocity({opacity:[0,1],translateY:[-50,0]}, {  duration:300});
+// });
         </script>
     </body>
 </html>
