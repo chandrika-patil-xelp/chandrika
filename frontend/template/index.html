@@ -38,10 +38,13 @@
                         </center>
                     </div>
                 </div>
-                <div class="prdctAdv fLeft fmSansL">
+                <div class="prdctAdv fLeft fmSansR">
                     <div class="wrapperMax">
                         <div class="prdctAdd1 fLeft transition300 img2">
-                               <div class=" border_eff transition300 easing"></div>
+                               <div class=" border_eff transition300 easing">
+                                 <div class="top-bor transition300"></div>
+                                 <div class="side-bor transition300"></div>
+                               </div>
                              <div class="p_cont easing">Bridal Collection</div>
                              <div class='viewIcnDV easing'>
                                  <center>
@@ -54,29 +57,35 @@
                         </div>
                         <div class="middleDiv fLeft">
                           <div class="lrgeTxtDV">
-                            <div class="txtsample fLeft">Engagement Ring</div>
+                            <div class="txtsample fLeft fmSansL">Engagement Ring</div>
 
                             <div class='prdctAbtTxt fLeft'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </div>
                             <div class='btnWRp fLeft'>
                                 <center>
-                                    <a href="#"><div class='btnDv btnStyle'>SHOP NOW</div></a>
+                                    <a href="#"><div class='btnDv btnStyle fmSansR'>SHOP NOW</div></a>
                                 </center>
                             </div>
                           </div>
                         </div>
                         <div class="prdctAdd1 fLeft transition300 img3">
-                          <div class=" border_eff transition300 easing"></div>
+                          <div class=" border_eff transition300 easing">
+                            <div class="top-bor transition300"></div>
+                            <div class="side-bor transition300"></div>
+                          </div>
+
                              <div class="p_cont easing">Don't stare Collection</div>
                         </div>
-                        <div class="largePrdct fLeft fmSansL img1 easing">
+                        <div class="largePrdct fLeft  img1 easing">
                          <div class="dual_bor easing">
+                           <div class="top-borL"></div>
+                           <div class="bot-borL"></div>
                             <div class="lrgeTxtDV ">
 
-                               <div class="smpleTxt fLeft">Earrings</div>
+                               <div class="smpleTxt fLeft fmSansL">Earrings</div>
                                <div class="prdctAbtTxt fLeft">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </div>
                                <div class="btnWRp fLeft">
                                    <center>
-                                       <div class="btnDv">SHOP NOW</div>
+                                       <div class="btnDv ">SHOP NOW</div>
                                    </center>
                                </div>
 
@@ -85,11 +94,17 @@
 
                        </div>
                         <div class="prdctAdd1 fLeft transition300 imgrg">
-                            <div class=" border_eff transition300 easing"></div>
+                            <div class=" border_eff transition300 easing">
+                              <div class="top-bor transition300"></div>
+                              <div class="side-bor transition300"></div>
+                            </div>
                              <div class="p_cont easing">Pendants</div>
                         </div>
                         <div class="prdctAdd1 fLeft transition300 imgRing">
-                               <div class=" border_eff transition300 easing"></div>
+                               <div class=" border_eff transition300 easing">
+                                 <div class="top-bor transition300"></div>
+                                 <div class="side-bor transition300"></div>
+                               </div>
                              <div class="p_cont easing">Bridal Collection</div>
                              <div class='viewIcnDV easing'>
                                  <center>
@@ -113,15 +128,17 @@
                                 </center>
                             </div>
                         </div> -->
-                        <div class="largePrdct fLeft fmSansL img5 easing">
+                        <div class="largePrdct fLeft  img5 easing">
                          <div class="dual_bor easing">
+                           <div class="top-borL"></div>
+                           <div class="bot-borL"></div>
                             <div class="lrgeTxtDV ">
 
-                               <div class="smpleTxt fLeft">Earrings</div>
+                               <div class="smpleTxt fLeft fmSansL">Earrings</div>
                                <div class="prdctAbtTxt fLeft">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </div>
                                <div class="btnWRp fLeft">
                                    <center>
-                                       <div class="btnDv">SHOP NOW</div>
+                                       <div class="btnDv ">SHOP NOW</div>
                                    </center>
                                </div>
 
@@ -171,14 +188,21 @@
             </div>
         </div>
         <script>
-            $(document).ready(function(){
-                $("#dragTrgt").click(function(){
+        $(".prdctAdd1 img").one("load", function() {
+  $(this).closest(".prdctAdd1").css({'display':'block'});
+  console.log("loaded");
+}).each(function() {
+  if(this.complete) $(this).load();
+});
+        $(document).ready(function(){
+
+         $("#dragTrgt").click(function(){
          $('.lmenu4mble').addClass('trnst-100');
-        $('body').removeClass('pFixed');
-        $('.dragTrgt').css({width: '20px', left: '0px'});
+         $('body').removeClass('pFixed');
+         $('.dragTrgt').css({width: '20px', left: '0px'});
     });
             });
-                   function showLeftMenu(flag) {
+  function showLeftMenu(flag) {
     if (flag) {
         $('.lmenu4mble').removeClass('trnst-100');
         $('body').addClass('pFixed');
@@ -192,17 +216,42 @@
     }
 }
    $('.p_cont').velocity({opacity:[0]}, { delay:0 , duration:0});
+   $('.top-bor').velocity({scaleX:[0],scaleY:[1]} ,{ delay:0 , duration:0});
+    $('.side-bor').velocity({scaleY:[0],scaleX:[1]}, { delay:0 , duration:0});
 $('.prdctAdd1').mouseenter(function(){
+//   $('.prdctAdd1').addClass("click_disa").delay(500).queue(function(){
+//     $(this).removeClass("click_disa").dequeue();
+// });
   $(this).find('.p_cont').addClass('fadeI');
+  $(this).find('.top-bor').addClass('bor-hover1');
+  $(this).find('.side-bor').addClass('bor-hover2');
+  $('.bor-hover1').velocity({scaleX:[1,0]}, {duration:300, easing:"ease-in-out"});
+  $('.bor-hover2').velocity({scaleY:[1,0]}, {duration:300, easing:"ease-in-out"});
   $('.fadeI').velocity({opacity:[1,0],translateY:[0,-50]}, {duration:400, easing:"ease-in-out"});
 });
 $('.prdctAdd1').mouseleave(function (){
   $('.fadeI').velocity('reverse');
       $(this).find('.p_cont').removeClass('fadeI');
-    });
+
+  $('.bor-hover1').velocity('reverse');
+      $(this).find('.top-bor').removeClass('bor-hover1');
+
+  $('.bor-hover2').velocity('reverse');
+      $(this).find('.side-bor').removeClass('bor-hover2');
+        });
 // $('.prdctAdd1').mouseout(function(){
 //   $(this).find('.p_cont').velocity({opacity:[0,1],translateY:[-50,0]}, {  duration:300});
 // });
+$('.largePrdct').mouseenter(function(){
+  $(this).find('.top-borL').addClass('bor-hover3');
+  $(this).find('.bot-borL').addClass('bor-hover3');
+  $('.bor-hover3').velocity({width:['70%','0'],opacity:[1 , 0.2]}, {duration:300, easing:"ease-in-out"});
+});
+$('.largePrdct').mouseleave(function (){
+  $('.bor-hover3').velocity('reverse');
+  $(this).find('.top-borL').removeClass('bor-hover3');
+  $(this).find('.bot-borL').removeClass('bor-hover3');
+});
         </script>
     </body>
 </html>
