@@ -51,7 +51,7 @@ textarea:focus, input:focus{
 .stepTxt{width:auto;padding:0px 40px 0px 40px;height:40px;line-height:40px;color:#666;font-size:13px;}
 .prdctAdv{width:100%;height:auto;}
 .prdctAdd1{width: 33%;height: 35vw;overflow: hidden;position: relative;transition: 2s;-moz-transition: 2s;-webkit-transition: 2s;}
-
+.loader_proxy{display:none;}
 .prdctAdd2{width:33%;height:35vw;background:url(../img/img2.jpg)no-repeat;background-size:cover;background-position:center center;overflow:hidden;}
 .insidePrdcttxt{width:100%;height:100%;padding-top:40px;background-color:rgba(0,0,0,0.3);}
 .txtsample{width:100%;height:auto;color:#fff;line-height:3.5vw;font-size:3.5vw;text-align:center;padding:0px 10px;margin-bottom:10px;}
