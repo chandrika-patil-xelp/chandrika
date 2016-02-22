@@ -40,7 +40,11 @@
                 </div>
                 <div class="prdctAdv fLeft fmSansR">
                     <div class="wrapperMax">
-                        <div class="prdctAdd1 fLeft transition300 img2">
+
+                        <div class="prdctAdd1 fLeft transition300 ">
+                          <div class="loader"></div>
+                          <div class="img_cont img2">
+                              <div class="dn"><img src="frontend/tools/img/img2.jpg"></div>
                                <div class=" border_eff transition300 easing">
                                  <div class="top-bor transition300"></div>
                                  <div class="side-bor transition300"></div>
@@ -54,6 +58,7 @@
                                      <div class='icn4show transition300 easing'></div>
                                  </center>
                              </div>
+                           </div>
                         </div>
                         <div class="middleDiv fLeft">
                           <div class="lrgeTxtDV">
@@ -67,19 +72,24 @@
                             </div>
                           </div>
                         </div>
-                        <div class="prdctAdd1 fLeft transition300 img3">
-                          <div class=" border_eff transition300 easing">
+                        <div class="prdctAdd1 fLeft transition300 ">
+                          <div class="loader"></div>
+                          <div class="img_cont img3">
+                              <div class="dn"><img src="frontend/tools/img/img3.jpg"></div>
+                           <div class=" border_eff transition300 easing">
                             <div class="top-bor transition300"></div>
                             <div class="side-bor transition300"></div>
-                          </div>
-
-                             <div class="p_cont easing">Don't stare Collection</div>
+                           </div>
+                           <div class="p_cont easing">Don't stare Collection</div>
+                         </div>
                         </div>
-                        <div class="largePrdct fLeft  img1 easing">
-                         <div class="dual_bor easing">
+                        <div class="largePrdct fLeft   easing">
+                          <div class="loader"></div>
+                          <div class="img_cont img1">
+                           <div class="dual_bor easing">
                            <div class="top-borL"></div>
                            <div class="bot-borL"></div>
-                            <div class="lrgeTxtDV ">
+                              <div class="lrgeTxtDV ">
 
                                <div class="smpleTxt fLeft fmSansL">Earrings</div>
                                <div class="prdctAbtTxt fLeft">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </div>
@@ -88,19 +98,25 @@
                                        <div class="btnDv ">SHOP NOW</div>
                                    </center>
                                </div>
-
+                              </div>
                            </div>
-                         </div>
-
+                        </div>
                        </div>
-                        <div class="prdctAdd1 fLeft transition300 imgrg">
+                        <div class="prdctAdd1 fLeft transition300 ">
+                          <div class="loader"></div>
+                          <div class="img_cont imgrg">
+                              <div class="dn"><img src="frontend/tools/img/img3.jpg"></div>
                             <div class=" border_eff transition300 easing">
                               <div class="top-bor transition300"></div>
                               <div class="side-bor transition300"></div>
                             </div>
                              <div class="p_cont easing">Pendants</div>
+                           </div>
                         </div>
-                        <div class="prdctAdd1 fLeft transition300 imgRing">
+                        <div class="prdctAdd1 fLeft transition300 ">
+                          <div class="loader"></div>
+                          <div class="img_cont imgRing">
+                              <div class="dn"><img src="frontend/tools/img/rings.JPG"></div>
                                <div class=" border_eff transition300 easing">
                                  <div class="top-bor transition300"></div>
                                  <div class="side-bor transition300"></div>
@@ -114,6 +130,7 @@
                                      <div class='icn4show transition300 easing'></div>
                                  </center>
                              </div>
+                           </div>
                         </div>
                         <!-- <div class="prdctAdd2 fLeft paddingAll">
                             <div class='btnWRp fLeft'>
@@ -128,7 +145,10 @@
                                 </center>
                             </div>
                         </div> -->
-                        <div class="largePrdct fLeft  img5 easing">
+                        <div class="largePrdct fLeft   easing">
+                          <div class="loader"></div>
+                          <div class="img_cont img5">
+                              <div class="dn"><img src="frontend/tools/img/img4.jpg"></div>
                          <div class="dual_bor easing">
                            <div class="top-borL"></div>
                            <div class="bot-borL"></div>
@@ -146,6 +166,7 @@
                          </div>
 
                        </div>
+                     </div>
                     </div>
                 </div>
                 <div class='footer1 fLeft fmSansR'>
@@ -188,12 +209,17 @@
             </div>
         </div>
         <script>
-        $(".prdctAdd1 img").one("load", function() {
-  $(this).closest(".prdctAdd1").css({'display':'block'});
-  console.log("loaded");
-}).each(function() {
-  if(this.complete) $(this).load();
-});
+        $(".dn img").one("load", function() {
+          // $(this).closest(".img_holder").css({'display':'block'});
+
+        }).each(function() {
+          $(".img_cont img").one("load", function() {
+            $(this).closest(".img_cont").css({'display':'block'});
+          }).each(function() {
+            if(this.complete) $(this).load();
+          });
+        });
+
         $(document).ready(function(){
 
          $("#dragTrgt").click(function(){
