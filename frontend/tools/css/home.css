@@ -16,6 +16,8 @@ textarea:focus, input:focus{
 .fRight{float:right;}
 .dn{display:none !important;}
 .pFixed{position:fixed !important;}
+.img_cont{width:100%;height:100%;position:relative;z-index:5;display:none;}
+.loader{width:100%;height:100%;position:absolute;z-index:4;background:url(../img/ajax-loader.gif)no-repeat;background-position:center;}
 .transition300{transition:300ms;-moz-transition:300ms;-webkit-transition:300ms;}
 .btnStyle{background-color:rgba(0,0,0,0.1) !important;border:1px solid #fff !important;}
 .icnmsg{background:url(../img/msg.svg)no-repeat;background-size:auto 100%;background-position: left center;}
@@ -36,6 +38,7 @@ textarea:focus, input:focus{
 .icn2{width:35px;height:35px;background:url(../img/cart.svg)no-repeat;background-size:auto 100%;display:inline-block;position:absolute;left:0;}
 .icn3{width:35px;height:35px;background:url(../img/search.svg)no-repeat;background-size:auto 100%;display:inline-block;float:left;position:absolute;left:0;}
 .img2{background: url(../img/img2.jpg)no-repeat;background-size: cover;background-position:right center ;}
+
 .img3{background: url(../img/img3.jpg)no-repeat;background-size: cover;background-position: center;}
 .imgrg{background: url(../img/rg.JPG)no-repeat;background-size: cover;background-position: center center;}
 .imgRing{background: url(../img/rings.JPG)no-repeat;background-size: cover;background-position: right center;}
