@@ -127,11 +127,12 @@ textarea:focus, input:focus{
 .top-bor,
 .side-bor {position: absolute; transition:350ms;-moz-transition:350ms;-webkit-transition:350ms;}
 
-.top-bor {position:absolute;top: 11%; right: 8%;	bottom: 11%;	left: 8%;	border-top: 1px solid #fff; border-bottom: 1px solid #fff;-webkit-transform-origin: 0 0;transform-origin: 0 0;height:0;}
+.top-bor {position:absolute;top: 9%; right: 6%;		border-top: 1px solid #fff; border-bottom: 1px solid #fff;-webkit-transform-origin: 0 0;transform-origin: 0 0;height:0;}
 
-.side-bor {position:absolute;top: 8%; right: 11%;bottom: 8%;	left: 11%;	border-right: 1px solid #fff;	border-left: 1px solid #fff;-webkit-transform-origin: 100% 0;	transform-origin: 100% 0;width:0;}
-
-
+.side-bor {position:absolute;top: 6%; right: 9%;border-right: 1px solid #fff;	border-left: 1px solid #fff;-webkit-transform-origin: 100% 0;	transform-origin: 100% 0;width:0;}
+.p_cont1{font-family: SansationL;position:absolute; opacity:0;top:0;left:0;right:0;bottom:22vw;height:8vw;margin:auto;color:#666;font-size:3.5vw;width:auto;max-width:70%;text-align:center;padding:2vw 0;}
+.p_cont1 .top-bor{border-top: 1px solid #666; border-bottom: 1px solid #666;top: 6%;}
+.p_cont1 .side-bor{border-right: 1px solid #666;	border-left: 1px solid #666;top:0;bottom:0;}
 .p_cont{font-family: SansationL;position:absolute; opacity:0;top:0;left:0;right:0;bottom:5vw;height:8vw;margin:auto;color:#fff;font-size:3.5vw;width:auto;max-width:70%;text-align:center;}
 /*.prdctAdd1:hover .p_cont{top:7vw;opacity:1;}*/
 /*.largePrdct:hover  .dual_bor::before{width:70%;opacity:1;height:1px;}
@@ -512,7 +513,6 @@ transition-delay: 0.15s;
 }
 
 .cart_head .col60{width:60%;height:100%;line-height:50px;font-size:15px;color:#fff;float:left;}
-
 .cart_head .col60{width:60%;height:100%;line-height:50px;font-size:15px;color:#fff;float:left;}
 .cart_head .col40{width:40%;height:100%;line-height:50px;font-size:15px;color:#fff;float:left;}
 .cart_row .col60{width:60%;height:100%;line-height:40px;font-size:13px;color:#fff;float:left;}
@@ -1052,6 +1052,7 @@ transition-delay: 0.15s;
  .input--filled .input__label::after { 	-webkit-transform: translate3d(0, 0, 0); 	transform: translate3d(0, 0, 0); }
  .input__field:focus + .input__label .input__label-content,
  .input--filled .input__label-content { 	-webkit-animation: anim-1 0.3s forwards; 	animation: anim-1 0.3s forwards; }
+.effect1{    width: 160%;   position: absolute;    height: 10vw;    background-color: rgba(0,0,0,0.6);    transform: rotate(45deg) ;    z-index: 10;    top: 90%;    left: -100%;}
 
  @-webkit-keyframes anim-1 {
  	50% {
@@ -1089,3 +1090,4 @@ transition-delay: 0.15s;
  	}
  }
 .click_disa{pointer-events:none;}
+.

@@ -106,14 +106,16 @@
                         </div>
                        </div>
                         <div class="prdctAdd1 fLeft transition300 ">
+                          <div class="effect1"></div>
                           <div class="loader"></div>
                           <div class="img_cont imgrg">
                               <div class="dn"><img src="frontend/tools/img/rg.JPG"></div>
-                            <div class=" border_eff transition300 easing">
-                              <div class="top-bor transition300"></div>
-                              <div class="side-bor transition300"></div>
-                            </div>
-                             <div class="p_cont easing">Pendants</div>
+
+                               <div class="p_cont1 easing">
+                                 <div class="top-bor transition300"></div>
+                                 <div class="side-bor transition300" ></div>
+                                    Pendants
+                              </div>
                            </div>
                         </div>
                         <div class="prdctAdd1 fLeft transition300 ">
@@ -164,7 +166,6 @@
                                        <div class="btnDv ">SHOP NOW</div>
                                    </center>
                                </div>
-
                            </div>
                          </div>
 
@@ -247,27 +248,39 @@
    $('.p_cont').velocity({opacity:[0]}, { delay:0 , duration:0});
    $('.top-bor').velocity({width:[0],height:['82%']} ,{ delay:0 , duration:0});
     $('.side-bor').velocity({height:[0],width:['82%']}, { delay:0 , duration:0});
+    //$('.effect1').velocity({translateY:['-302%'], rotateX:[45]});
 $('.prdctAdd1').mouseenter(function(){
 //   $('.prdctAdd1').addClass("click_disa").delay(500).queue(function(){
 //     $(this).removeClass("click_disa").dequeue();
 // });
   $(this).find('.p_cont').addClass('fadeI');
+  $(this).find('.p_cont1').addClass('fadeU');
   $(this).find('.top-bor').addClass('bor-hover1');
   $(this).find('.side-bor').addClass('bor-hover2');
+  $(this).find('.effect1').addClass('effect1h');
   $('.bor-hover1').velocity({width:['88%','0']}, {duration:300,  easing:"ease-in-out"});
   $('.bor-hover2').velocity({height:['88%','0']}, {duration:300, easing:"ease-in-out"});
   $('.fadeI').velocity({opacity:[1,0],translateY:[0,-50]}, {duration:400, easing:"ease-in-out"});
+  $('.fadeU').velocity({opacity:[1,0],translateY:[0,50]}, {duration:400, easing:"ease-in-out"});
+  $('.effect1h').velocity({left:['100%','-100%'] ,top:['-80%','90%']}, {duration:600, easing:"ease-in-out"});
+
 });
 $('.prdctAdd1').mouseleave(function (){
   $('.fadeI').velocity('reverse');
       $(this).find('.p_cont').removeClass('fadeI');
+
+      $('.fadeU').velocity('reverse');
+          $(this).find('.p_cont1').removeClass('fadeU');
 
   $('.bor-hover1').velocity('reverse');
       $(this).find('.top-bor').removeClass('bor-hover1');
 
   $('.bor-hover2').velocity('reverse');
       $(this).find('.side-bor').removeClass('bor-hover2');
-        });
+
+  $('.effect1h').velocity('reverse');
+            $(this).find('.effect1').removeClass('effect1h');
+              });
 // $('.prdctAdd1').mouseout(function(){
 //   $(this).find('.p_cont').velocity({opacity:[0,1],translateY:[-50,0]}, {  duration:300});
 // });
