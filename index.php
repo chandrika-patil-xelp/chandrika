@@ -47,6 +47,10 @@ switch ($action) {
         $page = 'confirmation';
         include TEMPLATE.'confirmation.html';
         break;
+     case 'product_details':
+        $page = 'product_details';
+        include TEMPLATE.'product_details.html';
+        break;
     
     
     
