@@ -1,5 +1,22 @@
 <?php include 'jhead.html' ?>
     <body>
+        <div class="lmenu4mble trnst-100 transition300">
+            <div class="lmnuHdng fLeft">
+                <center>
+                    <div class="hdrLgo"></div>
+                </center>
+            </div> 
+            <div class="lmnuLIstDv fLeft fmSansR">
+                <ul class="ulSabcat ">
+                    <li class="liSubCat">JEWELLERY</li>
+                    <li class="liSubCat">SOLITARIES</li>
+                    <li class="liSubCat">DESIGNER</li>
+                    <li class="liSubCat">VINTAGE</li>
+                    <li class="liSubCat">BRIDAL</li>
+                </ul>
+            </div>
+        </div>
+        <div class="dragTrgt" id="dragTrgt"></div>
         <div class="container">
             <div class="wrapper">
                 <?php include 'jHeader.html'; ?>
@@ -25,7 +42,7 @@
                                 <div class="crdPrdctTxt fLeft">Availability: In Stock</div>
                                 <div class="selectCatDV fLeft">
                                     <div class="matSelctCnt fLeft">
-                                        <div class="crspndngslctDv transition300 dn">
+                                        <div class="crspndngslctDv transition300" id="crspndngC">
                                             <div class="interNalCatDv fLeft">
                                                 <center>
                                                 <div class="numberDv">9</div>
@@ -81,7 +98,7 @@
                                         </div>
                                     </div>
                                     <div class="matSelctCnt fLeft">
-                                        <div class="crspndngslctDv1 transition300" id="john">
+                                        <div class="crspndngslctDv1 transition300" id="crspndngC1">
                                                   <div class="interNalCatDv fLeft">
                                                 <center>
                                                 <div class="numberDv">9</div>
@@ -137,7 +154,7 @@
                                         </div>
                                     </div>
                                     <div class="matSelctCnt fLeft">
-                                        <div class="crspndngslctDv2 dn transition300">
+                                        <div class="crspndngslctDv2  transition300" id="crspndngC2">
                                                   <div class="interNalCatDv fLeft">
                                                 <center>
                                                 <div class="numberDv">9</div>
@@ -236,6 +253,212 @@
                             <div class="smallImgP fLeft"></div>
                         </div>
                     </div>
+                        <div class="pCfrMbleWrp fLeft">
+                                <div class="prdctCard4Mbl fmSansR fLeft">
+                                <div class="cardHdng fLeft">AMULETTE DE RING</div>
+                                <div class="cardTxtP fLeft">&#2352; 2,00,000</div>
+                                <div class="cardtIcnTxt fLeft">
+                                    <div class="starIcn1 fLeft"></div>
+                                     <div class="starIcn1 fLeft"></div>
+                                      <div class="starIcn1 fLeft"></div>
+                                       <div class="starIcn1 fLeft"></div>
+                                       <div class="starIcn2 fLeft"></div>
+                                       <div class="revwTxt fLeft">5 reviews/write a review</div>
+                                </div>
+                                <div class="crdPrdctTxt fLeft">Product code: Product 15</div>
+                                <div class="crdPrdctTxt fLeft">Availability: In Stock</div>
+                                <div class="selectCatDV fLeft">
+                                    <div class="matSelctCnt fLeft">
+                                        <div class="crspndngslctDv transition300" id="crspndngCm">
+                                            <div class="interNalCatDv fLeft">
+                                                <center>
+                                                <div class="numberDv">9</div>
+                                                </center>
+                                                <div class="text4nmbrDv fLeft">ROSE GOLD</div>
+                                            </div>
+                                            <div class="interNalCatDv fLeft">
+                                                <center>
+                                                <div class="numberDv">14</div>
+                                                </center>
+                                                <div class="text4nmbrDv fLeft">ROSE GOLD</div>
+                                            </div>
+                                            <div class="interNalCatDv fLeft">
+                                                <center>
+                                                <div class="numberDv">18</div>
+                                                </center>
+                                                <div class="text4nmbrDv fLeft">ROSE GOLD</div>
+                                            </div>
+                                            <div class="interNalCatDv fLeft">
+                                                <center>
+                                                <div class="numberDv">22</div>
+                                                </center>
+                                                <div class="text4nmbrDv fLeft">ROSE GOLD</div>
+                                            </div>
+                                            <div class="interNalCatDv fLeft">
+                                                <center>
+                                                <div class="numberDv">18</div>
+                                                </center>
+                                                <div class="text4nmbrDv fLeft">YELLOW GOLD</div>
+                                            </div>
+                                             <div class="interNalCatDv fLeft">
+                                                <center>
+                                                <div class="numberDv">14</div>
+                                                </center>
+                                                <div class="text4nmbrDv fLeft">WHITE GOLD</div>
+                                            </div>
+                                             <div class="interNalCatDv fLeft">
+                                                <center>
+                                                <div class="numberDv">18</div>
+                                                </center>
+                                                <div class="text4nmbrDv fLeft">WHITE GOLD</div>
+                                            </div>
+                                             <div class="interNalCatDv fLeft">
+                                                <center>
+                                                <div class="numberDv">14</div>
+                                                </center>
+                                                <div class="text4nmbrDv fLeft">WHITE GOLD</div>
+                                            </div>
+                                        </div>
+                                        <div class="matSelctDv" id="msd1m">
+                                            <div class="txtmatslctDv fLeft">Select</div>
+                                            <div class="txtmatslctDv fLeft">Metal</div>
+                                        </div>
+                                    </div>
+                                    <div class="matSelctCnt fLeft">
+                                        <div class="crspndngslctDv1 transition300" id="crspndngC1m">
+                                                  <div class="interNalCatDv fLeft">
+                                                <center>
+                                                <div class="numberDv">9</div>
+                                                </center>
+                                                <div class="text4nmbrDv fLeft">ROSE GOLD</div>
+                                            </div>
+                                            <div class="interNalCatDv fLeft">
+                                                <center>
+                                                <div class="numberDv">14</div>
+                                                </center>
+                                                <div class="text4nmbrDv fLeft">ROSE GOLD</div>
+                                            </div>
+                                            <div class="interNalCatDv fLeft">
+                                                <center>
+                                                <div class="numberDv">18</div>
+                                                </center>
+                                                <div class="text4nmbrDv fLeft">ROSE GOLD</div>
+                                            </div>
+                                            <div class="interNalCatDv fLeft">
+                                                <center>
+                                                <div class="numberDv">22</div>
+                                                </center>
+                                                <div class="text4nmbrDv fLeft">ROSE GOLD</div>
+                                            </div>
+                                            <div class="interNalCatDv fLeft">
+                                                <center>
+                                                <div class="numberDv">18</div>
+                                                </center>
+                                                <div class="text4nmbrDv fLeft">YELLOW GOLD</div>
+                                            </div>
+                                             <div class="interNalCatDv fLeft">
+                                                <center>
+                                                <div class="numberDv">14</div>
+                                                </center>
+                                                <div class="text4nmbrDv fLeft">WHITE GOLD</div>
+                                            </div>
+                                             <div class="interNalCatDv fLeft">
+                                                <center>
+                                                <div class="numberDv">18</div>
+                                                </center>
+                                                <div class="text4nmbrDv fLeft">WHITE GOLD</div>
+                                            </div>
+                                             <div class="interNalCatDv fLeft">
+                                                <center>
+                                                <div class="numberDv">14</div>
+                                                </center>
+                                                <div class="text4nmbrDv fLeft">WHITE GOLD</div>
+                                            </div>
+                                        </div>
+                                        <div class="matSelctDv" id="msd2m">
+                                            <div class="txtmatslctDv fLeft">Select</div>
+                                            <div class="txtmatslctDv fLeft">Stone</div>
+                                        </div>
+                                    </div>
+                                    <div class="matSelctCnt fLeft">
+                                        <div class="crspndngslctDv2  transition300" id="crspndngC2m">
+                                                  <div class="interNalCatDv fLeft">
+                                                <center>
+                                                <div class="numberDv">9</div>
+                                                </center>
+                                                <div class="text4nmbrDv fLeft">ROSE GOLD</div>
+                                            </div>
+                                            <div class="interNalCatDv fLeft">
+                                                <center>
+                                                <div class="numberDv">14</div>
+                                                </center>
+                                                <div class="text4nmbrDv fLeft">ROSE GOLD</div>
+                                            </div>
+                                            <div class="interNalCatDv fLeft">
+                                                <center>
+                                                <div class="numberDv">18</div>
+                                                </center>
+                                                <div class="text4nmbrDv fLeft">ROSE GOLD</div>
+                                            </div>
+                                            <div class="interNalCatDv fLeft">
+                                                <center>
+                                                <div class="numberDv">22</div>
+                                                </center>
+                                                <div class="text4nmbrDv fLeft">ROSE GOLD</div>
+                                            </div>
+                                            <div class="interNalCatDv fLeft">
+                                                <center>
+                                                <div class="numberDv">18</div>
+                                                </center>
+                                                <div class="text4nmbrDv fLeft">YELLOW GOLD</div>
+                                            </div>
+                                             <div class="interNalCatDv fLeft">
+                                                <center>
+                                                <div class="numberDv">14</div>
+                                                </center>
+                                                <div class="text4nmbrDv fLeft">WHITE GOLD</div>
+                                            </div>
+                                             <div class="interNalCatDv fLeft">
+                                                <center>
+                                                <div class="numberDv">18</div>
+                                                </center>
+                                                <div class="text4nmbrDv fLeft">WHITE GOLD</div>
+                                            </div>
+                                             <div class="interNalCatDv fLeft">
+                                                <center>
+                                                <div class="numberDv">14</div>
+                                                </center>
+                                                <div class="text4nmbrDv fLeft">WHITE GOLD</div>
+                                            </div>
+                                        </div>
+                                        <div class="matSelctDv" id="msd3m">
+                                            <div class="txtmatslctDv fLeft">Select</div>
+                                            <div class="txtmatslctDv fLeft">Size</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="qtyAddCrdCnt fLeft">
+                                    <div class="qtyDv fLeft">Qty</div>
+                                    <div class="mns1PlsDv fLeft">
+                                        <div class="mnsCnt fLeft">-</div>
+                                         <div class="mnsCnt fLeft">1</div>
+                                          <div class="mnsCnt fLeft">+</div>
+                                    </div>
+                                    <div class="addToCartCnt fLeft">
+                                        <div class="addToCartTxt fLeft">ADD TO CART</div>
+                                        <div class="addToCrtImg"></div>
+                                    </div>
+                                    <div class="likeAndCmpr fLeft">
+                                        <div class="subCmprCnt fRight"></div>
+                                        <div class="subLkeCnt fRight"></div>
+                                    </div>
+                                </div>
+                                <div class="lastDvOfCrd fLeft">
+                                    <div class="shippingTxtIcnDv fLeft">Estimated Delivery Date</div>
+                                    <div class="rfstxt fRight">Risk Free Shopping</div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="prdctRvwAndDtls fLeft fmSansR">
                             <div class="commonWrp fLeft">
                             <div class="abvFleft fLeft">
@@ -543,10 +766,6 @@
                         </div>
                     </div>
                 </div>
-                
-                
-                
-                
                    <div class='footer1 fLeft fmSansR'>
                     <div class='wrapperMax'>
                         <div class='emptyDV fLeft'>
@@ -590,9 +809,9 @@
             $(document).ready(function(){
                 $('.slider4').bxSlider({
                   slideWidth: 400,
-                  minSlides: 2,
+                  minSlides: 1,
                   maxSlides: 3,
-                  moveSlides: 1,
+                  moveSlides:1,
                   slideMargin: 0,
                 });
                 //$("#msd1").click(function(){
@@ -611,17 +830,48 @@
              //     $("#abtslct_3").css("display","block");
                // });
                
-     $('#john .interNalCatDv').click(function(){ $('#msd1').text($(this).text()); });
+     $('#crspndngC1 .interNalCatDv').click(function(){ $('#msd2').html($(this).html());
+          $("#crspndngC1").hide();
+     });
+      $('#crspndngC2 .interNalCatDv').click(function(){ $('#msd3').html($(this).html());
+          $("#crspndngC2").hide();
+     });
+      $('#crspndngC .interNalCatDv').click(function(){ $('#msd1').html($(this).html());
+          $("#crspndngC").hide();
+     });
+     
+     //momile//
+     
+      $('#crspndngC1m .interNalCatDv').click(function(){ $('#msd2m').html($(this).html());
+          $("#crspndngC1m").hide();
+     });
+      $('#crspndngC2m .interNalCatDv').click(function(){ $('#msd3m').html($(this).html());
+          $("#crspndngC2m").hide();
+     });
+      $('#crspndngCm .interNalCatDv').click(function(){ $('#msd1m').html($(this).html());
+          $("#crspndngCm").hide();
+     });
+     
+          $("#dragTrgt").click(function(){
+         $('.lmenu4mble').addClass('trnst-100');
+        $('body').removeClass('pFixed');
+        $('.dragTrgt').css({width: '20px', left: '0px'});
+    });
             });
              $('.crspndngslctDv2').velocity({width:"0px",opacity:"0",left:"0px"});
              $('.crspndngslctDv1').velocity({width:"0px",opacity:"0",left:"0px"});
+              $('.crspndngslctDv').velocity({width:"0px",opacity:"0",left:"0px"});
             var mInt;
              $('#msd3').click(function() {
         setTimeout(function() {
-        $('.crspndngslctDv2').removeClass('dn');
+        $('.crspndngslctDv2').css("display","block"); 
+        $('.crspndngslctDv1').css("display","none");
+         $('.crspndngslctDv').css("display","none");
             setTimeout(function() {
                 $('.crspndngslctDv2').velocity({opacity:"1"},{delay:30,duration:100,easing:"swing"});
                 $('.crspndngslctDv2').velocity({width:"340px",left:"-168px"},{queue: false,delay:00,duration:200,easing:"swing"});
+                 $('.crspndngslctDv1').velocity({width:"0px",opacity:"0",left:"0px"});
+               $('.crspndngslctDv').velocity({width:"0px",opacity:"0",left:"0px"});
 
                 },00);
         },100);
@@ -629,21 +879,90 @@
      $('#msd2').click(function() {
        mInt=setTimeout(function() {
         $('.crspndngslctDv1').css("display","block");
+          $('.crspndngslctDv2').css("display","none"); 
+           $('.crspndngslctDv').css("display","none");
             setTimeout(function() {
                 $('.crspndngslctDv1').velocity({opacity:"1"},{delay:30,duration:100,easing:"swing"});
                 $('.crspndngslctDv1').velocity({width:"340px",left:"-78px"},{queue: false,delay:00,duration:200,easing:"swing"});
+                 $('.crspndngslctDv2').velocity({width:"0px",opacity:"0",left:"0px"});
+                   $('.crspndngslctDv').velocity({width:"0px",opacity:"0",left:"0px"});
 
                 },00);
         },100);
     });
-     //$('#msd2').dblClick(function() {
-     //  $('.crspndngslctDv1').velocity({opacity:"0"},{delay:0,duration:0,easing:"swing"});
-      //  $('.crspndngslctDv1').velocity({{width:"0px",left:"0px"},{queue: false,delay:0,duration:0,easing:"swing"});
-      //  setTimeout(function() {
-      //     $('.crspndngslctDv1').css("display","none");
-       // },00);
-   // };
-    // });
+    $('#msd1').click(function() {
+       mInt=setTimeout(function() {
+        $('.crspndngslctDv').css("display","block");
+          $('.crspndngslctDv2').css("display","none");
+          $('.crspndngslctDv1').css("display","none");
+            setTimeout(function() {
+                $('.crspndngslctDv').velocity({opacity:"1"},{delay:30,duration:100,easing:"swing"});
+                $('.crspndngslctDv').velocity({width:"340px",left:"13px"},{queue: false,delay:00,duration:200,easing:"swing"});
+                 $('.crspndngslctDv2').velocity({width:"0px",opacity:"0",left:"0px"});
+               $('.crspndngslctDv1').velocity({width:"0px",opacity:"0",left:"0px"});
+
+                },00);
+        },100);
+    });
+     
+     $('#msd1m').click(function() {
+       mInt=setTimeout(function() {
+        $('#crspndngCm').css("display","block");
+          $('#crspndngC2m').css("display","none");
+          $('#crspndngC1m').css("display","none");
+            setTimeout(function() {
+                $('#crspndngCm').velocity({opacity:"1"},{delay:30,duration:100,easing:"swing"});
+                $('#crspndngCm').velocity({width:"300px",left:"0px"},{queue: false,delay:00,duration:200,easing:"swing"});
+                 $('#crspndngC2m').velocity({width:"0px",opacity:"0",left:"0px"});
+               $('#crspndngC1m').velocity({width:"0px",opacity:"0",left:"0px"});
+
+                },00);
+        },100);
+    });
+    $('#msd2m').click(function() {
+       mInt=setTimeout(function() {
+        $('#crspndngC1m').css("display","block");
+          $('#crspndngC2m').css("display","none"); 
+           $('#crspndngCm').css("display","none");
+            setTimeout(function() {
+                $('#crspndngC1m').velocity({opacity:"1"},{delay:30,duration:100,easing:"swing"});
+                $('#crspndngC1m').velocity({width:"300px",left:"-91px"},{queue: false,delay:00,duration:200,easing:"swing"});
+                 $('#crspndngC2m').velocity({width:"0px",opacity:"0",left:"0px"});
+                   $('#crspndngCm').velocity({width:"0px",opacity:"0",left:"0px"});
+
+                },00);
+        },100);
+    });
+          $('#msd3m').click(function() {
+        setTimeout(function() {
+        $('#crspndngC2m').css("display","block"); 
+        $('#crspndngC1m').css("display","none");
+         $('#crspndngCm').css("display","none");
+            setTimeout(function() {
+                $('#crspndngC2m').velocity({opacity:"1"},{delay:30,duration:100,easing:"swing"});
+                $('#crspndngC2m').velocity({width:"300px",left:"-190px"},{queue: false,delay:00,duration:200,easing:"swing"});
+                 $('#crspndngC1m').velocity({width:"0px",opacity:"0",left:"0px"});
+               $('#crspndngCm').velocity({width:"0px",opacity:"0",left:"0px"});
+
+                },00);
+        },100);
+    });
+    
+                  function showLeftMenu(flag) {
+    if (flag) {
+        $('.lmenu4mble').removeClass('trnst-100');
+        $('body').addClass('pFixed');
+        $('.dragTrgt').css({width: '50%', left: '250px'});
+
+    }
+    else {
+        $('.lmenu4mble').addClass('trnst-100');
+        $('body').removeClass('pFixed');
+        $('.dragTrgt').css({width: '20px', left: '0px'});
+    }
+}
+     
+     
         </script>
         </body>
 </html>
