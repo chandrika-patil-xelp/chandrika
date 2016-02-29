@@ -26,21 +26,22 @@
                       <div class="navBar2nd fLeft fmSansR">
                         <div class="homeLogo fLeft"></div>
                         <div class="navStpDiv fLeft">MY ACCOUNT</div>
+                        <div class="crss4Mmnu fRight"></div>
                       </div> 
                         <div class="confrmCont fLeft fmSansR">
                             <div class="cnfrmLmenu fLeft">
                                 <div class="cnFrmLhDng fLeft">My Jzeva account</div>
-                                <div class="lstLmnu fLeft" onclick="tabchange('ordrWrp')">Orders</div>
-                                <div class="lstLmnu fLeft" onclick="tabchange('savedAddress')">My Saved Address</div>
-                                <div class="lstLmnu fLeft" onclick="tabchange('wishLst')">Wishlist</div>
+                                <div class="lstLmnu fLeft" onclick="tabchange('ordrWrp')" id="oW">Orders</div>
+                                <div class="lstLmnu fLeft" onclick="tabchange('savedAddress')" id="sA">My Saved Address</div>
+                                <div class="lstLmnu fLeft" onclick="tabchange('wishLst')" id="wL">Wishlist</div>
                                 <div class="lstLmnu fLeft">My Reviews</div>
                                 <div class="cnFrmLhDng fLeft">My Account Setting</div>
-                                 <div class="lstLmnu fLeft" onclick="tabchange('piCont')">Personal Info</div>
-                                <div class="lstLmnu fLeft"  onclick="tabchange('chngPass')">Change Password</div>
-                                <div class="lstLmnu fLeft" onclick="tabchange('update_cont')">Update Contact</div>
+                                 <div class="lstLmnu fLeft" onclick="tabchange('piCont')" id="pC">Personal Info</div>
+                                <div class="lstLmnu fLeft"  onclick="tabchange('chngPass')" id="cP">Change Password</div>
+                                <div class="lstLmnu fLeft" onclick="tabchange('update_cont')" id="uC">Update Contact</div>
                             </div>
                             <div class="cnfrmRmenu fLeft">
-                                <div class="orderWrPR fLeft" id="ordrWrp">
+                                <div class="orderWrPR fLeft transition300" id="ordrWrp">
                                 <div class="orderAndSrch fLeft">
                                     <div class="mYoRdr fLeft">My Order</div>
                                     <div class="scrChDv fRight">
@@ -240,6 +241,7 @@
                                         <div class="hdngTxtWsh fLeft">Personal Info</div>
                                     </div>
                                     <div class="abtWshLst fLeft">simply dummy text of the printing and typesetting industry.</div>
+                                    <div class="piWrapp fLeft">
                                     <div class="pInfoLft fLeft">
                                       <div class="input ">
                                             <input class="input__field" type="text" id="f_n" />
@@ -288,12 +290,6 @@
                                                     </label>
                                                   </div>
                                                 </div>
-
-                                        
-                                         <div class="pInfoCSdv fLeft">
-                                             <div class="PinfoCbtn fLeft">CANCEL</div>
-                                             <div class="PinfoCbtn1 fRight"> SUBMIT</div>
-                                         </div>
                                     </div>
                                     <div class="pInfoRght fLeft">
                                          <div class="mrtlStsdv fLeft">Gender:</div>
@@ -330,14 +326,20 @@
                                                     </label>
                                                   </div>
                                                 </div>
-
                                     </div>
                                 </div>
+                                    <div class="pInfoCSdv fLeft">
+                                             <div class="PinfoCbtn fLeft">CANCEL</div>
+                                             <div class="PinfoCbtn1 fRight"> SUBMIT</div>
+                                         </div>
+                                </div>
+                                
                                 <div class="chngePassCnt fLeft dn" id="chngPass">
                                    <div class="wishLstHdng fLeft">
                                         <div class="hdngTxtWsh fLeft">Change Password</div>
                                     </div>
                                     <div class="abtWshLst fLeft">simply dummy text of the printing and typesetting industry.</div>
+                                    <div class="piWrapp fLeft">
                                     <div class="pInfoLft fLeft">
                                          <div class="input ">
                                             <input class="input__field" type="text" id="o_p" />
@@ -357,17 +359,19 @@
                                               <span class="input__label-content ">Re-type Password</span>
                                             </label>
                                       </div>
-                                        <div class="pInfoCSdv fLeft">
+                                    </div>
+                                </div>
+                                      <div class="pInfoCSdv fLeft">
                                              <div class="PinfoCbtn fLeft">CANCEL</div>
                                              <div class="PinfoCbtn1 fRight"> SUBMIT</div>
-                                         </div>
-                                    </div>
+                                         </div>  
                                 </div>
                                   <div class="chngePassCnt fLeft dn" id="update_cont">
                                    <div class="wishLstHdng fLeft">
                                         <div class="hdngTxtWsh fLeft">Update Contact</div>
                                     </div>
                                     <div class="abtWshLst fLeft">simply dummy text of the printing and typesetting industry.</div>
+                                    <div class="piWrapp fLeft">
                                     <div class="pInfoLft fLeft">
                                          <div class="input ">
                                             <input class="input__field" type="text" id="e_a" />
@@ -387,11 +391,12 @@
                                               <span class="input__label-content ">Phone Number</span>
                                             </label>
                                       </div>
-                                        <div class="pInfoCSdv fLeft">
+                                    </div>
+                                  </div>
+                                     <div class="pInfoCSdv fLeft">
                                              <div class="PinfoCbtn fLeft">CANCEL</div>
                                              <div class="PinfoCbtn1 fRight"> SUBMIT</div>
                                          </div>
-                                    </div>
                                 </div>
                                 
                             </div>
@@ -497,81 +502,191 @@
 
         var input_hidden = 'input[type=hidden]';
 
-        $(document).on('focus', input_selector, function () {
-            $(this).siblings('label, i').addClass('lablTrnst');
-            $(this).addClass('borderTrnst');
-            $(this).addClass('borderTrnst');
+         $('.input__field').focus(function(){
+            $(this).closest('.input').addClass('input--filled');
+      });
+  $('.input__field').blur(function(){
+     var y=$(this).val();
+    if(y!=""){
+   $(this).closest('.input').addClass('input--filled');
+ }
+ else{
+     $(this).closest('.input').removeClass('input--filled');
+ }
+  });
+//         $('.navLstDtls1').velocity({translateY:"-20px", borderRadius:"35%",opacity:"0"});
+//          $('.navLstDtls2').velocity({translateY:"-20px", borderRadius:"35%",opacity:"0"});
+//           $('.navLstDtls3').velocity({translateY:"-20px", borderRadius:"35%",opacity:"0"});
+//    var mInt;
+//    //var scnd;
+//    //var third;
+//    $('#jwl').bind('mouseenter', function() {
+//        clearTimeout(mInt);
+//        mInt=setTimeout(function() {
+//        $('.navLstDtls1').removeClass('dn');
+//            setTimeout(function() {
+//                $('.navLstDtls1').velocity({opacity:"1"},{delay:30,duration:100,easing:"swing"});
+//                $('.navLstDtls1').velocity({translateY:"0px",borderRadius:"0px"},{queue: false,delay:00,duration:200,easing:"swing"});
+//
+//                },00);
+//        },100);
+//    });
+//    
+//    $('#jwl').bind('mouseleave', function() {
+//       $('.navLstDtls1').velocity({opacity:"0"},{delay:0,duration:0,easing:"swing"});
+//        $('.navLstDtls1').velocity({borderRadius:"35%",translateY:"-20px"},{queue: false,delay:0,duration:0,easing:"swing"});
+//        setTimeout(function() {
+//            $('.navLstDtls1').addClass('dn');
+//        },00);
+//    });
+//     $('#sol').bind('mouseenter', function() {
+//        clearTimeout(mInt);
+//        mInt=setTimeout(function() {
+//        $('.navLstDtls2').removeClass('dn');
+//            setTimeout(function() {
+//                $('.navLstDtls2').velocity({opacity:"1"},{delay:30,duration:100,easing:"swing"});
+//                $('.navLstDtls2').velocity({translateY:"0px",borderRadius:"0px"},{queue: false,delay:00,duration:200,easing:"swing"});
+//
+//                },00);
+//        },100);
+//    });
+//    
+//    $('#sol').bind('mouseleave', function() {
+//       $('.navLstDtls2').velocity({opacity:"0"},{delay:0,duration:0,easing:"swing"});
+//        $('.navLstDtls2').velocity({borderRadius:"35%",translateY:"-20px"},{queue: false,delay:0,duration:0,easing:"swing"});
+//        setTimeout(function() {
+//            $('.navLstDtls2').addClass('dn');
+//        },00);
+//    });
+//    $('#fybn').bind('mouseenter', function() {
+//        clearTimeout(mInt);
+//        mInt=setTimeout(function() {
+//        $('.navLstDtls3').removeClass('dn');
+//            setTimeout(function() {
+//                $('.navLstDtls3').velocity({opacity:"1"},{delay:30,duration:100,easing:"swing"});
+//                $('.navLstDtls3').velocity({translateY:"0px",borderRadius:"0px"},{queue: false,delay:00,duration:200,easing:"swing"});
+//
+//                },00);
+//        },100);
+//    });
+//    
+//    $('#fybn').bind('mouseleave', function() {
+//       $('.navLstDtls3').velocity({opacity:"0"},{delay:0,duration:0,easing:"swing"});
+//        $('.navLstDtls3').velocity({borderRadius:"35%",translateY:"-20px"},{queue: false,delay:0,duration:0,easing:"swing"});
+//        setTimeout(function() {
+//            $('.navLstDtls3').addClass('dn');
+//        },00);
+//    });
+
+ var mql = window.matchMedia("screen and (min-width: 320px) and (max-width: 479px)");
+  $('#ordrWrp').velocity({translateX: "110%",display:"none"}, {delay: 0, duration: 0});
+   $('#savedAddress').velocity({translateX: "110%",display:"none"}, {delay: 0, duration: 0});
+   $('#wishLst').velocity({translateX: "110%",display:"none"}, {delay: 0, duration: 0});
+    $('#piCont').velocity({translateX: "110%",display:"none"}, {delay: 0, duration: 0});
+     $('#chngPass').velocity({translateX: "110%",display:"none"}, {delay: 0, duration: 0});
+      $('#update_cont').velocity({translateX: "110%",display:"none"}, {delay: 0, duration: 0});
+  if (mql.matches){ 
+      $("#oW").click(function(){
+    setTimeout(function() {
+         $('.cnfrmRmenu').css('display','block');
+         $('.crss4Mmnu').css('display','block');
+         $('.cnfrmLmenu').css('display','none');
+          $('.cnfrmLmenu').velocity({translateX:"-110%"},{queue: false,delay:00,duration:200,easing:"swing"});
+            setTimeout(function() {
+                $('#ordrWrp').velocity({display:"block"},{delay:30,duration:100,easing:"swing"});
+                $('#ordrWrp').velocity({translateX:"0px"},{queue: false,delay:00,duration:200,easing:"swing"});
+                },00);
+        },50);
         });
-
-        $(document).on('blur', input_selector, function () {
-            if ($(this).val().length === 0 && $(this).attr('placeholder') === undefined) {
-                $(this).siblings('label, i').removeClass('lablTrnst');
-                $(this).removeClass('borderTrnst');
-            }
+         $("#sA").click(function(){
+    setTimeout(function() {
+         $('.cnfrmRmenu').css('display','block');
+         $('.cnfrmLmenu').css('display','none');
+          $('.crss4Mmnu').css('display','block');
+          $('.cnfrmLmenu').velocity({translateX:"-110%"},{queue: false,delay:00,duration:200,easing:"swing"});
+            setTimeout(function() {
+                $('#savedAddress').velocity({display:"block"},{delay:30,duration:100,easing:"swing"});
+                $('#savedAddress').velocity({translateX:"0px"},{queue: false,delay:00,duration:200,easing:"swing"});
+                },00);
+        },50);
         });
-         $('.navLstDtls1').velocity({translateY:"-20px", borderRadius:"35%",opacity:"0"});
-          $('.navLstDtls2').velocity({translateY:"-20px", borderRadius:"35%",opacity:"0"});
-           $('.navLstDtls3').velocity({translateY:"-20px", borderRadius:"35%",opacity:"0"});
-    var mInt;
-    //var scnd;
-    //var third;
-    $('#jwl').bind('mouseenter', function() {
-        clearTimeout(mInt);
-        mInt=setTimeout(function() {
-        $('.navLstDtls1').removeClass('dn');
+        $("#wL").click(function(){
+    setTimeout(function() {
+         $('.cnfrmRmenu').css('display','block');
+         $('.cnfrmLmenu').css('display','none');
+          $('.crss4Mmnu').css('display','block');
+          $('.cnfrmLmenu').velocity({translateX:"-110%"},{queue: false,delay:00,duration:200,easing:"swing"});
             setTimeout(function() {
-                $('.navLstDtls1').velocity({opacity:"1"},{delay:30,duration:100,easing:"swing"});
-                $('.navLstDtls1').velocity({translateY:"0px",borderRadius:"0px"},{queue: false,delay:00,duration:200,easing:"swing"});
-
+                $('#wishLst').velocity({display:"block"},{delay:30,duration:100,easing:"swing"});
+                $('#wishLst').velocity({translateX:"0px"},{queue: false,delay:00,duration:200,easing:"swing"});
                 },00);
-        },100);
-    });
-    
-    $('#jwl').bind('mouseleave', function() {
-       $('.navLstDtls1').velocity({opacity:"0"},{delay:0,duration:0,easing:"swing"});
-        $('.navLstDtls1').velocity({borderRadius:"35%",translateY:"-20px"},{queue: false,delay:0,duration:0,easing:"swing"});
-        setTimeout(function() {
-            $('.navLstDtls1').addClass('dn');
-        },00);
-    });
-     $('#sol').bind('mouseenter', function() {
-        clearTimeout(mInt);
-        mInt=setTimeout(function() {
-        $('.navLstDtls2').removeClass('dn');
+        },50);
+        });
+         $("#pC").click(function(){
+    setTimeout(function() {
+         $('.cnfrmRmenu').css('display','block');
+         $('.cnfrmLmenu').css('display','none');
+          $('.crss4Mmnu').css('display','block');
+          $('.cnfrmLmenu').velocity({translateX:"-110%"},{queue: false,delay:00,duration:200,easing:"swing"});
             setTimeout(function() {
-                $('.navLstDtls2').velocity({opacity:"1"},{delay:30,duration:100,easing:"swing"});
-                $('.navLstDtls2').velocity({translateY:"0px",borderRadius:"0px"},{queue: false,delay:00,duration:200,easing:"swing"});
-
+                $('#piCont').velocity({display:"block"},{delay:30,duration:100,easing:"swing"});
+                $('#piCont').velocity({translateX:"0px"},{queue: false,delay:00,duration:200,easing:"swing"});
                 },00);
-        },100);
-    });
-    
-    $('#sol').bind('mouseleave', function() {
-       $('.navLstDtls2').velocity({opacity:"0"},{delay:0,duration:0,easing:"swing"});
-        $('.navLstDtls2').velocity({borderRadius:"35%",translateY:"-20px"},{queue: false,delay:0,duration:0,easing:"swing"});
-        setTimeout(function() {
-            $('.navLstDtls2').addClass('dn');
-        },00);
-    });
-    $('#fybn').bind('mouseenter', function() {
-        clearTimeout(mInt);
-        mInt=setTimeout(function() {
-        $('.navLstDtls3').removeClass('dn');
+        },50);
+        });
+         $("#cP").click(function(){
+    setTimeout(function() {
+         $('.cnfrmRmenu').css('display','block');
+         $('.cnfrmLmenu').css('display','none');
+          $('.crss4Mmnu').css('display','block');
+          $('.cnfrmLmenu').velocity({translateX:"-110%"},{queue: false,delay:00,duration:200,easing:"swing"});
             setTimeout(function() {
-                $('.navLstDtls3').velocity({opacity:"1"},{delay:30,duration:100,easing:"swing"});
-                $('.navLstDtls3').velocity({translateY:"0px",borderRadius:"0px"},{queue: false,delay:00,duration:200,easing:"swing"});
-
+                $('#chngPass').velocity({display:"block"},{delay:30,duration:100,easing:"swing"});
+                $('#chngPass').velocity({translateX:"0px"},{queue: false,delay:00,duration:200,easing:"swing"});
                 },00);
-        },100);
-    });
-    
-    $('#fybn').bind('mouseleave', function() {
-       $('.navLstDtls3').velocity({opacity:"0"},{delay:0,duration:0,easing:"swing"});
-        $('.navLstDtls3').velocity({borderRadius:"35%",translateY:"-20px"},{queue: false,delay:0,duration:0,easing:"swing"});
-        setTimeout(function() {
-            $('.navLstDtls3').addClass('dn');
-        },00);
-    });
+        },50);
+        });
+        $("#uC").click(function(){
+    setTimeout(function() {
+         $('.cnfrmRmenu').css('display','block');
+         $('.cnfrmLmenu').css('display','none');
+          $('.crss4Mmnu').css('display','block');
+          $('.cnfrmLmenu').velocity({translateX:"-110%"},{queue: false,delay:00,duration:200,easing:"swing"});
+            setTimeout(function() {
+                $('#update_cont').velocity({display:"block"},{delay:30,duration:100,easing:"swing"});
+                $('#update_cont').velocity({translateX:"0px"},{queue: false,delay:00,duration:200,easing:"swing"});
+                },00);
+        },50);
+        });
+ }
+ else{
+ $('#ordrWrp').velocity({translateX: "0%",display:"block"}, {delay: 0, duration: 0});
+  $('#savedAddress').velocity({translateX: "0%",display:"block"}, {delay: 0, duration: 0});
+   $('#wishLst').velocity({translateX: "0%",display:"block"}, {delay: 0, duration: 0});
+    $('#piCont').velocity({translateX: "0%",display:"block"}, {delay: 0, duration: 0});
+    $('#chngPass').velocity({translateX: "0%",display:"block"}, {delay: 0, duration: 0});
+     $('#update_cont').velocity({translateX: "0%",display:"block"}, {delay: 0, duration: 0});
+  $('.cnfrmLmenu').css('display','block');
+   $('.crss4Mmnu').css('display','none');
+ }
+ $(".crss4Mmnu").click(function(){
+      setTimeout(function() {
+         $('.cnfrmRmenu').css('display','none');
+         $('.cnfrmLmenu').css('display','block');
+         $('.crss4Mmnu').css('display','none');
+          $('.cnfrmLmenu').velocity({translateX:"0%"},{queue: false,delay:00,duration:200,easing:"swing"});
+            setTimeout(function() {
+                $('#ordrWrp').velocity({display:"none"},{delay:30,duration:100,easing:"swing"});
+                $('#ordrWrp').velocity({translateX:"110%"},{queue: false,delay:00,duration:200,easing:"swing"});
+                 $('#savedAddress').velocity({translateX: "110%",display:"none"}, {delay: 0, duration: 0});
+                  $('#wishLst').velocity({translateX: "110%",display:"none"}, {delay: 0, duration: 0});
+                   $('#piCont').velocity({translateX: "110%",display:"none"}, {delay: 0, duration: 0});
+                   $('#chngPass').velocity({translateX: "110%",display:"none"}, {delay: 0, duration: 0});
+                    $('#update_cont').velocity({translateX: "110%",display:"none"}, {delay: 0, duration: 0});
+                },00);
+        },50);
+       
+ });
        
         </script>
     </body>
