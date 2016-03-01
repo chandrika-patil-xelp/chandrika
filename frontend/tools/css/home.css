@@ -573,7 +573,7 @@ transition-delay: 0.15s;
  .cmprIcn{background:url(../img/compare.svg)no-repeat;background-position: center;background-size:auto 100%;}
  .icnStar1{background:url(../img/star1.svg)no-repeat;background-position: center;background-size:auto 90%;}
  .icnStar2{background:url(../img/star2.svg)no-repeat;background-position: center;background-size:auto 90%;}
- 
+
  .pCfrMbleWrp{width:100%;height:auto;margin-top:20px;display:none;}
 
  @media only screen and (min-width: 320px) and (max-width: 479px){
@@ -705,7 +705,7 @@ transition-delay: 0.15s;
      .pOptnLft {width: 100%;border-right:none;}
      .pOptnRight {width: 100%;padding-left:0px;}
      .expDate {width: 40%;}
-     
+
      /*p_details*/
      .prdctCard {display:none;}
      .overShdoLyr {width: 50px;height: 250px;}
@@ -923,15 +923,12 @@ transition-delay: 0.15s;
      .savedAdrssWrp{width: 100%;padding-left:0px;}
      .savedAdrssWrp1{width: 100%;padding-left:0px;}
      .wishLstadvWrp {margin-top: 15px;}
-<<<<<<< .mine
-     .wishLstDvsn {width: 100%;padding-right:0px;}
-||||||| .r199
-     .wishLstDvsn {width: 100%;padding-right:0px;} 
-=======
+
+
      .wishLstDvsn {width: 100%;padding-right:0px;}
      .wishLstIMG {width: 20%;padding-bottom: 20%;}
      .abtWishLST {padding-left: 25%;}
->>>>>>> .r209
+
      .wishLstDvsn1 {width: 100%;padding-left:0px;}
 
      /*track*/
@@ -1122,4 +1119,3 @@ transition-delay: 0.15s;
  	}
  }
 .click_disa{pointer-events:none;}
-
