@@ -280,6 +280,10 @@ $('.prdctAdd1').mouseleave(function (){
 
   $('.effect1h').velocity('reverse');
             $(this).find('.effect1').removeClass('effect1h');
+            $(this).addClass("click_disa").delay(1000).queue(function(){
+        $(this).removeClass("click_disa").dequeue();
+    });
+
               });
 // $('.prdctAdd1').mouseout(function(){
 //   $(this).find('.p_cont').velocity({opacity:[0,1],translateY:[-50,0]}, {  duration:300});
@@ -293,6 +297,10 @@ $('.largePrdct').mouseleave(function (){
   $('.bor-hover3').velocity('reverse');
   $(this).find('.top-borL').removeClass('bor-hover3');
   $(this).find('.bot-borL').removeClass('bor-hover3');
+  $(this).addClass("click_disa").delay(1000).queue(function(){
+        $(this).removeClass("click_disa").dequeue();
+    });
+
 });
         </script>
     </body>
