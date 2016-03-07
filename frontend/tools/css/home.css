@@ -1127,11 +1127,11 @@ transition-delay: 0.15s;
 
  .input {position: relative;z-index: 1;	display: inline-block;margin-bottom: 20px;width: 100%;vertical-align: top; overflow: hidden; }
 
- .input__field {position: relative;display: block;float:right;padding: 0.8em;width: 60%;border: none;border-radius: 0;background: #f0f0f0;color: #aaa;font-weight: bold;margin-top:1em;padding:0.85em 0.15em;width:100%;background:transparent;color: #595F6E;-webkit-appearance:none;}
+ .input__field {position: relative;display: block;float:right;width: 60%;border: none;border-radius: 0;background: #f0f0f0;color: #aaa;font-weight: bold;margin-top:10px;padding:10px 10px 10px 3px;width:100%;background:transparent;color: #595F6E;-webkit-appearance:none;}
 
  .input__field:focus {outline: none;}
 
- .input__label {display:inline-block; float: right;padding: 0 1em;width: 40%;color: #6a7989;font-weight: bold;font-size: 70.25%;position: absolute;bottom: 0;left: 0;padding:0 0.25em;width: 100%;height: calc(100% - 1em);text-align: left;pointer-events: none;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale; 	-webkit-touch-callout: none; 	-webkit-user-select: none; 	-khtml-user-select: none; 	-moz-user-select: none; 	-ms-user-select: none; 	user-select: none; }
+ .input__label {display:inline-block; float: right;width: 40%;color: #6a7989;font-size: 70.25%;position: absolute;bottom: 0;left: 0;padding:1px;width: 100%;height: calc(100% - 4px);text-align: left;pointer-events: none;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale; 	-webkit-touch-callout: none; 	-webkit-user-select: none; 	-khtml-user-select: none; 	-moz-user-select: none; 	-ms-user-select: none; 	user-select: none; }
  .input__label-content{position: relative;display: block;padding: 15px 0;width: 100%;font-size:13px;position:absolute;}
  .input__label::before, .input__label::after { 	content: '';position: absolute;top: 5px;left: 0;width: 100%;height:calc(100% - 10px);border-bottom: 1px solid #B9C1CA;}
  .input__label::after {border-bottom: 2px solid #379496;-webkit-transform: translate3d(-100%, 0, 0);transform:translate3d(-100%, 0, 0);-webkit-transition:-webkit-transform 0.3s;transition:transform 0.3s;}
