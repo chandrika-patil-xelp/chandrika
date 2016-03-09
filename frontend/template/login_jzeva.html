@@ -1,0 +1,117 @@
+<?php include 'jhead.html' ?>
+<body>
+    <div class="lmenu4mble trnst-100 transition300">
+        <div class="lmnuHdng fLeft">
+            <center>
+                <div class="hdrLgo"></div>
+            </center>
+        </div>
+        <div class="lmnuLIstDv fLeft fmSansR">
+            <ul class="ulSabcat ">
+                <li class="liSubCat">JEWELLERY</li>
+                <li class="liSubCat">SOLITARIES</li>
+                <li class="liSubCat">DESIGNER</li>
+                <li class="liSubCat">VINTAGE</li>
+                <li class="liSubCat">BRIDAL</li>
+            </ul>
+        </div>
+    </div>
+    <div class="dragTrgt" id="dragTrgt"></div>
+    <div class="container">
+        <div class="wrapper">
+            <?php include 'jHeader.html'; ?>
+
+            <div class="totalCont fLeft">
+                <div class="wrapperMax" >
+                    <div class="navBar2nd fLeft fmSansR">
+                        <div class="homeLogo fLeft"></div>
+                        <div class="navStpDiv fLeft">Login</div>
+                    </div>
+                    <div class="lCont fLeft fmSansR">
+                        <div class="LoginFlft fLeft">
+                            <div class="loginFcnt fLeft">
+                                <div class="lHdng fLeft fmSansB">Log in</div>
+                                <div class="input fmSansB">
+                                    <input class="input__field" type="text" id="fname"  method="post" autocomplete="off"/>
+                                            <label class="input__label  " for="fname">
+                                              <span class="input__label-content ">First Name</span>
+                                            </label>
+                                </div>
+                                <div class="input fmSansB">
+                                            <input class="input__field" type="text" id="pswrd" method="post" autocomplete="off"/>
+                                            <label class="input__label  " for="pswrd">
+                                              <span class="input__label-content ">Password</span>
+                                            </label>
+                                </div>
+                                 <div class="fgotPswrd fLeft">forgot password</div>
+                                 <div class="toCretNwAd fLeft">
+                                     <div class="txtFrnwAc fLeft fmSansB">Sign up to create your account</div>
+                                      <div class="loginBtn fRight loginIcn">LOGIN</div>
+                                 </div>
+                            </div>
+                        </div>
+                        <div class="LoginFright fLeft">
+                            <div class="mngWrp fLeft">
+                            <div class="txtAbtAccnt fLeft">By creating an account with our store,store multiple shipping address,view and track your orders in your account and more.</div>
+                            </div>
+                            <div class="TxtfrGst fLeft fmSansB">Continue as a guest</div>
+                            <div class="loginIcnCnt fLeft">
+                                <div class="lookWrp fLeft">
+                                    <div class="lookIcn fLeft"></div>
+                                    <div class="txtAbtIcn fLeft">LOOK</div>
+                                </div>
+                                <div class="lookWrp fLeft">
+                                    <div class="ordrIcn fLeft"></div>
+                                    <div class="txtAbtIcn fLeft">ORDER</div>
+                                </div>
+                                <div class="lookWrp fLeft">
+                                    <div class="wearIcn fLeft"></div>
+                                    <div class="txtAbtIcn fLeft">WEAR</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <?php include 'jFooter.html'; ?>
+        </div>
+    </div>
+    <script> 
+        var input_selector = 'input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=number], input[type=search], textarea, input[type=radio]';
+
+        var input_hidden = 'input[type=hidden]';
+
+        $('.input__field').focus(function(){
+            $(this).closest('.input').addClass('input--filled');
+      });
+  $('.input__field').blur(function(){
+     var y=$(this).val();
+    if(y!=""){
+   $(this).closest('.input').addClass('input--filled');
+ }
+ else{
+     $(this).closest('.input').removeClass('input--filled');
+ }
+  });
+  
+  function showLeftMenu(flag) {
+            if (flag) {
+                $('.lmenu4mble').removeClass('trnst-100');
+                $('body').addClass('pFixed');
+                $('.dragTrgt').css({width: '50%', left: '250px'});
+
+            } else {
+                $('.lmenu4mble').addClass('trnst-100');
+                $('body').removeClass('pFixed');
+                $('.dragTrgt').css({width: '20px', left: '0px'});
+            }
+        }
+         $(document).ready(function(){
+                $("#dragTrgt").click(function(){
+         $('.lmenu4mble').addClass('trnst-100');
+        $('body').removeClass('pFixed');
+        $('.dragTrgt').css({width: '20px', left: '0px'});
+    });
+         });
+    </script>
+</body>
