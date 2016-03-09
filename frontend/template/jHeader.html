@@ -1,14 +1,29 @@
-
+<div class="searchBox">
+    <input type="text" class="searchIp" id="searchIp"/>
+      <div class="searchBtn2"></div>
+</div>
+<div class="overlay">
+  <div class="iconCont2 fRight" id="close_search">
+     <div class="icnClose"></div>
+  </div>
+  <div class="searchBox">
+      <input type="text" class="searchIp"/>
+        <div class="searchBtn2"></div>
+  </div>
+</div>
 <div class="header fLeft fmSansR">
+                    <div class="searchBox">
+                        <input type="text" class="searchIp"/>
+                          <div class="searchBtn2"></div>
+                    </div>
                     <div class="wrapperMax">
                         <div class="checkout__order" id="cart">
                         <div class="cart_head">
                           <div class="iconCont fLeft">
                                   <div class="icn2" ></div>
-
                           </div>
                           <div class="iconCont fRight">
-                                  <div class="icn1" id="close_cart"></div>
+                                  <div class="icnClose" id="close_cart"></div>
                           </div>
                         </div>
                         <div class="cart_head">
@@ -54,9 +69,8 @@
                                 <div class="iconCont fRight">
                                         <div class="icn2"></div>
                                 </div>
-                                 <div class="iconCont fRight">
+                                 <div class="iconCont fRight" id="search">
                                         <div class="icn3"></div>
-                                        <input class="searchBox  fmSansR" placeholder="Looking For Something ?"/>
                                 </div>
                             </div>
 
@@ -268,10 +282,34 @@
 $( window ).resize(function() {
   var windowsize = $(window).width();
   if(windowsize<768){
-
   $('.opnShpLogo').removeClass("dn");
 }
 });
+$('#search').click(function(){
+    $('.overlay').css({'display':'block'});
+    $('.searchBox').css({'display':'block'});
+    $('.overlay').css({'overflow':'hidden'});
+  setTimeout(function(){
+  $('.overlay').velocity({opacity:[1,0]}, {duration:300});
+  $('.searchBox').velocity({scale:[1,0]} , {duration:300,delay:200});
+},100);
+$('#searchIp').focus();
+
+});
+function close_search(){
+  $('.overlay').velocity('reverse');
+  $('.searchBox').velocity('reverse');
+  $('.searchIp').blur();
+  setTimeout(function(){
+  $('.overlay').css({'display':'none'});
+  $('.searchBox').css({'display':'none'});
+},100);
+$('.overlay').css({'overflow':'visible'});
+}
+$('#close_search').click(function(){
+ close_search();
+});
+$
 var flag=1;
     $(".icn2").click(function(){
                   $("#cart").addClass("checkout--active ");
