@@ -1123,7 +1123,7 @@ transition-delay: 0.15s;
  .input__field:focus + .input__label .input__label-content,
 
  .input--filled .input__label-content { -webkit-animation: anim-1 0.3s forwards; animation: anim-1 0.3s forwards; }
-.effect1{width: 200%;position: absolute;height:10vw;background-color: rgba(255,255,255,0.6);transform: rotate(45deg) ;z-index: 10;top: 88%;left: -100%;}
+.effect1{width: 200%;position: absolute;height:10vw;background-color: rgba(255,255,255,0.6);transform: rotate(45deg) ;z-index: 10;top: 105%;left: -100%;}
 
 
 @-webkit-keyframes anim-1 {
@@ -1137,23 +1137,23 @@ transition-delay: 0.15s;
  	100% {opacity: 1;-webkit-transform: translate3d(0, -40%, 0);transform: translate3d(0, -40%, 0);	}
  }
 .click_disa{pointer-events:none;}
-.eff1_trigger{	-webkit-animation: effect1 1s forwards; 	animation: effect1 1s forwards;}
+.eff1_trigger{	-webkit-animation: effect1 1.2s forwards; 	animation: effect1 1.2s forwards;}
 .eff1_triggerR{	-webkit-animation: effect1r 1s forwards; 	animation: effect1r 1s forwards;}
 @keyframes effect1{
   0%{-webkit-transform: rotate(45deg) translate3d(0, 0, 0) ;	transform:rotate(45deg) translate3d(0, 0, 0) ;}
-  100%{-webkit-transform:rotate(45deg) translate3d(0, -65vw, 0) ;	transform: rotate(45deg) translate3d(0, -65vw, 0) ;}
+  100%{-webkit-transform:rotate(45deg) translate3d(0, -70vw, 0) ;	transform: rotate(45deg) translate3d(0, -70vw, 0) ;}
 }
 @-webkit-keyframes effect1{
   0%{-webkit-transform: translate3d(0, 0, 0) rotate(45deg);	transform: translate3d(0, 0, 0) rotate(45deg);}
-  100%{-webkit-transform: translate3d(0, -65vw, 0) rotate(45deg);	transform: translate3d(0, -65vw, 0) rotate(45deg);}
+  100%{-webkit-transform: translate3d(0, -70vw, 0) rotate(45deg);	transform: translate3d(0, -70vw, 0) rotate(45deg);}
 }
 @keyframes effect1r{
-  0%{-webkit-transform:rotate(45deg) translate3d(0, -65vw, 0) ;	transform: rotate(45deg) translate3d(0, -65vw, 0) ;}
+  0%{-webkit-transform:rotate(45deg) translate3d(0, -70vw, 0) ;	transform: rotate(45deg) translate3d(0, -70vw, 0) ;}
   100%{-webkit-transform: rotate(45deg) translate3d(0, 0, 0) ;	transform:rotate(45deg) translate3d(0, 0, 0) ;}
 
 }
 @-webkit-keyframes effect1r{
-  0%{-webkit-transform: translate3d(0, -65vw, 0) rotate(45deg);	transform: translate3d(0, -65vw, 0) rotate(45deg);}
+  0%{-webkit-transform: translate3d(0, -70vw, 0) rotate(45deg);	transform: translate3d(0, -70vw, 0) rotate(45deg);}
   100%{-webkit-transform: translate3d(0, 0, 0) rotate(45deg);	transform: translate3d(0, 0, 0) rotate(45deg);}
 
 }
