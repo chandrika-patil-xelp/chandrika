@@ -39,8 +39,6 @@
                     </div>
                 </div>
                 <div class="prdctAdv fLeft fmSansR">
-                    <div class="wrapperMax">
-
                         <div class="prdctAdd1 fLeft transition300 ">
                           <div class="loader"></div>
                           <div class="img_cont img2">
@@ -52,10 +50,10 @@
                              <div class="p_cont easing">Bridal Collection</div>
                              <div class='viewIcnDV easing'>
                                  <center>
-                                     <div class='icn4show transition300 easing'></div>
-                                     <div class='icn4show transition300 easing'></div>
-                                     <div class='icn4show transition300 easing'></div>
-                                     <div class='icn4show transition300 easing'></div>
+                                   <div class='icn4show transition300 pendent_ico easing'></div>
+                                   <div class='icn4show transition300 earring_ico easing'></div>
+                                   <div class='icn4show transition300 bangle_ico easing'></div>
+                                   <div class='icn4show transition300 ring_ico easing'></div>
                                  </center>
                              </div>
                            </div>
@@ -86,19 +84,17 @@
                         </div>
                         <div class="largePrdct fLeft  easing">
                           <div class="loader"></div>
-
                           <div class="img_cont img1">
                             <div class="dn"><img src="frontend/tools/img/img1.jpg"></div>
                            <div class="dual_bor easing">
                            <div class="top-borL"></div>
                            <div class="bot-borL"></div>
                               <div class="lrgeTxtDV ">
-
                                <div class="smpleTxt fLeft fmSansL">Earrings</div>
                                <div class="prdctAbtTxt fLeft">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </div>
                                <div class="btnWRp fLeft">
                                    <center>
-                                       <div class="btnDv ">SHOP NOW</div>
+                                       <a href="http://beta.xelpmoc.in/jzeva/index.php?action=product_details"><div class="btnDv ">SHOP NOW</div></a>
                                    </center>
                                </div>
                               </div>
@@ -111,9 +107,9 @@
                           <div class="img_cont imgrg">
                               <div class="dn"><img src="frontend/tools/img/rg.JPG"></div>
 
-                               <div class="p_cont1 easing">
+                               <div class="p_cont2 easing">
                                  <div class="top-bor transition300"></div>
-                                 <div class="side-bor transition300" ></div>
+                                 <div class="side-borh transition300" ></div>
                                     Pendants
                               </div>
                            </div>
@@ -129,10 +125,10 @@
                              <div class="p_cont easing">Bridal Collection</div>
                              <div class='viewIcnDV easing'>
                                  <center>
-                                     <div class='icn4show transition300 easing'></div>
-                                     <div class='icn4show transition300 easing'></div>
-                                     <div class='icn4show transition300 easing'></div>
-                                     <div class='icn4show transition300 easing'></div>
+                                     <div class='icn4show transition300 pendent_ico easing'></div>
+                                     <div class='icn4show transition300 earring_ico easing'></div>
+                                     <div class='icn4show transition300 bangle_ico easing'></div>
+                                     <div class='icn4show transition300 ring_ico easing'></div>
                                  </center>
                              </div>
                            </div>
@@ -171,7 +167,7 @@
 
                        </div>
                      </div>
-                    </div>
+
                 </div>
                 <div class='footer1 fLeft fmSansR'>
                     <div class='wrapperMax'>
@@ -212,96 +208,6 @@
                 </div>
             </div>
         </div>
-        <script>
-        $(".loader_proxy img").one("load", function() {
-          // $(this).closest(".img_holder").css({'display':'block'});
-
-        }).each(function() {
-          $(".img_cont img").one("load", function() {
-            $(this).closest(".img_cont").css({'display':'block'});
-          }).each(function() {
-            if(this.complete) $(this).load();
-          });
-        });
-
-        $(document).ready(function(){
-
-         $("#dragTrgt").click(function(){
-         $('.lmenu4mble').addClass('trnst-100');
-         $('body').removeClass('pFixed');
-         $('.dragTrgt').css({width: '20px', left: '0px'});
-    });
-            });
-  function showLeftMenu(flag) {
-    if (flag) {
-        $('.lmenu4mble').removeClass('trnst-100');
-        $('body').addClass('pFixed');
-        $('.dragTrgt').css({width: '50%', left: '250px'});
-
-    }
-    else {
-        $('.lmenu4mble').addClass('trnst-100');
-        $('body').removeClass('pFixed');
-        $('.dragTrgt').css({width: '20px', left: '0px'});
-    }
-}
-   $('.p_cont').velocity({opacity:[0]}, { delay:0 , duration:0});
-   $('.top-bor').velocity({width:[0],height:['82%']} ,{ delay:0 , duration:0});
-    $('.side-bor').velocity({height:[0],width:['82%']}, { delay:0 , duration:0});
-    //$('.effect1').velocity({translateY:['-302%'], rotateX:[45]});
-$('.prdctAdd1').mouseenter(function(){
-//   $('.prdctAdd1').addClass("click_disa").delay(500).queue(function(){
-//     $(this).removeClass("click_disa").dequeue();
-// });
-  $(this).find('.p_cont').addClass('fadeI');
-  $(this).find('.p_cont1').addClass('fadeU');
-  $(this).find('.top-bor').addClass('bor-hover1');
-  $(this).find('.side-bor').addClass('bor-hover2');
-  $(this).find('.effect1').addClass('effect1h');
-  $('.bor-hover1').velocity({width:['88%','0']}, {duration:300,  easing:"ease-in-out"});
-  $('.bor-hover2').velocity({height:['88%','0']}, {duration:300, easing:"ease-in-out"});
-  $('.fadeI').velocity({opacity:[1,0],translateY:[0,-50]}, {duration:400, easing:"ease-in-out"});
-  $('.fadeU').velocity({opacity:[1,0],translateY:[0,50]}, {duration:400, easing:"ease-in-out"});
-  $('.effect1h').velocity({left:['100%','-100%'] ,top:['-80%','90%']}, {duration:600, easing:"ease-in-out"});
-
-});
-$('.prdctAdd1').mouseleave(function (){
-  $('.fadeI').velocity('reverse');
-      $(this).find('.p_cont').removeClass('fadeI');
-
-      $('.fadeU').velocity('reverse');
-          $(this).find('.p_cont1').removeClass('fadeU');
-
-  $('.bor-hover1').velocity('reverse');
-      $(this).find('.top-bor').removeClass('bor-hover1');
-
-  $('.bor-hover2').velocity('reverse');
-      $(this).find('.side-bor').removeClass('bor-hover2');
-
-  $('.effect1h').velocity('reverse');
-            $(this).find('.effect1').removeClass('effect1h');
-            $(this).addClass("click_disa").delay(1000).queue(function(){
-        $(this).removeClass("click_disa").dequeue();
-    });
-
-              });
-// $('.prdctAdd1').mouseout(function(){
-//   $(this).find('.p_cont').velocity({opacity:[0,1],translateY:[-50,0]}, {  duration:300});
-// });
-$('.largePrdct').mouseenter(function(){
-  $(this).find('.top-borL').addClass('bor-hover3');
-  $(this).find('.bot-borL').addClass('bor-hover3');
-  $('.bor-hover3').velocity({width:['70%','0'],opacity:[1 , 0.2]}, {duration:300, easing:"ease-in-out"});
-});
-$('.largePrdct').mouseleave(function (){
-  $('.bor-hover3').velocity('reverse');
-  $(this).find('.top-borL').removeClass('bor-hover3');
-  $(this).find('.bot-borL').removeClass('bor-hover3');
-  $(this).addClass("click_disa").delay(1000).queue(function(){
-        $(this).removeClass("click_disa").dequeue();
-    });
-
-});
-        </script>
+            <script src="frontend/tools/js/home.js" type="text/javascript"></script>
     </body>
 </html>
