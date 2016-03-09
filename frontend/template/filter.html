@@ -1,0 +1,615 @@
+<?php include 'jhead.html' ?>
+<body>
+    <div class="lmenu4mble trnst-100 transition300">
+        <div class="lmnuHdng fLeft">
+            <center>
+                <div class="hdrLgo"></div>
+            </center>
+        </div>
+        <div class="lmnuLIstDv fLeft fmSansR">
+            <ul class="ulSabcat ">
+                <li class="liSubCat">JEWELLERY</li>
+                <li class="liSubCat">SOLITARIES</li>
+                <li class="liSubCat">DESIGNER</li>
+                <li class="liSubCat">VINTAGE</li>
+                <li class="liSubCat">BRIDAL</li>
+            </ul>
+        </div>
+    </div>
+    <div class="dragTrgt" id="dragTrgt"></div>
+    <div class="container">
+        <div class="wrapper">
+            <?php include 'jHeader.html'; ?>
+
+            <div class="totalCont fLeft">
+                <div class="wrapperMax" >
+                    <div class="navBar2nd fLeft fmSansR">
+                        <div class="homeLogo fLeft"></div>
+                        <div class="navStpDiv fLeft">product</div>
+                    </div>
+                    <div class="fWrp fLeft fmSansR"> 
+                        <div class="fCnt1 fLeft">
+                            <div class="loginHdngTxt fLeft fmSansB">FILTER</div>
+                            <div class="fStp1 fLeft">
+                                <div class="mTypeCnt fLeft">
+                                     <div class="loginHdngTxt fLeft colorLg">Metal Type:</div>
+                                    <div class="mCatDv fLeft">
+                                        <center>
+                                                <div class="numberDv">10</div>
+                                                </center>
+                                                <div class="text4nmbrDv fLeft font12">Rose Gold</div> 
+                                    </div>
+                                     <div class="mCatDv fLeft">
+                                        <center>
+                                                <div class="numberDv">14</div>
+                                                </center>
+                                                <div class="text4nmbrDv fLeft font12">White Gold</div> 
+                                    </div>
+                                     <div class="mCatDv fLeft">
+                                        <center>
+                                                <div class="numberDv">18</div>
+                                                </center>
+                                                <div class="text4nmbrDv fLeft font12">White Gold</div> 
+                                    </div>
+                                     <div class="mCatDv fLeft">
+                                        <center>
+                                                <div class="numberDv">14</div>
+                                                </center>
+                                                <div class="text4nmbrDv fLeft font12">Rose Gold</div> 
+                                    </div>
+                                     <div class="mCatDv fLeft">
+                                        <center>
+                                                <div class="numberDv">18</div>
+                                                </center>
+                                                <div class="text4nmbrDv fLeft font12">Yellow Gold</div> 
+                                    </div>
+                                     <div class="mCatDv fLeft">
+                                        <center>
+                                                <div class="numberDv">Rg</div>
+                                                </center>
+                                                <div class="text4nmbrDv fLeft font12">Rose Gold</div> 
+                                    </div>
+                                     <div class="mCatDv fLeft">
+                                        <center>
+                                                <div class="numberDv">Pa</div>
+                                                </center>
+                                                <div class="text4nmbrDv fLeft font12">Platinum</div> 
+                                    </div>
+                                     <div class="mCatDv fLeft">
+                                        <center>
+                                                <div class="numberDv">Pd</div>
+                                                </center>
+                                                <div class="text4nmbrDv fLeft font12">Palladium</div> 
+                                    </div>
+                                </div>
+                                <div class="fslctCnt fLeft">
+                                    <div class="loginHdngTxt fLeft colorLg">Carat:</div>
+                                      <div id="caratDiv" class="filterCont fLeft">
+					<div class='fLeft rangeCont'>
+						<div class='fLeft rangeDiv'>
+							<input type="text" id="caratRange" class="fLeft rngCart" style="visibility: hidden;">
+						</div>
+					</div>
+
+				</div>
+                                </div>
+                                <div class="fslctCnt fRight">
+                                   <div class="loginHdngTxt fLeft colorLg">Stone Color:</div>
+                                    <div class="checkDiv fLeft fmOpenR">
+                                        <div class="chk50 fLeft">
+                                    <input type="checkbox" name="select" id="color"  class="filled-in" value="color">
+                                   <label for="color">White(08)</label>
+                                        </div>
+                                         <div class="chk50 fLeft">
+                                    <input type="checkbox" name="select" id="color1"  class="filled-in" value="color1">
+                                   <label for="color1">Pine(50)</label>
+                                        </div>
+                                      </div>
+                                   <div class="checkDiv fLeft fmOpenR">
+                                        <div class="chk50 fLeft">
+                                    <input type="checkbox" name="select" id="color2"  class="filled-in" value="color2">
+                                   <label for="color2">Red(50)</label>
+                                        </div>
+                                         <div class="chk50 fLeft">
+                                    <input type="checkbox" name="select" id="color3"  class="filled-in" value="color3">
+                                   <label for="color3">Ice Blue(50)</label>
+                                        </div>
+                                      </div>
+                                    <div class="checkDiv fLeft fmOpenR">
+                                        <div class="chk50 fLeft">
+                                    <input type="checkbox" name="select" id="color4"  class="filled-in" value="color4">
+                                   <label for="color4">Blue(50)</label>
+                                        </div>
+                                         <div class="chk50 fLeft">
+                                    <input type="checkbox" name="select" id="color5"  class="filled-in" value="color5">
+                                   <label for="color5">Green(50)</label>
+                                        </div>
+                                      </div>
+                                   <div class="checkDiv fLeft fmOpenR">
+                                        <div class="chk50 fLeft">
+                                    <input type="checkbox" name="select" id="color6"  class="filled-in" value="color6">
+                                   <label for="color6">Black(50)</label>
+                                        </div>
+                                         <div class="chk50 fLeft">
+                                    <input type="checkbox" name="select" id="color7"  class="filled-in" value="color7">
+                                   <label for="color7">Pink(50)</label>
+                                        </div>
+                                      </div>
+                                </div>
+                        </div>
+                            <div class="fStp1 fLeft">
+                                <div class="mTypeCnt fLeft">
+                                    <div class="loginHdngTxt fLeft colorLg">Metal Type:</div>
+                                    <div class="shape fLeft roundD"></div>
+                                      <div class="shape fLeft emeraldD"></div>
+                                         <div class="shape fLeft pearD"></div>
+                                          <div class="shape fLeft princessD"></div>
+                                          <div class="shape fLeft marquiseD"></div>
+                                         <div class="shape fLeft ovalD"></div>
+                                      <div class="shape fLeft cushionD"></div>
+                                       <div class="shape fLeft heartD"></div>
+                                    <div class="shape fLeft radiantD"></div>
+                                </div>
+                                <div class="fslctCnt fLeft">
+                                    <div class="loginHdngTxt fLeft colorLg">Price Range:</div>
+                                      <div id="caratDiv" class="filterCont fLeft">
+					<div class='fLeft rangeCont'>
+						<div class='fLeft rangeDiv'>
+							<input type="text" id="caratRange1" class="fLeft rngPrice" style="visibility: hidden;">
+						</div>
+					</div>
+				</div>
+                                </div>
+                                <div class="fslctCnt fRight">
+                                    <div class="choiceCnt fLeft">
+                                        <span style="width:auto;height:auto;color:#22B9C7;font-size:15px;line-height:30px;float:left;padding: 0px 10px;">For</span>
+                                        <div class="icnMle fLeft"></div>
+                                        <div class="icnfiMle fLeft"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clrFrght fRight">CLEAR</div>
+                             <div class="clrFrght fRight">CLOSE</div>
+                        </div>
+                        <div class="filterStp fLeft">
+                            <div class="poupDv fRight">Ships on or before</div>
+                            <div class="fNtxtDv fRight">Shipping Date</div>
+                             <div class="poupDv fRight">Popular</div>
+                        </div>
+                        <div class="filterStp fLeft">
+                              <div class="prdctInFltr fLeft">
+                                <div class="prdctDisplydv fLeft transition300">
+                                    <div class="displayPimg fLeft"></div>
+                                    <div class="txtDsplyImg fLeft">NECKLACE</div>
+                                    <div class="txtDsplyImg fLeft">Fashion forward</div>
+                                    <div class="txtWrp fLeft">
+                                        <div class="txtDsplyImg fLeft"><del>&#2352; 25,000</del></div>
+                                    <div class="txtDsplyImg fLeft">&#2352; 20,000</div>
+                                    </div>
+                                    <div class="icnWrp fLeft">
+                                        <center>
+                                            <div class="icnHldr">
+                                                <div class="icncnt4Pshw likeIcn"></div>
+                                            </div>
+                                             <div class="icnHldr">
+                                                <div class="icncnt4Pshw cmprIcn"></div>
+                                            </div>
+                                             <div class="icnHldr">
+                                                <div class="icncnt4Pshw likeIcn"></div>
+                                            </div>
+                                        </center>  
+                                    </div>
+                                    <div class="icnWrp fLeft">
+                                        <center>
+                                            <div class="icncnt4Pshw1 icnStar1"></div>
+                                            <div class="icncnt4Pshw1 icnStar1"></div>
+                                            <div class="icncnt4Pshw1 icnStar1"></div>
+                                            <div class="icncnt4Pshw1 icnStar1"></div>
+                                            <div class="icncnt4Pshw1 icnStar2"></div>
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="prdctInFltr fLeft">
+                                <div class="prdctDisplydv fLeft transition300">
+                                    <div class="displayPimg fLeft"></div>
+                                    <div class="txtDsplyImg fLeft">NECKLACE</div>
+                                    <div class="txtDsplyImg fLeft">Fashion forward</div>
+                                    <div class="txtWrp fLeft">
+                                        <div class="txtDsplyImg fLeft"><del>&#2352; 25,000</del></div>
+                                    <div class="txtDsplyImg fLeft">&#2352; 20,000</div>
+                                    </div>
+                                    <div class="icnWrp fLeft">
+                                        <center>
+                                            <div class="icnHldr">
+                                                <div class="icncnt4Pshw likeIcn"></div>
+                                            </div>
+                                             <div class="icnHldr">
+                                                <div class="icncnt4Pshw cmprIcn"></div>
+                                            </div>
+                                             <div class="icnHldr">
+                                                <div class="icncnt4Pshw likeIcn"></div>
+                                            </div>
+                                        </center>  
+                                    </div>
+                                    <div class="icnWrp fLeft">
+                                        <center>
+                                            <div class="icncnt4Pshw1 icnStar1"></div>
+                                            <div class="icncnt4Pshw1 icnStar1"></div>
+                                            <div class="icncnt4Pshw1 icnStar1"></div>
+                                            <div class="icncnt4Pshw1 icnStar1"></div>
+                                            <div class="icncnt4Pshw1 icnStar2"></div>
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="prdctInFltr fLeft">
+                                <div class="prdctDisplydv fLeft transition300">
+                                    <div class="displayPimg fLeft"></div>
+                                    <div class="txtDsplyImg fLeft">NECKLACE</div>
+                                    <div class="txtDsplyImg fLeft">Fashion forward</div>
+                                    <div class="txtWrp fLeft">
+                                        <div class="txtDsplyImg fLeft"><del>&#2352; 25,000</del></div>
+                                    <div class="txtDsplyImg fLeft">&#2352; 20,000</div>
+                                    </div>
+                                    <div class="icnWrp fLeft">
+                                        <center>
+                                            <div class="icnHldr">
+                                                <div class="icncnt4Pshw likeIcn"></div>
+                                            </div>
+                                             <div class="icnHldr">
+                                                <div class="icncnt4Pshw cmprIcn"></div>
+                                            </div>
+                                             <div class="icnHldr">
+                                                <div class="icncnt4Pshw likeIcn"></div>
+                                            </div>
+                                        </center>  
+                                    </div>
+                                    <div class="icnWrp fLeft">
+                                        <center>
+                                            <div class="icncnt4Pshw1 icnStar1"></div>
+                                            <div class="icncnt4Pshw1 icnStar1"></div>
+                                            <div class="icncnt4Pshw1 icnStar1"></div>
+                                            <div class="icncnt4Pshw1 icnStar1"></div>
+                                            <div class="icncnt4Pshw1 icnStar2"></div>
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="prdctInFltr fLeft">
+                                <div class="prdctDisplydv fLeft transition300">
+                                    <div class="displayPimg fLeft"></div>
+                                    <div class="txtDsplyImg fLeft">NECKLACE</div>
+                                    <div class="txtDsplyImg fLeft">Fashion forward</div>
+                                    <div class="txtWrp fLeft">
+                                        <div class="txtDsplyImg fLeft"><del>&#2352; 25,000</del></div>
+                                    <div class="txtDsplyImg fLeft">&#2352; 20,000</div>
+                                    </div>
+                                    <div class="icnWrp fLeft">
+                                        <center>
+                                            <div class="icnHldr">
+                                                <div class="icncnt4Pshw likeIcn"></div>
+                                            </div>
+                                             <div class="icnHldr">
+                                                <div class="icncnt4Pshw cmprIcn"></div>
+                                            </div>
+                                             <div class="icnHldr">
+                                                <div class="icncnt4Pshw likeIcn"></div>
+                                            </div>
+                                        </center>  
+                                    </div>
+                                    <div class="icnWrp fLeft">
+                                        <center>
+                                            <div class="icncnt4Pshw1 icnStar1"></div>
+                                            <div class="icncnt4Pshw1 icnStar1"></div>
+                                            <div class="icncnt4Pshw1 icnStar1"></div>
+                                            <div class="icncnt4Pshw1 icnStar1"></div>
+                                            <div class="icncnt4Pshw1 icnStar2"></div>
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="prdctInFltr fLeft">
+                                <div class="prdctDisplydv fLeft transition300">
+                                    <div class="displayPimg fLeft"></div>
+                                    <div class="txtDsplyImg fLeft">NECKLACE</div>
+                                    <div class="txtDsplyImg fLeft">Fashion forward</div>
+                                    <div class="txtWrp fLeft">
+                                        <div class="txtDsplyImg fLeft"><del>&#2352; 25,000</del></div>
+                                    <div class="txtDsplyImg fLeft">&#2352; 20,000</div>
+                                    </div>
+                                    <div class="icnWrp fLeft">
+                                        <center>
+                                            <div class="icnHldr">
+                                                <div class="icncnt4Pshw likeIcn"></div>
+                                            </div>
+                                             <div class="icnHldr">
+                                                <div class="icncnt4Pshw cmprIcn"></div>
+                                            </div>
+                                             <div class="icnHldr">
+                                                <div class="icncnt4Pshw likeIcn"></div>
+                                            </div>
+                                        </center>  
+                                    </div>
+                                    <div class="icnWrp fLeft">
+                                        <center>
+                                            <div class="icncnt4Pshw1 icnStar1"></div>
+                                            <div class="icncnt4Pshw1 icnStar1"></div>
+                                            <div class="icncnt4Pshw1 icnStar1"></div>
+                                            <div class="icncnt4Pshw1 icnStar1"></div>
+                                            <div class="icncnt4Pshw1 icnStar2"></div>
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+                              <div class="prdctInFltr fLeft">
+                                <div class="prdctDisplydv fLeft transition300">
+                                    <div class="displayPimg fLeft"></div>
+                                    <div class="txtDsplyImg fLeft">NECKLACE</div>
+                                    <div class="txtDsplyImg fLeft">Fashion forward</div>
+                                    <div class="txtWrp fLeft">
+                                        <div class="txtDsplyImg fLeft"><del>&#2352; 25,000</del></div>
+                                    <div class="txtDsplyImg fLeft">&#2352; 20,000</div>
+                                    </div>
+                                    <div class="icnWrp fLeft">
+                                        <center>
+                                            <div class="icnHldr">
+                                                <div class="icncnt4Pshw likeIcn"></div>
+                                            </div>
+                                             <div class="icnHldr">
+                                                <div class="icncnt4Pshw cmprIcn"></div>
+                                            </div>
+                                             <div class="icnHldr">
+                                                <div class="icncnt4Pshw likeIcn"></div>
+                                            </div>
+                                        </center>  
+                                    </div>
+                                    <div class="icnWrp fLeft">
+                                        <center>
+                                            <div class="icncnt4Pshw1 icnStar1"></div>
+                                            <div class="icncnt4Pshw1 icnStar1"></div>
+                                            <div class="icncnt4Pshw1 icnStar1"></div>
+                                            <div class="icncnt4Pshw1 icnStar1"></div>
+                                            <div class="icncnt4Pshw1 icnStar2"></div>
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+                              <div class="prdctInFltr fLeft">
+                                <div class="prdctDisplydv fLeft transition300">
+                                    <div class="displayPimg fLeft"></div>
+                                    <div class="txtDsplyImg fLeft">NECKLACE</div>
+                                    <div class="txtDsplyImg fLeft">Fashion forward</div>
+                                    <div class="txtWrp fLeft">
+                                        <div class="txtDsplyImg fLeft"><del>&#2352; 25,000</del></div>
+                                    <div class="txtDsplyImg fLeft">&#2352; 20,000</div>
+                                    </div>
+                                    <div class="icnWrp fLeft">
+                                        <center>
+                                            <div class="icnHldr">
+                                                <div class="icncnt4Pshw likeIcn"></div>
+                                            </div>
+                                             <div class="icnHldr">
+                                                <div class="icncnt4Pshw cmprIcn"></div>
+                                            </div>
+                                             <div class="icnHldr">
+                                                <div class="icncnt4Pshw likeIcn"></div>
+                                            </div>
+                                        </center>  
+                                    </div>
+                                    <div class="icnWrp fLeft">
+                                        <center>
+                                            <div class="icncnt4Pshw1 icnStar1"></div>
+                                            <div class="icncnt4Pshw1 icnStar1"></div>
+                                            <div class="icncnt4Pshw1 icnStar1"></div>
+                                            <div class="icncnt4Pshw1 icnStar1"></div>
+                                            <div class="icncnt4Pshw1 icnStar2"></div>
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+                              <div class="prdctInFltr fLeft">
+                                <div class="prdctDisplydv fLeft transition300">
+                                    <div class="displayPimg fLeft"></div>
+                                    <div class="txtDsplyImg fLeft">NECKLACE</div>
+                                    <div class="txtDsplyImg fLeft">Fashion forward</div>
+                                    <div class="txtWrp fLeft">
+                                        <div class="txtDsplyImg fLeft"><del>&#2352; 25,000</del></div>
+                                    <div class="txtDsplyImg fLeft">&#2352; 20,000</div>
+                                    </div>
+                                    <div class="icnWrp fLeft">
+                                        <center>
+                                            <div class="icnHldr">
+                                                <div class="icncnt4Pshw likeIcn"></div>
+                                            </div>
+                                             <div class="icnHldr">
+                                                <div class="icncnt4Pshw cmprIcn"></div>
+                                            </div>
+                                             <div class="icnHldr">
+                                                <div class="icncnt4Pshw likeIcn"></div>
+                                            </div>
+                                        </center>  
+                                    </div>
+                                    <div class="icnWrp fLeft">
+                                        <center>
+                                            <div class="icncnt4Pshw1 icnStar1"></div>
+                                            <div class="icncnt4Pshw1 icnStar1"></div>
+                                            <div class="icncnt4Pshw1 icnStar1"></div>
+                                            <div class="icncnt4Pshw1 icnStar1"></div>
+                                            <div class="icncnt4Pshw1 icnStar2"></div>
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+                              <div class="prdctInFltr fLeft">
+                                <div class="prdctDisplydv fLeft transition300">
+                                    <div class="displayPimg fLeft"></div>
+                                    <div class="txtDsplyImg fLeft">NECKLACE</div>
+                                    <div class="txtDsplyImg fLeft">Fashion forward</div>
+                                    <div class="txtWrp fLeft">
+                                        <div class="txtDsplyImg fLeft"><del>&#2352; 25,000</del></div>
+                                    <div class="txtDsplyImg fLeft">&#2352; 20,000</div>
+                                    </div>
+                                    <div class="icnWrp fLeft">
+                                        <center>
+                                            <div class="icnHldr">
+                                                <div class="icncnt4Pshw likeIcn"></div>
+                                            </div>
+                                             <div class="icnHldr">
+                                                <div class="icncnt4Pshw cmprIcn"></div>
+                                            </div>
+                                             <div class="icnHldr">
+                                                <div class="icncnt4Pshw likeIcn"></div>
+                                            </div>
+                                        </center>  
+                                    </div>
+                                    <div class="icnWrp fLeft">
+                                        <center>
+                                            <div class="icncnt4Pshw1 icnStar1"></div>
+                                            <div class="icncnt4Pshw1 icnStar1"></div>
+                                            <div class="icncnt4Pshw1 icnStar1"></div>
+                                            <div class="icncnt4Pshw1 icnStar1"></div>
+                                            <div class="icncnt4Pshw1 icnStar2"></div>
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+                              <div class="prdctInFltr fLeft">
+                                <div class="prdctDisplydv fLeft transition300">
+                                    <div class="displayPimg fLeft"></div>
+                                    <div class="txtDsplyImg fLeft">NECKLACE</div>
+                                    <div class="txtDsplyImg fLeft">Fashion forward</div>
+                                    <div class="txtWrp fLeft">
+                                        <div class="txtDsplyImg fLeft"><del>&#2352; 25,000</del></div>
+                                    <div class="txtDsplyImg fLeft">&#2352; 20,000</div>
+                                    </div>
+                                    <div class="icnWrp fLeft">
+                                        <center>
+                                            <div class="icnHldr">
+                                                <div class="icncnt4Pshw likeIcn"></div>
+                                            </div>
+                                             <div class="icnHldr">
+                                                <div class="icncnt4Pshw cmprIcn"></div>
+                                            </div>
+                                             <div class="icnHldr">
+                                                <div class="icncnt4Pshw likeIcn"></div>
+                                            </div>
+                                        </center>  
+                                    </div>
+                                    <div class="icnWrp fLeft">
+                                        <center>
+                                            <div class="icncnt4Pshw1 icnStar1"></div>
+                                            <div class="icncnt4Pshw1 icnStar1"></div>
+                                            <div class="icncnt4Pshw1 icnStar1"></div>
+                                            <div class="icncnt4Pshw1 icnStar1"></div>
+                                            <div class="icncnt4Pshw1 icnStar2"></div>
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php include 'jFooter.html'; ?>
+        </div>
+    </div>
+    <script>
+
+	$(".rngCart").each(function () {
+		
+		var id = $(this).attr('id');
+		var min_price = 1 * 1;
+		var max_price = 5 * 1;
+
+		if((max_price - min_price) > 100)
+			var step = '';
+		else
+			var step = 0.01;
+		
+		$(this).ionRangeSlider({
+			type: "double",
+			grid: true,
+			min: Math.floor(min_price),
+			max: Math.ceil(max_price),
+			from: Math.floor(min_price),
+			to: Math.ceil(max_price),
+			decorate_both: false,
+			prettify_separator: ",",
+			prettify: function(val) {
+				if(val > 1000)
+				{
+					if(id == 'priceRange')
+					{
+						return common.IND_money_format(val);
+					}
+					else
+					{
+						return val;
+					}
+				}
+				else
+				{
+					return val;
+				}
+			},
+			force_edges: true,
+			drag_interval: true,
+			step: step,
+			onFinish: function(data) {
+                                //$('#pgno').val(1);
+				//FR();
+			}
+		});
+		});
+                $(".rngPrice").each(function () {
+		
+		var id = $(this).attr('id');
+		var min_price = 15000 * 1;
+		var max_price = 20000 * 1;
+
+		if((max_price - min_price) > 100)
+			var step = '';
+		else
+			var step = 0.01;
+		
+		$(this).ionRangeSlider({
+			type: "double",
+			grid: true,
+			min: Math.floor(min_price),
+			max: Math.ceil(max_price),
+			from: Math.floor(min_price),
+			to: Math.ceil(max_price),
+			decorate_both: false,
+			prettify_separator: ",",
+			prettify: function(val) {
+				if(val > 1000)
+				{
+					if(id == 'priceRange')
+					{
+						return common.IND_money_format(val);
+					}
+					else
+					{
+						return val;
+					}
+				}
+				else
+				{
+					return val;
+				}
+			},
+			force_edges: true,
+			drag_interval: true,
+			step: step,
+			onFinish: function(data) {
+                                //$('#pgno').val(1);
+				//FR();
+			}
+		});
+		});
+
+
+</script>
+
+</body>
