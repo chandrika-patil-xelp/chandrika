@@ -180,21 +180,33 @@
     });
             });
             
-             var input_selector = 'input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=number], input[type=search], textarea, input[type=radio]';
+          var input_selector = 'input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=number], input[type=search], textarea, input[type=radio]';
 
 var input_hidden = 'input[type=hidden]';
+$('.input__field').focus(function(){
+            $(this).closest('.input').addClass('input--filled');
+      });
+  $('.input__field').blur(function(){
+     var y=$(this).val();
+    if(y!=""){
+   $(this).closest('.input').addClass('input--filled');
+ }
+ else{
+     $(this).closest('.input').removeClass('input--filled');
+ }
+  });
 
-$(document).on('focus', input_selector, function() {
-    $(this).siblings('label, i').addClass('lablTrnst');
-   $(this).addClass('borderTrnst');
-});
-
-$(document).on('blur', input_selector, function() {
-    if ($(this).val().length === 0 && $(this).attr('placeholder') === undefined) {
-        $(this).siblings('label, i').removeClass('lablTrnst');
-         $(this).removeClass('borderTrnst');
-    } 
-});
+//$(document).on('focus', input_selector, function() {
+//    $(this).siblings('label, i').addClass('lablTrnst');
+//   $(this).addClass('borderTrnst');
+//});
+//
+//$(document).on('blur', input_selector, function() {
+//    if ($(this).val().length === 0 && $(this).attr('placeholder') === undefined) {
+//        $(this).siblings('label, i').removeClass('lablTrnst');
+//         $(this).removeClass('borderTrnst');
+//    } 
+//});
   function showLeftMenu(flag) {
     if (flag) {
         $('.lmenu4mble').removeClass('trnst-100');
