@@ -35,7 +35,7 @@
                           <div class="col60">Reaper17</div>
                           <div class="col40">&#8377 24000</div></div>
                           <div class="cart_head mTop5">
-                              <a href="http://beta.xelpmoc.in/jzeva/index.php?action=orders"><div class="btnDv fRight">But Now</div></a>
+                              <a href="http://beta.xelpmoc.in/jzeva/index.php?action=orders"><div class="btnDv fRight">Buy Now</div></a>
                                <a href="http://beta.xelpmoc.in/jzeva/index.php?action=product_details"><div class="Cspan fRight">Continue Shopping ></div></a>
                              </div>
                      </div>
@@ -59,8 +59,9 @@
                                         <input class="searchBox  fmSansR" placeholder="Looking For Something ?"/>
                                 </div>
                             </div>
+
                             <div class="opnShpLogo fLeft">
-                                <center> 
+                                <center>
                                     <div class="oslIcn" id="oSl"></div>
                                 </center>
                                 <div class="fabDv" id="fabDv">
@@ -82,12 +83,21 @@
                                         <center>
                                              <div class="iconCont mrgnRght0">
                                        <div class="icn3"></div>
-                                        <input class="searchBox  fmSansR" placeholder="Looking For Something ?"/>
+
                                         </div>
                                         </center>
                                     </div>
+                                    <div class="fabIcnWrp transition300" id="fiw3">
+                                       <center>
+                                            <div class="iconCont mrgnRght0">
+                                      <div class="icn3a"></div>
+
+                                       </div>
+                                       </center>
+                                   </div>
                                 </div>
                             </div>
+
                         </div>
                         <div class="headerLower fLeft">
                             <center>
@@ -255,46 +265,46 @@
                     </div>
                 </div>
 <script>
+$( window ).resize(function() {
+  var windowsize = $(window).width();
+  if(windowsize<768){
+
+  $('.opnShpLogo').removeClass("dn");
+}
+});
 var flag=1;
     $(".icn2").click(function(){
                   $("#cart").addClass("checkout--active ");
+                      $('.opnShpLogo').addClass("dn");
                 });
                 $("#close_cart").click(function(){
-                  $("#cart").removeClass("checkout--active ");
-                });
-                  $(".icn3").click(function(){
-
-                    if(flag==1){
-                    $(this).closest(".iconCont").css({'width':'200px'});
-                    $(this).siblings('.searchBox').focus();
-                   flag=2;
+                  clearTimeout(mInt);
+                  mInt=setTimeout(function() {
+                    var windowsize = $(window).width();
+                    if(windowsize<768){
+                    $('.opnShpLogo').removeClass("dn");
                   }
-              else{
-                  $(this).closest(".iconCont").css({'width':'35px'});
-                  flag=1;
-              }
-            });
-             $('.navLstDtls1').velocity({translateY:"-20px", borderRadius:"35%",opacity:"0"});
+                  },180);
+                      $("#cart").removeClass("checkout--active ");
+                });
+          $('.navLstDtls1').velocity({translateY:"-20px", borderRadius:"35%",opacity:"0"});
           $('.navLstDtls2').velocity({translateY:"-20px", borderRadius:"35%",opacity:"0"});
-           $('.navLstDtls3').velocity({translateY:"-20px", borderRadius:"35%",opacity:"0"});
+          $('.navLstDtls3').velocity({translateY:"-20px", borderRadius:"35%",opacity:"0"});
     var mInt;
-    //var scnd;
-    //var third;
     $('#jwl').bind('mouseenter', function() {
         clearTimeout(mInt);
         mInt=setTimeout(function() {
         $('.navLstDtls1').removeClass('dn');
             setTimeout(function() {
-                $('.navLstDtls1').velocity({opacity:"1"},{delay:30,duration:100,easing:"swing"});
-                $('.navLstDtls1').velocity({translateY:"0px",borderRadius:"0px"},{queue: false,delay:00,duration:200,easing:"swing"});
+                $('.navLstDtls1').velocity({opacity:"1"},{delay:30,duration:100,easing:"ease-in-out"});
+                $('.navLstDtls1').velocity({translateY:"0px",borderRadius:"0px"},{queue: false,delay:0,duration:200,easing:"ease-in-out"});
 
                 },00);
         },100);
     });
-    
     $('#jwl').bind('mouseleave', function() {
-       $('.navLstDtls1').velocity({opacity:"0"},{delay:0,duration:0,easing:"swing"});
-        $('.navLstDtls1').velocity({borderRadius:"35%",translateY:"-20px"},{queue: false,delay:0,duration:0,easing:"swing"});
+       $('.navLstDtls1').velocity({opacity:"0"},{delay:0,duration:0,easing:"ease-in-out"});
+        $('.navLstDtls1').velocity({borderRadius:"35%",translateY:"-20px"},{queue: false,delay:0,duration:0,easing:"ease-in-out"});
         setTimeout(function() {
             $('.navLstDtls1').addClass('dn');
         },00);
@@ -304,16 +314,15 @@ var flag=1;
         mInt=setTimeout(function() {
         $('.navLstDtls2').removeClass('dn');
             setTimeout(function() {
-                $('.navLstDtls2').velocity({opacity:"1"},{delay:30,duration:100,easing:"swing"});
-                $('.navLstDtls2').velocity({translateY:"0px",borderRadius:"0px"},{queue: false,delay:00,duration:200,easing:"swing"});
+                $('.navLstDtls2').velocity({opacity:"1"},{delay:30,duration:100,easing:"ease-in-out"});
+                $('.navLstDtls2').velocity({translateY:"0px",borderRadius:"0px"},{queue: false,delay:00,duration:200,easing:"ease-in-out"});
 
                 },00);
         },100);
     });
-    
     $('#sol').bind('mouseleave', function() {
-       $('.navLstDtls2').velocity({opacity:"0"},{delay:0,duration:0,easing:"swing"});
-        $('.navLstDtls2').velocity({borderRadius:"35%",translateY:"-20px"},{queue: false,delay:0,duration:0,easing:"swing"});
+       $('.navLstDtls2').velocity({opacity:"0"},{delay:0,duration:0,easing:"ease-in-out"});
+        $('.navLstDtls2').velocity({borderRadius:"35%",translateY:"-20px"},{queue: false,delay:0,duration:0,easing:"ease-in-out"});
         setTimeout(function() {
             $('.navLstDtls2').addClass('dn');
         },00);
@@ -321,15 +330,14 @@ var flag=1;
     $('#fybn').bind('mouseenter', function() {
         clearTimeout(mInt);
         mInt=setTimeout(function() {
+
         $('.navLstDtls3').removeClass('dn');
             setTimeout(function() {
                 $('.navLstDtls3').velocity({opacity:"1"},{delay:30,duration:100,easing:"swing"});
                 $('.navLstDtls3').velocity({translateY:"0px",borderRadius:"0px"},{queue: false,delay:00,duration:200,easing:"swing"});
-
                 },00);
         },100);
     });
-    
     $('#fybn').bind('mouseleave', function() {
        $('.navLstDtls3').velocity({opacity:"0"},{delay:0,duration:0,easing:"swing"});
         $('.navLstDtls3').velocity({borderRadius:"35%",translateY:"-20px"},{queue: false,delay:0,duration:0,easing:"swing"});
@@ -337,41 +345,33 @@ var flag=1;
             $('.navLstDtls3').addClass('dn');
         },00);
     });
-    
     $(".fabDv").velocity({display:"none"});
-     $('#fiw').velocity({ scale:"0",opacity:"0",translateY:"-50px"});
-      $('#fiw1').velocity({ scale:"0",opacity:"0",translateY:"-50px"});
-      $('#fiw2').velocity({ scale:"0",opacity:"0",translateY:"-50px"});
+     $('#fiw').velocity({ opacity:"0",});
+      $('#fiw1').velocity({ opacity:"0"});
+      $('#fiw2').velocity({ opacity:"0"});
+      $('#fiw3').velocity({ opacity:"0"});
          var bi=0;;
        $('#oSl').click(function() {
              if(bi==0){
         setTimeout(function() {
         $('.fabDv').css("display","block");
             setTimeout(function() {
-                $('#fiw').velocity({translateY:"-2px"},{delay:30,duration:50,easing:"swing"});
-                $('#fiw').velocity({opacity:"1",scale:"1"},{queue: false,delay:00,duration:50,easing:"swing"});
-                $('#fiw1').velocity({translateY:"-2px"},{delay:60,duration:100,easing:"swing"});
-                $('#fiw1').velocity({opacity:"1",scale:"1"},{queue: false,delay:00,duration:100,easing:"swing"});
-                 $('#fiw2').velocity({translateY:"-2px"},{delay:90,duration:150,easing:"swing"});
-                $('#fiw2').velocity({opacity:"1",scale:"1"},{queue: false,delay:00,duration:150,easing:"swing"});
-                 
+                $('#fiw').velocity({opacity:[1,0]  ,scale:[1,0]},{delay:30,duration:50,easing:"swing"});
+                $('#fiw1').velocity({opacity:[1,0]  ,scale:[1,0]},{delay:60,duration:50,easing:"swing"});
+                $('#fiw2').velocity({opacity:[1,0]  ,scale:[1,0]},{delay:90,duration:50,easing:"swing"});
+                $('#fiw3').velocity({opacity:[1,0]  ,scale:[1,0]},{delay:120,duration:50,easing:"swing"});
                 },00);
         },150);
          bi=1;
     }
     else{
-            setTimeout(function() {
-                $('#fiw').velocity({translateY:"-50px"},{delay:00,duration:60,easing:"swing"});
-                $('#fiw').velocity({opacity:"0",scale:"0"},{queue: false,delay:90,duration:60,easing:"swing"});
-                $('#fiw1').velocity({translateY:"-50px"},{delay:00,duration:80,easing:"swing"});
-                $('#fiw1').velocity({opacity:"0",scale:"0"},{queue: false,delay:60,duration:80,easing:"swing"});
-                 $('#fiw2').velocity({translateY:"-50px"},{delay:00,duration:100,easing:"swing"});
-                $('#fiw2').velocity({opacity:"0",scale:"0"},{queue: false,delay:30,duration:100,easing:"swing"});
-                 
-                },50);
-                setTimeout(function(){
-                 $('.fabDv').css("display","none");
-        },250);
+                $('#fiw').velocity({scale:[1,0],scale:[0,1]},{delay:120,duration:50,easing:"swing"});
+                $('#fiw1').velocity({opacity:[0,1],scale:[0,1]},{delay:90,duration:50,easing:"swing"});
+                $('#fiw2').velocity({opacity:[0,1],scale:[0,1]},{delay:60,duration:50,easing:"swing"});
+                $('#fiw3').velocity({scale:[0,1],opacity:[0,1]},{delay:30,duration:50,easing:"swing"});
+            setTimeout(function(){
+                $('.fabDv').css("display","none");
+        },300);
         bi=0;
     }
     });
