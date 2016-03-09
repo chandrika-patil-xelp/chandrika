@@ -51,6 +51,14 @@ switch ($action) {
         $page = 'product_details';
         include TEMPLATE.'product_details.html';
         break;
+     case 'login_jzeva':
+        $page = 'login_jzeva';
+        include TEMPLATE.'login_jzeva.html';
+        break;
+    case 'filter':
+        $page = 'filter';
+        include TEMPLATE.'filter.html';
+        break;
     
     
     
