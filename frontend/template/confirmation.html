@@ -32,13 +32,21 @@
                             <div class="cnfrmLmenu fLeft">
                                 <div class="cnFrmLhDng fLeft">My Jzeva account</div>
                                 <div class="lstLmnu fLeft" onclick="tabchange('ordrWrp')" id="oW">Orders</div>
-                                <div class="lstLmnu fLeft" onclick="tabchange('savedAddress')" id="sA">My Saved Address</div>
                                 <div class="lstLmnu fLeft" onclick="tabchange('wishLst')" id="wL">Wishlist</div>
-                                <div class="lstLmnu fLeft">My Reviews</div>
+                                <div class="lstLmnu fLeft" onclick="tabchange('myRvws')" id="mR">My Reviews</div>
                                 <div class="cnFrmLhDng fLeft">My Account Setting</div>
-                                 <div class="lstLmnu fLeft" onclick="tabchange('piCont')" id="pC">Personal Info</div>
-                                <div class="lstLmnu fLeft"  onclick="tabchange('chngPass')" id="cP">Change Password</div>
-                                <div class="lstLmnu fLeft" onclick="tabchange('update_cont')" id="uC">Update Contact</div>
+                                 <div class="lstLmnu fLeft" onclick="tabchange('piCont')" id="pC">Personal Info
+                                     <div class="icnSetting"></div>
+                                 </div>
+                                  <div class="lstLmnu fLeft" onclick="tabchange('savedAddress')" id="sA">My Saved Address
+                                      <div class="icnSetting"></div>
+                                  </div>
+                                <div class="lstLmnu fLeft"  onclick="tabchange('chngPass')" id="cP">Change Password
+                                    <div class="icnSetting"></div>
+                                </div>
+                                <div class="lstLmnu fLeft" onclick="tabchange('update_cont')" id="uC">Update Contact
+                                    <div class="icnSetting"></div>
+                                </div>
                             </div>
                             <div class="cnfrmRmenu fLeft">
                                 <div class="orderWrPR fLeft" id="ordrWrp">
@@ -189,6 +197,50 @@
                                                      <div class="odBtn fLeft">ADD TO CART</div>
                                                   <div class="odBtn fRight">REMOVE</div>
                                                     </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                  <div class="wishLstCnt fLeft fmSansR dn" id="myRvws">
+                                    <div class="wishLstHdng fLeft">
+                                        <div class="hdngTxtWsh fLeft">My Reviews</div>
+                                    </div>
+                                    <div class="abtWshLst fLeft">simply dummy text of the printing and typesetting industry.</div>
+                                    <div class="wishLstadvWrp fLeft">
+                                        <div class="wishLstDvsn fLeft">
+                                            <div class="showWishLST fLeft">
+                                                <div class="wishLstIMG"></div>
+                                                <div class="abtWishLST fLeft">
+                                                    <div class="displayTxt fLeft">Joker & witch elegant charmer for women</div>
+                                                     <div class="displayTxt fLeft">
+                                                    <span style="width:40%;height:auto;line-height:20px;font-size:13px;color:#666;float:left">Date of purchase:</span>
+                                                    <span style="width:50%;height:auto;line-height:20px;font-size:13px;color:#155082;float:left;">12-12-2016</span>
+                                                </div>
+                                                      <div class="displayTxt fLeft">
+                                                    <span style="width:100%;height:auto;line-height:20px;font-size:13px;color:#666;float:left">You left a comment:</span>
+                                                    <span style="width:100%;height:auto;line-height:20px;font-size:13px;color:#666;float:left;">Awesome Product</span>
+                                                </div>
+                                                     <div class="editSAD fLeft mRight7"></div> 
+                                                <div class="rmvSAD fLeft mRight7"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                          <div class="wishLstDvsn1 fLeft">
+                                         <div class="showWishLST fLeft">
+                                                <div class="wishLstIMG"></div>
+                                                <div class="abtWishLST fLeft">
+                                                    <div class="displayTxt fLeft">Joker & witch elegant charmer for women</div>
+                                                     <div class="displayTxt fLeft">
+                                                    <span style="width:40%;height:auto;line-height:20px;font-size:13px;color:#666;float:left">Date of purchase:</span>
+                                                    <span style="width:50%;height:auto;line-height:20px;font-size:13px;color:#155082;float:left;">12-12-2016</span>
+                                                </div>
+                                                      <div class="displayTxt fLeft">
+                                                    <span style="width:100%;height:auto;line-height:20px;font-size:13px;color:#666;float:left">You left a comment:</span>
+                                                    <span style="width:100%;height:auto;line-height:20px;font-size:13px;color:#666;float:left;">Awesome Product</span>
+                                                </div>
+                                                     <div class="editSAD fLeft mRight7"></div> 
+                                                <div class="rmvSAD fLeft mRight7"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -455,6 +507,7 @@
                       $("#piCont").addClass("dn");
                        $("#chngPass").addClass("dn");
                          $("#update_cont").addClass("dn");
+                          $("#myRvws").addClass("dn");
                     break;
             }
             switch (id) {
@@ -465,6 +518,7 @@
                       $("#piCont").addClass("dn");
                        $("#chngPass").addClass("dn");
                          $("#update_cont").addClass("dn");
+                          $("#myRvws").addClass("dn");
                     break;
             }
              switch (id) {
@@ -475,6 +529,7 @@
                      $("#piCont").removeClass("dn");
                      $("#chngPass").addClass("dn");
                        $("#update_cont").addClass("dn");
+                        $("#myRvws").addClass("dn");
                     break;
             }
             switch (id) {
@@ -485,6 +540,7 @@
                      $("#piCont").addClass("dn");
                       $("#chngPass").removeClass("dn");
                        $("#update_cont").addClass("dn");
+                        $("#myRvws").addClass("dn");
                     break;
             }
               switch (id) {
@@ -495,6 +551,18 @@
                      $("#piCont").addClass("dn");
                       $("#chngPass").addClass("dn");
                        $("#update_cont").removeClass("dn");
+                        $("#myRvws").addClass("dn");
+                    break;
+            }
+            switch (id) {
+                case "myRvws":
+                    $("#wishLst").addClass("dn");
+                    $("#ordrWrp").addClass("dn");
+                     $("#savedAddress").addClass("dn");
+                     $("#piCont").addClass("dn");
+                      $("#chngPass").addClass("dn");
+                       $("#update_cont").addClass("dn");
+                        $("#myRvws").removeClass("dn");
                     break;
             }
         }
