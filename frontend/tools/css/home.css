@@ -126,7 +126,11 @@ textarea:focus, input:focus{
 
 .insidePrdcttxt{width:100%;height:100%;padding-top:40px;background-color:rgba(0,0,0,0.3);}
 .txtsample{width:100%;height:auto;color:#fff;line-height:3.5vw;font-size:3.5vw;text-align:center;padding:0px 10px;margin-bottom:10px;}
-.middleDiv{width:34%;height:35vw;background-color:#12AAC1;position:relative;padding:0 10px;}
+.middleDiv{width:34%;height:35vw;position:relative;padding-bottom:5vw}
+.middleDiv:hover{padding-bottom:10.5vw}
+.middleDiv:hover .img_cont{transform:scale(0.8)}
+.middleDiv .prdctAbtTxt{color:#666;opacity:0;position:absolute; top:30vw; padding:0 30px;}
+.middleDiv:hover .prdctAbtTxt{opacity:1;}
 
 .largePrdct{width:67%;height:35vw;background-size:100% auto;background-position:center ;transition: 400ms;  -moz-transition: 400ms;  -webkit-transition: 400ms;position:relative}
 
@@ -153,12 +157,13 @@ textarea:focus, input:focus{
 /*effects*/
 .border_eff{position:absolute;width:100%;height:100%;background:rgba(0,0,0,0.8);opacity:0;transition: 300ms;  -moz-transition: 300ms;  -webkit-transition: 300ms;}
 .prdctAdd1:hover .border_eff{opacity:1}
-.top-bor,
-.side-bor {position: absolute; transition:350ms;-moz-transition:350ms;-webkit-transition:350ms;}
+/*.top-bor,
+.side-bor {position: absolute; transition:350ms;-moz-transition:350ms;-webkit-transition:350ms;}*/
 .top-bor {position:absolute;top: 9%; right: 6%;		border-top: 1px solid #fff; border-bottom: 1px solid #fff;-webkit-transform-origin: 0 0;transform-origin: 0 0;height:0;}
 .side-bor {position:absolute;top: 6%; right: 9%;border-right: 1px solid #fff;	border-left: 1px solid #fff;-webkit-transform-origin: 100% 0;	transform-origin: 100% 0;width:0;}
 .side-borh {position:absolute;top: 6%; right: 9%;border-right: 1px solid #fff;	border-left: 1px solid #fff;-webkit-transform-origin: 100% 0;	transform-origin: 100% 0;width:0;}
 .p_cont2{font-family: SansationL;position:absolute; opacity:0;top:0;left:0;right:0;bottom:22vw;height:8vw;margin:auto;color:#666;font-size:3.5vw;width:auto;max-width:70%;text-align:center;padding:2vw 0;}
+.middleDiv .p_cont2{opacity:1;top:23vw;bottom:0; z-index: 10;}
 .p_cont2 .top-bor{border-top: 1px solid #666; border-bottom: 1px solid #666;top: 6%;}
 .p_cont2 .side-borh{border-right: 1px solid #666;	border-left: 1px solid #666;top:0;bottom:0;width:82%;color:#666;font-size:8vw;}
 .p_cont{font-family: SansationL;position:absolute; opacity:0;top:0;left:0;right:0;bottom:5vw;height:8vw;margin:auto;color:#fff;font-size:3.5vw;width:auto;max-width:70%;text-align:center;}
@@ -176,10 +181,10 @@ textarea:focus, input:focus{
 .icn4show{width:15%;height:3vw;background:url(../img/ne.svg)no-repeat;background-size:115%;background-position:center ;display:inline-block;opacity:0;transition:300ms;   }
 
 .prdctAdd1:hover .icn4show{opacity:1;}
-.pendent_ico{background:url(../img/pendent.svg)no-repeat;background-size:115%;background-position:center;}
+.pendent_ico{background:url(../img/pendents.svg)no-repeat;background-size:115%;background-position:center;}
 .ring_ico{background:url(../img/ring2.svg)no-repeat;background-size:115%;background-position:center;}
 .bangle_ico{background:url(../img/necklace.svg)no-repeat;background-size:115%;background-position:center;}
-.earring_ico{background:url(../img/earrings2.svg)no-repeat;background-size:115%;background-position:center;}
+.earring_ico{background:url(../img/earrings.svg)no-repeat;background-size:115%;background-position:center;}
 .icn4show:nth-child(1){-webkit-transition-delay: 0ms;transition-delay: 0ms;}
 .icn4show:nth-child(2){-webkit-transition-delay: 100ms;transition-delay: 100ms;}
  .icn4show:nth-child(3){-webkit-transition-delay: 200ms;transition-delay: 200ms;}
