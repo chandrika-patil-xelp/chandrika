@@ -13,7 +13,7 @@ a { color: inherit;text-decoration: none; }
 .font12{font-size: 12px!important;}
 .font13{font-size: 13px;}
 .font14{font-size: 13px;}
-.font15{font-size: 15px;}
+.font15{font-size: 15px!important;}
 .font16{font-size: 16px;}
 .font18{font-size: 18px;}
 .font20{font-size: 20px;}
@@ -632,7 +632,7 @@ li .prdViewImgBtn{}
 
 
 .halfContr{width: 50%;float: left;height: auto;}
-.w50{width:50%;}
+.w50{width:50%!important;}
 .w60{width:60%;}
 .color69{color: #2A6869;}
 .c4d{color: #4d4d4d;}
@@ -660,7 +660,7 @@ li .prdViewImgBtn{}
 .preview .shapeComm{width:150px!important;padding-bottom:140px;position: absolute;top:0;left:0;}
 .preview .commCont.poR{padding-left: 200px;min-height: 160px;}
 .forAuto{}
-.forAuto .fieldTitle{width:25%;margin:0 10px;}
+.forAuto .fieldTitle{width:30%;margin:0 10px;border-bottom: 1px dotted #ccc;}
 .forAuto .fieldTitle .w50{}
 .forAuto .fieldTitle .padR15 {padding-right: 10px;}
 .preview .solitaireCont .breakLine {margin-bottom: 15px;}
@@ -725,7 +725,7 @@ li .prdViewImgBtn{}
 /*cust_detail page*/
 .cust_detail{} 
 .cust_detail .commTitle2{width: auto;text-align: left;}
-.det_sec{width: 65%;height: auto;padding: 20px;box-shadow: 2px 2px 8px 0px rgba(0,0,0,0.2);position:relative;margin-bottom: 20px;}
+.det_sec{width: 30%;height: auto;padding: 20px;box-shadow: 2px 2px 8px 0px rgba(0,0,0,0.2);position:relative;margin-right: 20px;border-radius: 2px;}
 .prdInfo{width:24%;height: 120px;margin-left: 10px;border-right:1px solid #e6e6e6;}
 /*.padLR10{padding:0px 10px;}*/
 .cust_detail .orderComm{height:auto;margin-bottom:10px;padding: 10px;position: relative;}
@@ -736,7 +736,7 @@ li .prdViewImgBtn{}
 /*.cust_detail .drpClass{line-height: 25px;background-image: none;text-align: center;}*/
 .viewTxt{position:absolute;width:10%;right:0px;bottom: 0px;height: 40px;line-height: 40px;font-size: 13px;cursor: pointer;background: url(../img/arrows-01.svg)no-repeat;background-size: auto 38%;background-position: 85% center;}
 .ordersPage .viewTxt{position:relative;float: right;width:auto;padding-right: 20px; background-position: 100% center;}
-.det_sec .prd_img{width:150px;height:150px;}
+.det_sec .prd_img{width:100%;height:200px;}
 .det_sec .prdInfo{width:100%;border: none;}
 .drpClass{color: #4d4d4d;height: 40px;width:46%;background-image:url('../img/down_arrow.svg');background-repeat: no-repeat;background-color: #fff;border-bottom: 2px solid #2F665C;border-top: none; border-left: none;border-right: none;border-radius: 0px;font-family: openB;text-align: center;background-size: auto 100%;background-position: right center;cursor: pointer;font-size: 12px;padding: 0px 10px 0px 10px;}
 .cust_detail .addCouponBtn{padding: 0px 25px 0px 25px;}
@@ -754,13 +754,20 @@ li .prdViewImgBtn{}
 .cust_detail .prdSeachTxt{width: 150px;border-radius: 2px;}
 .cust_detail .rsSpan{left:0;background-position: left;}
 .namDiv{float: left;width: 45%;height: auto;text-align: left;padding-left:30px}
-.det_sec .fieldTitle{font-size: 15px;}
+/*.det_sec .fieldTitle{font-size: 15px;}*/
 .det_sec .addCouponBtn{position: absolute;right: 0}
 .pl20{padding-left:20px!important;}
 
-.info_sec{width: 75%;height: 100px;float: right;}
-.divCon1{width: 100%;height: auto;margin-bottom: 20px;border-bottom: 1px dotted #ccc;padding: 0 5px 5px 5px;}
-.fieldTitle1{font-size: 14px;color: #333;line-height: 16px; width: 60%;height: auto;font-family: openR;}
-.fieldTitle2{font-size: 14px;color: #333;line-height: 16px;width: 40%;height: auto;font-family: openB;text-align: right;}
-.ttl_txt{width: 100%;height: 40px;color: #4d4d4d;line-height: 40px; margin-bottom: 15px;font-size: 22px;}
-.cust_detail .checkDiv{width:30%;}
+.info_sec{width: 100%;height: auto;float: right;}
+.divCon1{width: 100%;height: auto;margin-bottom: 10px;border-bottom: 1px dotted #ccc;padding: 0 5px 5px 5px;}
+.fieldTitle1{font-size: 13px;color: #333;line-height: 16px; width: 60%;height: auto;font-family: openR;}
+.fieldTitle2{font-size: 13px;color: #333;line-height: 16px;width: 40%;height: auto;font-family: openB;text-align: right;}
+.ttl_txt{width: 100%;height: auto;color: #4d4d4d;line-height: 40px; margin-bottom: 15px;font-size: 22px;}
+.cust_detail .checkDiv{width:100%;}
+.dtl_cont{width: 48%;height:auto;padding: 15px;margin-right: 20px;}
+.cust_detail .commCont.poR{padding-left: 200px;min-height: 160px;}
+.cust_detail .shapeComm{width: 150px!important;padding-bottom: 140px; position: absolute;top: 0;left: 0;}
+.cust_detail .priceHeading{line-height: 40px;padding: 0 15px;font-size:14px;color: #4d4d4d;}
+.nameContr  div:last-child{border: none!important;}
+.cust_detail .shapeComm:hover{border:none;}
+.cust_detail .shapeComm{border:none;}
