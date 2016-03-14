@@ -47,11 +47,12 @@ function changeStatusCallBack(data)
     {
         common.toast(1, 'Status updated successfully');
         getProducs();
+        hideConfirmBox();
     }
     else
     {
         common.toast(0, 'Error in updating status');
-        getProducs();
+        //getProducs();
     }
 }
 
@@ -99,7 +100,8 @@ function getProducsCallback(data)
                 str += "<div class='dmdWt fLeft'>" + v.diaWgt + " ct</div>";
                 str += "<div class='metalWt fLeft'>" + v.mtlWgt + " gms</div>";
                 str += "<div class='acct fLeft'>";
-                str += "<div class='deltBtn fRight transition300'  onclick=\"changePrdStatus(2,'" + v.pid + "')\"></div>";
+                //str += "<div class='deltBtn fRight transition300'  onclick=\"changePrdStatus(2,'" + v.pid + "')\"></div>";
+                str += "<div class='deltBtn fRight transition300'  onclick=\"setClick('" + v.pid + "');showConfirmBox();\"></div>";
                 str += "<div class='editBtn fRight transition300' onclick=\"editProduct('"+v.pid+"')\"></div>";
                 str += "<a href='" + DOMAIN + "backend/?action=upload&pid=" + v.pid + "' target='+blank'><div class='uploadBtn fRight transition300'></div></a>";
                 if (v.isActive == 1)
@@ -142,5 +144,35 @@ function getProducsCallback(data)
 function editProduct(pid)
 {
     window.location.href=DOMAIN+"backend/?action=editProduct&pid="+pid;
-    
+}
+
+
+$('#confirmBox').velocity({scale: 0, borderRadius: '50%'}, {delay: 0, duration: 0});
+$('#delOverlay').velocity({opacity: 0}, {delay: 0, duration: 0});
+
+function showConfirmBox() {
+    $('#delOverlay,#confirmBox').removeClass('dn');
+    setTimeout(function() {
+        $('#delOverlay').velocity({opacity: 1}, {delay: 0, duration: 300, ease: 'swing'});
+        $('#confirmBox').velocity({scale: 1, borderRadius: '2px', opacity: 1}, {delay: 80, duration: 300, ease: 'swing'});
+    }, 10);
+}
+
+
+function setClick(data)
+{
+    var str="changePrdStatus(2,'"+data+"')";
+    $('#prddeleteBtn').attr('onclick',str);
+   
+}
+
+function hideConfirmBox() 
+{
+    $('#delOverlay').velocity({opacity: 0}, {delay: 0, duration: 300, ease: 'swing'});
+    $('#confirmBox').velocity({opacity: 0}, {delay: 0, duration: 300, ease: 'swing', queue: false});
+    $('#confirmBox').velocity({scale: 0, borderRadius: '50%'}, {delay: 300, duration: 0, ease: 'swing'});
+    setTimeout(function() {
+        $('#delOverlay,#confirmBox').addClass('dn');
+    }, 1010);
+    $('#prddeleteBtn').removeAttr('onclick');
 }

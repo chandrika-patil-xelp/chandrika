@@ -38,7 +38,7 @@ function categoryCallBack(data)
     $(categories).each(function(i) {
         if (categories[i]['active'] !="2")
         {
-            str += "<li>";
+            str += "<li id='cat_" + categories[i]['cid'] + "'>";
             str += "<div class='catName fLeft txtCap'>" + categories[i]['name'] + "</div>";
 
             if (categories[i]['pid'] == "0")
@@ -53,16 +53,17 @@ function categoryCallBack(data)
             }
             str += "<div class='dPos fLeft op0'>0</div>";
             str += "<div class='cactt fLeft'>";
-            str += "<div class='deltBtn fRight transition300' onclick=\"changeStatus('" + categories[i]['cid'] + "',this,3)\"></div>";
+           // str += "<div class='deltBtn fRight transition300' onclick=\"changeStatus('" + categories[i]['cid'] + "',this,3)\"></div>";
+            str += "<div class='deltBtn fRight transition300'  onclick=\"setClick('" + categories[i]['cid'] + "',2);showConfirmBox();\"></div>";
             str += "<a href='"+DOMAIN+"backend/?action=editCategory&cid=" + categories[i]['cid'] + "'><div class='editBtn fRight transition300'></div></a>";
 
             if (categories[i]['active'] == "1")
             {
-                str += "<div class='toggle-button toggle-button-selected  fLeft' onclick=\"changeStatus('" + categories[i]['cid'] + "',this)\">";
+                str += "<div class='toggle-button toggle-button-selected  fLeft' onclick=\"changeStatus('" + categories[i]['cid'] + "')\">";
             }
             else
             {
-                str += "<div class='toggle-button  fLeft' onclick=\"changeStatus('" + categories[i]['cid'] + "',this)\">";
+                str += "<div class='toggle-button  fLeft' onclick=\"changeStatus('" + categories[i]['cid'] + "')\">";
             }
 
             str += "<span class='fActive'>On</span>";
@@ -90,19 +91,19 @@ function categoryCallBack(data)
 }
 
 
-function changeStatus(cid, obj, dst) {
+function changeStatus(cid,dst) {
     setTimeout(function() {
 
         var st = 0;
         if (dst != undefined)
         {
             st = 2;
-            $(obj).parent().find('div.toggle-button').removeClass('toggle-button-selected');
+            $('#cat_'+cid).find('div.toggle-button').removeClass('toggle-button-selected');
 
         }
         else
         {
-            var pLeft = $(obj).find(".button").position().left;
+            var pLeft = $('#cat_'+cid).find(".button").position().left;
             if (pLeft == 0)
             {
                 st = 0;
@@ -123,6 +124,8 @@ function changeStatus(cid, obj, dst) {
         values['catid'] = cid;
         var data = values;
 
+console.log(data);
+
         var dt = JSON.stringify(data);
 
         $.ajax({
@@ -131,8 +134,8 @@ function changeStatus(cid, obj, dst) {
             data: {dt: dt},
             success: function(res) {
                 res = JSON.parse(res);
-                console.log(res);
                 changeStatusCallBack(res);
+                hideConfirmBox();
                 
             }
         });
@@ -151,7 +154,7 @@ function changeStatusCallBack(data)
     else
     {
         common.toast(0, 'Error in updating status');
-        getCategories();
+        
     }
 }
 
@@ -171,9 +174,34 @@ function getCatName(cid) {
 
 function editCat(cid)
 {
-    //alert(cid);
     var URL =APIDOMAIN + "index.php?action=getCategoryDetails&catid="+cid;
-    
-    
-    
+}
+
+$('#confirmBox').velocity({scale: 0, borderRadius: '50%'}, {delay: 0, duration: 0});
+$('#delOverlay').velocity({opacity: 0}, {delay: 0, duration: 0});
+
+function showConfirmBox() {
+    $('#delOverlay,#confirmBox').removeClass('dn');
+    setTimeout(function() {
+        $('#delOverlay').velocity({opacity: 1}, {delay: 0, duration: 300, ease: 'swing'});
+        $('#confirmBox').velocity({scale: 1, borderRadius: '2px', opacity: 1}, {delay: 80, duration: 300, ease: 'swing'});
+    }, 10);
+}
+
+
+function setClick(data,st)
+{   
+    var str="changeStatus('"+data+"',"+st+")";
+    $('#prddeleteBtn').attr('onclick',str);
+}
+
+function hideConfirmBox() 
+{
+    $('#delOverlay').velocity({opacity: 0}, {delay: 0, duration: 300, ease: 'swing'});
+    $('#confirmBox').velocity({opacity: 0}, {delay: 0, duration: 300, ease: 'swing', queue: false});
+    $('#confirmBox').velocity({scale: 0, borderRadius: '50%'}, {delay: 300, duration: 0, ease: 'swing'});
+    setTimeout(function() {
+        $('#delOverlay,#confirmBox').addClass('dn');
+    }, 1010);
+    $('#prddeleteBtn').removeAttr('onclick');
 }

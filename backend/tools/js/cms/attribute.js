@@ -46,7 +46,7 @@ function attributeListCallBack()
             if (attributes[i]['active'] !="2")
             {
 
-                str += "<li>";
+                str += "<li id='attr_" + v.id + "'>";
                 str += "<div class='attrName fLeft'>" + v.name + "</div>";
                 var type = attrType(v.type);
                 str += "<div class='attrType fLeft'>" + type + "</div>";
@@ -71,15 +71,16 @@ function attributeListCallBack()
 
 
                 str += "<div class='cattrAct fLeft'>";
-                str += "<div class='deltBtn fRight transition300'  onclick=\"changeStatus('" + v.id + "',this,3)\"></div>";
+                //str += "<div class='deltBtn fRight transition300'  onclick=\"changeStatus('" + v.id + "',this,3)\"></div>";
+                str += "<div class='deltBtn fRight transition300'  onclick=\"setClick('" + v.id + "',2);showConfirmBox();\"></div>";
                 str += "<a href='" + DOMAIN + "backend/?action=editAttribute&aid=" + v.id + "'><div class='editBtn fRight transition300'></div></a>";
                 if (v.active == "1")
                 {
-                    str += "<div class='toggle-button toggle-button-selected  fLeft' onclick=\"changeStatus('" + v.id + "',this)\">";
+                    str += "<div class='toggle-button toggle-button-selected  fLeft' onclick=\"changeStatus('" + v.id + "')\">";
                 }
                 else
                 {
-                    str += "<div class='toggle-button  fLeft' onclick=\"changeStatus('" + v.id + "',this)\">";
+                    str += "<div class='toggle-button  fLeft' onclick=\"changeStatus('" + v.id + "')\">";
                 }
 
 
@@ -115,19 +116,19 @@ function attributeListCallBack()
 
 
 
-function changeStatus(aid, obj, dst) {
+function changeStatus(aid,dst) {
     setTimeout(function() {
 
         var st = 0;
         if (dst != undefined)
         {
             st = 2;
-            $(obj).parent().find('div.toggle-button').removeClass('toggle-button-selected');
+            $('#attr_'+aid).find('div.toggle-button').removeClass('toggle-button-selected');
 
         }
         else
         {
-            var pLeft = $(obj).find(".button").position().left;
+            var pLeft = $('#attr_'+aid).find(".button").position().left;
             if (pLeft == 0)
             {
                 st = 0;
@@ -158,6 +159,7 @@ function changeStatus(aid, obj, dst) {
                 res = JSON.parse(res);
                 console.log(res);
                 changeStatusCallBack(res);
+                hideConfirmBox();
             }
         });
 
@@ -212,4 +214,33 @@ function attrType(t)
 
     }
 
+}
+
+$('#confirmBox').velocity({scale: 0, borderRadius: '50%'}, {delay: 0, duration: 0});
+$('#delOverlay').velocity({opacity: 0}, {delay: 0, duration: 0});
+
+function showConfirmBox() {
+    $('#delOverlay,#confirmBox').removeClass('dn');
+    setTimeout(function() {
+        $('#delOverlay').velocity({opacity: 1}, {delay: 0, duration: 300, ease: 'swing'});
+        $('#confirmBox').velocity({scale: 1, borderRadius: '2px', opacity: 1}, {delay: 80, duration: 300, ease: 'swing'});
+    }, 10);
+}
+
+
+function setClick(data,st)
+{   
+    var str="changeStatus('"+data+"',"+st+")";
+    $('#prddeleteBtn').attr('onclick',str);
+}
+
+function hideConfirmBox() 
+{
+    $('#delOverlay').velocity({opacity: 0}, {delay: 0, duration: 300, ease: 'swing'});
+    $('#confirmBox').velocity({opacity: 0}, {delay: 0, duration: 300, ease: 'swing', queue: false});
+    $('#confirmBox').velocity({scale: 0, borderRadius: '50%'}, {delay: 300, duration: 0, ease: 'swing'});
+    setTimeout(function() {
+        $('#delOverlay,#confirmBox').addClass('dn');
+    }, 1010);
+    $('#prddeleteBtn').removeAttr('onclick');
 }
