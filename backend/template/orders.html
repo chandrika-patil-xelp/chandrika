@@ -1,271 +1,157 @@
+<!DOCTYPE html>
 <?php include 'jBhead.html' ?>
 <body>
     <div class="container ordersPage">
         <?php include 'jBheader.html' ?>
         <div class="contents fLeft">
             <div class="wrapperMax">
-                <div class="prdSearchDiv fLeft fmOpenR">
-                    <div class="commTitle2 fLeft"><span id='productCnt'>3</span> Orders</div>
-                    <div class="addCouponBtn fRight transition300">Filter By Date</div>
-                    <input type="text" id="dateFrom" autocomplete="off" class="prdSeachTxt fRight fmOpenR" value="2016/01/01" readonly onfocus="showCalander('dateFrom')" onkeyup="checkToHide(event);">
-                    <div class="fmOpenB font13 dateTo c4d fRight txtCenter">to</div>
-                    <input type="text"  autocomplete="off" class="prdSeachTxt fRight fmOpenR" id="dateTo" value="2016/01/30" readonly onfocus="showCalander('dateTo')" onkeyup="checkToHide(event);">
-                    <div id="datepicker" class="dn"></div>
-                </div>
-                <div class="orderComm fLeft">
-                    <div class="name_cont">
-                        <div class="cust_name fmOpenR">Bhagya</div>
-                        <div class="addCouponBtn fRight fmOpenR transition300">Customer order Details</div>
+                <div class="couponCont fLeft">
+                    <div class="prdSearchDiv fLeft fmOpenR">
+                        <div class="commTitle2 fLeft"><span >3</span> Orders</div>
+                        <div class="addCouponBtn fRight transition300">Filter By Date</div>
+                        <input type="text" id="dateTo" autocomplete="off" class="prdSeachTxt fRight fmOpenR" value="2016/01/01" readonly onfocus="showCalander('dateTo')" onkeyup="checkToHide(event);">
+                        <div class="fmOpenB font13 dateTo c4d fRight txtCenter">to</div>
+                        <input type="text"  autocomplete="off" class="prdSeachTxt fRight fmOpenR" id="dateFrom" value="2016/01/30" readonly onfocus="showCalander('dateFrom')" onkeyup="checkToHide(event);">
+                        <div id="datepicker" class="dn"></div>
+                        <input type="text"  autocomplete="off" class="prdSeachTxt fRight fmOpenR marR" placeholder=" Search Order">
                     </div>
-                    <div class="prd_cont fLeft">
-                        <div class="prd_img"></div>
-                        <div class="prdInfo fLeft">
-                            <div class='fieldTitle fLeft fmOpenR'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Product Name <span class="fRight">:</span></div>
-                                <div class='w50 fRight'>Earring</div>
-                            </div>
-                            <div class='fieldTitle fLeft fmOpenR'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Product Code <span class="fRight">:</span></div>
-                                <div class='w50 fRight'>RT10101</div>
-                            </div>
-                            <div class='fieldTitle fLeft fmOpenR'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Price <span class="fRight">:</span></div>
-                                <div class='w50 fRight'>&#8377 8000</div>
-                            </div>
-                            <div class='fieldTitle fLeft fmOpenR'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Discount <span class="fRight">:</span></div>
-                                <div class='w50 fRight'>10%</div>
-                            </div>
-                            <div class='fieldTitle fLeft fmOpenR'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Coupon <span class="fRight">:</span></div>
-                                <div class='w50 fRight'>50%</div>
-                            </div>
-                        </div>
-
-                        <div class="prdInfo fLeft">
-                            <div class='ord_head fmOpenB'>Order Status</div>
-                            <div class="drp_contr fmOpenB">
-                                <select class="drpClass">
-                                    <option>Select</option>
-                                    <option>APPROVAL</option>
-                                    <option>PROCESSING</option>
-                                    <option>SHIPPING</option>
-                                    <option>DELIVER</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="prdInfo fLeft brdN">
-                            <div class='fieldTitle fLeft fmOpenR'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Order Id<span class="fRight">:</span></div>
-                                <div class='w50 fRight'>ORD10101010101</div>
-                            </div>
-                            <div class='fieldTitle fLeft fmOpenR'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Order Date <span class="fRight">:</span></div>
-                                <div class='w50 fRight'>12/12/2012</div>
-                            </div>
-                            <div class='fieldTitle fLeft fmOpenR'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Quantity <span class="fRight">:</span></div>
-                                <div class='w50 fRight'>1</div>
-                            </div>
-                            <div class='fieldTitle fLeft fmOpenR'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Delivery Date<span class="fRight">:</span></div>
-                                <div class='w50 fRight'>12/12/2012</div>
-                            </div>
-                            <div class='fieldTitle fLeft fmOpenR'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Delivery Option<span class="fRight">:</span></div>
-                                <div class='w50 fRight'>Same Day</div>
-                            </div>
-                        </div>
-                        <div class="ttl_div fLeft">
-                            <div class="ttl_txt fLeft fmOpenB font15">Grand Total</div>
-                            <div class="ttl_txt fRight fmOpenB font15">&#8377 10,000</div>
-                        </div>
-                        <div class="addCouponBtn fRight fmOpenR transition300">Order Complete</div>
+                    <div class="cpListHeader fLeft fmOpenR">
+                        <div class="date fLeft">Order ID</div>
+                        <div class="stockCode fLeft">Customer Name</div>
+                        <div class="dmdWt fLeft">Order/Delivery date</div>
+                        <!--                        <div class="metalWt fLeft">Delivery date</div>-->
+                        <div class="acct fLeft">Price</div>
+                        <div class="acct fLeft">Order Status</div>
                     </div>
-                </div>
+                    <ul class="couponList fLeft fmOpenR">
+                        <li class="transition300">
+                            <div class="date fLeft">ORD10101010101</div>
+                            <div class="stockCode fLeft">
+                                <span class="upSpan fmOpenR">Ashok Chakravarthy</span>
+                                <span class="lwSpan">9535638121</span>
+                            </div>
+                            <div class="dmdWt fLeft">
+                                <span class="upSpan">12 Feb 2016</span>
+                                <span class="lwSpan">20 Feb 2016</span>
+                            </div>
 
+                            <div class="acct fLeft fmOpenB"><span class="rsSpan"></span> <span> 40,000</span></div>
+                            <div class="acct fLeft">Getting manufactured </div>
+                            <div class="fRight viewM transition300"></div>
+                        </li>
+                        <li class="transition300">
+                            <div class="date fLeft">ORD10101010856</div>
+                            <div class="stockCode fLeft">
+                                <span class="upSpan fmOpenR">Ashok Chakravarthy</span>
+                                <span class="lwSpan">9535638121</span>
+                            </div>
+                            <div class="dmdWt fLeft">
+                                <span class="upSpan">12 Feb 2016</span>
+                                <span class="lwSpan">20 Feb 2016</span>
+                            </div>
+                            <!--                            <div class="metalWt fLeft">20 Feb 2016</div>-->
+                            <div class="acct fLeft fmOpenB"><span class="rsSpan"></span> <span> 40,000</span></div>
+                            <div class="acct fLeft">Getting manufactured</div>
+                            <div class="fRight viewM transition300"></div>
+                        </li>
+                        <li class="transition300">
+                            <div class="date fLeft">ORD10101010171</div>
+                            <div class="stockCode fLeft">
+                                <span class="upSpan fmOpenR">Ashok Chakravarthy</span>
+                                <span class="lwSpan">9535638121</span>
+                            </div>
+                            <div class="dmdWt fLeft">
+                                <span class="upSpan">12 Feb 2016</span>
+                                <span class="lwSpan">20 Feb 2016</span>
+                            </div>
+                            <!--                            <div class="metalWt fLeft">20 Feb 2016</div>-->
+                            <div class="acct fLeft fmOpenB"><span class="rsSpan"></span> <span> 40,000</span></div>
+                            <div class="acct fLeft">Getting manufactured</div>
+                            <div class="fRight viewM transition300"></div>
+                        </li>
+                        <li class="transition300">
+                            <div class="date fLeft">ORD10101010101</div>
+                            <div class="stockCode fLeft">
+                                <span class="upSpan fmOpenR">Ashok Chakravarthy</span>
+                                <span class="lwSpan">9535638121</span>
+                            </div>
+                            <div class="dmdWt fLeft">
+                                <span class="upSpan">12 Feb 2016</span>
+                                <span class="lwSpan">20 Feb 2016</span>
+                            </div>
+                            <!--                            <div class="metalWt fLeft">20 Feb 2016</div>-->
+                            <div class="acct fLeft fmOpenB"><span class="rsSpan"></span> <span> 40,000</span></div>
+                            <div class="acct fLeft">Getting manufactured</div>
+                            <div class="fRight viewM transition300"></div>
+                        </li>
+                        <li class="transition300">
+                            <div class="date fLeft">ORD10101010856</div>
+                            <div class="stockCode fLeft">
+                                <span class="upSpan fmOpenR">Ashok Chakravarthy</span>
+                                <span class="lwSpan">9535638121</span>
+                            </div>
+                            <div class="dmdWt fLeft">
+                                <span class="upSpan">12 Feb 2016</span>
+                                <span class="lwSpan">20 Feb 2016</span>
+                            </div>
+                            <!--                            <div class="metalWt fLeft">20 Feb 2016</div>-->
+                            <div class="acct fLeft fmOpenB"><span class="rsSpan"></span> <span> 40,000</span></div>
+                            <div class="acct fLeft">Getting manufactured</div>
+                            <div class="fRight viewM transition300"></div>
+                        </li>
+                        <li class="transition300">
+                            <div class="date fLeft">ORD10101010171</div>
+                            <div class="stockCode fLeft">
+                                <span class="upSpan fmOpenR">Ashok Chakravarthy</span>
+                                <span class="lwSpan">9535638121</span>
+                            </div>
+                            <div class="dmdWt fLeft">
+                                <span class="upSpan">12 Feb 2016</span>
+                                <span class="lwSpan">20 Feb 2016</span>
+                            </div>
+                            <!--                            <div class="metalWt fLeft">20 Feb 2016</div>-->
+                            <div class="acct fLeft fmOpenB"><span class="rsSpan"></span><span> 40,000</span></div>
+                            <div class="acct fLeft">Getting manufactured</div>
+                            <div class="fRight viewM transition300"></div>
+                        </li>
+                    </ul>
 
-
-                <div class="orderComm fLeft">
-                    <div class="name_cont">
-                        <div class="cust_name fmOpenR">Bhagya</div>
-                        <div class="addCouponBtn fRight fmOpenR transition300">Customer order Details</div>
-                    </div>
-                    <div class="prd_cont fLeft">
-                        <div class="prd_img"></div>
-                        <div class="prdInfo fLeft">
-                            <div class='fieldTitle fLeft fmOpenR'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Product Name <span class="fRight">:</span></div>
-                                <div class='w50 fRight'>Earring</div>
-                            </div>
-                            <div class='fieldTitle fLeft fmOpenR'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Product Code <span class="fRight">:</span></div>
-                                <div class='w50 fRight'>RT10101</div>
-                            </div>
-                            <div class='fieldTitle fLeft fmOpenR'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Price <span class="fRight">:</span></div>
-                                <div class='w50 fRight'>&#8377 8000</div>
-                            </div>
-                            <div class='fieldTitle fLeft fmOpenR'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Discount <span class="fRight">:</span></div>
-                                <div class='w50 fRight'>10%</div>
-                            </div>
-                            <div class='fieldTitle fLeft fmOpenR'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Coupon <span class="fRight">:</span></div>
-                                <div class='w50 fRight'>50%</div>
-                            </div>
-                        </div>
-
-                        <div class="prdInfo fLeft">
-                            <div class='ord_head fmOpenB'>Order Status</div>
-                            <div class="drp_contr fmOpenB">
-                                <select class="drpClass">
-                                    <option>Select</option>
-                                    <option>APPROVAL</option>
-                                    <option>PROCESSING</option>
-                                    <option>SHIPPING</option>
-                                    <option>DELIVER</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="prdInfo fLeft brdN">
-                            <div class='fieldTitle fLeft fmOpenR'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Order Id<span class="fRight">:</span></div>
-                                <div class='w50 fRight'>ORD10101010101</div>
-                            </div>
-                            <div class='fieldTitle fLeft fmOpenR'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Order Date <span class="fRight">:</span></div>
-                                <div class='w50 fRight'>12/12/2012</div>
-                            </div>
-                            <div class='fieldTitle fLeft fmOpenR'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Quantity <span class="fRight">:</span></div>
-                                <div class='w50 fRight'>1</div>
-                            </div>
-                            <div class='fieldTitle fLeft fmOpenR'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Delivery Date<span class="fRight">:</span></div>
-                                <div class='w50 fRight'>12/12/2012</div>
-                            </div>
-                            <div class='fieldTitle fLeft fmOpenR'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Delivery Option<span class="fRight">:</span></div>
-                                <div class='w50 fRight'>Same Day</div>
-                            </div>
-                        </div>
-                        <div class="ttl_div fLeft">
-                            <div class="ttl_txt fLeft fmOpenB font15">Grand Total</div>
-                            <div class="ttl_txt fRight fmOpenB font15">&#8377 10,000</div>
-                        </div>
-                        <div class="addCouponBtn fRight fmOpenR transition300">Order Complete</div>
-                    </div>
                 </div>
 
-                <div class="orderComm fLeft">
-                    <div class="name_cont">
-                        <div class="cust_name fmOpenR">Bhagya</div>
-                        <div class="addCouponBtn fRight fmOpenR transition300">Customer order Details</div>
-                    </div>
-                    <div class="prd_cont fLeft">
-                        <div class="prd_img"></div>
-                        <div class="prdInfo fLeft">
-                            <div class='fieldTitle fLeft fmOpenR'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Product Name <span class="fRight">:</span></div>
-                                <div class='w50 fRight'>Earring</div>
-                            </div>
-                            <div class='fieldTitle fLeft fmOpenR'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Product Code <span class="fRight">:</span></div>
-                                <div class='w50 fRight'>RT10101</div>
-                            </div>
-                            <div class='fieldTitle fLeft fmOpenR'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Price <span class="fRight">:</span></div>
-                                <div class='w50 fRight'>&#8377 8000</div>
-                            </div>
-                            <div class='fieldTitle fLeft fmOpenR'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Discount <span class="fRight">:</span></div>
-                                <div class='w50 fRight'>10%</div>
-                            </div>
-                            <div class='fieldTitle fLeft fmOpenR'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Coupon <span class="fRight">:</span></div>
-                                <div class='w50 fRight'>50%</div>
-                            </div>
-                        </div>
-
-                        <div class="prdInfo fLeft">
-                            <div class='ord_head fmOpenB'>Order Status</div>
-                            <div class="drp_contr fmOpenB">
-                                <select class="drpClass">
-                                    <option>Select</option>
-                                    <option>APPROVAL</option>
-                                    <option>PROCESSING</option>
-                                    <option>SHIPPING</option>
-                                    <option>DELIVER</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="prdInfo fLeft brdN">
-                            <div class='fieldTitle fLeft fmOpenR'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Order Id<span class="fRight">:</span></div>
-                                <div class='w50 fRight'>ORD10101010101</div>
-                            </div>
-                            <div class='fieldTitle fLeft fmOpenR'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Order Date <span class="fRight">:</span></div>
-                                <div class='w50 fRight'>12/12/2012</div>
-                            </div>
-                            <div class='fieldTitle fLeft fmOpenR'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Quantity <span class="fRight">:</span></div>
-                                <div class='w50 fRight'>1</div>
-                            </div>
-                            <div class='fieldTitle fLeft fmOpenR'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Delivery Date<span class="fRight">:</span></div>
-                                <div class='w50 fRight'>12/12/2012</div>
-                            </div>
-                            <div class='fieldTitle fLeft fmOpenR'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Delivery Option<span class="fRight">:</span></div>
-                                <div class='w50 fRight'>Same Day</div>
-                            </div>
-                        </div>
-                        <div class="ttl_div fLeft">
-                            <div class="ttl_txt fLeft fmOpenB font15">Grand Total</div>
-                            <div class="ttl_txt fRight fmOpenB font15">&#8377 10,000</div>
-                        </div>
-                        <div class="addCouponBtn fRight fmOpenR transition300">Order Complete</div>
-                    </div>
-                </div>
-
-
-
-            </div>                
+            </div>
         </div>
     </div>
     <script type="text/javascript">
-         var forDate;
-            $('#datepicker').datepicker({
-                onSelect: function (dateText, inst) {
-                    var dateText = $.datepicker.formatDate("yy-mm-dd", new Date(dateText));
-                    $(this).val(dateText);
-                    $('#' + forDate).val(dateText);
-                    if (forDate === 'dateTo') {
-                        setFilterDate();
-                    }
-                    $('#datepicker').addClass('dn');
-                },
-                maxDate: "+0D"
-            });
-
-            function showCalander(inpDiv) {
-                forDate = inpDiv;
-                var pos = $('#' + inpDiv).position();
-                var pTop = pos.top + 35;
-                var pLeft = (pos.left);
-                $('#datepicker').css({top: pTop + "px", right: 210 + "px"});
-                $('#datepicker').removeClass('dn');
-            }
-
-            function checkToHide(evt) {
-                var charCode = (evt.which) ? evt.which : evt.keyCode;
-                if (charCode === 8) {
-                    $('#datepicker').addClass('dn');
+        var forDate;
+        $('#datepicker').datepicker({
+            onSelect: function (dateText, inst) {
+                var dateText = $.datepicker.formatDate("yy-mm-dd", new Date(dateText));
+                $(this).val(dateText);
+                $('#' + forDate).val(dateText);
+                if (forDate === 'dateTo') {
+                    setFilterDate();
                 }
+                $('#datepicker').addClass('dn');
+            },
+            maxDate: "+0D"
+        });
+
+        function showCalander(inpDiv) {
+            forDate = inpDiv;
+            var pos = $('#' + inpDiv).position();
+            var pTop = pos.top + 35;
+            var pLeft = (pos.left);
+            $('#datepicker').css({top: pTop + "px", right: 210 + "px"});
+            $('#datepicker').removeClass('dn');
+        }
+
+        function checkToHide(evt) {
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode === 8) {
+                $('#datepicker').addClass('dn');
             }
+        }
 
     </script>
 </body>
-</html>    
+</html>
