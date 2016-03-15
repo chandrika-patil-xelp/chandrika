@@ -128,6 +128,27 @@ switch ($action) {
         $tab = 'orders';
         include BTEMPLATE.'orders.html';
         break;
+    case 'ord_detail':
+        $page = 'ord_detail';
+        $tab = 'ord_detail';
+        include BTEMPLATE.'ord_detail.html';
+        break;
+    
+     case 'productDetails':
+        $page = 'productDetails';
+        $tab = 'productDetails';
+        include BTEMPLATE.'productDetails.html';
+        break;
+    case 'login':
+        $page = 'login';
+        $tab = 'login';
+        include BTEMPLATE.'login.html';
+        break;
+    case 'resetP':
+        $page = 'resetP';
+        $tab = 'resetP';
+        include BTEMPLATE.'resetP.html';
+        break;
     
     case 'rates':
         $page = 'rateManager';
