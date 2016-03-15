@@ -1,4 +1,5 @@
 <?php
+
 echo "<script>var edit=$edit; var pid= '$pid';</script>";
 ?>
 
@@ -13,7 +14,7 @@ echo "<script>var edit=$edit; var pid= '$pid';</script>";
                     <div class="noresults font25 fLeft">There are no categories available.</div>
                     <div class="noresults font20 fLeft">Please add categories.</div>
                 </div>
-                
+
                 <section id='category_Section' class="dn">
                     <div class="commTitle1 fmOpenL fLeft">Select your category*</div>
                     <div class="divCon  fLeft fmOpenR" id='parentCatg'></div>
@@ -247,7 +248,7 @@ echo "<script>var edit=$edit; var pid= '$pid';</script>";
                     </div>
                 </section>
                 <!-----General Section End--!-->
-                
+
                 <!-----Price Section--!-->
                 <section id='price_Section' class="priceCont dn poR">
                     <div class="commTitle1 fmOpenL fLeft">Price Breakup</div>
@@ -279,75 +280,83 @@ echo "<script>var edit=$edit; var pid= '$pid';</script>";
         <div class="overlay dn"></div>
         <div class="loader dn"></div>
     </div>
-    
+
     <!--PREVIEW SECTION-->
-    
+
     <div class="previewContainer preview dn" id='previewDiv'>
         <div class="wrapperMax fmOpenR">
             <section id='general_Section' class="generalCont">
                 <div class="commTitle1 fmOpenR">General Information</div>
-                <div class="fieldTitle fLeft">
-                    <div class="w50 fLeft c4d padR15 fmOpenB">Product Name <span class="fRight">:</span></div>
-                    <div class="w50 fRight" id='prproduct_name'></div>
+                <div class="dtl_cont fLeft ">
+                    <div class="fieldTitle fLeft">
+                        <div class="w50 fLeft c4d padR15 fmOpenR">Product Name </div>
+                        <div class="w50 fRight fmOpenB txtRight" id='prproduct_name'></div>
+                    </div>
+                    <div class="fieldTitle fLeft">
+                        <div class="w50 fLeft c4d padR15 fmOpenR">Product SEO Name </div>
+                        <div class="w50 fRight fmOpenB txtRight" id='prproduct_seo_name'></div>
+                    </div>
                 </div>
-                <div class="fieldTitle fLeft">
-                    <div class="w50 fLeft c4d padR15 fmOpenB">Product SEO Name <span class="fRight">:</span></div>
-                    <div class="w50 fRight" id='prproduct_seo_name'></div>
-                </div>
-                <div class="fieldTitle fLeft ">
-                    <div class="w50 fLeft c4d padR15 fmOpenB">Category <span class="fRight">:</span></div>
-                    <div class="w50 fRight txtCap" id='prcategories'></div>
-                </div>
-                <div class="fieldTitle fLeft ">
-                    <div class="w50 fLeft c4d padR15 fmOpenB">Vendor <span class="fRight">:</span></div>
-                    <div class="w50 fRight" id='prvendorid'></div>
+                <div class="dtl_cont fLeft ">
+                    <div class="fieldTitle fLeft ">
+                        <div class="w50 fLeft c4d padR15 fmOpenR">Category </div>
+                        <div class="w50 fRight txtCap fmOpenB txtRight" id='prcategories'></div>
+                    </div>
+                    <div class="fieldTitle fLeft ">
+                        <div class="w50 fLeft c4d padR15 fmOpenR">Vendor </div>
+                        <div class="w50 fRight fmOpenB txtRight" id='prvendorid'></div>
+                    </div>
                 </div>
                 <div class="breakLine"></div>
-                <div class="fieldTitle fLeft w50">
-                    <div class="w50 fLeft c4d padR15 fmOpenB">Product Weight (grms) <span class="fRight">:</span></div>
-                    <div class="w50 fRight" id='prproduct_weight'></div>
-                </div>
+                <div class="dtl_cont fLeft ">
+                    <div class="fieldTitle fLeft ">
+                        <div class="w50 fLeft c4d padR15 fmOpenR">Product Weight (grms) </div>
+                        <div class="w50 fRight fmOpenB txtRight" id='prproduct_weight'></div>
+                    </div>
 
-                <div class="fieldTitle fLeft w50">
-                    <div class="w50 fLeft c4d padR15 fmOpenB">Gender <span class="fRight">:</span></div>
-                    <div class="w50 fRight" id='prgender'></div>
-                </div>
+                    <div class="fieldTitle fLeft ">
+                        <div class="w50 fLeft c4d padR15 fmOpenR">Gender </div>
+                        <div class="w50 fRight fmOpenB txtRight" id='prgender'></div>
+                    </div>
 
-                <div class="fieldTitle fLeft w50">
-                    <div class="w50 fLeft c4d padR15 fmOpenB">Diamond Setting Type <span class="fRight">:</span></div>
-                    <div class="w50 fRight" id='prdmdSetting'></div>
+                    <div class="fieldTitle fLeft ">
+                        <div class="w50 fLeft c4d padR15 fmOpenR">Diamond Setting Type </div>
+                        <div class="w50 fRight fmOpenB txtRight" id='prdmdSetting'></div>
+                    </div>
+                    <div class="fieldTitle fLeft ">
+                        <div class="w50 fLeft c4d padR15 fmOpenR">Product Certificate </div>
+                        <div class="w50 fRight fmOpenB txtRight" id='prcertificate'></div>
+                    </div>
+                    <div class="fieldTitle fLeft ">
+                        <div class="w50 fLeft c4d padR15 fmOpenR">Metal Weight(Grm)</div>
+                        <div class="w50 fRight fmOpenB txtRight" id='prmetal_weight'></div>
+                    </div>
+                    <div class="fieldTitle fLeft ">
+                        <div class="w50 fLeft c4d padR15 fmOpenR">Making Charges/Grm</div>
+                        <div class="w50 fRight fmOpenB txtRight" id='prmaking_charges'></div>
+                    </div>
                 </div>
-                <div class="fieldTitle fLeft w50">
-                    <div class="w50 fLeft c4d padR15 fmOpenB">Product Certificate <span class="fRight">:</span></div>
-                    <div class="w50 fRight" id='prcertificate'></div>
-                </div>
-                <div class="fieldTitle fLeft w50">
-                    <div class="w50 fLeft c4d padR15 fmOpenB">Metal Weight(Grm)<span class="fRight">:</span></div>
-                    <div class="w50 fRight" id='prmetal_weight'></div>
-                </div>
-                <div class="fieldTitle fLeft w50">
-                    <div class="w50 fLeft c4d padR15 fmOpenB">Making Charges/Grm<span class="fRight">:</span></div>
-                    <div class="w50 fRight" id='prmaking_charges'></div>
-                </div>
-                <div class="fieldTitle fLeft w50">
-                    <div class="w50 fLeft c4d padR15 fmOpenB">Procurement Cost<span class="fRight">:</span></div>
-                    <div class="w50 fRight" id='prprocurement_cost'></div>
-                </div>
-                <div class="fieldTitle fLeft w50">
-                    <div class="w50 fLeft c4d padR15 fmOpenB">Margin<span class="fRight">:</span></div>
-                    <div class="w50 fRight" id='prmargin'></div>
-                </div>
-                <div class="fieldTitle fLeft w50">
-                    <div class="w50 fLeft c4d padR15 fmOpenB">Measurement<span class="fRight">:</span></div>
-                    <div class="w50 fRight" id='prmeasurement'></div>
-                </div>
-                <div class="fieldTitle fLeft w50">
-                    <div class="w50 fLeft c4d padR15 fmOpenB">Metal Purity<span class="fRight">:</span></div>
-                    <div class="w50 fRight" id='prmetalpurity'></div>
-                </div>
-                <div class="fieldTitle fLeft w50">
-                    <div class="w50 fLeft c4d padR15 fmOpenB">Metal color<span class="fRight">:</span></div>
-                    <div class="w50 fRight txtCap" id='prmetalcolor'></div>
+                <div class="dtl_cont fLeft ">
+                    <div class="fieldTitle fLeft ">
+                        <div class="w50 fLeft c4d padR15 fmOpenR">Procurement Cost</div>
+                        <div class="w50 fRight fmOpenB txtRight" id='prprocurement_cost'></div>
+                    </div>
+                    <div class="fieldTitle fLeft ">
+                        <div class="w50 fLeft c4d padR15 fmOpenR">Margin</div>
+                        <div class="w50 fRight fmOpenB txtRight" id='prmargin'></div>
+                    </div>
+                    <div class="fieldTitle fLeft ">
+                        <div class="w50 fLeft c4d padR15 fmOpenR">Measurement</div>
+                        <div class="w50 fRight fmOpenB txtRight" id='prmeasurement'></div>
+                    </div>
+                    <div class="fieldTitle fLeft ">
+                        <div class="w50 fLeft c4d padR15 fmOpenR">Metal Purity</div>
+                        <div class="w50 fRight fmOpenB txtRight" id='prmetalpurity'></div>
+                    </div>
+                    <div class="fieldTitle fLeft ">
+                        <div class="w50 fLeft c4d padR15 fmOpenR">Metal color</div>
+                        <div class="w50 fRight txtCap fmOpenB txtRight" id='prmetalcolor'></div>
+                    </div>
                 </div>
             </section>
 
@@ -387,357 +396,356 @@ echo "<script>var edit=$edit; var pid= '$pid';</script>";
         </div>
     </div>
     <script type="text/javascript" src="<?php echo $jvs['addProduct']; ?>"></script>
-    
+
     <script>
-    
-    function showpreview(data)
-    {   
-        
-        var mpurity=data['mpurity'];
-        var metalcolor=data['metalcolor'];
-        var sizes=data['sizes'];
-        var solitaires=data['solitaires'];
-        var has_solitaire=data['has_solitaire'];
-        var diamonds=data['diamonds'];
-        var has_diamond=data['has_diamond'];
-        var uncut=data['uncut'];
-        var has_uncut=data['has_uncut'];
-        var gemstone=data['gemstone'];
-        var has_gemstone=data['has_gemstone'];
-        var details=data['details'];
-        var catid=data['catid'].split(",");
-        $('#prnewSolitaires,#prnewDiamonds,#prnewgemstone,#prnewUncut').html('');
-        $('#prsolitaires_Section,#prgemstone_Section,#pruncut_Section,#prdiamond_Section').addClass('dn');
 
-            $('#prvendorid').text($('#vendorList option:selected').text());
-            $('#prproduct_name').text(decodeURIComponent(details["product_name"]));
-            $('#prproduct_seo_name').text(decodeURIComponent(details["product_seo_name"]));
-            var gen="Female";
-            if(details["gender"]==1)
-                gen="Female";
-            
-            else if(details["gender"]==2)
-                gen="Unisex";
-            
-            $('#prgender').text(gen);
-            $('#prproduct_weight').text(details["product_weight"]);
-            $('#prcertificate').text(details["certificate"]);
-            $('#prmetal_weight').text(details["metal_weight"]+" grm");
-            $('#prmaking_charges').html("&#8377; "+details["making_charges"]);
-            $('#prprocurement_cost').html("&#8377; "+details["procurement_cost"]);
-            $('#prmargin').html(details["margin"]);
-            $('#prmeasurement').html(details["measurement"]);
-            $('#prdmdSetting').html(details["dmdSetting"]);
-            
-            
-            var mpurity = [];
-            var mcolor = [];
-            if (metalColorCust)
-            {
-                
-                $('[name=gcolorCustomize]').each(function() {
-                    if ($(this).is(':CHECKED'))
-                        mcolor.push($(this).next('label').text());
+                        function showpreview(data)
+                        {
 
-                    else if (!$(this).is(':CHECKED')) {
-                        var removeItem = $(this).next('label').text();
-                        mcolor = jQuery.grep(mcolor, function(value) {
-                            return value !== removeItem;
-                        });
-                    }
+                            var mpurity = data['mpurity'];
+                            var metalcolor = data['metalcolor'];
+                            var sizes = data['sizes'];
+                            var solitaires = data['solitaires'];
+                            var has_solitaire = data['has_solitaire'];
+                            var diamonds = data['diamonds'];
+                            var has_diamond = data['has_diamond'];
+                            var uncut = data['uncut'];
+                            var has_uncut = data['has_uncut'];
+                            var gemstone = data['gemstone'];
+                            var has_gemstone = data['has_gemstone'];
+                            var details = data['details'];
+                            var catid = data['catid'].split(",");
+                            $('#prnewSolitaires,#prnewDiamonds,#prnewgemstone,#prnewUncut').html('');
+                            $('#prsolitaires_Section,#prgemstone_Section,#pruncut_Section,#prdiamond_Section').addClass('dn');
 
-                });
-            }
-            else if (!metalColorCust)
-            {
-                mcolor.push($('[name=gcolorNotCustomize]:CHECKED').next('label').text());
-            }
-            
-            
-            
-            if (metalPurityCust)
-            {
-                
-                $('[name=gpurityCustomize]').each(function() {
-                    if ($(this).is(':CHECKED'))
-                        mpurity.push($(this).next('label').text());
-                    else if (!$(this).is(':CHECKED')) {
-                        var removeItem = $(this).next('label').text();
-                        mpurity = jQuery.grep(mpurity, function(value) {
-                            return value !== removeItem;
-                        });
-                    }
+                            $('#prvendorid').text($('#vendorList option:selected').text());
+                            $('#prproduct_name').text(decodeURIComponent(details["product_name"]));
+                            $('#prproduct_seo_name').text(decodeURIComponent(details["product_seo_name"]));
+                            var gen = "Female";
+                            if (details["gender"] == 1)
+                                gen = "Female";
 
-                });
-            }
-            else if (!metalPurityCust)
-            {
-                mpurity.push($('[name=gpurityNotCustomize]:CHECKED').next('label').text());
-            }
+                            else if (details["gender"] == 2)
+                                gen = "Unisex";
 
-        $('#prmetalpurity').text(mpurity.toString());
-        $('#prmetalcolor').text(mcolor.toString());
-            
-            
-            
-            var catstr="";
-            $(catid).each(function(i){
-                $(categories).each(function(j,vl){
-                    if(catid[i]==vl.cid && i<catid.length-1)
-                    {
-                        catstr+=vl.name+" , ";
-                    }
-                    else if(catid[i]==vl.cid)
-                    {
-                            catstr+=vl.name;
-                    }
-                });
-                
-            });
-            $('#prcategories').append(catstr);
+                            $('#prgender').text(gen);
+                            $('#prproduct_weight').text(details["product_weight"]);
+                            $('#prcertificate').text(details["certificate"]);
+                            $('#prmetal_weight').text(details["metal_weight"] + " grm");
+                            $('#prmaking_charges').html("&#8377; " + details["making_charges"]);
+                            $('#prprocurement_cost').html("&#8377; " + details["procurement_cost"]);
+                            $('#prmargin').html(details["margin"]);
+                            $('#prmeasurement').html(details["measurement"]);
+                            $('#prdmdSetting').html(details["dmdSetting"]);
 
-            
-            if(has_solitaire==1)
-            {
-             
-                var str="";
-                $(solitaires).each(function(j,vl){
-                  
-                    str+="<div class='commCont fLeft poR forAuto'>";
-                    str+="<div class='shapeComm "+vl.shape+"'></div>";
-                    str+="<div class='fieldTitle fLeft '>";
-                    str+="<div class='w50 fLeft c4d padR15 fmOpenB'>Color <span class='fRight'>:</span></div>";
-                    str+="<div class='w50 fRight'>"+vl.color+"</div>";
-                    str+="</div>";
-                    str+="<div class='fieldTitle fLeft '>";
-                    str+="<div class='w50 fLeft c4d padR15 fmOpenB'>Clarity <span class='fRight'>:</span></div>";
-                    str+="<div class='w50 fRight'>"+decodeURIComponent(vl.clarity)+"</div>";
-                    str+="</div>";
-                    str+="<div class='fieldTitle fLeft'>";
-                    str+="<div class='w50 fLeft c4d padR15 fmOpenB'>Cut <span class='fRight'>:</span></div>";
-                    str+="<div class='w50 fRight'>"+decodeURIComponent(vl.cut)+"</div>";
-                    str+="</div>";
-                    str+="<div class='fieldTitle fLeft'>";
-                    str+="<div class='w50 fLeft c4d padR15 fmOpenB'>Symmetry <span class='fRight'>:</span></div>";
-                    str+="<div class='w50 fRight'>"+decodeURIComponent(vl.symmetry)+"</div>";
-                    str+="</div>";
-                    str+="<div class='fieldTitle fLeft'>";
-                    str+="<div class='w50 fLeft c4d padR15 fmOpenB'>Polish <span class='fRight'>:</span></div>";
-                    str+="<div class='w50 fRight'>"+decodeURIComponent(vl.polish)+"</div>";
-                    str+="</div>";
-                    str+="<div class='fieldTitle fLeft'>";
-                    str+="<div class='w50 fLeft c4d padR15 fmOpenB'>Fluorescence <span class='fRight'>:</span></div>";
-                    str+="<div class='w50 fRight'>"+decodeURIComponent(vl.fluorescence)+"</div>";
-                    str+="</div>";
-                    str+="<div class='fieldTitle fLeft '>";
-                    str+="<div class='w50 fLeft c4d padR15 fmOpenB'>Carat <span class='fRight'>:</span></div>";
-                    str+="<div class='w50 fRight'>"+vl.carat+"</div>";
-                    str+="</div>";
-                    str+="<div class='fieldTitle fLeft '>";
-                    str+="<div class='w50 fLeft c4d padR15 fmOpenB'>Price/Carat <span class='fRight'>:</span></div>";
-                    str+="<div class='w50 fRight'>&#8377;"+vl.price_per_carat+"</div>";
-                    str+="</div>";
-                    str+="<div class='fieldTitle fLeft'>";
-                    str+="<div class='w50 fLeft c4d padR15 fmOpenB'>Table <span class='fRight'>:</span></div>";
-                    str+="<div class='w50 fRight'>"+vl.table+"</div>";
-                    str+="</div>";
-                    str+="<div class='fieldTitle fLeft'>";
-                    str+="<div class='w50 fLeft c4d padR15 fmOpenB'>Crown Angle <span class='fRight'>:</span></div>";
-                    str+="<div class='w50 fRight'>"+vl.crown_angle+"</div>";
-                    str+="</div>";
-                    str+="<div class='fieldTitle fLeft'>";
-                    str+="<div class='w50 fLeft c4d padR15 fmOpenB'>Gridle<span class='fRight'>:</span></div>";
-                    str+="<div class='w50 fRight'>"+vl.girdle+"</div>";
-                    str+="</div>";
-                    str+="</div>";
-                    str+="<div class='breakLine'></div>";
 
-                });
-
-                $('#prnewSolitaires').html(str);
-                $('#prsolitaires_Section').removeClass('dn');
-            }
-        
-        
-        
-            if(has_diamond==1)
-            {
-                var str="";
-                $(diamonds).each(function(i,vl){
-                    var ids=i+1;
-                    var customiz = $('[name*=isDiamondCustz_' + ids + ']:checked').val();
-                    var dquality = new Array();
-                    if (customiz == 1)
-                    {
-
-                        $('[name=dmdquality_cust' + ids + ']').each(function() {
-
-                            if ($(this).is(':CHECKED'))
+                            var mpurity = [];
+                            var mcolor = [];
+                            if (metalColorCust)
                             {
-                                dquality.push($(this).next('label').text());
 
-                            }
-                            else if (!$(this).is(':CHECKED')) {
-                                var removeItem = $(this).next('label').text();
-                                dquality = jQuery.grep(dquality, function(value) {
-                                    return value !== removeItem;
+                                $('[name=gcolorCustomize]').each(function () {
+                                    if ($(this).is(':CHECKED'))
+                                        mcolor.push($(this).next('label').text());
+
+                                    else if (!$(this).is(':CHECKED')) {
+                                        var removeItem = $(this).next('label').text();
+                                        mcolor = jQuery.grep(mcolor, function (value) {
+                                            return value !== removeItem;
+                                        });
+                                    }
+
                                 });
+                            } else if (!metalColorCust)
+                            {
+                                mcolor.push($('[name=gcolorNotCustomize]:CHECKED').next('label').text());
                             }
 
-                        });
 
-                    }
-                    else if (customiz == 0)
-                    {
-                        dquality.push($('[name*=dmdquality_notCust' + ids + ']:checked').next('label').text());
-                    }
-                    
-                    console.log(diamonds);
-                    
-                    str+="<div class='commCont fLeft poR'>";
-                    str+="<div class='shapeComm "+vl.shape+"'></div>";
-                    str+="<div class='outContr'>";                            
-                    str+="<div class='fieldTitle fLeft '>";
-                    str+="<div class='w50 fLeft c4d padR15 fmOpenB'>Diamond Quality <span class='fRight'>:</span></div>";
-                    str+="<div class='w50 fRight'>"+dquality.toString()+"</div>";
-                    str+="</div>";
-                    str+="<div class='fieldTitle fLeft '>";
-                    str+="<div class='w50 fLeft c4d padR15 fmOpenB'>Carat <span class='fRight'>:</span></div>";
-                    str+="<div class='w50 fRight'>"+vl.carat+"</div>";
-                    str+="</div>";
-                    str+="<div class='fieldTitle fLeft'>";
-                    str+="<div class='w50 fLeft c4d padR15 fmOpenB'>Pieces<span class='fRight'>:</span></div>";
-                    str+="<div class='w50 fRight'>"+vl.total_no+"</div>";
-                    str+="</div>";
-                    str+="</div>";
-                    str+="</div>";
-                    str+="<div class='breakLine'></div>";
-                });
 
-                $('#prnewDiamonds').html(str);
-                $('#prdiamond_Section').removeClass('dn');
-                
-            }
-            
-            
-            if(has_uncut==1)
-            {
-                var str="";
-                $(uncut).each(function(i,vl){
-                    str+="<div class='commCont fLeft'>";
-                    str+="<div class='outContr fLeft'>";                            
-                    str+="<div class='fieldTitle fLeft '>";
-                    str+="<div class='w50 fLeft c4d padR15 fmOpenB'>Diamond Color <span class='fRight'>:</span></div>";
-                    str+="<div class='w50 fRight'>"+vl.color+"</div>";
-                    str+="</div>";
-                    str+="<div class='fieldTitle fLeft '>";
-                    str+="<div class='w50 fLeft c4d padR15 fmOpenB'>Diamond Quality <span class='fRight'>:</span></div>";
-                    str+="<div class='w50 fRight'>"+vl.quality+"</div>";
-                    str+="</div>";
-                    str+="<div class='fieldTitle fLeft '>";
-                    str+="<div class='w50 fLeft c4d padR15 fmOpenB'>Carat <span class='fRight'>:</span></div>";
-                    str+="<div class='w50 fRight'>"+vl.carat+"</div>";
-                    str+="</div>";
-                    str+="<div class='fieldTitle fLeft '>";
-                    str+="<div class='w50 fLeft c4d padR15 fmOpenB'>Price/Carat <span class='fRight'>:</span></div>";
-                    str+="<div class='w50 fRight'>&#8377; "+vl.price_per_carat+"</div>";
-                    str+="</div>";
-                    str+="<div class='fieldTitle fLeft'>";
-                    str+="<div class='w50 fLeft c4d padR15 fmOpenB'>Pieces<span class='fRight'>:</span></div>";
-                    str+="<div class='w50 fRight'>"+vl.total_no+"</div>";
-                    str+="</div>";
-                    str+="</div>";
-                    str+="</div>";
-                    str+="<div class='breakLine'></div>";
-                });
+                            if (metalPurityCust)
+                            {
 
-                $('#prnewUncut').html(str);
-                $('#pruncut_Section').removeClass('dn');
-                
-            }
-        
-        
-        
-        if(has_gemstone==1)
-        {
-            var str="";
-            $(gemstone).each(function(i,vl){
-                str+="<div class='commCont fLeft'>";
-                str+="<div class='outContr fLeft'>";
-                str+="<div class='fieldTitle fLeft '>";
-                str+="<div class='w50 fLeft c4d padR15 fmOpenB'>Gemstone<span class='fRight'>:</span></div>";
-                str+="<div class='w50 fRight'>"+getGemstoneName(vl.gvalue)+"</div>";
-                str+="</div>";
-                str+="<div class='fieldTitle fLeft '>";
-                str+="<div class='w50 fLeft c4d padR15 fmOpenB'>Carat <span class='fRight'>:</span></div>";
-                str+="<div class='w50 fRight'>"+vl.carat+"</div>";
-                str+="</div>";
-                str+="<div class='fieldTitle fLeft '>";
-                str+="<div class='w50 fLeft c4d padR15 fmOpenB'>Price/Carat <span class='fRight'>:</span></div>";
-                str+="<div class='w50 fRight'>"+vl.price_per_carat+"</div>";
-                str+="</div>";
-                str+="<div class='fieldTitle fLeft'>";
-                str+="<div class='w50 fLeft c4d padR15 fmOpenB'>Pieces<span class='fRight'>:</span></div>";
-                str+="<div class='w50 fRight'>"+vl.total_no+"</div>";
-                str+="</div>";
-                str+="</div>";
-                str+="</div>";
-                str+="<div class='breakLine'></div>";
-            });
+                                $('[name=gpurityCustomize]').each(function () {
+                                    if ($(this).is(':CHECKED'))
+                                        mpurity.push($(this).next('label').text());
+                                    else if (!$(this).is(':CHECKED')) {
+                                        var removeItem = $(this).next('label').text();
+                                        mpurity = jQuery.grep(mpurity, function (value) {
+                                            return value !== removeItem;
+                                        });
+                                    }
 
-            $('#prnewgemstone').html(str);
-            $('#prgemstone_Section').removeClass('dn');
+                                });
+                            } else if (!metalPurityCust)
+                            {
+                                mpurity.push($('[name=gpurityNotCustomize]:CHECKED').next('label').text());
+                            }
 
-        }
-        
-        $('#prdForm').addClass('dn');
-        $('#previewDiv').removeClass('dn');
-        hideLoader();
-        moveUp();
-    }
-    
-    
-    
-    
-    function getGemstoneName(id)
-    {
-        var name;
-        $(gemstonelist).each(function(i,v){
-            if(v.id==id)
-            {
-                name=v.name;
-                return v.name;
-            }
-        });
-        
-        return name;
-    }
-    
-    function bindElementChange()
-    {
-        $('.shapeComm').bind('click',function(){
-            $('.priceOverlay').removeClass('dn');
-            
-        });
-        
-        var txt_selector = ['input[type=text],textarea'];
-        //var radioCh_selector = ['input[type=radio],input[type=checkbox],label'];
-        
-        
-        $(txt_selector).bind('blur',function(){
-            $('.priceOverlay').removeClass('dn');
-        });
-        $('label').bind('click',function(){
-            $('.priceOverlay').removeClass('dn');
-        });
-        
-    }
-    
-    
-    
-    
+                            $('#prmetalpurity').text(mpurity.toString());
+                            $('#prmetalcolor').text(mcolor.toString());
+
+
+
+                            var catstr = "";
+                            $(catid).each(function (i) {
+                                $(categories).each(function (j, vl) {
+                                    if (catid[i] == vl.cid && i < catid.length - 1)
+                                    {
+                                        catstr += vl.name + " , ";
+                                    } else if (catid[i] == vl.cid)
+                                    {
+                                        catstr += vl.name;
+                                    }
+                                });
+
+                            });
+                            $('#prcategories').append(catstr);
+
+
+                            if (has_solitaire == 1)
+                            {
+
+                                var str = "";
+                                $(solitaires).each(function (j, vl) {
+
+                                    str += "<div class='commCont fLeft poR forAuto'>";
+                                    str += "<div class='shapeComm " + vl.shape + "'></div>";
+                                    str += "<div class='fieldTitle fLeft '>";
+                                    str += "<div class='w50 fLeft  padR15 fmOpenR'>Color </div>";
+                                    str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.color + "</div>";
+                                    str += "</div>";
+                                    str += "<div class='fieldTitle fLeft '>";
+                                    str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Clarity </div>";
+                                    str += "<div class='w50 fRight fmOpenB txtRight'>" + decodeURIComponent(vl.clarity) + "</div>";
+                                    str += "</div>";
+                                    str += "<div class='fieldTitle fLeft'>";
+                                    str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Cut </div>";
+                                    str += "<div class='w50 fRight fmOpenB txtRight'>" + decodeURIComponent(vl.cut) + "</div>";
+                                    str += "</div>";
+                                    str += "<div class='fieldTitle fLeft'>";
+                                    str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Symmetry </div>";
+                                    str += "<div class='w50 fRight fmOpenB txtRight'>" + decodeURIComponent(vl.symmetry) + "</div>";
+                                    str += "</div>";
+                                    str += "<div class='fieldTitle fLeft'>";
+                                    str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Polish </div>";
+                                    str += "<div class='w50 fRight fmOpenB txtRight'>" + decodeURIComponent(vl.polish) + "</div>";
+                                    str += "</div>";
+                                    str += "<div class='fieldTitle fLeft'>";
+                                    str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Fluorescence </div>";
+                                    str += "<div class='w50 fRight fmOpenB txtRight'>" + decodeURIComponent(vl.fluorescence) + "</div>";
+                                    str += "</div>";
+                                    str += "<div class='fieldTitle fLeft '>";
+                                    str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Carat </div>";
+                                    str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.carat + "</div>";
+                                    str += "</div>";
+                                    str += "<div class='fieldTitle fLeft '>";
+                                    str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Price/Carat </div>";
+                                    str += "<div class='w50 fRight fmOpenB txtRight'>&#8377;" + vl.price_per_carat + "</div>";
+                                    str += "</div>";
+                                    str += "<div class='fieldTitle fLeft'>";
+                                    str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Table </div>";
+                                    str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.table + "</div>";
+                                    str += "</div>";
+                                    str += "<div class='fieldTitle fLeft'>";
+                                    str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Crown Angle </div>";
+                                    str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.crown_angle + "</div>";
+                                    str += "</div>";
+                                    str += "<div class='fieldTitle fLeft'>";
+                                    str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Gridle</div>";
+                                    str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.girdle + "</div>";
+                                    str += "</div>";
+                                    str += "</div>";
+                                    str += "<div class='breakLine'></div>";
+
+                                });
+
+                                $('#prnewSolitaires').html(str);
+                                $('#prsolitaires_Section').removeClass('dn');
+                            }
+
+
+
+                            if (has_diamond == 1)
+                            {
+                                var str = "";
+                                $(diamonds).each(function (i, vl) {
+                                    var ids = i + 1;
+                                    var customiz = $('[name*=isDiamondCustz_' + ids + ']:checked').val();
+                                    var dquality = new Array();
+                                    if (customiz == 1)
+                                    {
+
+                                        $('[name=dmdquality_cust' + ids + ']').each(function () {
+
+                                            if ($(this).is(':CHECKED'))
+                                            {
+                                                dquality.push($(this).next('label').text());
+
+                                            } else if (!$(this).is(':CHECKED')) {
+                                                var removeItem = $(this).next('label').text();
+                                                dquality = jQuery.grep(dquality, function (value) {
+                                                    return value !== removeItem;
+                                                });
+                                            }
+
+                                        });
+
+                                    } else if (customiz == 0)
+                                    {
+                                        dquality.push($('[name*=dmdquality_notCust' + ids + ']:checked').next('label').text());
+                                    }
+
+                                    console.log(diamonds);
+
+                                    str += "<div class='commCont fLeft poR'>";
+                                    str += "<div class='shapeComm " + vl.shape + "'></div>";
+                                    str += "<div class='dtl_cont fLeft'>";
+                                    str += "<div class='fieldTitle fLeft '>";
+                                    str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Diamond Quality </div>";
+                                    str += "<div class='w50 fRight fmOpenB txtRight'>" + dquality.toString() + "</div>";
+                                    str += "</div>";
+                                    str += "<div class='fieldTitle fLeft '>";
+                                    str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Carat </div>";
+                                    str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.carat + "</div>";
+                                    str += "</div>";
+                                    str += "<div class='fieldTitle fLeft'>";
+                                    str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Pieces</div>";
+                                    str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.total_no + "</div>";
+                                    str += "</div>";
+                                    str += "</div>";
+                                    str += "</div>";
+                                    str += "<div class='breakLine'></div>";
+                                });
+
+                                $('#prnewDiamonds').html(str);
+                                $('#prdiamond_Section').removeClass('dn');
+
+                            }
+
+
+                            if (has_uncut == 1)
+                            {
+                                var str = "";
+                                $(uncut).each(function (i, vl) {
+                                    str += "<div class='commCont fLeft'>";
+//                                    str += "<div class='outContr fLeft'>";
+                                    str += "<div class='dtl_cont fLeft'>";
+                                    str += "<div class='fieldTitle fLeft '>";
+                                    str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Diamond Color </div>";
+                                    str += "<div class='w50 fRight fmOpenB txtRight '>" + vl.color + "</div>";
+                                    str += "</div>";
+                                    str += "<div class='fieldTitle fLeft '>";
+                                    str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Diamond Quality </div>";
+                                    str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.quality + "</div>";
+                                    str += "</div>";
+                                    str += "<div class='fieldTitle fLeft '>";
+                                    str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Carat </div>";
+                                    str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.carat + "</div>";
+                                    str += "</div>";
+                                    str += "</div>";
+                                    str += "<div class='dtl_cont fRight'>";
+                                    str += "<div class='fieldTitle fLeft '>";
+                                    str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Price/Carat </div>";
+                                    str += "<div class='w50 fRight fmOpenB txtRight'>&#8377; " + vl.price_per_carat + "</div>";
+                                    str += "</div>";
+                                    str += "<div class='fieldTitle fLeft'>";
+                                    str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Pieces</div>";
+                                    str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.total_no + "</div>";
+                                    str += "</div>";
+                                    str += "</div>";
+//                                    str += "</div>";
+                                    str += "</div>";
+                                    str += "<div class='breakLine'></div>";
+                                });
+
+                                $('#prnewUncut').html(str);
+                                $('#pruncut_Section').removeClass('dn');
+
+                            }
+
+
+
+                            if (has_gemstone == 1)
+                            {
+                                var str = "";
+                                $(gemstone).each(function (i, vl) {
+                                    str += "<div class='commCont fLeft'>";
+                                    str += "<div class='outContr fLeft'>";
+                                    str += "<div class='fieldTitle fLeft '>";
+                                    str += "<div class='w50 fLeft c4d padR15 fmOpenB'>Gemstone<span class='fRight'>:</span></div>";
+                                    str += "<div class='w50 fRight'>" + getGemstoneName(vl.gvalue) + "</div>";
+                                    str += "</div>";
+                                    str += "<div class='fieldTitle fLeft '>";
+                                    str += "<div class='w50 fLeft c4d padR15 fmOpenB'>Carat <span class='fRight'>:</span></div>";
+                                    str += "<div class='w50 fRight'>" + vl.carat + "</div>";
+                                    str += "</div>";
+                                    str += "<div class='fieldTitle fLeft '>";
+                                    str += "<div class='w50 fLeft c4d padR15 fmOpenB'>Price/Carat <span class='fRight'>:</span></div>";
+                                    str += "<div class='w50 fRight'>" + vl.price_per_carat + "</div>";
+                                    str += "</div>";
+                                    str += "<div class='fieldTitle fLeft'>";
+                                    str += "<div class='w50 fLeft c4d padR15 fmOpenB'>Pieces<span class='fRight'>:</span></div>";
+                                    str += "<div class='w50 fRight'>" + vl.total_no + "</div>";
+                                    str += "</div>";
+                                    str += "</div>";
+                                    str += "</div>";
+                                    str += "<div class='breakLine'></div>";
+                                });
+
+                                $('#prnewgemstone').html(str);
+                                $('#prgemstone_Section').removeClass('dn');
+
+                            }
+
+                            $('#prdForm').addClass('dn');
+                            $('#previewDiv').removeClass('dn');
+                            hideLoader();
+                            moveUp();
+                        }
+
+
+
+
+                        function getGemstoneName(id)
+                        {
+                            var name;
+                            $(gemstonelist).each(function (i, v) {
+                                if (v.id == id)
+                                {
+                                    name = v.name;
+                                    return v.name;
+                                }
+                            });
+
+                            return name;
+                        }
+
+                        function bindElementChange()
+                        {
+                            $('.shapeComm').bind('click', function () {
+                                $('.priceOverlay').removeClass('dn');
+
+                            });
+
+                            var txt_selector = ['input[type=text],textarea'];
+                            //var radioCh_selector = ['input[type=radio],input[type=checkbox],label'];
+
+
+                            $(txt_selector).bind('blur', function () {
+                                $('.priceOverlay').removeClass('dn');
+                            });
+                            $('label').bind('click', function () {
+                                $('.priceOverlay').removeClass('dn');
+                            });
+
+                        }
+
+
+
+
     </script>
-    
-    
+
+
 </body>
 </html>
