@@ -267,7 +267,7 @@ class product extends DB {
                 . ",\"" . $params['has_solitaire'] . "\""
                 . ",\"" . $params['has_uncut'] . "\""
                 . ",\"" . $params['has_gemstone'] . "\""
-                . ",\"now()\""
+                . ",now()"
                 . ",\"" . $params['updatedby'] . "\")";
 
 

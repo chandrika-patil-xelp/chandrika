@@ -141,7 +141,8 @@ a { color: inherit;text-decoration: none; }
 .cancelBtn:hover {background-position: 5px center;}
 
 
-
+.priceBtn {width: 200px;height: 40px;font-size: 13px;line-height: 40px;text-align: center;display: inline-block;padding: 0 35px;background: #2F665C url(../img/tickCircle.svg)no-repeat;background-position: 150% center;background-size: auto 70%;color: #fff;border-radius: 2px;cursor: pointer;-webkit-appearance: none;-moz-user-select: none;-webkit-user-select: none;-ms-user-select: none;margin: 10px 0;position: absolute;top: 0;left: 0;right: 0;bottom: 0;margin: auto;display: inline-block;}
+.priceBtn:hover {background-position: 98% center;}
 
 
 .sampleBox{width: 100%;height: 200px;;margin: 0;background: #f0f0f0;padding: 15px;border-radius: 2px;overflow: hidden;margin-top: 20px;}
@@ -565,6 +566,8 @@ section{width:100%;height: auto;border:1px dashed #b3b3b3;float: left;margin:0 0
 
 .priceCont select{width: 100%;height: 38px;border: none;font-size: 14px;color: #666;background: url(../img/down_arrow.svg)no-repeat;background-position:right center;background-size: auto 40px;cursor: pointer;}
 .op0{opacity: 0}
+
+.priceOverlay{width:100%;height: 100%;position: absolute;top:0;left:0;background:rgba(255,255,255,0.8);z-index: 10;}
 
 /* No Results*/
 .noresDiv {width: 100%;height: 160px;padding: 50px 0;text-align: center;color: #d4d4c8;border: 1px solid #d4d4c8;margin-bottom: 50px;font-family: openR;}

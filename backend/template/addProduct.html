@@ -242,17 +242,16 @@ echo "<script>var edit=$edit; var pid= '$pid';</script>";
                     </div>
 
 
-                    <div class="divCon2 fLeft noBorder" id='cat_sizes'>
-                        <div class="titleDiv txtCap fLeft">Bangle Sizes</div>
+                    <div class="divCon2 fLeft noBorder dn" id='cat_sizes'>
+                        <div class="titleDiv txtCap fLeft">Select Sizes</div>
                     </div>
                 </section>
                 <!-----General Section End--!-->
-
+                
                 <!-----Price Section--!-->
-                <section id='price_Section' class="priceCont dn">
+                <section id='price_Section' class="priceCont dn poR">
                     <div class="commTitle1 fmOpenL fLeft">Price Breakup</div>
                     <div class="divCon fLeft">
-
                         <div class="priceHeading fLeft">
                             <div class="forComponent fLeft">Component</div> 
                             <div class="forRate fLeft">Rate</div> 
@@ -260,7 +259,10 @@ echo "<script>var edit=$edit; var pid= '$pid';</script>";
                             <div class="forPrice fLeft">Price</div> 
                         </div>
                         <ul class="pricingul fLeft"></ul>
-                    </div> 
+                    </div>
+                    <div class="priceOverlay dn">
+                        <div class="priceBtn transition300 fmOpenR poR" onclick="genPriceSection()" id="">GENERATE PRICE</div>
+                    </div>
                 </section>
                 <!-----Price Section End--!-->
                 <div class="btnCont fLeft dn">
@@ -276,120 +278,114 @@ echo "<script>var edit=$edit; var pid= '$pid';</script>";
         <div class="forScrollBtn op01 forScDown" onclick="moveDown()"></div>
         <div class="overlay dn"></div>
         <div class="loader dn"></div>
-        
-        
-        
-        
-        
     </div>
     
-    
+    <!--PREVIEW SECTION-->
     
     <div class="previewContainer preview dn" id='previewDiv'>
-            <div class="wrapperMax fmOpenR">
-                <section id='general_Section' class="generalCont">
-                    <div class="commTitle1 fmOpenR">General Information</div>
-                    <div class="fieldTitle fLeft">
-                        <div class="w50 fLeft c4d padR15 fmOpenB">Product Name <span class="fRight">:</span></div>
-                        <div class="w50 fRight" id='prproduct_name'></div>
-                    </div>
-                    <div class="fieldTitle fLeft">
-                        <div class="w50 fLeft c4d padR15 fmOpenB">Product SEO Name <span class="fRight">:</span></div>
-                        <div class="w50 fRight" id='prproduct_seo_name'></div>
-                    </div>
-                    <div class="fieldTitle fLeft ">
-                        <div class="w50 fLeft c4d padR15 fmOpenB">Category <span class="fRight">:</span></div>
-                        <div class="w50 fRight txtCap" id='prcategories'></div>
-                    </div>
-                    <div class="fieldTitle fLeft ">
-                        <div class="w50 fLeft c4d padR15 fmOpenB">Vendor <span class="fRight">:</span></div>
-                        <div class="w50 fRight" id='prvendorid'></div>
-                    </div>
-                    <div class="breakLine"></div>
-                    <div class="fieldTitle fLeft w50">
-                        <div class="w50 fLeft c4d padR15 fmOpenB">Product Weight (grms) <span class="fRight">:</span></div>
-                        <div class="w50 fRight" id='prproduct_weight'></div>
-                    </div>
-
-                    <div class="fieldTitle fLeft w50">
-                        <div class="w50 fLeft c4d padR15 fmOpenB">Gender <span class="fRight">:</span></div>
-                        <div class="w50 fRight" id='prgender'></div>
-                    </div>
-
-                    <div class="fieldTitle fLeft w50">
-                        <div class="w50 fLeft c4d padR15 fmOpenB">Diamond Setting Type <span class="fRight">:</span></div>
-                        <div class="w50 fRight" id='prdmdSetting'></div>
-                    </div>
-                    <div class="fieldTitle fLeft w50">
-                        <div class="w50 fLeft c4d padR15 fmOpenB">Product Certificate <span class="fRight">:</span></div>
-                        <div class="w50 fRight" id='prcertificate'></div>
-                    </div>
-                    <div class="fieldTitle fLeft w50">
-                        <div class="w50 fLeft c4d padR15 fmOpenB">Metal Weight(Grm)<span class="fRight">:</span></div>
-                        <div class="w50 fRight" id='prmetal_weight'></div>
-                    </div>
-                    <div class="fieldTitle fLeft w50">
-                        <div class="w50 fLeft c4d padR15 fmOpenB">Making Charges/Grm<span class="fRight">:</span></div>
-                        <div class="w50 fRight" id='prmaking_charges'></div>
-                    </div>
-                    <div class="fieldTitle fLeft w50">
-                        <div class="w50 fLeft c4d padR15 fmOpenB">Procurement Cost<span class="fRight">:</span></div>
-                        <div class="w50 fRight" id='prprocurement_cost'></div>
-                    </div>
-                    <div class="fieldTitle fLeft w50">
-                        <div class="w50 fLeft c4d padR15 fmOpenB">Margin<span class="fRight">:</span></div>
-                        <div class="w50 fRight" id='prmargin'></div>
-                    </div>
-                    <div class="fieldTitle fLeft w50">
-                        <div class="w50 fLeft c4d padR15 fmOpenB">Measurement<span class="fRight">:</span></div>
-                        <div class="w50 fRight" id='prmeasurement'></div>
-                    </div>
-                    <div class="fieldTitle fLeft w50">
-                        <div class="w50 fLeft c4d padR15 fmOpenB">Metal Purity<span class="fRight">:</span></div>
-                        <div class="w50 fRight" id='prmetalpurity'></div>
-                    </div>
-                    <div class="fieldTitle fLeft w50">
-                        <div class="w50 fLeft c4d padR15 fmOpenB">Metal color<span class="fRight">:</span></div>
-                        <div class="w50 fRight txtCap" id='prmetalcolor'></div>
-                    </div>
-                </section>
-
-
-
-                <section id='prsolitaires_Section' class="solitaireCont dn">
-                    <div class="commTitle1 fmOpenL fLeft">Added Solitaire(s)</div>
-                    <div class="newElements fLeft" id="prnewSolitaires"></div>
-                </section>
-
-
-                <section id='prdiamond_Section' class="solitaireCont dn">
-                    <div class="commTitle1 fmOpenL fLeft">Added Diamond(s)</div>
-                    <div class="newElements fLeft" id="prnewDiamonds"></div>
-                </section>
-
-
-                <section id='pruncut_Section' class="solitaireCont">
-                    <div class="commTitle1 fmOpenL fLeft">Added Uncut(s)</div>
-                    <div class="newElements fLeft" id="prnewUncut"></div>
-                </section>
-
-                <section id='prgemstone_Section' class="solitaireCont">
-                    <div class="commTitle1 fmOpenL fLeft">Added Gemstone(s)</div>
-                    <div class="newElements fLeft" id="prnewgemstone"></div>
-                </section>
-                
-                <section id="prprice_Section" class="priceCont dn">
-                    <div class="priceHeading fmOpenB"><span class="c4d">Grand Total</span><span class="fRight">&#8377 2,00,000</span></div>
-                </section>
-                                
-                <div class="btnCont fLeft">
-                    <center>
-                        <div class="cancelBtn transition300 fmOpenR poR" onclick="hidePreview()">CANCEL</div>
-                        <div class="submitBtn transition300 fmOpenR poR" onclick="submitData()" id="Submitdiv">SUBMIT</div>
-                    </center>
+        <div class="wrapperMax fmOpenR">
+            <section id='general_Section' class="generalCont">
+                <div class="commTitle1 fmOpenR">General Information</div>
+                <div class="fieldTitle fLeft">
+                    <div class="w50 fLeft c4d padR15 fmOpenB">Product Name <span class="fRight">:</span></div>
+                    <div class="w50 fRight" id='prproduct_name'></div>
                 </div>
+                <div class="fieldTitle fLeft">
+                    <div class="w50 fLeft c4d padR15 fmOpenB">Product SEO Name <span class="fRight">:</span></div>
+                    <div class="w50 fRight" id='prproduct_seo_name'></div>
+                </div>
+                <div class="fieldTitle fLeft ">
+                    <div class="w50 fLeft c4d padR15 fmOpenB">Category <span class="fRight">:</span></div>
+                    <div class="w50 fRight txtCap" id='prcategories'></div>
+                </div>
+                <div class="fieldTitle fLeft ">
+                    <div class="w50 fLeft c4d padR15 fmOpenB">Vendor <span class="fRight">:</span></div>
+                    <div class="w50 fRight" id='prvendorid'></div>
+                </div>
+                <div class="breakLine"></div>
+                <div class="fieldTitle fLeft w50">
+                    <div class="w50 fLeft c4d padR15 fmOpenB">Product Weight (grms) <span class="fRight">:</span></div>
+                    <div class="w50 fRight" id='prproduct_weight'></div>
+                </div>
+
+                <div class="fieldTitle fLeft w50">
+                    <div class="w50 fLeft c4d padR15 fmOpenB">Gender <span class="fRight">:</span></div>
+                    <div class="w50 fRight" id='prgender'></div>
+                </div>
+
+                <div class="fieldTitle fLeft w50">
+                    <div class="w50 fLeft c4d padR15 fmOpenB">Diamond Setting Type <span class="fRight">:</span></div>
+                    <div class="w50 fRight" id='prdmdSetting'></div>
+                </div>
+                <div class="fieldTitle fLeft w50">
+                    <div class="w50 fLeft c4d padR15 fmOpenB">Product Certificate <span class="fRight">:</span></div>
+                    <div class="w50 fRight" id='prcertificate'></div>
+                </div>
+                <div class="fieldTitle fLeft w50">
+                    <div class="w50 fLeft c4d padR15 fmOpenB">Metal Weight(Grm)<span class="fRight">:</span></div>
+                    <div class="w50 fRight" id='prmetal_weight'></div>
+                </div>
+                <div class="fieldTitle fLeft w50">
+                    <div class="w50 fLeft c4d padR15 fmOpenB">Making Charges/Grm<span class="fRight">:</span></div>
+                    <div class="w50 fRight" id='prmaking_charges'></div>
+                </div>
+                <div class="fieldTitle fLeft w50">
+                    <div class="w50 fLeft c4d padR15 fmOpenB">Procurement Cost<span class="fRight">:</span></div>
+                    <div class="w50 fRight" id='prprocurement_cost'></div>
+                </div>
+                <div class="fieldTitle fLeft w50">
+                    <div class="w50 fLeft c4d padR15 fmOpenB">Margin<span class="fRight">:</span></div>
+                    <div class="w50 fRight" id='prmargin'></div>
+                </div>
+                <div class="fieldTitle fLeft w50">
+                    <div class="w50 fLeft c4d padR15 fmOpenB">Measurement<span class="fRight">:</span></div>
+                    <div class="w50 fRight" id='prmeasurement'></div>
+                </div>
+                <div class="fieldTitle fLeft w50">
+                    <div class="w50 fLeft c4d padR15 fmOpenB">Metal Purity<span class="fRight">:</span></div>
+                    <div class="w50 fRight" id='prmetalpurity'></div>
+                </div>
+                <div class="fieldTitle fLeft w50">
+                    <div class="w50 fLeft c4d padR15 fmOpenB">Metal color<span class="fRight">:</span></div>
+                    <div class="w50 fRight txtCap" id='prmetalcolor'></div>
+                </div>
+            </section>
+
+
+
+            <section id='prsolitaires_Section' class="solitaireCont dn">
+                <div class="commTitle1 fmOpenL fLeft">Added Solitaire(s)</div>
+                <div class="newElements fLeft" id="prnewSolitaires"></div>
+            </section>
+
+
+            <section id='prdiamond_Section' class="solitaireCont dn">
+                <div class="commTitle1 fmOpenL fLeft">Added Diamond(s)</div>
+                <div class="newElements fLeft" id="prnewDiamonds"></div>
+            </section>
+
+
+            <section id='pruncut_Section' class="solitaireCont dn">
+                <div class="commTitle1 fmOpenL fLeft">Added Uncut(s)</div>
+                <div class="newElements fLeft" id="prnewUncut"></div>
+            </section>
+
+            <section id='prgemstone_Section' class="solitaireCont dn">
+                <div class="commTitle1 fmOpenL fLeft">Added Gemstone(s)</div>
+                <div class="newElements fLeft" id="prnewgemstone"></div>
+            </section>
+            <section id="prprice_Section" class="priceCont dn">
+                <div class="priceHeading fmOpenB"><span class="c4d">Grand Total</span><span class="fRight">&#8377 2,00,000</span></div>
+            </section>
+
+            <div class="btnCont fLeft">
+                <center>
+                    <div class="cancelBtn transition300 fmOpenR poR" onclick="hidePreview()">CANCEL</div>
+                    <div class="submitBtn transition300 fmOpenR poR" onclick="submitData()" id="Submitdiv">SUBMIT</div>
+                </center>
             </div>
         </div>
+    </div>
     <script type="text/javascript" src="<?php echo $jvs['addProduct']; ?>"></script>
     
     <script>
@@ -410,12 +406,20 @@ echo "<script>var edit=$edit; var pid= '$pid';</script>";
         var has_gemstone=data['has_gemstone'];
         var details=data['details'];
         var catid=data['catid'].split(",");
+        $('#prnewSolitaires,#prnewDiamonds,#prnewgemstone,#prnewUncut').html('');
+        $('#prsolitaires_Section,#prgemstone_Section,#pruncut_Section,#prdiamond_Section').addClass('dn');
 
-
-            $('#prvendorid').text(details["vendorid"]);
+            $('#prvendorid').text($('#vendorList option:selected').text());
             $('#prproduct_name').text(decodeURIComponent(details["product_name"]));
             $('#prproduct_seo_name').text(decodeURIComponent(details["product_seo_name"]));
-            $('#prgender').text(details["gender"]);
+            var gen="Female";
+            if(details["gender"]==1)
+                gen="Female";
+            
+            else if(details["gender"]==2)
+                gen="Unisex";
+            
+            $('#prgender').text(gen);
             $('#prproduct_weight').text(details["product_weight"]);
             $('#prcertificate').text(details["certificate"]);
             $('#prmetal_weight').text(details["metal_weight"]+" grm");
@@ -424,9 +428,6 @@ echo "<script>var edit=$edit; var pid= '$pid';</script>";
             $('#prmargin').html(details["margin"]);
             $('#prmeasurement').html(details["measurement"]);
             $('#prdmdSetting').html(details["dmdSetting"]);
-            
-            
-           
             
             
             var mpurity = [];
@@ -495,11 +496,13 @@ echo "<script>var edit=$edit; var pid= '$pid';</script>";
             });
             $('#prcategories').append(catstr);
 
-
+            
             if(has_solitaire==1)
             {
+             
                 var str="";
                 $(solitaires).each(function(j,vl){
+                  
                     str+="<div class='commCont fLeft poR forAuto'>";
                     str+="<div class='shapeComm "+vl.shape+"'></div>";
                     str+="<div class='fieldTitle fLeft '>";
@@ -508,23 +511,23 @@ echo "<script>var edit=$edit; var pid= '$pid';</script>";
                     str+="</div>";
                     str+="<div class='fieldTitle fLeft '>";
                     str+="<div class='w50 fLeft c4d padR15 fmOpenB'>Clarity <span class='fRight'>:</span></div>";
-                    str+="<div class='w50 fRight'>"+vl.clarity+"</div>";
+                    str+="<div class='w50 fRight'>"+decodeURIComponent(vl.clarity)+"</div>";
                     str+="</div>";
                     str+="<div class='fieldTitle fLeft'>";
                     str+="<div class='w50 fLeft c4d padR15 fmOpenB'>Cut <span class='fRight'>:</span></div>";
-                    str+="<div class='w50 fRight'>"+vl.cut+"</div>";
+                    str+="<div class='w50 fRight'>"+decodeURIComponent(vl.cut)+"</div>";
                     str+="</div>";
                     str+="<div class='fieldTitle fLeft'>";
                     str+="<div class='w50 fLeft c4d padR15 fmOpenB'>Symmetry <span class='fRight'>:</span></div>";
-                    str+="<div class='w50 fRight'>"+vl.symmetry+"</div>";
+                    str+="<div class='w50 fRight'>"+decodeURIComponent(vl.symmetry)+"</div>";
                     str+="</div>";
                     str+="<div class='fieldTitle fLeft'>";
                     str+="<div class='w50 fLeft c4d padR15 fmOpenB'>Polish <span class='fRight'>:</span></div>";
-                    str+="<div class='w50 fRight'>"+vl.polish+"</div>";
+                    str+="<div class='w50 fRight'>"+decodeURIComponent(vl.polish)+"</div>";
                     str+="</div>";
                     str+="<div class='fieldTitle fLeft'>";
                     str+="<div class='w50 fLeft c4d padR15 fmOpenB'>Fluorescence <span class='fRight'>:</span></div>";
-                    str+="<div class='w50 fRight'>"+vl.fluorescence+"</div>";
+                    str+="<div class='w50 fRight'>"+decodeURIComponent(vl.fluorescence)+"</div>";
                     str+="</div>";
                     str+="<div class='fieldTitle fLeft '>";
                     str+="<div class='w50 fLeft c4d padR15 fmOpenB'>Carat <span class='fRight'>:</span></div>";
@@ -551,7 +554,7 @@ echo "<script>var edit=$edit; var pid= '$pid';</script>";
 
                 });
 
-                $('#prnewSolitaires').append(str);
+                $('#prnewSolitaires').html(str);
                 $('#prsolitaires_Section').removeClass('dn');
             }
         
@@ -589,6 +592,7 @@ echo "<script>var edit=$edit; var pid= '$pid';</script>";
                         dquality.push($('[name*=dmdquality_notCust' + ids + ']:checked').next('label').text());
                     }
                     
+                    console.log(diamonds);
                     
                     str+="<div class='commCont fLeft poR'>";
                     str+="<div class='shapeComm "+vl.shape+"'></div>";
@@ -610,7 +614,7 @@ echo "<script>var edit=$edit; var pid= '$pid';</script>";
                     str+="<div class='breakLine'></div>";
                 });
 
-                $('#prnewDiamonds').append(str);
+                $('#prnewDiamonds').html(str);
                 $('#prdiamond_Section').removeClass('dn');
                 
             }
@@ -647,7 +651,7 @@ echo "<script>var edit=$edit; var pid= '$pid';</script>";
                     str+="<div class='breakLine'></div>";
                 });
 
-                $('#prnewUncut').append(str);
+                $('#prnewUncut').html(str);
                 $('#pruncut_Section').removeClass('dn');
                 
             }
@@ -681,7 +685,7 @@ echo "<script>var edit=$edit; var pid= '$pid';</script>";
                 str+="<div class='breakLine'></div>";
             });
 
-            $('#prnewgemstone').append(str);
+            $('#prnewgemstone').html(str);
             $('#prgemstone_Section').removeClass('dn');
 
         }
@@ -709,6 +713,25 @@ echo "<script>var edit=$edit; var pid= '$pid';</script>";
         return name;
     }
     
+    function bindElementChange()
+    {
+        $('.shapeComm').bind('click',function(){
+            $('.priceOverlay').removeClass('dn');
+            
+        });
+        
+        var txt_selector = ['input[type=text],textarea'];
+        //var radioCh_selector = ['input[type=radio],input[type=checkbox],label'];
+        
+        
+        $(txt_selector).bind('blur',function(){
+            $('.priceOverlay').removeClass('dn');
+        });
+        $('label').bind('click',function(){
+            $('.priceOverlay').removeClass('dn');
+        });
+        
+    }
     
     
     

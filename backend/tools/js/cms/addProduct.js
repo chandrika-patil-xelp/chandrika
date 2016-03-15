@@ -20,6 +20,16 @@ var mcolor = new Array();
 var allrates = new Array();
 var prdid="";
 var previewData;
+
+
+var sflag = true;
+var dflag = true;
+var uflag = true;
+var gflag = true;
+
+
+
+
 function getCategories()
 {
     var URL = APIDOMAIN + "index.php?action=getCatgoryList";
@@ -87,26 +97,33 @@ function generateCats(res,id)
 function removeCats(id)
 {
     $("[id^=parent_"+id+"_]").each( function() {
+        var rcatid=$(this).attr('id').split("_");
         removeCats($(this).find("input:checkbox").attr('id').replace('cat_',''));
         $(this).remove();
+        removeSizes('cat_'+rcatid[2]);
     });
 }
+
+
 function bindCheckBox(res)
 {
-    
     $("input[type=checkbox]").each( function() {
         if($(this).attr('id').indexOf("cat_") != -1)
         {
+            
             $(this).unbind();
             var id = $(this).attr('id');
             $('#'+id).bind('click', function() {
                 if($(this).is(':checked'))
                 {
                     generateCats(res,id.replace('cat_',''));
+                    getSizeList(id.replace('cat_',''));
                 }
                 else
                 {
                     removeCats(id.replace('cat_',''));
+                    removeSizes(id);
+                    
                 }
             });
         }
@@ -143,6 +160,7 @@ function getAllChilds(res)
         stopPropGate(event);
         if ($(this).is(":checked"))
         {
+            
             var vstr = generateHtml(res, $(this).attr("id").replace('cat_', ''));
         }
         str += vstr;
@@ -151,6 +169,7 @@ function getAllChilds(res)
             $('#parentCatg').append(str);
         getAllChilds(res);
         bindRemove();
+       
     });
 }
 
@@ -161,7 +180,7 @@ function bindRemove()
         stopPropGate(event);
         if (!$(this).is(":checked"))
         {
-            console.log($(this).attr("id") + " to be removed");
+            //console.log($(this).attr("id") + " to be removed");
             removeChilds($(this).attr("id").replace('cat_', ''));
         }
     });
@@ -174,7 +193,6 @@ function removeChilds(catid)
     var i = 0;
     while (i < catLen)
     {
-        //console.log( $('#cat_'+categories[i]['cid']));
         if (categories[i]['pid'] == catid) {
             $('#cat_' + categories[i]['cid']).parent().remove();
         }
@@ -228,7 +246,7 @@ function getDiamondQuality()
         success: function(res) {
             res = JSON.parse(res);
             dqulaity = res['result'];
-            //diamondQltyCalllBack(res);
+            diamondQltyCalllBack(res);
         }
     });
 
@@ -237,7 +255,7 @@ function getDiamondQuality()
 
 function diamondQltyCalllBack(data)
 {
-
+    //console.log(data);
     if (data['error']['err_code'] == '0')
     {
         var str1 = "";
@@ -266,6 +284,7 @@ function diamondQltyCalllBack(data)
         $('#notcustQuality').html(str2);
 
     }
+    bindElementChange();
 
 }
 
@@ -298,7 +317,7 @@ function gemstoneListCalllBack(data)
         });
 
         $('#gemstone_type').html(str);
-
+        bindElementChange();
     }
 }
 
@@ -348,7 +367,7 @@ function metalpurityCalllBack(data)
 
         $('#ifpurityCustomiz').html(str1);
         $('#ifpurityNotCustomiz').html(str2);
-
+        bindElementChange();
     }
 
 }
@@ -393,52 +412,68 @@ function metalcolorCalllBack(data)
 
         $('#ifcolorCustomiz').html(str1);
         $('#ifcolorNotCustomiz').html(str2);
-
+        bindElementChange();
     }
 
 }
 
+function removeSizes(id){
+    console.log(id);
+    
+    $('#cat_sizes .dQuality').each(function(){
+        var sizefor=$(this).attr('size-for');
+        if(sizefor==id)
+            $(this).remove();
 
-function getSizeList()
+});  
+    
+}
+
+
+function getSizeList(catid)
 {
 
-    //var URL = APIDOMAIN+"index.php?action=getSizeListByCat&catid=5";
-    var URL = APIDOMAIN + "index.php?action=getSizeList";
+    var URL = APIDOMAIN+"index.php?action=getSizeListByCat&catid="+catid;
+    //var URL = APIDOMAIN + "index.php?action=getSizeList";
     $.ajax({
         url: URL,
         type: "POST",
         success: function(res) {
             res = JSON.parse(res);
-            sizeListCalllBack(res);
+            sizeListCalllBack(res,catid);
         }
     });
 
 }
 
 
-function sizeListCalllBack(data)
+function sizeListCalllBack(data,catid)
 {
-    if (data['error']['err_code'] == '0')
+    if(data['result'])
     {
-        var str = "";
+        if (data['error']['err_code'] == '0')
+        {
+            $('#cat_sizes .dQuality').remove();
+            var str = "";
 
-        $.each(data.result, function(i, v) {
+            $.each(data.result, function(i, v) {
 
-            str += "<div class='dQuality fLeft'>";
-            str += "<div class='checkDiv fLeft minwidth60'>";
-            str += "<input type='checkbox' name='size' class='filled-in' value='" + v.id + "' id='size_" + v.id + "'>";
-            str += "<label for='size_" + v.id + "'>" + v.sval + "</label>";
-            str += "</div>";
-            str += "<div class='intInp2 fLeft'>";
-            str += "<input name='sizeQty' type='text' id='size_" + v.id + "_qty' autocomplete='false' placeholder=' Enter quantity ' class='txtInput fRight fmOpenR font14 c666' onkeypress='return common.isDecimalKey(event, this.value);' maxlength='3'>";
-            str += "</div>";
-            str += "</div>";
+                str += "<div class='dQuality fLeft' size-for='cat_"+catid+"'>";
+                str += "<div class='checkDiv fLeft minwidth60'>";
+                str += "<input type='checkbox' name='size' class='filled-in' value='" + v.id + "' id='size_" + v.id + "'>";
+                str += "<label for='size_" + v.id + "'>" + v.sval + "</label>";
+                str += "</div>";
+                str += "<div class='intInp2 fLeft'>";
+                str += "<input name='sizeQty' type='text' id='size_" + v.id + "_qty' autocomplete='false' placeholder=' Enter quantity ' class='txtInput fRight fmOpenR font14 c666' onkeypress='return common.isDecimalKey(event, this.value);' maxlength='3'>";
+                str += "</div>";
+                str += "</div>";
 
-        });
+            });
+        }
+
+        $('#cat_sizes').append(str);
+        $('#cat_sizes').removeClass('dn');
     }
-
-    $('#cat_sizes').html(str);
-    bindAllForPrice();
 
 }
 
@@ -472,10 +507,10 @@ var radioCh_selector = ['input[type=radio],input[type=checkbox],label'];
 
 function bindAllForPrice(){
     $(txt_selector).bind('blur',function(){
-        genPriceSection();
+      //  genPriceSection();
     });
     $('label').bind('click',function(){
-        genPriceSection();
+        //genPriceSection();
     });
 
 }
@@ -487,7 +522,7 @@ $(document).ready(function() {
     getMetalPurity();
     getMetalColors();
     getGemstoneList();
-    getSizeList();
+    //getSizeList();
     GetRates();
 
     if(edit==1)
@@ -556,15 +591,10 @@ $(document).ready(function() {
     });
 
 
-    var sflag = true;
-    var dflag = true;
-    var uflag = true;
-    var gflag = true;
+
     $("#stone1,#stone2,#stone3,#stone4").change(function() {
         var id = $(this).attr('id');
         var flag = $(this).is(':CHECKED');
-
-
 
         if (id == 'stone1' && flag == true)
         {
@@ -641,7 +671,7 @@ $(document).ready(function() {
         }
     });
     
-    
+    bindElementChange();
     
 });
 
@@ -689,6 +719,8 @@ function deleteThis(id)
         $('#stone1').attr('checked',false);
         has_solitaire=false;
         changePrdPropertyStatus(1);
+        sflag = true;
+        
     }
     
     if($("div[id^='diamondComm_']").length==0)
@@ -697,6 +729,8 @@ function deleteThis(id)
         $('#stone2').attr('checked',false);
         has_diamond=false;
         changePrdPropertyStatus(2);
+        dflag = true;
+    
     }
     
     if($("div[id^='uncutComm_']").length==0)
@@ -705,6 +739,8 @@ function deleteThis(id)
         $('#stone3').attr('checked',false);
         has_uncut=false;
         changePrdPropertyStatus(3);
+        uflag = true;
+    
     }
     
     if($("div[id^='gemstoneComm_']").length==0)
@@ -713,6 +749,7 @@ function deleteThis(id)
         $('#stone4').attr('checked',false);
         has_gemstone=false;
         changePrdPropertyStatus(4);
+        gflag = true;
     }
 
 }
@@ -767,7 +804,7 @@ function addSolitaire()
     $('#newSolitaires').append(str);
     bindShapes();
     solitaireCnt++;
-
+    bindElementChange();
 }
 
 
@@ -958,7 +995,7 @@ function addDiamond()
     bindShapes();
     bindDmdQuaity();
     diamondCnt++;
-
+    bindElementChange();
 }
 
 
@@ -1081,6 +1118,7 @@ function addUncut()
 
     $('#newUncutDiamonds').append(str);
     unctCnt++;
+    bindElementChange();
 }
 
 
@@ -1121,6 +1159,7 @@ function addGemstone()
     $('#newGemstone').append(str);
 
     gemstoneCnt++;
+    bindElementChange();
 
 }
 
@@ -1159,6 +1198,7 @@ function bindDmdQuaity()
 
 function addProduct()
 {
+    previewData=new Array();
     showLoader();
     $('.forScrollBtn').removeClass('op0');
     var flag = validateForm();
@@ -1190,6 +1230,7 @@ function addProduct()
         });
 
         var vid = $('#vendorList').val();
+        var vname = $('#vendorList option:selected').text();
         var product_name = encodeURIComponent($('#product_name').val());
         var product_seo_name = encodeURIComponent($('#product_seo_name').val());
         var product_weight = $('#product_weight').val();
@@ -1624,10 +1665,6 @@ function submitData()
 
 
 
-
-
-
-
 function addPrdCallBack(data)
 {
 
@@ -1635,7 +1672,7 @@ function addPrdCallBack(data)
     {
         common.toast(1, 'Product added successfully');
             hideLoader();
-            window.location.href=DOMAIN+"backend/index.php?action=products";
+            //window.location.href=DOMAIN+"backend/index.php?action=products";
         //redirect
     }
     else
@@ -1711,7 +1748,7 @@ function moveDown()
 {
     if(lsc==0)
         lsc=$('.btnCont').position().top;
-    $('body,html').animate({scrollTop:lsc},300,"swing");
+    $('body,html').animate({scrollTop:10000},300,"swing");
 }
 
 function moveUp()
@@ -1729,8 +1766,10 @@ function validateForm()
         var id=$('[name=prtcateg]').eq(0).attr('id');
         highlight(id,1);
         isValid=false;
-            return false;
+        return false;
     }
+    
+    
 
     if ($('#vendorList').val() == -1)
     {
@@ -2087,6 +2126,16 @@ function GetRates() {
 
 function genPriceSection()
 {
+    
+    
+    if(edit==0)
+    {
+        validateForm();
+    }
+
+    
+    
+    $('.priceOverlay').addClass('dn');
     var str = "";
     if (has_solitaire)
     {
@@ -2111,16 +2160,18 @@ function genPriceSection()
 
 
     var mkch = $('#making_charges').val();
-    var totalwt = $('#product_weight').val();
+    var totalwt = $('#metal_weight').val();
     var total = parseFloat(mkch) * parseFloat(totalwt);
 
     var mstr = "<li id='makingCharge'>";
     mstr += "<div class='forComponent fLeft pl15'>Making Charge</div>";
-    mstr += "<div class='forRate fLeft'>" + mkch + "/ct</div>";
+    mstr += "<div class='forRate fLeft'>" + mkch + "/grm</div>";
     mstr += "<div class='forWeight fLeft'></div>";
     mstr += "<div class='forPrice calc fLeft'>&#8377;" + total + "</div>";
     mstr += "</li>";
-
+    
+    
+    $('.pricingul').html('');
     $('.pricingul').html(str + gldstr + mstr);
     calcGrandTotal(1);
 
@@ -2151,7 +2202,7 @@ function solitairePrice()
 function diamondPrice()
 {
 
-    var str = "<li class='headLi' id='forSolitaire'><div class='forComponent fLeft'>Diamond(s)</div></li>";
+    var str = "<li class='headLi' id='forDiamond'><div class='forComponent fLeft'>Diamond(s)</div></li>";
     $('[id*=diamondComm_]').each(function() {
         var id = $(this).attr('id');
         var ids = id.split("diamondComm_");
@@ -2206,7 +2257,7 @@ function diamondPrice()
 
 function uncutPrice()
 {
-    var str = "<li class='headLi' id='forSolitaire'><div class='forComponent fLeft'>Uncut Diamond(s)</div></li>";
+    var str = "<li class='headLi' id='forUncut'><div class='forComponent fLeft'>Uncut Diamond(s)</div></li>";
     $('[id*=uncutComm_]').each(function() {
         var id = $(this).attr('id');
         var ids = id.split("uncutComm_");
@@ -2234,7 +2285,7 @@ function uncutPrice()
 function gemstonePrice()
 {
 
-    var str = "<li class='headLi' id='forSolitaire'><div class='forComponent fLeft'>Gemstone(s)</div></li>";
+    var str = "<li class='headLi' id='forGemstone'><div class='forComponent fLeft'>Gemstone(s)</div></li>";
     $('[id*=gemstoneComm_]').each(function() {
         var id = $(this).attr('id');
         var ids = id.split("gemstoneComm_");
@@ -2264,7 +2315,7 @@ function gemstonePrice()
 function goldPrice()
 {
 
-    var str = "<li class='headLi' id='forSolitaire'><div class='forComponent fLeft'>Gold</div></li>";
+    var str = "<li class='headLi' id='forGold'><div class='forComponent fLeft'>Gold</div></li>";
     var val = $("[name='isPurityCustz']:checked").val();
     var carat = $('#metal_weight').val();
     var crPrice;
@@ -2362,9 +2413,9 @@ function calcGrandTotal(type)
     });
 
     vat = (1.20 / 100) * total;
-   var vat1 = vat;
+    var vat1 = vat;
     if(!isNaN(vat)){
-         var vat1 =  vat.toFixed(2);
+        var vat1 =  vat.toFixed(2);
     }
 
     var gtotal = total + vat;
@@ -2545,18 +2596,7 @@ function oneditmodeCallBack(data)
             });
         }
 
-        var sizes =dt['size']['results'];
-        $(sizes).each(function(i){
-            var sid=sizes[i].sizId;
-            var qty=sizes[i].qnty;
-            $('[name=size]').each(function(){
-                var val =$(this).val();
-                if(sid==val){
-                    $(this).attr('checked',true);
-                    $('#size_'+sid+'_qty').val(qty);
-                }
-            });
-        });
+        
 
 
 
@@ -2737,8 +2777,28 @@ function oneditmodeCallBack(data)
         $.each(catAttr.results, function(i,vl) {
             setTimeout( function() {
                 $('#cat_'+vl.cid).click();
+                setTimeout( function() {
+                        var sizes =dt['size']['results'];
+                        console.log(sizes);
+                        $(sizes).each(function(i){
+                            var sid=sizes[i].sizId;
+                            var qty=sizes[i].qnty;
+                            console.log(sid);
+                            console.log(qty);
+                            $('[name=size]').each(function(){
+
+                                var val =$(this).val();
+                                console.log(val);
+                                if(sid==val){
+                                    $(this).attr('checked',true);
+                                    $('#size_'+sid+'_qty').val(qty);
+                                }
+                            });
+                        });
+                    },350);
             },150);
         });
+        
 
     }
     hideLoader();

@@ -106,13 +106,13 @@ function getProducsCallback(data)
                 str += "<a href='" + DOMAIN + "backend/?action=upload&pid=" + v.pid + "' target='+blank'><div class='uploadBtn fRight transition300'></div></a>";
                 if (v.isActive == 1)
                 {
-                    str += "<select class='backtxtSelect fmOpenR fRight inStockPrd' onchange=\"inStock(this,'" + v.pid + "')\">";
+                    str += "<select class='backtxtSelect fmOpenR fRight inStockPrd' onchange=\"inStock(this,'" + v.pid + "')\" title='Product Status'>";
                     str += "<option value='1' selected='selected'>Active</option>";
                     str += "<option value='0'>Deactive</option>";
                 }
                 if (v.isActive == 0)
                 {
-                    str += "<select class='backtxtSelect fmOpenR fRight outStockPrd' onchange=\"inStock(this,'" + v.pid + "')\">";
+                    str += "<select class='backtxtSelect fmOpenR fRight outStockPrd' onchange=\"inStock(this,'" + v.pid + "')\" title='Product Status'>";
                     str += "<option value='1'>Active</option>";
                     str += "<option value='0' selected='selected'>Deactive</option>";
                 }
