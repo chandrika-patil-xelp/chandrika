@@ -639,7 +639,7 @@ li .prdViewImgBtn{}
 .w60{width:60%;}
 .color69{color: #2A6869;}
 .c4d{color: #4d4d4d;}
-.fieldTitle{padding: 10px 0px 10px 0px;font-size: 13px;width:100%;height: auto;}
+.fieldTitle{padding: 10px 0px 10px 0px;font-size: 13px;width:100%;height: auto;border-bottom: 1px dotted #ccc;color:#4d4d4d;}
 .fieldTitle.w50{width: 50%!important;}
 
 .textcenter{text-align: center;}
@@ -783,3 +783,5 @@ li .prdViewImgBtn{}
 .passwordIcon{padding-left: 35px;background-image: url(../img/password.svg);background-repeat: no-repeat;background-size: auto 20px;background-position: left center;}
 .frgtDiv{border-bottom: 2px solid #2F665C;height: 25px;line-height: 25px;cursor: pointer;}
 .loginHdr{width:100%;height:80px;background-image: url(../img/logo.png);background-repeat: no-repeat;background-position: center bottom;background-size: auto 50%;}
+.resetP{}
+.resetP.signUpDiv{height:240px;}
