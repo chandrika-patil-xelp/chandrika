@@ -771,3 +771,12 @@ li .prdViewImgBtn{}
 .nameContr  div:last-child{border: none!important;}
 .cust_detail .shapeComm:hover{border:none;}
 .cust_detail .shapeComm{border:none;}
+
+/*login*/
+.signUpDiv{width:400px;height: 282px;background-color: #fff;position: absolute; top: 0px; left: 0px;right: 0px;bottom: 0px; margin: auto;padding: 15px 20px 20px 20px; border-radius: 5px; box-shadow: 2px 2px 8px 0px rgba(0,0,0,0.2);}
+.inputContr{width: 100%;height: 40px;margin-top: 10px;}
+.txtBox{width: 100%;height: 100%;outline: none;outline-style: none;border: none;border-bottom: 2px solid #2F665C;}
+.mobileIcon1{padding-left: 35px;background-image: url(../img/mobile1.svg);background-repeat: no-repeat;background-size: auto 20px;background-position: left center;}
+.passwordIcon{padding-left: 35px;background-image: url(../img/password.svg);background-repeat: no-repeat;background-size: auto 20px;background-position: left center;}
+.frgtDiv{border-bottom: 2px solid #2F665C;height: 25px;line-height: 25px;cursor: pointer;}
+.loginHdr{width:100%;height:80px;background-image: url(../img/logo.png);background-repeat: no-repeat;background-position: center bottom;background-size: auto 50%;}
