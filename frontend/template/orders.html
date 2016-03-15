@@ -16,7 +16,7 @@
             </ul>
         </div>
     </div>
-    <div class="dragTrgt" id="dragTrgt"></div>
+    <div class="dragTrgt" id="dragTrgt" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); left: 0px;"></div>
     <div class="container">
         <div class="wrapper">
             <?php include 'jHeader.html'; ?>
@@ -196,9 +196,10 @@
                                         <div class="fgotPswrd fLeft">required field</div>
                                     </div>
                                     <div class="cheackAndnxt fLeft">
-                                        <div class="cheackTxt fLeft">Deliver to this address
-                                            <input type="checkbox" class="chkBox">
-                                        </div>
+                                            <div class="checkDiv fLeft fmOpenR widthAuto">
+                                    <input type="checkbox" name="select" id="dta"  class="filled-in" value="dta">
+                                   <label for="dta">Deliver to this address</label>
+                                      </div>
                                         <div class="nxtStp fRight">next step</div>
                                     </div>
                                     <div class="addressFrmWrp fLeft">
@@ -635,6 +636,17 @@
          $('.lmenu4mble').addClass('trnst-100');
         $('body').removeClass('pFixed');
         $('.dragTrgt').css({width: '20px', left: '0px'});
+    });
+    var ele = document.getElementById('dragTrgt');
+    var mc = new Hammer(ele);
+    mc.on("panleft panright tap press", function(ev) {
+        //ele.textContent = ev.type +" gesture detected.";
+        if (ev.type == 'panright') {
+            showLeftMenu(true);
+        }
+        else if (ev.type == 'panleft') {
+            showLeftMenu(false);
+        }
     });
          });
     </script>
