@@ -210,7 +210,7 @@ a { color: inherit;text-decoration: none; }
 .allProducts .acct{width: 24%;border-right: none!important;position: relative}
 
 
-.stockCode .lwSpan{color: #8A0044;font-size: 11px;font-family: openB;}
+.stockCode .lwSpan{color: #2A6869;font-size: 11px;font-family: openB;}
 li div{overflow: hidden;text-overflow: ellipsis;white-space: nowrap}
 li .date{text-align: left;padding: 0 10px;}
 li .prdName{text-align: left;padding: 0 10px;}
@@ -219,7 +219,7 @@ li .metal{text-align: center;}
 li .catg{padding: 0 10px;}
 li .dmdWt{text-align: center;}
 li .metalWt {text-align: center;}
-li .price{color: #8A0044;font-family: openB;text-align: right;padding: 0 10px;}
+li .price{color: #2A6869;font-family: openB;text-align: right;padding: 0 10px;}
 li .acct{border-right: none;position: relative;padding: 0 15px 0 0px}
 
 .inStockPrd {background: #4db800 url(../img/down_arrow_white.svg)no-repeat;background-size: auto 30px;background-position: right center;}
@@ -692,16 +692,6 @@ li .prdViewImgBtn{}
 
 
 /*orders page*/
-/*.name_cont{float: left;width: 100%;height: 50px;border-bottom: 1px solid #e6e6e6;padding: 8px 0px 8px 0px;}*/
-/*.cust_name{width: 20%;line-height: 50px;font-size: 18px;height: 100%;display: inline-block;color:#4d4d4d;}*/
-/*.prd_cont{width:100%;height:auto; margin-top:10px;padding: 8px;}*/
-/*.ord_head{width:100%;height:30px;color:#4d4d4d;line-height:30px;font-size: 15px;}*/
-/*.ttl_div{width:100%;height:auto;background-color:#f0f0f0;border:1px solid #e6e6e6;border-radius:2px;padding:0px 20px;margin-bottom:8px;margin-top: 8px;}*/
-/*.ttl_txt{width:auto;height:30px;line-height:30px;color:#4d4d4d;}*/
-/*.ordersPage .padR15{padding-right:10%;}*/
-/*.drpClass{width: 60%;height: 100%;border-radius: 2px;background-color: #f0f0f0;color: #4d4d4d;font-size: 12px;padding: 0px 10px 0px 10px;background-image:url('../img/down_arrow.svg');background-repeat: no-repeat;background-size:auto 100%;background-position: right center;cursor: pointer;border: 1px solid #e6e6e6;}*/
-/*.drp_contr select option{width: 100%;height: 30px;border-bottom: 1px solid #fff;cursor:pointer;}*/
-/*.ordersPage .orderComm{height:auto;padding-bottom:0px;margin-top: 15px;}*/
 .ordersPage .addCouponBtn{padding: 0px 25px 0px 25px;}
 .prd_img{float: left;height:100px;width: 100px;border: 1px solid #e6e6e6;background-image:url('../img/ring-01-01.png');background-repeat: no-repeat;background-size:auto 80%;background-position: center;}
 
@@ -730,13 +720,10 @@ li .prdViewImgBtn{}
 .cust_detail .commTitle2{width: auto;text-align: left;}
 .det_sec{width: 30%;height: auto;padding: 20px;box-shadow: 2px 2px 8px 0px rgba(0,0,0,0.2);position:relative;margin-right: 20px;border-radius: 2px;}
 .prdInfo{width:24%;height: 120px;margin-left: 10px;border-right:1px solid #e6e6e6;}
-/*.padLR10{padding:0px 10px;}*/
 .cust_detail .orderComm{height:auto;margin-bottom:10px;padding: 10px;position: relative;}
-/*.cust_detail .prd_img{height: 100px;}*/
 .cust_detail .prdInfo{height: 100%;}
 .cust_detail .padR15{padding-right:10%;}
 .cust_detail .drp_contr{margin-top:0px;padding: 5px;margin-top: 15px;padding-right: 15px;}
-/*.cust_detail .drpClass{line-height: 25px;background-image: none;text-align: center;}*/
 .viewTxt{position:absolute;width:10%;right:0px;bottom: 0px;height: 40px;line-height: 40px;font-size: 13px;cursor: pointer;background: url(../img/arrows-01.svg)no-repeat;background-size: auto 38%;background-position: 85% center;}
 .ordersPage .viewTxt{position:relative;float: right;width:auto;padding-right: 20px; background-position: 100% center;}
 .det_sec .prd_img{width:100%;height:200px;}
