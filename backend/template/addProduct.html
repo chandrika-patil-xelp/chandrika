@@ -1,5 +1,4 @@
 <?php
-
 echo "<script>var edit=$edit; var pid= '$pid';</script>";
 ?>
 
@@ -268,7 +267,7 @@ echo "<script>var edit=$edit; var pid= '$pid';</script>";
                 <!-----Price Section End--!-->
                 <div class="btnCont fLeft dn">
                     <center>
-                        <a href='<?php echo DOMAIN;?>backend/?action=products'><div class="cancelBtn transition300 fmOpenR poR" onclick="">CANCEL</div></a>
+                        <a href='<?php echo DOMAIN; ?>backend/?action=products'><div class="cancelBtn transition300 fmOpenR poR" onclick="">CANCEL</div></a>
                         <div class="submitBtn transition300 fmOpenR poR" onclick="addProduct()" id="Submitdiv">PREVIEW</div>
                     </center>
                 </div>
@@ -598,9 +597,9 @@ echo "<script>var edit=$edit; var pid= '$pid';</script>";
 
                                     console.log(diamonds);
 
-                                    str += "<div class='commCont fLeft poR'>";
-                                    str += "<div class='shapeComm " + vl.shape + "'></div>";
-                                    str += "<div class='dtl_cont fLeft'>";
+                                    str += "<div class='commCont fLeft  forAuto'>";
+//                                    str += "<div class='shapeComm " + vl.shape + "'></div>";
+                                    str += "<div class='outContr fLeft'>";
                                     str += "<div class='fieldTitle fLeft '>";
                                     str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Diamond Quality </div>";
                                     str += "<div class='w50 fRight fmOpenB txtRight'>" + dquality.toString() + "</div>";
@@ -628,9 +627,9 @@ echo "<script>var edit=$edit; var pid= '$pid';</script>";
                             {
                                 var str = "";
                                 $(uncut).each(function (i, vl) {
-                                    str += "<div class='commCont fLeft'>";
-//                                    str += "<div class='outContr fLeft'>";
-                                    str += "<div class='dtl_cont fLeft'>";
+                                    str += "<div class='commCont fLeft forAuto'>";
+                                    str += "<div class='outContr fLeft'>";
+//                                    str += "<div class='dtl_cont fLeft'>";
                                     str += "<div class='fieldTitle fLeft '>";
                                     str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Diamond Color </div>";
                                     str += "<div class='w50 fRight fmOpenB txtRight '>" + vl.color + "</div>";
@@ -643,8 +642,8 @@ echo "<script>var edit=$edit; var pid= '$pid';</script>";
                                     str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Carat </div>";
                                     str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.carat + "</div>";
                                     str += "</div>";
-                                    str += "</div>";
-                                    str += "<div class='dtl_cont fRight'>";
+//                                    str += "</div>";
+//                                    str += "<div class='dtl_cont fRight'>";
                                     str += "<div class='fieldTitle fLeft '>";
                                     str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Price/Carat </div>";
                                     str += "<div class='w50 fRight fmOpenB txtRight'>&#8377; " + vl.price_per_carat + "</div>";
@@ -670,23 +669,24 @@ echo "<script>var edit=$edit; var pid= '$pid';</script>";
                             {
                                 var str = "";
                                 $(gemstone).each(function (i, vl) {
-                                    str += "<div class='commCont fLeft'>";
+                                    str += "<div class='commCont fLeft forAuto'>";
                                     str += "<div class='outContr fLeft'>";
-                                    str += "<div class='fieldTitle fLeft '>";
-                                    str += "<div class='w50 fLeft c4d padR15 fmOpenB'>Gemstone<span class='fRight'>:</span></div>";
-                                    str += "<div class='w50 fRight'>" + getGemstoneName(vl.gvalue) + "</div>";
+//                                    str += "<div class='dtl_cont fLeft'>";
+                                    str += "<div class='fieldTitle fLeft w25'>";
+                                    str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Gemstone</div>";
+                                    str += "<div class='w50 fRight fmOpenB txtRight'>" + getGemstoneName(vl.gvalue) + "</div>";
                                     str += "</div>";
-                                    str += "<div class='fieldTitle fLeft '>";
-                                    str += "<div class='w50 fLeft c4d padR15 fmOpenB'>Carat <span class='fRight'>:</span></div>";
-                                    str += "<div class='w50 fRight'>" + vl.carat + "</div>";
+                                    str += "<div class='fieldTitle fLeft w25'>";
+                                    str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Carat </div>";
+                                    str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.carat + "</div>";
                                     str += "</div>";
-                                    str += "<div class='fieldTitle fLeft '>";
-                                    str += "<div class='w50 fLeft c4d padR15 fmOpenB'>Price/Carat <span class='fRight'>:</span></div>";
-                                    str += "<div class='w50 fRight'>" + vl.price_per_carat + "</div>";
+                                    str += "<div class='fieldTitle fLeft w25'>";
+                                    str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Price/Carat </div>";
+                                    str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.price_per_carat + "</div>";
                                     str += "</div>";
-                                    str += "<div class='fieldTitle fLeft'>";
-                                    str += "<div class='w50 fLeft c4d padR15 fmOpenB'>Pieces<span class='fRight'>:</span></div>";
-                                    str += "<div class='w50 fRight'>" + vl.total_no + "</div>";
+                                    str += "<div class='fieldTitle fLeft w25'>";
+                                    str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Pieces</div>";
+                                    str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.total_no + "</div>";
                                     str += "</div>";
                                     str += "</div>";
                                     str += "</div>";
