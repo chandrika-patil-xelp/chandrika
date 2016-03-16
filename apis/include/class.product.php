@@ -1831,7 +1831,8 @@ class product extends DB {
                         product_image
                 FROM
                         tbl_product_image_mapping
-                WHERE
+                WHERE   
+                        active_flag!=3 AND 
                         product_id = " . $params['pid'] . "
               ";
 

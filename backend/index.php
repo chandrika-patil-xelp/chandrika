@@ -136,7 +136,8 @@ switch ($action) {
     
      case 'productDetails':
         $page = 'productDetails';
-        $tab = 'productDetails';
+        $tab = 'products';
+        $pid=$params['pid'];
         include BTEMPLATE.'productDetails.html';
         break;
     case 'login':

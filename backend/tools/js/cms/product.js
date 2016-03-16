@@ -97,13 +97,20 @@ function getProducsCallback(data)
                 str += "<span class='lwSpan'><a href='" + APIDOMAIN + "?action=getProductById&pid=" + v.pid + "'>View Details</a></span>";
                 str += "</div>";
                 str += "<div class='prdName fLeft'>" + v.prdName + "</div>";
-                str += "<div class='dmdWt fLeft'>" + v.diaWgt + " ct</div>";
-                str += "<div class='metalWt fLeft'>" + v.mtlWgt + " gms</div>";
+                
+                if(v.imgDtl.count>0)
+                    str += "<div class='prdImg fLeft fmOpenB'>" + v.imgDtl.count + "<div class='addCouponBtn manageBtn  fmOpenR fRight transition300'><a href='" + DOMAIN + "backend/?action=thumbnail&pid=" + v.pid + "' target='_blank'>Manage</a></div></div>";
+                else
+                    str += "<div class='prdImg fLeft fmOpenB'>NA</div>";
+                //str += "<div class='dmdWt fLeft'>" + v.diaWgt + " ct</div>";
+                //str += "<div class='metalWt fLeft'>" + v.mtlWgt + " gms</div>";
+                
+                
                 str += "<div class='acct fLeft'>";
                 //str += "<div class='deltBtn fRight transition300'  onclick=\"changePrdStatus(2,'" + v.pid + "')\"></div>";
-                str += "<div class='deltBtn fRight transition300'  onclick=\"setClick('" + v.pid + "');showConfirmBox();\"></div>";
-                str += "<div class='editBtn fRight transition300' onclick=\"editProduct('"+v.pid+"')\"></div>";
-                str += "<a href='" + DOMAIN + "backend/?action=upload&pid=" + v.pid + "' target='+blank'><div class='uploadBtn fRight transition300'></div></a>";
+                str += "<div class='deltBtn fRight transition300'  onclick=\"setClick('" + v.pid + "');showConfirmBox();\" title='Delete Product'></div>";
+                str += "<div class='editBtn fRight transition300' onclick=\"editProduct('"+v.pid+"')\" title='Edit Product'></div>";
+                str += "<a href='" + DOMAIN + "backend/?action=upload&pid=" + v.pid + "' target='_blank'><div class='uploadBtn fRight transition300' title='Upload Images'></div></a>";
                 if (v.isActive == 1)
                 {
                     str += "<select class='backtxtSelect fmOpenR fRight inStockPrd' onchange=\"inStock(this,'" + v.pid + "')\" title='Product Status'>";

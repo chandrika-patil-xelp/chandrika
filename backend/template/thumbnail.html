@@ -7,7 +7,7 @@
                     <div class="catListCont fLeft">
                         <div class="prdSearchDiv fLeft fmOpenR">
                             <div class="commTitle2 fLeft"><span id="imgCount"><?php echo $result['total_imgs']; ?></span> image(s) available</div>
-                            <div class="addCouponBtn fRight transition300"><a href="<?php echo DOMAIN . 'backend/index.php?action=product_List'; ?>">Back</a></div>
+                            <div class="addCouponBtn fRight transition300"><a href="<?php echo DOMAIN . 'backend/index.php?action=products'; ?>">Back</a></div>
                         </div>
                         
                         <div class="thumbnailCont fLeft">
@@ -23,6 +23,16 @@
                                         <div class="comment fRight">
                                             <div class="seqTitle fLeft">Comment (if any)</div>
                                             <textarea class="txtComment fmOpenR" id="reason_<?php echo $data[$i]['id']; ?>"  onblur="updateData(<?php echo $data[$i]['id']; ?>);" placeholder=" eg. Front View"><?php echo $data[$i]['reason']; ?></textarea>
+                                        </div>
+                                        <div class="acceptRej fRight">
+                                            <div class="checkDiv fLeft">
+                                                <input type="radio" value="1" onchange="updateFlag(<?php echo $data[$i]['id']; ?>,this.id);" name="accept_<?php echo $data[$i]['id']; ?>" <?php if($data[$i]['active_flag']==1) { echo 'checked'; } ?> class="filled-in" id="accept_<?php echo $data[$i]['id']; ?>">
+                                                <label for="accept_<?php echo $data[$i]['id']; ?>">Active</label>
+                                            </div>
+                                            <div class="checkDiv fLeft">
+                                                <input type="radio" value="3" onchange="updateFlag(<?php echo $data[$i]['id']; ?>,this.id);" name="accept_<?php echo $data[$i]['id']; ?>"<?php if($data[$i]['active_flag']==3) { echo 'checked'; } ?> class="filled-in" id="reject_<?php echo $data[$i]['id']; ?>">
+                                                <label for="reject_<?php echo $data[$i]['id']; ?>">Delete</label>
+                                            </div>
                                         </div>
                                         <div class="seq fRight">
                                             <div class="seqTitle fLeft">Position</div>
