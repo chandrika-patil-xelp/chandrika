@@ -581,7 +581,7 @@ section .breakLine:last-child{display: none;}
 .priceOverlay{width:100%;height: 100%;position: absolute;top:0;left:0;background:rgba(255,255,255,0.8);z-index: 10;}
 
 /* No Results*/
-.noresDiv {width: 100%;height: 160px;padding: 50px 0;text-align: center;color: #d4d4c8;border: 1px solid #d4d4c8;margin-bottom: 50px;font-family: openR;}
+.noresDiv {width: 100%;height: 165px;padding: 50px 0;text-align: center;color: #d4d4c8;border: 1px solid #d4d4c8;margin-bottom: 50px;font-family: openR;}
 .noresults {width: 100%;}
 .mTop10{margin-top: 10px;}
 
@@ -672,7 +672,7 @@ li .prdViewImgBtn{}
 /*.preview .commTitle1{border-left: none;padding-left: 0;}*/
 .preview .shapeComm:hover{border-color:#fff;cursor: default;}
 .preview .shapeComm{width:150px!important;padding-bottom:140px;position: absolute;top:0;left:0;}
-.preview .commCont.poR{padding-left: 200px;min-height: 160px;}
+.preview .commCont.poR{padding-left: 200px;min-height: 165px;}
 .forAuto{}
 .forAuto .fieldTitle{width:30%;margin:0 10px;border-bottom: 1px dotted #ccc;}
 .forAuto .fieldTitle .w50{}
@@ -724,7 +724,7 @@ li .prdViewImgBtn{}
 .ordersPage .couponList li{border-bottom:1px dotted #e6e6e6;}
 .marR{margin-right:10px;}
 
-
+.all_det_section{width:100%;height: auto;position: relative;}
 
 /*cust_detail page*/
 .cust_detail{} 
@@ -761,12 +761,14 @@ li .prdViewImgBtn{}
 
 .info_sec{width: 100%;height: auto;float: right;}
 .divCon1{width: 100%;height: auto;margin-bottom: 10px;border-bottom: 1px dotted #ccc;padding: 0 5px 5px 5px;}
+.det_sec_right .divCon2{width: 49%;height: auto;margin-bottom: 10px;border-bottom: 1px dotted #ccc;padding: 0 5px 5px 5px;margin-top: 0}
 .fieldTitle1{font-size: 13px;color: #333;line-height: 16px; width: 60%;height: auto;font-family: openR;}
 .fieldTitle2{font-size: 13px;color: #333;line-height: 16px;width: 40%;height: auto;font-family: openB;text-align: right;}
 .ttl_txt{width: 100%;height: auto;color: #4d4d4d;line-height: 40px; margin-bottom: 15px;font-size: 22px;}
 .cust_detail .checkDiv{width:100%;}
 .dtl_cont{width: 48%;height:auto;padding: 15px;margin-right: 20px;}
-.cust_detail .commCont.poR{padding-left: 200px;min-height: 160px;}
+section .dtl_cont{width: 48%;height:auto;padding: 15px;margin-right: 20px;padding-bottom: 0;}
+.cust_detail .commCont.poR{padding-left: 200px;min-height: 165px;}
 .cust_detail .shapeComm{width: 150px!important;padding-bottom: 140px; position: absolute;top: 0;left: 0;}
 .cust_detail .priceHeading{line-height: 40px;padding: 0 15px;font-size:14px;color: #4d4d4d;}
 .nameContr  div:last-child{border: none!important;}
@@ -782,135 +784,56 @@ li .prdViewImgBtn{}
 .frgtDiv{border-bottom: 2px solid #2F665C;height: 25px;line-height: 25px;cursor: pointer;}
 .loginHdr{width:100%;height:80px;background-image: url(../img/logo.png);background-repeat: no-repeat;background-position: center bottom;background-size: auto 50%;}
 
+.prdTopCont{width:100%;height:452px;margin-bottom: 50px;position: relative;}
 
-
-.det_sec_left{width:400px;height: auto;padding: 20px;padding: 20px;box-shadow: 2px 2px 8px 0px rgba(0,0,0,0.2);position: relative;margin-right: 2%;border-radius: 2px;margin-bottom: 50px;}
-.det_sec_right{width:58%;height: 400px;padding: 20px;}
+.det_sec_left{width:400px;height: 452px;position: absolute;top:0;left:0;padding: 20px;border-radius: 2px;border: 1px dashed #ccc;}
+.det_sec_right{width:100%;height: auto;padding:0 20px 20px 440px;}
 
 
 /* Product Image Container*/
-
-.prImgContainer {
-width: 100%;
-height: 100%;
-overflow: hidden;
-padding:0;
-}
-
-
+.prImgContainer {width: 100%;height: 100%;overflow: hidden;padding:0;}
 .prdimgHolder{width: 100%;height: 100%;overflow: hidden;text-align: center;flex: 1;display: flex;align-items: center;align-content: center;text-align: center;}
-
-.mainImage {
-width: 100%;
-height: 335px;
-overflow: hidden;
-border: 1px solid #ccc;
-padding: 10px;
-}
-
-
-
-.mainImage img {
-max-height: 100%;
-max-width: 100%;
-margin: auto;
-cursor: crosshair;
-}
-
-.prImageStrip {
-width: 100%;
-height: 75px;
-margin-top: 10px;
-background: #fff;
-float: left;
-position: relative;
-overflow: hidden;
-}
+.mainImage {width: 100%;height: 325px;overflow: hidden;border: 0px solid #ccc;padding: 10px;}
+.mainImage img {max-height: 100%;max-width: 100%;margin: auto;cursor: crosshair;}
+.prImageStrip {width: 357px;height: 75px;margin-top: 10px;background: #fff;float: left;position: relative;overflow: hidden;}
+.prImgPrev {width: 7%;height: 100%;background: #fff url(../img/arrow_black.svg)no-repeat;background-size: auto 20px;background-position: center;position: relative;z-index: 10;transform: rotateY(180deg);-webkit-transform: rotateY(180deg);ms-transform: rotateY(180deg);-moz-transform: rotateY(180deg);cursor: pointer;}
+.prImgNext {width: 7%;height: 100%;background: #fff url(../img/arrow_black.svg)no-repeat;background-size: auto 20px;background-position: center;position: relative;z-index: 10;border-left: 0px solid #e6e6e6;cursor: pointer;}
+.carousel {width: 86%;height: 100%;padding: 0;margin: 0;list-style-type: none;white-space: nowrap;background: #fff;}
+.carousel li {width: 25%;height: 100%;padding: 0;margin: 0;display: inline-block;margin: 0;padding: 0;white-space: nowrap;vertical-align: baseline;border-bottom: none;border: 1px solid #e6e6e6;border-right: none;}
+.carousel li:last-child{border-right: 1px solid #ccc;}
+.thumbContainer {padding: 2px;cursor: pointer;height: 70px;margin-top: 2px;}
+.thumb {height: 100%;width: 100%;background-size: auto 100%;background-repeat: no-repeat;background-position: center;}
+.productImageZoom {position: absolute;width: 500px;height: 460px;left: 500px;border: 15px solid #fff;box-shadow: 0 0 35px 0 rgba(0,0,0,0.2);background-color: #fff;background-position: center;background-repeat: no-repeat;top: 160px;}
 
 
-.prImgPrev {
-width: 7%;
-height: 100%;
-background: #f0f0f0 url(../img/arrow_black.svg)no-repeat;
-background-size: auto 20px;
-background-position: center;
-position: relative;
-z-index: 10;
-transform: rotateY(180deg);
--webkit-transform: rotateY(180deg);
--ms-transform: rotateY(180deg);
--moz-transform: rotateY(180deg);
-cursor: pointer;
-}
-
-.prImgNext {
-width: 7%;
-height: 100%;
-background: #f0f0f0 url(../img/arrow_black.svg)no-repeat;
-background-size: auto 20px;
-background-position: center;
-position: relative;
-z-index: 10;
-border-left: 1px solid #e6e6e6;
-cursor: pointer;
-}
-
-.carousel {
-width: 86%;
-height: 100%;
-padding: 0;
-margin: 0;
-list-style-type: none;
-white-space: nowrap;
-background: #fff;
-}
-
-.carousel li {
-width: 25%;
-height: 100%;
-padding: 0;
-margin: 0;
-display: inline-block;
-margin: 0;
-padding: 0;
-white-space: nowrap;
-vertical-align: baseline;
-border-bottom: none;
-border: 1px solid #e6e6e6;
-border-right: none;
-}
-
-
-.thumbContainer {
-padding: 2px;
-cursor: pointer;
-height: 70px;
-margin-top: 2px;
-}
-
-
-
-.thumb {
-height: 100%;
-width: 100%;
-background-size: auto 100%;
-background-repeat: no-repeat;
-background-position: center;
-}
-
-.productImageZoom {
-position: absolute;
-width: 500px;
-height: 460px;
-left: 40%;
-border: 15px solid #fff;
-box-shadow: 0 0 35px 0 rgba(0,0,0,0.2);
-background-color: #fff;
-background-position: center;
-background-repeat: no-repeat;
-top: 200px;
-}
 
 
 .resetP{}
 .resetP.signUpDiv{height:240px;}
+
+.prdBtnsCont{width:100%;height: auto;margin-top: 20px;}
+
+.editPrdBtn{display: inline-block;width:auto;height: 40px;line-height: 40px;margin:0 0px;cursor: pointer;padding: 0 30px 0 30px;color:#fff;font-family: openR;font-size: 13px;background: #0B4040 url(../img/editWhite.svg)no-repeat;background-position: 150% center;background-size: auto 80%;}
+.editPrdBtn:hover{background-position: 98% center;background-size: auto 80%;padding: 0 40px 0 20px;}
+
+
+.deletePrdBtn{display: inline-block;width:auto;height: 40px;line-height: 40px;margin:0 0px;cursor: pointer;padding: 0 30px 0 30px;color:#fff;font-family: openR;font-size: 13px;background: #0B4040 url(../img/deleteWhite.svg)no-repeat;background-position: 150% center;background-size: auto 80%;border-radius: 2px;}
+.deletePrdBtn:hover{background-position: 98% center;background-size: auto 80%;padding: 0 40px 0 20px;}
+
+.uploadPrdBtn{display: inline-block;width:auto;height: 40px;line-height: 40px;margin:0 0px;cursor: pointer;padding: 0 30px 0 30px;color:#fff;font-family: openR;font-size: 13px;background: #0B4040 url(../img/uploadWhite.svg)no-repeat;background-position: 150% center;background-size: auto 80%;border-radius: 2px;}
+.uploadPrdBtn:hover{background-position: 98% center;background-size: auto 80%;padding: 0 40px 0 20px;}
+
+.managePrdBtn{display: inline-block;width:auto;height: 40px;line-height: 40px;margin:0 0px;cursor: pointer;padding: 0 30px 0 30px;color:#fff;font-family: openR;font-size: 13px;background: #0B4040 url(../img/editWhite.svg)no-repeat;background-position: 150% center;background-size: auto 80%;border-radius: 2px;}
+.managePrdBtn:hover{background-position: 98% center;background-size: auto 80%;padding: 0 40px 0 20px;}
+
+
+
+.name_Btncont .backtxtSelect {position: absolute;top:0;right:0;}
+.name_Btncont{width:100%;height: auto;position: relative;padding-right: 170px;}
+
+/*.info_sec .divCon1{width: 50%;margin-right: 50%;}*/
+
+.noimage{background: url(../img/noimage.svg)no-repeat;background-size: auto 40%;background-position: center;}
+.noimage .prImageStrip{display: none;}
+
+

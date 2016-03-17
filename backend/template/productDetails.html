@@ -1,5 +1,5 @@
-<?php include 'jBhead.html'?>
-<?php echo "<script>var pid= '$pid';</script>";?>
+<?php include 'jBhead.html' ?>
+<?php echo "<script>var pid= '$pid';</script>"; ?>
 <body>
     <div class="container cust_detail">
         <?php include 'jBheader.html' ?>
@@ -8,141 +8,148 @@
                 <div class="prdSearchDiv fLeft fmOpenR">
                     <div class="commTitle2 fLeft">Product Details</div>
                 </div>
-                <section>
-                    <div class="det_sec_left  fLeft">
-                        <div class="prImgContainer fLeft ">
-                            <div id="mainImg" class="mainImage">
-                                <div class='prdimgHolder'>
-                                    <img id="mainImg1" src="http://localhost/jzeva/backend/image-upload/uploads/6120160315162137/1458109461ring1.jpg" onmouseover="showZoomedImg();" onmouseleave="hideZoomedImg()">
+                <div>
+                    <div class="prdTopCont fLeft">
+                        <div class="det_sec_left  fLeft">
+                            <div class="prImgContainer fLeft noimage">
+                                <div id="mainImg" class="mainImage">
+                                    <div class='prdimgHolder'>
+                                        <img id="mainImg1" src="" onmouseover="showZoomedImg();" onmouseleave="hideZoomedImg()">
+                                    </div>
+                                </div>
+                                <div class="prImageStrip">
+                                    <div class="prImgPrev fLeft pointer" onclick="movePrImg(true)"></div>
+                                    <div class="prImgNext fRight pointer" onclick="movePrImg(false)"></div>
+                                    <ul class="carousel transition300"></ul>
                                 </div>
                             </div>
-                            <div class="prImageStrip">
-                                <div class="prImgPrev fLeft pointer" onclick="movePrImg(true)"></div>
-                                <div class="prImgNext fRight pointer" onclick="movePrImg(false)"></div>
-                                <ul class="carousel transition300">
-                                    <li>
-                                        <div class="thumbContainer">
-                                            <div class="thumb" onmouseover="updateMainImage(this)" style="background-image:url(http://localhost/jzeva/backend/image-upload/uploads/6120160315162137/1458109461ring1.jpg)" data-imageid="IMAE2C8STZ4ZGEWR">
-                                            </div>
-                                        </div>
-                                    </li><li>
-                                        <div class="thumbContainer">
-                                            <div class="thumb" onmouseover="updateMainImage(this)" style="background-image:url(http://localhost/jzeva/backend/image-upload/uploads/6120160315162137/1458109461ring2.jpg)" data-imageid="IMAE2C8S7QFSMM3P">
-                                            </div>
-                                        </div>
-                                    </li><li>
-                                        <div class="thumbContainer">
-                                            <div class="thumb" onmouseover="updateMainImage(this)" style="background-image:url(http://localhost/jzeva/backend/image-upload/uploads/6120160315162137/1458109513ring3.png)" data-imageid="IMAE2C8SYFD8Y24J">
-                                            </div>
-                                        </div>
-                                    </li><li>
-                                        <div class="thumbContainer">
-                                            <div class="thumb" onmouseover="updateMainImage(this)" style="background-image:url(http://localhost/jzeva/backend/image-upload/uploads/6120160315162137/1458109461ring4.jpg)" data-imageid="IMAE2C8SD7Y7WYET">
-                                            </div>
-                                        </div>
-                                    </li><li>
-                                        <div class="thumbContainer">
-                                            <div class="thumb" onmouseover="updateMainImage(this)" style="background-image:url(http://localhost/jzeva/backend/image-upload/uploads/6120160315162137/1458109461ring5.jpg)" data-imageid="IMAE2C8SZ5EGSBDU">
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
+                        </div>
+                        <div class="det_sec_right fLeft">
+                            <div class="info_sec">
+                                <div class="name_Btncont fLeft">
+                                    <div class="ttl_txt fmOpenB" id='prdName'></div>
+                                    <select class="backtxtSelect fmOpenR fRight inStockPrd dn" title="Product Status" onchange="inStock()">
+                                        <option value="1" selected="selected">Active</option>
+                                        <option value="0">Deactive</option>
+                                    </select>
+                                </div>
+
+                                <div class="divCon1 fLeft">
+                                    <div class="fieldTitle1 fLeft">Product Code</div>
+                                    <div class="fieldTitle2 fmOpenB fRight" id='prdCod'></div>
+                                </div>
+                                <div class="divCon1 fLeft dn" id='solCntDiv'>
+                                    <div class="fieldTitle1 fLeft">Total Solitaire(s)</div>
+                                    <div class="fieldTitle2 fmOpenB fRight" id='solCnt'></div>
+                                </div>
+
+                                <div class="divCon1 fRight dn" id='dmdCntDiv'>
+                                    <div class="fieldTitle1 fLeft">Total Diamond(s)</div>
+                                    <div class="fieldTitle2 fmOpenB fRight" id='dmdCnt'></div>
+                                </div>
+
+                                <div class="divCon1 fLeft dn" id='uncutCntDiv'>
+                                    <div class="fieldTitle1 fLeft">Total Uncut Diamond(s)</div>
+                                    <div class="fieldTitle2 fmOpenB fRight" id='uncutCnt'></div>
+                                </div>
+
+                                <div class="divCon1 fRight dn" id='gemCntDiv'>
+                                    <div class="fieldTitle1 fLeft">Total Gemstone(s)</div>
+                                    <div class="fieldTitle2 fmOpenB fRight" id='gemCnt'></div>
+                                </div>
+                                <div class="divCon1 fLeft dn" id='imgCntDiv'>
+                                    <div class="fieldTitle1 fLeft">Total Image(s)</div>
+                                    <div class="fieldTitle2 fmOpenB fRight" id='imgCnt'></div>
+                                </div>
+                                <div class="divCon1 fLeft">
+                                    <div class="fieldTitle1 fLeft">Procurement Price</div>
+                                    <div class="fieldTitle2 fmOpenB fRight" id='disPrice'></div>
+                                </div>
+                                <div class="divCon1 fLeft">
+                                    <div class="fieldTitle1 fLeft">Selling Price</div>
+                                    <div class="fieldTitle2 fmOpenB fRight" id='sellPrice'></div>
+                                </div>
+                            </div>
+                            <div class="prdBtnsCont fRight">
+                                <center>
+                                    <div class='editPrdBtn transition300'>Edit Product</div>
+                                    <div class='deletePrdBtn transition300'>Delete Product</div>
+                                    <div class='uploadPrdBtn transition300'>Upload Images</div>
+                                    <div class='managePrdBtn transition300 dn'>Manage Images</div>
+                                </center>
+
                             </div>
                         </div>
-
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
                     </div>
-                    <div class="det_sec_right fLeft">
-                        <div class="info_sec">
-                            <div class="ttl_txt fmOpenB" id='prdName'></div>
-                            <div class="divCon1 fLeft">
-                                <div class="fieldTitle1 fLeft">Product Code</div>
-                                <div class="fieldTitle2 fmOpenB fRight" id='prdCod'></div>
-                            </div>
-                            <div class="divCon1 fLeft">
-                                <div class="fieldTitle1 fLeft">Procurement Price</div>
-                                <div class="fieldTitle2 fmOpenB fRight" id='disPrice'></div>
-                            </div>
-                        </div>
-                        
-                        
-                    </div>
-                    
-                    
-                    
-                    <div class="det_sec  fLeft w100">
-                        <div class="ratHeader fmOpenB">Product Details</div>
-                        <div class="dtl_cont fLeft ">
 
-                            <div class="divCon1 fLeft">
-                                <div class="fieldTitle1 fLeft">Product SEO Name </div>
-                                <div class="fieldTitle2 fmOpenB fRight" id="prdseoname"></div>
-                            </div>
-                            <div class="divCon1 fLeft">
-                                <div class="fieldTitle1 fLeft">Category </div>
-                                <div class="fieldTitle2 fmOpenB fRight txtCap" id='prdCats'></div>
-                            </div>
-                            <div class="divCon1 fLeft">
-                                <div class="fieldTitle1 fLeft">Vendor </div>
-                                <div class="fieldTitle2 fmOpenB fRight" id='vendorName'></div>
-                            </div>
-                            <div class="divCon1 fLeft">
-                                <div class="fieldTitle1 fLeft">Product Weight (grms) </div>
-                                <div class="fieldTitle2 fmOpenB fRight" id='prdWt'></div>
-                            </div>
-                            <div class="divCon1 fLeft">
-                                <div class="fieldTitle1 fLeft">Gender</div>
-                                <div class="fieldTitle2 fmOpenB fRight" id='gender'></div>
-                            </div>
-                            <div class="divCon1 fLeft">
-                                <div class="fieldTitle1 fLeft">Diamond Setting Type </div>
-                                <div class="fieldTitle2 fmOpenB fRight" id='dmdSetting'></div>
-                            </div>
-                            <div class="divCon1 fLeft">
-                                <div class="fieldTitle1 fLeft">Product Certificate </div>
-                                <div class="fieldTitle2 fmOpenB fRight" id='prdcrtficte'></div>
-                            </div>
-                        </div>
-                        <div class="dtl_cont fLeft">
-                            <div class="divCon1 fLeft">
-                                <div class="fieldTitle1 fLeft">Metal Weight(Grm)</div>
-                                <div class="fieldTitle2 fmOpenB fRight" id='mtlwght'></div>
-                            </div>
-                            <div class="divCon1 fLeft">
-                                <div class="fieldTitle1 fLeft">Making Charges/Grm</div>
-                                <div class="fieldTitle2 fmOpenB fRight" id='mkngCrg'></div>
-                            </div>
-                            <div class="divCon1 fLeft">
-                                <div class="fieldTitle1 fLeft">Procurement Cost</div>
-                                <div class="fieldTitle2 fmOpenB fRight" id='procCost'></div>
-                            </div>
-                            <div class="divCon1 fLeft">
-                                <div class="fieldTitle1 fLeft">Margin</div>
-                                <div class="fieldTitle2 fmOpenB fRight" id='mrgn'></div>
-                            </div>
-                            <div class="divCon1 fLeft">
-                                <div class="fieldTitle1 fLeft">Measurement</div>
-                                <div class="fieldTitle2 fmOpenB fRight" id='mesmnt'></div>
-                            </div>
-                            <div class="divCon1 fLeft">
-                                <div class="fieldTitle1 fLeft">Metal Purity</div>
-                                <div class="fieldTitle2 fmOpenB fRight" id='prdmetalpurity'></div>
-                            </div>
-                            <div class="divCon1 fLeft">
-                                <div class="fieldTitle1 fLeft">Metal color</div>
-                                <div class="fieldTitle2 fmOpenB fRight" id='prdmetalcolor'></div>
-                            </div>
 
-                        </div>
-                        
+
+                    <div class="all_det_section  fLeft">
+                        <section>
+                            <div class="ratHeader fmOpenB">Product Details</div>
+                            <div class="dtl_cont fLeft ">
+
+                                <div class="divCon1 fLeft">
+                                    <div class="fieldTitle1 fLeft">Product SEO Name </div>
+                                    <div class="fieldTitle2 fmOpenB fRight" id="prdseoname"></div>
+                                </div>
+                                <div class="divCon1 fLeft">
+                                    <div class="fieldTitle1 fLeft">Category </div>
+                                    <div class="fieldTitle2 fmOpenB fRight txtCap" id='prdCats'></div>
+                                </div>
+                                <div class="divCon1 fLeft">
+                                    <div class="fieldTitle1 fLeft">Vendor </div>
+                                    <div class="fieldTitle2 fmOpenB fRight" id='vendorName'></div>
+                                </div>
+                                <div class="divCon1 fLeft">
+                                    <div class="fieldTitle1 fLeft">Product Weight (grms) </div>
+                                    <div class="fieldTitle2 fmOpenB fRight" id='prdWt'></div>
+                                </div>
+                                <div class="divCon1 fLeft">
+                                    <div class="fieldTitle1 fLeft">Gender</div>
+                                    <div class="fieldTitle2 fmOpenB fRight" id='gender'></div>
+                                </div>
+                                <div class="divCon1 fLeft">
+                                    <div class="fieldTitle1 fLeft">Diamond Setting Type </div>
+                                    <div class="fieldTitle2 fmOpenB fRight" id='dmdSetting'></div>
+                                </div>
+                                <div class="divCon1 fLeft">
+                                    <div class="fieldTitle1 fLeft">Product Certificate </div>
+                                    <div class="fieldTitle2 fmOpenB fRight" id='prdcrtficte'></div>
+                                </div>
+                            </div>
+                            <div class="dtl_cont fLeft">
+                                <div class="divCon1 fLeft">
+                                    <div class="fieldTitle1 fLeft">Metal Weight(Grm)</div>
+                                    <div class="fieldTitle2 fmOpenB fRight" id='mtlwght'></div>
+                                </div>
+                                <div class="divCon1 fLeft">
+                                    <div class="fieldTitle1 fLeft">Making Charges/Grm</div>
+                                    <div class="fieldTitle2 fmOpenB fRight" id='mkngCrg'></div>
+                                </div>
+                                <div class="divCon1 fLeft">
+                                    <div class="fieldTitle1 fLeft">Procurement Cost</div>
+                                    <div class="fieldTitle2 fmOpenB fRight" id='procCost'></div>
+                                </div>
+                                <div class="divCon1 fLeft">
+                                    <div class="fieldTitle1 fLeft">Margin</div>
+                                    <div class="fieldTitle2 fmOpenB fRight" id='mrgn'></div>
+                                </div>
+                                <div class="divCon1 fLeft">
+                                    <div class="fieldTitle1 fLeft">Measurement</div>
+                                    <div class="fieldTitle2 fmOpenB fRight" id='mesmnt'></div>
+                                </div>
+                                <div class="divCon1 fLeft">
+                                    <div class="fieldTitle1 fLeft">Metal Purity</div>
+                                    <div class="fieldTitle2 fmOpenB fRight" id='prdmetalpurity'></div>
+                                </div>
+                                <div class="divCon1 fLeft">
+                                    <div class="fieldTitle1 fLeft">Metal color</div>
+                                    <div class="fieldTitle2 fmOpenB fRight" id='prdmetalcolor'></div>
+                                </div>
+                            </div>
+                        </section>
+
                         <section  class="solitaireCont dn" id='prsolitaires_Section'>
                             <div class="ratHeader fmOpenB">Added Solitaire(s)</div>
                             <div class="newElements fLeft" id='prnewSolitaires'></div>
@@ -162,91 +169,60 @@
 
                         <section  class="solitaireCont dn" id='prgemstone_Section'>
                             <div class="ratHeader fmOpenB">Added Gemstone(s)</div>
-                            <div class="newElements fLeft" id='prnewgemstone'>
-                                <div class="commCont fLeft poR forAuto">
-                                    <div class="shapeComm Round"></div>
-
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Color </div>
-                                            <div class="w50 fRight fmOpenB txtRight">E</div>
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Clarity </div>
-                                            <div class="w50 fRight fmOpenB txtRight">IF</div>
-
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Cut </div>
-                                            <div class="w50 fRight fmOpenB txtRight">Very%20Good</div>
-
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Symmetry </div>
-                                            <div class="w50 fRight fmOpenB txtRight">Excellent</div>
-
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Polish </div>
-                                            <div class="w50 fRight fmOpenB txtRight">Excellent</div>
-
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Fluorescence </div>
-                                            <div class="w50 fRight fmOpenB txtRight">Very%20Strong</div>
-
-                                        </div>
-
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Carat </div>
-                                            <div class="w50 fRight fmOpenB txtRight">1</div>
-
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Price/Carat </div>
-                                            <div class="w50 fRight fmOpenB txtRight">₹1000</div>
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Table </div>
-                                            <div class="w50 fRight fmOpenB txtRight">1000</div>
-
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Crown Angle </div>
-                                            <div class="w50 fRight fmOpenB txtRight">52</div>
-
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Gridle</div>
-                                            <div class="w50 fRight fmOpenB txtRight">1.22</div>
-                                        </div>
-                                </div>
-                            </div>
+                            <div class="newElements fLeft" id='prnewgemstone'></div>
                         </section>
                         
+                        <section id="price_Section" class="priceCont poR">
+                            <div class="commTitle1 fmOpenL fLeft">Price Breakup</div>
+                            <div class="divCon fLeft">
+                                <div class="priceHeading fLeft">
+                                    <div class="forComponent fLeft">Component</div> 
+                                    <div class="forRate fLeft">Rate</div> 
+                                    <div class="forWeight fLeft">Weight</div> 
+                                    <div class="forPrice fLeft">Price</div> 
+                                </div>
+                                <ul class="pricingul fLeft fmOpenR"></ul>
+                            </div>
+                            
+                        </section>
+
                     </div>
-                </section>
+                </div>
             </div>
         </div>
     </div>
     <div class="productImageZoom dn" style=""></div>
-    
+    <div id="delOverlay" class="deloverlay dn"></div>
+    <div id="confirmBox" class="confirmBox dn fmOpenR">
+        <div class="bformHead fmOpenL">Are you sure you want to delete?</div>
+        <center>
+            <div class="delBtnCont fmOpenR">
+                <div class="delbtnComm arrowLeft fLeft" onclick="hideConfirmBox()">No</div>
+                <div class="delbtnComm arrowRight fRight" id='prddeleteBtn'>YES</div>
+            </div>
+        </center>
+    </div>  
+    <div class="forScrollBtn op01" onclick="common.moveUp()"></div>
+    <div class="forScrollBtn op01 forScDown" onclick="common.moveDown()"></div>
+        
     <script>
-    
-        $(document).ready(function(){
+        var data=new Array();
+        var mpurity = [];
+        var allrates = new Array();
+        $(document).ready(function() {
             
-            var URL=APIDOMAIN+"?action=getProductById&pid="+pid;
+            GetRates();
+            var URL = APIDOMAIN + "?action=getProductById&pid=" + pid;
             $.ajax({
-                url:URL,
-                type:'POST',
-                success:function(res){
-                    var data=JSON.parse(res);
-                    //oneditmodeCallBack(res);
-                   // console.log(data);
+                url: URL,
+                type: 'POST',
+                success: function(res) {
+                    data = JSON.parse(res);
                     
                     if (data['error']['err_code'] == '0')
                     {
-                        var dt=data['results'];
-                        var basic=dt['basicDetails'];
+                        var dt = data['results'];
+                        var basic = dt['basicDetails'];
                         var catAttr = dt['catAttr'];
                         var vendor = dt['vendor'];
                         var metalPurity = dt['metalPurity'];
@@ -255,249 +231,327 @@
                         var diamonds = dt['dimond'];
                         var uncut = dt['uncut'];
                         var gemstone = dt['gamestone'];
-                        
-                        
-                        $(basic).each(function(i,vl){
+                        var images = dt['images'];
+
+
+                        if (images.count>0)
+                        {
+                            var imgstr = "";
+                            $('#mainImg1').attr('src', images['images'][0]);
+
+                            $(images['images']).each(function(i, vl) {
+                                imgstr += "<li>";
+                                imgstr += "<div class='thumbContainer'>";
+                                imgstr += "<div class='thumb' onmouseover='updateMainImage(this)' style='background-image:url(" + vl + ")'>";
+                                imgstr += "</div>";
+                                imgstr += "</div>";
+                                imgstr += "</li>";
+                            });
+
+                            $('.carousel').append(imgstr);
+                            $('.prImgContainer').removeClass('noimage');
+                            $('.managePrdBtn').removeClass('dn');
+                            
+                            if(images.count<5)
+                                $('.prImgPrev,.prImgNext').addClass('dn');
+                            
+                        }
+                        else{
+                            $('.prImgContainer').addClass('noimage');
+                            $('.managePrdBtn').addClass('dn');
+                        }
+
+
+                        $('#dmdCnt').text(diamonds['count']);
+                        $('#gemCnt').text(gemstone['count']);
+                        $('#uncutCnt').text(uncut['count']);
+                        $('#solCnt').text(solitaire['count']);
+                        $('#imgCnt').text(images['count']);
+
+
+                        $('#dmdCntDiv').removeClass('dn');
+                        $('#gemCntDiv').removeClass('dn');
+                        $('#uncutCntDiv').removeClass('dn');
+                        $('#solCntDiv').removeClass('dn');
+                        $('#imgCntDiv').removeClass('dn');
+
+                        $(basic).each(function(i, vl) {
                             $('#prdCod').text(vl.prdCod);
                             $('#prdseoname').text(vl.prdSeo);
                             $('#prdName').text(vl.prdSeo);
                             $('#prdWt').text(vl.prdWgt);
-                            
-                            var gen="Female";
-                            if(vl.gender==1)
-                                gen="Female";
 
-                            else if(vl.gender==2)
-                                gen="Unisex";
-                            
+                            var gen = "Female";
+                            if (vl.gender == 1)
+                                gen = "Female";
+
+                            else if (vl.gender == 2)
+                                gen = "Unisex";
+
                             $('#gender').text(gen);
-                            
-                            
+
+
                             $('#dmdSetting').html(vl.dmdStng);
                             $('#prdcrtficte').html(vl.crtficte);
-                            $('#mtlwght').html(vl.mtlWgt+" grm");
-                            $('#mkngCrg').html("&#8377;" +vl.mkngCrg+" /grm");
-                            $('#procCost').html("&#8377;" +vl.procmtCst);
-                            $('#disPrice').html("&#8377;" +vl.procmtCst);
-                            $('#mrgn').html("&#8377;" +vl.mrgn);
+                            $('#mtlwght').html(vl.mtlWgt + " grm");
+                            $('#mkngCrg').html("&#8377;" + vl.mkngCrg + " /grm");
+                            $('#procCost').html("&#8377;" + vl.procmtCst);
+                            $('#disPrice').html("&#8377;" + vl.procmtCst);
+                            $('#mrgn').html("&#8377;" + vl.mrgn);
                             $('#mesmnt').html(vl.mesmnt);
                             
+                            
+                            if (basic.active_flag == 1)
+                            {
+                                $('.backtxtSelect').addClass('inStockPrd').removeClass('outStockPrd');
+                                $('.backtxtSelect option').eq(0).attr('selected',true);
+                                $('.backtxtSelect option').eq(1).removeAttr('selected');
+                            }
+                            else{
+                                $('.backtxtSelect').addClass('outStockPrd').removeClass('inStockPrd');
+                                $('.backtxtSelect option').eq(1).attr('selected',true);
+                                $('.backtxtSelect option').eq(0).removeAttr('selected');
+                            }
+                            
+                            $('.backtxtSelect').removeClass('dn');
+                            
                         });
-                        
-                        
-                                                
-                        
-                        $(vendor['results']).each(function(i,vl){
+
+
+
+
+                        $(vendor['results']).each(function(i, vl) {
                             console.log(dt)
                             $('#vendorName').text(vl.nm);
                         });
-                        
-                        var locCat=new Array();
-                        $.each(catAttr.results, function(i,vl) {
+
+                        var locCat = new Array();
+                        $.each(catAttr.results, function(i, vl) {
                             locCat.push(vl.name);
                         });
-                        
+
                         $('#prdCats').text(locCat.toString());
-                        
-                        
-                        
+
+
+
                         var mcolor = [];
-                        var mpurity = [];
-                        $.each(metalPurity.results, function(i,vl) {
+                        $.each(metalPurity.results, function(i, vl) {
                             mpurity.push(vl.dVal);
                         });
                         $('#prdmetalpurity').text(mpurity.toString());
-                        
-                        $.each(metalColor.results, function(i,vl) {
+
+                        $.each(metalColor.results, function(i, vl) {
                             mcolor.push(vl.dVal);
                         });
                         $('#prdmetalcolor').text(mcolor.toString());
-                        
-                    
 
-            if(basic.hasSol==1)
-            {
-             
-                var str="";
-                $(solitaire['results']).each(function(j,vl){
-                    str+="<div class='commCont fLeft poR forAuto'>";
-                    str+="<div class='shapeComm "+vl.shape+"'></div>";
-                    str+="<div class='fieldTitle fLeft '>";
-                    str+="<div class='w50 fLeft  padR15 fmOpenR'>Shape <span class='fRight'></span></div>";
-                    str+="<div class='w50 fRight fmOpenB txtRight'>"+vl.shape+"</div>";
-                    str+="</div>";
-                    str+="<div class='fieldTitle fLeft '>";
-                    str+="<div class='w50 fLeft  padR15 fmOpenR'>Color <span class='fRight'></span></div>";
-                    str+="<div class='w50 fRight fmOpenB txtRight'>"+vl.colr+"</div>";
-                    str+="</div>";
-                    str+="<div class='fieldTitle fLeft '>";
-                    str+="<div class='w50 fLeft  padR15 fmOpenR'>Clarity <span class='fRight'></span></div>";
-                    str+="<div class='w50 fRight fmOpenB txtRight'>"+decodeURIComponent(vl.clrty)+"</div>";
-                    str+="</div>";
-                    str+="<div class='fieldTitle fLeft'>";
-                    str+="<div class='w50 fLeft  padR15 fmOpenR'>Cut <span class='fRight'></span></div>";
-                    str+="<div class='w50 fRight fmOpenB txtRight'>"+decodeURIComponent(vl.cut)+"</div>";
-                    str+="</div>";
-                    str+="<div class='fieldTitle fLeft'>";
-                    str+="<div class='w50 fLeft  padR15 fmOpenR'>Symmetry <span class='fRight'></span></div>";
-                    str+="<div class='w50 fRight fmOpenB txtRight'>"+decodeURIComponent(vl.symty)+"</div>";
-                    str+="</div>";
-                    str+="<div class='fieldTitle fLeft'>";
-                    str+="<div class='w50 fLeft  padR15 fmOpenR'>Polish <span class='fRight'></span></div>";
-                    str+="<div class='w50 fRight fmOpenB txtRight'>"+decodeURIComponent(vl.polish)+"</div>";
-                    str+="</div>";
-                    str+="<div class='fieldTitle fLeft'>";
-                    str+="<div class='w50 fLeft  padR15 fmOpenR'>Fluorescence <span class='fRight'></span></div>";
-                    str+="<div class='w50 fRight fmOpenB txtRight'>"+decodeURIComponent(vl.flresce)+"</div>";
-                    str+="</div>";
-                    str+="<div class='fieldTitle fLeft '>";
-                    str+="<div class='w50 fLeft  padR15 fmOpenR'>Carat <span class='fRight'></span></div>";
-                    str+="<div class='w50 fRight fmOpenB txtRight'>"+vl.carat+"</div>";
-                    str+="</div>";
-                    str+="<div class='fieldTitle fLeft '>";
-                    str+="<div class='w50 fLeft  padR15 fmOpenR'>Price/Carat <span class='fRight'></span></div>";
-                    str+="<div class='w50 fRight fmOpenB txtRight'>&#8377;"+vl.prcPrCrat+"</div>";
-                    str+="</div>";
-                    str+="<div class='fieldTitle fLeft'>";
-                    str+="<div class='w50 fLeft  padR15 fmOpenR'>Table <span class='fRight'></span></div>";
-                    str+="<div class='w50 fRight fmOpenB txtRight'>"+vl.tblNo+"</div>";
-                    str+="</div>";
-                    str+="<div class='fieldTitle fLeft'>";
-                    str+="<div class='w50 fLeft  padR15 fmOpenR'>Crown Angle <span class='fRight'></span></div>";
-                    str+="<div class='w50 fRight fmOpenB txtRight'>"+vl.crwnAngle+"</div>";
-                    str+="</div>";
-                    str+="<div class='fieldTitle fLeft'>";
-                    str+="<div class='w50 fLeft  padR15 fmOpenR'>Gridle<span class='fRight'></span></div>";
-                    str+="<div class='w50 fRight fmOpenB txtRight'>"+vl.girdle+"</div>";
-                    str+="</div>";
-                    str+="</div>";
-                    str+="<div class='breakLine'></div>";
 
-                });
 
-                $('#prnewSolitaires').html(str);
-                $('#prsolitaires_Section').removeClass('dn');
-            }
-            
-            
-            if(basic.hasDmd==1)
-            {
-                var str="";
-                $(diamonds['results']).each(function(i,vl){
-                    var dquality = new Array();
-                    
-                    
-                    $.each(vl.QMast.results, function(i,vl) {
-                        dquality.push(vl.dVal);
-                    });
-                    str+="<div class='commCont fLeft forAuto'>";
-                    //str+="<div class='shapeComm "+vl.shape+"'></div>";
-                    str+="<div class='outContr'>";       
-                    str+="<div class='fieldTitle fLeft w25'>";
-                    str+="<div class='w50 fLeft  padR15 fmOpenR'>Shape <span class='fRight'></span></div>";
-                    str+="<div class='w50 fRight fmOpenB txtRight'>"+vl.shape+"</div>";
-                    str+="</div>";
-                    str+="<div class='fieldTitle fLeft w25'>";
-                    str+="<div class='w50 fLeft  padR15 fmOpenR'>Diamond Quality <span class='fRight'></span></div>";
-                    str+="<div class='w50 fRight fmOpenB txtRight'>"+dquality.toString()+"</div>";
-                    str+="</div>";
-                    str+="<div class='fieldTitle fLeft w25'>";
-                    str+="<div class='w50 fLeft  padR15 fmOpenR'>Carat <span class='fRight'></span></div>";
-                    str+="<div class='w50 fRight fmOpenB txtRight'>"+vl.crat+"</div>";
-                    str+="</div>";
-                    str+="<div class='fieldTitle fLeft w25'>";
-                    str+="<div class='w50 fLeft  padR15 fmOpenR'>Pieces<span class='fRight'></span></div>";
-                    str+="<div class='w50 fRight fmOpenB txtRight'>"+vl.totNo+"</div>";
-                    str+="</div>";
-                    str+="</div>";
-                    str+="</div>";
-                    str+="<div class='breakLine'></div>";
-                });
+                        if (basic.hasSol == 1)
+                        {
 
-                $('#prnewDiamonds').html(str);
-                $('#prdiamond_Section').removeClass('dn');
-                
-            }
-            
-            
-                        
-            if(basic.hasUnct==1)
-            {
-                var str="";
-                $(uncut['results']).each(function(i,vl){
-                    str+="<div class='commCont fLeft forAuto'>";
-                    str+="<div class='outContr fLeft'>";                            
-                    str+="<div class='fieldTitle fLeft '>";
-                    str+="<div class='w50 fLeft  padR15 fmOpenR'>Diamond Color <span class='fRight'></span></div>";
-                    str+="<div class='w50 fRight fmOpenB txtRight'>"+vl.clor+"</div>";
-                    str+="</div>";
-                    str+="<div class='fieldTitle fLeft '>";
-                    str+="<div class='w50 fLeft  padR15 fmOpenR'>Diamond Quality <span class='fRight'></span></div>";
-                    str+="<div class='w50 fRight fmOpenB txtRight'>"+vl.qulty+"</div>";
-                    str+="</div>";
-                    str+="<div class='fieldTitle fLeft '>";
-                    str+="<div class='w50 fLeft  padR15 fmOpenR'>Carat <span class='fRight'></span></div>";
-                    str+="<div class='w50 fRight fmOpenB txtRight'>"+vl.crat+"</div>";
-                    str+="</div>";
-                    str+="<div class='fieldTitle fLeft '>";
-                    str+="<div class='w50 fLeft  padR15 fmOpenR'>Price/Carat <span class='fRight'></span></div>";
-                    str+="<div class='w50 fRight fmOpenB txtRight'>&#8377; "+vl.prcPrCrat+"</div>";
-                    str+="</div>";
-                    str+="<div class='fieldTitle fLeft'>";
-                    str+="<div class='w50 fLeft  padR15 fmOpenR'>Pieces<span class='fRight'></span></div>";
-                    str+="<div class='w50 fRight fmOpenB txtRight'>"+vl.totNo+"</div>";
-                    str+="</div>";
-                    str+="</div>";
-                    str+="</div>";
-                    str+="<div class='breakLine'></div>";
-                });
+                            var str = "";
+                            $(solitaire['results']).each(function(j, vl) {
+                                str += "<div class='commCont fLeft poR forAuto'>";
+                                str += "<div class='shapeComm " + vl.shape + "'></div>";
+                                str += "<div class='fieldTitle fLeft '>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Shape <span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.shape + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft '>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Color <span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.colr + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft '>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Clarity <span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + decodeURIComponent(vl.clrty) + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft'>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Cut <span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + decodeURIComponent(vl.cut) + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft'>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Symmetry <span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + decodeURIComponent(vl.symty) + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft'>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Polish <span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + decodeURIComponent(vl.polish) + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft'>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Fluorescence <span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + decodeURIComponent(vl.flresce) + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft '>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Carat <span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.carat + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft '>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Price/Carat <span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>&#8377;" + vl.prcPrCrat + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft'>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Table <span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.tblNo + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft'>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Crown Angle <span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.crwnAngle + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft'>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Gridle<span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.girdle + "</div>";
+                                str += "</div>";
+                                str += "</div>";
+                                str += "<div class='breakLine'></div>";
 
-                $('#prnewUncut').html(str);
-                $('#pruncut_Section').removeClass('dn');
-                
-            }
-            
-            if(basic.hasGem==1)
-            {
-                var str="";
-                $(gemstone['results']).each(function(i,vl){
-                    str+="<div class='commCont fLeft forAuto'>";
-                    str+="<div class='outContr fLeft'>";
-                    str+="<div class='fieldTitle fLeft w25'>";
-                    str+="<div class='w50 fLeft  padR15 fmOpenR'>Gemstone<span class='fRight'></span></div>";
-                    str+="<div class='w50 fRight fmOpenB txtRight'>"+(vl.gemNm)+"</div>";
-                    str+="</div>";
-                    str+="<div class='fieldTitle fLeft w25'>";
-                    str+="<div class='w50 fLeft  padR15 fmOpenR'>Carat <span class='fRight'></span></div>";
-                    str+="<div class='w50 fRight fmOpenB txtRight'>"+vl.crat+"</div>";
-                    str+="</div>";
-                    str+="<div class='fieldTitle fLeft w25'>";
-                    str+="<div class='w50 fLeft  padR15 fmOpenR'>Price/Carat <span class='fRight'></span></div>";
-                    str+="<div class='w50 fRight fmOpenB txtRight'>"+vl.prcPrCrat+"</div>";
-                    str+="</div>";
-                    str+="<div class='fieldTitle fLeft w25'>";
-                    str+="<div class='w50 fLeft  padR15 fmOpenR'>Pieces<span class='fRight'></span></div>";
-                    str+="<div class='w50 fRight fmOpenB txtRight'>"+vl.totNo+"</div>";
-                    str+="</div>";
-                    str+="</div>";
-                    str+="</div>";
-                    str+="<div class='breakLine'></div>";
-                });
+                            });
 
-                $('#prnewgemstone').html(str);
-                $('#prgemstone_Section').removeClass('dn');
+                            $('#prnewSolitaires').html(str);
+                            $('#prsolitaires_Section').removeClass('dn');
+                        }
 
-            }
 
-            
-        }
+                        if (basic.hasDmd == 1)
+                        {
+                            var str = "";
+                            $(diamonds['results']).each(function(i, vl) {
+                                var dquality = new Array();
+
+
+                                $.each(vl.QMast.results, function(i, vl) {
+                                    dquality.push(vl.dVal);
+                                });
+                                str += "<div class='commCont fLeft forAuto'>";
+                                //str+="<div class='shapeComm "+vl.shape+"'></div>";
+                                str += "<div class='outContr'>";
+                                str += "<div class='fieldTitle fLeft w25'>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Shape <span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.shape + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft w25'>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Diamond Quality <span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + dquality.toString() + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft w25'>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Carat <span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.crat + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft w25'>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Pieces<span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.totNo + "</div>";
+                                str += "</div>";
+                                str += "</div>";
+                                str += "</div>";
+                                str += "<div class='breakLine'></div>";
+                            });
+
+                            $('#prnewDiamonds').html(str);
+                            $('#prdiamond_Section').removeClass('dn');
+
+                        }
+
+
+
+                        if (basic.hasUnct == 1)
+                        {
+                            var str = "";
+                            $(uncut['results']).each(function(i, vl) {
+                                str += "<div class='commCont fLeft forAuto'>";
+                                str += "<div class='outContr fLeft'>";
+                                str += "<div class='fieldTitle fLeft '>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Diamond Color <span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.clor + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft '>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Diamond Quality <span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.qulty + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft '>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Carat <span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.crat + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft '>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Price/Carat <span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>&#8377; " + vl.prcPrCrat + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft'>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Pieces<span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.totNo + "</div>";
+                                str += "</div>";
+                                str += "</div>";
+                                str += "</div>";
+                                str += "<div class='breakLine'></div>";
+                            });
+
+                            $('#prnewUncut').html(str);
+                            $('#pruncut_Section').removeClass('dn');
+
+                        }
+
+                        if (basic.hasGem == 1)
+                        {
+                            var str = "";
+                            $(gemstone['results']).each(function(i, vl) {
+                                str += "<div class='commCont fLeft forAuto'>";
+                                str += "<div class='outContr fLeft'>";
+                                str += "<div class='fieldTitle fLeft w25'>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Gemstone<span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + (vl.gemNm) + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft w25'>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Carat <span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.crat + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft w25'>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Price/Carat <span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.prcPrCrat + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft w25'>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Pieces<span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.totNo + "</div>";
+                                str += "</div>";
+                                str += "</div>";
+                                str += "</div>";
+                                str += "<div class='breakLine'></div>";
+                            });
+
+                            $('#prnewgemstone').html(str);
+                            $('#prgemstone_Section').removeClass('dn');
+
+                        }
+
+
+                    }
+                     genPriceSection();
                 }
+                
+                
             });
             
             
+            $('.managePrdBtn').bind('click',function(){
+                window.open(DOMAIN+'backend/?action=thumbnail&pid='+pid,'_blank');
+            });
+            
+            $('.uploadPrdBtn').bind('click',function(){
+                window.open(DOMAIN+'backend/?action=upload&pid='+pid,'_blank');
+            });
+            
+            $('.editPrdBtn').bind('click',function(){
+                window.open(DOMAIN+'backend/?action=editProduct&pid='+pid,'_blank');
+            });
+            
+            $('.deletePrdBtn').bind('click',function(){
+                setClick(pid);
+                showConfirmBox();
+            });
+            
+           
+
         });
-    
-        
+
+
         function showZoomedImg() {
             var img = $('#mainImg1').attr('src');
             var _url = "url(" + img + ")";
@@ -512,7 +566,7 @@
         function hideZoomedImg() {
             $('.productImageZoom').addClass('dn');
         }
-        
+
         $(function() {
             $("#mainImg1").mousemove(function(e) {
                 var imgWidth = $("#mainImg1").width();
@@ -529,13 +583,13 @@
                 });
             });
         });
-        
+
         function updateMainImage(thisobj) {
             var img = $(thisobj).css('backgroundImage');
             var nImg = img.split('"');
             $('#mainImg1').attr({src: nImg[1]});
         }
-        
+
         var val = 0;
         var moveCount = 0;
         function movePrImg(flag) {
@@ -557,15 +611,456 @@
             }
         }
 
+        function inStock()
+        {
+            var val = $('.backtxtSelect').val();
+
+            if (val == 1)
+                $('.backtxtSelect').addClass('inStockPrd').removeClass('outStockPrd');
+            else
+                $('.backtxtSelect').addClass('outStockPrd').removeClass('inStockPrd');
+
+            changePrdStatus(val, pid);
+
+        }
+
+        function changePrdStatus(val, pid)
+        {
+
+            values = {};
+            values['active_flag'] = val;
+            values['pid'] = pid;
+            var data = values;
+            var dt = JSON.stringify(data);
+
+            var URL = APIDOMAIN + "?action=changeProductStatus";
+            $.ajax({
+                url: URL,
+                type: 'POST',
+                async: false,
+                data: {dt: dt},
+                success: function(res) {
+                    res = JSON.parse(res);
+                    changeStatusCallBack(res);
+                    if(val==2 && res['error']['err_code'] == '0')
+                    {
+                       window.location.href=DOMAIN+'backend/?action=products';
+                    }
+                    
+                }
+            });
+
+        }
+
+
+
+        function changeStatusCallBack(data)
+        {
+
+            if (data['error']['err_code'] == '0')
+            {
+                common.toast(1, 'Status updated successfully');
+                hideConfirmBox();
+            }
+            else
+            {
+                common.toast(0, 'Error in updating status');
+                //getProducs();
+            }
+        }
+        
+        $('#confirmBox').velocity({scale: 0, borderRadius: '50%'}, {delay: 0, duration: 0});
+        $('#delOverlay').velocity({opacity: 0}, {delay: 0, duration: 0});
+
+        function showConfirmBox() {
+            $('#delOverlay,#confirmBox').removeClass('dn');
+            setTimeout(function() {
+                $('#delOverlay').velocity({opacity: 1}, {delay: 0, duration: 300, ease: 'swing'});
+                $('#confirmBox').velocity({scale: 1, borderRadius: '2px', opacity: 1}, {delay: 80, duration: 300, ease: 'swing'});
+            }, 10);
+        }
+
+
+        function setClick(data)
+        {
+            var str="changePrdStatus(2,'"+data+"')";
+            $('#prddeleteBtn').attr('onclick',str);
+
+        }
+
+        function hideConfirmBox() 
+        {
+            $('#delOverlay').velocity({opacity: 0}, {delay: 0, duration: 300, ease: 'swing'});
+            $('#confirmBox').velocity({opacity: 0}, {delay: 0, duration: 300, ease: 'swing', queue: false});
+            $('#confirmBox').velocity({scale: 0, borderRadius: '50%'}, {delay: 300, duration: 0, ease: 'swing'});
+            setTimeout(function() {
+                $('#delOverlay,#confirmBox').addClass('dn');
+            }, 1010);
+            $('#prddeleteBtn').removeAttr('onclick');
+        }
+        
+        
+        function solitairePrice()
+        {
+            var solstr = "<li class='headLi' id='forSolitaire'><div class='forComponent fLeft'>Solitaire(s)</div></li>";
+            $(data['results']['solitaire']['results']).each(function(i, vl) {
+                    
+                    var carat = vl.carat;
+                    var price_per_carat = vl.prcPrCrat;
+                    var price = parseFloat(price_per_carat) * parseFloat(carat);
+                    solstr += "<li id='solitairePrice_" + vl.soliId + "'>";
+                    solstr += "<div class='forComponent fLeft pl15'>" + vl.shape + "</div>";
+                    solstr += "<div class='forRate fLeft'>&#8377; " + price_per_carat + "/ct</div>";
+                    solstr += "<div class='forWeight fLeft'>" + carat + " ct</div>";
+                    solstr += "<div class='forPrice calc fLeft'>&#8377;" + price + "</div>";
+                    
+                
+                
+            });
+            solstr += "</li>";
+            return solstr;
+            
+        }
+        
+        function diamondPrice()
+        {  
+        
+            var str = "<li class='headLi' id='forDiamond'><div class='forComponent fLeft'>Diamond(s)</div></li>";
+//            $('[id*=diamondComm_]').each(function() {
+            $(data['results']['dimond']['results']).each(function(i, vl) {
+                
+                
+                
+                var ids = vl.dmdId;
+                var shape =vl.shape;
+                var carat = vl.crat;
+                
+                var prc;
+                var price;
+                //var customiz=data['results']['dimond']['results'][i]['QMast'].count;
+                var customiz=vl['QMast'].count;
+                var dquality=vl['QMast']['results'];
+                if (customiz>1)
+                {
+                    var typstr = "<select id='diamondPs" + ids + "'  onchange=\"setDmdPrice(this);\">";
+                    var flag = true;
+                    $(dquality).each(function(j,qv) {
+
+                        prc =parseFloat(qv.prcPrCrat);
+                        price = prc * parseFloat(carat);
+                        var opt = qv.dVal +"  "+ vl.shape;
+                        var val = getDqualityVal(qv.dVal);
+                        typstr += "<option value='" + val + "'>" + opt + "</option>";
+                    });
+                    typstr += "</select>";
+                }
+                else
+                {
+                    typstr = dquality[0].dVal + " - " + vl.shape;
+                    prc =dquality[0].prcPrCrat;
+                    price = parseFloat(prc) * parseFloat(carat);
+
+                }
+
+                str += "<li id='diamondPrice_" + ids + "'>";
+                str += "<div class='forComponent fLeft pl15'>" + typstr + "</div>";
+                str += "<div class='forRate fLeft' id='diamondRate_" + ids + "'  data-weight='" + carat + "'>" + prc + "/ct</div>";
+                str += "<div class='forWeight fLeft'>" + carat + " ct</div>";
+                str += "<div class='forPrice calc fLeft' id='diamondTotal_" + ids + "'>&#8377;" + price + "</div>";
+                str += "</li>";
+
+            });
+            return str;
+            
+        }
+        
+        
+        function uncutPrice()
+        {
+            var str = "<li class='headLi' id='forUncut'><div class='forComponent fLeft'>Uncut Diamond(s)</div></li>";
+            $(data['results']['uncut']['results']).each(function(i, vl) {
+                
+                var ids = vl.unctId
+                
+                var carat = vl.crat;
+                var price = vl.prcPrCrat;
+                var total = parseFloat(price) * parseFloat(carat);
+                var quality = vl.qulty;
+
+                str += "<li id='uncutdiamondPrice_" + ids + "'>";
+                str += "<div class='forComponent fLeft pl15'>" + quality + " - Uncut Diamond</div>";
+                str += "<div class='forRate fLeft'>" + price + "/ct</div>";
+                str += "<div class='forWeight fLeft'>" + carat + " ct</div>";
+                str += "<div class='forPrice calc fLeft'>&#8377;" + total + "</div>";
+                str += "</li>";
+
+            });
+            return str;
+           
+        }
+        
+        
+        function gemstonePrice()
+        {
+
+            var str = "<li class='headLi' id='forGemstone'><div class='forComponent fLeft'>Gemstone(s)</div></li>";
+            $(data['results']['gamestone']['results']).each(function(i, vl) {
+                var ids = vl.gemId;                
+                var gvalue = vl.gemNm;
+                var carat = vl.crat;
+                var price = vl.prcPrCrat;
+                var total = parseFloat(price) * parseFloat(carat);
+
+                str += "<li id='gemstonePrice_" + ids + "'>";
+                str += "<div class='forComponent fLeft pl15'>" + gvalue + "</div>";
+                str += "<div class='forRate fLeft'>" + price + "/ct</div>";
+                str += "<div class='forWeight fLeft'>" + carat + " ct</div>";
+                str += "<div class='forPrice calc fLeft'>&#8377;" + total + "</div>";
+                str += "</li>";
+
+
+            });
+            return str;
+            
+        }
+        
+        function goldPrice()
+        {
+
+            var str = "<li class='headLi' id='forGold'><div class='forComponent fLeft'>Gold</div></li>";
+            var mpval = mpurity.length;
+            var carat = data['results']['basicDetails'].mtlWgt
+            var crPrice;
+
+            var total;
+            if (mpval > 1)
+            {
+                //mult
+
+                
+                var sstr = "<select id='goldPrice1'  onchange=\"setGoldPrice();\">";
+                
+                $(mpurity).each(function(i,vg) {
+                        var txt = "Gold -" + vg;
+                        var val = getGoldRates(vg);
+                        sstr += "<option value='" + val + "'>" + txt + "</option>";
+                        crPrice = val;
+                        total = parseFloat(crPrice) * parseFloat(carat);
+                });
+
+                sstr += "</select>";
+
+            }
+            else
+            {
+                var gold = mpurity[0];
+                sstr = "<div>" + gold + "</div>";
+                crPrice = getGoldRates(mpurity[0]);
+                total = parseFloat(crPrice) * parseFloat(carat);
+            }
+
+            var gprc=getGoldRates(mpurity[0]);
+            var gptotal = parseFloat(gprc) * parseFloat(carat);
+            str += "<li id='goldPrice'>";
+            str += "<div class='forComponent fLeft pl15'>" + sstr + "</div>";
+            str += "<div class='forRate fLeft' id='goldRate1'>" + gprc + "/ct</div>";
+            str += "<div class='forWeight fLeft' id='goldWeight1' data-weight='" + carat + "'>" + carat + " ct</div>";
+            str += "<div class='forPrice calc fLeft' id='totalgoldRate1'>&#8377;" + gptotal + "</div>";
+            str += "</li>";
+
+            return str;
+            
+        }
+        
+        
+        function GetRates() {
+            var URL = APIDOMAIN + "index.php?action=getAllRates";
+
+            $.ajax({
+                url: URL,
+                type: 'POST',
+                async: false,
+                success: function(res) {
+                    res = JSON.parse(res);
+                    allrates = res['result'];
+                }
+            });
+        }
+        
+        
+        function getDqualityVal(val)
+        {
+            var price;
+            $(allrates['diamondRates']).each(function(i,vl){
+                
+                if(val==vl.value)
+                {
+                    price=vl.price;
+                    return price;
+                
+                }
+            });
+            return price;
+            
+        }
+        
+        function getGoldRates(val)
+        {
+            var price;
+            $(allrates['goldRates']).each(function(i,vl){
+                
+                if(val==vl.value)
+                {
+                    price=vl.price;
+                    return price;
+                }
+            });
+            return price;
+        }
+        
+        
+        
+    function genPriceSection()
+    {
+        
+        var basic = data['results']['basicDetails'];
+        
+
+        var str = "";
+        if (basic.hasSol)
+        {
+            str += solitairePrice();
+        }
+
+        if (basic.hasDmd)
+        {
+            str += diamondPrice();
+        }
+
+        if (basic.hasUnct)
+        {
+            str += uncutPrice();
+        }
+
+        if (basic.hasGem)
+        {
+            str += gemstonePrice();
+        }
+        
+        var gldstr = goldPrice();
+
+
+        var mkch = basic.mkngCrg;
+        var totalwt =basic.mtlWgt;
+        var total = parseFloat(mkch) * parseFloat(totalwt);
+
+        var mstr = "<li id='makingCharge'>";
+        mstr += "<div class='forComponent fLeft pl15'>Making Charge</div>";
+        mstr += "<div class='forRate fLeft'>" + mkch + "/grm</div>";
+        mstr += "<div class='forWeight fLeft'></div>";
+        mstr += "<div class='forPrice calc fLeft'>&#8377;" + total + "</div>";
+        mstr += "</li>";
+
+
+        $('.pricingul').html('');
+        $('.pricingul').html(str + gldstr + mstr);
+        calcGrandTotal(1);
+
+    }
     
-    </script>
     
-    
-    
-    
-    
-    
-    
-    
-    
+    function setDmdPrice(obj)
+    {
+        var id = $(obj).attr('id');
+        id = id.split('diamondPs');
+
+        var val = parseFloat($(obj).val());
+        var total = val * parseFloat($('#diamondRate_' + id[1]).attr('data-weight'));
+
+        var rt = "&#8377; " + val + "/ct";
+        $('#diamondRate_' + id[1]).html(rt);
+        $('#diamondTotal_' + id[1]).html("&#8377;" + total);
+
+        calcGrandTotal(2);
+
+    }
+
+
+    function setGoldPrice()
+    {
+
+        var val = parseFloat($('#goldPrice1').val());
+        var total = val * parseFloat($('#goldWeight1').attr('data-weight'));
+        var rt = "&#8377; " + val + "/ct";
+        $('#goldRate1').html(rt);
+        $('#totalgoldRate1').html("&#8377;" + total);
+
+        setTimeout(function() {
+            calcGrandTotal(2);
+        }, 50);
+
+    }
+
+
+    function calcGrandTotal(type)
+    {
+        var total = 0;
+        var vat =0;
+        $('li .calc').each(function() {
+            var val = $(this).text();
+            val = parseFloat(val.slice(1));
+            total += val;
+
+        });
+
+        vat = (1.20 / 100) * total;
+        var vat1 = vat;
+        if(!isNaN(vat)){
+            var vat1 =  vat.toFixed(2);
+        }
+
+        var gtotal = total + vat;
+        var gtotal1 = gtotal;
+        if(!isNaN(gtotal)){
+            var gtotal1 =  gtotal.toFixed(2);
+        }
+        $('#sellPrice').html("&#8377;" + gtotal1);
+
+        if (type == 1)
+        {
+            var vstr = "<li id='vatCharges'>";
+            vstr += "<div class='forComponent fLeft pl15'>VAT (1.20%)</div>";
+            vstr += "<div class='forRate fLeft'></div>";
+            vstr += "<div class='forWeight fLeft'></div>";
+            vstr += "<div class='forPrice fLeft' id='tvat'>&#8377;" + vat1 + "</div>";
+            vstr += "</li>";
+
+            vstr += "<li class='gTotal'>";
+            vstr += "<div class='forComponent fLeft'>Grand Total</div>";
+            vstr += "<div class='forRate fLeft'></div>";
+            vstr += "<div class='forWeight fLeft'></div>";
+            vstr += "<div class='forPrice fLeft' id='grandTotal'>&#8377; " + gtotal1 + "</div>";
+            vstr += "</li>";
+            $('.pricingul').append(vstr);
+        }
+        else
+        {
+            $('#tvat').html("&#8377;" + vat1);
+            $('#grandTotal').html("&#8377;" + gtotal1);
+            
+        }
+        
+        
+    }
+
+</script>
+
+
+
+
+
+
+
+
+
 </body>

@@ -114,4 +114,18 @@ function Common() {
             $(this).toggleClass('toggle-button-selected');
         });
     };
+    
+    
+    this.moveDown = function()
+    {
+        $('body,html').animate({scrollTop:$(document).height()},300,"swing");
+    }
+
+    this.moveUp = function()
+    {
+        $('body,html').animate({scrollTop:0},300,"swing");
+    }
+    
+    
+    
 }

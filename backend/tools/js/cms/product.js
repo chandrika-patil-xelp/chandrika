@@ -94,7 +94,7 @@ function getProducsCallback(data)
                 str += "</div>";
                 str += "<div class='stockCode fLeft'>";
                 str += "<span class='upSpan fmOpenB'>" + v.prdCode + "</span>";
-                str += "<span class='lwSpan'><a href='" + APIDOMAIN + "?action=getProductById&pid=" + v.pid + "'>View Details</a></span>";
+                str += "<span class='lwSpan'><a href='" + DOMAIN + "backend/?action=productDetails&pid=" + v.pid + "'>View Details</a></span>";
                 str += "</div>";
                 str += "<div class='prdName fLeft'>" + v.prdName + "</div>";
                 

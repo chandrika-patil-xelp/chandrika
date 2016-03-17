@@ -957,6 +957,7 @@ class product extends DB {
                     $arr['crtdOn'] = $row['createdon'];
                     $arr['updtOn'] = $row['updatedon'];
                     $arr['updtBy'] = $row['updatedby'];
+                    $arr['active_flag'] = $row['active_flag'];
 
                 }
 
@@ -1833,8 +1834,8 @@ class product extends DB {
                         tbl_product_image_mapping
                 WHERE   
                         active_flag!=3 AND 
-                        product_id = " . $params['pid'] . "
-              ";
+                        product_id = " . $params['pid'] . " ORDER BY image_sequence";
+              
 
             $res = $this->query($sql);
             if ($res) {

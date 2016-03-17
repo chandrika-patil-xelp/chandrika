@@ -2119,11 +2119,6 @@ function GetRates() {
 
 
 
-
-
-
-
-
 function genPriceSection()
 {
     
@@ -2426,7 +2421,7 @@ function calcGrandTotal(type)
 
     if (type == 1)
     {
-        var vstr = "<li id='makingCharge'>";
+        var vstr = "<li id='vatCharges'>";
         vstr += "<div class='forComponent fLeft pl15'>VAT (1.20%)</div>";
         vstr += "<div class='forRate fLeft'></div>";
         vstr += "<div class='forWeight fLeft'></div>";
