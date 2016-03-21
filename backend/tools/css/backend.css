@@ -737,7 +737,7 @@ li .prdViewImgBtn{}
 .cust_detail .drp_contr{margin-top:0px;padding: 5px;margin-top: 15px;padding-right: 15px;}
 .viewTxt{position:absolute;width:10%;right:0px;bottom: 0px;height: 40px;line-height: 40px;font-size: 13px;cursor: pointer;background: url(../img/arrows-01.svg)no-repeat;background-size: auto 38%;background-position: 85% center;}
 .ordersPage .viewTxt{position:relative;float: right;width:auto;padding-right: 20px; background-position: 100% center;}
-.det_sec .prd_img{width:100%;height:200px;}
+.det_sec .prd_img{width:100%;height:200px;border:1px solid #e6e6e6;}
 .det_sec .prdInfo{width:100%;border: none;}
 .drpClass{color: #4d4d4d;height: 40px;width:46%;background-image:url('../img/down_arrow.svg');background-repeat: no-repeat;background-color: #fff;border-bottom: 2px solid #2F665C;border-top: none; border-left: none;border-right: none;border-radius: 0px;font-family: openB;text-align: center;background-size: auto 100%;background-position: right center;cursor: pointer;font-size: 12px;padding: 0px 10px 0px 10px;}
 .cust_detail .addCouponBtn{padding: 0px 25px 0px 25px;}
