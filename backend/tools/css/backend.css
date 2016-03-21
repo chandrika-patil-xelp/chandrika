@@ -49,11 +49,13 @@ a { color: inherit;text-decoration: none; }
 .txtRight{text-align: right}
 .txtOver{overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
 .txtCap{text-transform: capitalize;}
+.txtUp{text-transform: uppercase;}
 
 .transition100 {transition: 100ms ease-in-out;-moz-transition: 100ms ease-in-out;-ms-transition: 100ms ease-in-out;-webkit-transition: 100ms ease-in-out;-o-transition: 100ms ease-in-out;}
 .transition300 {transition: 300ms ease-in-out;-moz-transition: 300ms ease-in-out;-ms-transition: 300ms ease-in-out;-webkit-transition: 300ms ease-in-out;-o-transition: 300ms ease-in-out;}
 
 .poR{position: relative}
+.poA{position: absolute;}
 .bNone{border:none!important;}
 .txtCap {text-transform: capitalize;}
 
@@ -265,7 +267,7 @@ li .acct{border-right: none;position: relative;padding: 0 15px 0 0px}
 
 .addCouponBtn {width: auto;background: #2F665C url(../img/tickCircle.svg)no-repeat;background-position: 150% center;background-size: auto 70%;margin-left: 10px;color: #fff;height: 35px;line-height: 35px;font-size: 13px;border-radius: 2px;cursor: pointer;}
 .addCouponBtn a{width:100%;height: auto;display: block;padding: 0 30px }
-.addCouponBtn:hover{background-position: 98% center}
+/*.addCouponBtn:hover{background-position: 98% center}*/
 
 .cpListHeader {width: 100%;height: 45px;background: #e6e6e6;text-align: center!important;}
 .cpListHeader div{border-right:1px solid #d4d4c8;height: 100%;line-height: 43px;padding: 0 15px;font-size: 13px;text-align: center!important;color:#4d4d4d;}
@@ -737,7 +739,7 @@ li .prdViewImgBtn{}
 .cust_detail .padR15{padding-right:10%;}
 .cust_detail .drp_contr{margin-top:0px;padding: 5px;margin-top: 15px;padding-right: 15px;}
 .viewTxt{position:absolute;width:10%;right:0px;bottom: 0px;height: 40px;line-height: 40px;font-size: 13px;cursor: pointer;background: url(../img/arrows-01.svg)no-repeat;background-size: auto 38%;background-position: 85% center;}
-.ordersPage .viewTxt{position:relative;float: right;width:auto;padding-right: 20px; background-position: 100% center;}
+/*.ordersPage .viewTxt{position:relative;float: right;width:auto;padding-right: 20px; background-position: 100% center;}*/
 .det_sec .prd_img{width:100%;height:200px;border:1px solid #e6e6e6;}
 .det_sec .prdInfo{width:100%;border: none;}
 .drpClass{color: #4d4d4d;height: 40px;width:46%;background-image:url('../img/down_arrow.svg');background-repeat: no-repeat;background-color: #fff;border-bottom: 2px solid #2F665C;border-top: none; border-left: none;border-right: none;border-radius: 0px;font-family: openB;text-align: center;background-size: auto 100%;background-position: right center;cursor: pointer;font-size: 12px;padding: 0px 10px 0px 10px;}
@@ -760,6 +762,39 @@ li .prdViewImgBtn{}
 .det_sec .addCouponBtn{position: absolute;right: 0}
 .pl20{padding-left:20px!important;}
 
+/* customer Info */
+ .custDetail{}
+ .w20{width: 20% !important;}
+ .w35{width: 35%!important;}
+ .bg{background-color: #e6e6e6;}
+ .aHead{width: 100%;height: 40px;line-height: 40px;color: #666;border-bottom: 1px dotted #ccc;}
+ .pic{width: 100%;height:185px;display: inline-block;border: 1px solid;}
+ .custDetail .logoutBtn{width:170px;margin-left: 0px;}
+ .custDetail .orderComm{height:auto;margin-bottom:10px;padding: 10px;position: relative;}
+ .custDetail .prdInfo{height: 100%;}
+ .custDetail .padR15{padding-right: 10%;}
+ .custDetail .prdSeachTxt{width: 128px;border: medium none;height: 25px;}
+ .custDetail .viewTxt{position:absolute;width:10%;right:0px;bottom: 0px;height: 40px;line-height: 40px;font-size: 13px;cursor: pointer;background: url(../img/arrows-01.svg)no-repeat;background-size: auto 38%;background-position: 85% center;}
+ .mLeft{margin-left: 10px;}
+ .custDetail .hasDatepicker{right: 515px;}
+ .h35{height: 30px;line-height: 30px;padding-left: 35px;}
+
+ .custDetail .nameIcon{background-size: auto 100%;background-position:center left;}
+ .custDetail .mobIcon{background-size: auto 100%;background-position:center left;}
+ .custDetail .eMIcon{background-size: auto 100%;background-position:center left;}
+ .custDetail .addrsIcon{background-size: auto 100%;background-position:center left;}
+ .custDetail .divCon1{margin: 0px !important;}
+ .line1{margin-top: 15px;border-left: 1px dotted rgb(204, 204, 204);height: 125px;}
+ .main{width: 100%;height: auto;border-bottom: 1px dotted rgb(204, 204, 204);display: inline-block;}
+ .pictr{width: 100px;height: 100px;border: 1px solid rgb(204, 204, 204);margin-top: 14px;margin-right: 14px;}
+ .currHead{width: 100%;height: 40px;line-height: 40px;background-color: rgb(204, 204, 204);padding-left: 15px;color: rgb(102, 102, 102);}
+ .lineHght{line-height: 30px;}
+ .custDetail .orderComm{margin-top: 20px;}
+ .w40{width: 40% !important;}
+ .w10{width:10%!important;}
+ 
+ 
+ 
 .info_sec{width: 100%;height: auto;float: right;}
 .divCon1{width: 100%;height: auto;margin-bottom: 10px;border-bottom: 1px dotted #ccc;padding: 0 5px 5px 5px;}
 .det_sec_right .divCon2{width: 49%;height: auto;margin-bottom: 10px;border-bottom: 1px dotted #ccc;padding: 0 5px 5px 5px;margin-top: 0}
@@ -775,6 +810,8 @@ section .dtl_cont{width: 48%;height:auto;padding: 15px;margin-right: 20px;paddin
 .nameContr  div:last-child{border: none!important;}
 .cust_detail .shapeComm:hover{border:none;}
 .cust_detail .shapeComm{border:none;}
+.cust_detail .shapeComm:hover{border:none;}
+.cust_detail .shapeComm{border:none;}
 
 /*login*/
 .signUpDiv{width:400px;height: 282px;background-color: #fff;position: absolute; top: 0px; left: 0px;right: 0px;bottom: 0px; margin: auto;padding: 15px 20px 20px 20px; border-radius: 2px; box-shadow: 2px 2px 8px 0px rgba(0,0,0,0.2);}
@@ -785,10 +822,19 @@ section .dtl_cont{width: 48%;height:auto;padding: 15px;margin-right: 20px;paddin
 .frgtDiv{border-bottom: 2px solid #2F665C;height: 25px;line-height: 25px;cursor: pointer;}
 .loginHdr{width:100%;height:80px;background-image: url(../img/logo.png);background-repeat: no-repeat;background-position: center bottom;background-size: auto 50%;}
 
+
 .prdTopCont{width:100%;height:452px;margin-bottom: 50px;position: relative;}
 
 .det_sec_left{width:400px;height: 452px;position: absolute;top:0;left:0;padding: 20px;border-radius: 2px;border: 1px dashed #ccc;}
 .det_sec_right{width:100%;height: auto;padding:0 20px 20px 440px;}
+
+
+
+
+
+
+.det_sec_left{width:400px;height: auto;padding: 20px;padding: 20px;box-shadow: 2px 2px 8px 0px rgba(0,0,0,0.2);position: relative;margin-right: 2%;border-radius: 2px;margin-bottom: 50px;}
+.det_sec_right{width:58%;height: 400px;padding: 20px;}
 
 
 /* Product Image Container*/
@@ -837,4 +883,10 @@ section .dtl_cont{width: 48%;height:auto;padding: 15px;margin-right: 20px;paddin
 .noimage{background: url(../img/noimage.svg)no-repeat;background-size: auto 40%;background-position: center;}
 .noimage .prImageStrip{display: none;}
 
+
+
+
+
+.resetP{}
+.resetP.signUpDiv{height:240px;}
 
