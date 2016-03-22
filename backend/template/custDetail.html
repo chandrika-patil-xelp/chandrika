@@ -83,7 +83,7 @@
                                     <div class="w50 fLeft c4d padR15 fmOpenB">Delivery Option <span class="fRight">:</span></div>
                                     <div class='w50 fRight'>same day</div>
                                 </div>
-                                <div class='fieldTitle  fmOpenR brdN'>
+                                <div class='fieldTitle fLeft fmOpenR brdN'>
                                     <div class="w50 fLeft c4d padR15 fmOpenB">Delivery Date<span class="fRight">:</span></div>
                                     <div class='w50 fRight'>20/02/2017</div>
                                 </div>
@@ -117,12 +117,12 @@
 
                         </div>
                         <div class="dt_cont w40 fLeft mTop10">
-                            <div class="prdInfo fLeft brdN w100">
+                            <div class="prdInfo fLeft brdN w100 ">
                                 <div class='fieldTitle fLeft fmOpenR brdN'>
                                     <div class="w50 fLeft c4d padR15 fmOpenB">Delivery Option <span class="fRight">:</span></div>
                                     <div class='w50 fRight'>same day</div>
                                 </div>
-                                <div class='fieldTitle  fmOpenR brdN'>
+                                <div class='fieldTitle fLeft  fmOpenR brdN'>
                                     <div class="w50 fLeft c4d padR15 fmOpenB">Delivery Date<span class="fRight">:</span></div>
                                     <div class='w50 fRight'>20/02/2017</div>
                                 </div>
@@ -174,7 +174,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="viewTxt fmOpenB c4d">View Details</div>
+                    <div class="logoutBtn fLeft fmOpenR font13">View Order Details</div>
                 </div>
 
                 <div class="orderComm fLeft mTop10">
@@ -215,7 +215,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="viewTxt fmOpenB c4d">View Details</div>
+                    <div class="logoutBtn fLeft fmOpenR font13">View Order Details</div>
                 </div>
 
             </div>
@@ -226,35 +226,6 @@
 
     <script type="text/javascript">
 
-        var forDate;
-        $('#datepicker').datepicker({
-            onSelect: function (dateText, inst) {
-                var dateText = $.datepicker.formatDate("yy-mm-dd", new Date(dateText));
-                $(this).val(dateText);
-                $('#' + forDate).val(dateText);
-                if (forDate === 'dateTo') {
-                    setFilterDate();
-                }
-                $('#datepicker').addClass('dn');
-            },
-            maxDate: "+0D"
-        });
-
-        function showCalander(inpDiv) {
-            forDate = inpDiv;
-            var pos = $('#' + inpDiv).position();
-            var pTop = pos.top + 35;
-            var pLeft = (pos.left);
-            $('#datepicker').css({top: pTop + "px", right: 515 + "px"});
-            $('#datepicker').removeClass('dn');
-        }
-
-        function checkToHide(evt) {
-            var charCode = (evt.which) ? evt.which : evt.keyCode;
-            if (charCode === 8) {
-                $('#datepicker').addClass('dn');
-            }
-        }
 
 
     </script>
