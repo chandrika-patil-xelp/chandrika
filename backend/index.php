@@ -16,6 +16,11 @@ switch ($action) {
         $tab = 'products';
         include BTEMPLATE.'products.html';
         break;
+    case 'customerDetail':
+        $page = 'customerDetail';
+        $tab = 'customerDetail';
+        include BTEMPLATE.'customerDetail.html';
+        break;
     case 'addProduct':
         $page = 'addProduct';
         $tab = 'products';
@@ -128,11 +133,23 @@ switch ($action) {
         $tab = 'orders';
         include BTEMPLATE.'orders.html';
         break;
-    case 'ord_detail':
+    case 'custDetail':
+        $page = 'custDetail';
+        $tab = 'custDetail';
+        include BTEMPLATE.'custDetail.html';
+        break;
+    case 'accounts':
+        $page = 'accounts';
+        $tab = 'accounts';
+        include BTEMPLATE.'accounts.html';
+        break;
+     case 'ord_detail':
         $page = 'ord_detail';
         $tab = 'ord_detail';
         include BTEMPLATE.'ord_detail.html';
         break;
+    
+
     
      case 'productDetails':
         $page = 'productDetails';
