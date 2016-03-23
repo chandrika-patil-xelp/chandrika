@@ -133,9 +133,10 @@ switch ($action) {
         $tab = 'orders';
         include BTEMPLATE.'orders.html';
         break;
-    case 'custDetail':
+    case 'customer':
         $page = 'custDetail';
         $tab = 'custDetail';
+        $userid=$params['uid'];
         include BTEMPLATE.'custDetail.html';
         break;
     case 'accounts':
@@ -143,9 +144,11 @@ switch ($action) {
         $tab = 'accounts';
         include BTEMPLATE.'accounts.html';
         break;
+    
      case 'ord_detail':
         $page = 'ord_detail';
         $tab = 'ord_detail';
+        $orderid=$params['orderid'];
         include BTEMPLATE.'ord_detail.html';
         break;
     

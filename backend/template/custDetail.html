@@ -1,231 +1,223 @@
 <?php include 'jBhead.html' ?>
-<body>
-    <div class="container ordersPage">
-        <?php include 'jBheader.html' ?>
-        <div class="contents fLeft">
-            <div class="wrapperMax custDetail">
-                <div class="aHead font20 fmOpenR padL pl20">Customer Details</div>
-                <div class="main">
-                    <div class="dtl_cont fLeft  font13">
-                        <div class="divCon1 fLeft bNone">
-                            <div class="w50 fLeft  c4d padR15 fmOpenR nameIcon h35">Name
-                                <span class="fRight">:</span>
+<?php echo "<script>var userid='$userid';</script>"; ?>
+    <body>
+        <div class="container ordersPage">
+            <?php include 'jBheader.html' ?>
+            <div class="contents fLeft">
+                <div class="wrapperMax custDetail">
+                    <div class="aHead font20 fmOpenR padL pl20">Customer Details</div>
+                    <div class="main">
+                        <div class="dtl_cont fLeft  font13">
+                            <div class="divCon1 fLeft bNone">
+                                <div class="w50 fLeft  c4d padR15 fmOpenR nameIcon h35">Name
+                                    <span class="fRight">:</span>
+                                </div>
+                                <div class="w50 fRight fmOpenB txtLeft lineHght" id="uname"></div>
                             </div>
-                            <div class="w50 fRight fmOpenB txtLeft lineHght">Chandrika</div>
+                            <div class="divCon1 fLeft bNone">
+                                <div class="w50 fLeft  c4d padR15 fmOpenR  mobIcon h35">Mobile number <span class="fRight">:</span></div>
+                                <div class="w50 fRight fmOpenB txtLeft lineHght" id='umobile'></div>
+                            </div>
+                            <div class="divCon1 fLeft bNone">
+                                <div class="w50 fLeft  c4d padR15 fmOpenR eMIcon h35"><span class="fRight">:</span>Email Id</div>
+                                <div class="w50 fRight fmOpenB txtLeft lineHght" id='uemail'></div>
+                            </div>
+                            <div class="fRight line"></div>
                         </div>
-                        <div class="divCon1 fLeft bNone">
-                            <div class="w50 fLeft  c4d padR15 fmOpenR  mobIcon h35">Mobile number <span class="fRight">:</span></div>
-                            <div class="w50 fRight fmOpenB txtLeft lineHght">8123128747</div>
-                        </div>
-                        <div class="divCon1 fLeft  bNone">
-                            <div class="w50 fLeft  c4d padR15 fmOpenR mobIcon h35">Alternate number <span class="fRight">:</span></div>
-                            <div class="w50 fRight fmOpenB txtLeft lineHght">9535638121</div>
-                        </div>
-                        <div class="divCon1 fLeft bNone">
-                            <div class="w50 fLeft  c4d padR15 fmOpenR eMIcon h35"> <span class="fRight">:</span>Email Id</div>
-                            <div class="w50 fRight fmOpenB txtLeft lineHght">Chandrika@xelpmoc.in</div>
-                        </div>
-                        <div class="fRight line"></div>
+
+                        <div class="dtl_cont fLeft  font13" id='uaddress'></div>
                     </div>
-
-                    <div class="dtl_cont fLeft  font13">
-                        <div class="divCon1 fLeft bNone ">
-                            <div class="w50 fLeft  c4d padR15 fmOpenR addrsIcon h35">Delivery Address<span class="fRight">:</span></div>
-                            <div class="w50 fRight fmOpenB lineHght">
-                                Kormangala 6th block <br>
-                                5th A cross,17th E Main
-                                Koramangala club
-                                Bangalore 560095
-                            </div>
-                        </div>
-                        <div class="divCon1 fLeft bNone">
-                            <div class="w50 fLeft  c4d padR15 fmOpenR bNone addrsIcon h35"><span class="fRight">:</span>Alternate Address</div>
-                            <div class="w50 fRight fmOpenB lineHght">
-                                Kormangala 6th block <br>
-                                5th A cross,17th E Main
-                                Koramangala club
-                                Bangalore 560095
-                            </div>
-                        </div>
-
+                    
+                    <div class="main bNone" id='forCurrOrders'>
+                        <div class="aHead font20 fmOpenR padL pl20"><span id='currCnt'>0</span> Current Orders</div>
+                    </div>
+                    <div class="main bNone" id='forPastOrders'>
+                        <div class="aHead font20 fmOpenR padL pl20 fLeft"><span id='pastCnt'>0</span>&nbsp;Past Orders</div>
                     </div>
                 </div>
-                <div class="aHead font20 fmOpenR padL pl20">2 Current Orders</div>
-                <div class="main bNone">
-                    <div class="orderComm fLeft">
-
-                        <div class="fmOpenR font20 fLeft currHead">Current Order</div>
-                        <div class="prdInfo fLeft brdN w10">
-
-                            <div class="fLeft pictr"></div>
-                        </div>
-
-                        <div class="dt_cont w40 fLeft mTop10">
-                            <div class="prdInfo fLeft brdN w100">
-                                <div class='fieldTitle fLeft fmOpenR brdN'>
-                                    <div class="w50 fLeft c4d padR15 fmOpenB">Product Name<span class="fRight">:</span></div>
-                                    <div class='w50 fRight'>Earring</div>
-                                </div>
-                                <div class='fieldTitle fLeft fmOpenR brdN'>
-                                    <div class="w50 fLeft c4d padR15 fmOpenB">Product Name <span class="fRight">:</span></div>
-                                    <div class='w50 fRight'>ORD10101010101</div>
-                                </div>
-                                <div class='fieldTitle fLeft fmOpenR brdN'>
-                                    <div class="w50 fLeft c4d padR15 fmOpenB">Price <span class="fRight">:</span></div>
-                                    <div class='w50 fRight'>1000</div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="dt_cont w40 fLeft mTop10">
-                            <div class="prdInfo fLeft brdN w100">
-                                <div class='fieldTitle fLeft fmOpenR brdN'>
-                                    <div class="w50 fLeft c4d padR15 fmOpenB">Delivery Option <span class="fRight">:</span></div>
-                                    <div class='w50 fRight'>same day</div>
-                                </div>
-                                <div class='fieldTitle fLeft fmOpenR brdN'>
-                                    <div class="w50 fLeft c4d padR15 fmOpenB">Delivery Date<span class="fRight">:</span></div>
-                                    <div class='w50 fRight'>20/02/2017</div>
-                                </div>
-                                <div class="logoutBtn fLeft fmOpenR font13">View Order Details</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="orderComm fLeft">
-
-                        <div class="fmOpenR font20 fLeft currHead">Current Order</div>
-                        <div class="prdInfo fLeft brdN w10">
-
-                            <div class="fLeft pictr"></div>
-                        </div>
-
-                        <div class="dt_cont w40 fLeft mTop10">
-                            <div class="prdInfo fLeft brdN w100">
-                                <div class='fieldTitle fLeft fmOpenR brdN'>
-                                    <div class="w50 fLeft c4d padR15 fmOpenB">Product Name<span class="fRight">:</span></div>
-                                    <div class='w50 fRight'>Earring</div>
-                                </div>
-                                <div class='fieldTitle fLeft fmOpenR brdN'>
-                                    <div class="w50 fLeft c4d padR15 fmOpenB">Product Name <span class="fRight">:</span></div>
-                                    <div class='w50 fRight'>ORD10101010101</div>
-                                </div>
-                                <div class='fieldTitle fLeft fmOpenR brdN'>
-                                    <div class="w50 fLeft c4d padR15 fmOpenB">Price <span class="fRight">:</span></div>
-                                    <div class='w50 fRight'>1000</div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="dt_cont w40 fLeft mTop10">
-                            <div class="prdInfo fLeft brdN w100 ">
-                                <div class='fieldTitle fLeft fmOpenR brdN'>
-                                    <div class="w50 fLeft c4d padR15 fmOpenB">Delivery Option <span class="fRight">:</span></div>
-                                    <div class='w50 fRight'>same day</div>
-                                </div>
-                                <div class='fieldTitle fLeft  fmOpenR brdN'>
-                                    <div class="w50 fLeft c4d padR15 fmOpenB">Delivery Date<span class="fRight">:</span></div>
-                                    <div class='w50 fRight'>20/02/2017</div>
-                                </div>
-                            </div>
-                            <div class="logoutBtn fLeft fmOpenR font13">View Order Details</div>
-                        </div>
-                    </div>
-
-                </div>
-
-
-                <div class="aHead font20 fmOpenR padL pl20 fLeft"><span >2</span>&nbsp;Past Orders</div>
-
-                <div class="orderComm fLeft mTop10">
-                    <div class="prdInfo fLeft brdN w10">
-                        <div class="fLeft pictr mTop0"></div>
-                    </div>
-                    <div class="dt1_cont fLeft bNone w40">
-
-                        <div class="prdInfo fLeft brdN w100 mTop10">
-                            <div class='fieldTitle fLeft fmOpenR brdN'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Product Name<span class="fRight">:</span></div>
-                                <div class='w50 fRight'>Earring</div>
-                            </div>
-                            <div class='fieldTitle fLeft fmOpenR brdN'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Product Id <span class="fRight">:</span></div>
-                                <div class='w50 fRight'>ORD10101010101</div>
-                            </div>
-                            <div class='fieldTitle fLeft fmOpenR brdN'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Price <span class="fRight">:</span></div>
-                                <div class='w50 fRight'>1000</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="dt1_cont fLeft bNone w40">
-
-                        <div class="prdInfo fLeft brdN w100 mTop10">
-                            <div class='fieldTitle fLeft fmOpenR brdN'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Delivery Status<span class="fRight">:</span></div>
-                                <div class='w50 fRight'>Earring</div>
-                            </div>
-                            <div class='fieldTitle fLeft fmOpenR brdN'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Delivery Option<span class="fRight">:</span></div>
-                                <div class='w50 fRight'>ORD10101010101</div>
-                            </div>
-                            <div class='fieldTitle fLeft fmOpenR brdN'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Delivery Date <span class="fRight">:</span></div>
-                                <div class='w50 fRight'>1000</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="logoutBtn fLeft fmOpenR font13">View Order Details</div>
-                </div>
-
-                <div class="orderComm fLeft mTop10">
-                    <div class="prdInfo fLeft brdN w10">
-                        <div class="fLeft pictr mTop0"></div>
-                    </div>
-                    <div class="dt1_cont fLeft bNone w40">
-
-                        <div class="prdInfo fLeft brdN w100 mTop10">
-                            <div class='fieldTitle fLeft fmOpenR brdN'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Product Name<span class="fRight">:</span></div>
-                                <div class='w50 fRight'>Earring</div>
-                            </div>
-                            <div class='fieldTitle fLeft fmOpenR brdN'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Product Id <span class="fRight">:</span></div>
-                                <div class='w50 fRight'>ORD10101010101</div>
-                            </div>
-                            <div class='fieldTitle fLeft fmOpenR brdN'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Price <span class="fRight">:</span></div>
-                                <div class='w50 fRight'>1000</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="dt1_cont fLeft bNone w40">
-
-                        <div class="prdInfo fLeft brdN w100 mTop10">
-                            <div class='fieldTitle fLeft fmOpenR brdN'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Delivery Status<span class="fRight">:</span></div>
-                                <div class='w50 fRight'>Earring</div>
-                            </div>
-                            <div class='fieldTitle fLeft fmOpenR brdN'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Delivery Option<span class="fRight">:</span></div>
-                                <div class='w50 fRight'>ORD10101010101</div>
-                            </div>
-                            <div class='fieldTitle fLeft fmOpenR brdN'>
-                                <div class="w50 fLeft c4d padR15 fmOpenB">Delivery Date <span class="fRight">:</span></div>
-                                <div class='w50 fRight'>1000</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="logoutBtn fLeft fmOpenR font13">View Order Details</div>
-                </div>
-
-            </div>
-
-
         </div>
-    </div>
+        <script type="text/javascript">
 
-    <script type="text/javascript">
+            $(document).ready(function(){
+                //st=6
+                //http://localhost/jzeva/apis/index.php?action=getAllUserDetails&userid=7720160321212345;
+                var URL=APIDOMAIN+"index.php?action=getAllUserDetails&userid="+userid;
+                $.ajax({
+                    url:URL,
+                    type:'POST',
+                    async: false,
+                    success:function(res){
+                        res=JSON.parse(res);
+                        detailsCallBack(res);                        
+                    }
+                });
+                
+            });
+            
+            function getPrdImages(pid){
+                var img;
+                $.ajax({
+                    url:APIDOMAIN+"index.php?action=getImagesByPid&pid="+pid,
+                    type:'POST',
+                    async: false,
+                    success:function(res){
+                        res=JSON.parse(res);
+                        console.log(res)
+                        img=res['images'][0];
+                        console.log(img);
+                        return img;
+                        
+                    }
 
+                });
+                return img;
+                
+            }
+            
+            var currCnt=0;
+            var pastCnt=0;
+            
+            function detailsCallBack(data){
+                if (data['error']['err_code'] == '0')
+                {
+                    
+                    var custData=data['result']['user'];
+                    var orders=data['result']['orders'];
+                    
+                    $('#uname').text(custData.name);
+                    $('#umobile').text(custData.mb);
+                    $('#uemail').text(custData.em);
+                    $('#ucity').text(custData.city);
+                    
+                    
+                    
+                    var adstr="";
+                    adstr+="<div class='divCon1 fLeft bNone '>";
+                    adstr+="<div class='w50 fLeft  c4d padR15 fmOpenR addrsIcon h35'>Delivery Address<span class='fRight'>:</span></div>";
+                    adstr+="<div class='w50 fRight fmOpenB lineHght'>"+custData.address+"";
+                    adstr+="</div>";
+                    adstr+="</div>";
+                    $('#uaddress').append(adstr);
+                    
+                    $(orders).each(function(i,vl){
+                        console.log(vl);
+                        var ostr="";
+                        
+                        var imgpath=getPrdImages(vl.pid);
+                        console.log(imgpath);
+                        
+                        ostr+="<div class='orderComm fLeft mTop10'>";
+                        ostr+="<div class='prdInfo fLeft brdN w10'>";
+                        
+                        
+                        ostr+="<div class='fLeft pictr mTop0' style='background:url("+imgpath+")no-repeat;background-size:auto 50%;background-position:center;'></div>";
+                        ostr+="</div>";
+                        ostr+="<div class='dt1_cont fLeft bNone w40'>";
+                        ostr+="<div class='prdInfo fLeft brdN w100 mTop10'>";
+                        ostr+="<div class='fieldTitle fLeft fmOpenR brdN'>";
+                        ostr+="<div class='w50 fLeft c4d padR15 fmOpenB'>Product Name<span class='fRight'>:</span></div>";
+                        ostr+="<div class='w50 fRight'>"+vl.pname+"</div>";
+                        ostr+="</div>";
+                        ostr+="<div class='fieldTitle fLeft fmOpenR brdN'>";
+                        ostr+="<div class='w50 fLeft c4d padR15 fmOpenB'>Product Id <span class='fRight'>:</span></div>";
+                        ostr+="<div class='w50 fRight'>"+vl.pid+"</div>";
+                        ostr+="</div>";
+                        ostr+="<div class='fieldTitle fLeft fmOpenR brdN'>";
+                        ostr+="<div class='w50 fLeft c4d padR15 fmOpenB'>Price <span class='fRight'>:</span></div>";
+                        ostr+="<div class='w50 fRight'>&#8377; "+vl.price+"</div>";
+                        ostr+="</div>";
+                        ostr+="</div>";
+                        ostr+="</div>";
+                        ostr+="<div class='dt1_cont fLeft bNone w40'>";
+                        ostr+="<div class='prdInfo fLeft brdN w100 mTop10'>";
+                        ostr+="<div class='fieldTitle fLeft fmOpenR brdN'>";
+                        ostr+="<div class='w50 fLeft c4d padR15 fmOpenB'>Order Status<span class='fRight'>:</span></div>";
+                        
+                        var ostatus="";
+                        if(vl.ostatus==0)
+                            ostatus="Order Placed";
 
+                        else if(vl.ostatus==1)
+                            ostatus="Approved";
 
-    </script>
+                        else if(vl.ostatus==2)
+                            ostatus="Getting Manufactured";
+
+                        else if(vl.ostatus==3)
+                            ostatus="in QC ";
+
+                        else if(vl.ostatus==4)
+                            ostatus="In Certification ";
+
+                        else if(vl.ostatus==5)
+                            ostatus="Shipped";
+
+                        else if(vl.ostatus==6)
+                            ostatus="Delivered";
+
+                        else if(vl.ostatus==7)
+                            ostatus="Not Delivered";
+
+                        else if(vl.ostatus==8)
+                            ostatus="Rescheduled";
+
+                        else 
+                            ostatus="Cancelled";
+                        
+                        ostr+="<div class='w50 fRight'>"+ostatus+"</div>";
+                        ostr+="</div>";
+                        
+                        
+                        var odate=vl.odate.split("|")
+                        var ddate=vl.ddate.split("|")
+                        
+                        ostr+="<div class='fieldTitle fLeft fmOpenR brdN'>";
+                        ostr+="<div class='w50 fLeft c4d padR15 fmOpenB'>Order Date<span class='fRight'>:</span></div>";
+                        ostr+="<div class='w50 fRight'>"+odate[0]+"</div>";
+                        ostr+="</div>";
+                        
+                        ostr+="<div class='fieldTitle fLeft fmOpenR brdN'>";
+                        ostr+="<div class='w50 fLeft c4d padR15 fmOpenB'>Delivery Date<span class='fRight'>:</span></div>";
+                        ostr+="<div class='w50 fRight'>"+ddate[0]+"</div>";
+                        ostr+="</div>";
+                        ostr+="</div>";
+                        ostr+="</div>";
+                        ostr+="<a href='" + DOMAIN + "backend/index.php?action=ord_detail&orderid=" + vl.oid + "'><div class='logoutBtn fLeft fmOpenR font13'>View Order Details</div></a>";
+                        ostr+="</div>";
+                        
+                        if(vl.ostatus<6)
+                        {
+                            $('#forCurrOrders').append(ostr);
+                            currCnt++;
+                        }
+                        else
+                        {
+                            $('#forPastOrders').append(ostr);
+                            pastCnt++;
+                        }
+                        
+                        $('#currCnt').text(currCnt);
+                        $('#pastCnt').text(pastCnt);
+                        
+                    });
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                }
+                else
+                {
+                    common.toast(0, 'Error in fetching data');
+                    //hideLoader();
+                }
+                
+            }
+            
+
+        </script>
+    </body>
+</html>

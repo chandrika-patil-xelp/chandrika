@@ -923,6 +923,7 @@ class product extends DB {
 
     public function getProductById($params) {
 
+       
         try {
             $productSql = "SELECT
                                 *

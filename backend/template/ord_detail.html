@@ -1,427 +1,648 @@
-<!DOCTYPE html>
 <?php include 'jBhead.html' ?>
+<?php echo "<script>var orderid=$orderid;</script>"; ?>
 <body>
     <div class="container cust_detail">
         <?php include 'jBheader.html' ?>
         <div class="contents fLeft">
             <div class="wrapperMax">
-                <div class="prdSearchDiv fLeft fmOpenR">
-                    <div class="commTitle2 fLeft">Order Details</div>
-                </div>
-                <section>
-                    
-                    <div class="nameContr padLR10 fRight">
-                        <div class="outrDiv nameIcon ">
-                            <div class="fmOpenB font14 txtStyle">Name</div>
-                            <div class="fmOpenR font14">Bhagya</div>
-                        </div>
-                        <div class="outrDiv mobIcon ">
-                            <div class="fmOpenB font14 txtStyle">Mobile Number</div>
-                            <div class="fmOpenR font14">9874563217</div>
-                        </div>
-                        <div class="outrDiv mobIcon ">
-                            <div class="fmOpenB font14 txtStyle">Alternate Number</div>
-                            <div class="fmOpenR font14">9874563217</div>
-                        </div>
-                        <div class="outrDiv eMIcon ">
-                            <div class="fmOpenB font14 txtStyle">E-mail Id</div>
-                            <div class="fmOpenR font14">abc@gmail.com</div>
-                        </div>
-                        <div class="outrDiv addrsIcon ">
-                            <div class="fmOpenB font14 txtStyle"> Address</div>
-                            <div class="fmOpenR font14">#657, 5th A Cross, 17th E Main Road,Koramangala 6th Block,Bangalore – 560095</div>
-                        </div>
-                    </div>
-
-                    
-                    
+                <section>                    
+                    <div class="ratHeader fmOpenB">Order Details</div>
                     <div class="det_sec  fLeft">
                         <div class="prd_img"></div>
                         <div class="info_sec">
-                            <div class="ttl_txt fmOpenB">Rosalia Ring</div>
+                            <div class="ttl_txt fmOpenB" id='prdName'></div>
                             <div class="divCon1 fLeft">
                                 <div class="fieldTitle1 fLeft">Product Code</div>
-                                <div class="fieldTitle2 fmOpenB fRight">PRD324765</div>
+                                <div class="fieldTitle2 fmOpenB fRight" id='prdCod'></div>
                             </div>
                             <div class="divCon1 fLeft">
-                                <div class="fieldTitle1 fLeft">Price</div>
-                                <div class="fieldTitle2 fmOpenB fRight"><span class="poR pl20"><span class="rsSpan"></span>13,000</span></div>
+                                <div class="fieldTitle1 fLeft">MRP Price</div>
+                                <div class="fieldTitle2 fmOpenB fRight"><span class="rSign" id='prdprice'></span></div>
+                            </div>
+                            <div class="divCon1 fLeft">
+                                <div class="fieldTitle1 fLeft">Procurement Cost</div>
+                                <div class="fieldTitle2 fmOpenB fRight"><span class="rSign" id='procureCost'></span></div>
                             </div>
                         </div>
                     </div>
                     <div class="det_sec fLeft">
                         <div class="ratHeader fmOpenB">Order Status</div>
                         <div class="checkDiv fLeft fmOpenR">
-                            <input type="checkbox" name="status" class="filled-in" value="Order Placed" id="Placed" >
+                            <input type="checkbox" name="status" class="filled-in" value="0" id="Placed" >
                             <label for="Placed" class="font15">Order Placed</label>
                         </div>
                         <div class="checkDiv fLeft fmOpenR">
-                            <input type="checkbox" name="status" class="filled-in" value="Order Approved" id="Approved" >
+                            <input type="checkbox" name="status" class="filled-in" value="1" id="Approved" >
                             <label for="Approved" class="font15">Order Approved</label>
                         </div>
                         <div class="checkDiv fLeft fmOpenR">
-                            <input type="checkbox" name="status" class="filled-in" value="Getting manufactured" id="manufactured" >
+                            <input type="checkbox" name="status" class="filled-in" value="2" id="manufactured" >
                             <label for="manufactured" class="font15">Getting manufactured</label>
                         </div>
                         <div class="checkDiv fLeft fmOpenR">
-                            <input type="checkbox" name="status" class="filled-in" value="In QC" id="QC" >
+                            <input type="checkbox" name="status" class="filled-in" value="3" id="QC" >
                             <label for="QC" class="font15">In QC</label>
                         </div>
                         <div class="checkDiv fLeft fmOpenR">
-                            <input type="checkbox" name="status" class="filled-in" value="In certification" id="certification" >
+                            <input type="checkbox" name="status" class="filled-in" value="4" id="certification" >
                             <label for="certification" class="font15"> In certification</label>
                         </div>
                         <div class="checkDiv fLeft fmOpenR">
-                            <input type="checkbox" name="status" class="filled-in" value="Shipped" id="Shipped" >
+                            <input type="checkbox" name="status" class="filled-in" value="5" id="Shipped" >
                             <label for="Shipped" class="font15"> Shipped</label>
                         </div>
                         <div class="checkDiv fLeft fmOpenR">
-                            <input type="checkbox" name="status" class="filled-in" value="Delivered" id="Delivered" >
+                            <input type="checkbox" name="status" class="filled-in" value="6" id="Delivered" >
                             <label for="Delivered" class="font15"> Delivered</label>
                         </div>
                         <div class="checkDiv fLeft fmOpenR">
-                            <input type="checkbox" name="status" class="filled-in" value="Not delivered" id="NotD" >
+                            <input type="checkbox" name="status" class="filled-in" value="7" id="NotD" >
                             <label for="NotD" class="font15">Not delivered</label>
                         </div>
                         <div class="checkDiv fLeft fmOpenR">
-                            <input type="checkbox" name="status" class="filled-in" value="Rescheduled" id="Rescheduled" >
+                            <input type="checkbox" name="status" class="filled-in" value="8" id="Rescheduled" >
                             <label for="Rescheduled" class="font15">Rescheduled</label>
                         </div>
                     </div>
-                    <div class="breakLine"></div>
-                    <div class="det_sec  fLeft w100">
+                    <div class="nameContr padLR10 fRight">
+                        <div class="outrDiv nameIcon ">
+                            <div class="fmOpenB font14 txtStyle">Name</div>
+                            <div class="fmOpenR font14" id='uname'></div>
+                        </div>
+                        <div class="outrDiv mobIcon ">
+                            <div class="fmOpenB font14 txtStyle">Mobile Number</div>
+                            <div class="fmOpenR font14" id='umobile'></div>
+                        </div>
+                        <div class="outrDiv eMIcon ">
+                            <div class="fmOpenB font14 txtStyle">E-mail Id</div>
+                            <div class="fmOpenR font14" id='uemail'></div>
+                        </div>
+                        <div class="outrDiv addrsIcon ">
+                            <div class="fmOpenB font14 txtStyle"> Address</div>
+                            <div class="fmOpenR font14" id='uaddress'></div>
+                        </div>
+                    </div>
+                </section>                
+                <div class="all_det_section  fLeft">
+                    <section>
                         <div class="ratHeader fmOpenB">Product Details</div>
                         <div class="dtl_cont fLeft ">
-
                             <div class="divCon1 fLeft">
                                 <div class="fieldTitle1 fLeft">Product SEO Name </div>
-                                <div class="fieldTitle2 fmOpenB fRight">Ring</div>
+                                <div class="fieldTitle2 fmOpenB fRight" id="prdseoname"></div>
                             </div>
                             <div class="divCon1 fLeft">
                                 <div class="fieldTitle1 fLeft">Category </div>
-                                <div class="fieldTitle2 fmOpenB fRight">Diamond Jewellery , Men Rings</div>
+                                <div class="fieldTitle2 fmOpenB fRight txtCap" id='prdCats'></div>
                             </div>
                             <div class="divCon1 fLeft">
                                 <div class="fieldTitle1 fLeft">Vendor </div>
-                                <div class="fieldTitle2 fmOpenB fRight">1</div>
+                                <div class="fieldTitle2 fmOpenB fRight" id='vendorName'></div>
                             </div>
                             <div class="divCon1 fLeft">
                                 <div class="fieldTitle1 fLeft">Product Weight (grms) </div>
-                                <div class="fieldTitle2 fmOpenB fRight">5</div>
+                                <div class="fieldTitle2 fmOpenB fRight" id='prdWt'></div>
                             </div>
                             <div class="divCon1 fLeft">
                                 <div class="fieldTitle1 fLeft">Gender</div>
-                                <div class="fieldTitle2 fmOpenB fRight">Female</div>
+                                <div class="fieldTitle2 fmOpenB fRight" id='gender'></div>
                             </div>
                             <div class="divCon1 fLeft">
                                 <div class="fieldTitle1 fLeft">Diamond Setting Type </div>
-                                <div class="fieldTitle2 fmOpenB fRight">Channel</div>
+                                <div class="fieldTitle2 fmOpenB fRight" id='dmdSetting'></div>
                             </div>
                             <div class="divCon1 fLeft">
                                 <div class="fieldTitle1 fLeft">Product Certificate </div>
-                                <div class="fieldTitle2 fmOpenB fRight">GIA</div>
+                                <div class="fieldTitle2 fmOpenB fRight" id='prdcrtficte'></div>
                             </div>
                         </div>
                         <div class="dtl_cont fLeft">
                             <div class="divCon1 fLeft">
                                 <div class="fieldTitle1 fLeft">Metal Weight(Grm)</div>
-                                <div class="fieldTitle2 fmOpenB fRight">5 grm</div>
+                                <div class="fieldTitle2 fmOpenB fRight" id='mtlwght'></div>
                             </div>
                             <div class="divCon1 fLeft">
                                 <div class="fieldTitle1 fLeft">Making Charges/Grm</div>
-                                <div class="fieldTitle2 fmOpenB fRight">23</div>
+                                <div class="fieldTitle2 fmOpenB fRight" id='mkngCrg'></div>
                             </div>
                             <div class="divCon1 fLeft">
                                 <div class="fieldTitle1 fLeft">Procurement Cost</div>
-                                <div class="fieldTitle2 fmOpenB fRight">23</div>
+                                <div class="fieldTitle2 fmOpenB fRight" id='procCost'></div>
                             </div>
                             <div class="divCon1 fLeft">
                                 <div class="fieldTitle1 fLeft">Margin</div>
-                                <div class="fieldTitle2 fmOpenB fRight">23</div>
+                                <div class="fieldTitle2 fmOpenB fRight" id='mrgn'></div>
                             </div>
                             <div class="divCon1 fLeft">
                                 <div class="fieldTitle1 fLeft">Measurement</div>
-                                <div class="fieldTitle2 fmOpenB fRight">10X20</div>
+                                <div class="fieldTitle2 fmOpenB fRight" id='mesmnt'></div>
                             </div>
                             <div class="divCon1 fLeft">
                                 <div class="fieldTitle1 fLeft">Metal Purity</div>
-                                <div class="fieldTitle2 fmOpenB fRight">14 carat</div>
+                                <div class="fieldTitle2 fmOpenB fRight" id='prdmetalpurity'></div>
                             </div>
                             <div class="divCon1 fLeft">
                                 <div class="fieldTitle1 fLeft">Metal color</div>
-                                <div class="fieldTitle2 fmOpenB fRight">Rose</div>
+                                <div class="fieldTitle2 fmOpenB fRight" id='prdmetalcolor'></div>
                             </div>
-
                         </div>
-                        
-                        <section  class="solitaireCont">
-                            <div class="ratHeader fmOpenB">Added Solitaire(s)</div>
-                            <div class="newElements fLeft" >
-                                <div class="commCont fLeft poR forAuto">
-                                    <div class="shapeComm Round"></div>
-
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Color </div>
-                                            <div class="w50 fRight fmOpenB txtRight">E</div>
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Clarity </div>
-                                            <div class="w50 fRight fmOpenB txtRight">IF</div>
-
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Cut </div>
-                                            <div class="w50 fRight fmOpenB txtRight">Very%20Good</div>
-
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Symmetry </div>
-                                            <div class="w50 fRight fmOpenB txtRight">Excellent</div>
-
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Polish </div>
-                                            <div class="w50 fRight fmOpenB txtRight">Excellent</div>
-
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Fluorescence </div>
-                                            <div class="w50 fRight fmOpenB txtRight">Very%20Strong</div>
-
-                                        </div>
-
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Carat </div>
-                                            <div class="w50 fRight fmOpenB txtRight">1</div>
-
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Price/Carat </div>
-                                            <div class="w50 fRight fmOpenB txtRight">₹1000</div>
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Table </div>
-                                            <div class="w50 fRight fmOpenB txtRight">1000</div>
-
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Crown Angle </div>
-                                            <div class="w50 fRight fmOpenB txtRight">52</div>
-
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Gridle</div>
-                                            <div class="w50 fRight fmOpenB txtRight">1.22</div>
-                                        </div>
-
-
-                                </div>
+                    </section>
+                    <section  class="solitaireCont dn" id='prsolitaires_Section'>
+                        <div class="ratHeader fmOpenB">Added Solitaire(s)</div>
+                        <div class="newElements fLeft" id='prnewSolitaires'></div>
+                    </section>
+                    <section  class="solitaireCont dn" id='prdiamond_Section'>
+                        <div class="ratHeader fmOpenB">Added Diamond(s)</div>
+                        <div class="newElements fLeft" id='prnewDiamonds'></div>
+                    </section>
+                    <section  class="solitaireCont dn" id='pruncut_Section'>
+                        <div class="ratHeader fmOpenB">Added Uncut(s)</div>
+                        <div class="newElements fLeft" id='prnewUncut'></div>
+                    </section>
+                    <section  class="solitaireCont dn" id='prgemstone_Section'>
+                        <div class="ratHeader fmOpenB">Added Gemstone(s)</div>
+                        <div class="newElements fLeft" id='prnewgemstone'></div>
+                    </section>
+                    <section id="price_Section" class="priceCont poR dn">
+                        <div class="commTitle1 fmOpenL fLeft">Price Breakup</div>
+                        <div class="divCon fLeft">
+                            <div class="priceHeading fLeft">
+                                <div class="forComponent fLeft">Component</div> 
+                                <div class="forRate fLeft">Rate</div> 
+                                <div class="forWeight fLeft">Weight</div> 
+                                <div class="forPrice fLeft">Price</div> 
                             </div>
-                        </section>
-
-
-                        <section  class="solitaireCont">
-                            <div class="ratHeader fmOpenB">Added Diamond(s)</div>
-                            <div class="newElements fLeft" >
-                                <div class="commCont fLeft poR forAuto">
-                                    <div class="shapeComm Round"></div>
-
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Color </div>
-                                            <div class="w50 fRight fmOpenB txtRight">E</div>
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Clarity </div>
-                                            <div class="w50 fRight fmOpenB txtRight">IF</div>
-
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Cut </div>
-                                            <div class="w50 fRight fmOpenB txtRight">Very%20Good</div>
-
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Symmetry </div>
-                                            <div class="w50 fRight fmOpenB txtRight">Excellent</div>
-
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Polish </div>
-                                            <div class="w50 fRight fmOpenB txtRight">Excellent</div>
-
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Fluorescence </div>
-                                            <div class="w50 fRight fmOpenB txtRight">Very%20Strong</div>
-
-                                        </div>
-
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Carat </div>
-                                            <div class="w50 fRight fmOpenB txtRight">1</div>
-
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Price/Carat </div>
-                                            <div class="w50 fRight fmOpenB txtRight">₹1000</div>
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Table </div>
-                                            <div class="w50 fRight fmOpenB txtRight">1000</div>
-
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Crown Angle </div>
-                                            <div class="w50 fRight fmOpenB txtRight">52</div>
-
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Gridle</div>
-                                            <div class="w50 fRight fmOpenB txtRight">1.22</div>
-                                        </div>
-
-
-                                </div>
-                            </div>
-                        </section>
-
-
-                        <section  class="solitaireCont">
-                            <div class="ratHeader fmOpenB">Added Uncut(s)</div>
-                            <div class="newElements fLeft" >
-                                <div class="commCont fLeft poR forAuto">
-                                    <div class="shapeComm Round"></div>
-
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Color </div>
-                                            <div class="w50 fRight fmOpenB txtRight">E</div>
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Clarity </div>
-                                            <div class="w50 fRight fmOpenB txtRight">IF</div>
-
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Cut </div>
-                                            <div class="w50 fRight fmOpenB txtRight">Very%20Good</div>
-
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Symmetry </div>
-                                            <div class="w50 fRight fmOpenB txtRight">Excellent</div>
-
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Polish </div>
-                                            <div class="w50 fRight fmOpenB txtRight">Excellent</div>
-
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Fluorescence </div>
-                                            <div class="w50 fRight fmOpenB txtRight">Very%20Strong</div>
-
-                                        </div>
-
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Carat </div>
-                                            <div class="w50 fRight fmOpenB txtRight">1</div>
-
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Price/Carat </div>
-                                            <div class="w50 fRight fmOpenB txtRight">₹1000</div>
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Table </div>
-                                            <div class="w50 fRight fmOpenB txtRight">1000</div>
-
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Crown Angle </div>
-                                            <div class="w50 fRight fmOpenB txtRight">52</div>
-
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Gridle</div>
-                                            <div class="w50 fRight fmOpenB txtRight">1.22</div>
-                                        </div>
-
-
-                                </div>
-                            </div>
-                        </section>
-
-                        <section  class="solitaireCont">
-                            <div class="ratHeader fmOpenB">Added Gemstone(s)</div>
-                            <div class="newElements fLeft">
-                                <div class="commCont fLeft poR forAuto">
-                                    <div class="shapeComm Round"></div>
-
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Color </div>
-                                            <div class="w50 fRight fmOpenB txtRight">E</div>
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Clarity </div>
-                                            <div class="w50 fRight fmOpenB txtRight">IF</div>
-
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Cut </div>
-                                            <div class="w50 fRight fmOpenB txtRight">Very%20Good</div>
-
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Symmetry </div>
-                                            <div class="w50 fRight fmOpenB txtRight">Excellent</div>
-
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Polish </div>
-                                            <div class="w50 fRight fmOpenB txtRight">Excellent</div>
-
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Fluorescence </div>
-                                            <div class="w50 fRight fmOpenB txtRight">Very%20Strong</div>
-
-                                        </div>
-
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Carat </div>
-                                            <div class="w50 fRight fmOpenB txtRight">1</div>
-
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Price/Carat </div>
-                                            <div class="w50 fRight fmOpenB txtRight">₹1000</div>
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Table </div>
-                                            <div class="w50 fRight fmOpenB txtRight">1000</div>
-
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Crown Angle </div>
-                                            <div class="w50 fRight fmOpenB txtRight">52</div>
-
-                                        </div>
-                                        <div class="fieldTitle fLeft c4d">
-                                            <div class="w50 fLeft  padR15 fmOpenR">Gridle</div>
-                                            <div class="w50 fRight fmOpenB txtRight">1.22</div>
-                                        </div>
-
-
-                                </div>
-                            </div>
-                        </section>
-                        <div class="breakLine"></div>
-                        <section  class="priceCont">
-                            <div class="priceHeading fmOpenB"><span class="c4d">Grand Total</span><span class="fRight pl20 poR"><span class="rsSpan"></span> 2,00,000</span></div>
-                        </section>
-                    </div>
-                </section>
+                            <ul class="pricingul fLeft fmOpenR"></ul>
+                        </div>
+                    </section>
+                </div>
             </div>
         </div>
     </div>
+    <div class="overlay dn"></div>
+    <div class="loader dn"></div>
+    <script>
+        var data=new Array();
+        var mpurity = [];
+        
+        $(document).ready(function(){
+            getOrderDetails();
+            
+            
+            $("input[name='status']").bind('click', function(event) {
+                stopPropGate(event);
+                var st=$(this).val();
+                showLoader();
+                changeOrderStatus(st);                    
+                if ($(this).is(":checked")){}
+            });
+            
+        });
+        
+        function stopPropGate(event)
+        {
+            if (event && $.isFunction(event.stopImmediatePropagation))
+                event.stopImmediatePropagation();
+            else
+                window.event.cancelBubble = true;
+        }
+       
+        function getOrderDetails(){
+            var URL=APIDOMAIN+"index.php?action=OrderDtails&orderid="+orderid;
+            $.ajax({
+                url:URL,
+                type:'POST',
+                async: false,
+                success: function (res) {
+                    res=JSON.parse(res);
+                    showLoader();
+                    getOrderDetailsCallBack(res);
+                    
+                }
+            });
+            
+        }
+        var _t;
+        var userid;
+        function getOrderDetailsCallBack(data)
+        {
+            hideLoader();
+            
+            if(data['error']['err_code']==0)
+            {
+                var dt=data['result'];
+                var uid=userid=dt.uid;
+                var pid=dt.pid;
+                var odate=dt.odate;
+                var ddate=dt.ddate;
+                var ostatus=dt.ostatus;
+                var price=dt.price;
+                var aflag=dt.aflag;
+                
+                $('#prdprice').text(price);
+                getProductDetails(pid);
+                getUserDetails(uid);
+                
+                $("input[name='status']").each(function(){
+                    var val=$(this).val();
+                    console.log(ostatus);
+                    if(val==ostatus){
+                        $(this).click();
+                          _t=$(this);
+                        $(this).parent().prevAll().each(function(){
+                            $(this).find('input').click();
+                        });  
+                    }
+                    
+                    if(ostatus==7 || ostatus==8)
+                    {
+                        $('#Delivered').attr('checked',false);
+                        
+                    }
+                    
+                    
+                });
+                
+            }
+            else
+            {
+                common.toast(0, 'Error in retrieving data');
+                hideLoader();
+               
+            }
+            
+        }
+    
+        function getUserDetails(uid)
+        {
+            
+            var URL=APIDOMAIN+"index.php?action=getUser&userid="+uid;
+            $.ajax({                
+                url:URL,
+                type:'POST',
+                async: false,
+                success:function(res){
+                    
+                    var data=JSON.parse(res);
+                    
+                    if(data['error']['err_code']==0)
+                    {
+                        var dt=data['result'];
+                        $('#uname').text(dt.name);
+                        $('#umobile').text(dt.mb);
+                        $('#uemail').text(dt.em);
+                        $('#uaddress').text(dt.address);
+                        
+                    }
+                    
+                }
+                
+            });
+            
+        }
+        
+
+        
+        function getProductDetails(pid)
+        {
+            var URL = APIDOMAIN + "?action=getProductById&pid=" + pid;
+            $.ajax({
+                url: URL,
+                type: 'POST',
+                success: function(res) {
+                    data = JSON.parse(res);
+                    
+                    if (data['error']['err_code'] == '0')
+                    {
+                        var dt = data['results'];
+                        var basic = dt['basicDetails'];
+                        var catAttr = dt['catAttr'];
+                        var vendor = dt['vendor'];
+                        var metalPurity = dt['metalPurity'];
+                        var metalColor = dt['metalColor'];
+                        var solitaire = dt['solitaire'];
+                        var diamonds = dt['dimond'];
+                        var uncut = dt['uncut'];
+                        var gemstone = dt['gamestone'];
+                        var images = dt['images'];
+
+
+                        if (images.count>0)
+                        {
+                            
+                            $('.prd_img').css({
+                                "background-image": "url(" + images['images'][0] + ")",
+                                "background-position": "center",
+                                "background-repeat": "no-repeat",
+                                "background-size": "40% auto",
+                            });
+
+                            
+                            $('.prd_img').removeClass('noimage');
+                            
+                        }
+                        else{
+                            $('.prd_img').addClass('noimage');
+                        }
+
+
+                        $(basic).each(function(i, vl) {
+                            $('#prdCod').text(vl.prdCod);
+                            $('#prdseoname').text(vl.prdSeo);
+                            $('#prdName').text(vl.prdSeo);
+                            $('#prdWt').text(vl.prdWgt);
+
+                            var gen = "Female";
+                            if (vl.gender == 1)
+                                gen = "Female";
+
+                            else if (vl.gender == 2)
+                                gen = "Unisex";
+
+                            $('#gender').text(gen);
+                            $('#dmdSetting').html(vl.dmdStng);
+                            $('#prdcrtficte').html(vl.crtficte);
+                            $('#mtlwght').html(vl.mtlWgt + " grm");
+                            $('#mkngCrg').html("&#8377;" + vl.mkngCrg + " /grm");
+                            $('#procCost').html("&#8377;" + vl.procmtCst);
+                            $('#procureCost').html("&#8377;" + vl.procmtCst);
+                            $('#disPrice').html("&#8377;" + vl.procmtCst);
+                            $('#mrgn').html("&#8377;" + vl.mrgn);
+                            $('#mesmnt').html(vl.mesmnt);
+                            
+                            
+                            if (basic.active_flag == 1)
+                            {
+                                $('.backtxtSelect').addClass('inStockPrd').removeClass('outStockPrd');
+                                $('.backtxtSelect option').eq(0).attr('selected',true);
+                                $('.backtxtSelect option').eq(1).removeAttr('selected');
+                            }
+                            else{
+                                $('.backtxtSelect').addClass('outStockPrd').removeClass('inStockPrd');
+                                $('.backtxtSelect option').eq(1).attr('selected',true);
+                                $('.backtxtSelect option').eq(0).removeAttr('selected');
+                            }
+                            
+                            $('.backtxtSelect').removeClass('dn');
+                            
+                        });
+
+                        $(vendor['results']).each(function(i, vl) {
+                            $('#vendorName').text(vl.nm);
+                        });
+
+                        var locCat = new Array();
+                        $.each(catAttr.results, function(i, vl) {
+                            locCat.push(vl.name);
+                        });
+
+                        $('#prdCats').text(locCat.toString());
+
+
+
+                        var mcolor = [];
+                        $.each(metalPurity.results, function(i, vl) {
+                            mpurity.push(vl.dVal);
+                        });
+                        $('#prdmetalpurity').text(mpurity.toString());
+
+                        $.each(metalColor.results, function(i, vl) {
+                            mcolor.push(vl.dVal);
+                        });
+                        $('#prdmetalcolor').text(mcolor.toString());
+
+
+
+                        if (basic.hasSol == 1)
+                        {
+
+                            var str = "";
+                            $(solitaire['results']).each(function(j, vl) {
+                                str += "<div class='commCont fLeft poR forAuto'>";
+                                str += "<div class='shapeComm " + vl.shape + "'></div>";
+                                str += "<div class='fieldTitle fLeft '>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Shape <span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.shape + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft '>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Color <span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.colr + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft '>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Clarity <span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + decodeURIComponent(vl.clrty) + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft'>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Cut <span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + decodeURIComponent(vl.cut) + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft'>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Symmetry <span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + decodeURIComponent(vl.symty) + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft'>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Polish <span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + decodeURIComponent(vl.polish) + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft'>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Fluorescence <span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + decodeURIComponent(vl.flresce) + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft '>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Carat <span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.carat + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft '>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Price/Carat <span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>&#8377;" + vl.prcPrCrat + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft'>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Table <span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.tblNo + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft'>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Crown Angle <span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.crwnAngle + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft'>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Gridle<span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.girdle + "</div>";
+                                str += "</div>";
+                                str += "</div>";
+                                str += "<div class='breakLine'></div>";
+
+                            });
+
+                            $('#prnewSolitaires').html(str);
+                            $('#prsolitaires_Section').removeClass('dn');
+                        }
+
+
+                        if (basic.hasDmd == 1)
+                        {
+                            var str = "";
+                            $(diamonds['results']).each(function(i, vl) {
+                                var dquality = new Array();
+
+
+                                $.each(vl.QMast.results, function(i, vl) {
+                                    dquality.push(vl.dVal);
+                                });
+                                str += "<div class='commCont fLeft forAuto'>";
+                                //str+="<div class='shapeComm "+vl.shape+"'></div>";
+                                str += "<div class='outContr'>";
+                                str += "<div class='fieldTitle fLeft w25'>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Shape <span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.shape + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft w25'>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Diamond Quality <span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + dquality.toString() + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft w25'>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Carat <span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.crat + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft w25'>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Pieces<span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.totNo + "</div>";
+                                str += "</div>";
+                                str += "</div>";
+                                str += "</div>";
+                                str += "<div class='breakLine'></div>";
+                            });
+
+                            $('#prnewDiamonds').html(str);
+                            $('#prdiamond_Section').removeClass('dn');
+
+                        }
+
+
+
+                        if (basic.hasUnct == 1)
+                        {
+                            var str = "";
+                            $(uncut['results']).each(function(i, vl) {
+                                str += "<div class='commCont fLeft forAuto'>";
+                                str += "<div class='outContr fLeft'>";
+                                str += "<div class='fieldTitle fLeft '>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Diamond Color <span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.clor + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft '>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Diamond Quality <span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.qulty + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft '>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Carat <span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.crat + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft '>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Price/Carat <span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>&#8377; " + vl.prcPrCrat + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft'>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Pieces<span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.totNo + "</div>";
+                                str += "</div>";
+                                str += "</div>";
+                                str += "</div>";
+                                str += "<div class='breakLine'></div>";
+                            });
+
+                            $('#prnewUncut').html(str);
+                            $('#pruncut_Section').removeClass('dn');
+
+                        }
+
+                        if (basic.hasGem == 1)
+                        {
+                            var str = "";
+                            $(gemstone['results']).each(function(i, vl) {
+                                str += "<div class='commCont fLeft forAuto'>";
+                                str += "<div class='outContr fLeft'>";
+                                str += "<div class='fieldTitle fLeft w25'>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Gemstone<span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + (vl.gemNm) + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft w25'>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Carat <span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.crat + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft w25'>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Price/Carat <span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.prcPrCrat + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft w25'>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Pieces<span class='fRight'></span></div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.totNo + "</div>";
+                                str += "</div>";
+                                str += "</div>";
+                                str += "</div>";
+                                str += "<div class='breakLine'></div>";
+                            });
+
+                            $('#prnewgemstone').html(str);
+                            $('#prgemstone_Section').removeClass('dn');
+
+                        }
+
+                    }
+                }
+            });
+        }
+        
+        function changeOrderStatus(st)
+        {
+            
+            var URL=APIDOMAIN+"?action=changeOrderStatus";
+            values={};
+            values['orderid']=orderid.toString();
+            values['userid']=userid.toString();
+            values['ostatus']=st;
+            var dt=JSON.stringify(values);
+            
+            $.ajax({
+                url:URL,
+                type:'POST',
+                data:{dt:dt},
+                success: function (res) {
+                    res=JSON.parse(res);
+                    statusCallBack(res);
+                }
+               
+            });
+            
+        }
+        
+        function statusCallBack(data)
+        {
+            if (data['error']['err_code'] == '0')
+            {
+                common.toast(1, 'Order status updated successfully');
+                hideLoader();
+                //window.location.reload(true);
+            }
+            else
+            {
+                common.toast(0, 'Error in updating status');
+                hideLoader();
+            }
+
+            
+        }
+        
+        function showLoader()
+        {
+            $('.overlay,.loader').removeClass('dn');
+        }
+
+        function hideLoader()
+        {
+            $('.overlay,.loader').addClass('dn');
+        }
+
+        
+    </script>
 </body>
+</html>

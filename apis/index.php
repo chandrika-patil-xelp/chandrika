@@ -290,6 +290,16 @@ switch($action)
         $res = $result;
     break;
 
+    case 'getImagesByPid':
+        include APICLUDE.'class.product.php';
+        $obj	= new product($db['jzeva']);
+        $tmpParams = array('pid'=>$params['pid']);
+        $result	=$obj->getImagesByPid($tmpParams);
+        $res = $result;
+    break;
+
+
+
 
     case 'pageList':
         include APICLUDE.'class.product.php';
@@ -385,13 +395,62 @@ switch($action)
         $obj	= new category($db['jzeva']);
         $result	=$obj->getCatgoryList();
     break;
+    
+    #USER
+    case 'addUser':
+        include APICLUDE.'class.user.php';
+        $obj	= new user($db['jzeva']);
+        $res	=$obj->addUser();
+    break;    
+
+    case 'getUser':
+        include APICLUDE.'class.user.php';
+        $obj	= new user($db['jzeva']);
+        $tmpparams=array('userid'=>$params['userid']);
+        $res	=$obj->getUserDetailsById($tmpparams);
+    break;
+    
+    case 'addOrder':
+        include APICLUDE.'class.user.php';
+        $obj	= new user($db['jzeva']);
+        $res	=$obj->addOrder();
+    break;
+
+    case 'OrderDtails':
+        include APICLUDE.'class.user.php';
+        $obj	= new user($db['jzeva']);
+        $tmpparams=array('orderid'=>$params['orderid']);
+        $res	=$obj->getOrderDetailsByOrdId($tmpparams);
+    break;
+
+    case 'OrderDtailsByuserId':
+        include APICLUDE.'class.user.php';
+        $obj	= new user($db['jzeva']);
+        $tmpparams=array('userid'=>$params['userid']);
+        $res	=$obj->getOrderDetailsByuId($tmpparams);
+    break;
+
+    case 'getAllUserDetails':
+        include APICLUDE.'class.user.php';
+        $obj	= new user($db['jzeva']);
+        $tmpparams=array('userid'=>$params['userid']);
+        $res	=$obj->getAllUserDetails($tmpparams);
+    break;
+
+    case 'changeOrderStatus':
+        include APICLUDE.'class.user.php';
+        $obj	= new user($db['jzeva']);
+        $tmpparams = array($params['dt']);
+        $res	=$obj->changeOrderStatus($tmpparams);
+    break;
+
+    case 'geOrderList':
+        include APICLUDE.'class.user.php';
+        $obj	= new user($db['jzeva']);
+        $res	=$obj->geOrderList();
+    break;
 
 
-
-    default :
-
-
-        break;
 }
 echo json_encode($res);
 exit;

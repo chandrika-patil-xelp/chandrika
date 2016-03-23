@@ -1672,7 +1672,7 @@ function addPrdCallBack(data)
     {
         common.toast(1, 'Product added successfully');
             hideLoader();
-            //window.location.href=DOMAIN+"backend/index.php?action=products";
+            window.location.href=DOMAIN+"backend/index.php?action=products";
         //redirect
     }
     else

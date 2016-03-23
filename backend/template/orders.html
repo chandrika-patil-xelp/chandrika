@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php include 'jBhead.html' ?>
 <body>
     <div class="container ordersPage">
@@ -8,174 +7,117 @@
                 <div class="couponCont fLeft">
                     <div class="prdSearchDiv fLeft fmOpenR">
                         <div class="commTitle2 fLeft"><span >3</span> Orders</div>
-                        <div class="addCouponBtn fRight transition300">Filter By Date</div>
-                        <input type="text" id="dateTo" autocomplete="off" class="prdSeachTxt fRight fmOpenR" value="2016/01/01" readonly onfocus="showCalander('dateTo')" onkeyup="checkToHide(event);">
-                        <div class="fmOpenB font13 dateTo c4d fRight txtCenter">to</div>
-                        <input type="text"  autocomplete="off" class="prdSeachTxt fRight fmOpenR" id="dateFrom" value="2016/01/30" readonly onfocus="showCalander('dateFrom')" onkeyup="checkToHide(event);">
-                        <div id="datepicker" class="dn"></div>
                         <input type="text"  autocomplete="off" class="prdSeachTxt fRight fmOpenR marR" placeholder=" Search Order">
+                        <div class="dn">
+                            <div class="addCouponBtn fRight transition300">Filter By Date</div>
+                            <input type="text" id="dateTo" autocomplete="off" class="prdSeachTxt fRight fmOpenR" value="2016/01/01" readonly onfocus="showCalander('dateTo')" onkeyup="checkToHide(event);">
+                            <div class="fmOpenB font13 dateTo c4d fRight txtCenter">to</div>
+                            <input type="text"  autocomplete="off" class="prdSeachTxt fRight fmOpenR" id="dateFrom" value="2016/01/30" readonly onfocus="showCalander('dateFrom')" onkeyup="checkToHide(event);">
+                            <div id="datepicker" class="dn"></div>
+                            
+                        </div>
                     </div>
                     <div class="cpListHeader fLeft fmOpenR">
                         <div class="date fLeft">Order ID</div>
                         <div class="dmdWt fLeft">Product Name</div>
                         <div class="stockCode fLeft">Customer Name</div>
                         <div class="dmdWt fLeft">Order/Delivery date</div>
-                        <!--                        <div class="metalWt fLeft">Delivery date</div>-->
                         <div class="acct fLeft">Price</div>
                         <div class="acct fLeft">Order Status</div>
                     </div>
-                    <ul class="couponList fLeft fmOpenR">
-                        <li class="transition300">
-                            <div class="date fLeft">ORD10101010101</div>
-                            <div class="dmdWt fLeft">
-                                <span class="upSpan fmOpenR">Rosalia Ring</span>
-                                <span class="lwSpan">View Details</span>
-                            </div>
-                            <div class="stockCode fLeft">
-                                <span class="upSpan fmOpenR">Ashok Chakravarthy</span>
-                                <span class="lwSpan">9535638121</span>
-                            </div>
-                            <div class="dmdWt fLeft">
-                                <span class="upSpan">12 Feb 2016</span>
-                                <span class="lwSpan">20 Feb 2016</span>
-                            </div>
-
-                            <div class="acct fLeft fmOpenB"><span class="rsSpan"></span> <span> 40,000</span></div>
-                            <div class="acct fLeft">Getting manufactured </div>
-                            <div class="fRight viewM transition300"></div>
-                        </li>
-                        <li class="transition300">
-                            <div class="date fLeft">ORD10101010856</div>
-                            <div class="dmdWt fLeft">
-                                <span class="upSpan fmOpenR">Rosalia Ring</span>
-                                <span class="lwSpan">View Details</span>
-                            </div>
-                            <div class="stockCode fLeft">
-                                <span class="upSpan fmOpenR">Ashok Chakravarthy</span>
-                                <span class="lwSpan">9535638121</span>
-                            </div>
-                            <div class="dmdWt fLeft">
-                                <span class="upSpan">12 Feb 2016</span>
-                                <span class="lwSpan">20 Feb 2016</span>
-                            </div>
-                            <!--                            <div class="metalWt fLeft">20 Feb 2016</div>-->
-                            <div class="acct fLeft fmOpenB"><span class="rsSpan"></span> <span> 40,000</span></div>
-                            <div class="acct fLeft">Getting manufactured</div>
-                            <div class="fRight viewM transition300"></div>
-                        </li>
-                        <li class="transition300">
-                            <div class="date fLeft">ORD10101010171</div>
-                            <div class="dmdWt fLeft">
-                                <span class="upSpan fmOpenR">Rosalia Ring</span>
-                                <span class="lwSpan">View Details</span>
-                            </div>
-                            <div class="stockCode fLeft">
-                                <span class="upSpan fmOpenR">Ashok Chakravarthy</span>
-                                <span class="lwSpan">9535638121</span>
-                            </div>
-                            <div class="dmdWt fLeft">
-                                <span class="upSpan">12 Feb 2016</span>
-                                <span class="lwSpan">20 Feb 2016</span>
-                            </div>
-                            <!--                            <div class="metalWt fLeft">20 Feb 2016</div>-->
-                            <div class="acct fLeft fmOpenB"><span class="rsSpan"></span> <span> 40,000</span></div>
-                            <div class="acct fLeft">Getting manufactured</div>
-                            <div class="fRight viewM transition300"></div>
-                        </li>
-                        <li class="transition300">
-                            <div class="date fLeft">ORD10101010101</div>
-                            <div class="dmdWt fLeft">
-                                <span class="upSpan fmOpenR">Rosalia Ring</span>
-                                <span class="lwSpan">View Details</span>
-                            </div>
-                            <div class="stockCode fLeft">
-                                <span class="upSpan fmOpenR">Ashok Chakravarthy</span>
-                                <span class="lwSpan">9535638121</span>
-                            </div>
-                            <div class="dmdWt fLeft">
-                                <span class="upSpan">12 Feb 2016</span>
-                                <span class="lwSpan">20 Feb 2016</span>
-                            </div>
-                            <!--                            <div class="metalWt fLeft">20 Feb 2016</div>-->
-                            <div class="acct fLeft fmOpenB"><span class="rsSpan"></span> <span> 40,000</span></div>
-                            <div class="acct fLeft">Getting manufactured</div>
-                            <div class="fRight viewM transition300"></div>
-                        </li>
-                        <li class="transition300">
-                            <div class="date fLeft">ORD10101010856</div>
-                            <div class="dmdWt fLeft">
-                                <span class="upSpan fmOpenR">Rosalia Ring</span>
-                                <span class="lwSpan">View Details</span>
-                            </div>
-                            <div class="stockCode fLeft">
-                                <span class="upSpan fmOpenR">Ashok Chakravarthy</span>
-                                <span class="lwSpan">9535638121</span>
-                            </div>
-                            <div class="dmdWt fLeft">
-                                <span class="upSpan">12 Feb 2016</span>
-                                <span class="lwSpan">20 Feb 2016</span>
-                            </div>
-                            <!--                            <div class="metalWt fLeft">20 Feb 2016</div>-->
-                            <div class="acct fLeft fmOpenB"><span class="rsSpan"></span> <span> 40,000</span></div>
-                            <div class="acct fLeft">Getting manufactured</div>
-                            <div class="fRight viewM transition300"></div>
-                        </li>
-                        <li class="transition300">
-                            <div class="date fLeft">ORD10101010171</div>
-                            <div class="dmdWt fLeft">
-                                <span class="upSpan fmOpenR">Rosalia Ring</span>
-                                <span class="lwSpan">View Details</span>
-                            </div>
-                            <div class="stockCode fLeft">
-                                <span class="upSpan fmOpenR">Ashok Chakravarthy</span>
-                                <span class="lwSpan">9535638121</span>
-                            </div>
-                            <div class="dmdWt fLeft">
-                                <span class="upSpan">12 Feb 2016</span>
-                                <span class="lwSpan">20 Feb 2016</span>
-                            </div>
-                            <!--                            <div class="metalWt fLeft">20 Feb 2016</div>-->
-                            <div class="acct fLeft fmOpenB"><span class="rsSpan"></span><span> 40,000</span></div>
-                            <div class="acct fLeft">Getting manufactured</div>
-                            <div class="fRight viewM transition300"></div>
-                        </li>
-                    </ul>
-
+                    <ul class="couponList fLeft fmOpenR" id='orderList'></ul>
                 </div>
 
             </div>
         </div>
     </div>
     <script type="text/javascript">
-        var forDate;
-        $('#datepicker').datepicker({
-            onSelect: function (dateText, inst) {
-                var dateText = $.datepicker.formatDate("yy-mm-dd", new Date(dateText));
-                $(this).val(dateText);
-                $('#' + forDate).val(dateText);
-                if (forDate === 'dateTo') {
-                    setFilterDate();
-                }
-                $('#datepicker').addClass('dn');
-            },
-            maxDate: "+0D"
+        
+        $(document).ready(function(){
+            getOrderList();
         });
+        
+        
+        function getOrderList()
+        {
+            var URL=APIDOMAIN+"index.php?action=geOrderList";
+            $.ajax({
+                url:URL,
+                type:'GET',
+                success:function(res){
+                    res=JSON.parse(res);
+                    listCallBack(res);
+                }
+            });
+        }
+        
+        
+        function listCallBack(data){
+            var str="";
+            $(data['result']).each(function(i,vl){
+                str+="<li class='transition300'>";
+                str+="<div class='date fLeft fmOpenB'>"+vl.oid+"</div>";
+                str+="<div class='dmdWt fLeft'>";
+                str+="<span class='upSpan fmOpenR'>"+vl.pname+"</span>";
+                str += "<span class='lwSpan'><a href='" + DOMAIN + "backend/index.php?action=productDetails&pid=" + vl.pid + "'>View Details</a></span>";
+                str+="</div>";
+                str+="<div class='stockCode fLeft'>";
+                str+="<span class='upSpan fmOpenR'>"+vl.uname+"</span>";
+                str+="<span class='lwSpan'>"+vl.umobile+"</span>";
+                str+="</div>";
+                str+="<div class='dmdWt fLeft'>";
+                
+                var odate=vl.odate.split("|");
+                var ddate=vl.ddate.split("|");
+                
+                str+="<span class='upSpan'>"+odate[0]+"</span>";
+                str+="<span class='lwSpan'>"+ddate[0]+"</span>";
+                str+="</div>";
 
-        function showCalander(inpDiv) {
-            forDate = inpDiv;
-            var pos = $('#' + inpDiv).position();
-            var pTop = pos.top + 35;
-            var pLeft = (pos.left);
-            $('#datepicker').css({top: pTop + "px", right: 210 + "px"});
-            $('#datepicker').removeClass('dn');
+                str+="<div class='acct fLeft fmOpenB'><span class='rSign'>"+vl.price+"</span></div>";
+                
+                var ostatus="";
+                if(vl.ostatus==0)
+                    ostatus="Order Placed";
+                
+                else if(vl.ostatus==1)
+                    ostatus="Approved";
+                
+                else if(vl.ostatus==2)
+                    ostatus="Getting Manufactured";
+                
+                else if(vl.ostatus==3)
+                    ostatus="in QC ";
+                
+                else if(vl.ostatus==4)
+                    ostatus="In Certification ";
+                
+                else if(vl.ostatus==5)
+                    ostatus="Shipped";
+                
+                else if(vl.ostatus==6)
+                    ostatus="Delivered";
+                
+                else if(vl.ostatus==7)
+                    ostatus="Not Delivered";
+                
+                else if(vl.ostatus==8)
+                    ostatus="Rescheduled";
+                
+                else 
+                    ostatus="Cancelled";
+                                
+                str+="<div class='acct fLeft'>"+ostatus+"</div>";
+                str+="<a href='" + DOMAIN + "backend/index.php?action=ord_detail&orderid=" + vl.oid + "'><div class='fRight viewM transition300'></div></a>";
+                str+="</li>";
+                                
+            });
+         
+            $('#orderList').append(str);
         }
 
-        function checkToHide(evt) {
-            var charCode = (evt.which) ? evt.which : evt.keyCode;
-            if (charCode === 8) {
-                $('#datepicker').addClass('dn');
-            }
-        }
+        
+        
 
     </script>
 </body>
