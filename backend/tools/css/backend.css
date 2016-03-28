@@ -677,7 +677,7 @@ li .prdViewImgBtn{}
 .preview .shapeComm{width:150px!important;padding-bottom:140px;position: absolute;top:0;left:0;}
 .preview .commCont.poR{padding-left: 200px;min-height: 165px;}
 .forAuto{}
-.forAuto .fieldTitle{width:30%;margin:0 10px;border-bottom: 1px dotted #ccc;}
+.forAuto .fieldTitle{width:32%;margin:0 5px;border-bottom: 1px dotted #ccc;}
 .forAuto .fieldTitle .w50{}
 .forAuto .fieldTitle .padR15 {padding-right: 10px;}
 .preview .solitaireCont .breakLine {margin-bottom: 15px;}
@@ -886,3 +886,7 @@ section .dtl_cont{width: 48%;height:auto;padding: 15px;margin-right: 20px;paddin
 .resetP{}
 .resetP.signUpDiv{height:240px;}
 
+.dtl{width: 48%;height: auto;margin-right:0;padding:15px 0px;}
+.forAuto .outContr{padding: 0px;}
+/*.forAuto .fieldTitle.fRight{margin-right: 0px;}*/
+.marR0{margin-right:0px!important;}
