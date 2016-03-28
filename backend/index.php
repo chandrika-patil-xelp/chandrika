@@ -145,16 +145,14 @@ switch ($action) {
         include BTEMPLATE.'accounts.html';
         break;
     
-     case 'ord_detail':
-        $page = 'ord_detail';
-        $tab = 'ord_detail';
+    case 'ord_detail':
+        $page = 'Orders';
+        $tab = 'orders';
         $orderid=$params['orderid'];
         include BTEMPLATE.'ord_detail.html';
         break;
-    
 
-    
-     case 'productDetails':
+    case 'productDetails':
         $page = 'productDetails';
         $tab = 'products';
         $pid=$params['pid'];
