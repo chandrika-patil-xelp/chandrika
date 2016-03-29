@@ -81,6 +81,7 @@ $jvs = array();
               $fjvs['bxslider']                   = DOMAIN.'frontend/tools/js/jquery.bxslider.js?v='.VERSION; 
                $fjvs['velocity']                   = DOMAIN.'frontend/tools/js/velocity.js?v='.VERSION;
                  $fjvs['menu']                   = DOMAIN.'frontend/tools/js/menu.js?v='.VERSION;
+                  $fjvs['home']                   = DOMAIN.'frontend/tools/js/home.js?v='.VERSION;
                  $fjvs['range_slider']                   = DOMAIN.'frontend/tools/js/ion.rangeSlider.js?v='.VERSION;
                  $fjvs['hammer']                   = DOMAIN.'frontend/tools/js/hammer.js?v='.VERSION;
             
