@@ -894,3 +894,19 @@ section .dtl_cont{width: 48%;height:auto;padding: 15px;margin-right: 20px;paddin
 .forAuto .outContr{padding: 0px;}
 /*.forAuto .fieldTitle.fRight{margin-right: 0px;}*/
 .marR0{margin-right:0px!important;}
+
+/*customers list page*/
+.customer{}
+.customer .date{width: 20%;}
+.customer .stockCode{width: 20%;}
+.customer .prdName{width: 20%;}
+.customer .prdImg{width: 20%;}
+.customer .acct{width: 20%;}
+.customer .commTitle2{width: auto;text-align: left;}
+.customer li .date{text-align: left;}
+.customer li .stockCode{text-align: center;}
+.customer li .prdName{text-align: center;}
+.customer li .prdImg{text-align: center;}
+.resetPsw{background:#2F665C url(../img/wresetpswrd.svg)no-repeat;background-size: auto 70%;background-position: 140% center;margin:4px 10px 0px 0px;width: auto;height: 34px;line-height: 34px;padding: 0 35px;color: #fff;font-size: 13px;border-radius: 2px;cursor: pointer;}
+.resetPsw:hover{background-position: 95% center;}
+.customer .lwSpan{color: #2A6869;}
