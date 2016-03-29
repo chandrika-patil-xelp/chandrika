@@ -82,6 +82,7 @@ $jvs = array();
             $fcss['range_slider2']             = DOMAIN.'frontend/tools/css/rangeslider/normalize.css?v='.VERSION;
             $fcss['gemstone']             = DOMAIN.'frontend/tools/css/gemstone.css?v='.VERSION;
             $fcss['bxslider']             = DOMAIN.'frontend/tools/css/jquery.bxslider.css?v='.VERSION;
+            $fjvs['jquery']                   = DOMAIN.'frontend/tools/js/jquery.js?v='.VERSION;
             
             $fjvs['bxslider']                   = DOMAIN.'frontend/tools/js/jquery.bxslider.js?v='.VERSION; 
             $fjvs['velocity']                   = DOMAIN.'frontend/tools/js/velocity.js?v='.VERSION;
