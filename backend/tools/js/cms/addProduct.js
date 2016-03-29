@@ -460,11 +460,11 @@ function sizeListCalllBack(data,catid)
 
                 str += "<div class='dQuality fLeft' size-for='cat_"+catid+"'>";
                 str += "<div class='checkDiv fLeft minwidth60'>";
-                str += "<input type='checkbox' name='size' class='filled-in' value='" + v.id + "' id='size_" + v.id + "'>";
+                str += "<input type='radio' name='size' class='filled-in' value='" + v.id + "' id='size_" + v.id + "'>";
                 str += "<label for='size_" + v.id + "'>" + v.sval + "</label>";
                 str += "</div>";
-                str += "<div class='intInp2 fLeft'>";
-                str += "<input name='sizeQty' type='text' id='size_" + v.id + "_qty' autocomplete='false' placeholder=' Enter quantity ' class='txtInput fRight fmOpenR font14 c666' onkeypress='return common.isDecimalKey(event, this.value);' maxlength='3'>";
+                str += "<div class='intInp2 fLeft dn'>";
+                str += "<input name='sizeQty' type='text' id='size_" + v.id + "_qty' autocomplete='false' placeholder=' Enter quantity ' class='txtInput fRight fmOpenR font14 c666 dn' value='1' onkeypress='return common.isDecimalKey(event, this.value);' maxlength='3'>";
                 str += "</div>";
                 str += "</div>";
 

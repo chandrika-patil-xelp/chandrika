@@ -23,6 +23,10 @@
                                 <div class="fieldTitle1 fLeft">Procurement Cost</div>
                                 <div class="fieldTitle2 fmOpenB fRight"><span class="rSign" id='procureCost'></span></div>
                             </div>
+                            <div class="divCon1 fLeft">
+                                <div class="fieldTitle1 fLeft">Payment Method</div>
+                                <div class="fieldTitle2 fmOpenB fRight" id='payType'></div>
+                            </div>
                         </div>
                     </div>
                     <div class="det_sec fLeft">
@@ -68,6 +72,10 @@
                         <div class="outrDiv nameIcon ">
                             <div class="fmOpenB font14 txtStyle">Name</div>
                             <div class="fmOpenR font14" id='uname'></div>
+                        </div>
+                        <div class="outrDiv genderIcon ">
+                            <div class="fmOpenB font14 txtStyle">Gender</div>
+                            <div class="fmOpenR font14" id='ugender'></div>
                         </div>
                         <div class="outrDiv mobIcon ">
                             <div class="fmOpenB font14 txtStyle">Mobile Number</div>
@@ -243,9 +251,28 @@
                 getProductDetails(pid);
                 getUserDetails(uid);
                 
+                var paytype='Credit Card';
+                
+                if(dt.pm==1)
+                    paytype='Debit Card';
+                
+                if(dt.pm==2)
+                    paytype='Net Banking';
+                
+                if(dt.pm==3)
+                    paytype='EMI';
+                
+                if(dt.pm==3)
+                    paytype='COD';
+                
+                
+                //0-Credit Card | 1-Debit Card | 2-Net Banking | 3-EMI | 4-COD
+                
+                $('#payType').html(paytype);
+               
+               
                 $("input[name='status']").each(function(){
                     var val=$(this).val();
-                    console.log(ostatus);
                     if(val==ostatus){
                         $(this).click();
                           _t=$(this);
@@ -289,6 +316,15 @@
                     {
                         var dt=data['result'];
                         $('#uname').text(dt.name);
+                        var gen="Female";
+                        if(dt.gn==1)
+                        {
+                            gen="Male";
+                        }
+                        else if(dt.gn==1){
+                            gen="Other";
+                        }
+                        $('#ugender').text(gen);
                         $('#umobile').text(dt.mb);
                         $('#uemail').text(dt.em);
                         $('#uaddress').text(dt.address);
@@ -366,6 +402,9 @@
                             $('#mkngCrg').html("&#8377;" + vl.mkngCrg + " /grm");
                             $('#procCost').html("&#8377;" + vl.procmtCst);
                             $('#procureCost').html("&#8377;" + vl.procmtCst);
+                            
+                            
+                            
                             $('#disPrice').html("&#8377;" + vl.procmtCst);
                             $('#mrgn').html("&#8377;" + vl.mrgn);
                             $('#mesmnt').html(vl.mesmnt);

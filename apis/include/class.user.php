@@ -13,7 +13,7 @@
             global $comm;
             #$params= (json_decode($params[0],1));
             #$params=array('userid'=>'9320160321210137','name'=>'Shubham Gupta','pass'=>'123456','mobile'=>'8767194606','email'=>'shubham@xelpmoc.in','city'=>'Mumbai');
-            $params=array('name'=>'Ankur Gala','pass'=>'123456','mobile'=>'1234567899','email'=>'ankurgala@xelpmoc.in','city'=>'Mumbai','address'=>'#657, 5th A Cross, 17th E Main Road,Koramangala 6th Block,Bangalore – 560095');
+            $params=array('name'=>'Ankur Gala','pass'=>'123456','mobile'=>'1234567899','email'=>'ankurgala@xelpmoc.in','city'=>'Mumbai','address'=>'#657, 5th A Cross, 17th E Main Road,Koramangala 6th Block,Bangalore – 560095','gender'=>1);
             
             
         //echo "<pre>";print_r($params); echo "<pre>";print_r(json_encode($params));  die;
@@ -45,7 +45,7 @@
 
             
             $sql="INSERT INTO tbl_user_master "
-                    . "(user_id,user_name,password,logmobile,email,city,address,date_time,updated_by,is_active) VALUES ("
+                    . "(user_id,user_name,password,logmobile,email,city,address,date_time,updated_by,is_active,gender) VALUES ("
                     . "\"".$userid."\""
                     . ",\"" . urldecode($params['name']) . "\""
                     . ",\"" . urldecode(md5($params['pass'])) . "\""
@@ -55,6 +55,7 @@
                     . ",\"" . urldecode($params['address']) . "\""
                     . ",now()"
                     . ",\"" . $userid . "\""
+                    . ",\"" . $params['gender'] . "\""
                     . ",\"" . 1 . "\")"
                     . " ON DUPLICATE KEY UPDATE "
                             ."user_name             = \"".urldecode($params['name'])."\","
@@ -83,7 +84,7 @@
         {
             if($params['userid'])
             {
-                $sql="SELECT user_name as name,logmobile as mb,email as em,city,address,is_active as aflag,is_vendor as vendor from tbl_user_master WHERE user_id='".$params['userid']."'";
+                $sql="SELECT user_name as name,logmobile as mb,gender as gn,email as em,city,address,is_active as aflag,is_vendor as vendor from tbl_user_master WHERE user_id='".$params['userid']."'";
                 $res=$this->query($sql);
                 
                 $result = array();
@@ -121,7 +122,7 @@
         {
             global $comm;
             #$params=array('orderid'=>'4120160322123432','product_id'=>'6120160315162137','user_id'=>'7720160321212345','order_date'=>'2016-03-21 21:23:10','delivery_date'=>'2016-03-22 21:23:10','order_status'=>0,'active_flag'=>1,'updatedby'=>'system','product_price'=>300000);
-            $params=array('product_id'=>'6120160315162137','user_id'=>'7720160321212345','order_date'=>'2016-03-21 21:23:10','delivery_date'=>'2016-03-22 21:23:10','order_status'=>0,'active_flag'=>1,'updatedby'=>'system','product_price'=>300000);
+            $params=array('product_id'=>'6120160315162137','user_id'=>'7720160321212345','order_date'=>'2016-03-21 21:23:10','delivery_date'=>'2016-03-22 21:23:10','order_status'=>0,'active_flag'=>1,'updatedby'=>'system','product_price'=>300000,'payment'=>0);
             
             
             if(!$params['orderid'])
@@ -133,7 +134,7 @@
                 $orderid = $params['orderid'];
             }
             
-            $sql="INSERT INTO tbl_order_master(order_id,product_id,user_id,order_date,delivery_date,order_status,active_flag,createdon,updatedby,product_price) VALUES("
+            $sql="INSERT INTO tbl_order_master(order_id,product_id,user_id,order_date,delivery_date,order_status,active_flag,createdon,updatedby,product_price,payment) VALUES("
                    . "\"".$orderid."\""
                    . ",\"".$params['product_id']."\""
                    . ",\"".$params['user_id']."\""
@@ -144,6 +145,7 @@
                    .",now()"
                    .",\"".$params['updatedby']."\""
                    .",\"".$params['product_price']."\""
+                   .",\"".$params['payment']."\""
                    . ")"
                    ." ON DUPLICATE KEY UPDATE "
                         . " delivery_date =  \"" .$params['delivery_date']."\","
@@ -171,7 +173,7 @@
             global $comm;
             if($params['orderid'])
             {
-                $sql="SELECT order_id as oid,product_id as pid,(Select product_seo_name from tbl_product_master where productid=pid) as pname,user_id as uid,(SELECT user_name from tbl_user_master WHERE user_id=uid) AS uname,(SELECT logmobile from tbl_user_master WHERE user_id=uid) AS umobile,order_date as odate,delivery_date as ddate,order_status as ostatus,active_flag as aflag, product_price as price   FROM tbl_order_master WHERE order_id=".$params['orderid']."";
+                $sql="SELECT order_id as oid,product_id as pid,(Select product_seo_name from tbl_product_master where productid=pid) as pname,user_id as uid,(SELECT user_name from tbl_user_master WHERE user_id=uid) AS uname,(SELECT logmobile from tbl_user_master WHERE user_id=uid) AS umobile,order_date as odate,delivery_date as ddate,order_status as ostatus,active_flag as aflag, product_price as price,payment as pm   FROM tbl_order_master WHERE order_id=".$params['orderid']."";
 
                 $res=$this->query($sql);
 
@@ -206,7 +208,7 @@
             if($params['userid'])
             {
                 
-                $sql="SELECT order_id as oid,product_id as pid,(Select product_seo_name from tbl_product_master where productid=pid) as pname,user_id as uid,order_date as odate,delivery_date as ddate,order_status as ostatus,active_flag as aflag, product_price as price   FROM tbl_order_master WHERE user_id=".$params['userid']." ORDER BY order_date DESC";
+                $sql="SELECT order_id as oid,product_id as pid,(Select product_seo_name from tbl_product_master where productid=pid) as pname,user_id as uid,order_date as odate,delivery_date as ddate,order_status as ostatus,active_flag as aflag, product_price as price ,payment as pm  FROM tbl_order_master WHERE user_id=".$params['userid']." ORDER BY order_date DESC";
                 $res=$this->query($sql);
                 $result = array();
                 if ($res) 

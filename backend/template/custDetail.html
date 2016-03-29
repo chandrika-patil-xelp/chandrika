@@ -15,6 +15,12 @@
                                 <div class="w50 fRight fmOpenB txtLeft lineHght" id="uname"></div>
                             </div>
                             <div class="divCon1 fLeft bNone">
+                                <div class="w50 fLeft  c4d padR15 fmOpenR nameIcon h35">Gender
+                                    <span class="fRight">:</span>
+                                </div>
+                                <div class="w50 fRight fmOpenB txtLeft lineHght" id="ugender"></div>
+                            </div>
+                            <div class="divCon1 fLeft bNone">
                                 <div class="w50 fLeft  c4d padR15 fmOpenR  mobIcon h35">Mobile number <span class="fRight">:</span></div>
                                 <div class="w50 fRight fmOpenB txtLeft lineHght" id='umobile'></div>
                             </div>
@@ -62,9 +68,7 @@
                     async: false,
                     success:function(res){
                         res=JSON.parse(res);
-                        console.log(res)
                         img=res['images'][0];
-                        console.log(img);
                         return img;
                         
                     }
@@ -88,7 +92,15 @@
                     $('#umobile').text(custData.mb);
                     $('#uemail').text(custData.em);
                     $('#ucity').text(custData.city);
-                    
+                    var gen="Female";
+                    if(custData.gn==1)
+                    {
+                        gen="Male";
+                    }
+                    else if(custData.gn==1){
+                        gen="Other";
+                    }
+                    $('#ugender').text(gen);
                     
                     
                     var adstr="";

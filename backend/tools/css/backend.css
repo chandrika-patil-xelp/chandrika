@@ -369,6 +369,7 @@ section .breakLine:last-child{display: none;}
 .intColors{width:auto;margin-top: 5px;}
 .availCol{width:auto;color:#666;font-size: 13px;margin-right: 0!important;padding-right:10px!important;line-height: 22px;}
 
+#cat_sizes .dQuality{width:80px!important;margin-bottom: 15px;}
 
 .intInp {width: auto;background: #4db800;height: 25px;margin: 5px 15px;border-radius: 25px;padding: 0 15px;color: #fff;font-size: 14px;font-family: openB;line-height: 25px;}
 
@@ -570,6 +571,7 @@ section .breakLine:last-child{display: none;}
 
 .overlay{width:100%;height: 100%;background: rgba(0,0,0,0.6);position: fixed;top:0;left:0;z-index: 100;}
 .loader{width:200px;height: 200px;background: url(../img/loader1.svg)no-repeat;background-position: center;background-size: auto 100px;position: fixed;top:0;left:0;right:0;bottom:0;margin: auto;z-index: 110;}
+.catValDiv{width:80%;height: 90%;background: #fff;position: fixed;top:5%;left:0;right:0;bottom:0;margin: auto;z-index: 110;margin-top: 0;padding: 15px;}
 
 .allChildCatg{width:100%;height: auto;min-height: 200px;border:1px solid #333;}
 .op0{opacity: 0!important;cursor: default;}
@@ -751,6 +753,8 @@ li .prdViewImgBtn{}
 .addrsIcon{background:url('../img/address.svg')no-repeat left top;background-size: auto 34%;background-position: 5px 5px;}
 .mobIcon{background:url('../img/mobile.svg')no-repeat left top;background-size: auto 50%;background-position: 5px 5px;}
 .eMIcon{background:url('../img/email.svg')no-repeat left top;background-size: auto 51%;background-position: 5px 5px;}
+.genderIcon{background:url('../img/gender.svg')no-repeat left top;background-size: auto 51%;background-position: 5px 5px;}
+
 .txtStyle{height: 30px;line-height: 36px;font-size: 15px;color: #4d4d4d;}
 .statusBar{width:100%;height:100%;border-radius: 2px;border:1px solid #2F665C;}
 .stsTxt{height: 100%;line-height: 28px;text-align: center;background-color: #2F665C;color: #fff;font-family: openB;font-size: 13px;}
