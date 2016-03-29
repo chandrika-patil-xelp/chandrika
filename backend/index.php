@@ -179,6 +179,10 @@ switch ($action) {
         $tab = 'Preview';
         include BTEMPLATE.'preview.html';
         break;
-    
+    case 'customerList':
+        $page = 'customerList';
+        $tab = 'customerList';
+        include BTEMPLATE.'customer.html';
+        break;
 }
 ?>
