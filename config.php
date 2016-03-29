@@ -72,9 +72,18 @@ $jvs = array();
         
         
         #FRONTEND
-            $css['home']             = DOMAIN.'frontend/tools/css/home.css?v='.VERSION;
-    
-    
+            $fcss['home']             = DOMAIN.'frontend/tools/css/home.css?v='.VERSION;
+             $fcss['range_slider']             = DOMAIN.'frontend/tools/css/rangeslider/ion.rangeSlider.css?v='.VERSION;
+               $fcss['range_slider1']             = DOMAIN.'frontend/tools/css/rangeslider/ion.rangeSlider.skinHTML5.css?v='.VERSION;
+               $fcss['range_slider2']             = DOMAIN.'frontend/tools/css/rangeslider/normalize.css?v='.VERSION;
+               $fcss['gemstone']             = DOMAIN.'frontend/tools/css/gemstone.css?v='.VERSION;
+             $fcssslider['bxslider']             = DOMAIN.'frontend/tools/css/jquery.bxslider.css?v='.VERSION;
+              $fjvs['bxslider']                   = DOMAIN.'frontend/tools/js/jquery.bxslider.js?v='.VERSION; 
+               $fjvs['velocity']                   = DOMAIN.'frontend/tools/js/velocity.js?v='.VERSION;
+                 $fjvs['menu']                   = DOMAIN.'frontend/tools/js/menu.js?v='.VERSION;
+                 $fjvs['range_slider']                   = DOMAIN.'frontend/tools/js/ion.rangeSlider.js?v='.VERSION;
+                 $fjvs['hammer']                   = DOMAIN.'frontend/tools/js/hammer.js?v='.VERSION;
+            
 include APICLUDE.'common/class.common.php';
 $comm = new Common();
 $comm->clearParam($_GET);
