@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 23, 2016 at 05:44 PM
+-- Generation Time: Mar 30, 2016 at 12:00 PM
 -- Server version: 5.5.16
 -- PHP Version: 5.3.8
 
@@ -782,6 +782,7 @@ CREATE TABLE IF NOT EXISTS `tbl_order_master` (
   `updatedon` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'data and time of the order entry being updated',
   `updatedby` varchar(30) DEFAULT 'mysql' COMMENT 'name of the user who updated entry',
   `product_price` decimal(10,2) DEFAULT '0.00' COMMENT 'price of the total products being calculated from cart',
+  `payment` tinyint(4) DEFAULT NULL COMMENT '0-Credit Card | 1-Debit Card | 2-Net Banking | 3-EMI | 4-COD',
   UNIQUE KEY `idx_user_order` (`order_id`,`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -789,10 +790,11 @@ CREATE TABLE IF NOT EXISTS `tbl_order_master` (
 -- Dumping data for table `tbl_order_master`
 --
 
-INSERT INTO `tbl_order_master` (`order_id`, `product_id`, `user_id`, `order_date`, `delivery_date`, `order_status`, `active_flag`, `createdon`, `updatedon`, `updatedby`, `product_price`) VALUES
-(2120160322123722, 6120160315162137, 7720160321212345, '2016-03-21 21:23:10', '2016-03-22 21:23:10', 6, 1, '2016-03-22 12:37:22', '2016-03-23 11:58:01', 'system', '300000.00'),
-(4120160322123432, 6120160315162137, 7720160321212345, '2016-03-21 21:23:10', '2016-03-22 21:23:10', 0, 1, '2016-03-22 12:34:32', '2016-03-22 07:06:21', 'system', '200000.00'),
-(5920160322123400, 6120160315162137, 7720160321212345, '2016-03-21 21:23:10', '2016-03-21 21:23:10', 3, 1, '2016-03-22 12:34:00', '2016-03-23 06:39:06', 'system', '200000.00');
+INSERT INTO `tbl_order_master` (`order_id`, `product_id`, `user_id`, `order_date`, `delivery_date`, `order_status`, `active_flag`, `createdon`, `updatedon`, `updatedby`, `product_price`, `payment`) VALUES
+(2120160322123722, 6120160315162137, 7720160321212345, '2016-03-21 21:23:10', '2016-03-22 21:23:10', 5, 1, '2016-03-22 12:37:22', '2016-03-29 06:07:51', 'system', '300000.00', 1),
+(4120160322123432, 6120160315162137, 7720160321212345, '2016-03-21 21:23:10', '2016-03-22 21:23:10', 0, 1, '2016-03-22 12:34:32', '2016-03-29 06:07:51', 'system', '200000.00', 1),
+(5920160322123400, 6120160315162137, 7720160321212345, '2016-03-21 21:23:10', '2016-03-21 21:23:10', 3, 1, '2016-03-22 12:34:00', '2016-03-29 06:07:51', 'system', '200000.00', 1),
+(7620160329113723, 6120160315162137, 7720160321212345, '2016-03-21 21:23:10', '2016-03-22 21:23:10', 0, 1, '2016-03-29 11:37:23', '2016-03-29 06:07:51', 'system', '300000.00', 1);
 
 -- --------------------------------------------------------
 
@@ -1012,11 +1014,11 @@ INSERT INTO `tbl_product_master` (`productid`, `product_code`, `vendorid`, `prod
 (5220160213164126, 'JZEVA0525604585', 1, '22K Gold Ring', '22K Office wear Golden Ring', 2, 5, 'Prong,Bezel,Pave', 5, 500, 5000, 5, '10X20', 0, 0, 'IGI', 1, 1, 1, 1, 1, '2016-02-13 16:41:26', '2016-03-12 13:20:07', '1'),
 (5320160315155640, 'JZEVA0525604585', 4, 'Gold Chain 1', 'Diamond Gold Chain 1', 0, 20, 'Prong', 5, 1500, 12000, 6, '10X20', 0, 0, 'SGL', 1, 1, 0, 0, 2, '0000-00-00 00:00:00', '2016-03-15 10:31:17', '1'),
 (6120160315162137, 'JZEVA0525604585', 1, 'Diamond Chain', '24K Diamond Chain', 0, 20, 'Prong', 20, 1000, 1250000, 50, '10X10', 0, 0, 'SGL', 1, 1, 1, 1, 1, '2016-03-15 16:21:37', '2016-03-17 05:49:33', '1'),
-(6220160213134835, 'JZEVA0525604585', 2, 'Test', 'Test SEO', 1, 5, 'Prong,Bezel', 1, 1, 100, 51, '10X10', 1, 0, 'SGL', 0, 1, 0, 0, 1, '2016-02-13 13:48:35', '2016-03-12 13:20:07', '1'),
+(6220160213134835, 'JZEVA0525604585', 2, 'Test', 'Test SEO', 1, 5, 'Prong,Bezel', 1, 1, 100, 51, '10X10', 1, 0, 'SGL', 0, 1, 0, 0, 1, '2016-02-13 13:48:35', '2016-03-28 06:09:39', '1'),
 (6520160211201105, 'JZEVA0525604585', 1, 'Test Product 1', 'Test Product 1 SEO', 0, 5, '', 5, 1000, 10000, 0, '10X20', 0, 0, 'IGI', 0, 0, 0, 0, 1, '2016-02-11 20:11:05', '2016-03-12 13:20:07', '1'),
 (7420160315161551, 'JZEVA0525604585', 2, 'Gold Chain', '24K Gold Chain ', 0, 20, 'Prong', 15, 1000, 12000, 15, '10X20', 0, 1, 'SGL', 0, 0, 0, 0, 1, '2016-03-15 16:19:49', '2016-03-15 10:50:17', '1'),
 (7820160211205834, 'JZEVA0525604588', 2, 'Test Label 1', 'Test Label SEO', 0, 5, 'Prong,Bezel,Pave', 5, 100, 5000, 5, '10X20', 1, 0, 'IGI', 0, 0, 0, 0, 1, '2016-02-11 20:58:34', '2016-03-15 08:36:24', '1'),
-(8620160212143043, 'JZEVA0525604585', 1, 'Test Product 1', 'Test Product 1 SEO', 1, 15, 'Prong', 10, 15000, 200000, 10, '10X12', 0, 0, 'SGL', 0, 0, 0, 0, 1, '2016-02-12 14:30:44', '2016-03-15 07:43:50', '1'),
+(8620160212143043, 'JZEVA0525604585', 1, 'Test Product 1', 'Test Product 1 SEO', 1, 15, 'Prong', 10, 15000, 200000, 10, '10X12', 0, 0, 'SGL', 0, 0, 0, 0, 2, '2016-02-12 14:30:44', '2016-03-28 06:08:58', '1'),
 (9320160211205332, 'JZEVA0525604585', 2, '22K Gold Rings', '22K Office wear Golden Rings', 1, 15, 'Channel,Invisible,Cluster', 15, 15, 15, 0, '15X15', 1, 1, 'SGL', 0, 1, 0, 0, 2, '2016-02-11 20:53:32', '2016-03-12 13:20:36', '1'),
 (9620160213140709, 'JZEVA0525604585', 4, 'Product Name ', 'Product Name  SEO', 0, 5, 'Prong,Bezel,Pave,Channel', 1, 12000, 50000, 5, '1X1', 0, 0, 'SGL', 1, 1, 1, 1, 1, '2016-02-13 14:07:09', '2016-03-12 13:20:07', '1');
 
@@ -1556,6 +1558,7 @@ CREATE TABLE IF NOT EXISTS `tbl_user_master` (
   `subscribe` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '1-Active | 0-Inactive',
   `is_active` tinyint(2) NOT NULL DEFAULT '0' COMMENT '1-Active, 0-Non Active',
   `pass_flag` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'Change Password Flag',
+  `gender` tinyint(2) DEFAULT '0' COMMENT '0- Female | 1-Male | 2-Other',
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `idx_login` (`logmobile`,`email`,`is_vendor`),
   KEY `idx_user_name` (`user_name`),
@@ -1570,11 +1573,11 @@ CREATE TABLE IF NOT EXISTS `tbl_user_master` (
 -- Dumping data for table `tbl_user_master`
 --
 
-INSERT INTO `tbl_user_master` (`user_id`, `user_name`, `password`, `logmobile`, `email`, `city`, `address`, `is_vendor`, `date_time`, `update_time`, `updated_by`, `subscribe`, `is_active`, `pass_flag`) VALUES
-(3320160321213156, 'Ankur Gala', 'e10adc3949ba59abbe56e057f20f883e', 1234567899, 'ankurgala@xelpmoc.in', 'Mumbai', '#657, 5th A Cross, 17th E Main Road,Koramangala 6th Block,Bangalore – 560095 ', 0, '2016-03-21 21:31:56', '2016-03-22 11:55:25', '', 0, 1, 0),
-(5920160321212204, 'Manish', 'e10adc3949ba59abbe56e057f20f883e', 1118989898, 'manish@xelpmoc.in', 'Mumbai', '#657, 5th A Cross, 17th E Main Road,Koramangala 6th Block,Bangalore – 560095 ', 0, '2016-03-21 21:22:04', '2016-03-22 11:55:25', '5920160321212204', 0, 1, 0),
-(7720160321212345, 'Ankur Gala', 'e10adc3949ba59abbe56e057f20f883e', 1234567890, 'ankur@xelpmoc.in', 'Mumbai', '#657, 5th A Cross, 17th E Main Road,Koramangala 6th Block,Bangalore – 560095 ', 0, '2016-03-21 21:23:45', '2016-03-22 11:55:25', '', 0, 1, 0),
-(9320160321210137, 'Shubham Gupta', 'e10adc3949ba59abbe56e057f20f883e', 8767194606, 'shubham@xelpmoc.in', 'Mumbai', '#657, 5th A Cross, 17th E Main Road,Koramangala 6th Block,Bangalore – 560095 ', 0, '2016-03-21 21:01:37', '2016-03-22 11:55:25', '9320160321210137', 0, 1, 0);
+INSERT INTO `tbl_user_master` (`user_id`, `user_name`, `password`, `logmobile`, `email`, `city`, `address`, `is_vendor`, `date_time`, `update_time`, `updated_by`, `subscribe`, `is_active`, `pass_flag`, `gender`) VALUES
+(3320160321213156, 'Ankur Gala', 'e10adc3949ba59abbe56e057f20f883e', 1234567899, 'ankurgala@xelpmoc.in', 'Mumbai', '#657, 5th A Cross, 17th E Main Road,Koramangala 6th Block,Bangalore – 560095 ', 0, '2016-03-21 21:31:56', '2016-03-28 06:40:58', '', 0, 1, 0, 1),
+(5920160321212204, 'Manish', 'e10adc3949ba59abbe56e057f20f883e', 1118989898, 'manish@xelpmoc.in', 'Mumbai', '#657, 5th A Cross, 17th E Main Road,Koramangala 6th Block,Bangalore – 560095 ', 0, '2016-03-21 21:22:04', '2016-03-28 06:40:58', '5920160321212204', 0, 1, 0, 1),
+(7720160321212345, 'Ankur Gala', 'e10adc3949ba59abbe56e057f20f883e', 1234567890, 'ankur@xelpmoc.in', 'Mumbai', '#657, 5th A Cross, 17th E Main Road,Koramangala 6th Block,Bangalore – 560095 ', 0, '2016-03-21 21:23:45', '2016-03-28 06:40:58', '', 0, 1, 0, 1),
+(9320160321210137, 'Shubham Gupta', 'e10adc3949ba59abbe56e057f20f883e', 8767194606, 'shubham@xelpmoc.in', 'Mumbai', '#657, 5th A Cross, 17th E Main Road,Koramangala 6th Block,Bangalore – 560095 ', 0, '2016-03-21 21:01:37', '2016-03-28 06:40:58', '9320160321210137', 0, 1, 0, 1);
 
 -- --------------------------------------------------------
 
