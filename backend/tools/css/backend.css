@@ -56,7 +56,6 @@ a { color: inherit;text-decoration: none; }
 
 .poR{position: relative}
 .poA{position: absolute;}
-.bNone{border:none!important;}
 .txtCap {text-transform: capitalize;}
 
 .container{width:100%;height:auto;display: table;padding-bottom:0px;}
@@ -281,7 +280,7 @@ li .acct{border-right: none;position: relative;padding: 0 15px 0 0px}
 .coupons .actt{width: 20%;border-right: none!important;}
 
 .couponList {width: 100%;height: auto;margin: 0;padding: 0;list-style: none;}
- 
+
 .couponList li {width: 100%;height: 50px;line-height: 40px;float: left;color: #4d4d4d;font-size: 13px;border-bottom: 1px solid #e6e6e6;border-top: none;padding: 5px 0;}
 .upSpan{display: block;width:100%;line-height: 20px}
 .lwSpan {display: block;width: 100%;line-height: 15px;font-size: 11px;font-family: openB;}
@@ -767,38 +766,35 @@ li .prdViewImgBtn{}
 .pl20{padding-left:20px!important;}
 
 /* customer Info */
- .custDetail{}
- .w20{width: 20% !important;}
- .w35{width: 35%!important;}
- .bg{background-color: #e6e6e6;}
- .aHead{width: 100%;height: 40px;line-height: 40px;color: #666;border-bottom: 1px dotted #ccc;}
- .pic{width: 100%;height:185px;display: inline-block;border: 1px solid;}
- .custDetail .logoutBtn{width:170px;position: absolute;right: 0px;bottom: 8px;}
- .custDetail .orderComm{height:auto;margin-bottom:10px;padding: 10px;position: relative;}
- .custDetail .prdInfo{height: 100%;}
- .custDetail .padR15{padding-right: 10%;}
- .custDetail .prdSeachTxt{width: 128px;border: medium none;height: 25px;}
- .custDetail .viewTxt{position:absolute;width:10%;right:0px;bottom: 0px;height: 40px;line-height: 40px;font-size: 13px;cursor: pointer;background: url(../img/arrows-01.svg)no-repeat;background-size: auto 38%;background-position: 85% center;}
- .mLeft{margin-left: 10px;}
- .custDetail .hasDatepicker{right: 515px;}
- .h35{height: 30px;line-height: 30px;padding-left: 35px;}
+.custDetail{}
+.aHead{width: 100%;height: 40px;line-height: 40px;color: #666;border-bottom: 1px dotted #ccc;}
+.custDetail .logoutBtn{width:170px;position: absolute;right: 0px;bottom: 8px;}
+.custDetail .orderComm{height:auto;margin-bottom:10px;padding: 10px;position: relative;}
+.custDetail .prdInfo{height: 100%;margin-left: 0px;}
+.custDetail .prdSeachTxt{width: 128px;border: medium none;height: 25px;}
+.custDetail .viewTxt{position:absolute;width:10%;right:0px;bottom: 0px;height: 40px;line-height: 40px;font-size: 13px;cursor: pointer;background: url(../img/arrows-01.svg)no-repeat;background-size: auto 38%;background-position: 85% center;}
+.custDetail .nameIcon{background-size: auto 90%;background-position:center left;}
+.custDetail .mobIcon{background-size: auto 90%;background-position:center left;}
+.custDetail .eMIcon{background-size: auto 90%;background-position:center left;}
+.custDetail .addrsIcon{background-size: auto 85%;background-position:center left;height: 35px;float: left;width: 30px;}
+.custDetail .genderIcon{background-size: auto 90%;background-position:center left;}
+.custDetail  .dtl_cont{width: 35%;padding: 0px !important;margin: 0px !important;}
+.custDetail .divCon1{margin: 0px !important;color: rgb(77, 77, 77);padding: 0px !important;}
+.main{width: 100%;height: auto;border-bottom: 1px dotted rgb(204, 204, 204);display: inline-block;}
+.pictr{width:100%;height: 100px;border: 1px solid rgb(204, 204, 204);}
+.currHead{width: 100%;height: 40px;line-height: 40px;background-color:#e6e6e6;padding-left: 15px;color: rgb(102, 102, 102);}
+.boxCont{width: 35%;height: 100%;padding: 6px 0px 0px 10px;}
+.fields{width: 50%;height: 20px;}
+.padR{padding-right: 55px;}
+.w10{width:10%!important;}
+.sideHdng{ width: 40%;height: 30px;padding: 6px 0px 0px 30px;text-transform: capitalize;}
+.pl10{padding-left: 10px;}
+.adrs{width: 90%;padding-top: 5px;height: auto;}
 
- .custDetail .nameIcon{background-size: auto 100%;background-position:center left;}
- .custDetail .mobIcon{background-size: auto 100%;background-position:center left;}
- .custDetail .eMIcon{background-size: auto 100%;background-position:center left;}
- .custDetail .addrsIcon{background-size: auto 100%;background-position:center left;}
- .custDetail .divCon1{margin: 0px !important;color: rgb(77, 77, 77);}
- .line1{margin-top: 15px;border-left: 1px dotted rgb(204, 204, 204);height: 125px;}
- .main{width: 100%;height: auto;border-bottom: 1px dotted rgb(204, 204, 204);display: inline-block;}
- .pictr{width: 100px;height: 100px;border: 1px solid rgb(204, 204, 204);margin-top: 14px;margin-right: 14px;}
- .currHead{width: 100%;height: 40px;line-height: 40px;background-color:#e6e6e6;padding-left: 15px;color: rgb(102, 102, 102);}
- .lineHght{line-height: 30px;}
- .custDetail .orderComm{margin-top: 20px;}
- .w40{width: 40% !important;}
- .w10{width:10%!important;}
- 
- 
- 
+
+
+
+
 .info_sec{width: 100%;height: auto;float: right;}
 .divCon1{width: 100%;height: auto;margin-bottom: 10px;border-bottom: 1px dotted #ccc;padding: 0 5px 5px 5px;}
 .det_sec_right .divCon2{width: 49%;height: auto;margin-bottom: 10px;border-bottom: 1px dotted #ccc;padding: 0 5px 5px 5px;margin-top: 0}
