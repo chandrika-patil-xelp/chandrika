@@ -1,235 +1,214 @@
 <?php include 'jBhead.html' ?>
 <?php echo "<script>var userid='$userid';</script>"; ?>
-    <body>
-        <div class="container ordersPage">
-            <?php include 'jBheader.html' ?>
-            <div class="contents fLeft">
-                <div class="wrapperMax custDetail">
-                    <div class="aHead font20 fmOpenR padL pl20">Customer Details</div>
-                    <div class="main">
-                        <div class="dtl_cont fLeft  font13">
-                            <div class="divCon1 fLeft bNone">
-                                <div class="w50 fLeft  c4d padR15 fmOpenR nameIcon h35">Name
-                                    <span class="fRight">:</span>
-                                </div>
-                                <div class="w50 fRight fmOpenB txtLeft lineHght" id="uname"></div>
-                            </div>
-                            <div class="divCon1 fLeft bNone">
-                                <div class="w50 fLeft  c4d padR15 fmOpenR genderIcon h35">Gender
-                                    <span class="fRight">:</span>
-                                </div>
-                                <div class="w50 fRight fmOpenB txtLeft lineHght" id="ugender"></div>
-                            </div>
-                            <div class="divCon1 fLeft bNone">
-                                <div class="w50 fLeft  c4d padR15 fmOpenR  mobIcon h35">Mobile number <span class="fRight">:</span></div>
-                                <div class="w50 fRight fmOpenB txtLeft lineHght" id='umobile'></div>
-                            </div>
-                            <div class="divCon1 fLeft bNone">
-                                <div class="w50 fLeft  c4d padR15 fmOpenR eMIcon h35"><span class="fRight">:</span>Email Id</div>
-                                <div class="w50 fRight fmOpenB txtLeft lineHght" id='uemail'></div>
-                            </div>
-                            <div class="fRight line"></div>
+<body>
+    <div class="container ordersPage">
+        <?php include 'jBheader.html' ?>
+        <div class="contents fLeft">
+            <div class="wrapperMax custDetail">
+                <div class="aHead font20 fmOpenR">Customer Details</div>
+                <div class="main pl10">
+                    <div class="dtl_cont fLeft  font13">
+                        <div class="divCon1 fLeft brdN">
+                            <div class="fLeft fmOpenB sideHdng nameIcon" id="uname"></div>
                         </div>
-
-                        <div class="dtl_cont fLeft  font13" id='uaddress'></div>
+                        <div class="divCon1 fLeft brdN">
+                            <div class="fLeft fmOpenB sideHdng genderIcon" id="ugender"></div>
+                        </div>
+                        <div class="divCon1 fLeft brdN">
+                            <div class="fLeft fmOpenB sideHdng mobIcon" id='umobile'></div>
+                        </div>
+                        <div class="divCon1 fLeft brdN">
+                            <div class="fLeft fmOpenB sideHdng eMIcon" id='uemail'></div>
+                        </div>
+                        <div class="fRight line"></div>
                     </div>
-                    
-                    <div class="main bNone" id='forCurrOrders'>
-                        <div class="aHead font20 fmOpenR padL pl20"><span id='currCnt'>0</span> Current Orders</div>
-                    </div>
-                    <div class="main bNone" id='forPastOrders'>
-                        <div class="aHead font20 fmOpenR padL pl20 fLeft"><span id='pastCnt'>0</span>&nbsp;Past Orders</div>
-                    </div>
+                    <div class="dtl_cont fLeft  font13" id='uaddress'></div>
                 </div>
+
+                <div class="main brdN" id='forCurrOrders'>
+                    <div class="aHead font20 fmOpenR"><span id='currCnt'>0</span> Current Orders</div>
+                </div>
+                <div class="main brdN" id='forPastOrders'>
+                    <div class="aHead font20 fmOpenR fLeft"><span id='pastCnt'>0</span>&nbsp;Past Orders</div>
+                </div>
+            </div>
         </div>
         <script type="text/javascript">
 
-            $(document).ready(function(){
+            $(document).ready(function () {
                 //st=6
                 //http://localhost/jzeva/apis/index.php?action=getAllUserDetails&userid=7720160321212345;
-                var URL=APIDOMAIN+"index.php?action=getAllUserDetails&userid="+userid;
+                var URL = APIDOMAIN + "index.php?action=getAllUserDetails&userid=" + userid;
                 $.ajax({
-                    url:URL,
-                    type:'POST',
+                    url: URL,
+                    type: 'POST',
                     async: false,
-                    success:function(res){
-                        res=JSON.parse(res);
-                        detailsCallBack(res);                        
+                    success: function (res) {
+                        res = JSON.parse(res);
+                        detailsCallBack(res);
                     }
                 });
-                
+
             });
-            
-            function getPrdImages(pid){
+
+            function getPrdImages(pid) {
                 var img;
                 $.ajax({
-                    url:APIDOMAIN+"index.php?action=getImagesByPid&pid="+pid,
-                    type:'POST',
+                    url: APIDOMAIN + "index.php?action=getImagesByPid&pid=" + pid,
+                    type: 'POST',
                     async: false,
-                    success:function(res){
-                        res=JSON.parse(res);
-                        img=res['images'][0];
+                    success: function (res) {
+                        res = JSON.parse(res);
+                        img = res['images'][0];
                         return img;
-                        
+
                     }
 
                 });
                 return img;
-                
+
             }
-            
-            var currCnt=0;
-            var pastCnt=0;
-            
-            function detailsCallBack(data){
+
+            var currCnt = 0;
+            var pastCnt = 0;
+
+            function detailsCallBack(data) {
                 if (data['error']['err_code'] == '0')
                 {
-                    
-                    var custData=data['result']['user'];
-                    var orders=data['result']['orders'];
-                    
+
+                    var custData = data['result']['user'];
+                    var orders = data['result']['orders'];
+
                     $('#uname').text(custData.name);
                     $('#umobile').text(custData.mb);
                     $('#uemail').text(custData.em);
                     $('#ucity').text(custData.city);
-                    var gen="Female";
-                    if(custData.gn==1)
+                    var gen = "Female";
+                    if (custData.gn == 1)
                     {
-                        gen="Male";
-                    }
-                    else if(custData.gn==1){
-                        gen="Other";
+                        gen = "Male";
+                    } else if (custData.gn == 1) {
+                        gen = "Other";
                     }
                     $('#ugender').text(gen);
-                    
-                    
-                    var adstr="";
-                    adstr+="<div class='divCon1 fLeft bNone '>";
-                    adstr+="<div class='w50 fLeft  c4d padR15 fmOpenR addrsIcon h35'>Delivery Address<span class='fRight'>:</span></div>";
-                    adstr+="<div class='w50 fRight fmOpenB lineHght'>"+custData.address+"";
-                    adstr+="</div>";
-                    adstr+="</div>";
+
+
+                    var adstr = "";
+                    adstr += "<div class='divCon1 fLeft brdN'>";
+                    adstr += " <div class='addrsIcon'></div>";
+                    adstr += "<div class='fLeft fmOpenR adrs'>" + custData.address + "";
+                    adstr += "</div>";
+                    adstr += "</div>";
                     $('#uaddress').append(adstr);
-                    
-                    $(orders).each(function(i,vl){
+
+                    $(orders).each(function (i, vl) {
                         console.log(vl);
-                        var ostr="";
-                        
-                        var imgpath=getPrdImages(vl.pid);
+                        var ostr = "";
+
+                        var imgpath = getPrdImages(vl.pid);
                         console.log(imgpath);
-                        
-                        ostr+="<div class='orderComm fLeft mTop10'>";
-                        ostr+="<div class='prdInfo fLeft brdN w10'>";
-                        
-                        
-                        ostr+="<div class='fLeft pictr mTop0' style='background:url("+imgpath+")no-repeat;background-size:auto 50%;background-position:center;'></div>";
-                        ostr+="</div>";
-                        ostr+="<div class='dt1_cont fLeft bNone w40'>";
-                        ostr+="<div class='prdInfo fLeft brdN w100 mTop10'>";
-                        ostr+="<div class='fieldTitle fLeft fmOpenR brdN'>";
-                        ostr+="<div class='w50 fLeft c4d padR15 fmOpenB'>Product Name<span class='fRight'>:</span></div>";
-                        ostr+="<div class='w50 fRight'>"+vl.pname+"</div>";
-                        ostr+="</div>";
-                        ostr+="<div class='fieldTitle fLeft fmOpenR brdN'>";
-                        ostr+="<div class='w50 fLeft c4d padR15 fmOpenB'>Product Id <span class='fRight'>:</span></div>";
-                        ostr+="<div class='w50 fRight'>"+vl.pid+"</div>";
-                        ostr+="</div>";
-                        ostr+="<div class='fieldTitle fLeft fmOpenR brdN'>";
-                        ostr+="<div class='w50 fLeft c4d padR15 fmOpenB'>Price <span class='fRight'>:</span></div>";
-                        ostr+="<div class='w50 fRight'>&#8377; "+vl.price+"</div>";
-                        ostr+="</div>";
-                        ostr+="</div>";
-                        ostr+="</div>";
-                        ostr+="<div class='dt1_cont fLeft bNone w40'>";
-                        ostr+="<div class='prdInfo fLeft brdN w100 mTop10'>";
-                        ostr+="<div class='fieldTitle fLeft fmOpenR brdN'>";
-                        ostr+="<div class='w50 fLeft c4d padR15 fmOpenB'>Order Status<span class='fRight'>:</span></div>";
-                        
-                        var ostatus="";
-                        if(vl.ostatus==0)
-                            ostatus="Order Placed";
 
-                        else if(vl.ostatus==1)
-                            ostatus="Approved";
+                        ostr += "<div class='orderComm fLeft'>";
+                        ostr += "<div class='prdInfo fLeft brdN w10'>";
+                        ostr += "<div class='fLeft pictr' style='background:url(" + imgpath + ")no-repeat;background-size:auto 50%;background-position:center;'></div>";
+                        ostr += "</div>";
+                        ostr += "<div class='boxCont fLeft brdN'>";
+                        ostr += "<div class='prdInfo fLeft brdN w100'>";
+                        ostr += "<div class='fieldTitle  fLeft fmOpenR brdN'>";
+                        ostr += "<div class='fields fLeft fmOpenB'>Product Name<span class='fRight padR'>:</span></div>";
+                        ostr += "<div class='fields fRight'>" + vl.pname + "</div>";
+                        ostr += "</div>";
+                        ostr += "<div class='fieldTitle fLeft fmOpenR brdN'>";
+                        ostr += "<div class='fields fLeft fmOpenB'>Product Id <span class='fRight padR'>:</span></div>";
+                        ostr += "<div class='fields fRight '>" + vl.pid + "</div>";
+                        ostr += "</div>";
+                        ostr += "<div class='fieldTitle fLeft fmOpenR brdN'>";
+                        ostr += "<div class='fields fLeft fmOpenB'>Price <span class='fRight padR'>:</span></div>";
+                        ostr += "<div class='fields fRight '>&#8377; " + vl.price + "</div>";
+                        ostr += "</div>";
+                        ostr += "</div>";
+                        ostr += "</div>";
+                        ostr += "<div class='boxCont fLeft brdN'>";
+                        ostr += "<div class='prdInfo fLeft brdN w100'>";
+                        ostr += "<div class='fieldTitle fLeft fmOpenR brdN'>";
+                        ostr += "<div class='fLeft fields fmOpenB'>Order Status<span class='fRight padR'>:</span></div>";
 
-                        else if(vl.ostatus==2)
-                            ostatus="Getting Manufactured";
+                        var ostatus = "";
+                        if (vl.ostatus == 0)
+                            ostatus = "Order Placed";
 
-                        else if(vl.ostatus==3)
-                            ostatus="in QC ";
+                        else if (vl.ostatus == 1)
+                            ostatus = "Approved";
 
-                        else if(vl.ostatus==4)
-                            ostatus="In Certification ";
+                        else if (vl.ostatus == 2)
+                            ostatus = "Getting Manufactured";
 
-                        else if(vl.ostatus==5)
-                            ostatus="Shipped";
+                        else if (vl.ostatus == 3)
+                            ostatus = "in QC ";
 
-                        else if(vl.ostatus==6)
-                            ostatus="Delivered";
+                        else if (vl.ostatus == 4)
+                            ostatus = "In Certification ";
 
-                        else if(vl.ostatus==7)
-                            ostatus="Not Delivered";
+                        else if (vl.ostatus == 5)
+                            ostatus = "Shipped";
 
-                        else if(vl.ostatus==8)
-                            ostatus="Rescheduled";
+                        else if (vl.ostatus == 6)
+                            ostatus = "Delivered";
 
-                        else 
-                            ostatus="Cancelled";
-                        
-                        ostr+="<div class='w50 fRight'>"+ostatus+"</div>";
-                        ostr+="</div>";
-                        
-                        
-                        var odate=vl.odate.split("|")
-                        var ddate=vl.ddate.split("|")
-                        
-                        ostr+="<div class='fieldTitle fLeft fmOpenR brdN'>";
-                        ostr+="<div class='w50 fLeft c4d padR15 fmOpenB'>Order Date<span class='fRight'>:</span></div>";
-                        ostr+="<div class='w50 fRight'>"+odate[0]+"</div>";
-                        ostr+="</div>";
-                        
-                        ostr+="<div class='fieldTitle fLeft fmOpenR brdN'>";
-                        ostr+="<div class='w50 fLeft c4d padR15 fmOpenB'>Delivery Date<span class='fRight'>:</span></div>";
-                        ostr+="<div class='w50 fRight'>"+ddate[0]+"</div>";
-                        ostr+="</div>";
-                        ostr+="</div>";
-                        ostr+="</div>";
-                        ostr+="<a href='" + DOMAIN + "backend/index.php?action=ord_detail&orderid=" + vl.oid + "'><div class='logoutBtn fLeft fmOpenR font13'>View Order Details</div></a>";
-                        ostr+="</div>";
-                        
-                        if(vl.ostatus<6)
+                        else if (vl.ostatus == 7)
+                            ostatus = "Not Delivered";
+
+                        else if (vl.ostatus == 8)
+                            ostatus = "Rescheduled";
+
+                        else
+                            ostatus = "Cancelled";
+
+                        ostr += "<div class='fields fRight'>" + ostatus + "</div>";
+                        ostr += "</div>";
+
+
+                        var odate = vl.odate.split("|")
+                        var ddate = vl.ddate.split("|")
+
+                        ostr += "<div class='fieldTitle fLeft fmOpenR brdN'>";
+                        ostr += "<div class='fields fLeft fmOpenB'>Order Date<span class='fRight padR'>:</span></div>";
+                        ostr += "<div class='fields fRight '>" + odate[0] + "</div>";
+                        ostr += "</div>";
+
+                        ostr += "<div class='fieldTitle fLeft fmOpenR brdN'>";
+                        ostr += "<div class='fields fLeft fmOpenB'>Delivery Date<span class='fRight padR'>:</span></div>";
+                        ostr += "<div class='fields fRight'>" + ddate[0] + "</div>";
+                        ostr += "</div>";
+                        ostr += "</div>";
+                        ostr += "</div>";
+                        ostr += "<a href='" + DOMAIN + "backend/index.php?action=ord_detail&orderid=" + vl.oid + "'><div class='logoutBtn fLeft fmOpenR font13'>View Order Details</div></a>";
+                        ostr += "</div>";
+
+                        if (vl.ostatus < 6)
                         {
                             $('#forCurrOrders').append(ostr);
                             currCnt++;
-                        }
-                        else
+                        } else
                         {
                             $('#forPastOrders').append(ostr);
                             pastCnt++;
                         }
-                        
+
                         $('#currCnt').text(currCnt);
                         $('#pastCnt').text(pastCnt);
-                        
+
                     });
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                }
-                else
+
+                } else
                 {
                     common.toast(0, 'Error in fetching data');
                     //hideLoader();
                 }
-                
+
             }
-            
+
 
         </script>
-    </body>
+</body>
 </html>
