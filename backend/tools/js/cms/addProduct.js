@@ -2066,15 +2066,18 @@ function validateForm()
         }
 
     }
-
-    if ($('[name=size]:checked').length == 0)
+    
+    if($('[name=size]').length>0)
     {
-        common.toast(0, "Select Product Size");
-        $('[name=size]').focus();
-        var id=$('[name=size]').eq(0).attr('id');
-        highlight(id,1);
-        isValid=false;
-        return false;
+        if ($('[name=size]:checked').length == 0)
+        {
+            common.toast(0, "Select Product Size");
+            $('[name=size]').focus();
+            var id=$('[name=size]').eq(0).attr('id');
+            highlight(id,1);
+            isValid=false;
+            return false;
+        }
     }
 
     /*if ($('[name=size]:checked').length > 0)
