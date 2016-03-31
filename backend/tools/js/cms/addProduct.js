@@ -2383,7 +2383,7 @@ function goldPrice()
     str += "<li id='goldPrice'>";
     str += "<div class='forComponent fLeft pl15'>" + sstr + "</div>";
     str += "<div class='forRate fLeft' id='goldRate1'>" + crPrice + "/ct</div>";
-    str += "<div class='forWeight fLeft' id='goldWeight1' data-weight='" + carat + "'>" + carat + " ct</div>";
+    str += "<div class='forWeight fLeft' id='goldWeight1' data-weight='" + carat + "'>" + carat + " grm(s)</div>";
     str += "<div class='forPrice calc fLeft' id='totalgoldRate1'>&#8377;" + total + "</div>";
     str += "</li>";
 

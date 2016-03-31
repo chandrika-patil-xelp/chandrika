@@ -22,6 +22,7 @@ else
 	define('IMGDOMAIN','http://'.$_SERVER['HTTP_HOST'].'/jzeva/backend/image-upload/');
 
 	$db['jzeva'] = array('localhost','root','','db_jzeva_shubham');
+	
 }
 
 define('BTEMPLATE',BACKWEBROOT.'template/');
