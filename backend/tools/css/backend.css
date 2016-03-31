@@ -928,3 +928,7 @@ a{cursor:pointer;}
 .resetPsw{background:#2F665C url(../img/wresetpswrd.svg)no-repeat;background-size: auto 70%;background-position: 140% center;margin:4px 10px 0px 0px;width: auto;height: 34px;line-height: 34px;padding: 0 35px;color: #fff;font-size: 13px;border-radius: 2px;cursor: pointer;}
 .resetPsw:hover{background-position: 95% center;}
 .customer .lwSpan{color: #2A6869;}
+.prevSoltr{}
+.prevSoltr .shapeComm{width:90px!important;padding-bottom: 90px;}
+.prevSoltr .commCont{padding-left:100px!important;}
+.prevSoltr .fieldTitle{width:31%;margin: 0px 7px;}
