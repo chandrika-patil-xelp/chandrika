@@ -56,10 +56,11 @@ class product extends DB {
         {
 
             $sizeparams = array('productid' => $params['productid'], 'updatedby' => $userid, 'sizes' => $params['sizes']);
-            $sizeres = $this->addProductSizeMApping($sizeparams);
+            if(sizeof($params['sizes']))
+                $sizeres = $this->addProductSizeMApping($sizeparams);
 
-            if ($sizeres['error']['err_code'] == '0')
-            {
+            //if ($sizeres['error']['err_code'] == '0')
+            //{
 
                 #Product Metal Purity Mapping
                 $mprLen = sizeof($params['mpurity']);
@@ -177,14 +178,14 @@ class product extends DB {
                     $results = array('result' => $result, 'error' => $err);
                     return $results;
                 }
-            }
-            else
-            {
-                $result = array();
-                $err = array('err_code' => 1, 'err_msg' => 'Error in adding product sizes');
-                $results = array('result' => $result, 'error' => $err);
-                return $results;
-            }
+            //}
+//            else
+//            {
+//                $result = array();
+//                $err = array('err_code' => 1, 'err_msg' => 'Error in adding product sizes');
+//                $results = array('result' => $result, 'error' => $err);
+//                return $results;
+//            }
         }
         else
         {
