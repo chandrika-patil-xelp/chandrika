@@ -398,12 +398,12 @@ function metalcolorCalllBack(data)
         $.each(data.result, function(i, v) {
             str1 += "<div class='checkDiv fLeft'>";
             str1 += "<input type='checkbox' name='gcolorCustomize' class='filled-in' value='" + v.id + "' id='mcolor_" + v.id + "'>";
-            str1 += "<label for='mcolor_" + v.id + "'>" + v.name + "</label>";
+            str1 += "<label for='mcolor_" + v.id + "'>" + v.value + "</label>";
             str1 += "</div>";
 
             str2 += "<div class='checkDiv fLeft'>";
             str2 += "<input type='radio' name='gcolorNotCustomize' class='filled-in' value='" + v.id + "' id='mcolor_Radio_" + v.id + "'>";
-            str2 += "<label for='mcolor_Radio_" + v.id + "'>" + v.name + "</label>";
+            str2 += "<label for='mcolor_Radio_" + v.id + "'>" + v.value + "</label>";
             str2 += "</div>";
 
         });

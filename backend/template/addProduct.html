@@ -348,7 +348,7 @@
                             <div class="w50 fLeft c4d padR15 fmOpenR">Metal color</div>
                             <div class="w50 fRight txtCap fmOpenB txtRight" id='prmetalcolor'></div>
                         </div>
-                        <div class="fieldTitle fLeft ">
+                        <div class="fieldTitle fLeft dn" id='forSelectedSize'>
                             <div class="w50 fLeft c4d padR15 fmOpenR">Selected Size</div>
                             <div class="w50 fRight txtCap fmOpenB txtRight" id='prsize'></div>
                         </div>
@@ -499,16 +499,21 @@
                             $('#prmetalpurity').text(mpurity.toString());
                             $('#prmetalcolor').text(mcolor.toString());
                             
-                            var selsize='';
                             
-                            $("input[name='size']").each(function(){
-                                if ($(this).is(':CHECKED'))
-                                {
-                                    selsize=$(this).next('label').text();
-                                }
+                            if($('[name=size]').length>0)
+                            {
                                 
-                            });
-                            $('#prsize').text(selsize);
+                                var selsize='';
+                                $("input[name='size']").each(function(){
+                                    if ($(this).is(':CHECKED'))
+                                    {
+                                        selsize=$(this).next('label').text();
+                                    }
+
+                                });
+                                $('#prsize').text(selsize);
+                                $('#forSelectedSize').removeClass('dn');
+                            }
                             
                             var catstr = "";
                             $(catid).each(function (i) {
@@ -769,10 +774,6 @@
 $(document).ready(function( ) {
         bindTree();
         
-//        $('.tree ul:first > li').eq(0).each(function() {
-//            $(this).toggleClass('active');
-//            $(this).children('ul').slideToggle('fast');
-//        });
     });
     
     
@@ -797,6 +798,12 @@ $(document).ready(function( ) {
                 }
 			
         });
+        
+        $('.tree ul:first > li').eq(0).each(function() {
+            $(this).toggleClass('active');
+            $(this).children('ul').slideToggle('fast');
+        });
+
                 
     }
     
