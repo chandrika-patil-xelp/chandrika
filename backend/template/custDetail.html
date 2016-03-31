@@ -31,6 +31,9 @@
                 <div class="main brdN" id='forPastOrders'>
                     <div class="aHead font20 fmOpenR fLeft"><span id='pastCnt'>0</span>&nbsp;Past Orders</div>
                 </div>
+                <div class="noresDiv fLeft" id="noresults">
+                    <div class="noresults font25 fLeft">No order details found</div>
+                </div>
             </div>
         </div>
         <script type="text/javascript">
@@ -194,11 +197,26 @@
                             $('#forPastOrders').append(ostr);
                             pastCnt++;
                         }
+                    });
+                    
+                        if(currCnt==0)
+                            $('#forCurrOrders').addClass('dn');
 
+                        if(pastCnt==0)
+                            $('#forPastOrders').addClass('dn');
+                        
+                        
+                        if((currCnt>0) || (pastCnt>0))
+                            $('#noresults').addClass('dn');
+
+                        if((currCnt==0) && (pastCnt==0))
+                            $('#noresults').removeClass('dn');
+
+                        
+                        
+                            
                         $('#currCnt').text(currCnt);
                         $('#pastCnt').text(pastCnt);
-
-                    });
 
                 } else
                 {
