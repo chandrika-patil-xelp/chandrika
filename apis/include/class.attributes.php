@@ -105,7 +105,8 @@ class attributes extends DB
     public function getMappedCatg($aid)
     {
         global $db;
-        $sql="SELECT catid FROM tbl_category_attribute_mapping WHERE attributeid=".$aid."";
+        //$sql="SELECT catid AS ctid FROM tbl_category_attribute_mapping WHERE attributeid=".$aid."";
+        $sql="SELECT catid AS ctid,(SELECT active_flag FROM `tbl_category_master` WHERE catid=ctid)  AS catFlag FROM tbl_category_attribute_mapping WHERE attributeid=".$aid." HAVING catFlag=1";
         $res = $this->query($sql);        
         if($res)
         {
@@ -114,7 +115,7 @@ class attributes extends DB
             $catg=array();
             while ($row = $this->fetchData($res))
             {
-                $cparams= array('catid'=>$row['catid']);
+                $cparams= array('catid'=>$row['ctid']);
                 $cres=$catobj->getCategoryDetails($cparams);
                 $name=$cres['result']['category']['name'];
                 array_push($catg, $name);

@@ -1,53 +1,116 @@
-<!DOCTYPE html>
 <?php include 'jBhead.html' ?>
-<body>
-    <div class="container customer">
-        <?php include 'jBheader.html' ?>
-        <div class="contents fLeft">
-            <div class="wrapperMax">
-                <div class="couponCont fLeft">
-                    <div class="prdSearchDiv fLeft fmOpenR">
-                        <input type="text"  autocomplete="off" class="prdSeachTxt fRight fmOpenR" placeholder=" Search customer">
+    <body>
+        <div class="container customer">
+            <?php include 'jBheader.html' ?>
+            <div class="contents fLeft">
+                <div class="wrapperMax">
+                    <div class="couponCont fLeft">
+                        <div class="prdSearchDiv fLeft fmOpenR">
+                            <input type="text"  autocomplete="off" class="prdSeachTxt fRight fmOpenR" placeholder=" Search customer">
+                        </div>
+                        <div class="cpListHeader fLeft fmOpenB">
+                            <div class="date fLeft">Name</div>
+                            <div class="prdName fLeft">E-mail Id </div>
+                            <div class="prdName fLeft">Current Orders</div>
+                            <div class="prdImg fLeft">Past Orders </div>
+                            <div class="acct fLeft"></div>
+                        </div>
+                        <ul class="couponList fLeft fmOpenR" id='users'></ul>
+                        <div class="noresDiv fLeft" id="noresults">
+                            <div class="noresults font25 fLeft">No records found</div>
+                        </div>
                     </div>
-                    <div class="cpListHeader fLeft fmOpenB">
-                        <div class="date fLeft">Name</div>
-                        <div class="prdName fLeft">E-mail Id </div>
-                        <div class="prdName fLeft">Current Orders</div>
-                        <div class="prdImg fLeft">Past Orders </div>
-                        <div class="acct fLeft"></div>
-                    </div>
-                    <ul class="couponList fLeft fmOpenR">
-                        <li>
-                            <div class=" date fLeft  ">
-                                <span class="upSpan fmOpenB">Ankur Gala</span>
-                                <span class="lwSpan">9876543210</span>
-                            </div>
-                            <div class=" date fLeft ">Ankurgala@xelpmoc.in</div>
-                            <div class=" prdName fLeft ">1</div>
-                            <div class=" prdImg fLeft ">2</div>
-                            <div class=" acct fLeft ">
-                                <div class="fRight viewM transition300"></div>
-                                <div class="fRight fmOpenR transition300 resetPsw">Reset</div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class=" date fLeft fmOpenB ">
-                                <span class="upSpan fmOpenB">Ankur Gala</span>
-                                <span class="lwSpan">9876543210</span>
-                            </div>
-                            <div class=" date fLeft ">Ankurgala@xelpmoc.in</div>
-                            <div class=" prdName fLeft ">2</div>
-                            <div class=" prdImg fLeft ">2</div>
-                            <div class="  acct fLeft">
-                                <div class="fRight viewM transition300"></div>
-                                <div class="fRight fmOpenR transition300 resetPsw">Reset</div>
-                            </div>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>
-    </div>
-</body>
+        <div class="overlay dn"></div>
+        <div class="loader dn"></div>
+        
+        <?php include 'loader.html';?>
+        <script>
+            $(document).ready(function(){
+                common.showLoader();
+                getUserList();
+                
+                
+                
+                $('.prdSeachTxt').bind('keyup', function() {
+                    var total=$("li").size();
+                    var dncnt=0;
+                    
+                    $("li").each(function() {
+                        if ($(this).html().toLowerCase().search(_this.val().toLowerCase()) < 0) {
+                            $(this).addClass('dn');
+                            dncnt++;
+                        }
+                        else {
+                        $(this).removeClass('dn');
+                        }
+                    });
+                });
+            });
+            
+            
+            function getUserList()
+            {
+                
+                $.ajax({
+                    url:APIDOMAIN+"index.php?action=getUserList",
+                    type:'POST',
+                    success:function(res){
+                        res=JSON.parse(res);
+                        userListCallBack(res);
+                    }
+                });
+                
+            }
+        
+            function userListCallBack(data)
+            {
+                var str="";
+                
+                if(data["error"]["err_code"]==0)
+                {
+                    $(data['result']).each(function(i,v){
+                        
+                        str+="<li>";
+                        str+="<div class=' date fLeft  '>";
+                        str+="<span class='upSpan fmOpenB'>"+v.name+"</span>";
+                        str+="<span class='lwSpan'>"+v.mb+"</span>";
+                        str+="</div>";
+                        str+="<div class=' date fLeft '>"+v.em+"</div>";
+                        str+="<div class=' prdName fLeft '>"+v.openOrd+"</div>";
+                        str+="<div class=' prdImg fLeft '>"+v.pastOrd+"</div>";
+                        str+="<div class=' acct fLeft '>";
+                        str+= "<a href='" + DOMAIN + "backend/index.php?action=customer&uid=" + v.uid + "'><div class='fRight viewM transition300'></div></a>";
+                        str+="<div class='fRight fmOpenR transition300 resetPsw' onclick=\"sendResetLink('"+v.uid+"')\">Reset</div>";
+                        str+="</div>";
+                        str+="</li>";
+                    });
+                    
+                    
+                    
+                    $('#users').append(str);
+                    if(str.length>0)
+                        $('#noresults').addClass('dn');
+                    else
+                        $('#noresults').removeClass('dn');
+                    common.hideLoader();
+                    
+                }
+                else
+                {
+                    common.toast(0,"Error in fetching data");
+                
+                }
+            }
+            
+            function sendResetLink(uid){
+                common.toast(1,"Password reset link sent to user");
+            }
+            
+            
+        
+        </script>
+    </body>
 </html>
-

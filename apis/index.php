@@ -460,6 +460,12 @@ switch($action)
         $res	=$obj->geOrderList();
     break;
 
+    case 'getUserList':
+        include APICLUDE.'class.user.php';
+        $obj	= new user($db['jzeva']);
+        $res	=$obj->getUserList();
+    break;
+
 
 }
 echo json_encode($res);

@@ -520,7 +520,7 @@ section .breakLine:last-child{display: none;}
 
 .commonList li .attrName{padding-left: 15px;font-family: openB;}
 .commonList li .attrType{padding-left: 15px;text-align: center}
-.commonList li .attrMapp{padding:0 15px;}
+.commonList li .attrMapp{padding:0 15px;text-transform: capitalize;}
 .commonList li .attrUnit{text-align: center}
 .commonList li .cattrAct{}
 

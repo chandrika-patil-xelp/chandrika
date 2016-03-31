@@ -119,13 +119,21 @@ function Common() {
     this.moveDown = function()
     {
         $('body,html').animate({scrollTop:$(document).height()},300,"swing");
-    }
+    };
 
     this.moveUp = function()
     {
         $('body,html').animate({scrollTop:0},300,"swing");
-    }
+    };
     
-    
+    this.showLoader = function ()
+    {
+        $('.overlay,.loader').removeClass('dn');
+    };
+
+    this.hideLoader = function ()
+    {
+        $('.overlay,.loader').addClass('dn');
+    };
     
 }

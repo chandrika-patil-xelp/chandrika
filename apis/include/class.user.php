@@ -316,6 +316,35 @@
             $results = array('result' => $result, 'error' => $err);
             return $results;
         }
+        
+        
+        public function getUserList()
+        {
+            
+            $sql="SELECT user_id as uid,user_name as name, logmobile as mb,email as em,address as address , (SELECT count(order_id)  FROM tbl_order_master WHERE  user_id= uid  AND order_status < 6) AS openOrd ,(SELECT count(order_id)  FROM tbl_order_master WHERE  user_id= uid  AND order_status = 6) AS pastOrd  FROM tbl_user_master";
+            $res=$this->query($sql);
+            
+            if($res)
+            {
+                $i=0;
+                while($row=$this->fetchData($res))
+                {  
+                    $result[]=$row;
+                    $result[$i]['address']= mb_convert_encoding($row['address'], "UTF-8");
+                    $i++;    
+                    
+                } 
+                $err = array('err_code' => 0, 'err_msg' => 'Data fetched successfully');
+            } 
+            else 
+            {
+                $err = array('err_code' => 1, 'err_msg' => 'Error in fetching data');
+            }
+            $results = array('result' => $result, 'error' => $err);
+            return $results;          
+            
+            
+        }
             
             
     }

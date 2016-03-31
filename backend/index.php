@@ -181,7 +181,7 @@ switch ($action) {
         break;
     case 'customerList':
         $page = 'customerList';
-        $tab = 'customerList';
+        $tab = 'customer';
         include BTEMPLATE.'customer.html';
         break;
 }
