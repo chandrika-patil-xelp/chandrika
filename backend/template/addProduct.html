@@ -799,10 +799,13 @@ $(document).ready(function( ) {
 			
         });
         
-        $('.tree ul:first > li').eq(0).each(function() {
-            $(this).toggleClass('active');
-            $(this).children('ul').slideToggle('fast');
-        });
+        if(edit==0)
+        {
+            $('.tree ul:first > li').eq(0).each(function() {
+                $(this).toggleClass('active');
+                $(this).children('ul').slideToggle('fast');
+            });
+        }
 
                 
     }
