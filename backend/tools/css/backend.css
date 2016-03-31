@@ -720,7 +720,7 @@ li .prdViewImgBtn{}
 .ordersPage .commTitle2{width: auto;text-align: left;}
 .dateTo{width: 35px;line-height: 35px;}
 .ordersPage .prdSeachTxt{width: 150px;border-radius: 2px;}
-.hasDatepicker{width: 260px !important;height: auto;position: absolute;z-index: 111;font-family: robotoC;box-shadow: 5px 5px 20px 0 rgba(0,0,0,0.3);-webkit-box-shadow: 5px 5px 20px 0 rgba(0,0,0,0.3);}
+/*.hasDatepicker{width: 260px !important;height: auto;position: absolute;z-index: 111;font-family: robotoC;box-shadow: 5px 5px 20px 0 rgba(0,0,0,0.3);-webkit-box-shadow: 5px 5px 20px 0 rgba(0,0,0,0.3);}*/
 .ordersPage .date{width:14%;text-align: center;}
 .ordersPage .stockCode{width:18%;}
 .ordersPage .prdName{width:16%;text-align: center;}
