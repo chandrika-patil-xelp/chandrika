@@ -27,6 +27,9 @@ class product extends DB {
     {
         $params= (json_decode($params[0],1));
         
+        #echo "<pre>";print_r($params);die;
+        
+        
         if(!$params['productid'])
         {
             $pid = $this->generateId();
@@ -37,11 +40,15 @@ class product extends DB {
 
         $userid = $params['userid'];
 
-        #echo "<pre>";print_r($params);  echo "</pre>";#die
+        
 
 
         #ADDING CATEGORY MAPPING FOR CURRENT PRODUCT
-
+        
+        $tmpattrparams = array('attrvalues' => $params['filterAttrs'], 'userid' => $userid, 'pid' => $params['productid']);
+        $attrres = $this->addPrdAtributeValuesMapping($tmpattrparams);
+        
+        
         $catids = explode(",", $params['catid']);
         $tmpcatparams = array('catid' => $params['catid'], 'userid' => $userid, 'pid' => $params['productid']);
         $catres = $this->addCatProductMapping($tmpcatparams);
@@ -53,8 +60,6 @@ class product extends DB {
 
             if ($sizeres['error']['err_code'] == '0')
             {
-
-
 
                 #Product Metal Purity Mapping
                 $mprLen = sizeof($params['mpurity']);
@@ -197,6 +202,58 @@ class product extends DB {
 
     }
 
+    
+    public function addPrdAtributeValuesMapping($params)
+    {
+        $delsql="DELETE FROM tbl_product_attributes_mapping where productid='".$params['pid']."'";
+        $res = $this->query($delsql);
+        
+        $sql="INSERT INTO tbl_product_attributes_mapping (productid,attributeid,value,createdon,updatedby) VALUES ";
+                
+            foreach ($params['attrvalues'] as $key=>$val)
+            {
+                $val=  urldecode($val);
+                $tmpparams = array('attributeid' => $key, 'userid' => $params['userid'], 'pid' => $params['pid']);
+                $sql.="('" . $params['pid'] . "'," . $tmpparams['attributeid'] . ",'" . $val . "',now()," . $tmpparams['userid'] . "),";
+                
+                
+            }
+        $sql = trim($sql, ",");
+        
+        $res = $this->query($sql);
+        $result = array();
+        if ($res) {
+            $err = array('err_code' => 0, 'err_msg' => 'Data inserted successfully');
+        } else {
+            $err = array('err_code' => 1, 'err_msg' => 'Error in inserting');
+        }
+        $results = array('result' => $result, 'error' => $err);
+        return $results;
+        
+    }
+    
+    public function getPrdAtributeValues($pid){
+        $sql="SELECT attributeid as attid ,value  from tbl_product_attributes_mapping WHERE productid = '".$pid."'";
+        $res=$this->query($sql);
+        
+        if($res)
+        {
+            while($row=$this->fetchData($res))
+            {
+                $reslt[]=$row;
+                
+            }
+            $err = array('err_code' => 0, 'err_msg' => 'Data fetched successfully');
+        } else {
+            $err = array('err_code' => 1, 'err_msg' => 'Error in fetching');
+        }
+        $results = array('result' => $reslt, 'error' => $err);
+        return $results;
+        
+    }
+    
+    
+    
     public function addCatProductMapping($params)
     {
 
@@ -835,8 +892,6 @@ class product extends DB {
         return $results;
     }
 
-
-
     public function getGemstoneList() {
 
         $sql = "SELECT id,gemstone_name,description FROM tbl_gemstone_master";
@@ -862,7 +917,6 @@ class product extends DB {
         $results = array('result' => $result, 'error' => $err);
         return $results;
     }
-
 
     public function getSizeListByCat($params)
     {
@@ -972,7 +1026,9 @@ class product extends DB {
                 $discount = $this->getProductDiscount($params);
                 $dimond = $this->getProductDiamond($params);
                 $catAttr = $this->getCatMap($params);
+                $attrVals = $this->getPrdAtributeValues($row['productid']);
                 $imageDtl = $this->getImagesByPid(array('pid' => $row['productid']));
+                
                 // $sizeMaster = $this->getProductSizeMaster($params);
 
                 $result = array(
@@ -987,6 +1043,7 @@ class product extends DB {
                     'discount' => $discount,
                     'dimond' => $dimond,
                     'catAttr' => $catAttr,
+                    'attrVals' => $attrVals,
                     'images' =>$imageDtl
 
                 );
@@ -1567,13 +1624,13 @@ class product extends DB {
         }
     }
 
-
     public function pageList($params) {
         global $comm;
         try {
             $sql = "SELECT
                             productid,
                             createdon,
+                            updatedon,
                             product_code,
                             metal_weight,
                             product_seo_name seo,
@@ -1595,7 +1652,7 @@ class product extends DB {
                                 product_name,
                             product_seo_name) AS prdName
                             FROM
-                                tbl_product_master ORDER BY updatedon DESC";
+                                tbl_product_master ORDER BY createdon DESC";
 
 /*  Limit is removed for some time till pagination module is done
  *

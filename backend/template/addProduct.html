@@ -1,7 +1,4 @@
-<?php
-echo "<script>var edit=$edit; var pid= '$pid';</script>";
-?>
-
+<?php echo "<script>var edit=$edit; var pid= '$pid';</script>";?>
 <?php include 'jBhead.html' ?>
 <body>
     <div class="container addProduct ">
@@ -35,7 +32,7 @@ echo "<script>var edit=$edit; var pid= '$pid';</script>";
                     </div>
 
                     <div class="divCon2 fLeft">
-                        <div class="titleDiv txtCap fLeft">Product Weight in Grms*</div>
+                        <div class="titleDiv txtCap fLeft">Product Weight <span class="txtLower">in gm(s)*</span></div>
                         <input name="" type="text" id="product_weight" autocomplete="false"  placeholder="Enter product weight" class="txtInput fLeft fmOpenR font14 c666" onkeypress="return common.isDecimalKey(event, this.value);">
                     </div>
                     <div class="divCon2 fRight">
@@ -188,11 +185,11 @@ echo "<script>var edit=$edit; var pid= '$pid';</script>";
                         </div>
                     </div>    
                     <div class="divCon2 fLeft forInp">
-                        <div class="titleDiv txtCap fLeft">Metal Weight (grm)*</div>
+                        <div class="titleDiv txtCap fLeft">Metal Weight <span class="txtLower">gm(s)*</span></div>
                         <input name="" type="text" id="metal_weight" autocomplete="false" placeholder="Enter gold weight" class="txtInput fLeft fmOpenR font14 c666" onkeypress="return common.isDecimalKey(event, this.value);">
                     </div>
                     <div class="divCon2 fLeft forInp">
-                        <div class="titleDiv txtCap fLeft">Making Charges / grm*</div>
+                        <div class="titleDiv txtCap fLeft">Making Charges / <span class="txtLower">gm(s)*</span></div>
                         <input name="" type="text" id="making_charges" autocomplete="false" placeholder="Enter making charges" class="txtInput fLeft fmOpenR font14 c666" onkeypress="return common.isDecimalKey(event, this.value);">
                     </div>
                     <div class="divCon2 fLeft forInp">
@@ -274,123 +271,130 @@ echo "<script>var edit=$edit; var pid= '$pid';</script>";
 
         <div class="forScrollBtn op01" onclick="moveUp()"></div>
         <div class="forScrollBtn op01 forScDown" onclick="moveDown()"></div>
-        <div class="overlay dn1"></div>
+        <div class="overlay dn"></div>
         <div class="loader dn"></div>
     </div>
 
     <!--PREVIEW SECTION-->
     <div class="previewContainer preview dn" id='previewDiv'>
         <div class="wrapperMax fmOpenR">
-            <section id='general_Section' class="generalCont">
-                <div class="commTitle1 fmOpenR">General Information</div>
-                <div class=" fLeft dtl">
-                    <div class="fieldTitle fLeft">
-                        <div class="w50 fLeft c4d padR15 fmOpenR">Product Name </div>
-                        <div class="w50 fRight fmOpenB txtRight" id='prproduct_name'></div>
-                    </div>
-                    <div class="fieldTitle fLeft">
-                        <div class="w50 fLeft c4d padR15 fmOpenR">Product SEO Name </div>
-                        <div class="w50 fRight fmOpenB txtRight" id='prproduct_seo_name'></div>
-                    </div>
-                    <!--                </div>-->
-                    <!--                <div class=" fRight dtl">
-                                        <div class="fieldTitle fLeft ">
-                                            <div class="w50 fLeft c4d padR15 fmOpenR">Category </div>
-                                            <div class="w50 fRight txtCap fmOpenB txtRight" id='prcategories'></div>
-                                        </div>
-                                        <div class="fieldTitle fLeft ">
-                                            <div class="w50 fLeft c4d padR15 fmOpenR">Vendor </div>
-                                            <div class="w50 fRight fmOpenB txtRight" id='prvendorid'></div>
-                                        </div>
-                                    </div>-->
-                    <!--                <div class="breakLine"></div>-->
-                    <!--                <div class=" fLeft dtl">-->
-                    <div class="fieldTitle fLeft ">
-                        <div class="w50 fLeft c4d padR15 fmOpenR">Product Weight (grms) </div>
-                        <div class="w50 fRight fmOpenB txtRight" id='prproduct_weight'></div>
-                    </div>
+            <div class="previewLeft fLeft">
+            
+                <section id='general_Section' class="generalCont">
+                    <div class="commTitle1 fmOpenR">General Information</div>
+                    <div class=" fLeft dtl">
+                        <div class="fieldTitle fLeft">
+                            <div class="w50 fLeft c4d padR15 fmOpenR">Product Name </div>
+                            <div class="w50 fRight fmOpenB txtRight" id='prproduct_name'></div>
+                        </div>
+                        <div class="fieldTitle fLeft">
+                            <div class="w50 fLeft c4d padR15 fmOpenR">Product SEO Name </div>
+                            <div class="w50 fRight fmOpenB txtRight" id='prproduct_seo_name'></div>
+                        </div>
 
-                    <div class="fieldTitle fLeft ">
-                        <div class="w50 fLeft c4d padR15 fmOpenR">Gender </div>
-                        <div class="w50 fRight fmOpenB txtRight" id='prgender'></div>
-                    </div>
+                        <div class="fieldTitle fLeft ">
+                            <div class="w50 fLeft c4d padR15 fmOpenR">Product Weight (grms) </div>
+                            <div class="w50 fRight fmOpenB txtRight" id='prproduct_weight'></div>
+                        </div>
 
-                    <div class="fieldTitle fLeft ">
-                        <div class="w50 fLeft c4d padR15 fmOpenR">Diamond Setting Type </div>
-                        <div class="w50 fRight fmOpenB txtRight" id='prdmdSetting'></div>
+                        <div class="fieldTitle fLeft ">
+                            <div class="w50 fLeft c4d padR15 fmOpenR">Gender </div>
+                            <div class="w50 fRight fmOpenB txtRight" id='prgender'></div>
+                        </div>
+
+                        <div class="fieldTitle fLeft ">
+                            <div class="w50 fLeft c4d padR15 fmOpenR">Diamond Setting Type </div>
+                            <div class="w50 fRight fmOpenB txtRight" id='prdmdSetting'></div>
+                        </div>
+                        <div class="fieldTitle fLeft ">
+                            <div class="w50 fLeft c4d padR15 fmOpenR">Product Certificate </div>
+                            <div class="w50 fRight fmOpenB txtRight" id='prcertificate'></div>
+                        </div>
+                        <div class="fieldTitle fLeft ">
+                            <div class="w50 fLeft c4d padR15 fmOpenR">Metal Weight(Grm)</div>
+                            <div class="w50 fRight fmOpenB txtRight" id='prmetal_weight'></div>
+                        </div>
+                        <div class="fieldTitle fLeft ">
+                            <div class="w50 fLeft c4d padR15 fmOpenR">Making Charges/Grm</div>
+                            <div class="w50 fRight fmOpenB txtRight" id='prmaking_charges'></div>
+                        </div>
                     </div>
-                    <div class="fieldTitle fLeft ">
-                        <div class="w50 fLeft c4d padR15 fmOpenR">Product Certificate </div>
-                        <div class="w50 fRight fmOpenB txtRight" id='prcertificate'></div>
+                    <div class=" fRight dtl">
+                        <div class="fieldTitle fLeft ">
+                            <div class="w50 fLeft c4d padR15 fmOpenR">Category </div>
+                            <div class="w50 fRight txtCap fmOpenB txtRight" id='prcategories'></div>
+                        </div>
+                        <div class="fieldTitle fLeft ">
+                            <div class="w50 fLeft c4d padR15 fmOpenR">Vendor </div>
+                            <div class="w50 fRight fmOpenB txtRight" id='prvendorid'></div>
+                        </div>
+                        <div class="fieldTitle fLeft ">
+                            <div class="w50 fLeft c4d padR15 fmOpenR">Procurement Cost</div>
+                            <div class="w50 fRight fmOpenB txtRight" id='prprocurement_cost'></div>
+                        </div>
+                        <div class="fieldTitle fLeft ">
+                            <div class="w50 fLeft c4d padR15 fmOpenR">Margin</div>
+                            <div class="w50 fRight fmOpenB txtRight" id='prmargin'></div>
+                        </div>
+                        <div class="fieldTitle fLeft ">
+                            <div class="w50 fLeft c4d padR15 fmOpenR">Measurement</div>
+                            <div class="w50 fRight fmOpenB txtRight" id='prmeasurement'></div>
+                        </div>
+                        <div class="fieldTitle fLeft ">
+                            <div class="w50 fLeft c4d padR15 fmOpenR">Metal Purity</div>
+                            <div class="w50 fRight fmOpenB txtRight" id='prmetalpurity'></div>
+                        </div>
+                        <div class="fieldTitle fLeft ">
+                            <div class="w50 fLeft c4d padR15 fmOpenR">Metal color</div>
+                            <div class="w50 fRight txtCap fmOpenB txtRight" id='prmetalcolor'></div>
+                        </div>
+                        <div class="fieldTitle fLeft ">
+                            <div class="w50 fLeft c4d padR15 fmOpenR">Selected Size</div>
+                            <div class="w50 fRight txtCap fmOpenB txtRight" id='prsize'></div>
+                        </div>
                     </div>
-                    <div class="fieldTitle fLeft ">
-                        <div class="w50 fLeft c4d padR15 fmOpenR">Metal Weight(Grm)</div>
-                        <div class="w50 fRight fmOpenB txtRight" id='prmetal_weight'></div>
-                    </div>
-                    <div class="fieldTitle fLeft ">
-                        <div class="w50 fLeft c4d padR15 fmOpenR">Making Charges/Grm</div>
-                        <div class="w50 fRight fmOpenB txtRight" id='prmaking_charges'></div>
+                </section>
+                <section id='prsolitaires_Section' class="solitaireCont dn">
+                    <div class="commTitle1 fmOpenL fLeft">Added Solitaire(s)</div>
+                    <div class="newElements fLeft" id="prnewSolitaires"></div>
+                </section>
+
+                <section id='prdiamond_Section' class="solitaireCont dn">
+                    <div class="commTitle1 fmOpenL fLeft">Added Diamond(s)</div>
+                    <div class="newElements fLeft" id="prnewDiamonds"></div>
+                </section>
+
+                <section id='pruncut_Section' class="solitaireCont dn">
+                    <div class="commTitle1 fmOpenL fLeft">Added Uncut(s)</div>
+                    <div class="newElements fLeft" id="prnewUncut"></div>
+                </section>
+
+                <section id='prgemstone_Section' class="solitaireCont dn">
+                    <div class="commTitle1 fmOpenL fLeft">Added Gemstone(s)</div>
+                    <div class="newElements fLeft" id="prnewgemstone"></div>
+                </section>
+                <section id="prprice_Section" class="priceCont dn">
+                    <div class="priceHeading fmOpenB"><span class="c4d">Grand Total</span><span class="fRight">&#8377 2,00,000</span></div>
+                </section>
+
+            </div>
+            <div class="previewRight fLeft">
+                <div class="catValDiv dn">
+                    <div class="commTitle1 fmOpenL fLeft">Map Product Attribute</div>
+                    <div class="divCon fLeft fmOpenR">
+                        <div class="radioCont fLeft"> 
+                            <div class="treeCont fLeft">
+                                <div class="fLeft">
+                                    <div class="tree transition300"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class=" fRight dtl">
-                    <div class="fieldTitle fLeft ">
-                        <div class="w50 fLeft c4d padR15 fmOpenR">Category </div>
-                        <div class="w50 fRight txtCap fmOpenB txtRight" id='prcategories'></div>
-                    </div>
-                    <div class="fieldTitle fLeft ">
-                        <div class="w50 fLeft c4d padR15 fmOpenR">Vendor </div>
-                        <div class="w50 fRight fmOpenB txtRight" id='prvendorid'></div>
-                    </div>
-                    <div class="fieldTitle fLeft ">
-                        <div class="w50 fLeft c4d padR15 fmOpenR">Procurement Cost</div>
-                        <div class="w50 fRight fmOpenB txtRight" id='prprocurement_cost'></div>
-                    </div>
-                    <div class="fieldTitle fLeft ">
-                        <div class="w50 fLeft c4d padR15 fmOpenR">Margin</div>
-                        <div class="w50 fRight fmOpenB txtRight" id='prmargin'></div>
-                    </div>
-                    <div class="fieldTitle fLeft ">
-                        <div class="w50 fLeft c4d padR15 fmOpenR">Measurement</div>
-                        <div class="w50 fRight fmOpenB txtRight" id='prmeasurement'></div>
-                    </div>
-                    <div class="fieldTitle fLeft ">
-                        <div class="w50 fLeft c4d padR15 fmOpenR">Metal Purity</div>
-                        <div class="w50 fRight fmOpenB txtRight" id='prmetalpurity'></div>
-                    </div>
-                    <div class="fieldTitle fLeft ">
-                        <div class="w50 fLeft c4d padR15 fmOpenR">Metal color</div>
-                        <div class="w50 fRight txtCap fmOpenB txtRight" id='prmetalcolor'></div>
-                    </div>
-                </div>
-            </section>
-
-
-
-            <section id='prsolitaires_Section' class="solitaireCont dn">
-                <div class="commTitle1 fmOpenL fLeft">Added Solitaire(s)</div>
-                <div class="newElements fLeft" id="prnewSolitaires"></div>
-            </section>
-
-
-            <section id='prdiamond_Section' class="solitaireCont dn">
-                <div class="commTitle1 fmOpenL fLeft">Added Diamond(s)</div>
-                <div class="newElements fLeft" id="prnewDiamonds"></div>
-            </section>
-
-
-            <section id='pruncut_Section' class="solitaireCont dn">
-                <div class="commTitle1 fmOpenL fLeft">Added Uncut(s)</div>
-                <div class="newElements fLeft" id="prnewUncut"></div>
-            </section>
-
-            <section id='prgemstone_Section' class="solitaireCont dn">
-                <div class="commTitle1 fmOpenL fLeft">Added Gemstone(s)</div>
-                <div class="newElements fLeft" id="prnewgemstone"></div>
-            </section>
-            <section id="prprice_Section" class="priceCont dn">
-                <div class="priceHeading fmOpenB"><span class="c4d">Grand Total</span><span class="fRight">&#8377 2,00,000</span></div>
-            </section>
-
+                
+                
+                
+            </div>
             <div class="btnCont fLeft">
                 <center>
                     <div class="cancelBtn transition300 fmOpenR poR" onclick="hidePreview()">CANCEL</div>
@@ -401,18 +405,11 @@ echo "<script>var edit=$edit; var pid= '$pid';</script>";
     </div>
     
     <!--Category Value Map-->
-    <div class="catValDiv">
-        <div class="commTitle1 fmOpenL fLeft">Map Category Attribute Values</div>
-        
-        
-        
-        
-        
-    </div>
     
     
     
     <script type="text/javascript" src="<?php echo $jvs['addProduct']; ?>"></script>
+    <script type="text/javascript" src="<?php echo $jvs['nicescroll']; ?>"></script>
 
     <script>
 
@@ -501,9 +498,18 @@ echo "<script>var edit=$edit; var pid= '$pid';</script>";
 
                             $('#prmetalpurity').text(mpurity.toString());
                             $('#prmetalcolor').text(mcolor.toString());
-
-
-
+                            
+                            var selsize='';
+                            
+                            $("input[name='size']").each(function(){
+                                if ($(this).is(':CHECKED'))
+                                {
+                                    selsize=$(this).next('label').text();
+                                }
+                                
+                            });
+                            $('#prsize').text(selsize);
+                            
                             var catstr = "";
                             $(catid).each(function (i) {
                                 $(categories).each(function (j, vl) {
@@ -720,6 +726,7 @@ echo "<script>var edit=$edit; var pid= '$pid';</script>";
                             $('#previewDiv').removeClass('dn');
                             hideLoader();
                             moveUp();
+                            getMultyCatMapping();
                         }
 
 
@@ -759,9 +766,139 @@ echo "<script>var edit=$edit; var pid= '$pid';</script>";
 
                         }
 
+$(document).ready(function( ) {
+        bindTree();
+        
+//        $('.tree ul:first > li').eq(0).each(function() {
+//            $(this).toggleClass('active');
+//            $(this).children('ul').slideToggle('fast');
+//        });
+    });
+    
+    
+    
+    function bindTree(){
+        
+        $('.tree li').each(function() {
+            if ($(this).children('ul').length > 0) {
+                $(this).addClass('parent');
+            }
+        });
+        $('.tree li.parent > a').bind('click',function( ) {
+            var id = $(this).parent().attr('id');
+            $(this).parent().toggleClass('active');
+            $(this).parent().children('ul').slideToggle('fast');
+                if($(this).parent().hasClass('active')){}
+                else
+                {
+                    $('#'+id+' :input[type=checkbox]').each(function() {
+                           // $(this).attr('checked',false);
+                    });
+                }
+			
+        });
+                
+    }
+    
+    function getMultyCatMapping()
+    {
+        var catArray=new Array();
+        $('[name=prtcateg]').each(function() {
+            if ($(this).is(':CHECKED'))
+                catArray.push($(this).val());
 
+            else if (!$(this).is(':CHECKED')) {
+                var removeItem = $(this).val();
+                catArray = jQuery.grep(catArray, function(value) {
+                    return value !== removeItem;
+                });
+            }
 
-
+        });
+        
+        
+        
+        values = {};
+        values['catid']=catArray.toString();
+        var dt=JSON.stringify(values);
+        
+        $.ajax({
+            url:APIDOMAIN+"index.php?action=getMultyCatMapping",
+            type:'POST',
+            data:{dt: dt},
+            success:function(res){
+                res=JSON.parse(res);
+                attrValuesCallBack(res);
+            }
+            
+        });
+        
+    }
+    
+    function attrValuesCallBack(data)
+    {
+        
+        if(data['error']['err_code']==0)
+        {
+            var str="";
+            $(data['result']).each(function(i,vl){
+                if(vl.attrid)
+                {
+                    str+="<ul class='superparent'>";
+                        str+="<li id='attr_"+vl.attrid+"' class='parent'><a>"+vl.name+"</a>";
+                            str+="<ul>";
+                                var values=vl.values.split(",");
+                                $(values).each(function(j,v){
+                                    str+="<li>";
+                                        str+="<a>";
+                                            str+="<div class='checkDiv fLeft'>";
+                                                str+="<input type='checkbox' name='attrVals' class='filled-in' id='attr_"+vl.attrid+"_"+v.replace(/ /g,'_')+"' value='"+v+"'  data-for='"+vl.attrid+"'>";
+                                                str+="<label for='attr_"+vl.attrid+"_"+v.replace(/ /g,'_')+"'>"+v+"</label>";
+                                            str+="</div>";
+                                        str+="</a>";
+                                    str+="</li>";
+                                });
+                            str+="</ul>";
+                        str+="</li>";
+                    str+="</ul>";
+                }
+            });
+            
+            
+            $('.tree').append(str);
+            
+            
+            $('.catValDiv').removeClass('dn');
+            //$('.overlay').removeClass('dn');
+            bindTree();
+            //stopBodyScroll();
+        }
+        else{
+            common.toast(0, 'Error in fetching data');
+        }
+        
+        
+        if(edit==1)
+        {
+            setAtttrValues(attrVals);
+        }
+        
+    }
+    
+    
+    function stopBodyScroll(){
+        $('body').bind('scroll touchmove mousewheel', function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        });
+    }
+    
+    function startBodyScroll(){
+        $('body').unbind();
+    }
+    
+    
     </script>
 
 

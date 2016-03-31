@@ -10,7 +10,6 @@ var has_diamond = false;
 var has_uncut = false;
 var has_gemstone = false;
 
-
 var solitaireCnt = 1;
 var diamondCnt = 1;
 var unctCnt = 1;
@@ -20,7 +19,6 @@ var mcolor = new Array();
 var allrates = new Array();
 var prdid="";
 var previewData;
-
 
 var sflag = true;
 var dflag = true;
@@ -418,15 +416,12 @@ function metalcolorCalllBack(data)
 }
 
 function removeSizes(id){
-    console.log(id);
-    
     $('#cat_sizes .dQuality').each(function(){
         var sizefor=$(this).attr('size-for');
         if(sizefor==id)
             $(this).remove();
 
-});  
-    
+    });  
 }
 
 
@@ -1325,7 +1320,6 @@ function addProduct()
 //                values['qty']=qty;
 
                 values[id[1]] = qty;
-                console.log(values);
                 sizesArray.push(values);
 
             }
@@ -1611,7 +1605,6 @@ function addProduct()
         
         previewData=prd;
         
-        console.log(previewData);
         
         showpreview(previewData);
         
@@ -1647,6 +1640,7 @@ function hidePreview()
 function submitData()
 {   
     showLoader();
+    previewData['filterAttrs']=setPrdMapping();
     var dt = JSON.stringify(previewData);
     var URL = APIDOMAIN + "index.php?action=addProduct";
     $.ajax({
@@ -1661,6 +1655,36 @@ function submitData()
     
 }
 
+function setPrdMapping()
+{
+    
+    values = {};
+    $('ul.superparent').each(function(i){
+        var liobj=$(this).find('li ul');
+        $(liobj).each(function(){
+            var valarray=new Array();
+            $(this).find('[name=attrVals]').each(function(){
+                var dfor=$(this).attr('data-for');
+                if ($(this).is(':CHECKED'))
+                {
+                    var val=$(this).val();
+                    valarray.push(val);
+                    console.log(val);
+                    
+                }
+                if(valarray.length>0)
+                    values['"'+dfor+'"']=encodeURIComponent(valarray.toString());
+                
+            });
+            
+        });    
+        
+    });
+    
+    console.log(values);
+    return values;
+    
+}
 
 
 
@@ -1759,6 +1783,7 @@ function moveUp()
 
 function validateForm()
 {
+    
     var isValid=true;
     if ($('[name=prtcateg]:checked').length === 0)
     {
@@ -2052,7 +2077,7 @@ function validateForm()
         return false;
     }
 
-    if ($('[name=size]:checked').length > 0)
+    /*if ($('[name=size]:checked').length > 0)
     {
 
         var sizeLen = $('[name=size]:checked').length;
@@ -2087,7 +2112,7 @@ function validateForm()
             return false;
         }
 
-    }
+    }  */                                         
     return isValid;
 }
 
@@ -2457,6 +2482,7 @@ function oneditmode()
         }
     });
 }
+var attrVals=new Array();
 
 function oneditmodeCallBack(data)
 {
@@ -2465,6 +2491,7 @@ function oneditmodeCallBack(data)
         var dt=data['results'];
         var basic=dt['basicDetails'];
         var catAttr = dt['catAttr'];
+        attrVals = dt['attrVals'];
         prdid =basic.prdId;
 
         $('#vendorList option').each(function(){
@@ -2774,16 +2801,11 @@ function oneditmodeCallBack(data)
                 $('#cat_'+vl.cid).click();
                 setTimeout( function() {
                         var sizes =dt['size']['results'];
-                        console.log(sizes);
                         $(sizes).each(function(i){
                             var sid=sizes[i].sizId;
                             var qty=sizes[i].qnty;
-                            console.log(sid);
-                            console.log(qty);
                             $('[name=size]').each(function(){
-
                                 var val =$(this).val();
-                                console.log(val);
                                 if(sid==val){
                                     $(this).attr('checked',true);
                                     $('#size_'+sid+'_qty').val(qty);
@@ -3351,5 +3373,31 @@ function checkGemsAdd()
     if(validateGemstoneAdd()){
         addGemstone();
     }
+    
+}
+var varr=new Array();
+function setAtttrValues(data)
+{
+    if(data['error']['err_code']==0)
+    {
+        
+        $(data['result']).each(function(i,v){
+            $('#attr_'+v.attid+" a").click();
+            var dval=decodeURIComponent(v.value);
+            //varr=dval;
+            var valArrays=dval.split(',');
+            $(valArrays).each(function(i,vl){
+                var val="attr_"+v.attid+"_"+vl.replace(/ /g,'_');
+                $('[name=attrVals]').each(function(){
+                    var id=$(this).attr('id');
+                    if(id==val){
+                        $(this).click();
+                    }
+                });
+            });
+            
+        });
+    }        
+    
     
 }

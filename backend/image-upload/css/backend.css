@@ -56,6 +56,8 @@ a{text-decoration: none;}
 .poR{position: relative}
 .bNone{border:none!important;}
 .txtCap {text-transform: capitalize;}
+.txtLower {text-transform: lowercase;}
+
 .container{width:100%;height:auto;background: #fff;padding-bottom: 00px;padding-top:20px;display: inline-block}
 .wrapper{width:100%;height:auto;}
 .wrapperMax{width:100%;max-width: 1200px;height:100%;margin: auto;}

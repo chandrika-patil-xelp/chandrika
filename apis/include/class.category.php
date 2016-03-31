@@ -234,5 +234,52 @@ class category extends DB
         
     }
     
+    
+    public function getMultyCatMapping($params)
+    {
+        $params=  json_decode($params[0],1);
+        $catList= explode(",", $params['catid']);
+        
+        global $db;
+        require_once APICLUDE.'class.attributes.php';
+        $attrobj=new attributes($db['jzeva']);
+        
+        $attrArray=array();
+        foreach ($catList as $val)
+        {
+            $sql="Select catid,attributeid from tbl_category_attribute_mapping  WHERE active_flag=1 AND catid='".$val."'";
+            $res=$this->query($sql);
+
+            if($res)
+            {
+                while ($row=$this->fetchData($res))
+                {
+                   array_push($attrArray, $row['attributeid']);
+                }
+                $err=array('err_code'=>0,'err_msg'=>'Data fetched successfully');
+            }
+            else
+            {
+                $err=array('err_code'=>1,'err_msg'=>'Error in fetching data');
+            }
+            
+        }
+       
+        $uniqattrs=array_values(array_unique($attrArray));
+        foreach ($uniqattrs as $at)
+        {
+            $atrparm=array('attributeid'=>$at);
+            $attreslt=$attrobj->getAttributeDetails($atrparm);
+            $reslt['attributes']=$attreslt['result'];
+            $result[]=$reslt['attributes'];
+            
+        }
+        
+        
+        $results=array('result'=>$result,'error'=>$err);
+        return $results;
+
+    }
+    
 }
 ?>

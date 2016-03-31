@@ -55,17 +55,18 @@ $jvs = array();
     $jvs['jquery_toast'] 	= BACKDOMAIN.'tools/js/lib/jquery.toast.min.js?v='.VERSION;
     $jvs['velocity']            = BACKDOMAIN.'tools/js/lib/velocity.js?v='.VERSION;
     $jvs['common']              = BACKDOMAIN.'tools/js/Common.js?v='.VERSION;
+    $jvs['nicescroll']              = BACKDOMAIN.'tools/js/lib/jquery.nicescroll.min.js?v='.VERSION;
     
     
         #CMS PAGES JS
-        $jvs['Product']                 = BACKDOMAIN.'tools/js/cms/product.js?v='.VERSION;
-        $jvs['addProduct']              = BACKDOMAIN.'tools/js/cms/addProduct.js?v='.VERSION;
-        $jvs['rate']                    = BACKDOMAIN.'tools/js/cms/rate.js?v='.VERSION;
-        $jvs['category']                = BACKDOMAIN.'tools/js/cms/category.js?v='.VERSION;
-        $jvs['addCategory']             = BACKDOMAIN.'tools/js/cms/addCategory.js?v='.VERSION;
-        $jvs['addAttribute']            = BACKDOMAIN.'tools/js/cms/addAttribute.js?v='.VERSION;
-        $jvs['attribute']               = BACKDOMAIN.'tools/js/cms/attribute.js?v='.VERSION;
-        $jvs['coupon']               = BACKDOMAIN.'tools/js/cms/coupon.js?v='.VERSION;
+            $jvs['Product']                 = BACKDOMAIN.'tools/js/cms/product.js?v='.VERSION;
+            $jvs['addProduct']              = BACKDOMAIN.'tools/js/cms/addProduct.js?v='.VERSION;
+            $jvs['rate']                    = BACKDOMAIN.'tools/js/cms/rate.js?v='.VERSION;
+            $jvs['category']                = BACKDOMAIN.'tools/js/cms/category.js?v='.VERSION;
+            $jvs['addCategory']             = BACKDOMAIN.'tools/js/cms/addCategory.js?v='.VERSION;
+            $jvs['addAttribute']            = BACKDOMAIN.'tools/js/cms/addAttribute.js?v='.VERSION;
+            $jvs['attribute']               = BACKDOMAIN.'tools/js/cms/attribute.js?v='.VERSION;
+            $jvs['coupon']               = BACKDOMAIN.'tools/js/cms/coupon.js?v='.VERSION;
         
 #JS End
         

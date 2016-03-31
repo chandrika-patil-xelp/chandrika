@@ -62,6 +62,16 @@ switch($action)
         $res = $result;
     break;
 
+    case 'getMultyCatMapping':
+        include APICLUDE.'class.category.php';
+        $obj	= new category($db['jzeva']);
+        $tmpparams = array($params['dt']);
+        $result	=$obj-> getMultyCatMapping($tmpparams);
+        $res = $result;
+    break;
+
+
+
     case 'getCatMapping':
         include APICLUDE.'class.category.php';
         $obj	= new category($db['jzeva']);
