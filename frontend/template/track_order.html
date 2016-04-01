@@ -97,22 +97,24 @@
                                 <div class="shpngStpWrp fLeft">
                                 <div class="shpngStpDV fLeft">
                                     <div class="shStpIcnHldr"></div>
-                                    <div class="tagTxt">Ordered</div>
+                                    <div class="tagTxt" id="tagTxt">Ordered</div>
                                     <div class="shStpIcnHldr1"></div>
-                                    <div class="tagTxt1">Processed</div>
+                                    <div class="tagTxt1" id="tagTxt1">Processed</div>
                                     <div class="shStpIcnHldr2"></div>
-                                    <div class="tagTxt2">Shipped</div>
+                                    <div class="tagTxt2" id="tagTxt2">Shipped</div>
                                     <div class="shStpIcnHldr3"></div>
-                                     <div class="tagTxt3">Delivered</div>
-                                    <div class="prgrsDv"></div>
+                                     <div class="tagTxt3" id="tagTxt3">Delivered</div>
+                                     <div class="prgrsDv">
+                                         <div class="prgsMrkDv fLeft transition300"></div>
+                                     </div>
                                 </div>
                             </div>
                                 <div class="shPngStpInfrm fLeft">
-                                    <div class="sStp1 fLeft">
+                                    <div class="sStp1 fLeft transition300" id="ordrDtls">
                                         <div class="infoAbtCstmr fLeft">Your order has been placed</div>
                                         <div class="infoAbtCstmr fLeft">Wed 23, 2015, 1:15pm</div>
                                     </div>
-                                    <div class="sStp1 fLeft pLeft45">
+                                    <div class="sStp1 fLeft pLeft45 transition300" id="prcsd">
                                         <div class="prcsdTxt fLeft">
                                             <div class="prcsdTxtFlft fLeft">
                                                 <div class="infoAbtCstmr fLeft">10:20 AM</div>
@@ -141,8 +143,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="sStp1 fLeft"></div>
-                                    <div class="sStp1 fLeft">
+                                    <div class="sStp1 fLeft transition300" id="shpd" style="display:block"></div>
+                                    <div class="sStp1 fLeft transition300" id="dDtls">
                                         <div class="dlvrTxtWrp fLeft">
                                         <div class="infoAbtCstmr fLeft">Your order has been delivered</div>
                                         <div class="infoAbtCstmr fLeft">Wed 29, 2015, 1:15pm</div>
@@ -169,8 +171,7 @@
         </div>
         <script>
             $(document).ready(function(){
-                $("#trackOrdr").click(function(){
-                    
+                $("#trackOrdr").click(function(){    
                   $("#aftrTrck").slideDown("slow");  
                 });
                  $("#dragTrgt").click(function(){
@@ -178,7 +179,95 @@
         $('body').removeClass('pFixed');
         $('.dragTrgt').css({width: '20px', left: '0px'});
     });
-            });
+     var ele = document.getElementById('dragTrgt');
+    var mc = new Hammer(ele);
+    mc.on("panleft panright tap press", function(ev) {
+        //ele.textContent = ev.type +" gesture detected.";
+        if (ev.type == 'panright') {
+            showLeftMenu(true);
+        }
+        else if (ev.type == 'panleft') {
+            showLeftMenu(false);
+        }
+    });
+     $('#ordrDtls').velocity({display:"none",opacity:"0",translateY:"-10px"});
+             $('#prcsd').velocity({display:"none",opacity:"0",translateY:"-10px"});
+              $('#dDtls').velocity({display:"none",opacity:"0",translateY:"-10px"});
+              var bi=0;
+              $('#tagTxt').click(function() {
+                  if(bi==0){
+        setTimeout(function() {
+        $('#ordrDtls').css("display","block");
+            setTimeout(function() {
+                $(".prgsMrkDv").css({width:"33%"});
+                $('#ordrDtls').velocity({opacity:"1"},{delay:30,duration:100,easing:"swing"});
+                $('#ordrDtls').velocity({translateY:"0px"},{queue: false,delay:00,duration:200,easing:"swing"});
+                },00);
+        },100);
+         bi=1;
+    }
+    else{
+            setTimeout(function() {
+                $('#ordrDtls').velocity({opacity:"0"},{delay:30,duration:100,easing:"swing"});
+                $('#ordrDtls').velocity({translateY:"-10px"},{queue: false,delay:00,duration:200,easing:"swing"});
+                $(".prgsMrkDv").css({width:"0%"});
+                },50);
+                setTimeout(function() {
+             $('#ordrDtls').css("display","none");
+         },400);
+         bi=0;
+    }
+    });
+          $('#tagTxt1').click(function() {
+                  if(bi==0){
+        setTimeout(function() {
+        $('#prcsd').css("display","block");
+            setTimeout(function() {
+                $(".prgsMrkDv").css({width:"70%"});
+                $('#prcsd').velocity({opacity:"1"},{delay:30,duration:100,easing:"swing"});
+                $('#prcsd').velocity({translateY:"0px"},{queue: false,delay:00,duration:200,easing:"swing"});
+                },00);
+        },100);
+         bi=1;
+    }
+    else{
+            setTimeout(function() {
+                $('#prcsd').velocity({opacity:"0"},{delay:30,duration:100,easing:"swing"});
+                $('#prcsd').velocity({translateY:"-10px"},{queue: false,delay:00,duration:200,easing:"swing"});
+                $(".prgsMrkDv").css({width:"33%"});
+                },50);
+                setTimeout(function() {
+             $('#prcsd').css("display","none");
+         },400);
+         bi=0;
+    }
+    });
+        $('#tagTxt3').click(function() {
+                  if(bi==0){
+        setTimeout(function() {
+        $('#dDtls').css("display","block");
+            setTimeout(function() {
+                $(".prgsMrkDv").css({width:"100%"});
+                $('#dDtls').velocity({opacity:"1"},{delay:30,duration:100,easing:"swing"});
+                $('#dDtls').velocity({translateY:"0px"},{queue: false,delay:00,duration:200,easing:"swing"});
+                },00);
+        },100);
+         bi=1;
+    }
+    else{
+            setTimeout(function() {
+                $('#dDtls').velocity({opacity:"0"},{delay:30,duration:100,easing:"swing"});
+                $('#dDtls').velocity({translateY:"-10px"},{queue: false,delay:00,duration:200,easing:"swing"});
+                $(".prgsMrkDv").css({width:"70%"});
+                },50);
+                setTimeout(function() {
+             $('#dDtls').css("display","none");
+         },400);
+         bi=0;
+    }
+    });
+      
+        });
             
           var input_selector = 'input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=number], input[type=search], textarea, input[type=radio]';
 

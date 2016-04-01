@@ -1,0 +1,135 @@
+<?php include 'jhead.html' ?>
+<body>
+    <div class="otpPopUp fmSansR">
+        <div class="otpCnt">
+            <div class="otpTxt fLeft">Enter OTP Sent To Your Mobile</div>
+             <div class="input fmSansB">
+                 <div class="rsndBtn">RESEND</div>
+              <input class="input__field" type="text" id="otp" method="post" autocomplete="off">
+                    <label class="input__label  " for="otp">
+                              <span class="input__label-content ">OTP</span>
+                                </label>
+                     </div>
+             <div class="divHolder fLeft">
+                <div class="btnW49 fLeft" id="bckFrgt">CANCEL</div>
+              <div class="btnW49a fRight">SUBMIT</div>
+          </div>
+        </div>
+    </div>
+    <div class="lmenu4mble trnst-100 transition300">
+        <div class="lmnuHdng fLeft">
+            <center>
+                <div class="hdrLgo"></div>
+            </center>
+        </div>
+        <div class="lmnuLIstDv fLeft fmSansR">
+            <ul class="ulSabcat ">
+                <li class="liSubCat">JEWELLERY</li>
+                <li class="liSubCat">SOLITARIES</li>
+                <li class="liSubCat">DESIGNER</li>
+                <li class="liSubCat">VINTAGE</li>
+                <li class="liSubCat">BRIDAL</li>
+            </ul>
+        </div>
+    </div>
+    <div class="dragTrgt" id="dragTrgt"></div>
+    <div class="container">
+        <div class="wrapper">
+            <?php include 'jHeader.html'; ?>
+
+            <div class="totalCont fLeft">
+                <div class="wrapperMax" >
+                    <div class="resetPcnt fLeft fmSansR">
+                        <div class="frgtPwrp">
+                            <div class="wrapperMax">
+                                <div class="frgtPcnt fLeft">
+                                    <div class="signupCl1 fLeft">
+                                        <div class="frgtPhdng fLeft fmSansL">Forgot Password?</div>
+                                    </div>
+                                    <div class="signupCl2 fRight">
+                                        <div class="input fmSansB">
+                                    <input class="input__field" type="text" id="emlormbl" method="post" autocomplete="off">
+                                            <label class="input__label  " for="emlormbl">
+                                              <span class="input__label-content ">Email Or Mobile</span>
+                                            </label>
+                                       </div>
+                                        <div class="divHolder fLeft">
+                                         <div class="btnW49 fLeft">CANCEL</div>
+                                          <div class="btnW49a fRight" id="otpp">RETRIVE</div>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <?php include 'jFooter.html'; ?>
+        </div>
+    </div>
+    <script> 
+        var input_selector = 'input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=number], input[type=search], textarea, input[type=radio]';
+
+        var input_hidden = 'input[type=hidden]';
+
+        $('.input__field').focus(function(){
+            $(this).closest('.input').addClass('input--filled');
+      });
+  $('.input__field').blur(function(){
+     var y=$(this).val();
+    if(y!=""){
+   $(this).closest('.input').addClass('input--filled');
+ }
+ else{
+     $(this).closest('.input').removeClass('input--filled');
+ }
+  });
+  
+  function showLeftMenu(flag) {
+            if (flag) {
+                $('.lmenu4mble').removeClass('trnst-100');
+                $('body').addClass('pFixed');
+                $('.dragTrgt').css({width: '50%', left: '250px'});
+
+            } else {
+                $('.lmenu4mble').addClass('trnst-100');
+                $('body').removeClass('pFixed');
+                $('.dragTrgt').css({width: '20px', left: '0px'});
+            }
+        }
+         $(document).ready(function(){
+                $("#dragTrgt").click(function(){
+         $('.lmenu4mble').addClass('trnst-100');
+        $('body').removeClass('pFixed');
+        $('.dragTrgt').css({width: '20px', left: '0px'});
+    });
+     var ele = document.getElementById('dragTrgt');
+    var mc = new Hammer(ele);
+    mc.on("panleft panright tap press", function(ev) {
+        //ele.textContent = ev.type +" gesture detected.";
+        if (ev.type == 'panright') {
+            showLeftMenu(true);
+        }
+        else if (ev.type == 'panleft') {
+            showLeftMenu(false);
+        }
+    });
+    $('.otpPopUp').velocity({opacity: 0}, {delay: 0, duration: 0});
+          $('.otpCnt').velocity({scale: 0, borderRadius: "65%", opacity: 0}, {delay: 0, duration: 0})
+           $("#otpp").click(function(){
+           $(".otpPopUp").css("display","block");    
+       $('.otpPopUp').velocity({opacity: 1}, {delay: 0, duration: 300, ease: 'swing'});
+        $(".otpCnt").velocity({scale: 1, borderRadius: "0", opacity: 1}, {delay: 180, duration: 300, ease: 'swing'});
+    });
+    $("#bckFrgt").click(function(){
+         
+        $(".otpPopUp").velocity({opacity: 0}, {delay: 0,duration: 200, ease: 'swing'});
+        $(".otpCnt").velocity({scale: 0, borderRadius: "65%", opacity: 0}, {duration: 200, delay: 0, ease: 'swing'});
+        setTimeout(function() {
+        $('.otpPopUp').css("display","none");
+    }, 400);
+    });
+
+         });
+    </script>
+</body>

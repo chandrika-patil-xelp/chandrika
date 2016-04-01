@@ -1,0 +1,128 @@
+<?php include 'jhead.html' ?>
+<body>
+    <div class="lmenu4mble trnst-100 transition300">
+        <div class="lmnuHdng fLeft">
+            <center>
+                <div class="hdrLgo"></div>
+            </center>
+        </div>
+        <div class="lmnuLIstDv fLeft fmSansR">
+            <ul class="ulSabcat ">
+                <li class="liSubCat">JEWELLERY</li>
+                <li class="liSubCat">SOLITARIES</li>
+                <li class="liSubCat">DESIGNER</li>
+                <li class="liSubCat">VINTAGE</li>
+                <li class="liSubCat">BRIDAL</li>
+            </ul>
+        </div>
+    </div>
+    <div class="dragTrgt" id="dragTrgt"></div>
+    <div class="container">
+        <div class="wrapper">
+            <?php include 'jHeader.html'; ?>
+
+            <div class="totalCont fLeft">
+                <div class="wrapperMax" >
+                    <div class="sgnupWrp fLeft fmSansR">
+                        <div class="signup_cnt">
+                            <div class="lHdng fLeft fmSansB">Sign Up</div>
+                            <div class="input fmSansB">
+                                    <input class="input__field" type="text" id="nm" method="post" autocomplete="off">
+                                            <label class="input__label  " for="nm">
+                                              <span class="input__label-content ">Name</span>
+                                            </label>
+                                </div>
+                            <div class="input fmSansB">
+                                    <input class="input__field" type="text" id="cty" method="post" autocomplete="off">
+                                            <label class="input__label  " for="cty">
+                                              <span class="input__label-content ">City</span>
+                                            </label>
+                                </div>
+                            <div class="input fmSansB">
+                                    <input class="input__field" type="text" id="mbl" method="post" autocomplete="off">
+                                            <label class="input__label  " for="mbl">
+                                              <span class="input__label-content ">Mobile</span>
+                                            </label>
+                                </div>
+                             <div class="input fmSansB">
+                                    <input class="input__field" type="text" id="eml" method="post" autocomplete="off">
+                                            <label class="input__label  " for="eml">
+                                              <span class="input__label-content ">Email</span>
+                                            </label>
+                                </div>
+                             <div class="input fmSansB">
+                                    <input class="input__field" type="text" id="psrd" method="post" autocomplete="off">
+                                            <label class="input__label  " for="psrd">
+                                              <span class="input__label-content ">Password</span>
+                                            </label>
+                                </div>
+                             <div class="input fmSansB">
+                                    <input class="input__field" type="text" id="Cpsrd" method="post" autocomplete="off">
+                                            <label class="input__label  " for="Cpsrd">
+                                              <span class="input__label-content ">Confirm Password</span>
+                                            </label>
+                                </div>
+                            <div class="sTxtHldr fLeft">
+                               By Clicking On Sign Up Below 
+                            </div>
+                            <div class="divHolder fLeft">
+                                <div class="btnW49 fLeft">CANCEL</div>
+                                <div class="btnW49a fRight">SIGN UP</div>
+                            </div>
+                        </div>  
+                    </div> 
+                </div>
+            </div>
+             <?php include 'jFooter.html'; ?>
+        </div>
+    </div>
+    <script> 
+        var input_selector = 'input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=number], input[type=search], textarea, input[type=radio]';
+
+        var input_hidden = 'input[type=hidden]';
+
+        $('.input__field').focus(function(){
+            $(this).closest('.input').addClass('input--filled');
+      });
+  $('.input__field').blur(function(){
+     var y=$(this).val();
+    if(y!=""){
+   $(this).closest('.input').addClass('input--filled');
+ }
+ else{
+     $(this).closest('.input').removeClass('input--filled');
+ }
+  });
+  
+  function showLeftMenu(flag) {
+            if (flag) {
+                $('.lmenu4mble').removeClass('trnst-100');
+                $('body').addClass('pFixed');
+                $('.dragTrgt').css({width: '50%', left: '250px'});
+
+            } else {
+                $('.lmenu4mble').addClass('trnst-100');
+                $('body').removeClass('pFixed');
+                $('.dragTrgt').css({width: '20px', left: '0px'});
+            }
+        }
+         $(document).ready(function(){
+                $("#dragTrgt").click(function(){
+         $('.lmenu4mble').addClass('trnst-100');
+        $('body').removeClass('pFixed');
+        $('.dragTrgt').css({width: '20px', left: '0px'});
+    });
+     var ele = document.getElementById('dragTrgt');
+    var mc = new Hammer(ele);
+    mc.on("panleft panright tap press", function(ev) {
+        //ele.textContent = ev.type +" gesture detected.";
+        if (ev.type == 'panright') {
+            showLeftMenu(true);
+        }
+        else if (ev.type == 'panleft') {
+            showLeftMenu(false);
+        }
+    });
+         });
+    </script>
+</body>

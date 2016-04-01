@@ -16,7 +16,7 @@
             </ul>
         </div>
     </div>
-    <div class="dragTrgt" id="dragTrgt"></div>
+    <div class="dragTrgt" id="dragTrgt" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); left: 0px;"></div>
     <div class="container">
         <div class="wrapper">
             <?php include 'jHeader.html'; ?>
@@ -140,15 +140,15 @@
                             <div class="fStp1 fLeft">
                                 <div class="mTypeCnt fLeft">
                                     <div class="loginHdngTxt fLeft colorLg">Metal Type:</div>
-                                    <div class="shape fLeft roundD"></div>
-                                      <div class="shape fLeft emeraldD"></div>
-                                         <div class="shape fLeft pearD"></div>
-                                          <div class="shape fLeft princessD"></div>
-                                          <div class="shape fLeft marquiseD"></div>
-                                         <div class="shape fLeft ovalD"></div>
-                                      <div class="shape fLeft cushionD"></div>
-                                       <div class="shape fLeft heartD"></div>
-                                    <div class="shape fLeft radiantD"></div>
+                                    <div class="shape fLeft roundD transition300"></div>
+                                      <div class="shape fLeft emeraldD transition300"></div>
+                                         <div class="shape fLeft pearD transition300"></div>
+                                          <div class="shape fLeft princessD transition300"></div>
+                                          <div class="shape fLeft marquiseD transition300"></div>
+                                         <div class="shape fLeft ovalD transition300"></div>
+                                      <div class="shape fLeft cushionD transition300"></div>
+                                       <div class="shape fLeft heartD transition300"></div>
+                                    <div class="shape fLeft radiantD transition300"></div>
                                 </div>
                                 <div class="fslctCnt fLeft">
                                     <div class="loginHdngTxt fLeft colorLg">Price Range:</div>
@@ -608,6 +608,36 @@
 			}
 		});
 		});
+                function showLeftMenu(flag) {
+            if (flag) {
+                $('.lmenu4mble').removeClass('trnst-100');
+                $('body').addClass('pFixed');
+                $('.dragTrgt').css({width: '50%', left: '250px'});
+
+            } else {
+                $('.lmenu4mble').addClass('trnst-100');
+                $('body').removeClass('pFixed');
+                $('.dragTrgt').css({width: '20px', left: '0px'});
+            }
+        }
+         $(document).ready(function(){
+                $("#dragTrgt").click(function(){
+         $('.lmenu4mble').addClass('trnst-100');
+        $('body').removeClass('pFixed');
+        $('.dragTrgt').css({width: '20px', left: '0px'});
+    });
+    var ele = document.getElementById('dragTrgt');
+    var mc = new Hammer(ele);
+    mc.on("panleft panright tap press", function(ev) {
+        //ele.textContent = ev.type +" gesture detected.";
+        if (ev.type == 'panright') {
+            showLeftMenu(true);
+        }
+        else if (ev.type == 'panleft') {
+            showLeftMenu(false);
+        }
+    });
+         });
 
 
 </script>

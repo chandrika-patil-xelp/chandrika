@@ -17,7 +17,7 @@
                 </ul>
             </div>
         </div>
-        <div class="dragTrgt" id="dragTrgt"></div>
+        <div class="dragTrgt" id="dragTrgt" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); left: 0px;"></div>
         <div class="container">
             <div class="wrapper">
                 <?php include 'jHeader.html'; ?>
@@ -58,10 +58,11 @@
                                     </div>
                                 </div>
                                 <div class="orderAndSrch fLeft">
-                                    <div class="part1Ordr fLeft">Orders</div>
-                                    <div class="part2Opnad fLeft">Open Orders</div>
-                                    <div class="part2Opnad fLeft">Canceled Orders</div>
+                                    <div class="part1Ordr fLeft"  onclick="iorderTab('od1')" id="o1">Orders</div>
+                                    <div class="part2Opnad fLeft" onclick="iorderTab('od2')" id="o2">Open Orders</div>
+                                    <div class="part2Opnad fLeft" onclick="iorderTab('od3')" id="o3">Canceled Orders</div>
                                 </div>
+                                    <div class="ot1 fLeft" id="od1">
                                 <div class="totalCnfrmWrp fLeft">
                                 <div class="cnfrmIdCnt fLeft">
                                     <span class="spClass1 fLeft">Order Id:</span>
@@ -81,7 +82,7 @@
                                                 </div>
                                                 <div class="displayTxt fLeft">Amount Paid: <span style="color:#379496"> Rs. 2205</span></div>
                                                 <div class="odBtn fLeft">Order Details</div>
-                                                  <div class="odBtn fRight">Invoice</div>
+                                                  <div class="odBtn fRight spCase1">Invoice</div>
                                             </div>
                                             <div class="cnfrmpTxt1 fLeft">
                                                 <div class="displayTxt fLeft">Your package was delivered</div>
@@ -116,7 +117,7 @@
                                                 </div>
                                                 <div class="displayTxt fLeft">Amount Paid: <span style="color:#379496"> Rs. 2205</span></div>
                                                 <div class="odBtn fLeft">Order Details</div>
-                                                  <div class="odBtn fRight">Invoice</div>
+                                                  <div class="odBtn fRight spCase1">Invoice</div>
                                             </div>
                                             <div class="cnfrmpTxt1 fLeft">
                                                 <div class="displayTxt fLeft">Your package was delivered</div>
@@ -132,7 +133,105 @@
                                     </div>
                                 </div>
                                 </div>
-                                
+                                    </div>
+                                   <div class="ot1 fLeft mTop15 dn" id="od2">
+                                        <div class="wishLstDvsn fLeft">
+                                            <div class="showWishLST fLeft">
+                                                <div class="wishLstIMG"></div>
+                                                <div class="abtOpnOrdrs fLeft">
+                                                    <div class="displayTxt fLeft">
+                                                    <span class="spClass3 fLeft">Order Id:</span>
+                                                    <span class="fLeft spClass4">Od204765434567</span>
+                                                </div>
+                                                    <div class="displayTxt fLeft">Joker &amp; witch elegant charmer for women</div>
+                                                     <div class="displayTxt fLeft">
+                                                    <span class="spClass3 fLeft">Seller:</span>
+                                                    <span class="fLeft spClass4">JZEVA Signature Jewelcrafts Private Limited</span>
+                                                </div>
+                                                      <div class="displayTxt fLeft">
+                                                    <span class="spClass3 fLeft w40">Date of Purches:</span>
+                                                    <span class="fLeft spnPrce w60">1/1/2016</span>
+                                                </div>
+                                                    <div class="btnDvwishLst fLeft">
+                                                     <div class="odBtn fLeft">Track Order</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                            <div class="wishLstDvsn fLeft">
+                                            <div class="showWishLST fLeft">
+                                                <div class="wishLstIMG"></div>
+                                                <div class="abtOpnOrdrs fLeft">
+                                                    <div class="displayTxt fLeft">
+                                                    <span class="spClass3 fLeft">Order Id:</span>
+                                                    <span class="fLeft spClass4">Od204765434567</span>
+                                                </div>
+                                                    <div class="displayTxt fLeft">Joker &amp; witch elegant charmer for women</div>
+                                                     <div class="displayTxt fLeft">
+                                                    <span class="spClass3 fLeft">Seller:</span>
+                                                    <span class="fLeft spClass4">JZEVA Signature Jewelcrafts Private Limited</span>
+                                                </div>
+                                                      <div class="displayTxt fLeft">
+                                                    <span class="spClass3 fLeft w40">Date of Purches:</span>
+                                                    <span class="fLeft spnPrce w60">1/1/2016</span>
+                                                </div>
+                                                    <div class="btnDvwishLst fLeft">
+                                                     <div class="odBtn fLeft">Track Order</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="ot1 fLeft mTop15 dn" id="od3">
+                                             <div class="wishLstDvsn fLeft">
+                                            <div class="showWishLST fLeft">
+                                                <div class="wishLstIMG"></div>
+                                                <div class="abtWishLST fLeft">
+                                                    <div class="displayTxt fLeft">
+                                                    <span class="spClass3 fLeft">Order Id:</span>
+                                                    <span class="fLeft spClass4">Od204765434567</span>
+                                                </div>
+                                                    <div class="displayTxt fLeft">Joker &amp; witch elegant charmer for women</div>
+                                                      <div class="displayTxt fLeft">
+                                                    <span class="spClass3 fLeft w40">Date of Purches:</span>
+                                                    <span class="fLeft spnPrce w60">1/1/2016</span>
+                                                </div>
+                                                        <div class="displayTxt fLeft">
+                                                    <span class="spClass3 fLeft w40">Date of Cancel:</span>
+                                                    <span class="fLeft spnPrce w60">1/1/2016</span>
+                                                </div>
+                                                    <div class="btnDvwishLst fLeft">
+                                                     <div class="odBtn fLeft">ADD TO CART</div>
+                                                     <div class="odBtn fRight">REMOVE</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="wishLstDvsn fLeft">
+                                            <div class="showWishLST fLeft">
+                                                <div class="wishLstIMG"></div>
+                                                <div class="abtWishLST fLeft">
+                                                    <div class="displayTxt fLeft">
+                                                    <span class="spClass3 fLeft">Order Id:</span>
+                                                    <span class="fLeft spClass4">Od204765434567</span>
+                                                </div>
+                                                    <div class="displayTxt fLeft">Joker &amp; witch elegant charmer for women</div>
+                                                      <div class="displayTxt fLeft">
+                                                    <span class="spClass3 fLeft w40">Date of Purches:</span>
+                                                    <span class="fLeft spnPrce w60">1/1/2016</span>
+                                                </div>
+                                                        <div class="displayTxt fLeft">
+                                                    <span class="spClass3 fLeft w40">Date of Cancel:</span>
+                                                    <span class="fLeft spnPrce w60">1/1/2016</span>
+                                                </div>
+                                                    <div class="btnDvwishLst fLeft">
+                                                     <div class="odBtn fLeft">ADD TO CART</div>
+                                                     <div class="odBtn fRight">REMOVE</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                             </div>
                                 <div class="wishLstCnt fLeft fmSansR dn" id="wishLst">
                                     <div class="wishLstHdng fLeft">
@@ -465,6 +564,18 @@
         $('body').removeClass('pFixed');
         $('.dragTrgt').css({width: '20px', left: '0px'});
     });
+          var ele = document.getElementById('dragTrgt');
+    var mc = new Hammer(ele);
+    mc.on("panleft panright tap press", function(ev) {
+        //ele.textContent = ev.type +" gesture detected.";
+        if (ev.type == 'panright') {
+            showLeftMenu(true);
+        }
+        else if (ev.type == 'panleft') {
+            showLeftMenu(false);
+        }
+    });
+   
     // $(".navLst").click(function(){
       //  var x = $(".navLst").position();
       //  alert(" Left position: " + x.left);
@@ -474,6 +585,7 @@
       //     $(".navLstDtls1").css("left","-251px"); 
       //  });
     //});
+    
             });
                    function showLeftMenu(flag) {
     if (flag) {
@@ -497,6 +609,7 @@
                       $("#piCont").addClass("dn");
                        $("#chngPass").addClass("dn");
                          $("#update_cont").addClass("dn");
+                           $("#myRvws").addClass("dn");
                     break;
             }
             switch (id) {
@@ -654,6 +767,7 @@
     $('#piCont').velocity({translateX: "110%",display:"none"}, {delay: 0, duration: 0});
      $('#chngPass').velocity({translateX: "110%",display:"none"}, {delay: 0, duration: 0});
       $('#update_cont').velocity({translateX: "110%",display:"none"}, {delay: 0, duration: 0});
+       $('#myRvws').velocity({translateX: "110%",display:"none"}, {delay: 0, duration: 0});
   if (mql.matches){ 
       $("#oW").click(function(){
     setTimeout(function() {
@@ -727,6 +841,18 @@
                 },00);
         },30);
         });
+         $("#mR").click(function(){
+    setTimeout(function() {
+         $('.cnfrmRmenu').css('display','block');
+         $('.cnfrmLmenu').css('display','none');
+          $('.crss4Mmnu').css('display','block');
+          $('.cnfrmLmenu').velocity({translateX:"-110%"},{queue: false,delay:00,duration:200,easing:"swing"});
+            setTimeout(function() {
+                $('#myRvws').velocity({display:"block"},{delay:30,duration:100,easing:"swing"});
+                $('#myRvws').velocity({translateX:"0px"},{queue: false,delay:00,duration:200,easing:"swing"});
+                },00);
+        },30);
+        });
  }
  if (mql1.matches){ 
       $("#oW").click(function(){
@@ -738,6 +864,18 @@
             setTimeout(function() {
                 $('#ordrWrp').velocity({display:"block"},{delay:30,duration:100,easing:"swing"});
                 $('#ordrWrp').velocity({translateX:"0px"},{queue: false,delay:00,duration:200,easing:"swing"});
+                },00);
+        },30);
+        });
+             $("#mR").click(function(){
+    setTimeout(function() {
+         $('.cnfrmRmenu').css('display','block');
+         $('.cnfrmLmenu').css('display','none');
+          $('.crss4Mmnu').css('display','block');
+          $('.cnfrmLmenu').velocity({translateX:"-110%"},{queue: false,delay:00,duration:200,easing:"swing"});
+            setTimeout(function() {
+                $('#myRvws').velocity({display:"block"},{delay:30,duration:100,easing:"swing"});
+                $('#myRvws').velocity({translateX:"0px"},{queue: false,delay:00,duration:200,easing:"swing"});
                 },00);
         },30);
         });
@@ -809,6 +947,7 @@
     $('#piCont').velocity({translateX: "0%",display:"block"}, {delay: 0, duration: 0});
     $('#chngPass').velocity({translateX: "0%",display:"block"}, {delay: 0, duration: 0});
      $('#update_cont').velocity({translateX: "0%",display:"block"}, {delay: 0, duration: 0});
+      $('#myRvws').velocity({translateX: "0%",display:"block"}, {delay: 0, duration: 0});
   $('.cnfrmLmenu').css('display','block');
    $('.crss4Mmnu').css('display','none');
  }
@@ -826,10 +965,52 @@
                    $('#piCont').velocity({translateX: "110%",display:"none"}, {delay: 0, duration: 0});
                    $('#chngPass').velocity({translateX: "110%",display:"none"}, {delay: 0, duration: 0});
                     $('#update_cont').velocity({translateX: "110%",display:"none"}, {delay: 0, duration: 0});
+                      $('#myRvws').velocity({translateX: "110%",display:"none"}, {delay: 0, duration: 0});
                 },00);
         },30);
        
  });
+// setTimeout(function(){
+//   window.location.reload(1);
+//}, 1000);
+
+window.onresize = function(event)
+{
+document.location.reload(true);
+};
+
+ function iorderTab(id) {
+            switch (id) {
+                case "od1":
+                    $("#od2").addClass("dn");
+                    $("#od1").removeClass("dn");
+                     $("#od3").addClass("dn");
+                     $("#o1").css({background:"#379496",color:"#fff",border:"1 px solid #379496"});
+                     $("#o2").css({background:"#fff",color:"#666"});
+                     $("#o3").css({background:"#fff",color:"#666"});
+                    break;
+            }
+            switch (id) {
+                case "od2":
+                    $("#od1").addClass("dn");
+                    $("#od2").removeClass("dn");
+                     $("#0d3").addClass("dn");
+                     $("#o2").css({background:"#379496",color:"#fff",border:"1 px solid #379496"});
+                     $("#o1").css({background:"#fff",color:"#666"});
+                     $("#o3").css({background:"#fff",color:"#666"});
+                    break;
+            }
+            switch (id) {
+                case "od3":
+                    $("#od1").addClass("dn");
+                    $("#od2").addClass("dn");
+                     $("#od3").removeClass("dn");
+                      $("#o3").css({background:"#379496",color:"#fff",border:"1 px solid #379496"});
+                     $("#o1").css({background:"#fff",color:"#666"});
+                     $("#o2").css({background:"#fff",color:"#666"});
+                    break;
+            }
+        }
        
         </script>
     </body>
