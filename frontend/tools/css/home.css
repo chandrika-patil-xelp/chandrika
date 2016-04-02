@@ -927,21 +927,16 @@ transition-delay: 0.15s;
 
      /*p_details*/
      .prdctCard {display:none;}
-/*     .overShdoLyr {width: 12%;height: 250px;}
-     .overShdoLyr1{height: 250px;}*/
-      .ovrshdolayer2 {left: 308px;}
-     .sldrAndCrdWrp {min-height: 350px;}
+
+/*      .ovrshdolayer2 {left: 308px;}
+     .sldrAndCrdWrp {min-height: 350px;}*/
 /*     .sliderPwrp{height: 250px;}*/
      .matSelctDv {margin:0px;}
-/*     .prdctImg{padding-bottom: 250px;}*/
-/*     .jwl1 {background-size: auto 80%;}
-     .jwl2 {background-size: auto 80%;}
-     .jwl3 {background-size: auto 80%;}
-     .jwl4 {background-size: auto 80%;}*/
-    .gallery li {width: 360px;}
+
+/*    .gallery li {width: 360px;}
     .jwl3 {background-position: center;}
     .jwl1 {background-position: center;}
-    .jwl2 {background-position: center;}
+    .jwl2 {background-position: center;}*/
      .smlImgPrdctDv {padding: 15px 20px 0px 20px;}
      .smallImgP {width: 25%;}
      .prdctRvwAndDtls {padding: 20px 20px 0px 20px;}
@@ -1149,17 +1144,17 @@ transition-delay: 0.15s;
       .prdctCard {display:none;}
       .smallImgP {width: 15.5%;}
       .prdctRvwAndDtls {padding: 35px 20px 0px 20px;}
-      .txtofHdng {font-size: 12px;}
+      .txtofHdng {font-size: 9px;}
       .abvRight {width: 100%;}
       .abvRghtHdng {padding-left:0px;}
       .prdctIcnRvwcnt {padding-left:0px;border-left:none;}
       .allPrdctShw {padding: 20px 20px 0px 20px;}
-      .prdctDisplyCnt {width: 25%;padding:0px;}
+      .prdctDisplyCnt {width: 33%;padding:0px;}
        .abvFleft {width: 100%;}
        
        .pCfrMbleWrp{display:block;margin-top: 0px;padding: 20px;}
      .prdctCard4Mbl{display:block;}
-     .addToCartCnt {width: 33%;}
+     .addToCartCnt {width: 34%;}
 /*     .jwl1 {background-position: 65px center;}
      .jwl2 {background-position: 45px center;}
      .jwl3 {background-position: 35px center}
@@ -1203,6 +1198,14 @@ transition-delay: 0.15s;
      .viewIcnDV {top:16vw}
      .icn4show {height:5vw}
      .mob_dn{display:none;}
+     
+     /*prdct_dtls*/
+      .ovrshdolayer2 {left: 271px;}
+     .sldrAndCrdWrp {min-height: 350px;}
+     .gallery li {width: 320px;}
+    .jwl3 {background-position: center;}
+    .jwl1 {background-position: center;}
+    .jwl2 {background-position: center;}
  }
  @media only screen and (min-width: 768px) and (max-width: 959px){
      /*home*/
@@ -1221,7 +1224,7 @@ transition-delay: 0.15s;
       .tabFnt15{font-size:15px !important;}
       .tabFnt11{font-size:11px !important;}
       .tabFnt14{font-size:14px !important;}
-      .tabFnt13{font-size:13px !important;}
+      .tabFnt10{font-size:10px !important;}
      .navLstDtls2 {padding: 25px 40px 40px 40px;}
      .hdng1ofNld2 {font-size: 16px;}
      .hdng1ofNld3 {font-size: 16px;padding-left: 10px;}
@@ -1337,6 +1340,7 @@ transition-delay: 0.15s;
      .cnfrmRmenu {padding-left: 20px;}
      .cnfrmpTxt1 {padding-right: 10px;}
      .odBtn {padding: 0px 10px;font-size: 11px;}
+     
      /*menu*/
      .tabFnt16{font-size:16px !important;}
       .tabFnt15{font-size:15px !important;}
@@ -1400,6 +1404,10 @@ transition-delay: 0.15s;
      .footerCat1 {width: 17%;padding: 0px 6px;}
      .footerCat2 {width: 26%;padding: 0px 5px;}
  }
+ @media only screen and (max-width: 1025px) {
+     .odBtn {padding: 0px 7px;}
+      .btnDvwishLst {padding-right: 5px;}
+ }
  @media only screen and (min-width: 1025px) and (max-width: 1279px){
      /*home*/
      .mob_dn{display:block;}
@@ -1411,6 +1419,7 @@ transition-delay: 0.15s;
      .cnfrmLmenu {padding-right: 20px;}
      .cnfrmRmenu {padding-left: 20px;}
      .odBtn {padding: 0px 10px;}
+     
      /*menu*/
      .tabFnt16{font-size:16px !important;}
       .tabFnt15{font-size:15px !important;}
