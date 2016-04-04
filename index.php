@@ -59,6 +59,19 @@ switch ($action) {
         $page = 'filter';
         include TEMPLATE.'filter.html';
         break;
+     case 'reset_pswrd':
+        $page = 'reset_pswrd';
+        include TEMPLATE.'reset_pswrd.html';
+        break;
+    case 'frgt_pswrd':
+        $page = 'frgt_pswrd';
+        include TEMPLATE.'frgt_pswrd.html';
+        break;
+    case 'sign_up':
+        $page = 'sign_up';
+        include TEMPLATE.'sign_up.html';
+        break;
+    
     
     
     
