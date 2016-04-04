@@ -13,9 +13,30 @@
 
                 <section id='category_Section' class="dn">
                     <div class="commTitle1 fmOpenL fLeft">Select your category*</div>
-                    <div class="divCon  fLeft fmOpenR" id='parentCatg'></div>
+                    <div class="divCon  fLeft fmOpenR forCateg" id='parentCatg'></div>
+                    <div class="divCon  fLeft fmOpenR forCateg" id='parentCatg0'></div>
                     <div class="breakLine"></div>
-
+                    <div class="breakLine"></div>
+                    <div class="breakLine"></div>
+                    <div class="divCon  fLeft fmOpenR">
+                        
+                        <div class="divCon fLeft fmOpenR">
+                            <div class="radioCont fLeft"> 
+                                <div class="treeCont fLeft">
+                                        <div class="tree transition300" id='parentCatg2'></div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                    </div>
                     <div class="divCon fLeft">
                         <div class="divCon2 fLeft mTop0">
                             <div class="titleDiv txtCap fLeft">Select Vendor*</div>
@@ -876,12 +897,8 @@ $(document).ready(function( ) {
             
             
             $('.tree').append(str);
-            
-            
             $('.catValDiv').removeClass('dn');
-            //$('.overlay').removeClass('dn');
             bindTree();
-            //stopBodyScroll();
         }
         else{
             common.toast(0, 'Error in fetching data');

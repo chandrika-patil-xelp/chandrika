@@ -41,19 +41,18 @@ function categoryCallBack(data)
             str += "<li id='cat_" + categories[i]['cid'] + "'>";
             str += "<div class='catName fLeft txtCap'>" + categories[i]['name'] + "</div>";
 
-            if (categories[i]['pid'] == "0")
-            {
-                str += "<div class='parentName fLeft'>NA</div>";
-            }
-            else
-            {
-                var name = getCatName(categories[i]['pid']);
-                str += "<div class='parentName fLeft txtCap'>" + name + "</div>";
-
-            }
+            var pidsArray=categories[i]['pid'].split(",");
+            //console.log(pidsArray);
+            var nameStr="";
+            $(pidsArray).each(function(j,vl){
+                var name = getCatName(vl);
+                nameStr+=name +", ";
+            });
+            
+            str += "<div class='parentName fLeft txtCap'>" + nameStr.substr(0,nameStr.length-2) + "</div>";
+            
             str += "<div class='dPos fLeft op0'>0</div>";
             str += "<div class='cactt fLeft'>";
-           // str += "<div class='deltBtn fRight transition300' onclick=\"changeStatus('" + categories[i]['cid'] + "',this,3)\"></div>";
             str += "<div class='deltBtn fRight transition300'  onclick=\"setClick('" + categories[i]['cid'] + "',2);showConfirmBox();\"></div>";
             str += "<a href='"+DOMAIN+"backend/?action=editCategory&cid=" + categories[i]['cid'] + "'><div class='editBtn fRight transition300'></div></a>";
 
@@ -160,6 +159,8 @@ function changeStatusCallBack(data)
 
 
 function getCatName(cid) {
+    if(cid==0)
+        return "None";
     var name;
     $(categories).each(function(i) {
         if (categories[i]['cid'] == cid) {

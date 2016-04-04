@@ -24,10 +24,10 @@ class category extends DB
         }
         
         $sql="INSERT INTO "
-                . "tbl_category_master (catid,pcatid,cat_name,createdon,updatedby)"
+                . " tbl_category_master (catid,pcatid,cat_name,createdon,updatedby)"
                 . " VALUES("
-                        . "'".urldecode($params['catid'])."',"
-                        . "'".urldecode($params['pcatid'])."',"
+                        . "'".urldecode($params['catid'])."'"
+                        . ",\"" . urldecode($params['pcatid']) . "\","
                         . "'".urldecode($params['cat_name'])."',"
                         . "now(),"
                         . "".$params['userid'].") "
@@ -35,7 +35,6 @@ class category extends DB
                                 . "pcatid=VALUES(pcatid),"
                                 . "cat_name=VALUES(cat_name),"
                                 . "updatedby=VALUES(updatedby)";
-        
         
         $res=$this->query($sql);
         
@@ -67,7 +66,8 @@ class category extends DB
         $sql="SELECT "
                 . "catid,pcatid,cat_name,active_flag "
                     . "FROM"
-                        . " tbl_category_master ORDER BY createdon DESC";
+                        //. " tbl_category_master  WHERE active_flag =1 ORDER BY createdon DESC ";
+                        . " tbl_category_master  WHERE active_flag =1 ORDER BY cat_name ";
                             
         
         $res=  $this->query($sql);

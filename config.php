@@ -21,7 +21,7 @@ else
 	define('BACKWEBROOT',$_SERVER['DOCUMENT_ROOT'].'/jzeva/backend/');
 	define('IMGDOMAIN','http://'.$_SERVER['HTTP_HOST'].'/jzeva/backend/image-upload/');
 
-	$db['jzeva'] = array('localhost','root','','db_jzeva_shubham');
+	$db['jzeva'] = array('localhost','root','','db_jzeva');
 	
 }
 
@@ -46,6 +46,13 @@ $jvs = array();
 #CSS
     $css['jquery_toast']        = BACKDOMAIN.'tools/css/lib/jquery.toast.min.css?v='.VERSION;
     $css['backend']             = BACKDOMAIN.'tools/css/backend.css?v='.VERSION;
+    $css['rangeSlider']        = BACKDOMAIN.'tools/css/lib/rangeslider/ion.rangeSlider.css?v='.VERSION;
+    $css['rangeSkin']        = BACKDOMAIN.'tools/css/lib/rangeslider/ion.rangeSlider.skinHTML5.css?v='.VERSION;
+    $css['rangeNormalize']        = BACKDOMAIN.'tools/css/lib/rangeslider/normalize.css?v='.VERSION;
+    
+
+        
+    
     
 #CSS End
 
@@ -56,7 +63,9 @@ $jvs = array();
     $jvs['jquery_toast'] 	= BACKDOMAIN.'tools/js/lib/jquery.toast.min.js?v='.VERSION;
     $jvs['velocity']            = BACKDOMAIN.'tools/js/lib/velocity.js?v='.VERSION;
     $jvs['common']              = BACKDOMAIN.'tools/js/Common.js?v='.VERSION;
-    $jvs['nicescroll']              = BACKDOMAIN.'tools/js/lib/jquery.nicescroll.min.js?v='.VERSION;
+    $jvs['nicescroll']          = BACKDOMAIN.'tools/js/lib/jquery.nicescroll.min.js?v='.VERSION;
+    $jvs['rangeJS']          = BACKDOMAIN.'tools/js/lib/ion.rangeSlider.js?v='.VERSION;
+    
     
     
         #CMS PAGES JS

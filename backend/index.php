@@ -135,7 +135,7 @@ switch ($action) {
         break;
     case 'customer':
         $page = 'custDetail';
-        $tab = 'custDetail';
+        $tab = 'customer';
         $userid=$params['uid'];
         include BTEMPLATE.'custDetail.html';
         break;

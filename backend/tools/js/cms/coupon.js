@@ -278,16 +278,30 @@ function couponCallBack(data)
             str += enddate[0];
             str += "</div>";
             str += "<div class='actt fLeft'>";
-            str += "<div class='deltBtn fRight transition300' onclick=\"changeStatus('" + v.id + "',this,3)\"></div>";
+            //str += "<div class='deltBtn fRight transition300' onclick=\"changeStatus('" + v.id + "',this,3)\"></div>";
+            str += "<div class='deltBtn fRight transition300'  onclick=\"setClick('" + v.id + "',2);showConfirmBox();\"></div>";
             str += "<div class='editBtn fRight transition300' onclick=\"editCoupon('coupon_Jzeva_" + v.id + "');\"></div>";
-            if (v.aflag == "1")
+            
+            /*if (v.aflag == "1")
             {
                 str += "<div class='toggle-button toggle-button-selected  fLeft' onclick=\"changeStatus('" + v.id + "',this)\">";
             }
             else
             {
                 str += "<div class='toggle-button  fLeft' onclick=\"changeStatus('" + v.id + "',this)\">";
+            }*/
+            
+            
+            if (v.aflag == "1")
+            {
+                str += "<div class='toggle-button toggle-button-selected  fLeft' onclick=\"changeStatus('" + v.id + "')\">";
             }
+            else
+            {
+                str += "<div class='toggle-button  fLeft' onclick=\"changeStatus('" + v.id + "')\">";
+            }
+            
+            
             str += "<span class='fActive'>On</span>";
             str += "<button class='button'></button>";
             str += "<span class='fDactive'>Off</span>";
@@ -315,19 +329,41 @@ function couponCallBack(data)
 getCoupounList();
 
 
-function changeStatus(cid, obj, dst) {
+function changeStatus(aid,dst) {
     setTimeout(function() {
+
+//        var st = 0;
+//        if (dst != undefined)
+//        {
+//            st = 2;
+//            $(obj).parent().find('div.toggle-button').removeClass('toggle-button-selected');
+//
+//        }
+//        else
+//        {
+//            var pLeft = $(obj).find(".button").position().left;
+//            if (pLeft == 0)
+//            {
+//                st = 0;
+//            }
+//            else
+//            {
+//                st = 1;
+//            }
+//
+//        }
+
 
         var st = 0;
         if (dst != undefined)
         {
             st = 2;
-            $(obj).parent().find('div.toggle-button').removeClass('toggle-button-selected');
+            $('#coupon_Jzeva_'+aid).find('div.toggle-button').removeClass('toggle-button-selected');
 
         }
         else
         {
-            var pLeft = $(obj).find(".button").position().left;
+            var pLeft = $('#coupon_Jzeva_'+aid).find(".button").position().left;
             if (pLeft == 0)
             {
                 st = 0;
@@ -345,7 +381,7 @@ function changeStatus(cid, obj, dst) {
         values = {};
         values['active_flag'] = st;
         values['userid'] = 1;
-        values['coupon_id'] = cid;
+        values['coupon_id'] = aid;
         var data = values;
 
         var dt = JSON.stringify(data);
@@ -378,6 +414,7 @@ function changeStatusCallBack(data)
         common.toast(0, 'Error in updating status');
         getCoupounList();
     }
+    hideConfirmBox();
 }
 
 
@@ -408,4 +445,33 @@ function bindError()
         //$(this).unbind();
     });
     
+}
+
+$('#confirmBox').velocity({scale: 0, borderRadius: '50%'}, {delay: 0, duration: 0});
+$('#delOverlay').velocity({opacity: 0}, {delay: 0, duration: 0});
+
+function showConfirmBox() {
+    $('#delOverlay,#confirmBox').removeClass('dn');
+    setTimeout(function() {
+        $('#delOverlay').velocity({opacity: 1}, {delay: 0, duration: 300, ease: 'swing'});
+        $('#confirmBox').velocity({scale: 1, borderRadius: '2px', opacity: 1}, {delay: 80, duration: 300, ease: 'swing'});
+    }, 10);
+}
+
+
+function setClick(data,st)
+{   
+    var str="changeStatus('"+data+"',"+st+")";
+    $('#prddeleteBtn').attr('onclick',str);
+}
+
+function hideConfirmBox() 
+{
+    $('#delOverlay').velocity({opacity: 0}, {delay: 0, duration: 300, ease: 'swing'});
+    $('#confirmBox').velocity({opacity: 0}, {delay: 0, duration: 300, ease: 'swing', queue: false});
+    $('#confirmBox').velocity({scale: 0, borderRadius: '50%'}, {delay: 300, duration: 0, ease: 'swing'});
+    setTimeout(function() {
+        $('#delOverlay,#confirmBox').addClass('dn');
+    }, 1010);
+    $('#prddeleteBtn').removeAttr('onclick');
 }

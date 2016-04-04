@@ -60,6 +60,8 @@ function getCategories()
             }
 
             generateCats(res,0);
+            //generateCatTree();
+            
         }
     });
 }
@@ -3401,6 +3403,136 @@ function setAtttrValues(data)
             
         });
     }        
+    
+    
+}
+
+
+function getCatName(cid) {
+    if(cid==0)
+        return "Master";
+    var name;
+    $(categories).each(function(i) {
+        if (categories[i]['cid'] == cid) {
+            name = categories[i]['name'];
+            return name;
+        }
+    });
+    return name;
+}
+
+
+
+function getCatid(name) {
+    if(name==0)
+        return "Master";
+    var cid;
+    $(categories).each(function(i) {
+        if (categories[i]['name'] == name) {
+            cid = categories[i]['cid'];
+            return cid;
+        }
+    });
+    return cid;
+}
+
+
+
+function getAllChild(cid)
+{
+    var allchild=new Array();
+    $(categories).each(function(i,v){
+        var pids=v.pid.split(",");
+        $(pids).each(function(z){
+            if(cid==pids[z])
+            {
+                allchild.push(v.name);
+            }
+            });
+    });
+    if(allchild.length>0)
+        return allchild.toString();
+    else
+        return -1;
+}
+
+
+function test()
+{
+    
+    var str="";
+    
+        $(categories).each(function(i,v){        
+            var ischild=getAllChild(v.cid);
+
+            
+            if(ischild!==-1)
+            {
+                
+                str+="<ul class='superparent'>";
+                    str+="<li id='attr_1' class='parent'><a>"+i+"</a>";
+
+                    str+="</li>";
+                str+="</ul>";
+
+
+            }            
+            else
+            {   
+                    str+="<ul class='superparent'>";
+                        str+="<li>";
+                            str+="<a>";
+                                str+="<div class='checkDiv fLeft'>";
+                                    str+="<input type='checkbox' class='filled-in' id='"+v.cid+"_Cat'>";
+                                    str+="<label for='"+v.name+"_Cat'>"+v.name+"</label>";
+                                str+="</div>";
+                            str+="</a>";
+                        str+="</li>";
+                    str+="</ul'>";
+            }
+
+        });
+    
+    
+    
+    $("#parentCatg2").append(str);
+        
+    bindTree2();
+}
+
+
+
+
+
+
+function bindTree2()
+{
+    
+    
+    $('.tree li.parent > a').bind('click',function( ) {
+            var id = $(this).parent().attr('id');
+            $(this).parent().toggleClass('active');
+            $(this).parent().children('ul').slideToggle('fast');
+                if($(this).parent().hasClass('active')){}
+                else
+                {
+                    $('#'+id+' :input[type=checkbox]').each(function() {
+                           // $(this).attr('checked',false);
+                    });
+                }
+			
+        });
+        
+    
+    
+    
+}
+
+
+function getCatInfo(cid)
+{
+    
+    
     
     
 }

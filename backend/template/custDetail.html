@@ -5,7 +5,9 @@
         <?php include 'jBheader.html' ?>
         <div class="contents fLeft">
             <div class="wrapperMax custDetail">
-                <div class="aHead font20 fmOpenR">Customer Details</div>
+                <div class="aHead font20 fmOpenR">Customer Details
+                    <div class="fRight fmOpenR transition300 resetPsw m0" onclick="sendResetLink()">Reset Password</div>
+                </div>
                 <div class="main pl10">
                     <div class="dtl_cont fLeft  font13">
                         <div class="divCon1 fLeft brdN">
@@ -225,7 +227,12 @@
                 }
 
             }
-
+            
+            function sendResetLink(){
+                console.log(userid);
+                common.toast(1,"Password reset link sent to user");
+            }
+            
 
         </script>
 </body>

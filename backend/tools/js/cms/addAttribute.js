@@ -62,10 +62,11 @@ function addAttrCallBack(data)
 function validateData()
 {
 
-    if ($('#attr_type').val() == "")
+    if ($('#attr_type').val() == "-1")
     {
 
         common.toast(0, "Select attribute type from dropdown");
+        highlight('attr_type',0)
         return false;
 
     }
@@ -73,6 +74,7 @@ function validateData()
     {
 
         common.toast(0, "Enter attribute name");
+        highlight('name',0)
         return false;
 
     }
@@ -81,6 +83,7 @@ function validateData()
     {
 
         common.toast(0, "Select attribute unit position");
+        highlight('upos',0)
         return false;
 
     }
@@ -89,6 +92,7 @@ function validateData()
     {
 
         common.toast(0, "Provide possible values for this attribute");
+        highlight('attrinpVal',0)
         return false;
 
     }
@@ -105,6 +109,8 @@ $(document).ready(function() {
 
     });
 });
+var rangeArr=new Array();
+var slider;
 
 function addAttrValues() {
     var vals = $('#attrinpVal').val();
@@ -113,6 +119,62 @@ function addAttrValues() {
     if (tagArray.indexOf(txtid) == -1) {
         var str = "<div id='" + txtid + "' class='tagcloud fLeft'>" + vals + "</div>";
         $('#attrValues').append(str);
+        
+        var type=$('#attr_type').val();
+        
+        
+        if(type==1)
+        {
+            var tstr="";
+            tstr+="<div class='checkDiv fLeft new'>";
+            tstr+="<input type='checkbox' name='Check' class='filled-in' value='"+vals+"' id='Check_"+vals+"'>";
+            tstr+="<label for='Check_"+vals+"'>"+vals+"</label>";
+            tstr+="</div>";
+            $('#demo_'+type).append(tstr);
+            
+        }
+        if(type==2)
+        {
+            var tstr="";
+            tstr+="<div class='checkDiv fLeft new'>";
+            tstr+="<input type='radio' name='radios' class='filled-in' value='"+vals+"' id='radio_"+vals+"'>";
+            tstr+="<label for='radio_"+vals+"'>"+vals+"</label>";
+            tstr+="</div>";
+            $('#demo_'+type).append(tstr);
+            
+        }
+        
+        if(type==3)
+        {
+            var tstr="<option value='' class='new'>"+vals+"</option>";
+            $('#demoSelect').append(tstr)
+            
+        }
+        
+        
+        if(type==4)
+        {
+            var $range = $("#range_03");
+            rangeArr.push(vals);
+            if(rangeArr.length==2){
+                $("#range_03").ionRangeSlider({type: "double",grid: true,min: rangeArr[0],max: rangeArr[1]}); 
+                slider = $range.data("ionRangeSlider");
+            }
+            else
+            {
+                slider && slider.destroy();
+            }
+            
+        }
+        if(type==5)
+        {
+            
+            var tstr="<li class='autoSuggstions new'>"+vals+"</li>";
+            $('.demoautoSuggestOuter ul').append(tstr);
+            bindAutosuggest();
+        }
+        
+        
         tagArray.push(txtid);
         bindTags();
         setTimeout(function() {
@@ -131,6 +193,8 @@ function bindTags() {
         var _th = this;
         setTimeout(function() {
             $(_th).remove();
+            slider && slider.destroy();
+            rangeArr.pop();
             var removeItem = id;
             tagArray = jQuery.grep(tagArray, function(value) {
                 return value !== removeItem;
@@ -167,9 +231,7 @@ if(edit==1)
             }
         });
         
-        console.log(dts['values']);
         var tagValues=dts['values'].split(',');
-        
         var str="";
         $(tagValues).each(function(i){
             var aval = tagValues[i].split("_").join(" ");
@@ -183,3 +245,98 @@ if(edit==1)
     },50);
 }
 
+$(document).ready(function(){
+                
+                
+    $('#attr_type').change(function(){
+
+        var val= $(this).val();
+        $('div[id^="demo"]').addClass('dn');
+        $('#demo_'+val).removeClass('dn');
+        $('.tagcloud').remove();
+        tagArray=[];
+        rangeArr=[];
+        if(val==4)
+            $('#attrinpVal').attr('placeholder','Add comma seperated minimum and maximum value');
+        else
+            $('#attrinpVal').attr('placeholder','Add comma seperated values for filtering this attribute');
+
+
+        $('.new').remove();
+        $('.demoAttrCont').removeClass('dn');
+    });
+
+
+});
+
+
+function bindAutosuggest(){
+
+    $('.demoautoSuggestOuter li').click(function(){
+        $('#demoeAutoST').val($(this).text());
+        $('.demoautoSuggestOuter').addClass('dn');
+    });
+
+    $('#demoeAutoST').bind('focus',function(){
+        $('.demoautoSuggestOuter').removeClass('dn');
+    });
+}
+
+
+function highlight(id,type)
+{
+    var sc= $('#'+id).position().top-130;
+    $('body,html').animate({scrollTop:sc},300,"swing");
+    setTimeout(function(){
+
+        if(type==0)
+            $('#'+id).addClass('error');
+
+
+        else if(type==1)
+            $('#'+id).next('label').addClass('error');
+
+
+        else if(type==2)
+            $('#'+id+' center').addClass('error');
+
+        bindError();
+    },350);
+
+}
+
+
+function bindError()
+{
+
+    $('.txtSelect.error').bind('click',function(){
+        $(this).removeClass('error');
+        $(this).unbind();
+
+    });
+
+    $('label.error').bind('click',function(){
+        $(this).removeClass('error');
+        $(this).unbind();
+    });
+
+    $('label').bind('click',function(){
+        var name=$(this).siblings('input').attr('name');
+        if( $('[name='+name+']').siblings('label').hasClass('error'))
+        {
+            $('[name='+name+']').siblings('label').removeClass('error');
+        }
+    });
+
+    $('.txtInput.error,.mtxtInput.error').bind('focus',function(){
+        $(this).removeClass('error');
+        $(this).unbind();
+    });
+
+    $('.shapeComm').bind('click',function(){
+        var flag=$(this).parent('center').hasClass('error');
+        if(flag)
+            $(this).siblings('.shapeComm').parent('center').removeClass('error');
+    });
+
+}

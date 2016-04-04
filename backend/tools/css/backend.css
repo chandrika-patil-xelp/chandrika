@@ -720,6 +720,8 @@ li .prdViewImgBtn{}
 .ordersPage .commTitle2{width: auto;text-align: left;}
 .dateTo{width: 35px;line-height: 35px;}
 .ordersPage .prdSeachTxt{width: 150px;border-radius: 2px;}
+.hasDatepicker_{width: 260px !important;height: auto;position: absolute;z-index: 111;font-family: robotoC;box-shadow: 5px 5px 20px 0 rgba(0,0,0,0.3);-webkit-box-shadow: 5px 5px 20px 0 rgba(0,0,0,0.3);}
+.hasDatepicker{width: 260px !important;height: auto;position: absolute;z-index: 111;font-family: robotoC;box-shadow: 5px 5px 20px 0 rgba(0,0,0,0.3);-webkit-box-shadow: 5px 5px 20px 0 rgba(0,0,0,0.3);}
 /*.hasDatepicker{width: 260px !important;height: auto;position: absolute;z-index: 111;font-family: robotoC;box-shadow: 5px 5px 20px 0 rgba(0,0,0,0.3);-webkit-box-shadow: 5px 5px 20px 0 rgba(0,0,0,0.3);}*/
 .ordersPage .date{width:14%;text-align: center;}
 .ordersPage .stockCode{width:18%;}
@@ -932,3 +934,26 @@ a{cursor:pointer;}
 .prevSoltr .shapeComm{width:90px!important;padding-bottom: 90px;}
 .prevSoltr .commCont{padding-left:100px!important;}
 .prevSoltr .fieldTitle{width:31%;margin: 0px 7px;}
+
+.m0{margin: 0!important}
+
+/* Demo Attr Form*/
+.demoAttrCont{width:300px;height: auto;position: absolute;right:0;top:0px;border:0px dashed #ccc; padding:5px 15px;padding-bottom: 00px;}
+
+.demoAttrCont .filterCont {width: 100%;height: auto;padding: 20px 5px 15px 5px;border: 0px solid #333;}
+.demoAttrCont .rangeCont {width: 100%;background: #fff;border-radius: 5px;padding: 0;}
+.demoAttrCont .rangeDiv {width: 100%;padding: 10px 10px 0 10px;}
+.demoAttrCont .checkDiv {width: 100%;}
+
+/*Autosuggests*/
+.autoSuggestCont{width:100%;position: relative;height: auto;}
+.demoautoSuggestOuter {position: relative;top: 0;left: 0;z-index: 10000000;background: #fff;width: 100%;box-sizing: border-box;text-align: left;box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.2);-webkit-box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.2);-moz-box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.2);-ms-box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.2);-o-box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.2);}
+.demoautoSuggestOuter ul {margin: 0;padding: 0;list-style: none;}
+.autoSuggstions{width: 100%;height: 35px;line-height: 35px;border-bottom: 1px solid #e6e6e6;cursor: pointer;font-size: 14px;color: #666;padding: 0 15px;}
+.autoSuggstions:hover{color:#22675A;}
+.hover{color:#22675A;font-family: openB;}
+
+.forCateg{}
+.forCateg .checkDiv{width:20%;}
+
+.tree .checkDiv {width: 50%!important;}

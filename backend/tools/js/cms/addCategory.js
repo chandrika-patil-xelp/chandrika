@@ -1,28 +1,35 @@
+var categories = new Array();
 var attributes = new Array();
+var tagArray = new Array();
+var dts;
+
 function getAttributeList()
 {
     var URL = APIDOMAIN + "index.php?action=getAttributeList";
     $.ajax({
         url: URL,
         type: "POST",
+        
         success: function(res) {
             res = JSON.parse(res);
             attributes = res['result'];
-            console.log(attributes);
             attributeListCallBack();
         }
     });
 }
-getCategories();
-getAttributeList();
-var dts;
-if(edit==1)
+
+$(document).ready(function(){
+
+    getCategories();
+    getAttributeList();
+    
+    
+    
+    if(edit==1)
 {
     
     dts=JSON.parse(data);
     $('#catname').val(dts['category'].name);
-    
-    
     setTimeout(function(){
         $('#catSelect option').each(function(){
 
@@ -35,8 +42,24 @@ if(edit==1)
         catid=dts['category'].id;
         
     },50);
+    
+    var tagValues=dts['category']['pid'].split(',');
+    
+    
+    $(tagValues).each(function(i){  
+    
+        var name=getCatName(tagValues[i]);
+        var str = "<div id='" + tagValues[i] + "' class='tagcloud fLeft'>" + name + "</div>";
+        $('#attrValues').append(str);
+
+        tagArray.push(tagValues[i]);
+        bindTags();
+    });
         
 }
+
+});
+
 
 
 
@@ -48,7 +71,6 @@ function bindAttrCheck()
         $('[name=subcat_type]').each(function(i) {
             var id = $(this).attr('id');
             
-            console.log(id);
             if(id==('attr_'+v.attrid))
             {
                 $(this).attr('checked',true);
@@ -92,13 +114,14 @@ function attributeListCallBack()
 }
 
 
-var categories = new Array();
+
 function getCategories()
 {
     var URL = APIDOMAIN + "index.php?action=getCatgoryList";
     $.ajax({
         url: URL,
         type: "POST",
+        async: false,
         success: function(res) {
             res = JSON.parse(res);
             categories = res['result'];
@@ -111,15 +134,23 @@ function getCategories()
 
 function categoryCallBack()
 {
-    if (categories.length > 0)
+    var str = "<option value='-1'>Select Category</option>";
+    str += "<option value='0'>Master</option>";
+    if (categories)
     {
-        var str = "<option value='0'>None</option>";
+        
         $(categories).each(function(i, v) {
             str += "<option class='txtCap'  value='" + v.cid + "' >" + v.name + "</option>";
         });
-        str += "</select>";
+       
     }
     $('#catSelect').append(str);
+    
+    
+    $('#catSelect').change(function(){
+        addAttrValues();
+    });
+    
 
 }
 
@@ -132,9 +163,8 @@ function addCategory()
     {
         values = {};
         values['catid'] = encodeURIComponent(catid);
-        values['cat_name'] = encodeURIComponent($('#catname').val());
-        values['pcatid'] = $('#catSelect').val();
-        values['pcatid'] = $('#catSelect').val();
+        values['cat_name'] = $('#catname').val();
+        values['pcatid'] = encodeURIComponent(tagArray.toString());
         values['userid'] = 1;
         mapattrs = [];
         $('[name=subcat_type]:CHECKED').each(function(i) {
@@ -145,6 +175,7 @@ function addCategory()
         var data = values;
         var dt = JSON.stringify(data);
         console.log(dt);
+        
 
         var URL = APIDOMAIN + "index.php?action=addCategory";
         $.ajax({
@@ -199,4 +230,57 @@ function validateForm()
     
     return true;
     
+}
+
+
+function addAttrValues() {
+    var vals = $('#catSelect').val();
+    if(vals!==-1)
+    {    
+        var avals = $('#catSelect option:selected').text();
+        var txtid = vals;
+
+
+        if (tagArray.indexOf(txtid) == -1) {
+            var str = "<div id='" + txtid + "' class='tagcloud fLeft'>" + avals + "</div>";
+            $('#attrValues').append(str);
+
+            tagArray.push(txtid);
+            bindTags();
+            setTimeout(function() {
+                $('#catSelect').val('-1');
+            }, 10);
+        } else {
+            setTimeout(function() {
+                $('#catSelect').val('-1');
+            }, 10);
+        }
+    }
+}
+
+function bindTags() {
+    $('.tagcloud').click(function() {
+        var id = $(this).attr('id');
+        var _th = this;
+        setTimeout(function() {
+            $(_th).remove();
+            var removeItem = id;
+            tagArray = jQuery.grep(tagArray, function(value) {
+                return value !== removeItem;
+            });
+        }, 100);
+    });
+}   
+
+function getCatName(cid) {
+    if(cid==0)
+        return "Master";
+    var name;
+    $(categories).each(function(i) {
+        if (categories[i]['cid'] == cid) {
+            name = categories[i]['name'];
+            return name;
+        }
+    });
+    return name;
 }

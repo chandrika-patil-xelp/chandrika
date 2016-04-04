@@ -6,7 +6,7 @@ echo "<script>var edit=$edit; var data= '$data';</script>";
         <div class="container">
             <?php include 'jBheader.html'?>
             <div class="contents fLeft">
-                <div class="wrapperMax">
+                <div class="wrapperMax poR">
                     <div class="ctgForm fmOpenR">
                         <?php if($edit==0) {?>
                             <div class="commTitle1 fLeft fmOpenL">Add a new attribute</div>
@@ -16,6 +16,7 @@ echo "<script>var edit=$edit; var data= '$data';</script>";
                         <div class="divCon  fLeft">
                             <div class="titleDiv txtCap fLeft">Select Attribute Type</div>
                             <select class="txtSelect fLeft fmOpenR font14 c666" id="attr_type">
+                                <option value="-1">Select Type</option>
                                 <option value="0">Textbox</option>
                                 <option value="1">Checkbox</option>
                                 <option value="2">Radio Button</option>
@@ -55,10 +56,65 @@ echo "<script>var edit=$edit; var data= '$data';</script>";
                             </center>
                         </div>                        
                     </div>
+                    
+                    <div class="demoAttrCont fRight fmOpenR dn">
+                        <div class="commTitle1 fLeft fmOpenL">Sample Box</div>
+                        <div class="divCon  fLeft dn" id='demo_0'>
+                            <div class="titleDiv txtCap fLeft">Sample Text Box</div>
+                            <input name="" type="text" placeholder="Please enter sample text" class="txtInput fLeft fmOpenR font14 c666">
+                        </div>
+                        <div class="divCon  fLeft dn" id='demo_1'>
+                            <div class="titleDiv txtCap fLeft">Sample Checkbox</div>
+                        </div>
+                        <div class="divCon  fLeft dn" id='demo_2'>
+                            <div class="titleDiv txtCap fLeft">Sample Radio Buttons</div>
+                        </div>
+                        <div class="divCon  fLeft dn" id='demo_3'>
+                            <div class="titleDiv txtCap fLeft">Sample Drop Down</div>
+                            <select class="txtSelect fLeft fmOpenR font14 c666" id='demoSelect'>
+                                <option value="0">Option 1</option>
+                                <option value="1">Option 2</option>
+                                <option value="2">Option 3</option>
+                                <option value="3">Option 4</option>
+                                <option value="4">Option 5</option>
+                                <option value="5">Option 6</option>
+                            </select>
+                        </div>
+                        <div  class="filterCont fLeft dn" id='demo_4'>
+                            <div class="titleDiv txtCap fLeft">Sample Range Selector</div>
+                            <div class="fLeft rangeCont">
+                                <div class="fLeft rangeDiv">
+                                    <input type="text" id="range_03" class="fLeft rngInp irs-hidden-input" style="visibility: hidden;" readonly="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="divCon  fLeft poR dn" id='demo_5'>
+                            <div class="titleDiv txtCap fLeft">Sample Autosuggest Box</div>
+                            <input name="" type="text" placeholder="Please search value" class="txtInput fLeft fmOpenR font14 c666" id="demoeAutoST">
+                            <div class="demoautoSuggestOuter fLeft dn">
+                                <ul>
+                                    <li class="autoSuggstions">Value 1</li>
+                                    <li class="autoSuggstions">Value 2</li>
+                                    <li class="autoSuggstions">Value 3</li>
+                                </ul>
+                                
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
                 </div>
             </div>
         </div>
         <script type="text/javascript" src="<?php echo $jvs['addAttribute']; ?>"></script>
-        <script>var attributeid="";</script>
+        <link rel="stylesheet" href="<?php echo $css['rangeSlider']?>">
+        <link rel="stylesheet" href="<?php echo $css['rangeSkin']?>">
+        <link rel="stylesheet" href="<?php echo $css['rangeNormalize']?>">
+        <script type="text/javascript" src="<?php echo $jvs['rangeJS']; ?>"></script>
+        
+
+        <script>
+            var attributeid="";
+        </script>
     </body>
 </html>
