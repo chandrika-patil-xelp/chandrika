@@ -3436,70 +3436,112 @@ function getCatid(name) {
     return cid;
 }
 
-
-
+var allCh=new Array();
+ 
 function getAllChild(cid)
-{
+{  
+    
     var allchild=new Array();
+    var pids=new Array();
     $(categories).each(function(i,v){
-        var pids=v.pid.split(",");
+        pids=v.pid.split(",");
         $(pids).each(function(z){
             if(cid==pids[z])
             {
                 allchild.push(v.name);
             }
-            });
+        });
     });
-    if(allchild.length>0)
-        return allchild.toString();
-    else
-        return -1;
+    
+    values={};
+    values['cat']=getCatName(cid);
+    values['childs']=allchild;
+    allCh.push(values);
+   
+ return allchild.toString();
+ 
 }
 
 
 function test()
 {
+    $(categories).each(function(i,v){        
+        getAllChild(v.cid);
+    });
     
-    var str="";
-    
-        $(categories).each(function(i,v){        
-            var ischild=getAllChild(v.cid);
+}
 
+function getCh(k)
+{
+    var str="";
+    $(allCh).each(function(l,m){
+        if(allCh[l]['cat']==k)
+        {
             
-            if(ischild!==-1)
+            var childs=allCh[l]['childs'];
+            
+            if(childs.length==0)
+            {
+                str+="<ul>";
+                    str+="<li>";
+                        str+="<a>";
+                                str+="<div class='checkDiv fLeft'>";
+                                        str+="<input type='checkbox' name='attrVals' class='filled-in' id='' value='"+k+"'>";
+                                        str+="<label for=''>"+k+"</label>";
+                                str+="</div>";
+                        str+="</a>";
+                    str+="</li>";
+                str+="</ul>";
+            }
+            else
             {
                 
                 str+="<ul class='superparent'>";
-                    str+="<li id='attr_1' class='parent'><a>"+i+"</a>";
-
+                    str+="<li class='parent'><a>"+k+"</a>";
+                    $(childs).each(function(j,vj){
+                        str+="<ul>";
+                            var cnt=allCh[j]['childs'].length;
+                            if(cnt>0)
+                            {
+                                str+="<li class='parent'><a>"+vj+"</a>";
+                                    str+= getCh(vj);
+                                str+="</li>";
+                            }
+                        str+="</ul>";
+                    });
                     str+="</li>";
                 str+="</ul>";
-
-
-            }            
-            else
-            {   
-                    str+="<ul class='superparent'>";
-                        str+="<li>";
-                            str+="<a>";
-                                str+="<div class='checkDiv fLeft'>";
-                                    str+="<input type='checkbox' class='filled-in' id='"+v.cid+"_Cat'>";
-                                    str+="<label for='"+v.name+"_Cat'>"+v.name+"</label>";
-                                str+="</div>";
-                            str+="</a>";
-                        str+="</li>";
-                    str+="</ul'>";
+                
             }
-
-        });
-    
-    
-    
-    $("#parentCatg2").append(str);
+                
+            
+               
         
-    bindTree2();
+        }
+        
+        return str;
+
+    });
+    return str;
 }
 
+
+
+
+function test1()
+{   
+    
+    var str="";
+    $(allCh).each(function(i,v){
+        
+        
+                str+= getCh(v.cat);
+        
+    });
+   
+    $('#parentCatg2').append(str);
+    bindTree2();
+}
 
 
 
@@ -3529,10 +3571,3 @@ function bindTree2()
 }
 
 
-function getCatInfo(cid)
-{
-    
-    
-    
-    
-}
