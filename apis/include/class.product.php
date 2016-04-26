@@ -1653,7 +1653,11 @@ class product extends DB {
                                 product_name,
                             product_seo_name) AS prdName
                             FROM
-                                tbl_product_master ORDER BY createdon DESC";
+                                tbl_product_master
+                            WHERE
+                                active_flag=1
+                                
+                                ORDER BY createdon DESC";
 
 
             $page = ($params['page'] ? $params['page'] : 1);
