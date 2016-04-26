@@ -22,10 +22,14 @@ switch($action)
         $result	=$obj->addCategory($tmpparams);
         $res = $result;
     break;    
+    //jzeva/apis/?action=getCatgoryList&limit=20&page=1
     case 'getCatgoryList':
         include APICLUDE.'class.category.php';
         $obj	= new category($db['jzeva']);
-        $result	=$obj->getCatgoryList();
+        $page   = ($params['page'] ? $params['page'] : 1);
+        $limit  = ($params['limit'] ? $params['limit'] : 1000);
+        $tmpParams = array('page'=>$params['page'],'limit' => $limit);
+        $result	=$obj->getCatgoryList($tmpParams);
         $res = $result;
     break;
     
@@ -98,10 +102,14 @@ switch($action)
         $res = $result;
     break;
     
+    //jzeva/apis/?action=getAttributeList&limit=2&page=2
     case 'getAttributeList':
         include APICLUDE.'class.attributes.php';
         $obj	= new attributes($db['jzeva']);
-        $result	=$obj->getAttributeList();
+        $page   = ($params['page'] ? $params['page'] : 1);
+        $limit  = ($params['limit'] ? $params['limit'] : 1000);
+        $tmpParams = array('page'=>$params['page'],'limit' => $limit);
+        $result	=$obj->getAttributeList($tmpParams);
         $res = $result;
     break;
     
@@ -138,10 +146,14 @@ switch($action)
         $res = $result;
     break;
 
+    //jzeva/apis/?action=getVendorList&limit=20&page=1
     case 'getVendorList':
         include APICLUDE.'class.product.php';
         $obj	= new product($db['jzeva']);
-        $result	=$obj->getVendorList();
+        $page   = ($params['page'] ? $params['page'] : 1);
+        $limit  = ($params['limit'] ? $params['limit'] : 1000);
+        $tmpParams = array('page'=>$params['page'],'limit' => $limit);
+        $result	=$obj->getVendorList($tmpParams);
         $res = $result;
     break;
 
@@ -160,18 +172,24 @@ switch($action)
         $result	=$obj->getVendorDetailsByName($name);
         $res = $result;
     break;
-
+    ///jzeva/apis/?action=getDiamondQualityList&limit=100&page=1
     case 'getDiamondQualityList':
         include APICLUDE.'class.product.php';
         $obj	= new product($db['jzeva']);
-        $result	=$obj->getDiamondQualityList();
+        $page   = ($params['page'] ? $params['page'] : 1);
+        $limit  = ($params['limit'] ? $params['limit'] : 1000);
+        $tmpParams = array('page'=>$params['page'],'limit' => $limit);
+        $result	=$obj->getDiamondQualityList($tmpParams);
         $res = $result;
     break;
-
+    ///jzeva/apis/?action=getGemstoneList&limit=100&page=1
     case 'getGemstoneList':
         include APICLUDE.'class.product.php';
         $obj	= new product($db['jzeva']);
-        $result	=$obj->getGemstoneList();
+        $page   = ($params['page'] ? $params['page'] : 1);
+        $limit  = ($params['limit'] ? $params['limit'] : 1000);
+        $tmpParams = array('page'=>$params['page'],'limit' => $limit);
+        $result	=$obj->getGemstoneList($tmpParams);
         $res = $result;
     break;
 
@@ -454,16 +472,24 @@ switch($action)
         $res	=$obj->changeOrderStatus($tmpparams);
     break;
 
+//jzeva/apis/?action=geOrderList&limit=10&page=1
     case 'geOrderList':
         include APICLUDE.'class.user.php';
         $obj	= new user($db['jzeva']);
-        $res	=$obj->geOrderList();
+        $page   = ($params['page'] ? $params['page'] : 1);
+        $limit  = ($params['limit'] ? $params['limit'] : 100);
+        $tmpParams = array('page'=>$params['page'],'limit' => $limit);
+        $res	=$obj->geOrderList($tmpParams);
     break;
+
 
     case 'getUserList':
         include APICLUDE.'class.user.php';
         $obj	= new user($db['jzeva']);
-        $res	=$obj->getUserList();
+        $page   = ($params['page'] ? $params['page'] : 1);
+        $limit  = ($params['limit'] ? $params['limit'] : 100);
+        $tmpParams = array('page'=>$params['page'],'limit' => $limit);
+        $res	=$obj->getUserList($tmpParams);
     break;
 
 

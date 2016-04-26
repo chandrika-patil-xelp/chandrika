@@ -287,12 +287,31 @@
             
         }
         
-        public function geOrderList()
+        public function geOrderList($params)
         {
             
-            $sql="SELECT order_id as oid from tbl_order_master";
+            $sql="  SELECT 
+                        order_id as oid 
+                    FROM 
+                        tbl_order_master 
+                    WHERE 
+                        active_flag=1 
+                    ORDER BY updatedon DESC ";
+            
+            $page = ($params['page'] ? $params['page'] : 1);
+            $limit = ($params['limit'] ? $params['limit'] : 1000);
+
+            //Making sure that query has limited rows
+            if ($limit >1000 ) {
+                $limit = 1000;
+            }
+
+            if (!empty($page)) {
+                $start = ($page * $limit) - $limit;
+                $sql.=" LIMIT " . $start . ",$limit";
+            }
             $res=$this->query($sql);
-            if($res)
+            if($this->numRows($res)>0)
             {
                 
                 while($row=$this->fetchData($res))
@@ -303,9 +322,7 @@
                 
                 foreach ($reslt as $key=>$val)
                 {
-                    
                     $result[]=$val['result'];
-                    
                 }
                 $err = array('err_code' => 0, 'err_msg' => 'Data fetched successfully');
             } 
@@ -318,22 +335,37 @@
         }
         
         
-        public function getUserList()
+        public function getUserList($params)
         {
             
             $sql="SELECT 
-                    user_id as uid,
-                    user_name as name,
-                    logmobile as mb,
-                    email as em,
-                    address as address ,
-                    (SELECT count(order_id)  FROM tbl_order_master WHERE  user_id= uid  AND order_status < 6) AS openOrd ,
-                    (SELECT count(order_id)  FROM tbl_order_master WHERE  user_id= uid  AND order_status = 6) AS pastOrd  
+                        user_id as uid,
+                        user_name as name,
+                        logmobile as mb,
+                        email as em,
+                        address as address ,
+                        (SELECT count(order_id)  FROM tbl_order_master WHERE  user_id= uid  AND order_status < 6) AS openOrd ,
+                        (SELECT count(order_id)  FROM tbl_order_master WHERE  user_id= uid  AND order_status = 6) AS pastOrd  
                 FROM 
-                    tbl_user_master";
+                        tbl_user_master
+                WHERE
+                        is_active = 1
+                ORDER BY
+                        update_time DESC
+                    ";
+            $page = ($params['page'] ? $params['page'] : 1);
+            $limit = ($params['limit'] ? $params['limit'] : 1000);
+            //Making sure that query has limited rows
+            if ($limit >1000 ) {
+                $limit = 1000;
+            }
+            if (!empty($page)) {
+                $start = ($page * $limit) - $limit;
+                $sql.=" LIMIT " . $start . ",$limit";
+            }
             $res=$this->query($sql);
-            
-            if($res)
+          
+            if($this->numRows($res)>0)
             {
                 $i=0;
                 while($row=$this->fetchData($res))
@@ -341,7 +373,6 @@
                     $result[]=$row;
                     $result[$i]['address']= mb_convert_encoding($row['address'], "UTF-8");
                     $i++;    
-                    
                 } 
                 $err = array('err_code' => 0, 'err_msg' => 'Data fetched successfully');
             } 

@@ -66,13 +66,38 @@ class attributes extends DB
     
     
     
-    public function getAttributeList()
+    public function getAttributeList($params)
     {
         
-        $sql1="SELECT attributeid,attr_name,attr_type,attr_unit,attr_unit_pos,attr_pos,attr_values,active_flag FROM tbl_attribute_master ORDER BY createdon DESC";
+        $sql1="
+                SELECT 
+                        attributeid,
+                        attr_name,
+                        attr_type,
+                        attr_unit,
+                        attr_unit_pos,
+                        attr_pos,
+                        attr_values,
+                        active_flag 
+                FROM 
+                        tbl_attribute_master 
+                ORDER BY 
+                        createdon DESC ";
+        
+        $page = ($params['page'] ? $params['page'] : 1);
+        $limit = ($params['limit'] ? $params['limit'] : 1000);
+        //Making sure that query has limited rows
+        if ($limit >1000 ) {
+            $limit = 1000;
+        }
+        if (!empty($page)) {
+            $start = ($page * $limit) - $limit;
+            $sql1.=" LIMIT " . $start . ",$limit";
+        }
+        
         $res1=$this->query($sql1);
         
-        if($res1)
+        if($this->numRows($res1)>0)
         {
             while ($row1=$this->fetchData($res1))
             {

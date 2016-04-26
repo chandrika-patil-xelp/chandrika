@@ -60,7 +60,7 @@ class category extends DB
     }
     
     
-    public function getCatgoryList()
+    public function getCatgoryList($params)
     {
         
         $sql="SELECT "
@@ -69,9 +69,18 @@ class category extends DB
                         //. " tbl_category_master  WHERE active_flag =1 ORDER BY createdon DESC ";
                         . " tbl_category_master  WHERE active_flag =1 ORDER BY cat_name ";
                             
-        
+        $page = ($params['page'] ? $params['page'] : 1);
+        $limit = ($params['limit'] ? $params['limit'] : 1000);
+        //Making sure that query has limited rows
+        if ($limit >1000 ) {
+            $limit = 1000;
+        }
+        if (!empty($page)) {
+            $start = ($page * $limit) - $limit;
+            $sql.=" LIMIT " . $start . ",$limit";
+        }
         $res=  $this->query($sql);
-        if($res)
+        if($this->numRows($res)>0)
         {
             while($row=  $this->fetchData($res))
             {
