@@ -11,8 +11,7 @@ class admin extends DB
 	
     public function getProdList($params)
     {
-        $page = (!empty($params['page']) ? $params['page'] : 1);
-        $limit = (!empty($params['limit']) ? $params['limit'] : 15);
+       
 
         $subQuery = "   SELECT 
                                 product_id AS id,
@@ -33,8 +32,13 @@ class admin extends DB
         $cntRes = $this->query($subQuery);
         $total_products = $this->numRows($cntRes);
         
-        if (!empty($page))
-        {
+        $page = ($params['page'] ? $params['page'] : 1);
+        $limit = ($params['limit'] ? $params['limit'] : 1000);
+        //Making sure that query has limited rows
+        if ($limit >1000 ) {
+            $limit = 1000;
+        }
+        if (!empty($page)) {
             $start = ($page * $limit) - $limit;
             $subQuery.=" LIMIT " . $start . ",$limit";
         }

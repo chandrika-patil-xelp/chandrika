@@ -332,7 +332,6 @@ switch($action)
     case 'pageList':
         include APICLUDE.'class.product.php';
         $obj	= new product($db['jzeva']);
-
         $page   = ($params['page'] ? $params['page'] : 1);
         $limit  = ($params['limit'] ? $params['limit'] : 20);
         $tmpParams = array('page'=>$params['page'],'limit' => $limit);
@@ -378,7 +377,10 @@ switch($action)
     case 'getCouponList':
         include APICLUDE.'class.coupon.php';
         $obj	= new coupon($db['jzeva']);
-        $result	=$obj->getCouponList();
+        $page   = ($params['page'] ? $params['page'] : 1);
+        $limit  = ($params['limit'] ? $params['limit'] : 1000);
+        $tmpParams = array('page'=>$params['page'],'limit' => $limit);
+        $result	=$obj->getCouponList($tmpParams);
         $res = $result;
     break;
 
@@ -400,10 +402,14 @@ switch($action)
     break;
     
 /* FOR image moderation */
+//jzeva/apis/?action=getProdList&limit=2&page=1
     case 'getProdList':
         include APICLUDE.'class.admin.php';
         $obj=   new admin($db['jzeva']);
-        $res=   $obj->getProdList($params);
+        $page   = ($params['page'] ? $params['page'] : 1);
+        $limit  = ($params['limit'] ? $params['limit'] : 1000);
+        $tmpParams = array('page'=>$params['page'],'limit' => $limit);
+        $res=   $obj->getProdList($tmpParams);
         break;
 
     case 'getImgByProd':
@@ -421,7 +427,10 @@ switch($action)
     case 'test':
         include APICLUDE.'class.attributes.php';
         $obj	= new category($db['jzeva']);
-        $result	=$obj->getCatgoryList();
+        $page   = ($params['page'] ? $params['page'] : 1);
+        $limit  = ($params['limit'] ? $params['limit'] : 1000);
+        $tmpParams = array('page'=>$params['page'],'limit' => $limit);
+        $result	=$obj->getCatgoryList($tmpParams);
     break;
     
     #USER
@@ -477,7 +486,7 @@ switch($action)
         include APICLUDE.'class.user.php';
         $obj	= new user($db['jzeva']);
         $page   = ($params['page'] ? $params['page'] : 1);
-        $limit  = ($params['limit'] ? $params['limit'] : 100);
+        $limit  = ($params['limit'] ? $params['limit'] : 1000);
         $tmpParams = array('page'=>$params['page'],'limit' => $limit);
         $res	=$obj->geOrderList($tmpParams);
     break;
@@ -487,7 +496,7 @@ switch($action)
         include APICLUDE.'class.user.php';
         $obj	= new user($db['jzeva']);
         $page   = ($params['page'] ? $params['page'] : 1);
-        $limit  = ($params['limit'] ? $params['limit'] : 100);
+        $limit  = ($params['limit'] ? $params['limit'] : 1000);
         $tmpParams = array('page'=>$params['page'],'limit' => $limit);
         $res	=$obj->getUserList($tmpParams);
     break;

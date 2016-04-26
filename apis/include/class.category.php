@@ -89,7 +89,6 @@ class category extends DB
                 $reslt['name']      =    $row['cat_name'];
                 $reslt['active']      =    $row['active_flag'];
                 $result[]=$reslt;
-                
             }
             $err=array('err_code'=>0,'err_msg'=>'Data fetched successfully');
         }
