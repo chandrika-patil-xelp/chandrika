@@ -283,28 +283,40 @@ switch($action)
     case 'getGoldRates':
         include APICLUDE.'class.rate.php';
         $obj	= new rate($db['jzeva']);
-        $result	=$obj->getGoldRates();
+        $page   = ($params['page'] ? $params['page'] : 1);
+        $limit  = ($params['limit'] ? $params['limit'] : 1000);
+        $tmpParams = array('page'=>$params['page'],'limit' => $limit);
+        $result	=$obj->getGoldRates($tmpParams);
         $res = $result;
     break;
 
     case 'getDmdRates':
         include APICLUDE.'class.rate.php';
         $obj	= new rate($db['jzeva']);
-        $result	=$obj->getDmdRates();
+        $page   = ($params['page'] ? $params['page'] : 1);
+        $limit  = ($params['limit'] ? $params['limit'] : 1000);
+        $tmpParams = array('page'=>$params['page'],'limit' => $limit);
+        $result	=$obj->getDmdRates($tmpParams);
         $res = $result;
     break;
 
     case 'getAllRates':
         include APICLUDE.'class.rate.php';
         $obj	= new rate($db['jzeva']);
-        $result	=$obj->getAllRates();
+        $page   = ($params['page'] ? $params['page'] : 1);
+        $limit  = ($params['limit'] ? $params['limit'] : 1000);
+        $tmpParams = array('page'=>$params['page'],'limit' => $limit);
+        $result	=$obj->getAllRates($tmpParams);
         $res = $result;
     break;
 
     case 'getMetalColorList':
         include APICLUDE.'class.product.php';
         $obj	= new product($db['jzeva']);
-        $result	=$obj->getMetalColorList();
+        $page   = ($params['page'] ? $params['page'] : 1);
+        $limit  = ($params['limit'] ? $params['limit'] : 1000);
+        $tmpParams = array('page'=>$params['page'],'limit' => $limit);
+        $result	=$obj->getMetalColorList($tmpParams);
         $res = $result;
     break;
 

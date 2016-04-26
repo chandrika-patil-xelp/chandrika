@@ -492,9 +492,19 @@ class product extends DB {
         }
     }
 
-    public function getMetalColorList()
+    public function getMetalColorList($params)
     {
         $sql = "SELECT id,dname,dvalue FROM tbl_metal_color_master WHERE active_flag = 1";
+        $page = ($params['page'] ? $params['page'] : 1);
+        $limit = ($params['limit'] ? $params['limit'] : 1000);
+        //Making sure that query has limited rows
+        if ($limit >1000 ) {
+            $limit = 1000;
+        }
+        if (!empty($page)) {
+            $start = ($page * $limit) - $limit;
+            $sql.=" LIMIT " . $start . ",$limit";
+        }
         $res = $this->query($sql);
         $result = array();
 

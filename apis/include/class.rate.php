@@ -89,9 +89,22 @@ class rate extends DB {
     }
     
     
-    public function getGoldRates()
+    public function getGoldRates($params)
     {
         $sql= "SELECT id,dname,dvalue,price FROM tbl_metal_purity_master WHERE active_flag = 1";
+        
+        $page = ($params['page'] ? $params['page'] : 1);
+        $limit = ($params['limit'] ? $params['limit'] : 1000);
+        //Making sure that query has limited rows
+        if ($limit >1000 ) {
+            $limit = 1000;
+        }
+        if (!empty($page)) {
+            $start = ($page * $limit) - $limit;
+            $sql.=" LIMIT " . $start . ",$limit";
+        }
+        
+        
         $res = $this->query($sql);
         
         
@@ -117,9 +130,20 @@ class rate extends DB {
         
     }
     
-    public function getDmdRates()
+    public function getDmdRates($params)
     {
         $sql= "SELECT id,dname,dvalue,price_per_carat FROM tbl_diamond_quality_master WHERE active_flag = 1";
+        $page = ($params['page'] ? $params['page'] : 1);
+        $limit = ($params['limit'] ? $params['limit'] : 1000);
+        //Making sure that query has limited rows
+        if ($limit >1000 ) {
+            $limit = 1000;
+        }
+        if (!empty($page)) {
+            $start = ($page * $limit) - $limit;
+            $sql.=" LIMIT " . $start . ",$limit";
+        }
+        
         $res = $this->query($sql);
         
         if($res)
@@ -146,11 +170,15 @@ class rate extends DB {
     
     
     
-    public function getAllRates()
+    public function getAllRates($params)
     {
+        $page = ($params['page'] ? $params['page'] : 1);
+        $limit = ($params['limit'] ? $params['limit'] : 1000);
+        //Making sure that query has limited rows
+      
         
-        $grates=$this->getGoldRates();
-        $dmdrates=$this->getDmdRates();
+        $grates=$this->getGoldRates($params);
+        $dmdrates=$this->getDmdRates($params);
         
         
         if($grates['error']['err_code'] == '1' || $dmdrates['error']['err_code'] == '1')
