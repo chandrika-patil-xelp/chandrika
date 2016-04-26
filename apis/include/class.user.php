@@ -321,7 +321,16 @@
         public function getUserList()
         {
             
-            $sql="SELECT user_id as uid,user_name as name, logmobile as mb,email as em,address as address , (SELECT count(order_id)  FROM tbl_order_master WHERE  user_id= uid  AND order_status < 6) AS openOrd ,(SELECT count(order_id)  FROM tbl_order_master WHERE  user_id= uid  AND order_status = 6) AS pastOrd  FROM tbl_user_master";
+            $sql="SELECT 
+                    user_id as uid,
+                    user_name as name,
+                    logmobile as mb,
+                    email as em,
+                    address as address ,
+                    (SELECT count(order_id)  FROM tbl_order_master WHERE  user_id= uid  AND order_status < 6) AS openOrd ,
+                    (SELECT count(order_id)  FROM tbl_order_master WHERE  user_id= uid  AND order_status = 6) AS pastOrd  
+                FROM 
+                    tbl_user_master";
             $res=$this->query($sql);
             
             if($res)

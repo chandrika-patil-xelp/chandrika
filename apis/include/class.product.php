@@ -1655,8 +1655,7 @@ class product extends DB {
                             FROM
                                 tbl_product_master ORDER BY createdon DESC";
 
-/*  Limit is removed for some time till pagination module is done
- *
+
             $page = ($params['page'] ? $params['page'] : 1);
             $limit = ($params['limit'] ? $params['limit'] : 1000);
 
@@ -1669,9 +1668,8 @@ class product extends DB {
                 $start = ($page * $limit) - $limit;
                 $sql.=" LIMIT " . $start . ",$limit";
             }
-*/
-            $res = $this->query($sql);
 
+            $res = $this->query($sql);
 
 
 
