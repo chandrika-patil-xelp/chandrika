@@ -34,17 +34,18 @@ function getCategories()
     $.ajax({
         url: URL,
         type: "POST",
+        async: false,
         success: function(res) {
             res = JSON.parse(res);
-            
+
 //            if(res['result']==null)
 //            {
 //                return;
 //            }
             categories = res['result'];
             var active=0;
-            
-            
+
+
             $(categories).each(function(i,v){
                 if(v.active==1){
                     active++;
@@ -61,7 +62,7 @@ function getCategories()
 
             generateCats(res,0);
             //generateCatTree();
-            
+
         }
     });
 }
@@ -69,8 +70,8 @@ function getCategories()
 function generateCats(res,id)
 {
     var result = res.result;
-    
-    
+
+
     if(res['result']==null)
     {
         return;
@@ -110,7 +111,7 @@ function bindCheckBox(res)
     $("input[type=checkbox]").each( function() {
         if($(this).attr('id').indexOf("cat_") != -1)
         {
-            
+
             $(this).unbind();
             var id = $(this).attr('id');
             $('#'+id).bind('click', function() {
@@ -123,7 +124,7 @@ function bindCheckBox(res)
                 {
                     removeCats(id.replace('cat_',''));
                     removeSizes(id);
-                    
+
                 }
             });
         }
@@ -160,7 +161,7 @@ function getAllChilds(res)
         stopPropGate(event);
         if ($(this).is(":checked"))
         {
-            
+
             var vstr = generateHtml(res, $(this).attr("id").replace('cat_', ''));
         }
         str += vstr;
@@ -169,7 +170,7 @@ function getAllChilds(res)
             $('#parentCatg').append(str);
         getAllChilds(res);
         bindRemove();
-       
+
     });
 }
 
@@ -423,7 +424,7 @@ function removeSizes(id){
         if(sizefor==id)
             $(this).remove();
 
-    });  
+    });
 }
 
 
@@ -651,7 +652,7 @@ $(document).ready(function() {
     });
 
 
-    $("[name='diamond_setting']").bind('click', function(e) {        
+    $("[name='diamond_setting']").bind('click', function(e) {
         var id = $(this).attr('id');
         stopPropGate(e);
         if ($(this).is(":checked") && id !== 'ds8')
@@ -667,9 +668,9 @@ $(document).ready(function() {
             $('#otherdsType').addClass('op0');
         }
     });
-    
+
     bindElementChange();
-    
+
 });
 
 function addTags(evt, val, id, tagCont)
@@ -709,7 +710,7 @@ function deleteThis(id)
 {
     $('#'+id).next('.breakLine').remove();
     $('#'+id).remove();
-    
+
     if($("div[id^='solitaireComm_']").length==0)
     {
         $('#solitaires_Section').addClass('dn');
@@ -717,9 +718,9 @@ function deleteThis(id)
         has_solitaire=false;
         changePrdPropertyStatus(1);
         sflag = true;
-        
+
     }
-    
+
     if($("div[id^='diamondComm_']").length==0)
     {
         $('#diamond_Section').addClass('dn');
@@ -727,9 +728,9 @@ function deleteThis(id)
         has_diamond=false;
         changePrdPropertyStatus(2);
         dflag = true;
-    
+
     }
-    
+
     if($("div[id^='uncutComm_']").length==0)
     {
         $('#uncut_Section').addClass('dn');
@@ -737,9 +738,9 @@ function deleteThis(id)
         has_uncut=false;
         changePrdPropertyStatus(3);
         uflag = true;
-    
+
     }
-    
+
     if($("div[id^='gemstoneComm_']").length==0)
     {
         $('#gemstone_Section').addClass('dn');
@@ -759,20 +760,20 @@ function changePrdPropertyStatus(type)
         values['type'] = type;
         values['pid'] = prdid;
         values['updatedby'] = userid;
-        
-        
+
+
         var dt = JSON.stringify(values);
-    
+
         $.ajax({
             url:URL,
             type:'POST',
             data:{dt:dt},
             success:function(res){
                 res=JSON.parse(res);
-                console.log(res);
+                //console.log(res);
             }
         });
-    
+
 }
 
 
@@ -1170,7 +1171,7 @@ function bindDmdQuaity()
         var name = $(this).attr('name');
         var val = $(this).val();
 
-        console.log(name + " --- " + val);
+        //console.log(name + " --- " + val);
         // 1 -> Customizabale   0 -> NOt Customizable
         var cnt = name.split("_");
         cnt = cnt[1];
@@ -1203,7 +1204,7 @@ function addProduct()
         hideLoader();
     if (flag)
     {
-        
+
         var catArray = new Array();
         var dmdSetting = new Array();
         var sizesArray = new Array();
@@ -1211,7 +1212,7 @@ function addProduct()
         var diamonds = new Array();
         var uncut = new Array();
         var gemstone = new Array();
-       
+
 
         $('[name=prtcateg]').each(function() {
             if ($(this).is(':CHECKED'))
@@ -1344,7 +1345,7 @@ function addProduct()
                 var id = $(this).attr('id');
                 var ids = id.split("solitaireComm_");
                 ids = ids[1];
-                
+
                 var sId=    $('#solitaireComm_' + ids).attr('db-id');
                 var shape = $('#solitaireComm_' + ids + ' .shapeSelected').attr('id').split("shape_");
                 var color = $('[name=solitaireColors_' + ids + ']:checked').val();
@@ -1358,8 +1359,8 @@ function addProduct()
                 var table = $('#soltable' + ids + '').val();
                 var crown_angle = $('#solCrownAngle' + ids + '').val();
                 var girdle = $('#solGirdle' + ids + '').val();
-                
-                
+
+
                 if(sId!=="")
                 {
                     values['solitaire_id'] = sId;
@@ -1427,7 +1428,7 @@ function addProduct()
                 var carat = $('#dmdcaratweight' + ids + '').val();
                 var total_no = $('#dmdPieces' + ids + '').val();
                 var dId=    $('#diamondComm_' + ids).attr('db-id');
-                
+
                 if(dId!=="")
                 {
                     values['diamond_id'] = dId;
@@ -1478,7 +1479,7 @@ function addProduct()
                 var price = $('#uncutpricecarat' + ids + '').val();
                 var total_no = $('#uncutPieces' + ids + '').val();
                 var unid=    $('#uncutComm_' + ids).attr('db-id');
-                
+
                 if(unid!=="")
                 {
                     values['uncut_id'] = unid;
@@ -1601,16 +1602,16 @@ function addProduct()
         {
             prd['productid'] = prdid;
         }
-        
+
         prd['userid'] = userid;
         prd['catid'] = catArray.toString();
-        
+
         previewData=prd;
-        
-        
+
+
         showpreview(previewData);
-        
-        
+
+
 /*
         var URL = APIDOMAIN + "index.php?action=addProduct";
         $.ajax({
@@ -1623,7 +1624,7 @@ function addProduct()
             }
         });
 
-*/         
+*/
 
     }
 }
@@ -1632,15 +1633,15 @@ function addProduct()
 function hidePreview()
 {
     $('#previewDiv').addClass('dn');
-    $('#prdForm').removeClass('dn');   
-    
+    $('#prdForm').removeClass('dn');
+
 }
 
 
 
 
 function submitData()
-{   
+{
     showLoader();
     previewData['filterAttrs']=setPrdMapping();
     var dt = JSON.stringify(previewData);
@@ -1654,12 +1655,12 @@ function submitData()
             addPrdCallBack(res);
         }
     });
-    
+
 }
 
 function setPrdMapping()
 {
-    
+
     values = {};
     $('ul.superparent').each(function(i){
         var liobj=$(this).find('li ul');
@@ -1671,21 +1672,21 @@ function setPrdMapping()
                 {
                     var val=$(this).val();
                     valarray.push(val);
-                    console.log(val);
-                    
+                    //console.log(val);
+
                 }
                 if(valarray.length>0)
                     values['"'+dfor+'"']=encodeURIComponent(valarray.toString());
-                
+
             });
-            
-        });    
-        
+
+        });
+
     });
-    
-    console.log(values);
+
+    //console.log(values);
     return values;
-    
+
 }
 
 
@@ -1785,7 +1786,7 @@ function moveUp()
 
 function validateForm()
 {
-    
+
     var isValid=true;
     if ($('[name=prtcateg]:checked').length === 0)
     {
@@ -1795,8 +1796,8 @@ function validateForm()
         isValid=false;
         return false;
     }
-    
-    
+
+
 
     if ($('#vendorList').val() == -1)
     {
@@ -1840,7 +1841,7 @@ function validateForm()
 
     if (has_solitaire)
     {
-        var isValid=validateSolAdd();        
+        var isValid=validateSolAdd();
         if(!isValid)
             return isValid;
     }
@@ -1848,15 +1849,15 @@ function validateForm()
 
     if (has_diamond)
     {
-        var isValid=validateDiamondAdd();        
+        var isValid=validateDiamondAdd();
         if(!isValid)
             return isValid;
-        
+
     }
 
     if (has_uncut)
     {
-        var isValid=validateUncutAdd();        
+        var isValid=validateUncutAdd();
         if(!isValid)
             return isValid;
     }
@@ -2068,7 +2069,7 @@ function validateForm()
         }
 
     }
-    
+
     if($('[name=size]').length>0)
     {
         if ($('[name=size]:checked').length == 0)
@@ -2117,7 +2118,7 @@ function validateForm()
             return false;
         }
 
-    }  */                                         
+    }  */
     return isValid;
 }
 
@@ -2151,15 +2152,15 @@ function GetRates() {
 
 function genPriceSection()
 {
-    
-    
+
+
     if(edit==0)
     {
         validateForm();
     }
 
-    
-    
+
+
     $('.priceOverlay').addClass('dn');
     var str = "";
     if (has_solitaire)
@@ -2194,8 +2195,8 @@ function genPriceSection()
     mstr += "<div class='forWeight fLeft'></div>";
     mstr += "<div class='forPrice calc fLeft'>&#8377;" + total + "</div>";
     mstr += "</li>";
-    
-    
+
+
     $('.pricingul').html('');
     $('.pricingul').html(str + gldstr + mstr);
     calcGrandTotal(1);
@@ -2496,6 +2497,7 @@ function oneditmodeCallBack(data)
         var dt=data['results'];
         var basic=dt['basicDetails'];
         var catAttr = dt['catAttr'];
+        //console.log(catAttr);
         attrVals = dt['attrVals'];
         prdid =basic.prdId;
 
@@ -2520,10 +2522,10 @@ function oneditmodeCallBack(data)
                     $('#ds8').attr('checked',true);
                     $('#diamond_settingOth').val(oth[1]);
                     $('#otherdsType').removeClass('op0');
-                    
-                    
+
+
                 }
-                
+
                 if(dmdsetting[i]==val){
                     $(this).attr('checked',true);
                 }
@@ -2623,7 +2625,7 @@ function oneditmodeCallBack(data)
             });
         }
 
-        
+
 
 
 
@@ -2637,8 +2639,8 @@ function oneditmodeCallBack(data)
                 var ids=i+1;
                 var solt=solts[i];
                 addSolitaire();
-                
-                
+
+
                 $('#solitaireComm_'+ids).find('.shapeComm.'+solt.shape).click();
                 $('#solitaireComm_'+ids).attr('db-id',solt.soliId);
 
@@ -2758,7 +2760,7 @@ function oneditmodeCallBack(data)
                     if(un.qulty==val)
                         $(this).attr('checked',true);
                 });
-                
+
                 $('#uncutComm_'+ids).attr('db-id',un.unctId);
                 $('#uncutcaratweight'+ids).val(un.crat);
                 $('#uncutpricecarat'+ids).val(un.prcPrCrat);
@@ -2788,7 +2790,7 @@ function oneditmodeCallBack(data)
                         $(this).attr('selected',true);
 
                 });
-                
+
                 $('#gemstoneComm_'+ids).attr('db-id',gem.gemId);
                 $('#gemstonecaratweight'+ids).val(gem.crat);
                 $('#gemstonepricecarat'+ids).val(gem.prcPrCrat);
@@ -2801,26 +2803,28 @@ function oneditmodeCallBack(data)
 
         genPriceSection();
 
-        $.each(catAttr.results, function(i,vl) {
-            setTimeout( function() {
-                $('#cat_'+vl.cid).click();
+        if(catAttr.count > 0)
+        {
+            $.each(catAttr.results, function(i,vl) {
                 setTimeout( function() {
-                        var sizes =dt['size']['results'];
-                        $(sizes).each(function(i){
-                            var sid=sizes[i].sizId;
-                            var qty=sizes[i].qnty;
-                            $('[name=size]').each(function(){
-                                var val =$(this).val();
-                                if(sid==val){
-                                    $(this).attr('checked',true);
-                                    $('#size_'+sid+'_qty').val(qty);
-                                }
+                    $('#cat_'+vl.cid).click();
+                    setTimeout( function() {
+                            var sizes =dt['size']['results'];
+                            $(sizes).each(function(i){
+                                var sid=sizes[i].sizId;
+                                var qty=sizes[i].qnty;
+                                $('[name=size]').each(function(){
+                                    var val =$(this).val();
+                                    if(sid==val){
+                                        $(this).attr('checked',true);
+                                        $('#size_'+sid+'_qty').val(qty);
+                                    }
+                                });
                             });
-                        });
-                    },350);
-            },150);
-        });
-        
+                        },350);
+                },150);
+            });
+        }
 
     }
     hideLoader();
@@ -2830,94 +2834,94 @@ function oneditmodeCallBack(data)
 function deleteSolitaire(obj)
 {
     var sid=$(obj).parent().attr('db-id');
-    
+
     if(sid!=="")
     {
         var URL= APIDOMAIN+"?action=changeSolitaireStatus";
-    
+
         values= {};
         values['solitaire_id'] = sid;
         values['productid'] = prdid;
         values['updatedby'] = userid;
         values['active_flag'] = 2;
-        
-        
+
+
         var dt = JSON.stringify(values);
-    
+
         $.ajax({
             url:URL,
             type:'POST',
             data:{dt:dt},
             success:function(res){
                 res=JSON.parse(res);
-                console.log(res);
+                //console.log(res);
             }
         });
-    
+
     }
-    
+
 }
 
 function deleteDiamond(obj)
 {
     var did=$(obj).parent().attr('db-id');
-    
+
     if(did!=="")
     {
         var URL= APIDOMAIN+"?action=changeDiamondStatus";
-    
+
         values= {};
         values['diamond_id'] = did;
         values['productid'] = prdid;
         values['updatedby'] = userid;
         values['active_flag'] = 2;
-        
-        
+
+
         var dt = JSON.stringify(values);
-    
+
         $.ajax({
             url:URL,
             type:'POST',
             data:{dt:dt},
             success:function(res){
                 res=JSON.parse(res);
-                console.log(res);
+                //console.log(res);
             }
         });
-    
+
     }
-    
+
 }
 
 function deleteUncut(obj)
 {
     var uid=$(obj).parent().attr('db-id');
-    
+
     if(uid!=="")
     {
         var URL= APIDOMAIN+"?action=changeUncutStatus";
-    
+
         values= {};
         values['uncut_id'] = uid;
         values['productid'] = prdid;
         values['updatedby'] = userid;
         values['active_flag'] = 2;
-        
-        
+
+
         var dt = JSON.stringify(values);
-    
+
         $.ajax({
             url:URL,
             type:'POST',
             data:{dt:dt},
             success:function(res){
                 res=JSON.parse(res);
-                console.log(res);
+                //console.log(res);
             }
         });
-    
+
     }
-    
+
 }
 
 function deleteGemstone(obj)
@@ -2926,28 +2930,28 @@ function deleteGemstone(obj)
     if(gid!=="")
     {
         var URL= APIDOMAIN+"?action=changeGemstoneStatus";
-    
+
         values= {};
         values['gemstone_id'] = gid;
         values['productid'] = prdid;
         values['updatedby'] = userid;
         values['active_flag'] = 2;
-        
-        
+
+
         var dt = JSON.stringify(values);
-    
+
         $.ajax({
             url:URL,
             type:'POST',
             data:{dt:dt},
             success:function(res){
                 res=JSON.parse(res);
-                console.log(res);
+                //console.log(res);
             }
         });
-    
+
     }
-    
+
 }
 
 function validateSolAdd()
@@ -3104,11 +3108,11 @@ function validateSolAdd()
             }
         });
         return isValid;
-    
+
 }
 
 function  validateDiamondAdd()
-{   
+{
         var isValid=true;
         $('[id*=diamondComm_]').each(function() {
             var id = $(this).attr('id');
@@ -3273,7 +3277,7 @@ function validateUncutAdd()
 
         });
         return isValid;
-        
+
 }
 
 function validateGemstoneAdd()
@@ -3345,7 +3349,7 @@ function validateGemstoneAdd()
 
         });
         return isValid;
-        
+
 }
 
 
@@ -3355,7 +3359,7 @@ function checkSolAdd()
     if(validateSolAdd()){
         addSolitaire();
     }
-    
+
 }
 
 function checkDmdAdd()
@@ -3363,7 +3367,7 @@ function checkDmdAdd()
     if(validateDiamondAdd()){
         addDiamond();
     }
-    
+
 }
 
 function checkUncutAdd()
@@ -3371,21 +3375,21 @@ function checkUncutAdd()
     if(validateUncutAdd()){
         addUncut();
     }
-    
+
 }
 function checkGemsAdd()
 {
     if(validateGemstoneAdd()){
         addGemstone();
     }
-    
+
 }
 var varr=new Array();
 function setAtttrValues(data)
 {
     if(data['error']['err_code']==0)
     {
-        
+
         $(data['result']).each(function(i,v){
             $('#attr_'+v.attid+" a").click();
             var dval=decodeURIComponent(v.value);
@@ -3400,11 +3404,11 @@ function setAtttrValues(data)
                     }
                 });
             });
-            
+
         });
-    }        
-    
-    
+    }
+
+
 }
 
 
@@ -3437,10 +3441,10 @@ function getCatid(name) {
 }
 
 var allCh=new Array();
- 
+
 function getAllChild(cid)
-{  
-    
+{
+
     var allchild=new Array();
     var pids=new Array();
     $(categories).each(function(i,v){
@@ -3452,23 +3456,23 @@ function getAllChild(cid)
             }
         });
     });
-    
+
     values={};
     values['cat']=getCatName(cid);
     values['childs']=allchild;
     allCh.push(values);
-   
+
  return allchild.toString();
- 
+
 }
 
 
 function test()
 {
-    $(categories).each(function(i,v){        
+    $(categories).each(function(i,v){
         getAllChild(v.cid);
     });
-    
+
 }
 
 function getCh(k)
@@ -3477,9 +3481,9 @@ function getCh(k)
     $(allCh).each(function(l,m){
         if(allCh[l]['cat']==k)
         {
-            
+
             var childs=allCh[l]['childs'];
-            
+
             if(childs.length==0)
             {
                 str+="<ul>";
@@ -3495,7 +3499,7 @@ function getCh(k)
             }
             else
             {
-                
+
                 str+="<ul class='superparent'>";
                     str+="<li class='parent'><a>"+k+"</a>";
                     $(childs).each(function(j,vj){
@@ -3511,14 +3515,14 @@ function getCh(k)
                     });
                     str+="</li>";
                 str+="</ul>";
-                
+
             }
-                
-            
-               
-        
+
+
+
+
         }
-        
+
         return str;
 
     });
@@ -3529,16 +3533,16 @@ function getCh(k)
 
 
 function test1()
-{   
-    
+{
+
     var str="";
     $(allCh).each(function(i,v){
-        
-        
+
+
                 str+= getCh(v.cat);
-        
+
     });
-   
+
     $('#parentCatg2').append(str);
     bindTree2();
 }
@@ -3549,8 +3553,8 @@ function test1()
 
 function bindTree2()
 {
-    
-    
+
+
     $('.tree li.parent > a').bind('click',function( ) {
             var id = $(this).parent().attr('id');
             $(this).parent().toggleClass('active');
@@ -3562,12 +3566,201 @@ function bindTree2()
                            // $(this).attr('checked',false);
                     });
                 }
-			
+
         });
-        
-    
-    
-    
+
+
+
+
 }
 
 
+function _getCategoryTree(xhtml, subcat) {
+
+    if(subcat)
+    {
+        xhtml += '<ul>';
+        $.each(subcat, function(i, vl) {
+            xhtml += '<li>';
+            xhtml += generateHtml(vl)
+            if(vl.subcat) {
+                xhtml += getCategoryTree(xhtml, vl.subcat);
+            }
+            xhtml += '</li>';
+        });
+        xhtml += '</ul>';
+    }
+    else {
+        var URL = APIDOMAIN + "index.php?action=getCatgoryTree";
+        $.ajax({
+            url: URL,
+            type: "POST",
+            async: false,
+            success: function(res) {
+                res = JSON.parse(res);
+                xhtml += '<ul>';
+                $.each(res.root, function(i, vl) {
+
+                    xhtml += '<li>';
+                    xhtml += generateHtml(vl)
+                    if(vl.subcat)
+                    {
+                        xhtml += getCategoryTree(xhtml, vl.subcat);
+                    }
+                    xhtml += '</li>';
+                });
+                xhtml += '</ul>';
+            }
+        });
+    }
+    return xhtml;
+}
+
+function getCategoryTree(xhtml, subcat) {
+    var xhtml = '';
+    var URL = APIDOMAIN + "index.php?action=getCatgoryTree";
+    $.ajax({
+        url: URL,
+        type: "POST",
+        async: false,
+        success: function(res) {
+            res = JSON.parse(res);
+            //console.log(res.root)
+            xhtml = makeTree(res);
+            //console.log(xhtml);
+            $('.tree').html(xhtml);
+        }
+    });
+}
+
+function makeTree(vls)
+{
+    var xhtml = '';
+    console.log(vls.subcat);
+
+    if(vls.subcat)
+        vlst = vls.subcat;
+    else if(vls.root)
+        vlst = vls.root;
+    else
+        vlst = vls;
+
+    if(vls.subcat || vls.root)
+    {
+
+        xhtml += '<ul>';
+    }
+    $.each(vlst, function(i, vl) {
+        if(vl.subcat)
+        {
+            xhtml += '<li>';
+                xhtml += '<a href="#" class="parent">'+vl.cat_name+'</a>';
+                xhtml += makeTree(vl);
+            xhtml += '</li>';
+        }
+        else {
+            xhtml += '<li>';
+                xhtml += '<a href="#" class="parent">'+vl.cat_name+'</a>';
+            xhtml += '</li>';
+        }
+    })
+    if(vls.subcat || vls.root)
+    {
+        xhtml += '</ul>';
+    }
+    return xhtml;
+}
+
+function getHtml(vls)
+{
+    var xhtml = '';
+    if(typeof vls == 'object')
+    {
+        xhtml += '<ul>';
+    }
+    $.each(vls, function(i, vl){
+        if(typeof vl == 'object')
+        {
+            xhtml += '<li>';
+                xhtml += '<a href="#" class="parent">'+i+'</a>';
+                xhtml += getHtml(vl);
+            xhtml += '</li>';
+        }
+        else
+        {
+            xhtml += '<li>';
+                xhtml += '<a href="#" class="parent">'+i+'</a>';
+            xhtml += '</li>';
+        }
+    });
+    if(typeof vls == 'object')
+    {
+        xhtml += '</ul>';
+    }
+
+    return xhtml;
+}
+
+function generateHtml(vl) {
+    //console.log(vl);
+    var xhtml = '';
+        xhtml += '<a>';
+            xhtml += '<div class="checkDiv fLeft">';
+                xhtml += '<input type="checkbox" class="filled-in" id="'+vl.catid+'">';
+                xhtml += '<label for="'+vl.catid+'">'+vl.cat_name+'</label>';
+            xhtml += '</div>';
+        xhtml += '</a>';
+    return xhtml;
+}
+
+function createTree() {
+
+    var xhtml = ''
+    var str = getCategoryTree(xhtml);
+    console.log(str);
+
+    //$.each(categories, function(i, vl) {
+        //console.log(vl);
+    //});
+
+    var xhtml = '';
+    xhtml += '<div class="tree transition300">';
+    xhtml += str;
+
+        // xhtml += '<ul>';
+        //     xhtml += '<li>';
+        //         xhtml += '<a>';
+        //             xhtml += '<div class="checkDiv fLeft">';
+        //                 xhtml += '<input type="checkbox" class="filled-in" id="1">';
+        //                 xhtml += '<label for="1">Jewellery</label>';
+        //             xhtml += '</div>';
+        //         xhtml += '</a>';
+        //         xhtml += '<ul>';
+        //             xhtml += '<li>';
+        //                 xhtml += '<a>';
+        //                     xhtml += '<div class="checkDiv fLeft">';
+        //                         xhtml += '<input type="checkbox" class="filled-in" id="2">';
+        //                         xhtml += '<label for="2">Rings</label>';
+        //                     xhtml += '</div>';
+        //                 xhtml += '</a>';
+        //                 xhtml += '<ul>';
+        //                     xhtml += '<li>';
+        //                         xhtml += '<a>';
+        //                             xhtml += '<div class="checkDiv fLeft">';
+        //                                 xhtml += '<input type="checkbox" class="filled-in" id="3">';
+        //                                 xhtml += '<label for="3">Office Wear</label>';
+        //                             xhtml += '</div>';
+        //                         xhtml += '</a>';
+        //                     xhtml += '</li>';
+        //                 xhtml += '</ul>';
+        //             xhtml += '</li>';
+        //         xhtml += '</ul>';
+        //     xhtml += '</li>';
+        // xhtml += '</ul>';
+
+    xhtml += '</div>';
+
+    $('#displayCat').html(xhtml);
+}
+
+createTree();

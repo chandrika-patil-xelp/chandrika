@@ -7,7 +7,7 @@ $action = $_GET['action'];
 if($params['debug'])
 {
     echo "<pre>";    print_r($params);  echo "</pre>";
-    
+
 }
 
 
@@ -21,7 +21,13 @@ switch($action)
         $tmpparams = array($params['dt']);
         $result	=$obj->addCategory($tmpparams);
         $res = $result;
-    break;    
+    break;
+    case 'getCatgoryTree':
+        include APICLUDE.'class.category.php';
+        $obj	= new category($db['jzeva']);
+        $result	=$obj->getCatgoryTree();
+        $res = $result;
+    break;
     //jzeva/apis/?action=getCatgoryList&limit=20&page=1
     case 'getCatgoryList':
         include APICLUDE.'class.category.php';
@@ -32,7 +38,7 @@ switch($action)
         $result	=$obj->getCatgoryList($tmpParams);
         $res = $result;
     break;
-    
+
     case 'changeCategoryStatus':
         include APICLUDE.'class.category.php';
         $obj	= new category($db['jzeva']);
@@ -93,7 +99,7 @@ switch($action)
     break;
 
     #Attributes
-    
+
     case 'addAttribute':
         include APICLUDE.'class.attributes.php';
         $obj	= new attributes($db['jzeva']);
@@ -101,7 +107,7 @@ switch($action)
         $result	=$obj->addAttribute($tmpaparams);
         $res = $result;
     break;
-    
+
     //jzeva/apis/?action=getAttributeList&limit=2&page=2
     case 'getAttributeList':
         include APICLUDE.'class.attributes.php';
@@ -112,7 +118,7 @@ switch($action)
         $result	=$obj->getAttributeList($tmpParams);
         $res = $result;
     break;
-    
+
     case 'changeAttributeStatus':
         include APICLUDE.'class.attributes.php';
         $obj	= new attributes($db['jzeva']);
@@ -130,7 +136,7 @@ switch($action)
     break;
 
     #Product
-    
+
     case 'addProduct':
         include APICLUDE.'class.product.php';
         $obj=new product($db['jzeva']);
@@ -207,7 +213,7 @@ switch($action)
         $result	=$obj->getSizeList();
         $res = $result;
     break;
-  
+
     case 'changeProductStatus':
         include APICLUDE.'class.product.php';
         $obj	= new product($db['jzeva']);
@@ -257,7 +263,7 @@ switch($action)
     break;
 
 
-    
+
 
 
 
@@ -351,8 +357,8 @@ switch($action)
         $res = $result;
     break;
 
-	
-// http://localhost/jzeva/backend/index.php?action=upload&pid=1	
+
+// http://localhost/jzeva/backend/index.php?action=upload&pid=1
     case 'imageupdate':
         include APICLUDE.'class.product.php';
         $obj	= new product($db['jzeva']);
@@ -375,9 +381,9 @@ switch($action)
     break;
 
 
-    
+
     #COUPONS
-    
+
     case 'addCoupon':
         include APICLUDE.'class.coupon.php';
         $obj	= new coupon($db['jzeva']);
@@ -385,7 +391,7 @@ switch($action)
         $result	=$obj->addCoupon($tmpparams);
         $res = $result;
     break;
-    
+
     case 'getCouponList':
         include APICLUDE.'class.coupon.php';
         $obj	= new coupon($db['jzeva']);
@@ -402,9 +408,9 @@ switch($action)
         $result	=$obj->getCouponDetailsById();
         $res = $result;
     break;
-    
 
-    
+
+
     case 'updateCouponStatus':
         include APICLUDE.'class.coupon.php';
         $obj	= new coupon($db['jzeva']);
@@ -412,7 +418,7 @@ switch($action)
         $result	=$obj->updateCouponStatus($tmpparams);
         $res = $result;
     break;
-    
+
 /* FOR image moderation */
 //jzeva/apis/?action=getProdList&limit=2&page=1
     case 'getProdList':
@@ -444,13 +450,13 @@ switch($action)
         $tmpParams = array('page'=>$params['page'],'limit' => $limit);
         $result	=$obj->getCatgoryList($tmpParams);
     break;
-    
+
     #USER
     case 'addUser':
         include APICLUDE.'class.user.php';
         $obj	= new user($db['jzeva']);
         $res	=$obj->addUser();
-    break;    
+    break;
 
     case 'getUser':
         include APICLUDE.'class.user.php';
@@ -458,7 +464,7 @@ switch($action)
         $tmpparams=array('userid'=>$params['userid']);
         $res	=$obj->getUserDetailsById($tmpparams);
     break;
-    
+
     case 'addOrder':
         include APICLUDE.'class.user.php';
         $obj	= new user($db['jzeva']);

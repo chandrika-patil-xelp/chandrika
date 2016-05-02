@@ -13,29 +13,35 @@
 
                 <section id='category_Section' class="dn">
                     <div class="commTitle1 fmOpenL fLeft">Select your category*</div>
+
+
+                    <div id="displayCat" class="fLeft">
+                        
+                    </div>
+
                     <div class="divCon  fLeft fmOpenR forCateg" id='parentCatg'></div>
                     <div class="divCon  fLeft fmOpenR forCateg" id='parentCatg0'></div>
                     <div class="breakLine"></div>
                     <div class="breakLine"></div>
                     <div class="breakLine"></div>
                     <div class="divCon  fLeft fmOpenR">
-                        
+
                         <div class="divCon fLeft fmOpenR">
-                            <div class="radioCont fLeft"> 
+                            <div class="radioCont fLeft">
                                 <div class="treeCont fLeft">
                                         <div class="tree transition300" id='parentCatg2'></div>
-                                    
+
                                 </div>
                             </div>
                         </div>
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
+
+
+
+
+
+
+
+
                     </div>
                     <div class="divCon fLeft">
                         <div class="divCon2 fLeft mTop0">
@@ -141,7 +147,7 @@
                     <div class="commTitle1 fmOpenL fLeft">General Information</div>
                     <div class="divCon fLeft fmOpenR">
                         <div class="titleDiv txtCap fLeft">Diamond Setting type*</div>
-                        <div class="radioCont fLeft"> 
+                        <div class="radioCont fLeft">
                             <div class="checkDiv fLeft">
                                 <input type="checkbox" name="diamond_setting" class="filled-in" value="Prong" id="ds1">
                                 <label for="ds1">Prong</label>
@@ -173,7 +179,7 @@
                             <div class="checkDiv fLeft">
                                 <input type="checkbox" name="diamond_setting" class="filled-in" value="Other" id="ds8">
                                 <label for="ds8">Other</label>
-                            </div> 
+                            </div>
                             <div class="divCon2 fLeft otherDsetting op0" id='otherdsType'>
                                 <input name="" type="text" id="diamond_settingOth" autocomplete="false" placeholder="Enter other type" class="txtInput fLeft fmOpenR font14 c666">
                             </div>
@@ -204,7 +210,7 @@
                             <input type="radio" name="certificate" class="filled-in" value="GIA" id="certgia">
                             <label for="certgia">GIA</label>
                         </div>
-                    </div>    
+                    </div>
                     <div class="divCon2 fLeft forInp">
                         <div class="titleDiv txtCap fLeft">Metal Weight <span class="txtLower">gm(s)*</span></div>
                         <input name="" type="text" id="metal_weight" autocomplete="false" placeholder="Enter gold weight" class="txtInput fLeft fmOpenR font14 c666" onkeypress="return common.isDecimalKey(event, this.value);">
@@ -269,10 +275,10 @@
                     <div class="commTitle1 fmOpenL fLeft">Price Breakup</div>
                     <div class="divCon fLeft">
                         <div class="priceHeading fLeft">
-                            <div class="forComponent fLeft">Component</div> 
-                            <div class="forRate fLeft">Rate</div> 
-                            <div class="forWeight fLeft">Weight</div> 
-                            <div class="forPrice fLeft">Price</div> 
+                            <div class="forComponent fLeft">Component</div>
+                            <div class="forRate fLeft">Rate</div>
+                            <div class="forWeight fLeft">Weight</div>
+                            <div class="forPrice fLeft">Price</div>
                         </div>
                         <ul class="pricingul fLeft"></ul>
                     </div>
@@ -300,7 +306,7 @@
     <div class="previewContainer preview dn" id='previewDiv'>
         <div class="wrapperMax fmOpenR">
             <div class="previewLeft fLeft">
-            
+
                 <section id='general_Section' class="generalCont">
                     <div class="commTitle1 fmOpenR">General Information</div>
                     <div class=" fLeft dtl">
@@ -403,7 +409,7 @@
                 <div class="catValDiv dn">
                     <div class="commTitle1 fmOpenL fLeft">Map Product Attribute</div>
                     <div class="divCon fLeft fmOpenR">
-                        <div class="radioCont fLeft"> 
+                        <div class="radioCont fLeft">
                             <div class="treeCont fLeft">
                                 <div class="fLeft">
                                     <div class="tree transition300"></div>
@@ -412,9 +418,9 @@
                         </div>
                     </div>
                 </div>
-                
-                
-                
+
+
+
             </div>
             <div class="btnCont fLeft">
                 <center>
@@ -424,11 +430,11 @@
             </div>
         </div>
     </div>
-    
+
     <!--Category Value Map-->
-    
-    
-    
+
+
+
     <script type="text/javascript" src="<?php echo $jvs['addProduct']; ?>"></script>
     <script type="text/javascript" src="<?php echo $jvs['nicescroll']; ?>"></script>
 
@@ -519,11 +525,11 @@
 
                             $('#prmetalpurity').text(mpurity.toString());
                             $('#prmetalcolor').text(mcolor.toString());
-                            
-                            
+
+
                             if($('[name=size]').length>0)
                             {
-                                
+
                                 var selsize='';
                                 $("input[name='size']").each(function(){
                                     if ($(this).is(':CHECKED'))
@@ -535,7 +541,7 @@
                                 $('#prsize').text(selsize);
                                 $('#forSelectedSize').removeClass('dn');
                             }
-                            
+
                             var catstr = "";
                             $(catid).each(function (i) {
                                 $(categories).each(function (j, vl) {
@@ -794,13 +800,13 @@
 
 $(document).ready(function( ) {
         bindTree();
-        
+
     });
-    
-    
-    
+
+
+
     function bindTree(){
-        
+
         $('.tree li').each(function() {
             if ($(this).children('ul').length > 0) {
                 $(this).addClass('parent');
@@ -817,9 +823,9 @@ $(document).ready(function( ) {
                            // $(this).attr('checked',false);
                     });
                 }
-			
+
         });
-        
+
         if(edit==0)
         {
             $('.tree ul:first > li').eq(0).each(function() {
@@ -828,9 +834,9 @@ $(document).ready(function( ) {
             });
         }
 
-                
+
     }
-    
+
     function getMultyCatMapping()
     {
         var catArray=new Array();
@@ -846,13 +852,13 @@ $(document).ready(function( ) {
             }
 
         });
-        
-        
-        
+
+
+
         values = {};
         values['catid']=catArray.toString();
         var dt=JSON.stringify(values);
-        
+
         $.ajax({
             url:APIDOMAIN+"index.php?action=getMultyCatMapping",
             type:'POST',
@@ -861,14 +867,14 @@ $(document).ready(function( ) {
                 res=JSON.parse(res);
                 attrValuesCallBack(res);
             }
-            
+
         });
-        
+
     }
-    
+
     function attrValuesCallBack(data)
     {
-        
+
         if(data['error']['err_code']==0)
         {
             var str="";
@@ -894,8 +900,8 @@ $(document).ready(function( ) {
                     str+="</ul>";
                 }
             });
-            
-            
+
+
             $('.tree').append(str);
             $('.catValDiv').removeClass('dn');
             bindTree();
@@ -903,16 +909,16 @@ $(document).ready(function( ) {
         else{
             common.toast(0, 'Error in fetching data');
         }
-        
-        
+
+
         if(edit==1)
         {
             setAtttrValues(attrVals);
         }
-        
+
     }
-    
-    
+
+
     function stopBodyScroll(){
         $('body').bind('scroll touchmove mousewheel', function(e){
             e.preventDefault();
@@ -920,12 +926,12 @@ $(document).ready(function( ) {
             return false;
         });
     }
-    
+
     function startBodyScroll(){
         $('body').unbind();
     }
-    
-    
+
+
     </script>
 
 
