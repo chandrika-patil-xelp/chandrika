@@ -135,7 +135,7 @@ function getCategories()
 function categoryCallBack()
 {
     var str = "<option value='-1'>Select Category</option>";
-    str += "<option value='0'>Master</option>";
+    str += "<option value='99999'>Master</option>";
     if (categories)
     {
         
