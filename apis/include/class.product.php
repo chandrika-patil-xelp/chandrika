@@ -252,13 +252,11 @@ class product extends DB {
         return $results;
         
     }
-    
-    
-    
-    public function addCatProductMapping($params)
-    {
 
+    public function addCatProductMapping($params)
+    {   
         $catids = explode(",", $params['catid']);
+        
         $sql = "INSERT INTO tbl_category_product_mapping (catid,productid,createdon,updatedby) VALUES ";
         foreach ($catids as $val) {
             $tmpparams = array('catid' => $val, 'userid' => $params['userid'], 'pid' => $params['pid']);

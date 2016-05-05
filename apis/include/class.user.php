@@ -328,7 +328,7 @@
             } 
             else 
             {
-                $err = array('err_code' => 1, 'err_msg' => 'Error in fetching data');
+                $err = array('err_code' => 1, 'err_msg' => 'No records found');
             }
             $results = array('result' => $result, 'error' => $err);
             return $results;

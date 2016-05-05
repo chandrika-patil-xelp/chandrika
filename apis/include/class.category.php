@@ -314,7 +314,6 @@ class category extends DB
             {
                 $err=array('err_code'=>1,'err_msg'=>'Error in fetching data');
             }
-
         }
 
         $uniqattrs=array_values(array_unique($attrArray));
@@ -326,7 +325,6 @@ class category extends DB
             $result[]=$reslt['attributes'];
 
         }
-
 
         $results=array('result'=>$result,'error'=>$err);
         return $results;

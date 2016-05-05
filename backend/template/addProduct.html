@@ -13,35 +13,11 @@
 
                 <section id='category_Section' class="dn">
                     <div class="commTitle1 fmOpenL fLeft">Select your category*</div>
-
-
-                    <div id="displayCat" class="fLeft">
-                        
-                    </div>
-
-                    <div class="divCon  fLeft fmOpenR forCateg" id='parentCatg'></div>
-                    <div class="divCon  fLeft fmOpenR forCateg" id='parentCatg0'></div>
-                    <div class="breakLine"></div>
-                    <div class="breakLine"></div>
-                    <div class="breakLine"></div>
                     <div class="divCon  fLeft fmOpenR">
-
-                        <div class="divCon fLeft fmOpenR">
-                            <div class="radioCont fLeft">
-                                <div class="treeCont fLeft">
-                                        <div class="tree transition300" id='parentCatg2'></div>
-
-                                </div>
-                            </div>
-                        </div>
-
-
-
-
-
-
-
-
+                        <div class="treeCont fLeft">
+                            <div class="tree transition300" id='parentCatg'></div>
+                       </div>
+                        
                     </div>
                     <div class="divCon fLeft">
                         <div class="divCon2 fLeft mTop0">
@@ -412,7 +388,7 @@
                         <div class="radioCont fLeft">
                             <div class="treeCont fLeft">
                                 <div class="fLeft">
-                                    <div class="tree transition300"></div>
+                                    <div class="tree transition300" id="mapTree"></div>
                                 </div>
                             </div>
                         </div>
@@ -442,7 +418,7 @@
 
                         function showpreview(data)
                         {
-
+                            
                             var mpurity = data['mpurity'];
                             var metalcolor = data['metalcolor'];
                             var sizes = data['sizes'];
@@ -651,7 +627,6 @@
                                         dquality.push($('[name*=dmdquality_notCust' + ids + ']:checked').next('label').text());
                                     }
 
-                                    console.log(diamonds);
 
                                     str += "<div class='commCont fLeft  forAuto'>";
 //                                    str += "<div class='shapeComm " + vl.shape + "'></div>";
@@ -759,6 +734,7 @@
                             hideLoader();
                             moveUp();
                             getMultyCatMapping();
+                            //checkedTree(catid);
                         }
 
 
@@ -799,20 +775,17 @@
                         }
 
 $(document).ready(function( ) {
-        bindTree();
+    bindTree();
+});
 
-    });
-
-
-
-    function bindTree(){
-
-        $('.tree li').each(function() {
+    function bindTree()
+    {
+        $('#mapTree li').each(function() {
             if ($(this).children('ul').length > 0) {
                 $(this).addClass('parent');
             }
         });
-        $('.tree li.parent > a').bind('click',function( ) {
+        $('#mapTree li.parent > a').bind('click',function( ) {
             var id = $(this).parent().attr('id');
             $(this).parent().toggleClass('active');
             $(this).parent().children('ul').slideToggle('fast');
@@ -823,42 +796,42 @@ $(document).ready(function( ) {
                            // $(this).attr('checked',false);
                     });
                 }
-
         });
-
         if(edit==0)
         {
-            $('.tree ul:first > li').eq(0).each(function() {
+            $('#mapTree ul:first > li').eq(0).each(function() {
                 $(this).toggleClass('active');
                 $(this).children('ul').slideToggle('fast');
             });
         }
-
-
+        else if(edit==1)
+        {
+            $('#mapTree ul:first > li').eq(0).each(function() {
+                $(this).toggleClass('active');
+                $(this).children('ul').slideToggle('fast');
+            });
+        }
     }
 
-    function getMultyCatMapping()
+    function getMultyCatMapping(allCid)
     {
         var catArray=new Array();
         $('[name=prtcateg]').each(function() {
             if ($(this).is(':CHECKED'))
+            {
                 catArray.push($(this).val());
-
-            else if (!$(this).is(':CHECKED')) {
-                var removeItem = $(this).val();
-                catArray = jQuery.grep(catArray, function(value) {
-                    return value !== removeItem;
-                });
             }
-
+//            else if (!$(this).is(':CHECKED')) {
+//                var removeItem = $(this).val();
+//                catArray = jQuery.grep(catArray, function(value) {
+//                    return value !== removeItem;
+//                });
+//            }
         });
-
-
 
         values = {};
         values['catid']=catArray.toString();
         var dt=JSON.stringify(values);
-
         $.ajax({
             url:APIDOMAIN+"index.php?action=getMultyCatMapping",
             type:'POST',
@@ -867,9 +840,7 @@ $(document).ready(function( ) {
                 res=JSON.parse(res);
                 attrValuesCallBack(res);
             }
-
         });
-
     }
 
     function attrValuesCallBack(data)
@@ -901,8 +872,7 @@ $(document).ready(function( ) {
                 }
             });
 
-
-            $('.tree').append(str);
+            $('#mapTree').append(str);
             $('.catValDiv').removeClass('dn');
             bindTree();
         }
@@ -917,7 +887,20 @@ $(document).ready(function( ) {
         }
 
     }
-
+    
+//    function checkedTree(catArr)
+//    {
+//        var allCheckd = new Array();
+//        $('#parentCatg input[type=checkbox]').each(function()
+//        {
+//            if ($(this).is(':checked') == true)
+//            {
+//                allCheckd.push($(this).parent().parent().html());
+//            }
+//        });
+//        $('#mapTree').append(allCheckd);
+//        
+//    }
 
     function stopBodyScroll(){
         $('body').bind('scroll touchmove mousewheel', function(e){

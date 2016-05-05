@@ -71,7 +71,6 @@ function generateCats(res,id)
 {
     var result = res.result;
 
-
     if(res['result']==null)
     {
         return;
@@ -88,11 +87,11 @@ function generateCats(res,id)
         }
     });
     //html += '<div class="breakLine"></div>';
-    if(id == 0)
-        $('#parentCatg').html(html);
-    else {
-        $('#parentCatg').append(html);
-    }
+//    if(id == 0)
+//        $('#parentCatg').html(html);
+//    else {
+//        $('#parentCatg').append(html);
+//    }
     bindCheckBox(res);
 }
 function removeCats(id)
@@ -152,27 +151,27 @@ function generateHtml(res, id)
     return str;
 }
 
-function getAllChilds(res)
-{
-    $("input[name='prtcateg']").unbind();
-    var str = "<div class='breakLine'></div>";
-    str += "<div class='divCon  fLeft fmOpenR mTop0'>";
-    $("input[name='prtcateg']").bind('click', function(event) {
-        stopPropGate(event);
-        if ($(this).is(":checked"))
-        {
-
-            var vstr = generateHtml(res, $(this).attr("id").replace('cat_', ''));
-        }
-        str += vstr;
-        str += "</div>";
-        if (vstr)
-            $('#parentCatg').append(str);
-        getAllChilds(res);
-        bindRemove();
-
-    });
-}
+//function getAllChilds(res)
+//{
+//    $("input[name='prtcateg']").unbind();
+//    var str = "<div class='breakLine'></div>";
+//    str += "<div class='divCon  fLeft fmOpenR mTop0'>";
+//    $("input[name='prtcateg']").bind('click', function(event) {
+//        stopPropGate(event);
+//        if ($(this).is(":checked"))
+//        {
+//
+//            var vstr = generateHtml(res, $(this).attr("id").replace('cat_', ''));
+//        }
+//        str += vstr;
+//        str += "</div>";
+//        if (vstr)
+//            $('#parentCatg').append(str);
+//        getAllChilds(res);
+//        bindRemove();
+//
+//    });
+//}
 
 
 function bindRemove()
@@ -181,7 +180,7 @@ function bindRemove()
         stopPropGate(event);
         if (!$(this).is(":checked"))
         {
-            //console.log($(this).attr("id") + " to be removed");
+            
             removeChilds($(this).attr("id").replace('cat_', ''));
         }
     });
@@ -256,7 +255,7 @@ function getDiamondQuality()
 
 function diamondQltyCalllBack(data)
 {
-    //console.log(data);
+    
     if (data['error']['err_code'] == '0')
     {
         var str1 = "";
@@ -770,7 +769,6 @@ function changePrdPropertyStatus(type)
             data:{dt:dt},
             success:function(res){
                 res=JSON.parse(res);
-                //console.log(res);
             }
         });
 
@@ -1170,8 +1168,6 @@ function bindDmdQuaity()
     $('[name*=isDiamondCustz_]').bind('change', function() {
         var name = $(this).attr('name');
         var val = $(this).val();
-
-        //console.log(name + " --- " + val);
         // 1 -> Customizabale   0 -> NOt Customizable
         var cnt = name.split("_");
         cnt = cnt[1];
@@ -1206,6 +1202,7 @@ function addProduct()
     {
 
         var catArray = new Array();
+        var pcatArray = new Array();
         var dmdSetting = new Array();
         var sizesArray = new Array();
         var solitaires = new Array();
@@ -1216,16 +1213,23 @@ function addProduct()
 
         $('[name=prtcateg]').each(function() {
             if ($(this).is(':CHECKED'))
+            {
+                pcatArray.push($(this).val());
                 catArray.push($(this).val());
-
-            else if (!$(this).is(':CHECKED')) {
-                var removeItem = $(this).val();
-                catArray = jQuery.grep(catArray, function(value) {
-                    return value !== removeItem;
-                });
             }
-
+                
+//            else if (!$(this).is(':CHECKED'))
+//            {
+//                
+//                var removeItem = $(this).val();
+//                catArray = jQuery.grep(catArray, function(value)
+//                {
+//                    return value !== removeItem;
+//                });
+//            }
         });
+        
+
 
         var vid = $('#vendorList').val();
         var vname = $('#vendorList option:selected').text();
@@ -1605,7 +1609,6 @@ function addProduct()
 
         prd['userid'] = userid;
         prd['catid'] = catArray.toString();
-
         previewData=prd;
 
 
@@ -1672,8 +1675,6 @@ function setPrdMapping()
                 {
                     var val=$(this).val();
                     valarray.push(val);
-                    //console.log(val);
-
                 }
                 if(valarray.length>0)
                     values['"'+dfor+'"']=encodeURIComponent(valarray.toString());
@@ -1684,7 +1685,6 @@ function setPrdMapping()
 
     });
 
-    //console.log(values);
     return values;
 
 }
@@ -2356,7 +2356,6 @@ function goldPrice()
         var flag = true;
         $('[name=gpurityCustomize]').each(function(i) {
             if ($(this).is(':CHECKED')) {
-                //console.log($(this));
                 var txt = "Gold -" + $(this).next('label').text();
                 var val = $(this).parent().siblings().text();
                 sstr += "<option value='" + val.slice(1) + "'>" + txt + "</option>";
@@ -2497,7 +2496,6 @@ function oneditmodeCallBack(data)
         var dt=data['results'];
         var basic=dt['basicDetails'];
         var catAttr = dt['catAttr'];
-        //console.log(catAttr);
         attrVals = dt['attrVals'];
         prdid =basic.prdId;
 
@@ -2805,25 +2803,26 @@ function oneditmodeCallBack(data)
 
         if(catAttr.count > 0)
         {
-            $.each(catAttr.results, function(i,vl) {
-                setTimeout( function() {
-                    $('#cat_'+vl.cid).click();
-                    setTimeout( function() {
-                            var sizes =dt['size']['results'];
-                            $(sizes).each(function(i){
-                                var sid=sizes[i].sizId;
-                                var qty=sizes[i].qnty;
-                                $('[name=size]').each(function(){
-                                    var val =$(this).val();
-                                    if(sid==val){
-                                        $(this).attr('checked',true);
-                                        $('#size_'+sid+'_qty').val(qty);
-                                    }
-                                });
-                            });
-                        },350);
-                },150);
-            });
+            displayChecked(catAttr);
+//            $.each(catAttr.results, function(i,vl) {
+//                setTimeout( function() {
+//                    $('#cat_'+vl.cid).click();
+//                    setTimeout( function() {
+//                            var sizes =dt['size']['results'];
+//                            $(sizes).each(function(i){
+//                                var sid=sizes[i].sizId;
+//                                var qty=sizes[i].qnty;
+//                                $('[name=size]').each(function(){
+//                                    var val =$(this).val();
+//                                    if(sid==val){
+//                                        $(this).attr('checked',true);
+//                                        $('#size_'+sid+'_qty').val(qty);
+//                                    }
+//                                });
+//                            });
+//                        },350);
+//                },150);
+//            });
         }
 
     }
@@ -2854,7 +2853,6 @@ function deleteSolitaire(obj)
             data:{dt:dt},
             success:function(res){
                 res=JSON.parse(res);
-                //console.log(res);
             }
         });
 
@@ -2885,7 +2883,6 @@ function deleteDiamond(obj)
             data:{dt:dt},
             success:function(res){
                 res=JSON.parse(res);
-                //console.log(res);
             }
         });
 
@@ -2916,7 +2913,6 @@ function deleteUncut(obj)
             data:{dt:dt},
             success:function(res){
                 res=JSON.parse(res);
-                //console.log(res);
             }
         });
 
@@ -2946,7 +2942,6 @@ function deleteGemstone(obj)
             data:{dt:dt},
             success:function(res){
                 res=JSON.parse(res);
-                //console.log(res);
             }
         });
 
@@ -3531,48 +3526,48 @@ function getCh(k)
 
 
 
-
-function test1()
-{
-
-    var str="";
-    $(allCh).each(function(i,v){
-
-
-                str+= getCh(v.cat);
-
-    });
-
-    $('#parentCatg2').append(str);
-    bindTree2();
-}
-
-
+//
+//function test1()
+//{
+//
+//    var str="";
+//    $(allCh).each(function(i,v){
+//
+//
+//                str+= getCh(v.cat);
+//
+//    });
+//
+//    $('#parentCatg2').append(str);
+//    bindTree2();
+//}
 
 
 
-function bindTree2()
-{
-
-
-    $('.tree li.parent > a').bind('click',function( ) {
-            var id = $(this).parent().attr('id');
-            $(this).parent().toggleClass('active');
-            $(this).parent().children('ul').slideToggle('fast');
-                if($(this).parent().hasClass('active')){}
-                else
-                {
-                    $('#'+id+' :input[type=checkbox]').each(function() {
-                           // $(this).attr('checked',false);
-                    });
-                }
-
-        });
-
-
-
-
-}
+//
+//
+//function bindTree2()
+//{
+//
+//
+//    $('.tree li.parent > a').bind('click',function( ) {
+//            var id = $(this).parent().attr('id');
+//            $(this).parent().toggleClass('active');
+//            $(this).parent().children('ul').slideToggle('fast');
+//                if($(this).parent().hasClass('active')){}
+//                else
+//                {
+//                    $('#'+id+' :input[type=checkbox]').each(function() {
+//                           // $(this).attr('checked',false);
+//                    });
+//                }
+//
+//        });
+//
+//
+//
+//
+//}
 
 
 function _getCategoryTree(xhtml, subcat) {
@@ -3616,6 +3611,31 @@ function _getCategoryTree(xhtml, subcat) {
     return xhtml;
 }
 
+function bindCheckBoxClick() {
+    $('#parentCatg ul li input[name="prtcateg"]').bind('click', function(evt) {
+        stopPropGate(evt);
+        checkParents($(this));
+    });
+}
+
+function checkParents(obj)
+{
+    var id = obj.attr('id');
+    $('#'+id).parents('li').each(function()
+    {
+        if(obj.is(':checked'))
+        {
+            var chbox=$(this).find('input[name="prtcateg"]').attr('id');
+            $('#'+chbox).prop('checked',true);
+        }
+        else
+        {
+            var chbox=$(this).find('input[name="prtcateg"]').attr('id');
+            $('#'+chbox).prop('checked',false);
+        }
+    });
+}
+
 function getCategoryTree(xhtml, subcat) {
     var xhtml = '';
     var URL = APIDOMAIN + "index.php?action=getCatgoryTree";
@@ -3625,45 +3645,84 @@ function getCategoryTree(xhtml, subcat) {
         async: false,
         success: function(res) {
             res = JSON.parse(res);
-            //console.log(res.root)
             xhtml = makeTree(res);
-            //console.log(xhtml);
-            $('.tree').html(xhtml);
+            
+            $('#parentCatg').html(xhtml);
+            bindCheckBoxClick();
         }
     });
 }
 
+
+
+//var uid = $(this).find('input[name="prtcateg"]').attr('id').split('-').pop(-1);
+//$('#'+id).parents('li').each(function() {
+//var _this = $(this).find('input[name="prtcateg"]');
+//var uid = $(this).find('input[name="prtcateg"]').attr('id').split('-').pop(-1);
+
+function displayChecked(catAttr)
+{
+    $('#parentCatg ul li input[type=checkbox]').each( function()
+    {
+        var _this = $(this);
+        var id = $(this).attr('id');
+        var uid = id.split('-').pop(-1);
+        
+        $.each(catAttr.results, function(i, vl) {
+            if(_this.val() == vl.cid)
+            {
+                $('#'+id).prop('checked',true);
+            }
+        });
+    });
+}
+
+var j = 0;
+var prevCat = 0;
+
 function makeTree(vls)
 {
     var xhtml = '';
-    console.log(vls.subcat);
-
+    
     if(vls.subcat)
         vlst = vls.subcat;
     else if(vls.root)
         vlst = vls.root;
     else
         vlst = vls;
-
+    
     if(vls.subcat || vls.root)
     {
-
         xhtml += '<ul>';
     }
+    
     $.each(vlst, function(i, vl) {
         if(vl.subcat)
         {
             xhtml += '<li>';
-                xhtml += '<a href="#" class="parent">'+vl.cat_name+'</a>';
+                //xhtml += '<a href="#" class="parent">'+vl.cat_name+'</a>';
+                xhtml += '<div class="checkDiv fLeft">';
+                    xhtml += '<input type="checkbox" name="prtcateg" value="'+vl.catid+'" class="filled-in " id="'+j+'-'+vl.catid+'">';
+                    xhtml += '<label for="'+j+'-'+vl.catid+'">'+vl.cat_name+'</label>';
+                xhtml += '</div>';
                 xhtml += makeTree(vl);
             xhtml += '</li>';
+            j++;
         }
         else {
             xhtml += '<li>';
-                xhtml += '<a href="#" class="parent">'+vl.cat_name+'</a>';
+                //xhtml += '<a href="#" class="parent">'+vl.cat_name+'</a>';
+                xhtml += '<div class="checkDiv fLeft">';
+                    xhtml += '<input type="checkbox" name="prtcateg" value="'+vl.catid+'" class="filled-in" id="'+j+'-'+vl.catid+'">';
+                    xhtml += '<label for="'+j+'-'+vl.catid+'">'+vl.cat_name+'</label>';
+                xhtml += '</div>';
+                
             xhtml += '</li>';
+            j++;
         }
-    })
+        prevCat = vl.catid;    
+    });
+    
     if(vls.subcat || vls.root)
     {
         xhtml += '</ul>';
@@ -3702,7 +3761,6 @@ function getHtml(vls)
 }
 
 function generateHtml(vl) {
-    //console.log(vl);
     var xhtml = '';
         xhtml += '<a>';
             xhtml += '<div class="checkDiv fLeft">';
@@ -3717,50 +3775,7 @@ function createTree() {
 
     var xhtml = ''
     var str = getCategoryTree(xhtml);
-    console.log(str);
 
-    //$.each(categories, function(i, vl) {
-        //console.log(vl);
-    //});
-
-    var xhtml = '';
-    xhtml += '<div class="tree transition300">';
-    xhtml += str;
-
-        // xhtml += '<ul>';
-        //     xhtml += '<li>';
-        //         xhtml += '<a>';
-        //             xhtml += '<div class="checkDiv fLeft">';
-        //                 xhtml += '<input type="checkbox" class="filled-in" id="1">';
-        //                 xhtml += '<label for="1">Jewellery</label>';
-        //             xhtml += '</div>';
-        //         xhtml += '</a>';
-        //         xhtml += '<ul>';
-        //             xhtml += '<li>';
-        //                 xhtml += '<a>';
-        //                     xhtml += '<div class="checkDiv fLeft">';
-        //                         xhtml += '<input type="checkbox" class="filled-in" id="2">';
-        //                         xhtml += '<label for="2">Rings</label>';
-        //                     xhtml += '</div>';
-        //                 xhtml += '</a>';
-        //                 xhtml += '<ul>';
-        //                     xhtml += '<li>';
-        //                         xhtml += '<a>';
-        //                             xhtml += '<div class="checkDiv fLeft">';
-        //                                 xhtml += '<input type="checkbox" class="filled-in" id="3">';
-        //                                 xhtml += '<label for="3">Office Wear</label>';
-        //                             xhtml += '</div>';
-        //                         xhtml += '</a>';
-        //                     xhtml += '</li>';
-        //                 xhtml += '</ul>';
-        //             xhtml += '</li>';
-        //         xhtml += '</ul>';
-        //     xhtml += '</li>';
-        // xhtml += '</ul>';
-
-    xhtml += '</div>';
-
-    $('#displayCat').html(xhtml);
 }
 
 createTree();

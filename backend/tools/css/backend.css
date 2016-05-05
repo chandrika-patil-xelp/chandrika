@@ -914,6 +914,8 @@ a{cursor:pointer;}
 .catValDiv .checkDiv {width: 100%;height: 28px;margin:0;}
 .menu-scroller {position: absolute;overflow-y: scroll;width: 100%;height: 100%;margin: 0 0 0 17px;padding: 0 32px 50px 0px;left: 0;list-style: none;}
 
+#parentCatg ul li ul {border-left: 1px dashed #d4d4c8;display: block;margin: 0 0 0 12px;overflow: hidden;padding: 2px 2px 2px 20px;}
+
 
 /*customers list page*/
 .customer{}
