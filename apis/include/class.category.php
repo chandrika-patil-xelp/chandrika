@@ -61,7 +61,7 @@ class category extends DB
 
     public function getCatgoryTree($catid = 99999, $arr = array())
   	{
-  			$sql = "SELECT * FROM tbl_category_master where MATCH(pcatid) AGAINST(\"".$catid."\" in boolean mode) order by catid ASC";
+  			$sql = "SELECT * FROM tbl_category_master where MATCH(pcatid) AGAINST(\"".$catid."\" in boolean mode) AND active_flag = 1 order by catid ASC";
     		$res = $this->query($sql);
     		if($res)
     		{
