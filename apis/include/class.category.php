@@ -67,15 +67,16 @@ class category extends DB
     		{
       			while($row = $this->fetchData($res))
       			{
+                //echo "<pre>";print_r($row);echo "</pre>";
                 $pcatidArr = explode(',',$row['pcatid']);
                 if(count($pcatidArr))
                 {
                     foreach($pcatidArr as $key => $val)
                     {
-                        if(!empty($arr) && $val !=99999)
+                        // if(!empty($arr) && $val !=99999)
+                        //     $arr['subcat'][$row['catid']] = $this->getCatgoryTree($row['catid'],$row);
+                        // else
                             $arr['subcat'][$row['catid']] = $this->getCatgoryTree($row['catid'],$row);
-                        else
-                            $arr['root'][$row['catid']] = $this->getCatgoryTree($row['catid'],$row);
                     }
                 }
       			}
