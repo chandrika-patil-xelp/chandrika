@@ -26,29 +26,39 @@ class attributes extends DB
             
         }
                 
-        $sql="INSERT INTO"
-                . " tbl_attribute_master "
-                    . "(attributeid,attr_name,attr_type,attr_unit,attr_unit_pos,attr_pos,attr_values,createdon,updatedby)"
-                    . "VALUES("
-                        . "'".urldecode($params['attributeid'])."',"
-                        . "'".urldecode($params['attr_name'])."',"
-                        . "".$params['attr_type'].","
-                        . "'".$params['attr_unit']."',"
-                        . "'".$params['attr_unit_pos']."',"
-                        . "'".$params['attr_pos']."',"
-                        . "'".urldecode($params['attr_values'])."',"
-                        . "now(),"
-                        . "".$params['userid'].") "
-                . "ON DUPLICATE KEY UPDATE "
-                        . "attr_name = VALUES(attr_name),"
-                        . "attr_type=VALUES(attr_type),"
-                        . "attr_unit=VALUES(attr_unit),"
-                        . "attr_unit_pos=VALUES(attr_unit_pos),"
-                        . "attr_pos=VALUES(attr_pos),"
-                        . "attr_values = VALUES(attr_values),"
-                        . "updatedby=VALUES(updatedby)";
-        
-        
+        $sql="  INSERT
+                INTO
+                        tbl_attribute_master
+                        (
+                            attributeid,
+                            attr_name,
+                            attr_type,
+                            attr_unit,
+                            attr_unit_pos,
+                            attr_pos,
+                            attr_values,
+                            createdon,
+                            updatedby
+                        )
+                VALUES
+                        (
+                        \"".urldecode($params['attributeid'])."\",
+                        \"".urldecode($params['attr_name'])."\",
+                        \"".$params['attr_type']."\",
+                        \"".$params['attr_unit']."\",
+                        \"".$params['attr_unit_pos']."\",
+                        \"".$params['attr_pos']."\",
+                        \"".urldecode($params['attr_values'])."\",
+                            now(),
+                        \"".$params['userid']."\") 
+                ON DUPLICATE KEY UPDATE 
+                        attr_name = VALUES(attr_name),
+                        attr_type=VALUES(attr_type),
+                        attr_unit=VALUES(attr_unit),
+                        attr_unit_pos=VALUES(attr_unit_pos),
+                        attr_pos=VALUES(attr_pos),
+                        attr_values = VALUES(attr_values),
+                        updatedby=VALUES(updatedby)";
         
         $res=$this->query($sql);
         $result=array();

@@ -22,6 +22,12 @@ class category extends DB
         {
             $catid= $params['catid'];
         }
+        
+        if(empty($params['pcatid']))
+        {
+            $params['pcatid'] = '99999';
+        }
+            
 
         $sql="INSERT INTO "
                 . " tbl_category_master (catid,pcatid,cat_name,createdon,updatedby)"
@@ -108,19 +114,27 @@ class category extends DB
     public function getCatgoryList($params)
     {
 
-        $sql="SELECT "
-                . "catid,pcatid,cat_name,active_flag "
-                    . "FROM"
-                        //. " tbl_category_master  WHERE active_flag =1 ORDER BY createdon DESC ";
-                        . " tbl_category_master  WHERE active_flag =1 ORDER BY cat_name ";
+        $sql="  SELECT 
+                        catid,
+                        pcatid,
+                        cat_name,
+                        active_flag 
+                FROM
+                        tbl_category_master
+                WHERE
+                        active_flag =1
+                ORDER BY
+                        cat_name ";
 
         $page = ($params['page'] ? $params['page'] : 1);
         $limit = ($params['limit'] ? $params['limit'] : 1000);
         //Making sure that query has limited rows
-        if ($limit >1000 ) {
+        if ($limit >1000 )
+        {
             $limit = 1000;
         }
-        if (!empty($page)) {
+        if (!empty($page))
+        {
             $start = ($page * $limit) - $limit;
             $sql.=" LIMIT " . $start . ",$limit";
         }
@@ -132,7 +146,7 @@ class category extends DB
                 $reslt['cid']       =    $row['catid'];
                 $reslt['pid']       =    $row['pcatid'];
                 $reslt['name']      =    $row['cat_name'];
-                $reslt['active']      =    $row['active_flag'];
+                $reslt['active']    =    $row['active_flag'];
                 $result[]=$reslt;
             }
             $err=array('err_code'=>0,'err_msg'=>'Data fetched successfully');

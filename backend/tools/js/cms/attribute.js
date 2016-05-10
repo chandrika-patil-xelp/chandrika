@@ -22,7 +22,6 @@ function getAttributeList()
         success: function(res) {
             res = JSON.parse(res);
             attributes = res['result'];
-            console.log(attributes);
             attributeListCallBack();
         }
     });
@@ -140,8 +139,6 @@ function changeStatus(aid,dst) {
 
         }
 
-        console.log(st);
-
         var URL = APIDOMAIN + "index.php?action=changeAttributeStatus";
         values = {};
         values['active_flag'] = st;
@@ -157,7 +154,6 @@ function changeStatus(aid,dst) {
             data: {dt: dt},
             success: function(res) {
                 res = JSON.parse(res);
-                console.log(res);
                 changeStatusCallBack(res);
                 hideConfirmBox();
             }

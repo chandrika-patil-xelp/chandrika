@@ -49,8 +49,7 @@ function categoryCallBack(data)
                 nameStr+=name +", ";
             });
             
-            str += "<div class='parentName fLeft txtCap'>" + nameStr.substr(0,nameStr.length-2) + "</div>";
-            
+            str += "<div class='parentName fLeft txtCap'>" + (nameStr.substr(0,nameStr.length-2) !== 'undefined' ? nameStr.substr(0,nameStr.length-2) : 'Master') + "</div>";
             str += "<div class='dPos fLeft op0'>0</div>";
             str += "<div class='cactt fLeft'>";
             str += "<div class='deltBtn fRight transition300'  onclick=\"setClick('" + categories[i]['cid'] + "',2);showConfirmBox();\"></div>";
@@ -159,8 +158,8 @@ function changeStatusCallBack(data)
 
 
 function getCatName(cid) {
-    if(cid==0)
-        return "None";
+    if(cid==0 || cid == '99999')
+        return "Master";
     var name;
     $(categories).each(function(i) {
         if (categories[i]['cid'] == cid) {

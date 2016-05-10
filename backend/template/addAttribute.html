@@ -44,14 +44,25 @@ echo "<script>var edit=$edit; var data= '$data';</script>";
                             <div class="titleDiv txtCap fLeft">Attribute Position</div>
                             <input name="" type="text" id="apos" autocomplete="false"  placeholder="Please enter attribute position" class="txtInput fLeft fmOpenR font14 c666" onkeypress="return common.isDecimalKey(event, this.value);">
                         </div>
-                        <div class="divCon  fLeft">
+                        <div class="divCon  fLeft valattr">
                             <div class="titleDiv txtCap fLeft">Add Attribute Values*</div>
                             <input name="" type="text" id="attrinpVal" autocomplete="false"  placeholder="Add comma seperated values for filtering this attribute" class="txtInput fLeft fmOpenR font14 c666">
                             <div class="attrValues fLeft" id='attrValues'></div>
                         </div>
+                            
+                        <div class="divCon  fLeft Rngattr1 dn">
+                            <div class="titleDiv txtCap fLeft">Add Minimum Value*</div>
+                            <input name="" type="text" id="rngVal1" autocomplete="false" maxlength="8" onkeypress="return common.isNumberKey(event);" placeholder="Please enter minimum bound value" class="txtInput fLeft fmOpenR font14 c666">
+                            <div class="attrValues fLeft" id='attrValues'></div>
+                        </div>
+                        <div class="divCon  fLeft Rngattr2 dn">
+                            <div class="titleDiv txtCap fLeft">Add Maximum Value*</div>
+                            <input name="" type="text" id="rngVal2" autocomplete="false" maxlength="8" onkeypress="return common.isNumberKey(event);" placeholder="Please enter maximum bound value" class="txtInput fLeft fmOpenR font14 c666">
+                            <div class="attrValues fLeft" id='attrValues'></div>
+                        </div>
                         <div class="btnCont fLeft">
                             <center>
-                                <a href='<?php echo DOMAIN;?>backend/?action=attributes'><div class="cancelBtn transition300 fmOpenR poR" onclick="">CANCEL</div></a>
+                                <div class="cancelBtn transition300 fmOpenR poR" onclick="showConfirmBox();">CANCEL</div>
                                 <div class="submitBtn transition300 fmOpenR poR" onclick="addAttribute()" id="Submitdiv">SUBMIT</div>
                             </center>
                         </div>                        
@@ -106,6 +117,18 @@ echo "<script>var edit=$edit; var data= '$data';</script>";
                 </div>
             </div>
         </div>
+        
+        <div id="delOverlay" class="deloverlay dn"></div>
+        <div id="confirmBox" class="confirmBox dn fmOpenR">
+            <div class="bformHead fmOpenL">Do you want to skip this page?</div>
+            <center>
+                <div class="delBtnCont fmOpenR">
+                    <div class="delbtnComm arrowLeft fLeft" onclick="hideConfirmBox()">No</div>
+                    <a href='<?php echo DOMAIN;?>backend/?action=attributes'><div class="delbtnComm arrowRight fRight" id='prddeleteBtn'>YES</div></a>
+                </div>
+            </center>
+        </div> 
+        
         <script type="text/javascript" src="<?php echo $jvs['addAttribute']; ?>"></script>
         <link rel="stylesheet" href="<?php echo $css['rangeSlider']?>">
         <link rel="stylesheet" href="<?php echo $css['rangeSkin']?>">
