@@ -1,0 +1,59 @@
+
+<?php include 'jhead.html' ?>
+<body>
+    <div class="container">
+        <div class="wrapper">
+            
+            <div class="inptfrmW fLeft fmSansR">
+                <div class="inptC">
+                    <div class="abtHdng fLeft">Input Type Text Style</div>
+                    <div class="styleCnt ">
+                    <div class="input fmSansB">
+                                            <input class="input__field" type="text" id="input-3">
+                                            <label class="input__label  " for="input-3">
+                                              <span class="input__label-content ">First Name</span>
+                                            </label>
+                                          </div>
+                        <div class="btnCnt fLeft">
+                            <center>
+                                <div class="btnclass">
+                                    ARCHIVE
+                                    <div class="activeBclss transition300">ARCHIVE</div>
+                                </div>
+                                 <div class="btnclass">
+                                    REVIEWS
+                                    <div class="activeBclss transition300">REVIEWS</div>
+                                </div>
+                                 <div class="btnclass">
+                                    CURRENT ORDERS
+                                    <div class="activeBclss transition300">CURRENT ORDERS</div>
+                                </div>
+                            </center>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        //js for text
+         var input_selector = 'input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=number], input[type=search], textarea, input[type=radio]';
+
+        var input_hidden = 'input[type=hidden]';
+
+        $('.input__field').focus(function(){
+            $(this).closest('.input').addClass('input--filled');
+      });
+  $('.input__field').blur(function(){
+     var y=$(this).val();
+    if(y!=""){
+   $(this).closest('.input').addClass('input--filled');
+ }
+ else{
+     $(this).closest('.input').removeClass('input--filled');
+ }
+  });
+    </script>
+</body>
+</html>
