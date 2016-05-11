@@ -71,6 +71,10 @@ switch ($action) {
         $page = 'sign_up';
         include TEMPLATE.'sign_up.html';
         break;
+     case 'input_form':
+        $page = 'input_form';
+        include TEMPLATE.'input_and_form.html';
+        break;
     
     
     
