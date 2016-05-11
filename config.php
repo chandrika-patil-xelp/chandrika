@@ -88,6 +88,8 @@ $jvs = array();
         
         
             $fcss['home']             = DOMAIN.'frontend/tools/css/home.css?v='.VERSION;
+             $fcss['inpt_form']             = DOMAIN.'frontend/tools/css/input_and_form.css?v='.VERSION;
+             $fcss['ripple']             = DOMAIN.'frontend/tools/css/ripple.css?v='.VERSION;
             $fcss['range_slider']             = DOMAIN.'frontend/tools/css/rangeslider/ion.rangeSlider.css?v='.VERSION;
             $fcss['range_slider1']             = DOMAIN.'frontend/tools/css/rangeslider/ion.rangeSlider.skinHTML5.css?v='.VERSION;
             $fcss['range_slider2']             = DOMAIN.'frontend/tools/css/rangeslider/normalize.css?v='.VERSION;
@@ -101,6 +103,7 @@ $jvs = array();
             $fjvs['home']                   = DOMAIN.'frontend/tools/js/home.js?v='.VERSION;
             $fjvs['range_slider']                   = DOMAIN.'frontend/tools/js/ion.rangeSlider.js?v='.VERSION;
             $fjvs['hammer']                   = DOMAIN.'frontend/tools/js/hammer.js?v='.VERSION;
+             $fjvs['ripple']                   = DOMAIN.'frontend/tools/js/ripple.js?v='.VERSION;
             
 include APICLUDE.'common/class.common.php';
 $comm = new Common();
