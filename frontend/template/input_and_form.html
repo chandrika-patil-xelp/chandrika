@@ -2,12 +2,12 @@
 <?php include 'jhead.html' ?>
 <body>
     <div class="container">
-        <div class="wrapper">
-            
+        <div class="wrapper2">
+
             <div class="inptfrmW fLeft fmSansR">
-                <div class="inptC">
+                <div class="inptC fLeft">
                     <div class="abtHdng fLeft">Input Type Text Style</div>
-                    <div class="styleCnt ">
+                    <div class="styleCnt fLeft ">
                     <div class="input fmSansB">
                                             <input class="input__field" type="text" id="input-3">
                                             <label class="input__label  " for="input-3">
@@ -15,23 +15,108 @@
                                             </label>
                                           </div>
                         <div class="btnCnt fLeft">
-                            <center>
-                                <div class="btnclass">
-                                    ARCHIVE
-                                    <div class="activeBclss transition300">ARCHIVE</div>
+                          <div class="button_label fmSansB">Button Style Slant</div>
+                          <div class="col25 fLeft margL20">
+                            <div class="button_label fmSansB">Colour 1</div>
+                            <div class="button button1 btnc1 transition300">Add To Cart</div>
+                          </div>
+                          <div class="col25 fLeft margL20">
+                            <div class="button_label fmSansB">Colour 2</div>
+                            <div class="button button1 btnc2 transition300">Add To Cart</div>
+                          </div>
+                          <div class="col25 fLeft margL20">
+                            <div class="button_label fmSansB">Colour 3</div>
+                            <div class="button button1 btnc3 transition300">Add To Cart</div>
+                          </div>
+                          <div class="col25 fLeft margL20">
+                            <div class="button_label fmSansB">Colour 4</div>
+                            <div class="button button1 btnc4 transition300">Add To Cart</div>
+                          </div>
+                        </div>
+                        <div class="btnCnt fLeft">
+                          <div class="button_label fmSansB">Button Style Horizontal</div>
+                          <div class="col25 fLeft margL20">
+                            <div class="button_label fmSansB">Colour 1</div>
+                            <div class="button button2 btnc1 transition300">Add To Cart</div>
+                          </div>
+                          <div class="col25 fLeft margL20">
+                            <div class="button_label fmSansB">Colour 2</div>
+                            <div class="button button2 btnc2 transition300">Add To Cart</div>
+                          </div>
+                          <div class="col25 fLeft margL20">
+                            <div class="button_label fmSansB">Colour 3</div>
+                            <div class="button button2 btnc3 transition300">Add To Cart</div>
+                          </div>
+                          <div class="col25 fLeft margL20">
+                            <div class="button_label fmSansB">Colour 4</div>
+                            <div class="button button2 btnc4 transition300">Add To Cart</div>
+                          </div>
+                        </div>
+                        <div class="btnCnt fLeft">
+                          <div class="button_label fmSansB">Button Style Vertical</div>
+                          <div class="col25 fLeft margL20">
+                              <div class="button_label fmSansB">Colour 1</div>
+                            <div class="button button3 btnc1 transition300">Add To Cart</div>
+                          </div>
+                          <div class="col25 fLeft margL20">
+                              <div class="button_label fmSansB">Colour 2</div>
+                            <div class="button button3 btnc2 transition300">Add To Cart</div>
+                          </div>
+                          <div class="col25 fLeft margL20">
+                              <div class="button_label fmSansB">Colour 3</div>
+                            <div class="button button3 btnc3 transition300">Add To Cart</div>
+                          </div>
+                          <div class="col25 fLeft margL20">
+                              <div class="button_label fmSansB">Colour 4</div>
+                            <div class="button button3 btnc4 transition300">Add To Cart</div>
+                          </div>
+                        </div>
+                        <div class="btnCnt fLeft">
+                            <div class="button_label fmSansB">Buttons With Loaders</div>
+                          <div class="col25 fLeft margL20">
+                            <div class="button_label fmSansB">Slant Button</div>
+                            <div class="button button1 btnc1 transition300">Add To Cart
+                                <div class="cs-loader-inner ">
+                                  <label>●</label>
+                                  <label>●</label>
+                                  <label>●</label>
+                                  <label>●</label>
+                                  <label>●</label>
+                                  <label>●</label>
+                                  <div class="success"></div>
                                 </div>
-                                 <div class="btnclass">
-                                    REVIEWS
-                                    <div class="activeBclss transition300">REVIEWS</div>
+                            </div>
+                          </div>
+                          <div class="col25 fLeft margL20">
+                              <div class="button_label fmSansB">Horizontal Button</div>
+                            <div class="button button2 btnc1 transition300">Add To Cart
+                                <div class="cs-loader-inner ">
+                                  <label>●</label>
+                                  <label>●</label>
+                                  <label>●</label>
+                                  <label>●</label>
+                                  <label>●</label>
+                                  <label>●</label>
+                                  <div class="success"></div>
                                 </div>
-                                 <div class="btnclass">
-                                    CURRENT ORDERS
-                                    <div class="activeBclss transition300">CURRENT ORDERS</div>
+                            </div>
+                          </div>
+                          <div class="col25 fLeft margL20">
+                            <div class="button_label fmSansB">Vertical Button</div>
+                            <div class="button button3 btnc1 transition300">Add To Cart
+                                <div class="cs-loader-inner ">
+                                  <label>●</label>
+                                  <label>●</label>
+                                  <label>●</label>
+                                  <label>●</label>
+                                  <label>●</label>
+                                  <label>●</label>
+                                  <div class="success"></div>
                                 </div>
-                            </center>
+                            </div>
+                          </div>
                         </div>
                     </div>
-                   
                 </div>
             </div>
         </div>
@@ -54,6 +139,21 @@
      $(this).closest('.input').removeClass('input--filled');
  }
   });
+
+  //JS loader animation
+$('.button').click(function(){
+  $(this).toggleClass('flag');
+  if ( $( this ).hasClass( "flag" ) ) {
+    $(this).find('.cs-loader-inner').velocity({opacity:[1,0]},{duration:100 , display:'block' });
+   }
+   else{
+       $(this).find('.success').velocity({opacity:[1,0] , translateY:[0, 40]},{duration:300 , display:'block' , complete:function(){
+         $(this).closest('.cs-loader-inner').velocity({opacity:[0,1]},{duration:400,delay:800 , display:'none' });
+       } });
+   }
+
+});
+
     </script>
 </body>
 </html>

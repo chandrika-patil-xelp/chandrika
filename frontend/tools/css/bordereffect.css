@@ -1,0 +1,12 @@
+.border_eff::before,
+.border_eff::after {position: absolute;	content: '';opacity: 0; transition:350ms;-moz-transition:350ms;-webkit-transition:350ms;}
+
+.border_eff::before {top: 11%; right: 8%;	bottom: 11%;	left: 8%;	border-top: 1px solid #fff; border-bottom: 1px solid #fff;-webkit-transform: scale(0,1);transform: scale(0,1);-webkit-transform-origin: 0 0;transform-origin: 0 0; /*-webkit-transition-delay: 0.15s;transition-delay: 0.15s;*/ }*/
+
+.border_eff::after {top: 8%; right: 11%;bottom: 8%;	left: 11%;	border-right: 1px solid #fff;	border-left: 1px solid #fff;-webkit-transform: scale(1,0);transform: scale(1,0);-webkit-transform-origin: 100% 0;	transform-origin: 100% 0;}*/
+
+.prdctAdd1:focus ,.prdctAdd1:active .border_eff::before { opacity: 1;  -webkit-transform: scale(1);  transform: scale(1);}*/
+.prdctAdd1:hover .top-bor { opacity: 1;  -webkit-transform: scale(1);  transform: scale(1);}
+.prdctAdd1:hover .side-bor { opacity: 1;  -webkit-transform: scale(1);  transform: scale(1);}*/
+.prdctAdd1:focus ,.prdctAdd1:active .border_eff::after { opacity: 1;-webkit-transform: scale(1); transform: scale(1);}
+.prdctAdd1:focus ,.prdctAdd1:active .border_eff::before {opacity: 1;-webkit-transform: scale(1);transform: scale(1); }
