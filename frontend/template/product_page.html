@@ -2,6 +2,33 @@
 <?php include 'jhead.html' ?>
     <body class="greyBg">
 
+      <div class="cart">
+        <div class="cart_head fmOsR">
+          < Continue Shopping
+        </div>
+        <div class="cart_item">
+          <div class="cart_image"></div>
+          <div class="cart_name fmOsR">1 X Étourdissant Cartier</div>
+          <div class="cart_price fmOsR">&#8377 26,000</div>
+        </div>
+        <div class="cart_item">
+          <div class="cart_image"></div>
+          <div class="cart_name fmOsR">2 X Étourdissant Cartier</div>
+          <div class="cart_price fmOsR">&#8377 26,000</div>
+        </div>
+        <div class="cart_item">
+          <div class="cart_image"></div>
+          <div class="cart_name fmOsR">1 X Étourdissant Cartier</div>
+          <div class="cart_price fmOsR">&#8377 26,000</div>
+        </div>
+        <div class="cart_item">
+          <div class="cart_image"></div>
+          <div class="cart_name fmOsR">1 X Étourdissant Cartier</div>
+          <div class="cart_price fmOsR">&#8377 26,000</div>
+        </div>
+
+      </div>
+      <div class="wrapper_main">
           <div class="header">
                   <div class="logo fLeft"></div>
             </div>
@@ -35,13 +62,16 @@
                 </div>
                 <div class="tabS fLeft">
                   <div class="tab fLeft">
+                    <div class="search_bar transition200">
+                      <input class="search_ip fmOsR" type="text" />
+                    </div>
                   </div>
                 </div>
                 <div class="tab2 fLeft">
                   <div class="tab userprofile"></div>
                 </div>
                 <div class="tab2 fLeft">
-                    <div class="tab"></div>
+                    <div class="tab cartIcon openC"></div>
                 </div>
                 </div>
               <div class="menu_wrap">
@@ -192,6 +222,7 @@
               </div>
 
             </div>
+          </div>
 <script>
 
 var i=0;
@@ -200,6 +231,7 @@ $('.overlay').stop(true,true).fadeTo(200, 1);
 
 });
 $( '.tabB' ).mouseover(function() {
+    $('.tab').removeClass('selec');
 
   $( '.menu_wrap' ).stop(true,true).slideDown( 200, function() {
   });
@@ -209,10 +241,10 @@ $( '.tabWrap' ).mouseleave(function() {
   $( '.menu_wrap' ).stop(true,true).slideUp( 200, function() {
     $('.menu_elm').css({'display':'block'});
   });
+    $('.tab').removeClass('selec');
 });
 $('.tab ').mouseenter(function() {
 var k= $(this).closest('.tabB').index();
-
   console.log('k:'+ k);
   $('.menu_elm').stop(true,true).css({'z-index':'50'}).removeClass('tab_select').addClass('remo');
    $('.menu_elm').eq(k).stop(true,true).css({'z-index':'9999'}).addClass('tab_select').removeClass('remo');
@@ -220,17 +252,24 @@ var k= $(this).closest('.tabB').index();
       $('.remo').css({ 'display':'none'});
     });
 });
+$('.menu_elm').mouseenter(function(){
+  var k =$(this).index();
+    $('.tab').removeClass('selec');
+  $('.tabB').find('.tab').eq(k).addClass('selec');
+});
 $('.tabS').mouseenter(function(){
-
+    $('.search_bar').addClass('search_open');
+    $('.search_ip').focus();
   $( '.menu_wrap' ).stop(true,true).slideUp( 200, function() {
     $('.menu_elm').css({'display':'block'});
   });
 });
-
-// $('.tabB').mouseleave(function() {
-//   $(this).find('.tab').removeClass('selec');
-//
-// });
+$('.tabS').mouseleave(function(){
+    $('.search_bar').removeClass('search_open');
+      $('.search_ip').val("");
+      $('.search_ip').blur();
+  });
+ var wid ;
 function function1() {
    i=(i+1)%30;
  $('.imgHolder').addClass('dn');
@@ -245,12 +284,18 @@ function runner() {
 }
 var divPos = {};
 var offset = $('.rota').offset();
+$(window).resize(function(){
+ wid = $('.rota').width();
+});
 $('.rota').bind('mousemove', function(e){
     var left= e.pageX - offset.left;
+    console.log(offset.left);
+    var o= wid/60;
     // var right= e.pageX - offset.right;
     // var  top= e.pageY - offset.top;
     // if(left>0 && left<600){
-      var k = left/10;
+
+      var k = left/o;
       k= Math.floor(k);
       k=k%30;
       $('.imgHolder').addClass('dn');
@@ -265,7 +310,40 @@ $('.rota').mouseout(function(){
 });
 $(document).ready(function(){
      //runner();
+   wid = $('.rota').width();
 });
+var cartF= 0;
+$('.openC').click(function(){
+  if(cartF==0){
+      openCart();
+      cartF=1;
+  }
+  else{
+    closeCart();
+    cartF=0;
+  }
+});
+$('.cart_head ').click(function(){
+  closeCart();
+  cartF=0;
+});
+function openCart(){
+  $('.wrapper_main').velocity({translateX:[-400,0]} , {duration:300 , easing:'swing'});
+  $('.overlay').addClass('over_open');
+  $('body').css({'overflow':'hidden'});
+  $('.wrapper').addClass('pointNone');
+  $('.cart_item').each(function(i){
+    var t= i* 30 ;
+     $(this).velocity({translateX:[0,400]} , {duration:600 , delay:t ,  easing: [0.2, 1, 0.3, 1]});
+  });
+}
+function closeCart(){
+  $('.wrapper_main').velocity({translateX:[0,-400]} , {duration:300 , easing:'swing' , complete:function(){
+    $('.overlay').removeClass('over_open');
+  }});
+  $('body').css({'overflow':'visible'});
+    $('.wrapper').removeClass('pointNone');
+}
 
 </script>
 
