@@ -54,6 +54,10 @@ switch ($action) {
         $page = 'product_page';
         include TEMPLATE.'product_page.html';
         break;
+        case 'check_out':
+          $page = 'check_out';
+          include TEMPLATE.'check_out.html';
+          break;
      case 'login_jzeva':
         $page = 'login_jzeva';
         include TEMPLATE.'login_jzeva.html';
