@@ -9,7 +9,6 @@ $case = (!empty($params['case'])) ? trim($params['case']) : '';
 
 
 
-
 if($params['debug'])
 {
     echo "<pre>";print_r($params);echo "</pre>";
@@ -34,7 +33,7 @@ switch ($action) {
         $page = 'gem_desc2';
         include TEMPLATE.'gem_desc2.html';
         break;
-    
+
     case 'orders':
         $page = 'orders';
         include TEMPLATE.'orders.html';
@@ -50,6 +49,10 @@ switch ($action) {
      case 'product_details':
         $page = 'product_details';
         include TEMPLATE.'product_details.html';
+        break;
+      case 'product_page':
+        $page = 'product_page';
+        include TEMPLATE.'product_page.html';
         break;
      case 'login_jzeva':
         $page = 'login_jzeva';
@@ -75,10 +78,10 @@ switch ($action) {
         $page = 'input_form';
         include TEMPLATE.'input_and_form.html';
         break;
-    
-    
-    
-    
+
+
+
+
 }
 
 
