@@ -22,7 +22,7 @@ else
 	define('IMGDOMAIN','http://'.$_SERVER['HTTP_HOST'].'/jzeva/backend/image-upload/');
 
 	$db['jzeva'] = array('localhost','root','','db_jzeva_shubham');
-	
+
 }
 
 define('BTEMPLATE',BACKWEBROOT.'template/');
@@ -49,11 +49,11 @@ $jvs = array();
     $css['rangeSlider']        = BACKDOMAIN.'tools/css/lib/rangeslider/ion.rangeSlider.css?v='.VERSION;
     $css['rangeSkin']        = BACKDOMAIN.'tools/css/lib/rangeslider/ion.rangeSlider.skinHTML5.css?v='.VERSION;
     $css['rangeNormalize']        = BACKDOMAIN.'tools/css/lib/rangeslider/normalize.css?v='.VERSION;
-    
 
-        
-    
-    
+
+
+
+
 #CSS End
 
 #JS
@@ -65,9 +65,9 @@ $jvs = array();
     $jvs['common']              = BACKDOMAIN.'tools/js/Common.js?v='.VERSION;
     $jvs['nicescroll']          = BACKDOMAIN.'tools/js/lib/jquery.nicescroll.min.js?v='.VERSION;
     $jvs['rangeJS']          = BACKDOMAIN.'tools/js/lib/ion.rangeSlider.js?v='.VERSION;
-    
-    
-    
+
+
+
         #CMS PAGES JS
             $jvs['Product']                 = BACKDOMAIN.'tools/js/cms/product.js?v='.VERSION;
             $jvs['addProduct']              = BACKDOMAIN.'tools/js/cms/addProduct.js?v='.VERSION;
@@ -77,18 +77,19 @@ $jvs = array();
             $jvs['addAttribute']            = BACKDOMAIN.'tools/js/cms/addAttribute.js?v='.VERSION;
             $jvs['attribute']               = BACKDOMAIN.'tools/js/cms/attribute.js?v='.VERSION;
             $jvs['coupon']               = BACKDOMAIN.'tools/js/cms/coupon.js?v='.VERSION;
-        
+
 #JS End
-        
-        
-        
+
+
+
         #FRONTEND
         $fcss=array();
         $fjvs=array();
-        
-        
+
+
             $fcss['home']             = DOMAIN.'frontend/tools/css/home.css?v='.VERSION;
              $fcss['inpt_form']             = DOMAIN.'frontend/tools/css/input_and_form.css?v='.VERSION;
+						  $fcss['main']             = DOMAIN.'frontend/tools/css/main.css?v='.VERSION;
              $fcss['ripple']             = DOMAIN.'frontend/tools/css/ripple.css?v='.VERSION;
             $fcss['range_slider']             = DOMAIN.'frontend/tools/css/rangeslider/ion.rangeSlider.css?v='.VERSION;
             $fcss['range_slider1']             = DOMAIN.'frontend/tools/css/rangeslider/ion.rangeSlider.skinHTML5.css?v='.VERSION;
@@ -96,15 +97,15 @@ $jvs = array();
             $fcss['gemstone']             = DOMAIN.'frontend/tools/css/gemstone.css?v='.VERSION;
             $fcss['bxslider']             = DOMAIN.'frontend/tools/css/jquery.bxslider.css?v='.VERSION;
             $fjvs['jquery']                   = DOMAIN.'frontend/tools/js/jquery.js?v='.VERSION;
-            
-            $fjvs['bxslider']                   = DOMAIN.'frontend/tools/js/jquery.bxslider.js?v='.VERSION; 
+
+            $fjvs['bxslider']                   = DOMAIN.'frontend/tools/js/jquery.bxslider.js?v='.VERSION;
             $fjvs['velocity']                   = DOMAIN.'frontend/tools/js/velocity.js?v='.VERSION;
             $fjvs['menu']                   = DOMAIN.'frontend/tools/js/menu.js?v='.VERSION;
             $fjvs['home']                   = DOMAIN.'frontend/tools/js/home.js?v='.VERSION;
             $fjvs['range_slider']                   = DOMAIN.'frontend/tools/js/ion.rangeSlider.js?v='.VERSION;
             $fjvs['hammer']                   = DOMAIN.'frontend/tools/js/hammer.js?v='.VERSION;
              $fjvs['ripple']                   = DOMAIN.'frontend/tools/js/ripple.js?v='.VERSION;
-            
+
 include APICLUDE.'common/class.common.php';
 $comm = new Common();
 $comm->clearParam($_GET);
