@@ -181,3 +181,13 @@ textarea:focus, input:focus{
   animation: lol 3s 500ms infinite ease-in-out;
 }
 .button_label{width:100% ; font-size:12px; padding:5px;}
+.page_loader2 .cs-loader-inner , .page_loader .cs-loader-inner {
+    transform: translateY(0%);
+    top: 35%;
+    color: #333;
+     background: transparent;
+    text-align: center;
+    z-index: 20;
+     display: block;
+     opacity: 1;
+}

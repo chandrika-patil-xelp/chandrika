@@ -14,7 +14,7 @@
                 <span class="price_gen ">126,000</span>
               </span>
             </div>
-            <div class="chk_out "><div class="button button1 btnc1 transition300">Checkout</div></div>
+            <div class="chk_out "><div class="button button1 btnc1 transition300" id="check_out">Checkout</div></div>
           </div>
             <div class="cart_gen fLeft">
              <div class="cart_item">
@@ -261,6 +261,12 @@
                       <div class="imgHolder img28 dn"></div>
                       <div class="imgHolder img29 dn"></div>
                       <div class="imgHolder img30 dn"></div>
+                      <div class="imgHolder img31 dn"></div>
+                      <div class="imgHolder img32 dn"></div>
+                      <div class="imgHolder img33 dn"></div>
+                      <div class="imgHolder img34 dn"></div>
+                      <div class="imgHolder img35 dn"></div>
+                      <div class="imgHolder img36 dn"></div>
                     </div>
                     <div class="rota_btn fLeft rota_run"></div>
                   </div>
@@ -445,8 +451,18 @@
             <div class="review_canc"></div>
           </div>
               <div class="page_loader">
+                <div class="cs-loader-inner ">
+                  <label>●</label>
+                  <label>●</label>
+                  <label>●</label>
+                  <label>●</label>
+                  <label>●</label>
+                  <label>●</label>
+                </div>
+                    <div class="loader_quote  fmSansL">The meek may inherit the earth but not its mineral rights</div>
               </div>
 <script>
+/* Add commas in numbers */
 $.fn.digits = function(){
     return this.each(function(){
         $(this).text( $(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") );
@@ -454,20 +470,17 @@ $.fn.digits = function(){
 }
 
 var i=0;
+/*Overlay fade in/out  on menu hover*/
 $( '.tabWrap' ).mouseover(function() {
 $('.overlay').stop(true,true).fadeTo(200, 1);
-
 });
+/*Main menu slidedown/slideup , Menu tab colour change*/
 $( '.tabB' ).mouseover(function() {
     $('.tab').removeClass('selec');
-
     $('.menu_wrap').velocity('stop').velocity({height:[180]} , {duration:200 , easing:'ease-in-out' , display:'block' });
-
 });
-// $(".tabWrap").on("mouseleave
-// ", _.throttle(changeMeter, 1000));
 
-$( '.tabWrap' ).mouseleave(function() {
+$( '.tabWrap' ).mouseleave(function(){
     $('.overlay').stop(true,true).fadeTo(200, 0);
   $('.menu_wrap').velocity('stop').velocity({height:[0]} , {duration:200 , easing:'ease-in-out' , display:'none',
   complete:function(){
@@ -476,6 +489,7 @@ $( '.tabWrap' ).mouseleave(function() {
 });
     $('.tab').removeClass('selec');
 });
+/*Sub menu slidedown/slideup , Menu tab colour change*/
 $('.tab').mouseenter(function() {
 var k= $(this).closest('.tabB').index();
 
@@ -485,13 +499,14 @@ var k= $(this).closest('.tabB').index();
       $('.remo').css({ 'display':'none'});
     });
 });
+/* Maintain colour of tab while hovering on corresponding submenu*/
 $('.menu_elm').mouseenter(function(){
   var k =$(this).index();
     $('.tab').removeClass('selec');
   $('.tabB').find('.tab').eq(k).addClass('selec');
 });
 
-
+/* Search Bar Open / Close*/
   $('.search_btn').click(function(){
     $('.search_bar').toggleClass('search_open');
     $('.overlay2').toggleClass('over_open');
@@ -499,9 +514,10 @@ $('.menu_elm').mouseenter(function(){
      $('.search_ip').val("");
     $('.search_ip').focus();
   });
+  /* 360 auto run */
  var wid ;
 function function1() {
-   i=(i+1)%30;
+   i=(i+1)%36;
  $('.imgHolder').addClass('dn');
  $('.imgHolder').eq(i).removeClass('dn');
 }
@@ -512,35 +528,6 @@ function runner() {
        runner();
    }, 70);
 }
-var divPos = {};
-var offset = $('.rota').offset();
-$(window).resize(function(){
- wid = $('.rota').width();
-});
-$('.rota').bind('mousemove', function(e){
-    var left= e.pageX - offset.left;
-    var o= wid/60;
-    // var right= e.pageX - offset.right;
-    // var  top= e.pageY - offset.top;
-    // if(left>0 && left<600){
-      var k = left/o;
-      k= Math.floor(k);
-      k=k%30;
-      $('.imgHolder').addClass('dn');
-      $('.imgHolder').eq(k).removeClass('dn');
-  //  }
-});
-$('.rota').mouseover(function(){
-   clearTimeout(stop);
-});
-$('.rota').mouseout(function(){
-//   runner();
-});
-$(document).ready(function(){
-     //runner();
-   wid = $('.rota').width();
-});
-var fr =0;
 $('.rota_btn').click(function(){
 if(fr==0){
   runner();
@@ -553,6 +540,35 @@ else{
   $(this).toggleClass('rota_run');
   $(this).toggleClass('rota_stop');
 });
+/* 360 mousemove */
+var divPos = {};
+var offset = $('.rota').offset();
+$(window).resize(function(){
+ wid = $('.rota').width();
+});
+$('.rota').bind('mousemove', function(e){
+    var left= e.pageX - offset.left;
+    var o= wid/60;
+      var k = left/o;
+      k= Math.floor(k);
+      k=k%36;
+      $('.imgHolder').addClass('dn');
+      $('.imgHolder').eq(k).removeClass('dn');
+      i=k;
+});
+$('.rota').mouseover(function(){
+   clearTimeout(stop);
+});
+$('.rota').mouseout(function(){
+//   runner();
+});
+$(document).ready(function(){
+     //runner();
+   wid = $('.rota').width();
+});
+
+/* Open Clase cart*/
+var fr =0;
 var cartF= 0;
 $('.openC').click(function(){
   if(cartF==0){
@@ -576,7 +592,6 @@ function openCart(){
   $('.wrapper').addClass('pointNone');
   $('.cart_item').each(function(i){
     var t= (i* 30) +50;
-console.log(t);
      $(this).velocity({translateX:[0,400]} , {duration:600 , delay:t ,  easing: [0.2, 1, 0.3, 1]});
   });
 }
@@ -588,9 +603,7 @@ function closeCart(){
   $('body').css({'overflow':'visible'});
     $('.wrapper').removeClass('pointNone');
 }
-// $('.drop_dn').click(function(){
-//     $(this).next('.drop_dets').slideToggle(200, 'swing');
-// });
+/* Customisation */
 var j=0;
 $('.scala').click(function(){
   j= $(this).index();
@@ -602,14 +615,18 @@ $('.options_back').click(function(){
   $('#cust').velocity({scale:[1,3] , opacity:[1,0]} , {duration:200 , easing:'swing' , display:'block'});
   $('.selector_cont').eq(j).velocity({scale:[0.5,1],opacity:[0,1]} , {delay:'50', duration:'150' , display:'none'});
 });
+/* Radia Button */
+
 $('.selector1').click(function(){
   $(this).closest('.selector_cont').find('.selector1').removeClass('select_active');
   $(this).toggleClass('select_active');
 });
+
+/*Increase/Decrease number of Items in Cart and the corresponding price , comma spacing of price  */
 $('.sub_no').click(function(){
   var e=$(this).siblings('.item_amt');
   var j =$(this).siblings('.item_amt').text();
-  var e2=  $(this).closest('.cart_item').find('.price_gen ')
+  var e2=  $(this).closest('.cart_item').find('.price_gen');
   var price= $(this).closest('.cart_item').find('.price_gen ').text();
   price=price.replace(/\,/g,'');
   price=parseInt(price,10);
@@ -617,7 +634,6 @@ $('.sub_no').click(function(){
       price=price/j;
     j--;
     price=price*j;
-
     $(e2).html(price);
       $(e2).digits();
     $(e).html(j);
@@ -630,8 +646,6 @@ $('.add_no').click(function(){
   var price= $(this).closest('.cart_item').find('.price_gen ').text();
   price=price.replace(/\,/g,'');
   price=parseInt(price,10);
-  console.log(j);
-  console.log(price);
   price=price/j;
     j++;
     price=price*j;
@@ -640,7 +654,7 @@ $('.add_no').click(function(){
     $(e2).digits();
     $(e).html(j);
 });
-
+/* Fly to cart effect */
 $('#add_to_cart').on('click', function () {
         var cart = $('.cartIcon');
         var imgtodrag;
@@ -681,6 +695,7 @@ $('#add_to_cart').on('click', function () {
             // });
         }
     });
+  // Show close reviews page
 $('.review_btn').click(function(){
   $('body').addClass('over_hide');
  $('.review_cont').velocity({translateY:[0,'100%']} , {duration:800 , easing:'easeInQuart',display:'block'});
@@ -690,7 +705,21 @@ $('.review_canc').click(function(){
      $('body').removeClass('over_hide');
  }});
 });
+$('#check_out').click(function(){
+  load_checkout();
+});
+function load_checkout(){
+  console.log('click');
+  $('body').addClass('over_hide');
+ $('.page_loader').velocity({translateY:[0,'100%']} , {duration:600 , easing:'easeInQuart',display:'block' ,
+ complete:function(){
+    setTimeout(function(){
+      window.location.assign(DOMAIN+'index.php?action=check_out');
+    },1000);
+ }
+});
 
+}
 </script>
 
     </body>

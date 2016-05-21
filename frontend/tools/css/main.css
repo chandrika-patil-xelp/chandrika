@@ -131,8 +131,10 @@ textarea:focus, input:focus{
 .select_active.selector1:after{transform:scale(0.8)}
 .selector_cont{display:none;opacity:0;position:absolute;top:0px;left:0;width:100%;height:100%;}
 .review_btn{width:100%;height:60px;position:absolute;bottom:0;left:0;text-align:center;line-height:60px;color:#666;cursor:pointer}
-.review_cont{width:100vw;height:100vh;position:absolute;bottom:0;transform:translateY(-100%);background:#f0f0f0;z-index: 200;}
-.page_loader{width:100vw;height:100vh;position:absolute;bottom:0;transform:translateY(-100%);background:#f0f0f0;z-index: 220;background:url("../img/diablack.svg")no-repeat;background-size:200%;background-position:center;}
+.review_cont{width:100vw;height:calc(100vh - 120px);position:absolute;bottom:0;transform:translateY(100%);background:rgba(255,255,255,0.9);z-index: 200;display:none}
+.page_loader{width:100vw;height:100vh;position:absolute;bottom:0;transform:translateY(-100%);z-index: 220;background:#f0f0f0 url("../img/diablack.svg")no-repeat;background-size:10%;background-position:center 15vh;}
+.page_loader2{width:100vw;height:100vh;position:absolute;bottom:0;z-index: 220;background:#f0f0f0 url("../img/diablack.svg")no-repeat;background-size:10%;background-position: center 15vh;}
+.loader_quote{width:80%; height:80px; position:absolute; left:0;right:0;top:40%;margin:auto;font-size:40px;text-align:center;color:#333}
 .review_canc{position:absolute;top:20px;right:20px;width:40px;height:40px;background:url("../img/back.svg")no-repeat;background-size:100%;background-position:center;cursor:pointer}
 .drop_dn{width:85%;margin:8px 0px ;border-bottom:1px solid #ccc ; padding:7px 40px 7px 10px; color:#333;font-size:14px;cursor:pointer;position:relative}
 .drop_dn:after{width:30px;height:30px;position:absolute;right:0;top:0px;background:url("../img/nextarrow.svg")no-repeat;background-size:100%;background-position:center;transform:rotate(90deg); }
@@ -147,7 +149,7 @@ textarea:focus, input:focus{
 .padXlr{padding-right:5px}
 .mTop10{margin-top:10px;}
 .mTop5{margin-top:5px;}
-.img1{background:url("../img/jzeva1.png")no-repeat;}
+/*.img1{background:url("../img/jzeva1.png")no-repeat;}
 .img2{background:url("../img/jzeva2.png")no-repeat;}
 .img3{background:url("../img/jzeva3.png")no-repeat;}
 .img4{background:url("../img/jzeva4.png")no-repeat;}
@@ -176,9 +178,44 @@ textarea:focus, input:focus{
 .img27{background:url("../img/jzeva27.png")no-repeat;}
 .img28{background:url("../img/jzeva28.png")no-repeat;}
 .img29{background:url("../img/jzeva29.png")no-repeat;}
-.img30{background:url("../img/jzeva30.png")no-repeat;}
-
-.imgHolder{width:100%;height:100%;position:absolute;background-size:108%;background-position:bottom center;}
+.img30{background:url("../img/jzeva30.png")no-repeat;}*/
+.img36{background:url("../img/Ring_0000.jpg")no-repeat;}
+.img35{background:url("../img/Ring_0001.jpg")no-repeat;}
+.img34{background:url("../img/Ring_0002.jpg")no-repeat;}
+.img33{background:url("../img/Ring_0003.jpg")no-repeat;}
+.img32{background:url("../img/Ring_0004.jpg")no-repeat;}
+.img31{background:url("../img/Ring_0005.jpg")no-repeat;}
+.img30{background:url("../img/Ring_0006.jpg")no-repeat;}
+.img29{background:url("../img/Ring_0007.jpg")no-repeat;}
+.img28{background:url("../img/Ring_0008.jpg")no-repeat;}
+.img27{background:url("../img/Ring_0009.jpg")no-repeat;}
+.img26{background:url("../img/Ring_0010.jpg")no-repeat;}
+.img25{background:url("../img/Ring_0011.jpg")no-repeat;}
+.img24{background:url("../img/Ring_0012.jpg")no-repeat;}
+.img23{background:url("../img/Ring_0013.jpg")no-repeat;}
+.img22{background:url("../img/Ring_0014.jpg")no-repeat;}
+.img21{background:url("../img/Ring_0015.jpg")no-repeat;}
+.img20{background:url("../img/Ring_0016.jpg")no-repeat;}
+.img19{background:url("../img/Ring_0017.jpg")no-repeat;}
+.img18{background:url("../img/Ring_0018.jpg")no-repeat;}
+.img17{background:url("../img/Ring_0019.jpg")no-repeat;}
+.img16{background:url("../img/Ring_0020.jpg")no-repeat;}
+.img15{background:url("../img/Ring_0021.jpg")no-repeat;}
+.img14{background:url("../img/Ring_0022.jpg")no-repeat;}
+.img13{background:url("../img/Ring_0023.jpg")no-repeat;}
+.img12{background:url("../img/Ring_0024.jpg")no-repeat;}
+.img11{background:url("../img/Ring_0025.jpg")no-repeat;}
+.img10{background:url("../img/Ring_0026.jpg")no-repeat;}
+.img9{background:url("../img/Ring_0027.jpg")no-repeat;}
+.img8{background:url("../img/Ring_0028.jpg")no-repeat;}
+.img7{background:url("../img/Ring_0029.jpg")no-repeat;}
+.img6{background:url("../img/Ring_0030.jpg")no-repeat;}
+.img5{background:url("../img/Ring_0031.jpg")no-repeat;}
+.img4{background:url("../img/Ring_0032.jpg")no-repeat;}
+.img3{background:url("../img/Ring_0033.jpg")no-repeat;}
+.img2{background:url("../img/Ring_0034.jpg")no-repeat;}
+.img1{background:url("../img/Ring_0035.jpg")no-repeat;}
+.imgHolder{width:100%;height:100%;position:absolute;background-size:108%;background-position:center;}
 .rota_run{background:url("../img/360.svg")no-repeat;background-size:35px}
 .rota_stop{background:url("../img/pause.svg")no-repeat;background-size:70px}
 .rota_btn{width:100%;height:10%;;background-position: center;cursor:pointer}
