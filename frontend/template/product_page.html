@@ -296,6 +296,7 @@
                     </div>
                   <div class="rota_wrap fLeft">
                     <div class="rota fLeft">
+
                       <div class="imgHolder img1"></div>
                       <div class="imgHolder img2 dn"></div>
                       <div class="imgHolder img3 dn"></div>
@@ -326,6 +327,7 @@
                       <div class="imgHolder img28 dn"></div>
                       <div class="imgHolder img29 dn"></div>
                       <div class="imgHolder img30 dn"></div>
+                          <div class="rota_buffer"></div>
                       <!-- <div class="imgHolder img31 dn"></div>
                       <div class="imgHolder img32 dn"></div>
                       <div class="imgHolder img33 dn"></div>
@@ -543,7 +545,6 @@ $.fn.digits = function(){
         $(this).text( $(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") );
     })
 }
-
 var i=0;
 /*Overlay fade in/out  on menu hover*/
 $( '.tabWrap' ).mouseover(function() {
@@ -554,7 +555,6 @@ $( '.tabB' ).mouseover(function() {
     $('.tab').removeClass('selec');
     $('.menu_wrap').velocity('stop').velocity({height:[180]} , {duration:200 , easing:'ease-in-out' , display:'block' });
 });
-
 $( '.tabWrap' ).mouseleave(function(){
     $('.overlay').stop(true,true).fadeTo(200, 0);
   $('.menu_wrap').velocity('stop').velocity({height:[0]} , {duration:200 , easing:'ease-in-out' , display:'none',
@@ -625,23 +625,22 @@ $(window).resize(function(){
 });
 var offK=0;
 var offL=0;
-$('.rota').bind('mousemove', function(e){
-
+$('.rota_buffer').bind('mousemove', function(e){
     var left= e.pageX - offset.left;
-     console.log("left:" + left);
+
      console.log("offK:" + offK);
        console.log("offL:" + offL);
+        console.log("left:" + (left -offK + offL));
     var o= wid/60;
-      var k = (left + offK  )/o;
+      var k = (left - offK +offL )/o;
       k= Math.floor(k);
       k=k%30;
       //  console.log("K:" + k);
       $('.imgHolder').addClass('dn');
       $('.imgHolder').eq(k).removeClass('dn');
       s=k;
-
 });
-$('.rota').mouseup(function(e){
+$('.rota').mouseenter(function(e){
   offK= e.pageX - offset.left;
 });
 // $('.rota').mouseenter(function(e){
@@ -650,7 +649,6 @@ $('.rota').mouseup(function(e){
 // });
 $('.rota').mouseleave(function(e){
   offL= e.pageX - offset.left;
-
 });
 $('.rota').mouseover(function(){
   clearTimeout(stop);
@@ -662,7 +660,6 @@ $(document).ready(function(){
      //runner();
    wid = $('.rota').width();
 });
-
 /* Open Clase cart*/
 var fr =0;
 var cartF= 0;
@@ -684,7 +681,6 @@ function openCart(){
   $('.cart').css({'display':'block'});
     $('.search_bar').removeClass('search_open');
   $('.tabWrap , .tabWrap2').addClass('deactive');
-
   $('.wrapper').removeClass('pointNone');
   $('.cart').velocity({translateX:[0,400]} , {duration:300 , easing:'swing'});
   $('.overlay2').addClass('over_open');
@@ -720,12 +716,10 @@ $('.options_back').click(function(){
   $('.selector_cont').eq(j).velocity({scale:[0.5,1],opacity:[0,1]} , {delay:'50', duration:'150' , display:'none'});
 });
 /* Radia Button */
-
 $('.selector1').click(function(){
   $(this).closest('.selector_cont').find('.selector1').removeClass('select_active');
   $(this).toggleClass('select_active');
 });
-
 /*Increase/Decrease number of Items in Cart and the corresponding price , comma spacing of price  */
 $('.sub_no').click(function(){
   var e=$(this).siblings('.item_amt');
@@ -753,7 +747,6 @@ $('.add_no').click(function(){
   price=price/j;
     j++;
     price=price*j;
-
     $(e2).html(price);
     $(e2).digits();
     $(e).html(j);
@@ -827,7 +820,6 @@ $(window).load(function(){
   setTimeout(function(){
 load_page();
   },2000);
-
 });
 function load_page(){
   $('body').addClass('over_hide');
@@ -837,9 +829,10 @@ function load_page(){
  }  });
 }
 function load_effects(){
-    $('.rota_wrap').velocity({translateY:[-10 , 0] , opacity:[1,0]} , {duration:600 , easing:'swing' , complete:function(){
-      $('.details_cont').velocity({translateY:[-10 , 0] , opacity:[1,0]} , {duration:600 , easing:'swing' , complete:function(){
-          $('.options').velocity({translateY:[-10 , 0] , opacity:[1,0]} , {duration:600 , easing:'swing'});
+    $('body').addClass('over_hide');
+    $('.rota_wrap').velocity({translateY:[0 , 10] , opacity:[1,0]} , {duration:600 , easing:'swing' , complete:function(){
+      $('.details_cont').velocity({translateY:[0 , 10] , opacity:[1,0]} , {duration:600 , easing:'swing' , complete:function(){
+          $('.options').velocity({translateY:[0 , 10] , opacity:[1,0]} , {duration:600 , easing:'swing',complete:function(){$('body').removeClass('over_hide');}});
       }});
     }});
 }
