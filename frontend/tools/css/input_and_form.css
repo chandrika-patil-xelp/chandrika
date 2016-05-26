@@ -2,7 +2,7 @@
 *{box-sizing:border-box;}
 div{display:block;}
 html{width:100%;height:100%;}
-body{padding:0;margin:0;overflow-x: hidden;}
+body{padding:0;margin:0;}
 textarea:focus, input:focus{
     outline: none;
 }
@@ -15,7 +15,7 @@ textarea:focus, input:focus{
 .fLeft{float:left;}
 .fRight{float:right;}
 .transition300{transition:300ms;-moz-transition:300ms;-webkit-transition:300ms;}
-.container{width:100%;height:100%;background-color:#fff;overflow: hidden;padding-top:0px;}
+.container{width:100%;height:100%;background-color:#fff;padding-top:0px;}
 .paddingAll{padding:140px 30px 30px 30px !important;}
 .wrapper2{width:100%;height:100%;display:inline-block;}
 .wrapperMax{width:100%;height:auto;max-width:1400px;margin:auto;}
@@ -184,7 +184,7 @@ textarea:focus, input:focus{
 .page_loader2 .cs-loader-inner , .page_loader .cs-loader-inner {
     transform: translateY(0%);
     top: 35%;
-    color: #333;
+    color: #fff;
      background: transparent;
     text-align: center;
     z-index: 20;
