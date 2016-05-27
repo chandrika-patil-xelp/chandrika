@@ -804,6 +804,7 @@
 
 
 <script>
+//Touch Handling, getting the Id of the grid image being swiped
 var ooo;
 $.event.special.tap = {
     setup: function(data, namespaces) {
@@ -1124,7 +1125,7 @@ $('.review_canc').click(function(){
      $('body').removeClass('over_hide');
  }});
 });
-
+  // Show close filter page
 $('.filter_btn').click(function(){
   $('body').addClass('over_hide');
  $('.filter_cont').velocity({translateY:[0,'100%']} , {duration:800 , easing:'easeInQuart',display:'block'});
@@ -1152,7 +1153,7 @@ function load_checkout(){
 }
 
 
-
+//Positioning the grid Absolutely
 function setPosition() {
   var cnt = 0;
   var h1 = 0;
@@ -1254,7 +1255,7 @@ function draw(e) {
         gt=0;
     }
     else{
-      gt = ((st* widt)/30 )/1.3;
+      gt = ((st* widt)/30 );
       staticCordt=0;
     }
       staticCordt=parseInt(staticCordt);
@@ -1275,9 +1276,7 @@ function end(et) {
 
   var divPos = {};
   var offset = $('.rota').offset();
-  $(window).resize(function(){
 
-  });
   $('.grid_img').bind('mousemove', function(e){
      if(window_width>960){
     wid = $(this).width();
