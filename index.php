@@ -50,11 +50,19 @@ switch ($action) {
         $page = 'product_details';
         include TEMPLATE.'product_details.html';
         break;
-      case 'product_page':
-        $page = 'product_page';
-        include TEMPLATE.'product_page.html';
+      case 'product_preview':
+        $page = 'product_preview';
+        include TEMPLATE.'product_preview.html';
         break;
-        case 'check_out':
+        case 'product_grid':
+          $page = 'product_grid';
+          include TEMPLATE.'product_grid.html';
+          break;
+     case 'product_page':
+          $page = 'product_page';
+          include TEMPLATE.'product_page.html';
+          break;
+     case 'check_out':
           $page = 'check_out';
           include TEMPLATE.'check_out.html';
           break;
