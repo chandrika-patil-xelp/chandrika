@@ -936,7 +936,7 @@ function generateGeneral(general)
     var str = "";
     for (var i = 0; i < 3; i++)
     {
-        str += "<div class='divCon  fLeft' id='solitaire" + ids[i] + "_" + solitaireCnt + "_Cont'><div class='titleDiv txtCap fLeft'>" + ids[i] + "</div><div class='radioCont fLeft'>";
+        str += "<div class='divCon  fLeft' id='solitaire" + ids[i] + "_" + solitaireCnt + "_Cont'><div class='titleDiv txtCap fLeft'>" + ids[i] + "*</div><div class='radioCont fLeft'>";
         var j = 0;
         while (j < cLen) {
             str += "<div class='checkDiv fLeft'>";
@@ -961,7 +961,7 @@ function generateFluorescence()
     var fvals = ['None', 'Faint', 'Medium', 'Strong', 'Very Strong'];
     var cLen = fvals.length;
     var str = "";
-    str += "<div class='divCon  fLeft' id='solitairefluorescence_" + solitaireCnt + "_Cont'><div class='titleDiv txtCap fLeft'>Fluorescence</div><div class='radioCont fLeft'>";
+    str += "<div class='divCon  fLeft' id='solitairefluorescence_" + solitaireCnt + "_Cont'><div class='titleDiv txtCap fLeft'>Fluorescence*</div><div class='radioCont fLeft'>";
     var j = 0;
     while (j < cLen) {
         str += "<div class='checkDiv fLeft'>";
@@ -991,20 +991,16 @@ function generateSoliTxtBox()
     str += "<input name='solitairePriceCarat' id='solpricecarat" + solitaireCnt + "'' type='text' placeholder='eg. 1000' class='txtInput fLeft fmOpenR font14 c666' onkeypress='return common.isDecimalKey(event, this.value);'>";
     str += "</div>";
     str += "<div class='divCon2  fLeft'>";
-    str += "<div class='titleDiv txtCap fLeft'>Table</div>";
+    str += "<div class='titleDiv txtCap fLeft'>Table*</div>";
     str += "<input name='solitaireTable' id='soltable" + solitaireCnt + "'' type='text' placeholder='eg. 1000' class='txtInput fLeft fmOpenR font14 c666'>";
     str += "</div>";
     str += "<div class='divCon2  fLeft'>";
-    str += "<div class='titleDiv txtCap fLeft'>Crown Angle</div>";
+    str += "<div class='titleDiv txtCap fLeft'>Crown Angle*</div>";
     str += "<input name='solitaireCrownAngle' id='solCrownAngle" + solitaireCnt + "'' type='text' placeholder='eg. 52' class='txtInput fLeft fmOpenR font14 c666'>";
     str += "</div>";
     str += "<div class='divCon2  fLeft'>";
-    str += "<div class='titleDiv txtCap fLeft'>Girdle</div>";
+    str += "<div class='titleDiv txtCap fLeft'>Girdle*</div>";
     str += "<input name='solitaireGirdle' id='solGirdle" + solitaireCnt + "'' type='text' placeholder='eg. 1.22' class='txtInput fLeft fmOpenR font14 c666'>";
-    str += "</div>";
-    str += "<div class='divCon2  fLeft'>";
-    str += "<div class='titleDiv txtCap fLeft'>No. Of Peices*</div>";
-    str += "<input name='solitaireGirdle' id='solPieces" + solitaireCnt + "'' type='text' placeholder='eg. 1.22' class='txtInput fLeft fmOpenR font14 c666'>";
     str += "</div>";
 
     return str;
@@ -3058,45 +3054,45 @@ function validateSolAdd()
 
             }
 
-//            if ($('[name=solitairecut_' + ids + ']:checked').length == 0)
-//            {
-//                common.toast(0, "Select Cut For Solitaire " + ids);
-//                var id=$('[name=solitairecut_' + ids + ']').eq(0).attr('id');
-//                highlight(id,1);
-//                isValid=false;
-//                return false;
-//
-//            }
+            if ($('[name=solitairecut_' + ids + ']:checked').length == 0)
+            {
+                common.toast(0, "Select Cut For Solitaire " + ids);
+                var id=$('[name=solitairecut_' + ids + ']').eq(0).attr('id');
+                highlight(id,1);
+                isValid=false;
+                return false;
 
-//            if ($('[name=solitairesymmetry_' + ids + ']:checked').length == 0)
-//            {
-//                common.toast(0, "Select Symmetry For Solitaire " + ids);
-//                var id=$('[name=solitairesymmetry_' + ids + ']').eq(0).attr('id');
-//                highlight(id,1);
-//                isValid=false;
-//                return false;
-//
-//            }
+            }
 
-//            if ($('[name=solitairepolish_' + ids + ']:checked').length == 0)
-//            {
-//                common.toast(0, "Select Polish For Solitaire " + ids);
-//                var id=$('[name=solitairepolish_' + ids + ']').eq(0).attr('id');
-//                highlight(id,1);
-//                isValid=false;
-//                return false;
-//
-//            }
+            if ($('[name=solitairesymmetry_' + ids + ']:checked').length == 0)
+            {
+                common.toast(0, "Select Symmetry For Solitaire " + ids);
+                var id=$('[name=solitairesymmetry_' + ids + ']').eq(0).attr('id');
+                highlight(id,1);
+                isValid=false;
+                return false;
 
-//            if ($('[name=solitaireFluorescence_' + ids + ']:checked').length == 0)
-//            {
-//                common.toast(0, "Select Fluorescence For Solitaire " + ids);
-//                var id=$('[name=solitaireFluorescence_' + ids + ']').eq(0).attr('id');
-//                highlight(id,1);
-//                isValid=false;
-//                return false;
-//
-//            }
+            }
+
+            if ($('[name=solitairepolish_' + ids + ']:checked').length == 0)
+            {
+                common.toast(0, "Select Polish For Solitaire " + ids);
+                var id=$('[name=solitairepolish_' + ids + ']').eq(0).attr('id');
+                highlight(id,1);
+                isValid=false;
+                return false;
+
+            }
+
+            if ($('[name=solitaireFluorescence_' + ids + ']:checked').length == 0)
+            {
+                common.toast(0, "Select Fluorescence For Solitaire " + ids);
+                var id=$('[name=solitaireFluorescence_' + ids + ']').eq(0).attr('id');
+                highlight(id,1);
+                isValid=false;
+                return false;
+
+            }
             if ($('#solcaratweight' + ids + '').val() == "")
             {
                 common.toast(0, "Enter Carat Weight For Solitaire " + ids);
@@ -3133,46 +3129,46 @@ function validateSolAdd()
 
 
 
-//            if ($('#soltable' + ids + '').val() == "")
-//            {
-//                common.toast(0, "Enter Table For Solitaire " + ids);
-//                highlight('soltable' + ids,0);
-//                isValid=false;
-//                return false;
-//            }
-//
-//            if ($('#solCrownAngle' + ids + '').val() == "")
-//            {
-//                common.toast(0, "Enter Crown Angle For Solitaire " + ids);
-//                highlight('solCrownAngle' + ids,0);
-//                isValid=false;
-//                return false;
-//            }
-//
-//            if (!checkForZero('solCrownAngle' + ids))
-//            {
-//                common.toast(0, "Crown Angle can not be 0");
-//                highlight('solCrownAngle' + ids,0);
-//                isValid=false;
-//                return false;
-//            }
-//
-//
-//            if ($('#solGirdle' + ids + '').val() == "")
-//            {
-//                common.toast(0, "Enter Girdle For Solitaire " + ids);
-//                highlight('solGirdle' + ids,0);
-//                isValid=false;
-//                return false;
-//            }
-//
-//            if (!checkForZero('solGirdle' + ids))
-//            {
-//                common.toast(0, "Girdle can not be 0");
-//                highlight('solGirdle'+ ids,0);
-//                isValid=false;
-//                return false;
-//            }
+            if ($('#soltable' + ids + '').val() == "")
+            {
+                common.toast(0, "Enter Table For Solitaire " + ids);
+                highlight('soltable' + ids,0);
+                isValid=false;
+                return false;
+            }
+
+            if ($('#solCrownAngle' + ids + '').val() == "")
+            {
+                common.toast(0, "Enter Crown Angle For Solitaire " + ids);
+                highlight('solCrownAngle' + ids,0);
+                isValid=false;
+                return false;
+            }
+
+            if (!checkForZero('solCrownAngle' + ids))
+            {
+                common.toast(0, "Crown Angle can not be 0");
+                highlight('solCrownAngle' + ids,0);
+                isValid=false;
+                return false;
+            }
+
+
+            if ($('#solGirdle' + ids + '').val() == "")
+            {
+                common.toast(0, "Enter Girdle For Solitaire " + ids);
+                highlight('solGirdle' + ids,0);
+                isValid=false;
+                return false;
+            }
+
+            if (!checkForZero('solGirdle' + ids))
+            {
+                common.toast(0, "Girdle can not be 0");
+                highlight('solGirdle'+ ids,0);
+                isValid=false;
+                return false;
+            }
         });
         return isValid;
 
