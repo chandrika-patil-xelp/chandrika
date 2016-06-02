@@ -181,7 +181,7 @@ function bindRemove()
         stopPropGate(event);
         if (!$(this).is(":checked"))
         {
-            
+
             removeChilds($(this).attr("id").replace('cat_', ''));
         }
     });
@@ -256,7 +256,7 @@ function getDiamondQuality()
 
 function diamondQltyCalllBack(data)
 {
-    
+
     if (data['error']['err_code'] == '0')
     {
         var str1 = "";
@@ -670,7 +670,7 @@ $(document).ready(function() {
 
     bindElementChange();
     changeJTypeFields();
-    
+
 
 });
 
@@ -683,7 +683,7 @@ function changeJTypeFields()
             $('.stonesSelect').removeClass('dn');
             $('.jewelCertificates').removeClass('dn');
             $('#mpurity_6').parent().parent().removeClass('dn');
-            
+
             $('.metalPurityDiv').addClass('dn');
             $('.metalColorDiv').addClass('dn');
             $('.ifpurityCustomiz').addClass('dn');
@@ -695,7 +695,7 @@ function changeJTypeFields()
             $('.stonesSelect').addClass('dn');
             $('.jewelCertificates').addClass('dn');
             $('#mpurity_6').parent().parent().addClass('dn');
-            
+
             $('.metalPurityDiv').removeClass('dn');
             $('.metalColorDiv').removeClass('dn');
             $('.ifpurityCustomiz').removeClass('dn');
@@ -1264,10 +1264,10 @@ function addProduct()
                 pcatArray.push($(this).val());
                 catArray.push($(this).val());
             }
-                
+
 //            else if (!$(this).is(':CHECKED'))
 //            {
-//                
+//
 //                var removeItem = $(this).val();
 //                catArray = jQuery.grep(catArray, function(value)
 //                {
@@ -1275,7 +1275,7 @@ function addProduct()
 //                });
 //            }
         });
-        
+
 
 
         var vid = $('#vendorList').val();
@@ -1321,7 +1321,7 @@ function addProduct()
             if ($(this).is(':CHECKED'))
                 certificate = $(this).val();
         });
-        
+
         $('[name=jType]').each(function() {
             if ($(this).is(':CHECKED'))
                 jewelleryType = $(this).val();
@@ -2049,10 +2049,10 @@ function validateForm()
         isValid=false;
             return false;
     }
-    
+
     if(isPlatinumJewellery == false)
     {
-    
+
         if ($('[name=isPurityCustz]:checked').length === 0)
         {
             common.toast(0, "Select Metal Purity Type");
@@ -2595,7 +2595,7 @@ function oneditmodeCallBack(data)
                 $(this).attr('checked',true);
             }
         });
-        
+
         $('[name=jType]').each(function()
         {
             var val =$(this).val();
@@ -2605,7 +2605,7 @@ function oneditmodeCallBack(data)
             }
         });
         changeJTypeFields();
-        
+
         $('[name=certificate]').each(function(){
             var val =$(this).val();
 
@@ -3689,19 +3689,38 @@ function bindCheckBoxClick() {
 function checkParents(obj)
 {
     var id = obj.attr('id');
-    $('#'+id).parents('li').each(function()
-    {
-        if(obj.is(':checked'))
+    var doit = new Array();
+    var i = 0;
+
+        $('#'+id).parents('li').each(function()
         {
-            var chbox=$(this).find('input[name="prtcateg"]').attr('id');
-            $('#'+chbox).prop('checked',true);
-        }
-        else
-        {
-            var chbox=$(this).find('input[name="prtcateg"]').attr('id');
-            $('#'+chbox).prop('checked',false);
-        }
-    });
+            $(this).closest('li').siblings().find('input[name="prtcateg"]').each( function() {
+                if($(this).is(':checked'))
+                {
+                    $(this).parents('li').each(function()
+                    {
+                        doit[i] = $(this).find('input[name="prtcateg"]').attr('id');
+                        i++;
+                    });
+                }
+            });
+
+            if(obj.is(':checked'))
+            {
+                var chbox=$(this).find('input[name="prtcateg"]').attr('id');
+                $('#'+chbox).prop('checked',true);
+            }
+            else
+            {
+                var chbox=$(this).find('input[name="prtcateg"]').attr('id');
+                $('#'+chbox).prop('checked',false);
+            }
+
+            $.each(doit, function(i, vl) {
+                $('#'+vl).prop('checked',true);
+            });
+
+        });
 }
 
 function getCategoryTree(xhtml, subcat) {
@@ -3714,7 +3733,7 @@ function getCategoryTree(xhtml, subcat) {
         success: function(res) {
             res = JSON.parse(res);
             xhtml = makeTree(res);
-            
+
             $('#parentCatg').html(xhtml);
             bindCheckBoxClick();
         }
@@ -3735,7 +3754,7 @@ function displayChecked(catAttr)
         var _this = $(this);
         var id = $(this).attr('id');
         var uid = id.split('-').pop(-1);
-        
+
         $.each(catAttr.results, function(i, vl) {
             if(_this.val() == vl.cid)
             {
@@ -3751,19 +3770,19 @@ var prevCat = 0;
 function makeTree(vls)
 {
     var xhtml = '';
-    
+
     if(vls.subcat)
         vlst = vls.subcat;
     else if(vls.root)
         vlst = vls.root;
     else
         vlst = vls;
-    
+
     if(vls.subcat || vls.root)
     {
         xhtml += '<ul>';
     }
-    
+
     $.each(vlst, function(i, vl) {
         if(vl.subcat)
         {
@@ -3784,13 +3803,13 @@ function makeTree(vls)
                     xhtml += '<input type="checkbox" name="prtcateg" value="'+vl.catid+'" class="filled-in" id="'+j+'-'+vl.catid+'">';
                     xhtml += '<label for="'+j+'-'+vl.catid+'">'+vl.cat_name+'</label>';
                 xhtml += '</div>';
-                
+
             xhtml += '</li>';
             j++;
         }
-        prevCat = vl.catid;    
+        prevCat = vl.catid;
     });
-    
+
     if(vls.subcat || vls.root)
     {
         xhtml += '</ul>';
