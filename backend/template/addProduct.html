@@ -24,6 +24,10 @@
                             <div class="titleDiv txtCap fLeft">Select Vendor*</div>
                             <select id="vendorList"  class="txtSelect fLeft fmOpenR font14 c666"></select>
                         </div>
+                        <div class="divCon2 fRight mTop0">
+                            <div class="titleDiv txtCap fLeft">Vendor Product Code*</div>
+                            <input name="" type="text" id="vendorPrdCode" maxlength="40" autocomplete="false"  placeholder="Enter vendor product code" class="txtInput fLeft fmOpenR font14 c666">
+                        </div>
                     </div>
                     <div class="divCon2 fLeft">
                         <div class="titleDiv txtCap fLeft">Product Name*</div>
@@ -33,27 +37,48 @@
                         <div class="titleDiv txtCap fLeft">Product SEO Name*</div>
                         <input name="" type="text" id="product_seo_name" autocomplete="false"  placeholder="Enter product SEO name" class="txtInput fLeft fmOpenR font14 c666">
                     </div>
-
+                    <div class="divCon fLeft">
+                        <div class="divCon2 fLeft">
+                            <div class="titleDiv txtCap fLeft">Product Weight <span class="txtLower">in gm(s)*</span></div>
+                            <input name="" type="text" id="product_weight" autocomplete="false"  placeholder="Enter product weight" class="txtInput fLeft fmOpenR font14 c666" onkeypress="return common.isDecimalKey(event, this.value);">
+                        </div>
+                        <div class="divCon2 fRight">
+                            <div class="titleDiv txtCap fLeft">Gender*</div>
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="gender" class="filled-in" value="0" id="gender1" checked="">
+                                <label for="gender1">Female</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="gender" class="filled-in" value="1" id="gender2">
+                                <label for="gender2">Male</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="gender" class="filled-in" value="2" id="gender3">
+                                <label for="gender3">Unisex</label>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div class="divCon2 fLeft">
-                        <div class="titleDiv txtCap fLeft">Product Weight <span class="txtLower">in gm(s)*</span></div>
-                        <input name="" type="text" id="product_weight" autocomplete="false"  placeholder="Enter product weight" class="txtInput fLeft fmOpenR font14 c666" onkeypress="return common.isDecimalKey(event, this.value);">
+                        <div class="titleDiv txtCap fLeft">Delivery Lead Time</div>
+                        <input name="" type="text" id="leadTime" autocomplete="false"  placeholder="Enter delivery lead time" class="txtInput fLeft fmOpenR font14 c666" onkeypress="return common.isDecimalKey(event, this.value);">
                     </div>
                     <div class="divCon2 fRight">
-                        <div class="titleDiv txtCap fLeft">Gender*</div>
+                        <div class="titleDiv txtCap fLeft">The Jewellery is*</div>
                         <div class="checkDiv fLeft">
-                            <input type="radio" name="gender" class="filled-in" value="0" id="gender1" checked="">
-                            <label for="gender1">Female</label>
+                            <input type="radio" name="jType" class="filled-in" value="1" id="jType1" checked="">
+                            <label for="jType1">Gemstone</label>
                         </div>
                         <div class="checkDiv fLeft">
-                            <input type="radio" name="gender" class="filled-in" value="1" id="gender2">
-                            <label for="gender2">Male</label>
+                            <input type="radio" name="jType" class="filled-in" value="2" id="jType2">
+                            <label for="jType2">Plain Gold</label>
                         </div>
                         <div class="checkDiv fLeft">
-                            <input type="radio" name="gender" class="filled-in" value="2" id="gender3">
-                            <label for="gender3">Unisex</label>
+                            <input type="radio" name="jType" class="filled-in" value="3" id="jType3">
+                            <label for="jType3">Platinum</label>
                         </div>
                     </div>
-                    <div class="divCon backF0 fLeft ">
+                    <div class="divCon backF0 fLeft stonesSelect">
                         <div class="commTitle1 fmOpenL fLeft">Select the stones available in the product</div>
                         <div class="checkDiv fmOpenL borderDashed font18">
                             <input type="checkbox" name="stones" class="filled-in" value="Solitaire" id="stone1">
@@ -121,7 +146,7 @@
                 <!-----General Section--!-->
                 <section id='general_Section' class="generalCont dn">
                     <div class="commTitle1 fmOpenL fLeft">General Information</div>
-                    <div class="divCon fLeft fmOpenR">
+<!--                    <div class="divCon fLeft fmOpenR">
                         <div class="titleDiv txtCap fLeft">Diamond Setting type*</div>
                         <div class="radioCont fLeft">
                             <div class="checkDiv fLeft">
@@ -161,9 +186,9 @@
                             </div>
 
                         </div>
-                    </div>
+                    </div>-->
 
-                    <div class="divCon fLeft fmOpenR">
+                    <div class="divCon fLeft fmOpenR jewelCertificates">
                         <div class="titleDiv txtCap fLeft">Product Certificate*</div>
 
                         <div class="checkDiv fLeft">
@@ -211,7 +236,7 @@
                             <input name="measurement2" id="measure2" type="text" autocomplete="false" placeholder=" eg. 20" maxlength="5" class="mtxtInput fLeft fmOpenR font14 c666" value="" onkeypress="return common.isDecimalKey(event, this.value);">
                         </div>
                     </div>
-                    <div class="divCon fLeft">
+                    <div class="divCon fLeft metalPurityDiv">
                         <div class="titleDiv txtCap fLeft wAuto">Metal Purity*</div>
                         <div class="checkDiv fLeft mTop0">
                             <input type="radio" name="isPurityCustz" class="filled-in" value="0" id="purcust1">
@@ -226,7 +251,7 @@
                     <div class="divCon  fLeft fmOpenR divAuto dn" id='ifpurityNotCustomiz'></div>
 
 
-                    <div class="divCon fRight">
+                    <div class="divCon fRight metalColorDiv">
                         <div class="titleDiv txtCap fLeft wAuto">Metal Color*</div>
                         <div class="checkDiv fLeft mTop0">
                             <input type="radio" name="isColorCustz" class="filled-in" value="0" id="colorcust1">
@@ -240,6 +265,7 @@
                         <div class="innerCont fLeft dn" id='ifcolorCustomiz'></div>
                         <div class="innerCont dn fLeft" id='ifcolorNotCustomiz'></div>
                     </div>
+                    
                     <div class="divCon fLeft noBorder dn" id='cat_sizes'>
                         <div class="titleDiv txtCap fLeft">Select Size</div>
                     </div>
@@ -299,7 +325,6 @@
                             <div class="w50 fLeft c4d padR15 fmOpenR">Product Weight (grms) </div>
                             <div class="w50 fRight fmOpenB txtRight" id='prproduct_weight'></div>
                         </div>
-
                         <div class="fieldTitle fLeft ">
                             <div class="w50 fLeft c4d padR15 fmOpenR">Gender </div>
                             <div class="w50 fRight fmOpenB txtRight" id='prgender'></div>
@@ -389,6 +414,7 @@
                             <div class="treeCont fLeft">
                                 <div class="fLeft">
                                     <div class="tree transition300" id="mapTree"></div>
+                                    <div class="range transition300" id="mapRange"></div>
                                 </div>
                             </div>
                         </div>
@@ -410,12 +436,14 @@
     <!--Category Value Map-->
 
 
-
+    <link rel="stylesheet" href="<?php echo $css['rangeSlider']?>">
+    <link rel="stylesheet" href="<?php echo $css['rangeSkin']?>">
+    <link rel="stylesheet" href="<?php echo $css['rangeNormalize']?>">
+    <script type="text/javascript" src="<?php echo $jvs['rangeJS']; ?>"></script>
     <script type="text/javascript" src="<?php echo $jvs['addProduct']; ?>"></script>
     <script type="text/javascript" src="<?php echo $jvs['nicescroll']; ?>"></script>
-
     <script>
-
+                        
                         function showpreview(data)
                         {
                             
@@ -531,7 +559,7 @@
                                 });
 
                             });
-                            $('#prcategories').append(catstr);
+                            $('#prcategories').html(catstr);
 
 
                             if (has_solitaire == 1)
@@ -842,21 +870,28 @@ $(document).ready(function( ) {
             }
         });
     }
-
+    
+    
+    
     function attrValuesCallBack(data)
     {
-
+        var slider;
+        var rangeArr = new Array();
         if(data['error']['err_code']==0)
         {
             var str="";
-            $(data['result']).each(function(i,vl){
-                if(vl.attrid)
+            var str2="";
+            $(data['result']).each(function(i,vl)
+            {
+                if(vl.attrid && vl.type !== '4')
                 {
+                    
                     str+="<ul class='superparent'>";
                         str+="<li id='attr_"+vl.attrid+"' class='parent'><a>"+vl.name+"</a>";
                             str+="<ul>";
                                 var values=vl.values.split(",");
                                 $(values).each(function(j,v){
+                                    v = v.split('_').join(' ');
                                     str+="<li>";
                                         str+="<a>";
                                             str+="<div class='checkDiv fLeft'>";
@@ -870,9 +905,68 @@ $(document).ready(function( ) {
                         str+="</li>";
                     str+="</ul>";
                 }
+/*                else
+                {
+                    str2+="<ul class='superparent sprCnt '>";
+                    str2+="<div class='filterCont fLeft ffDmyCnt w100' id='demo_"+i+"'>";
+                        str2+="<div class='txtCap'>"+vl.name+" Range</div>";
+                        str2+="<div class='fLeft rangeCont'>";
+                            str2+="<div class='fLeft rangeDiv'>";
+                                str2+="<input type='text' id='range_"+i+"' class='fLeft rngInp irs-hidden-input' style='visibility: hidden;' readonly=''>";
+                            str2+="</div>";
+                        str2+="</div>";
+                    str2+="</div>";
+                    str2+="</ul>";
+                }
+*/
             });
 
-            $('#mapTree').append(str);
+            $('#mapTree').html(str);
+//            $('#mapRange').html(str2);
+            
+/*For Range creation in preview*/
+
+/*            $(data['result']).each(function(i,vl)
+            {
+                
+                if(vl.attrid && vl.type == '4')
+                {
+                    
+                    var $range = $("#range_"+i);
+                    var values = vl.values.split(',');
+                    var val1 = values[0];
+                    var val2 = values[1];
+                    if(val1 !== '' && rangeArr.indexOf(val1) == -1)
+                    {
+                        rangeArr[0] = val1;
+                    }
+                    if(val2 !== '' && rangeArr.indexOf(val2) == -1)
+                    {
+                        rangeArr[1] = val2;
+                    }
+                    if(rangeArr.length==2 && rangeArr[0] !== '' && rangeArr[1] !== '')
+                    {
+                        $("#range_"+i).ionRangeSlider
+                                ({
+                                        min: Math.floor(rangeArr[0]),
+                                        max: Math.ceil(rangeArr[1]),
+                                        from: Math.ceil(rangeArr[0]),
+                                        to: Math.ceil(rangeArr[1]),
+                                        type: 'double',
+                                        Grid: true,
+                                        hasGrid: true,
+                                        drag_interval: true
+                                });
+                        slider = $range.data("ionRangeSlider");
+                    }
+                    else
+                    {
+                        slider && slider.destroy();
+                    }
+                }
+                
+            });*/ 
+
             $('.catValDiv').removeClass('dn');
             bindTree();
         }

@@ -6,8 +6,8 @@
             <div class="wrapperMax">
                 <div class="couponCont fLeft">
                     <div class="prdSearchDiv fLeft fmOpenR">
-                        <div class="commTitle2 fLeft"><span >3</span> Orders</div>
-                        <input type="text"  autocomplete="off" class="prdSeachTxt fRight fmOpenR marR" placeholder=" Search Order">
+                        <div class="commTitle2 fLeft"><span >No</span> Orders</div>
+                        <input type="text"  autocomplete="off" class="prdSeachTxt lsearchTxt fRight fmOpenR marR" placeholder=" Search Order">
                         <div class="dn">
                             <div class="addCouponBtn fRight transition300">Filter By Date</div>
                             <input type="text" id="dateTo" autocomplete="off" class="prdSeachTxt fRight fmOpenR" value="2016/01/01" readonly onfocus="showCalander('dateTo')" onkeyup="checkToHide(event);">
@@ -25,7 +25,10 @@
                         <div class="acct fLeft">MRP</div>
                         <div class="acct fLeft">Order Status</div>
                     </div>
-                    <ul class="couponList fLeft fmOpenR" id='orderList'></ul>
+                    <ul class="couponList fLeft fmOpenR searchDiv" id='orderList'></ul>
+                    <div class="noresDiv fLeft" id="noresults">
+                            <div class="noresults font25 fLeft">No records found</div>
+                    </div>
                 </div>
 
             </div>
@@ -55,7 +58,7 @@
         function listCallBack(data){
             var str="";
             $(data['result']).each(function(i,vl){
-                str+="<li class='transition300'>";
+                str+="<li class='transition300 searchRow'>";
                 str+="<div class='date fLeft fmOpenB'>"+vl.oid+"</div>";
                 str+="<div class='dmdWt fLeft'>";
                 str+="<span class='upSpan fmOpenR'>"+vl.pname+"</span>";
@@ -120,5 +123,6 @@
         
 
     </script>
+    <script type="text/javascript" src="<?php echo $jvs['search']; ?>"></script>
 </body>
 </html>

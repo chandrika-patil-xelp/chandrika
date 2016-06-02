@@ -19,6 +19,7 @@ var mcolor = new Array();
 var allrates = new Array();
 var prdid="";
 var previewData;
+var isPlatinumJewellery = false;
 
 var sflag = true;
 var dflag = true;
@@ -325,7 +326,7 @@ function gemstoneListCalllBack(data)
 function getMetalPurity()
 {
 
-    var URL = APIDOMAIN + "index.php?action=getGoldRates";
+    var URL = APIDOMAIN + "index.php?action=getGoldRates&case=2";
     $.ajax({
         url: URL,
         type: "POST",
@@ -348,19 +349,19 @@ function metalpurityCalllBack(data)
 
         $.each(data.result, function(i, v) {
             str1 += "<div class='dQuality fLeft'>";
-            str1 += "<div class='checkDiv fLeft minwidth100'>";
-            str1 += "<input type='checkbox' name='gpurityCustomize' class='filled-in' value='" + v.id + "' id='mpurity_" + v.id + "'>";
-            str1 += "<label for='mpurity_" + v.id + "'>" + v.name + "</label>";
-            str1 += "</div>";
-            str1 += "<div class='intInp fLeft'>&#8377; " + v.price + "</div>";
+                str1 += "<div class='checkDiv fLeft minwidth100'>";
+                    str1 += "<input type='checkbox' name='gpurityCustomize' class='filled-in' value='" + v.id + "' id='mpurity_" + v.id + "'>";
+                    str1 += "<label for='mpurity_" + v.id + "'>" + v.name + "</label>";
+                str1 += "</div>";
+                str1 += "<div class='intInp fLeft'>&#8377; " + v.price + "</div>";
             str1 += "</div>";
 
             str2 += "<div class='dQuality fLeft'>";
-            str2 += "<div class='checkDiv fLeft minwidth100'>";
-            str2 += "<input type='radio' name='gpurityNotCustomize' class='filled-in' value='" + v.id + "' id='mpurity_Radio_" + v.id + "'>";
-            str2 += "<label for='mpurity_Radio_" + v.id + "'>" + v.name + "</label>";
-            str2 += "</div>";
-            str2 += "<div class='intInp fLeft'>&#8377; " + v.price + "</div>";
+                str2 += "<div class='checkDiv fLeft minwidth100'>";
+                    str2 += "<input type='radio' name='gpurityNotCustomize' class='filled-in' value='" + v.id + "' id='mpurity_Radio_" + v.id + "'>";
+                    str2 += "<label for='mpurity_Radio_" + v.id + "'>" + v.name + "</label>";
+                str2 += "</div>";
+                str2 += "<div class='intInp fLeft'>&#8377; " + v.price + "</div>";
             str2 += "</div>";
 
         });
@@ -584,7 +585,6 @@ $(document).ready(function() {
             metalColorCust = true;
 
         }
-
     });
 
 
@@ -669,8 +669,55 @@ $(document).ready(function() {
     });
 
     bindElementChange();
+    changeJTypeFields();
+    
 
 });
+
+function changeJTypeFields()
+{
+    $("input[name='jType']").bind('click', function()
+    {
+        if($(this).attr('id') == 'jType3')
+        {
+            $('.stonesSelect').removeClass('dn');
+            $('.jewelCertificates').removeClass('dn');
+            $('#mpurity_6').parent().parent().removeClass('dn');
+            
+            $('.metalPurityDiv').addClass('dn');
+            $('.metalColorDiv').addClass('dn');
+            $('.ifpurityCustomiz').addClass('dn');
+            $('.ifpurityNotCustomiz').addClass('dn');
+            isPlatinumJewellery = true;
+        }
+        if($(this).attr('id') == 'jType2')
+        {
+            $('.stonesSelect').addClass('dn');
+            $('.jewelCertificates').addClass('dn');
+            $('#mpurity_6').parent().parent().addClass('dn');
+            
+            $('.metalPurityDiv').removeClass('dn');
+            $('.metalColorDiv').removeClass('dn');
+            $('.ifpurityCustomiz').removeClass('dn');
+            $('.ifpurityNotCustomiz').removeClass('dn');
+            isPlainGold = true;
+            isPlatinumJewellery = false;
+        }
+        if($(this).attr('id') == 'jType1')
+        {
+            $('.stonesSelect').removeClass('dn');
+            $('.jewelCertificates').removeClass('dn');
+            $('#mpurity_6').parent().parent().removeClass('dn');
+            $('.metalPurityDiv').removeClass('dn');
+            $('.metalColorDiv').removeClass('dn');
+            $('.ifpurityCustomiz').removeClass('dn');
+            $('.ifpurityNotCustomiz').removeClass('dn');
+            isPlatinumJewellery = false;
+            isPlainGold = false;
+        }
+    });
+}
+
 
 function addTags(evt, val, id, tagCont)
 {
@@ -889,7 +936,7 @@ function generateGeneral(general)
     var str = "";
     for (var i = 0; i < 3; i++)
     {
-        str += "<div class='divCon  fLeft' id='solitaire" + ids[i] + "_" + solitaireCnt + "_Cont'><div class='titleDiv txtCap fLeft'>" + ids[i] + "*</div><div class='radioCont fLeft'>";
+        str += "<div class='divCon  fLeft' id='solitaire" + ids[i] + "_" + solitaireCnt + "_Cont'><div class='titleDiv txtCap fLeft'>" + ids[i] + "</div><div class='radioCont fLeft'>";
         var j = 0;
         while (j < cLen) {
             str += "<div class='checkDiv fLeft'>";
@@ -914,7 +961,7 @@ function generateFluorescence()
     var fvals = ['None', 'Faint', 'Medium', 'Strong', 'Very Strong'];
     var cLen = fvals.length;
     var str = "";
-    str += "<div class='divCon  fLeft' id='solitairefluorescence_" + solitaireCnt + "_Cont'><div class='titleDiv txtCap fLeft'>Fluorescence*</div><div class='radioCont fLeft'>";
+    str += "<div class='divCon  fLeft' id='solitairefluorescence_" + solitaireCnt + "_Cont'><div class='titleDiv txtCap fLeft'>Fluorescence</div><div class='radioCont fLeft'>";
     var j = 0;
     while (j < cLen) {
         str += "<div class='checkDiv fLeft'>";
@@ -944,16 +991,20 @@ function generateSoliTxtBox()
     str += "<input name='solitairePriceCarat' id='solpricecarat" + solitaireCnt + "'' type='text' placeholder='eg. 1000' class='txtInput fLeft fmOpenR font14 c666' onkeypress='return common.isDecimalKey(event, this.value);'>";
     str += "</div>";
     str += "<div class='divCon2  fLeft'>";
-    str += "<div class='titleDiv txtCap fLeft'>Table*</div>";
+    str += "<div class='titleDiv txtCap fLeft'>Table</div>";
     str += "<input name='solitaireTable' id='soltable" + solitaireCnt + "'' type='text' placeholder='eg. 1000' class='txtInput fLeft fmOpenR font14 c666'>";
     str += "</div>";
     str += "<div class='divCon2  fLeft'>";
-    str += "<div class='titleDiv txtCap fLeft'>Crown Angle*</div>";
+    str += "<div class='titleDiv txtCap fLeft'>Crown Angle</div>";
     str += "<input name='solitaireCrownAngle' id='solCrownAngle" + solitaireCnt + "'' type='text' placeholder='eg. 52' class='txtInput fLeft fmOpenR font14 c666'>";
     str += "</div>";
     str += "<div class='divCon2  fLeft'>";
-    str += "<div class='titleDiv txtCap fLeft'>Girdle*</div>";
+    str += "<div class='titleDiv txtCap fLeft'>Girdle</div>";
     str += "<input name='solitaireGirdle' id='solGirdle" + solitaireCnt + "'' type='text' placeholder='eg. 1.22' class='txtInput fLeft fmOpenR font14 c666'>";
+    str += "</div>";
+    str += "<div class='divCon2  fLeft'>";
+    str += "<div class='titleDiv txtCap fLeft'>No. Of Peices*</div>";
+    str += "<input name='solitaireGirdle' id='solPieces" + solitaireCnt + "'' type='text' placeholder='eg. 1.22' class='txtInput fLeft fmOpenR font14 c666'>";
     str += "</div>";
 
     return str;
@@ -1233,6 +1284,8 @@ function addProduct()
 
         var vid = $('#vendorList').val();
         var vname = $('#vendorList option:selected').text();
+        var vPCode = $('#vendorPrdCode').val();
+        var jewelleryType = "";
         var product_name = encodeURIComponent($('#product_name').val());
         var product_seo_name = encodeURIComponent($('#product_seo_name').val());
         var product_weight = $('#product_weight').val();
@@ -1271,6 +1324,11 @@ function addProduct()
         $('[name=certificate]').each(function() {
             if ($(this).is(':CHECKED'))
                 certificate = $(this).val();
+        });
+        
+        $('[name=jType]').each(function() {
+            if ($(this).is(':CHECKED'))
+                jewelleryType = $(this).val();
         });
 
         if (metalPurityCust)
@@ -1537,10 +1595,12 @@ function addProduct()
         var general = {};
         general['vendorid'] = vid;
         general['product_name'] = product_name;
+        general['vPCode'] = vPCode;
         general['product_seo_name'] = product_seo_name;
         general['gender'] = gender;
         general['product_weight'] = product_weight;
         general['certificate'] = certificate;
+        general['jewelleryType'] = jewelleryType;
         general['metal_weight'] = metal_weight;
         general['making_charges'] = making_charges;
         general['procurement_cost'] = procurement_cost;
@@ -1870,27 +1930,27 @@ function validateForm()
             return isValid;
     }
 
-    if ($('[name=diamond_setting]:checked').length === 0)
-    {
-        common.toast(0, "Select diamond settings type");
-        $('[name=diamond_setting]').focus();
-        var id=$('[name=diamond_setting]').eq(0).attr('id');
-        highlight(id,1);
-
-        isValid=false;
-            return false;
-    }
-
-    if ($('#ds8').is(':checked'))
-    {
-        if ($('#diamond_settingOth').val() == "")
-        {
-            common.toast(0, "Enter value for other diamond settings type");
-            highlight('diamond_settingOth',0);
-        }
-        isValid=false;
-            return false;
-    }
+////    if ($('[name=diamond_setting]:checked').length === 0)
+////    {
+////        common.toast(0, "Select diamond settings type");
+////        $('[name=diamond_setting]').focus();
+////        var id=$('[name=diamond_setting]').eq(0).attr('id');
+////        highlight(id,1);
+////
+////        isValid=false;
+////            return false;
+////    }
+//
+//    if ($('#ds8').is(':checked'))
+//    {
+//        if ($('#diamond_settingOth').val() == "")
+//        {
+//            common.toast(0, "Enter value for other diamond settings type");
+//            highlight('diamond_settingOth',0);
+//        }
+//        isValid=false;
+//            return false;
+//    }
 
 
     if ($('[name=certificate]:checked').length === 0)
@@ -1993,81 +2053,81 @@ function validateForm()
         isValid=false;
             return false;
     }
-
-
-    if ($('[name=isPurityCustz]:checked').length === 0)
+    
+    if(isPlatinumJewellery == false)
     {
-        common.toast(0, "Select Metal Purity Type");
-        var id=$('[name=isPurityCustz]').eq(0).attr('id');
-        highlight(id,1);
-        isValid=false;
-            return false;
-    }
-
-
-
-
-    if ($('[name=isPurityCustz]:checked').val() == 0)
-    {
-
-        if ($('[name=gpurityCustomize]:checked').length == 0)
+    
+        if ($('[name=isPurityCustz]:checked').length === 0)
         {
-            common.toast(0, "Select Customizable Metal Purity Type");
-            var id=$('[name=gpurityCustomize]').eq(0).attr('id');
+            common.toast(0, "Select Metal Purity Type");
+            var id=$('[name=isPurityCustz]').eq(0).attr('id');
             highlight(id,1);
             isValid=false;
-            return false;
-        }
-    }
-
-    if ($('[name=isPurityCustz]:checked').val() == 1)
-    {
-
-        if ($('[name=gpurityNotCustomize]:checked').length == 0)
-        {
-            common.toast(0, "Select Not Customizable Metal Purity Type");
-            var id=$('[name=gpurityNotCustomize]').eq(0).attr('id');
-            highlight(id,1);
-           isValid=false;
-            return false;
+                return false;
         }
 
-    }
-
-    if ($('[name=isColorCustz]:checked').length === 0)
-    {
-        common.toast(0, "Select Metal Color Type");
-        var id=$('[name=isColorCustz]').eq(0).attr('id');
-        highlight(id,1);
-        isValid=false;
-            return false;
-    }
-
-    if ($('[name=isColorCustz]:checked').val() == 0)
-    {
-
-        if ($('[name=gcolorCustomize]:checked').length == 0)
+        if ($('[name=isPurityCustz]:checked').val() == 0)
         {
-            common.toast(0, "Select Customizable Metal Color");
-            var id=$('[name=gcolorCustomize]').eq(0).attr('id');
-            highlight(id,1);
-            isValid=false;
-            return false;
+
+            if ($('[name=gpurityCustomize]:checked').length == 0)
+            {
+                common.toast(0, "Select Customizable Metal Purity Type");
+                var id=$('[name=gpurityCustomize]').eq(0).attr('id');
+                highlight(id,1);
+                isValid=false;
+                return false;
+            }
         }
-    }
 
-    if ($('[name=isColorCustz]:checked').val() == 1)
-    {
-
-        if ($('[name=gcolorNotCustomize]:checked').length == 0)
+        if ($('[name=isPurityCustz]:checked').val() == 1)
         {
-            common.toast(0, "Select Not Customizable Metal Color");
-            var id=$('[name=gcolorNotCustomize]').eq(0).attr('id');
+
+            if ($('[name=gpurityNotCustomize]:checked').length == 0)
+            {
+                common.toast(0, "Select Not Customizable Metal Purity Type");
+                var id=$('[name=gpurityNotCustomize]').eq(0).attr('id');
+                highlight(id,1);
+               isValid=false;
+                return false;
+            }
+
+        }
+
+        if ($('[name=isColorCustz]:checked').length === 0)
+        {
+            common.toast(0, "Select Metal Color Type");
+            var id=$('[name=isColorCustz]').eq(0).attr('id');
             highlight(id,1);
             isValid=false;
-            return false;
+                return false;
         }
 
+        if ($('[name=isColorCustz]:checked').val() == 0)
+        {
+
+            if ($('[name=gcolorCustomize]:checked').length == 0)
+            {
+                common.toast(0, "Select Customizable Metal Color");
+                var id=$('[name=gcolorCustomize]').eq(0).attr('id');
+                highlight(id,1);
+                isValid=false;
+                return false;
+            }
+        }
+
+        if ($('[name=isColorCustz]:checked').val() == 1)
+        {
+
+            if ($('[name=gcolorNotCustomize]:checked').length == 0)
+            {
+                common.toast(0, "Select Not Customizable Metal Color");
+                var id=$('[name=gcolorNotCustomize]').eq(0).attr('id');
+                highlight(id,1);
+                isValid=false;
+                return false;
+            }
+
+        }
     }
 
     if($('[name=size]').length>0)
@@ -2507,6 +2567,7 @@ function oneditmodeCallBack(data)
         });
 
         $('#product_name').val(basic.prdNm);
+        $('#vendorPrdCode').val(basic.vPCode);
         $('#product_seo_name').val(basic.prdSeo);
         $('#product_weight').val(basic.prdWgt);
 
@@ -2538,6 +2599,17 @@ function oneditmodeCallBack(data)
                 $(this).attr('checked',true);
             }
         });
+        
+        $('[name=jType]').each(function()
+        {
+            var val =$(this).val();
+            if(basic.jewelleryType == val)
+            {
+                $(this).attr('checked',true);
+            }
+        });
+        changeJTypeFields();
+        
         $('[name=certificate]').each(function(){
             var val =$(this).val();
 
@@ -2986,45 +3058,45 @@ function validateSolAdd()
 
             }
 
-            if ($('[name=solitairecut_' + ids + ']:checked').length == 0)
-            {
-                common.toast(0, "Select Cut For Solitaire " + ids);
-                var id=$('[name=solitairecut_' + ids + ']').eq(0).attr('id');
-                highlight(id,1);
-                isValid=false;
-                return false;
+//            if ($('[name=solitairecut_' + ids + ']:checked').length == 0)
+//            {
+//                common.toast(0, "Select Cut For Solitaire " + ids);
+//                var id=$('[name=solitairecut_' + ids + ']').eq(0).attr('id');
+//                highlight(id,1);
+//                isValid=false;
+//                return false;
+//
+//            }
 
-            }
+//            if ($('[name=solitairesymmetry_' + ids + ']:checked').length == 0)
+//            {
+//                common.toast(0, "Select Symmetry For Solitaire " + ids);
+//                var id=$('[name=solitairesymmetry_' + ids + ']').eq(0).attr('id');
+//                highlight(id,1);
+//                isValid=false;
+//                return false;
+//
+//            }
 
-            if ($('[name=solitairesymmetry_' + ids + ']:checked').length == 0)
-            {
-                common.toast(0, "Select Symmetry For Solitaire " + ids);
-                var id=$('[name=solitairesymmetry_' + ids + ']').eq(0).attr('id');
-                highlight(id,1);
-                isValid=false;
-                return false;
+//            if ($('[name=solitairepolish_' + ids + ']:checked').length == 0)
+//            {
+//                common.toast(0, "Select Polish For Solitaire " + ids);
+//                var id=$('[name=solitairepolish_' + ids + ']').eq(0).attr('id');
+//                highlight(id,1);
+//                isValid=false;
+//                return false;
+//
+//            }
 
-            }
-
-            if ($('[name=solitairepolish_' + ids + ']:checked').length == 0)
-            {
-                common.toast(0, "Select Polish For Solitaire " + ids);
-                var id=$('[name=solitairepolish_' + ids + ']').eq(0).attr('id');
-                highlight(id,1);
-                isValid=false;
-                return false;
-
-            }
-
-            if ($('[name=solitaireFluorescence_' + ids + ']:checked').length == 0)
-            {
-                common.toast(0, "Select Fluorescence For Solitaire " + ids);
-                var id=$('[name=solitaireFluorescence_' + ids + ']').eq(0).attr('id');
-                highlight(id,1);
-                isValid=false;
-                return false;
-
-            }
+//            if ($('[name=solitaireFluorescence_' + ids + ']:checked').length == 0)
+//            {
+//                common.toast(0, "Select Fluorescence For Solitaire " + ids);
+//                var id=$('[name=solitaireFluorescence_' + ids + ']').eq(0).attr('id');
+//                highlight(id,1);
+//                isValid=false;
+//                return false;
+//
+//            }
             if ($('#solcaratweight' + ids + '').val() == "")
             {
                 common.toast(0, "Enter Carat Weight For Solitaire " + ids);
@@ -3061,46 +3133,46 @@ function validateSolAdd()
 
 
 
-            if ($('#soltable' + ids + '').val() == "")
-            {
-                common.toast(0, "Enter Table For Solitaire " + ids);
-                highlight('soltable' + ids,0);
-                isValid=false;
-                return false;
-            }
-
-            if ($('#solCrownAngle' + ids + '').val() == "")
-            {
-                common.toast(0, "Enter Crown Angle For Solitaire " + ids);
-                highlight('solCrownAngle' + ids,0);
-                isValid=false;
-                return false;
-            }
-
-            if (!checkForZero('solCrownAngle' + ids))
-            {
-                common.toast(0, "Crown Angle can not be 0");
-                highlight('solCrownAngle' + ids,0);
-                isValid=false;
-                return false;
-            }
-
-
-            if ($('#solGirdle' + ids + '').val() == "")
-            {
-                common.toast(0, "Enter Girdle For Solitaire " + ids);
-                highlight('solGirdle' + ids,0);
-                isValid=false;
-                return false;
-            }
-
-            if (!checkForZero('solGirdle' + ids))
-            {
-                common.toast(0, "Girdle can not be 0");
-                highlight('solGirdle'+ ids,0);
-                isValid=false;
-                return false;
-            }
+//            if ($('#soltable' + ids + '').val() == "")
+//            {
+//                common.toast(0, "Enter Table For Solitaire " + ids);
+//                highlight('soltable' + ids,0);
+//                isValid=false;
+//                return false;
+//            }
+//
+//            if ($('#solCrownAngle' + ids + '').val() == "")
+//            {
+//                common.toast(0, "Enter Crown Angle For Solitaire " + ids);
+//                highlight('solCrownAngle' + ids,0);
+//                isValid=false;
+//                return false;
+//            }
+//
+//            if (!checkForZero('solCrownAngle' + ids))
+//            {
+//                common.toast(0, "Crown Angle can not be 0");
+//                highlight('solCrownAngle' + ids,0);
+//                isValid=false;
+//                return false;
+//            }
+//
+//
+//            if ($('#solGirdle' + ids + '').val() == "")
+//            {
+//                common.toast(0, "Enter Girdle For Solitaire " + ids);
+//                highlight('solGirdle' + ids,0);
+//                isValid=false;
+//                return false;
+//            }
+//
+//            if (!checkForZero('solGirdle' + ids))
+//            {
+//                common.toast(0, "Girdle can not be 0");
+//                highlight('solGirdle'+ ids,0);
+//                isValid=false;
+//                return false;
+//            }
         });
         return isValid;
 

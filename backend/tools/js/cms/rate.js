@@ -38,11 +38,14 @@ function GetRates() {
 
 function getRatesCallBack(data)
 {
-
     var dlen = data['result']['diamondRates'].length;
     var grt = data['result']['goldRates'][4].price;
+    var prt = data['result']['platinumRates'][0].price;
 
     $('#24crtRate').val(grt);
+    
+    $('#24crtPlt').val(prt);
+    
     setGoldRates();
     var i = 0;
 

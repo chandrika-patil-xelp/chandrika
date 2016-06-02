@@ -18,7 +18,7 @@ class coupon extends DB
             $cpid=$comm->generateId();
             $ccode= $this->generateCouponCode();
             $params['coupon_id']=$cpid;
-            $params['coupon_code']=$ccode;
+            //$params['coupon_code']=$ccode;
         }
             
             $params['start_date']=date_format(date_create($params['start_date']),"Y-m-d");

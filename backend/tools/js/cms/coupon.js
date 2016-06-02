@@ -41,8 +41,6 @@ function submitEditedDet() {
         values['active_flag'] = 1;
         var data = values;
         var dt = JSON.stringify(data);
-        console.log(dt);
-
         var URL = APIDOMAIN + "index.php?action=addCoupon";
         $.ajax({
             url: URL,
@@ -132,7 +130,7 @@ function addCoupon()
     {
         values = {};
         values['coupon_id'] = encodeURIComponent(coupon_id);
-        values['coupon_code'] = encodeURIComponent(coupon_code);
+        values['coupon_code'] = encodeURIComponent($('#coupCode').val());
         values['coupon_name'] = encodeURIComponent($('#coupName').val());
         values['discount_type'] = $('#discount_type').val();
         values['discount_amount'] = $('#amt').val();
@@ -144,8 +142,7 @@ function addCoupon()
         values['active_flag'] = 1;
         var data = values;
         var dt = JSON.stringify(data);
-        console.log(dt);
-
+        
         var URL = APIDOMAIN + "index.php?action=addCoupon";
         $.ajax({
             url: URL,
@@ -153,7 +150,6 @@ function addCoupon()
             data: {dt: dt},
             success: function(res) {
                 res = JSON.parse(res);
-                console.log(res);
                 addCouponCallBack(res);
             }
         });
@@ -186,6 +182,11 @@ function validateAddForm()
     if($('#coupName').val()==""){
         common.toast(0, 'Enter coupon name');
         highlight('coupName',0);
+        return false;
+    }
+    if($('#coupCode').val()==""){
+        common.toast(0, 'Enter coupon code');
+        highlight('coupCode',0);
         return false;
     }
     if($('#amt').val()==""){
@@ -237,7 +238,6 @@ var couponList = new Array();
 
 function getCoupounList()
 {
-
     var URL = APIDOMAIN + "index.php?action=getCouponList";
     $.ajax({
         url: URL,
@@ -264,7 +264,7 @@ function couponCallBack(data)
             var enddate = v.enddate.split("|");
 
 
-            str += "<li id='coupon_Jzeva_" + v.id + "'>";
+            str += "<li id='coupon_Jzeva_" + v.id + "' class='searchRow'>";
             str += "<div class='date fLeft txtCenter'>";
             str += "<span class='upSpan'>" + cdat[0] + "</span>";
             str += "<span class='lwSpan'>" + cdat[1] + "</span>";

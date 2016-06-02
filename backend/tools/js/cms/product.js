@@ -87,7 +87,7 @@ function getProducsCallback(data)
 
                 prdCnt++;
                 var cdat = v.creDate.split("|");
-                str += "<li>";
+                str += "<li class='searchRow'>";
                 str += "<div class='date fLeft'>";
                 str += "<span class='upSpan'>" + cdat[0] + "</span>";
                 str += "<span class='lwSpan'>" + cdat[1] + "</span>";

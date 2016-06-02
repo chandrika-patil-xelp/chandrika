@@ -290,9 +290,17 @@ switch($action)
         include APICLUDE.'class.rate.php';
         $obj	= new rate($db['jzeva']);
         $page   = ($params['page'] ? $params['page'] : 1);
+        $case   = ($params['case'] ? $params['case'] : '');
         $limit  = ($params['limit'] ? $params['limit'] : 1000);
-        $tmpParams = array('page'=>$params['page'],'limit' => $limit);
-        $result	=$obj->getGoldRates($tmpParams);
+        $tmpParams = array('page'=>$params['page'],'limit' => $limit,'case' => $case);
+        if(empty($params['case']))
+        {
+            $result	=$obj->getGoldRates($tmpParams);
+        }
+        else
+        {
+            $result	=$obj->getAllGoldRates($tmpParams);
+        }
         $res = $result;
     break;
 

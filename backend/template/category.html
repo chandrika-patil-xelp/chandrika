@@ -8,7 +8,7 @@
                         <div class="prdSearchDiv fLeft fmOpenR">
                             <div class="commTitle2 fLeft"><span id="catCount"></span> categories available</div>
                             <div class="addCouponBtn fRight transition300"><a href='<?php echo BACKDOMAIN;?>?action=addCategory'>Add Category</a></div>
-                            <input type="text"  autocomplete="false" class="prdSeachTxt fRight fmOpenR" placeholder=" Search Category">
+                            <input type="text"  autocomplete="false" class="prdSeachTxt lsearchTxt fRight fmOpenR" placeholder=" Search Category">
                         </div>
                         <div class="listHeaderCom fLeft fmOpenR">
                             <div class="catName fLeft">Category Name</div>
@@ -16,7 +16,7 @@
                             <div class="dPos fLeft op0">Display Pos.</div>
                             <div class="cactt fLeft">Action</div>
                         </div>
-                        <ul class="commonList fLeft fmOpenR"></ul>
+                        <ul class="commonList fLeft fmOpenR searchDiv"></ul>
                         <div class="noresDiv fLeft dn" id='noresults'>
                             <div class="noresults font25 fLeft">There are no categories available.</div>
                         </div>
@@ -43,5 +43,6 @@
             </center>
         </div>
         <script type="text/javascript" src="<?php echo $jvs['category']; ?>"></script>
+        <script type="text/javascript" src="<?php echo $jvs['search']; ?>"></script>
     </body>
 </html>

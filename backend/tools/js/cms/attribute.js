@@ -45,7 +45,7 @@ function attributeListCallBack()
             if (attributes[i]['active'] !="2")
             {
 
-                str += "<li id='attr_" + v.id + "'>";
+                str += "<li id='attr_" + v.id + "' class='searchRow'>";
                 str += "<div class='attrName fLeft'>" + v.name + "</div>";
                 var type = attrType(v.type);
                 str += "<div class='attrType fLeft'>" + type + "</div>";

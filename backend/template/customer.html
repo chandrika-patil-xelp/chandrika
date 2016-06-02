@@ -28,12 +28,10 @@
         
         <?php include 'loader.html';?>
         <script>
-            $(document).ready(function(){
+            $(document).ready(function()
+            {
                 common.showLoader();
                 getUserList();
-                
-                
-                
                 $('.prdSeachTxt').bind('keyup', function() {
                     var total=$("li").size();
                     var dncnt=0;
@@ -53,7 +51,6 @@
             
             function getUserList()
             {
-                
                 $.ajax({
                     url:APIDOMAIN+"index.php?action=getUserList",
                     type:'POST',
@@ -62,7 +59,6 @@
                         userListCallBack(res);
                     }
                 });
-                
             }
         
             function userListCallBack(data)
@@ -100,8 +96,9 @@
                 }
                 else
                 {
-                    common.toast(0,"Error in fetching data");
-                
+                    //common.toast(0,"Error in fetching data");
+                    $('#noresults').removeClass('dn');
+                    common.hideLoader();
                 }
             }
             

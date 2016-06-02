@@ -35,7 +35,7 @@
     height: 10px; top: 33px;
 /*    border-top: 1px solid #171334;
     border-bottom: 1px solid #171334;*/
-    background:url(back_repeat.jpg)repeat;
+    background-color:#586E6E;
     background-size: 100% auto;
     
 }
@@ -73,7 +73,7 @@
     border: 1px solid #AAA;
    
     /*background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(220,220,220,1) 20%,rgba(255,255,255,1) 100%); /* W3C */
-    background:#fff url(diamond_slider.svg)no-repeat;
+    background:#fff;
     background-size: auto 15px;
     background-position: center;
     border-radius: 27px;
@@ -82,7 +82,7 @@
     cursor: pointer;
 }
 
-.irs-slider:hover {background:#fff url(diamond_slider.svg)no-repeat;
+.irs-slider:hover {background:#fff;
     background-size: auto 15px;
     background-position: center;}
 
@@ -114,7 +114,7 @@
     font-size: 14px; line-height: 1.333;
     text-shadow: none;
     padding: 1px 5px;
-    background: #5E0037;
+    background: #2F665C;
     border-radius: 3px;
     -moz-border-radius: 3px;
 }

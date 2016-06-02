@@ -38,7 +38,7 @@ function categoryCallBack(data)
     $(categories).each(function(i) {
         if (categories[i]['active'] !="2")
         {
-            str += "<li id='cat_" + categories[i]['cid'] + "'>";
+            str += "<li id='cat_" + categories[i]['cid'] + "' class='searchRow'>";
             str += "<div class='catName fLeft txtCap'>" + categories[i]['name'] + "</div>";
 
             var pidsArray=categories[i]['pid'].split(",");

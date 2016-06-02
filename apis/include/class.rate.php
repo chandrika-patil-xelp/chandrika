@@ -130,6 +130,47 @@ class rate extends DB {
         
     }
     
+    public function getAllGoldRates($params)
+    {
+        $sql= "SELECT id,dname,dvalue,price FROM tbl_metal_purity_master WHERE active_flag IN (1,3)";
+        
+        $page = ($params['page'] ? $params['page'] : 1);
+        $limit = ($params['limit'] ? $params['limit'] : 1000);
+        //Making sure that query has limited rows
+        if ($limit >1000 ) {
+            $limit = 1000;
+        }
+        if (!empty($page)) {
+            $start = ($page * $limit) - $limit;
+            $sql.=" LIMIT " . $start . ",$limit";
+        }
+        
+        
+        $res = $this->query($sql);
+        
+        
+        if($res)
+        {
+            while($row = $this->fetchData($res))
+            {
+                $reslt['id']        =     $row['id'];
+                $reslt['name']     =     $row['dname'];
+                $reslt['value']    =     $row['dvalue'];
+                $reslt['price']     = floatval($row['price']);
+                $result[]= $reslt;
+
+            }
+            $err = array('err_code' => 0, 'err_msg' => 'Data fetched successfully');
+        }
+        else
+        {
+            $err = array('err_code' => 1, 'err_msg' => 'Error in fetching successfully');
+        }
+        $results = array('result' => $result, 'error' => $err);
+        return $results;
+        
+    }
+    
     public function getDmdRates($params)
     {
         $sql= "SELECT id,dname,dvalue,price_per_carat FROM tbl_diamond_quality_master WHERE active_flag = 1";
@@ -167,6 +208,50 @@ class rate extends DB {
         return $results;
     }
     
+    public function getPltnmRates($params)
+    {
+        $sql= " SELECT
+                        id,
+                        dname,
+                        dvalue,
+                        price
+                FROM 
+                        tbl_metal_purity_master 
+                WHERE 
+                        active_flag = 3";
+        
+        $page = ($params['page'] ? $params['page'] : 1);
+        $limit = ($params['limit'] ? $params['limit'] : 1000);
+        //Making sure that query has limited rows
+        if ($limit >1000 ) {
+            $limit = 1000;
+        }
+        if (!empty($page)) {
+            $start = ($page * $limit) - $limit;
+            $sql.=" LIMIT " . $start . ",$limit";
+        }
+        $res = $this->query($sql);
+        
+        if($res)
+        {
+            while($row = $this->fetchData($res))
+            {
+                $reslt['id']        =     $row['id'];
+                $reslt['name']     =     $row['dname'];
+                $reslt['value']    =     $row['dvalue'];
+                $reslt['price']     = floatval($row['price']);
+                $result[]= $reslt;
+            }
+            $err = array('err_code' => 0, 'err_msg' => 'Data fetched successfully');
+        }
+        else
+        {
+            $err = array('err_code' => 1, 'err_msg' => 'Error in fetching successfully');
+        }
+        $results = array('result' => $result, 'error' => $err);
+        return $results;
+    }
+    
     
     
     
@@ -179,20 +264,19 @@ class rate extends DB {
         
         $grates=$this->getGoldRates($params);
         $dmdrates=$this->getDmdRates($params);
+        $prates=$this->getPltnmRates($params);
         
         
-        if($grates['error']['err_code'] == '1' || $dmdrates['error']['err_code'] == '1')
+        if($grates['error']['err_code'] == '1' || $dmdrates['error']['err_code'] == '1' || $prates['error']['err_code'] == '1')
         {
-            
             $err = array('err_code' => 1, 'err_msg' => 'Error in fetching rates');
-            
-            
         }     
         else
         {
             $err = array('err_code' => 0, 'err_msg' => 'Data fetched successfully');
             $result['goldRates']=$grates['result'];
             $result['diamondRates']=$dmdrates['result'];
+            $result['platinumRates']=$prates['result'];
         }   
         
         $results = array('result' => $result, 'error' => $err);
