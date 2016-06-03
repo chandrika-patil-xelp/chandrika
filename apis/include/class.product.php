@@ -2956,6 +2956,7 @@ class product extends DB {
         $err = array('errCode' => 0, 'errMsg' => 'Details updated successfully');
         $pid = $params['pid'];
         $img = $params['imgpath'];
+        $imgName = $params['oldName'];
 
         $sql = "SELECT
                         product_image,
@@ -2993,6 +2994,7 @@ class product extends DB {
                                 product_image,
                                 active_flag,
                                 image_sequence,
+                                image_name,
                                 upload_date,
                                 update_date
                         )
@@ -3002,6 +3004,7 @@ class product extends DB {
                                 \"" . $img . "\",
                                 0,
                                 " . $sequence . ",
+                                \"" . $imgName . "\",
                                 NOW(),
                                 NOW()
                         )";

@@ -237,7 +237,7 @@ class Uploader {
 					$expd = explode('/',trim($this->options['uploadDir'],'/'));
 					$pid = $expd[count($expd)-1];
 					
-					$url = APIDOMAIN.'index.php?action=imageupdate&pid='.$pid.'&imgpath='.str_replace('../','',$metas['file']);
+					$url = APIDOMAIN.'index.php?action=imageupdate&pid='.$pid.'&oldName='.$metas['old_name'].'&imgpath='.str_replace('../','',$metas['file']);
 					$res = $comm->executeCurl($url);
 					
                 }

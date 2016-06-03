@@ -614,7 +614,7 @@ label.error{color:#e00000!important;}
 .thumbnilPage{}
 .thumbnilPage .prdSearchDiv{width: 70%;margin: 0 15%;border-bottom: 1px solid #ccc;}
 .thumbnailCont{width:100%;height: auto;}
-.thumbnilComm {width: 70%;height: 120px;border-bottom: 1px dotted #ccc;border-radius: 2px;padding: 10px 0;margin: 0 15% 10px 15%;}
+.thumbnilComm {width: 70%;height: 120px;border-bottom: 1px dotted #ccc;border-radius: 2px;padding: 10px 0;margin: 0 15% 10px 15%;position: relative}
 .actThumbnail {width: 100px;height: 100px;border: 0px solid #ccc;cursor: pointer;}
 .comment {width: 30%;height: 100px;padding: 0;border-radius: 3px;}
 .txtComment {width: 100%;height: 80px;padding: 0;line-height: 16px;font-size: 13px;resize: none;border: none;color: #666;border: 1px solid #ccc;border-radius: 2px;padding: 5px;}
@@ -903,6 +903,7 @@ section .dtl_cont{width: 48%;height:auto;padding: 15px;margin-right: 20px;paddin
 .treeCont {width:100%;height: auto;}
 a{cursor:pointer;}
 .tree ul {list-style: none outside none;margin: 0;padding: 0; }
+.tree ul li {display: inline-block;width: 100%;}
 .tree li a {line-height: 28px;font-size: 13px;height: 28px;display: block;}
 .tree > ul > li > a {color: #4d4d4d;display: block;font-weight: normal;position: relative;text-decoration: none;}
 .tree li.parent > a {padding: 0 0 0 28px;color: #4d4d4d;font-size: 15px;background-image: url("../img/detail.svg");background-repeat: no-repeat;background-size: 18px;background-position: 0px 5px;}
@@ -965,3 +966,5 @@ a{cursor:pointer;}
 .ffDmyCnt{}
 .ffDmyCnt .txtCap{color: #4d4d4d;font-size: 15px;line-height:25px;margin-bottom: 7px;}
 .w100{width:100%;}
+
+.imageName {width: 190px;float: left;position: absolute;top: 0;left: 0;font-size: 12px;font-family: openB;color: #666;line-height: 15px;right: 0;bottom: 0;margin: auto;height: 15px;margin-left: 120px;}
