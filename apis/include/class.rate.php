@@ -11,11 +11,11 @@ class rate extends DB {
     
     public function addRates($params)
     {
-    $tparams = json_decode($params[0],1);
-        $dres=$this->addDmdQualityRates($tparams);
-        $gres=$this->addGoldRate($tparams);
-        
-        $result = array();
+        $tparams =  json_decode($params[0],1);
+        $dres    =  $this->addDmdQualityRates($tparams);
+        $gres    =  $this->addGoldRate($tparams);
+        $prates  =  $this->addPltnmRates($tparams);
+        $result  = array();
         if($dres['error']['err_code'] == '1' || $gres['error']['err_code'] == '1')
         {
             
@@ -55,8 +55,43 @@ class rate extends DB {
         return $results;
         
     }
-    
-    
+
+    public function addPltnmRates($params)
+    {
+        $pltRt=  floatval($params['platinumrates']);
+        $sql="    INSERT
+                  INTO
+                        tbl_metal_purity_master
+                        (
+                            id,
+                            price,
+                            createdon,
+                            updatedby
+                        )
+                  VALUES
+                        (
+                            6,
+                            $pltRt,
+                            now(),
+                            ".$params['userid']."
+                        )
+                  ON DUPLICATE KEY UPDATE
+                        price = VALUES(price),
+                        updatedby = VALUES(updatedby)";
+        $res=$this->query($sql);
+        if ($res)
+        {
+            $err = array('err_code' => 0, 'err_msg' => 'Data inserted successfully');
+        }
+        else
+        {
+            $err = array('err_code' => 1, 'err_msg' => 'Error in inserting');
+        }
+        $results = array('result' => $result, 'error' => $err);
+        return $results;
+    }
+
+
     public function addDmdQualityRates($params)
     {
         $sql = "INSERT INTO tbl_diamond_quality_master (id,price_per_carat,createdon,updatedby) VALUES ";

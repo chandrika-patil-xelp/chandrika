@@ -1,3 +1,5 @@
+var slider;
+var rangeArr = new Array();
 function addAttribute()
 {
     var flag = validateData();
@@ -149,7 +151,8 @@ var slider;
 var rangeArr = new Array();
 function addAttrValues()
 {
-    var vals    = $('#attrinpVal').val();
+    var vals    = $('#attrinpVal').val().trim();
+    var unit    = $('#unit').val();
     var avals   = vals.split(" ").join("_");
     var txtid   = "attr_val_" + avals;
     var type    =  $('#attr_type').val();
@@ -194,8 +197,8 @@ function addAttrValues()
     {
         rangeArr = '';
     }
-    
-    if (tagArray.indexOf(txtid) == -1)
+
+    if (tagArray.indexOf(txtid) == -1 && vals !== '')
     {
         var str = "<div id='" + txtid + "' class='tagcloud fLeft'>" + vals + "</div>";
         $('#attrValues').append(str);
@@ -223,13 +226,14 @@ function addAttrValues()
         
         if(type==3)
         {
-            var tstr="<option value='' class='new'>"+vals+"</option>";
+            var tstr="<option value='"+vals+"' class='new'>"+vals+"</option>";
             $('#demoSelect').append(tstr)
         }
         if(type==5)
         {
-            var tstr="<li class='autoSuggstions new'>"+vals+"</li>";
+            var tstr="<li class='autoSuggstions new "+txtid+"i'>"+vals+"</li>";
             $('.demoautoSuggestOuter ul').append(tstr);
+            $('#sugUnit').text(' ( '+unit+' )');
             bindAutosuggest();
         }
         tagArray.push(txtid);
@@ -248,6 +252,40 @@ function addAttrValues()
     }
 }
 
+function changeUnit(unitValue)
+{
+
+    var typeSelect = $('#attr_type').val();
+    console.log(typeSelect);
+    if(typeSelect !== '-1')
+    {
+        switch(typeSelect)
+        {
+          case '0':
+                  $('#textUnit').text(' ( '+unitValue+' )');
+                  break;
+          case '1':
+                  $('#checkUnit').text(' ( '+unitValue+' )');
+
+                  break;
+          case '2':
+                  $('#radioUnit').text(' ( '+unitValue+' )');
+                  break;
+          case '3':
+                  $('#dropUnit').text(' ( '+unitValue+' )');
+                  break;
+          case '4':
+                  $('#rangeUnit').text(' ( '+unitValue+' )');
+                  break;
+          case '5':
+                  $('#sugUnit').text(' ( '+unitValue+' )');
+                  break;
+          default :
+                  break;
+        }
+  }
+}
+
 function bindTags()
 {
     $('.tagcloud').click(function()
@@ -260,8 +298,30 @@ function bindTags()
             $(_th).remove();
             $('.demoAttrCont #Check_'+clearSample).parent().remove();
             slider && slider.destroy();
-            rangeArr.pop();
+            if(rangeArr !== undefined && rangeArr !== null && rangeArr !== '')
+            {
+              rangeArr.pop();
+            }
+
             var removeItem = id;
+
+            if($('#demoSelect > option').length > 1)
+            {
+                $('#demoSelect > option[value='+clearSample+']').remove();
+            }
+            if(!$('#demo_2').hasClass('dn'))
+            {
+                $('#radio_'+clearSample).parent().remove();
+            }
+            if($('.demoautoSuggestOuter ul li').length > 0)
+            {
+                $('.'+id+'i').remove();
+            }
+            if(!$('#demo_1').hasClass('dn'))
+            {
+              $('.demoAttrCont #Check_'+clearSample).parent().remove();
+            }
+
             tagArray = jQuery.grep(tagArray, function(value)
             {
                 return value !== removeItem;
@@ -303,6 +363,7 @@ if(edit==1)
         attributeid=dts.attrid;
         $('#name').val(dts.name);
         $('#unit').val(dts.unit);
+        changeUnit(dts.unit);
         $('#apos').val(dts.apos);
         
         $('#attr_type option').each(function()
@@ -478,6 +539,10 @@ $(document).ready(function()
 
         $('.new').remove();
         $('.demoAttrCont').removeClass('dn');
+        if($('#unit').val() !== undefined)
+        {
+          changeUnit($('#unit').val());
+        }
     });
 
 

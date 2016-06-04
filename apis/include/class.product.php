@@ -1453,7 +1453,7 @@ class product extends DB {
             }
         }
 
-        $sql = trim($sql, ",");
+        $sql = trim(trim($sql), ",");
         $sql.=  "
                     ON DUPLICATE KEY UPDATE 
                             shape = VALUES(shape),
@@ -1463,7 +1463,7 @@ class product extends DB {
                 ";
 
 
-        $qulsql = trim($qulsql, ",");
+        $qulsql = trim(trim($qulsql), ",");
         $qulsql.="
                     ON DUPLICATE KEY UPDATE
                             updatedby=VALUES(updatedby)
@@ -1889,7 +1889,7 @@ class product extends DB {
                         ),
                     ";
         }
-        $sql = trim($sql, ",");
+        $sql = trim(trim($sql), ",");
 
         $sql.=  " 
                     ON DUPLICATE KEY UPDATE

@@ -70,8 +70,9 @@ function updateRates()
         i++;
     }
     var datas = {};
-    datas['grate'] = $('#24crtRate').val();
+    datas['grate']        = $('#24crtRate').val();
     datas['diamondrates'] = values;
+    datas['platinumrates']= $('#24crtPlt').val();
     datas['userid'] = userid;
 
 

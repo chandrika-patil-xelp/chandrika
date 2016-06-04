@@ -1863,6 +1863,14 @@ function validateForm()
             return false;
     }
 
+    if ($('#vendorPrdCode').val() == "")
+    {
+        common.toast(0, "Enter Vendor Product Code");
+        highlight('vendorPrdCode',0);
+        isValid=false;
+            return false;
+    }
+
     if ($('#product_name').val() == "")
     {
         common.toast(0, "Enter Product Name");
@@ -1883,6 +1891,14 @@ function validateForm()
     {
         common.toast(0, "Enter Product Weight");
         highlight('product_weight',0);
+        isValid=false;
+            return false;
+    }
+
+    if ($('#leadTime').val() == "")
+    {
+        common.toast(0, "Enter Delivery Lead Time");
+        highlight('leadTime',0);
         isValid=false;
             return false;
     }
@@ -2533,7 +2549,9 @@ function calcGrandTotal(type)
 function oneditmode()
 {
     showLoader();
-    var URL=APIDOMAIN+"?action=getProductById&pid="+pid;
+    var URL=APIDOMAIN+"?action=getProduche working copy database at '/opt/lampp/htdocs/jzeva' is missing.
+shubham@shubham-Inspiron-3647:/opt/lampp/htdocs/jzeva$ 
+tById&pid="+pid;
     $.ajax({
         url:URL,
         type:'POST',
