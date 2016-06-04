@@ -17,7 +17,7 @@
                         <div class="treeCont fLeft">
                             <div class="tree transition300" id='parentCatg'></div>
                        </div>
-                        
+
                     </div>
                     <div class="divCon fLeft">
                         <div class="divCon2 fLeft mTop0">
@@ -58,9 +58,9 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="divCon2 fLeft">
-                        <div class="titleDiv txtCap fLeft">Delivery Lead Time</div>
+                        <div class="titleDiv txtCap fLeft">Delivery Lead Time*</div>
                         <input name="" type="text" id="leadTime" autocomplete="false"  placeholder="Enter delivery lead time" class="txtInput fLeft fmOpenR font14 c666" onkeypress="return common.isDecimalKey(event, this.value);">
                     </div>
                     <div class="divCon2 fRight">
@@ -265,7 +265,7 @@
                         <div class="innerCont fLeft dn" id='ifcolorCustomiz'></div>
                         <div class="innerCont dn fLeft" id='ifcolorNotCustomiz'></div>
                     </div>
-                    
+
                     <div class="divCon fLeft noBorder dn" id='cat_sizes'>
                         <div class="titleDiv txtCap fLeft">Select Size</div>
                     </div>
@@ -443,10 +443,10 @@
     <script type="text/javascript" src="<?php echo $jvs['addProduct']; ?>"></script>
     <script type="text/javascript" src="<?php echo $jvs['nicescroll']; ?>"></script>
     <script>
-                        
+
                         function showpreview(data)
                         {
-                            
+
                             var mpurity = data['mpurity'];
                             var metalcolor = data['metalcolor'];
                             var sizes = data['sizes'];
@@ -870,9 +870,9 @@ $(document).ready(function( ) {
             }
         });
     }
-    
-    
-    
+
+
+
     function attrValuesCallBack(data)
     {
         var slider;
@@ -885,7 +885,7 @@ $(document).ready(function( ) {
             {
                 if(vl.attrid && vl.type !== '4')
                 {
-                    
+
                     str+="<ul class='superparent'>";
                         str+="<li id='attr_"+vl.attrid+"' class='parent'><a>"+vl.name+"</a>";
                             str+="<ul>";
@@ -923,15 +923,15 @@ $(document).ready(function( ) {
 
             $('#mapTree').html(str);
 //            $('#mapRange').html(str2);
-            
+
 /*For Range creation in preview*/
 
 /*            $(data['result']).each(function(i,vl)
             {
-                
+
                 if(vl.attrid && vl.type == '4')
                 {
-                    
+
                     var $range = $("#range_"+i);
                     var values = vl.values.split(',');
                     var val1 = values[0];
@@ -964,8 +964,8 @@ $(document).ready(function( ) {
                         slider && slider.destroy();
                     }
                 }
-                
-            });*/ 
+
+            });*/
 
             $('.catValDiv').removeClass('dn');
             bindTree();
@@ -981,7 +981,7 @@ $(document).ready(function( ) {
         }
 
     }
-    
+
 //    function checkedTree(catArr)
 //    {
 //        var allCheckd = new Array();
@@ -993,7 +993,7 @@ $(document).ready(function( ) {
 //            }
 //        });
 //        $('#mapTree').append(allCheckd);
-//        
+//
 //    }
 
     function stopBodyScroll(){

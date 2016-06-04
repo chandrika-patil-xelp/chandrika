@@ -1285,6 +1285,7 @@ function addProduct()
         var product_name = encodeURIComponent($('#product_name').val());
         var product_seo_name = encodeURIComponent($('#product_seo_name').val());
         var product_weight = $('#product_weight').val();
+        var leadTime = $('#leadTime').val();
         var gender = $('[name*=gender]:Checked').val();
         var certificate = "";
         var metal_weight = $('#metal_weight').val();
@@ -1593,6 +1594,7 @@ function addProduct()
         general['product_name'] = product_name;
         general['vPCode'] = vPCode;
         general['product_seo_name'] = product_seo_name;
+        general['leadTime'] = leadTime;
         general['gender'] = gender;
         general['product_weight'] = product_weight;
         general['certificate'] = certificate;
@@ -2581,8 +2583,8 @@ function oneditmodeCallBack(data)
         $('#product_name').val(basic.prdNm);
         $('#vendorPrdCode').val(basic.vPCode);
         $('#product_seo_name').val(basic.prdSeo);
+        $('#leadTime').val(basic.leadTime);
         $('#product_weight').val(basic.prdWgt);
-
         var dmdsetting=basic.dmdStng.split(",");
         $(dmdsetting).each(function(i){
             $('[name=diamond_setting]').each(function(){
@@ -2706,11 +2708,6 @@ function oneditmodeCallBack(data)
                 });
             });
         }
-
-
-
-
-
         if(basic.hasSol==1)
         {
             has_solitaire=true;
