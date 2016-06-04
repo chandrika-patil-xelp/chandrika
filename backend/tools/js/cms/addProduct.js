@@ -2549,9 +2549,7 @@ function calcGrandTotal(type)
 function oneditmode()
 {
     showLoader();
-    var URL=APIDOMAIN+"?action=getProduche working copy database at '/opt/lampp/htdocs/jzeva' is missing.
-shubham@shubham-Inspiron-3647:/opt/lampp/htdocs/jzeva$ 
-tById&pid="+pid;
+    var URL=APIDOMAIN+"?action=getProductById&pid="+pid;
     $.ajax({
         url:URL,
         type:'POST',
