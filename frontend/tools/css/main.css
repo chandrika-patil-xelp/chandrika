@@ -18,9 +18,9 @@ textarea:focus, input:focus{
 .fmSansBI{font-family:SansationBI;}
 .fmSansLI{font-family:SansationLI;}
 .fmSansI{font-family:SansationI;}
-@font-face{font-family:josefinSansL;src: url(../fonts/josefinSans/josefinSans-Light.ttf);}
-@font-face{font-family:josefinSansR;src: url(../fonts/josefinSans/josefinSans-Regular.ttf);}
-@font-face{font-family:josefinSansB;src: url(../fonts/josefinSans/josefinSans-Bold.ttf);}
+@font-face{font-family:josefinSansL;src: url(../fonts/josefinSans/JosefinSans-Light.ttf);}
+@font-face{font-family:josefinSansR;src: url(../fonts/josefinSans/JosefinSans-Regular.ttf);}
+@font-face{font-family:josefinSansB;src: url(../fonts/josefinSans/JosefinSans-Bold.ttf);}
 .fmjsfSansL{font-family:josefinSansL;}
 .fmjsfSansR{font-family:josefinSansR;}
 .fmjsfSansB{font-family:josefinSansB;}
