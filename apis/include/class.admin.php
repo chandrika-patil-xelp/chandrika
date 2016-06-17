@@ -3,17 +3,15 @@
 require_once APICLUDE.'common/db.class.php';
 class admin extends DB
 {
-    
+
     function __construct($db)
     {
         parent::DB($db);
     }
-	
+
     public function getProdList($params)
     {
-       
-
-        $subQuery = "   SELECT 
+        $subQuery = "   SELECT
                                 product_id AS id,
                                 (select product_seo_name from tbl_product_master WHERE productid = product_id) as pname,
                                 (select product_code from tbl_product_master WHERE productid = product_id) as pcode,
@@ -28,23 +26,23 @@ class admin extends DB
                                 product_id
                         ORDER BY
                                 upload_date";
-        
+
         $cntRes = $this->query($subQuery);
         $total_products = $this->numRows($cntRes);
-        
+
         $page = ($params['page'] ? $params['page'] : 1);
         $limit = ($params['limit'] ? $params['limit'] : 1000);
         //Making sure that query has limited rows
-        if ($limit >1000 ) {
+        if ($limit >1000 )
+        {
             $limit = 1000;
         }
-        if (!empty($page)) {
+        if (!empty($page))
+        {
             $start = ($page * $limit) - $limit;
             $subQuery.=" LIMIT " . $start . ",$limit";
         }
-        
         $subQueryRes = $this->query($subQuery);
-        
         if($this->numRows($subQueryRes)>0)
         {
             while ($row = $this->fetchData($subQueryRes))
@@ -52,55 +50,100 @@ class admin extends DB
                 $result[] = $row;
             }
         }
-        
         $results=array('products'=>$result,"total_products"=>$total_products);
+
         $err = array('Code' => 0, 'Msg' => 'Details fetched successfully');
-        
         $result=array('results'=>$results,'error'=>$err);
         return $result;
     }
-    
+
     public function getImgByProd($params)
     {
-        $query="SELECT * FROM tbl_product_image_mapping WHERE product_id = ".$params['pid']." ORDER BY image_sequence ASC";
+        $query="SELECT
+                        *
+                FROM
+                        tbl_product_image_mapping
+                WHERE
+                        product_id = ".$params['pid']."
+                ORDER BY
+                        image_sequence ASC";
         $res = $this->query($query);
         $total=$this->numRows($res);
-        if($total>0) {
-            while ($row = $this->fetchData($res)) {
-                
+        if($total>0)
+        {
+            while ($row = $this->fetchData($res))
+            {
                 $result[]=$row;
             }
-            $results=array('imgs'=>$result,"total_imgs"=>$total);
+            $results=array('imgs'=>$result,"total_imgs"=>$total,'pid'=>$params['pid']);
             $err = array('Code' => 0, 'Msg' => 'Details fetched successfully');
-        } else {
+        }
+        else
+        {
             $results = '';
             $err = array('Code' => 1, 'Msg' => 'Error in fetching data');
         }
         $result=array('results'=>$results,'error'=>$err);
         return $result;
     }
-    
+
     public function updateImageData($params)
     {
-        $query="UPDATE tbl_product_image_mapping SET ";
-        
-        if(!empty($params['seq'])) {
-            $query .="image_sequence='".$params['seq']."', ";
+        $checkSql = "SELECT
+                            id
+                      FROM
+                            tbl_product_image_mapping
+                      WHERE
+                            product_id =".$params['data']['prdid'];
+        $checkRes = $this->query($checkSql);
+
+        if($checkRes)
+        {
+            while($rows = $this->fetchData($checkRes))
+            {
+                $id[] = $rows[id];
+            }
+
+            $data = $params['data'];
+            $seq = $params['data']['seq'];
+            $flag = $params['data']['flag'];
+            $reason = $params['data']['reason'];
+            for($i= 0; $i<count($seq) ; $i++)
+            {
+                $query = "UPDATE
+                                tbl_product_image_mapping
+                        SET
+                                image_sequence='".urldecode($seq[$i])."',
+                                active_flag='".$flag[$i]."',
+                                reason='".urldecode($reason[$i])."',
+                                update_date=NOW()
+                        WHERE
+                                id = ".$id[$i];
+                $res = $this->query($query);
+                if($res)
+                {
+                    $res = true;
+                }
+                else
+                {
+                    $res = false;
+                }
+            }
+            if($res == true)
+            {
+                $results=array();
+                $err = array('Code' => 0, 'Msg' => 'Data has been updated');
+            }
+            else
+            {
+                $results=array();
+                $err = array('Code' => 1, 'Msg' => 'Error in Updating data');
+            }
         }
-        if(!empty($params['flag'])) {
-            $query .="active_flag='".$params['flag']."', ";
-        }
-        if(!empty($params['rea'])) {
-            $query .="reason='".$params['rea']."', ";
-        }
-        $query .=" update_date=NOW() WHERE id = ".$params['id'];
-        $res = $this->query($query);
-        if($res) {
+        else
+        {
             $results=array();
-            $err = array('Code' => 0, 'Msg' => 'Updated successfully');
-        } else {
-            $results=array();
-            $err = array('Code' => 1, 'Msg' => 'Error in Updating data');
+            $err = array('Code' => 1, 'Msg' => 'Error in product update');
         }
         $result=array('results'=>$results,'error'=>$err);
         return $result;

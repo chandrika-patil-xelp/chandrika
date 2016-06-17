@@ -141,6 +141,10 @@ switch($action)
         include APICLUDE.'class.product.php';
         $obj=new product($db['jzeva']);
         $tmpaparams = array($params['dt']);
+        foreach($tmpaparams as $key => $value)
+        {
+            $tmpaparams[$key] = strip_tags($value);
+        }
         $result	=$obj->addProduct($tmpaparams);
         $res = $result;
     break;

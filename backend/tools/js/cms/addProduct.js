@@ -25,7 +25,7 @@ var sflag = true;
 var dflag = true;
 var uflag = true;
 var gflag = true;
-
+var msgLabel = 500;
 
 
 
@@ -325,7 +325,6 @@ function gemstoneListCalllBack(data)
 
 function getMetalPurity()
 {
-
     var URL = APIDOMAIN + "index.php?action=getGoldRates&case=2";
     $.ajax({
         url: URL,
@@ -341,7 +340,6 @@ function getMetalPurity()
 
 function metalpurityCalllBack(data)
 {
-
     if (data['error']['err_code'] == '0')
     {
         var str1 = "<div class='titleDiv txtCap fLeft'>Metal Purity Customizable*</div>";
@@ -522,6 +520,41 @@ $(document).ready(function() {
     getGemstoneList();
     //getSizeList();
     GetRates();
+
+    $('#productDescription').bind('keyup',function()
+    {
+            var KeyID = event.keyCode;
+            var textLen = parseInt($(this).val().length);
+            var total = 500;
+            if(KeyID == 8)
+            {
+                msgLabel  = msgLabel+1;
+                $('.msgLabel').text(msgLabel+' character left');
+            }
+
+            if (this.value.length == total)
+            {
+                event.preventDefault();
+            }
+
+            if(textLen > total)
+            {
+                var finalData = $(this).val().substring(0, Math.min(textLen, total));
+                $(this).val(finalData);
+                common.toast(0,'Maximum limit of 500 characters is reached');
+            }
+            else
+            {
+                msgLabel = parseInt(total - textLen);
+                $('.msgLabel').text(msgLabel+' character left');
+            }
+
+            if(textLen == 0)
+            {
+               msgLabel = parseInt(500);
+               $('.msgLabel').text(msgLabel+' character max');
+            }
+    });
 
     if(edit==1)
     {
@@ -936,7 +969,7 @@ function generateGeneral(general)
     var str = "";
     for (var i = 0; i < 3; i++)
     {
-        str += "<div class='divCon  fLeft' id='solitaire" + ids[i] + "_" + solitaireCnt + "_Cont'><div class='titleDiv txtCap fLeft'>" + ids[i] + "*</div><div class='radioCont fLeft'>";
+        str += "<div class='divCon  fLeft' id='solitaire" + ids[i] + "_" + solitaireCnt + "_Cont'><div class='titleDiv txtCap fLeft'>" + ids[i] + "</div><div class='radioCont fLeft'>";
         var j = 0;
         while (j < cLen) {
             str += "<div class='checkDiv fLeft'>";
@@ -961,7 +994,7 @@ function generateFluorescence()
     var fvals = ['None', 'Faint', 'Medium', 'Strong', 'Very Strong'];
     var cLen = fvals.length;
     var str = "";
-    str += "<div class='divCon  fLeft' id='solitairefluorescence_" + solitaireCnt + "_Cont'><div class='titleDiv txtCap fLeft'>Fluorescence*</div><div class='radioCont fLeft'>";
+    str += "<div class='divCon  fLeft' id='solitairefluorescence_" + solitaireCnt + "_Cont'><div class='titleDiv txtCap fLeft'>Fluorescence</div><div class='radioCont fLeft'>";
     var j = 0;
     while (j < cLen) {
         str += "<div class='checkDiv fLeft'>";
@@ -991,16 +1024,20 @@ function generateSoliTxtBox()
     str += "<input name='solitairePriceCarat' id='solpricecarat" + solitaireCnt + "'' type='text' placeholder='eg. 1000' class='txtInput fLeft fmOpenR font14 c666' onkeypress='return common.isDecimalKey(event, this.value);'>";
     str += "</div>";
     str += "<div class='divCon2  fLeft'>";
-    str += "<div class='titleDiv txtCap fLeft'>Table*</div>";
+    str += "<div class='titleDiv txtCap fLeft'>Table</div>";
     str += "<input name='solitaireTable' id='soltable" + solitaireCnt + "'' type='text' placeholder='eg. 1000' class='txtInput fLeft fmOpenR font14 c666'>";
     str += "</div>";
     str += "<div class='divCon2  fLeft'>";
-    str += "<div class='titleDiv txtCap fLeft'>Crown Angle*</div>";
+    str += "<div class='titleDiv txtCap fLeft'>Crown Angle</div>";
     str += "<input name='solitaireCrownAngle' id='solCrownAngle" + solitaireCnt + "'' type='text' placeholder='eg. 52' class='txtInput fLeft fmOpenR font14 c666'>";
     str += "</div>";
     str += "<div class='divCon2  fLeft'>";
-    str += "<div class='titleDiv txtCap fLeft'>Girdle*</div>";
+    str += "<div class='titleDiv txtCap fLeft'>Girdle</div>";
     str += "<input name='solitaireGirdle' id='solGirdle" + solitaireCnt + "'' type='text' placeholder='eg. 1.22' class='txtInput fLeft fmOpenR font14 c666'>";
+    str += "</div>";
+    str += "<div class='divCon2  fLeft'>";
+    str += "<div class='titleDiv txtCap fLeft'>No of Solitaires*</div>";
+    str += "<input name='solitaireNofs' id='solNofs" + solitaireCnt + "'' type='text' placeholder='eg. 1.22' class='txtInput fLeft fmOpenR font14 c666'>";
     str += "</div>";
 
     return str;
@@ -1294,9 +1331,11 @@ function addProduct()
         var margin = $('#margin').val();
         var mt1 = $('#measure1').val();
         var mt2 = $('#measure2').val();
+        var eligible = $('input[name="eligible"]:checked').val();
         var measurement = mt1 + "X" + mt2;
-
-        $('[name=diamond_setting]').each(function() {
+        var productDescription = encodeURIComponent($('#productDescription').val().replace(/<(?:.|\n)*?>/gm,''));
+        $('[name=diamond_setting]').each(function()
+        {
             if ($(this).is(':CHECKED'))
             {
 
@@ -1306,14 +1345,13 @@ function addProduct()
 
                 dmdSetting.push(encodeURIComponent($(this).val()));
             }
-
-            else if (!$(this).is(':CHECKED')) {
+            else if (!$(this).is(':CHECKED'))
+            {
                 var removeItem = $(this).val();
                 dmdSetting = jQuery.grep(dmdSetting, function(value) {
                     return value !== removeItem;
                 });
             }
-
         });
 
 
@@ -1418,7 +1456,7 @@ function addProduct()
                 var table = $('#soltable' + ids + '').val();
                 var crown_angle = $('#solCrownAngle' + ids + '').val();
                 var girdle = $('#solGirdle' + ids + '').val();
-
+                var nofs = $('#solNofs' + ids + '').val();
 
                 if(sId!=="")
                 {
@@ -1436,6 +1474,7 @@ function addProduct()
                 values['table'] = table;
                 values['crown_angle'] = crown_angle;
                 values['girdle'] = girdle;
+                values['nofs'] = nofs;
 
                 solitaires.push(values);
             });
@@ -1594,7 +1633,9 @@ function addProduct()
         general['product_name'] = product_name;
         general['vPCode'] = vPCode;
         general['product_seo_name'] = product_seo_name;
+        general['productDescription'] = productDescription;
         general['leadTime'] = leadTime;
+        general['eligible'] = eligible;
         general['gender'] = gender;
         general['product_weight'] = product_weight;
         general['certificate'] = certificate;
@@ -1605,7 +1646,6 @@ function addProduct()
         general['margin'] = margin;
         general['measurement'] = measurement;
         general['dmdSetting'] = dmdSetting.toString();
-
 
         var prd = {};
         prd['mpurity'] = mpurity;
@@ -1667,6 +1707,7 @@ function addProduct()
 
         prd['userid'] = userid;
         prd['catid'] = catArray.toString();
+
         previewData=prd;
 
 
@@ -1889,6 +1930,14 @@ function validateForm()
             return false;
     }
 
+    if ($('#productDescription').val() == "")
+    {
+        common.toast(0, "Enter Product Description");
+        highlight('productDescription',0);
+        isValid=false;
+            return false;
+    }
+
     if ($('#product_weight').val() == "")
     {
         common.toast(0, "Enter Product Weight");
@@ -1966,15 +2015,17 @@ function validateForm()
 //            return false;
 //    }
 
-
-    if ($('[name=certificate]:checked').length === 0)
+    if($('#jType2').attr('checked') == false)
     {
-        common.toast(0, "Select product certificate type");
-        var id=$('[name=certificate]').eq(0).attr('id');
-        highlight(id,1);
+        if ($('[name=certificate]:checked').length === 0)
+        {
+            common.toast(0, "Select product certificate type");
+            var id=$('[name=certificate]').eq(0).attr('id');
+            highlight(id,1);
 
-        isValid=false;
-            return false;
+            isValid=false;
+                return false;
+        }
     }
 
     if ($('#metal_weight').val() == "")
@@ -2226,15 +2277,10 @@ function GetRates() {
 
 function genPriceSection()
 {
-
-
     if(edit==0)
     {
         validateForm();
     }
-
-
-
     $('.priceOverlay').addClass('dn');
     var str = "";
     if (has_solitaire)
@@ -2256,7 +2302,16 @@ function genPriceSection()
     {
         str += gemstonePrice();
     }
-    var gldstr = goldPrice();
+    if (isPlatinumJewellery == false)
+    {
+        var gldstr = goldPrice();
+    }
+    else
+    {
+        var pltstr = pltPrice();
+    }
+
+
 
 
     var mkch = $('#making_charges').val();
@@ -2272,7 +2327,15 @@ function genPriceSection()
 
 
     $('.pricingul').html('');
-    $('.pricingul').html(str + gldstr + mstr);
+    if (isPlatinumJewellery == false)
+    {
+        $('.pricingul').html(str + gldstr + mstr);
+    }
+    else
+    {
+        $('.pricingul').html(str + pltstr + mstr);
+    }
+
     calcGrandTotal(1);
 
 }
@@ -2362,7 +2425,6 @@ function uncutPrice()
         var id = $(this).attr('id');
         var ids = id.split("uncutComm_");
         ids = ids[1];
-
 
         var carat = $('#uncutcaratweight' + ids + '').val();
         var price = $('#uncutpricecarat' + ids + '').val();
@@ -2466,6 +2528,44 @@ function goldPrice()
     return str;
 
 }
+
+function pltPrice()
+{
+
+    var str = "<li class='headLi' id='forGold'><div class='forComponent fLeft'>Platinum</div></li>";
+    var metal_weight = parseFloat($('#metal_weight').val());
+    var crPrice;
+    var total;
+    var URL = APIDOMAIN + "index.php?action=getGoldRates&case=2";
+    $.ajax
+    ({
+        url: URL,
+        type: "POST",
+        async:false,
+        success: function(res)
+        {
+            res = JSON.parse(res);
+            var obj = res.result;
+
+            $(obj).each(function(i,val)
+            {
+
+                if(val.name.indexOf('Platinum') !== -1)
+                {
+                    str += "<li id='pltPrice'>";
+                    str += "<div class='forComponent fLeft pl15'>" + val.name + " Charge</div>";
+                    str += "<div class='forRate fLeft'>&#8377; "+ val.price +"/grm</div>";
+                    str += "<div class='forWeight fLeft'>" + metal_weight + " grm</div>";
+                    str += "<div class='forPrice calc fLeft' id='totalpltRate1'>&#8377; " + parseFloat(parseFloat(val.price)*metal_weight) + "</div>";
+                    str += "</li>";
+                }
+
+            });
+        }
+    });
+    return str;
+}
+
 
 function setDmdPrice(obj)
 {
@@ -2581,9 +2681,18 @@ function oneditmodeCallBack(data)
         });
 
         $('#product_name').val(basic.prdNm);
+        $('#productDescription').val(basic.productDescription);
+        maxlengthcheck();
         $('#vendorPrdCode').val(basic.vPCode);
         $('#product_seo_name').val(basic.prdSeo);
         $('#leadTime').val(basic.leadTime);
+        $('input[name="eligible"]').each(function()
+        {   console.log(basic.returneligible);
+            if($(this).val() == basic.returneligible)
+            {
+                $(this).prop('checked',true);
+            }
+        });
         $('#product_weight').val(basic.prdWgt);
         var dmdsetting=basic.dmdStng.split(",");
         $(dmdsetting).each(function(i){
@@ -2764,6 +2873,7 @@ function oneditmodeCallBack(data)
                 $('#solpricecarat'+ids).val(solt.prcPrCrat);
                 $('#soltable'+ids).val(solt.tblNo);
                 $('#solGirdle'+ids).val(solt.girdle);
+                $('#solNofs'+ids).val(solt.nofs);
                 $('#solCrownAngle'+ids).val(solt.crwnAngle);
 
             });
@@ -3041,7 +3151,7 @@ function validateSolAdd()
 
             if ($('#solitaireComm_' + ids + ' .shapeSelected').length == 0)
             {
-                common.toast(0, "Select Shape For Solitaire " + ids);
+                common.toast(0, "Select Shape For Solitaire ");
                 highlight('solitaireComm_' + ids,2);
                 isValid=false;
                 return false;
@@ -3049,7 +3159,7 @@ function validateSolAdd()
 
             if ($('[name=solitaireColors_' + ids + ']:checked').length == 0)
             {
-                common.toast(0, "Select Color For Solitaire " + ids);
+                common.toast(0, "Select Color For Solitaire ");
                 $('[name=solitaireColors_' + ids + ']').focus();
                 var id=$('[name=solitaireColors_' + ids + ']').eq(0).attr('id');
                 highlight(id,1);
@@ -3059,7 +3169,7 @@ function validateSolAdd()
 
             if ($('[name=solitaireclarity_' + ids + ']:checked').length == 0)
             {
-                common.toast(0, "Select Clarity For Solitaire " + ids);
+                common.toast(0, "Select Clarity For Solitaire ");
                 var id=$('[name=solitaireclarity_' + ids + ']').eq(0).attr('id');
                 highlight(id,1);
                 isValid=false;
@@ -3067,48 +3177,48 @@ function validateSolAdd()
 
             }
 
-            if ($('[name=solitairecut_' + ids + ']:checked').length == 0)
-            {
-                common.toast(0, "Select Cut For Solitaire " + ids);
-                var id=$('[name=solitairecut_' + ids + ']').eq(0).attr('id');
-                highlight(id,1);
-                isValid=false;
-                return false;
-
-            }
-
-            if ($('[name=solitairesymmetry_' + ids + ']:checked').length == 0)
-            {
-                common.toast(0, "Select Symmetry For Solitaire " + ids);
-                var id=$('[name=solitairesymmetry_' + ids + ']').eq(0).attr('id');
-                highlight(id,1);
-                isValid=false;
-                return false;
-
-            }
-
-            if ($('[name=solitairepolish_' + ids + ']:checked').length == 0)
-            {
-                common.toast(0, "Select Polish For Solitaire " + ids);
-                var id=$('[name=solitairepolish_' + ids + ']').eq(0).attr('id');
-                highlight(id,1);
-                isValid=false;
-                return false;
-
-            }
-
-            if ($('[name=solitaireFluorescence_' + ids + ']:checked').length == 0)
-            {
-                common.toast(0, "Select Fluorescence For Solitaire " + ids);
-                var id=$('[name=solitaireFluorescence_' + ids + ']').eq(0).attr('id');
-                highlight(id,1);
-                isValid=false;
-                return false;
-
-            }
+            // if ($('[name=solitairecut_' + ids + ']:checked').length == 0)
+            // {
+            //     common.toast(0, "Select Cut For Solitaire " + ids);
+            //     var id=$('[name=solitairecut_' + ids + ']').eq(0).attr('id');
+            //     highlight(id,1);
+            //     isValid=false;
+            //     return false;
+            //
+            // }
+            //
+            // if ($('[name=solitairesymmetry_' + ids + ']:checked').length == 0)
+            // {
+            //     common.toast(0, "Select Symmetry For Solitaire " + ids);
+            //     var id=$('[name=solitairesymmetry_' + ids + ']').eq(0).attr('id');
+            //     highlight(id,1);
+            //     isValid=false;
+            //     return false;
+            //
+            // }
+            //
+            // if ($('[name=solitairepolish_' + ids + ']:checked').length == 0)
+            // {
+            //     common.toast(0, "Select Polish For Solitaire " + ids);
+            //     var id=$('[name=solitairepolish_' + ids + ']').eq(0).attr('id');
+            //     highlight(id,1);
+            //     isValid=false;
+            //     return false;
+            //
+            // }
+            //
+            // if ($('[name=solitaireFluorescence_' + ids + ']:checked').length == 0)
+            // {
+            //     common.toast(0, "Select Fluorescence For Solitaire " + ids);
+            //     var id=$('[name=solitaireFluorescence_' + ids + ']').eq(0).attr('id');
+            //     highlight(id,1);
+            //     isValid=false;
+            //     return false;
+            //
+            // }
             if ($('#solcaratweight' + ids + '').val() == "")
             {
-                common.toast(0, "Enter Carat Weight For Solitaire " + ids);
+                common.toast(0, "Enter Carat Weight For Solitaire ");
                 highlight('solcaratweight' + ids,0);
                 isValid=false;
                 return false;
@@ -3126,7 +3236,7 @@ function validateSolAdd()
 
             if ($('#solpricecarat' + ids + '').val() == "")
             {
-                common.toast(0, "Enter Price / Carat For Solitaire " + ids);
+                common.toast(0, "Enter Price / Carat For Solitaire ");
                 highlight('solpricecarat' + ids,0);
                 isValid=false;
                 return false;
@@ -3142,43 +3252,59 @@ function validateSolAdd()
 
 
 
-            if ($('#soltable' + ids + '').val() == "")
+            // if ($('#soltable' + ids + '').val() == "")
+            // {
+            //     common.toast(0, "Enter Table For Solitaire " + ids);
+            //     highlight('soltable' + ids,0);
+            //     isValid=false;
+            //     return false;
+            // }
+            //
+            // if ($('#solCrownAngle' + ids + '').val() == "")
+            // {
+            //     common.toast(0, "Enter Crown Angle For Solitaire " + ids);
+            //     highlight('solCrownAngle' + ids,0);
+            //     isValid=false;
+            //     return false;
+            // }
+            //
+            // if (!checkForZero('solCrownAngle' + ids))
+            // {
+            //     common.toast(0, "Crown Angle can not be 0");
+            //     highlight('solCrownAngle' + ids,0);
+            //     isValid=false;
+            //     return false;
+            // }
+            //
+            //
+            // if ($('#solGirdle' + ids + '').val() == "")
+            // {
+            //     common.toast(0, "Enter Girdle For Solitaire " + ids);
+            //     highlight('solGirdle' + ids,0);
+            //     isValid=false;
+            //     return false;
+            // }
+            //
+            // if (!checkForZero('solGirdle' + ids))
+            // {
+            //     common.toast(0, "Girdle can not be 0");
+            //     highlight('solGirdle'+ ids,0);
+            //     isValid=false;
+            //     return false;
+            // }
+
+            if ($('#solNofs1' + ids + '').val() == "")
             {
-                common.toast(0, "Enter Table For Solitaire " + ids);
-                highlight('soltable' + ids,0);
+                common.toast(0, "Enter number of Solitaire ");
+                highlight('solNofs' + ids,0);
                 isValid=false;
                 return false;
             }
 
-            if ($('#solCrownAngle' + ids + '').val() == "")
+            if (!checkForZero('Nofs' + ids))
             {
-                common.toast(0, "Enter Crown Angle For Solitaire " + ids);
-                highlight('solCrownAngle' + ids,0);
-                isValid=false;
-                return false;
-            }
-
-            if (!checkForZero('solCrownAngle' + ids))
-            {
-                common.toast(0, "Crown Angle can not be 0");
-                highlight('solCrownAngle' + ids,0);
-                isValid=false;
-                return false;
-            }
-
-
-            if ($('#solGirdle' + ids + '').val() == "")
-            {
-                common.toast(0, "Enter Girdle For Solitaire " + ids);
-                highlight('solGirdle' + ids,0);
-                isValid=false;
-                return false;
-            }
-
-            if (!checkForZero('solGirdle' + ids))
-            {
-                common.toast(0, "Girdle can not be 0");
-                highlight('solGirdle'+ ids,0);
+                common.toast(0, "Number of solitaire can not be 0");
+                highlight('solNofs'+ ids,0);
                 isValid=false;
                 return false;
             }
@@ -3879,3 +4005,9 @@ function createTree() {
 }
 
 createTree();
+
+function maxlengthcheck()
+{
+    var values = $('#productDescription').val().length;
+    $('.msgLabel').text(msgLabel-values+' Character Left');
+}

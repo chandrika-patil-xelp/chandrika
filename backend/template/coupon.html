@@ -74,15 +74,15 @@
                 </select>
             </div>
             <div class="divCon2  fRight fmOpenR">
-                <div class="titleDiv txtCap fLeft">Discount Amount / %</div>
-                <input name="" type="text" id="amt" autocomplete="false" placeholder="Please enter amount / %" maxlength="6" class="txtInput fLeft fmOpenR font14 c666" onkeypress="return common.isNumberKey(event);">
+                <div class="titleDiv txtCap fLeft discTitle">Discount Amount</div>
+                <input name="" type="text" id="amt" autocomplete="false" placeholder="Please enter discount amount" maxlength="6" class="txtInput fLeft fmOpenR font14 c666" onkeypress="return common.isNumberKey(event);">
             </div>
             <div class="divCon  fLeft fmOpenR">
                 <div class="titleDiv txtCap fLeft">Minimum Applicable Amount</div>
                 <input name="" type="text" id="minimum_amount" autocomplete="false" placeholder="Please enter minimum amount"  maxlength="6"class="txtInput fLeft fmOpenR font14 c666" onkeypress="return common.isNumberKey(event)">
             </div>
             <div class="divCon  fLeft fmOpenR">
-                <div class="titleDiv txtCap fLeft">Description* <span class="fRight font12">50 character max</span></div>
+                <div class="titleDiv txtCap fLeft">Description* <span class="fRight font12 msgLabel">50 character max</span></div>
                 <input name="" type="text" id="descAdd" autocomplete="false" placeholder="Please provide coupon description" maxlength="150" class="txtInput fLeft fmOpenR font14 c666">
             </div>
 
@@ -110,7 +110,7 @@
                     <div class="delbtnComm arrowRight fRight" id='prddeleteBtn'>YES</div>
                 </div>
             </center>
-        </div> 
+        </div>
         <script type="text/javascript" src="<?php echo $jvs['coupon']; ?>"></script>
         <script type="text/javascript" src="<?php echo $jvs['search']; ?>"></script>
     </body>

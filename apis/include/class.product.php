@@ -26,8 +26,7 @@ class product extends DB {
 
     public function addProduct($params)
     {
-        $params= (json_decode($params[0],1));
-
+        $params = json_decode($params[0],1);
         if(!$params['productid'])
         {
             $pid = $this->generateId();
@@ -50,14 +49,12 @@ class product extends DB {
         $attrres = $this->addPrdAtributeValuesMapping($tmpattrparams);
 
         $catids = explode(",", $params['catid']);
-
         $tmpcatparams = array
                             (
                                 'catid' => $params['catid'],
                                 'userid' => $userid,
                                 'pid' => $params['productid']
                             );
-
         $catres = $this->addCatProductMapping($tmpcatparams);
         if ($catres['error']['err_code'] == 0)
         {
@@ -129,7 +126,6 @@ class product extends DB {
                                                         'updatedby' => $userid,
                                                         'solitaires' => $params['solitaires']
                                                     );
-
                             $solres = $this->addSolitaire($solitairesparams);
 
                             if ($solres['error']['err_code'] == "1")
@@ -252,9 +248,11 @@ class product extends DB {
                                         (
                                             'productid' => $params['productid'],
                                             'product_code' => $params['product_code'],
+                                            'productDescription' => addSlashes(stripslashes(urldecode($params['details']['productDescription']))),
                                             'vPCode' => $params['details']['vPCode'],
                                             'jewelleryType' => $params['details']['jewelleryType'],
                                             'leadTime' => $params['details']['leadTime'],
+                                            'returneligible' => $params['details']['eligible'],
                                             'customise_purity' => $customise_purity,
                                             'customise_color' => $customise_color,
                                             'has_diamond' => $params['has_diamond'],
@@ -538,10 +536,12 @@ class product extends DB {
                         . "tbl_product_master "
                         . "(productid,"
                         . "product_code,"
+                        . "productDescription,"
                         . "vendorid,"
                         . "vendor_prd_code,"
                         . "jewelleryType,"
                         . "leadTime,"
+                        . "returneligible,"
                         . "product_name"
                         . ",product_seo_name"
                         . ",gender"
@@ -564,10 +564,12 @@ class product extends DB {
                         . " VALUES "
                         . "(\"" . $params['productid'] . "\","
                         . "\"" . $params['product_code'] . "\""
+                        . ",\"" . $params['productDescription'] . "\""
                         . ",\"" . $params['details']['vendorid'] . "\""
                         . ",\"" . $params['vPCode'] . "\""
                         . ",\"" . $params['jewelleryType'] . "\""
                         . ",\"" . $params['leadTime'] . "\""
+                        . ",\"" . $params['returneligible'] . "\""
                         . ",\"" . urldecode($params['details']['product_name']) . "\""
                         . ",\"" . urldecode($params['details']['product_seo_name']) . "\""
                         . ",\"" . $params['details']['gender'] . "\""
@@ -593,8 +595,10 @@ class product extends DB {
                 ON DUPLICATE KEY UPDATE "
                         . "vendorid = VALUES(vendorid),"
                         . "vendor_prd_code = VALUES(vendor_prd_code),"
+                        . "productDescription = VALUES(productDescription),"
                         . "jewelleryType = VALUES(jewelleryType),"
                         . "leadTime = VALUES(leadTime),"
+                        . "returneligible = VALUES(returneligible),"
                         . "product_name = VALUES(product_name),"
                         . "product_seo_name = VALUES(product_seo_name),"
                         . "gender = VALUES(gender),"
@@ -1183,6 +1187,7 @@ class product extends DB {
                             table_no,
                             crown_angle,
                             girdle,
+                            no_of_solitaire,
                             createdon,
                             updatedby
                         )
@@ -1214,6 +1219,7 @@ class product extends DB {
                                 'table' => $solt['table'],
                                 'crown_angle' => $solt['crown_angle'],
                                 'girdle' => $solt['girdle'],
+                                'no_of_solitaire' => $solt['nofs'],
                                 'solitaire_id' => $solid,
                                 'updatedby' => $params['updatedby'],
                                 'productid' => $params['productid']
@@ -1235,6 +1241,7 @@ class product extends DB {
                             '" . $tmpparams['table'] . "',
                             '" . $tmpparams['crown_angle'] . "',
                             '" . $tmpparams['girdle'] . "',
+                            '" . $tmpparams['no_of_solitaire'] . "',
                                  now(),
                             "  . $params['updatedby'] . "
                         ),";
@@ -1255,6 +1262,7 @@ class product extends DB {
                         table_no = VALUES(table_no),
                         crown_angle = VALUES(crown_angle),
                         girdle = VALUES(girdle),
+                        no_of_solitaire = VALUES(no_of_solitaire),
                         updatedby=VALUES(updatedby)
                 ";
 
@@ -2152,9 +2160,11 @@ class product extends DB {
                 {
                     $arr['prdId'] = $row['productid'];
                     $arr['prdCod'] = $row['product_code'];
+                    $arr['productDescription'] = stripslashes(addslashes($row['productDescription']));
                     $arr['vndId'] = $row['vendorid'];
                     $arr['vPCode'] = $row['vendor_prd_code'];
                     $arr['leadTime'] = $row['leadTime'];
+                    $arr['returneligible'] = $row['returneligible'];
                     $arr['jewelleryType'] = $row['jewelleryType'];
                     $arr['prdNm'] = $row['product_name'];
                     $arr['prdSeo'] = $row['product_seo_name'];
@@ -2354,6 +2364,7 @@ class product extends DB {
                     $arr['tblNo'] = $row['table_no'];
                     $arr['crwnAngle'] = $row['crown_angle'];
                     $arr['girdle'] = $row['girdle'];
+                    $arr['nofs'] = $row['no_of_solitaire'];
                     $arr['actFlg'] = $row['active_flag'];
                     $arr['crtdOn'] = $row['createdon'];
                     $arr['updtOn'] = $row['updatedon'];
@@ -2877,9 +2888,7 @@ class product extends DB {
                                             productid =id
                                     ),
                                     0) AS diamondW,
-                            IF(product_seo_name = NULL OR product_seo_name='',
-                                product_name,
-                            product_seo_name) AS prdName
+                            IF(product_name = NULL OR product_name='',product_seo_name,product_name) AS prdName
                             FROM
                                 tbl_product_master
                             WHERE
@@ -2921,7 +2930,7 @@ class product extends DB {
                     $arr['mtlWgt'] = $row['metal_weight'];
 
                     //Product name is SEO name, if seo name is blank then product name
-                    $arr['prdName'] = $row['seo'];
+                    $arr['prdName'] = $row['prdName'];
                     $arr['pid'] = $row['productid'];
 
                     // Getting product image from differnt API internally in array

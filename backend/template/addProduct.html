@@ -38,6 +38,13 @@
                         <input name="" type="text" id="product_seo_name" autocomplete="false"  placeholder="Enter product SEO name" class="txtInput fLeft fmOpenR font14 c666">
                     </div>
                     <div class="divCon fLeft">
+                        <div class="divCon fLeft mTop0">
+                            <div class="titleDiv txtCap fLeft">Product Description*<span class="fRight font12 msgLabel">500 character max</span></div>
+                            <textarea id="productDescription"  class="txtarea fLeft fmOpenR font14 c666" placeholder="Brief description about product"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="divCon fLeft">
                         <div class="divCon2 fLeft">
                             <div class="titleDiv txtCap fLeft">Product Weight <span class="txtLower">in gm(s)*</span></div>
                             <input name="" type="text" id="product_weight" autocomplete="false"  placeholder="Enter product weight" class="txtInput fLeft fmOpenR font14 c666" onkeypress="return common.isDecimalKey(event, this.value);">
@@ -58,12 +65,7 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="divCon2 fLeft">
-                        <div class="titleDiv txtCap fLeft">Delivery Lead Time*</div>
-                        <input name="" type="text" id="leadTime" autocomplete="false"  placeholder="Enter delivery lead time" class="txtInput fLeft fmOpenR font14 c666" onkeypress="return common.isDecimalKey(event, this.value);">
-                    </div>
-                    <div class="divCon2 fRight">
                         <div class="titleDiv txtCap fLeft">The Jewellery is*</div>
                         <div class="checkDiv fLeft">
                             <input type="radio" name="jType" class="filled-in" value="1" id="jType1" checked="">
@@ -77,6 +79,21 @@
                             <input type="radio" name="jType" class="filled-in" value="3" id="jType3">
                             <label for="jType3">Platinum</label>
                         </div>
+                    </div>
+                    <div class="divCon2 fRight">
+                        <div class="titleDiv txtCap fLeft">Eligible For 7 Day Return*</div>
+                        <div class="checkDiv fLeft">
+                            <input type="radio" name="eligible" class="filled-in" value="No" id="eligibleNo" checked="">
+                            <label for="eligibleNo">No</label>
+                        </div>
+                        <div class="checkDiv fLeft">
+                            <input type="radio" name="eligible" class="filled-in" value="Yes" id="eligibleYes">
+                            <label for="eligibleYes">Yes</label>
+                        </div>
+                    </div>
+                    <div class="divCon2 fLeft">
+                        <div class="titleDiv txtCap fLeft">Delivery Lead Time*</div>
+                        <input name="" type="text" id="leadTime" autocomplete="false"  placeholder="Enter delivery lead time" class="txtInput fLeft fmOpenR font14 c666" onkeypress="return common.isDecimalKey(event, this.value);">
                     </div>
                     <div class="divCon backF0 fLeft stonesSelect">
                         <div class="commTitle1 fmOpenL fLeft">Select the stones available in the product</div>
@@ -236,35 +253,37 @@
                             <input name="measurement2" id="measure2" type="text" autocomplete="false" placeholder=" eg. 20" maxlength="5" class="mtxtInput fLeft fmOpenR font14 c666" value="" onkeypress="return common.isDecimalKey(event, this.value);">
                         </div>
                     </div>
-                    <div class="divCon fLeft metalPurityDiv">
-                        <div class="titleDiv txtCap fLeft wAuto">Metal Purity*</div>
-                        <div class="checkDiv fLeft mTop0">
-                            <input type="radio" name="isPurityCustz" class="filled-in" value="0" id="purcust1">
-                            <label for="purcust1">Customizable</label>
-                        </div>
-                        <div class="checkDiv fLeft mTop0">
-                            <input type="radio" name="isPurityCustz" class="filled-in" value="1" id="purcust2">
-                            <label for="purcust2">Not Customizable</label>
-                        </div>
-                    </div>
-                    <div class="divCon  fLeft fmOpenR divAuto dn" id='ifpurityCustomiz'></div>
-                    <div class="divCon  fLeft fmOpenR divAuto dn" id='ifpurityNotCustomiz'></div>
+                    <div class="metalPurityDiv">
+                          <div class="divCon fLeft metalPurityDiv">
+                              <div class="titleDiv txtCap fLeft wAuto">Metal Purity*</div>
+                              <div class="checkDiv fLeft mTop0">
+                                  <input type="radio" name="isPurityCustz" class="filled-in" value="0" id="purcust1">
+                                  <label for="purcust1">Customizable</label>
+                              </div>
+                              <div class="checkDiv fLeft mTop0">
+                                  <input type="radio" name="isPurityCustz" class="filled-in" value="1" id="purcust2">
+                                  <label for="purcust2">Not Customizable</label>
+                              </div>
+                          </div>
+                          <div class="divCon  fLeft fmOpenR divAuto dn" id='ifpurityCustomiz'></div>
+                          <div class="divCon  fLeft fmOpenR divAuto dn" id='ifpurityNotCustomiz'></div>
+                      </div>
+                    <div class="metalColorDiv">
+                          <div class="divCon fRight metalColorDiv">
+                              <div class="titleDiv txtCap fLeft wAuto">Metal Color*</div>
+                              <div class="checkDiv fLeft mTop0">
+                                  <input type="radio" name="isColorCustz" class="filled-in" value="0" id="colorcust1">
+                                  <label for="colorcust1">Customizable</label>
+                              </div>
+                              <div class="checkDiv fLeft mTop0">
+                                  <input type="radio" name="isColorCustz" class="filled-in" value="1" id="colorcust2">
+                                  <label for="colorcust2">Not Customizable</label>
+                              </div>
 
-
-                    <div class="divCon fRight metalColorDiv">
-                        <div class="titleDiv txtCap fLeft wAuto">Metal Color*</div>
-                        <div class="checkDiv fLeft mTop0">
-                            <input type="radio" name="isColorCustz" class="filled-in" value="0" id="colorcust1">
-                            <label for="colorcust1">Customizable</label>
-                        </div>
-                        <div class="checkDiv fLeft mTop0">
-                            <input type="radio" name="isColorCustz" class="filled-in" value="1" id="colorcust2">
-                            <label for="colorcust2">Not Customizable</label>
-                        </div>
-
-                        <div class="innerCont fLeft dn" id='ifcolorCustomiz'></div>
-                        <div class="innerCont dn fLeft" id='ifcolorNotCustomiz'></div>
-                    </div>
+                              <div class="innerCont fLeft dn" id='ifcolorCustomiz'></div>
+                              <div class="innerCont dn fLeft" id='ifcolorNotCustomiz'></div>
+                          </div>
+                      </div>
 
                     <div class="divCon fLeft noBorder dn" id='cat_sizes'>
                         <div class="titleDiv txtCap fLeft">Select Size</div>
@@ -510,7 +529,6 @@
 
                             if (metalPurityCust)
                             {
-
                                 $('[name=gpurityCustomize]').each(function () {
                                     if ($(this).is(':CHECKED'))
                                         mpurity.push($(this).next('label').text());
@@ -613,6 +631,10 @@
                                     str += "<div class='fieldTitle fLeft'>";
                                     str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Gridle</div>";
                                     str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.girdle + "</div>";
+                                    str += "</div>";
+                                    str += "<div class='fieldTitle fLeft'>";
+                                    str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Number of Solitaires</div>";
+                                    str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.nofs + "</div>";
                                     str += "</div>";
                                     str += "</div>";
                                     str += "<div class='breakLine'></div>";

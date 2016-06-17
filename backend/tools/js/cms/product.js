@@ -80,7 +80,7 @@ function getProducsCallback(data)
     {
         var str = "";
         $(data['results']).each(function(i, v) {
-
+          console.log(v);
 
             if (v.isActive != 2)
             {
@@ -97,15 +97,15 @@ function getProducsCallback(data)
                 str += "<span class='lwSpan'><a href='" + DOMAIN + "backend/?action=productDetails&pid=" + v.pid + "'>View Details</a></span>";
                 str += "</div>";
                 str += "<div class='prdName fLeft'>" + v.prdName + "</div>";
-                
+
                 if(v.imgDtl.count>0)
                     str += "<div class='prdImg fLeft fmOpenB'>" + v.imgDtl.count + "<div class='addCouponBtn manageBtn  fmOpenR fRight transition300'><a href='" + DOMAIN + "backend/?action=thumbnail&pid=" + v.pid + "' target='_blank'>Manage</a></div></div>";
                 else
                     str += "<div class='prdImg fLeft fmOpenB'>NA</div>";
                 //str += "<div class='dmdWt fLeft'>" + v.diaWgt + " ct</div>";
                 //str += "<div class='metalWt fLeft'>" + v.mtlWgt + " gms</div>";
-                
-                
+
+
                 str += "<div class='acct fLeft'>";
                 //str += "<div class='deltBtn fRight transition300'  onclick=\"changePrdStatus(2,'" + v.pid + "')\"></div>";
                 str += "<div class='deltBtn fRight transition300'  onclick=\"setClick('" + v.pid + "');showConfirmBox();\" title='Delete Product'></div>";
@@ -170,10 +170,10 @@ function setClick(data)
 {
     var str="changePrdStatus(2,'"+data+"')";
     $('#prddeleteBtn').attr('onclick',str);
-   
+
 }
 
-function hideConfirmBox() 
+function hideConfirmBox()
 {
     $('#delOverlay').velocity({opacity: 0}, {delay: 0, duration: 300, ease: 'swing'});
     $('#confirmBox').velocity({opacity: 0}, {delay: 0, duration: 300, ease: 'swing', queue: false});

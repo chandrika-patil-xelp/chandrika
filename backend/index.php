@@ -41,26 +41,26 @@ switch ($action) {
         setcookie("back", $_SERVER['HTTP_REFERER']);
         include 'image-upload/index.html';
         break;
-    
+
     case 'productPreview':
         $page = 'productPreview';
         $tab = 'products';
         include BTEMPLATE.'productPreview.html';
         break;
-    
+
     case 'category':
         $page = 'category';
         $tab = 'category';
         include BTEMPLATE.'category.html';
         break;
-    
+
     case 'addCategory':
         $page = 'addCategory';
         $tab = 'category';
         $edit=0;
         include BTEMPLATE.'addCategory.html';
         break;
-    
+
     case 'editCategory':
         $page = 'addCategory';
         $tab = 'category';
@@ -72,13 +72,13 @@ switch ($action) {
         $edit=1;
         include BTEMPLATE.'addCategory.html';
         break;
-    
+
     case 'attributes':
         $page = 'attributes';
-        $tab = 'attribute';        
+        $tab = 'attribute';
         include BTEMPLATE.'attributes.html';
         break;
-    
+
     case 'addAttribute':
         $page = 'addAttribute';
         $tab = 'attribute';
@@ -86,7 +86,7 @@ switch ($action) {
         include APICLUDE.'class.attributes.php';
         include BTEMPLATE.'addAttribute.html';
         break;
-    
+
     case 'editAttribute':
         $page = 'addAttribute';
         $tab = 'attribute';
@@ -95,24 +95,24 @@ switch ($action) {
         $res = $comm->executeCurl($url);
         $data = $res['result'];
         $data= json_encode($data);
-        $edit=1;        
+        $edit=1;
         include APICLUDE.'class.attributes.php';
         include BTEMPLATE.'addAttribute.html';
         break;
-    
+
     case 'coupon':
         $page = 'coupon';
         $tab = 'coupons';
         include BTEMPLATE.'coupon.html';
         break;
-    
+
     case 'product_List':
         $page = 'product_list';
         $tab = 'products';
         include BTEMPLATE.'product_list.html';
         #include BTEMPLATE.'product_list1.html';
         break;
-    
+
     case 'thumbnail':
         $page = 'thumbnail';
         $tab = 'products';
@@ -121,7 +121,7 @@ switch ($action) {
         $result = $res['results'];
         include BTEMPLATE.'thumbnail.html';
         break;
-    
+
     /*case 'discounts':
         $page = 'discounts';
         $tab = 'discounts';
@@ -144,7 +144,7 @@ switch ($action) {
         $tab = 'accounts';
         include BTEMPLATE.'accounts.html';
         break;
-    
+
     case 'ord_detail':
         $page = 'Orders';
         $tab = 'orders';
@@ -168,7 +168,7 @@ switch ($action) {
         $tab = 'resetP';
         include BTEMPLATE.'resetP.html';
         break;
-    
+
     case 'rates':
         $page = 'rateManager';
         $tab = 'rate manager';

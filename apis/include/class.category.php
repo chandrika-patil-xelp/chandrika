@@ -22,12 +22,12 @@ class category extends DB
         {
             $catid= $params['catid'];
         }
-        
+
         if(empty($params['pcatid']))
         {
             $params['pcatid'] = '99999';
         }
-            
+
 
         $sql="INSERT INTO "
                 . " tbl_category_master (catid,pcatid,cat_name,createdon,updatedby)"
@@ -114,15 +114,15 @@ class category extends DB
     public function getCatgoryList($params)
     {
 
-        $sql="  SELECT 
+        $sql="  SELECT
                         catid,
                         pcatid,
                         cat_name,
-                        active_flag 
+                        active_flag
                 FROM
                         tbl_category_master
                 WHERE
-                        active_flag =1
+                        active_flag <> 2
                 ORDER BY
                         cat_name ";
 
