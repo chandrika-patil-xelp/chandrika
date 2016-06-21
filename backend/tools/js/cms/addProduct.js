@@ -2350,12 +2350,14 @@ function solitairePrice()
 
         var shape = $('#solitaireComm_' + ids + ' .shapeSelected').attr('id').split("shape_");
         var carat = $('#solcaratweight' + ids + '').val();
+        var nofSolitaire = $('#solNofs' + ids + '').val();
+        var totalCarats = parseFloat(carat) * parseFloat(nofSolitaire);
         var price_per_carat = $('#solpricecarat' + ids + '').val();
-        var price = parseFloat(price_per_carat) * parseFloat(carat);
+        var price = parseFloat(price_per_carat) * parseFloat(totalCarats);
         solstr += "<li id='solitairePrice_" + ids + "'>";
         solstr += "<div class='forComponent fLeft pl15'>" + shape[1] + "</div>";
         solstr += "<div class='forRate fLeft'>&#8377; " + price_per_carat + "/ct</div>";
-        solstr += "<div class='forWeight fLeft'>" + carat + " ct</div>";
+        solstr += "<div class='forWeight fLeft'>" + totalCarats + " ct</div>";
         solstr += "<div class='forPrice calc fLeft'>&#8377;" + price + "</div>";
         solstr += "</li>";
     });

@@ -65,6 +65,8 @@ class admin extends DB
                         tbl_product_image_mapping
                 WHERE
                         product_id = ".$params['pid']."
+                AND
+                        active_flag NOT IN(2)
                 ORDER BY
                         image_sequence ASC";
         $res = $this->query($query);

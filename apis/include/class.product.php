@@ -3134,7 +3134,7 @@ class product extends DB {
                 FROM
                         tbl_product_image_mapping
                 WHERE
-                        active_flag!=3 AND
+                        active_flag NOT IN(2) AND
                         product_id = " . $params['pid'] . " ORDER BY image_sequence";
 
 
