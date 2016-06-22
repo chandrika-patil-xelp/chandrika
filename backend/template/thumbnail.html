@@ -32,7 +32,7 @@
                                                 <label for="accept_<?php echo $data[$i]['id']; ?>">Active</label>
                                             </div>
                                             <div class="checkDiv fLeft">
-                                                <input type="radio" value="3" name="accept_<?php echo $data[$i]['id']; ?>"<?php if($data[$i]['active_flag']==3) { echo 'checked'; } ?> class="filled-in" id="reject_<?php echo $data[$i]['id']; ?>">
+                                                <input type="radio" value="0" name="accept_<?php echo $data[$i]['id']; ?>"<?php if($data[$i]['active_flag']==0) { echo 'checked'; } ?> class="filled-in" id="reject_<?php echo $data[$i]['id']; ?>">
                                                 <label for="reject_<?php echo $data[$i]['id']; ?>">Delete</label>
                                             </div>
                                         </div>
@@ -156,7 +156,7 @@
                                               str+='<label for="accept_'+data[i]["id"]+'">Active</label>';
                                           str+='</div>';
                                           str+='<div class="checkDiv fLeft">';
-                                              str+='<input type="radio" value="3" name="accept_'+data[i]["id"]+'" '+(data[i]["active_flag"]==3 ? "checked" : "" )+' class="filled-in" id="reject_'+data[i]['id']+'">';
+                                              str+='<input type="radio" value="0" name="accept_'+data[i]["id"]+'" '+(data[i]["active_flag"]==0 ? "checked" : "" )+' class="filled-in" id="reject_'+data[i]['id']+'">';
                                               str+='<label for="reject_'+data[i]["id"]+'">Delete</label>';
                                           str+='</div>';
                                       str+='</div>';
