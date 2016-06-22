@@ -511,6 +511,38 @@ function bindAllForPrice(){
 
 }
 
+function vendorPrdCode(val,pid)
+{
+    var checkState = true;
+    if(pid !== '')
+    {
+        var URL = APIDOMAIN + "index.php?action=checkVproductCode&case=1&code="+val+"&pid="+pid;
+    }
+    else
+    {
+        var URL = APIDOMAIN + "index.php?action=checkVproductCode&case=2&code="+val;
+    }
+    $.ajax({
+        url: URL,
+        type: "POST",
+        async:false,
+        success: function(res)
+        {
+            obj = JSON.parse(res);
+            errCode = obj.error.code;
+            if(errCode == 1)
+            {
+                checkState = false;
+            }
+            else
+            {
+                checkState = true;
+            }
+        }
+    });
+    return checkState;
+}
+
 $(document).ready(function() {
     getCategories();
     getVendorList();
@@ -1914,6 +1946,15 @@ function validateForm()
             return false;
     }
 
+    if(vendorPrdCode($('#vendorPrdCode').val(),$('#prdCode').val()) == false)
+    {
+        common.toast(0, "Vendor product code is already used");
+        highlight('vendorPrdCode',0);
+        isValid=false;
+          return false;
+    }
+
+
     if ($('#product_name').val() == "")
     {
         common.toast(0, "Enter Product Name");
@@ -2681,7 +2722,7 @@ function oneditmodeCallBack(data)
                 $(this).attr('selected',true);
             }
         });
-
+        $('#prdCode').val(basic.prdId);
         $('#product_name').val(basic.prdNm);
         $('#productDescription').val(basic.productDescription);
         maxlengthcheck();
@@ -2689,7 +2730,7 @@ function oneditmodeCallBack(data)
         $('#product_seo_name').val(basic.prdSeo);
         $('#leadTime').val(basic.leadTime);
         $('input[name="eligible"]').each(function()
-        {   console.log(basic.returneligible);
+        {
             if($(this).val() == basic.returneligible)
             {
                 $(this).prop('checked',true);
@@ -2706,25 +2747,21 @@ function oneditmodeCallBack(data)
                     $('#ds8').attr('checked',true);
                     $('#diamond_settingOth').val(oth[1]);
                     $('#otherdsType').removeClass('op0');
-
-
                 }
-
-                if(dmdsetting[i]==val){
+                if(dmdsetting[i]==val)
+                {
                     $(this).attr('checked',true);
                 }
             });
-
         });
-
-        $('[name=gender]').each(function(){
+        $('[name=gender]').each(function()
+        {
             var val =$(this).val();
-
-            if(basic.gender==val){
+            if(basic.gender==val)
+            {
                 $(this).attr('checked',true);
             }
         });
-
         $('[name=jType]').each(function()
         {
             var val =$(this).val();
@@ -2735,10 +2772,11 @@ function oneditmodeCallBack(data)
         });
         changeJTypeFields();
 
-        $('[name=certificate]').each(function(){
+        $('[name=certificate]').each(function()
+        {
             var val =$(this).val();
-
-            if(basic.crtficte==val){
+            if(basic.crtficte==val)
+            {
                 $(this).attr('checked',true);
             }
         });

@@ -80,8 +80,6 @@ switch($action)
         $res = $result;
     break;
 
-
-
     case 'getCatMapping':
         include APICLUDE.'class.category.php';
         $obj	= new category($db['jzeva']);
@@ -153,6 +151,13 @@ switch($action)
         include APICLUDE.'class.product.php';
         $obj	= new product($db['jzeva']);
         $result	=$obj->getMetalColorIdByValue();
+        $res = $result;
+    break;
+
+    case 'checkVproductCode':
+        include APICLUDE.'class.product.php';
+        $obj	= new product($db['jzeva']);
+        $result	=$obj->checkVproductCode($params);
         $res = $result;
     break;
 

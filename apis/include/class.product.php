@@ -24,6 +24,49 @@ class product extends DB {
         return $pcode;
     }
 
+    public function checkVproductCode($params)
+    {
+        if($params['case'] == '1')
+        {
+            $sql = "SELECT
+                                productid
+                      FROM
+                                tbl_product_master
+                      WHERE
+                                vendor_prd_code = \"". $params['code'] ."\"
+                      AND
+                                productid NOT IN (".$params['pid'].")
+                      AND
+                                active_flag=1";
+        }
+        if($params['case'] == '2')
+        {
+            $sql = "SELECT
+                                productid
+                      FROM
+                                tbl_product_master
+                      WHERE
+                                vendor_prd_code = \"". $params['code'] ."\"
+                      AND
+                                active_flag=1";
+        }
+        $res = $this->query($sql);
+        $cnt = $this->numRows($res);
+        if($cnt > 0)
+        {
+            $arr = array();
+            $err = array('code'=>1,'msg'=>'Vendor Code is already used');
+        }
+        else
+        {
+            $arr = array();
+            $err = array('code'=>0,'msg'=>'Vendor Code is not yet used');
+        }
+
+        $result = array('result'=>$arr,'error'=>$err);
+        return $result;
+    }
+
     public function addProduct($params)
     {
         $params = json_decode($params[0],1);
