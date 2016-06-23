@@ -59,6 +59,8 @@
                     </div>
                 </div>
             </div>
+            <div class="overlay dn"></div>
+            <div class="loader dn"></div>
         </div>
         <script>
             $('document').ready(function()
@@ -68,6 +70,16 @@
                     updateData($(this).attr('id'));
                 });
             });
+            function showLoader()
+            {
+                $('.overlay').removeClass('dn');
+                $('.loader').removeClass('dn');
+            }
+            function hideLoader()
+            {
+                $('.overlay').addClass('dn');
+                $('.loader').addClass('dn');
+            }
             function openTab(link)
             {
                 window.open(link, '_blank');
@@ -95,43 +107,78 @@
                 {
                     reasons.push(encodeURIComponent($(this).val()));
                 });
-                var data = {'seq' : sequences,'flag':flags,'reason':reasons,'prdid':pid};
-                var params = {'data':data};
-                data = JSON.stringify(data);
-                $.ajax(
+
+                var checkDuplicate = testDuplicate(sequences);
+                if(checkDuplicate == false)
                 {
-                    url: DOMAIN + "apis/index.php?action=updateImageData&timestamp=" + tmstmp,
-                    data: params,
-                    success: function(result)
+                      showLoader();
+                      var data = {'seq' : sequences,'flag':flags,'reason':reasons,'prdid':pid};
+                      var params = {'data':data};
+                      data = JSON.stringify(data);
+                      $.ajax(
+                      {
+                          url: DOMAIN + "apis/index.php?action=updateImageData&timestamp=" + tmstmp,
+                          data: params,
+                          success: function(result)
+                          {
+                              var obj = jQuery.parseJSON(result);
+                              var errCode = obj['error']['Code'];
+                              var errMsg = obj['error']['Msg'];
+                              if(errCode == 0)
+                              {
+                                  hideLoader();
+                                  common.toast(1,errMsg);
+                                  $.ajax(
+                                  {
+                                      url: DOMAIN + "apis/index.php?action=getImgByProd&pid=" +pid,
+                                      data: params,
+                                      success: function(result)
+                                      {
+                                          var obj = jQuery.parseJSON(result);
+                                          var errCode = obj['error']['Code'];
+                                          var errMsg = obj['error']['Msg'];
+                                          var data = obj.results;
+                                          if(errCode == 0)
+                                          {
+                                              setTimeout(function()
+                                              {
+                                                  regenrateDiv(data);
+                                              },10);
+                                          }
+                                      }
+                                });
+                              }
+                              else
+                              {
+                                  hideLoader();
+                                  common.toast(0,'Error in adding products image Details')
+                              }
+                          }
+                    });
+                }
+                else
+                {
+                      hideLoader();
+                      common.toast(0,'Duplicate positions cannot be saved');
+                      return false;
+                }
+
+            }
+            function testDuplicate(arr)
+            {
+                var sorted_arr = arr.slice().sort();
+                var results = [];
+                for (var i = 0; i < arr.length - 1; i++)
+                {
+                    if (sorted_arr[i + 1] == sorted_arr[i])
                     {
-                        var obj = jQuery.parseJSON(result);
-                        var errCode = obj['error']['Code'];
-                        var errMsg = obj['error']['Msg'];
-                        if(errCode == 0)
-                        {
-                            common.toast(1,errMsg);
-                            $.ajax(
-                            {
-                                url: DOMAIN + "apis/index.php?action=getImgByProd&pid=" +pid,
-                                data: params,
-                                success: function(result)
-                                {
-                                    var obj = jQuery.parseJSON(result);
-                                    var errCode = obj['error']['Code'];
-                                    var errMsg = obj['error']['Msg'];
-                                    var data = obj.results;
-                                    if(errCode == 0)
-                                    {
-                                        setTimeout(function()
-                                        {
-                                            regenrateDiv(data);
-                                        },10);
-                                    }
-                                }
-                          });
-                        }
+                        results.push(sorted_arr[i]);
                     }
-              });
+                }
+                if(results.length>0)
+                    return true;
+                else
+                    return false;
             }
 
             function regenrateDiv(obj)
