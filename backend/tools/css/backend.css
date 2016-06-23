@@ -211,6 +211,7 @@ a { color: inherit;text-decoration: none; }
 .allProducts .stockCode{width: 13%;}
 .allProducts .prdName{width: 33%;}
 .allProducts .prdImg{width: 20%;}
+.allProducts .prdImg .addCouponBtn a{padding:0 15px}
 
 .allProducts .dmdWt{width: 10%;}
 .allProducts .metalWt {width: 10%;}
