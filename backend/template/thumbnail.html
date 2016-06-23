@@ -20,6 +20,7 @@
                                     $image = IMGDOMAIN . $data[$i]['product_image'];
                             ?>
                                     <div class="thumbnilComm fLeft fmOpenR">
+                                        <input type="hidden" class="seqId" value="<?php echo $data[$i]['id'];?>"/>
                                         <div id='thumb1' class="actThumbnail fLeft" onclick="openTab('<?php echo $image; ?>')" style='background: url(<?php echo $image; ?>) 50% 50% / contain no-repeat scroll padding-box border-box rgb(255, 255, 255);'></div>
                                         <div class="imageName txtOver" title="<?php echo $data[$i]['image_name']; ?>"><?php echo $data[$i]['image_name']; ?></div>
                                         <div class="comment fRight">
@@ -91,34 +92,34 @@
                 var sequences = [];
                 var flags = [];
                 var reasons = [];
+                var imageId = [];
+
                 $('.seqTxt').each(function()
                 {
                     sequences.push(encodeURIComponent($(this).val()));
                 });
 
-                $('.acceptRej').find('.checkDiv input[type="radio"]').each(function()
+                $('.thumbnilComm').each(function()
                 {
-                    if($(this).is(':checked'))
-                    {
-                        flags.push($(this).val());
-                    }
-                });
-                $('.txtComment').each(function()
-                {
-                    reasons.push(encodeURIComponent($(this).val()));
+                    var imgId = $(this).find('.seqId').val();
+                    var post = $(this).find('.seqTxt').val();
+                    var data = $('input[name="accept_'+imgId+'"]:checked').val();
+                    var reason = $(this).find('.txtComment').val();
+
+                    imageId.push(imgId+'|@|'+post+'|@|'+data+'|@|'+escape(reason));
                 });
 
                 var checkDuplicate = testDuplicate(sequences);
                 if(checkDuplicate == false)
                 {
                       showLoader();
-                      var data = {'seq' : sequences,'flag':flags,'reason':reasons,'prdid':pid};
+                      var data = {'dt': imageId};
                       var params = {'data':data};
-                      data = JSON.stringify(data);
+                      data = {'dt': JSON.stringify(imageId)};
                       $.ajax(
                       {
                           url: DOMAIN + "apis/index.php?action=updateImageData&timestamp=" + tmstmp,
-                          data: params,
+                          data: data,
                           success: function(result)
                           {
                               var obj = jQuery.parseJSON(result);
@@ -191,6 +192,7 @@
 
                           image = IMGDOMAIN+data[i]['product_image'];
                           str+='<div class="thumbnilComm fLeft fmOpenR">';
+                                      str+='<input type="hidden" class="seqId" value="'+data[i]['id']+'"/>';
                                       str+='<div id="thumb1" class="actThumbnail fLeft" onclick="openTab('+image+')" style="background: url('+image+') 50% 50% / contain no-repeat scroll padding-box border-box rgb(255, 255, 255);"></div>';
                                       str+='<div class="imageName txtOver" title="'+data[i]["image_name"]+'">'+data[i]["image_name"]+'</div>';
                                       str+='<div class="comment fRight">';

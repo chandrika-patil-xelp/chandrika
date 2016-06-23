@@ -91,36 +91,28 @@ class admin extends DB
 
     public function updateImageData($params)
     {
-        $checkSql = "SELECT
-                            id
-                      FROM
-                            tbl_product_image_mapping
-                      WHERE
-                            product_id =".$params['data']['prdid'];
-        $checkRes = $this->query($checkSql);
 
-        if($checkRes)
+        $dt = json_decode($params['dt']);
+
+        if(count($dt))
         {
-            while($rows = $this->fetchData($checkRes))
+            foreach($dt as $key => $val)
             {
-                $id[] = $rows[id];
-            }
+                $data = explode('|@|',$val);
+                $id = $data[0];
+                $seq = $data[1];
+                $flg = $data[2];
+                $rea = $data[3];
 
-            $data = $params['data'];
-            $seq = $params['data']['seq'];
-            $flag = $params['data']['flag'];
-            $reason = $params['data']['reason'];
-            for($i= 0; $i<count($seq) ; $i++)
-            {
                 $query = "UPDATE
                                 tbl_product_image_mapping
                         SET
-                                image_sequence='".urldecode($seq[$i])."',
-                                active_flag='".$flag[$i]."',
-                                reason='".urldecode($reason[$i])."',
+                                image_sequence='".urldecode($seq)."',
+                                active_flag='".$flg."',
+                                reason='".urldecode($rea)."',
                                 update_date=NOW()
                         WHERE
-                                id = ".$id[$i];
+                                id = ".$id;
                 $res = $this->query($query);
                 if($res)
                 {
@@ -131,21 +123,17 @@ class admin extends DB
                     $res = false;
                 }
             }
-            if($res == true)
-            {
-                $results=array();
-                $err = array('Code' => 0, 'Msg' => 'Data has been updated');
-            }
-            else
-            {
-                $results=array();
-                $err = array('Code' => 1, 'Msg' => 'Error in Updating data');
-            }
+        }
+
+        if($res == true)
+        {
+            $results=array();
+            $err = array('Code' => 0, 'Msg' => 'Data has been updated');
         }
         else
         {
             $results=array();
-            $err = array('Code' => 1, 'Msg' => 'Error in product update');
+            $err = array('Code' => 1, 'Msg' => 'Error in Updating data');
         }
         $result=array('results'=>$results,'error'=>$err);
         return $result;
