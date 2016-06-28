@@ -14,7 +14,7 @@ textarea:focus, input:focus{
 .fmSansB{font-family:SansationB;}
 .fLeft{float:left;}
 .fRight{float:right;}
-.dn{display:none !important;}
+.dn{display:none ;}
 .pFixed{position:fixed !important;}
 .color666{color:#666 !important;}
 .colorV{color:#673B6D;}
@@ -39,7 +39,7 @@ textarea:focus, input:focus{
 .mBtm5{margin-bottom: 5px !important;}
 .mRight7{margin-right:7px;}
 .widthAuto{width:auto !important;}
-.pNone{pointer-events:none;} 
+.pNone{pointer-events:none;}
 .img_cont{width:100%;height:100%;position:relative;z-index:5;display:none;}
 .loader{width:100%;height:100%;position:absolute;z-index:4;background:url(../img/ajax-loader.gif)no-repeat;background-position:center;}
 .btnStyle{background-color:rgba(0,0,0,0.1) !important;border:1px solid #fff !important;}
@@ -454,7 +454,7 @@ textarea:focus, input:focus{
 
  .wishLstIMG{width:25%;height:0;padding-bottom:25%;position:absolute;left:20px;top:20px;border:2px solid #f0f0f0;background:url(../img/ring-01-01.png)no-repeat;background-size:auto 90%;background-position:center ;}
 
- 
+
 
  .abtWishLST{width:100%;height:auto;min-height:125px;padding-left:33%;}
  .spnPrce{width:80%;height:auto;color:#379496;font-size:18px;line-height:20px;}
@@ -493,8 +493,8 @@ textarea:focus, input:focus{
 
  /*change_pass*/
  .chngePassCnt{width:100%;height:auto;}
- 
- 
+
+
 
 
  /*mobile menu*/
@@ -696,7 +696,7 @@ transition-delay: 0.15s;
  .selImg3{background:url(../img/ichain.svg) no-repeat;background-size:auto 30%;background-position:center;}
  .pCfrMbleWrp{width:100%;height:auto;margin-top:20px;display:none;}
  .onclkClss{color:#673B6D !important; border-bottom:2px solid #673B6D !important;}
- 
+
   .prdctCard4Mbl{width:100%;height:auto;box-shadow: 3px 3px 8px 2px rgba(0,0,0,0.2);padding: 15px;display:none;}
 
  #style-3::-webkit-scrollbar-track
@@ -981,37 +981,37 @@ transition-delay: 0.15s;
      .lookIcn {padding-top: 80px;background-size: auto 100%;}
      .ordrIcn {padding-top: 80px;background-size: auto 100%;}
      .wearIcn {padding-top: 80px;background-size: auto 100%;}
-     
+
      /*sign_up*/
      .sgnupWrp {padding: 15px;}
      .signup_cnt {width: 100%;height: auto;min-height: 495px;position: relative;top: 50px;padding: 15px;}
-     
+
      /*filter*/
      .fWrp{padding: 0px;}
      .fCnt1 {border:none;}
      .mTypeCnt {width: 100%;}
      .mCatDv {width: 33%;}
      .fslctCnt {width: 100%;margin-top: 15px;}
-     .mTypeCnt .shape{width: 30%; height: 0;padding-bottom: 25%;margin: 0.5%;} 
+     .mTypeCnt .shape{width: 30%; height: 0;padding-bottom: 25%;margin: 0.5%;}
      .filterStp {margin-top: 15px;padding-right: 15px;}
      .poupDv{padding: 0px 22px 0px 9px;font-size: 10px;}
      .poupDv::after { content: "";width: 20px;height: 30px;position: absolute;right: 0; top: 0;background: url(../img/arrow.svg)no-repeat;background-size: auto 70%;background-position: center;}
      .fNtxtDv{padding: 0px 15px;font-size: 10px;}
      .prdctInFltr {width: 50%;}
      .icnHldr {padding: 0px;}
-     
+
      /*reset_pswrd*/
      .resetPcnt {padding: 20px;}
      .rPblck {width: 100%;min-height: 290px; position: relative;top: 80px;padding: 20px;}
      .btnFrDcsn {padding: 0px 20px 0px 9px;}
      .spanTxt {font-size: 11px;}
-     
+
      /*frgt_pswrd*/
      .frgtPwrp {width: 100%;height: 280px;position: relative;top: 65px;}
      .signupCl1 {width: 100%;font-size: 30px;}
      .signupCl2 {width: 100%;padding: 15px;min-height: 175px;margin-top: 30px;}
      .otpCnt { width: 305px;}
-     
+
      /*footer*/
      .footer4Reg {display:none;}
 
@@ -1097,7 +1097,7 @@ transition-delay: 0.15s;
      .abtWishLST {width: 100%;padding-left:0px;}
      .btnDvwishLst {padding-right:0px;}
      .wishLstDvsn1 {width: 100%;padding-left:0px;}
-     
+
      .pInfoLft {width: 100%;margin-top: 15px;padding-right:0px;}
      .pInfoRght {width: 100%;padding-left:0px;margin-top: 25px;}
      .pInfoCSdv {width: 100%;}
@@ -1124,14 +1124,14 @@ transition-delay: 0.15s;
      .paymentWrp {padding: 20px 0px;}
      .pOptnRight {padding-left: 25px;}
      .expDate {width: 35%;}
-     
+
      /*login*/
      .lCont {padding: 20px;}
      .LoginFlft {width: 100%;padding-left:0px;}
      .LoginFright {width: 100%;padding-left:0px;margin-top: 20px;}
      .txtAbtAccnt {width: 100%;}
-     .lookWrp {width: 30%;} 
-     
+     .lookWrp {width: 30%;}
+
      /*filter*/
      .fWrp {padding: 20px;}
      .mTypeCnt {width: 100%;}
@@ -1151,7 +1151,7 @@ transition-delay: 0.15s;
       .allPrdctShw {padding: 20px 20px 0px 20px;}
       .prdctDisplyCnt {width: 33%;padding:0px;}
        .abvFleft {width: 100%;}
-       
+
        .pCfrMbleWrp{display:block;margin-top: 0px;padding: 20px;}
      .prdctCard4Mbl{display:block;}
      .addToCartCnt {width: 31%;}
@@ -1198,7 +1198,7 @@ transition-delay: 0.15s;
      .viewIcnDV {top:16vw}
      .icn4show {height:5vw}
      .mob_dn{display:none;}
-     
+
      /*prdct_dtls*/
       .ovrshdolayer2 {left: 271px;}
      .sldrAndCrdWrp {min-height: 350px;}
@@ -1301,7 +1301,7 @@ transition-delay: 0.15s;
      .jwl3 {background-position: 30px center}
      .jwl4 {background-position: 40px center;}*/
 
-     
+
      /*login*/
      .lCont {padding: 20px;}
      .LoginFlft {width: 50%;padding-right: 20px;padding-left:0px;}
@@ -1309,14 +1309,14 @@ transition-delay: 0.15s;
      .LoginFright {width: 50%;padding-left: 20px;}
      .txtAbtAccnt {width: 100%;}
      .lookWrp {width: 30%;}
-     
-     
+
+
      /*filter*/
      .fWrp {padding: 20px;}
      .mTypeCnt {width: 100%;margin-bottom: 15px;}
      .fslctCnt {width: 50%;}
      .mCatDv {width: 12%}
-     
+
      /*frgt_pswrd*/
      .frgtPcnt {padding: 0px 20px;}
 
@@ -1340,7 +1340,7 @@ transition-delay: 0.15s;
      .cnfrmRmenu {padding-left: 20px;}
      .cnfrmpTxt1 {padding-right: 10px;}
      .odBtn {padding: 0px 10px;font-size: 11px;}
-     
+
      /*menu*/
      .tabFnt16{font-size:16px !important;}
       .tabFnt15{font-size:15px !important;}
@@ -1387,7 +1387,7 @@ transition-delay: 0.15s;
      .icncnt4Pshw {width: 25px;height: 25px;}
      .icncnt4Pshw1 {width: 15px;height: 26px;}
 
-     
+
      /*login*/
      .lCont {padding: 30px;}
      .LoginFlft {width: 45%;padding-right: 20px;padding-left:0px;}
@@ -1397,7 +1397,7 @@ transition-delay: 0.15s;
      .lookWrp {width: 30%;}
 
 
-     
+
 
 
      /*footer*/
@@ -1419,7 +1419,7 @@ transition-delay: 0.15s;
      .cnfrmLmenu {padding-right: 20px;}
      .cnfrmRmenu {padding-left: 20px;}
      .odBtn {padding: 0px 10px;}
-     
+
      /*menu*/
      .tabFnt16{font-size:16px !important;}
       .tabFnt15{font-size:15px !important;}
@@ -1455,7 +1455,7 @@ transition-delay: 0.15s;
      .txtofHdng {font-size: 11px;}
      .revewTxt {font-size: 11px;}
 
-     
+
      /*login*/
      .lCont {padding: 30px;}
      .LoginFlft {padding-right: 20px;padding-left:0px;}

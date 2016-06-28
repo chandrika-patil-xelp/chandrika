@@ -363,7 +363,7 @@
                      </div>
                       <!-- <div class="review_btn fmOsR">Reviews & Comments</div> -->
                     </div>
-                  <div class="rota_wrap fLeft">
+                  <div class="rota_wrap fLeft ">
                     <div class="rota_buffer">
                     <div class="rota">
                       <div class="imgHolder img1"></div>
@@ -420,8 +420,8 @@
                         <span class="fRight right_arrow point transition300">NEXT</span>
                       </div>
                     <div class="another_buffer fLeft" id="cust">
-                      <div class="desc_row fLeft font12 fmSansB point transition300"><span class="u_line">REF: B4087900</span></div>
-                      <div class="desc_row fLeft font12 fmSansB point transition300"><span class="u_line">EXTRA STUFF +</span></div>
+                      <div class="desc_row fLeft font12 fmSansB point transition300"><span class="">REF: B4087900</span></div>
+                      <div class="desc_row fLeft font12 fmSansB point transition300"><span class="">EXTRA STUFF +</span></div>
                       <div class="cust_cont poR fLeft" >
                               <div class="drop_dn fLeft fmSansB ">
                                    <span>Stones</span><br>
@@ -676,7 +676,7 @@ $(window).resize(function(){
 });
 var offK=0;
 var offL=0;
-$('.rota_buffer').bind('mousemove', function(e){
+$('.rota').bind('mousemove', function(e){
     var left= e.pageX - offset.left;
 
      console.log("offK:" + offK);
@@ -702,7 +702,7 @@ $('.rota').mouseleave(function(e){
   offL= e.pageX - offset.left;
 });
 $('.rota').mouseover(function(){
-  clearTimeout(stop);
+//  clearTimeout(stop);
 });
 $('.rota').mouseout(function(){
 //   runner();
@@ -964,10 +964,24 @@ $('.rota_expand').click(function(){
 //     });
 });
 $('.rota_expand').click(function(){
-$('.head_wrap').toggleClass('disable_full');
-$('.details_cont , .options ').toggleClass('disable1');
-$('.rota_buffer').toggleClass('rota_exstate');
+  $(this).toggleClass('dn');
+  $('.close_fs').addClass('dn');
+  $('.rota_run').find('.u_line').toggleClass('dn');
+  // if(!$(this).hasClass('rota_shrink')){
+  //   $('.rota_expand').find('.u_line').html(' FULLSCREEN');
+  // }
+  // else{
+  //     $('.rota_expand').find('.u_line').html('EXIT FULLSCREEN');
+  // }
+
+$('.details_cont , .options , .head_wrap').toggleClass('disable_full');
+$('.rota_wrap ').toggleClass('rota_exstate');
 $('.container').toggleClass('over_hide');
+});
+$('.close_fs').click(function(){
+  $('.rota_run').find('.u_line').toggleClass('dn');
+  $(this).toggleClass('dn');
+  $('.rota_run').find('.u_line').toggleClass('dn');
 });
 </script>
 

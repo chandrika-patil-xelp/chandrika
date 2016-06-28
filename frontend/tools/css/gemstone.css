@@ -239,7 +239,7 @@
 .detailImg3{background: url('../img/detailImg3.jpg')no-repeat center;width:100%;height: 60%;    margin-bottom: 10px;}
 .plusPos3:hover ~.detailDiv3{display: block;}
 .head_pad{padding-top:130px;}
-.dn{display: none!important;}
+.dn{display: none;}
 .gemContrDiv:hover .border_eff1{opacity: 1;}
 .gemContrDiv:hover .border_eff1::before{opacity: 1;transform: scale(1);}
 .gemContrDiv:hover .border_eff1::after{opacity: 1;transform: scale(1);}
