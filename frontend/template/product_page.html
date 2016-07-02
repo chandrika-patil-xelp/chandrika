@@ -363,7 +363,7 @@
                      </div>
                       <!-- <div class="review_btn fmOsR">Reviews & Comments</div> -->
                     </div>
-                  <div class="rota_wrap fLeft ">
+                  <div class="rota_wrap fLeft">
                     <div class="rota_buffer">
                     <div class="rota">
                       <div class="imgHolder img1"></div>
@@ -589,6 +589,9 @@
                 <div class="loader_quote  fmSansL">The meek may inherit the earth but not its mineral rights</div>
               </div>
               <div class="overlay3 pointNone"></div>
+              <div class="close_fs dn"></div>
+              <div class="lat_logo dn">
+              </div>
 <script>
 /* Add commas in numbers */
 $.fn.digits = function(){
@@ -965,8 +968,9 @@ $('.rota_expand').click(function(){
 });
 $('.rota_expand').click(function(){
   $(this).toggleClass('dn');
-  $('.close_fs').addClass('dn');
+  $('.close_fs , .lat_logo').removeClass('dn');
   $('.rota_run').find('.u_line').toggleClass('dn');
+
   // if(!$(this).hasClass('rota_shrink')){
   //   $('.rota_expand').find('.u_line').html(' FULLSCREEN');
   // }
@@ -976,12 +980,18 @@ $('.rota_expand').click(function(){
 
 $('.details_cont , .options , .head_wrap').toggleClass('disable_full');
 $('.rota_wrap ').toggleClass('rota_exstate');
+//$('.rota_wrap').velocity({width:['100vh','50%'] , height:['100vh' , '100%']} , {duration: 3000000 , easing:'ease-in-out'});
+
 $('.container').toggleClass('over_hide');
 });
-$('.close_fs').click(function(){
-  $('.rota_run').find('.u_line').toggleClass('dn');
+$('.close_fs ').click(function(){
+  $('.rota_run , .rota_stop').find('.u_line').removeClass('dn');
   $(this).toggleClass('dn');
-  $('.rota_run').find('.u_line').toggleClass('dn');
+  $('.lat_logo').toggleClass('dn');
+  $('.rota_expand').toggleClass('dn');
+  $('.details_cont , .options , .head_wrap').toggleClass('disable_full');
+  $('.rota_wrap ').toggleClass('rota_exstate');
+  $('.container').toggleClass('over_hide');
 });
 </script>
 
