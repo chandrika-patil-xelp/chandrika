@@ -89,6 +89,7 @@ $jvs = array();
 
 
             $fcss['home']             = DOMAIN.'frontend/tools/css/home.css?v='.VERSION;
+            $fcss['oldcss']             = DOMAIN.'frontend/tools/css/oldCss.css?v='.VERSION;
              $fcss['inpt_form']             = DOMAIN.'frontend/tools/css/input_and_form.css?v='.VERSION;
 						  $fcss['main']             = DOMAIN.'frontend/tools/css/main.css?v='.VERSION;
              $fcss['ripple']             = DOMAIN.'frontend/tools/css/ripple.css?v='.VERSION;
