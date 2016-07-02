@@ -20,9 +20,9 @@
                 <div class="cart_name ">Étourdissant Cartier</div>
                 <div class="cart_price  fLeft">&#8377 <span class="price_gen">26,000</span></div>
                 <div class="amt_selector ">
-                  <div class="cart_btn fLeft sub_no">-</div>
+                  <div class="cart_btn fLeft sub_no"></div>
                   <div class="item_amt fLeft fmOsR">1</div>
-                  <div class="cart_btn fLeft add_no">+</div>
+                  <div class="cart_btn fLeft add_no"></div>
                 </div>
                   <div class="cart_remove ">Remove</div>
               </div>
@@ -31,9 +31,9 @@
                 <div class="cart_name ">Étourdissant Cartier</div>
                 <div class="cart_price  fLeft">&#8377 <span class="price_gen">26,000</span></div>
                 <div class="amt_selector ">
-                  <div class="cart_btn fLeft sub_no">-</div>
+                  <div class="cart_btn fLeft sub_no"></div>
                   <div class="item_amt fLeft fmOsR">1</div>
-                  <div class="cart_btn fLeft add_no">+</div>
+                  <div class="cart_btn fLeft add_no"></div>
                 </div>
                 <div class="cart_remove ">Remove</div>
               </div>
@@ -42,9 +42,9 @@
                 <div class="cart_name ">Étourdissant Cartier</div>
                 <div class="cart_price  fLeft">&#8377 <span class="price_gen">26,000</span></div>
                 <div class="amt_selector ">
-                  <div class="cart_btn fLeft sub_no">-</div>
+                  <div class="cart_btn fLeft sub_no"></div>
                   <div class="item_amt fLeft fmOsR">1</div>
-                  <div class="cart_btn fLeft add_no">+</div>
+                  <div class="cart_btn fLeft add_no"></div>
                 </div>
                   <div class="cart_remove">Remove</div>
               </div>
@@ -53,12 +53,65 @@
                 <div class="cart_name ">Étourdissant Cartier</div>
                 <div class="cart_price fLeft">&#8377 <span class="price_gen">26,000</span></div>
                 <div class="amt_selector ">
-                  <div class="cart_btn fLeft sub_no">-</div>
+                  <div class="cart_btn fLeft sub_no"></div>
                   <div class="item_amt fLeft fmOsR">1</div>
-                  <div class="cart_btn fLeft add_no">+</div>
+                  <div class="cart_btn fLeft add_no"></div>
                 </div>
                   <div class="cart_remove">Remove</div>
               </div>
             </div>
             <!-- <div class="cart_foot fmSansR">Checkout</div> -->
         </div>
+      <script>
+      /* Add commas in numbers */
+      $.fn.digits = function(){
+          return this.each(function(){
+              $(this).text( $(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") );
+          })
+      }
+      /*Increase/Decrease number of Items in Cart and the corresponding price , comma spacing of price  */
+      $('.sub_no').click(function(){
+        var e=$(this).siblings('.item_amt');
+        var j =$(this).siblings('.item_amt').text();
+        var e2=  $(this).closest('.cart_item').find('.price_gen');
+        var price= $(this).closest('.cart_item').find('.price_gen ').text();
+        price=price.replace(/\,/g,'');
+        price=parseInt(price,10);
+        if(j>1){
+            price=price/j;
+          j--;
+          price=price*j;
+          $(e2).html(price);
+            $(e2).digits();
+          $(e).html(j);
+        }
+      });
+      $('.add_no').click(function(){
+        var e=$(this).siblings('.item_amt');
+        var j =$(this).siblings('.item_amt').text();
+        var e2=  $(this).closest('.cart_item').find('.price_gen ')
+        var price= $(this).closest('.cart_item').find('.price_gen ').text();
+        price=price.replace(/\,/g,'');
+        price=parseInt(price,10);
+        price=price/j;
+          j++;
+          price=price*j;
+          $(e2).html(price);
+          $(e2).digits();
+          $(e).html(j);
+      });
+      $('#check_out').click(function(){
+        load_checkout();
+      });
+      function load_checkout(){
+        console.log('click');
+        $('body').addClass('over_hide');
+       $('.page_loader').velocity({translateY:[0,'100%']} , {duration:600 , easing:'easeInQuart',display:'block' ,
+       complete:function(){
+          setTimeout(function(){
+            window.location.assign(DOMAIN+'index.php?action=check_out');
+          },1000);
+       }
+      });
+      }
+      </script>
