@@ -1,0 +1,139 @@
+
+<?php include 'jhead.html' ?>
+    <body class="greyBg"  >
+
+     <?php include 'Cart.html'?>
+     <?php include 'header.html'?>
+
+      <div class="wrapper_main fLeft HOME_PAGE">
+          <div class="wrapper">
+            <div class="one_col fLeft img3c"></div>
+            <div class="three_col fLeft img2m">
+              <div class="fader transition300">
+              </div>
+              <div class="title_fader fmSansL transition300">Bridal Collection</div>
+              <div class="framer"></div>
+            </div>
+            <div class="three_col fLeft img3m">
+              <div class="fader transition300"></div>
+              <div class="framer"></div>
+            </div>
+            <div class="three_col fLeft img2m">
+              <div class="fader transition300">
+                <div class="title_fader fmSansL transition300">Bridal Collection</div>
+              </div>
+              <div class="framer"></div>
+            </div>
+          <div class="two_col fLeft img1m">
+                <div class="fader transition300"></div>
+            <div class="framer2"></div>
+          </div>
+          <div class="three_col fLeft img2c">
+            <div class="fader transition300">
+              <div class="title_fader fmSansL transition300">Bridal Collection</div>
+            </div>
+            <div class="framer"></div>
+          </div>
+          </div>
+
+                <div class="footer fLeft"></div>
+          </div>
+
+              <div class="page_loader">
+                <div class="cs-loader-inner ">
+                  <label>●</label>
+                  <label>●</label>
+                  <label>●</label>
+                  <label>●</label>
+                  <label>●</label>
+                  <label>●</label>
+                </div>
+                    <div class="loader_quote  fmSansL">The meek may inherit the earth but not its mineral rights</div>
+              </div>
+              <div class="page_loader2">
+                <div class="cs-loader-inner ">
+                  <label>●</label>
+                  <label>●</label>
+                  <label>●</label>
+                  <label>●</label>
+                  <label>●</label>
+                  <label>●</label>
+                </div>
+                <div class="loader_quote  fmSansL">The meek may inherit the earth but not its mineral rights</div>
+              </div>
+              <div class="overlay3 pointNone"></div>
+
+              </div>
+<script>
+
+
+/* Radia Button */
+$('.selector1').click(function(){
+  $(this).closest('.selector_cont').find('.selector1').removeClass('select_active');
+  $(this).toggleClass('select_active');
+});
+
+/* Fly to cart effect */
+$('#add_to_cart').on('click', function () {
+        var wd=$('.rota').outerWidth();
+        var ht=$('.rota').outerHeight();
+        var cart = $('.cartIcon');
+        var imgtodrag;
+           $('.rota .imgHolder').each(function(i){
+                if(!$(this).hasClass("dn")) {
+              imgtodrag=$(this);
+                }
+           });
+        if (imgtodrag) {
+            var imgclone = imgtodrag.clone()
+                .offset({
+                top: imgtodrag.offset().top,
+                left: imgtodrag.offset().left
+            })
+                .css({
+                'opacity': '0.7',
+                    'position': 'absolute',
+                    'height':ht,
+                    'width':wd,
+                    'z-index': '900',
+                    'display':'block'
+            })
+                .appendTo($('body'))
+                .velocity({ top: cart.offset().top,left: cart.offset().left, width: 0, height: 0, opacity:[0.1] }, {duration:1000 , easing:'easeInOutExpo',
+                 complete:function(){
+                   $(this).detach();
+                 }});
+
+            setTimeout(function () {
+                cart.velocity('stop').velocity({translateX:[-15,15]}, {duration:50 , easing:'swing' , loop:3}).velocity({translateX:[0]},{duration:25 , easing:'swing'});
+            }, 900);
+
+            // imgclone.animate({
+            //     'width': 0,
+            //         'height': 0
+            // }, function () {
+            //
+            // });
+        }
+    });
+  // Show close reviews page
+
+function load_page(){
+  //$('body').addClass('over_hide');
+ $('.page_loader2').velocity({translateY:['100%',0]} , {duration:600 , easing:'easeInQuart',display:'none' , complete:function(){
+//   $('body').removeClass('over_hide');
+
+ }  });
+}
+$(window).on('load' , function(){
+load_page();
+});
+$('.icnLike').click(function(){
+  $(this).toggleClass('liked');
+});
+
+
+
+</script>
+
+    </body>
