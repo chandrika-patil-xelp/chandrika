@@ -63,10 +63,14 @@ load_page();
     });
     $('.co_tab').click(function(){
       var ip= $(this).index();
+      var k = ip * 20 +20;
+      console.log(ip);
         $('.co_tab').removeClass('selecT');
         $(this).addClass('selecT');
           $('.co_panel').removeClass('active');
           $('.co_panel').eq(ip).addClass('active');
+          $('.progress_bar').velocity({width:k + "%"}, {duration:300 , easing:'swing'})
+
 
 
     });
