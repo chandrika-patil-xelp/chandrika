@@ -49,6 +49,7 @@ textarea:focus, input:focus , select:focus ,option:focus{
 .lnHt25{line-height: 25px;}
 .lnHt30{line-height: 30px;}
 .pleft40{padding-left:40px;}
+.padp15{padding-left:15%}
 .pFixed{position:fixed !important;}
 .bcolour1{background-color:#f0f0f0 }
 .color666{color:#666 !important;}
@@ -607,13 +608,14 @@ img{width:100%;height:100%;border:0}
 .CHECKOUT_PAGE .wrapper{padding:0;min-height:calc(100vh  - 120px);padding-left:15%;padding-top:5px;height:auto}
 .progress{width:100%;height:5px;position:fixed;top:120px;left:0}
 .progress_bar{height:100%;float:left;background:#ccc;width:20%}
-.co_tabholder{width:15%;height:100%;position:fixed;left:0;}
+.co_tabholder{width:15%;height:100%;position:fixed;z-index:20}
 .co_tab{width:100%;height:50px;border-bottom:1px dotted #ccc;line-height:50px; padding:0px 20px;color:#4d4d4d;text-align:right;position:relative;cursor:pointer;font-size:12px}
 .co_tab:after{content:"";position:absolute;height:0;width:0%;border-top:1px solid #4d4d4d;right:0;bottom:-1px;transition:300ms}
 .co_tab:hover:after{width:100%;}
 .selecT.co_tab:after{width:100%}
-.co_main{width:100%;min-height:100%;height:auto;position:relative;}
-.co_panel{width:100%;height:auto;position:absolute;left:0;top:0;display:none;padding:40px;}
+.co_main{width:100%;min-height:100%;height:auto;position:relative;padding-left:20%}
+.co_buffer{width:100%;height:auto;position:relative;min-height:calc(100vh - 125px)}
+.co_panel{width:100%;height:auto;position:absolute;left:0;top:0;display:none;padding:40px;min-height:calc(100vh - 125px)}
 .co_panel.active{display:block}
 .inp_cont{width:100%;height:40px;position:relative}
 .inp_cont:after{content:"";width:0;height:0;border-top:2px solid #4d4d4d; position:absolute;bottom:-1px;left:0;transition:300ms}

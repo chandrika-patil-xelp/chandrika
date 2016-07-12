@@ -6,16 +6,18 @@
   <div class="wrapper_main fLeft CHECKOUT_PAGE">
        <div class="wrapper">
          <div class="progress"><div class="progress_bar"></div></div>
+        <div class="wrapper_max " >
          <div class="co_tabholder fmSansB ">
-            <div class="co_tab selecT">REGISTRATION</div>
+           <div class="co_tab">CHECKOUT</div>
             <div class="co_tab">DELIVERY ADDRESS</div>
             <div class="co_tab">DELIVERY OPTIONS</div>
             <div class="co_tab">CONFIRM ORDER</div>
             <div class="co_tab">PAYMENT</div>
          </div>
          <div class="co_main">
+          <div class="co_buffer">
            <div class="co_panel active">
-             <div class="co_header fmSansL">Login or  Signup</div>
+             <div class="co_header fmSansL">PLaceholder Header</div>
              <div class="inp_cont fmSansR">
                <input type="text" class="inp_box "/>
                <div class="inp_label fmSansB">Name</div>
@@ -26,7 +28,9 @@
            <div class="co_panel"></div>
            <div class="co_panel"></div>
          </div>
+         </div>
        </div>
+     </div>
   </div>
   <div class="page_loader">
     <div class="cs-loader-inner ">
@@ -57,6 +61,16 @@ load_page();
       },2000);
 
     });
+    $('.co_tab').click(function(){
+      var ip= $(this).index();
+        $('.co_tab').removeClass('selecT');
+        $(this).addClass('selecT');
+          $('.co_panel').removeClass('active');
+          $('.co_panel').eq(ip).addClass('active');
+
+
+    });
+
     function load_page(){
 
       $('body').addClass('over_hide');
