@@ -156,14 +156,28 @@
               <div class="co_panel active fmSansR">
                   <div class="co_header fmSansL fLeft">Delivery Details</div>
                   <div class="breakLine fLeft"></div>
-                  <div class="pMainCnt fLeft">
+                  <div class="pMainCnt">
+                      <div class="optnHldr fLeft fmSansB">
+                          <div class="pymntOptn fLeft" onclick="changeiTab('1st');">
+                              Credit / Debit Card
+                              
+                          </div>
+                          <div class="pymntOptn fLeft" onclick="changeiTab('2nd');">
+                              Netbanking
+                          </div>
+                          <div class="pymntOptn fLeft"  onclick="changeiTab('3rd');">
+                              Wallets
+                          </div>
+                          <div class="pymntOptn fLeft" onclick="changeiTab('4th');">EMI</div>
+                          <div class="actvBrde transition300"></div>
+                      </div>
                       <div class="w100 fLeft">
-                          <div class="cdCardwrp fLeft">
+                          <div class="cdCardwrp fLeft " id="1st">
                               <div class="thtHdr fLeft">
                                   <div class="txt fLeft fmSansB">Debit / Credit Card</div>
                                   <div class="txt1 fLeft">Pay Securely With Your Cards</div>
                               </div>
-                              <div class="col100 fLeft pTop15">
+                              <div class="col100 fLeft pTop15 pBtm15">
                                   <div class="col100 fLeft">
                                       <center>
                                           <div class="fillupWrp mBot15">
@@ -200,6 +214,122 @@
                                              <label for="chk">Securely Save This Card For A Faster Checkout Next Time</label>
                                               </div>
                                           </div>
+                                          <div class="payBtn">PAY NOW (र 84,200)</div>
+                                      </center>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="cdCardwrp fLeft dn" id="2nd">
+                              <div class="thtHdr fLeft">
+                                  <div class="txt fLeft fmSansB">Netbanking</div>
+                                  <div class="txt1 fLeft">Pay Directly From Your Bank</div>
+                              </div>
+                              <div class="col100 fLeft pTop15 pBtm15">
+                                  <div class="col100 fLeft">
+                                      <center>
+                                          <div class="bnkImgCnt mBot10">
+                                              <div class="col100 fLeft mBot15">
+                                              <div class="bknLwrp fLeft">
+                                                  <div class="bnkLcnt fLeft axisLogo"></div>
+                                                  <div class="chkInwrp">
+                                                      <div class="chkInCnt"></div>
+                                                  </div>
+                                              </div>
+                                              <div class="bknLwrp fLeft">
+                                                  <div class="bnkLcnt fLeft hdfcLogo"></div>
+                                                  <div class="chkInwrp">
+                                                      <div class="chkInCnt"></div>
+                                                  </div>
+                                              </div>
+                                              <div class="bknLwrp fLeft">
+                                                  <div class="bnkLcnt fLeft kotakLogo"></div>
+                                                  <div class="chkInwrp">
+                                                      <div class="chkInCnt"></div>
+                                                  </div>
+                                              </div>
+                                              <div class="bknLwrp fLeft">
+                                                  <div class="bnkLcnt fLeft iciciLogo"></div>
+                                                  <div class="chkInwrp">
+                                                      <div class="chkInCnt"></div>
+                                                  </div>
+                                              </div>
+                                              <div class="bknLwrp fLeft">
+                                                  <div class="bnkLcnt fLeft sbiLogo"></div>
+                                                  <div class="chkInwrp">
+                                                      <div class="chkInCnt"></div>
+                                                  </div>
+                                              </div>
+                                              <div class="bknLwrp fLeft">
+                                                  <div class="bnkLcnt fLeft citiLogo"></div>
+                                                  <div class="chkInwrp">
+                                                      <div class="chkInCnt"></div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                              <div class="col100 fLeft mBot15">
+                                                  <div class="col100 fLeft">
+                                                      <div class="slctHdng fLeft fmSansB">Other Banks</div>
+                                                      <select class="slct">
+                                                          <option selected disabled>SELECT BANK</option>
+                                                          <option value="1">State Bank Of India</option>
+                                                          <option value="2">Uco Bank</option>
+                                                          <option value="3">Panjab National Bank</option>
+                                                          <option value="4">Maharashtra Bank</option>
+                                                      </select>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="payBtn">PAY NOW (र 84,200)</div>
+                                      </center>
+                                  </div>
+                              </div>
+                          </div>
+                             <div class="cdCardwrp fLeft dn" id="3rd">
+                              <div class="thtHdr fLeft">
+                                  <div class="txt fLeft fmSansB">Wallets</div>
+                                 
+                              </div>
+                              <div class="col100 fLeft pTop15 pBtm15">
+                                  <div class="col100 fLeft">
+                                      <center>
+                                          <div class="bnkImgCnt mBot10 payTm">
+                                              <div class="col100 fLeft">
+                                              <div class="bknLwrp fLeft">
+                                                  <div class="bnkLcnt fLeft payTmIcn"></div>
+                                                  <div class="chkInwrp">
+                                                      <div class="chkInCnt"></div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          </div>
+                                          <div class="payBtn">PAY NOW (र 84,200)</div>
+                                      </center>
+                                  </div>
+                              </div>
+                          </div>
+                            <div class="cdCardwrp fLeft dn" id="4th">
+                              <div class="thtHdr fLeft">
+                                  <div class="txt fLeft fmSansB">EMI</div>
+                                  <div class="txt1 fLeft">Pay On EMI From Your Bank</div>
+                              </div>
+                              <div class="col100 fLeft pTop15 pBtm15">
+                                  <div class="col100 fLeft">
+                                      <center>
+                                          <div class="bnkImgCnt mBot10">
+                                              <div class="col100 fLeft mBot15">
+                                                  <div class="col100 fLeft">
+                                                      <div class="slctHdng fLeft fmSansB">Select Banks</div>
+                                                      <select class="slct">
+                                                          <option selected disabled>SELECT BANK</option>
+                                                          <option value="1">State Bank Of India</option>
+                                                          <option value="2">Uco Bank</option>
+                                                          <option value="3">Panjab National Bank</option>
+                                                          <option value="4">Maharashtra Bank</option>
+                                                      </select>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="payBtn">PAY NOW (र 84,200)</div>
                                       </center>
                                   </div>
                               </div>
@@ -291,7 +421,49 @@ $(document).ready(function(){
           $("#drcmnt").addClass("pNone");  
         }
         });
+        
+         $('.pymntOptn').click(function(){
+            var idx=$(this).index();
+            console.log(idx);
+            var lt=idx*26 ;
+            $('.actvBrde').css({'left':lt+"%"});
+          });
     
+//    $(".bknLwrp").on("click",function(){
+//        $(this).children('.chkInwrp').children('.chkInCnt').toggleClass('fillup');
+//        
+//    });
+      $(".bknLwrp").on("click",function(){
+         $(".bknLwrp").each(function() {
+        $(this).children('.chkInwrp').children('.chkInCnt').removeClass('fillup');
+  }); 
+       $(this).children('.chkInwrp').children('.chkInCnt').addClass('fillup');   
+      });
 });
+
+
+ function changeiTab(id) {
+            switch (id) {
+                case '1st':
+                   $('#2nd,#3rd,#4th').addClass('dn');
+                    $('#1st').removeClass('dn');
+                    break;
+                case '2nd':
+                    $('#1st,#3rd,#4th').addClass('dn');
+                    $('#2nd').removeClass('dn');
+                    break;
+                case '3rd':
+                    $('#1st,#2nd,#4th').addClass('dn');
+                    $('#3rd').removeClass('dn');
+                    break;
+                case '4th':
+                    $('#1st,#2nd,#3rd').addClass('dn');
+                    $('#4th').removeClass('dn');
+                    break;
+            }
+
+        }
+      
+
     </script>
   </body>
