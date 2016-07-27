@@ -104,7 +104,7 @@
                                 <div class="vwTxtcnt fLeft">joker and witch elegant charmer for women</div>
                                  <div class="vwTxtcnt fLeft pLeft35">र 84,200</div>
                                   <div class="vwTxtcnt fLeft pLeft10">
-                                      
+
                                       <div class="amt_selector fLeft">
                                           <div class="cart_btn fLeft sub_no" id="drcmnt"></div>
                                           <div class="item_amt fLeft fmOsR">1</div>
@@ -129,7 +129,7 @@
                                       1
                                   </div>
                                    <div class="vwTxtcnt fLeft">र 84,200</div>
-                                  
+
                                        <div class="gnrlWrp fLeft mBot10">
                                    <div class="vwTxtcnt fRight">र 100</div>
                                    <div class="vwTxtcnt fRight pLeft35">
@@ -146,33 +146,33 @@
                                        <div class="vwTxtcnt fLeft pLeft35">TOTAL</div>
                                        <div class="vwTxtcnt fLeft">र 84,200</div>
                                    </div>
-                                  
+
                             </div>
                         </div>
-                             
+
                         </div>
                     </div>
               </div>
               <div class="co_panel active fmSansR">
                   <div class="co_header fmSansL fLeft">Delivery Details</div>
                   <div class="breakLine fLeft"></div>
-                  <div class="pMainCnt">
-                      <div class="optnHldr fLeft fmSansB">
-                          <div class="pymntOptn fLeft" onclick="changeiTab('1st');">
+                  <div class="payment_main fLeft">
+                      <div class="pay_tabs fLeft fmSansB">
+                          <div class="pay_tab fLeft">
                               Credit / Debit Card
-                              
+
                           </div>
-                          <div class="pymntOptn fLeft" onclick="changeiTab('2nd');">
+                          <div class="pay_tab fLeft">
                               Netbanking
                           </div>
-                          <div class="pymntOptn fLeft"  onclick="changeiTab('3rd');">
+                          <div class="pay_tab fLeft">
                               Wallets
                           </div>
-                          <div class="pymntOptn fLeft" onclick="changeiTab('4th');">EMI</div>
-                          <div class="actvBrde transition300"></div>
+                          <div class="pay_tab fLeft">EMI</div>
+                          <div class="actvBrde"></div>
                       </div>
                       <div class="w100 fLeft">
-                          <div class="cdCardwrp fLeft " id="1st">
+                          <div class="pay_panel fLeft " id="1st">
                               <div class="thtHdr fLeft">
                                   <div class="txt fLeft fmSansB">Debit / Credit Card</div>
                                   <div class="txt1 fLeft">Pay Securely With Your Cards</div>
@@ -207,7 +207,7 @@
                                                       <div class="inp_label fmSansB">Name Of Card*</div>
                                                   </div>
                                               </div>
-                                          </div> 
+                                          </div>
                                           <div class="chkCnt">
                                               <div class="col100 fLeft">
                                                <input type="checkbox" name="select" id="chk" class="filled-in" value="4">
@@ -219,7 +219,7 @@
                                   </div>
                               </div>
                           </div>
-                          <div class="cdCardwrp fLeft dn" id="2nd">
+                          <div class="pay_panel fLeft dn" id="2nd">
                               <div class="thtHdr fLeft">
                                   <div class="txt fLeft fmSansB">Netbanking</div>
                                   <div class="txt1 fLeft">Pay Directly From Your Bank</div>
@@ -284,10 +284,10 @@
                                   </div>
                               </div>
                           </div>
-                             <div class="cdCardwrp fLeft dn" id="3rd">
+                             <div class="pay_panel fLeft dn" id="3rd">
                               <div class="thtHdr fLeft">
                                   <div class="txt fLeft fmSansB">Wallets</div>
-                                 
+
                               </div>
                               <div class="col100 fLeft pTop15 pBtm15">
                                   <div class="col100 fLeft">
@@ -307,7 +307,7 @@
                                   </div>
                               </div>
                           </div>
-                            <div class="cdCardwrp fLeft dn" id="4th">
+                            <div class="pay_panel fLeft dn" id="4th">
                               <div class="thtHdr fLeft">
                                   <div class="txt fLeft fmSansB">EMI</div>
                                   <div class="txt1 fLeft">Pay On EMI From Your Bank</div>
@@ -404,66 +404,68 @@ $('.inp_box').blur(function(){
 });
 
 $(document).ready(function(){
-    
+
     var a=1;
     $("#incrmnt").click(function(){
         a++;
-       $(".item_amt").text(a); 
+       $(".item_amt").text(a);
        console.log(a);
         $("#drcmnt").removeClass("pNone");
     });
-    
+
     $("#drcmnt").click(function(){
         a--;
        $(".item_amt").text(a);
        console.log(a);
        if(a==1){
-          $("#drcmnt").addClass("pNone");  
+          $("#drcmnt").addClass("pNone");
         }
         });
-        
-         $('.pymntOptn').click(function(){
+
+         $('.pay_tab').click(function(){
             var idx=$(this).index();
             console.log(idx);
-            var lt=idx*26 ;
-            $('.actvBrde').css({'left':lt+"%"});
+            var lt=(idx)*25 + 2.5  ;
+            $('.pay_panel').addClass('dn');
+            $('.pay_panel').eq(idx).removeClass('dn');
+            $('.actvBrde').velocity({left:[lt +'%']} , {duration:300 , easing:'swing'});
           });
-    
+
 //    $(".bknLwrp").on("click",function(){
 //        $(this).children('.chkInwrp').children('.chkInCnt').toggleClass('fillup');
-//        
+//
 //    });
       $(".bknLwrp").on("click",function(){
          $(".bknLwrp").each(function() {
         $(this).children('.chkInwrp').children('.chkInCnt').removeClass('fillup');
-  }); 
-       $(this).children('.chkInwrp').children('.chkInCnt').addClass('fillup');   
+  });
+       $(this).children('.chkInwrp').children('.chkInCnt').addClass('fillup');
       });
 });
 
 
- function changeiTab(id) {
-            switch (id) {
-                case '1st':
-                   $('#2nd,#3rd,#4th').addClass('dn');
-                    $('#1st').removeClass('dn');
-                    break;
-                case '2nd':
-                    $('#1st,#3rd,#4th').addClass('dn');
-                    $('#2nd').removeClass('dn');
-                    break;
-                case '3rd':
-                    $('#1st,#2nd,#4th').addClass('dn');
-                    $('#3rd').removeClass('dn');
-                    break;
-                case '4th':
-                    $('#1st,#2nd,#3rd').addClass('dn');
-                    $('#4th').removeClass('dn');
-                    break;
-            }
+ // function changeiTab(id) {
+ //            switch (id) {
+ //                case '1st':
+ //                   $('#2nd,#3rd,#4th').addClass('dn');
+ //                    $('#1st').removeClass('dn');
+ //                    break;
+ //                case '2nd':
+ //                    $('#1st,#3rd,#4th').addClass('dn');
+ //                    $('#2nd').removeClass('dn');
+ //                    break;
+ //                case '3rd':
+ //                    $('#1st,#2nd,#4th').addClass('dn');
+ //                    $('#3rd').removeClass('dn');
+ //                    break;
+ //                case '4th':
+ //                    $('#1st,#2nd,#3rd').addClass('dn');
+ //                    $('#4th').removeClass('dn');
+ //                    break;
+ //            }
+ //
+ //        }
 
-        }
-      
 
     </script>
   </body>
