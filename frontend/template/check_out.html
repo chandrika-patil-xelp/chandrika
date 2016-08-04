@@ -1,471 +1,495 @@
 <?php include 'jhead.html' ?>
-    <body class="greyBg"  >
+<body class="greyBg"  >
 
-     <?php include 'Cart.html'?>
-     <?php include 'header.html'?>
-  <div class="wrapper_main fLeft CHECKOUT_PAGE">
-       <div class="wrapper">
-         <div class="progress"><div class="progress_bar"></div></div>
-        <div class="wrapper_max " >
-         <div class="co_tabholder fmSansB ">
-           <div class="co_tab">CHECKOUT</div>
-            <div class="co_tab">DELIVERY ADDRESS</div>
-            <div class="co_tab">DELIVERY OPTIONS</div>
-            <div class="co_tab">CONFIRM ORDER</div>
-            <div class="co_tab">PAYMENT</div>
-         </div>
-         <div class="co_main">
-          <div class="co_buffer">
-           <div class="co_panel">
-             <div class="co_header fmSansL">PLaceholder Header</div>
-             <div class="inp_cont fmSansR">
-               <input type="text" class="inp_box "/>
-               <div class="inp_label fmSansB">Name</div>
-             </div>
-           </div>
-              <div class="co_panel  tab3">
-                   <div class="co_header fmSansL fLeft">Delivery Details</div>
-                   <div class="breakLine fLeft"></div>
-                   <div class="contAdd fLeft">
-                      <div class="inp_cont fmSansR fLeft">
-                        <input type="text" class="inp_box "/>
-                        <div class="inp_label fmSansB">Name*</div>
-                      </div>
-                        <div class="inp_cont fmSansR fLeft">
-                        <input type="text" class="inp_box "/>
-                        <div class="inp_label fmSansB">Mobile*</div>
-                      </div>
-                        <div class="inp_cont fmSansR fLeft">
-                        <input type="text" class="inp_box "/>
-                        <div class="inp_label fmSansB">Email*</div>
-                      </div>
-                   </div>
-                   <div class="contAdd fRight">
-                         <div class="inp_cont fmSansR fLeft">
-                        <input type="text" class="inp_box "/>
-                        <div class="inp_label fmSansB">Street*</div>
-                      </div>
-                         <div class="inp_cont fmSansR fLeft">
-                        <input type="text" class="inp_box "/>
-                        <div class="inp_label fmSansB">Zip code*</div>
-                      </div>
-                         <div class="inp_cont fmSansR fLeft">
-                        <input type="text" class="inp_box "/>
-                        <div class="inp_label fmSansB">State*</div>
-                      </div>
-                         <div class="inp_cont fmSansR fLeft">
-                        <input type="text" class="inp_box "/>
-                        <div class="inp_label fmSansB">City*</div>
-                      </div>
-                   </div>
-              </div>
-              <div class="co_panel  tab4">
-                   <div class="co_header fmSansL fLeft">Delivery Option</div>
-                    <div class="breakLine fLeft"></div>
-                   <div class="contAdd fLeft">
-                       <div class="dlevryTxt fLeft fmSansB">Deliver to:</div>
-                       <div class="dlevryTxt fLeft">Ganesh Belly,5th A cross road,Koromangla 6th Block,</div>
-                        <div class="dlevryTxt fLeft">Bengaluru-560095,Karnataka,India</div>
-                        <div class="dlevryTxt fLeft"><span class="spnPlft">Joker & Witch Elegant Charmer For Women</span></div>
-                         <div class="dlevryTxt fLeft"><span class="spnPlft">र 84200-quantity: 1</span></div>
-                   </div>
-                    <div class="contAdd fRight">
-                         <div class="dlevryTxt fLeft fmSansB">Delivery Option:</div>
-                         <div class="gnrlWrp fLeft mtop10">
-                         <div class="checkDiv fLeft fmSansR">
-                               <input type="checkbox" name="select" id="date" class="filled-in" value="1">
-                              <label for="date">Between 9-12 Jan- Free delivery on eligible orders</label>
-                         </div>
-                         <div class="checkDiv fLeft fmSansR">
-                                 <input type="checkbox" name="select" id="time" class="filled-in" value="2">
-                                <label for="time">Saturday - two-day delivery at Rs.50</label>
+    <?php include 'Cart.html'?>
+    <?php include 'header.html'?>
+    <div class="wrapper_main fLeft CHECKOUT_PAGE">
+        <div class="wrapper">
+            <div class="progress"><div class="progress_bar"></div></div>
+            <div class="wrapper_max " >
+                <div class="co_tabholder fmSansB ">
+                    <div class="co_tab">CHECKOUT</div>
+                    <div class="co_tab">DELIVERY ADDRESS</div>
+                    <div class="co_tab">DELIVERY OPTIONS</div>
+                    <div class="co_tab">CONFIRM ORDER</div>
+                    <div class="co_tab">PAYMENT</div>
+                </div>
+                <div class="co_main">
+                    <div class="co_buffer">
+                        <div class="co_panel">
+                            <!--         <div class="co_header fmSansL">PLaceholder Header</div>
+                                         <div class="inp_cont fmSansR">
+                                           <input type="text" class="inp_box "/>
+                                           <div class="inp_label fmSansB">Name</div>
+                                         </div>-->
+                            <div class="checkOutDiv fLeft">
+                                <div class="product fLeft fmSansR font20">Products</div>
+                                <div class="productImg fLeft"></div>
                             </div>
-                         <div class="checkDiv fLeft fmSansR">
-                                 <input type="checkbox" name="select" id="price" class="filled-in" value="3">
-                                <label for="price">Same day at Rs.120</label>
-                             </div>
-                         </div>
+                            <div class="fRight orderSmry">
+                                <div class="product fmSansR font20">Order Summary</div>
+                                <div class="orderCard">
+                                    <div class="fLeft">Total Items</div>
+                                    <div class="fRight">20</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="co_panel  tab3">
+                            <div class="co_header fmSansL fLeft">Delivery Details</div>
+                            <div class="breakLine fLeft"></div>
+                            <div class="contAdd fLeft">
+                                <div class="inp_cont fmSansR fLeft">
+                                    <input type="text" class="inp_box "/>
+                                    <div class="inp_label fmSansB">Name*</div>
+                                </div>
+                                <div class="inp_cont fmSansR fLeft">
+                                    <input type="text" class="inp_box "/>
+                                    <div class="inp_label fmSansB">Mobile*</div>
+                                </div>
+                                <div class="inp_cont fmSansR fLeft">
+                                    <input type="text" class="inp_box "/>
+                                    <div class="inp_label fmSansB">Email*</div>
+                                </div>
+                            </div>
+                            <div class="contAdd fRight">
+                                <div class="inp_cont fmSansR fLeft">
+                                    <input type="text" class="inp_box "/>
+                                    <div class="inp_label fmSansB">Street*</div>
+                                </div>
+                                <div class="inp_cont fmSansR fLeft">
+                                    <input type="text" class="inp_box "/>
+                                    <div class="inp_label fmSansB">Zip code*</div>
+                                </div>
+                                <div class="inp_cont fmSansR fLeft">
+                                    <input type="text" class="inp_box "/>
+                                    <div class="inp_label fmSansB">State*</div>
+                                </div>
+                                <div class="inp_cont fmSansR fLeft">
+                                    <input type="text" class="inp_box "/>
+                                    <div class="inp_label fmSansB">City*</div>
+                                </div>
+
+                            </div>
+                            <div class="col100 fLeft">
+
+                                <center>
+                                    <div class="col25 fLeft fmOsR padR15">
+                                        <div class="button button2 btnc1 transition300 fLeft">CANCEL</div>
+                                    </div>
+                                    <div class="col25 fLeft fmOsR padXr5">
+                                        <div class="button button2 btnc1 transition300 fLeft" id="submit">SUBMIT</div>
+                                    </div>
+                                </center>
+                            </div>
+                        </div>
+                        <div class="co_panel  tab4">
+                            <div class="co_header fmSansL fLeft">Delivery Option</div>
+                            <div class="breakLine fLeft"></div>
+                            <div class="contAdd fLeft">
+                                <div class="dlevryTxt fLeft fmSansB">Deliver to:
+                                    <div class="fRight"></div>
+                                </div>
+                                <div class="dlevryTxt fLeft fmSansR">Ganesh Belly,5th A cross road,Koromangla 6th Block,</div>
+                                <div class="dlevryTxt fLeft fmSansR">Bengaluru-560095,Karnataka,India</div>
+                                <div class="dlevryTxt fLeft fmSansR"><span class="spnPlft">Joker & Witch Elegant Charmer For Women</span></div>
+                                <div class="dlevryTxt fLeft fmSansR"><span class="spnPlft">र 84200-quantity: 1</span></div>
+                            </div>
+                            <div class="contAdd fRight">
+                                <div class="dlevryTxt fLeft fmSansB">Delivery Option:</div>
+                                <div class="gnrlWrp fLeft mtop10">
+                                    <div class="checkDiv fLeft fmSansR">
+                                        <input type="checkbox" name="select" id="date" class="filled-in dn" value="1">
+                                        <label for="date">Between 9-12 Jan- Free delivery on eligible orders</label>
+                                    </div>
+                                    <div class="checkDiv fLeft fmSansR">
+                                        <input type="checkbox" name="select" id="time" class="filled-in dn" value="2">
+                                        <label for="time">Saturday - two-day delivery at Rs.50</label>
+                                    </div>
+                                    <div class="checkDiv fLeft fmSansR">
+                                        <input type="checkbox" name="select" id="price" class="filled-in dn" value="3">
+                                        <label for="price">Same day at Rs.120</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="co_panel  tab5">
+                            <div class="co_header fmSansL fLeft">Confirm Order</div>
+                            <div class="breakLine fLeft"></div>
+                            <div class="gnrlWrp fLeft">
+                                <div class="cHbar fLeft fmSansB">
+                                    <div class="cTab fLeft">Product Name</div>
+                                    <div class="cTab fLeft">Price</div>
+                                    <div class="cTab fLeft">Quantity</div>
+                                    <div class="cTab fLeft">Sum</div>
+                                </div>
+                                <div class="gnrlWrp fLeft mTop30">
+                                    <div class="vwPcnt fLeft">
+                                        <div class="pHolder"></div>
+                                        <div class="gnrlWrp fLeft pTop10 fmSansR">
+                                            <div class="vwTxtcnt fLeft fmSansR">joker and witch elegant charmer for women</div>
+                                            <div class="vwTxtcnt fLeft pLeft35">र 84,200</div>
+                                            <div class="vwTxtcnt fLeft pLeft10">
+                                                <div class="amt_selector fLeft">
+                                                    <div class="cart_btn fLeft sub_no" id="drcmnt"></div>
+                                                    <div class="item_amt fLeft fmOsR">1</div>
+                                                    <div class="cart_btn fLeft add_no" id="incrmnt"></div>
+                                                </div>
+                                                <!--                                      <select class="slct">
+                                                                                      <option value="1">1</option>
+                                                                                       <option value="2">2</option>
+                                                                                        <option value="3">3</option>
+                                                                                         <option value="4">4</option>
+                                                                                         </select>-->
+                                            </div>
+                                            <div class="vwTxtcnt fLeft">र 84,200</div>
+                                        </div>
+                                    </div>
+                                    <div class="vwPcnt fLeft mTop30">
+                                        <div class="pHolder"></div>
+                                        <div class="gnrlWrp fLeft pTop10 fmSansR">
+                                            <div class="vwTxtcnt fLeft fmSansR">joker and witch elegant charmer for women</div>
+                                            <div class="vwTxtcnt fLeft pLeft35 fmSansR">र 84,200</div>
+                                            <div class="vwTxtcnt fLeft pLeft35 fmSansR">
+                                                1
+                                            </div>
+                                            <div class="vwTxtcnt fLeft">र 84,200</div>
+
+                                            <div class="gnrlWrp fLeft mBot10">
+                                                <div class="vwTxtcnt fRight">र 100</div>
+                                                <div class="vwTxtcnt fRight pLeft35">
+                                                    Delivery Charges
+                                                </div>
+                                            </div>
+                                            <div class="gnrlWrp fLeft mBot10">
+                                                <div class="vwTxtcnt fRight">र 2,000</div>
+                                                <div class="vwTxtcnt fRight pLeft35">
+                                                    Incl VAT
+                                                </div>
+                                            </div>
+                                            <div class="col50 fRight PTop5 pBtm5 bColor mTop10">
+                                                <div class="vwTxtcnt fLeft pLeft35">TOTAL</div>
+                                                <div class="vwTxtcnt fLeft">र 84,200</div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="co_panel active fmSansR">
+                            <div class="co_header fmSansL fLeft">Delivery Details</div>
+                            <div class="breakLine fLeft"></div>
+                            <div class="payment_main fLeft">
+                                <div class="pay_tabs fLeft fmSansB">
+                                    <div class="pay_tab fLeft">
+                                        Credit / Debit Card
+
+                                    </div>
+                                    <div class="pay_tab fLeft">
+                                        Netbanking
+                                    </div>
+                                    <div class="pay_tab fLeft">
+                                        Wallets
+                                    </div>
+                                    <div class="pay_tab fLeft">EMI</div>
+                                    <div class="actvBrde"></div>
+                                </div>
+                                <div class="w100 fLeft">
+                                    <div class="pay_panel fLeft " id="1st">
+                                        <div class="thtHdr fLeft">
+                                            <div class="txt fLeft fmSansB">Debit / Credit Card</div>
+                                            <div class="txt1 fLeft">Pay Securely With Your Cards</div>
+                                        </div>
+                                        <div class="col100 fLeft pTop15 pBtm15">
+                                            <div class="col100 fLeft">
+                                                <center>
+                                                    <div class="fillupWrp mBot15">
+                                                        <div class="col100 mBot15 fLeft">
+                                                            <div class="inp_cont fmSansR fLeft">
+                                                                <input type="text" class="inp_box "/>
+                                                                <div class="inp_label fmSansB">Enter Your 15/16 Digit Card Number *</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col100 fLeft mBot15">
+                                                            <div class="w70 fLeft">
+                                                                <div class="inp_cont fmSansR fLeft">
+                                                                    <input type="text" class="inp_box "/>
+                                                                    <div class="inp_label fmSansB">Valid Through(MM/YY)</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col20 fRight">
+                                                                <div class="inp_cont fmSansR fLeft">
+                                                                    <input type="text" class="inp_box "/>
+                                                                    <div class="inp_label fmSansB">CVV*</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col100 mBot15 fLeft">
+                                                            <div class="inp_cont fmSansR fLeft">
+                                                                <input type="text" class="inp_box "/>
+                                                                <div class="inp_label fmSansB">Name Of Card*</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="chkCnt">
+                                                        <div class="col100 fLeft">
+                                                            <input type="checkbox" name="select" id="chk" class="filled-in" value="4">
+                                                            <label for="chk">Securely Save This Card For A Faster Checkout Next Time</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="payBtn">PAY NOW (र 84,200)</div>
+                                                </center>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pay_panel fLeft dn" id="2nd">
+                                        <div class="thtHdr fLeft">
+                                            <div class="txt fLeft fmSansB">Netbanking</div>
+                                            <div class="txt1 fLeft">Pay Directly From Your Bank</div>
+                                        </div>
+                                        <div class="col100 fLeft pTop15 pBtm15">
+                                            <div class="col100 fLeft">
+                                                <center>
+                                                    <div class="bnkImgCnt mBot10">
+                                                        <div class="col100 fLeft mBot15">
+                                                            <div class="bknLwrp fLeft">
+                                                                <input type="radio" name="selectM" id="axis" class="filled-in dn">
+                                                                <label for="axis" class="axisLogo"></label>
+                                                                <div class="check"></div>
+                                                            </div>
+                                                            <div class="bknLwrp fLeft">
+                                                                <input type="radio" name="selectM" id="hdfc" class="filled-in dn">
+                                                                <label for="hdfc" class="hdfcLogo"></label>
+                                                                <div class="check"></div>
+                                                            </div>
+                                                            <div class="bknLwrp fLeft">
+                                                                <input type="radio" name="selectM" id="kotak" class="filled-in dn">
+                                                                <label for="kotak" class="kotakLogo"></label>
+                                                                <div class="check"></div>
+
+                                                            </div>
+
+                                                            <div class="bknLwrp fLeft">
+                                                                <input type="radio" name="selectM" id="icici" class="filled-in dn">
+                                                                <label for="icici" class="iciciLogo"></label>
+                                                                <div class="check"></div>
+                                                            </div>
+
+                                                            <div class="bknLwrp fLeft">
+                                                                <input type="radio" name="selectM" id="sbi" class="filled-in dn">
+                                                                <label for="sbi" class="sbiLogo"></label>
+                                                                <div class="check"></div>
+                                                            </div>
+
+                                                            <div class="bknLwrp fLeft">
+                                                                <input type="radio" name="selectM" id="citi" class="filled-in dn">
+                                                                <label for="citi" class="citiLogo"></label>
+                                                                <div class="check"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col100 fLeft mBot15">
+                                                            <div class="col100 fLeft">
+                                                                <div class="slctHdng fLeft fmSansB">Other Banks</div>
+                                                                <select class="slct">
+                                                                    <option selected disabled>SELECT BANK</option>
+                                                                    <option value="1">State Bank Of India</option>
+                                                                    <option value="2">Uco Bank</option>
+                                                                    <option value="3">Panjab National Bank</option>
+                                                                    <option value="4">Maharashtra Bank</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="payBtn">PAY NOW (र 84,200)</div>
+                                                </center>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pay_panel fLeft dn" id="3rd">
+                                        <div class="thtHdr fLeft">
+                                            <div class="txt fLeft fmSansB">Wallets</div>
+
+                                        </div>
+                                        <div class="col100 fLeft pTop15 pBtm15">
+                                            <div class="col100 fLeft">
+                                                <center>
+                                                    <div class="bnkImgCnt mBot10 payTm">
+                                                        <div class="col100 fLeft">
+                                                            <div class="bknLwrp fLeft">
+                                                                <div class="bnkLcnt fLeft payTmIcn"></div>
+                                                                <div class="chkInwrp">
+                                                                    <div class="chkInCnt"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="payBtn">PAY NOW (र 84,200)</div>
+                                                </center>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pay_panel fLeft dn" id="4th">
+                                        <div class="thtHdr fLeft">
+                                            <div class="txt fLeft fmSansB">EMI</div>
+                                            <div class="txt1 fLeft">Pay On EMI From Your Bank</div>
+                                        </div>
+                                        <div class="col100 fLeft pTop15 pBtm15">
+                                            <div class="col100 fLeft">
+                                                <center>
+                                                    <div class="bnkImgCnt mBot10">
+                                                        <div class="col100 fLeft mBot15">
+                                                            <div class="col100 fLeft">
+                                                                <div class="slctHdng fLeft fmSansB">Select Banks</div>
+                                                                <select class="slct">
+                                                                    <option selected disabled>SELECT BANK</option>
+                                                                    <option value="1">State Bank Of India</option>
+                                                                    <option value="2">Uco Bank</option>
+                                                                    <option value="3">Panjab National Bank</option>
+                                                                    <option value="4">Maharashtra Bank</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="payBtn">PAY NOW (र 84,200)</div>
+                                                </center>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-              </div>
-              <div class="co_panel  tab5">
-                  <div class="co_header fmSansL fLeft">Confirm Order</div>
-                    <div class="breakLine fLeft"></div>
-                    <div class="gnrlWrp fLeft">
-                        <div class="cHbar fLeft fmSansB">
-                            <div class="cTab fLeft">Product Name</div>
-                            <div class="cTab fLeft">Price</div>
-                             <div class="cTab fLeft">Quantity</div>
-                              <div class="cTab fLeft">Sum</div>
-                        </div>
-                        <div class="gnrlWrp fLeft mTop30">
-                        <div class="vwPcnt fLeft">
-                            <div class="pHolder"></div>
-                            <div class="gnrlWrp fLeft pTop10">
-                                <div class="vwTxtcnt fLeft">joker and witch elegant charmer for women</div>
-                                 <div class="vwTxtcnt fLeft pLeft35">र 84,200</div>
-                                  <div class="vwTxtcnt fLeft pLeft10">
-
-                                      <div class="amt_selector fLeft">
-                                          <div class="cart_btn fLeft sub_no" id="drcmnt"></div>
-                                          <div class="item_amt fLeft fmOsR">1</div>
-                                          <div class="cart_btn fLeft add_no" id="incrmnt"></div>
-                                      </div>
-<!--                                      <select class="slct">
-                                      <option value="1">1</option>
-                                       <option value="2">2</option>
-                                        <option value="3">3</option>
-                                         <option value="4">4</option>
-                                         </select>-->
-                                  </div>
-                                   <div class="vwTxtcnt fLeft">र 84,200</div>
-                            </div>
-                        </div>
-                              <div class="vwPcnt fLeft mTop30">
-                            <div class="pHolder"></div>
-                            <div class="gnrlWrp fLeft pTop10">
-                                <div class="vwTxtcnt fLeft">joker and witch elegant charmer for women</div>
-                                 <div class="vwTxtcnt fLeft pLeft35">र 84,200</div>
-                                  <div class="vwTxtcnt fLeft pLeft35">
-                                      1
-                                  </div>
-                                   <div class="vwTxtcnt fLeft">र 84,200</div>
-
-                                       <div class="gnrlWrp fLeft mBot10">
-                                   <div class="vwTxtcnt fRight">र 100</div>
-                                   <div class="vwTxtcnt fRight pLeft35">
-                                      Delivery Charges
-                                  </div>
-                                       </div>
-                                     <div class="gnrlWrp fLeft mBot10">
-                                   <div class="vwTxtcnt fRight">र 2,000</div>
-                                   <div class="vwTxtcnt fRight pLeft35">
-                                    Incl VAT
-                                  </div>
-                                       </div>
-                                   <div class="col50 fRight PTop5 pBtm5 bColor mTop10">
-                                       <div class="vwTxtcnt fLeft pLeft35">TOTAL</div>
-                                       <div class="vwTxtcnt fLeft">र 84,200</div>
-                                   </div>
-
-                            </div>
-                        </div>
-
-                        </div>
-                    </div>
-              </div>
-              <div class="co_panel active fmSansR">
-                  <div class="co_header fmSansL fLeft">Delivery Details</div>
-                  <div class="breakLine fLeft"></div>
-                  <div class="payment_main fLeft">
-                      <div class="pay_tabs fLeft fmSansB">
-                          <div class="pay_tab fLeft">
-                              Credit / Debit Card
-
-                          </div>
-                          <div class="pay_tab fLeft">
-                              Netbanking
-                          </div>
-                          <div class="pay_tab fLeft">
-                              Wallets
-                          </div>
-                          <div class="pay_tab fLeft">EMI</div>
-                          <div class="actvBrde"></div>
-                      </div>
-                      <div class="w100 fLeft">
-                          <div class="pay_panel fLeft " id="1st">
-                              <div class="thtHdr fLeft">
-                                  <div class="txt fLeft fmSansB">Debit / Credit Card</div>
-                                  <div class="txt1 fLeft">Pay Securely With Your Cards</div>
-                              </div>
-                              <div class="col100 fLeft pTop15 pBtm15">
-                                  <div class="col100 fLeft">
-                                      <center>
-                                          <div class="fillupWrp mBot15">
-                                              <div class="col100 mBot15 fLeft">
-                                                  <div class="inp_cont fmSansR fLeft">
-                                                      <input type="text" class="inp_box "/>
-                                                      <div class="inp_label fmSansB">Enter Your 15/16 Digit Card Number *</div>
-                                                  </div>
-                                              </div>
-                                              <div class="col100 fLeft mBot15">
-                                                  <div class="w70 fLeft">
-                                                      <div class="inp_cont fmSansR fLeft">
-                                                      <input type="text" class="inp_box "/>
-                                                      <div class="inp_label fmSansB">Valid Through(MM/YY)</div>
-                                                  </div>
-                                                  </div>
-                                                  <div class="col20 fRight">
-                                                      <div class="inp_cont fmSansR fLeft">
-                                                      <input type="text" class="inp_box "/>
-                                                      <div class="inp_label fmSansB">CVV*</div>
-                                                  </div>
-                                                  </div>
-                                              </div>
-                                              <div class="col100 mBot15 fLeft">
-                                                  <div class="inp_cont fmSansR fLeft">
-                                                      <input type="text" class="inp_box "/>
-                                                      <div class="inp_label fmSansB">Name Of Card*</div>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                          <div class="chkCnt">
-                                              <div class="col100 fLeft">
-                                               <input type="checkbox" name="select" id="chk" class="filled-in" value="4">
-                                             <label for="chk">Securely Save This Card For A Faster Checkout Next Time</label>
-                                              </div>
-                                          </div>
-                                          <div class="payBtn">PAY NOW (र 84,200)</div>
-                                      </center>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="pay_panel fLeft dn" id="2nd">
-                              <div class="thtHdr fLeft">
-                                  <div class="txt fLeft fmSansB">Netbanking</div>
-                                  <div class="txt1 fLeft">Pay Directly From Your Bank</div>
-                              </div>
-                              <div class="col100 fLeft pTop15 pBtm15">
-                                  <div class="col100 fLeft">
-                                      <center>
-                                          <div class="bnkImgCnt mBot10">
-                                              <div class="col100 fLeft mBot15">
-                                              <div class="bknLwrp fLeft">
-                                                  <div class="bnkLcnt fLeft axisLogo"></div>
-                                                  <div class="chkInwrp">
-                                                      <div class="chkInCnt"></div>
-                                                  </div>
-                                              </div>
-                                              <div class="bknLwrp fLeft">
-                                                  <div class="bnkLcnt fLeft hdfcLogo"></div>
-                                                  <div class="chkInwrp">
-                                                      <div class="chkInCnt"></div>
-                                                  </div>
-                                              </div>
-                                              <div class="bknLwrp fLeft">
-                                                  <div class="bnkLcnt fLeft kotakLogo"></div>
-                                                  <div class="chkInwrp">
-                                                      <div class="chkInCnt"></div>
-                                                  </div>
-                                              </div>
-                                              <div class="bknLwrp fLeft">
-                                                  <div class="bnkLcnt fLeft iciciLogo"></div>
-                                                  <div class="chkInwrp">
-                                                      <div class="chkInCnt"></div>
-                                                  </div>
-                                              </div>
-                                              <div class="bknLwrp fLeft">
-                                                  <div class="bnkLcnt fLeft sbiLogo"></div>
-                                                  <div class="chkInwrp">
-                                                      <div class="chkInCnt"></div>
-                                                  </div>
-                                              </div>
-                                              <div class="bknLwrp fLeft">
-                                                  <div class="bnkLcnt fLeft citiLogo"></div>
-                                                  <div class="chkInwrp">
-                                                      <div class="chkInCnt"></div>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                              <div class="col100 fLeft mBot15">
-                                                  <div class="col100 fLeft">
-                                                      <div class="slctHdng fLeft fmSansB">Other Banks</div>
-                                                      <select class="slct">
-                                                          <option selected disabled>SELECT BANK</option>
-                                                          <option value="1">State Bank Of India</option>
-                                                          <option value="2">Uco Bank</option>
-                                                          <option value="3">Panjab National Bank</option>
-                                                          <option value="4">Maharashtra Bank</option>
-                                                      </select>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                          <div class="payBtn">PAY NOW (र 84,200)</div>
-                                      </center>
-                                  </div>
-                              </div>
-                          </div>
-                             <div class="pay_panel fLeft dn" id="3rd">
-                              <div class="thtHdr fLeft">
-                                  <div class="txt fLeft fmSansB">Wallets</div>
-
-                              </div>
-                              <div class="col100 fLeft pTop15 pBtm15">
-                                  <div class="col100 fLeft">
-                                      <center>
-                                          <div class="bnkImgCnt mBot10 payTm">
-                                              <div class="col100 fLeft">
-                                              <div class="bknLwrp fLeft">
-                                                  <div class="bnkLcnt fLeft payTmIcn"></div>
-                                                  <div class="chkInwrp">
-                                                      <div class="chkInCnt"></div>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                          </div>
-                                          <div class="payBtn">PAY NOW (र 84,200)</div>
-                                      </center>
-                                  </div>
-                              </div>
-                          </div>
-                            <div class="pay_panel fLeft dn" id="4th">
-                              <div class="thtHdr fLeft">
-                                  <div class="txt fLeft fmSansB">EMI</div>
-                                  <div class="txt1 fLeft">Pay On EMI From Your Bank</div>
-                              </div>
-                              <div class="col100 fLeft pTop15 pBtm15">
-                                  <div class="col100 fLeft">
-                                      <center>
-                                          <div class="bnkImgCnt mBot10">
-                                              <div class="col100 fLeft mBot15">
-                                                  <div class="col100 fLeft">
-                                                      <div class="slctHdng fLeft fmSansB">Select Banks</div>
-                                                      <select class="slct">
-                                                          <option selected disabled>SELECT BANK</option>
-                                                          <option value="1">State Bank Of India</option>
-                                                          <option value="2">Uco Bank</option>
-                                                          <option value="3">Panjab National Bank</option>
-                                                          <option value="4">Maharashtra Bank</option>
-                                                      </select>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                          <div class="payBtn">PAY NOW (र 84,200)</div>
-                                      </center>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-         </div>
-         </div>
-       </div>
-     </div>
-  </div>
-  <div class="page_loader">
-    <div class="cs-loader-inner ">
-      <label>●</label>
-      <label>●</label>
-      <label>●</label>
-      <label>●</label>
-      <label>●</label>
-      <label>●</label>
+                </div>
+            </div>
+        </div>
     </div>
+    <div class="page_loader">
+        <div class="cs-loader-inner ">
+            <label>●</label>
+            <label>●</label>
+            <label>●</label>
+            <label>●</label>
+            <label>●</label>
+            <label>●</label>
+        </div>
         <div class="loader_quote  fmSansL">The meek may inherit the earth but not its mineral rights</div>
-  </div>
-  <div class="page_loader2">
-    <div class="cs-loader-inner ">
-      <label>●</label>
-      <label>●</label>
-      <label>●</label>
-      <label>●</label>
-      <label>●</label>
-      <label>●</label>
     </div>
-    <div class="loader_quote  fmSansL">The meek may inherit the earth but not its mineral rights</div>
-  </div>
+    <div class="page_loader2">
+        <div class="cs-loader-inner ">
+            <label>●</label>
+            <label>●</label>
+            <label>●</label>
+            <label>●</label>
+            <label>●</label>
+            <label>●</label>
+        </div>
+        <div class="loader_quote  fmSansL">The meek may inherit the earth but not its mineral rights</div>
+    </div>
     <script>
-    $(window).load(function(){
-      setTimeout(function(){
-load_page();
-      },2000);
+        $(window).load(function () {
+            setTimeout(function () {
+                load_page();
+            }, 2000);
 
-    });
-    $('.co_tab').click(function(){
-      var ip= $(this).index();
-      var k = ip * 20 +20;
-      console.log(ip);
-        $('.co_tab').removeClass('selecT');
-        $(this).addClass('selecT');
-          $('.co_panel').removeClass('active');
-          $('.co_panel').eq(ip).addClass('active');
-          $('.progress_bar').velocity({width:k + "%"}, {duration:300 , easing:'swing'})
-
-
-
-    });
-
-    function load_page(){
-
-      $('body').addClass('over_hide');
-     $('.page_loader2').velocity({translateY:['100%',0]} , {duration:600 , easing:'easeInQuart',display:'none' , complete:function(){ $('body').removeClass('over_hide')}  });
+        });
+        $('.co_tab').click(function () {
+            var ip = $(this).index();
+            var k = ip * 20 + 20;
+            console.log(ip);
+            $('.co_tab').removeClass('selecT');
+            $(this).addClass('selecT');
+            $('.co_panel').removeClass('active');
+            $('.co_panel').eq(ip).addClass('active');
+            $('.progress_bar').velocity({width: k + "%"}, {duration: 300, easing: 'swing'})
 
 
-    }
-$('.inp_box').focus(function(){
-  $(this).closest('.inp_cont').addClass('focul');
-});
-$('.inp_box').blur(function(){
-  var k= $(this).val();
-  if(k==""){
-  $(this).closest('.inp_cont').removeClass('focul');
-}
 
-});
-
-$(document).ready(function(){
-
-    var a=1;
-    $("#incrmnt").click(function(){
-        a++;
-       $(".item_amt").text(a);
-       console.log(a);
-        $("#drcmnt").removeClass("pNone");
-    });
-
-    $("#drcmnt").click(function(){
-        a--;
-       $(".item_amt").text(a);
-       console.log(a);
-       if(a==1){
-          $("#drcmnt").addClass("pNone");
-        }
         });
 
-         $('.pay_tab').click(function(){
-            var idx=$(this).index();
-            console.log(idx);
-            var lt=(idx)*25 + 2.5  ;
-            $('.pay_panel').addClass('dn');
-            $('.pay_panel').eq(idx).removeClass('dn');
-            $('.actvBrde').velocity({left:[lt +'%']} , {duration:300 , easing:'swing'});
-          });
+        function load_page() {
+
+            $('body').addClass('over_hide');
+            $('.page_loader2').velocity({translateY: ['100%', 0]}, {duration: 600, easing: 'easeInQuart', display: 'none', complete: function () {
+                    $('body').removeClass('over_hide')
+                }});
+
+
+        }
+        $('.inp_box').focus(function () {
+            $(this).closest('.inp_cont').addClass('focul');
+        });
+        $('.inp_box').blur(function () {
+            var k = $(this).val();
+            if (k == "") {
+                $(this).closest('.inp_cont').removeClass('focul');
+            }
+
+        });
+
+        $(document).ready(function () {
+
+            var a = 1;
+            $("#incrmnt").click(function () {
+                a++;
+                $(".item_amt").text(a);
+                console.log(a);
+                $("#drcmnt").removeClass("pNone");
+            });
+
+            $("#drcmnt").click(function () {
+                a--;
+                $(".item_amt").text(a);
+                console.log(a);
+                if (a == 1) {
+                    $("#drcmnt").addClass("pNone");
+                }
+            });
+
+            $('.pay_tab').click(function () {
+                var idx = $(this).index();
+                console.log(idx);
+                var lt = (idx) * 25 + 2.5;
+                $('.pay_panel').addClass('dn');
+                $('.pay_panel').eq(idx).removeClass('dn');
+                $('.actvBrde').velocity({left: [lt + '%']}, {duration: 300, easing: 'swing'});
+            });
 
 //    $(".bknLwrp").on("click",function(){
 //        $(this).children('.chkInwrp').children('.chkInCnt').toggleClass('fillup');
 //
 //    });
-      $(".bknLwrp").on("click",function(){
-         $(".bknLwrp").each(function() {
-        $(this).children('.chkInwrp').children('.chkInCnt').removeClass('fillup');
-  });
-       $(this).children('.chkInwrp').children('.chkInCnt').addClass('fillup');
-      });
-});
+            $(".bknLwrp").on("click", function () {
+                $(".bknLwrp").each(function () {
+                    $(this).children('.chkInwrp').children('.chkInCnt').removeClass('fillup');
+                });
+                $(this).children('.chkInwrp').children('.chkInCnt').addClass('fillup');
+            });
+        });
 
 
- // function changeiTab(id) {
- //            switch (id) {
- //                case '1st':
- //                   $('#2nd,#3rd,#4th').addClass('dn');
- //                    $('#1st').removeClass('dn');
- //                    break;
- //                case '2nd':
- //                    $('#1st,#3rd,#4th').addClass('dn');
- //                    $('#2nd').removeClass('dn');
- //                    break;
- //                case '3rd':
- //                    $('#1st,#2nd,#4th').addClass('dn');
- //                    $('#3rd').removeClass('dn');
- //                    break;
- //                case '4th':
- //                    $('#1st,#2nd,#3rd').addClass('dn');
- //                    $('#4th').removeClass('dn');
- //                    break;
- //            }
- //
- //        }
+        // function changeiTab(id) {
+        //            switch (id) {
+        //                case '1st':
+        //                   $('#2nd,#3rd,#4th').addClass('dn');
+        //                    $('#1st').removeClass('dn');
+        //                    break;
+        //                case '2nd':
+        //                    $('#1st,#3rd,#4th').addClass('dn');
+        //                    $('#2nd').removeClass('dn');
+        //                    break;
+        //                case '3rd':
+        //                    $('#1st,#2nd,#4th').addClass('dn');
+        //                    $('#3rd').removeClass('dn');
+        //                    break;
+        //                case '4th':
+        //                    $('#1st,#2nd,#3rd').addClass('dn');
+        //                    $('#4th').removeClass('dn');
+        //                    break;
+        //            }
+        //
+        //        }
 
 
     </script>
-  </body>
+</body>
