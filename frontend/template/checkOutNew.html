@@ -1,0 +1,274 @@
+<?php include 'jhead.html' ?>
+<body class="greyBg"  >
+    <?php include 'Cart.html' ?>
+    <?php include 'header.html' ?>
+    <div class="wrapper_main fLeft CHECKOUT_PAGE">
+
+        <div class="maxContr" >
+            <div class="ckMainCont">
+                <div class="addDiv borderN">
+                    <div class="fmSansB txtTitle tUline">Shipping Details</div>
+                    <div class="newAddDiv" id="txtAdd">
+                        <div class="txtOutCont fLeft">
+                            <div class="txtB fmSansR fLeft">
+                                <input type="text" class="inp_box " maxlength="30">
+                                <div class="inp_label fmSansB">Name*</div>
+                            </div>
+                        </div>
+                        <div class="txtOutCont fLeft">
+                            <div class="txtB fmSansR fLeft">
+                                <input type="tel" class="inp_box " maxlength="10">
+                                <div class="inp_label fmSansB">Mobile*</div>
+                            </div>
+                        </div>
+                        <div class="txtOutCont fLeft">
+                            <div class="txtB fmSansR fLeft">
+                                <input type="text" class="inp_box " maxlength="30">
+                                <div class="inp_label fmSansB">Email*</div>
+                            </div>
+                        </div>
+                        <div class="txtOutCont fLeft">
+                            <div class="txtB fmSansR fLeft">
+                                <input type="text" class="inp_box " maxlength="15">
+                                <div class="inp_label fmSansB">City*</div>
+                            </div>
+                        </div>
+                        <div class="txtOutcont1 fLeft">
+                            <div class="txtB fmSansR fLeft">
+                                <input type="text" class="inp_box">
+                                <div class="inp_label fmSansB" >Address*</div>
+                            </div>
+                        </div>
+                        <div class="txtOutCont fLeft">
+                            <div class="txtB fmSansR fLeft">
+                                <input type="text" class="inp_box " maxlength="20">
+                                <div class="inp_label fmSansB">State*</div>
+                            </div>
+                        </div>
+
+                        <div class="txtOutCont fLeft">
+                            <div class="txtB fmSansR fLeft">
+                                <input type="text" class="inp_box">
+                                <div class="inp_label fmSansB">Pin code*</div>
+                            </div>
+                        </div>
+                        <div class="buttonPos">
+                            <center>
+                                <div class="btnContainr  fmOsR padXr5" >
+                                    <div class="button button2 btnc1 transition300 fLeft">BACK</div>
+                                </div>
+                                <div class="btnContainr  fmOsR padXl5" id="nxt">
+                                    <div class="button button2 btnc1 transition300 fLeft">NEXT</div>
+                                </div>
+                            </center>
+                        </div>
+
+                    </div>
+                    <div class="newAddDiv dn" id="addOpt">
+                        <div class="contAdd fLeft fmSansR">
+                            <div class="dlHead fLeft fmSansR ">Deliver to:</div>
+                            <div class="dlevryTxt fLeft fmSansB">Ganesh Belle</div>
+                            <div class="dlevryTxt fLeft">#32 17th B Main ,5th Cross Bannerughatta Hulimangala Road, Bengaluru, Karnataka 560105, India</div>
+                        </div>
+                        <div class="breakLine fLeft"></div>
+                        <div class="contAdd fRight">
+                            <div class="dlHead fLeft fmSansR ">Delivery Option:</div>
+                            <div class="gnrlWrp fLeft mtop10">
+                                <div class="checkDiv fLeft fmSansR">
+                                    <input type="checkbox" name="select" id="date" class="filled-in" value="1">
+                                    <label for="date">Between 9-12 Jan- Free delivery on eligible orders</label>
+                                </div>
+                                <div class="checkDiv fLeft fmSansR">
+                                    <input type="checkbox" name="select" id="time" class="filled-in" value="2">
+                                    <label for="time">Saturday - two-day delivery at Rs.50</label>
+                                </div>
+                                <div class="checkDiv fLeft fmSansR">
+                                    <input type="checkbox" name="select" id="price" class="filled-in" value="3">
+                                    <label for="price">Same day at Rs.120</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="buttonPos">
+                            <center>
+                                <div class="btnContainr  fmOsR padXr5" id="bck">
+                                    <div class="button button2 btnc1 transition300 fLeft">BACK</div>
+                                </div>
+                                <div class="btnContainr  fmOsR padXl5" >
+                                    <div class="button button2 btnc1 transition300 fLeft">PAYMENT</div>
+                                </div>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+                <div class="addDiv1   ">
+                    <div class="fmSansB txtTitle tUline">Your Orders</div>
+                    <div class="prfinalCont fLeft">
+                        <div class="prdFinalCont">
+                            <div class="ckPrCont fLeft">
+                                <div class="ckPrImg fLeft"></div>
+                                <div class="incCont fLeft">
+                                    <div class="cCont fLeft ">
+                                        <div class="cart_btn fLeft sub_no" id="drcmnt"></div>
+                                        <div class="item_amt fLeft fmSansR">1</div>
+                                        <div class="cart_btn fLeft add_no" id="incrmnt"></div>
+                                    </div>
+                                </div>
+                                <div class="namCont fLeft fmSansR">
+                                    <div class="ckPrNam fmSansR">Diamants LÉ Gers</div>
+                                    <div class="col100 colorLg font11 fmSansR">White gold 18 Carats, Diamond 22 Carats</div>
+                                    <div class="rsContr fLeft">
+                                        <div class="col50 fLeft">
+                                            <div class="prTxt1 fmSansR fLeft ">₹ 26,000</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clBtn transition200 fmSansB noselect">REMOVE</div>
+                            </div>
+                            <div class="ckPrCont fLeft">
+                                <div class="ckPrImg fLeft"></div>
+                                <div class="incCont fLeft">
+                                    <div class="cCont fLeft ">
+                                        <div class="cart_btn fLeft sub_no" id="drcmnt"></div>
+                                        <div class="item_amt fLeft fmSansR">1</div>
+                                        <div class="cart_btn fLeft add_no" id="incrmnt"></div>
+                                    </div>
+                                </div>
+                                <div class="namCont fLeft fmSansR">
+                                    <div class="ckPrNam fmSansR">Diamants LÉ Gers</div>
+                                    <div class="col100 colorLg font11 fmSansR">White gold 18 Carats, Diamond 22 Carats</div>
+                                    <div class="rsContr fLeft">
+                                        <div class="col50 fLeft">
+                                            <div class="prTxt1 fmSansR fLeft ">₹ 26,000</div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="clBtn transition200 fmSansB noselect">REMOVE</div>
+                            </div>
+                            <div class="ckPrCont fLeft">
+                                <div class="ckPrImg fLeft"></div>
+                                <div class="incCont fLeft">
+                                    <div class="cCont fLeft ">
+                                        <div class="cart_btn fLeft sub_no" id="drcmnt"></div>
+                                        <div class="item_amt fLeft fmSansR">1</div>
+                                        <div class="cart_btn fLeft add_no" id="incrmnt"></div>
+                                    </div>
+                                </div>
+                                <div class="namCont fLeft fmSansR">
+                                    <div class="ckPrNam fmSansR">Diamants LÉ Gers</div>
+                                    <div class="col100 colorLg font11 fmSansR ">White gold 18 Carats, Diamond 22 Carats</div>
+                                    <div class="rsContr fLeft">
+                                        <div class="col50 fLeft">
+                                            <div class="prTxt1 fmSansR fLeft">₹ 26,000</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clBtn transition200 fmSansB noselect">REMOVE</div>
+                            </div>
+                            <div class="ckPrCont fLeft">
+                                <div class="ckPrImg fLeft"></div>
+                                <div class="incCont fLeft">
+                                    <div class="cCont fLeft ">
+                                        <div class="cart_btn fLeft sub_no" id="drcmnt"></div>
+                                        <div class="item_amt fLeft fmSansR">1</div>
+                                        <div class="cart_btn fLeft add_no" id="incrmnt"></div>
+                                    </div>
+                                </div>
+                                <div class="namCont fLeft fmSansR">
+                                    <div class="ckPrNam fmSansR">Diamants LÉ Gers</div>
+                                    <div class="col100 colorLg font11 fmSansR ">White gold 18 Carats, Diamond 22 Carats</div>
+                                    <div class="rsContr fLeft">
+                                        <div class="col50 fLeft">
+                                            <div class="prTxt1 fmSansR fLeft ">₹ 26,000</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clBtn transition200 fmSansB noselect">REMOVE</div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="productContr">
+                            <div class="fmSansB font14 subTCont">
+                                <span class="fLeft fmSansR font12">SUBTOTAL</span>
+                                <span class="fRight">&#8377 52,000</span>
+                            </div>
+                            <div class="fmSansB font14 subTCont brdBottom">
+                                <span class="fLeft fmSansR font12">SHIPPING</span>
+                                <span class="fRight">&#8377 100</span>
+                            </div>
+                            <div class="fmSansB  subTCont">
+                                <span class="fLeft fmSansR font16">TOTAL</span>
+                                <span class="fRight font20">&#8377 52,100</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="page_loader">
+        <div class="cs-loader-inner ">
+            <label>●</label>
+            <label>●</label>
+            <label>●</label>
+            <label>●</label>
+            <label>●</label>
+            <label>●</label>
+        </div>
+        <div class="loader_quote  fmSansL">The meek may inherit the earth but not its mineral rights</div>
+    </div>
+    <div class="page_loader2">
+        <div class="cs-loader-inner ">
+            <label>●</label>
+            <label>●</label>
+            <label>●</label>
+            <label>●</label>
+            <label>●</label>
+            <label>●</label>
+        </div>
+        <div class="loader_quote  fmSansL">The meek may inherit the earth but not its mineral rights</div>
+    </div>
+
+    <script type="text/javascript">
+        $(window).load(function () {
+            setTimeout(function () {
+                load_page();
+            }, 2000);
+        });
+        function load_page() {
+            $('body').addClass('over_hide');
+            $('.page_loader2').velocity({translateY: ['100%', 0]}, {duration: 600, easing: 'easeInQuart', display: 'none', complete: function () {
+                    $('body').removeClass('over_hide');
+                }});
+        }
+
+        $('#nxt').click(function () {
+            $('#addOpt').removeClass("dn");
+            $('#txtAdd').addClass("dn");
+        });
+        $('#bck').click(function () {
+            $('#txtAdd').removeClass("dn");
+            $('#addOpt').addClass("dn");
+        });
+
+
+        $('.inp_box').focus(function () {
+            $(this).closest('.txtB').addClass('focul');
+        });
+        $('.inp_box').blur(function () {
+            var k = $(this).val();
+            if (k == "") {
+                $(this).closest('.txtB').removeClass('focul');
+            }
+
+        });
+
+
+
+
+    </script>
+</body>
