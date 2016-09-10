@@ -42,7 +42,7 @@ switch ($action) {
         break;
     case 'signUp':
         $page = 'signUp';
-        include TEMPLATE . 'signUp.html';
+        include TEMPLATE . 'signup.html';
         break;
 
     case 'orders':
