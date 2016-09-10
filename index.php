@@ -32,6 +32,18 @@ switch ($action) {
         $page = 'gem_desc2';
         include TEMPLATE . 'gem_desc2.html';
         break;
+    case 'gemstonePage':
+        $page = 'gemstonePage';
+        include TEMPLATE . 'gemstonePage.html';
+        break;
+    case 'login':
+        $page = 'login';
+        include TEMPLATE . 'login.html';
+        break;
+    case 'signUp':
+        $page = 'signUp';
+        include TEMPLATE . 'signUp.html';
+        break;
 
     case 'orders':
         $page = 'orders';
@@ -94,12 +106,24 @@ switch ($action) {
         include TEMPLATE . 'input_and_form.html';
         break;
     
-
-    
-    
     case 'checkOutNew':
         $page = 'checkOutNew';
         include TEMPLATE . 'checkOutNew.html';
+        break;
+    
+    case 'userProfile':
+        $page = 'userProfile';
+        include TEMPLATE . 'userProfile.html';
+        break;
+    
+    case 'collections':
+        $page = 'collections';
+        include TEMPLATE . 'collections.html';
+        break;
+   
+    case 'filterPage':
+        $page = 'filterPage';
+        include TEMPLATE . 'filterPage.html';
         break;
     
 }
