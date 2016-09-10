@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<?php include 'jhead.html' ?>
+<body class="loginBanr">
+    <div class="wrapper_max">
+        <div class="lgnHead">
+            <div class="lgnLogo fLeft"></div>
+            <div class="signUp fmSansR font12 fRight">Don't have an account? &nbsp; <span class="u_line lettSpace fmSansB signUpIcon">Sign Up</span></div>
+        </div>
+        <div class="outerContr">
+            <div class="fmSansB txtTitle tUline">Login</div>
+            <div class="loginCont fLeft">
+                <div class="txtB fmSansR fLeft">
+                    <input type="text" class="inp_box " maxlength="30">
+                    <div class="inp_label fmSansB">Email-Id*</div>
+                </div>
+                <div class="txtB fmSansR fLeft">
+                    <input type="password" class="inp_box " maxlength="30">
+                    <div class="inp_label fmSansB">Password*</div>
+                </div>
+                <div class="filterSec fLeft">
+                    <center>
+                        <div class="btnContainr  fmOsR " id="nxt">
+                            <div class="button button2 btnc1 transition300 fLeft">LOGIN</div>
+                        </div>
+                    </center>
+                </div>
+                <div class="subTxt fLeft fmSansB font12"><span class="u_line lettSpace">FORGOT PASSWORD?</span></div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $('.inp_box').focus(function () {
+            $(this).closest('.txtB').addClass('focul');
+        });
+        $('.inp_box').blur(function () {
+            var k = $(this).val();
+            if (k == "") {
+                $(this).closest('.txtB').removeClass('focul');
+            }
+
+        });
+
+        $('.txtTitle,.loginCont,.lgnHead').velocity({opacity: [0]}, {duration: 0, easing: 'ease-in-out'});
+        $(document).ready(function () {
+            $('.txtTitle,.loginCont').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 800, delay: 600, easing: 'ease-in-out'});
+            $('.lgnHead').velocity({opacity: [1, 0], translateY: [20, 0]}, {duration: 800, delay: 600, easing: 'ease-in-out'});
+        });
+    </script>
+</body>
+</html>
