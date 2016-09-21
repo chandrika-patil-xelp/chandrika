@@ -54,12 +54,12 @@ function generatelist(obj) {
     } 
     else
     {
-       images[0] ='uploads/noimg2.jpg';
+       images[0] ='uploads/noimg2.svg';
     }
     
    if(images.length==0)
    {
-       var images = "uploads/noimg2.jpg";
+       var images = "uploads/noimg2.svg";
     }
 
     var gems = obj['hasGem'];
@@ -150,8 +150,11 @@ function generatelist(obj) {
     proStr += '<div class="facet_front">';
     proStr += '<div class="grid_item">';
     proStr += '<div class="grid_img"  onmousemove="bindrota(this , event)" lcor="0">';
-    proStr += '<div style="background:url(\'' + IMGDOMAIN + images[0] + '\')no-repeat ; background-size: contain ; background-position: center"  class=""></div>';
-   
+    
+    if( images[0] == "uploads/noimg2.svg")
+        proStr += '<div style="background:url(\'' + IMGDOMAIN + images[0] + '\')no-repeat ; background-size: auto 50% ; background-position: center"  class=""></div>';
+    else
+        proStr += '<div style="background:url(\'' + IMGDOMAIN + images[0] + '\')no-repeat ; background-size: contain ; background-position: center"  class=""></div>';
   
    /* if (images !== 'null' &&
     * 
