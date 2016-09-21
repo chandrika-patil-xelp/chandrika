@@ -8,31 +8,38 @@
         }
         
         
-        public function addUser()
+        public function addUser($params)
         {
+         
             global $comm;
-            #$params= (json_decode($params[0],1));
+           // $params= (json_decode($params[0],1));
+           
             #$params=array('userid'=>'9320160321210137','name'=>'Shubham Gupta','pass'=>'123456','mobile'=>'8767194606','email'=>'shubham@xelpmoc.in','city'=>'Mumbai');
-            $params=array('name'=>'Ankur Gala','pass'=>'123456','mobile'=>'1234567899','email'=>'ankurgala@xelpmoc.in','city'=>'Mumbai','address'=>'#657, 5th A Cross, 17th E Main Road,Koramangala 6th Block,Bangalore – 560095','gender'=>1);
-            
+            //$params=array('name'=>'Ankur Gala','pass'=>'123456','mobile'=>'1234567899','email'=>'ankurgala@xelpmoc.in','city'=>'Mumbai','address'=>'#657, 5th A Cross, 17th E Main Road,Koramangala 6th Block,Bangalore – 560095','gender'=>1);
+          //$params=array('name'=>'','pass'=>'','mobile'=>'','email'=>'','city'=>'','address'=>'','gender'=>1);
             
         //echo "<pre>";print_r($params); echo "<pre>";print_r(json_encode($params));  die;
             
             
             $name = (!empty($params['name'])) ? trim($params['name']) : '';
-            $mobile = (!empty($params['mobile'])) ? trim($params['name']) : '';
+            $mobile = (!empty($params['mobile'])) ? trim($params['mobile']) : '';
             $pass = (!empty($params['pass'])) ? trim($params['pass']) : '';
+            $cpass = (!empty($params['cpass'])) ? trim($params['cpass']) : '';
             $email = (!empty($params['email'])) ? trim($params['email']) : '';
             
             
-            if((empty($name)) || (empty($mobile)) || (empty($pass)) || (empty($email)))
+            if((empty($name)) || (empty($mobile)) || (empty($email)) || (empty($pass)) ||  (empty($cpass)))
             {
                 $resp = array();
                 $error = array('errCode' => 1, 'errMsg' => 'Parameter Missing');
                 $result = array('results' => $resp, 'error' => $error);
                 return $result;
             }
-            
+             if($cpass != $pass){
+                $error = array('err_code'=>1, 'err_msg'=>'password and confirm password doesnt match');
+                $result = array('result'=>$resp, 'error'=>$error);
+                return $result;
+            }
             
             if(!$params['userid'])
             {
@@ -78,10 +85,75 @@
             
         }
         
+         public function login($params){
+             
+            $email = (!empty($params['email'])) ? trim($params['email']) : '';
+            $mobile = (!empty($params['mobile'])) ? trim($params['mobile']) : '';
+            $pass = (!empty($params['pass'])) ? trim($params['pass']) : '';
+            
+            //$resp = array();
+            if((empty($email) && empty($mobile)) || empty($pass)){
+                
+                $error = array('err_code'=>1, 'err_msg'=>'parameters are missing');
+                $result = array('result'=>$resp, 'error'=>$error);
+                return $result;
+            }
+            
+            
+           
+            $sql = "SELECT 
+                    user_name,
+                    user_id,
+                    email,
+                    logmobile,
+                    password
+                  FROM
+                    tbl_user_master 
+                  WHERE  email = '".$email."'or logmobile='".$mobile."'
+                    ";
+            
+            $res = $this->query($sql);
+            $num = $this->numRows($res);
+           
+          
+            if($num > 0){
+                
+                if($res){
+                    while ($row = $this->fetchData($res)){
+                        $arr['uid'] = $row['user_id'];
+                        $arr['name'] = $row['user_name'];
+                        $arr['mobile'] = $row['logmobile'];
+                        $arr['email'] = $row['email'];
+                        $arr['password'] = $row['password'];    
+                    }
+//            echo md5($params['pass'])."<br>";
+//            echo $arr['password'];
+                 if(md5($params['pass']) != $arr['password']){
+                $error = array('err_code'=>1, 'err_msg'=>'Password incorrect');
+                 $result = array('result'=>$resp, 'error'=>$error);
+                    return $result; 
+                }
+                    $resp[] = $arr;
+                }
+                
+                $error = array('err_code'=>0, 'err_msg'=>'signed in successfully');
+            }else{
+                 
+                $error = array('err_code'=>1, 'err_msg'=>'Email.id does not exist');
+                 $result = array('result'=>$resp, 'error'=>$error);
+                    return $result; 
+                 }
+            
+            $result = array('result'=>$resp, 'error'=>$error);
+            return $result;
+            
+        }
+        
         
         
         public function getUserDetailsById($params)
         {
+            
             if($params['userid'])
             {
                 $sql="SELECT user_name as name,logmobile as mb,gender as gn,email as em,city,address,is_active as aflag,is_vendor as vendor from tbl_user_master WHERE user_id='".$params['userid']."'";
@@ -385,7 +457,8 @@
             
             
         }
-            
+        
+       
             
     }
     

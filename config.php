@@ -21,7 +21,7 @@ else
 	define('BACKWEBROOT',$_SERVER['DOCUMENT_ROOT'].'/jzeva/backend/');
 	define('IMGDOMAIN','http://'.$_SERVER['HTTP_HOST'].'/jzeva/backend/image-upload/');
 
-	$db['jzeva'] = array('localhost','root','','db_jzeva_shubham');
+	$db['jzeva'] = array('localhost','root','','db_jzeva');
 
 }
 
@@ -107,8 +107,17 @@ $jvs = array();
             $fjvs['home']                   = DOMAIN.'frontend/tools/js/home.js?v='.VERSION;
             $fjvs['range_slider']                   = DOMAIN.'frontend/tools/js/ion.rangeSlider.js?v='.VERSION;
             $fjvs['hammer']                   = DOMAIN.'frontend/tools/js/hammer.js?v='.VERSION;
-						  $fjvs['malihu']                   = DOMAIN.'frontend/tools/js/jquery.mCustomScrollbar.concat.min.js?v='.VERSION;
+            $fjvs['malihu']                   = DOMAIN.'frontend/tools/js/jquery.mCustomScrollbar.concat.min.js?v='.VERSION;
              $fjvs['ripple']                   = DOMAIN.'frontend/tools/js/ripple.js?v='.VERSION;
+              $jvs['common']              = DOMAIN.'frontend/tools/js/Common.js?v='.VERSION;
+             
+              #CMS PAGES JS(Frontend)
+            $jvs['prodpage']                 = DOMAIN.'frontend/tools/js/cms/prodpage.js?v='.VERSION;
+            $jvs['proddetails']                 = DOMAIN.'frontend/tools/js/cms/product_details.js?v='.VERSION;
+            $jvs['prodGrid']                 = DOMAIN.'frontend/tools/js/cms/prodgrid.js?v='.VERSION;
+            $jvs['protry']                 = DOMAIN.'frontend/tools/js/cms/protry.js?v='.VERSION;
+            $jvs['login']                 = DOMAIN.'frontend/tools/js/cms/login.js?v='.VERSION;
+            $jvs['cart']                 = DOMAIN.'frontend/tools/js/cms/cart.js?v='.VERSION;
 
 include APICLUDE.'common/class.common.php';
 $comm = new Common();
