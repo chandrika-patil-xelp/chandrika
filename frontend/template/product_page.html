@@ -368,9 +368,7 @@
         var offL = 0;
         $('.rota').bind('mousemove', function (e) {
             var left = e.pageX - offset.left;
-            console.log("offK:" + offK);
-            console.log("offL:" + offL);
-            console.log("left:" + (left - offK + offL));
+           
             var o = wid / 30;
             var k = (left - offK + offL) / o;
             k = Math.floor(k);
@@ -566,7 +564,7 @@
         function movePrImg(flag) {
             var totalThumbs = $(".productCont").length;
             var liWidth = ($(".productCont").outerWidth());
-            console.log(liWidth);
+            
 
             if (!flag) {
                 if (moveCount < (totalThumbs - 1)) {
