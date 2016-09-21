@@ -33,7 +33,7 @@ define('TEMPLATE',WEBROOT.'frontend/template/');
 define('INCLUDES',WEBROOT.'include/');
 define('APICLUDE',WEBROOT.'apis/include/');
 
-define('VERSION',1.0);
+define('VERSION',1.01);
 
 
 
