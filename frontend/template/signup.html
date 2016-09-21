@@ -1,6 +1,15 @@
+
 <!DOCTYPE html>
 
 <?php include 'jhead.html' ?>
+<script>
+            var BWEBROOT='<?php echo BACKWEBROOT?>';
+            var DOMAIN ='<?php echo DOMAIN?>';
+            var APIDOMAIN ='<?php echo APIDOMAIN?>';
+            var IMGDOMAIN='<?php echo IMGDOMAIN ?>';
+            var page='<?php echo $page?>';
+            
+        </script>
 <body class="signUpBanner">
     <div class="wrapper_max">
         <div class="lgnHead">
@@ -11,29 +20,29 @@
             <div class="fmSansB txtTitle tUline">SIGN UP</div>
             <div class="loginCont fLeft">
                 <div class="txtB fmSansR fLeft">
-                    <input type="text" class="inp_box " maxlength="30">
+                    <input type="text" class="inp_box " maxlength="30" id="name">
                     <div class="inp_label fmSansB">Name*</div>
                 </div>
                 <div class="txtB fmSansR fLeft">
-                    <input type="text" class="inp_box " maxlength="30">
+                    <input type="text" class="inp_box " maxlength="30" id="email">
                     <div class="inp_label fmSansB">Email-Id*</div>
                 </div>
                  <div class="txtB fmSansR fLeft">
-                    <input type="text" class="inp_box " maxlength="30">
+                    <input type="text" class="inp_box " maxlength="30" id="mobile">
                     <div class="inp_label fmSansB">Mobile*</div>
                 </div>
                 <div class="txtB fmSansR fLeft">
-                    <input type="password" class="inp_box " maxlength="30">
+                    <input type="password" class="inp_box " maxlength="30" id="pass">
                     <div class="inp_label fmSansB">Password*</div>
                 </div>
                 <div class="txtB fmSansR fLeft">
-                    <input type="password" class="inp_box " maxlength="30">
+                    <input type="password" class="inp_box " maxlength="30" id="cpass">
                     <div class="inp_label fmSansB">Confirm Password*</div>
                 </div>
                 <div class="filterSec fLeft">
                     <center>
                         <div class="btnContainr  fmOsR " id="nxt">
-                            <div class="button button2 btnc1 transition300 fLeft">SIGN UP</div>
+                            <div class="button button2 btnc1 transition300 fLeft" id="reg">SIGN UP</div>
                         </div>
                     </center>
                 </div>
@@ -59,5 +68,7 @@
             $('.lgnHead').velocity({opacity: [1, 0], translateY: [20, 0]}, {duration: 800, delay: 600, easing: 'ease-in-out'});
         });
     </script>
+    <script type="text/javascript" src="<?php echo $jvs['login']; ?>"></script>
 </body>
 </html>
+
