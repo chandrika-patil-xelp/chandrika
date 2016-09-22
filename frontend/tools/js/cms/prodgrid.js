@@ -46,17 +46,19 @@ function generatelist(obj) {
    
     var proStr = "";
     var proStr1 = "";
-    //var noimg1 = '<div style="background:url(http://localhost:8012/jzeva/backend/image-upload/uploads/noimg1.jpg); background-size: contain ; background-position: center"  class=""></div>';
+  
     var images=[];
     if (obj['images'] !== null && obj['images'] !== undefined  && obj['images'] !== '' && obj['images'] !== 'undefined')
     {
         images = obj['images'].split(',');
+       
     } 
     else
     {
        images[0] ='uploads/noimg2.svg';
     }
     
+ 
    if(images.length==0)
    {
        var images = "uploads/noimg2.svg";
@@ -113,6 +115,7 @@ function generatelist(obj) {
         var Solitot = obj['totalSolitaire'];
 
         price = price + getSoliPrice(Solicarat, Soliprc);
+       
     }
     if (uncut == '1' && uncut !== 'null')
     {
@@ -120,6 +123,7 @@ function generatelist(obj) {
         var Uncutprc = obj['UncutPricepercarat'];
         var Uncuttot = obj['totalUncut'];
         price = price + getUncutPrice(Uncutcarat, Uncutprc);
+         
     }
     if (gems == '1' && gems !== 'null')
     {
@@ -292,14 +296,14 @@ function getSoliPrice(carat, price_per_carat) {
     return soliValue;
 }
 
-var uncPrice = 0;
+var uncPric = 0;
 function getUncutPrice(price, carat) {
 
     var uprice = parseFloat(price);
     var ucarat = parseFloat(carat);
     uncPric = uprice * ucarat;
 
-    uncutValue = uncPrice;
+    uncutValue = uncPric;
     return uncutValue;
 }
 
@@ -356,8 +360,7 @@ var count=0;
       var limit=12;
       var limitend = limit*page3;
      $('#gr_foot').addClass('transdown');
-   // var page3 = page2 + count++;
- 
+  
   
     var URL1 = APIDOMAIN + "index.php/?action=getProGrid&page="+page3+"&limit="+limit+"";
   var tot_len = 0;

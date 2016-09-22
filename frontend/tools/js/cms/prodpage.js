@@ -69,12 +69,13 @@ $(document).ready(function(){
                   var imgstr = "";
                    $(images['images']).each(function(i, v) {
                      
-             imgstr='<div class="imgHolder img1" style="background: url('+ v +')no-repeat;background-size:115%;background-position:center"></div>';
+             imgstr='<div class="imgHolder img1" style="background: url(\''+ v +'\')no-repeat;background-size:115%;background-position:center"></div>';
                    $('#img-view').prepend(imgstr);
                
                 });
-                
-              
+               
+             
+            
              $(basic).each(function(i, vl) {
                              var proname = vl.prdNm;
                             $('#vpro').text(vl.vPCode);

@@ -3186,15 +3186,15 @@ class product extends DB {
                 FROM
                         tbl_product_image_mapping
                 WHERE
-                        active_flag NOT IN(2) AND
-                        product_id = " . $params['pid'] . " ORDER BY image_sequence";
+                        active_flag !=2 AND
+                        product_id = " . $params['pid'] . " ORDER BY image_sequence DESC";
 
 
             $res = $this->query($sql);
             if ($res) {
                 while ($row = $this->fetchData($res)) {
                     #$image = DOMAIN . $row['product_image'];
-                    $image = IMGDOMAIN.$row['product_image'];
+                    $image = (IMGDOMAIN.$row['product_image']);
                     $images[] = $image;
                     $count++;
                 }
@@ -3802,7 +3802,8 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                             (SELECT GROUP_CONCAT(attributeid) FROM tbl_product_attributes_mapping WHERE productid = pid AND active_flag = 1 ) AS attrVals,
                             (SELECT GROUP_CONCAT(catid) FROM tbl_category_product_mapping WHERE productid = pid AND active_flag = 1 ) AS catpro,
                             (SELECT GROUP_CONCAT(attributeid) FROM tbl_product_attributes_mapping WHERE productid = pid AND active_flag = 1 ) AS attrpro,
-                            (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND active_flag != 2) AS images
+                            (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND active_flag !=2 ORDER BY
+                            image_sequence DESC) AS images
                            
                                
                         FROM 
@@ -3810,7 +3811,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                         WHERE  
                             active_flag != 2
                         ORDER BY
-                            createdon ASC  ";
+                            createdon ASC ";
           
             
         $page = ($params['page'] ? $params['page'] : 1);
@@ -3880,10 +3881,9 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                      $arr['purity'] = $row['purity'];
                      $arr['purprice'] = $row['purprice'];
                     $arr['allmetalcolor'] = $row['allmetalcolor'];
-                    $arr['images'] = ltrim($row['images'],',');
-                    $arr['images'] = rtrim($row['images'],',');
-                    
-                  //  $arr['prdImg'] = $row['prdImg'];
+                    //$arr['images']= $row['images'];
+                   $arr['images'] = trim($row['images'],',');
+                   
                     
                         if($row['jewelleryType'] === '1'){
                              $arr['jwelType'] ='Gold';
@@ -3920,8 +3920,6 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                     }
                     
                    
-                        
-                       
                         $resp[] = $arr;
                          
                 }    
