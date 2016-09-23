@@ -33,7 +33,7 @@ define('TEMPLATE',WEBROOT.'frontend/template/');
 define('INCLUDES',WEBROOT.'include/');
 define('APICLUDE',WEBROOT.'apis/include/');
 
-define('VERSION',1.01);
+define('VERSION',1.02);
 
 
 
@@ -109,7 +109,7 @@ $jvs = array();
             $fjvs['hammer']                   = DOMAIN.'frontend/tools/js/hammer.js?v='.VERSION;
             $fjvs['malihu']                   = DOMAIN.'frontend/tools/js/jquery.mCustomScrollbar.concat.min.js?v='.VERSION;
              $fjvs['ripple']                   = DOMAIN.'frontend/tools/js/ripple.js?v='.VERSION;
-              $jvs['common']              = DOMAIN.'frontend/tools/js/Common.js?v='.VERSION;
+              $fjvs['common']              = DOMAIN.'frontend/tools/js/Common.js?v='.VERSION;
              
               #CMS PAGES JS(Frontend)
             $jvs['prodpage']                 = DOMAIN.'frontend/tools/js/cms/prodpage.js?v='.VERSION;
