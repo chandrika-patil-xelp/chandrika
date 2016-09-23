@@ -31,6 +31,7 @@ switch ($action) {
         $page = 'addProduct';
         $tab = 'products';
         $edit=1;
+       
         $pid=$_GET['pid'];
         include BTEMPLATE.'addProduct.html';
         break;

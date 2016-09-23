@@ -218,7 +218,7 @@
                 type: 'POST',
                 success: function(res) {
                     data = JSON.parse(res);
-                    
+                   
                     if (data['error']['err_code'] == '0')
                     {
                         var dt = data['results'];
@@ -337,6 +337,7 @@
                         var mcolor = [];
                         $.each(metalPurity.results, function(i, vl) {
                             mpurity.push(vl.dVal);
+                                
                         });
                         $('#prdmetalpurity').text(mpurity.toString());
 
@@ -729,7 +730,7 @@
 //            $('[id*=diamondComm_]').each(function() {
             $(data['results']['dimond']['results']).each(function(i, vl) {
                 
-                
+                //console.log(vl);
                 
                 var ids = vl.dmdId;
                 var shape =vl.shape;
@@ -761,12 +762,16 @@
                     price = parseFloat(prc) * parseFloat(carat);
 
                 }
-
+                
+                var  inprc =dquality[0].prcPrCrat;
+                var incprice = parseFloat(inprc) * parseFloat(carat);
+                
+                console.log(dquality[0].prcPrCrat);
                 str += "<li id='diamondPrice_" + ids + "'>";
                 str += "<div class='forComponent fLeft pl15'>" + typstr + "</div>";
-                str += "<div class='forRate fLeft' id='diamondRate_" + ids + "'  data-weight='" + carat + "'>" + prc + "/ct</div>";
+                str += "<div class='forRate fLeft' id='diamondRate_" + ids + "'  data-weight='" + carat + "'>" + inprc + "/ct</div>";
                 str += "<div class='forWeight fLeft'>" + carat + " ct</div>";
-                str += "<div class='forPrice calc fLeft' id='diamondTotal_" + ids + "'>&#8377;" + price + "</div>";
+                str += "<div class='forPrice calc fLeft' id='diamondTotal_" + ids + "'>&#8377;" + incprice + "</div>";
                 str += "</li>";
 
             });
@@ -829,6 +834,7 @@
 
             var str = "<li class='headLi' id='forGold'><div class='forComponent fLeft'>Gold</div></li>";
             var mpval = mpurity.length;
+           
             var carat = data['results']['basicDetails'].mtlWgt
             var crPrice;
 
@@ -922,9 +928,9 @@
         
     function genPriceSection()
     {
-        
+       
         var basic = data['results']['basicDetails'];
-        
+       
 
         var str = "";
         if (basic.hasSol)
@@ -953,7 +959,7 @@
         var mkch = basic.mkngCrg;
         var totalwt =basic.mtlWgt;
         var total = parseFloat(mkch) * parseFloat(totalwt);
-
+        
         var mstr = "<li id='makingCharge'>";
         mstr += "<div class='forComponent fLeft pl15'>Making Charge</div>";
         mstr += "<div class='forRate fLeft'>" + mkch + "/grm</div>";
@@ -964,6 +970,7 @@
 
         $('.pricingul').html('');
         $('.pricingul').html(str + gldstr + mstr);
+         
         calcGrandTotal(1);
 
     }
@@ -1012,13 +1019,13 @@
             total += val;
 
         });
-
+        
         vat = (1.20 / 100) * total;
         var vat1 = vat;
         if(!isNaN(vat)){
             var vat1 =  vat.toFixed(2);
         }
-
+       
         var gtotal = total + vat;
         var gtotal1 = gtotal;
         if(!isNaN(gtotal)){
@@ -1055,7 +1062,7 @@
 
 </script>
 
-
+ <!--<script type="text/javascript" src="<?php echo $jvs['addProduct']; ?>"></script>-->
 
 
 
