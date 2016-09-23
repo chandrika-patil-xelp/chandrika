@@ -3193,9 +3193,11 @@ class product extends DB {
             $res = $this->query($sql);
             if ($res) {
                 while ($row = $this->fetchData($res)) {
+                   
                     #$image = DOMAIN . $row['product_image'];
                     $image = (IMGDOMAIN.$row['product_image']);
                     $images[] = $image;
+                    
                     $count++;
                 }
             }

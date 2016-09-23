@@ -263,6 +263,7 @@ function diamondQltyCalllBack(data)
         var str2 = "";
 
         $.each(data.result, function(i, v) {
+           
             str1 += "<div class='dQuality fLeft'>";
             str1 += "<div class='checkDiv fLeft minwidth100'>";
             str1 += "<input type='checkbox' name='dmdquality_cust' class='filled-in' value='" + v.id + "' id='dql_" + v.id + "'>";
@@ -331,6 +332,7 @@ function getMetalPurity()
         type: "POST",
         success: function(res) {
             res = JSON.parse(res);
+            
             metalpurityCalllBack(res);
         }
     });
@@ -344,8 +346,9 @@ function metalpurityCalllBack(data)
     {
         var str1 = "<div class='titleDiv txtCap fLeft'>Metal Purity Customizable*</div>";
         var str2 = "<div class='titleDiv txtCap fLeft'>Metal Purity Not Customizable*</div>";
-
+      
         $.each(data.result, function(i, v) {
+           
             str1 += "<div class='dQuality fLeft'>";
                 str1 += "<div class='checkDiv fLeft minwidth100'>";
                     str1 += "<input type='checkbox' name='gpurityCustomize' class='filled-in' value='" + v.id + "' id='mpurity_" + v.id + "'>";
@@ -366,6 +369,8 @@ function metalpurityCalllBack(data)
 
         $('#ifpurityCustomiz').html(str1);
         $('#ifpurityNotCustomiz').html(str2);
+          //$('input[name="gpurityCustomize"]').eq(0).attr('checked',true);
+          // $('input[name="gpurityNotCustomize"]').eq(0).attr('checked',true);
         bindElementChange();
     }
 
@@ -590,6 +595,7 @@ $(document).ready(function() {
 
     if(edit==1)
     {
+       
         oneditmode();
     }
 
@@ -2799,14 +2805,16 @@ function oneditmodeCallBack(data)
         });
 
         var murity=dt['metalPurity'];
-
+    
         if(basic.custPurty==1)
-        {
-            var mprid=murity['results'][0].id;
+        { 
+          var mprid=murity['results'][0].id;
+         
             $('[name=gpurityNotCustomize]').each(function(){
                 var val =$(this).val();
                 if(mprid==val){
-                    $(this).attr('checked',true);
+                   
+                    $(this).prop('checked',true);
                 }
             });
         }
@@ -2814,11 +2822,16 @@ function oneditmodeCallBack(data)
         if(basic.custPurty==0)
         {
             $(murity['results']).each(function(i){
+               
                 var mprid=murity['results'][i].id;
+               
                 $('[name=gpurityCustomize]').each(function(){
                     var val =$(this).val();
+                    
                     if(mprid==val){
-                        $(this).attr('checked',true);
+                        
+                        $(this).prop('checked',true);
+                        
                     }
                 });
             });
@@ -2840,7 +2853,7 @@ function oneditmodeCallBack(data)
             $('[name=gcolorNotCustomize]').each(function(){
                 var val =$(this).val();
                 if(mprid==val){
-                    $(this).attr('checked',true);
+                    $(this).prop('checked',true);
                 }
             });
         }
@@ -2852,7 +2865,7 @@ function oneditmodeCallBack(data)
                 $('[name=gcolorCustomize]').each(function(){
                     var val =$(this).val();
                     if(mprid==val){
-                        $(this).attr('checked',true);
+                        $(this).prop('checked',true);
                     }
                 });
             });
@@ -2926,8 +2939,8 @@ function oneditmodeCallBack(data)
             has_diamond=true;
             $('#stone2').attr('checked',true);
             var dmd=dt['dimond']['results'];
-
             $(dmd).each(function(i){
+                
                 var ids=i+1;
                 var dm=dmd[i];
                 addDiamond();

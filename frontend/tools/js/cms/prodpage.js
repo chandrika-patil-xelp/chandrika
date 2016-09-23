@@ -62,19 +62,29 @@ $(document).ready(function(){
                 var uncut = dt['uncut'];
                 var gemstone = dt['gamestone'];
                 var images = dt['images'];
-             
+                  
+              var img = [];
+               if (images == null && images  !== undefined  && images !== '' && images !== 'undefined')
+            {
+                  img = images.split(',');
                  
+            } 
+            else
+             {
+                  img[0] ='uploads/noimg2.svg';
+               
+             }
                 if (data['error']['err_code'] == '0')
             {  
                   var imgstr = "";
                    $(images['images']).each(function(i, v) {
                      
              imgstr='<div class="imgHolder img1" style="background: url(\''+ v +'\')no-repeat;background-size:115%;background-position:center"></div>';
-                   $('#img-view').prepend(imgstr);
+              
+                       $('#img-view').prepend(imgstr);
                
                 });
-               
-             
+              
             
              $(basic).each(function(i, vl) {
                              var proname = vl.prdNm;
@@ -274,8 +284,8 @@ function getbasicprice(makingchrg,mtalwt){
     basicchr = mkngchrg * metalwgt;
         basicchrg += basicchr;
             bs.push(basicchrg);
-            basicValue = bs[gIndex];
-           
+            basicValue = bs[gIndex]; 
+          
 }
 
 
@@ -286,11 +296,12 @@ function getdmdprice(dvprc,dcarat){
     var prc = parseFloat(dvprc);   
     var car = parseFloat(dcarat);
             
-         diapri = prc * car;  
-            diaprice += diapri;
+         diaprice = prc * car;  
+     
+          //  diaprice += diapri;   
            pr.push(diaprice); 
           dmdValue=pr[gIndex];  
-        
+    
 }
 
 var mp = [];
@@ -299,8 +310,8 @@ function getPurPrice(metalprc,metalwght){
  
   var mprc = parseFloat(metalprc);
   var metalwght = parseFloat(metalwght);
-   mpurp = mprc * metalwght;
-            mpurprc += mpurp;
+   mpurprc = mprc * metalwght;
+           // mpurprc += mpurp;
   mp.push(mpurprc);
   metalValue = mp[gIndex];
   
@@ -347,15 +358,17 @@ function getGemsPrice(price,carat){
 }
 
 function setdmd(e){
+  
      var t =$(e).closest('.rad_wrap').index();
      var va=$(e).val();
-    
+   
      var t= t-2;
-      dmdValue=pr[t]; 
+     
+      dmdValue = pr[t]; 
+    //  console.log(dmdValue);
       $('#qual').html(va);
     
-            getTotal(1);
-       
+            getTotal(1);    
  }
  
  function setmetal(m){
@@ -382,7 +395,6 @@ function setdmd(e){
 var gtotal=0
 function getTotal(type){
   
-     
        total=  parseFloat(basicValue)+ parseFloat(dmdValue) + parseFloat(metalValue) + uncPrice + soliprc + gemsPrice ;
     
     // total= parseFloat(dmdValue) + parseFloat(metalValue) + gemsPrice  + parseFloat(soliValue) + parseFloat(uncutValue)+ parseFloat(basicValue) ;

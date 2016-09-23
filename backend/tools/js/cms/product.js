@@ -19,6 +19,7 @@ function inStock(obj, pid)
 function changePrdStatus(val, pid)
 {
 
+hideConfirmBox()
     values = {};
     values['active_flag'] = val;
     values['pid'] = pid;
@@ -61,6 +62,7 @@ function changeStatusCallBack(data)
 
 function getProducs()
 {
+    showLoader();
     prdCnt = 0;
     var URL = APIDOMAIN + "?action=pageList&page1&limit=1000";
     $.ajax({
@@ -69,6 +71,7 @@ function getProducs()
         success: function(res) {
             res = JSON.parse(res);
             getProducsCallback(res);
+            hideLoader();
         }
     });
 }
@@ -80,14 +83,14 @@ function getProducsCallback(data)
     {
         var str = "";
         $(data['results']).each(function(i, v) {
-          console.log(v);
-
+            var pid = v.pid;
+          
             if (v.isActive != 2)
             {
 
                 prdCnt++;
                 var cdat = v.creDate.split("|");
-                str += "<li class='searchRow'>";
+                str += "<li class='searchRow' id="+pid+">";
                 str += "<div class='date fLeft'>";
                 str += "<span class='upSpan'>" + cdat[0] + "</span>";
                 str += "<span class='lwSpan'>" + cdat[1] + "</span>";
@@ -126,6 +129,8 @@ function getProducsCallback(data)
                 str += "</select>";
                 str += "</div>";
                 str += "</li>";
+               
+                rem(pid);
             }
         });
 
@@ -148,6 +153,16 @@ function getProducsCallback(data)
     }
 
 }
+
+function showLoader()
+{
+    $('.overlay,.loader').removeClass('dn');
+}
+
+function hideLoader()
+{
+    $('.overlay,.loader').addClass('dn');
+}
 function editProduct(pid)
 {
     window.location.href=DOMAIN+"backend/?action=editProduct&pid="+pid;
@@ -165,14 +180,20 @@ function showConfirmBox() {
     }, 10);
 }
 
-
+var deldiv = '';
 function setClick(data)
-{
+{   
     var str="changePrdStatus(2,'"+data+"')";
     $('#prddeleteBtn').attr('onclick',str);
-
+  
+  //  $('#'+pid).remove();
+ // deldiv =  $(this).remove();
 }
-
+function rem(pid){
+ 
+    $('#'+pid).remove();
+}
+  
 function hideConfirmBox()
 {
     $('#delOverlay').velocity({opacity: 0}, {delay: 0, duration: 300, ease: 'swing'});
