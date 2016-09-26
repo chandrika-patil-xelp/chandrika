@@ -160,23 +160,7 @@ function generatelist(obj) {
     else
         proStr += '<div style="background:url(\'' + IMGDOMAIN + images[0] + '\')no-repeat ; background-size: contain ; background-position: center"  class=""></div>';
   
-   /* if (images !== 'null' &&
-    * 
-    * 
-    * 
-    * 
-    *   images.length > 0)
-    {
-        //for(var i = 0; i < images.length; i++)
-        // for(var i = images.length - 1; i >= 0; i--)
-       // for (var i = images.length; i--; )
-        
-            
-            proStr += '<div style="background:url(' + IMGDOMAIN + images[0] + ')no-repeat ; background-size: contain ; background-position: center"  class=""></div>';
-             
-        
-
-    }*/
+ 
     proStr += '<span class="grid_price fmSansR">&#8377 ' + grandtotal + '</span>';
     proStr += '</div>';
     proStr += '<div class="grid_dets">';
@@ -184,7 +168,7 @@ function generatelist(obj) {
     proStr += '<div class="col100 color666">';
     proStr += '<div class="col100  font13 colorLg  transition300">' + obj['jwelType'] + ' ' + obj['metal_weight'] + ' gms, Diamond ' + obj['dmdcarat'] + ' Carats</div>';
     proStr += '<div class="fmSansB smBtnDiv fLeft transition300">';
-    proStr += '<span class="u_line point lettSpace fLeft"  onclick=\"getProId(' + obj['prdId'] + ' )\">View Product</span>';
+    proStr += '<span class="u_line point lettSpace fLeft"  onclick=\"getProId(\''+ obj['prdId'] + '\')\">View Product</span>';
     proStr += '<div class="v360Btn" onclick=\"imgLoad(' + obj['prdId'] + ')\"></div>';
     proStr += '<span class="u_line point lettSpace v_dets fRight" onclick="flipCard(this)">Quick View</span>';
     proStr += '</div>';
@@ -245,8 +229,8 @@ function generatelist(obj) {
 }
 
 function getProId(pid) {
-
-    window.location.href = DOMAIN + "index.php?action=product_page&pid=" + pid;
+    
+    window.location.href = DOMAIN + "index.php?action=product_page&pid="+ pid;
 
 }
 

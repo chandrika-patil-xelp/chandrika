@@ -63,24 +63,21 @@ $(document).ready(function(){
                 var gemstone = dt['gamestone'];
                 var images = dt['images'];
                   
-              var img = [];
-               if (images == null && images  !== undefined  && images !== '' && images !== 'undefined')
-            {
-                  img = images.split(',');
-                 
-            } 
-            else
-             {
-                  img[0] ='uploads/noimg2.svg';
-               
-             }
+                  
                 if (data['error']['err_code'] == '0')
             {  
                   var imgstr = "";
                    $(images['images']).each(function(i, v) {
-                     
-             imgstr='<div class="imgHolder img1" style="background: url(\''+ v +'\')no-repeat;background-size:115%;background-position:center"></div>';
-              
+                       var img = v;
+              if(img == IMGDOMAIN+ "uploads/noimg2.svg"){
+          
+             imgstr='<div class="imgHolder img1" style="background: url(\''+ v + '\')no-repeat;background-size: auto 50%;background-position:center"></div>';  
+                }
+                else{
+             imgstr='<div class="imgHolder img1" style="background: url(\''+ v +'\')no-repeat;background-size:115%;background-position:center"></div>';  
+                }
+                
+             
                        $('#img-view').prepend(imgstr);
                
                 });
@@ -365,7 +362,7 @@ function setdmd(e){
      var t= t-2;
      
       dmdValue = pr[t]; 
-    //  console.log(dmdValue);
+    
       $('#qual').html(va);
     
             getTotal(1);    
