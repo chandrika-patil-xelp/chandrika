@@ -148,7 +148,7 @@ $(document).ready(function(){
                              }
                                   if(x==0){
                                        $('#qual').text(y.dNm);
-                                       console.log(y.dNm);
+                                      
                                         }
                                   
                                     var dvdia = y.dVal;
