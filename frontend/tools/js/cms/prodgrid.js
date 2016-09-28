@@ -4,7 +4,9 @@ var dmdValue = metalValue = soliValue = gemsValue = uncutValue = basicValue = 0;
 var grandtotal = 0;
 var grandtot = 0;
 var getProdDtl = new Array();
+var stock = new Array();
 
+var stSearch = new Array();
 
 $(document).ready(function () {
 
@@ -23,15 +25,16 @@ $(document).ready(function () {
                 $('#total_Product').html("<strong>" + total + "</strong> Products");
                 var obj = res["result"];
                 var len = obj.length;
-               
+              
                 var i = 0;
                 if (len > 0)
                 {
                     var str = '';
                     while (i < len)
                     {
-                        //  console.log(obj[i]);
                         str += generatelist(obj[i]);
+                        //stock.push(obj[i]);
+                       // stSearch.push(obj[i]);
                         i++;
                     }
                     $('#gridDetail').append(str);
@@ -63,7 +66,7 @@ function generatelist(obj) {
    {
        var images = "uploads/noimg2.svg";
     }
-
+console.log(obj);
     var gems = obj['hasGem'];
     var diamond = obj['hasDmd'];
     var solitaire = obj['hasSol'];
@@ -72,7 +75,12 @@ function generatelist(obj) {
     var Mcarat = obj['purity'];
     var Makchrg = obj['making_charges'];
     var Metalwgt = obj['metal_weight'];
-   
+    var gender = obj['gender'];
+    var jType = obj['jwelType'];
+    var Mclr = obj['allmetalcolor'];
+    var gemsName = obj['gemstoneName'];
+    var Dshape = obj['shape'];
+filter(gender,jType,Mclr,gemsName,Dshape);
   
     if(obj['totalgems'] !== null && obj['totalgems'] !== undefined && obj['gemstoneName'] !== null && obj['gemstoneName'] !== undefined && obj['gemscarat'] !== null && obj['gemscarat'] !== undefined ){
      
@@ -399,3 +407,61 @@ var count=0;
     }
    
 });
+
+$('#filter').click(function(){
+     window.location.href = DOMAIN + "index.php?action=filterPage";  
+});
+
+$('#pgrid').click(function(){
+     window.location.href = DOMAIN + "index.php?action=product_grid";  
+});
+
+function filter(a,b,c,d,e){
+ 
+}
+
+/*
+var lastKey = "";
+function sortcol(key) {
+console.log(key);
+    $('#gridDetail').html("");
+    var type = 0;
+    if (key != lastKey) {
+        lastKey = key;
+        type = 0;
+    } else {
+        type = 1;
+        lastKey = "";
+    }
+    stSearch.sortOn(key, type);
+    var len = stSearch.length;
+    var i = 0;
+    while (i < len) {
+        var str1 = generatelist(stSearch[i]);
+        
+        $('#gridDetail').append(str1);
+        i++;
+    }
+}
+
+Array.prototype.sortOn = function (key, type) {
+    if (type === 0) {
+        this.sort(function (a, b) {
+            if (a[key] < b[key]) {
+                return -1;
+            } else if (a[key] > b[key]) {
+                return 1;
+            }
+            return 0;
+        });
+    } else {
+        this.sort(function (a, b) {
+            if (a[key] > b[key]) {
+                return -1;
+            } else if (a[key] < b[key]) {
+                return 1;
+            }
+            return 0;
+        });
+    }
+}*/

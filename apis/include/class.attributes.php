@@ -12,7 +12,7 @@ class attributes extends DB
     
     public function addAttribute($params)
     {
-        
+      
         $params = json_decode($params[0],1);
         if(!$params['attributeid'])
         {

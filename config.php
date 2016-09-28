@@ -109,15 +109,16 @@ $jvs = array();
             $fjvs['hammer']                   = DOMAIN.'frontend/tools/js/hammer.js?v='.VERSION;
             $fjvs['malihu']                   = DOMAIN.'frontend/tools/js/jquery.mCustomScrollbar.concat.min.js?v='.VERSION;
              $fjvs['ripple']                   = DOMAIN.'frontend/tools/js/ripple.js?v='.VERSION;
-              $fjvs['common']              = DOMAIN.'frontend/tools/js/Common.js?v='.VERSION;
-             
+             $fjvs['Common']              = DOMAIN.'frontend/tools/js/Common.js?v='.VERSION;
+          
               #CMS PAGES JS(Frontend)
             $jvs['prodpage']                 = DOMAIN.'frontend/tools/js/cms/prodpage.js?v='.VERSION;
             $jvs['proddetails']                 = DOMAIN.'frontend/tools/js/cms/product_details.js?v='.VERSION;
             $jvs['prodGrid']                 = DOMAIN.'frontend/tools/js/cms/prodgrid.js?v='.VERSION;
             $jvs['protry']                 = DOMAIN.'frontend/tools/js/cms/protry.js?v='.VERSION;
             $jvs['login']                 = DOMAIN.'frontend/tools/js/cms/login.js?v='.VERSION;
-            $jvs['cart']                 = DOMAIN.'frontend/tools/js/cms/cart.js?v='.VERSION;
+           // $jvs['cart']                 = DOMAIN.'frontend/tools/js/cms/cart.js?v='.VERSION;
+            $jvs['filter']                 = DOMAIN.'frontend/tools/js/cms/filter.js?v='.VERSION;
 
 include APICLUDE.'common/class.common.php';
 $comm = new Common();

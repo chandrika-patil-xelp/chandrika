@@ -1785,14 +1785,31 @@ function submitData()
     showLoader();
     previewData['filterAttrs']=setPrdMapping();
     var dt = JSON.stringify(previewData);
+    
     var URL = APIDOMAIN + "index.php?action=addProduct";
+  
     $.ajax({
         url: URL,
         type: 'POST',
         data: {dt: dt},
         success: function(res) {
+           
             res = JSON.parse(res);
-            addPrdCallBack(res);
+          //  addPrdCallBack(res);
+             if (res['error']['err_code'] == '0')
+    {
+        common.toast(1, 'Product added successfully');
+           
+            window.location.href=DOMAIN+"backend/index.php?action=products";
+           hideLoader();
+        //redirect
+    }
+    else
+    {
+        common.toast(0, 'Error in adding product');
+        hideLoader();
+    }
+            hideLoader();
         }
     });
 
@@ -1829,14 +1846,15 @@ function setPrdMapping()
 
 
 
-function addPrdCallBack(data)
+/*function addPrdCallBack(data)
 {
 
     if (data['error']['err_code'] == '0')
     {
         common.toast(1, 'Product added successfully');
-            hideLoader();
+           
             window.location.href=DOMAIN+"backend/index.php?action=products";
+             hideLoader();
         //redirect
     }
     else
@@ -1845,7 +1863,7 @@ function addPrdCallBack(data)
         hideLoader();
     }
 
-}
+}*/
 
 
 function highlight(id,type)
@@ -2701,6 +2719,7 @@ function oneditmode()
 {
     showLoader();
     var URL=APIDOMAIN+"?action=getProductById&pid="+pid;
+   
     $.ajax({
         url:URL,
         type:'POST',

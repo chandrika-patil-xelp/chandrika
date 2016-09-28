@@ -1,20 +1,28 @@
 <!DOCTYPE html>
 <?php include 'jhead.html' ?>
+     <script>
+            var BWEBROOT='<?php echo BACKWEBROOT?>';
+            var DOMAIN ='<?php echo DOMAIN?>';
+            var APIDOMAIN ='<?php echo APIDOMAIN?>';
+            var IMGDOMAIN='<?php echo IMGDOMAIN ?>';
+            var page='<?php echo $page?>';
+            
+        </script>
 <div class="filterConter fLeft">
     <div class="wrapper_max">
         <div class="upSection fLeft">
             <div class="genDiv fLeft">
                 <center>
                     <div class="tText fmSansB font15">FOR</div>
-                    <div class="gen fmDiv transition300"></div>
-                    <div class="gen mmDiv transition300"></div>
+                    <div class="gen fmDiv transition300" id="sort1"></div>
+                    <div class="gen mmDiv transition300"  id="sort2"></div>
                 </center>
             </div>
         </div>
         <div class="col50 fLeft">
             <div class="metalType fLeft">
                 <div class="fLeft headTxt fmSansB tUline">METAL TYPE</div>
-                <div class="mtlBox fLeft ">
+                <div class="mtlBox fLeft "  onclick="sort()">
                     <center>
                         <div class="mCir fmSansB transition300">14</div>
                         <div class="fmSansB  mText transition300">ALL METALS</div>
@@ -22,43 +30,43 @@
                 </div>
                 <div class="mtlBox fLeft ">
                     <center>
-                        <div class="mCir fmSansB transition300">14</div>
+                        <div class="mCir fmSansB transition300" onclick="sort()">14</div>
                         <div class="fmSansB  mText transition300">WHITE GOLD</div>
                     </center>
                 </div>
                 <div class="mtlBox fLeft ">
                     <center>
-                        <div class="mCir fmSansB transition300">14</div>
+                        <div class="mCir fmSansB transition300" onclick="sort()">14</div>
                         <div class="fmSansB  mText transition300">ROSE GOLD</div>
                     </center>
                 </div>
                 <div class="mtlBox fLeft ">
                     <center>
-                        <div class="mCir fmSansB transition300">14</div>
+                        <div class="mCir fmSansB transition300" onclick="sort()">14</div>
                         <div class="fmSansB  mText transition300">PLATINUM</div>
                     </center>
                 </div>
                 <div class="mtlBox fLeft ">
                     <center>
-                        <div class="mCir fmSansB transition300">14</div>
+                        <div class="mCir fmSansB transition300" onclick="sort()">14</div>
                         <div class="fmSansB  mText transition300">SILVER</div>
                     </center>
                 </div>
                 <div class="mtlBox fLeft ">
                     <center>
-                        <div class="mCir fmSansB transition300">14</div>
+                        <div class="mCir fmSansB transition300" onclick="sort()">14</div>
                         <div class="fmSansB  mText transition300">GOLD</div>
                     </center>
                 </div>
                 <div class="mtlBox fLeft ">
                     <center>
-                        <div class="mCir fmSansB transition300">14</div>
+                        <div class="mCir fmSansB transition300" onclick="sort()">14</div>
                         <div class="fmSansB  mText transition300">ALL METALS</div>
                     </center>
                 </div>
                 <div class="mtlBox fLeft ">
                     <center>
-                        <div class="mCir fmSansB transition300">14</div>
+                        <div class="mCir fmSansB transition300" onclick="sort()">14</div>
                         <div class="fmSansB  mText transition300">ALL METALS</div>
                     </center>
                 </div>
@@ -210,7 +218,7 @@
                     <div class="button button2 btnc1 transition300 fLeft">BACK</div>
                 </div>
                 <div class="btnContainr  fmOsR padXl5" id="nxt">
-                    <div class="button button2 btnc1 transition300 fLeft">APPLY</div>
+                    <div class="button button2 btnc1 transition300 fLeft" id="pgrid">APPLY</div>
                 </div>
             </center>
         </div>
@@ -280,3 +288,5 @@
 
 
 </script>
+  <!--<script type="text/javascript" src="<?php echo $jvs['filter']; ?>"></script>-->
+  <script type="text/javascript" src="<?php echo $jvs['prodGrid']; ?>"></script>

@@ -41,6 +41,7 @@ $(document).ready(function(){
                
       var pid = GetURLParameter('pid'); 
        
+       
       var URL = APIDOMAIN+"index.php/?action=getProductById&pid="+pid;
             
                 
@@ -136,13 +137,19 @@ $(document).ready(function(){
                            
                             var diamstr = "";
                             var dQstr="";
+                             var dstr = "";
                             $(diamonds['results']).each(function(i, vl) {
                                 var dcarat =vl.crat;
-                               var defaultDia;
+                           
                                 $.each(vl.QMast.results, function(x, y) {
-                                   if(x==0){
+                                  
+                                 if(x==0){
+                                 dstr+= '<span class="colorLg font10" id="qual_'+x+'_'+y.id+'">'+y.dNm+'</span>';
+                             }
+                                  if(x==0){
                                        $('#qual').text(y.dNm);
-                                   }
+                                       console.log(y.dNm);
+                                        }
                                   
                                     var dvdia = y.dVal;
                                     var dvprc= y.prcPrCrat;
@@ -167,6 +174,7 @@ $(document).ready(function(){
                                 
                             });
                             $('#desc').append(diamstr);
+                             $('#qu').append(dstr);
                           
                         }
                         
@@ -389,6 +397,7 @@ function setdmd(e){
      $('#clr').html(cr);
  }
 
+var grandtot = 0;
 var gtotal=0
 function getTotal(type){
   
@@ -400,7 +409,7 @@ function getTotal(type){
         
         gtotal = total + vat;
       
-       var grandtot = gtotal.toFixed();
+       grandtot = gtotal.toFixed();
      $("#price").html(Number(grandtot).toLocaleString('en'));
      
         if (type == 1){

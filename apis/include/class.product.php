@@ -661,7 +661,7 @@ class product extends DB {
                         . "has_gemstone = VALUES(has_gemstone),"
                         . " updatedby=VALUES(updatedby)
                 ";
-        $res = $this->query($sql,1);
+        $res = $this->query($sql);
         $result = array();
         if ($res)
         {
@@ -3195,8 +3195,9 @@ class product extends DB {
                    
                     #$image = DOMAIN . $row['product_image'];
                     $image = trim((IMGDOMAIN.$row['product_image']),",");
-                     if($row['product_image'] == '' && $row['product_image'] == null ){
-                 $image = (IMGDOMAIN.'uploads/noimg2.svg');
+            if($row['product_image'] == '' && $row['product_image'] == 'null' ){
+                 $image= (IMGDOMAIN.'uploads/noimg2.svg');
+                 
             }
                     $images[] = $image;
                     
@@ -3768,6 +3769,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                              has_uncut,
                              has_gemstone,
                              making_charges,
+                             gender,
                              active_flag,
                              createdon,
                              updatedon,
@@ -3776,6 +3778,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                             (SELECT GROUP_CONCAT(diamond_id) FROM tbl_product_diamond_mapping WHERE productid = pid AND active_flag = 1 ) AS allDimonds,
                             (SELECT GROUP_CONCAT(carat) FROM tbl_product_diamond_mapping WHERE FIND_IN_SET(diamond_id,allDimonds)) AS dmdcarat,
                             (SELECT GROUP_CONCAT(total_no) FROM tbl_product_diamond_mapping WHERE FIND_IN_SET(diamond_id,allDimonds)) AS totaldmd,
+                            (SELECT GROUP_CONCAT(shape) FROM tbl_product_diamond_mapping WHERE FIND_IN_SET(diamond_id,allDimonds)) AS shape,
                             
                             (SELECT GROUP_CONCAT(id) FROM tbl_diamond_quality_mapping WHERE diamond_id = allDimonds AND active_flag = 1 ) AS DimondQuality,
                             (SELECT GROUP_CONCAT(dname) FROM tbl_diamond_quality_master WHERE FIND_IN_SET(id,DimondQuality)) AS dmdQ,
@@ -3860,7 +3863,8 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                     $arr['allDimonds'] = $row['allDimonds'];
                     $arr['dmdcarat'] = $row['dmdcarat'];
                      $arr['totaldmd'] = $row['totaldmd'];
-                     
+                       $arr['shape'] = $row['shape'];
+                       
                      $arr['DimondQuality'] = $row['DimondQuality'];
                      $arr['dmdQ'] = $row['dmdQ'];
                      $arr['dmdQPricepercarat'] = $row['dmdQPricepercarat'];
@@ -3886,6 +3890,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                      $arr['purity'] = $row['purity'];
                      $arr['purprice'] = $row['purprice'];
                     $arr['allmetalcolor'] = $row['allmetalcolor'];
+                     $arr['gender'] = $row['gender'];
                     //$arr['images']= $row['images'];
                    $arr['images'] = trim($row['images'],',');
                    

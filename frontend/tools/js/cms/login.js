@@ -96,13 +96,13 @@ $('#log').click(function(){
     
     if (validationFlag = 1){
     var URL = APIDOMAIN + "index.php/?action=login&email="+email+"&pass="+pass;
-    console.log(URL);
+   
     var data;
     $.ajax({
             type:'POST',
             url:URL,
             success:function(res){
-                 
+                
            data = JSON.parse(res);
            logDetails = data['result'];
             if(data['error']['err_code']==0)

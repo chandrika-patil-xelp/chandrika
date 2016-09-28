@@ -89,6 +89,8 @@ class category extends DB
     		}
   		  return $arr;
   	}
+        
+        
 
     public function _getCatgoryTree($cid = 0)
     {
