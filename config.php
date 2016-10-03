@@ -117,7 +117,7 @@ $jvs = array();
             $jvs['prodGrid']                 = DOMAIN.'frontend/tools/js/cms/prodgrid.js?v='.VERSION;
             $jvs['protry']                 = DOMAIN.'frontend/tools/js/cms/protry.js?v='.VERSION;
             $jvs['login']                 = DOMAIN.'frontend/tools/js/cms/login.js?v='.VERSION;
-           // $jvs['cart']                 = DOMAIN.'frontend/tools/js/cms/cart.js?v='.VERSION;
+            $jvs['cart']                 = DOMAIN.'frontend/tools/js/cms/cart.js?v='.VERSION;
             $jvs['filter']                 = DOMAIN.'frontend/tools/js/cms/filter.js?v='.VERSION;
 
 include APICLUDE.'common/class.common.php';

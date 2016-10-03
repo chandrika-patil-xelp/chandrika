@@ -694,13 +694,54 @@ switch($action)
     /** GET PRODUCT DETAILS BY ID ENDS **/
 
     /** CODE FOR ADD TO CART START **/
-    case 'addTocart':
+/*  case 'addToCart':
+        
+        include APICLUDE.'class.addtocart.php';
+        $obj = new addtocart($db['jzeva']); 
+       
+  	 $res=$obj->addToCart($params);
+          
+        break;*/
+       
+      case 'addTocart':
+        include APICLUDE.'class.addtocart.php';
+        $obj = new addtocart($db['jzeva']);       
+	$tmpaparams = array($params['dt']);
+       
+     //            
+    //      foreach($tmpaparams as $key => $value)
+     //     {  
+     //         $tmpaparams[$key] = strip_tags($value);
+     //     } 
+  	    $res=$obj->addToCart($tmpaparams);
+         
+        break;
+    
+     case 'getcartdetail':
         include APICLUDE.'class.addtocart.php';
         $obj = new addtocart($db['jzeva']);
-        $res = $obj->addToCart($params);
+        $res = $obj->getcartdetail();
         break;
     
     /** CODE FOR ADD TO CART ENDS **/
+	
+     case 'getcartdetailbyid':
+        include APICLUDE.'class.addtocart.php';
+        $obj = new addtocart($db['jzeva']);
+        $res = $obj->getcartdetailbyid();
+        break;
+      
+      case 'updatecartincrz':
+        include APICLUDE.'class.addtocart.php';
+        $obj = new addtocart($db['jzeva']);
+	 $res = $obj->updatecartincrz($params);
+        break;
+    
+        case 'updatecartdecrese':
+        include APICLUDE.'class.addtocart.php';
+        $obj = new addtocart($db['jzeva']);
+	 $res = $obj->updatecartdecrese($params);
+        break;
     
     /** CODE FOR get product and user details by order id start **/
     
@@ -730,6 +771,7 @@ switch($action)
         include APICLUDE.'class.addtocart.php';
         $obj = new addtocart($db['jzeva']);
         $res = $obj->updateOptVal($params);
+      
         break;
         
     //http://localhost/jzeva/apis/index.php/?action=getZipcode&zipcd=523105

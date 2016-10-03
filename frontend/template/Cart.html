@@ -5,17 +5,17 @@
 
         </div> -->
          <div class="cart_sub fmSansR">
-           <div class="fLeft col100 lnHt30 fmSansB"> Total Items: 9</div>
+           <div class="fLeft col100 lnHt30 fmSansB"> </div>
            <div class="fLeft col100">
             <span class="cart_price fmSansR fLeft ">&#8377
-                <span class="price_gen ">126,000</span>
+                <span class="total_price_gen ">126,000</span>
               </span>
             </div>
             <div class="chk_out "><div class="button button1 btnc1 transition300" id="check_out">Checkout</div></div>
               <div class="closeCart"></div>
           </div>
             <div class="cart_gen fLeft">
-             <div class="cart_item">
+            <!-- <div class="cart_item" id="cartItems">
                 <div class="cart_image"></div>
                 <div class="cart_name ">Étourdissant Cartier</div>
                 <div class="cart_price  fLeft">&#8377 <span class="price_gen">26,000</span></div>
@@ -25,8 +25,8 @@
                   <div class="cart_btn fLeft add_no"></div>
                 </div>
                   <div class="cart_remove ">Remove</div>
-              </div>
-              <div class="cart_item">
+              </div>-->
+             <!-- <div class="cart_item">
                 <div class="cart_image"></div>
                 <div class="cart_name ">Étourdissant Cartier</div>
                 <div class="cart_price  fLeft">&#8377 <span class="price_gen">26,000</span></div>
@@ -58,10 +58,12 @@
                   <div class="cart_btn fLeft add_no"></div>
                 </div>
                   <div class="cart_remove">Remove</div>
-              </div>
+              </div>-->
             </div>
             <!-- <div class="cart_foot fmSansR">Checkout</div> -->
         </div>
+    <script type="text/javascript" src="<?php echo $jvs['cart']; ?>"></script>
+    <script type="text/javascript" src="<?php echo  $jvs['Common']; ?>"></script> 
       <script>
       /* Add commas in numbers */
       $.fn.digits = function(){
@@ -70,7 +72,7 @@
           })
       }
       /*Increase/Decrease number of Items in Cart and the corresponding price , comma spacing of price  */
-      $('.sub_no').click(function(){
+     /* $('.sub_no').click(function(){
         var e=$(this).siblings('.item_amt');
         var j =$(this).siblings('.item_amt').text();
         var e2=  $(this).closest('.cart_item').find('.price_gen');
@@ -99,7 +101,7 @@
           $(e2).html(price);
           $(e2).digits();
           $(e).html(j);
-      });
+      });*/
       $('#check_out').click(function(){
         load_checkout();
       });
@@ -113,5 +115,5 @@
           },1000);
        }
       });
-      }
+      } 
       </script>

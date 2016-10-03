@@ -34,7 +34,7 @@ $(document).ready(function () {
                     {
                         str += generatelist(obj[i]);
                         //stock.push(obj[i]);
-                       // stSearch.push(obj[i]);
+                        stSearch.push(obj[i]);
                         i++;
                     }
                     $('#gridDetail').append(str);
@@ -66,7 +66,7 @@ function generatelist(obj) {
    {
        var images = "uploads/noimg2.svg";
     }
-console.log(obj);
+
     var gems = obj['hasGem'];
     var diamond = obj['hasDmd'];
     var solitaire = obj['hasSol'];
@@ -80,7 +80,8 @@ console.log(obj);
     var Mclr = obj['allmetalcolor'];
     var gemsName = obj['gemstoneName'];
     var Dshape = obj['shape'];
-filter(gender,jType,Mclr,gemsName,Dshape);
+    var pid = obj['prdId'];
+filter(pid,gender,jType,Mclr,gemsName,Dshape);
   
     if(obj['totalgems'] !== null && obj['totalgems'] !== undefined && obj['gemstoneName'] !== null && obj['gemstoneName'] !== undefined && obj['gemscarat'] !== null && obj['gemscarat'] !== undefined ){
      
@@ -158,7 +159,7 @@ filter(gender,jType,Mclr,gemsName,Dshape);
     grandtot = gtotal.toFixed();
     grandtotal = Number(grandtot).toLocaleString('en');
 
-    proStr += '<div class="grid3 transition300" id="'+ obj['prdId'] +'">';
+    proStr += '<div class="grid3 transition300 dn" id="'+ obj['prdId'] +'" >';
     proStr += '<div class="facet_front">';
     proStr += '<div class="grid_item">';
     proStr += '<div class="grid_img"  onmousemove="bindrota(this , event)" lcor="0">';
@@ -412,56 +413,44 @@ $('#filter').click(function(){
      window.location.href = DOMAIN + "index.php?action=filterPage";  
 });
 
-$('#pgrid').click(function(){
+$('#apply').click(function(){
      window.location.href = DOMAIN + "index.php?action=product_grid";  
 });
 
-function filter(a,b,c,d,e){
+function filter(a,b,c,d,e,f){
+ var proid = a;
+ var gender = b;
+ if(gender == '0'){
+     var g = f;
+ }
+ var jweltype = c;
+ var color = d;
+ var gemstone_name = e;
+ var diam_shape = f;
+
  
-}
-
-/*
-var lastKey = "";
-function sortcol(key) {
-console.log(key);
-    $('#gridDetail').html("");
-    var type = 0;
-    if (key != lastKey) {
-        lastKey = key;
-        type = 0;
-    } else {
-        type = 1;
-        lastKey = "";
-    }
-    stSearch.sortOn(key, type);
-    var len = stSearch.length;
-    var i = 0;
-    while (i < len) {
-        var str1 = generatelist(stSearch[i]);
+ /* $('.gemstone21').click(function(){
+        $('#proid').addClass('dn');
+       $('#pgrid').click(function(){
         
-        $('#gridDetail').append(str1);
-        i++;
-    }
+           if(gemstone_name == 'Ruby'){
+            //   var len = stSearch.length;
+          var selectedpid = proid;
+           $('#proid').removeClass('dn');
+           
+          
+               
+              
+           }
+       });
+   });*/
 }
 
-Array.prototype.sortOn = function (key, type) {
-    if (type === 0) {
-        this.sort(function (a, b) {
-            if (a[key] < b[key]) {
-                return -1;
-            } else if (a[key] > b[key]) {
-                return 1;
-            }
-            return 0;
-        });
-    } else {
-        this.sort(function (a, b) {
-            if (a[key] > b[key]) {
-                return -1;
-            } else if (a[key] < b[key]) {
-                return 1;
-            }
-            return 0;
-        });
-    }
-}*/
+$('#apply').click(function(){
+   
+   var female = $('#female').val();
+   var male = $('#male').val();
+   
+   
+   
+});
