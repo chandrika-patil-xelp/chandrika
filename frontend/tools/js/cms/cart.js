@@ -22,16 +22,23 @@ function newaddToCart(paramtr)
      localStorage.setItem('cartid',genOrdId());
    } 
    var userid=localStorage.getItem('uid'); 
-   if(userid=="" || userid==null){
-      var userid=genOrdId(); 
-      localStorage.setItem('uid',userid);
-        cartdata['userid']=userid;
-       cartdata['cartid']= cartid; 
+   cartdata['userid']=userid;
+   cartdata['cartid']= cartid; 
+   if(userid == "" || userid == null){
+      localStorage.setItem('uid',cartid);
+       cartdata['userid']=cartid;
+   }
+   /*if(userid=="" || userid==null){
+    
+      localStorage.setItem('uid',cartid);
+      //  cartdata['userid']=userid;
+       //cartdata['cartid']= cartid; 
     }
-    else{
-      cartdata['userid']=userid;
-       cartdata['cartid']= cartid; 
-    }
+   /* else{
+     
+   cartdata['userid']=userid;
+    cartdata['cartid']= cartid; 
+    }*/
     var flag=0;
     if(gblcartdata ==null || gblcartdata ==""){
        flag=1;
@@ -220,12 +227,15 @@ function displaycartdata()
  function gettotal()
  {  
     var itemcnt=0,total=0; 
-	 $(gblcartdata).each(function(r,v){ 
+	 $(gblcartdata).each(function(r,v){
 	   total=parseInt(v.price)+total;
+          
 	   itemcnt++; 
 	 });
 	   $(".total_price_gen").html(total);
     $(".lnHt30").html("Total Items: "+itemcnt); 
+    $(".cartCount").html(itemcnt);
+    
  }
  
  $(document).ready(function(){ 

@@ -67,6 +67,8 @@
                             image_sequence DESC) AS prdimage,"
             . "(SELECT  GROUP_CONCAT(jewelleryType) FROM tbl_product_master WHERE productid = pid  AND active_flag !=2) 
                             AS jewelleryType,"
+             . "(SELECT  GROUP_CONCAT(metal_weight) FROM tbl_product_master WHERE productid = pid  AND active_flag !=2) 
+                            AS metalwgt,"
             ." (SELECT GROUP_CONCAT(diamond_id) FROM tbl_product_diamond_mapping WHERE productid = pid AND active_flag = 1 ) AS allDimonds,
                (SELECT GROUP_CONCAT(carat) FROM tbl_product_diamond_mapping WHERE FIND_IN_SET(diamond_id,allDimonds)) AS dmdcarat,
                (SELECT GROUP_CONCAT(total_no) FROM tbl_product_diamond_mapping WHERE FIND_IN_SET(diamond_id,allDimonds)) AS totaldmd,
@@ -109,7 +111,10 @@
                     $arr['carat'] = $row['carat']; 
                     $arr['quality'] = $row['quality'];
                     $arr['jewelleryType'] = $row['jewelleryType'];
+                     $arr['metalwgt'] = $row['metalwgt'];
+                  
                       $arr['allDimonds'] = $row['allDimonds'];
+                      
                     $arr['dmdcarat'] = $row['dmdcarat'];
                      $arr['totaldmd'] = $row['totaldmd'];
                        $arr['shape'] = $row['shape'];
