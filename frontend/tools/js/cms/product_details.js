@@ -57,7 +57,7 @@ function getCookie(cname){
     function addToCart(){
        
            var prodName = $(".cardHdng").html();  //this is the product name
-           alert(prodName);
+           
            var prodCode = $("#prodcode").html();  //this is the product code
            var prodCost = $("#prodCost").html();  //this is the product cost 
            var prodQty = $(".prdQty").text();     //this is the product quantity
