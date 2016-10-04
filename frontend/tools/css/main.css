@@ -29,21 +29,27 @@ textarea:focus, input:focus , select:focus ,option:focus{
 @font-face{font-family:OswaldR;src: url(../fonts/oswald/Oswald-Regular.ttf);}
 @font-face{font-family:OswaldB;src: url(../fonts/oswald/Oswald-Bold.ttf);}
 
-@font-face{font-family:georgia;src: url(../fonts/georgia.ttf);}
-@font-face{font-family:fmRb;src: url(../fonts/RobotoSlab-Bold.ttf);}
-@font-face{font-family:fmRs;src: url(../fonts/RobotoSlab-Light.ttf);}
-@font-face{font-family:sansB;src: url(../fonts/Sansation_Bold.ttf);}
-@font-face{font-family:sansR;src: url(../fonts/Sansation_Regular.ttf);}
-
-
-
-
-
-
-
 .fmOsL{font-family:OswaldL;}
 .fmOsR{font-family:OswaldR;}
 .fmOsB{font-family:OswaldB;}
+
+
+/* New Fonts */
+
+@font-face{font-family:ss;src: url(../fonts/georgia.ttf);}
+@font-face{font-family:robot;src: url(../fonts/RobotoSlab-Thin.ttf);}
+@font-face{font-family:robol;src: url(../fonts/RobotoSlab-Light.ttf);}
+@font-face{font-family:robor;src: url(../fonts/RobotoSlab-Regular.ttf);}
+@font-face{font-family:sansb;src: url(../fonts/Sansation_Bold.ttf);}
+@font-face{font-family:sansr;src: url(../fonts/Sansation_Regular.ttf);}
+
+.fmss{font-family:ss;}
+.fmrobot{font-family:robot;}
+.fmrobol{font-family:robol;}
+.fmrobor{font-family:robor;}
+.fmsansb{font-family:sansb;}
+.fmsansr{font-family:sansr;}
+
 .color666{color:#666}
 .transition300{transition:300ms;-moz-transition:300ms;-webkit-transition:300ms;}
 .transition200{transition:200ms;-moz-transition:200ms;-webkit-transition:200ms;}
@@ -184,7 +190,7 @@ textarea:focus, input:focus , select:focus ,option:focus{
 
 
 .details_cont{width:25%;height:100%;position:relative;opacity:0;max-height:600px; z-index:20}
-.details_head{width:100%;height:auto;line-height:35px; font-size:30px;text-align:right; color:#2d2d2d;padding: 10px 0px;}
+.details_head{width:100%;height:auto;line-height:50x; font-size:50px;text-align:right; color:#000;padding: 10px 0px;}
 .details_desc{width:100%;height:auto;color:#666;}
 .details_buffer{width:100%;height:80%;position:absolute; top:0;;bottom:0;margin:auto;text-align:right}
 .para{width:100%;height:auto;margin:10px 0px ;  line-height:20px;font-size:14px;word-wrap: break-word; white-space: normal;}
