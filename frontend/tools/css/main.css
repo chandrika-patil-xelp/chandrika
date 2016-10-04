@@ -28,6 +28,19 @@ textarea:focus, input:focus , select:focus ,option:focus{
 @font-face{font-family:OswaldL;src: url(../fonts/oswald/Oswald-Light.ttf);}
 @font-face{font-family:OswaldR;src: url(../fonts/oswald/Oswald-Regular.ttf);}
 @font-face{font-family:OswaldB;src: url(../fonts/oswald/Oswald-Bold.ttf);}
+
+@font-face{font-family:georgia;src: url(../fonts/georgia.ttf);}
+@font-face{font-family:fmRb;src: url(../fonts/RobotoSlab-Bold.ttf);}
+@font-face{font-family:fmRs;src: url(../fonts/RobotoSlab-Light.ttf);}
+@font-face{font-family:sansB;src: url(../fonts/Sansation_Bold.ttf);}
+@font-face{font-family:sansR;src: url(../fonts/Sansation_Regular.ttf);}
+
+
+
+
+
+
+
 .fmOsL{font-family:OswaldL;}
 .fmOsR{font-family:OswaldR;}
 .fmOsB{font-family:OswaldB;}
