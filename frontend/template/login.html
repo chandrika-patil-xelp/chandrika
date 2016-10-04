@@ -4,23 +4,23 @@
 <?php include 'jhead.html' ?>
 <script type="text/javascript" src="<?php echo $fjvs['Common']; ?>"></script>
 <script>
-            var BWEBROOT='<?php echo BACKWEBROOT?>';
-            var DOMAIN ='<?php echo DOMAIN?>';
-            var APIDOMAIN ='<?php echo APIDOMAIN?>';
-            var IMGDOMAIN='<?php echo IMGDOMAIN ?>';
-            var page='<?php echo $page?>';
-            
-        </script>
-  
+            var BWEBROOT = '<?php echo BACKWEBROOT?>';
+    var DOMAIN = '<?php echo DOMAIN?>';
+    var APIDOMAIN = '<?php echo APIDOMAIN?>';
+    var IMGDOMAIN = '<?php echo IMGDOMAIN ?>';
+    var page = '<?php echo $page?>';
+
+</script>
+
 <body class="loginBanr">
     <div class="wrapper_max">
-        <div class="lgnHead">
+        <div class="lgnHead" id="lgnId">
             <div class="lgnLogo fLeft"></div>
             <div class="signUp fmSansR font12 fRight">Don't have an account? &nbsp; <span class="u_line lettSpace fmSansB signUpIcon">Sign Up</span></div>
         </div>
         <div class="outerContr">
-            <div class="fmSansB txtTitle tUline">Login</div>
-            <div class="loginCont fLeft">
+            <div class="fmSansB txtTitle tUline" id="txtId">Login</div>
+            <div class="loginCont fLeft" id="loginId">
                 <div class="txtB fmSansR fLeft">
                     <input type="text" class="inp_box " maxlength="30" id="email">
                     <div class="inp_label fmSansB" >Email-Id*</div>
@@ -36,7 +36,26 @@
                         </div>
                     </center>
                 </div>
-                <div class="subTxt fLeft fmSansB font12"><span class="u_line lettSpace">FORGOT PASSWORD?</span></div>
+                <div class="subTxt fLeft fmSansB font12" id="forId"><span class="u_line lettSpace">FORGOT PASSWORD?</span></div>
+            </div>
+        </div>
+        <div class="outerContr dn" id="forgot">
+            <div class="fmSansB txtTitle tUline" id="txtId1">FORGOT PASSWORD</div>
+            <div class="loginCont fLeft" id="loginId1">
+                <div class="txtB fmSansR fLeft">
+                    <input type="text" class="inp_box " maxlength="30" id="email">
+                    <div class="inp_label fmSansB" >Email-Id*</div>
+                </div>
+                <div class="filterSec fLeft">
+                    <center>
+                        <div class="btnContainr  fmOsR " id="nxt">
+                            <div class="button button2 btnc1 transition300 fLeft" id="log">CANCEL</div>
+                        </div>
+                        <div class="btnContainr  fmOsR " id="nxt">
+                            <div class="button button2 btnc1 transition300 fLeft" id="log">SUBMIT</div>
+                        </div>
+                    </center>
+                </div>
             </div>
         </div>
     </div>
@@ -46,19 +65,29 @@
         });
         $('.inp_box').blur(function () {
             var k = $(this).val();
-            if (k == "") {
+            if (k === "") {
                 $(this).closest('.txtB').removeClass('focul');
             }
 
         });
 
-        $('.txtTitle,.loginCont,.lgnHead').velocity({opacity: [0]}, {duration: 0, easing: 'ease-in-out'});
+        $('#txtId,#loginId,#lgnId').velocity({opacity: [0]}, {duration: 0, easing: 'ease-in-out'});
         $(document).ready(function () {
-            $('.txtTitle,.loginCont').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 800, delay: 600, easing: 'ease-in-out'});
-            $('.lgnHead').velocity({opacity: [1, 0], translateY: [20, 0]}, {duration: 800, delay: 600, easing: 'ease-in-out'});
+            $('#txtId,#loginId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 800, delay: 600, easing: 'ease-in-out'});
+            $('#lgnId').velocity({opacity: [1, 0], translateY: [20, 0]}, {duration: 800, delay: 600, easing: 'ease-in-out'});
         });
+
+        $('#txtId1,#loginId1').velocity({opacity: [0]}, {duration: 0, easing: 'ease-in-out'});
+        $('#forId').click(function () {
+            $('#forgot').removeClass("dn");
+            $('#txtId,#loginId').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 800, delay: 600, easing: 'ease-in-out'});
+            $('#txtId1,#loginId1').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 800, delay: 600, easing: 'ease-in-out'});
+//            $('#lgnId').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 800, delay: 600, easing: 'ease-in-out'});
+        });
+
+
     </script>
-     <script type="text/javascript" src="<?php echo $jvs['login']; ?>"></script>
-    
+    <script type="text/javascript" src="<?php echo $jvs['login']; ?>"></script>
+
 </body>
 </html>

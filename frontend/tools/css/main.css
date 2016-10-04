@@ -238,7 +238,7 @@ textarea:focus, input:focus , select:focus ,option:focus{
 .mBot10{margin-bottom:10px;}
 .mTop5{margin-top:5px;}
 .padR15{padding-right: 10px;}
-.PRODUCT_GRID2.wrapper_main{padding-top:120px}
+.PRODUCT_GRID2.wrapper_main{padding-top:80vh}
 /*.img1{background:url("../img/jzeva1.png")no-repeat;}
 .img2{background:url("../img/jzeva2.png")no-repeat;}
 .img3{background:url("../img/jzeva3.png")no-repeat;}
@@ -1197,3 +1197,7 @@ input[type=radio]:checked ~ .check::before{background: #22B9C7;transform: scale(
     background-repeat: repeat-x;
     pointer-events: none;
 }
+.gemBanner{width:100%;height:80vh;background-image:url('../img/gemstoneBanner.jpg');background-size:cover;background-position:center;background-repeat:no-repeat;position:fixed}
+/*.gemBanner.fixer{position:fixed;z-index:20}*/
+.banner_over{width:100%;height:100%;position:absolute;top:0;left:0;background:#000;opacity:0}
+.header.black_bg{background:#000}
