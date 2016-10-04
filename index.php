@@ -16,6 +16,11 @@ if ($params['debug']) {
 
 
 switch ($action) {
+    case 'icons':
+        $page = 'Icons';
+        include 'icons.html';
+        break;
+    
     case 'home':
         $page = 'index';
         include TEMPLATE . 'index.html';

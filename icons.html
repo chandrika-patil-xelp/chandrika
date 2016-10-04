@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Icon List</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type='text/javascript' src="<?php echo $JS['jquery'] ?>"></script>
+            
+        <style>
+            *{box-sizing: border-box}
+            .iconComm{width:120px;height: 120px;margin: 10px;float:left;position: relative;cursor: pointer;}
+            .iconComm span {width: 100%;height: auto;position: absolute;bottom: 0;left: 0;display: block;font-size: 13px;    font-family: sans-serif;color: #333;padding: 5px;line-height: 10px;word-break: break-all;}
+            
+            @font-face{font-family:openB;src: url(tools/fonts/OpenSans-Bold.ttf);}
+            .fmOpenB{font-family: openB;}
+            center{width:100%;float: left;text-align: center;}
+        </style>
+    </head>
+    <body>
+       
+        
+        <?php
+            $dir = "frontend/tools/img/";//4Tigo
+            $allFiles = scandir($dir); // Or any other directory
+            $files = array_diff($allFiles, array('.', '..'));
+            $cnt= sizeof($files);
+        ?>
+             <center><h2>Folder - frontend/tools/img(<?php echo $cnt?>)</h2></center>
+        <?php    
+            foreach($files as $fl)
+            {
+                $fname=$dir.'/'.$fl;
+               
+            ?>
+                <div class='iconComm' data-url="<?php echo $fname;?>" style='background: #f0f0f0 url(<?php echo $fname;?>)no-repeat;background-position:center 10px;background-size: auto 55%'>  
+                <span><?php echo $fl;?></span>
+                </div>
+            
+        <?php 
+
+            }
+        ?>
+        
+             
+        <?php
+            $dir = "frontend/tools/img/icons";//4Tigo
+            $allFiles = scandir($dir); // Or any other directory
+            $files = array_diff($allFiles, array('.', '..'));
+            $cnt= sizeof($files);
+        ?>
+             <center><h2>Folder - frontend/tools/img/icons(<?php echo $cnt?>)</h2></center>
+        <?php    
+            foreach($files as $fl)
+            {
+                $fname=$dir.'/'.$fl;
+               
+            ?>
+                <div class='iconComm' data-url="<?php echo $fname;?>" style='background: #f0f0f0 url(<?php echo $fname;?>)no-repeat;background-position:center 10px;background-size: auto 55%'>  
+                <span><?php echo $fl;?></span>
+                </div>
+            
+        <?php 
+
+            }
+        ?>
+             
+             
+             
+             
+             
+        <?php
+            $dir = "frontend/tools/img/icons/fwdicons";//4Tigo
+            $allFiles = scandir($dir); // Or any other directory
+            $files = array_diff($allFiles, array('.', '..'));
+            $cnt= sizeof($files);
+        ?>
+             <center><h2>Folder - frontend/tools/img/fwdicons(<?php echo $cnt?>)</h2></center>
+        <?php    
+            foreach($files as $fl)
+            {
+                $fname=$dir.'/'.$fl;
+               
+            ?>
+                <div class='iconComm' data-url="<?php echo $fname;?>" style='background: #f0f0f0 url(<?php echo $fname;?>)no-repeat;background-position:center 10px;background-size: auto 55%'>  
+                <span><?php echo $fl;?></span>
+                </div>
+            
+        <?php 
+
+            }
+        ?>
+        
+            <script>
+             
+             
+             $('.iconComm').bind('click',function(){
+                 var url=$(this).attr('data-url');
+                 window.open(url);
+                 
+             });
+             
+             
+            </script>
+        
+        
+        
+        
+        
+                
+                
+                
+            
+    </body>
+</html>
