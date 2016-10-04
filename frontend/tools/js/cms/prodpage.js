@@ -137,7 +137,7 @@ $(document).ready(function(){
                               var carat = vl.carat;
                               var price_per_carat = vl.prcPrCrat;
                                 
-                                solistr+='<div class="desc_row fLeft font12 fmSansB "><span class="txt_left fLeft"><span>'+vl.totNo+'</span><span> Solitaire</span></span><span class="fRight fmSansR"><span> '+vl.crat+'</span> Carat</span></div>';
+                                solistr+='<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>'+vl.totNo+'</span><span> Solitaire</span></span><span class="fRight fmSansR"><span> '+vl.crat+'</span> Carat</span></div>';
                              getSoliPrice(carat,price_per_carat);
                             });
                              $('#desc').append(solistr);
@@ -183,7 +183,7 @@ $(document).ready(function(){
                                       
                                 });
                                  $('#diQ').append(dQstr);
-                                 diamstr+='<div class="desc_row fLeft font12 fmSansB "><span class="txt_left fLeft"><span>'+vl.totNo+'</span><span> Diamonds</span></span><span class="fRight fmSansR"><span> '+vl.crat+'</span> Carat</span></div>';
+                                 diamstr+='<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>'+vl.totNo+'</span><span> Diamonds</span></span><span class="fRight fmSansR"><span> '+vl.crat+'</span> Carat</span></div>';
                                 $('input[name="selectM"]').eq(0).attr('checked',true);
                                 
                             });
@@ -208,7 +208,7 @@ $(document).ready(function(){
                                  var carat = vl.crat;
                                 var price = vl.prcPrCrat;
                               
-                                uncutstr+='<div class="desc_row fLeft font12 fmSansB "><span class="txt_left fLeft"><span>'+vl.totNo+'</span><span> Uncut-Diamond</span></span><span class="fRight fmSansR"><span> '+vl.crat+'</span> Carat</span></div>';
+                                uncutstr+='<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>'+vl.totNo+'</span><span> Uncut-Diamond</span></span><span class="fRight fmSansR"><span> '+vl.crat+'</span> Carat</span></div>';
                               getUncutPrice(price,carat);
                             });
                              $('#desc').append(uncutstr);
@@ -224,7 +224,7 @@ $(document).ready(function(){
                                  var carat = vl.crat;
                                 var price = vl.prcPrCrat;
                        
-                                gemstr+='<div class="desc_row fLeft font12 fmSansB "><span class="txt_left fLeft"><span>'+vl.totNo+'</span><span> '+vl.gemNm+' </span></span><span class="fRight fmSansR"><span> '+vl.crat+'</span> Carat</span></div>';
+                                gemstr+='<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>'+vl.totNo+'</span><span> '+vl.gemNm+' </span></span><span class="fRight fmSansR"><span> '+vl.crat+'</span> Carat</span></div>';
                              getGemsPrice(carat,price);
                                gemNstr+= '<span> , <span>'+vl.gemNm+'</span></span>';
                             });
