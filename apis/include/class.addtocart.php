@@ -64,7 +64,29 @@
              ."(SELECT  GROUP_CONCAT(dname) FROM tbl_diamond_quality_master WHERE id = SUBSTRING_INDEX(combine,'|@|',-1)  AND active_flag = 1 ) AS quality,"
             . "(SELECT  GROUP_CONCAT(product_name) FROM tbl_product_master WHERE productid = pid AND active_flag = 1 ) AS prdname,"
 	    . "(SELECT  GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid  AND active_flag !=2 ORDER BY
-                            image_sequence DESC) AS prdimage"
+                            image_sequence DESC) AS prdimage,"
+            . "(SELECT  GROUP_CONCAT(jewelleryType) FROM tbl_product_master WHERE productid = pid  AND active_flag !=2) 
+                            AS jewelleryType,"
+            ." (SELECT GROUP_CONCAT(diamond_id) FROM tbl_product_diamond_mapping WHERE productid = pid AND active_flag = 1 ) AS allDimonds,
+               (SELECT GROUP_CONCAT(carat) FROM tbl_product_diamond_mapping WHERE FIND_IN_SET(diamond_id,allDimonds)) AS dmdcarat,
+               (SELECT GROUP_CONCAT(total_no) FROM tbl_product_diamond_mapping WHERE FIND_IN_SET(diamond_id,allDimonds)) AS totaldmd,
+               (SELECT GROUP_CONCAT(shape) FROM tbl_product_diamond_mapping WHERE FIND_IN_SET(diamond_id,allDimonds)) AS shape,"
+            ." (SELECT GROUP_CONCAT(gemstone_id) FROM tbl_product_gemstone_mapping WHERE productid = pid AND active_flag = 1 ) AS allGemstone,
+               (SELECT GROUP_CONCAT(gemstone_name) FROM tbl_gemstone_master WHERE FIND_IN_SET(id,allGemstone)) AS gemstoneName,
+               (SELECT GROUP_CONCAT(carat) FROM tbl_product_gemstone_mapping WHERE FIND_IN_SET(gemstone_id,allGemstone) AND productid =pid) AS gemscarat ,
+               (SELECT GROUP_CONCAT(total_no) FROM tbl_product_gemstone_mapping WHERE FIND_IN_SET(gemstone_id,allGemstone) AND productid =pid) AS totalgems,
+               (SELECT GROUP_CONCAT(price_per_carat) FROM tbl_product_gemstone_mapping WHERE FIND_IN_SET(gemstone_id,allGemstone) AND productid =pid) AS gemsPricepercarat,"
+             ."(SELECT GROUP_CONCAT(solitaire_id) FROM tbl_product_solitaire_mapping WHERE productid = pid AND active_flag = 1 ) AS allSolitaire,
+               (SELECT GROUP_CONCAT(no_of_solitaire) FROM tbl_product_solitaire_mapping WHERE FIND_IN_SET(solitaire_id,allSolitaire) AND productid =pid) AS totalSolitaire,
+               (SELECT GROUP_CONCAT(carat) FROM tbl_product_solitaire_mapping WHERE FIND_IN_SET(solitaire_id,allSolitaire) AND productid =pid) AS Solicarat,
+               (SELECT GROUP_CONCAT(price_per_carat) FROM tbl_product_solitaire_mapping WHERE FIND_IN_SET(solitaire_id,allSolitaire) AND productid =pid) AS SoliPricepercarat,"
+                            
+             ."(SELECT GROUP_CONCAT(uncut_id) FROM tbl_product_uncut_mapping WHERE productid = pid AND active_flag = 1 ) AS allUncut,
+               (SELECT GROUP_CONCAT(total_no) FROM tbl_product_uncut_mapping WHERE FIND_IN_SET(uncut_id,allUncut) AND productid =pid) AS totalUncut,
+               (SELECT GROUP_CONCAT(carat) FROM tbl_product_uncut_mapping WHERE FIND_IN_SET(uncut_id,allUncut) AND productid =pid) AS Uncutcarat,
+               (SELECT GROUP_CONCAT(price_per_carat) FROM tbl_product_uncut_mapping WHERE FIND_IN_SET(uncut_id,allUncut) AND productid =pid) AS UncutPricepercarat"
+             
+               
             . " FROM tbl_cart_master WHERE active_flag=1 order by updatedon DESC";
        
    
@@ -85,7 +107,38 @@
                     $arr['prdimage'] = $row['prdimage']; 
                     $arr['color'] = $row['color']; 
                     $arr['carat'] = $row['carat']; 
-                    $arr['quality'] = $row['quality']; 
+                    $arr['quality'] = $row['quality'];
+                    $arr['jewelleryType'] = $row['jewelleryType'];
+                      $arr['allDimonds'] = $row['allDimonds'];
+                    $arr['dmdcarat'] = $row['dmdcarat'];
+                     $arr['totaldmd'] = $row['totaldmd'];
+                       $arr['shape'] = $row['shape'];
+                             
+                    $arr['allGemstone'] = $row['allGemstone'];
+                    $arr['gemstoneName'] = $row['gemstoneName'];
+                   
+                    $arr['totalgems'] = $row['totalgems'];
+                    $arr['gemscarat'] = $row['gemscarat'];
+                    $arr['gemsPricepercarat'] = $row['gemsPricepercarat'];
+                      
+                    $arr['allSolitaire'] = $row['allSolitaire'];
+                    $arr['totalSolitaire'] = $row['totalSolitaire'];
+                    $arr['Solicarat'] = $row['Solicarat'];
+                    $arr['SoliPricepercarat'] = $row['SoliPricepercarat'];
+                    
+                    $arr['allUncut'] = $row['allUncut'];
+                    $arr['totalUncut'] = $row['totalUncut'];
+                    $arr['Uncutcarat'] = $row['Uncutcarat'];
+                    $arr['UncutPricepercarat'] = $row['UncutPricepercarat'];
+                    
+                     if($row['jewelleryType'] === '1'){
+                             $arr['jewelleryType'] ='Gold';
+                        }else  if($row['jewelleryType'] === '2'){
+                             $arr['jewelleryType'] ='Plain Gold';
+                        }else  if($row['jewelleryType'] === '3'){
+                             $arr['jewelleryType'] ='Platinum';
+                        }  
+                       
                     $resArr[] = $arr;
                    
                 } 
