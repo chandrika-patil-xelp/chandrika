@@ -164,7 +164,7 @@
     /*Main menu slidedown/slideup , Menu tab colour change*/
     $('.tabB').mouseover(function () {
         $('.tab').removeClass('selec');
-        $('.menu_wrap').velocity('stop').velocity({height: [180]}, {duration: 200, easing: 'ease-in-out', display: 'block'});
+        $(this).parent().siblings('.menu_wrap').velocity('stop').velocity({height: [180]}, {duration: 200, easing: 'ease-in-out', display: 'block'});
     });
     $('.tabWrap').mouseleave(function () {
         $('.overlay').stop(true, true).fadeTo(200, 0);
