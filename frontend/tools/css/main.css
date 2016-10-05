@@ -148,6 +148,7 @@ textarea:focus, input:focus , select:focus ,option:focus{
 .overlay{width:100%;height:100vh;position:fixed;background:rgba(0,0,0,0.85);z-index:13;display:none;opacity:0;pointer-events:none;}
 .overlay2{width:100%;height:100vh;position:fixed;background:rgba(0,0,0,0.2);z-index:13;opacity:0;pointer-events:none;}
 .overlay3{width:100%;height:100%;position:fixed; background:rgba(255,255,255,0.8);z-index: 30;opacity:0;}
+.overlayF{width:100%;height:100vh;position:fixed;background:rgba(0,0,0,0.85);z-index:13;display:none;opacity:0;pointer-events:none;}
 .over_open.overlay2{opacity:1}
 .pad15{padding:15px}
 .menu_elm{width:100%;height:100%;position:absolute;left:0;top:0;background:#fff;padding:20px;z-index:30;}
@@ -418,6 +419,16 @@ img{width:100%;height:100%;border:0}
 .PRODUCT_GRID2 .wrapper{padding:120px 0 0 0}
 .PRODUCT_GRID2 .grid_item{width:100%;background:#fff;position: relative;}
 .PRODUCT_GRID2 .grid_item:after{content:"";width:100%;height:100%;position:absolute;left:0;top:0;background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.05) 100%);}
+/*chandrika*/
+.outerFilter{width:auto;height: 60px;position: relative;z-index:105;}
+.filterBox{width: auto;    height: 100%;   cursor: pointer;}
+.filterTxt{padding: 0 15px;width: 100%;    height: 100%;    line-height: 60px;    font-size: 12px;    text-transform: uppercase;}
+.filterDetails{position: absolute;    top: 80px;    width: auto;        height: auto;    background-color: #fff;    z-index: 105;}
+.filterBox:hover {}
+.filterBox:hover .filterDetails{display: block;border: 1px solid;}
+.filterTxt:after{position: absolute;    width: 15px;    height: 15px;    border: 1px solid;    content: "";    top: 21px;}
+.PRODUCT_GRID2 .tabWrap{}
+.PRODUCT_GRID2 .tab{}
 
 
 .no_img{background:#333}
@@ -1187,9 +1198,9 @@ input[type=radio]:checked ~ .check::before{background: #22B9C7;transform: scale(
 .signUpBanner .outerContr{height:450px;left:60%;}
 .cMoreTxt{width:100%;height:auto;line-height:25px;text-align:center;color:#2d2d2d;background-color:#fff;cursor:pointer;font-size:12px;float:left;}
 .seeM{height:auto;overflow:visible;}
-.diaSh{display:none;}
-.ringSz{display:none;}
-.gemTyp{display:none;}
+/*.diaSh{display:none;}*/
+/*.ringSz{display:none;}*/
+/*.gemTyp{display:none;}*/
 .gemstone:hover{background-size: auto 118%;}
 .actv span{color:#22B9C7;}
 .actv .u_line:after{border-top:1px solid #22B9C7;}
@@ -1207,9 +1218,9 @@ input[type=radio]:checked ~ .check::before{background: #22B9C7;transform: scale(
 .signUpBanner .outerContr{height:450px;left:60%;}
   .cMoreTxt{width:100%;height:auto;line-height:25px;text-align:center;color:#2d2d2d;background-color:#fff;cursor:pointer;font-size:12px;float:left;}
 .seeM{height:auto;overflow:visible;}
-.diaSh{display:none;}
-.ringSz{display:none;}
-.gemTyp{display:none;}
+/*.diaSh{display:none;}*/
+/*.ringSz{display:none;}*/
+/*.gemTyp{display:none;}*/
 
 /*forgot password*/
 #forgot .btnContainr{width:140px;}
@@ -1230,3 +1241,25 @@ input[type=radio]:checked ~ .check::before{background: #22B9C7;transform: scale(
 /*.gemBanner.fixer{position:fixed;z-index:20}*/
 .banner_over{width:100%;height:100%;position:absolute;top:0;left:0;background:#000;opacity:0}
 .header.black_bg{background:#000}
+
+.ftabWrap{width: auto;height: 60px;position: absolute; z-index: 101;top: 403px;left: 75px;}
+.ftab_buffer{width:auto;height:60px;position:relative;z-index:20;}
+.ftabB{width:auto;height:60px;cursor:pointer;}
+.ftab{width:100%;height:100%;transition:200ms;color:#333; padding:0 25px;font-size:11px;line-height: 60px;}
+.ftabB:hover .taba, .selec.taba{background:#22B9C7 !important;color:#fff !important}
+.ftabB:hover .tabb, .selec.tabb{background:#22B9C7 !important;color:#fff !important}
+.ftabB:hover .tabc, .selec.tabc{background:#22B9C7 !important;color:#fff !important}
+.ftabB:hover .tabd, .selec.tabd{background:#22B9C7 !important;color:#fff !important}
+.ftabB:hover .tabe, .selec.tabe{background:#22B9C7 !important;color:#fff !important}
+.fmenu_wrap{position:absolute;top:62px;left:0;width:100%;height:0px;background:transparent;display:none;overflow:hidden}
+.fmenuB{width:100%;height:100%;position:relative;background:#f0f0f0;}
+.fmenu_elm{width:100%;height:100%;position:absolute;left:0;top:0;background:#fff;padding:20px;z-index:30;}
+.fmenu_head{width:100%;color:#b3b3b3;font-size:15px; padding: 5px 0; margin-bottom: 10px; text-transform: uppercase;  float:left;}
+.fmenu_list{width:80%;color:#666;font-size:12px; text-transform: uppercase;  float:left;padding:5px 7px ;cursor:pointer;}
+.fmenu_list:hover{background:#2d2d2d;color:#fff;}
+.ftabB:hover .taba, .selec.taba{background:#22B9C7 !important;color:#fff !important}
+.ftabB:hover .tabb, .selec.tabb{background:#22B9C7 !important;color:#fff !important}
+.ftabB:hover .tabc, .selec.tabc{background:#22B9C7 !important;color:#fff !important}
+.ftabB:hover .tabd, .selec.tabd{background:#22B9C7 !important;color:#fff !important}
+.ftabB:hover .tabe, .selec.tabe{background:#22B9C7 !important;color:#fff !important}
+.ftabWrap:hover .ftab{background:#fff;color:#2d2d2d;}
