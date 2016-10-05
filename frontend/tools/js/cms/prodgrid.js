@@ -48,7 +48,7 @@ $(document).ready(function () {
 function generatelist(obj) {
    
     var proStr = "";
-    var proStr1 = "";
+   
   
     var images=[];
     if (obj['images'] !== null && obj['images'] !== undefined  && obj['images'] !== '' && obj['images'] !== 'undefined')
@@ -157,11 +157,12 @@ filter(pid,gender,jType,Mclr,gemsName,Dshape);
     gtotal = price + vat;
 
     grandtot = gtotal.toFixed();
-    grandtotal = Number(grandtot).toLocaleString('en');
+   grandtotal = common.IND_money_format(grandtot,0);
+ // grandtotal = Number(grandtot).toLocaleString('en');
 
-    proStr += '<div class="grid3 transition300 dn" id="'+ obj['prdId'] +'" >';
+    proStr += '<div class="grid3 transition300 dn" id="'+ obj['prdId'] +'"  >';
     proStr += '<div class="facet_front">';
-    proStr += '<div class="grid_item">';
+    proStr += '<div class="grid_item" onclick=\"getProId(\''+ obj['prdId'] + '\')\" >';
     proStr += '<div class="grid_img"  onmousemove="bindrota(this , event)" lcor="0">';
     
     if( images[0] == "uploads/noimg2.svg")
@@ -179,7 +180,7 @@ filter(pid,gender,jType,Mclr,gemsName,Dshape);
     proStr += '<div class="grid_price">&#8377 ' + grandtotal + '</div>';
     proStr += '<div class="fmSansB smBtnDiv fLeft transition300">';
 //    proStr += '<span class="u_line point lettSpace fLeft"  onclick=\"getProId(\''+ obj['prdId'] + '\')\">View Product</span>';
-    proStr += '<div class="v360Btn" onclick=\"imgLoad(' + obj['prdId'] + ')\"></div>';
+    proStr += '<div class="v360Btn" onclick=\"imgLoad(' + obj['prdId'] + ', event)\"></div>';
 //    proStr += '<span class="u_line point lettSpace v_dets fRight" onclick="flipCard(this)">Quick View</span>';
     //proStr += '</div>';
     proStr += '</div>';
@@ -239,12 +240,14 @@ filter(pid,gender,jType,Mclr,gemsName,Dshape);
 }
 
 function getProId(pid) {
-    
+  
     window.location.href = DOMAIN + "index.php?action=product_page&pid="+ pid;
 
 }
 
-function imgLoad(p){
+function imgLoad(p,event){
+    event.stopPropagation();
+  
  if(!$('#'+p).hasClass('has360')){
      $('#'+p).addClass('has360');
   var URL = APIDOMAIN + "index.php/?action=getImagesByPid&pid=" +p;
@@ -255,7 +258,7 @@ function imgLoad(p){
             url:URL,
             success:function(res){
                dataI = JSON.parse(res); 
-        
+              
                   var imgstr = "";
                    $(dataI['images']).each(function(i, v) {
                       
@@ -414,9 +417,7 @@ $('#filter').click(function(){
      window.location.href = DOMAIN + "index.php?action=filterPage";  
 });
 
-$('#apply').click(function(){
-     window.location.href = DOMAIN + "index.php?action=product_grid";  
-});
+
 
 function filter(a,b,c,d,e,f){
  var proid = a;
@@ -446,12 +447,3 @@ function filter(a,b,c,d,e,f){
        });
    });*/
 }
-
-$('#apply').click(function(){
-   
-   var female = $('#female').val();
-   var male = $('#male').val();
-   
-   
-   
-});
