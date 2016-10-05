@@ -22,7 +22,7 @@ $(document).ready(function () {
             if (res['error']['err_code'] == 0) {
                 getProdDtl = res["result"];
                    var total = res["total"];
-                $('#total_Product').html("<strong>" + total + "</strong> Products");
+                $('#total_Product').html( total + " Products");
                 var obj = res["result"];
                 var len = obj.length;
               
@@ -174,14 +174,14 @@ filter(pid,gender,jType,Mclr,gemsName,Dshape);
     proStr += '</div>';
     proStr += '<div class="grid_dets">';
     proStr += '<div class="grid_name">' + obj['prdNm'] + '</div>';
-    proStr += '<div class="col100 color666">';
+    //proStr += '<div class="col100 color666">';
     proStr += '<div class="col100  font11 transition300">' + obj['jwelType'] + ' ' + obj['metal_weight'] + ' gms, Diamond ' + obj['dmdcarat'] + ' Carats</div>';
     proStr += '<div class="grid_price">&#8377 ' + grandtotal + '</div>';
     proStr += '<div class="fmSansB smBtnDiv fLeft transition300">';
 //    proStr += '<span class="u_line point lettSpace fLeft"  onclick=\"getProId(\''+ obj['prdId'] + '\')\">View Product</span>';
     proStr += '<div class="v360Btn" onclick=\"imgLoad(' + obj['prdId'] + ')\"></div>';
 //    proStr += '<span class="u_line point lettSpace v_dets fRight" onclick="flipCard(this)">Quick View</span>';
-    proStr += '</div>';
+    //proStr += '</div>';
     proStr += '</div>';
     proStr += '</div>';
     proStr += '<div class="soc_icons">';
