@@ -425,7 +425,6 @@ var grandtot=0;
 var gtotal=0
 function getTotal(type){
   
-     
        total=  parseFloat(basicValue)+ parseFloat(dmdValue) + parseFloat(metalValue) + uncPrice + soliprc + gemsPrice ;
     
     // total= parseFloat(dmdValue) + parseFloat(metalValue) + gemsPrice  + parseFloat(soliValue) + parseFloat(uncutValue)+ parseFloat(basicValue) ;
@@ -435,11 +434,12 @@ function getTotal(type){
         gtotal = total + vat;
       
          grandtot = gtotal.toFixed();
-     $("#price").html(Number(grandtot).toLocaleString('en'));
+   //  $("#price").html(Number(grandtot).toLocaleString('en'));
+        $("#price").html(IND_money_format(grandtot).toLocaleString('en'));
      
         if (type == 1){
                    
-           $("#price").html(Number(grandtot).toLocaleString('en'));
+           $("#price").html(IND_money_format(grandtot).toLocaleString('en'));
         }
 }
 
