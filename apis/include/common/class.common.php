@@ -92,5 +92,6 @@
                     $params = urldecode($params);
                     return $ddate = date('jS M,Y|h:i A', strtotime($params));
                 }
+                
     }
 ?>
