@@ -589,7 +589,7 @@ switch($action)
     break;
  
 
-   case 'login':
+    case 'login':
             include APICLUDE.'class.user.php';
             $obj = new user($db['jzeva']);
             $res = $obj->login($params);
@@ -697,6 +697,19 @@ switch($action)
 /*  case 'addToCart':
         
         include APICLUDE.'class.addtocart.php';
+<<<<<<< .mine
+        $obj = new addtocart($db['jzeva']);       
+	$tmpaparams = array($params['dt']);
+     //            
+    //      foreach($tmpaparams as $key => $value)
+     //     {  
+     //         $tmpaparams[$key] = strip_tags($value);
+     //     } 
+  	   $res=$obj->addToCart($tmpaparams);
+||||||| .r466
+        $obj = new addtocart($db['jzeva']);
+        $res = $obj->addToCart($params);
+=======
         $obj = new addtocart($db['jzeva']); 
        
   	 $res=$obj->addToCart($params);
@@ -720,11 +733,38 @@ switch($action)
      case 'getcartdetail':
         include APICLUDE.'class.addtocart.php';
         $obj = new addtocart($db['jzeva']);
-        $res = $obj->getcartdetail();
+         $res = $obj->getcartdetail($params); 
         break;
     
     /** CODE FOR ADD TO CART ENDS **/
+    
 	
+    
+      case 'updatecartdata':
+        include APICLUDE.'class.addtocart.php';
+        $obj = new addtocart($db['jzeva']);
+	 $res = $obj->updatecartdata($params);
+        break;
+      
+      case 'updatecartincrz':
+        include APICLUDE.'class.addtocart.php';
+        $obj = new addtocart($db['jzeva']);
+	 $res = $obj->updatecartincrz($params);
+        break;
+	
+      case 'newcart':
+        include APICLUDE.'class.addtocart.php';
+        $obj = new addtocart($db['jzeva']);
+	 $res = $obj->newcart( $params);
+        break;
+	
+      
+      case 'updatecartdecrese':
+        include APICLUDE.'class.addtocart.php';
+        $obj = new addtocart($db['jzeva']);
+	 $res = $obj->updatecartdecrese($params);
+        break;
+    
      case 'getcartdetailbyid':
         include APICLUDE.'class.addtocart.php';
         $obj = new addtocart($db['jzeva']);
@@ -736,6 +776,7 @@ switch($action)
         $obj = new addtocart($db['jzeva']);
 	 $res = $obj->updatecartincrz($params);
         break;
+    
     
         case 'updatecartdecrese':
         include APICLUDE.'class.addtocart.php';
