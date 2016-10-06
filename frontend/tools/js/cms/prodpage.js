@@ -39,8 +39,7 @@ m += money[i];
 return m.split("").reverse().join("");
    };
 
-var pid ;
-
+var pid;
   $('#add_to_cart').on('click', function () {
  
 	   var arrdata=new Array();
@@ -60,12 +59,12 @@ var pid ;
 	   arrdata.push(quality);
 	    arrdata.push(metal);
           
-       
+      
 	   newaddToCart(arrdata);
 	});
 $(document).ready(function(){ 
   
-       pid = GetURLParameter('pid'); 
+      pid = GetURLParameter('pid'); 
       
 	
 	
@@ -104,8 +103,9 @@ $(document).ready(function(){
                 
               
              $(basic).each(function(i, vl) {
+                
                              var proname = vl.prdNm;
-                            $('#vpro').text(vl.vPCode);
+                            $('#vpro').text(vl.prdCod);
                             $('#proname').text(vl.prdNm);
                             $('#descrp').text(vl.productDescription);
                            var metalwght = vl.mtlWgt;
