@@ -1,3 +1,4 @@
+  
 <?php
 
     include_once APICLUDE . 'common/db.class.php';
@@ -11,7 +12,6 @@
         public function addToCart($params)
 	{ 
 	    $params = json_decode($params[0],1);
-            
 	    if(empty($params['pid']) || empty($params['cartid']) || empty($params['col_car_qty'])){
                 $resp = array();
                 $error = array('err_code'=>1, 'err_msg'=>'Parameters Missing');
@@ -54,110 +54,6 @@
 	  
         }
 	    
-
-  public function getcartdetail()
-  {
-      
-       $sql = "  SELECT  cart_id,product_id AS pid,userid,col_car_qty AS combine, pqty, price,created_on,updatedon,active_flag, "
-              . "(SELECT  GROUP_CONCAT(dname) FROM tbl_metal_color_master WHERE id = SUBSTRING_INDEX(combine, '|@|',1) AND active_flag = 1 ) AS color,"
-	    ."(SELECT  GROUP_CONCAT(dname) FROM tbl_metal_purity_master WHERE id = SUBSTRING_INDEX(SUBSTRING_INDEX(combine,'|@|',2),'|@|',-1) AND active_flag = 1 ) AS carat,"
-             ."(SELECT  GROUP_CONCAT(dname) FROM tbl_diamond_quality_master WHERE id = SUBSTRING_INDEX(combine,'|@|',-1)  AND active_flag = 1 ) AS quality,"
-            . "(SELECT  GROUP_CONCAT(product_name) FROM tbl_product_master WHERE productid = pid AND active_flag = 1 ) AS prdname,"
-	    . "(SELECT  GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid  AND active_flag !=2 ORDER BY
-                            image_sequence DESC) AS prdimage,"
-            . "(SELECT  GROUP_CONCAT(jewelleryType) FROM tbl_product_master WHERE productid = pid  AND active_flag !=2) 
-                            AS jewelleryType,"
-             . "(SELECT  GROUP_CONCAT(metal_weight) FROM tbl_product_master WHERE productid = pid  AND active_flag !=2) 
-                            AS metalwgt,"
-            ." (SELECT GROUP_CONCAT(diamond_id) FROM tbl_product_diamond_mapping WHERE productid = pid AND active_flag = 1 ) AS allDimonds,
-               (SELECT GROUP_CONCAT(carat) FROM tbl_product_diamond_mapping WHERE FIND_IN_SET(diamond_id,allDimonds)) AS dmdcarat,
-               (SELECT GROUP_CONCAT(total_no) FROM tbl_product_diamond_mapping WHERE FIND_IN_SET(diamond_id,allDimonds)) AS totaldmd,
-               (SELECT GROUP_CONCAT(shape) FROM tbl_product_diamond_mapping WHERE FIND_IN_SET(diamond_id,allDimonds)) AS shape,"
-            ." (SELECT GROUP_CONCAT(gemstone_id) FROM tbl_product_gemstone_mapping WHERE productid = pid AND active_flag = 1 ) AS allGemstone,
-               (SELECT GROUP_CONCAT(gemstone_name) FROM tbl_gemstone_master WHERE FIND_IN_SET(id,allGemstone)) AS gemstoneName,
-               (SELECT GROUP_CONCAT(carat) FROM tbl_product_gemstone_mapping WHERE FIND_IN_SET(gemstone_id,allGemstone) AND productid =pid) AS gemscarat ,
-               (SELECT GROUP_CONCAT(total_no) FROM tbl_product_gemstone_mapping WHERE FIND_IN_SET(gemstone_id,allGemstone) AND productid =pid) AS totalgems,
-               (SELECT GROUP_CONCAT(price_per_carat) FROM tbl_product_gemstone_mapping WHERE FIND_IN_SET(gemstone_id,allGemstone) AND productid =pid) AS gemsPricepercarat,"
-             ."(SELECT GROUP_CONCAT(solitaire_id) FROM tbl_product_solitaire_mapping WHERE productid = pid AND active_flag = 1 ) AS allSolitaire,
-               (SELECT GROUP_CONCAT(no_of_solitaire) FROM tbl_product_solitaire_mapping WHERE FIND_IN_SET(solitaire_id,allSolitaire) AND productid =pid) AS totalSolitaire,
-               (SELECT GROUP_CONCAT(carat) FROM tbl_product_solitaire_mapping WHERE FIND_IN_SET(solitaire_id,allSolitaire) AND productid =pid) AS Solicarat,
-               (SELECT GROUP_CONCAT(price_per_carat) FROM tbl_product_solitaire_mapping WHERE FIND_IN_SET(solitaire_id,allSolitaire) AND productid =pid) AS SoliPricepercarat,"
-                            
-             ."(SELECT GROUP_CONCAT(uncut_id) FROM tbl_product_uncut_mapping WHERE productid = pid AND active_flag = 1 ) AS allUncut,
-               (SELECT GROUP_CONCAT(total_no) FROM tbl_product_uncut_mapping WHERE FIND_IN_SET(uncut_id,allUncut) AND productid =pid) AS totalUncut,
-               (SELECT GROUP_CONCAT(carat) FROM tbl_product_uncut_mapping WHERE FIND_IN_SET(uncut_id,allUncut) AND productid =pid) AS Uncutcarat,
-               (SELECT GROUP_CONCAT(price_per_carat) FROM tbl_product_uncut_mapping WHERE FIND_IN_SET(uncut_id,allUncut) AND productid =pid) AS UncutPricepercarat"
-             
-               
-            . " FROM tbl_cart_master WHERE active_flag=1 order by updatedon DESC";
-       
-   
-      $res = $this->query($sql);
-            if ($res) {
-                while ($row = $this->fetchData($res)) {
-		    
-                    $arr['cart_id'] = $row['cart_id'];
-                    $arr['product_id'] = $row['pid'];
-                    $arr['userid'] = $row['userid'];
-		    $arr['col_car_qty'] = $row['combine'];
-                    $arr['pqty'] = $row['pqty']; 
-		    $arr['price'] = $row['price']; 
-		    $arr['active_flag'] = $row['active_flag']; 
-                    $arr['created_on'] = $row['created_on'];
-		    $arr['updatedon'] = $row['updatedon'];
-		    $arr['prdname'] = $row['prdname']; 
-                    $arr['prdimage'] = $row['prdimage']; 
-                    $arr['color'] = $row['color']; 
-                    $arr['carat'] = $row['carat']; 
-                    $arr['quality'] = $row['quality'];
-                    $arr['jewelleryType'] = $row['jewelleryType'];
-                     $arr['metalwgt'] = $row['metalwgt'];
-                  
-                      $arr['allDimonds'] = $row['allDimonds'];
-                      
-                    $arr['dmdcarat'] = $row['dmdcarat'];
-                     $arr['totaldmd'] = $row['totaldmd'];
-                       $arr['shape'] = $row['shape'];
-                             
-                    $arr['allGemstone'] = $row['allGemstone'];
-                    $arr['gemstoneName'] = $row['gemstoneName'];
-                   
-                    $arr['totalgems'] = $row['totalgems'];
-                    $arr['gemscarat'] = $row['gemscarat'];
-                    $arr['gemsPricepercarat'] = $row['gemsPricepercarat'];
-                      
-                    $arr['allSolitaire'] = $row['allSolitaire'];
-                    $arr['totalSolitaire'] = $row['totalSolitaire'];
-                    $arr['Solicarat'] = $row['Solicarat'];
-                    $arr['SoliPricepercarat'] = $row['SoliPricepercarat'];
-                    
-                    $arr['allUncut'] = $row['allUncut'];
-                    $arr['totalUncut'] = $row['totalUncut'];
-                    $arr['Uncutcarat'] = $row['Uncutcarat'];
-                    $arr['UncutPricepercarat'] = $row['UncutPricepercarat'];
-                    
-                     if($row['jewelleryType'] === '1'){
-                             $arr['jewelleryType'] ='Gold';
-                        }else  if($row['jewelleryType'] === '2'){
-                             $arr['jewelleryType'] ='Plain Gold';
-                        }else  if($row['jewelleryType'] === '3'){
-                             $arr['jewelleryType'] ='Platinum';
-                        }  
-                       
-                    $resArr[] = $arr;
-                   
-                } 
-		$err=array('err_code'=>0,'err_msg'=>'Data fetched successfully');
-            }
-	    else
-	    {
-	      $err=array('err_code'=>1,'err_msg'=>'Error in fetching data');
-	    }
-            $results=array('result'=>$resArr,'error'=>$err);
-		    return $results;  
-  
-  }
-  
   public function updatecartincrz($params)
   {
     $qnty =0;
@@ -322,7 +218,7 @@
           //  $pid = (!empty($params['pid'])) ? trim($params['pid']) : '';
           //  $oid = (!empty($params['oid'])) ? trim($params['oid']) : '';
            // print($params['pid']);
-            if(empty($params['pid']) || empty($params['col_car_qty']) ||  empty($params['cartid'])){
+            if(empty($params['pid']) || empty($params['col_car_qty'])){
                 $resp = array();
                 $error = array('err_code'=>1, 'err_msg'=>'Parameters Missing');
                 $result = array('result'=>$resp, 'error'=>$error);
@@ -333,8 +229,8 @@
                             tbl_cart_master 
                           SET
                             active_flag = 2 
-                          WHERE col_car_qty = '".$params['col_car_qty']."' AND
-                             product_id = '".$params['pid']."' AND cart_id = '".$params['cartid']."' ";
+                          WHERE col_car_qty = '".$params['col_car_qty']."' 
+                            AND product_id = '".$params['pid']."' AND cart_id = '".$params['cartid']."' ";
             
             $res = $this->query($sql);
             
@@ -507,8 +403,8 @@
             
             $name = (!empty($params['name'])) ? trim($params['name']) : "";
             $pass = (!empty($params['pass'])) ? trim($params['pass']) : "";
-            
-            if(empty($name) || empty($pass)){
+            print_r($params);
+             if(empty($name) || empty($pass)){
                 $resp = array();
                 $error = array('err_msg'=>0, 'err_code'=>'Parameters Missing');
                 $result = array('result'=>$resp, 'error'=>$error);
@@ -516,10 +412,11 @@
             }
             
             $sql = "SELECT 
-                        user_id,
+                        user_id AS user_id,
                         user_name,
                         logmobile,
-                        email
+                        email,
+			(SELECT GROUP_CONCAT(cart_id) FROM tbl_cart_master WHERE userid =user_id) AS cart_id
                       FROM
                         tbl_user_master 
                       WHERE email='".$name."' 
@@ -537,6 +434,7 @@
                         $arr['uname'] = ($row['user_name']!=NULL) ? $row['user_id'] : '';
                         $arr['mob'] = ($row['logmobile']!=NULL) ? $row['logmobile'] : '';
                         $arr['email'] = ($row['email']!=NULL) ? $row['email'] : '';
+			$arr['cart_id'] = ($row['cart_id']!=NULL) ? $row['cart_id'] : '';
                         $resp[] = $row;
                         $error = array('err_code'=>0, 'err_msg'=>'Login Details Fetched Successfully');
                     }
@@ -551,8 +449,8 @@
                 $error = array('err_code'=>1, 'err_msg'=>'Invalid Login Details');
             }
             
-            $results = array('result'=>$resp, 'error'=>$error);
-            return $results;
+            $results = array('result'=>$resp, 'error'=>$error);  
+             return $results;
             
         }
 
@@ -606,7 +504,172 @@
             
         }
         
+	
+	public function  getcartdetail($params)
+	{
+	  if($params['cart_id']=='null' && $params['userid']=='null'){
+                $resp = array();
+                $error = array('err_code'=>1, 'err_msg'=>'Parameters Missing');
+                $result = array('result'=>$resp, 'error'=>$error);
+                return $result;
+            }
+	  $cartidvar=(!empty($params['cart_id']))?trim($params['cart_id']):'';
+	  $abh=!empty($params['userid'])?trim($params['userid']):'';   
+	   $flag=0;
+	    if (empty($params['cart_id']))
+	   {    $flg=1; 
+		//print_r($flg);
+	   } 
+	   if (empty($params['userid']))
+	   {    $flg=2;
+		//print_r($flg);
+	   }
+	   if ($params['cart_id']=='null')
+	   {    $flg=1; 
+		//print_r($flg);
+	   } 
+	   if ($params['userid']=='null')
+	   {    $flg=2;
+		//print_r($flg);
+	   }
+	   
+	   
+         $sql = "  SELECT  cart_id,product_id AS pid,userid,col_car_qty AS combine, pqty, price,created_on,updatedon,active_flag, "
+              . "(SELECT  GROUP_CONCAT(dname) FROM tbl_metal_color_master WHERE id = SUBSTRING_INDEX(combine, '|@|',1) AND active_flag = 1 ) AS color,"
+	    ."(SELECT  GROUP_CONCAT(dname) FROM tbl_metal_purity_master WHERE id = SUBSTRING_INDEX(SUBSTRING_INDEX(combine,'|@|',2),'|@|',-1) AND active_flag = 1 ) AS carat,"
+             ."(SELECT  GROUP_CONCAT(dname) FROM tbl_diamond_quality_master WHERE id = SUBSTRING_INDEX(combine,'|@|',-1)  AND active_flag = 1 ) AS quality,"
+            . "(SELECT  GROUP_CONCAT(product_name) FROM tbl_product_master WHERE productid = pid AND active_flag = 1 ) AS prdname,"
+	    . "(SELECT  GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid  AND active_flag !=2 ORDER BY
+                            image_sequence DESC) AS prdimage,"
+            . "(SELECT  GROUP_CONCAT(jewelleryType) FROM tbl_product_master WHERE productid = pid  AND active_flag !=2) 
+                            AS jewelleryType,"
+            ." (SELECT GROUP_CONCAT(diamond_id) FROM tbl_product_diamond_mapping WHERE productid = pid AND active_flag = 1 ) AS allDimonds,
+               (SELECT GROUP_CONCAT(carat) FROM tbl_product_diamond_mapping WHERE FIND_IN_SET(diamond_id,allDimonds)) AS dmdcarat,
+               (SELECT GROUP_CONCAT(total_no) FROM tbl_product_diamond_mapping WHERE FIND_IN_SET(diamond_id,allDimonds)) AS totaldmd,
+               (SELECT GROUP_CONCAT(shape) FROM tbl_product_diamond_mapping WHERE FIND_IN_SET(diamond_id,allDimonds)) AS shape,"
+            ." (SELECT GROUP_CONCAT(gemstone_id) FROM tbl_product_gemstone_mapping WHERE productid = pid AND active_flag = 1 ) AS allGemstone,
+               (SELECT GROUP_CONCAT(gemstone_name) FROM tbl_gemstone_master WHERE FIND_IN_SET(id,allGemstone)) AS gemstoneName,
+               (SELECT GROUP_CONCAT(carat) FROM tbl_product_gemstone_mapping WHERE FIND_IN_SET(gemstone_id,allGemstone) AND productid =pid) AS gemscarat ,
+               (SELECT GROUP_CONCAT(total_no) FROM tbl_product_gemstone_mapping WHERE FIND_IN_SET(gemstone_id,allGemstone) AND productid =pid) AS totalgems,
+               (SELECT GROUP_CONCAT(price_per_carat) FROM tbl_product_gemstone_mapping WHERE FIND_IN_SET(gemstone_id,allGemstone) AND productid =pid) AS gemsPricepercarat,"
+             ."(SELECT GROUP_CONCAT(solitaire_id) FROM tbl_product_solitaire_mapping WHERE productid = pid AND active_flag = 1 ) AS allSolitaire,
+               (SELECT GROUP_CONCAT(no_of_solitaire) FROM tbl_product_solitaire_mapping WHERE FIND_IN_SET(solitaire_id,allSolitaire) AND productid =pid) AS totalSolitaire,
+               (SELECT GROUP_CONCAT(carat) FROM tbl_product_solitaire_mapping WHERE FIND_IN_SET(solitaire_id,allSolitaire) AND productid =pid) AS Solicarat,
+               (SELECT GROUP_CONCAT(price_per_carat) FROM tbl_product_solitaire_mapping WHERE FIND_IN_SET(solitaire_id,allSolitaire) AND productid =pid) AS SoliPricepercarat,"
+                            
+             ."(SELECT GROUP_CONCAT(uncut_id) FROM tbl_product_uncut_mapping WHERE productid = pid AND active_flag = 1 ) AS allUncut,
+               (SELECT GROUP_CONCAT(total_no) FROM tbl_product_uncut_mapping WHERE FIND_IN_SET(uncut_id,allUncut) AND productid =pid) AS totalUncut,
+               (SELECT GROUP_CONCAT(carat) FROM tbl_product_uncut_mapping WHERE FIND_IN_SET(uncut_id,allUncut) AND productid =pid) AS Uncutcarat,
+               (SELECT GROUP_CONCAT(price_per_carat) FROM tbl_product_uncut_mapping WHERE FIND_IN_SET(uncut_id,allUncut) AND productid =pid) AS UncutPricepercarat";
+             
+	       if($flg == 1){
+		 $sql.= " FROM tbl_cart_master WHERE active_flag=1 AND userid='".$params['userid']."' order by updatedon DESC";  
+	       }
+	       else if($flg==2){
+		$sql.= " FROM tbl_cart_master WHERE active_flag=1 AND cart_id='".$params['cart_id']."' order by updatedon DESC";  
+	       } 
+	       else{
+		 $sql.=" FROM tbl_cart_master WHERE active_flag=1 AND (cart_id='".$params['cart_id']."' OR userid='".$params['userid']."') order by updatedon DESC";
+	       }  //  print_r($sql);
+      $res = $this->query($sql);
+            if ($res) {
+                while ($row = $this->fetchData($res)) {
+		    
+                    $arr['cart_id'] = $row['cart_id'];
+                    $arr['product_id'] = $row['pid'];
+                    $arr['userid'] = $row['userid'];
+		    $arr['col_car_qty'] = $row['combine'];
+                    $arr['pqty'] = $row['pqty']; 
+		    $arr['price'] = $row['price']; 
+		    $arr['active_flag'] = $row['active_flag']; 
+                    $arr['created_on'] = $row['created_on'];
+		    $arr['updatedon'] = $row['updatedon'];
+		    $arr['prdname'] = $row['prdname']; 
+                    $arr['prdimage'] = $row['prdimage']; 
+                    $arr['color'] = $row['color']; 
+                    $arr['carat'] = $row['carat']; 
+                    $arr['quality'] = $row['quality'];
+                    $arr['jewelleryType'] = $row['jewelleryType'];
+                      $arr['allDimonds'] = $row['allDimonds'];
+                    $arr['dmdcarat'] = $row['dmdcarat'];
+                     $arr['totaldmd'] = $row['totaldmd'];
+                       $arr['shape'] = $row['shape'];
+                             
+                    $arr['allGemstone'] = $row['allGemstone'];
+                    $arr['gemstoneName'] = $row['gemstoneName'];
+                   
+                    $arr['totalgems'] = $row['totalgems'];
+                    $arr['gemscarat'] = $row['gemscarat'];
+                    $arr['gemsPricepercarat'] = $row['gemsPricepercarat'];
+                      
+                    $arr['allSolitaire'] = $row['allSolitaire'];
+                    $arr['totalSolitaire'] = $row['totalSolitaire'];
+                    $arr['Solicarat'] = $row['Solicarat'];
+                    $arr['SoliPricepercarat'] = $row['SoliPricepercarat'];
+                    
+                    $arr['allUncut'] = $row['allUncut'];
+                    $arr['totalUncut'] = $row['totalUncut'];
+                    $arr['Uncutcarat'] = $row['Uncutcarat'];
+                    $arr['UncutPricepercarat'] = $row['UncutPricepercarat'];
+                    
+                     if($row['jewelleryType'] === '1'){
+                             $arr['jewelleryType'] ='Gold';
+                        }else  if($row['jewelleryType'] === '2'){
+                             $arr['jewelleryType'] ='Plain Gold';
+                        }else  if($row['jewelleryType'] === '3'){
+                             $arr['jewelleryType'] ='Platinum';
+                        }  
+                       
+                    $resArr[] = $arr;
+                   
+                } 
+		$err=array('err_code'=>0,'err_msg'=>'Data fetched successfully');
+            }
+	    else
+	    {
+	      $err=array('err_code'=>1,'err_msg'=>'Error in fetching data');
+	    }
+            $results=array('result'=>$resArr,'error'=>$err);   
+		    return $results; 
+	}
+	 
+	public function updatecartdata($params)
+	{
+	  $flag=0;
+	  if($params['cartid']==null || $params['cartid']==""){
+	    $flag=1;
+	  }
+	  if($params['userid']==null || $params['userid']==""){
+	    $flag=2;
+	  }
+	  if(empty($params['cartid']) && empty($params['userid'])){
+                $resp = array();
+                $error = array('err_code'=>1, 'err_msg'=>'Parameters Missing');
+                $result = array('result'=>$resp, 'error'=>$error);
+                return $result;
+            }
+	  $sql="UPDATE tbl_cart_master SET ";
+	  if($flag==1){
+	    $sql.="userid='".$params['userid']."' ";
+	  }
+	  else if($flag==2){
+	    $sql.="cart_id='".$params['newcartid']."' ";
+	  }
+	  else{
+	    $sql.="cart_id='".$params['newcartid']."', userid='".$params['userid']."'";
+	  }
+	  $sql.="  WHERE cart_id='".$params['cartid']."' AND active_flag=1 "; 
+	  $res = $this->query($sql);
+            
+            if($res){
+                $error = array('err_code'=>0, 'err_msg'=>'Updated Successfully');
+            }else{
+                $error = array('err_code'=>1, 'err_msg'=>'Error In Updating' );
+            }
+            
+            $results = array('result'=>$resp, 'error'=>$error);   
+            return $results;
+	}
     }
-    
-   
-?>
+     
+    ?>
