@@ -3736,7 +3736,8 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
         
         public function getProGrid($params){
             
-            
+            global $comm;
+           
             $sqlcount = "  SELECT
                                     count(productid) AS  cnt
                                             FROM
@@ -3820,7 +3821,9 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                             active_flag != 2
                         ORDER BY
                             createdon ASC ";
-          
+            // $price = $comm->IND_money_format(priceDigit);
+          $price = $comm->IND_money_format(price);
+       
             
         $page = ($params['page'] ? $params['page'] : 1);
         $limit = ($params['limit'] ? $params['limit'] : 12);
