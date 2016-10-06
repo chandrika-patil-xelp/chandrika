@@ -19,7 +19,7 @@ $('#reg').on('click',function(){
         return false;
     }
     else if(email===''|| email=== null){
-      // common.toast(0, 'Please enter your Email.id');
+     //   common.toast(0, 'Please enter your Email.id');
         alert('Please enter your Email.id');
         validationFlag=0;
         return false;
@@ -79,6 +79,7 @@ $('#reg').on('click',function(){
 });
 
 var logDetails = new Array();
+var glbcartdeatil;
 $('#log').click(function(){
    
   var email = $("#email").val();
@@ -111,24 +112,153 @@ $('#log').click(function(){
             url:URL,
             success:function(res){
                 
-           data = JSON.parse(res);
-           logDetails = data['result'];
+	      data = JSON.parse(res);
+	      logDetails = data['result'];
             if(data['error']['err_code']==0)
             {
-               
+	      
               common.addToStorage("email", logDetails['0']['email']);
               common.addToStorage("name", logDetails['0']['name']);
               common.addToStorage("uid", logDetails['0']['uid']);
-              
-              alert('signed in successfully');
-             window.location.href = DOMAIN + "index.php?action=product_grid";
+	      var oldcartid=common.readFromStorage('cartid'); 
+	      var olduserid=common.readFromStorage('uid');
+	      var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id="+oldcartid+"&userid="+olduserid+"";   
+	       $.ajax({
+	 	    url: URL,
+	 	    type: "GET",
+	 	    datatype: "JSON",
+	 	    success: function(results)
+	 	    {
+		      var obj=JSON.parse(results); 
+		      glbcartdeatil=obj.result;
+//		      $(obj.result).each(function(r,v){ 
+ //		      });  
+		      if(oldcartid=="" || oldcartid==null){
+			  if(glbcartdeatil!= null){
+			       var cartid=glbcartdeatil[0].cart_id;  
+			  }
+			      if(cartid){
+				  common.addToStorage("cartid", cartid);}
+			      else{
+				  common.addToStorage("cartid", gencartId()); }
+		      }
+		      else{
+			   hasitem(oldcartid,olduserid);
+		      }
+		    alert('signed in successfully'); 
+		           window.location.href = DOMAIN + "index.php?action=product_grid";
+		    }
+		});  
             }
             else if(data['error']['err_code']==1){
                 alert(data['error']['err_msg']);
             }
-           
         }
     });
-    }
-  
+    } 
 });
+
+
+function hasitem(oldcartid,olduserid)
+{
+  
+   var newcartid,hasusrid=[],ccnt=0,hasoldcartid=[],ocnt=0; 
+   
+  $(glbcartdeatil).each(function(r,v){
+     if(v.userid!=0){
+       hasusrid[ccnt]=v;ccnt++;
+         newcartid=v.cart_id; 
+//       nthr=v.col_car_qty;
+//       nprid=v.product_id;
+      // common.addToStorage("cartid", newcartid);
+     }
+     else{
+       hasoldcartid[ocnt]=v;ocnt++;
+//       othr=v.col_car_qty;
+//       oprid=v.product_id;
+     }
+//     if(nthr==othr && nprid==oprid){
+//        var cont=ccnt-1;
+//       var j=hasusrid[cont].pqty;
+//       var price=hasusrid[cont].price;
+//       incrzqnty(j,price); 
+//     }
+  });
+    if(hasusrid=="" || hasusrid==null){
+     updatecartiddetail(oldcartid,olduserid,newcartid);  
+    }
+    else{
+       
+   var start=1,last=hasusrid.length;
+   $(hasusrid).each(function(r,v){
+      var prdid=v.product_id; 
+      var col_car_qty=v.col_car_qty;   
+      
+	$(hasoldcartid).each(function(m,n){
+	      if(prdid==n.product_id && col_car_qty==n.col_car_qty){
+		  var price=parseInt(v.price);  
+		  var j=parseInt(v.pqty); var l=parseInt(n.pqty);
+		  price=price/j;
+		  j=j+l;
+		  price=price*j;
+
+		  var dat={};
+		  dat['cartid']=v.cart_id;    dat['pid']=v.product_id;
+		  dat['userid']=v.userid;     dat['col_car_qty']=v.col_car_qty;
+		  dat['qty']=j;		  dat['price']=price; 
+		   var URL= APIDOMAIN + "index.php?action=addTocart";
+		  var data=dat; 
+		  var  dt = JSON.stringify(data); 
+		  $.ajax({
+			type:"post",
+			url:URL,
+			data: {dt: dt},
+			success:function(data){
+			     //   console.log(data);  
+			}
+		  });
+
+	var URL = APIDOMAIN+"index.php?action=removeItemFromCart&col_car_qty="+col_car_qty+"&pid="+prdid+"&cartid="+n.cart_id;
+		    $.ajax({
+			    type:'POST',
+			    url:URL,
+			    success:function(res){
+			     //console.log(res);
+			    }
+		    });  
+	      }
+	});
+    
+      if(last==start){  
+	updatecartiddetail(oldcartid,olduserid,newcartid);   
+      }
+      start++;
+   });
+   } 
+}
+
+function gencartId(){
+    var d = new Date();
+    var ti = d.getTime();
+  return ti;
+}
+
+function updatecartiddetail(oldcartid,olduserid,newcartid)
+{
+  if(newcartid=="" || newcartid==null){
+    var URL = APIDOMAIN + "index.php?action=updatecartdata&cartid="+oldcartid+"&userid="+olduserid+"&newcartid="+oldcartid;
+  }
+  else{
+    var URL = APIDOMAIN + "index.php?action=updatecartdata&cartid="+oldcartid+"&userid="+olduserid+"&newcartid="+newcartid;
+  } 
+   
+ 	       $.ajax({
+	 	    url: URL,
+	 	    type: "GET",
+	 	    datatype: "JSON",
+	 	    success: function(results)
+	 	    { 
+		   //   console.log(results);
+		    }
+		  });   
+}
