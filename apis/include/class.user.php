@@ -90,7 +90,7 @@
             $email = (!empty($params['email'])) ? trim($params['email']) : '';
             $mobile = (!empty($params['mobile'])) ? trim($params['mobile']) : '';
             $pass = (!empty($params['pass'])) ? trim($params['pass']) : '';
-            
+           $userid = (!empty($params['uid'])) ? trim($params['uid']) : '';
             //$resp = array();
             if((empty($email) && empty($mobile)) || empty($pass)){
                 
@@ -103,13 +103,16 @@
            
             $sql = "SELECT 
                     user_name,
-                    user_id,
+                   
+                    user_id AS uid,
                     email,
                     logmobile,
-                    password
+                    password,
+                    (SELECT GROUP_CONCAT(cart_id) FROM tbl_cart_master WHERE userid = uid  AND active_flag =1) 
+                            AS cartid
                   FROM
                     tbl_user_master 
-                  WHERE  email = '".$email."'or logmobile='".$mobile."'
+                  WHERE  email = '".$email."' or logmobile='".$mobile."'
                     ";
             
             $res = $this->query($sql);
@@ -120,7 +123,7 @@
                 
                 if($res){
                     while ($row = $this->fetchData($res)){
-                        $arr['uid'] = $row['user_id'];
+                        $arr['uid'] = $row['uid'];
                         $arr['name'] = $row['user_name'];
                         $arr['mobile'] = $row['logmobile'];
                         $arr['email'] = $row['email'];
