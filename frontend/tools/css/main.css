@@ -770,9 +770,9 @@ img{width:100%;height:100%;border:0}
 .lettSpace{letter-spacing:0.3em;text-transform: uppercase;}
 .bgCont{width:100%;height:auto;background: #f0f0f0 url(../img/icons/pattern.png); background-size: 85px;}
 
-.tUline{position:relative;}
+/*.tUline{position:relative;}*/
 .txtTitle{height: 40px;width: 100%;color: #2d2d2d; font-size: 13px;text-transform: uppercase;letter-spacing: 0.5em; text-align: center;line-height:40px;}
-.tUline:after{content:"";width:5%;border-top:1px solid #2d2d2d;position:absolute;top:0px;left:0;height:0;right:0;margin:auto;}
+/*.tUline:after{content:"";width:5%;border-top:1px solid #2d2d2d;position:absolute;top:0px;left:0;height:0;right:0;margin:auto;}*/
 .bounce{animation: bounce 1s .5s;transform: scale(0.85);}
 @keyframes bounce{
   0% { transform: scale(1.1); opacity: 1; }
@@ -1188,15 +1188,15 @@ input[type=radio]:checked ~ .check::before{background: #22B9C7;transform: scale(
 
 /*login page css*/
 .loginBanr{width:100%;height:100%;background-color:#f8f8f8;background-image:url('../img/loginBanner3.png');background-repeat:no-repeat;background-size: auto;background-position:94% center;}
-.loginCont{ width: 100%; height: auto; background-color: #fff; box-shadow: 0px 0px 12px 4px #d6d3d3;padding: 30px 30px;}
+.loginCont{ width: 100%; height: auto; background-color: #fff;padding: 30px 30px;}
 .lgnHead{padding:0px 40px;height: 120px;width: 100%; position: absolute;top: 0;left: 0;}
 .lgnLogo{background-image:url('../img/jzevalogoccc.svg');background-repeat:no-repeat;background-size:auto 40%;background-position:left;width:300px;height:100%;}
 .signUp{width:auto;height:auto;line-height:100px;color: #2d2d2d;}
-.outerContr{position: absolute;margin: auto; width: 350px; height:340px;top: 0;bottom: 0;left: 12%;}
+.outerContr{width: 450px;    height: 500px;    background: #fff;   position: absolute;    top: 0;    bottom: 0;    margin: auto;   /* border-radius: 50%; */    padding: 25px;    padding-top: 80px;    border: 1px solid;    right: 10%;}
 .signUpIcon{background-image:url('../img/signUp.svg');background-repeat:no-repeat;background-position:left;background-size:auto 28px;display: inline-block; padding-left: 28px; cursor: pointer;line-height:20px}
-.subTxt{width:100%;height:auto;line-height:40px;color:#2d2d2d;text-align:center;cursor:pointer;}
+.subTxt{width:100%;height:auto;line-height:40px;color:#2d2d2d;cursor:pointer;}
 .signUpBanner{width:100%;height:100%;background-color:#f8f8f8;background-image:url('../img/loginBanner.png');background-repeat:no-repeat;background-size: auto;background-position:20% center;}
-.signUpBanner .outerContr{height:450px;left:60%;}
+/*.signUpBanner .outerContr{height:450px;left:60%;}*/
 .cMoreTxt{width:100%;height:auto;line-height:25px;text-align:center;color:#2d2d2d;background-color:#fff;cursor:pointer;font-size:12px;float:left;}
 .seeM{height:auto;overflow:visible;}
 /*.diaSh{display:none;}*/
@@ -1205,18 +1205,19 @@ input[type=radio]:checked ~ .check::before{background: #22B9C7;transform: scale(
 .gemstone:hover{background-size: auto 118%;}
 .actv span{color:#22B9C7;}
 .actv .u_line:after{border-top:1px solid #22B9C7;}
+.jzevaLogo{background:url(../img/jzevalogoccc.svg)no-repeat;background-size:auto 15px;background-position:center;}
 
 
 .loginBanr{width:100%;height:100%;background-color:#f8f8f8;background-image:url('../img/loginBanner3.png');background-repeat:no-repeat;background-size: auto;background-position:94% center;}
-.loginCont{ width: 100%; height: auto; background-color: #fff; box-shadow: 0px 0px 12px 4px #d6d3d3;padding: 30px 30px;}
+.loginCont{ width: 100%; height: auto; background-color: #fff;padding: 30px 30px;}
 .lgnHead{padding:0px 40px;height: 120px;width: 100%; position: absolute;top: 0;left: 0;}
 .lgnLogo{background-image:url('../img/jzevalogoccc.svg');background-repeat:no-repeat;background-size:auto 40%;background-position:left;width:300px;height:100%;}
 .signUp{width:auto;height:auto;line-height:100px;color: #2d2d2d;}
-.outerContr{position: absolute;margin: auto; width: 350px; height:340px;top: 0;bottom: 0;left: 12%;}
+/*.outerContr{position: absolute;margin: auto; width: 350px; height:340px;top: 0;bottom: 0;left: 12%;}*/
 .signUpIcon{background-image:url('../img/signUp.svg');background-repeat:no-repeat;background-position:left;background-size:auto 28px;display: inline-block; padding-left: 28px; cursor: pointer;line-height:20px}
 .subTxt{width:100%;height:auto;line-height:40px;color:#2d2d2d;text-align:center;cursor:pointer;}
 .signUpBanner{width:100%;height:100%;background-color:#f8f8f8;background-image:url('../img/loginBanner.png');background-repeat:no-repeat;background-size: auto;background-position:20% center;}
-.signUpBanner .outerContr{height:450px;left:60%;}
+/*.signUpBanner .outerContr{height:450px;left:60%;}*/
   .cMoreTxt{width:100%;height:auto;line-height:25px;text-align:center;color:#2d2d2d;background-color:#fff;cursor:pointer;font-size:12px;float:left;}
 .seeM{height:auto;overflow:visible;}
 /*.diaSh{display:none;}*/
@@ -1238,6 +1239,7 @@ input[type=radio]:checked ~ .check::before{background: #22B9C7;transform: scale(
     pointer-events: none;
 }
 .gemBanner{width:100%;height:50vh;background-image:url('../img/23.jpg');background-size:cover;background-position:center;background-repeat:no-repeat;position:absolute}
+.homejzeva .gemBanner{width:100%;height:90vh;background-image:url('../img/23.jpg');background-size:cover;background-position:center;background-repeat:no-repeat;position:absolute}
 .gemBanner.fixedBanner{position:fixed}
 /*.gemBanner.fixer{position:fixed;z-index:20}*/
 .banner_over{width:100%;height:100%;position:absolute;top:0;left:0;background:#000;opacity:0}
@@ -1264,3 +1266,76 @@ input[type=radio]:checked ~ .check::before{background: #22B9C7;transform: scale(
 .ftabB:hover .tabd, .selec.tabd{background:#000 !important;color:#fff !important}
 .ftabB:hover .tabe, .selec.tabe{background:#000 !important;color:#fff !important}
 .ftabWrap:hover .ftab{background:#fff;color:#2d2d2d;}
+
+/*home*/
+.categoryOuter{width: 100%;height: auto;    padding: 90px 40px 0px 40px;}
+/*.categories{width: 30%;height: 200px;}*/
+.wrapperHome{width: 100%;height: auto;}
+.coverImg{width:100%;height:90vh;background-image:url('../img/23.jpg');background-size:cover;background-position:center;background-repeat:no-repeat;}
+.categories{padding: 10px;width: 33.3%;height: 33.3vw;}
+.festiveOuter{width: 100%;height: 500px;position: relative;}
+.gridOuter{width:100%;height: auto;padding: 10px 20px 10px 20px;}
+.grids{width:33.33%;height: auto;padding: 10px;}
+.incat{width: 100%;height: 100%;    padding: 40px;    position: relative;}
+.catTxt{width: 100%;text-align:center;color: #fff;height: 100%;border: 1px solid #fff;letter-spacing: 0.03em;position: relative;    padding: 15px;}
+.ingrid{position: relative;width: 100%;margin-bottom: 10px;height: 33.3vw;}
+.earRings{background: url("../img/home/10737-Designer-Diamond-Earrings-192.jpg") no-repeat;background-size:cover;background-position: center;}
+.pendantsImg{background: url("../img/home/11.jpg") no-repeat;background-size:cover;background-position: center;}
+.banglesImg{background: url("../img/home/13.jpg") no-repeat;background-size:cover;background-position: center;}
+.incat:before{width: 100%;height: 100%;display: inline-block;position: absolute;top:0;left: 0;content:"";background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.55) 100%);}
+.inTxt{text-align:center;width: 100%;    padding-top: 70px;}
+.fineTxt{width: 100%;padding-top: 25px;}
+.fineTxt:after{content: "";    position: absolute;   top: 70px;    width: 113px;    border-bottom: 1px solid;       margin: auto;    left: 0;    right: 0;}
+.Header{text-align: center;width: 100%;padding: 80px 0px 90px 0px;}
+.exploreBtn{cursor: pointer;width: 50%;height: 40px;    line-height: 40px;    border: 1px solid #fff;    display: inline-block;}
+.txtBox{width: 100%; height: 250px;    padding: 55px;}
+.txtHead{width: auto;text-transform: uppercase;    color: #666;    letter-spacing: 0.03em;}
+.inputBox{display: inline-block;width: 400px;border: 1px solid #ccc;height: 30px}
+.inputE{outline: none;border: none;    width: 100%;    height: 100%;padding-left: 15px;color: #4d4d4d;}
+.signup{font-size: 17px;text-transform: uppercase;    padding: 25px 0px 10px 0px;   width: 100%;    display: inline-block;    color: #4d4d4d;}
+.bannerF{width: 100%;height: 100%;    background: url("../img/home/homebg.png") no-repeat;    background-size: auto 81%;    background-position: center;}
+.bannerL{width: 35%;height: 100%;    background: url("../img/home/1d.png") no-repeat;    background-size: auto 75%;    background-position: center;    position: absolute;    top: 0;    right: 0;    background-position: left 75px;    z-index: 1;}
+.bannerR{width: 41%;height: 100%;    background: url("../img/home/2d.png") no-repeat;    background-size: auto 117%;    background-position: center;    position: absolute;    top: 0;    right: 0;    background-position: right;    z-index: 0;}
+.hgridImg{width: 100%;height: 100%;    position: relative;    padding: 30px;}
+.hgrid1{background: url("../img/home/14.jpg") no-repeat;background-size:cover;background-position: center;}
+.hgrid2{background: url("../img/home/15.jpg") no-repeat;background-size:cover;background-position: center;}
+.hgrid3{background: url("../img/home/16.jpg") no-repeat;background-size:cover;background-position: center;}
+.hgrid4{background: url("../img/home/diamond-foundry-1.jpg") no-repeat;background-size:cover;background-position: center;}
+.hgrid5{background: url("../img/home/Diamond-Jewellery.jpg") no-repeat;background-size:cover;background-position: center;}
+.hgrid6{background: url("../img/home/dreamstime_xl_0041.jpg") no-repeat;background-size:cover;background-position: center;}
+.gridTxtDiv{width: 100%;    height: 100%;    border: 1px solid #fff;    padding: 160px 0px 160px 0px;    text-align: center;    line-height: 60px;    font-size: 25px;    color: #fff;}
+.hgridImg:before{width: 100%;height: 100%;display: inline-block;position: absolute;top:0;left: 0;content:"";background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.55) 100%);}
+.footerH{width:100%;height: 400px;background: #f2f2f2;padding: 50px;}
+.footerHeader{    width: 100%;    height: 50px;}
+.footerContent{    width: 60%;    height: 200px;}
+.socialMedia{    width: 40%;    height: 200px;}
+.footerCont1{width: 25%;height: auto;}
+.fooTxt{    width: 100%;    height: 25px;    line-height: 25px;    cursor: pointer;}
+.fooH{    width: auto;    height: 30px;    line-height: 30px;    text-transform: uppercase;    letter-spacing: 0.03em;}
+.fooLogo{    background-image: url(../img/jzevalogoccc.svg);    background-repeat: no-repeat;    background-size: auto 35%;    background-position: left;    /* width: 300px; */    height: 100%;}
+.pin{background-image: url(../img/101.svg);    background-repeat: no-repeat;    background-size: auto 80%;    background-position: left; }
+.Lin{background-image: url(../img/102.svg);    background-repeat: no-repeat;    background-size: auto 80%;    background-position: left; }
+.gooPlus{background-image: url(../img/103.svg);    background-repeat: no-repeat;    background-size: auto 80%;    background-position: left; }
+.twit{background-image: url(../img/104.svg);    background-repeat: no-repeat;    background-size: auto 80%;    background-position: left; }
+.socialCont{width: 100%;height: auto;}
+.mediaIcon{width: 40px;height: 40px;}
+.socialHead{width: 100%;height: auto;}
+.copyRight{width: 100%; text-align: center;padding-top: 70px;}
+
+/*login*/
+.loginPcnt{width:450px;height:500px;background:#fff;position:absolute;right:10%;top:0;bottom:0;margin:auto;border-radius:50%;padding:25px; padding-top: 80px;}
+.loginPcnt:before{content:"";width:110px;height:50px;position:absolute;left:0;right:0;margin:auto;top:30px;background:url(../img/jzevalogoccc.svg)no-repeat;background-size:auto 20px;background-position:center;}
+.closeIcn{width:50px;height:50px;position:absolute;right:10px;top:10px;background:url(../img/close_black.svg)no-repeat;background-position:center;background-size:auto 20px;cursor:pointer;opacity:0.7}
+.closeIcn:hover{opacity:1}
+.lgTxt{width:100%;height:auto;font-size:20px;color:#666;text-align:center;line-height:45px;margin-bottom: 15px;}
+.nClmn{width:100%;height:auto;margin-bottom:10px;}
+.txtCnt{width:340px;height:40px;display:inline-block;}
+.inputTxt{width:100%;height:100%;border:1px solid #ccc;border-radius:3px;outline:none;padding-left:15px;}
+.sgnBtn{width:100%;height:100%;background-color:#ff8972;text-align:center;color:#fff;font-size:14px;font-family:openB;letter-spacing:0.2em;line-height:40px;border-radius: 2px;cursor:pointer;}
+.sgnBtn.login{background: #333;}
+.sgnBtn.back{background: #fff url(../img/133.svg)no-repeat;background-position:center;background-size:auto 40px;position:absolute;width:40px;height:40px;top:-120px;left:0px;border-radius:0px}
+.mBtm5{margin-bottom:5px !important;}
+.brkCnt{width:268px;height:40px;position:relative;display:inline-block;}
+.brkCnt:before{content:'';width:100px;height:1px;border-bottom:1px solid #ccc;position:absolute;top:20px;left:0px;}
+.brkCnt:after{content:'';width:100px;height:1px;border-bottom:1px solid #ccc;position:absolute;top:20px;right:0px;}
+.orTcnt{width:60px;height:40px;position:absolute;left:0;right:0;margin:auto;font-size:15px;line-height:40px;color:#666;z-index:50}
