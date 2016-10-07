@@ -11,7 +11,7 @@ textarea:focus, input:focus{
 @font-face{font-family:SansationB;src: url(../fonts/sansation/Sansation_Bold.ttf);}
 .fmSansR{font-family:SansationR;}
 .fmSansL{font-family:SansationL;letter-spacing: -0.03em;}
-.fmSansB{font-family:SansationB;}
+.fmsansr{font-family:SansationB;}
 .fLeft{float:left;}
 .fRight{float:right;}
 .transition300{transition:300ms;-moz-transition:300ms;-webkit-transition:300ms;}
@@ -56,7 +56,7 @@ textarea:focus, input:focus{
 .col25{width:20%;height:auto;}
 .margL20{margin-left:20px}
 .btnCnt{width:100%;margin-top:20px}
-.button{width:100%;padding:0 20px;height:40px;font-family: sansB;font-size: 12px;line-height:38px;text-transform: uppercase;text-align:center;position:relative;display:inline-block;cursor:pointer;z-index:10;overflow:hidden;-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;  -ms-user-select: none; user-select: none; }
+.button{width:100%;padding:0 20px;height:40px;font-family: sansr;font-size: 12px;line-height:38px;text-transform: uppercase;text-align:center;position:relative;display:inline-block;cursor:pointer;z-index:10;overflow:hidden;-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;  -ms-user-select: none; user-select: none; }
 .btnc1{border:2px solid #333; color:#333;}
 .btnc2{border:2px solid #666; color:#666;}
 .btnc3{border:2px solid green; color:green;}
