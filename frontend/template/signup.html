@@ -10,15 +10,10 @@
             var page='<?php echo $page?>';
             
 </script>
-<body class="signUpBanner">
-    <div class="wrapper_max">
-        <div class="lgnHead">
-            <div class="lgnLogo fLeft"></div>
-            <div class="signUp fmSansR font12 fRight">Already have an account? &nbsp; <span class="u_line lettSpace fmSansB signUpIcon">Login</span></div>
-        </div>
-        <div class="outerContr">
-            <div class="fmSansB txtTitle tUline">SIGN UP</div>
+<body>
+        <div class="outerContr sigNup">
             <div class="loginCont fLeft">
+                <div class="txtTitle fmrobor" id="hTxt">Luxury or nothing</div>
                 <div class="txtB fmSansR fLeft">
                     <input type="text" class="inp_box " maxlength="30" id="name">
                     <div class="inp_label fmSansB">Name*</div>
@@ -35,10 +30,10 @@
                     <input type="password" class="inp_box " maxlength="30" id="pass">
                     <div class="inp_label fmSansB">Password*</div>
                 </div>
-                <div class="txtB fmSansR fLeft">
+<!--                <div class="txtB fmSansR fLeft">
                     <input type="password" class="inp_box " maxlength="30" id="cpass">
                     <div class="inp_label fmSansB">Confirm Password*</div>
-                </div>
+                </div>-->
                 <div class="filterSec fLeft">
                     <center>
                         <div class="btnContainr  fmOsR " id="nxt">
@@ -46,10 +41,9 @@
                         </div>
                     </center>
                 </div>
-<!--                <div class="subTxt fLeft fmSansB font12"><span class="u_line lettSpace">FORGOT PASSWORD?</span></div>-->
             </div>
         </div>
-    </div>
+    
     <script type="text/javascript">
         $('.inp_box').focus(function () {
             $(this).closest('.txtB').addClass('focul');
@@ -59,9 +53,7 @@
             if (k == "") {
                 $(this).closest('.txtB').removeClass('focul');
             }
-
         });
-
         $('.txtTitle,.loginCont,.lgnHead').velocity({opacity: [0]}, {duration: 0, easing: 'ease-in-out'});
         $(document).ready(function () {
             $('.txtTitle,.loginCont').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 800, delay: 600, easing: 'ease-in-out'});
