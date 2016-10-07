@@ -152,7 +152,75 @@
             
         }
         
-        
+        public function forgotpass($params) {
+            
+       $vsql = "SELECT * FROM tbl_user_master WHERE email=\"" . $params['email'] . "\"";
+        $vres = $this->query($vsql);
+        $row = $this->fetchData($vres);
+       
+        $cnt1 = $this->numRows($vres);
+ 
+        if ($cnt1 > 0) {
+            $password = mt_rand(11111111, 99999999); 
+            $vsql1 = "UPDATE tbl_user_master SET password=MD5('$password') WHERE email=\"" . $params['email'] . "\"";
+
+            $vres1 = $this->query($vsql1);
+             if ($vres1) {
+                $subject = 'Your Password is Changed Now';
+                $message = 'Your password was successfully Changed. Your new password is ' . $password;
+              
+              $arr = array();
+                $mail = mail($params['email'], $subject, $message);
+               
+                if ($mail) {
+                   
+                    $err = array('errCode' => 0, 'errMsg' => 'Email sent with the password');
+                } else {
+                    
+                    $err = array('errCode' => 1, 'errMsg' => 'Mail not Sent');
+                }
+           
+       /*   if ($vres1) {
+                
+                require_once APICLUDE . 'PHPMailer/PHPMailerAutoload.php';
+                $mail = new PHPMailer;
+                
+                
+                $subject = 'Your Password Changed';
+                $message = 'Dear '.$row['first_name'].', Your password was successfully Changed. Your new password is ' . $password;
+
+                
+                $mail->addAddress($row['email'], $row['first_name']);
+
+                $mail->setFrom('info@zommodity.com', "Zommodity");
+
+                $mail->addReplyTo('info@zommodity.com', "Zommodity");
+
+                $mail->isHTML(true);
+
+                $mail->Subject = $subject;
+                $mail->Body = $message;
+
+                if ($mail->send()) {
+                    $arr = array();
+                    $err = array('errCode' => 0, 'errMsg' => 'Email sent with the password');
+                } else {
+                    $arr = array();
+                    $err = array('errCode' => 1, 'errMsg' => 'Mail not Sent');
+                }
+            } else {
+                $arr = array();
+                $err = array('errCode' => 1, 'errMsg' => 'Failed to Update Password');
+            }*/
+        } else {
+           
+            $err = array('errCode' => 1, 'errMsg' => 'invalid Email ID');
+        }
+        }
+        $result = array('results' => $arr, 'error' => $err);
+        return $result;
+    }
+
         
         public function getUserDetailsById($params)
         {
