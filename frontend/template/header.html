@@ -41,14 +41,6 @@
                     GIFTS
                 </div>
             </div>
-<!--            <div class="tabS fLeft">
-                <div class="tab fLeft">
-                    <div class="search_bar transition200">
-                        <input class="search_ip fmOsR" type="text" />
-                        <div class="search_btn"></div>
-                    </div>
-                </div>
-            </div>-->
             <div class="tab2 fLeft">
                 <div class="tab userprofile"></div>
             </div>
@@ -152,9 +144,6 @@
             </div>
         </div>
     </div>
-<!--    <div class="tabWrap2">
-
-    </div>-->
 </div>
 <script>
     /*Overlay fade in/out  on menu hover*/
@@ -164,7 +153,7 @@
     /*Main menu slidedown/slideup , Menu tab colour change*/
     $('.tabB').mouseover(function () {
         $('.tab').removeClass('selec');
-        $(this).parent().siblings('.menu_wrap').velocity('stop').velocity({height: [180]}, {duration: 200, easing: 'ease-in-out', display: 'block'});
+        $('.menu_wrap').velocity('stop').velocity({height: [180]}, {duration: 200, easing: 'ease-in-out', display: 'block'});
     });
     $('.tabWrap').mouseleave(function () {
         $('.overlay').stop(true, true).fadeTo(200, 0);
@@ -178,7 +167,7 @@
     /*Sub menu slidedown/slideup , Menu tab colour change*/
     $('.tab').mouseenter(function () {
         var k = $(this).closest('.tabB').index();
-
+        console.log(k);
         $('.menu_elm').css({'z-index': '50'}).removeClass('tab_select').addClass('remo');
         $('.menu_elm').eq(k).css({'z-index': '9999'}).addClass('tab_select').removeClass('remo');
         $('.menu_elm').eq(k).stop(true, true).slideDown(200, function () {
