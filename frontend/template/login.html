@@ -12,53 +12,48 @@
 
 </script>
 
-<body class="loginBanr">
-    <div class="wrapper_max">
-        <div class="lgnHead" id="lgnId">
-            <div class="lgnLogo fLeft"></div>
-            <div class="signUp fmSansR font12 fRight">Don't have an account? &nbsp; <span class="u_line lettSpace fmSansB signUpIcon">Sign Up</span></div>
-        </div>
-        <div class="outerContr">
-            <div class="fmSansB txtTitle tUline" id="txtId">Login</div>
-            <div class="loginCont fLeft" id="loginId">
-                <div class="txtB fmSansR fLeft">
-                    <input type="text" class="inp_box " maxlength="30" id="email">
-                    <div class="inp_label fmSansB" >Email-Id*</div>
-                </div>
-                <div class="txtB fmSansR fLeft">
-                    <input type="password" class="inp_box " maxlength="30" id="pass">
-                    <div class="inp_label fmSansB" >Password*</div>
-                </div>
-                <div class="filterSec fLeft">
-                    <center>
-                        <div class="btnContainr  fmOsR " id="nxt">
-                            <div class="button button2 btnc1 transition300 fLeft" id="log">LOGIN</div>
-                        </div>
-                    </center>
-                </div>
-                <div class="subTxt fLeft fmSansB font12" id="forId"><span class="u_line lettSpace">FORGOT PASSWORD?</span></div>
-            </div>
-        </div>
-        <div class="outerContr dn" id="forgot">
-            <div class="fmSansB txtTitle tUline" id="txtId1">FORGOT PASSWORD</div>
-            <div class="loginCont fLeft" id="loginId1">
-                <div class="txtB fmSansR fLeft">
-                    <input type="text" class="inp_box " maxlength="30" id="email">
-                    <div class="inp_label fmSansB" >Email-Id*</div>
-                </div>
-                <div class="filterSec fLeft">
-                    <center>
-                        <div class="btnContainr  fmOsR " id="nxt">
-                            <div class="button button2 btnc1 transition300 fLeft" id="log">CANCEL</div>
-                        </div>
-                        <div class="btnContainr  fmOsR " id="nxt">
-                            <div class="button button2 btnc1 transition300 fLeft" id="log">SUBMIT</div>
-                        </div>
-                    </center>
+<body>
+      <div class="outerContr">
+                <div class="loginCont fLeft" id="loginId">
+                    <div class="txtTitle fmrobor" id="hTxt">Luxury or nothing<br></div>
+                    <div class="txtB fmSansR fLeft">
+                        <input type="text" class="inp_box " maxlength="30" id="email">
+                        <div class="inp_label fmSansB" >Email-Id*</div>
+                    </div>
+                    <div class="txtB fmSansR fLeft mBtm5">
+                        <input type="password" class="inp_box " maxlength="30" id="pass">
+                        <div class="inp_label fmSansB">Password*</div>
+                    </div>
+                    <div class="subTxt fLeft fmSansB font12" id="forId"><span class="u_line">FORGOT PASSWORD?</span></div>
+                    <div class="filterSec fLeft">
+                        <center>
+                            <div class="btnContainr  fmSansR" id="nxt">
+                                <div class="button button2 btnc1 transition300 fLeft" id="log">SIGN IN</div>
+                            </div>
+                        </center>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+            <div class="outerContr dn" id="forgot">
+               
+                <div class="loginCont fLeft" id="loginId1">
+                       <div class="txtTitle fmrobor" id="hTxt">Luxury or nothing</div>
+                    <div class="txtB fmSansR fLeft">
+                        <input type="text" class="inp_box " maxlength="30" id="email">
+                        <div class="inp_label fmSansB" >Email-Id*</div>
+                    </div>
+                    <div class="filterSec fLeft">
+                        <center>
+                            <div class="btnContainr  fmOsR " id="nxt">
+                                <a href=""><div class="button button2 btnc1 transition300 fLeft" id="log">CANCEL</div></a>
+                            </div>
+                            <div class="btnContainr  fmOsR " id="nxt">
+                                <div class="button button2 btnc1 transition300 fLeft" id="log">SUBMIT</div>
+                            </div>
+                        </center>
+                    </div>
+                </div>
+            </div>
     <script type="text/javascript">
         $('.inp_box').focus(function () {
             $(this).closest('.txtB').addClass('focul');
@@ -71,17 +66,17 @@
 
         });
 
-        $('#txtId,#loginId,#lgnId').velocity({opacity: [0]}, {duration: 0, easing: 'ease-in-out'});
+        $('#txtId,#hTxt,#loginId,#lgnId').velocity({opacity: [0]}, {duration: 0, easing: 'ease-in-out'});
         $(document).ready(function () {
-            $('#txtId,#loginId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 800, delay: 600, easing: 'ease-in-out'});
-            $('#lgnId').velocity({opacity: [1, 0], translateY: [20, 0]}, {duration: 800, delay: 600, easing: 'ease-in-out'});
+            $('#txtId,#hTxt,#loginId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 400, easing: 'ease-in-out'});
+            $('#lgnId').velocity({opacity: [1, 0], translateY: [20, 0]}, {duration: 400, delay: 400, easing: 'ease-in-out'});
         });
 
         $('#txtId1,#loginId1').velocity({opacity: [0]}, {duration: 0, easing: 'ease-in-out'});
         $('#forId').click(function () {
             $('#forgot').removeClass("dn");
-            $('#txtId,#loginId').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 800, delay: 600, easing: 'ease-in-out'});
-            $('#txtId1,#loginId1').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 800, delay: 600, easing: 'ease-in-out'});
+            $('#txtId,#loginId').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 400, easing: 'ease-in-out'});
+            $('#txtId1,#loginId1').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 400, easing: 'ease-in-out'});
 //            $('#lgnId').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 800, delay: 600, easing: 'ease-in-out'});
         });
 
