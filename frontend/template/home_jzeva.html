@@ -3,7 +3,9 @@
 <?php include 'jhead.html' ?>
 <?php include 'header.html'?>
 <body>
-    <div class="coverImg"></div>
+    <div class="coverImg">
+    <div class="banner_over" id="banner_over" ></div>
+  </div>
     <div class="wrapperHome">
         <div class="categoryOuter fLeft">
             <div class="categoryhead">Some header text</div>
@@ -24,7 +26,7 @@
                         <center>
                             <div class="fineTxt ">Fine Jewellery</div>
                             <div class="card_center">Some Header</div>
-                            <div class="exploreBtn font15">Explore</div>
+                            <div class="exploreBtn font15"><div class="button button1 btnc3 transition300">Explore</div></div>
                         </center>
                     </div>
                 </div>
@@ -35,67 +37,63 @@
                         <center>
                             <div class="fineTxt ">Fine Jewellery</div>
                             <div class="card_center">Some Header</div>
-                            <div class="exploreBtn font15">Explore</div>
+                            <div class="exploreBtn font15"><div class="button button1 btnc3 transition300">Explore</div></div>
                         </center>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
         <div class="fLeft festiveOuter">
 
             <div class="bannerF"></div>
             <!--<div class="bannerL"></div>-->
             <!--<div class="bannerR"></div>-->
         </div>
+        <div class="wrapperHome">
         <div class="gridOuter fLeft">
             <div class="grids fLeft">
                 <div class="ingrid fLeft">
                     <div class="hgridImg hgrid1">
-                        <div class="gridTxtDiv">
-                            craftmanship
-                            <!--<div class="gridTxt"></div>-->
-                        </div>
+
                     </div>
+                      <div class="crossbox"></div>
                 </div>
-                <div class="ingrid fLeft">
+                <div class="ingrid fLeft short">
                     <div class="hgridImg hgrid2">
-                        <div class="gridTxtDiv ">
-                            <div class="gridTxt"></div>
-                        </div>
+
                     </div>
+                      <div class="crossbox"></div>
                 </div>
             </div>
             <div class="grids fLeft">
-                <div class="ingrid fLeft">
+                <div class="ingrid fLeft short">
+
                     <div class="hgridImg hgrid3">
-                        <div class="gridTxtDiv ">
-                            <div class="gridTxt"></div>
-                        </div>
+
                     </div>
+                      <div class="crossbox"></div>
                 </div>
 
                 <div class="ingrid fLeft">
                     <div class="hgridImg hgrid4">
-                        <div class="gridTxtDiv ">
-                            <div class="gridTxt"></div>
-                        </div>
+
                     </div>
+                      <div class="crossbox"></div>
                 </div>
             </div>
             <div class="grids fLeft">
                 <div class="ingrid fLeft">
                     <div class="hgridImg hgrid5">
-                        <div class="gridTxtDiv ">
-                            <div class="gridTxt"></div>
-                        </div>
+
                     </div>
+                      <div class="crossbox"></div>
                 </div>
-                <div class="ingrid fLeft">
+                <div class="ingrid fLeft short">
                     <div class="hgridImg hgrid6">
-                        <div class="gridTxtDiv ">
-                            <div class="gridTxt"></div>
-                        </div>
+
                     </div>
+                    <div class="crossbox"></div>
                 </div>
             </div>
         </div>
@@ -139,7 +137,7 @@
                     <div class="fooTxt fLeft font14 fmSansR">jewellery care</div>
                     <div class="fooTxt fLeft font14 fmSansR">sizing guide</div>
                 </div>
-            </div>  
+            </div>
             <div class="socialMedia fRight fmSansR">
                 <div class="socialHead ">SAY HELLO</div>
                 <div class="socialCont">
@@ -154,5 +152,29 @@
             <div class="fLeft copyRight font12 fmSansR">&copy;2016 created by xelpmoc.in</div>
 
         </div>
-    
+<script>
+$(window).scroll(function () {
+    var sc = $('body').scrollTop();
+    var ht = $('#banner_over').outerHeight(true) - 60;
+    if (ht > sc) {
+        var op = 1 - (ht - sc) / ht;
+        $('#banner_over').css({'opacity': op});
+
+    }
+    if (ht - sc <= 5) {
+        $('.header').addClass('black_bg');
+        console.log('if');
+    } else {
+        $('.header').removeClass('black_bg');
+        console.log('else');
+    }
+//           if(ht-sc<=60){
+//           console.log(sc);
+//           $('.gemBanner').addClass('fixer');
+//       }
+//       else{
+//            $('.gemBanner').removeClass('fixer');
+//       }
+});
+</script>
 </body>

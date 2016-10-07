@@ -149,14 +149,14 @@
             <div class="container2 fmSansR fLeft">
                 <div class="col100">
                     <div class="wrapper_max">
-                        <div class="aboveLine fLeft">
-                        	<div class="filterH fLeft">
+                        <div class="aboveLine">
+                        	<div class="filterH">
                             	<div class="fLeft" id="total_Product"> Products</div>
                             	<div class="filter_btn fRight" id="filter"></div>
                             </div>
                             <div class="overlayF"></div>
                             <div class="ftabWrap fLeft fmSansB">
-                            <div class="ftab_buffer fLeft">
+                            <div class="ftab_buffer">
                                 <div class="ftabB fLeft">
                                     <div class="ftab fLeft taba">
                                         METAL TYPE
@@ -184,7 +184,7 @@
                                 </div>
 
                             </div>
-                            <div class="fmenu_wrap fLeft">
+                            <div class="fmenu_wrap">
                                 <div class="fmenuB">
                                     <div class="fmenu_elm fmOsR">
                                         <div class="mtlBox fLeft "  onclick="sort()">
@@ -275,8 +275,8 @@
                                         </div>
                                     </div>
                                     <div class="fmenu_elm fmOsR">
-                                           <div class="fLeft ringContr poR">
-                                            <center>
+
+                                        <center>
                                             <div class="col100">
                                                 <div class="diaCont Round transition300"></div>
                                                 <div class="diaCont Pear transition300"></div>
@@ -285,14 +285,13 @@
                                                 <div class="diaCont Marquise transition300"></div>
                                                 <div class="diaCont Oval transition300"></div>
                                             </div>
-                                            <div class="col100 diaSh">
+                                            <div class="col100 diaSh" style="height:240px">
                                                 <div class="diaCont Cushion transition300"></div>
                                                 <div class="diaCont Heart transition300"></div>
                                                 <div class="diaCont Radiant transition300"></div>
                                                 <div class="diaCont Asscher transition300"></div>
                                             </div>
                                         </center>
-                                        </div>
 
                                     </div>
                                     <div class="fmenu_elm fmOsR">
@@ -362,16 +361,16 @@
                                     </div>
                                 </div>
                             </div>
-                        
+
 
 
                     </div>
                 </div>
 
                 <div class="grid_cont fLeft">
-                    
+
                     <div class="col100 fLeft poR" id="gridDetail">
-                        
+
                     </div>
 
                 </div>
@@ -780,16 +779,16 @@
         $('.ftabB').mouseover(function () {
             $('.ftab').removeClass('selec');
             var inx=$(this).index();
-            if(inx ===0 || inx ===1 ){
-            $('.fmenu_wrap').velocity('stop').velocity({height: [180]}, {duration: 200, easing: 'ease-in-out', display: 'block'});
+            if(inx==0 || inx==1 ){
+            $('.fmenu_wrap').velocity('stop').velocity({height: [120]}, {duration: 200, easing: 'ease-in-out', display: 'block'});
           }
-          else if(inx === 2 ){
+          else if(inx==2 ){
               $('.fmenu_wrap').velocity('stop').velocity({height: [240]}, {duration: 200, easing: 'ease-in-out', display: 'block'});
           }
-          else if(inx === 3 ){
-              $('.fmenu_wrap').velocity('stop').velocity({height: [350]}, {duration: 200, easing: 'ease-in-out', display: 'block'});
+          else if(inx==3 ){
+              $('.fmenu_wrap').velocity('stop').velocity({height: [360]}, {duration: 200, easing: 'ease-in-out', display: 'block'});
           }
-          else if(inx === 4 ){
+          else if(inx==4 ){
               $('.fmenu_wrap').velocity('stop').velocity({height: [500]}, {duration: 200, easing: 'ease-in-out', display: 'block'});
           }
         });
@@ -805,7 +804,7 @@
         /*Sub menu slidedown/slideup , Menu tab colour change*/
         $('.ftab').mouseenter(function () {
             var k = $(this).closest('.ftabB').index();
-            console.log(k);
+
             $('.fmenu_elm').css({'z-index': '50'}).removeClass('tab_select').addClass('remo');
             $('.fmenu_elm').eq(k).css({'z-index': '9999'}).addClass('tab_select').removeClass('remo');
             $('.fmenu_elm').eq(k).stop(true, true).slideDown(200, function () {
@@ -815,7 +814,6 @@
         /* Maintain colour of tab while hovering on corresponding submenu*/
         $('.fmenu_elm').mouseenter(function () {
             var k = $(this).index();
-             console.log(k);
             $('.ftab').removeClass('selec');
             $('.ftabB').find('.ftab').eq(k).addClass('selec');
         });
