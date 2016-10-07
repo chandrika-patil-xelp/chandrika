@@ -25,6 +25,14 @@ switch ($action) {
         $page = 'index';
         include TEMPLATE . 'index.html';
         break;
+     case 'loginJzeva':
+        $page = 'loginJzeva';
+        include TEMPLATE . 'loginJzeva.html';
+        break;
+     case 'home_jzeva':
+        $page = 'home_jzeva';
+        include TEMPLATE . 'home_jzeva.html';
+        break;
     case 'gemstone':
         $page = 'gemstone';
         include TEMPLATE . 'gemstone.html';
@@ -44,6 +52,10 @@ switch ($action) {
     case 'login':
         $page = 'login';
         include TEMPLATE . 'login.html';
+        break;
+    case 'login1':
+        $page = 'login1';
+        include TEMPLATE . 'login_new.html';
         break;
     case 'signUp':
         $page = 'signUp';
