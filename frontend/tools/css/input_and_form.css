@@ -59,18 +59,18 @@ textarea:focus, input:focus{
 .button{width:100%;padding:0 20px;height:40px;font-family: sansr;font-size: 12px;line-height:38px;text-transform: uppercase;text-align:center;position:relative;display:inline-block;cursor:pointer;z-index:10;overflow:hidden;-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;  -ms-user-select: none; user-select: none; }
 .btnc1{border:2px solid #333; color:#333;}
 .btnc2{border:2px solid #666; color:#666;}
-.btnc3{border:2px solid green; color:green;}
+.btnc3{border:1px solid #fff; color:#fff;}
 .btnc4{border:2px solid orange; color:orange;}
 .button1.btnc1:after, .button2.btnc1:after, .button3.btnc1:after{background: #333;}
 .button1.btnc2:after, .button2.btnc2:after, .button3.btnc2:after{background: #666;}
-.button1.btnc3:after, .button2.btnc3:after, .button3.btnc3:after{background: green;}
+.button1.btnc3:after, .button2.btnc3:after, .button3.btnc3:after{background: #fff;}
 .button1.btnc4:after, .button2.btnc4:after, .button3.btnc4:after{background: orange;}
 /* Button Style  Slant */
 .button1{}
 .button1:after{content: '';width: 0;height: 300px;top: 0;left: 10px;right: 10px;bottom: 0;margin: auto;opacity: 0; -webkit-transform:rotate(45deg);-moz-transform:  rotate(45deg);-ms-transform: rotate(45deg);transform: rotate(-45deg);position: absolute;transition: 200ms;z-index: -1;}
 .button1:hover:after{opacity: 1;width: 75%;}
 .button1:active:after{width: 100%;}
-.button1:hover{color:#fff;}
+.button1:hover{color:#000;}
 
 
 /* Button Style  Horizontal */
