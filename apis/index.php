@@ -594,8 +594,36 @@ switch($action)
             $obj = new user($db['jzeva']);
             $res = $obj->login($params);
             break;
-        
-   
+    
+    
+    
+    case 'forgotPass':
+            include_once APICLUDE . 'class.user.php';
+           
+            $obj=new user($db['jzeva']);
+           // $tmp_params = array('email' => $email);
+            $res = $obj->forgotPass($params);
+            break;
+       
+      #CHANGE PASSWORD
+     // localhost/jzeva/apis/index.php?action=changePassUrl&uid=8720161006153344&email=ss@gmail.com
+            
+ case 'changePassUrl':
+       include APICLUDE.'class.urlmaster.php';
+          $obj	= new urlmaster($db['jzeva']);
+        $result	= $obj->changePassUrl($params);
+      
+        $res = $result;
+        break;
+
+//  localhost/iftosi/apis/index.php?action=getUserDet&key=uvwxyz
+    case 'getUserDet':
+       
+        include APICLUDE.'class.urlmaster.php';
+        $obj	= new urlmaster($db['jzeva']);
+        $result	= $obj->getUserDet($params);
+        $res = $result;
+        break;
 
 
     /** ADD USER CODDE START **/
@@ -691,30 +719,7 @@ switch($action)
         $res = $obj->getProductImgById($params);
         break;
     
-    /** GET PRODUCT DETAILS BY ID ENDS **/
-
-    /** CODE FOR ADD TO CART START **/
-/*  case 'addToCart':
-        
-        include APICLUDE.'class.addtocart.php';
-<<<<<<< .mine
-        $obj = new addtocart($db['jzeva']);       
-	$tmpaparams = array($params['dt']);
-     //            
-    //      foreach($tmpaparams as $key => $value)
-     //     {  
-     //         $tmpaparams[$key] = strip_tags($value);
-     //     } 
-  	   $res=$obj->addToCart($tmpaparams);
-||||||| .r466
-        $obj = new addtocart($db['jzeva']);
-        $res = $obj->addToCart($params);
-=======
-        $obj = new addtocart($db['jzeva']); 
-       
-  	 $res=$obj->addToCart($params);
-          
-        break;*/
+    
        
       case 'addTocart':
         include APICLUDE.'class.addtocart.php';
@@ -827,7 +832,7 @@ switch($action)
     // CODE FOR REMOVE CART ENDS
     
     //code for login start
-    //http://localhost/jzeva/apis/index.php/?action=login&name=skrahul0605@gmail.com&pass=khan0605
+    //http://localhost/jzeva/apis/index.php/?action=login&name=s0605@gmail.com&pass=0605
     case 'login':
         include APICLUDE.'class.addtocart.php';
         $obj = new addtocart($db['jzeva']);
@@ -854,7 +859,21 @@ switch($action)
         $res = $obj->searchPrd($params);
         break;
        
-     
+    
+    case 'checkuser': 
+        include APICLUDE.'class.user.php';
+        $obj	= new user($db['jzeva']);
+        $res	=$obj->checkuser($params); 
+    break; 
+
+    case 'addshippingdetail':
+        include APICLUDE.'class.user.php';
+        $obj	= new user($db['jzeva']);
+	$tmpaparams = array($params['dt']);
+       
+        $res	=$obj->addshippingdetail($tmpaparams);
+    break;
+    
 }
 echo json_encode($res);
 exit;
