@@ -6,30 +6,6 @@ body{padding:0;margin:0;overflow-x:hidden;}
 textarea:focus, input:focus , select:focus ,option:focus{
     outline: none;
 }
-@font-face{font-family:SansationL;src: url(../fonts/sansation/Sansation_Light.ttf);}
-@font-face{font-family:SansationR;src: url(../fonts/sansation/Sansation_Regular.ttf);}
-@font-face{font-family:SansationB;src: url(../fonts/sansation/Sansation_Bold.ttf);}
-@font-face{font-family:SansationBI;src: url(../fonts/sansation/Sansation_Bold_Italic.ttf);}
-@font-face{font-family:SansationI;src: url(../fonts/sansation/Sansation_Italic.ttf);}
-@font-face{font-family:SansationLI;src: url(../fonts/sansation/Sansation_Light_Italic.ttf);}
-.fmSansR{font-family:SansationR;}
-.fmSansL{font-family:SansationL;letter-spacing: -0.03em;}
-.fmSansB{font-family:SansationB;}
-.fmSansBI{font-family:SansationBI;}
-.fmSansLI{font-family:SansationLI;}
-.fmSansI{font-family:SansationI;}
-@font-face{font-family:josefinSansL;src: url(../fonts/josefinSans/JosefinSans-Light.ttf);}
-@font-face{font-family:josefinSansR;src: url(../fonts/josefinSans/JosefinSans-Regular.ttf);}
-@font-face{font-family:josefinSansB;src: url(../fonts/josefinSans/JosefinSans-Bold.ttf);}
-.fmjsfSansL{font-family:josefinSansL;}
-.fmjsfSansR{font-family:josefinSansR;}
-.fmjsfSansB{font-family:josefinSansB;}
-
-@font-face{font-family:OswaldL;src: url(../fonts/oswald/Oswald-Light.ttf);}
-@font-face{font-family:OswaldR;src: url(../fonts/oswald/Oswald-Regular.ttf);}
-@font-face{font-family:OswaldB;src: url(../fonts/oswald/Oswald-Bold.ttf);}
-
-
 
 /* New Fonts */
 
