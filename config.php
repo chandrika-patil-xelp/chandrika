@@ -25,6 +25,8 @@ else
 
 }
 
+//define('SMSAPI','http://alerts.sinfini.com/api/web2sms.php?workingkey=Ae24f0c241588043b00e0449d6e2a5664&to=+91_MOBILE&sender=jzeva&message=_MESSAGE');
+define('SMSAPI','http://alerts.sinfini.com/api/web2sms.php?workingkey=A31cf85c3cc3b65100bf9bd7fbe30cd90&to=+91_MOBILE&sender=SIDEMO&message=_MESSAGE');
 define('BTEMPLATE',BACKWEBROOT.'template/');
 define('BINCLUDES',BACKWEBROOT.'include/');
 define('BAPICLUDE',BACKWEBROOT.'apis/include/');
@@ -110,7 +112,7 @@ $jvs = array();
             $fjvs['malihu']                   = DOMAIN.'frontend/tools/js/jquery.mCustomScrollbar.concat.min.js?v='.VERSION;
              $fjvs['ripple']                   = DOMAIN.'frontend/tools/js/ripple.js?v='.VERSION;
              $fjvs['Common']              = DOMAIN.'frontend/tools/js/Common.js?v='.VERSION;
-          
+            $fjvs['jquery_toast'] 	= DOMAIN.'frontend/tools/js/jquery.toast.min.js?v='.VERSION;
               #CMS PAGES JS(Frontend)
             $jvs['prodpage']                 = DOMAIN.'frontend/tools/js/cms/prodpage.js?v='.VERSION;
             $jvs['proddetails']                 = DOMAIN.'frontend/tools/js/cms/product_details.js?v='.VERSION;
@@ -119,6 +121,7 @@ $jvs = array();
             $jvs['login']                 = DOMAIN.'frontend/tools/js/cms/login.js?v='.VERSION;
             $jvs['cart']                 = DOMAIN.'frontend/tools/js/cms/cart.js?v='.VERSION;
             $jvs['filter']                 = DOMAIN.'frontend/tools/js/cms/filter.js?v='.VERSION;
+            $jvs['checkout']                 = DOMAIN.'frontend/tools/js/cms/checkout.js?v='.VERSION;
 
 include APICLUDE.'common/class.common.php';
 $comm = new Common();
