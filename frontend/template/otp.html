@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<?php include 'jhead.html' ?>
+<script>
+    var BWEBROOT = '<?php echo BACKWEBROOT?>';
+    var DOMAIN = '<?php echo DOMAIN?>';
+    var APIDOMAIN = '<?php echo APIDOMAIN?>';
+    var IMGDOMAIN = '<?php echo IMGDOMAIN ?>';
+    var page = '<?php echo $page?>';
+
+</script>
+<body>
+    <div class="outerContr sigNup">
+        <div class="loginCont fLeft">
+            <div class="txtTitle fmrobor" id="hTxt"></div>
+            <div class="txtB fmSansR fLeft">
+                <input type="tel" class="inp_box">
+                <div class="inp_label fmSansB">Please enter the otp</div>
+            </div>
+              <div class="filterSec fLeft">
+                <center>
+                    <div class="btnContainr  fmOsR">
+                        <div class="button button2 btnc1 transition300 fLeft">SUBMIT</div>
+                    </div>
+                </center>
+            </div>
+        </div>
+    </div>
+    <script>
+         $('.inp_box').focus(function () {
+            $(this).closest('.txtB').addClass('focul');
+        });
+        $('.inp_box').blur(function () {
+            var k = $(this).val();
+            if (k === "") {
+                $(this).closest('.txtB').removeClass('focul');
+            }
+
+        });
+    </script>
+</body>
