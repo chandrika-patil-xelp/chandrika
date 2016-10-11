@@ -97,13 +97,16 @@
                 <div class="galleryImg dn"></div>
                 <div class="galleryCover"></div>
               </div>
-              <div class="colleCont">
+              <div class="colleCont v2">
                 <div class="smUline">FRESH NEW</div>
                 <div class="collCenter">
                   <div class="collectH">COLLECTION</div>
                   <div class="collectY">2016</div>
                 </div>
                 <div class="smUBot">EXPLORE</div>
+              </div>
+              <div class="sliderTimer">
+                <div class="sliderProgress" id="sliderProgress"></div>
               </div>
             </div>
           </div>
@@ -170,6 +173,51 @@
               </div>
             </div>
         </div>
+        <div class="footerH fLeft">
+            <div class="footerHeader fLeft">
+                <div class="fooLogo"></div>
+            </div>
+              <div class="wrapper_max">
+                <div class="footerContent fLeft">
+                    <div class="footerCont1 fLeft">
+                        <div class="fooH font15">assistance</div>
+                        <div class="fooTxt fLeft font14 fmSansR">my account </div>
+                        <div class="fooTxt fLeft font14 fmSansR">contact us</div>
+                        <div class="fooTxt fLeft font14 fmSansR">track order</div>
+                        <div class="fooTxt fLeft font14 fmSansR">shipping</div>
+                        <div class="fooTxt fLeft font14 fmSansR">return and exchange</div>
+                        <div class="fooTxt fLeft font14 fmSansR">warranty and repairs</div>
+                    </div>
+                    <div class="footerCont1 fLeft">
+                        <div class="fooH font15">information</div>
+                        <div class="fooTxt fLeft font14 fmSansR">terms and condition </div>
+                        <div class="fooTxt fLeft font14 fmSansR">privacy policy</div>
+                        <div class="fooTxt fLeft font14 fmSansR">help</div>
+                    </div>
+                    <div class="footerCont1 fLeft">
+                        <div class="fooH font15">jewelopedia</div>
+                        <div class="fooTxt fLeft font14 fmSansR">gemstone guide</div>
+                        <div class="fooTxt fLeft font14 fmSansR">diamond guide</div>
+                        <div class="fooTxt fLeft font14 fmSansR">precious metal guide</div>
+                        <div class="fooTxt fLeft font14 fmSansR">jewellery care</div>
+                        <div class="fooTxt fLeft font14 fmSansR">sizing guide</div>
+                    </div>
+                </div>
+                <div class="socialMedia fRight fmSansR">
+                    <div class="socialHead ">SAY HELLO</div>
+                    <div class="socialCont">
+                        <div class="mediaIcon pin fLeft"></div>
+                        <div class="mediaIcon Lin fLeft"></div>
+                        <div class="mediaIcon gooPlus fLeft"></div>
+                        <div class="mediaIcon twit fLeft"></div>
+                        <!--                    <div class="fb"></div>
+                                            <div class="insta"></div>-->
+                    </div>
+                </div>
+              </div>
+            <div class="fLeft copyRight font12 fmSansR">©2016 created by xelpmoc.in</div>
+
+        </div>
 
                 <div class="footer fLeft"></div>
           </div>
@@ -183,7 +231,7 @@
                   <label>●</label>
                   <label>●</label>
                 </div>
-                    <div class="loader_quote  fmSansL">The meek may inherit the earth but not its mineral rights</div>
+                    <!-- <div class="loader_quote  fmSansL">The meek may inherit the earth but not its mineral rights</div> -->
               </div>
               <div class="page_loader2">
                 <div class="cs-loader-inner ">
@@ -194,7 +242,7 @@
                   <label>●</label>
                   <label>●</label>
                 </div>
-                <div class="loader_quote  fmSansL">The meek may inherit the earth but not its mineral rights</div>
+                <!-- <div class="loader_quote  fmSansL">The meek may inherit the earth but not its mineral rights</div> -->
               </div>
               <div class="overlay3 pointNone"></div>
 
@@ -291,9 +339,9 @@ $(window).scroll(function () {
 //       }
 });
 $('.homeCcont').mouseenter(function(){
-$(this).find('.hovDiv').velocity('stop').velocity({width:['100%',0] , height:['4px',0]} , {duration:200 , easing:'swing'}).velocity({height:['100%' , '4px']}, {duration:200 ,delay:50 , easing:'swing' , complete:function(){
-  $(this).find('.plusCont').velocity({scale:[1,0]} , {duration:200 , easing:'swing'});
-}});
+  $(this).find('.plusCont').velocity('stop').velocity({scale:[1,0]} , {duration:200 , easing:'swing',delay:400});
+$(this).find('.hovDiv').velocity('stop').velocity({width:['100%',0] , height:['4px',0]} , {duration:200 , easing:'swing'});
+$(this).find('.hovDiv').velocity({height:['100%' , '4px']}, {duration:200 ,delay:50 , easing:'swing' });
 });
 $('.homeCcont').mouseleave(function(){
     $(this).find('.plusCont').velocity('stop').velocity({scale:[0,1]} , {duration:100 , easing:'swing'});
@@ -315,27 +363,36 @@ $('.jzgrid').mouseleave(function(){
 });
 });
 function galleryRun(){
+    $('#sliderProgress').removeClass('trRight');
+    $('#sliderProgress').velocity({scaleX:[1,0]} , {duration:5350 , easing:'liner' , complete:function(){
+    $('#sliderProgress').addClass('trRight');
+    $('#sliderProgress').velocity({scaleX:[0,1]} , {duration:300 , easing:'liner' ,delay:350});
+    }
+});
     $('.galleryCover').velocity({translateX:[0, '-100%']} , {duration:300, easing:'easeInOutExpo' , complete:function(){
         $('.galleryCover').velocity({translateX:['100%',0]} , {duration:300, easing:'easeInOutExpo', delay:50});
+
     }
   });
+
 }
   var iv = 1;
 function gallerChange() {
     iv = (iv + 1) % 4;
       galleryRun();
+
       setTimeout(function(){
     $('.galleryImg').addClass('dn');
     $('.galleryImg').eq(iv).removeClass('dn');
 },300);
 }
 function runslider() {
-console.log('runslider');
+
     gallerChange();
     stop = setTimeout(function () {
         runslider();
 
-    }, 3000);
+    }, 6000);
 }
 
 var sctrig=0;
@@ -366,8 +423,16 @@ var daroff =$('#darkCont').offset().top;
 var darBot=$('#darkCont').offset().top + $('#darkCont').outerHeight(true);
 if(window_top_position>daroff -200 && window_top_position< darBot){
   if(!$('#darkCont').hasClass('runslider')){
+     $('#darkCont').addClass('runslider');
+     $('#sliderProgress').velocity({scaleX:[1,0]} , {duration:5350 , easing:'liner' , complete:function(){
+     $('#sliderProgress').addClass('trRight');
+     $('#sliderProgress').velocity({scaleX:[0,1]} , {duration:300 , easing:'liner' ,delay:350});
+     }
+ });
+    setTimeout(function(){
        runslider();
-       $('#darkCont').addClass('runslider');
+
+     },6000);
   }
 
 
@@ -379,7 +444,7 @@ else if(window_top_position> darBot){
    $('#darkCont').removeClass('runslider');
 }
 else{
-  console.log('lol');
+
 }
  }
 
