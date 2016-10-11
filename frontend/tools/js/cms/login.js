@@ -7,8 +7,8 @@ $('#reg').on('click',function(){
    var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
     var validationFlag=1;
     if(name ===''|| name === null){
-     // common.toast(0, 'Please Enter Name');
-        alert('Please enter your Name');
+    // common.toast(1, 'Please Enter Name');
+     alert('Please enter your Name');
         validationFlag=0;
         return false;
     }  
@@ -55,19 +55,19 @@ $('#reg').on('click',function(){
         return false;
     }
     if (validationFlag = 1){
-    var URLreg= APIDOMAIN + "index.php/?action=addUser&name="+name+"&email="+email+"&mobile="+mobile+"&pass="+pass+"&cpass="+cpass;
+    var URLreg= APIDOMAIN + "index.php/?action=addUser&name="+name+"&email="+email+"&mobile="+mobile+"&pass="+pass;
     var data1;
-    
+   
    $.ajax({
             type:'POST',
             url:URLreg,
             success:function(res){
            data1 = JSON.parse(res);
-           
+         
             if(data1['error']['err_code']==0)
             {
                 alert('Registered successfully');
-             window.location.href = DOMAIN + "index.php?action=login";
+             //window.location.href = DOMAIN + "index.php?action=login";
             }
             else if(data1['error']['err_code']==1){
                 alert(data1['error']['err_msg']);
@@ -87,6 +87,7 @@ $('#log').click(function(){
   var validationFlag=1;
   var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
  if(email===''|| email=== null){
+       // common.toast(1, 'Please Enter Name');
         alert('Please enter your Email.id');
         validationFlag=0;
         return false;
@@ -103,7 +104,7 @@ $('#log').click(function(){
     }
     
     
-    if (validationFlag = 1){
+    if (validationFlag == 1){
     var URL = APIDOMAIN + "index.php/?action=login&email="+email+"&pass="+pass;
    
     var data;
@@ -262,3 +263,45 @@ function updatecartiddetail(oldcartid,olduserid,newcartid)
 		    }
 		  });   
 }
+
+$('#flog').on('click',function(){
+    
+    var mobile=$('#femail').val();
+    var validationFlag=1;
+    
+    if(mobile===''|| mobile=== null){
+      // common.toast(0, 'Please enter your Mobile no.');
+        alert('Please enter your Mobile no.');
+        validationFlag=0;
+        return false;
+    }
+   /* else if(isNaN(mobile) || (mobile.length < 10) ){
+      // common.toast(0, 'Mobile no. Invalid');
+        alert('Mobile no. Invalid');
+        validationFlag=0;
+        return false;
+    }*/
+    
+    if (validationFlag==1){
+    var URL= APIDOMAIN + "index.php/?action=checkuser&mobile="+mobile+"&email="+mobile; 
+   $.ajax({
+            type:'POST',
+            url:URL,
+            success:function(res){
+           var data1 = JSON.parse(res); 
+         
+            if(data1['error']['err_code']==0)
+            {
+                 alert(data1['error']['err_msg']);
+            }
+            else if(data1['error']['err_code']==1){
+                alert(data1['error']['err_msg']);
+            }
+             else if(data1['error']['err_code']==2){
+                alert(data1['error']['err_msg']);
+            }
+           
+        }
+    }); 
+    }
+}); 
