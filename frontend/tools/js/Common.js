@@ -268,6 +268,8 @@ m += money[i];
 return m.split("").reverse().join("");
    };
    
+   
+   
    /* this.number_format = function (number, decimals, dec_point, thousands_sep)
    {
        number = (number + '').replace(/[^0-9+\-Ee.]/g, '');
