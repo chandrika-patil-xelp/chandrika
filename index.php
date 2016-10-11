@@ -142,6 +142,13 @@ switch ($action) {
         $page = 'filterPage';
         include TEMPLATE . 'filterPage.html';
         break;
-    
+     case 'resetpsw':
+        $page = 'resetpsw';
+        include TEMPLATE . 'resetpsw.html';
+        break;
+    case 'otp':
+        $page = 'otp';
+        include TEMPLATE . 'otp.html';
+        break;
 }
 ?>
