@@ -86,10 +86,17 @@
 
           </div>
         </div>
-        <div class="darkCont">
+        <div class="darkCont" id="darkCont">
           <div class="wrapper_max">
             <div class="homeCollect">
-              <div class="colleCont tempBg2"></div>
+              <div class="colleCont tempBg2">
+                <div class="galleryImg"></div>
+                <div class="galleryImg dn"></div>
+                <div class="galleryImg dn"></div>
+                <div class="galleryImg dn"></div>
+                <div class="galleryImg dn"></div>
+                <div class="galleryCover"></div>
+              </div>
               <div class="colleCont">
                 <div class="smUline">FRESH NEW</div>
                 <div class="collCenter">
@@ -270,10 +277,10 @@ $(window).scroll(function () {
     }
     if (ht - sc <= 5) {
         $('.header').addClass('black_bg');
-        console.log('if');
+
     } else {
         $('.header').removeClass('black_bg');
-        console.log('else');
+
     }
 //           if(ht-sc<=60){
 //           console.log(sc);
@@ -307,6 +314,76 @@ $('.jzgrid').mouseleave(function(){
   }
 });
 });
+function galleryRun(){
+    $('.galleryCover').velocity({translateX:[0, '-100%']} , {duration:300, easing:'easeInOutExpo' , complete:function(){
+        $('.galleryCover').velocity({translateX:['100%',0]} , {duration:300, easing:'easeInOutExpo', delay:50});
+    }
+  });
+}
+  var iv = 1;
+function gallerChange() {
+    iv = (iv + 1) % 4;
+      galleryRun();
+      setTimeout(function(){
+    $('.galleryImg').addClass('dn');
+    $('.galleryImg').eq(iv).removeClass('dn');
+},300);
+}
+function runslider() {
+console.log('runslider');
+    gallerChange();
+    stop = setTimeout(function () {
+        runslider();
+
+    }, 3000);
+}
+
+var sctrig=0;
+var $window = $(window);
+$window.on('scroll', check_if_in_view);
+$window.on('scroll resize', check_if_in_view);
+$window.trigger('scroll');
+function check_if_in_view() {
+  var window_height = $window.height();
+  var window_top_position = $window.scrollTop();
+  var window_bottom_position = (window_top_position + window_height);
+
+
+        var $element = 'darkCont';
+      //  var element_height = $element.outerHeight();
+      //  var element_top_position = $element.offset().top;
+      //  var element_bottom_position = (element_top_position + element_height);
+
+
+        // if ((element_bottom_position >= window_top_position ) &&
+        //     (element_top_position +50<= window_bottom_position)) {
+        //   $element.addClass('fadeInup');
+        // } else {
+        // $element.removeClass('fadeInup');
+        // }
+
+var daroff =$('#darkCont').offset().top;
+var darBot=$('#darkCont').offset().top + $('#darkCont').outerHeight(true);
+if(window_top_position>daroff -200 && window_top_position< darBot){
+  if(!$('#darkCont').hasClass('runslider')){
+       runslider();
+       $('#darkCont').addClass('runslider');
+  }
+
+
+
+
+}
+else if(window_top_position> darBot){
+  clearTimeout(stop);
+   $('#darkCont').removeClass('runslider');
+}
+else{
+  console.log('lol');
+}
+ }
+
+
 </script>
 
     </body>
