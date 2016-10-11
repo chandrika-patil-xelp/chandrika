@@ -9,7 +9,7 @@
 
 
         function executeCurl($url, $isRaw = false, $tm = false, $postData = false, $fromWhere = false, $authData = false, $sslCurl = false)
-        {
+        {  
             $ch = curl_init($url);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
@@ -31,10 +31,10 @@
             if(!empty($authData))
             {
                 curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-                curl_setopt($ch, CURLOPT_USERPWD, $authData['user'] . ":" . $authData['pwd']);
+                 curl_setopt($ch, CURLOPT_USERPWD, $authData['user'] . ":" . $authData['pwd']);
             }
-
-            $result = curl_exec($ch);
+              
+            $result = curl_exec($ch);  
             curl_close($ch);
 
             if(empty($isRaw))
