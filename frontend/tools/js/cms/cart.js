@@ -86,45 +86,7 @@ function storecartdata(cartdata)
         });	 
 }
 	    
-          /* var prodCode = $("#prodcode").html();  //this is the product code
-           var prodCost = $("#prodCost").html();  //this is the product cost 
-           var prodQty = $(".prdQty").text();     //this is the product quantity
-           var pidUrl = window.location.href;     // url 
-           var prodId = pidUrl.substring(pidUrl.lastIndexOf('=') + 1); //this will give u the product id
-           var prodMtl = $("#selMtl").text().split(",");  // select metal
-           var prodStn = $("#pstn1").text();   // select stone
-           var prodSize = $("#size1").text();   // select size
-           
-           var prodImg = $(".jwl1").css('background-image');  // product image
-           
-           var ordId = localStorage.getItem("ordId");  //ordId from localstroage
          
-            if(ordId === "undefined" || ordId === null){
-                genOrdId();
-            }
-          
-            ordId = localStorage.getItem("ordId");
-          
-          // update Qty if product is already present
-            for(i in cart){
-               if(cart[i].name == prodName){  //checking if the product name exists
-                   cart[i].qty = prodQty;     // if product name exists update quantity of the product
-                   cart[i].metal = prodMtl;   // select metal
-                   cart[i].stone = prodStn;   // select stone
-                   cart[i].size = prodSize;   // select size 
-                   
-                   saveCart();                // save the cart details to the localstroage
-                   sendCartDetails();         // send data to api using ajax request
-                   return;
-               }
-            }
-            
-            items = {name: prodName, cost: prodCost, code: prodCode, qty: prodQty, pid: prodId, carat: prodMtl[0], metal: prodMtl[1], stone: prodStn, size: prodSize, image: prodImg, orderId: ordId};
-            cart.push(items);
-            showCart(); //show cart
-            saveCart(); //save to localstroage
-            sendCartDetails();
-            */
    
 function displaycartdata()
 {
@@ -181,7 +143,7 @@ function displaycartdata()
 	      type:'POST',
 	      url:URL,
 	      success:function(res){
-                  console.log(res);
+                 // console.log(res);
 	        displaycartdata();
 		//$(".cart_gen").show();  
 	      }
