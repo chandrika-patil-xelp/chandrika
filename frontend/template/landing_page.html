@@ -98,12 +98,12 @@
                 <div class="galleryCover"></div>
               </div>
               <div class="colleCont v2">
-                <div class="smUline">FRESH NEW</div>
-                <div class="collCenter">
+                <div class="smUline animFade">FRESH NEW</div>
+                <div class="collCenter animFade">
                   <div class="collectH">COLLECTION</div>
                   <div class="collectY">2016</div>
                 </div>
-                <div class="smUBot">EXPLORE</div>
+                <div class="smUBot animFade">EXPLORE</div>
               </div>
               <div class="sliderTimer">
                 <div class="sliderProgress" id="sliderProgress"></div>
@@ -113,12 +113,12 @@
         </div>
         <div class="greyCont">
             <div class="wrapper_max">
-              <div class="wCont fLeft">
+              <div class="wCont fLeft animFade">
                 <div class="wJzeva fLeft">
-                  <div class="absHeader">WHY JZEVA?</div>
+                  <div class="absHeader animFade">WHY JZEVA?</div>
 
                       <!-- <div class="jzgrid grStyl1"></div> -->
-                      <div class="jzgrid grStyl2">
+                      <div class="jzgrid grStyl2 animFade">
                         <div class="hovTr">
                           <div class="hovTrans">
                             <div class="plusCont">
@@ -126,7 +126,7 @@
                           </div>
                         </div>
                         <div class="grCap">CRAFTMANSHIP</div>
-                      </div><div class="jzgrid grStyl3">
+                      </div><div class="jzgrid grStyl3 animFade">
                             <div class="hovTr">
                               <div class="hovTrans">
                                 <div class="plusCont">
@@ -135,7 +135,7 @@
                             </div>
                             <div class="grCap">RESPONSIBLE FASHION</div>
                         </div>
-                        <div class="jzgrid grStyl4">
+                        <div class="jzgrid grStyl4 animFade">
                           <div class="hovTr">
                             <div class="hovTrans">
                               <div class="plusCont">
@@ -143,7 +143,7 @@
                             </div>
                           </div>
                           <div class="grCap">OUR PROMISE</div>
-                        </div><div class="jzgrid grStyl5">
+                        </div><div class="jzgrid grStyl5 animFade">
                           <div class="hovTr">
                             <div class="hovTrans">
                               <div class="plusCont">
@@ -151,8 +151,8 @@
                             </div>
                           </div>
                           <div class="grCap">OUR STORY</div>
-                        </div><div class="col30">
-                          <div class="jzgrid grStyl6">
+                        </div><div class="col30 animFade">
+                          <div class="jzgrid grStyl6 ">
                             <div class="hovTr">
                               <div class="hovTrans">
                                 <div class="plusCont">
@@ -160,7 +160,7 @@
                               </div>
                             </div>
                             <div class="grCap">CONCIERGE SERVICES</div>
-                          </div><div class="jzgrid grStyl7">
+                          </div><div class="jzgrid grStyl7 ">
                             <div class="hovTr">
                               <div class="hovTrans">
                                 <div class="plusCont">
@@ -405,21 +405,21 @@ function check_if_in_view() {
   var window_top_position = $window.scrollTop();
   var window_bottom_position = (window_top_position + window_height);
 
-
-        var $element = $('.homeCard');
+ $('.homeCard , .darkCont ,.animFade').each(function(i){
+        var $element = $(this);
        var element_height = $element.outerHeight();
        var element_top_position = $element.offset().top;
        var element_bottom_position = (element_top_position + element_height);
-
+       var delay = i*200;
 
         if ((element_bottom_position >= window_top_position ) &&
-            (element_top_position +50<= window_bottom_position)) {
-          $element.velocity({})
+            (element_top_position +100<= window_bottom_position)) {
+          $element.addClass('fadeInup');
         }
         else {
-        $element.removeClass('fadeInup');
+        //$element.removeClass('fadeInup');
         }
-
+});
 var daroff =$('#darkCont').offset().top;
 var darBot=$('#darkCont').offset().top + $('#darkCont').outerHeight(true);
 if(window_top_position>daroff -200 && window_top_position< darBot){
