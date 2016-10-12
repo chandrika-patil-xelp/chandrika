@@ -171,10 +171,10 @@ textarea:focus, input:focus , select:focus ,option:focus{
 
 
 .details_cont{width:25%;height:100%;position:relative;opacity:0;max-height:600px; z-index:20}
-.details_head{width:100%;height:auto;line-height:50x; text-transform:capitalize; font-size:50px;text-align:right; color:#15181b;padding: 10px 0px;}
+.details_head{width:100%;height:auto;line-height:50x; text-transform:capitalize; font-size:50px;text-align:right; color:#15181b;padding: 10px 0px;font-family:bolder;}
 .details_desc{width:100%;height:auto;color:#666;}
 .details_buffer{width:100%;height:80%;position:absolute; top:0;;bottom:0;margin:auto;text-align:right}
-.para{width:100%;height:auto; font-family: robor; margin:10px 0px ;  line-height:20px;font-size:13px;word-wrap: break-word; white-space: normal;}
+.para{width:100%;height:auto; font-family: regular; margin:10px 0px ;  line-height:20px;font-size:13px;word-wrap: break-word; white-space: normal;}
 .rota_wrap{width:50%;height:100%;opacity:0;max-height:600px;position:absolute; left:25%}
 .rota_exstate{height:100vh ; width:100vh; background:#fff;max-height:100vh; transform:translateY(-130px)!important }
 .options{width:25%;height:100%;position:relative;opacity:0;max-height:600px}
@@ -184,13 +184,13 @@ textarea:focus, input:focus , select:focus ,option:focus{
 .another_buffer{width:100%;height:auto;position:relative}
 .cust_cont{width:100%;height:auto;}
 .cust_cont2{width:100%;height:80%;top:80px;left:0;position:absolute}
-.desc_row{width:100%;padding:15px; height:auto;border-bottom: 1px dotted #ccc;margin-bottom:5px;opacity:1;color:#2d2d2d}
+.desc_row{width:100%;padding:15px; height:auto;border-bottom: 1px dotted #ccc;margin-bottom:5px;opacity:1;color:#2d2d2d;font-family: regular;}
 .desc_row:hover{opacity:1}
 .cust_buffer{width:100%;height:auto;position:relative;margin-top:20px}
 .rad_wrap{width:20%;height:45px;;font-size:10px;padding:5px;position:relative}
 .filter_cont .rad_wrap{width:12%}
 .selector1{width:20px;height:20px;border:2px solid #666; border-radius:50%; position:absolute;overflow:hidden; left: 0;right: 0;margin: auto;cursor:pointer}
-.selector_label{width:100%;position:absolute;left:0;bottom:5px;text-align:center}
+.selector_label{width:100%;position:absolute;left:0;bottom:5px;text-align:center;font-family:regular;}
 .selector1:after{content:"";position:absolute;top:0;right:0;left:0;bottom:0; margin:auto;transform:scale(0);height:100%;width:100%;background:#22B9C7;border-radius:50%;transition:200ms;-moz-transition:200ms;-webkit-transition:200ms;}
 .select_active.selector1:after{transform:scale(0.8)}
 .selector_cont{display:none;opacity:0;position:absolute;top:0px;left:0;width:100%;height:200px;background:#fff;z-index:20}
@@ -222,12 +222,12 @@ textarea:focus, input:focus , select:focus ,option:focus{
 .drop_dn:hover:after{transform:scaleX(1);}
 .border_s{border-left:1px dotted #ccc;border-right:1px dotted #ccc}
 
-.options_back{height:30px;width:100%;line-height:30px;padding-left:30px;background:url("../img/back.svg")no-repeat;background-size:25px;background-position:left center;font-size:12px;cursor:pointer}
+.options_back{height:30px;width:100%;line-height:30px;padding-left:30px;background:url("../img/back.svg")no-repeat;background-size:25px;background-position:left center;font-size:12px;cursor:pointer;font-family: regular;}
 .grid_back{height:40px;width:40px;background:url("../img/closeW.svg")no-repeat;background-size:50px;background-position:center;cursor:pointer;position:absolute; left:0; right:0; bottom:30px; margin:auto;}
 .scala{}
 .drop_dn{}
 .drop_dets{width:100%;height:150px;float:left;display:none;background:#e6e6e6;position:absolute;top:40px;left:0;z-index:10}
-.price_light{font-size:36px; color:#2d2d2d;width: 85%;height:45px;margin-top:20px}
+.price_light{font-size:36px; color:#2d2d2d;width: 85%;height:45px;margin-top:20px;font-family:bolder;}
 .rota{width:100%;height:85%;position:relative;max-width:100%;margin:auto}
 .rota_buffer{width:100%; height:100%;position:absolute;left:0;right:0;background:#fff ;margin: auto;}
 
@@ -365,7 +365,7 @@ img{width:100%;height:100%;border:0}
 .grid_dets{height:auto;width:100%;float:left;padding:5px;background: #fff;position:relative}
 .grid_dets:before{content:"";position:absolute;width:40px;height:2px;left:0;right:0;margin:auto;top:-10px;background:#15181b}
 .grid_name{width:100%;height:20px;text-align:center;line-height:20px;font-size:18px;color:#15181b;font-family:bolder;}
-.grid_price{width: 110px;color: #15181b; padding: 7px 15px; font-size: 13px;  text-align: center; right: 0; z-index: 100;left:0;margin:auto;font-family:regular;}
+.grid_price{width: 110px;color: #15181b; padding: 7px 15px; font-size: 13px;  text-align: center; right: 0; z-index: 100;left:0;margin:auto;font-family:bolder;}
 .grid_opt{font-size:13px;color:#2d2d2d;font-family:SansationB; padding-left:20px;cursor:pointer;}
 .container2{width:100%;min-height: 100%;background-color: #fff;padding-top: 0px;height: auto;float: left;}
 .aboveLine{height:auto; width:100%; margin-bottom:20px; position:relative;}
@@ -1415,6 +1415,18 @@ input[type=radio]:checked ~ .check::before{background: #22B9C7;transform: scale(
 .orTcnt{width:60px;height:40px;position:absolute;left:0;right:0;margin:auto;font-size:15px;line-height:40px;color:#666;z-index:50}
 
 
+/*T and C*/
+.Terms{}
+.termHeading{position:absolute;width:auto;height:auto;left:0;top:100px;right:0;margin:auto;text-align: center;font-size:35px;color:#fff;font-family:semibold;}
+.termsContainer{width:100%;height:auto;    padding-top: 60vh;}
+.tHead{text-transform: uppercase;width:100%;height:30px;line-height: 30px;font-size:19px;font-family:semibold;}
+.tCont{color:#333;width:100%;font-size:14px;font-family:regular;line-height:22px;margin-bottom:15px;}
+.Terms ul{padding-left: 20px;}
+.Terms ul li{color:#333;font-size:15px;line-height:25px;margin-bottom:5px;padding-left:10px;font-family:regular;}
+.mar0{margin: 0px!important;}
+.tCommon{padding-bottom: 30px;}
+
+
 
 
 .hovEff{-webkit-animation: hovtwostep 450ms ease-in-out ;-moz-animation: hovtwostep 450ms ease-in-out ;-ms-animation: hovtwostep 450ms ease-in-out ;animation: hovtwostep 450ms ease-in-out ;-webkit-animation-fill-mode: forwards;  animation-fill-mode: forwards;}
@@ -1571,3 +1583,4 @@ input[type=radio]:checked ~ .check::before{background: #22B9C7;transform: scale(
      height:0px;
    }
 }
+
