@@ -124,7 +124,7 @@ textarea:focus, input:focus , select:focus ,option:focus{
 .overlayF{width:100%;height:100vh;position:fixed;background:rgba(0,0,0,0.0);z-index:13;display:none;top:0; left:0;opacity:0;pointer-events:none;}
 .over_open.overlay2{opacity:1}
 .pad15{padding:15px}
-.menu_elm{width:100%;height:100%;position:absolute;left:0;top:0;background:#fff;padding:40px 20px;z-index:30;}
+.menu_elm{width:100%;height:100%;position:absolute;left:0;top:0;background:#fff;padding:40px;z-index:30;}
 .menu_head{width:100%;color:#b3b3b3;font-size:15px; padding: 5px 0; margin-bottom: 10px; text-transform: uppercase;  float:left;font-family: regular;}
 
 .menu_list{width: auto; height: 25px; padding: 0 10px; color: #15181b;position:relative;overflow:hidden;letter-spacing: 0.15em; text-transform: uppercase; line-height: 25px;cursor: pointer; font-family:semibold; font-size:11px;transition: 300ms !important; -moz-transition: 300ms !important; -ms-transition: 300ms !important; -o-transition: 300ms !important;}
