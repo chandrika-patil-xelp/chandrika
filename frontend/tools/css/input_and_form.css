@@ -3,15 +3,21 @@
 div{display:block;}
 html{width:100%;height:100%;}
 body{padding:0;margin:0;}
-textarea:focus, input:focus{
-    outline: none;
-}
-@font-face{font-family:SansationL;src: url(../fonts/sansation/Sansation_Light.ttf);}
-@font-face{font-family:SansationR;src: url(../fonts/sansation/Sansation_Regular.ttf);}
-@font-face{font-family:SansationB;src: url(../fonts/sansation/Sansation_Bold.ttf);}
-.fmSansR{font-family:SansationR;}
-.fmSansL{font-family:SansationL;letter-spacing: -0.03em;}
-.fmsansr{font-family:SansationB;}
+textarea:focus, input:focus{outline: none;}
+@font-face{font-family:thin;src: url(../fonts/Raleway-Thin.ttf);}
+@font-face{font-family:light;src: url(../fonts/Raleway-Light.ttf);}
+@font-face{font-family:regular;src: url(../fonts/Raleway-Regular.ttf);}
+@font-face{font-family:semibold;src: url(../fonts/Raleway-Semibold.ttf);}
+@font-face{font-family:bolder;src: url(../fonts/Raleway-Bold.ttf);}
+@font-face{font-family:xlight;src: url(../fonts/Raleway-ExtraLight.ttf);}
+
+.thin{font-family:thin;}
+.light{font-family:light;}
+.regular{font-family:regular;}
+.semibold{font-family:semibold;}
+.bolder{font-family:bolder;}
+.xlight{font-family:xlight;}
+
 .fLeft{float:left;}
 .fRight{float:right;}
 .transition300{transition:300ms;-moz-transition:300ms;-webkit-transition:300ms;}
@@ -56,7 +62,7 @@ textarea:focus, input:focus{
 .col25{width:20%;height:auto;}
 .margL20{margin-left:20px}
 .btnCnt{width:100%;margin-top:20px}
-.button{width:100%;padding:0 20px;height:40px;font-family: sansr;font-size: 12px;line-height:38px;text-transform: uppercase;text-align:center;position:relative;display:inline-block;cursor:pointer;z-index:10;overflow:hidden;-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;  -ms-user-select: none; user-select: none; }
+.button{width:100%;padding:0 20px;height:40px;font-family:regular;font-size: 12px;line-height:38px;text-transform: uppercase;text-align:center;position:relative;display:inline-block;cursor:pointer;z-index:10;overflow:hidden;-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;  -ms-user-select: none; user-select: none; }
 .btnc1{border:2px solid #333; color:#333;}
 .btnc2{border:2px solid #666; color:#666;}
 .btnc3{border:1px solid #fff; color:#fff;}
@@ -180,7 +186,7 @@ textarea:focus, input:focus{
   -webkit-animation: lol 3s 500ms infinite ease-in-out;
   animation: lol 3s 500ms infinite ease-in-out;
 }
-.button_label{width:100% ; font-size:12px; padding:5px;}
+.button_label{width:100% ; font-size:12px; padding:5px;font-family:bolder;}
 .page_loader2 .cs-loader-inner , .page_loader .cs-loader-inner {
 
     transform: translateY(0%);
