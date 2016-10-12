@@ -59,7 +59,7 @@
             </div>
             <div class="homeCard">
               <div class="homeCcont">
-                <div class="cardHead">RINGS</div>
+                <div class="cardHead">BRACELETS</div>
                 <div class="cardImg tempBg">
                   <div class="hovCont">
                     <div class="hovDiv">
@@ -72,7 +72,7 @@
             </div>
             <div class="homeCard">
               <div class="homeCcont">
-                <div class="cardHead">RINGS</div>
+                <div class="cardHead">BANGLES</div>
                 <div class="cardImg tempBg">
                   <div class="hovCont">
                     <div class="hovDiv">
@@ -223,25 +223,25 @@
           </div>
 
               <div class="page_loader">
-                <div class="cs-loader-inner ">
+                <!-- <div class="cs-loader-inner ">
                   <label>●</label>
                   <label>●</label>
                   <label>●</label>
                   <label>●</label>
                   <label>●</label>
                   <label>●</label>
-                </div>
+                </div> -->
                     <!-- <div class="loader_quote  fmSansL">The meek may inherit the earth but not its mineral rights</div> -->
               </div>
               <div class="page_loader2">
-                <div class="cs-loader-inner ">
+                <!-- <div class="cs-loader-inner ">
                   <label>●</label>
                   <label>●</label>
                   <label>●</label>
                   <label>●</label>
                   <label>●</label>
                   <label>●</label>
-                </div>
+                </div> -->
                 <!-- <div class="loader_quote  fmSansL">The meek may inherit the earth but not its mineral rights</div> -->
               </div>
               <div class="overlay3 pointNone"></div>
@@ -303,7 +303,7 @@ $('#add_to_cart').on('click', function () {
 
 function load_page(){
   //$('body').addClass('over_hide');
- $('.page_loader2').velocity({translateY:['100%',0]} , {duration:600 , easing:'easeInQuart',display:'none' , complete:function(){
+ $('.page_loader2').velocity({translateX:['100%',0]} , {duration:300 , easing:'easeInOutExp',display:'none' , complete:function(){
 //   $('body').removeClass('over_hide');
 
  }  });
@@ -366,7 +366,7 @@ function galleryRun(){
     $('#sliderProgress').removeClass('trRight');
     $('#sliderProgress').velocity({scaleX:[1,0]} , {duration:5350 , easing:'liner' , complete:function(){
     $('#sliderProgress').addClass('trRight');
-    $('#sliderProgress').velocity({scaleX:[0,1]} , {duration:300 , easing:'liner' ,delay:350});
+    $('#sliderProgress').velocity({scaleX:[0,1]} , {duration:300 , easing:'liner' ,delay:250});
     }
 });
     $('.galleryCover').velocity({translateX:[0, '-100%']} , {duration:300, easing:'easeInOutExpo' , complete:function(){
@@ -406,18 +406,19 @@ function check_if_in_view() {
   var window_bottom_position = (window_top_position + window_height);
 
 
-        var $element = 'darkCont';
-      //  var element_height = $element.outerHeight();
-      //  var element_top_position = $element.offset().top;
-      //  var element_bottom_position = (element_top_position + element_height);
+        var $element = $('.homeCard');
+       var element_height = $element.outerHeight();
+       var element_top_position = $element.offset().top;
+       var element_bottom_position = (element_top_position + element_height);
 
 
-        // if ((element_bottom_position >= window_top_position ) &&
-        //     (element_top_position +50<= window_bottom_position)) {
-        //   $element.addClass('fadeInup');
-        // } else {
-        // $element.removeClass('fadeInup');
-        // }
+        if ((element_bottom_position >= window_top_position ) &&
+            (element_top_position +50<= window_bottom_position)) {
+          $element.velocity({})
+        }
+        else {
+        $element.removeClass('fadeInup');
+        }
 
 var daroff =$('#darkCont').offset().top;
 var darBot=$('#darkCont').offset().top + $('#darkCont').outerHeight(true);
