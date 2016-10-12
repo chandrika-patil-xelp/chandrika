@@ -25,7 +25,7 @@ $(document).ready(function () {
                 $('#total_Product').html( total + " Products");
                 var obj = res["result"];
                 var len = obj.length;
-              
+
                 var i = 0;
                 if (len > 0)
                 {
@@ -46,22 +46,22 @@ $(document).ready(function () {
 });
 
 function generatelist(obj) {
-   
+
     var proStr = "";
-   
-  
+
+
     var images=[];
     if (obj['images'] !== null && obj['images'] !== undefined  && obj['images'] !== '' && obj['images'] !== 'undefined')
     {
         images = obj['images'].split(',');
-       
-    } 
+
+    }
     else
     {
        images[0] ='uploads/noimg2.svg';
     }
-    
- 
+
+
    if(images.length==0)
    {
        var images = "uploads/noimg2.svg";
@@ -82,41 +82,41 @@ function generatelist(obj) {
     var Dshape = obj['shape'];
     var pid = obj['prdId'];
 filter(pid,gender,jType,Mclr,gemsName,Dshape);
-  
+
     if(obj['totalgems'] !== null && obj['totalgems'] !== undefined && obj['gemstoneName'] !== null && obj['gemstoneName'] !== undefined && obj['gemscarat'] !== null && obj['gemscarat'] !== undefined ){
-     
+
       var t = obj['totalgems'].split(',');
       var g = obj['gemstoneName'].split(',');
       var c= obj['gemscarat'].split(',');
      var i;
- 
+
      }
-     
+
     if(obj['totalSolitaire'] !== null && obj['totalSolitaire'] !== undefined && obj['Solicarat'] !== null && obj['Solicarat'] !== undefined){
-     
+
       var t = obj['totalSolitaire'].split(',');
       var c= obj['Solicarat'].split(',');
      var j;
- 
+
      }
      if(obj['totalUncut'] !== null && obj['totalUncut'] !== undefined && obj['Uncutcarat'] !== null && obj['Uncutcarat'] !== undefined){
-     
+
       var t = obj['totalUncut'].split(',');
       var c= obj['Uncutcarat'].split(',');
      var k;
- 
+
      }
-     
+
      if(obj['totaldmd'] !== null && obj['totaldmd'] !== undefined && obj['dmdcarat'] !== null && obj['dmdcarat'] !== undefined){
-     
+
       var p = obj['totaldmd'].split(',');
       var q= obj['dmdcarat'].split(',');
       var d;
 
      }
-    
-    
- 
+
+
+
     var price = 0;
     if (solitaire == '1' && solitaire !== 'null') {
         var Solicarat = obj['Solicarat'];
@@ -124,7 +124,7 @@ filter(pid,gender,jType,Mclr,gemsName,Dshape);
         var Solitot = obj['totalSolitaire'];
 
         price = price + getSoliPrice(Solicarat, Soliprc);
-       
+
     }
     if (uncut == '1' && uncut !== 'null')
     {
@@ -132,7 +132,7 @@ filter(pid,gender,jType,Mclr,gemsName,Dshape);
         var Uncutprc = obj['UncutPricepercarat'];
         var Uncuttot = obj['totalUncut'];
         price = price + getUncutPrice(Uncutcarat, Uncutprc);
-         
+
     }
     if (gems == '1' && gems !== 'null')
     {
@@ -164,14 +164,14 @@ filter(pid,gender,jType,Mclr,gemsName,Dshape);
     proStr += '<div class="facet_front">';
     proStr += '<div class="grid_item" onclick=\"getProId(\''+ obj['prdId'] + '\')\" >';
     proStr += '<div class="grid_img"  onmousemove="bindrota(this , event)" lcor="0">';
-    
+
     if( images[0] == "uploads/noimg2.svg")
         proStr += '<div style="background:url(\'' + IMGDOMAIN + images[0] + '\')no-repeat ; background-size: auto 50% ; background-position: center"  class=""></div>';
     else
         proStr += '<div style="background:url(\'' + IMGDOMAIN + images[0] + '\')no-repeat ; background-size: contain ; background-position: center"  class=""></div>';
-  
- 
-  
+
+
+
     proStr += '</div>';
     proStr += '<div class="grid_dets">';
     proStr += '<div class="grid_name">' + obj['prdNm'] + '</div>';
@@ -198,17 +198,17 @@ filter(pid,gender,jType,Mclr,gemsName,Dshape);
     proStr += '<div class="desc_row fLeft font12 fmSansB "><span class="txt_left fLeft">' + obj['jwelType'] + '</span><span class="fRight fmSansR"> ' + obj['metal_weight'] + ' gms</span> </div>';
     if (diamond == '1' && diamond !== 'null') {
         for(var d = 0; d < (p.length); d++){
-           
+
         proStr += '<div class="desc_row fLeft font12 fmSansB "><span class="txt_left fLeft">' + p[d] + ' Diamonds</span><span class="fRight fmSansR"> ' + q[d] + ' Carats</span></div>';
     }
     }
-   
+
     if (gems == '1' && gems !== 'null')
     {
        for(var i = 0; i < (c.length); i++){
-            
+
        proStr +='<div class="desc_row fLeft font12 fmSansB " ><span class="txt_left fLeft">' + t[i]+ ' ' + g[i]+ '</span><span class="fRight fmSansR"> ' + c[i]+ ' Carats</span></div>';
-     
+
     }
     }
     if (solitaire == '1' && solitaire !== 'null') {
@@ -222,7 +222,7 @@ filter(pid,gender,jType,Mclr,gemsName,Dshape);
     }
    }
    // proStr += '<div class="desc_row fLeft font12 fmSansB "><span class="txt_left fLeft">Size</span><span class="fRight fmSansR">S9</span></div>';
-   
+
     proStr += '<div class="grid_icons">';
     proStr += '<center>';
     proStr += '<div class="soc_elem2 soc_commentW"></div>';
@@ -240,36 +240,36 @@ filter(pid,gender,jType,Mclr,gemsName,Dshape);
 }
 
 function getProId(pid) {
-  
+
     window.location.href = DOMAIN + "index.php?action=product_page&pid="+ pid;
 
 }
 
 function imgLoad(p,event){
     event.stopPropagation();
-  
+
  if(!$('#'+p).hasClass('has360')){
      $('#'+p).addClass('has360');
   var URL = APIDOMAIN + "index.php/?action=getImagesByPid&pid=" +p;
-  
+
   var dataI;
     $.ajax({
             type:'POST',
             url:URL,
             success:function(res){
-               dataI = JSON.parse(res); 
-              
+               dataI = JSON.parse(res);
+
                   var imgstr = "";
                    $(dataI['images']).each(function(i, v) {
-                      
+
                 imgstr = '<div style="background:url(\'' + v + '\')no-repeat ; background-size: contain ; background-position: center"  class=""></div>';
-                       $('#'+p).find('.grid_img').prepend(imgstr);
+                       $('#'+p).find('.grid_img').append(imgstr);
              });
-                   
+
                 //  $('#'+p).find('.grid_img').empty().append(imgstr);
      }
     });
- }     
+ }
 }
 function getbasicprice(Makchrg, Metalwgt) {
 
@@ -353,12 +353,12 @@ var count=0;
   var limcount=12;
     $('#gr_foot').on('click' , function(){
       var page3=page2 + count++;
-      
+
       var limit=12;
       var limitend = limit*page3;
      $('#gr_foot').addClass('transdown');
-  
-  
+
+
     var URL1 = APIDOMAIN + "index.php/?action=getProGrid&page="+page3+"&limit="+limit+"";
   var tot_len = 0;
     $.ajax({
@@ -367,14 +367,14 @@ var count=0;
         success: function (res) {
 
             res = JSON.parse(res);
-          
+
             if (res['error']['err_code'] == 0) {
             var total = res["total"];
             $('#total_Product').html("<strong>" + total + "</strong> Products");
                 var obj1 = res["result"];
-              
+
                 var len = obj1.length;
-               
+
                 var i = 0;
                 if (len > 0)
                 {
@@ -386,35 +386,35 @@ var count=0;
                         i++;
                     }
                     $('#gridDetail').append(str);
-                     
+
                 }
                if(limitend >= total){
-                       
+
                         $('#gr_foot').remove();
                     }
             }
-            
+
         }
-        
-    }); 
-    
+
+    });
+
     });
     $(window).scroll(function() {
     var bottom = $(document).height() -50 ;
 
-    if($(window).scrollTop() + $(window).height() == $(document).height()) 
+    if($(window).scrollTop() + $(window).height() == $(document).height())
     {
         $('#gr_foot').removeClass('transdown');
-       
+
     }
     else{
          $('#gr_foot').addClass('transdown');
     }
-   
+
 });
 
 $('#filter').click(function(){
-     window.location.href = DOMAIN + "index.php?action=filterPage";  
+     window.location.href = DOMAIN + "index.php?action=filterPage";
 });
 
 
@@ -430,19 +430,19 @@ function filter(a,b,c,d,e,f){
  var gemstone_name = e;
  var diam_shape = f;
 
- 
+
  /* $('.gemstone21').click(function(){
         $('#proid').addClass('dn');
        $('#pgrid').click(function(){
-        
+
            if(gemstone_name == 'Ruby'){
             //   var len = stSearch.length;
           var selectedpid = proid;
            $('#proid').removeClass('dn');
-           
-          
-               
-              
+
+
+
+
            }
        });
    });*/
