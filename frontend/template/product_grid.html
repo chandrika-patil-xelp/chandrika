@@ -148,15 +148,20 @@
             </div>
             <div class="container2  fLeft">
                 <div class="col100">
-                    <div class="wrapper_max">
-                        <div class="aboveLine">
-                        	<div class="filterH">
-                            	<div class="fLeft" id="total_Product"> Products</div>
+                    <div class="wrapper_max offsetTop">
+                        <div class="aboveLine fLeft">
+                        	<div class="filterH fLeft">
+
                             	<div class="filter_btn fRight" id="filter"></div>
                             </div>
-                            <div class="overlayF"></div>
-                            <div class="ftabWrap fLeft">
+                            	<div class="totProduct" id="total_Product"> Products</div>
+                            <div class="ftabWrap fRight">
                             <div class="ftab_buffer">
+                                <div class="ftabB fLeft">
+                                    <div class="ftab fLeft taba">
+                                        METAL TYPE
+                                    </div>
+                                </div>
                                 <div class="ftabB fLeft">
                                     <div class="ftab fLeft taba">
                                         METAL TYPE
@@ -274,22 +279,60 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="fmenu_elm ">
+                                        <div class="ckCont fLeft">
+                                            <div class="checkB fLeft">
+                                                <input type="checkbox" name="select" id="cl1" class="filled-in" value="1">
+                                                <label for="cl1">White</label>
+                                            </div>
+                                            <div class="checkB fLeft">
+                                                <input type="checkbox" name="select" id="cl2" class="filled-in" value="1">
+                                                <label for="cl2">Pine</label>
+                                            </div>
+                                            <div class="checkB fLeft">
+                                                <input type="checkbox" name="select" id="cl3" class="filled-in" value="1">
+                                                <label for="cl3">Ice Blue</label>
+                                            </div>
+                                            <div class="checkB fLeft">
+                                                <input type="checkbox" name="select" id="cl4" class="filled-in" value="1">
+                                                <label for="cl4">Black</label>
+                                            </div>
+                                        </div>
+                                        <div class="ckCont fLeft ">
+                                            <div class="checkB fLeft">
+                                                <input type="checkbox" name="select" id="cl5" class="filled-in" value="1">
+                                                <label for="cl5">Blue</label>
+                                            </div>
+                                            <div class="checkB fLeft">
+                                                <input type="checkbox" name="select" id="cl6" class="filled-in" value="1">
+                                                <label for="cl6">Pink</label>
+                                            </div>
+                                            <div class="checkB fLeft">
+                                                <input type="checkbox" name="select" id="cl7" class="filled-in" value="1">
+                                                <label for="cl7">Green</label>
+                                            </div>
+                                            <div class="checkB fLeft">
+                                                <input type="checkbox" name="select" id="cl8" class="filled-in" value="1">
+                                                <label for="cl8">Red</label>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="fmenu_elm">
 
                                         <center>
-                                            <div class="col100">
+                                            <!-- <div class="col100">
                                                 <div class="diaCont Round transition300"></div>
                                                 <div class="diaCont Pear transition300"></div>
                                                 <div class="diaCont Emerald transition300"></div>
                                                 <div class="diaCont Princess transition300"></div>
                                                 <div class="diaCont Marquise transition300"></div>
                                                 <div class="diaCont Oval transition300"></div>
-                                            </div>
+                                            </div> -->
                                             <div class="col100 diaSh" style="height:240px">
-                                                <div class="diaCont Cushion transition300"></div>
+                                                <!-- <div class="diaCont Cushion transition300"></div>
                                                 <div class="diaCont Heart transition300"></div>
                                                 <div class="diaCont Radiant transition300"></div>
-                                                <div class="diaCont Asscher transition300"></div>
+                                                <div class="diaCont Asscher transition300"></div> -->
                                             </div>
                                         </center>
 
@@ -323,7 +366,7 @@
                                     <div class="fmenu_elm">
                                         <div class="fLeft ringContr">
                                             <center>
-                                                <div class="col100">
+
                                                     <div class="gemstone gemstone1">ALEXANDRITE</div>
                                                     <div class="gemstone gemstone2">AMBER</div>
                                                     <div class="gemstone gemstone3">AMETHYST</div>
@@ -332,8 +375,6 @@
                                                     <div class="gemstone gemstone6">CITRINE</div>
                                                     <div class="gemstone gemstone7">DIAMOND</div>
                                                     <div class="gemstone gemstone8">FANCY COLOR DIAMOND</div>
-                                                </div>
-                                                <div class="col100 gemTyp">
                                                     <div class="gemstone gemstone9">EMERALD</div>
                                                     <div class="gemstone gemstone10">GARNET</div>
                                                     <div class="gemstone gemstone11">IOLITE</div>
@@ -355,7 +396,6 @@
                                                     <div class="gemstone gemstone27">TORMALINE</div>
                                                     <div class="gemstone gemstone28">TURQUOISE</div>
                                                     <div class="gemstone gemstone29">ZIRCON</div>
-                                                </div>
                                             </center>
                                         </div>
                                     </div>
@@ -414,7 +454,7 @@
 
             $('body').addClass('over_hide');
             window_width = $(window).width();
-
+            getHeight();
             if (window_width < 960) {
             }
             wid = $('.rota').width();
@@ -683,7 +723,7 @@
         var divPos = {};
         var offset = $('.rota').offset();
         function bindrota(th, e) {
-            console.log('bindrota');
+
             //   $('.grid_img').bind('mousemove', function (e) {
 
             if (window_width > 960) {
@@ -691,17 +731,17 @@
                 // console.log(wid1);
                 var offset = $(th).offset();
                 var left = e.pageX - offset.left;
-                console.log(left);
+
                 var o = wid1 / 30;
                 var off_set = o * i;
 
                 var k = (left - off_set) / o;
 
                 k = Math.floor(k);
-                console.log('k' + k);
+
                 k = k % 30;
                 var di = $(th).find('div');
-                console.log(di);
+
                 $(th).find('div').addClass('dn');
                 $(th).find('div').eq(k).removeClass('dn');
                 s = k;
@@ -769,8 +809,12 @@
 //            $('.mtlBox,.checkB,.diaCont,.ringCont,.gemstone').velocity({translateY: [20, 0], duration: 200, easing: 'ease-in-out', display: 'block'});
 //            lastId = fId;
 //        });
-
-
+function getHeight(){
+    $('.fmenu_elm').each(function(){
+      $(this).attr('initHeight' , $(this).outerHeight(true));
+    });
+}
+var vheight=0;
         /*Overlay fade in/out  on menu hover*/
         $('.ftabWrap').mouseover(function () {
             $('.overlayF').stop(true, true).fadeTo(200, 1);
@@ -779,34 +823,28 @@
         $('.ftabB').mouseover(function () {
             $('.ftab').removeClass('selec');
             var inx=$(this).index();
-            if(inx==0 || inx==1 ){
-            $('.fmenu_wrap').velocity('stop').velocity({height: [120]}, {duration: 200, easing: 'ease-in-out', display: 'block'});
-          }
-          else if(inx==2 ){
-              $('.fmenu_wrap').velocity('stop').velocity({height: [240]}, {duration: 200, easing: 'ease-in-out', display: 'block'});
-          }
-          else if(inx==3 ){
-              $('.fmenu_wrap').velocity('stop').velocity({height: [360]}, {duration: 200, easing: 'ease-in-out', display: 'block'});
-          }
-          else if(inx==4 ){
-              $('.fmenu_wrap').velocity('stop').velocity({height: [500]}, {duration: 200, easing: 'ease-in-out', display: 'block'});
-          }
+            vheight =$('.fmenu_elm').eq(inx).attr('initHeight');
+            console.log(vheight);
+            setTimeout(function(){
+            $('.fmenu_wrap').velocity('stop').velocity({height: vheight}, {duration: 200, easing: 'ease-in-out', display: 'block'});
+          },20);
         });
-        $('.ftabWrap').mouseleave(function () {
-            $('.overlayF').stop(true, true).fadeTo(200, 0);
-            $('.fmenu_wrap').velocity('stop').velocity({height: [0]}, {duration: 200, easing: 'ease-in-out', display: 'none',
-                complete: function () {
-                    $('.fmenu_elm').stop(true, true).css({'display': 'block'});
-                }
-            });
-            $('.ftab').removeClass('selec');
-        });
+        // $('.ftabWrap').mouseleave(function () {
+        //     $('.overlayF').stop(true, true).fadeTo(200, 0);
+        //     $('.fmenu_wrap').velocity('stop').velocity({height: [0]}, {duration: 200, easing: 'ease-in-out', display: 'none',
+        //         complete: function () {
+        //             $('.fmenu_elm').stop(true, true).css({'display': 'block'});
+        //         }
+        //     });
+        //     $('.ftab').removeClass('selec');
+        // });
         /*Sub menu slidedown/slideup , Menu tab colour change*/
         $('.ftab').mouseenter(function () {
             var k = $(this).closest('.ftabB').index();
 
             $('.fmenu_elm').css({'z-index': '50'}).removeClass('tab_select').addClass('remo');
             $('.fmenu_elm').eq(k).css({'z-index': '9999'}).addClass('tab_select').removeClass('remo');
+
             $('.fmenu_elm').eq(k).stop(true, true).slideDown(200, function () {
                 $('.remo').css({'display': 'none'});
             });
