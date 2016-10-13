@@ -413,9 +413,9 @@ var count=0;
 
 });
 
-$('#filter').click(function(){
-     window.location.href = DOMAIN + "index.php?action=filterPage";
-});
+// $('#filter').click(function(){
+//      window.location.href = DOMAIN + "index.php?action=filterPage";
+// });
 
 
 
