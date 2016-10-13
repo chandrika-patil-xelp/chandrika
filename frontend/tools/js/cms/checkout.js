@@ -2,20 +2,20 @@
 var gblcheckodata;
 var subtotalprice=0;
 var totalprice=0; 
-var totshp=0;
 var shipngdata={}; 
 var validationFlag=1;
 $(document).ready(function(){
  
    $('#paymentbtn').click(function(){   
-    
-     storeshippingdata();
+      storeshippingdata();
+     storeorderdata();
    });
+   
   $('input.filled-in').on('change', function() {
     $('input.filled-in').not(this).prop('checked', false);  
-     shipngdata['delivery_option']=$(this).val(); 
-     
+     shipngdata['delivery_option']=$(this).val();  
   });
+  
   $('#nxt').click(function(){
     getshippingdata();
   });
@@ -24,10 +24,9 @@ $(document).ready(function(){
 
 function displaycartdetail()
 {
-    subtotalprice = 0;
   var userid=localStorage.getItem('uid');   
   var cartid=localStorage.getItem('cartid');
-  var chckoutstr = "";
+  subtotalprice=0;
     $('.prdFinalCont').html("");
   var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id="+cartid+"&userid="+userid+"";  
 	       $.ajax({
@@ -42,8 +41,8 @@ function displaycartdetail()
 			  var abc=v.prdimage; abc=abc.split(','); 
 			  abc=IMGDOMAIN+abc[5];
 			  subtotalprice+=parseInt(v.price);
-			 
-  chckoutstr="<div class='ckPrCont fLeft'>";
+			  
+var chckoutstr="<div class='ckPrCont fLeft'>";
   chckoutstr+=" <div class='ckPrImg fLeft'><img src='"+abc+"'";
   chckoutstr+=" alt='Image not found'></div>";
   chckoutstr+="  <div class='incCont fLeft'>";
@@ -66,12 +65,9 @@ function displaycartdetail()
    $('.prdFinalCont').append(chckoutstr);
 		      });
 		      totalprice=subtotalprice+0;
-                    totshp = totalprice+100;
 		      $('#shpntotalprdprc').html("&#8377 "+subtotalprice);
-                   
-		      $('#shpntotalprc').html("&#8377 "+totshp);
+		      $('#shpntotalprc').html("&#8377 "+subtotalprice);
 		      $('.total').html(totalprice);
-                      
 		    }
 		  });
 		      
@@ -90,7 +86,6 @@ function displaycartdetail()
 	      type:'POST',
 	      url:URL,
 	      success:function(res){
-                  
 	          displaycartdetail();
 		//$(".cart_gen").show();  
 	      }
@@ -118,7 +113,7 @@ function displaycartdetail()
 	dat['cartid']=v.cart_id;    dat['pid']=v.product_id;
 	dat['userid']=v.userid;     dat['col_car_qty']=v.col_car_qty;
 	dat['qty']=j;		       dat['price']=price; 
-	
+	console.log(dat);
 	 storecartdata(dat);
 	 
       }
@@ -147,7 +142,7 @@ function displaycartdetail()
 	dat['cartid']=v.cart_id;    dat['pid']=v.product_id;
 	dat['userid']=v.userid;     dat['col_car_qty']=v.col_car_qty;
 	dat['qty']=j;		       dat['price']=price; 
-	
+	console.log(dat);
 	 storecartdata(dat);
 	 
       }
@@ -229,9 +224,7 @@ function getshippingdata()
         validationFlag=0;
         return false;
     }
-   
- 
-  
+    
    $('#spdnamedispl').html(name);
    $('#spdaddrdspl').html(addrs);
    $('#spdaddrdspl').append(", "+city);
@@ -240,14 +233,16 @@ function getshippingdata()
    shipngdata['name']=name;	    shipngdata['mobile']=mobile;
    shipngdata['email']=mail;	    shipngdata['city']=city;
    shipngdata['address']=addrs;	    shipngdata['state']=state;
-   shipngdata['pincode']=pincode;    shipngdata['user_id']=67657657;
+   shipngdata['pincode']=pincode;  
+   shipngdata['user_id']=localStorage.getItem('uid');
+     
 }
 
 function storeshippingdata()
 {
-   
+ //  console.log(shipngdata);
   if (validationFlag == 1){
-
+    
    
    var URL= APIDOMAIN + "index.php?action=addshippingdetail";
     var data=shipngdata; 
@@ -257,9 +252,36 @@ function storeshippingdata()
 	    url:URL,
 	    data: {dt: dt},
 	    success:function(data){
-		      console.log(data);  
+		        console.log(data);  
             }
         });
  }
 }
 
+function  storeorderdata()
+{
+  
+  var data=[],ordobj={};
+  $(gblcheckodata).each(function(r,v){
+    var ordrdata={};
+    ordrdata['orderid']=v.cart_id;	 ordrdata['pid']=v.product_id;
+    ordrdata['userid']=v.userid;	 ordrdata['col_car_qty']=v.col_car_qty;
+    ordrdata['pqty']=v.pqty;		 ordrdata['prodpri']=v.price;  
+    ordrdata['order_status']="" ;	 ordrdata['updatedby']="" ;
+    ordrdata['payment']="";		 ordrdata['payment_type']="";
+    ordrdata['diloptn']=shipngdata.delivery_option;
+    data[r]=ordrdata; r++;
+  });
+ 
+  ordobj['data']=data;
+   var URL= APIDOMAIN + "index.php?action=addOrdersdetail"; 
+  var  dt = JSON.stringify(ordobj); 
+	$.ajax({
+	    type:"post",
+	    url:URL,
+	    data: {dt: dt},
+	    success:function(data){
+		//      console.log(data);  
+            }
+        });
+}
