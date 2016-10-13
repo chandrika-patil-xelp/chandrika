@@ -22,7 +22,7 @@
                                 <div class="tHead fLeft">Your Personal Information</div>
                                 <div class="fLeft pCont">
                                     <div class="tCont fLeft">You must not misuse this Website and follow the following ethical browsing habits:You will not: </div>
-                                    <div class="fLeft">By accepting this Policy, you authorize Jzeva to collect and store and use any information that you may enter on our Website or provide to us in some other way. To enable you to become a registered user of our Website, we need your basic personal information like name, address, email address, mobile number, credit/debit card number By accepting this Policy, you authorize Jzeva to collect and store and use any information that you may enter on our Website or provide to us in some other way. To enable you to become a registered user of our Website, we need your basic personal information like name, address, email address, mobile number, credit/debit card number </div> 
+                                    <div class="fLeft">By accepting this Policy, you authorize Jzeva to collect and store and use any information that you may enter on our Website or provide to us in some other way. To enable you to become a registered user of our Website, we need your basic personal information like name, address, email address, mobile number, credit/debit card number By accepting this Policy, you authorize Jzeva to collect and store and use any information that you may enter on our Website or provide to us in some other way. To enable you to become a registered user of our Website, we need your basic personal information like name, address, email address, mobile number, credit/debit card number </div>
                                 </div>
                             </div>
                             <div class="tCommon fLeft">
@@ -100,7 +100,7 @@
                             <div class="tCommon fLeft">
                                 <div class="tHead fLeft">Links</div>
                                 <div  class="pCont fLeft PTop5">
-                                    This Website may contain links and advertisements which may lead you to other Websites. Please note that once you leave our Website you will be subjected to the privacy policy of the other Website and this Policy will no longer apply. By using this Website, you signify your agreement to the terms of this Policy. Jzeva reserves the right, in our sole discretion, to change, modify, and or delete portions of the terms of this Policy at any time. 
+                                    This Website may contain links and advertisements which may lead you to other Websites. Please note that once you leave our Website you will be subjected to the privacy policy of the other Website and this Policy will no longer apply. By using this Website, you signify your agreement to the terms of this Policy. Jzeva reserves the right, in our sole discretion, to change, modify, and or delete portions of the terms of this Policy at any time.
                                 </div>
                             </div>
                             <div class="tCommon fLeft">
@@ -138,13 +138,14 @@
                 </div>
 
             </div>
+              <?php include 'footer.html'?>
             <script>
                 $(document).ready(function () {
                     $('.wrapper_max').removeClass('offsetEffects');
                 });
                 $(window).scroll(function () {
                     var sc = $('body').scrollTop();
-                    var ht = $('.gemBanner').outerHeight(true) - 60;
+                    var ht = $('.gemBanner').outerHeight(true) - 130;
                     if (ht > sc) {
                         var op = 1 - (ht - sc) / ht;
                         $('#banner_over').css({'opacity': op});
