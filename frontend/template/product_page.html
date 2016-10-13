@@ -4,7 +4,7 @@
 
     <?php include 'Cart.html' ?>
     <?php include 'header.html' ?>
-    <div class="fLeft gemBanner"></div>
+    <!-- <div class="fLeft gemBanner"></div> -->
     <div class="wrapper_main fLeft PRODUCT_PAGE">
 
         <div class="wrapper">
@@ -142,12 +142,12 @@
                             </div>
                             <div class="details_desc">
                                 <div class="writefaggery fLeft">
-                                    <div class="para fLeft"  id="stn"><span>White gold, diamond</span></div>
+                                    <div class="para fLeft pr_head "  id="stn"><span>White gold, diamond</span></div>
                                     <div class="para fLeft" id="descrp">Diamants Legers de Cartier ring 18K white gold, set with a brilliant-cut diamond of 0.13 carat.</div>
-                                    <div class="para  fLeft"><span class="point color_black font12 u_line lettSpace" id="showDetails">DESCRIPTION +</span></div>
+                                    <div class="para  fLeft"><span class="actBtn fRight" id="showDetails">DESCRIPTION</span></div>
                                     <div class="para  fLeft">
                                         <div class="col33 fRight point  icnLike transition300"></div>
-                                        <div class="col33 fRight point   icnCmnt transition300"></div>
+                                        <!-- <div class="col33 fRight point   icnCmnt transition300"></div> -->
                                         <div class="col33 fRight point review_btn icnShre transition300"></div>
                                     </div>
                                 </div>
@@ -168,7 +168,7 @@
                              <div class="imgHolder"></div>
 
                             </div>
-                            <div class="rota_btn fLeft">
+                            <div class="rota_btn fLeft dn">
                                 <center>
                                     <div class="rota_run "><span class="u_line lettSpace"></span></div>
                                     <div class="rota_expand "><span class="u_line lettSpace"></span></div>
@@ -179,25 +179,30 @@
                     <div class="options fRight">
                         <div class= "options_buffer">
 
-                            <div class="desc_row fLeft font12  padX0">
-                                <span class="fLeft left_arrow point transition300">PREVIOUS</span>
-                                <span class="fRight right_arrow point transition300">NEXT</span>
-                            </div>
+                            <!-- <div class="desc_row fLeft  ">
+                                <span class="fLeft  actBtn bolder">PREVIOUS</span>
+                                <span class="fRight actBtn bolder">NEXT</span>
+                            </div> -->
                             <div class="another_buffer fLeft" id="cust" >
-                                <div class="desc_row fLeft font12  point transition300" ><span class="" id="vpro"> REF:B4087900</span></div>
-                                <div class="desc_row fLeft font12  point transition300"><span class="">EXTRA STUFF +</span></div>
+                                <div class="desc_row fLeft  font12 point transition300" >SKU: <span class="semibold" id="vpro"></span></div>
+                                <div class="desc_row fLeft  font12 point transition300">DELIVERY: <span class="semibold">15 Days or less</span></div>
+                              <div class="cardHead fLeft">Customise</div>
                               <div class="cust_cont poR fLeft" >
                                    <div class="drop_dn fLeft">
-                                       <span class="bolder">Quality</span><br>
-                                        <span class="colorLg font10 regular" id="qual">vv-f</span>
+                                       <div class="attTitle">Φ  Quality</div>
+                                        <div class="actBtn font12 bolder" id="qual">vv-f</div>
                                     </div>
-                                    <div class="drop_dn fLeft  border_s" id="color">
-                                        <span>Color</span><br>
-                                       <span class="colorLg font10 regular" id="clr">yellow</span>
+                                    <div class="drop_dn fLeft  " id="color">
+                                        <div class="attTitle">Φ Color</div>
+                                       <div class="actBtn font12 bolder" id="clr">yellow</div>
                                     </div>
                                     <div class="drop_dn fLeft " id="purity">
-                                        <span>Purity</span><br>
-                                        <span class="colorLg font10 regular" id="carat" >carat</span>
+                                        <div class="attTitle">Φ  Purity</div>
+                                        <div class="actBtn font12 bolder" id="carat" >carat</div>
+                                    </div>
+                                    <div class="drop_dn fLeft " id="purity">
+                                        <div class="attTitle">Φ  Size</div>
+                                        <div class="actBtn font12 bolder" id="size" >28</div>
                                     </div>
                                 </div>
 
@@ -207,10 +212,10 @@
 
                                 <div class="action_btns">
                                     <div class="col50 fLeft  padXr5">
-                                        <div class="button button2 btnc1 transition300 fLeft" id="add_to_cart" >Add To Cart</div>
+                                        <div class="actBtn fLeft bolder" id="add_to_cart" >Add To Cart</div>
                                     </div>
                                     <div class="col50 fLeft  padXl5">
-                                        <div class="button button2 btnc1 transition300 fLeft">WISHLIST +</div>
+                                        <div class="actBtn fRight bolder">WISHLIST</div>
                                     </div>
                                 </div>
 
@@ -313,6 +318,7 @@
         </div>
         <div class="loader_quote">Luxury or Nothing</div>
     </div>
+
     <div class="overlay3 pointNone"></div>
     <div class="close_fs dn"></div>
     <div class="lat_logo dn">
@@ -492,10 +498,10 @@
             }
         });
         // Show close reviews page
-        $('.review_btn').click(function () {
-            $('body').addClass('over_hide');
-            $('.review_cont').velocity({translateY: [0, '100%']}, {duration: 800, easing: 'easeInQuart', display: 'block'});
-        });
+        // $('.review_btn').click(function () {
+        //     $('body').addClass('over_hide');
+        //     $('.review_cont').velocity({translateY: [0, '100%']}, {duration: 800, easing: 'easeInQuart', display: 'block'});
+        // });
         $('.review_canc').click(function () {
             $('.review_cont').velocity({translateY: ['100%', 0]}, {duration: 600, easing: 'easeInQuart', display: 'none', complete: function () {
                     $('body').removeClass('over_hide');
