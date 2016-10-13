@@ -3820,7 +3820,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                         WHERE  
                             active_flag != 2
                         ORDER BY
-                            createdon ASC ";
+                            createdon DESC ";
             // $price = $comm->IND_money_format(priceDigit);
           $price = $comm->IND_money_format(price);
        
