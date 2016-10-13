@@ -1205,6 +1205,7 @@ input[type=radio]:checked ~ .check::before{background: #22B9C7;transform: scale(
 #forgot .btnContainr{width:140px;}
 .shadow_head{width:100%;height:100px;position:fixed;top:0;left:0;background:url(../img/grad.png);background-size:auto 100%;z-index: 100;background-repeat:repeat-x;pointer-events:none;}
 .gemBanner{width:100%;height:60vh;background-image:url('../img/23.jpg');background-size:cover;background-position:center;background-repeat:no-repeat;position:absolute}
+.Terms .gemBanner{width:100%;height:60vh;background:#222529; position:absolute}
 .homejzeva .gemBanner{width:100%;height:90vh;background-image:url('../img/23.jpg');background-size:cover;background-position:center;background-repeat:no-repeat;position:absolute}
 .gemBanner.fixedBanner{position:fixed}
 /*.gemBanner.fixer{position:fixed;z-index:20}*/
@@ -1402,9 +1403,9 @@ input[type=radio]:checked ~ .check::before{background: #22B9C7;transform: scale(
 
 /*T and C*/
 .Terms{}
-.termHeading{position:absolute;width:auto;height:auto;left:0;top:100px;right:0;margin:auto;text-align: center;font-size:35px;color:#fff;font-family:bolder;text-transform: uppercase;}
+.termHeading{position:absolute;width:auto;height:auto;left:0;top:180px;right:0;margin:auto;text-align: center;font-size:12px;letter-spacing:0.35em;color:#fff;font-family:bolder;text-transform: uppercase;}
 .termsContainer{width:100%;height:auto;padding-top: 60vh;}
-.tHead{font-size:12px;font-family: semibold;letter-spacing:0.35em;line-height:30px;color: #15181b;text-transform: uppercase;width:30%;height:auto;text-align: right;}
+.tHead{font-size:12px;font-family: bolder;letter-spacing:0.35em;line-height:30px;color: #15181b;text-transform: uppercase;width:30%;height:auto;text-align: right;}
 .tCont{width: 100%;padding: 5px 0px;font-size:12px;font-family:regular;line-height: 20px;color: #15181b;}
 .Terms ul{width:70%;padding-left: 20px;}
 .Terms ul li{font-size:12px;font-family:semibold;line-height: 20px;color: #15181b;margin-bottom:5px;padding-left:10px;font-family:regular;}
