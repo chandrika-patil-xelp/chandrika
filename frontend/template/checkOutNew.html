@@ -11,44 +11,44 @@
                     <div class="newAddDiv" id="txtAdd">
                         <div class="txtOutCont fLeft">
                             <div class="txtB fmSansR fLeft">
-                                <input type="text" class="inp_box " maxlength="30">
+                                <input type="text" class="inp_box " id="shpdname" maxlength="30">
                                 <div class="inp_label fmSansB">Name*</div>
                             </div>
                         </div>
                         <div class="txtOutCont fLeft">
                             <div class="txtB fmSansR fLeft">
-                                <input type="tel" class="inp_box " maxlength="10">
+                                <input type="tel" class="inp_box " id="shpdmobile" maxlength="10">
                                 <div class="inp_label fmSansB">Mobile*</div>
                             </div>
                         </div>
                         <div class="txtOutCont fLeft">
                             <div class="txtB fmSansR fLeft">
-                                <input type="text" class="inp_box " maxlength="30">
+                                <input type="text" class="inp_box " id="shpdemail" maxlength="30">
                                 <div class="inp_label fmSansB">Email*</div>
                             </div>
                         </div>
                         <div class="txtOutCont fLeft">
                             <div class="txtB fmSansR fLeft">
-                                <input type="text" class="inp_box " maxlength="15">
+                                <input type="text" class="inp_box " id="shpdcity" maxlength="15">
                                 <div class="inp_label fmSansB">City*</div>
                             </div>
                         </div>
                         <div class="txtOutcont1 fLeft">
                             <div class="txtB fmSansR fLeft">
-                                <input type="text" class="inp_box">
+                                <input type="text" class="inp_box" id="shpdaddrs">
                                 <div class="inp_label fmSansB" >Address*</div>
                             </div>
                         </div>
                         <div class="txtOutCont fLeft">
                             <div class="txtB fmSansR fLeft">
-                                <input type="text" class="inp_box " maxlength="20">
+                                <input type="text" class="inp_box " id="shpdstate" maxlength="20">
                                 <div class="inp_label fmSansB">State*</div>
                             </div>
                         </div>
 
                         <div class="txtOutCont fLeft">
                             <div class="txtB fmSansR fLeft">
-                                <input type="text" class="inp_box">
+                                <input type="text" class="inp_box" id="shpdpincode">
                                 <div class="inp_label fmSansB">Pin code*</div>
                             </div>
                         </div>
@@ -67,8 +67,8 @@
                     <div class="newAddDiv dn" id="addOpt">
                         <div class="contAdd fLeft fmSansR">
                             <div class="dlHead fLeft fmSansR ">Deliver to:</div>
-                            <div class="dlevryTxt fLeft fmSansB">Ganesh Belle</div>
-                            <div class="dlevryTxt fLeft">#32 17th B Main ,5th Cross Bannerughatta Hulimangala Road, Bengaluru, Karnataka 560105, India</div>
+                            <div class="dlevryTxt fLeft fmSansB"><span id="spdnamedispl"></span><!--Ganesh Belle --></div>
+                            <div class="dlevryTxt fLeft"><span id="spdaddrdspl"></span><!--#32 17th B Main ,5th Cross Bannerughatta Hulimangala Road, Bengaluru, Karnataka 560105, India--></div>
                         </div>
                         <div class="breakLine fLeft"></div>
                         <div class="contAdd fRight">
@@ -94,7 +94,7 @@
                                     <div class="button button2 btnc1 transition300 fLeft">BACK</div>
                                 </div>
                                 <div class="btnContainr  fmOsR " >
-                                    <div class="button button2 btnc1 transition300 fLeft">PAYMENT</div>
+                                    <div class="button button2 btnc1 transition300 fLeft" id="paymentbtn">PAYMENT</div>
                                 </div>
                             </center>
                         </div>
@@ -192,7 +192,7 @@
                         <div class="productContr">
                             <div class="fmSansB font14 subTCont">
                                 <span class="fLeft fmSansR font12">SUBTOTAL</span>
-                                <span class="fRight">&#8377 52,000</span>
+                                <span class="fRight" id="shpntotalprdprc">&#8377 52,000</span>
                             </div>
                             <div class="fmSansB font14 subTCont brdBottom">
                                 <span class="fLeft fmSansR font12">SHIPPING</span>
@@ -200,7 +200,7 @@
                             </div>
                             <div class="fmSansB  subTCont">
                                 <span class="fLeft fmSansR font16">TOTAL</span>
-                                <span class="fRight font20">&#8377 52,100</span>
+                                <span class="fRight font20" id="shpntotalprc">&#8377 52,100</span>
                             </div>
                         </div>
                     </div>
@@ -233,6 +233,7 @@
         <div class="loader_quote  fmSansL">The meek may inherit the earth but not its mineral rights</div>
     </div>
 
+    <script type="text/javascript" src="<?php echo $jvs['checkout']; ?>"></script>
     <script type="text/javascript">
         $(window).load(function () {
             setTimeout(function () {
