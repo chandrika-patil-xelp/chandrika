@@ -1412,7 +1412,7 @@ input[type=radio]:checked ~ .check::before{background: #22B9C7;transform: scale(
 .mar0{margin: 0px!important;}
 .tCommon{width: 100%;height:auto;padding-bottom: 40px;}
 .Terms .wrapper_main{padding-top:60vh;background-color: #f3f3f3;}
-.offsetEffects{opacity: 0;transform: translateY(80px);transition:300ms ease-in;transition-duration: 300ms;}
+.offsetEffects{opacity: 0;transform: translateY(80px);-webkit-transform: translateY(80px);-moz-transform: translateY(80px);-o-transform: translateY(80px);-ms-transform: translateY(80px);transition:300ms ease-out;-webkit-transition:300ms ease-out;-o-transition:300ms ease-out;-ms-transition:300ms ease-out;-o-transition:300ms ease-out;}
 .pCont{width:70%;padding-left: 20px;font-size:12px;font-family:regular;line-height: 22px;color: #15181b;}
 .points{width:100%;height: auto;padding-bottom: 8px;}
 
