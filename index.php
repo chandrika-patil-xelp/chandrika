@@ -150,5 +150,9 @@ switch ($action) {
         $page = 'otp';
         include TEMPLATE . 'otp.html';
         break;
+     case 'tandc':
+        $page = 'tandc';
+        include TEMPLATE . 'tandc.html';
+        break;
 }
 ?>
