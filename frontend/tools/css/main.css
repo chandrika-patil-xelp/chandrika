@@ -2,7 +2,7 @@
 *{box-sizing:border-box;}
 div{display:block;box-sizing:border-box;}
 html{width:100%;height:100%;}
-body{padding:0;margin:0;overflow-x:hidden;}
+body{padding:0;margin:0;overflow-x:hidden;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;}
 textarea:focus, input:focus , select:focus ,option:focus{
     outline: none;
 }
@@ -12,7 +12,7 @@ textarea:focus, input:focus , select:focus ,option:focus{
 @font-face{font-family:thin;src: url(../fonts/Raleway-Thin.ttf);}
 @font-face{font-family:light;src: url(../fonts/Raleway-Light.ttf);}
 @font-face{font-family:regular;src: url(../fonts/Raleway-Regular.ttf);}
-@font-face{font-family:semibold;src: url(../fonts/Raleway-Semibold.ttf);}
+@font-face{font-family:semibold;src: url(../fonts/Raleway-SemiBold.ttf);}
 @font-face{font-family:bolder;src: url(../fonts/Raleway-Bold.ttf);}
 @font-face{font-family:xlight;src: url(../fonts/Raleway-ExtraLight.ttf);}
 

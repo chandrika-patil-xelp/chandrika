@@ -153,20 +153,20 @@
                                 </div>
                                 <div class="morewritefaggery fLeft" id="desc">
 
-                              
+
                                     <div class="closewritefaggery"></div>
                                 </div>
 
 
                             </div>
                         </div>
-                     
+
                     </div>
                     <div class="rota_wrap transition300">
                         <div class="rota_buffer">
                             <div class="rota" id="img-view">
                              <div class="imgHolder"></div>
-                            
+
                             </div>
                             <div class="rota_btn fLeft">
                                 <center>
@@ -178,7 +178,7 @@
                     </div>
                     <div class="options fRight">
                         <div class= "options_buffer">
-                         
+
                             <div class="desc_row fLeft font12  padX0">
                                 <span class="fLeft left_arrow point transition300">PREVIOUS</span>
                                 <span class="fRight right_arrow point transition300">NEXT</span>
@@ -219,17 +219,17 @@
                                 <div class="selector_cont" id="diQ">
                                     <div class="options_back">Back</div>
                                     <div class="button_label ">Select Diamond Clarity</div>
-                                    
+
                                 </div>
                                 <div class="selector_cont" id="colr">
                                     <div class="options_back">Back</div>
                                     <div class="button_label">Select Metal Color</div>
-                                   
+
                                 </div>
                                 <div class="selector_cont" id="pur">
                                     <div class="options_back">Back</div>
                                     <div class="button_label">Select metal purity</div>
-                                   
+
                                 </div>
                                 <div class="selector_cont">
                                     <div class="options_back">Back</div>
@@ -290,9 +290,7 @@
 
 
 
-        <div class="footer fLeft">
-
-        </div>
+        <?php include 'footer.html'?>
     </div>
 
     <div class="page_loader">
@@ -319,14 +317,14 @@
     <div class="close_fs dn"></div>
     <div class="lat_logo dn">
     </div>
- 
-  
+
+
    <script type="text/javascript" src="<?php echo $jvs['prodpage']; ?>"></script>
   <!-- <script type="text/javascript" src="<?php echo $jvs['cart']; ?>"></script>-->
     <script>
 
         var i = 0;
- 
+
         /* 360 auto run */
         var wid;
         var s = 0;
@@ -364,7 +362,7 @@
         var offL = 0;
         $('.rota').bind('mousemove', function (e) {
             var left = e.pageX - offset.left;
-           
+
             var o = wid / 30;
             var k = (left - offK + offL) / o;
             k = Math.floor(k);
@@ -398,7 +396,7 @@
                 theme: "rounded-dots-dark",
                 mouseWheelPixels: 200
             })
-           
+
         });
 
         /* Customisation */
@@ -560,7 +558,7 @@
         function movePrImg(flag) {
             var totalThumbs = $(".productCont").length;
             var liWidth = ($(".productCont").outerWidth());
-            
+
 
             if (!flag) {
                 if (moveCount < (totalThumbs - 1)) {
