@@ -210,9 +210,7 @@
             
         }
         
-        // CODE FOR REMOVE CART ENDS
-        //(!empty($params['deladdr_id'])) ? trim($params['deladdr_id']) : "";
-        
+       
         public function removeItemFromCart($params){
             
           //  $pid = (!empty($params['pid'])) ? trim($params['pid']) : '';
