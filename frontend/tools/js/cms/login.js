@@ -265,43 +265,94 @@ function updatecartiddetail(oldcartid,olduserid,newcartid)
 }
 
 $('#flog').on('click',function(){
-    
-    var mobile=$('#femail').val();
+    var email=$('#femail').val();
     var validationFlag=1;
-    
-    if(mobile===''|| mobile=== null){
-      // common.toast(0, 'Please enter your Mobile no.');
-        alert('Please enter your Mobile no.');
-        validationFlag=0;
-        return false;
+    /*
+    if($.isNumeric( inputdata )){
+	    if(inputdata===''|| inputdata=== null){
+	    // common.toast(0, 'Please enter your Mobile no.');
+	      alert('Please enter your Mobile no.');
+	      validationFlag=0;
+	      return false;
+	  }
+	  else if(isNaN(inputdata) || (inputdata.length < 10) ){
+	    // common.toast(0, 'Mobile no. Invalid');
+	      alert('Mobile no. Invalid');
+	      validationFlag=0;
+	      return false;
+	  }
+     var URL= APIDOMAIN + "index.php/?action=sendotp&mobile="+inputdata; 
     }
-   /* else if(isNaN(mobile) || (mobile.length < 10) ){
-      // common.toast(0, 'Mobile no. Invalid');
-        alert('Mobile no. Invalid');
-        validationFlag=0;
-        return false;
-    }*/
+    else{ 
+      */
+	   var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
+	   if(email===''|| email=== null){
+	      // common.toast(1, 'Please Enter Name');
+	       alert('Please enter your Email.id');
+	       validationFlag=0;
+	       return false;
+	   }
+	   else if (!reg.test(email)){
+	     alert('Invalid Email.id');
+	       validationFlag=0;
+	       return false;
+	   }
     
-    if (validationFlag==1){
-    var URL= APIDOMAIN + "index.php/?action=checkuser&mobile="+mobile+"&email="+mobile; 
-   $.ajax({
-            type:'POST',
-            url:URL,
-            success:function(res){
-           var data1 = JSON.parse(res); 
-         
-            if(data1['error']['err_code']==0)
-            {
-                 alert(data1['error']['err_msg']);
-            }
-            else if(data1['error']['err_code']==1){
-                alert(data1['error']['err_msg']);
-            }
-             else if(data1['error']['err_code']==2){
-                alert(data1['error']['err_msg']);
-            }
-           
-        }
-    }); 
-    }
+    if(validationFlag ==1)
+    {
+      var URL= APIDOMAIN + "index.php/?action=getuserdetailbymail&email="+email; 
+      $.ajax({
+	 	    url: URL,
+	 	    type: "GET",
+	 	    datatype: "JSON",
+	 	    success: function(res)
+	 	    {
+		     //  console.log(results);
+		     var data=JSON.parse(res); 
+		      if(data['error']['Code']==0)
+		      {
+			if(data.results==null){
+			  alert('email id not exist');
+			}
+			else{
+			   var mobile=data.results['logmobile']; 
+			   sendotp(mobile);
+			}
+		       
+		//	window.location.href = DOMAIN + "index.php?action=otp&mobile="+inputdata;
+		      }
+		      else if(data['error']['Code']==1){
+			alert(data['error']['Msg']);
+		      }
+		    }
+      });   
+		  
+
+  }
 }); 
+
+function  sendotp(mobile)
+{
+  		  
+       var URL= APIDOMAIN + "index.php/?action=sendotp&mobile="+mobile; 
+      $.ajax({
+	       type:'POST',
+	       url:URL,
+	       success:function(res){
+	          console.log(res);
+	       var data1 = JSON.parse(res); 
+	       if(data1['error']['err_code']==0)
+	       {
+		    alert(data1['error']['err_msg']);
+		     window.location.href = DOMAIN + "index.php?action=otp&mobile="+mobile;
+	       }
+	       else if(data1['error']['err_code']==1){
+		   alert(data1['error']['err_msg']);
+	       }
+		else if(data1['error']['err_code']==2){
+		   alert(data1['error']['err_msg']);
+	       } 
+	   }
+       });
+        
+}
