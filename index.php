@@ -154,5 +154,13 @@ switch ($action) {
         $page = 'tandc';
         include TEMPLATE . 'tandc.html';
         break;
+    case 'privacy':
+        $page = 'privacy';
+        include TEMPLATE . 'privacy.html';
+        break;
+     case 'contact':
+        $page = 'contact';
+        include TEMPLATE . 'contact.html';
+        break;
 }
 ?>
