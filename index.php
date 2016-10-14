@@ -162,5 +162,29 @@ switch ($action) {
         $page = 'contact';
         include TEMPLATE . 'contact.html';
         break;
+    case 'warranty':
+        $page = 'warranty';
+        include TEMPLATE . 'warranty.html';
+        break;
+    case 'randc':
+        $page = 'randc';
+        include TEMPLATE . 'randc.html';
+        break;
+    case 'diamondguide':
+        $page = 'diamondguide';
+        include TEMPLATE . 'diamondguide.html';
+        break;
+     case 'preciousmetalguide':
+        $page = 'preciousmetalguide';
+        include TEMPLATE . 'preciousmetalguide.html';
+        break;
+     case 'jewellerycare':
+        $page = 'jewellerycare';
+        include TEMPLATE . 'jewellerycare.html';
+        break;
+     case 'responsiblef':
+        $page = 'responsiblef';
+        include TEMPLATE . 'responsiblef.html';
+        break;
 }
 ?>
