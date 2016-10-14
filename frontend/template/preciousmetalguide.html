@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<?php include 'jhead.html' ?>
+<body class="Terms">
+    <?php include 'Cart.html'?>
+    <?php include 'header.html'?>
+    <div class="fLeft gemBanner">
+        <div class="banner_over" id ="banner_over"></div>
+        <div class="termHeading">Precious Metals Guide</div>
+    </div>
+    <div class="wrapper_main   fLeft">
+        <div class="container2 fLeft">
+            <div class="col100">
+                <div class="wrapper_max offsetTop offsetEffects transition600">
+                    <div class="tCommon fLeft">
+                        <div  class="tCont fLeft">
+                            <div class="fLeft points">Metals have been documented to be used by humans as early as 6000BC, ancient Egyptians and Mesopotamians were the earliest of civilizations to make and use jewellery out of metals. Gold and Platinum carry the highest demand and value amongst all metals due to their noble properties and rarity.</div>
+                        </div>
+                    </div>
+                    <div class="tCommon fLeft">
+                        <div class="tHead fLeft">Gold</div>
+                        <div class="fLeft pCont">
+                            <div class="tCont fLeft">Gold has been the most sought after metal for jewellery making due to its rarity and lustre. Its value was quickly realised by humans and was used a mode of payment from as early as 3100BC.  </div>
+                        </div>
+                    </div>
+                    <div class="tCommon fLeft">
+                        <div class="tHead fLeft">Purity</div>
+                        <div class="fLeft pCont">
+                            <div class="tCont fLeft">Gold found in nature is in its purest form or also referred as 24 karat gold, pure gold is too soft to make jewellery and hence as a common practice is mixed with other metallic elements such as copper and zinc to form an alloy that is considerably stronger without sacrificing too much of its lustre. The popular Karat weights and their pure gold percentages are as listed below:</div>
+                            <div class="fLeft points">24 karat: 100% gold or Pure gold</div>
+                            <div class="fLeft points">22 karat: 91.7 % gold</div>
+                            <div class="fLeft points">18 karat: 75.0 % gold</div>
+                            <div class="fLeft points">14 karat: 58.3 % gold</div>
+                            <div class="fLeft points">12 karat: 50.0 % gold</div>
+                            <div class="fLeft points">10 karat:  41.7 % gold</div>
+                            <div class="fLeft points">9 Karat: 37.5% gold</div>
+                            <div class="fLeft points">Due to physical properties of a diamond and other gemstones, they can only be set in 18 Karat or lower purity of gold as anything above 18Karats will be too soft to hold on to the stones.</div>
+                        </div>
+                    </div>
+                    <div class="tCommon fLeft">
+                        <div class="tHead fLeft">IP Address</div>
+                        <div class="fLeft pCont">
+                            <div class="tCont fLeft">Gold though is naturally yellow can be given another clour by mixing it with different alloy metals. The most popular colours of gold jewellery are</div>
+                            <div class="fLeft points">Yellow Gold: An alloy made up of Pure gold + Copper + Zinc</div>
+                            <div class="fLeft points">White gold: An alloy made up of Pure Gold + a white metal like Palladiaum, nickel or silver</div>
+                            <div class="fLeft points">Rose Gold: An alloy made up of Pure Gold + Copper</div>
+                            <div class="fLeft points">An important point to note is that the colour of the gold jewellery doest effect the value of the jewellery, it is the purity that dictates the value.</div>
+
+                        </div>
+                    </div>
+                    <div class="tCommon fLeft">
+                        <div class="tHead fLeft">Platinum</div>
+                        <div class="fLeft pCont PTop5">
+                            <div class="fLeft points">Platinum is extremely rare (yes even rare then gold) and hence is the most expensive metal used in making jewellery. Though platinum and platinum rich alloys are in use since the time of ancient Egypt it wasn’t until as recently as 18th century that it was recognised as an element. </div>
+                        </div>
+                    </div>
+                    <div class="tCommon fLeft">
+                        <div class="tHead fLeft">Purity</div>
+                        <div class="fLeft pCont PTop5">
+                            <div class="fLeft points">Platinum though naturally tough and hard needs to be mixed with certain metals to manufacture jewellery, for a piece of jewelry to be labeled as "platinum" it must have a minimum level of purity of at least 95% pure platinum. A purity level of less than 95% would require the metal be identified as a Platinum alloy</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php include 'footer.html'?>
+    <script>
+        $(document).ready(function () {
+            $('.wrapper_max').removeClass('offsetEffects');
+        });
+        $(window).scroll(function () {
+            var sc = $('body').scrollTop();
+            var ht = $('.gemBanner').outerHeight(true) - 130;
+            if (ht > sc) {
+                var op = 1 - (ht - sc) / ht;
+                $('#banner_over').css({'opacity': op});
+
+            }
+            if (ht - sc <= 5) {
+                $('.header').addClass('black_bg');
+                console.log('if');
+            } else {
+                $('.header').removeClass('black_bg');
+                console.log('else');
+            }
+            //           if(ht-sc<=60){
+            //           console.log(sc);
+            //           $('.gemBanner').addClass('fixer');
+            //       }
+            //       else{
+            //            $('.gemBanner').removeClass('fixer');
+            //       }
+        });
+    </script>
+
+
+</body>
