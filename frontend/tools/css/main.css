@@ -1419,7 +1419,7 @@ input[type=radio]:checked ~ .check::before{background: #22B9C7;transform: scale(
 .Terms .wrapper_main{padding-top:60vh;background-color: #f3f3f3;}
 .offsetEffects{opacity: 0;transform: translateY(80px);-webkit-transform: translateY(80px);-moz-transform: translateY(80px);-o-transform: translateY(80px);-ms-transform: translateY(80px);transition:300ms ease-out;-webkit-transition:300ms ease-out;-o-transition:300ms ease-out;-ms-transition:300ms ease-out;-o-transition:300ms ease-out;}
 .pCont{width:70%;padding-left: 20px;font-size:12px;font-family:regular;line-height: 22px;color: #15181b;}
-.points{width:100%;height: auto;padding-bottom: 8px;}
+.points{width:100%;height: auto;padding-bottom: 8px;font-size: 12px;font-family: regular;line-height: 22px;color: #15181b;}
 
 /*contact*/
 .contactH{font-size: 22px;font-family: semibold;padding: 20px 0px;width: 100%;}
@@ -1427,6 +1427,26 @@ input[type=radio]:checked ~ .check::before{background: #22B9C7;transform: scale(
 .contOuter{width:100%;height: auto;}
 .contOuter:last-child{border: none!important;}
 .bNone{border:none!important;}
+.subCont{width:70%;padding-left:20px;font-size:12px;font-family:regular;line-height:22px;color: #15181;}
+.spoints{width:100%;height: auto;padding-bottom: 8px;font-size: 12px;    font-family: regular;    line-height: 22px;    color: #15181b;}
+/*warranty*/
+.warranty{}
+.dtable{width: 100%;height: auto;border:1px solid;margin-bottom: 7px;}
+.drow{width: 100%;eight: 30px;height: 30px;border-bottom: 1px solid;}
+.rowTxt{width: 16.66%;height: 100%;line-height: 30px;text-align: center;border-right: 1px solid;}
+.subRow{width: 50%;}
+.chartH{width: 100%;height: 30px;float: left;line-height: 30px;font-family: semibold;}
+.letters{width: 4.3%;height: 100%;border-right: 1px solid;text-align: center;line-height: 30px;}
+.colorless{width: 12.9%;border-right: 1px solid;line-height: 30px;text-align: center;}
+.ncolor{width: 17.2%;border-right: 1px solid;line-height: 30px;text-align: center;}
+.light{width: 21.5%;border-right: 1px solid;line-height: 30px;text-align: center;}
+.lYellow{width:35.5%;border-right: 1px solid;line-height: 30px;text-align: center;}
+.drow:last-child{border-bottom: none;}
+.letters:last-child{border-right: none;}
+.cutHead{width: 30%;height:auto;font-family: bolder;text-transform: uppercase;text-align: right;font-size:12px;font-family: bolder;letter-spacing:0.35em;line-height:30px;color: #15181b;}
+.dguide{}
+.dguide .tHead{width: 100%;text-align: center;}
+
 
 
 .hovEff{-webkit-animation: hovtwostep 450ms ease-in-out ;-moz-animation: hovtwostep 450ms ease-in-out ;-ms-animation: hovtwostep 450ms ease-in-out ;animation: hovtwostep 450ms ease-in-out ;-webkit-animation-fill-mode: forwards;  animation-fill-mode: forwards;}
