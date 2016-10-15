@@ -4021,7 +4021,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
        global $comm;
            
             $sqlcount = "  SELECT count(productid) AS cnt
-	     FROM tbl_category_product_mapping WHERE catid=".$params['id']." AND  ";
+	     FROM tbl_category_product_mapping WHERE catid=".$params['id']." AND active_flag =1";
             $rescnt= $this->query($sqlcount);
             $row = $this->fetchData($rescnt);
             $total= $row['cnt'];
