@@ -973,7 +973,7 @@ input[type=radio]:checked ~ .check::before{background: #22B9C7;transform: scale(
 .incCont{width: 76px;height: auto; padding: 10px 0px; position: absolute; top: 12px;right: 15px;}
 .clBtn{width:60px;height:20px;position:absolute;right:20px;bottom:7px;opacity:0.5;cursor:pointer;border: 1px solid #ccc;border-radius: 4px;font-size: 9px; text-align: center;line-height: 20px;}
 .clBtn:hover{opacity: 1;}
-.btnContainr{width: 150px; height: auto; display: inline-block;margin: 70px 0px;}
+.btnContainr{width: 150px; height: auto; display: inline-block;margin: 30px 0px;}
 .borderN{border:none!important;}
 .subTCont{width:100%;height:auto;padding: 5px 10px;float:left;color: #2d2d2d;}
 .buttonPos{bottom:0px;width:100%;height:60px;
@@ -1265,6 +1265,7 @@ input[type=radio]:checked ~ .check::before{background: #22B9C7;transform: scale(
 /*.signUpBanner .outerContr{height:450px;left:60%;}*/
 .cMoreTxt{width:100%;height:auto;line-height:25px;text-align:center;color:#2d2d2d;background-color:#fff;cursor:pointer;font-size:12px;float:left;}
 .seeM{height:auto;overflow:visible;}
+
 /*.diaSh{display:none;}*/
 /*.ringSz{display:none;}*/
 /*.gemTyp{display:none;}*/
@@ -1471,7 +1472,7 @@ input[type=radio]:checked ~ .check::before{background: #22B9C7;transform: scale(
 .sgnBtn.login{background: #333;}
 .sgnBtn.back{background: #fff url(../img/133.svg)no-repeat;background-position:center;background-size:auto 40px;position:absolute;width:40px;height:40px;top:-120px;left:0px;border-radius:0px}
 
-.brkCnt{width:268px;height:40px;position:relative;display:inline-block;}
+.brkCnt{width:268px;height:40px;position:relative;display:inline-block;font-family: semibold;}
 .brkCnt:before{content:'';width:100px;height:1px;border-bottom:1px solid #ccc;position:absolute;top:20px;left:0px;}
 .brkCnt:after{content:'';width:100px;height:1px;border-bottom:1px solid #ccc;position:absolute;top:20px;right:0px;}
 .orTcnt{width:60px;height:40px;position:absolute;left:0;right:0;margin:auto;font-size:15px;line-height:40px;color:#666;z-index:50}
@@ -1491,7 +1492,7 @@ input[type=radio]:checked ~ .check::before{background: #22B9C7;transform: scale(
 .Terms .wrapper_main{padding-top:60vh;background-color: #f3f3f3;}
 .offsetEffects{opacity: 0;transform: translateY(80px);-webkit-transform: translateY(80px);-moz-transform: translateY(80px);-o-transform: translateY(80px);-ms-transform: translateY(80px);transition:300ms ease-out;-webkit-transition:300ms ease-out;-o-transition:300ms ease-out;-ms-transition:300ms ease-out;-o-transition:300ms ease-out;}
 .pCont{width:70%;padding-left: 20px;font-size:12px;font-family:regular;line-height: 22px;color: #15181b;}
-.points{padding-left: 20px;background: url("../img/icons/504.svg")no-repeat;background-size: auto 10px;background-position: 0 10px;}
+.points{padding-left: 20px;background: url("../img/icons/505.svg")no-repeat;background-size: auto 10px;background-position: 0 10px;}
 
 /*contact*/
 .contactH{font-size: 22px;font-family: semibold;padding: 20px 0px;width: 100%;}
