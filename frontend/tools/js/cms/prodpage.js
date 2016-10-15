@@ -56,12 +56,11 @@ var pid;
         var metal =zz[zz.length-1];
 	 
 	  arrdata.push(color);
-	   arrdata.push(quality);
-	    arrdata.push(metal);
-          
-      
+	   arrdata.push(quality); 
+	    arrdata.push(metal);   
+ 
 	   newaddToCart(arrdata);
-	});
+	}); 
 $(document).ready(function(){ 
   
       pid = GetURLParameter('pid'); 
@@ -87,24 +86,25 @@ $(document).ready(function(){
                 var solitaire = dt['solitaire'];
                 var diamonds = dt['dimond'];
                 var uncut = dt['uncut'];
-                var gemstone = dt['gamestone'];
-                var images = dt['images'];
-           
-                 
+                var gemstone = dt['gamestone']; 
+                var images = dt['images']; 
+             
+                  
                 if (data['error']['err_code'] == '0')
             {  
-                  var imgstr = "";
-                    if(dt['basicDetails']['default_image']!== null){
+                  var imgstr = "";  
+		  if(dt['basicDetails']['default_image']!== null){
 		       imgstr='<div class="imgHolder img1" style="background:  url(\''+ IMGDOMAIN + dt['basicDetails']['default_image']+'\')no-repeat;background-size:115%;background-position:center"></div>';
-		  }
+		        $('#img-view').prepend(imgstr);
+		  }  
                    $(images['images']).each(function(i, v) {
                      
              imgstr='<div class="imgHolder " style="background:  url(\''+ v +'\')no-repeat;background-size:contain;background-position:center"></div>';
                    $('#img-view').append(imgstr);
-                  
-                });
                 
-              
+                });  
+                
+ 
              $(basic).each(function(i, vl) {
                
                              var proname = vl.prdNm;
@@ -146,9 +146,9 @@ $(document).ready(function(){
                             var solistr = "";
                             $(solitaire['results']).each(function(i, vl) {
                               var carat = vl.carat;
-                              var price_per_carat = vl.prcPrCrat;
-                            
-                                solistr+='<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>'+vl.nofs+'</span><span> Solitaire</span></span><span class="fRight fmSansR"><span> '+vl.carat+'</span> Carat</span></div>';
+                              var price_per_carat = vl.prcPrCrat; 
+	   
+                                solistr+='<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>'+vl.totNo+'</span><span> Solitaire</span></span><span class="fRight fmSansR"><span> '+vl.crat+'</span> Carat</span></div>'; 
                              getSoliPrice(carat,price_per_carat);
                             });
                              $('#desc').append(solistr);

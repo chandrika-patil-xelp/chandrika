@@ -4010,6 +4010,225 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
             
         }
 
+    public function getProductdetailbycatid($params) {
+      
+//      $catidsql="SELECT catid FROM tbl_category_master WHERE pcatid=
+//		(SELECT catid FROM tbl_category_master WHERE cat_name='High Jewellery') AND cat_name='".$params['cat_name']."'";
+//      
+//      $rescatid=  $this->query($catidsql);
+//      $row=  $this->fetchData($rescatid);
+//      $catid=$row['catid']; 
+       global $comm;
+           
+            $sqlcount = "  SELECT count(productid) AS cnt
+	     FROM tbl_category_product_mapping WHERE catid=".$params['id']." AND  ";
+            $rescnt= $this->query($sqlcount);
+            $row = $this->fetchData($rescnt);
+            $total= $row['cnt'];
+            
+	    $sqlglb='SET GLOBAL group_concat_max_len = 1000000';
+           
+            $res = $this->query($sqlglb);
+      $sql="SELECT 
+		    productid,
+                             productid AS pid,
+                             product_code,
+                             vendorid,
+                             vendor_prd_code,
+                             leadTime,
+			     returneligible,
+			     productDescription,
+                             jewelleryType,
+                             product_name,
+                             product_seo_name,
+			     gender,
+                             product_weight,
+                             diamond_setting,
+                             metal_weight,
+                             making_charges,
+			     procurement_cost,
+			     margin,
+			     measurement,
+			     customise_purity,
+			     customise_color,
+			     certificate,
+                             has_diamond,
+                             has_solitaire,
+                             has_uncut,
+                             has_gemstone,
+                             active_flag, 
+                             createdon,
+                             updatedon,
+                             updatedby,
+			     (SELECT GROUP_CONCAT(diamond_id) FROM tbl_product_diamond_mapping WHERE productid = pid AND active_flag = 1 ) AS allDimonds,
+                            (SELECT GROUP_CONCAT(carat) FROM tbl_product_diamond_mapping WHERE FIND_IN_SET(diamond_id,allDimonds)) AS dmdcarat,
+                            (SELECT GROUP_CONCAT(total_no) FROM tbl_product_diamond_mapping WHERE FIND_IN_SET(diamond_id,allDimonds)) AS totaldmd,
+                            (SELECT GROUP_CONCAT(shape) FROM tbl_product_diamond_mapping WHERE FIND_IN_SET(diamond_id,allDimonds)) AS shape,
+			    
+			    (SELECT GROUP_CONCAT(id) FROM tbl_diamond_quality_mapping WHERE diamond_id = allDimonds AND active_flag = 1 ) AS DimondQuality,
+                            (SELECT GROUP_CONCAT(dname) FROM tbl_diamond_quality_master WHERE FIND_IN_SET(id,DimondQuality)) AS dmdQ,
+                            (SELECT GROUP_CONCAT(price_per_carat) FROM tbl_diamond_quality_master WHERE FIND_IN_SET(id,DimondQuality)) AS dmdQPricepercarat,
 
+
+                            (SELECT GROUP_CONCAT(gemstone_id) FROM tbl_product_gemstone_mapping WHERE productid = pid AND active_flag = 1 ) AS allGemstone,
+                            (SELECT GROUP_CONCAT(gemstone_name) FROM tbl_gemstone_master WHERE FIND_IN_SET(id,allGemstone)) AS gemstoneName,
+                            (SELECT GROUP_CONCAT(carat) FROM tbl_product_gemstone_mapping WHERE FIND_IN_SET(gemstone_id,allGemstone) AND productid =pid) AS gemscarat ,
+                            (SELECT GROUP_CONCAT(total_no) FROM tbl_product_gemstone_mapping WHERE FIND_IN_SET(gemstone_id,allGemstone) AND productid =pid) AS totalgems,
+                            (SELECT GROUP_CONCAT(price_per_carat) FROM tbl_product_gemstone_mapping WHERE FIND_IN_SET(gemstone_id,allGemstone) AND productid =pid) AS gemsPricepercarat,
+
+
+                            (SELECT GROUP_CONCAT(solitaire_id) FROM tbl_product_solitaire_mapping WHERE productid = pid AND active_flag = 1 ) AS allSolitaire,
+                            (SELECT GROUP_CONCAT(no_of_solitaire) FROM tbl_product_solitaire_mapping WHERE FIND_IN_SET(solitaire_id,allSolitaire) AND productid =pid) AS totalSolitaire,
+                            (SELECT GROUP_CONCAT(carat) FROM tbl_product_solitaire_mapping WHERE FIND_IN_SET(solitaire_id,allSolitaire) AND productid =pid) AS Solicarat,
+                            (SELECT GROUP_CONCAT(price_per_carat) FROM tbl_product_solitaire_mapping WHERE FIND_IN_SET(solitaire_id,allSolitaire) AND productid =pid) AS SoliPricepercarat,
+                            
+                            (SELECT GROUP_CONCAT(uncut_id) FROM tbl_product_uncut_mapping WHERE productid = pid AND active_flag = 1 ) AS allUncut,
+                            (SELECT GROUP_CONCAT(total_no) FROM tbl_product_uncut_mapping WHERE FIND_IN_SET(uncut_id,allUncut) AND productid =pid) AS totalUncut,
+                            (SELECT GROUP_CONCAT(carat) FROM tbl_product_uncut_mapping WHERE FIND_IN_SET(uncut_id,allUncut) AND productid =pid) AS Uncutcarat,
+                            (SELECT GROUP_CONCAT(price_per_carat) FROM tbl_product_uncut_mapping WHERE FIND_IN_SET(uncut_id,allUncut) AND productid =pid) AS UncutPricepercarat,
+                            
+                            (SELECT GROUP_CONCAT(id) FROM tbl_product_metal_purity_mapping WHERE productid = pid ) AS allmetalpurity,
+                            (SELECT GROUP_CONCAT(dvalue) FROM tbl_metal_purity_master WHERE FIND_IN_SET(id,allmetalpurity)) AS purity,
+                            (SELECT GROUP_CONCAT(price) FROM tbl_metal_purity_master WHERE FIND_IN_SET(id,allmetalpurity)) AS purprice,
+                            
+                            (SELECT GROUP_CONCAT(id) FROM tbl_product_metal_color_mapping WHERE productid = pid AND active_flag = 1 ) AS allmetalcolor,
+                            (SELECT GROUP_CONCAT(attributeid) FROM tbl_product_attributes_mapping WHERE productid = pid AND active_flag = 1 ) AS attrVals,
+                            (SELECT GROUP_CONCAT(catid) FROM tbl_category_product_mapping WHERE productid = pid AND active_flag = 1 ) AS catpro,
+                            (SELECT GROUP_CONCAT(attributeid) FROM tbl_product_attributes_mapping WHERE productid = pid AND active_flag = 1 ) AS attrpro,
+                            (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND active_flag !=2 ORDER BY
+                            image_sequence DESC) AS images,
+			    (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND active_flag != 2 AND  default_img_flag=1) 
+  AS default_image
+			    
+	  FROM tbl_product_master WHERE active_flag != 2 AND productid  IN (SELECT
+	    productid FROM tbl_category_product_mapping WHERE catid=".$params['id'].")" ;
+      
+      $price = $comm->IND_money_format(price);
+      
+      $page = ($params['page'] ? $params['page'] : 1);
+      $limit = ($params['limit'] ? $params['limit'] : 12);
+
+        if ($limit > 12)
+        {
+            $limit = 12;
+        } 
+        if (!empty($page))
+        {
+            $start = ($page * $limit) - $limit;
+            $sql.=" LIMIT " . $start . ",$limit";
+        }
+      
+      $res=  $this->query($sql);
+      if($res){
+	 while ($row = $this->fetchData($res)){
+                    
+                    $arr['prdId'] = $row['productid'];
+                    $arr['prdCod'] = $row['product_code']; 
+                    $arr['vendorid'] = $row['vendorid'];
+                    $arr['vendor_prd_code'] = $row['vendor_prd_code']; 
+                    $arr['leadTime'] = $row['leadTime'];
+                    $arr['returneligible'] = $row['returneligible']; 
+                    $arr['productDescription'] = $row['productDescription']; 
+                    $arr['jewelleryType'] = $row['jewelleryType']; 
+                    $arr['prdNm'] = $row['product_name'];
+                    $arr['product_seo_name'] = $row['product_seo_name'];
+		    $arr['gender'] = $row['gender']; 
+                    $arr['product_weight'] = $row['product_weight'];
+		    $arr['diamond_setting'] = $row['diamond_setting'];
+		    $arr['metal_weight'] = $row['metal_weight']; 
+                    $arr['making_charges'] = $row['making_charges'];
+                    $arr['procurement_cost'] = $row['procurement_cost'];
+                    $arr['margin'] = $row['margin'];
+                    $arr['measurement'] = $row['measurement']; 
+                    $arr['custPurty'] = $row['customise_purity']; 
+                    $arr['custClor'] = $row['customise_color'];
+                    $arr['certificate'] = $row['certificate']; 
+                    $arr['hasDmd'] = $row['has_diamond'];
+                    $arr['hasSol'] = $row['has_solitaire']; 
+                    $arr['hasUnct'] = $row['has_uncut'];
+                    $arr['hasGem'] = $row['has_gemstone'];
+                    $arr['active_flag'] = $row['active_flag']; 
+                    $arr['createdon'] = $row['createdon'];
+                    $arr['updatedon'] = $row['updatedon'];
+                    $arr['updatedby'] = $row['updatedby'];  
+		    
+		    $arr['allDimonds'] = $row['allDimonds'];
+                    $arr['dmdcarat'] = $row['dmdcarat'];
+                    $arr['totaldmd'] = $row['totaldmd'];
+		    $arr['shape'] = $row['shape'];
+		    
+		     $arr['DimondQuality'] = $row['DimondQuality'];
+                     $arr['dmdQ'] = $row['dmdQ'];
+                     $arr['dmdQPricepercarat'] = $row['dmdQPricepercarat'];
+                        
+                    $arr['allGemstone'] = $row['allGemstone'];
+                    $arr['gemstoneName'] = $row['gemstoneName'];
+                   
+                    $arr['totalgems'] = $row['totalgems'];
+                    $arr['gemscarat'] = $row['gemscarat'];
+                    $arr['gemsPricepercarat'] = $row['gemsPricepercarat'];
+                      
+                    $arr['allSolitaire'] = $row['allSolitaire'];
+                    $arr['totalSolitaire'] = $row['totalSolitaire'];
+                    $arr['Solicarat'] = $row['Solicarat'];
+                    $arr['SoliPricepercarat'] = $row['SoliPricepercarat'];
+                    
+                    $arr['allUncut'] = $row['allUncut'];
+                    $arr['totalUncut'] = $row['totalUncut'];
+                    $arr['Uncutcarat'] = $row['Uncutcarat'];
+                    $arr['UncutPricepercarat'] = $row['UncutPricepercarat'];
+                    
+                    $arr['allmetalpurity'] = $row['allmetalpurity'];
+                     $arr['purity'] = $row['purity'];
+                     $arr['purprice'] = $row['purprice'];
+                    $arr['allmetalcolor'] = $row['allmetalcolor']; 
+		     $arr['default_image'] = $row['default_image']; 
+                   $arr['images'] = trim($row['images'],',');
+                   
+		     if($row['jewelleryType'] === '1'){
+                             $arr['jwelType'] ='Gold';
+                        }else  if($row['jewelleryType'] === '2'){
+                             $arr['jwelType'] ='Plain Gold';
+                        }else  if($row['jewelleryType'] === '3'){
+                             $arr['jwelType'] ='Platinum';
+                        }  
+                       
+                          if( $arr['hasGem'] === '1'){
+                        if($row['allGemstone']){
+                            $count=0;
+                            $sqlGemstoneMapping = " SELECT 
+                                                            productid,
+                                                            gemstone_name,
+                                                            total_no,
+                                                            carat,
+                                                            price_per_carat  
+                                                    FROM 
+                                                            tbl_product_gemstone_mapping 
+                                                    WHERE 
+                                                            productid IN(SELECT productid FROM tbl_product_master WHERE productid=pid ORDER BY createdon ASC  
+                                                       ";  
+                             $resGemstoneMapping = $this->query($sqlGemstoneMapping);
+                              while ($rowGemstoneMapping = $this->fetchData($resGemstoneMapping)){
+                                  $arrgemstoneDetails[]= $rowGemstoneMapping;
+                                   $count++;
+                              }
+                              $gemstoneDetails = $arrgemstoneDetails;
+                        }
+                        $arr['GemstoneDetails'] =$gemstoneDetails;
+                         
+                    }
+                     
+                        $reslt[] = $arr;
+                    } 
+	 
+	 $error = array('err_code'=>0, 'err_msg'=>'details fetched successfully' );
+      }
+      else{
+	  $error = array('err_code'=>1, 'err_msg'=>'error in fetching details' );
+      }
+     
+    $result = array('result'=>$reslt, 'error'=>$error, 'total'=>$total);
+      return $result;
+    }
 }
 ?>

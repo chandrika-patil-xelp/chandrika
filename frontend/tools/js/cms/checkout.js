@@ -9,6 +9,7 @@ $(document).ready(function(){
    $('#paymentbtn').click(function(){   
       storeshippingdata();
      storeorderdata();
+     
    });
    
   $('input.filled-in').on('change', function() {
@@ -238,26 +239,30 @@ function getshippingdata()
    shipngdata['name']=name;	    shipngdata['mobile']=mobile;
    shipngdata['email']=mail;	    shipngdata['city']=city;
    shipngdata['address']=addrs;	    shipngdata['state']=state;
-   shipngdata['pincode']=pincode;  
-   shipngdata['user_id']=localStorage.getItem('uid');
-     
+   shipngdata['pincode']=pincode; 
+   var usrid=localStorage.getItem('uid');
+   if(usrid == null || usrid == ""){
+     shipngdata['user_id']=1111;
+   }
+   else{
+     shipngdata['user_id']=usrid;
+   }
+    
 }
 
 function storeshippingdata()
 {
  //  console.log(shipngdata);
-  if (validationFlag == 1){
-    
-   
+  if (validationFlag == 1){ 
    var URL= APIDOMAIN + "index.php?action=addshippingdetail";
-    var data=shipngdata; 
+    var data=shipngdata;
     var  dt = JSON.stringify(data); 
 	$.ajax({
 	    type:"post",
 	    url:URL,
-	    data: {dt: dt},
+	    data: {dt: dt}, 
 	    success:function(data){  
-		      //console.log(data);   
+		//      console.log(data);     
             }
         });
  }
@@ -285,8 +290,15 @@ function  storeorderdata()
 	    type:"post",
 	    url:URL,
 	    data: {dt: dt},
-	    success:function(data){
-		alert('Your Order Placed Successgfully');
+	    success:function(data){ 
+		//console.log(data);  
+		  var cartid=localStorage.getItem('cartid');
+		  var URL = APIDOMAIN + "index.php?action=removCrtItemaftrcheckot&cartid="+cartid;  
+		  $.ajax({  url: URL,   type: "GET",  datatype: "JSON",  success: function(results)  {
+				//  console.log(results);
+				}
+		  }); 
+		alert('Your Order Placed Successgfully'); 
             }
         });
 }

@@ -9,18 +9,17 @@ var stock = new Array();
 var stSearch = new Array();
 
 $(document).ready(function () {
-
-    var URL = APIDOMAIN + "index.php/?action=getProGrid";
-
+ 
+   // var URL = APIDOMAIN + "index.php/?action=getProGrid";
+    var URL = APIDOMAIN + "index.php/?action=getProductdetailbycatid&id="+id;
     $.ajax({
         type: 'POST',
         url: URL,
         success: function (res) {
 
-            res = JSON.parse(res);
-	    
+            res = JSON.parse(res); 
             if (res['error']['err_code'] == 0) {
-                getProdDtl = res["result"];
+                getProdDtl = res["result"];  
                    var total = res["total"];
                 $('#total_Product').html( total + " Products");
                 var obj = res["result"]; 
@@ -140,7 +139,7 @@ filter(pid,gender,jType,Mclr,gemsName,Dshape);
         price = price + getSoliPrice(Solicarat, Soliprc);
 
     }
-    if (uncut == '1' && uncut !== 'null')
+    if (uncut == '1' && uncut !== 'null' && uncut !== '1')
     {
         var Uncutcarat = obj['Uncutcarat'];
         var Uncutprc = obj['UncutPricepercarat'];
@@ -178,11 +177,11 @@ filter(pid,gender,jType,Mclr,gemsName,Dshape);
     proStr += '<div class="facet_front">';
     proStr += '<div class="grid_item" onclick=\"getProId(\''+ obj['prdId'] + '\')\" >';
     proStr += '<div class="grid_img"  onmousemove="bindrota(this , event)" lcor="0">';
-
-     if(obj['default_image']!= null ){   
+ 
+     if(obj['default_image']!= null ){  
        proStr += '<div style="background:url(\'' + IMGDOMAIN + obj['default_image'] + '\')no-repeat ; background-size: contain ; background-position: center"  class=""></div>';
      }
-      else if( images[0] == "uploads/noimg2.svg")
+      else if( images[0] == "uploads/noimg2.svg") 
         proStr += '<div style="background:url(\'' + IMGDOMAIN + images[0] + '\')no-repeat ; background-size: auto 50% ; background-position: center"  class=""></div>';
     else
         proStr += '<div style="background:url(\'' + IMGDOMAIN + images[0] + '\')no-repeat ; background-size: contain ; background-position: center"  class=""></div>';
@@ -215,7 +214,83 @@ filter(pid,gender,jType,Mclr,gemsName,Dshape);
     proStr += '<div class="soc_elem soc_share transition300"></div>';
     proStr += '</div>';
     proStr += '</div>';
-    proStr += '</div>';
+    proStr += '</div>'; 
+    proStr += '<div class="facet_back" >';
+    proStr += '<div class="facet_cont">';
+    proStr += '<div class="light_header fLeft fmSansL"><span class="u_lineW">' + obj['prdNm'] + '</span></div>';
+    proStr += '<div class="desc_row fLeft font12 fmSansB "><span class="txt_left fLeft">' + obj['jwelType'] + '</span><span class="fRight fmSansR"> ' + obj['metal_weight'] + ' gms</span> </div>';
+    if (diamond == '1' && diamond !== 'null') {
+        for(var d = 0; d < (p.length); d++){
+
+        proStr += '<div class="desc_row fLeft font12 fmSansB "><span class="txt_left fLeft">' + p[d] + ' Diamonds</span><span class="fRight fmSansR"> ' + q[d] + ' Carats</span></div>';
+    }
+    }
+
+    if (gems == '1' && gems !== 'null')
+    {
+       for(var i = 0; i < (c.length); i++){
+
+       proStr +='<div class="desc_row fLeft font12 fmSansB " ><span class="txt_left fLeft">' + t[i]+ ' ' + g[i]+ '</span><span class="fRight fmSansR"> ' + c[i]+ ' Carats</span></div>';
+
+    }
+    }
+    if (solitaire == '1' && solitaire !== 'null' && uncut !== '0') {
+        for(var j = 0; j < (c.length); ++j){
+        proStr += '<div class="desc_row fLeft font12 fmSansB "><span class="txt_left fLeft">' + t[j] + ' Solitaire </span> <span class="fRight fmSansR">' + c[j] + ' Carats</span></div>';
+    }
+   } 
+    if (uncut == '1' && uncut !== 'null' && uncut !== '0') {
+         for(var u = 0; u < (c.length); ++u ){
+        proStr += '<div class="desc_row fLeft font12 fmSansB "><span class="txt_left fLeft">' + t[u] + ' Uncut-Diamond </span> <span class="fRight fmSansR">' + c[u] + ' Carats</span></div>';
+    }
+   }
+   // proStr += '<div class="desc_row fLeft font12 fmSansB "><span class="txt_left fLeft">Size</span><span class="fRight fmSansR">S9</span></div>';
+
+    proStr += '<div class="grid_icons">';
+    proStr += '<center>';
+    proStr += '<div class="soc_elem2 soc_commentW"></div>';
+    proStr += '<div class="soc_elem2 soc_likeW"></div>';
+    proStr += '<div class="soc_elem2 soc_shareW"></div>';
+    proStr += '<div class="soc_elem2 soc_cartW"></div>';
+    proStr += '</center>'; 
+    proStr += '<div class="facet_back" >';
+    proStr += '<div class="facet_cont">';
+    proStr += '<div class="light_header fLeft fmSansL"><span class="u_lineW">' + obj['prdNm'] + '</span></div>';
+    proStr += '<div class="desc_row fLeft font12 fmSansB "><span class="txt_left fLeft">' + obj['jwelType'] + '</span><span class="fRight fmSansR"> ' + obj['metal_weight'] + ' gms</span> </div>';
+    if (diamond == '1' && diamond !== 'null') {
+        for(var d = 0; d < (p.length); d++){
+
+        proStr += '<div class="desc_row fLeft font12 fmSansB "><span class="txt_left fLeft">' + p[d] + ' Diamonds</span><span class="fRight fmSansR"> ' + q[d] + ' Carats</span></div>';
+    }
+    }
+
+    if (gems == '1' && gems !== 'null')
+    {
+       for(var i = 0; i < (c.length); i++){
+
+       proStr +='<div class="desc_row fLeft font12 fmSansB " ><span class="txt_left fLeft">' + t[i]+ ' ' + g[i]+ '</span><span class="fRight fmSansR"> ' + c[i]+ ' Carats</span></div>';
+
+    }
+    }
+    if (solitaire == '1' && solitaire !== 'null') {
+        for(var j = 0; j < (c.length); ++j){
+        proStr += '<div class="desc_row fLeft font12 fmSansB "><span class="txt_left fLeft">' + t[j] + ' Solitaire </span> <span class="fRight fmSansR">' + c[j] + ' Carats</span></div>';
+    }
+   }
+    if (uncut == '1' && uncut !== 'null') {
+         for(var u = 0; u < (c.length); ++u ){
+        proStr += '<div class="desc_row fLeft font12 fmSansB "><span class="txt_left fLeft">' + t[u] + ' Uncut-Diamond </span> <span class="fRight fmSansR">' + c[u] + ' Carats</span></div>';
+    }
+   }
+   // proStr += '<div class="desc_row fLeft font12 fmSansB "><span class="txt_left fLeft">Size</span><span class="fRight fmSansR">S9</span></div>';
+
+    proStr += '<div class="grid_icons">';
+    proStr += '<center>';
+    proStr += '<div class="soc_elem2 soc_commentW"></div>';
+    proStr += '<div class="soc_elem2 soc_likeW"></div>';
+    proStr += '<div class="soc_elem2 soc_shareW"></div>';
+    proStr += '<div class="soc_elem2 soc_cartW"></div>';
+    proStr += '</center>'; 
   //   proStr += '<div class="facet_back" >';
   //   proStr += '<div class="facet_cont">';
   //   proStr += '<div class="light_header fLeft fmSansL"><span class="u_lineW">' + obj['prdNm'] + '</span></div>';
@@ -257,7 +332,7 @@ filter(pid,gender,jType,Mclr,gemsName,Dshape);
   //   proStr += '</div>';
   //   proStr += '<div class="grid_back" onclick="flipBack(this)"></div>';
   //   proStr += '</div>';
-  //   proStr += '</div>';
+  //   proStr += '</div>'; 
     proStr += '</div>';
     return proStr;
 
@@ -383,7 +458,7 @@ var count=0;
      //$('#gr_foot').addClass('transdown');
 
 
-    var URL1 = APIDOMAIN + "index.php/?action=getProGrid&page="+page3+"&limit="+limit+"";
+    var URL1 = APIDOMAIN + "index.php/?action=getProductdetailbycatid&id="+id+"&page="+page3+"&limit="+limit+"";
   var tot_len = 0;
     $.ajax({
         type: 'POST',

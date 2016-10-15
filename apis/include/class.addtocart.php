@@ -38,7 +38,7 @@
 	 	      $sql.="
                     ON DUPLICATE KEY UPDATE
                                 pqty = VALUES(pqty),price = VALUES(price),active_flag=VALUES(active_flag),
-				created_on=VALUES(created_on),updatedon=VALUES(updatedon)";
+				updatedon=VALUES(updatedon)";
 		        
 	     $res = $this->query($sql); 
             $resp = array();
@@ -514,23 +514,15 @@
 	  $cartidvar=(!empty($params['cart_id']))?trim($params['cart_id']):'';
 	  $abh=!empty($params['userid'])?trim($params['userid']):'';   
 	   $flag=0;
-	    if (empty($params['cart_id']))
+	    if (empty($params['cart_id']) || $params['cart_id']=='null')
 	   {    $flg=1; 
 		//print_r($flg);
 	   } 
-	   if (empty($params['userid']))
+	   if (empty($params['userid']) || $params['userid']=='null')
 	   {    $flg=2;
 		//print_r($flg);
 	   }
-	   if ($params['cart_id']=='null')
-	   {    $flg=1; 
-		//print_r($flg);
-	   } 
-	   if ($params['userid']=='null')
-	   {    $flg=2;
-		//print_r($flg);
-	   }
-	   
+	    
 	   
          $sql = "  SELECT  cart_id,product_id AS pid,userid,col_car_qty AS combine, pqty, price,created_on,updatedon,active_flag, "
               . "(SELECT  GROUP_CONCAT(dname) FROM tbl_metal_color_master WHERE id = SUBSTRING_INDEX(combine, '|@|',1) AND active_flag = 1 ) AS color,"
@@ -562,13 +554,13 @@
 		(SELECT  GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND default_img_flag = 1 ) AS default_img";
 	       
 	       if($flg == 1){
-		 $sql.= " FROM tbl_cart_master WHERE active_flag=1 AND userid='".$params['userid']."' order by updatedon DESC";  
+		 $sql.= " FROM tbl_cart_master WHERE active_flag=1 AND userid='".$params['userid']."' order by created_on DESC";  
 	       }
 	       else if($flg==2){
-		$sql.= " FROM tbl_cart_master WHERE active_flag=1 AND cart_id='".$params['cart_id']."' order by updatedon DESC";  
+		$sql.= " FROM tbl_cart_master WHERE active_flag=1 AND cart_id='".$params['cart_id']."' order by created_on DESC";  
 	       } 
 	       else{
-		 $sql.=" FROM tbl_cart_master WHERE active_flag=1 AND (cart_id='".$params['cart_id']."' OR userid='".$params['userid']."') order by updatedon DESC";
+		 $sql.=" FROM tbl_cart_master WHERE active_flag=1 AND (cart_id='".$params['cart_id']."' OR userid='".$params['userid']."') order by created_on DESC";
 	       }  //  print_r($sql);
       $res = $this->query($sql);
             if ($res) {
@@ -669,6 +661,28 @@
             $results = array('result'=>$resp, 'error'=>$error);   
             return $results;
 	}
+	
+	 public function removCrtItemaftrcheckot($params)
+	{    
+            
+            $sql = "UPDATE 
+                            tbl_cart_master 
+                          SET
+                            active_flag = 2 
+                          WHERE cart_id = '".$params['cartid']."'"; 
+	     
+            $res = $this->query($sql);
+            
+            if($res){
+                $error = array('err_code'=>0, 'err_msg'=>'Updated Successfully');
+            }else{
+                $error = array('err_code'=>1, 'err_msg'=>'Error In Updating' );
+            }
+            
+            $results = array('result'=>$resp, 'error'=>$error);
+            return $results;
+            
+        }
     }
      
     ?>

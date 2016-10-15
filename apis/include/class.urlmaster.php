@@ -32,7 +32,7 @@
                                     tbl_url_master
                                    (urlkey,
                                     user_id,
-                                    logmobile,
+                                    mobile,
                                     email,
                                     cPass_url,
                                     active_flag,
@@ -186,7 +186,7 @@
            
         }
             $sql = "SELECT
-                            user_id,logmobile,email,active_flag
+                            user_id,mobile,email,active_flag
                     FROM 
                             tbl_url_master
                     WHERE
@@ -198,7 +198,7 @@
 	    {
 	    while($row= $this->fetchData($res)){ 
 	      $arr['user_id']=$row['user_id'];
-	      $arr['mobile']=$row['logmobile'];
+	      $arr['mobile']=$row['mobile'];
 	      $arr['email']=$row['email']; 
 	      $reslt=$arr;
 	    }

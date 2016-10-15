@@ -592,7 +592,7 @@ switch($action)
             include APICLUDE.'class.user.php';
             $obj = new user($db['jzeva']);
             $res = $obj->login($params);
-            break;
+            break; 
     
     
     
@@ -613,8 +613,8 @@ switch($action)
         $result	= $obj->changePassUrl($params);
       
         $res = $result;
-        break;
-
+        break; 
+    
 //  localhost/iftosi/apis/index.php?action=getUserDet&key=uvwxyz
     case 'getUserDet':
        
@@ -858,7 +858,7 @@ switch($action)
         $obj = new addtocart($db['jzeva']);
         $res = $obj->searchPrd($params);
         break;
-       
+    
     
     case 'sendotp': 
         include APICLUDE.'class.user.php';
@@ -903,7 +903,70 @@ switch($action)
         include APICLUDE.'class.user.php';
         $obj	= new user($db['jzeva']);
         $res	=$obj->updateuserpass($params); 
+    break; 
+    
+    case 'sendotp':  
+        include APICLUDE.'class.user.php';
+        $obj	= new user($db['jzeva']);
+        $res	=$obj->sendotp($params); 
+    break; 
+   
+    case 'addshippingdetail':
+        include APICLUDE.'class.user.php';
+        $obj	= new user($db['jzeva']);
+	$tmpaparams = array($params['dt']);
+        $res	=$obj->addshippingdetail($tmpaparams);
+    break; 
+  
+    case 'addOrdersdetail':
+        include APICLUDE.'class.us.php';
+        $obj = new us($db['jzeva']);
+	$tmpaparams = array($params['dt']); 
+         $res = $obj->addOrdersdetail($tmpaparams);
     break;
+  
+   case 'checkopt': 
+        include APICLUDE.'class.user.php';
+        $obj	= new user($db['jzeva']);
+        $res	=$obj->checkopt($params); 
+    break; 
+  
+    case 'getuserdetailbymail': 
+        include APICLUDE.'class.user.php';
+        $obj	= new user($db['jzeva']);
+        $res	=$obj->getuserdetailbymail($params); 
+    break; 
+  
+    case 'getuserdatabyurl': 
+        include APICLUDE.'class.urlmaster.php';
+        $obj	= new urlmaster($db['jzeva']); 
+        $result	= $obj->getuserdatabyurl($params);
+        $res = $result;
+    break;
+    
+    case 'setImagedeflt':
+        include APICLUDE.'class.admin.php';
+        $obj=new admin($db['jzeva']);
+        $res=$obj->setImagedeflt($params);
+    break; 
+  
+    case 'updateuserpass': 
+        include APICLUDE.'class.user.php';
+        $obj	= new user($db['jzeva']);
+        $res	=$obj->updateuserpass($params); 
+    break; 
+  
+  case 'getProductdetailbycatid':
+        include APICLUDE.'class.product.php';
+        $obj = new product($db['jzeva']);
+        $res = $obj->getProductdetailbycatid($params);
+  break;
+
+  case 'removCrtItemaftrcheckot':
+        include APICLUDE.'class.addtocart.php';
+        $obj = new addtocart($db['jzeva']);
+        $res = $obj->removCrtItemaftrcheckot($params);
+  break; 
     
    case 'setImagedeflt':
        include APICLUDE.'class.admin.php';
@@ -913,12 +976,7 @@ switch($action)
     
     
 
-# filtering
-     case '': 
-        include APICLUDE.'class.filter.php';
-        $obj	= new user($db['jzeva']);
-        $res	=$obj->updateuserpass($params); 
-    break;
+    
 }
 echo json_encode($res);
 exit;

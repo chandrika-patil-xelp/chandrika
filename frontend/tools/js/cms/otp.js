@@ -1,10 +1,10 @@
  $(document).ready(function(){
-  
+   
  });
 
    var mobileno=GetURLParameter('mobile');
- 
-	  
+   var signup=GetURLParameter('signup');
+   var forgtpasw=GetURLParameter('forgtpasw');
 	  
 function GetURLParameter(Param)
        {
@@ -38,7 +38,12 @@ function GetURLParameter(Param)
 		      else{
 		      if(otpval==data.otp){
 			alert('otp is correct'); 
+			if(signup==1){
+			  
+			}
+			else if(forgtpasw == 2){
 			sendmail(data.email);  
+			}
 		      }
 		      else{
 			alert('you entered otp is wrong');

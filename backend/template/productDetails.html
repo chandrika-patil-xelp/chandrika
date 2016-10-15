@@ -246,9 +246,26 @@
                                 imgstr += "</li>";
 				 $('#mainImg1').attr('src', IMGDOMAIN +basic['default_image']);
 			    }else
-                            {
+                            { 
+                          //  $('#mainImg1').attr('src', images['images'][0]);
+			    
+			    // chnages
+			    if(basic['default_image'] !== null){
+			       imgstr += "<li>";
+                                imgstr += "<div class='thumbContainer'>";
+                                imgstr += "<div class='thumb' onmouseover='updateMainImage(this)' style='background-image:url(" +  IMGDOMAIN +basic['default_image'] + ")'>";
+                                imgstr += "</div>";
+                                imgstr += "</div>";
+                                imgstr += "</li>";
+				 $('#mainImg1').attr('src', IMGDOMAIN +basic['default_image']);
+			    }
+			    else{
+			      $('#mainImg1').attr('src', images['images'][0]);
+			    } 
                             $('#mainImg1').attr('src', images['images'][0]);
-                        }
+ 
+                            $('#mainImg1').attr('src', images['images'][0]);
+                        } 
                             $(images['images']).each(function(i, vl) {
                                 imgstr += "<li>";
                                 imgstr += "<div class='thumbContainer'>";
@@ -330,8 +347,10 @@
 
 
 
-                        $(vendor['results']).each(function(i, vl) {
-                         
+                        $(vendor['results']).each(function(i, vl) { 
+                          //  console.log(dt); 
+                            console.log(dt); 
+                          
                             $('#vendorName').text(vl.nm);
                         });
 
@@ -774,8 +793,8 @@
                 
                 var  inprc =dquality[0].prcPrCrat;
                 var incprice = parseFloat(inprc) * parseFloat(carat);
-                
-              //  console.log(dquality[0].prcPrCrat);
+                  
+              //  console.log(dquality[0].prcPrCrat); 
                 str += "<li id='diamondPrice_" + ids + "'>";
                 str += "<div class='forComponent fLeft pl15'>" + typstr + "</div>";
                 str += "<div class='forRate fLeft' id='diamondRate_" + ids + "'  data-weight='" + carat + "'>" + inprc + "/ct</div>";

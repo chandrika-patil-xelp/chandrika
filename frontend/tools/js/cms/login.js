@@ -7,7 +7,7 @@ $('#reg').on('click',function(){
    var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
     var validationFlag=1;
     if(name ===''|| name === null){
-    // common.toast(1, 'Please Enter Name');
+   //  common.toast(1, 'Please Enter Name');
      alert('Please enter your Name');
         validationFlag=0;
         return false;
@@ -54,21 +54,22 @@ $('#reg').on('click',function(){
         validationFlag=0;
         return false;
     }*/
-    if (validationFlag = 1){
-    var URLreg= APIDOMAIN + "index.php/?action=addUser&name="+name+"&email="+email+"&mobile="+mobile+"&pass="+pass;
-    var data1;
-   
+    if (validationFlag = 1)
+    {
+	sendotp(mobile,1);
+       var URLreg= APIDOMAIN + "index.php/?action=addUser&name="+name+"&email="+email+"&mobile="+mobile+"&pass="+pass;
+     
    $.ajax({
             type:'POST',
             url:URLreg,
             success:function(res){
-           data1 = JSON.parse(res);
+           var data1 = JSON.parse(res);
          
             if(data1['error']['err_code']==0)
             {
                 alert('Registered Successfully');
                 sendotp(mobile);
-             //window.location.href = DOMAIN + "index.php?action=login";
+              window.location.href = DOMAIN + "index.php?action=login";
             }
             else if(data1['error']['err_code']==1){
                 alert(data1['error']['err_msg']);
@@ -77,12 +78,19 @@ $('#reg').on('click',function(){
         }
     });
     }
+  
+      
+     
 });
+
+function storeuserdata()
+{
+  
+}
 
 var logDetails = new Array();
 var glbcartdeatil;
-$('#log').click(function(){
-   
+$('#log').click(function(){ 
   var email = $("#email").val();
   var pass = $("#pass").val();
   var validationFlag=1;
@@ -263,6 +271,7 @@ function updatecartiddetail(oldcartid,olduserid,newcartid)
 		   //   console.log(results);
 		    }
 		  });   
+ 
 }
 
 $('#flog').on('click',function(){
@@ -284,11 +293,12 @@ $('#flog').on('click',function(){
 	  }
      var URL= APIDOMAIN + "index.php/?action=sendotp&mobile="+inputdata; 
     }
+<<<<<<< .mine
     else{ 
       */
 	   var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
 	   if(email===''|| email=== null){
-	      // common.toast(1, 'Please Enter Name');
+	       // common.toast(1, 'Please Enter Name');
 	       alert('Please enter your Email.id');
 	       validationFlag=0;
 	       return false;
@@ -297,8 +307,7 @@ $('#flog').on('click',function(){
 	     alert('Invalid Email.id');
 	       validationFlag=0;
 	       return false;
-	   }
-    
+	   }  
     if(validationFlag ==1)
     {
       var URL= APIDOMAIN + "index.php/?action=getuserdetailbymail&email="+email; 
@@ -316,11 +325,11 @@ $('#flog').on('click',function(){
 			  alert('Email.id does not exist');
 			}
 			else{
-			   var mobile=data.results['logmobile']; 
-			   sendotp(mobile);
+			   var mobile=data.results['logmobile'];  
+			   sendotp(mobile,2);
 			}
 		       
-		//	window.location.href = DOMAIN + "index.php?action=otp&mobile="+inputdata;
+		 //	window.location.href = DOMAIN + "index.php?action=otp&mobile="+inputdata+"&forgtpasw=1";
 		      }
 		      else if(data['error']['Code']==1){
 			alert(data['error']['Msg']);
@@ -332,7 +341,7 @@ $('#flog').on('click',function(){
   }
 }); 
 
-function  sendotp(mobile)
+function  sendotp(mobile,paramt)
 {
   		  
        var URL= APIDOMAIN + "index.php/?action=sendotp&mobile="+mobile; 
@@ -345,7 +354,12 @@ function  sendotp(mobile)
 	       if(data1['error']['err_code']==0)
 	       {
 		    alert(data1['error']['err_msg']);
-		     window.location.href = DOMAIN + "index.php?action=otp&mobile="+mobile;
+		    if(paramt == 1){
+		      window.location.href = DOMAIN + "index.php?action=otp&mobile="+mobile+"&signup=1";
+		    }
+		    else if(paramt == 2){
+		     window.location.href = DOMAIN + "index.php?action=otp&mobile="+mobile+"&forgtpasw=2";
+		   }
 	       }
 	       else if(data1['error']['err_code']==1){
 		   alert(data1['error']['err_msg']);
@@ -356,4 +370,4 @@ function  sendotp(mobile)
 	   }
        });
         
-}
+}  
