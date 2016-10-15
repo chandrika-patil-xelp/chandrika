@@ -1,6 +1,5 @@
 
 <!DOCTYPE html>
-
 <?php include 'jhead.html' ?>
 <script type="text/javascript" src="<?php echo $fjvs['Common']; ?>"></script>
 <script>
@@ -13,32 +12,33 @@
 </script>
 
 <body>
-      <div class="outerContr">
-                <div class="loginCont fLeft" id="loginId">
-                    <div class="txtTitle" id="hTxt">Luxury or nothing<br></div>
-                    <div class="txtB fLeft">
-                        <input type="text" class="inp_box " maxlength="30" id="email">
-                        <div class="inp_label" >Email-Id*</div>
-                    </div>
-                    <div class="txtB fLeft mBtm5">
-                        <input type="password" class="inp_box " maxlength="30" id="pass">
-                        <div class="inp_label">Password*</div>
-                    </div>
-                    <div class="subTxt fLeft font12" id="forId"><span class="u_line">FORGOT PASSWORD?</span></div>
-                    <div class="filterSec fLeft">
-                        <center>
-                            <div class="btnContainr" id="nxt">
-                                <div class="button button2 btnc1 transition300 fLeft" id="log">SIGN IN</div>
-                            </div>
-                        </center>
-                    </div>
-                </div>
+    <?php include 'header.html' ?>
+    <div class="outerContr">
+        <div class="loginCont fLeft" id="loginId">
+            <div class="txtTitle" id="hTxt">Luxury or nothing<br></div>
+            <div class="txtB fLeft">
+                <input type="text" class="inp_box " maxlength="30" id="email">
+                <div class="inp_label" >Email-Id*</div>
             </div>
-            <div class="outerContr dn" id="forgot">
-               
-                <div class="loginCont fLeft" id="loginId1">
-                       <div class="txtTitle" id="hTxt">Luxury or nothing</div>
-                    <div class="txtB fLeft">
+            <div class="txtB fLeft mBtm5">
+                <input type="password" class="inp_box " maxlength="30" id="pass">
+                <div class="inp_label">Password*</div>
+            </div>
+            <div class="subTxt fLeft font12" id="forId"><span class="u_line">FORGOT PASSWORD?</span></div>
+            <div class="filterSec fLeft">
+                <center>
+                    <div class="btnContainr" id="nxt">
+                        <div class="button button2 btnc1 transition300 fLeft" id="log">SIGN IN</div>
+                    </div>
+                </center>
+            </div>
+        </div>
+    </div>
+    <div class="outerContr dn" id="forgot">
+
+        <div class="loginCont fLeft" id="loginId1">
+            <div class="txtTitle" id="hTxt">Luxury or nothing</div>
+            <div class="txtB fLeft">
                         <input type="text" class="inp_box " maxlength="30" id="femail">
                         <div class="inp_label" >Email-Id*</div>
                     </div>
@@ -52,8 +52,8 @@
                             </div>
                         </center>
                     </div>
-                </div>
             </div>
+        </div>
     <script type="text/javascript">
         $('.inp_box').focus(function () {
             $(this).closest('.txtB').addClass('focul');

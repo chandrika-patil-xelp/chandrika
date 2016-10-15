@@ -1410,7 +1410,7 @@ input[type=radio]:checked ~ .check::before{background: #22B9C7;transform: scale(
 .termHeading{position:absolute;width:auto;height:auto;left:0;top:180px;right:0;margin:auto;text-align: center;font-size:12px;letter-spacing:0.35em;color:#fff;font-family:bolder;text-transform: uppercase;}
 .termHeading:after{content: ""; width: 50px; height: 1px; background: #fff;position: absolute;left: 0;right: 0;bottom: -15px;margin: auto;}
 .termsContainer{width:100%;height:auto;padding-top: 60vh;}
-.tHead{font-size:12px;font-family: bolder;letter-spacing:0.35em;line-height:30px;color: #15181b;text-transform: uppercase;width:30%;height:auto;text-align: right;}
+.tHead{min-height:10px;font-size:12px;font-family: bolder;letter-spacing:0.35em;line-height:30px;color: #15181b;text-transform: uppercase;width:30%;height:auto;text-align: right;}
 .tCont{width: 100%;padding: 5px 0px;font-size:12px;font-family:regular;line-height: 20px;color: #15181b;}
 .Terms ul{width:70%;padding-left: 20px;}
 .Terms ul li{font-size:12px;font-family:semibold;line-height: 20px;color: #15181b;margin-bottom:5px;padding-left:10px;font-family:regular;}
@@ -1419,7 +1419,7 @@ input[type=radio]:checked ~ .check::before{background: #22B9C7;transform: scale(
 .Terms .wrapper_main{padding-top:60vh;background-color: #f3f3f3;}
 .offsetEffects{opacity: 0;transform: translateY(80px);-webkit-transform: translateY(80px);-moz-transform: translateY(80px);-o-transform: translateY(80px);-ms-transform: translateY(80px);transition:300ms ease-out;-webkit-transition:300ms ease-out;-o-transition:300ms ease-out;-ms-transition:300ms ease-out;-o-transition:300ms ease-out;}
 .pCont{width:70%;padding-left: 20px;font-size:12px;font-family:regular;line-height: 22px;color: #15181b;}
-.points{width:100%;height: auto;padding-bottom: 8px;font-size: 12px;font-family: regular;line-height: 22px;color: #15181b;}
+.points{padding-left: 20px;background: url("../img/icons/504.svg")no-repeat;background-size: auto 10px;background-position: 0 10px;}
 
 /*contact*/
 .contactH{font-size: 22px;font-family: semibold;padding: 20px 0px;width: 100%;}
@@ -1446,6 +1446,10 @@ input[type=radio]:checked ~ .check::before{background: #22B9C7;transform: scale(
 .cutHead{width: 30%;height:auto;font-family: bolder;text-transform: uppercase;text-align: right;font-size:12px;font-family: bolder;letter-spacing:0.35em;line-height:30px;color: #15181b;}
 .dguide{}
 .dguide .tHead{width: 100%;text-align: center;}
+.gCommon{width: 100%;height:auto;padding-bottom:15px;}
+.mainH{}
+.subH{margin: 30px 0px 10px 0px;letter-spacing: 0.15em;font-size:12px;font-family: bolder;line-height:30px;color: #15181b;text-transform: uppercase;width:100%;height:auto;text-align: left;}
+
 
 
 
