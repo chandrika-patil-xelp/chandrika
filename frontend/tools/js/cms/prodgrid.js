@@ -14,12 +14,12 @@ $(document).ready(function () {
       var chld=combn[1];
         aid=combn[2];
 	var str="";
-	str+='<div class="fLeft">'+ parnt +'</div>';
-	str+='<div class="fLeft">'+ chld +'</div>';
+	str+='<div class="fLeft breadP">'+ parnt +'</div>';
+	str+='<div class="fLeft breadP">'+ chld +'</div>';
 	//$('#parnttyp').html(parnt);
 	$('#parnttyp').append(str);
-   // var URL = APIDOMAIN + "index.php/?action=getProGrid"; 
-    var URL = APIDOMAIN + "index.php/?action=getProductdetailbycatid&id="+aid; 
+   // var URL = APIDOMAIN + "index.php/?action=getProGrid";
+    var URL = APIDOMAIN + "index.php/?action=getProductdetailbycatid&id="+aid;
     $.ajax({
         type: 'POST',
         url: URL,
@@ -65,7 +65,7 @@ $(document).ready(function () {
                 }
             }
         }
-    }); 
+    });
 });
 
 function generatelist(obj) {
