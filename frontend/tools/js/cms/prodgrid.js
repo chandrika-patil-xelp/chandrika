@@ -5,13 +5,17 @@ var grandtotal = 0;
 var grandtot = 0;
 var getProdDtl = new Array();
 var stock = new Array();
-
+var aid;
 var stSearch = new Array();
 
 $(document).ready(function () {
-
-   // var URL = APIDOMAIN + "index.php/?action=getProGrid";
-    var URL = APIDOMAIN + "index.php/?action=getProductdetailbycatid&id="+id;
+    var combn=id.split('_');
+      var parnt=combn[0];
+      var chld=combn[1];
+        aid=combn[2];
+	$('.filterH').html(parnt+"_"+chld);
+   // var URL = APIDOMAIN + "index.php/?action=getProGrid"; 
+    var URL = APIDOMAIN + "index.php/?action=getProductdetailbycatid&id="+aid; 
     $.ajax({
         type: 'POST',
         url: URL,
@@ -57,7 +61,7 @@ $(document).ready(function () {
                 }
             }
         }
-    });
+    }); 
 });
 
 function generatelist(obj) {
@@ -462,7 +466,7 @@ var count=0;
      //$('#gr_foot').addClass('transdown');
 
 
-    var URL1 = APIDOMAIN + "index.php/?action=getProductdetailbycatid&id="+id+"&page="+page3+"&limit="+limit+"";
+    var URL1 = APIDOMAIN + "index.php/?action=getProductdetailbycatid&id="+aid+"&page="+page3+"&limit="+limit+"";
   var tot_len = 0;
     $.ajax({
         type: 'POST',

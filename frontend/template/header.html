@@ -55,21 +55,21 @@
                 <div class="menu_elm ">
                     <div class="col33 fLeft">
                         <div class="col100 fLeft">
-			  <div class="menu_list fLeft" id="ring_2920160603124607">Ring</div>
+			  <div class="menu_list fLeft" id="Jewellery_ring_2920160603124607">Ring</div>
                         </div>
                         <div class="col100 fLeft">
-                            <div class="menu_list fLeft" id="Earng_2020160603124631">Earring</div>
+                            <div class="menu_list fLeft" id="Jewellery_Earring_2020160603124631">Earring</div>
                         </div>
                         <div class="col100 fLeft">
-                            <div class="menu_list fLeft" id="Bangl_9820160603124850">Bangles</div>
+                            <div class="menu_list fLeft" id="Jewellery_Bangles_9820160603124850">Bangles</div>
                         </div>
                     </div>
                     <div class="col33 fLeft">
                         <div class="col100 fLeft">
-			  <div class="menu_list fLeft" id="Pendnt_8120160603125512">Pendant</div>
+			  <div class="menu_list fLeft" id="Jewellery_Pendant_8120160603125512">Pendant</div>
                         </div>
                         <div class="col100 fLeft">
-                            <div class="menu_list fLeft" id="Necklc_3420160603124716">Necklace</div>
+                            <div class="menu_list fLeft" id="Jewellery_Necklace_3420160603124716">Necklace</div>
                         </div>
                         <div class="col100 fLeft">
                             <div class="menu_list fLeft">XYZ</div>
@@ -319,34 +319,24 @@
         $('.wrapper').removeClass('pointNone');
     }
     
-    $('#ring_2920160603124607').click(function(){
-      var catidv=$(this).attr('id');
-      catidv=catidv.split('_');
-      var catid=catidv[1];
-      window.location.href = DOMAIN + "index.php?action=product_grid&id='"+catid+"'"; 
+    $('#Jewellery_ring_2920160603124607').click(function(){
+      var catidv=$(this).attr('id'); 
+      window.location.href = DOMAIN + "index.php?action=product_grid&id="+catidv+""; 
     });
-    $('#Earng_2020160603124631').click(function(){
-      var catidv=$(this).attr('id');
-      catidv=catidv.split('_');
-      var catid=catidv[1];
-      window.location.href = DOMAIN + "index.php?action=product_grid&id='"+catid+"'"; 
+    $('#Jewellery_Earring_2020160603124631').click(function(){
+      var catid=$(this).attr('id'); 
+      window.location.href = DOMAIN + "index.php?action=product_grid&id="+catid+""; 
     });
-    $('#Bangl_9820160603124850').click(function(){
-      var catidv=$(this).attr('id');
-      catidv=catidv.split('_');
-      var catid=catidv[1];
-      window.location.href = DOMAIN + "index.php?action=product_grid&id='"+catid+"'"; 
+    $('#Jewellery_Bangles_9820160603124850').click(function(){
+      var catid=$(this).attr('id'); 
+      window.location.href = DOMAIN + "index.php?action=product_grid&id="+catid+""; 
     });
-    $('#Pendnt_8120160603125512').click(function(){
-      var catidv=$(this).attr('id');
-      catidv=catidv.split('_');
-      var catid=catidv[1];
-      window.location.href = DOMAIN + "index.php?action=product_grid&id='"+catid+"'"; 
+    $('#Jewellery_Pendant_8120160603125512').click(function(){
+      var catid=$(this).attr('id'); 
+      window.location.href = DOMAIN + "index.php?action=product_grid&id="+catid+""; 
     });
-    $('#Necklc_3420160603124716').click(function(){
-      var catidv=$(this).attr('id');
-      catidv=catidv.split('_');
-      var catid=catidv[1];
-      window.location.href = DOMAIN + "index.php?action=product_grid&id='"+catid+"'"; 
+    $('#Jewellery_Necklace_3420160603124716').click(function(){
+      var catid=$(this).attr('id'); 
+      window.location.href = DOMAIN + "index.php?action=product_grid&id="+catid+""; 
     });
 </script>
