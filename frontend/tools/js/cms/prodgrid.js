@@ -13,7 +13,11 @@ $(document).ready(function () {
       var parnt=combn[0];
       var chld=combn[1];
         aid=combn[2];
-	$('.filterH').html(parnt+"_"+chld);
+	var str="";
+	str+='<div class="fLeft">'+ parnt +'</div>';
+	str+='<div class="fLeft">'+ chld +'</div>';
+	//$('#parnttyp').html(parnt);
+	$('#parnttyp').append(str);
    // var URL = APIDOMAIN + "index.php/?action=getProGrid"; 
     var URL = APIDOMAIN + "index.php/?action=getProductdetailbycatid&id="+aid; 
     $.ajax({
