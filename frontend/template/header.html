@@ -55,21 +55,21 @@
                 <div class="menu_elm ">
                     <div class="col33 fLeft">
                         <div class="col100 fLeft">
-                            <div class="menu_list fLeft">Ring</div>
+			  <div class="menu_list fLeft" id="ring_2920160603124607">Ring</div>
                         </div>
                         <div class="col100 fLeft">
-                            <div class="menu_list fLeft">Earring</div>
+                            <div class="menu_list fLeft" id="Earng_2020160603124631">Earring</div>
                         </div>
                         <div class="col100 fLeft">
-                            <div class="menu_list fLeft">Bracelet</div>
+                            <div class="menu_list fLeft" id="Bangl_9820160603124850">Bangles</div>
                         </div>
                     </div>
                     <div class="col33 fLeft">
                         <div class="col100 fLeft">
-                            <div class="menu_list fLeft">Pendant</div>
+			  <div class="menu_list fLeft" id="Pendnt_8120160603125512">Pendant</div>
                         </div>
                         <div class="col100 fLeft">
-                            <div class="menu_list fLeft">Necklace</div>
+                            <div class="menu_list fLeft" id="Necklc_3420160603124716">Necklace</div>
                         </div>
                         <div class="col100 fLeft">
                             <div class="menu_list fLeft">XYZ</div>
@@ -232,7 +232,7 @@
     </div>
 </div>
 <script>
-    /*Overlay fade in/out  on menu hover*/
+    /*Overlay fade in/out  on menu hover*/ 
     $('.tabWrap').mouseover(function () {
         $('.overlay').stop(true, true).fadeTo(200, 1);
     });
@@ -255,7 +255,7 @@
     /*Sub menu slidedown/slideup , Menu tab colour change*/
     $('.tab').mouseenter(function () {
         var k = $(this).closest('.tabB').index();
-        console.log(k);
+     //   console.log(k);
         $('.menu_elm').css({'z-index': '50'}).removeClass('tab_select').addClass('remo');
         $('.menu_elm').eq(k).css({'z-index': '9999'}).addClass('tab_select').removeClass('remo');
         $('.menu_elm').eq(k).stop(true, true).slideDown(200, function () {
@@ -318,4 +318,35 @@
         $('body').css({'overflow': 'visible'});
         $('.wrapper').removeClass('pointNone');
     }
+    
+    $('#ring_2920160603124607').click(function(){
+      var catidv=$(this).attr('id');
+      catidv=catidv.split('_');
+      var catid=catidv[1];
+      window.location.href = DOMAIN + "index.php?action=product_grid&id='"+catid+"'"; 
+    });
+    $('#Earng_2020160603124631').click(function(){
+      var catidv=$(this).attr('id');
+      catidv=catidv.split('_');
+      var catid=catidv[1];
+      window.location.href = DOMAIN + "index.php?action=product_grid&id='"+catid+"'"; 
+    });
+    $('#Bangl_9820160603124850').click(function(){
+      var catidv=$(this).attr('id');
+      catidv=catidv.split('_');
+      var catid=catidv[1];
+      window.location.href = DOMAIN + "index.php?action=product_grid&id='"+catid+"'"; 
+    });
+    $('#Pendnt_8120160603125512').click(function(){
+      var catidv=$(this).attr('id');
+      catidv=catidv.split('_');
+      var catid=catidv[1];
+      window.location.href = DOMAIN + "index.php?action=product_grid&id='"+catid+"'"; 
+    });
+    $('#Necklc_3420160603124716').click(function(){
+      var catidv=$(this).attr('id');
+      catidv=catidv.split('_');
+      var catid=catidv[1];
+      window.location.href = DOMAIN + "index.php?action=product_grid&id='"+catid+"'"; 
+    });
 </script>

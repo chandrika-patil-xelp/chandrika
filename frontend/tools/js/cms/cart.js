@@ -70,9 +70,9 @@ function newaddToCart(paramtr)
 }
 
 
-function storecartdata(cartdata)
-{  
-     var URL= APIDOMAIN + "index.php?action=addTocart";
+function storecartdata(cartdata) 
+{ 
+     var URL= APIDOMAIN + "index.php?action=addTocart"; 
     var data=cartdata; 
     var  dt = JSON.stringify(data);   
 	$.ajax({
