@@ -148,7 +148,7 @@
             </div> -->
             <div class="container2  fLeft">
                 <div class="col100">
-                    <div class="wrapper_max offsetTop">
+                    <div class="wrapper_max offsetTop transition6000">
                         <div class="aboveLine fLeft">
                         	<div class="filterH fLeft">
 
@@ -415,9 +415,9 @@
                     <div class="col100 fLeft poR" id="gridDetail">
 
                     </div>
-
+                      <div class="grid_footer fLeft transition300" ><div class="actBtn " id="gr_foot">View More</div></div>
                 </div>
-                <div class="grid_footer transition300 transdown" id="gr_foot">View More</div>
+
                 </div>
                         </div>
 
@@ -984,10 +984,10 @@
             }
             if (ht - sc <= 5) {
                 $('.header').addClass('black_bg');
-                console.log('if');
+
             } else {
                 $('.header').removeClass('black_bg');
-                console.log('else');
+
             }
 //           if(ht-sc<=60){
 //           console.log(sc);
@@ -1069,8 +1069,35 @@ var vheight=0;
         $('body').addClass('over_hide');
         $('.filterConter').velocity({translateX:[0 ,'-100%']} , {duration:300 , easing:'easeInOutExpo' , display:'block'});
       });
+  //     $(window).scroll(function() {
+  //     var bottom = $(document).height() -50 ;
+  //
+  //     if($(window).scrollTop() + $(window).height() == $(document).height())
+  //     {
+  //         $('#gr_foot').removeClass('transdown');
+  //
+  //     }
+  //     else{
+  //          $('#gr_foot').addClass('transdown');
+  //     }
+  //
+  // });
+  function bindhover(){
+  $('.grid3 ').on('mouseenter',function(){
+      $(this).find('.plusCont').velocity('stop').velocity({scale:[1,0]} , {duration:200 ,delay:200, easing:'swing'});
+    $(this).find('.hovTrans').velocity('stop').velocity({translateX:[0,'-100%']} , {duration:200, easing:'easeInOutExp' ,display:'block' , complete:function(){
 
+    }
+  });
+  });
+  $('.grid3 ').on('mouseleave',function(){
+        $(this).find('.plusCont').velocity('stop').velocity({scale:[0,1]} , {duration:200 , easing:'swing'});
+    $(this).find('.hovTrans').velocity('stop').velocity({translateX:['101%',0]} , {duration:200, easing:'easeInOutExpo' ,display:'none', complete:function(){
 
+    }
+  });
+  });
+}
     </script>
 
     <script type="text/javascript" src="<?php echo $jvs['prodGrid']; ?>"></script>

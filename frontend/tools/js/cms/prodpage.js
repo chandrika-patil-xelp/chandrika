@@ -96,8 +96,8 @@ $(document).ready(function(){
                   var imgstr = "";
                    $(images['images']).each(function(i, v) {
 
-             imgstr='<div class="imgHolder img1" style="background:  url(\''+ v +'\')no-repeat;background-size:115%;background-position:center"></div>';
-                   $('#img-view').prepend(imgstr);
+             imgstr='<div class="imgHolder " style="background:  url(\''+ v +'\')no-repeat;background-size:contain;background-position:center"></div>';
+                   $('#img-view').append(imgstr);
 
                 });
 

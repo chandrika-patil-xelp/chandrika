@@ -32,12 +32,26 @@ $(document).ready(function () {
                     var str = '';
                     while (i < len)
                     {
-                        str += generatelist(obj[i]);
+                        str = generatelist(obj[i]);
                         //stock.push(obj[i]);
                         stSearch.push(obj[i]);
                         i++;
+                          var k = i * 200;
+
+                                          //  $(str).velocity({opacity:[1,0] , translateY:[0,40]} , {duration:600 , easing:'linear', delay:k}).appendTo('#gridDetail');
+                                          $(str).appendTo('#gridDetail');
+                                          setTimeout(function(){
+                                          $('#gridDetail').find('.grid3').addClass('fadeInup');
+                                              bindhover();
+                                            },100);
+
+                                            bindhover();
+
+
                     }
-                    $('#gridDetail').append(str);
+                    //$('#gridDetail').append(str);
+                  //  var $(we)= str;
+
 
                 }
             }
@@ -160,7 +174,7 @@ filter(pid,gender,jType,Mclr,gemsName,Dshape);
    grandtotal = common.IND_money_format(grandtot,0);
  // grandtotal = Number(grandtot).toLocaleString('en');
 
-    proStr += '<div class="grid3 transition300 dn" id="'+ obj['prdId'] +'"  >';
+    proStr += '<div class="grid3 transition600" id="'+ obj['prdId'] +'"  >';
     proStr += '<div class="facet_front">';
     proStr += '<div class="grid_item" onclick=\"getProId(\''+ obj['prdId'] + '\')\" >';
     proStr += '<div class="grid_img"  onmousemove="bindrota(this , event)" lcor="0">';
@@ -173,11 +187,18 @@ filter(pid,gender,jType,Mclr,gemsName,Dshape);
 
 
     proStr += '</div>';
+    proStr += '<div class="hovTr">';
+    proStr += '<div class="hovTrans">';
+    proStr += '<div class="plusCont">';
+    proStr += '</div>';
+    proStr += '</div>';
+    proStr += '</div>';
     proStr += '<div class="grid_dets">';
-    proStr += '<div class="grid_name">' + obj['prdNm'] + '</div>';
+    proStr += '<div class="grid_name txtOver transition300">' + obj['prdNm'] + '</div>';
     //proStr += '<div class="col100 color666">';
-    proStr += '<div class="col100  font11 transition300">' + obj['jwelType'] + ' ' + obj['metal_weight'] + ' gms, Diamond ' + obj['dmdcarat'] + ' Carats</div>';
-    proStr += '<div class="grid_price">&#8377 ' + grandtotal + '</div>';
+    //proStr += '<div class="col100  font11 transition300 txtOver">' + obj['jwelType'] + ' ' + obj['metal_weight'] + ' gms, Diamond ' + obj['dmdcarat'] + ' Carats</div>';
+    proStr += '<div class="col100  font11 transition300 txtOver">' + obj['jwelType'] + '  Φ  Diamond </div>';
+    proStr += '<div class="grid_price txtOver transition300">&#8377 ' + grandtotal + '</div>';
     proStr += '<div class="fmSansB smBtnDiv fLeft transition300">';
 //    proStr += '<span class="u_line point lettSpace fLeft"  onclick=\"getProId(\''+ obj['prdId'] + '\')\">View Product</span>';
     proStr += '<div class="v360Btn" onclick=\"imgLoad(' + obj['prdId'] + ', event)\"></div>';
@@ -187,53 +208,53 @@ filter(pid,gender,jType,Mclr,gemsName,Dshape);
     proStr += '</div>';
     proStr += '<div class="soc_icons">';
     proStr += '<div class="soc_elem soc_wish2 transition300"></div>';
-    proStr += '<div class="soc_elem soc_comment transition300"></div>';
+    // proStr += '<div class="soc_elem soc_comment transition300"></div>';
     proStr += '<div class="soc_elem soc_share transition300"></div>';
     proStr += '</div>';
     proStr += '</div>';
     proStr += '</div>';
-    proStr += '<div class="facet_back" >';
-    proStr += '<div class="facet_cont">';
-    proStr += '<div class="light_header fLeft fmSansL"><span class="u_lineW">' + obj['prdNm'] + '</span></div>';
-    proStr += '<div class="desc_row fLeft font12 fmSansB "><span class="txt_left fLeft">' + obj['jwelType'] + '</span><span class="fRight fmSansR"> ' + obj['metal_weight'] + ' gms</span> </div>';
-    if (diamond == '1' && diamond !== 'null') {
-        for(var d = 0; d < (p.length); d++){
-
-        proStr += '<div class="desc_row fLeft font12 fmSansB "><span class="txt_left fLeft">' + p[d] + ' Diamonds</span><span class="fRight fmSansR"> ' + q[d] + ' Carats</span></div>';
-    }
-    }
-
-    if (gems == '1' && gems !== 'null')
-    {
-       for(var i = 0; i < (c.length); i++){
-
-       proStr +='<div class="desc_row fLeft font12 fmSansB " ><span class="txt_left fLeft">' + t[i]+ ' ' + g[i]+ '</span><span class="fRight fmSansR"> ' + c[i]+ ' Carats</span></div>';
-
-    }
-    }
-    if (solitaire == '1' && solitaire !== 'null') {
-        for(var j = 0; j < (c.length); ++j){
-        proStr += '<div class="desc_row fLeft font12 fmSansB "><span class="txt_left fLeft">' + t[j] + ' Solitaire </span> <span class="fRight fmSansR">' + c[j] + ' Carats</span></div>';
-    }
-   }
-    if (uncut == '1' && uncut !== 'null') {
-         for(var u = 0; u < (c.length); ++u ){
-        proStr += '<div class="desc_row fLeft font12 fmSansB "><span class="txt_left fLeft">' + t[u] + ' Uncut-Diamond </span> <span class="fRight fmSansR">' + c[u] + ' Carats</span></div>';
-    }
-   }
-   // proStr += '<div class="desc_row fLeft font12 fmSansB "><span class="txt_left fLeft">Size</span><span class="fRight fmSansR">S9</span></div>';
-
-    proStr += '<div class="grid_icons">';
-    proStr += '<center>';
-    proStr += '<div class="soc_elem2 soc_commentW"></div>';
-    proStr += '<div class="soc_elem2 soc_likeW"></div>';
-    proStr += '<div class="soc_elem2 soc_shareW"></div>';
-    proStr += '<div class="soc_elem2 soc_cartW"></div>';
-    proStr += '</center>';
-    proStr += '</div>';
-    proStr += '<div class="grid_back" onclick="flipBack(this)"></div>';
-    proStr += '</div>';
-    proStr += '</div>';
+  //   proStr += '<div class="facet_back" >';
+  //   proStr += '<div class="facet_cont">';
+  //   proStr += '<div class="light_header fLeft fmSansL"><span class="u_lineW">' + obj['prdNm'] + '</span></div>';
+  //   proStr += '<div class="desc_row fLeft font12 fmSansB "><span class="txt_left fLeft">' + obj['jwelType'] + '</span><span class="fRight fmSansR"> ' + obj['metal_weight'] + ' gms</span> </div>';
+  //   if (diamond == '1' && diamond !== 'null') {
+  //       for(var d = 0; d < (p.length); d++){
+   //
+  //       proStr += '<div class="desc_row fLeft font12 fmSansB "><span class="txt_left fLeft">' + p[d] + ' Diamonds</span><span class="fRight fmSansR"> ' + q[d] + ' Carats</span></div>';
+  //   }
+  //   }
+   //
+  //   if (gems == '1' && gems !== 'null')
+  //   {
+  //      for(var i = 0; i < (c.length); i++){
+   //
+  //      proStr +='<div class="desc_row fLeft font12 fmSansB " ><span class="txt_left fLeft">' + t[i]+ ' ' + g[i]+ '</span><span class="fRight fmSansR"> ' + c[i]+ ' Carats</span></div>';
+   //
+  //   }
+  //   }
+  //   if (solitaire == '1' && solitaire !== 'null') {
+  //       for(var j = 0; j < (c.length); ++j){
+  //       proStr += '<div class="desc_row fLeft font12 fmSansB "><span class="txt_left fLeft">' + t[j] + ' Solitaire </span> <span class="fRight fmSansR">' + c[j] + ' Carats</span></div>';
+  //   }
+  //  }
+  //   if (uncut == '1' && uncut !== 'null') {
+  //        for(var u = 0; u < (c.length); ++u ){
+  //       proStr += '<div class="desc_row fLeft font12 fmSansB "><span class="txt_left fLeft">' + t[u] + ' Uncut-Diamond </span> <span class="fRight fmSansR">' + c[u] + ' Carats</span></div>';
+  //   }
+  //  }
+  //  // proStr += '<div class="desc_row fLeft font12 fmSansB "><span class="txt_left fLeft">Size</span><span class="fRight fmSansR">S9</span></div>';
+   //
+  //   proStr += '<div class="grid_icons">';
+  //   proStr += '<center>';
+  //   proStr += '<div class="soc_elem2 soc_commentW"></div>';
+  //   proStr += '<div class="soc_elem2 soc_likeW"></div>';
+  //   proStr += '<div class="soc_elem2 soc_shareW"></div>';
+  //   proStr += '<div class="soc_elem2 soc_cartW"></div>';
+  //   proStr += '</center>';
+  //   proStr += '</div>';
+  //   proStr += '<div class="grid_back" onclick="flipBack(this)"></div>';
+  //   proStr += '</div>';
+  //   proStr += '</div>';
     proStr += '</div>';
     return proStr;
 
@@ -356,7 +377,7 @@ var count=0;
 
       var limit=12;
       var limitend = limit*page3;
-     $('#gr_foot').addClass('transdown');
+     //$('#gr_foot').addClass('transdown');
 
 
     var URL1 = APIDOMAIN + "index.php/?action=getProGrid&page="+page3+"&limit="+limit+"";
@@ -382,12 +403,20 @@ var count=0;
                     while (i < len)
                     {
                         //  console.log(obj[i]);
-                        str += generatelist(obj1[i]);
+                        str = generatelist(obj1[i]);
                         i++;
+                        var k = i* 200;
+                          //$(str).velocity({opacity:[1,0] , translateY:[0,40]} , {duration:600 , easing:'ease-out' , delay:k }).appendTo('#gridDetail');
+                          $(str).appendTo('#gridDetail');
+                          setTimeout(function(){
+                          $('#gridDetail').find('.grid3').addClass('fadeInup');
+                              bindhover();
+                            },100);
+                          }
                     }
-                    $('#gridDetail').append(str);
+                  //  $('#gridDetail').append(str);
+              //  var $we= str;
 
-                }
                if(limitend >= total){
 
                         $('#gr_foot').remove();
@@ -399,19 +428,7 @@ var count=0;
     });
 
     });
-    $(window).scroll(function() {
-    var bottom = $(document).height() -50 ;
 
-    if($(window).scrollTop() + $(window).height() == $(document).height())
-    {
-        $('#gr_foot').removeClass('transdown');
-
-    }
-    else{
-         $('#gr_foot').addClass('transdown');
-    }
-
-});
 
 // $('#filter').click(function(){
 //      window.location.href = DOMAIN + "index.php?action=filterPage";

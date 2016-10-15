@@ -164,7 +164,7 @@
                     <div class="rota_wrap transition300">
                         <div class="rota_buffer">
                             <div class="rota" id="img-view">
-                             <div class="imgHolder"></div>
+
 
                             </div>
                             <div class="rota_btn fLeft dn">
@@ -188,19 +188,19 @@
                               <div class="cardHead fLeft">Customise</div>
                               <div class="cust_cont poR fLeft" >
                                    <div class="drop_dn fLeft">
-                                       <div class="attTitle">Φ  Quality</div>
+                                       <div class="attTitle">  Quality</div>
                                         <div class="actBtn font12 bolder" id="qual">vv-f</div>
                                     </div>
                                     <div class="drop_dn fLeft  " id="color">
-                                        <div class="attTitle">Φ Color</div>
+                                        <div class="attTitle"> Color</div>
                                        <div class="actBtn font12 bolder" id="clr">yellow</div>
                                     </div>
                                     <div class="drop_dn fLeft " id="purity">
-                                        <div class="attTitle">Φ  Purity</div>
+                                        <div class="attTitle">  Purity</div>
                                         <div class="actBtn font12 bolder" id="carat" >carat</div>
                                     </div>
                                     <div class="drop_dn fLeft " id="purity">
-                                        <div class="attTitle">Φ  Size</div>
+                                        <div class="attTitle">  Size</div>
                                         <div class="actBtn font12 bolder" id="size" >28</div>
                                     </div>
                                 </div>
@@ -247,7 +247,7 @@
             </div>
         </div>
 
-        <div class="sProductCont fLeft">
+        <!-- <div class="sProductCont fLeft">
             <div class=" smTitle tUline">SIMILAR PRODUCTS</div>
             <div class="pContr">
                 <div class="maxCont">
@@ -290,8 +290,25 @@
                 </div>
             </div>
 
-        </div>
+        </div> -->
+        <div class="darkCont">
+          <div class="wrapper_max">
+            <div class="homeCollect">
+              <div class="colleCont ">
 
+
+
+              </div>
+              <div class="colleCont v2">
+                <div class="smUline ">White Gold</div>
+                <div class="collCenter ">
+                  White gold is an alloy of gold and at least one white metal, usually nickel, manganese or palladium. In order to make the gold white, it is combined with metal alloys that are white in nature and plated with an extremely hard element called rhodium. Although strong, rhodium may wear away over time. Replating is a simple process that can be done to restore whiteness to rhodium-plated jewelry.
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
 
 
         <?php include 'footer.html'?>
@@ -299,23 +316,23 @@
 
     <div class="page_loader">
         <div class="cs-loader-inner">
-            <label>J</label>
+            <!-- <label>J</label>
             <label>Z</label>
             <label>E</label>
             <label>V</label>
-            <label>A</label>
+            <label>A</label> -->
         </div>
-        <div class="loader_quote">Luxury or Nothing</div>
+        <div class="loader_quote"></div>
     </div>
     <div class="page_loader2">
         <div class="cs-loader-inner ">
-            <label>J</label>
+            <!-- <label>J</label>
             <label>Z</label>
             <label>E</label>
             <label>V</label>
-            <label>A</label>
+            <label>A</label> -->
         </div>
-        <div class="loader_quote">Luxury or Nothing</div>
+        <div class="loader_quote"></div>
     </div>
 
     <div class="overlay3 pointNone"></div>
@@ -325,7 +342,7 @@
 
 
    <script type="text/javascript" src="<?php echo $jvs['prodpage']; ?>"></script>
- 
+
     <script>
 
         var i = 0;
@@ -366,12 +383,13 @@
         var offK = 0;
         var offL = 0;
         $('.rota').bind('mousemove', function (e) {
+          var imgNo=$(this).find('.imgHolder').length ;
             var left = e.pageX - offset.left;
 
-            var o = wid / 30;
+            var o = wid / imgNo;
             var k = (left - offK + offL) / o;
             k = Math.floor(k);
-            k = k % 30;
+            k = k % imgNo;
             //  console.log("K:" + k);
             $('.imgHolder').addClass('dn');
             $('.imgHolder').eq(k).removeClass('dn');
