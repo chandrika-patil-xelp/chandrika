@@ -48,12 +48,12 @@ $('#reg').on('click',function(){
         validationFlag=0;
         return false;
     }
-    else if(cpass===''|| cpass=== null){
+   /* else if(cpass===''|| cpass=== null){
        // common.toast(0, 'Please enter the confirm password');
         alert('Please enter the confirm password');
         validationFlag=0;
         return false;
-    }
+    }*/
     if (validationFlag = 1){
     var URLreg= APIDOMAIN + "index.php/?action=addUser&name="+name+"&email="+email+"&mobile="+mobile+"&pass="+pass;
     var data1;
@@ -66,7 +66,8 @@ $('#reg').on('click',function(){
          
             if(data1['error']['err_code']==0)
             {
-                alert('Registered successfully');
+                alert('Registered Successfully');
+                sendotp(mobile);
              //window.location.href = DOMAIN + "index.php?action=login";
             }
             else if(data1['error']['err_code']==1){
@@ -312,7 +313,7 @@ $('#flog').on('click',function(){
 		      if(data['error']['Code']==0)
 		      {
 			if(data.results==null){
-			  alert('email id not exist');
+			  alert('Email.id does not exist');
 			}
 			else{
 			   var mobile=data.results['logmobile']; 
@@ -339,8 +340,8 @@ function  sendotp(mobile)
 	       type:'POST',
 	       url:URL,
 	       success:function(res){
-	          console.log(res);
-	       var data1 = JSON.parse(res); 
+	       
+	       var data1 = JSON.parse(res);  
 	       if(data1['error']['err_code']==0)
 	       {
 		    alert(data1['error']['err_msg']);

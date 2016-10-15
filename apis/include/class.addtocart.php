@@ -558,8 +558,9 @@
              ."(SELECT GROUP_CONCAT(uncut_id) FROM tbl_product_uncut_mapping WHERE productid = pid AND active_flag = 1 ) AS allUncut,
                (SELECT GROUP_CONCAT(total_no) FROM tbl_product_uncut_mapping WHERE FIND_IN_SET(uncut_id,allUncut) AND productid =pid) AS totalUncut,
                (SELECT GROUP_CONCAT(carat) FROM tbl_product_uncut_mapping WHERE FIND_IN_SET(uncut_id,allUncut) AND productid =pid) AS Uncutcarat,
-               (SELECT GROUP_CONCAT(price_per_carat) FROM tbl_product_uncut_mapping WHERE FIND_IN_SET(uncut_id,allUncut) AND productid =pid) AS UncutPricepercarat";
-             
+               (SELECT GROUP_CONCAT(price_per_carat) FROM tbl_product_uncut_mapping WHERE FIND_IN_SET(uncut_id,allUncut) AND productid =pid) AS UncutPricepercarat,
+		(SELECT  GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND default_img_flag = 1 ) AS default_img";
+	       
 	       if($flg == 1){
 		 $sql.= " FROM tbl_cart_master WHERE active_flag=1 AND userid='".$params['userid']."' order by updatedon DESC";  
 	       }
@@ -609,7 +610,7 @@
                     $arr['totalUncut'] = $row['totalUncut'];
                     $arr['Uncutcarat'] = $row['Uncutcarat'];
                     $arr['UncutPricepercarat'] = $row['UncutPricepercarat'];
-                    
+                    $arr['default_img'] = $row['default_img'];
                      if($row['jewelleryType'] === '1'){
                              $arr['jewelleryType'] ='Gold';
                         }else  if($row['jewelleryType'] === '2'){

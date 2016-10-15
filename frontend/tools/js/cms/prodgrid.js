@@ -18,12 +18,12 @@ $(document).ready(function () {
         success: function (res) {
 
             res = JSON.parse(res);
-
+	    
             if (res['error']['err_code'] == 0) {
                 getProdDtl = res["result"];
                    var total = res["total"];
                 $('#total_Product').html( total + " Products");
-                var obj = res["result"];
+                var obj = res["result"]; 
                 var len = obj.length;
 
                 var i = 0;
@@ -179,7 +179,10 @@ filter(pid,gender,jType,Mclr,gemsName,Dshape);
     proStr += '<div class="grid_item" onclick=\"getProId(\''+ obj['prdId'] + '\')\" >';
     proStr += '<div class="grid_img"  onmousemove="bindrota(this , event)" lcor="0">';
 
-    if( images[0] == "uploads/noimg2.svg")
+     if(obj['default_image']!= null ){   
+       proStr += '<div style="background:url(\'' + IMGDOMAIN + obj['default_image'] + '\')no-repeat ; background-size: contain ; background-position: center"  class=""></div>';
+     }
+      else if( images[0] == "uploads/noimg2.svg")
         proStr += '<div style="background:url(\'' + IMGDOMAIN + images[0] + '\')no-repeat ; background-size: auto 50% ; background-position: center"  class=""></div>';
     else
         proStr += '<div style="background:url(\'' + IMGDOMAIN + images[0] + '\')no-repeat ; background-size: contain ; background-position: center"  class=""></div>';

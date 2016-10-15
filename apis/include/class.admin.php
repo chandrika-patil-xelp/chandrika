@@ -138,5 +138,41 @@ class admin extends DB
         $result=array('results'=>$results,'error'=>$err);
         return $result;
     }
+    
+    public function setImagedeflt($params)
+    {
+      $prdidsql="select product_id from tbl_product_image_mapping WHERE id=".$params['id'];
+      $resprdid = $this->query($prdidsql);
+      $row=  $this->fetchData($resprdid); 
+      $prdid=$row['product_id'];
+      $chngflgsql = "UPDATE
+                                tbl_product_image_mapping
+                        SET
+                                default_img_flag=0
+                        WHERE
+                                product_id =". $prdid;
+      $rescngflg = $this->query($chngflgsql);
+      $query = "UPDATE
+                                tbl_product_image_mapping
+                        SET
+                                default_img_flag=1
+                        WHERE
+                                id = ".$params['id'];
+       
+                $res = $this->query($query);
+		
+	if($res)
+        {
+            $results=array();
+            $err = array('Code' => 0, 'Msg' => 'Data has been updated');
+        }
+        else
+        {
+            $results=array();
+            $err = array('Code' => 1, 'Msg' => 'Error in Updating data');
+        }
+        $result=array('results'=>$results,'error'=>$err);
+        return $result;
+    }
 }
 ?>

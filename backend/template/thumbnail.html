@@ -1,4 +1,4 @@
-<?php include 'jBhead.html' ?>
+<?php include 'jBhead.html' ?> 
     <body>
         <div class="container thumbnilPage">
             <?php include 'jBheader.html' ?>
@@ -36,9 +36,9 @@
                                                 <input type="radio" value="0" name="accept_<?php echo $data[$i]['id']; ?>"<?php if($data[$i]['active_flag']==0) { echo 'checked'; } ?> class="filled-in" id="reject_<?php echo $data[$i]['id']; ?>">
                                                 <label for="reject_<?php echo $data[$i]['id']; ?>">Delete</label>
                                             </div>
-                                            <div class="checkDiv fLeft">
-                                                <input type="radio" value="1"  name="forImg" <?php if($data[$i]['active_flag']==1) { echo 'checked'; } ?> class="filled-in" id="frimg_<?php echo $data[$i]['id']; ?>">
-                                                <label for="frimg_<?php echo $data[$i]['id']; ?>">First Image</label>
+                                            <div class="checkDiv fLeft"> 
+					      <input type="radio" value="<?php echo $data[$i]['id'];?>"   name="forImg" <?php if($data[$i]['default_img_flag']==1) { echo 'checked'; } ?> class="filled-in" id="frimg_<?php echo $data[$i]['id']; ?>">
+					      <label for="frimg_<?php echo $data[$i]['id']; ?>">First Image</label> 
                                             </div>
                                         </div>
                                         <div class="seq fRight">
@@ -66,14 +66,23 @@
             </div>
             <div class="overlay dn"></div>
             <div class="loader dn"></div>
-        </div>
-        <script>
-            $('document').ready(function()
-            {
+        </div> 
+        <script> 
+	    $('document').ready(function()
+            {   
                 $('.saveProduct').bind('click',function()
-                {
-                    updateData($(this).attr('id'));
-                });
+                { 		 
+		  var imgval= $("input[name='forImg']:checked"). val(); 
+		   var URL= APIDOMAIN + "index.php?action=setImagedeflt&id="+imgval;  
+		    $.ajax({  type:"post",  
+                               url:URL,  
+                               data: '',  
+                               success:function(data){
+			 common.toast(1,'Default Image Updated Successfully')
+		    }
+		    });	
+                   //    updateData($(this).attr('id'));
+                }); 
             });
             function showLoader()
             {
@@ -187,7 +196,7 @@
             }
 
             function regenrateDiv(obj)
-            {
+            { 
                   data = obj.imgs;
                   var str = '';
                   str+='<div class="thumbnailCont fLeft">';

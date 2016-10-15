@@ -787,7 +787,7 @@
             $email = (!empty($params['email'])) ? trim($params['email']) : '';
             $deliveryopt = (!empty($params['delivery_option'])) ? trim($params['delivery_option']) : '';
             
-            if((empty($userid)) || (empty($name)) || (empty($mobile)) || (empty($email)) || (empty($city)) || (empty($deliveryopt)))
+           if((empty($userid)) || (empty($name)) || (empty($mobile)) || (empty($email)) || (empty($city)) || (empty($deliveryopt)))
             {
                 $resp = array();
                 $error = array('errCode' => 1, 'errMsg' => 'Parameter Missing');
@@ -808,14 +808,14 @@
 		    . ",\"" . $deliveryopt . "\""
                     . ",now())"
                     . " ON DUPLICATE KEY UPDATE "
-                            ."name             = \"".$name."\"," 
-                            ."mobile             = \"" .$mobile."\","
-                            ."email                 = \"" .$email."\","
-                            ."city                  = \"" .$city."\","
-                            ."address            = \"" .$params['address']."\","
-			    ."state                  = \"" .urldecode($params['state'])."\","
-			    ."pincode                  = \"" .urldecode($params['pincode'])."\","
-			    ."delivery_option                  = \"" .$deliveryopt."\"";
+                            ."name    = \"".$name."\"," 
+                            ."mobile  = \"" .$mobile."\","
+                            ."email   = \"" .$email."\","
+                            ."city    = \"" .$city."\","
+                            ."address  = \"" .$params['address']."\","
+			    ."state    = \"" .urldecode($params['state'])."\","
+			    ."pincode  = \"" .urldecode($params['pincode'])."\","
+			    ."delivery_option   = \"" .$deliveryopt."\"";
                                     
             $res=$this->query($sql);
             
@@ -946,10 +946,10 @@
 	public function getuserdetailbymail($params)
 	{
 	  $email=(!empty($params['email'])) ? trim($params['email']): '';
-	  if (empty($email)) {
+	  if ($email == "" || $email == null || $email == "undefined") {
                 
                 $resp = array();
-                $error = array('Code' => 1, 'Msg' => 'Invalid parameters');
+                $error = array('Code' => 1, 'Msg' => 'Invalid Email.id');
                 $res = array('results' => $resp, 'error' => $error);
                 return $res;
             }

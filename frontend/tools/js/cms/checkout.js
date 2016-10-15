@@ -36,10 +36,15 @@ function displaycartdetail()
 	 	    success: function(results)
 	 	    {
 		      var obj=JSON.parse(results); 
-	       	      gblcheckodata=obj.result;   
+	       	      gblcheckodata=obj.result;    
 		      $(obj.result).each(function(r,v){
-			  var abc=v.prdimage; abc=abc.split(','); 
-			  abc=IMGDOMAIN+abc[5];
+			if(v.default_img!== null){
+			   abc=IMGDOMAIN + v.default_img;
+			}
+			else{
+			   var abc=v.prdimage; abc=abc.split(','); 
+			    abc=IMGDOMAIN+abc[5];
+			} 
 			  subtotalprice+=parseInt(v.price);
 			  
 var chckoutstr="<div class='ckPrCont fLeft'>";
@@ -55,10 +60,10 @@ var chckoutstr="<div class='ckPrCont fLeft'>";
   chckoutstr+="</div>  </div>";
   chckoutstr+=" <div class='namCont fLeft fmSansR'>";
   chckoutstr+=" <div class='ckPrNam fmSansR'>"+v.prdname+"</div>";
-  chckoutstr+=" <div class='col100 colorLg font11 fmSansR'>"+v.color+" "+v.jewelleryType+" "+v.carat+", Diamond 22 Carats</div>";
+  chckoutstr+=" <div class='col100 colorLg font11 fmSansR'>"+v.color+" "+v.jewelleryType+" "+v.carat+", Diamond "+v.dmdcarat+" Carat</div>";
   chckoutstr+=" <div class='rsContr fLeft'>";
   chckoutstr+="  <div class='col50 fLeft'>";
-  chckoutstr+=" <div class='prTxt1 fmSansR fLeft '>₹ "+parseInt(v.price)+"</div>";
+  chckoutstr+=" <div class='prTxt1 fmSansR fLeft '>₹"+parseInt(v.price)+"</div>";
   chckoutstr+="  </div> </div> </div>";
   chckoutstr+=" <div class='clBtn transition200 fmSansB noselect' id='"+v.product_id+"_"+r+"_"+v.col_car_qty+"_"+v.cart_id+"'><a href='#'  onclick='remove(this)' style='color:#2d2d2d;text-decoration:none;' >REMOVE</div></a>";
   chckoutstr+=" </div>";
@@ -251,8 +256,8 @@ function storeshippingdata()
 	    type:"post",
 	    url:URL,
 	    data: {dt: dt},
-	    success:function(data){
-		        console.log(data);  
+	    success:function(data){  
+		      //console.log(data);   
             }
         });
  }
@@ -281,7 +286,7 @@ function  storeorderdata()
 	    url:URL,
 	    data: {dt: dt},
 	    success:function(data){
-		//      console.log(data);  
+		alert('Your Order Placed Successgfully');
             }
         });
 }

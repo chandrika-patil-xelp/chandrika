@@ -10,8 +10,6 @@ if($params['debug'])
 
 }
 
-
-
 switch($action)
 {
     #Category
@@ -506,6 +504,7 @@ switch($action)
         include APICLUDE.'class.admin.php';
         $obj=new admin($db['jzeva']);
         $res=$obj->updateImageData($params);
+     
         break;
 
     case 'test':
@@ -902,6 +901,21 @@ switch($action)
     
     case 'updateuserpass': 
         include APICLUDE.'class.user.php';
+        $obj	= new user($db['jzeva']);
+        $res	=$obj->updateuserpass($params); 
+    break;
+    
+   case 'setImagedeflt':
+       include APICLUDE.'class.admin.php';
+       $obj=new admin($db['jzeva']);
+       $res=$obj->setImagedeflt($params);
+   break; 
+    
+    
+
+# filtering
+     case '': 
+        include APICLUDE.'class.filter.php';
         $obj	= new user($db['jzeva']);
         $res	=$obj->updateuserpass($params); 
     break;

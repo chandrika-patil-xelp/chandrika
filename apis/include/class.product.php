@@ -2194,7 +2194,22 @@ class product extends DB {
         try
         {
             $productSql = " SELECT
-                                    *
+                                   productid ,
+				   productid AS prdid,
+				   product_code,
+				   productDescription,
+				   vendorid,
+				   vendor_prd_code,
+				   leadTime,
+				   returneligible,
+				   jewelleryType,
+				   product_name,
+				   product_seo_name,gender,product_weight,diamond_setting,metal_weight,
+				   making_charges,procurement_cost,margin,measurement,customise_purity,
+				   customise_color,certificate,has_diamond,has_solitaire,has_uncut,
+				   has_gemstone,createdon,updatedon,updatedby,active_flag,
+				   (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = prdid AND active_flag != 2 AND  default_img_flag=1) 
+  AS default_image
                             FROM
                                     tbl_product_master
                             WHERE
@@ -2233,7 +2248,7 @@ class product extends DB {
                     $arr['updtOn'] = $row['updatedon'];
                     $arr['updtBy'] = $row['updatedby'];
                     $arr['active_flag'] = $row['active_flag'];
-
+		    $arr['default_image'] = $row['default_image'];
                 }
 
                 $gemstone = $this->getProductGemstone($params);
@@ -2420,6 +2435,8 @@ class product extends DB {
                     $arr['crtdOn'] = $row['createdon'];
                     $arr['updtOn'] = $row['updatedon'];
                     $arr['updtBy'] = $row['updatedby'];
+                    
+                   
                     $resArr[]=$arr;
                     $count++;
                 }
@@ -3191,18 +3208,19 @@ class product extends DB {
 
             $res = $this->query($sql);
             if ($res) {
-                while ($row = $this->fetchData($res)) {
-                   
-                    #$image = DOMAIN . $row['product_image'];
-                    $image = trim((IMGDOMAIN.$row['product_image']),",");
-            if($row['product_image'] == '' && $row['product_image'] == 'null' ){
-                 $image= (IMGDOMAIN.'uploads/noimg2.svg');
-                 
-            }
-                    $images[] = $image;
-                    
-                    $count++;
+                while ($row = $this->fetchData($res)) 
+                {
+                    if(!empty($row['product_image']))
+                    {
+                        $image = trim( IMGDOMAIN . $row['product_image'],',');
+                        $images[] = $image;
+                        $count++;
+                    }
                 }
+                if(count($images) == 0)
+                {
+                    $image= (IMGDOMAIN.'uploads/noimg2.svg');
+                }       
             }
            
             $result = array('count' => $count, 'images' => $images);
@@ -3748,7 +3766,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
             $row = $this->fetchData($rescnt);
             $total= $row['cnt'];
             
-           $sql='SET GLOBAL group_concat_max_len = 1000000';
+	    $sql='SET GLOBAL group_concat_max_len = 1000000';
            
             $res = $this->query($sql);
             $sql = " SELECT   
@@ -3812,8 +3830,9 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                             (SELECT GROUP_CONCAT(catid) FROM tbl_category_product_mapping WHERE productid = pid AND active_flag = 1 ) AS catpro,
                             (SELECT GROUP_CONCAT(attributeid) FROM tbl_product_attributes_mapping WHERE productid = pid AND active_flag = 1 ) AS attrpro,
                             (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND active_flag !=2 ORDER BY
-                            image_sequence DESC) AS images
-                           
+                            image_sequence DESC) AS images,
+			    (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND active_flag != 2 AND  default_img_flag=1) 
+  AS default_image
                                
                         FROM 
                             tbl_product_master  
@@ -3894,6 +3913,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                      $arr['purprice'] = $row['purprice'];
                     $arr['allmetalcolor'] = $row['allmetalcolor'];
                      $arr['gender'] = $row['gender'];
+		     $arr['default_image'] = $row['default_image'];
                     //$arr['images']= $row['images'];
                    $arr['images'] = trim($row['images'],',');
                    
