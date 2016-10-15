@@ -6,7 +6,7 @@ body{padding:0;margin:0;overflow-x:hidden;-webkit-font-smoothing: antialiased;-m
 textarea:focus, input:focus , select:focus ,option:focus{
     outline: none;
 }
-a{color}
+
 
 /* New Fonts */
 
@@ -178,7 +178,7 @@ a{color}
 
 .details_cont{width:25%;height:100%;position:relative;opacity:0; z-index:20}
 .details_head{width:100%;height:auto;line-height:50px; text-transform:capitalize; font-size:45px;text-align:right; color:#15181b;padding: 10px 0px;font-family:light;letter-spacing:0.02em;}
-.details_desc{width:100%;height:auto;color:;}
+.details_desc{width:100%;height:auto;}
 .pr_head.para{font-family:regular;text-transform:uppercase;letter-spacing:0.35em;color:#15181b}
 .details_buffer{width:100%;height:80%;position:absolute; top:0;;bottom:0;margin:auto;text-align:right}
 .para{width:100%;height:auto; font-family: regular; margin:10px 0px ;  line-height:20px;font-size:12px;word-wrap: break-word; white-space: normal;color:#222529}
@@ -393,6 +393,13 @@ img{width:100%;height:100%;border:0}
 .container2{width:100%;min-height: 100%;padding-top: 0px;height: auto;float: left;background-color:#f3f3f3;padding-bottom:120px}
 .aboveLine{height:auto; width:100%; position:relative;}
 .filterH{font-family:bolder;width:100%;height: 50px; line-height: 50px; font-size: 14px;display: inline-block; border-bottom: 2px solid #15181b}
+.breadCont{width:auto; height:50px; line-height:50px;font-size:12px; font-family:semibold; text-transform:uppercase;}
+.breadH{background:url("../img/icons/26.svg") no-repeat;background-size:15px; background-position:left center; padding: 0 10px 0 20px;}
+.breadP{background:url("../img/icons/25.svg") no-repeat;background-size:17px; background-position:left center; padding: 0 10px 0 20px;}
+.breadC{background:url("../img/icons/25.svg") no-repeat;background-size:17px; background-position:left center; padding: 0 10px 0 20px;}
+
+
+
 .filter_btn{width:50px;height:50px ;background:url("../img/icons/503b.svg")no-repeat;background-size:20px;background-position:center;cursor:pointer}
 .head_wrap{width:100%;position:fixed;top:0;left:0;z-index: 25;}
 .head_wrap .overlay2{position:absolute}
