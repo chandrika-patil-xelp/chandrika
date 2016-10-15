@@ -9,7 +9,7 @@ var stock = new Array();
 var stSearch = new Array();
 
 $(document).ready(function () {
- 
+
    // var URL = APIDOMAIN + "index.php/?action=getProGrid";
     var URL = APIDOMAIN + "index.php/?action=getProductdetailbycatid&id="+id;
     $.ajax({
@@ -17,12 +17,14 @@ $(document).ready(function () {
         url: URL,
         success: function (res) {
 
-            res = JSON.parse(res); 
+
+            res = JSON.parse(res);
+
             if (res['error']['err_code'] == 0) {
-                getProdDtl = res["result"];  
+                getProdDtl = res["result"];
                    var total = res["total"];
                 $('#total_Product').html( total + " Products");
-                var obj = res["result"]; 
+                var obj = res["result"];
                 var len = obj.length;
 
                 var i = 0;
@@ -173,15 +175,17 @@ filter(pid,gender,jType,Mclr,gemsName,Dshape);
    grandtotal = common.IND_money_format(grandtot,0);
  // grandtotal = Number(grandtot).toLocaleString('en');
 
-    proStr += '<div class="grid3 transition600" id="'+ obj['prdId'] +'"  >';
+    proStr += '<div class="grid3 transition400" id="'+ obj['prdId'] +'"  >';
     proStr += '<div class="facet_front">';
     proStr += '<div class="grid_item" onclick=\"getProId(\''+ obj['prdId'] + '\')\" >';
     proStr += '<div class="grid_img"  onmousemove="bindrota(this , event)" lcor="0">';
- 
-     if(obj['default_image']!= null ){  
+
+
+     if(obj['default_image']!= null ){
+
        proStr += '<div style="background:url(\'' + IMGDOMAIN + obj['default_image'] + '\')no-repeat ; background-size: contain ; background-position: center"  class=""></div>';
      }
-      else if( images[0] == "uploads/noimg2.svg") 
+      else if( images[0] == "uploads/noimg2.svg")
         proStr += '<div style="background:url(\'' + IMGDOMAIN + images[0] + '\')no-repeat ; background-size: auto 50% ; background-position: center"  class=""></div>';
     else
         proStr += '<div style="background:url(\'' + IMGDOMAIN + images[0] + '\')no-repeat ; background-size: contain ; background-position: center"  class=""></div>';
@@ -214,7 +218,7 @@ filter(pid,gender,jType,Mclr,gemsName,Dshape);
     proStr += '<div class="soc_elem soc_share transition300"></div>';
     proStr += '</div>';
     proStr += '</div>';
-    proStr += '</div>'; 
+    proStr += '</div>';
     proStr += '<div class="facet_back" >';
     proStr += '<div class="facet_cont">';
     proStr += '<div class="light_header fLeft fmSansL"><span class="u_lineW">' + obj['prdNm'] + '</span></div>';
@@ -238,7 +242,7 @@ filter(pid,gender,jType,Mclr,gemsName,Dshape);
         for(var j = 0; j < (c.length); ++j){
         proStr += '<div class="desc_row fLeft font12 fmSansB "><span class="txt_left fLeft">' + t[j] + ' Solitaire </span> <span class="fRight fmSansR">' + c[j] + ' Carats</span></div>';
     }
-   } 
+   }
     if (uncut == '1' && uncut !== 'null' && uncut !== '0') {
          for(var u = 0; u < (c.length); ++u ){
         proStr += '<div class="desc_row fLeft font12 fmSansB "><span class="txt_left fLeft">' + t[u] + ' Uncut-Diamond </span> <span class="fRight fmSansR">' + c[u] + ' Carats</span></div>';
@@ -252,7 +256,7 @@ filter(pid,gender,jType,Mclr,gemsName,Dshape);
     proStr += '<div class="soc_elem2 soc_likeW"></div>';
     proStr += '<div class="soc_elem2 soc_shareW"></div>';
     proStr += '<div class="soc_elem2 soc_cartW"></div>';
-    proStr += '</center>'; 
+    proStr += '</center>';
     proStr += '<div class="facet_back" >';
     proStr += '<div class="facet_cont">';
     proStr += '<div class="light_header fLeft fmSansL"><span class="u_lineW">' + obj['prdNm'] + '</span></div>';
@@ -290,7 +294,7 @@ filter(pid,gender,jType,Mclr,gemsName,Dshape);
     proStr += '<div class="soc_elem2 soc_likeW"></div>';
     proStr += '<div class="soc_elem2 soc_shareW"></div>';
     proStr += '<div class="soc_elem2 soc_cartW"></div>';
-    proStr += '</center>'; 
+    proStr += '</center>';
   //   proStr += '<div class="facet_back" >';
   //   proStr += '<div class="facet_cont">';
   //   proStr += '<div class="light_header fLeft fmSansL"><span class="u_lineW">' + obj['prdNm'] + '</span></div>';
@@ -332,7 +336,7 @@ filter(pid,gender,jType,Mclr,gemsName,Dshape);
   //   proStr += '</div>';
   //   proStr += '<div class="grid_back" onclick="flipBack(this)"></div>';
   //   proStr += '</div>';
-  //   proStr += '</div>'; 
+  //   proStr += '</div>';
     proStr += '</div>';
     return proStr;
 
