@@ -186,5 +186,13 @@ switch ($action) {
         $page = 'responsiblef';
         include TEMPLATE . 'responsiblef.html';
         break;
+    case 'gemstoneguide':
+        $page = 'gemstoneguide';
+        include TEMPLATE . 'gemstoneguide.html';
+        break;
+      case 'faq':
+        $page = 'faq';
+        include TEMPLATE . 'faq.html';
+        break;
 }
 ?>
