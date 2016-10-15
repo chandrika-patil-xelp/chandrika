@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<?php include 'jhead.html' ?>
+<body class="Terms">
+    <?php include 'Cart.html'?>
+    <?php include 'header.html'?>
+    <div class="fLeft gemBanner">
+        <div class="banner_over" id ="banner_over"></div>
+        <div class="termHeading">faq</div>
+    </div>
+    <div class="wrapper_main   fLeft">
+        <div class="container2 fLeft">
+            <div class="col100">
+                <div class="wrapper_max offsetTop offsetEffects transition600">
+                    <div class="tHead fLeft">faq</div>
+                    <div class="fLeft pCont">
+                        <div class="subH fLeft semibold">How to contact a Jewellery Expert at Jzeva.com?</div>
+                        <div class="fLeft tCont">Our team of experts come with years of expereince in guiding shoppers to the right kind of products and clarifying their queries about the minutest details of jewellery. They are always available to help your out by telephone or email.</div>
+                        <div class="fLeft tCont">Please call XXXXXXXXXX or write to them at care@jzeva.com</div>
+                        <div class="subH fLeft semibold fLeft">What are your delivery charges?</div>
+                        <div class="tCont fLeft">All deliveries of Jzeva jewellery within India are free of cost. </div>
+                        <div class="subH fLeft semibold fLeft">Do you offer Bespoke/Personalised services?</div>
+                        <div class="tCont fLeft">Yes. Our team of designers and jewellery experts will be happy to help you manifest your thoughts and ideas into a stunning piece of jewellery that will exceed your expectations. </div>
+                        <div class="subH fLeft semibold fLeft">I had liked jewellery piece on Jzeva.com, but I don’t see it anymore, can I still buy it?</div>
+                        <div class="tCont fLeft">Absolutely YES! Just get in touch with our customer satisfaction team and they will help you out.</div>
+                        <div class="subH fLeft semibold fLeft">I don’t know anything about jewellery what to do?</div>
+                        <div class="tCont fLeft">As our customer, we would want you to make an educated buy whenever you buy from us. You can visit our gemstone guide, diamond guide and precious metal guide by scrolling down to the footer sections. If you feel comfortable asking your questions over phone we would be happy to answer them for you, just call us. </div>
+                        <div class="subH fLeft semibold fLeft">What is the tamper proof tag?</div>
+                        <div class="tCont fLeft">The tamper proof tag is a tag that comes attached to your product on delivery, if you wish to return the product due to any reason please ensure that that tamper proof tag is not removed or tampered with. In case it is tampered we regret to inform you that the return will not be processed.</div>
+                        <div class="subH fLeft semibold fLeft">I live outside of India; can I still order Jzeva jewellery?</div>
+                        <div class="tCont fLeft">We do not ship outside of India currently, but if you want to gift our jewellery to anyone in India you can go ahead and use your card we accept multiple foreign cards.</div>
+                        <div class="subH fLeft semibold fLeft">Do you ship outside India?</div>
+                        <div class="tCont fLeft">Unfortunately, no but keep checking on our website we have great things planned and international shipping is on the top of our list.</div>
+                        <div class="subH fLeft semibold fLeft">I have a problem with my jewellery what to do?</div>
+                        <div class="tCont fLeft">Do not worry, kindly get in touch with our customer care team and we will do everything in our power to help you with your problem.</div>
+                    </div>
+                    <div class="tCommon fLeft">
+
+                        <div class="fLeft pCont">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <?php include 'footer.html'?>
+    <script>
+        $(document).ready(function () {
+            $('.wrapper_max').removeClass('offsetEffects');
+        });
+        $(window).scroll(function () {
+            var sc = $('body').scrollTop();
+            var ht = $('.gemBanner').outerHeight(true) - 130;
+            if (ht > sc) {
+                var op = 1 - (ht - sc) / ht;
+                $('#banner_over').css({'opacity': op});
+
+            }
+            if (ht - sc <= 5) {
+                $('.header').addClass('black_bg');
+                console.log('if');
+            } else {
+                $('.header').removeClass('black_bg');
+                console.log('else');
+            }
+            //           if(ht-sc<=60){
+            //           console.log(sc);
+            //           $('.gemBanner').addClass('fixer');
+            //       }
+            //       else{
+            //            $('.gemBanner').removeClass('fixer');
+            //       }
+        });
+    </script>
+
+
+</body>
