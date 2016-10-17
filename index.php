@@ -194,5 +194,17 @@ switch ($action) {
         $page = 'faq';
         include TEMPLATE . 'faq.html';
         break;
+     case 'sizeguide':
+        $page = 'sizeguide';
+        include TEMPLATE . 'sizeguide.html';
+        break;
+     case 'myaccount':
+        $page = 'myaccount';
+        include TEMPLATE . 'myaccount.html';
+        break;
+      case 'shipping':
+        $page = 'shipping';
+        include TEMPLATE . 'shipping.html';
+        break;
 }
 ?>
