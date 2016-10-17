@@ -37,7 +37,7 @@
                                                 <label for="reject_<?php echo $data[$i]['id']; ?>">Delete</label>
                                             </div>
                                             <div class="checkDiv fLeft"> 
-					      <input type="radio" value="<?php echo $data[$i]['id'];?>"   name="forImg" <?php if($data[$i]['default_img_flag']==1) { echo 'checked'; } ?> class="filled-in" id="frimg_<?php echo $data[$i]['id']; ?>">
+					      <input type="radio" value="<?php echo $data[$i]['id'];?>"   name="forImg" <?php if($data[$i]['default_img_flag']=='1') { echo 'checked'; } ?> class="filled-in" id="frimg_<?php echo $data[$i]['id']; ?>">
 					      <label for="frimg_<?php echo $data[$i]['id']; ?>">First Image</label> 
                                             </div>
                                         </div>
@@ -72,13 +72,15 @@
             {   
                 $('.saveProduct').bind('click',function() 
                 {		 
-		  var imgval= $("input[name='forImg']:checked"). val(); 
+		  var imgval= $("input[name='forImg']:checked"). val();  
 		  var URL= APIDOMAIN + "index.php?action=setImagedeflt&id="+imgval;  
-		    $.ajax({  type:"post",   url:URL,  data: '',  success:function(data){
-			//console.log(data);  
+		    $.ajax({  type:"post",   url:URL,  data: '',  success:function(data)
+                        {
+			
 			// common.toast(1,'Default Image Updated Successfully')
 		    }
 		    });	
+                  
                         updateData($(this).attr('id'));
                 });   
             });
@@ -220,7 +222,7 @@
                                               str+='<label for="reject_'+data[i]["id"]+'">Delete</label>';
                                           str+='</div>';
                                           str+='<div class="checkDiv fLeft">';
-                                              str+='<input type="radio" value="0"  name="firstImg" '+(data[i]["active_flag"]==1 ? "checked" : "" )+' class="filled-in" id="frimg_'+data[i]["id"]+'">';
+                                              str+='<input type="radio" value="'+data[i]["id"]+'"  name="forImg" '+(data[i]["default_img_flag"]==1 ? "checked" : "" )+' class="filled-in" id="frimg_'+data[i]["id"]+'">';
                                               str+='<label for="frimg_'+data[i]["id"]+'">First Image</label>';
                                           str+='</div>';
 
@@ -233,6 +235,20 @@
                     }
                 str+='</div>';
                 $('.thumbnailCont').html(str);
+                $('.saveProduct').unbind();
+                $('.saveProduct').bind('click',function() 
+                {		 
+		  var imgval= $("input[name='forImg']:checked"). val();  
+		  var URL= APIDOMAIN + "index.php?action=setImagedeflt&id="+imgval;  
+		    $.ajax({  type:"post",   url:URL,  data: '',  success:function(data)
+                        {
+			
+			// common.toast(1,'Default Image Updated Successfully')
+		    }
+		    });	
+                    
+                        updateData($(this).attr('id'));
+                }); 
             }
 
         </script>
