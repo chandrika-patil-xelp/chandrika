@@ -978,7 +978,7 @@ input[type=radio]:checked ~ .check::before{background: #22B9C7;transform: scale(
 
 
 /*checkout New*/
-.ckMainCont{width:100%;height:auto;float:left;padding:20px 0px 20px 0px;}
+.ckMainCont{width:100%;height:auto;float:left;padding:20px 0px 20px 0px;position: relative;}
 .addDiv{width:50%;height:auto;float:left;padding: 10px 60px 30px 60px;}
 .addDiv1{width:50%;height:auto;float:left;padding: 10px 60px 30px 60px;border-left:1px dotted #ccc;}
 .newAddDiv{width:100%;height:auto;float:left;padding-top:20px;}
@@ -1746,11 +1746,11 @@ input[type=radio]:checked ~ .check::before{background: #22B9C7;transform: scale(
 }
 /*new checkout*/
 .chkout{}
-.chkout .colleCont{padding: 50px 60px;}
+.chkout .colleCont{padding: 50px 60px; overflow:initial;}
 .chkout .darkCont{padding:30px 0 40px 0;}
 .chkoutHeader{width:100%;height:60px;background-color:#15181b;position:fixed;top:0;left:0;z-index:50;}
 .chkoutHeader .logo {width: 200px;height: 100%;background: url(../img/jzevalogo.svg)no-repeat;background-size:auto 20px;background-position: 30px center;}
-.dAdrsshdr{width:100%;height:28px;font-size:14px;color:#333;text-align:center;text-transform:uppercase;position:relative;line-height:24px;letter-spacing:0.09em;}
+.dAdrsshdr{width:100%;height:28px;font-size:14px;color:#333;text-align:center;text-transform:uppercase;position:relative;line-height:24px;letter-spacing: 0.28vw;}
 .cbrdr{width:13%;height:0px;border-top:2px solid #333;position:absolute;bottom:0;left:0;right:0;margin:auto;}
 .hdrcrsTxt{width:100%;height:auto;margin-top: 15px;}
 .hdrcrsTxt .intTxt{width:100%;height:25px;line-height:25px;text-align:center;color:#666;font-size:18px;}
@@ -1764,12 +1764,12 @@ input[type=radio]:checked ~ .check::before{background: #22B9C7;transform: scale(
 .prcTxt{width:100%;height:auto;font-size:25px;line-height:36px;color:#fff;text-align:center;}
 .jwlCnt{width:100%;height:auto;margin-top:55px;}
 .jwlCntdtls{width:100%;height:auto;min-height:160px;position:relative;padding-left:115px;}
-.clsePrdct{width:25px;height:25px;position:absolute;left:-20px;top:30px;background:url(../img/closeW.svg)no-repeat;background-size:auto 100%;background-position:center;}
+.clsePrdct{width:25px;height:25px;position:absolute;left:-30px;top:30px;background:url(../img/closeW.svg)no-repeat;background-size:auto 100%;background-position:center;cursor:pointer;}
 .ordrJwl{width:20%;height:54%;position:absolute;left:0;top:0;background:url(../img/info2.jpg)no-repeat;background-position:center;background-size:auto 100%;}
 .jwlryDtls{width:100%;height:auto;}
 .jwlryDtls .w60{width:70%;height:auto;}
 .jwlryDtls .w60 .text{width:100%;height:auto;font-size:12px;color:#fff;line-height:24px;}
-.jwlryDtls .w60 .text .spanl{padding-left:40px;}
+.jwlryDtls .w60 .text .spanl{width:50%;float:left;}
 .jwlryDtls .w40{width:30%;height:auto;}
 .jwlryDtls .w40 .text{width:100%;height:auto;font-size:13px;color:#fff;line-height:26px;}
 .pCount{width:100%;height:auto;margin-top: 45px;}
@@ -1778,7 +1778,8 @@ input[type=radio]:checked ~ .check::before{background: #22B9C7;transform: scale(
 .icnPls{background:url(../img/add_w.svg)no-repeat;background-size:auto 100%;background-position:center;}
 .icnMns{background:url(../img/deletew.svg)no-repeat;background-size:auto 100%;background-position:center;}
 
-.tabDaddrss{width:auto;padding:0px 20px;color:#fff;height:30px;font-size:15px;transform:rotate(-90deg);position:absolute;top:0;left:-18px;transform-origin: 0 0;}
+.tabDaddrss{width: auto;padding: 0px 20px;color: #fff;height: 30px;font-size: 11px;transform: rotate(-90deg);position: absolute;left: -32px;transform-origin: 0 0;top: 190px;letter-spacing: 0.09vw;line-height: 28px;}
+.tabDaddrss1{width: auto;padding: 0px 20px;color: #fff;height: 30px;font-size: 11px;transform: rotate(-90deg);position: absolute;left: -32px;transform-origin: 0 0;bottom:0;letter-spacing: 0.09vw;line-height: 28px;}
 .delvrAdress{width:100%;height:auto;padding: 50px 0px;}
 .delvrAdress .w50r{width:50%;height:auto;padding-right:30px;}
 .delvrAdress .w50r .text{width:100%;height:auto;text-align:right;font-size:13px;line-height:26px;color:#333;}
