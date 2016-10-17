@@ -90,7 +90,7 @@ class attributes extends DB
                         attr_values,
                         active_flag 
                 FROM 
-                        tbl_attribute_master 
+                        tbl_attribute_master WHERE active_flag != 2
                 ORDER BY 
                         createdon DESC ";
         
