@@ -13,7 +13,7 @@
 
 <body>
     <?php include 'header.html' ?>
-    <div class="outerContr">
+    <div class="outerContr" id="signInId">
         <div class="loginCont fLeft" id="loginId">
             <div class="txtTitle" id="hTxt">Luxury or nothing<br></div>
             <div class="txtB fLeft">
@@ -30,30 +30,79 @@
                     <div class="btnContainr" id="nxt">
                         <div class="button button2 btnc1 transition300 fLeft" id="log">SIGN IN</div>
                     </div>
+                    <div class="brkCnt">
+                        <div class="orTcnt">Sign Up</div>
+                    </div>
                 </center>
             </div>
         </div>
     </div>
     <div class="outerContr dn" id="forgot">
-
         <div class="loginCont fLeft" id="loginId1">
             <div class="txtTitle" id="hTxt">Luxury or nothing</div>
             <div class="txtB fLeft">
-                        <input type="text" class="inp_box " maxlength="30" id="femail">
-                        <div class="inp_label" >Email-Id*</div>
+                <input type="text" class="inp_box " maxlength="30" id="femail">
+                <div class="inp_label" >Email-Id*</div>
+            </div>
+            <div class="filterSec fLeft">
+                <center>
+                    <div class="btnContainr" id="nxt">
+                        <a href=""><div class="button button2 btnc1 transition300 fLeft">CANCEL</div></a>
                     </div>
-                    <div class="filterSec fLeft">
-                        <center>
-                            <div class="btnContainr" id="nxt">
-                                <a href=""><div class="button button2 btnc1 transition300 fLeft">CANCEL</div></a>
-                            </div>
-                            <div class="btnContainr" id="flog">
-                                <div class="button button2 btnc1 transition300 fLeft">SUBMIT</div>
-                            </div>
-                        </center>
+                    <div class="btnContainr" id="flog">
+                        <div class="button button2 btnc1 transition300 fLeft">SUBMIT</div>
                     </div>
+                </center>
             </div>
         </div>
+    </div>
+
+    <div class="outerContr sigNup dn" id="signUpId">
+        <div class="loginCont fLeft" id="signCont">
+            <div class="txtTitle" id="hTxt">Luxury or nothing</div>
+            <div class="txtB fLeft">
+                <input type="text" class="inp_box " maxlength="30" id="name">
+                <div class="inp_label">Name*</div>
+            </div>
+            <div class="txtB fLeft">
+                <input type="text" class="inp_box " maxlength="30" id="email">
+                <div class="inp_label">Email-Id*</div>
+            </div>
+            <div class="txtB fLeft">
+                <input type="text" class="inp_box " maxlength="30" id="mobile">
+                <div class="inp_label">Mobile*</div>
+            </div>
+            <div class="txtB fLeft">
+                <input type="password" class="inp_box " maxlength="30" id="pass">
+                <div class="inp_label">Password*</div>
+            </div>
+            <div class="filterSec fLeft">
+                <center>
+                    <div class="btnContainr" id="nxt">
+                        <div class="button button2 btnc1 transition300 fLeft" id="reg">SIGN UP</div>
+                    </div>
+                </center>
+            </div>
+        </div>
+    </div>
+    <div class="outerContr sigNup dn" id="otpOuter">
+        <div class="loginCont fLeft" id="otpCont">
+            <div class="txtTitle" id="hTxt"></div>
+            <div class="txtB fLeft">
+                <input type="tel" class="inp_box">
+                <div class="inp_label">Please enter the otp</div>
+            </div>
+              <div class="filterSec fLeft">
+                <center>
+                    <div class="btnContainr">
+                        <div class="button button2 btnc1 transition300 fLeft">SUBMIT</div>
+                    </div>
+                </center>
+            </div>
+        </div>
+    </div>
+
+
     <script type="text/javascript">
         $('.inp_box').focus(function () {
             $(this).closest('.txtB').addClass('focul');
@@ -65,21 +114,33 @@
             }
 
         });
-
-        $('#txtId,#hTxt,#loginId,#lgnId').velocity({opacity: [0]}, {duration: 0, easing: 'ease-in-out'});
+        
+        
+        $('#hTxt,#loginId,#lgnId').velocity({opacity: [0]}, {duration: 0, easing: 'ease-in-out'});
         $(document).ready(function () {
-            $('#txtId,#hTxt,#loginId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 400, easing: 'ease-in-out'});
+            $('#hTxt,#loginId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 400, easing: 'ease-in-out'});
             $('#lgnId').velocity({opacity: [1, 0], translateY: [20, 0]}, {duration: 400, delay: 400, easing: 'ease-in-out'});
         });
 
-        $('#txtId1,#loginId1').velocity({opacity: [0]}, {duration: 0, easing: 'ease-in-out'});
+        $('#loginId1').velocity({opacity: [0]}, {duration: 0, easing: 'ease-in-out'});
         $('#forId').click(function () {
             $('#forgot').removeClass("dn");
-            $('#txtId,#loginId').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 400, easing: 'ease-in-out'});
-            $('#txtId1,#loginId1').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 400, easing: 'ease-in-out'});
+            $('#loginId').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 400, easing: 'ease-in-out'});
+            $('#loginId1').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 400, easing: 'ease-in-out'});
 //            $('#lgnId').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 800, delay: 600, easing: 'ease-in-out'});
         });
-
+        $('#hTxt,#signCont').velocity({opacity: [0]}, {duration: 0, easing: 'ease-in-out'});
+        $('.brkCnt').click(function () {
+            $('#signUpId').removeClass("dn");
+            $('#loginId').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 400, easing: 'ease-in-out'});
+            $('#signCont').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 400, easing: 'ease-in-out'});
+        });
+        $('#otpCont').velocity({opacity: [0]}, {duration: 0, easing: 'ease-in-out'});
+        $('#flog').click(function(){
+            $('#otpOuter').removeClass("dn");
+            $('#forgot').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 400, easing: 'ease-in-out'});
+            $('#otpCont').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 400, easing: 'ease-in-out'});
+        });
 
     </script>
     <script type="text/javascript" src="<?php echo $jvs['login']; ?>"></script>
