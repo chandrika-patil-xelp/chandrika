@@ -8,8 +8,7 @@ $(document).ready(function(){
  
    $('#paymentbtn').click(function(){   
       storeshippingdata();
-     storeorderdata();
-     
+      storeorderdata(); 
    });
    
   $('input.filled-in').on('change', function() {
@@ -19,16 +18,16 @@ $(document).ready(function(){
   
   $('#nxt').click(function(){
     getshippingdata();
-  });
+  }); 
   displaycartdetail();
 });
 
 function displaycartdetail()
 {
-  var userid=localStorage.getItem('uid');   
-  var cartid=localStorage.getItem('cartid');
+  var userid=common.readFromStorage('jzeva_uid'); 
+  var cartid=common.readFromStorage('jzeva_cartid'); 
   subtotalprice=0;
-    $('.prdFinalCont').html("");
+  $('.prdFinalCont').html("");
   var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id="+cartid+"&userid="+userid+"";  
 	       $.ajax({
 	 	    url: URL,
@@ -46,7 +45,7 @@ function displaycartdetail()
 			   var abc=v.prdimage; abc=abc.split(','); 
 			    abc=IMGDOMAIN+abc[5];
 			} 
-			  subtotalprice+=parseInt(v.price);
+			subtotalprice+=parseInt(v.price);
 			  
 var chckoutstr="<div class='ckPrCont fLeft'>";
   chckoutstr+=" <div class='ckPrImg fLeft'><img src='"+abc+"'";
@@ -64,7 +63,7 @@ var chckoutstr="<div class='ckPrCont fLeft'>";
   chckoutstr+=" <div class='col100 colorLg font11 fmSansR'>"+v.color+" "+v.jewelleryType+" "+v.carat+", Diamond "+v.dmdcarat+" Carat</div>";
   chckoutstr+=" <div class='rsContr fLeft'>";
   chckoutstr+="  <div class='col50 fLeft'>";
-  chckoutstr+=" <div class='prTxt1 fmSansR fLeft '>₹"+parseInt(v.price)+"</div>";
+  chckoutstr+=" <div class='prTxt1 fmSansR fLeft '>₹ "+parseInt(v.price)+"</div>";
   chckoutstr+="  </div> </div> </div>";
   chckoutstr+=" <div class='clBtn transition200 fmSansB noselect' id='"+v.product_id+"_"+r+"_"+v.col_car_qty+"_"+v.cart_id+"'><a href='#'  onclick='remove(this)' style='color:#2d2d2d;text-decoration:none;' >REMOVE</div></a>";
   chckoutstr+=" </div>";
@@ -75,8 +74,7 @@ var chckoutstr="<div class='ckPrCont fLeft'>";
 		      $('#shpntotalprc').html("&#8377 "+subtotalprice);
 		      $('.total').html(totalprice);
 		    }
-		  });
-		      
+		  }); 
 }
  
 
@@ -101,41 +99,41 @@ var chckoutstr="<div class='ckPrCont fLeft'>";
   
    function addqnty(ths)
   {
-    var ids=$(ths).attr('id'); ids=ids.split('_'); var pid=ids[1]; var col_car_qty=ids[3];var cart_id=ids[4]; 
-    $(gblcheckodata).each(function(r,v){
-      if(v.product_id==pid && v.col_car_qty==col_car_qty && v.cart_id==cart_id)
-      {
 	var e=$(ths).siblings('.item_amt'); 
+	var j=$(ths).siblings('.item_amt').text();
 	var e2=  $(ths).closest('.ckPrCont').find('.prTxt1 '); 
-	var price=parseInt(v.price,10);
-	var j=v.pqty;
-	price=price/j;
-	j++;
-	price=price*j;
+	var price=$(ths).closest('.ckPrCont').find('.prTxt1 ').text(); 
+	price=price.replace(/\,/g,'');
+	price=price.replace('₹',''); 
+        price=parseInt(price,10);
+        price=price/j;
+        j++;
+        price=price*j; 
 	$(e2).html(price);
         $(e2).digits();
         $(e).html(j);
+    var ids=$(ths).attr('id'); ids=ids.split('_'); var pid=ids[1]; var col_car_qty=ids[3];var cart_id=ids[4]; 
+    $(gblcheckodata).each(function(r,v){
+      if(v.product_id==pid && v.col_car_qty==col_car_qty && v.cart_id==cart_id)
+      { 
 	var dat={};
 	dat['cartid']=v.cart_id;    dat['pid']=v.product_id;
 	dat['userid']=v.userid;     dat['col_car_qty']=v.col_car_qty;
-	dat['qty']=j;		       dat['price']=price; 
-	console.log(dat);
-	 storecartdata(dat);
-	 
+	dat['qty']=j;		       dat['price']=price;  
+	  storecartdata(dat); 
       }
      }); 
    }
    
    function subqnty(evnt)
   {
-    var ids=$(evnt).attr('id'); ids=ids.split('_'); var pid=ids[1]; var col_car_qty=ids[3];var cart_id=ids[4]; 
-    $(gblcheckodata).each(function(r,v){
-      if(v.product_id==pid && v.col_car_qty==col_car_qty && v.cart_id==cart_id)
-      {
-	var e=$(evnt).siblings('.item_amt'); 
-	var e2=  $(evnt).closest('.ckPrCont').find('.prTxt1 '); 
-	var price=parseInt(v.price,10);
-	var j=v.pqty;
+    var e=$(evnt).siblings('.item_amt'); 
+    var j=$(evnt).siblings('.item_amt').text();
+    var e2=  $(evnt).closest('.ckPrCont').find('.prTxt1 '); 
+    var price=$(evnt).closest('.ckPrCont').find('.prTxt1 ').text(); 
+    price=price.replace(/\,/g,'');
+    price=price.replace('₹','');  
+    var price=parseInt(price,10); 
       if(j>1){
             price=price/j;
 	    j--;
@@ -144,13 +142,15 @@ var chckoutstr="<div class='ckPrCont fLeft'>";
             $(e2).digits();
 	    $(e).html(j);
       } 
+    var ids=$(evnt).attr('id'); ids=ids.split('_'); var pid=ids[1]; var col_car_qty=ids[3];var cart_id=ids[4]; 
+    $(gblcheckodata).each(function(r,v){
+      if(v.product_id==pid && v.col_car_qty==col_car_qty && v.cart_id==cart_id)
+      { 
 	var dat={};
 	dat['cartid']=v.cart_id;    dat['pid']=v.product_id;
 	dat['userid']=v.userid;     dat['col_car_qty']=v.col_car_qty;
-	dat['qty']=j;		       dat['price']=price; 
-	console.log(dat);
-	 storecartdata(dat);
-	 
+	dat['qty']=j;		       dat['price']=price;  
+	 storecartdata(dat); 
       }
      }); 
   }
@@ -166,7 +166,7 @@ var chckoutstr="<div class='ckPrCont fLeft'>";
 	    data: {dt: dt},
 	    success:function(data){
 		 //   console.log(data);  
-		    displaycartdetail(); 
+		//    displaycartdetail(); 
             }
         });	 
 }
@@ -246,8 +246,7 @@ function getshippingdata()
    }
    else{
      shipngdata['user_id']=usrid;
-   }
-    
+   } 
 }
 
 function storeshippingdata()
@@ -298,7 +297,7 @@ function  storeorderdata()
 				//  console.log(results);
 				}
 		  }); 
-		alert('Your Order Placed Successgfully'); 
+		alert('Your Order Placed successfully'); 
             }
         });
 }
