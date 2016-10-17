@@ -20,16 +20,16 @@ switch ($action) {
         $page = 'Icons';
         include 'icons.html';
         break;
-    
+
     case 'home':
         $page = 'index';
         include TEMPLATE . 'index.html';
         break;
-     case 'loginJzeva':
+    case 'loginJzeva':
         $page = 'loginJzeva';
         include TEMPLATE . 'loginJzeva.html';
         break;
-     case 'home_jzeva':
+    case 'home_jzeva':
         $page = 'home_jzeva';
         include TEMPLATE . 'home_jzeva.html';
         break;
@@ -84,21 +84,21 @@ switch ($action) {
         break;
     case 'product_grid':
         $page = 'product_grid';
-          include TEMPLATE.'product_grid.html';
-          break;
-     case 'landing_page':
-          $page = 'product_page';
-          include TEMPLATE.'landing_page.html';
-          break;
+        include TEMPLATE . 'product_grid.html';
+        break;
+    case 'landing_page':
+        $page = 'product_page';
+        include TEMPLATE . 'landing_page.html';
+        break;
     case 'product_page':
-         $page = 'product_page';
-         include TEMPLATE.'product_page.html';
-         break;
-     case 'check_out':
-          $page = 'check_out';
-          include TEMPLATE.'check_out.html';
-          break;
-     case 'login_jzeva':
+        $page = 'product_page';
+        include TEMPLATE . 'product_page.html';
+        break;
+    case 'check_out':
+        $page = 'check_out';
+        include TEMPLATE . 'check_out.html';
+        break;
+    case 'login_jzeva':
         $page = 'login_jzeva';
         include TEMPLATE . 'login_jzeva.html';
         break;
@@ -122,27 +122,27 @@ switch ($action) {
         $page = 'input_form';
         include TEMPLATE . 'input_and_form.html';
         break;
-    
+
     case 'checkOutNew':
         $page = 'checkOutNew';
         include TEMPLATE . 'checkOutNew.html';
         break;
-    
+
     case 'userProfile':
         $page = 'userProfile';
         include TEMPLATE . 'userProfile.html';
         break;
-    
+
     case 'collections':
         $page = 'collections';
         include TEMPLATE . 'collections.html';
         break;
-   
+
     case 'filterPage':
         $page = 'filterPage';
         include TEMPLATE . 'filterPage.html';
         break;
-     case 'resetpsw':
+    case 'resetpsw':
         $page = 'resetpsw';
         include TEMPLATE . 'resetpsw.html';
         break;
@@ -150,7 +150,7 @@ switch ($action) {
         $page = 'otp';
         include TEMPLATE . 'otp.html';
         break;
-     case 'tandc':
+    case 'tandc':
         $page = 'tandc';
         include TEMPLATE . 'tandc.html';
         break;
@@ -158,7 +158,7 @@ switch ($action) {
         $page = 'privacy';
         include TEMPLATE . 'privacy.html';
         break;
-     case 'contact':
+    case 'contact':
         $page = 'contact';
         include TEMPLATE . 'contact.html';
         break;
@@ -174,15 +174,15 @@ switch ($action) {
         $page = 'diamondguide';
         include TEMPLATE . 'diamondguide.html';
         break;
-     case 'preciousmetalguide':
+    case 'preciousmetalguide':
         $page = 'preciousmetalguide';
         include TEMPLATE . 'preciousmetalguide.html';
         break;
-     case 'jewellerycare':
+    case 'jewellerycare':
         $page = 'jewellerycare';
         include TEMPLATE . 'jewellerycare.html';
         break;
-     case 'responsiblef':
+    case 'responsiblef':
         $page = 'responsiblef';
         include TEMPLATE . 'responsiblef.html';
         break;
@@ -190,21 +190,25 @@ switch ($action) {
         $page = 'gemstoneguide';
         include TEMPLATE . 'gemstoneguide.html';
         break;
-      case 'faq':
+    case 'faq':
         $page = 'faq';
         include TEMPLATE . 'faq.html';
         break;
-     case 'sizeguide':
+    case 'sizeguide':
         $page = 'sizeguide';
         include TEMPLATE . 'sizeguide.html';
         break;
-     case 'myaccount':
+    case 'myaccount':
         $page = 'myaccount';
         include TEMPLATE . 'myaccount.html';
         break;
-      case 'shipping':
+    case 'shipping':
         $page = 'shipping';
         include TEMPLATE . 'shipping.html';
+        break;
+    case 'bangleguide':
+        $page = 'bangleguide';
+        include TEMPLATE . 'bangleguide.html';
         break;
 }
 ?>
