@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<?php include 'jhead.html' ?>
+<body class="Terms">
+    <?php include 'Cart.html'?>
+    <?php include 'header.html'?>
+    <div class="fLeft gemBanner">
+        <div class="banner_over" id ="banner_over"></div>
+        <div class="termHeading">shipping</div>
+    </div>
+    <div class="wrapper_main   fLeft">
+        <div class="container2 fLeft">
+            <div class="col100">
+                <div class="wrapper_max offsetTop offsetEffects transition600">
+                    <div class="tCommon fLeft">
+                        <div class="tHead fLeft">shipping</div>
+                        <div  class="pCont fLeft">
+                            <div class="fLeft tCont">Jzeva Offers complimentary shipping on all orders delivered across India. The security and the wellbeing of the product until it reaches your doorstep is our responsibility and we are sure to do a great job at it, but we request our customers to check the package for any damage or tampering as soon as you receive it in your hands. Please proceed to sign the delivery receipt only once you are sure that your package has no signs of damage or tampering.</div>
+                            <div class="fLeft tCont">The order will be delivered to you by one of our shipping partners as names below:</div>
+                            <div class="fLeft tCont points">BVC Logistics</div>
+                            <div class="fLeft tCont points">Sequel</div>
+                            <div class="fLeft tCont">Your Shipment will be sent to you in a tamper proof bag and will contain your beautiful Jzeva jewellery, Certificate of the jewellery and a cleaning cloth all packed in a premium handmade Jzeva Jewellery box.</div>
+                            <div class="fLeft tCont">You can easily find out the status of your order and its shipping by visiting the “Track Order” page.</div>
+                            <div class="fLeft subHm">Return Shipping</div>
+                            <div class="fLeft tCont">If you choose to return a piece of jewellery under the 7-day return policy, we request you to go thought the “Returns and Exchange” section to find out return shipping costs.</div>
+                            <div class="fLeft tCont">If the product needs to returned to us because of any fault from our side, we will cover the costs of the return.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php include 'footer.html'?>
+    <script>
+        $(document).ready(function () {
+            $('.wrapper_max').removeClass('offsetEffects');
+        });
+        $(window).scroll(function () {
+            var sc = $('body').scrollTop();
+            var ht = $('.gemBanner').outerHeight(true) - 130;
+            if (ht > sc) {
+                var op = 1 - (ht - sc) / ht;
+                $('#banner_over').css({'opacity': op});
+
+            }
+            if (ht - sc <= 5) {
+                $('.header').addClass('black_bg');
+                console.log('if');
+            } else {
+                $('.header').removeClass('black_bg');
+                console.log('else');
+            }
+            //           if(ht-sc<=60){
+            //           console.log(sc);
+            //           $('.gemBanner').addClass('fixer');
+            //       }
+            //       else{
+            //            $('.gemBanner').removeClass('fixer');
+            //       }
+        });
+    </script>
+
+
+</body>
+
