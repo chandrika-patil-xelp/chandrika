@@ -71,12 +71,12 @@
 	    $('document').ready(function()
             {   
                 $('.saveProduct').bind('click',function() 
-                { 		 
+                {		 
 		  var imgval= $("input[name='forImg']:checked"). val(); 
-		   var URL= APIDOMAIN + "index.php?action=setImagedeflt&id="+imgval;  
+		  var URL= APIDOMAIN + "index.php?action=setImagedeflt&id="+imgval;  
 		    $.ajax({  type:"post",   url:URL,  data: '',  success:function(data){
-			//       console.log(data);  
-			 common.toast(1,'Default Image Updated Successfully')
+			//console.log(data);  
+			// common.toast(1,'Default Image Updated Successfully')
 		    }
 		    });	
                         updateData($(this).attr('id'));
