@@ -8,18 +8,9 @@ var stock = new Array();
 var aid;
 var stSearch = new Array();
 
-$(document).ready(function () {
-    var combn=id.split('_');
-      var parnt=combn[0];
-      var chld=combn[1];
-        aid=combn[2];
-	var str="";
-	str+='<div class="fLeft breadP">'+ parnt +'</div>';
-	str+='<div class="fLeft breadP">'+ chld +'</div>';
-	//$('#parnttyp').html(parnt);
-	$('#parnttyp').append(str);
-   // var URL = APIDOMAIN + "index.php/?action=getProGrid";
-    var URL = APIDOMAIN + "index.php/?action=getProductdetailbycatid&id="+aid;
+$(document).ready(function () {  
+   // var URL = APIDOMAIN + "index.php/?action=getProGrid"; 
+    var URL = APIDOMAIN + "index.php/?action=getProductdetailbycatid&id="+id;
     $.ajax({
         type: 'POST',
         url: URL,
@@ -27,13 +18,24 @@ $(document).ready(function () {
 
 
             res = JSON.parse(res);
-
+	     
             if (res['error']['err_code'] == 0) {
                 getProdDtl = res["result"];
                    var total = res["total"];
                 $('#total_Product').html( total + " Products");
                 var obj = res["result"];
-                var len = obj.length;
+		if(total<12)
+		  $('#gr_foot').remove();
+		var parnt=obj[0]['parntcatname'];
+		if(parnt=='High Jewellery'){
+		parnt=parnt.split(' ');
+		parnt=parnt[1];
+		}
+		var chld=obj[0]['chldcatname'];
+		var dplstr='<div class="breadP fLeft">'+ parnt +'</div>';
+		dplstr+='<div class="breadP fLeft">'+ chld +'</div>';
+		$('#parnttyp').append(dplstr);
+		var len = obj.length;
 
                 var i = 0;
                 if (len > 0)
@@ -470,7 +472,7 @@ var count=0;
      //$('#gr_foot').addClass('transdown');
 
 
-    var URL1 = APIDOMAIN + "index.php/?action=getProductdetailbycatid&id="+aid+"&page="+page3+"&limit="+limit+"";
+    var URL1 = APIDOMAIN + "index.php/?action=getProductdetailbycatid&id="+id+"&page="+page3+"&limit="+limit+"";
   var tot_len = 0;
     $.ajax({
         type: 'POST',
@@ -478,12 +480,12 @@ var count=0;
         success: function (res) {
 
             res = JSON.parse(res);
-
+	    
             if (res['error']['err_code'] == 0) {
-            var total = res["total"];
+            var total = res['total'];
             $('#total_Product').html("<strong>" + total + "</strong> Products");
                 var obj1 = res["result"];
-
+		if(obj1 !== null){
                 var len = obj1.length;
 
                 var i = 0;
@@ -506,7 +508,7 @@ var count=0;
                     }
                   //  $('#gridDetail').append(str);
               //  var $we= str;
-
+	    } 
                if(limitend >= total){
 
                         $('#gr_foot').remove();
