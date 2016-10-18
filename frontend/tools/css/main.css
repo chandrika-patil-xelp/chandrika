@@ -94,7 +94,7 @@ a{color:#666;}
 .mTop10{margin-top:10px}
 .input {position: relative;z-index: 1;	display: inline-block;margin-bottom: 20px;width: 100%;vertical-align: top; overflow: hidden; }
 .wrapper_main{width:100%;height:auto;}
-.wrapper_max{width:100%;height:auto;max-width:1200px ; margin:auto;display:table;}
+.wrapper_max{width:100%;height:auto;max-width:1200px;margin:auto;display:table;}
 .footer{width: 100%;height: 80px;background-color: #222529;line-height: 60px;padding: 10px;text-align: center;font-family: regular;font-size: 11px;color: rgba(255, 255, 255, 0.3)}
 .header{height:60px;width:100%;position:absolute;top:0;left:0;z-index:101;}
 .logo{width:140px;height:100%;background:url(../img/jzevalogo.svg)no-repeat;background-size:auto 20px;background-position:15px center;}
@@ -1623,7 +1623,7 @@ input[type=radio]:checked ~ .selector_label:after {
 /*warranty*/
 .warranty{}
 .dtable{width: 100%;height: auto;border:1px solid;margin-bottom: 7px;}
-.drow{width: 100%;eight: 30px;height: 30px;border-bottom: 1px solid;}
+.drow{width: 100%;height: 30px;height: 30px;border-bottom: 1px solid;}
 .rowTxt{width: 16.66%;height: 100%;line-height: 30px;text-align: center;border-right: 1px solid;}
 .subRow{width: 50%;}
 .chartH{width: 100%;height: 30px;float: left;line-height: 30px;font-family: semibold;}
@@ -1886,31 +1886,53 @@ input[type=radio]:checked ~ .selector_label:after {
 
 
 /*my account*/
+.myaccount{}
 .tabCont{width: 20%;height: auto;}
 .tabdata{width:100%;height: 30px;line-height: 30px;letter-spacing: 0.15em;text-transform: uppercase;line-height: 25px;cursor: pointer;font-family: regular;font-size: 11px;color: #15181b;text-align: right; }
-.tabHead{width: 100%;height: 30px;line-height: 30px;letter-spacing: 0.15em;text-transform: uppercase;line-height: 25px;cursor: pointer;font-family: bolder;font-size: 13px;color: #15181b;text-align: right;}
+.tabHead{width: 100%;height: 30px;line-height:30px;color:#222529;letter-spacing: 0.35em;text-transform: uppercase;cursor: pointer;font-family: bolder;font-size: 13px;color: #15181b;text-align: right;}
 .tabDetails{width: 80%;height: auto;padding-left: 15px;}
 .orderOuter{width: 100%;height: auto;padding: 15px 0px;border-bottom: 1px solid #ccc;}
-.Morder{width:auto;padding:0px 15px;height:30px;line-height: 30px;margin-right: 10px;letter-spacing: 0.15em;text-transform: uppercase;font-size: 12px;font-family: light;color: #15181b;}
+.Morder{width:25%;height:30px;line-height: 30px;letter-spacing: 0.15em;text-transform: uppercase;font-size: 12px;font-family: light;color: #15181b;}
 .orderidOuter{width: 100%;height: auto;padding: 15px 0px;border-bottom: 1px solid #ccc;}
 .ordTxt{width: auto;height:30px;line-height:30px;padding:0px 15px;font-size:14px;font-family: regular;}
 .inShip{width: 100%;height: auto;}
-
-.detailsOuter{width: 100%;height: auto;padding: 15px 0px; border-bottom: 1px solid #ccc;}
-.orderImg{width: 20%;height: 100px;border: 1px solid;}
+.detailsOuter{width: 100%;height: auto;padding: 30px 0px;border-bottom: 1px solid #ccc;}
+.orderImg{width: 20%;height: 100px;border: 1px solid #ccc;}
 .orderName{width:30%;height:auto;padding-left:10px;}
 .note{width:30%;height:auto;text-align: right;}
 .pName{width:100%;height:auto;}
 .rsCont{width:20%;height: auto;}
-.plusBox{width:20px;height:20px;border-radius:2px;background:#53C9C7 url("../img/icons/510w.svg")no-repeat;background-size: auto 15px;background-position: center;cursor: pointer;}
+.plusBox{width:15px;height:15px;border-radius:2px;background:#53C9C7 url("../img/icons/510w.svg")no-repeat;background-size: auto 15px;background-position: center;cursor: pointer;margin-top: 4px;margin-left: 10px;}
+.minusBox{width:15px;height:15px;border-radius:2px;background:#53C9C7 url("../img/icons/518w.svg")no-repeat;background-size: auto 15px;background-position: center;cursor: pointer;margin-top: 4px;margin-left: 10px;}
 .jColor{color:#53C9C7;}
-.proStep{width:40px;height:40px;border:1px solid;border-radius: 50%;}
+.proStep{width:40px;height:40px;border-radius:50%;position:relative;z-index:1;}
 /*.proStep:after{content: "";width: 25%;border-bottom: 1px solid;position: absolute;top: 50%;left: 55px;}*/
 .ordSteps{width: 25%;position: relative;}
 .ordLine{position: absolute;border-bottom:1px solid;width: 100%;}
 .date{width: 10%;height: auto;}
 .inDate{font-size: 20px;font-family: semibold; text-align: center;}
 .month{font-size: 20px;font-family: regular;text-align: center;}
+.shipTo{width:50%;height: auto;}
+.inCourier{width:100%;height:auto;padding-bottom:15px;}
+.detailOrder{font-size: 15px;width: 100%;height: 60px;line-height: 60px;text-transform: uppercase;font-family: semibold;padding-left: 15px;border-bottom: 1px solid #ccc;}
+.trackOuter{width:100%;height:auto;}
+.trackName{width:100%;height:auto;padding:30px 0px;border-bottom: 1px solid #ccc;}
+.trackDivs{width:25%;height: auto;position: relative;}
+.trackDivs:after{content:"";position:absolute;border-bottom:1px solid #ccc;width: 100%;right: 50%;top: 75%;left: 0;}
+#track .proStep{border: none;}
+.placedTxt{width: 100%;text-transform: uppercase;font-size: 13px;font-family: semibold;}
+.tickIcon{background: #53C9C7 url(../img/icons/517w.svg)no-repeat;background-size: auto 15px;background-position: center;}
+.trackDivs:last-child:after{display: none;}
+.myaccount .tHead{padding-right:35px;}
+.myaccount .pCont{padding-left: 35px;}
+.dateTxt{width:100%;}
+.vatTxt{width:100%;font-size: 11px;}
+.vatTxt span{width:50%;}
+.txtRight{text-align: right;width: 100%;}
+.orderCommon{width: 100%;height: auto;}
+.myaccount .col50{padding-right: 15px;}
+.proFields{width: 100%;height: 40px;line-height: 40px;font-size: 13px;}
 .shipTo{width: 50%;    height: auto;}
 .inCourier{width: 100%;    height: auto;   padding-bottom: 15px;}
-.detailOrder{width: 100%;height: 60px;line-height: 60px;ext-transform: uppercase;font-family: semibold;padding-left: 15px;border-bottom: 1px solid #ccc;}
+.detailOrder{width: 100%;height: 60px;line-height: 60px;text-transform: uppercase;font-family: semibold;padding-left: 15px;border-bottom: 1px solid #ccc;}
+
