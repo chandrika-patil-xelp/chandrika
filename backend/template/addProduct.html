@@ -463,7 +463,7 @@ echo "<script>var edit=$edit; var pid = '$pid';</script>";
     <link rel="stylesheet" href="<?php echo $css['rangeSkin']?>">
     <link rel="stylesheet" href="<?php echo $css['rangeNormalize']?>">
     <script type="text/javascript" src="<?php echo $jvs['rangeJS']; ?>"></script>
-    <script type="text/javascript" src="<?php echo $jvs['addProduct']; ?>"></script>
+   <script type="text/javascript" src="<?php echo $jvs['addProduct']; ?>"></script>
     <script type="text/javascript" src="<?php echo $jvs['nicescroll']; ?>"></script>
     <script>
 
@@ -571,6 +571,7 @@ echo "<script>var edit=$edit; var pid = '$pid';</script>";
                             var catstr = "";
                             $(catid).each(function (i) {
                                 $(categories).each(function (j, vl) {
+                                    
                                     if (catid[i] == vl.cid && i < catid.length - 1)
                                     {
                                         catstr += vl.name + " , ";
@@ -869,6 +870,7 @@ $(document).ready(function( ) {
 
     function getMultyCatMapping(allCid)
     {
+      
         var catArray=new Array();
         $('[name=prtcateg]').each(function() {
             if ($(this).is(':CHECKED'))
