@@ -184,14 +184,17 @@ $(document).ready(function(){
                                     var dvprc= y.prcPrCrat;
                                     var dvdiaid = y.id;
 
+                                    var dvclass = dvdia.replace(/-|\s/g,"");
+                                      dvclass =dvclass.toLowerCase();
 
-
-                         dQstr+= '<div class="rad_wrap fLeft">';
+                         dQstr+= '<div class="rad_wrap">';
                        //dQstr+= '<input type="radio" name="selectM" id="dQuality_'+x+'_'+y.id+'" checked  onchange=\"diamondPrice('+y.prcPrCrat+vl.crat+')\" class="filled-in dn">';
                         dQstr+= '<input type="radio" name="selectM" id="dQuality_'+x+'_'+y.id+'" value="'+y.dVal+'"  onchange="setdmd(this)" class="filled-in dn">';
-                         dQstr+= '<label for="dQuality_'+x+'_'+y.id+'"></label>';
-                         dQstr+= '<div class="check"></div>';
-                         dQstr+= '<span class="fmSansB selector_label" >'+y.dVal+'</span>';
+                         dQstr+= '<div class="check2 '+dvclass+'"></div>';
+                            dQstr+= '<label for="dQuality_'+x+'_'+y.id+'"></label>';
+                         dQstr+= '<div class="selector_label" >';
+                         dQstr+='<div class="labBuffer">'+y.dVal+'</div>';
+                         dQstr+='</div>';
                          dQstr+= '</div>';
 
                                      getdmdprice(dvprc,dcarat);
@@ -403,8 +406,11 @@ function setdmd(e){
       $('#qual').html(va);
 
     // glbquality=s;
-            getTotal(1);
 
+            setTimeout(function(){
+              $(e).closest('.selector_cont').find('.options_back').click();
+                  getTotal(1);
+            },400);
  }
 
  function setmetal(m){
@@ -449,8 +455,24 @@ function getTotal(type){
         gtotal = total + vat;
 
          grandtot = gtotal.toFixed();
+         console.log(grandtot);
    //  $("#price").html(Number(grandtot).toLocaleString('en'));
-        $("#price").html(IND_money_format(grandtot).toLocaleString('en'));
+        //$("#price").html(IND_money_format(grandtot).toLocaleString('en'));
+        //grandtot=IND_money_format(grandtot).toLocaleString('en');
+        $("#price").numerator({
+          fromValue: 50000,
+				toValue: grandtot,
+        delimiter: ',',
+				onStart: function() {
+					isStop = true;
+				},
+        onComplete: function(){
+          $("#price").html(IND_money_format(grandtot).toLocaleString('en'));
+      }
+        // onStop: function() {
+				// $("#price").html(IND_money_format(grandtot).toLocaleString('en'));
+				// }
+			});
 
         if (type == 1){
 

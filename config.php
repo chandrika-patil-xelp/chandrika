@@ -70,6 +70,7 @@ $jvs = array();
 
 
 
+
         #CMS PAGES JS
             $jvs['Product']                 = BACKDOMAIN.'tools/js/cms/product.js?v='.VERSION;
             $jvs['addProduct']              = BACKDOMAIN.'tools/js/cms/addProduct.js?v='.VERSION;
@@ -118,6 +119,7 @@ $jvs = array();
              $fjvs['ripple']                   = DOMAIN.'frontend/tools/js/ripple.js?v='.VERSION;
              $fjvs['Common']              = DOMAIN.'frontend/tools/js/Common.js?v='.VERSION;
             $fjvs['jquery_toast'] 	= DOMAIN.'frontend/tools/js/jquery.toast.min.js?v='.VERSION;
+						  $fjvs['numerator'] 	= DOMAIN.'frontend/tools/js/jquery-numerator.js?v='.VERSION;
               #CMS PAGES JS(Frontend)
             $jvs['prodpage']                 = DOMAIN.'frontend/tools/js/cms/prodpage.js?v='.VERSION;
             $jvs['proddetails']                 = DOMAIN.'frontend/tools/js/cms/product_details.js?v='.VERSION;

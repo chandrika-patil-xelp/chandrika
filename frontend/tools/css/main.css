@@ -201,10 +201,10 @@ a{color:#666;}
 .rad_wrap{width:20%;height:45px;;font-size:10px;padding:5px;position:relative}
 .filter_cont .rad_wrap{width:12%}
 .selector1{width:20px;height:20px;border:2px solid #666; border-radius:50%; position:absolute;overflow:hidden; left: 0;right: 0;margin: auto;cursor:pointer}
-.selector_label{width:100%;position:absolute;left:0;bottom:5px;text-align:center;font-family:regular;}
+.selector_label{width:100%;position:absolute;left:0;bottom:5px;text-align:center;font-family:bolder;overflow:hidden;pointer-events:none}
 .selector1:after{content:"";position:absolute;top:0;right:0;left:0;bottom:0; margin:auto;transform:scale(0);height:100%;width:100%;background:#22B9C7;border-radius:50%;transition:200ms;-moz-transition:200ms;-webkit-transition:200ms;}
 .select_active.selector1:after{transform:scale(0.8)}
-.selector_cont{display:none;opacity:0;position:absolute;top:0px;left:0;width:100%;height:200px;background:#fff;z-index:20}
+.selector_cont{display:none;opacity:0;position:absolute;top:0px;left:0;width:100%;height:auto;background:#fff;z-index:20}
 /*.review_btn{width:100%;height:60px;position:absolute;bottom:0;left:0;text-align:center;line-height:60px;color:#666;cursor:pointer}*/
 .review_cont{width:100vw;height:calc(100vh - 120px);position:absolute;bottom:0;left:0;transform:translateY(100%);background:rgba(255,255,255,0.9);z-index:150;display:none; -webkit-transform-style: preserve-3d;  transform-style: preserve-3d;}
 .review_cont .mCSB_container{padding:60px 10px 40px 10px;}
@@ -957,10 +957,23 @@ label{display: block;position: relative;height: 100%;z-index: 9;cursor: pointer;
 input[type=radio]:checked ~ .check {border: 2px solid #22B9C7;}
 input[type=radio]:checked ~ .check::before{background: #22B9C7;transform: scale(1);}
 .CHECKOUT_PAGE .check{top: 15px; left: 8px;}
-.diQ .check{width:70px;height:70px; border:none}
-.diQ .check:after{display:none}
-.check2{width:70px;height:70px;margin-left:0 10px;display:inline-block;position:relative;}
-
+.diQ.selector_cont {text-align:center}
+.diQ .rad_wrap{width:70px;height:80px;padding:0;margin:10px;display:inline-block}
+.diQ label{position:absolute;top:0;left:0;width:100%;height:100%}
+.check2{width:100%;height:100%;display:inline-block;position:relative;background-size: auto 65px; background-position:top center}
+.check2.vvsef{background-image:url(../img/icons/1-01.svg);background-repeat: no-repeat;}
+.check2.vvsgh{background-image:url(../img/icons/2-01.svg);background-repeat: no-repeat;}
+.check2.vsgh{background-image:url(../img/icons/3-01.svg);background-repeat: no-repeat;}
+.check2.sigh{background-image:url(../img/icons/4-01.svg);background-repeat: no-repeat;}
+.check2.siij{background-image:url(../img/icons/5-01.svg);background-repeat: no-repeat;}
+.diQ .selector_label{height:20px;line-height:20px ; bottom:0;}
+.diQ .selector_label:after{content:"";width:100%;height:100%;background:#15181b;position:absolute;top:0;left:0;transform:translateX(-100%);-webkit-transform:translateX(-100%);-moz-transform:translateX(-100%);-o-transform:translateX(-100%);-ms-transform:translateX(-100%);transition:200ms;-webkit-transition:200ms;-moz-transition:200ms;-o-transition:200ms;-ms-transition:200ms;}
+.rad_wrap:hover .labBuffer{color:#fff}
+.rad_wrap:hover .selector_label:after{transform:translateX(0%);-webkit-transform:translateX(0%);-moz-transform:translateX(0%);-o-transform:translateX(0%);-ms-transform:translateX(0%);}
+input[type=radio]:checked ~ .selector_label .labBuffer{color:#fff}
+input[type=radio]:checked ~ .selector_label:after {
+  transform:translateX(0%);-webkit-transform:translateX(0%);-moz-transform:translateX(0%);-o-transform:translateX(0%);-ms-transform:translateX(0%);background: #22B9C7;}
+}
 .diagofunckyourself:nth-child(3){background-image:url(../img/icons/1-01.svg);background-repeat: no-repeat;background-size: auto 100%;}
 .diagofunckyourself:nth-child(4){background-image:url(../img/icons/2-01.svg);background-repeat: no-repeat;background-size: auto 100%;}
 .diagofunckyourself:nth-child(5){background-image:url(../img/icons/3-01.svg);background-repeat: no-repeat;background-size: auto 100%;}
