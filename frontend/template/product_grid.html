@@ -168,25 +168,35 @@
                                     <div class="ftab fLeft taba">
                                         NECKLACE STYLE
                                     </div>
-                                </div><div class="ftabB ">
+                                </div>
+                                <div class="ftabB ">
                                     <div class="ftab fLeft taba">
                                         BANGLES STYLE
                                     </div>
-                                </div><div class="ftabB ">
+                                </div>
+                                <div class="ftabB ">
                                     <div class="ftab fLeft tabb">
                                         EARRINGS STYLE
                                     </div>
-                                </div><div class="ftabB ">
+                                </div>
+                                <div class="ftabB ">
                                     <div class="ftab fLeft tabc">
                                       PENDANTS STYLE
                                     </div>
-                                </div><div class="ftabB ">
+                                </div>
+                                <div class="ftabB ">
                                     <div class="ftab fLeft tabd">
                                         RING STYLE
                                     </div>
-                                </div><div class="ftabB ">
+                                </div>
+                                <div class="ftabB">
                                     <div class="ftab fLeft tabe">
                                         GEMSTONES
+                                    </div>
+                                </div>
+                                 <div class="ftabB dn">
+                                    <div class="ftab fLeft tabe">
+                                        PRICE
                                     </div>
                                 </div>
                             </div>
@@ -434,6 +444,11 @@
                                             </center>
                                         </div>
                                           <!-- <div class="colbox6"></div> -->
+                                    </div>
+                                      <div class="fmenu_elm fLeft dn">
+                                         <div class="rngDv">
+                                        <input type="text" value="" id="range">
+                                        </div> 
                                     </div>
                                 </div>
                             </div>
@@ -687,7 +702,14 @@
             }
             wid = $('.rota').width();
             // bindrota();
-
+           
+         $("#range").ionRangeSlider({
+        type: "double",
+         min: 1000,
+        max: 2000,
+       grid: true
+       });
+          
         });
         $(window).load(function () {
             setPosition();
