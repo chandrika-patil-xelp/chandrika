@@ -263,7 +263,7 @@ function diamondQltyCalllBack(data)
         var str2 = "";
 
         $.each(data.result, function(i, v) {
-           
+          
             str1 += "<div class='dQuality fLeft'>";
             str1 += "<div class='checkDiv fLeft minwidth100'>";
             str1 += "<input type='checkbox' name='dmdquality_cust' class='filled-in' value='" + v.id + "' id='dql_" + v.id + "'>";
@@ -274,14 +274,14 @@ function diamondQltyCalllBack(data)
 
             str2 += "<div class='dQuality fLeft'>";
             str2 += "<div class='checkDiv fLeft minwidth100'>";
-            str2 += "<input type='radio' name='dmdquality_notCust' class='filled-in' value='" + v.id + "' id='dqRadio_" + v.id + "'>";
-            str2 += "<label for='dqRadio_" + v.id + "'>" + v.name + "</label>";
+            str2 += "<input type='radio' name='dmdquality_notCust' class='filled-in'  value='" + v.id + "' id='dqRadio_" + v.id + "'>";
+            str2 += "<label for='dqRadio_" + v.id + "' >" + v.name + "</label>";
             str2 += "</div>";
             str2 += "<div class='intInp fLeft'>&#8377; " + v.price + "</div>";
             str2 += "</div>";
 
         });
-
+       
         $('#custQuality').html(str1);
         $('#notcustQuality').html(str2);
 
@@ -1141,9 +1141,11 @@ function generateDiamondQuality()
     var tstr = "<div class='titleDiv txtCap fLeft'>Diamond Quality*</div>";
     var str1 = "";
     var str2 = "";
+  
     str1 += "<div class='divCon  fLeft fmOpenR mTop0' id='custQuality" + diamondCnt + "''>";
 
     $.each(dqulaity, function(i, v) {
+       
         str1 += "<div class='dQuality fLeft'>";
         str1 += "<div class='checkDiv fLeft minwidth100'>";
         str1 += "<input type='checkbox' name='dmdquality_cust" + diamondCnt + "' class='filled-in' value='" + v.id + "' id='dql_" + diamondCnt + "_" + v.id + "'>";
@@ -1157,6 +1159,7 @@ function generateDiamondQuality()
 
     str2 += "<div class='divCon  fLeft fmOpenR mTop0 dn' id='notcustQuality" + diamondCnt + "'>";
     $.each(dqulaity, function(i, v) {
+        
         str2 += "<div class='dQuality fLeft'>";
         str2 += "<div class='checkDiv fLeft minwidth100'>";
         str2 += "<input type='radio' name='dmdquality_notCust" + diamondCnt + "' class='filled-in' value='" + v.id + "' id='dqRadio_" + diamondCnt + "_" + v.id + "'>";
@@ -1167,6 +1170,7 @@ function generateDiamondQuality()
     });
 
     str2 += "</div>";
+   
     var str = tstr + str1 + str2;
 
     return str;
@@ -1784,10 +1788,11 @@ function submitData()
 {
     showLoader();
     previewData['filterAttrs']=setPrdMapping();
-    var dt = JSON.stringify(previewData);
     
+    var dt = JSON.stringify(previewData);
+ 
     var URL = APIDOMAIN + "index.php?action=addProduct";
-  
+ 
     $.ajax({
         url: URL,
         type: 'POST',
@@ -2379,9 +2384,10 @@ function genPriceSection()
 
 
 
-    var mkch = $('#making_charges').val();
+    var mkch = $('#making_charges').val(); 
     var totalwt = $('#metal_weight').val();
-    var total = parseFloat(mkch) * parseFloat(totalwt);
+    var tot = parseFloat(mkch) * parseFloat(totalwt);
+    var total = tot.toFixed();
 
     var mstr = "<li id='makingCharge'>";
     mstr += "<div class='forComponent fLeft pl15'>Making Charge</div>";
@@ -2418,7 +2424,8 @@ function solitairePrice()
         var nofSolitaire = $('#solNofs' + ids + '').val();
         var totalCarats = parseFloat(carat) * parseFloat(nofSolitaire);
         var price_per_carat = $('#solpricecarat' + ids + '').val();
-        var price = parseFloat(price_per_carat) * parseFloat(totalCarats);
+        var prc = parseFloat(price_per_carat) * parseFloat(totalCarats);
+       var  price = prc.toFixed();
         solstr += "<li id='solitairePrice_" + ids + "'>";
         solstr += "<div class='forComponent fLeft pl15'>" + shape[1] + "</div>";
         solstr += "<div class='forRate fLeft'>&#8377; " + price_per_carat + "/ct</div>";
@@ -2473,14 +2480,14 @@ function diamondPrice()
             price = parseFloat(prc.slice(1)) * parseFloat(carat);
 
         }
-
+     
         str += "<li id='diamondPrice_" + ids + "'>";
         str += "<div class='forComponent fLeft pl15'>" + typstr + "</div>";
         str += "<div class='forRate fLeft' id='diamondRate_" + ids + "'  data-weight='" + carat + "'>" + prc + "/ct</div>";
         str += "<div class='forWeight fLeft'>" + carat + " ct</div>";
         str += "<div class='forPrice calc fLeft' id='diamondTotal_" + ids + "'>&#8377;" + price + "</div>";
         str += "</li>";
-
+ 
     });
     return str;
 }
@@ -2583,13 +2590,15 @@ function goldPrice()
         sstr = "<div>" + gold + "</div>";
         crPrice = $('[name=gpurityNotCustomize]:checked').parent().siblings().text();
         total = parseFloat(crPrice.slice(1)) * parseFloat(carat);
+        
     }
+    var goldTot = total.toFixed();
 
     str += "<li id='goldPrice'>";
     str += "<div class='forComponent fLeft pl15'>" + sstr + "</div>";
     str += "<div class='forRate fLeft' id='goldRate1'>" + crPrice + "/ct</div>";
     str += "<div class='forWeight fLeft' id='goldWeight1' data-weight='" + carat + "'>" + carat + " grm(s)</div>";
-    str += "<div class='forPrice calc fLeft' id='totalgoldRate1'>&#8377;" + total + "</div>";
+    str += "<div class='forPrice calc fLeft' id='totalgoldRate1'>&#8377;" + goldTot + "</div>";
     str += "</li>";
 
     return str;
@@ -2635,13 +2644,13 @@ function pltPrice()
 
 
 function setDmdPrice(obj)
-{
+{  
     var id = $(obj).attr('id');
     id = id.split('diamondPs');
 
     var val = parseFloat($(obj).val());
     var total = val * parseFloat($('#diamondRate_' + id[1]).attr('data-weight'));
-
+   
     var rt = "&#8377; " + val + "/ct";
     $('#diamondRate_' + id[1]).html(rt);
     $('#diamondTotal_' + id[1]).html("&#8377;" + total);
@@ -2656,6 +2665,7 @@ function setGoldPrice()
 
     var val = parseFloat($('#goldPrice1').val());
     var total = val * parseFloat($('#goldWeight1').attr('data-weight'));
+        total =total.toFixed();
     var rt = "&#8377; " + val + "/ct";
     $('#goldRate1').html(rt);
     $('#totalgoldRate1').html("&#8377;" + total);
@@ -2668,7 +2678,7 @@ function setGoldPrice()
 
 
 function calcGrandTotal(type)
-{
+{  
     var total = 0;
     var vat =0;
     $('li .calc').each(function() {
@@ -2681,13 +2691,13 @@ function calcGrandTotal(type)
     vat = (1.20 / 100) * total;
     var vat1 = vat;
     if(!isNaN(vat)){
-        var vat1 =  vat.toFixed(2);
+        var vat1 =  vat.toFixed();
     }
 
     var gtotal = total + vat;
     var gtotal1 = gtotal;
     if(!isNaN(gtotal)){
-        var gtotal1 =  gtotal.toFixed(2);
+        var gtotal1 =  gtotal.toFixed();
     }
 
     if (type == 1)
@@ -2983,7 +2993,7 @@ function oneditmodeCallBack(data)
                     $('[name='+dqname+ids+']').each(function(){
                         var val =$(this).val();
                         if(dqlty[i].id==val)
-                            $(this).attr('checked',true);
+                            $(this).prop('checked',true);
                     });
                 });
 
