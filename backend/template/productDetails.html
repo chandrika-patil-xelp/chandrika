@@ -349,7 +349,7 @@
 
                         $(vendor['results']).each(function(i, vl) { 
                           //  console.log(dt); 
-                            console.log(dt); 
+                           
                           
                             $('#vendorName').text(vl.nm);
                         });
@@ -793,13 +793,13 @@
                 
                 var  inprc =dquality[0].prcPrCrat;
                 var incprice = parseFloat(inprc) * parseFloat(carat);
-                  
+                 var incpfix = incprice.toFixed();
               //  console.log(dquality[0].prcPrCrat); 
                 str += "<li id='diamondPrice_" + ids + "'>";
                 str += "<div class='forComponent fLeft pl15'>" + typstr + "</div>";
                 str += "<div class='forRate fLeft' id='diamondRate_" + ids + "'  data-weight='" + carat + "'>" + inprc + "/ct</div>";
                 str += "<div class='forWeight fLeft'>" + carat + " ct</div>";
-                str += "<div class='forPrice calc fLeft' id='diamondTotal_" + ids + "'>&#8377;" + incprice + "</div>";
+                str += "<div class='forPrice calc fLeft' id='diamondTotal_" + ids + "'>&#8377;" + incpfix + "</div>";
                 str += "</li>";
 
             });
@@ -818,6 +818,7 @@
                 var carat = vl.crat;
                 var price = vl.prcPrCrat;
                 var total = parseFloat(price) * parseFloat(carat);
+                total = total.toFixed();
                 var quality = vl.qulty;
 
                 str += "<li id='uncutdiamondPrice_" + ids + "'>";
@@ -843,7 +844,7 @@
                 var carat = vl.crat;
                 var price = vl.prcPrCrat;
                 var total = parseFloat(price) * parseFloat(carat);
-
+                    total = total.toFixed();
                 str += "<li id='gemstonePrice_" + ids + "'>";
                 str += "<div class='forComponent fLeft pl15'>" + gvalue + "</div>";
                 str += "<div class='forRate fLeft'>" + price + "/ct</div>";
@@ -895,6 +896,7 @@
 
             var gprc=getGoldRates(mpurity[0]);
             var gptotal = parseFloat(gprc) * parseFloat(carat);
+            gptotal = gptotal.toFixed();
             str += "<li id='goldPrice'>";
             str += "<div class='forComponent fLeft pl15'>" + sstr + "</div>";
             str += "<div class='forRate fLeft' id='goldRate1'>" + gprc + "/ct</div>";
@@ -987,7 +989,7 @@
         var mkch = basic.mkngCrg;
         var totalwt =basic.mtlWgt;
         var total = parseFloat(mkch) * parseFloat(totalwt);
-        
+            total=total.toFixed();
         var mstr = "<li id='makingCharge'>";
         mstr += "<div class='forComponent fLeft pl15'>Making Charge</div>";
         mstr += "<div class='forRate fLeft'>" + mkch + "/grm</div>";
@@ -1010,8 +1012,8 @@
         id = id.split('diamondPs');
 
         var val = parseFloat($(obj).val());
-        var total = val * parseFloat($('#diamondRate_' + id[1]).attr('data-weight'));
-
+        var tot = val * parseFloat($('#diamondRate_' + id[1]).attr('data-weight'));
+        var total = tot.toFixed();
         var rt = "&#8377; " + val + "/ct";
         $('#diamondRate_' + id[1]).html(rt);
         $('#diamondTotal_' + id[1]).html("&#8377;" + total);
@@ -1025,7 +1027,8 @@
     {
 
         var val = parseFloat($('#goldPrice1').val());
-        var total = val * parseFloat($('#goldWeight1').attr('data-weight'));
+        var tot = val * parseFloat($('#goldWeight1').attr('data-weight'));
+        var total = tot.toFixed();
         var rt = "&#8377; " + val + "/ct";
         $('#goldRate1').html(rt);
         $('#totalgoldRate1').html("&#8377;" + total);
@@ -1049,18 +1052,19 @@
         });
         
         vat = (1.20 / 100) * total;
-        var vat1 = vat;
+     
+        var vat1 = vat.toFixed();
         if(!isNaN(vat)){
-            var vat1 =  vat.toFixed(2);
+            var vat1 =  vat.toFixed();
         }
        
         var gtotal = total + vat;
         var gtotal1 = gtotal;
         if(!isNaN(gtotal)){
-            var gtotal1 =  gtotal.toFixed(2);
+            var gtotal1 =  gtotal.toFixed();
         }
         $('#sellPrice').html("&#8377;" + gtotal1);
-
+     
         if (type == 1)
         {
             var vstr = "<li id='vatCharges'>";
