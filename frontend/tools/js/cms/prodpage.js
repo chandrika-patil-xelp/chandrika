@@ -137,7 +137,7 @@ $(document).ready(function(){
 
                  if (basic.hasSol == 1){
                        var soliNstr = "";
-                        soliNstr+= '<span> , <span>Solitaire</span></span>';
+                        soliNstr+= '<span>Solitaire</span>';
                    }
                     $('#stn').append(soliNstr);
 
@@ -162,7 +162,7 @@ $(document).ready(function(){
                   if(basic.hasDmd == 1){
                      var diaNstr = ""
 
-                      diaNstr+= '<span>  Φ <span>Diamond</span></span>';
+                      diaNstr+= ' <span>Diamond</span>';
                  }
                   $('#stn').append(diaNstr);
 
@@ -211,7 +211,7 @@ $(document).ready(function(){
 
                    if (basic.hasUnct == 1){
                        var uncutNstr = "";
-                        uncutNstr+= '<span> , <span>Uncut-Diamond</span></span>';
+                        uncutNstr+= '<span>Uncut-Diamond</span>';
                    }
                     $('#stn').append(uncutNstr);
 
@@ -226,7 +226,7 @@ $(document).ready(function(){
                                  var carat = vl.crat;
                                 var price = vl.prcPrCrat;
 
-                                uncutstr+='<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>'+vl.totNo+'</span><span> Uncut-Diamond</span></span><span class="fRight fmSansR"><span> '+vl.crat+'</span> Carat</span></div>';
+                                uncutstr+='<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>'+vl.totNo+'</span><span> Uncut-Diamond</span></span><span class="fRight"><span> '+vl.crat+'</span> Carat</span></div>';
                               getUncutPrice(price,carat);
                             });
                              $('#desc').append(uncutstr);
@@ -244,7 +244,7 @@ $(document).ready(function(){
 
                                 gemstr+='<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>'+vl.totNo+'</span><span> '+vl.gemNm+' </span></span><span class="fRight fmSansR"><span> '+vl.crat+'</span> Carat</span></div>';
                              getGemsPrice(carat,price);
-                               gemNstr+= '<span> , <span>'+vl.gemNm+'</span></span>';
+                               gemNstr+= '<span>'+vl.gemNm+'</span>';
                             });
                              $('#desc').append(gemstr);
                              $('#stn').append(gemNstr);
@@ -297,6 +297,7 @@ $(document).ready(function(){
 
 
                    getTotal();
+
 
                     });
                 }
@@ -423,9 +424,11 @@ function setdmd(e){
       $('#carat').attr("carat_id",b); //changes
       $('#carat').html(wx);
     // glbcarat=t;
-     setTimeout(function() {
-            getTotal(1);
-        }, 50);
+
+        setTimeout(function(){
+          $(m).closest('.selector_cont').find('.options_back').click();
+              getTotal(1);
+        },400);
 
  }
 
@@ -438,7 +441,10 @@ function setdmd(e){
      $('#clr').html(cr);
       $('#clr').attr("clr_id",cc);//chnages
    //  glbcolor=cc;
-
+   setTimeout(function(){
+     $(c).closest('.selector_cont').find('.options_back').click();
+        
+   },400);
  }
 
 //making grandtot as global
