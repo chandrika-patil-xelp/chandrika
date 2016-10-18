@@ -11,7 +11,7 @@
             <div class="homeCollect">
                   <div class="colleCont dTab dn" id="addOpt">
                       <div class="tabDaddrss1 bolder">DELIVERY OPTION</div>
-                  <div class="dAdrsshdr fLeft bolder">CONFIRM NUMBER
+                  <div class="dAdrsshdr fLeft semibold">CONFIRM NUMBER
                       <div class="cbrdr"></div>
                   </div>
                       <div class="delvrAdress fLeft regular">
@@ -45,7 +45,7 @@
                               <div class="txt1">Resend OTP</div>
                           </center>
                       </div>
-                   <div class="dAdrsshdr fLeft bolder">CONFIRM</div>
+                   <div class="dAdrsshdr fLeft semibold">CONFIRM</div>
                   <div class="cnclSbmt fLeft bolder">
                       <div class="w50 fLeft" id="bck">BACK</div>
                       <div class="w51 fRight">SUBMIT</div>
@@ -53,7 +53,7 @@
               </div>
               <div class="colleCont" id="txtAdd">
                   <div class="tabDaddrss bolder">DELIVERY ADDRESS</div>
-                  <div class="dAdrsshdr fLeft bolder">CONFIRM ORDER
+                  <div class="dAdrsshdr fLeft semibold">CONFIRM ORDER
                       <div class="cbrdr"></div>
                   </div>
                   <div class="hdrcrsTxt fLeft regular">
@@ -97,7 +97,8 @@
                       <div class="w51 fRight" id="nxt">SUBMIT</div>
                   </div>
               </div>
-              <div class="colleCont v2 black">
+              <div class="colleCont v2 black" id="scroll">
+                  
                    <div class="dAdrsshdr fLeft semibold">GRAND TOTAL
                       <div class="cbrdr"></div>
                   </div>
@@ -110,8 +111,52 @@
                           <div class="w60 fLeft">
                               <div class="text fLeft bolder">CAROLE WEDDING RING</div>
                               <div class="text fLeft">White gold 18 carats,Diamond 22 carats</div>
-                              <div class="text fLeft"><span>Quality : VVS - EF</span><span class="spanl">Purity - 9CARAT</span></div>
-                               <div class="text fLeft"><span>Color :YELLOW</span><span class="spanl">Size - 28</span></div>
+                     <div class="text fLeft"><span class="spanl">Quality : VVS - EF</span><span class="spanl">Purity - 9CARAT</span></div>
+                               <div class="text fLeft"><span class="spanl">Color :YELLOW</span><span class="spanl">Size - 28</span></div>
+                          </div>
+                          <div class="w40 fLeft">
+                              <div class="text fLeft">Rs. 830909000</div>
+                              <div class="pCount fLeft">
+                                  <center>
+                                  <div class="incr icnPls"></div> 
+                                  <div class="pNumber light">1</div>
+                                  <div class="incr icnMns"></div> 
+                                  </center>
+                              </div>
+                          </div>
+                      </div>
+                      </div>
+                         <div class="jwlCntdtls fLeft regular">
+                             <div class="clsePrdct"></div>
+                      <div class="ordrJwl"></div>
+                      <div class="jwlryDtls fLeft">
+                          <div class="w60 fLeft">
+                              <div class="text fLeft bolder">CAROLE WEDDING RING</div>
+                              <div class="text fLeft">White gold 18 carats,Diamond 22 carats</div>
+                              <div class="text fLeft"><span class="spanl">Quality : VVS - EF</span><span class="spanl">Purity - 9CARAT</span></div>
+                               <div class="text fLeft"><span class="spanl">Color :YELLOW</span><span class="spanl">Size - 28</span></div>
+                          </div>
+                          <div class="w40 fLeft">
+                              <div class="text fLeft">Rs. 830909000</div>
+                              <div class="pCount fLeft">
+                                  <center>
+                                  <div class="incr icnPls"></div> 
+                                  <div class="pNumber light">1</div>
+                                  <div class="incr icnMns"></div> 
+                                  </center>
+                              </div>
+                          </div>
+                      </div>
+                      </div>
+                         <div class="jwlCntdtls fLeft regular">
+                             <div class="clsePrdct"></div>
+                      <div class="ordrJwl"></div>
+                      <div class="jwlryDtls fLeft">
+                          <div class="w60 fLeft">
+                              <div class="text fLeft bolder">CAROLE WEDDING RING</div>
+                              <div class="text fLeft">White gold 18 carats,Diamond 22 carats</div>
+                              <div class="text fLeft"><span class="spanl">Quality : VVS - EF</span><span class="spanl">Purity - 9CARAT</span></div>
+                               <div class="text fLeft"><span class="spanl">Color :YELLOW</span><span class="spanl">Size - 28</span></div>
                           </div>
                           <div class="w40 fLeft">
                               <div class="text fLeft">Rs. 830909000</div>
@@ -394,6 +439,7 @@
             $('.page_loader2').velocity({translateY: ['100%', 0]}, {duration: 600, easing: 'easeInQuart', display: 'none', complete: function () {
                     $('body').removeClass('over_hide');
                 }});
+             $('#scroll').niceScroll({cursorcolor: "#000000", touchbehavior: true, cursorwidth: "4px", autohidemode: false, cursorborder: "0px solid #fff", cursoropacitymin: "0.3", cursoropacitymax: "0.3", railpadding: {top: 2, right: 2, left: 2, bottom: 2}});
         }
 
         $('#nxt').click(function () {
