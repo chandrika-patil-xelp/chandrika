@@ -204,9 +204,20 @@
                                         <div class="actBtn font12 bolder" id="size" >28</div>
                                     </div>
                                 </div>
+                                <!-- <div class="pr_change fLeft">
 
+                                  <div class="ch_cont fRight">
+                                    <span id="newAttr">VV-IG</span>: ₹62,000<span id="newPrice"></span>
+                                  </div>
+                                </div> -->
 
-                                <div class="price_light fLeft">&#8377 <span id="price"> 26,000</span></div>
+                                <div class="price_light fLeft">&#8377 <span id="price"> 26,000</span>
+                                  <div class="ch_cont fLeft" id="ch_price">
+                                    <div class="drNoob">
+                                      <div class="labBuffer">Previous Price: VV-SGH: ₹34,0987</div>
+                                    </div>
+                                  </div>
+                                </div>
 
 
                                 <div class="action_btns">
@@ -234,7 +245,7 @@
                                     <div class="button_label">Select Metal Color</div>
 
                                 </div>
-                                <div class="selector_cont" id="pur">
+                                <div class="selector_cont pur" id="pur">
                                     <div class="options_back">Back</div>
                                     <div class="button_label">Select metal purity</div>
 
@@ -505,14 +516,14 @@
                             'display': 'block'
                         })
                         .appendTo($('body'))
-                        .velocity({top: cart.offset().top, left: cart.offset().left, width: 0, height: 0, opacity: [0.1]}, {duration: 1000, easing: 'easeInOutExpo',
+                        .velocity({top: cart.offset().top +20, left: cart.offset().left +30, width: 0, height: 0, opacity: [0.1]}, {duration: 1000, easing: 'easeInOutExpo',
                             complete: function () {
                                 $(this).detach();
                             }});
-
-                setTimeout(function () {
-                    cart.velocity('stop').velocity({translateX: [-15, 15]}, {duration: 50, easing: 'swing', loop: 3}).velocity({translateX: [0]}, {duration: 25, easing: 'swing'});
-                }, 900);
+                //
+                // setTimeout(function () {
+                //     cart.velocity('stop').velocity({translateX: [-15, 15]}, {duration: 50, easing: 'swing', loop: 3}).velocity({translateX: [0]}, {duration: 25, easing: 'swing'});
+                // }, 900);
 
                 // imgclone.animate({
                 //     'width': 0,
