@@ -369,8 +369,9 @@ $(document).ready(function(){
 
 
                         var clrstr="";
-
+                        //var apcol=vl.dVal.toLowerCase();
                         $.each(metalColor.results, function(j, vl) {
+                            var apcol=vl.dVal.toLowerCase();
                            if(j==0){
                                 $('#clr').text(vl.dNm);
 				$('#clr').attr('clr_id',vl.id); //changes
@@ -378,8 +379,10 @@ $(document).ready(function(){
                         clrstr+='<div class="rad_wrap fLeft">';
                         clrstr+= '<input type="radio" name="metal" id="color_'+j+'_'+vl.id+'" value= "'+vl.dVal+'" onchange="setclr(this)" class="filled-in dn">';
                         clrstr+='<label for="color_'+j+'_'+vl.id+'"></label>';
-                        clrstr+='<div class="check"></div>';
-                        clrstr+='<span class="fmSansB selector_label">'+vl.dVal+'</span>';
+                        clrstr+='<div class="check2 '+ apcol +'"></div>';
+                        clrstr+='<div class="fmSansB selector_label">';
+                        clrstr+= '<div class="labBuffer">'+vl.dVal+'</div>';
+                        clrstr+='</div>';
                         clrstr+='</div>';
                         });
                         $('#colr').append(clrstr);
@@ -586,7 +589,7 @@ function getTotal(type){
 
 			});
       console.log(lazvar);
-        $('#ch_price').find('.labBuffer').append('@' + lazvar);
+        $('#ch_price').find('.labBuffer').append(' @ ' + lazvar);
         // if (type == 1){
         //
         //    $("#price").html(IND_money_format(grandtot).toLocaleString('en'));
