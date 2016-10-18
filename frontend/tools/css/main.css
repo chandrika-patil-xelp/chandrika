@@ -93,7 +93,7 @@ a{color:#666;}
 .point{cursor:pointer;}
 .mTop10{margin-top:10px}
 .input {position: relative;z-index: 1;	display: inline-block;margin-bottom: 20px;width: 100%;vertical-align: top; overflow: hidden; }
-.wrapper_main{width:100%;height:auto;}
+.wrapper_main{width:100%;height:auto;display:table}
 .wrapper_max{width:100%;height:auto;max-width:1200px;margin:auto;display:table;}
 .footer{width: 100%;height: 80px;background-color: #222529;line-height: 60px;padding: 10px;text-align: center;font-family: regular;font-size: 11px;color: rgba(255, 255, 255, 0.3)}
 .header{height:60px;width:100%;position:absolute;top:0;left:0;z-index:101;}
@@ -182,7 +182,7 @@ a{color:#666;}
 .sub_no{background:  url(../img/icons/delete.svg) no-repeat; background-size:15px; background-position: center;}
 .item_amt{width:30px;height:25px;text-align:center;font-size:18px;color:#fff;font-family:semibold}
 .cart_btn{width:20px;height:20px;cursor:pointer;border-radius:50%;}
-.wrapper{width:100%;height:auto;max-height: 720px;padding:60px 20px 0px 20px;float:left;position: relative; z-index: 7; background: #fff;}
+.wrapper{width:100%;height:100vh;max-height: 720px;padding:60px 20px 0px 20px;float:left;position: relative; z-index: 7; background: #fff;}
 .PRODUCT_GRID .wrapper{padding:120px 0px 0px 0px}
 
 
@@ -731,7 +731,7 @@ img{width:100%;height:100%;border:0}
 .lat_logo:after{content:"";height: 12vh; width: 100vh; position: absolute; transform: rotate(-90deg) translateX(60px); background: url(../img/jzevalogoN.svg)no-repeat; background-size: auto 100%; background-position: center; z-index: 10; top: 50%; left: calc(-50vh + 60px);opacity:0.6}
 
 
-.ch_cont{width: 100%;height: 25px;line-height: 25px;font-size: 9px;font-family: semibold;color: #fff;text-transform: uppercase;position: absolute;left: 0;bottom: 0;opacity: 0;background: #fff;letter-spacing: 0.15em;pointer-events:none}
+.ch_cont{width: 100%;height: 25px;line-height: 25px;font-size: 10px;font-family: semibold;color: #fff;text-transform: uppercase;position: absolute;left: 0;bottom: 0;opacity: 0;background: #fff;letter-spacing: 0.15em;pointer-events:none}
 .drNoob:after{content:"";width:100%;height:100%;position:absolute;left:0;top:0;background:#15181b;transform:translateX(-100%);-webkit-transform:translateX(-100%);-moz-transform:translateX(-100%);-ms-transform:translateX(-100%);-o-transform:translateX(-100%);transition: 200ms;-webkit-transition: 200ms;-moz-transition: 200ms;-o-transition: 200ms;-ms-transition: 200ms;}
 .showCh .drNoob:after{transform:translateX(0%);-webkit-transform:translateX(0%);-moz-transform:translateX(0%);-ms-transform:translateX(0%);-o-transform:translateX(0%);}
 .ch_cont .labBuffer{width:auto;position:relative;float:left;color:#fff}
@@ -986,9 +986,12 @@ input[type=radio]:checked ~ .check::before{background: #22B9C7;transform: scale(
 .check2.carat_9{background-image:url(../img/icons/337.svg);background-repeat: no-repeat;background-size: auto 45px;}
 .check2.carat_14{background-image:url(../img/icons/338.svg);background-repeat: no-repeat;background-size: auto 45px;}
 .check2.carat_18{background-image:url(../img/icons/339.svg);background-repeat: no-repeat;background-size: auto 45px;}
-.check2.yellow{background-image:url(../img/icons/340.svg);background-repeat: no-repeat;background-size: auto 40px;}
-.check2.rose{background-image:url(../img/icons/341.svg);background-repeat: no-repeat;background-size: auto 40px;}
-.check2.white{background-image:url(../img/icons/342.svg);background-repeat: no-repeat;background-size: auto 40px;}
+.check2.yellow{}
+.check2.yellow:after{content:"";position:absolute;width:50px;height:50px;top:0;right:0;left:0;margin:auto;background:#d4bba3;box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);border-radius:50%;}
+.check2.rose{}
+.check2.rose:after{content:"";position:absolute;width:50px;height:50px;top:0;right:0;left:0;margin:auto;background:#d0a8a0;box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);border-radius:50%;}
+.check2.white{}
+.check2.white:after{content:"";position:absolute;width:50px;height:50px;top:0;right:0;left:0;margin:auto;background:#e3e3e3;box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);border-radius:50%;}
 .selector_cont .selector_label{height:20px;line-height:20px ; bottom:0;text-transform:uppercase}
 .selector_cont .selector_label:after{content:"";width:100%;height:100%;background:#15181b;position:absolute;top:0;left:0;transform:translateX(-100%);-webkit-transform:translateX(-100%);-moz-transform:translateX(-100%);-o-transform:translateX(-100%);-ms-transform:translateX(-100%);transition:200ms;-webkit-transition:200ms;-moz-transition:200ms;-o-transition:200ms;-ms-transition:200ms;}
 .rad_wrap:hover .labBuffer{color:#fff}
@@ -1499,11 +1502,11 @@ input[type=radio]:checked ~ .selector_label:after {
 .jContainer{width:100%;height:auto;}
 .rightBox{width:40px;height: 100%;position: absolute;right:0;background:#000000 url("../img/rightarroow.svg")no-repeat;background-size: auto 40px;background-position: center;}
 
-
+.phi{width:20px;height:20px;background:url("../img/icons/504.svg")no-repeat;background-size: auto 40px;background-position: center;}
 .headerOff{width:100%;height:100px;position:relative;margin:80px 0 10px 0;padding: 0 20px;color:#15181b}
 .sheadTitle{width:250px;height:100%;position:absolute;background:#fff;left:0px;top:0;font-size:35px;padding-left:20px}
 .headerBot{width:100%;height:60px;border-bottom:1px solid #e6e6e6;}
-.actBtn{width:auto;height:25px;line-height:25px;font-size:12px;font-family:semibold;letter-spacing:0.35em;margin-top: 25px;cursor:pointer;position:relative;overflow:hidden;transition: 450ms !important; -moz-transition: 450ms !important; -ms-transition: 450ms !important; -o-transition: 450ms !important;text-transform:uppercase}
+.actBtn{width:auto;height:25px;line-height:25px;font-size:12px;font-family:semibold;letter-spacing:0.35em;cursor:pointer;position:relative;overflow:hidden;transition: 450ms !important; -moz-transition: 450ms !important; -ms-transition: 450ms !important; -o-transition: 450ms !important;text-transform:uppercase}
 .actBtn:hover{color:#53C9C7}
 .actBtn:after{content:"";width:120%;height:100%;position:absolute;left:0;top:0;background:#53C9C7;transform:translateX(-120%);-moz-transform:translateX(-120%);-webkit-transform:translateX(-120%);-o-transform:translateX(-120%);-ms-transform:translateX(-120%);transition:0ms ease-in;pointer-events:none}
 .actBtn:hover:after{transform:translateX(120%);-moz-transform:translateX(120%);-webkit-transform:translateX(120%);-o-transform:translateX(120%);-ms-transform:translateX(120%);transition:450ms !important}

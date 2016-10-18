@@ -363,6 +363,7 @@
    <script type="text/javascript" src="<?php echo $jvs['prodpage']; ?>"></script>
 
     <script>
+    var exprice=0;
 
         var i = 0;
 
@@ -444,6 +445,8 @@
         /* Customisation */
         var j = 0;
         $('.drop_dn').click(function () {
+          exprice =$('#price').text();
+        
             j = $(this).index();
             //$('body').addClass('over_hide');
             $('.cust_cont2').removeClass('dn');

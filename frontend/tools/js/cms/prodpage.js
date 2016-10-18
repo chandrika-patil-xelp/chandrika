@@ -502,7 +502,7 @@ function setdmd(e){
     setTimeout(function(){
       $(e).closest('.selector_cont ').find('.options_back').click();
       $('#ch_price').find('.labBuffer').empty();
-      $('#ch_price').find('.labBuffer').append('Previous Price:'+ va);
+      $('#ch_price').find('.labBuffer').append('Previous Price:');
       $('#ch_price').velocity({opacity:[1,0]});
       getTotal(1);
     },400);
@@ -529,7 +529,7 @@ function setdmd(e){
           setTimeout(function(){
             $(m).closest('.selector_cont ').find('.options_back').click();
             $('#ch_price').find('.labBuffer').empty();
-            $('#ch_price').find('.labBuffer').append('Previous Price:'+ wx);
+            $('#ch_price').find('.labBuffer').append('Previous Price:');
             $('#ch_price').velocity({opacity:[1,0]});
             getTotal(1);
           },400);
@@ -564,7 +564,7 @@ function setdmd(e){
 var grandtot=0;
 var gtotal=0
 function getTotal(type){
-
+  console.log(exprice);
        total=  parseFloat(basicValue)+ parseFloat(dmdValue) + parseFloat(metalValue) + uncPrice + soliprc + gemsPrice ;
 
     // total= parseFloat(dmdValue) + parseFloat(metalValue) + gemsPrice  + parseFloat(soliValue) + parseFloat(uncutValue)+ parseFloat(basicValue) ;
@@ -575,7 +575,7 @@ function getTotal(type){
 
          grandtot = gtotal.toFixed();
    //  $("#price").html(Number(grandtot).toLocaleString('en'));
-      var lazvar=IND_money_format(grandtot).toLocaleString('en');
+    //  var lazvar=IND_money_format(exprice).toLocaleString('en');
         $('#price').numerator({
 				toValue: grandtot,
 				delimiter: ',',
@@ -588,8 +588,8 @@ function getTotal(type){
 
 
 			});
-      console.log(lazvar);
-        $('#ch_price').find('.labBuffer').append(' @ ' + lazvar);
+
+        $('#ch_price').find('.labBuffer').append(' @ ' + exprice);
         // if (type == 1){
         //
         //    $("#price").html(IND_money_format(grandtot).toLocaleString('en'));
