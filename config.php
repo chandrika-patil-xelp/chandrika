@@ -98,6 +98,10 @@ $jvs = array();
             $fcss['range_slider']             = DOMAIN.'frontend/tools/css/rangeslider/ion.rangeSlider.css?v='.VERSION;
             $fcss['range_slider1']             = DOMAIN.'frontend/tools/css/rangeslider/ion.rangeSlider.skinHTML5.css?v='.VERSION;
             $fcss['range_slider2']             = DOMAIN.'frontend/tools/css/rangeslider/normalize.css?v='.VERSION;
+             $fcss['range_slider3']             = DOMAIN.'frontend/tools/css/rangeslider/ion.rangeSlider.skinFlat.css?v='.VERSION;
+              $fcss['range_slider4']             = DOMAIN.'frontend/tools/css/rangeslider/ion.rangeSlider.skinModern.css?v='.VERSION;
+                $fcss['range_slider5']             = DOMAIN.'frontend/tools/css/rangeslider/ion.rangeSlider.skinNice.css?v='.VERSION;
+                $fcss['range_slider6']             = DOMAIN.'frontend/tools/css/rangeslider/ion.rangeSlider.skinSimple.css?v='.VERSION;
             $fcss['gemstone']             = DOMAIN.'frontend/tools/css/gemstone.css?v='.VERSION;
             $fcss['bxslider']             = DOMAIN.'frontend/tools/css/jquery.bxslider.css?v='.VERSION;
             $fjvs['jquery']                   = DOMAIN.'frontend/tools/js/jquery.js?v='.VERSION;
@@ -105,6 +109,7 @@ $jvs = array();
 
             $fjvs['bxslider']                   = DOMAIN.'frontend/tools/js/jquery.bxslider.js?v='.VERSION;
             $fjvs['velocity']                   = DOMAIN.'frontend/tools/js/velocity.js?v='.VERSION;
+             $fjvs['nicescroll']                   = DOMAIN.'frontend/tools/js/jquery.nicescroll.min.js?v='.VERSION;
             $fjvs['menu']                   = DOMAIN.'frontend/tools/js/menu.js?v='.VERSION;
             $fjvs['home']                   = DOMAIN.'frontend/tools/js/home.js?v='.VERSION;
             $fjvs['range_slider']                   = DOMAIN.'frontend/tools/js/ion.rangeSlider.js?v='.VERSION;
