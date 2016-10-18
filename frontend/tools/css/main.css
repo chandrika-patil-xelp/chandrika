@@ -228,7 +228,7 @@ a{color:#666;}
 .PRODUCT_PAGE .wrapper_max{max-width:1200px;height: 100%;}
 .disable1{pointer-events:none;opacity:0.3 !important; transition:300ms}
 .disable_full{pointer-events:none;opacity:0 !important; }
-.drop_dn{font-size:10px; cursor: pointer; position: relative; text-transform: uppercase;padding: 10px 15px;text-align:left;width:100%;letter-spacing:0.15em;font-family:semibold;background:#f3f3f3;margin-bottom:2px;}
+.drop_dn{font-size:10px; cursor: pointer; position: relative; text-transform: uppercase;padding: 10px 35px 10px 15px;text-align:left;width:100%;letter-spacing:0.15em;font-family:semibold;margin-bottom:2px;background:#f3f3f3 url("../img/icons/27.svg")no-repeat;background-size:13px;background-position:right 10px center ;}
 .drop_dn .actBtn{margin:0;letter-spacing:0}
 .attTitle{width:50%;float:left;height: 100%;line-height: 25px;color:#000;padding-left:20px;background: url(../img/icons/504.svg)no-repeat;background-size:  10px;background-position:left center; opacity:0.5}
 /*.drop_dn:after{width:40%;position:absolute;border-bottom:1px solid #2d2d2d;top:85%;left:0;right:0;margin:auto;content:"";transform:scaleX(0);transition:300ms}
@@ -957,8 +957,15 @@ label{display: block;position: relative;height: 100%;z-index: 9;cursor: pointer;
 input[type=radio]:checked ~ .check {border: 2px solid #22B9C7;}
 input[type=radio]:checked ~ .check::before{background: #22B9C7;transform: scale(1);}
 .CHECKOUT_PAGE .check{top: 15px; left: 8px;}
+.diQ .check{width:70px;height:70px; border:none}
+.diQ .check:after{display:none}
+.check2{width:70px;height:70px;margin-left:0 10px;display:inline-block;position:relative;}
 
-
+.diagofunckyourself:nth-child(3){background-image:url(../img/icons/1-01.svg);background-repeat: no-repeat;background-size: auto 100%;}
+.diagofunckyourself:nth-child(4){background-image:url(../img/icons/2-01.svg);background-repeat: no-repeat;background-size: auto 100%;}
+.diagofunckyourself:nth-child(5){background-image:url(../img/icons/3-01.svg);background-repeat: no-repeat;background-size: auto 100%;}
+.diagofunckyourself:nth-child(6){background-image:url(../img/icons/4-01.svg);background-repeat: no-repeat;background-size: auto 100%;}
+.diagofunckyourself:nth-child(7){background-image:url(../img/icons/5-01.svg);background-repeat: no-repeat;background-size: auto 100%;}
 .PRODUCT_PAGE .check{left: 18px;top:5px;}
 .PRODUCT_GRID2 input[type=radio]:checked ~ label{font-family:bolder;}
 .PRODUCT_PAGE .darkCont{opacity:1;float:left;transform: translateY(0px);-webkit-transform: translateY(0px);-moz-transform: translateY(0px);-o-transform: translateY(0px);-ms-transform: translateY(0px);    padding: 100px 0 100px 0;}
@@ -1151,7 +1158,7 @@ input[type=radio]:checked ~ .check::before{background: #22B9C7;transform: scale(
 .Cushion {background-position: 100% 0%;}
 .Cushion:hover {background-position: 100% 31%;}
 /*.diaCont:hover{border:2px solid #22B9C7;}*/
-.ringCont{cursor:pointer;width:100px;height:90px;display:inline-block;background-repeat:no-repeat;background-size:cover;background-position:center -15px;font-size:11px;text-align:center;padding-top:70px;vertical-align:top;color:#666;}
+/*.ringCont{cursor:pointer;width:100px;height:90px;display:inline-block;background-repeat:no-repeat;background-size:cover;background-position:center -15px;font-size:11px;text-align:center;padding-top:70px;vertical-align:top;color:#666;}
 .ringCont:hover{color:#22B9C7;}
 .ring1{background-image:url('../img/ringIcons/1.svg');}
 .ring1:hover{background-image:url('../img/ringIcons/17.svg');}
@@ -1184,9 +1191,9 @@ input[type=radio]:checked ~ .check::before{background: #22B9C7;transform: scale(
 .ring15{background-image:url('../img/ringIcons/15.svg');}
 .ring15:hover{background-image:url('../img/ringIcons/32.svg');}
 .ring16{background-image:url('../img/ringIcons/16.svg');}
-.ring16:hover{background-image:url('../img/ringIcons/33.svg');}
+.ring16:hover{background-image:url('../img/ringIcons/33.svg');}*/
 
-.ringSel{color:#22B9C7;}
+/*.ringSel{color:#22B9C7;}
 .ringSel.ring1{background-image:url('../img/ringIcons/17.svg');}
 .ringSel.ring2{background-image:url('../img/ringIcons/18.svg');}
 .ringSel.ring3{background-image:url('../img/ringIcons/19.svg');}
@@ -1202,7 +1209,7 @@ input[type=radio]:checked ~ .check::before{background: #22B9C7;transform: scale(
 .ringSel.ring13{background-image:url('../img/ringIcons/30.svg');}
 .ringSel.ring14{background-image:url('../img/ringIcons/31.svg');}
 .ringSel.ring15{background-image:url('../img/ringIcons/32.svg');}
-.ringSel.ring16{background-image:url('../img/ringIcons/33.svg');}
+.ringSel.ring16{background-image:url('../img/ringIcons/33.svg');}*/
 
 .selRing{}
 .selRing .Round{background-position: 0% 31%;}
@@ -1289,6 +1296,30 @@ input[type=radio]:checked ~ .check::before{background: #22B9C7;transform: scale(
 .thinIc{background-image: url('../img/filterIcons/319.svg');background-repeat:no-repeat;}
 .traditionalIc{background-image: url('../img/filterIcons/320.svg');background-repeat:no-repeat;}
 .sglineneckIc{background-image: url('../img/filterIcons/321.svg');background-repeat:no-repeat;}
+
+
+/*Ring Style Filter Icons*/
+
+.solitaireIc{background-image: url('../img/filterIcons/322.svg');background-repeat:no-repeat;}
+.paveIc{background-image: url('../img/filterIcons/323.svg');background-repeat:no-repeat;}
+.channelIc{background-image: url('../img/filterIcons/324.svg');background-repeat:no-repeat;}
+.sidestonesIc{background-image: url('../img/filterIcons/325.svg');background-repeat:no-repeat;}
+.threestoneIc{background-image: url('../img/filterIcons/326.svg');background-repeat:no-repeat;}
+.tensionIc{background-image: url('../img/filterIcons/327.svg');background-repeat:no-repeat;}
+.haloIc{background-image: url('../img/filterIcons/328.svg');background-repeat:no-repeat;}
+.vintageIc{background-image: url('../img/filterIcons/328.svg');background-repeat:no-repeat;}
+.weddingsetIc{background-image: url('../img/filterIcons/329.svg');background-repeat:no-repeat;}
+
+.prongIc{background-image: url('../img/filterIcons/330.svg');background-repeat:no-repeat;}
+.flushsetIc{background-image: url('../img/filterIcons/332.svg');background-repeat:no-repeat;}
+.bezelIc{background-image: url('../img/filterIcons/333.svg');background-repeat:no-repeat;}
+.clusterIc{background-image: url('../img/filterIcons/334.svg');background-repeat:no-repeat;}
+.invisibleIc{background-image: url('../img/filterIcons/335.svg');background-repeat:no-repeat;}
+.illusionIc{background-image: url('../img/filterIcons/336.svg');background-repeat:no-repeat;}
+
+
+
+
 @keyframes dash {
   from {
     stroke-dashoffset: 1000;
@@ -1343,12 +1374,16 @@ input[type=radio]:checked ~ .check::before{background: #22B9C7;transform: scale(
 .ftab_buffer{width:100%;height:auto;position:relative;z-index:20;text-align:center;transition:200ms;-webkit-transition:200ms;-moz-transition:200ms;-o-transition:200ms;-ms-transition:200ms;}
 /*.ftab_buffer:hover{background:#15181b}*/
 .ftabB{width:auto;height:40px;cursor:pointer;font-family:semibold;display:inline-block;letter-spacing:0.1em}
-.ftab{width:100%;height:100%;transition:200ms;-webkit-transition:200ms;-moz-transition:200ms;-o-transition:200ms;-ms-transition:200ms;color:#fff; padding:0 25px;font-size:11px;line-height: 40px;}
-.ftabB:hover .taba, .selec.taba{background:#fff !important;color:#15181b !important}
-.ftabB:hover .tabb, .selec.tabb{background:#fff !important;color:#15181b !important}
+.ftab{width:100%;height:100%;transition:200ms;-webkit-transition:200ms;-moz-transition:200ms;-o-transition:200ms;-ms-transition:200ms;color:#fff; padding:0 40px 0 25px;font-size:11px;line-height: 40px;position:relative;}
+.ftab:after{content:"";width:20px;height:20px;top: -3px;right: 18px;bottom:0;margin:auto;position:absolute; background:url('../img/icons/28.svg') no-repeat;background-size:13px;background-position:center}
+.ftab:before{content:"";width:20px;height:20px;top: -3px;right: 18px;bottom:0;margin:auto;position:absolute; background:url('../img/icons/27.svg') no-repeat;background-size:13px;background-position:center;display:none}
+.ftabB:hover .ftab, .selec.ftab{background:#fff !important;color:#15181b !important}
+.ftabB:hover .ftab:after{display:none}
+.ftabB:hover .ftab:before{display:block}
+/*.ftabB:hover .tabb, .selec.tabb{background:#fff !important;color:#15181b !important}
 .ftabB:hover .tabc, .selec.tabc{background:#fff !important;color:#15181b !important}
 .ftabB:hover .tabd, .selec.tabd{background:#fff !important;color:#15181b !important}
-.ftabB:hover .tabe, .selec.tabe{background:#fff !important;color:#15181b !important}
+.ftabB:hover .tabe, .selec.tabe{background:#fff !important;color:#15181b !important}*/
 
 
 .fmenu_wrap{font-family: regular;position:absolute;top:40px;left:0;width:100%;height:auto;background:transparent;display:block;overflow:hidden; }
@@ -1813,6 +1848,7 @@ input[type=radio]:checked ~ .check::before{background: #22B9C7;transform: scale(
 .orderidOuter{width: 100%;height: auto;padding: 15px 0px;border-bottom: 1px solid #ccc;}
 .ordTxt{width: auto;height:30px;line-height:30px;padding:0px 15px;font-size:14px;font-family: regular;}
 .inShip{width: 100%;height: auto;}
+
 .detailsOuter{width: 100%;height: auto;padding: 15px 0px; border-bottom: 1px solid #ccc;}
 .orderImg{width: 20%;height: 100px;border: 1px solid;}
 .orderName{width:30%;height:auto;padding-left:10px;}
@@ -1832,3 +1868,4 @@ input[type=radio]:checked ~ .check::before{background: #22B9C7;transform: scale(
 .inCourier{width: 100%;    height: auto;   padding-bottom: 15px;}
 .detailOrder{width: 100%;height: 60px;line-height: 60px;ext-transform: uppercase;font-family: semibold;padding-left: 15px;border-bottom: 1px solid #ccc;}
 
+>>>>>>> .r651
