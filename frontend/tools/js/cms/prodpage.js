@@ -386,7 +386,7 @@ $(document).ready(function(){
                     $('input[name="metal"]').eq(0).attr('checked',true);
 
 
-                   getTotal();
+                   getTotal(3);
 
                     });
                 }
@@ -496,8 +496,20 @@ function setdmd(e){
       $('#qual').html(va);
 
     // glbquality=s;
-            getTotal(1);
-
+    setTimeout(function(){
+      $(e).closest('.selector_cont ').find('.options_back').click();
+      $('#ch_price').find('.labBuffer').empty();
+      $('#ch_price').find('.labBuffer').append('Previous Price:'+ va);
+      $('#ch_price').velocity({opacity:[1,0]});
+      getTotal(1);
+    },400);
+    setTimeout(function(){
+      $('#ch_price').addClass('showCh');
+    },800);
+    setTimeout(function(){
+      $('#ch_price').removeClass('showCh');
+      $('#ch_price').velocity({opacity:[0,1]});
+    },3000);
  }
 
  function setmetal(m){
@@ -510,9 +522,21 @@ function setdmd(e){
       $('#carat').attr("carat_id",b); //changes
       $('#carat').html(wx);
     // glbcarat=t;
-     setTimeout(function() {
+
+          setTimeout(function(){
+            $(m).closest('.selector_cont ').find('.options_back').click();
+            $('#ch_price').find('.labBuffer').empty();
+            $('#ch_price').find('.labBuffer').append('Previous Price:'+ wx);
+            $('#ch_price').velocity({opacity:[1,0]});
             getTotal(1);
-        }, 50);
+          },400);
+          setTimeout(function(){
+            $('#ch_price').addClass('showCh');
+          },800);
+          setTimeout(function(){
+            $('#ch_price').removeClass('showCh');
+            $('#ch_price').velocity({opacity:[0,1]});
+          },3000);
 
  }
 
@@ -548,9 +572,9 @@ function getTotal(type){
 
          grandtot = gtotal.toFixed();
    //  $("#price").html(Number(grandtot).toLocaleString('en'));
-
+      var lazvar=IND_money_format(grandtot).toLocaleString('en');
         $('#price').numerator({
-				toValue: data.results.revenue,
+				toValue: grandtot,
 				delimiter: ',',
 				onStart: function() {
 					isStop = true;
@@ -559,7 +583,10 @@ function getTotal(type){
 					$("#price").html(IND_money_format(grandtot).toLocaleString('en'));
 				}
 
+
 			});
+      console.log(lazvar);
+        $('#ch_price').find('.labBuffer').append('@' + lazvar);
         // if (type == 1){
         //
         //    $("#price").html(IND_money_format(grandtot).toLocaleString('en'));
