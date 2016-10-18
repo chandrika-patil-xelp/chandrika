@@ -210,7 +210,7 @@ $(document).ready(function(){
                      case 7:
                     {
                          gemstn = gemstone.results[0].gemNm;
-                        Nstr+= '<span>Diamond,'+gemstn+'</span>';
+                        Nstr+= '<span>Diamond</span><span>'+gemstn+'</span>';
                         break;
                     }
 

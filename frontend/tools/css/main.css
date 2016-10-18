@@ -1,7 +1,13 @@
 
 *{box-sizing:border-box;}
 div{display:block;box-sizing:border-box;}
-html{width:100%;height:100%;}
+html{width:100%;height:100%;font-variant-numeric: lining-nums;
+-moz-font-feature-settings:"lnum" 1;
+-moz-font-feature-settings:"lnum=1";
+-ms-font-feature-settings:"lnum" 1;
+-o-font-feature-settings:"lnum" 1;
+-webkit-font-feature-settings:"lnum" 1;
+font-feature-settings:"lnum" 1;}
 body{padding:0;margin:0;overflow-x:hidden;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;}
 textarea:focus, input:focus , select:focus ,option:focus{
     outline: none;
@@ -176,7 +182,7 @@ a{color:#666;}
 .sub_no{background:  url(../img/icons/delete.svg) no-repeat; background-size:15px; background-position: center;}
 .item_amt{width:30px;height:25px;text-align:center;font-size:18px;color:#fff;font-family:semibold}
 .cart_btn{width:20px;height:20px;cursor:pointer;border-radius:50%;}
-.wrapper{width:100%;height:100vh;max-height: 720px;padding:60px 20px 0px 20px;float:left;position: relative; z-index: 7; background: #fff;}
+.wrapper{width:100%;height:auto;max-height: 720px;padding:60px 20px 0px 20px;float:left;position: relative; z-index: 7; background: #fff;}
 .PRODUCT_GRID .wrapper{padding:120px 0px 0px 0px}
 
 
@@ -725,7 +731,7 @@ img{width:100%;height:100%;border:0}
 .lat_logo:after{content:"";height: 12vh; width: 100vh; position: absolute; transform: rotate(-90deg) translateX(60px); background: url(../img/jzevalogoN.svg)no-repeat; background-size: auto 100%; background-position: center; z-index: 10; top: 50%; left: calc(-50vh + 60px);opacity:0.6}
 
 
-.ch_cont{width: 100%;height: 25px;line-height: 25px;font-size: 10px;font-family: semibold;color: #fff;text-transform: uppercase;position: absolute;left: 0;bottom: 0;opacity: 0;background: #fff;letter-spacing: 0.15em;pointer-events:none}
+.ch_cont{width: 100%;height: 25px;line-height: 25px;font-size: 9px;font-family: semibold;color: #fff;text-transform: uppercase;position: absolute;left: 0;bottom: 0;opacity: 0;background: #fff;letter-spacing: 0.15em;pointer-events:none}
 .drNoob:after{content:"";width:100%;height:100%;position:absolute;left:0;top:0;background:#15181b;transform:translateX(-100%);-webkit-transform:translateX(-100%);-moz-transform:translateX(-100%);-ms-transform:translateX(-100%);-o-transform:translateX(-100%);transition: 200ms;-webkit-transition: 200ms;-moz-transition: 200ms;-o-transition: 200ms;-ms-transition: 200ms;}
 .showCh .drNoob:after{transform:translateX(0%);-webkit-transform:translateX(0%);-moz-transform:translateX(0%);-ms-transform:translateX(0%);-o-transform:translateX(0%);}
 .ch_cont .labBuffer{width:auto;position:relative;float:left;color:#fff}
