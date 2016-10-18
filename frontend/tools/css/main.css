@@ -1837,11 +1837,12 @@ input[type=radio]:checked ~ .selector_label:after {
 
 .tabDaddrss{width: auto;padding: 0px 20px;color: #fff;height: 30px;font-size: 11px;transform: rotate(-90deg);position: absolute;left: -32px;transform-origin: 0 0;top: 190px;letter-spacing: 0.09vw;line-height: 28px;}
 .tabDaddrss1{width: auto;padding: 0px 20px;color: #fff;height: 30px;font-size: 11px;transform: rotate(-90deg);position: absolute;left: -32px;transform-origin: 0 0;bottom:0;letter-spacing: 0.09vw;line-height: 28px;}
-.delvrAdress{width:100%;height:auto;padding: 50px 0px;}
+.delvrAdress{width:100%;height:auto;padding:50px 0px 30px 0px;}
 .delvrAdress .w50r{width:50%;height:auto;padding-right:30px;}
 .delvrAdress .w50r .text{width:100%;height:auto;text-align:right;font-size:13px;line-height:26px;color:#333;}
 .delvrAdress .w50l{width:50%;height:auto;padding-left:30px;}
-.delvrAdress .w50l .text{width:100%;height:auto;text-align:left;font-size:13px;line-height:17px;color:#333;}
+.delvrAdress .w50l .text{width:100%;height:auto;text-align:left;font-size:13px;line-height:22px;color:#333;}
+.delvrAdress .w50l .text span{display:inline-block;line-height:inherit;vertical-align:middle;}
 .entrOtp{width:100%;height:auto;font-size:15px;line-height:30px;text-align:center;color:#333;margin-bottom: 5px;}
 .centerDvHldr{width:100%;height:auto;margin-bottom: 20px;}
 .cntrDvcnt{width:70%;height:auto;display:inline-block;}
