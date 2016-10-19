@@ -75,6 +75,16 @@ $(document).ready(function(){
         $.ajax({
             type:'POST',
             url:URL,
+            xhrFields: {
+              onprogress: function (e) {
+                console.log('here');
+                console.log(e);
+                  //console.log(e.total);
+              //  if (e.lengthComputable) {
+                  console.log(e.loaded / e.total * 100 + '%');
+                //  }
+                }
+              },
             success:function(res){
 
              data = JSON.parse(res);
@@ -610,7 +620,7 @@ function getcatsize(s){
               var str = "";
                if (dat['error']['err_code'] == '0')
             {
-                 $(dat.result).each(function(x, y) {                    
+                 $(dat.result).each(function(x, y) {
                      str+= '<div class="selectOptions">Size '+ y.sval +'</div>';
 
               });

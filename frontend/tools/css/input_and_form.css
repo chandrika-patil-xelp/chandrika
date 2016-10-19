@@ -4,12 +4,13 @@ div{display:block;}
 html{width:100%;height:100%;}
 body{padding:0;margin:0;}
 textarea:focus, input:focus{outline: none;}
-@font-face{font-family:thin;src: url(../fonts/Raleway-Thin.ttf);}
-@font-face{font-family:light;src: url(../fonts/Raleway-Light.ttf);}
-@font-face{font-family:regular;src: url(../fonts/Raleway-Regular.ttf);}
-@font-face{font-family:semibold;src: url(../fonts/Raleway-Semibold.ttf);}
-@font-face{font-family:bolder;src: url(../fonts/Raleway-Bold.ttf);}
-@font-face{font-family:xlight;src: url(../fonts/Raleway-ExtraLight.ttf);}
+@font-face{font-family:thin;src: url(../fonts/raleway-thin.woff);}
+@font-face{font-family:light;src: url(../fonts/raleway-light.woff);}
+@font-face{font-family:regular;src: url(../fonts/raleway-regular.woff);}
+@font-face{font-family:semibold;src: url(../fonts/raleway-semibold.woff);}
+@font-face{font-family:bolder;src: url(../fonts/raleway-bold.woff);}
+@font-face{font-family:xlight;src: url(../fonts/raleway-extraLight.woff);}
+
 
 .thin{font-family:thin;}
 .light{font-family:light;}
@@ -21,7 +22,7 @@ textarea:focus, input:focus{outline: none;}
 .fLeft{float:left;}
 .fRight{float:right;}
 .transition300{transition:300ms;-moz-transition:300ms;-webkit-transition:300ms;}
-.container{width:100%;height:100%;background-color:#fff;padding-top:0px;display:table}
+.container{width:100%;height:100%;background-color:#fff;padding-top:0px;display:table;overflow:hidden}
 .paddingAll{padding:140px 30px 30px 30px !important;}
 .wrapper2{width:100%;height:100%;display:inline-block;}
 .wrapperMax{width:100%;height:auto;max-width:1400px;margin:auto;}
