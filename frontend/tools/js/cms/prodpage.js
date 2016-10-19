@@ -3,7 +3,7 @@
  var glbquality;
  var glbcolor;
  var glbcarat;
-var catsize = 0;
+var catsize;
 
 var dmdValue =metalValue=soliValue=gemsValue=uncutValue =basicValue= 0;
 var gIndex=0;
@@ -88,10 +88,12 @@ $(document).ready(function(){
                 var solitaire = dt['solitaire'];
                 var diamonds = dt['dimond'];
                 var uncut = dt['uncut'];
-               
+                var metalwgt  = dt['metal_weight'];
                 var gemstone = dt['gamestone'];
                 var images = dt['images'];
 
+                 catsize =dt['catAttr']['results'][1]['cid'];
+               getcatsize(catAttr);
                 if (data['error']['err_code'] == '0')
             {
                   var imgstr = "";
@@ -106,7 +108,7 @@ $(document).ready(function(){
 
 
                 });
-                 catsize =dt['catAttr']['results'][1]['cid'];
+                
             
 
              $(basic).each(function(i, vl) {
@@ -588,6 +590,12 @@ function getTotal(type){
         // }
 }
 
+function getcatsize(s){
+  var catAtt = s;
+ 
+  var catname = catAtt['results'][1]['name'];
+  
+  if(catname == 'Rings' || catname == 'Bangles'){
 $('#size').on('click',function(){
     
    var cid = catsize;
@@ -619,3 +627,8 @@ $('#size').on('click',function(){
         }
         });
 });
+  }
+  else{
+      $('#pur').remove();
+  }
+}
