@@ -1829,16 +1829,16 @@ input[type=radio]:checked ~ .selector_label:after {
 /*new checkout*/
 .chkout{}
 .chkout .colleCont{padding: 50px 40px; overflow:initial;}
-.chkout .darkCont{padding:30px 0 50px 0;}
+.chkout .darkCont{padding:0px 0 2px 0}
 .chkoutHeader{width:100%;height:60px;background-color:#15181b;position:fixed;top:0;left:0;z-index:50;}
 .chkoutHeader .logo {width: 200px;height: 100%;background: url(../img/jzevalogo.svg)no-repeat;background-size:auto 20px;background-position: 30px center;}
-.dAdrsshdr{width:100%;height:28px;font-size:12px;color:#333;text-align:center;text-transform:uppercase;position:relative;line-height:24px;letter-spacing:0.35em;}
+.dAdrsshdr{width:100%;height:28px;font-size:12px;color:#15181b;text-align:center;text-transform:uppercase;position:relative;line-height:24px;letter-spacing:0.35em;}
 .cbrdr{width:13%;height:0px;border-top:2px solid #333;position:absolute;bottom:0;left:0;right:0;margin:auto;}
-.hdrcrsTxt{width:100%;height:auto;margin-top: 15px;}
+.hdrcrsTxt{width:100%;height:auto;margin-top: 20px;}
 .hdrcrsTxt .intTxt{width:100%;height:25px;line-height:25px;text-align:center;color:#666;font-size:18px;}
-.frmDtls{width:100%;height:auto;margin-top: 10px;}
-.frmDtls .inp_cont {width: 100%;height: 40px;position: relative;margin-bottom: 12px;}
-.cnclSbmt{width:100%;height:25px;position: absolute;left: 0;bottom: 30px;}
+.frmDtls{width:100%;height:auto;margin-top: 20px;}
+.frmDtls .inp_cont {width: 100%;height: 40px;position: relative;margin-bottom: 20px;}
+.cnclSbmt{width:100%;height:25px;position: absolute;left: 0;bottom: -10px;}
 .cnclSbmt .w50{width:50%;height:25px;padding-right:50px;color:#333;text-align:right;line-height:25px;font-size:12px;cursor:pointer;}
 .cnclSbmt .w51{width:50%;height:25px;padding-left:50px;color:#333;text-align:left;line-height:25px;font-size:12px;cursor:pointer;}
 .black .dAdrsshdr{color:#fff;}
@@ -1879,6 +1879,21 @@ input[type=radio]:checked ~ .selector_label:after {
  .scrollerCnt{width:100%;height:550px;}
  .ePadding{padding:50px 113px !important}
  .cotpTxt{width:100%;height: 28px;font-size: 12px;color: #333;text-align: center;text-transform: uppercase;line-height: 24px;letter-spacing: 0.05em;}
+ .fadeCnt{width:100%;height:500px;position:absolute;top:0;left:0;background:#fff;}
+ #scndup{opacity:0;transform:translateY(20px);display:none}
+ #fstup{opacity:0;transform:translateY(20px);display:none}
+ .yetanotherbuffer{width:100%;height:100%;position:relative}
+ .w49{width:49% !important;}
+ .entrotppopup{width:100%;height:100%;position:fixed;background-color:rgba(0,0,0,0.7);z-index:999;left:0;top:0;opacity:0;display:none;}
+ .enterotpCnt{width:420px;height:200px;position:absolute;left:0;right:0;top:0;bottom:0;margin:auto;background-color:#fff;border-radius:2px;padding: 30px 25px;opacity:0;transform:scale(0);border-radius:50%;}
+ .enterotpCnt .w100{width:100%;height:auto;}
+ .enterotpCnt .w100 .w70{width:75%;height:auto;}
+ .enterotpCnt .w100 .w70 .inp_cont{margin-bottom:0px;width:100%;}
+ .enterotpCnt .w100 .w30{width:25%;height:40px;line-height:46px;color:#15181b;padding:0px 10px;font-size:13px;cursor:pointer;text-align:center;}
+ .sbmt{width:auto;height:30px;color:#15181b;line-height:30px;text-align:center;padding:0px 10px;display:inline-block;font-size:13px;cursor:pointer;}
+ .btnhldr{width:100%;height:30px;position:absolute;left:0;bottom:10px;}
+ 
+ 
  /*range slider*/
  .rngDv{width:320px;height:50px;position:absolute;left:0;right:0;top:0;bottom:0;margin:auto;}
 /*john-rangeslider*/
@@ -1886,6 +1901,10 @@ input[type=radio]:checked ~ .selector_label:after {
 .irs-grid-text {color: #666 !important;}
 .irs-slider{width: 15px !important;height: 15px !important;border: 1px solid #0CCDB8 !important;background-color: #0CCDB8 !important;}
 .irs-bar{background-color: #0CCDB8 !important;}
+.sgnUptxt{width:100%;height:auto;color:#15181b;font-size:20px;line-height:40px;text-align:center; margin-top: 40px;}
+.sgnUptxt span{cursor:pointer;}
+.dvdr{width:100%;height:2px;position:relative;border-bottom:1px solid #ccc;margin-top: 40px;}
+.dvdr:after{content: 'Or';width: 30px;height: 30px;font-size: 14px;color: #15181b;font-family: semibold;line-height: 30px;text-align: center;position: absolute;left: 0;right: 0;margin: auto;top: -13px;background-color: #fff;}
 
 
 /*my account*/
