@@ -16,20 +16,20 @@
                   </div>
                       <div class="delvrAdress fLeft regular">
                           <div class="w50r fLeft">
-                              <div class="text fLeft">Janardan prasanna ghosh</div>
-                               <div class="text fLeft">janardan@xelpmoc.in</div>
-                                <div class="text fLeft">bangalore-560095</div>
+                              <div class="text fLeft" id="spnd_name">Janardan prasanna ghosh</div>
+                               <div class="text fLeft" id="spnd_email">janardan@xelpmoc.in</div>
+                                <div class="text fLeft" id="spnd_city_pin">bangalore-560095</div>
                           </div>
-                          <div class="w50l fRight">
+                          <div class="w50l fRight"> 
                               <div class="text fLeft"><span>#657 5th A cross,17th E main road,Koromangala club,Bangalore,Karanataka,560095</span></div>
-                          </div>
+                           </div>
                       </div>
                       <div class="entrOtp fLeft semibold">Enter OTP</div>
                       <div class="centerDvHldr fLeft regular">
                           <center>
                               <div class="cntrDvcnt">
                              <div class="inp_cont fmSansR fLeft">
-                                <input type="text" class="inp_box ">
+                                <input type="text" class="inp_box " id="otp_txt">
                             </div>
                               </div>
                           </center>
@@ -39,13 +39,13 @@
                       </div>
                       <div class="centerDvHldr fLeft regular">
                           <center>
-                              <div class="txt1">Resend OTP</div>
-                          </center>
-                      </div>
-                   <div class="cotpTxt fLeft semibold">CONFIRM OTP</div>
+                              <div class="txt1" id="resend_otp">Resend OTP</div>
+                          </center> 
+                      </div>  
+                   <div class="cotpTxt fLeft semibold"> <span id="confrm">CONFIRM OTP</span></div> 
                   <div class="cnclSbmt fLeft bolder">
-                      <div class="w50 fLeft" id="bck">BACK</div>
-                      <div class="w51 fRight">SUBMIT</div>
+                       <div class="w50 fLeft" id="bck">BACK</div>
+                      <div class="w51 fRight" id="sbmtshpdata">SUBMIT</div> 
                   </div>
               </div>
               <div class="colleCont ePadding" id="txtAdd">
@@ -101,7 +101,7 @@
                   </div>
                   <div class="prcTxt fLeft regular">3,56,000</div>
                   <div class="jwlCnt fLeft regular" id="scroll">
-                      <div class="jwlCntdtls fLeft regular">
+                      <!--<div class="jwlCntdtls fLeft regular">
                           <div class="clsePrdct"></div>
                       <div class="ordrJwl"></div>
                       <div class="jwlryDtls fLeft">
@@ -143,9 +143,9 @@
                                   </center>
                               </div>
                           </div>
+                      </div>-->
                       </div>
-                      </div>
-                         <div class="jwlCntdtls fLeft regular">
+                         <!--<div class="jwlCntdtls fLeft regular">
                              <div class="clsePrdct"></div>
                       <div class="ordrJwl"></div>
                       <div class="jwlryDtls fLeft">
@@ -166,8 +166,8 @@
                               </div>
                           </div>
                       </div>
-                      </div>
-                         <div class="jwlCntdtls fLeft regular">
+                      </div>-->
+                         <!--<div class="jwlCntdtls fLeft regular">
                              <div class="clsePrdct"></div>
                       <div class="ordrJwl"></div>
                       <div class="jwlryDtls fLeft">
@@ -188,7 +188,7 @@
                               </div>
                           </div>
                       </div>
-                      </div>
+                      </div>-->
                   </div>
               </div>
             </div>
@@ -397,9 +397,9 @@
                 </div>
 
             </div>
-        </div>-->
+        </div>
 
-    </div>
+    </div>-->
     <div class="page_loader">
         <div class="cs-loader-inner ">
             <label>●</label>
@@ -440,7 +440,12 @@
         }
 
         $('#nxt').click(function () {
-            $('#addOpt').removeClass("dn");
+	  if(validationFlag == 2){ 
+	   // sendotp();
+	    $('.txt').html('We have sent an OTP via sms to '+mobileno) 
+            
+	    }
+	    $('#addOpt').removeClass("dn");
             $('#txtAdd').addClass("dn");
         });
         $('#bck').click(function () {
