@@ -1,6 +1,25 @@
 <?php include 'jhead.html' ?>
 <body class="greyBg"  >
     <?php include 'Cart.html' ?>
+    <div class="entrotppopup">
+        <div class="enterotpCnt regular">
+            <div class="w100 fLeft">
+                <div class="w70 fLeft">
+                   <div class="inp_cont fmSansR fLeft">
+                      <input type="text" class="inp_box " id="shpdemail" maxlength="30">
+                       <div class="inp_label fmSansB bolder">Enter OTP*</div>
+                   </div> 
+                </div>
+                <div class="w30 fLeft semibold">Resend</div>
+            </div>
+            <div class="btnhldr">
+                <center>
+                    <div class="sbmt semibold" onclick="closeotppop()">Back</div>
+                    <div class="sbmt semibold">Submit</div>
+                </center>
+            </div>
+        </div>
+    </div>
 <div class="chkoutHeader">
         <div class="logo fLeft"></div>
     </div>
@@ -9,8 +28,11 @@
             <div class="darkCont fadeInup runslider" id="darkCont">
           <div class="wrapper_max">
             <div class="homeCollect">
-                  <div class="colleCont dTab dn ePadding" id="addOpt">
-                      <div class="tabDaddrss1 semibold">DELIVERY OPTION</div>
+                  <div class="colleCont dTab ePadding" id="addOpt">
+                      <div class="tabDaddrss1 semibold dn">DELIVERY OPTION</div>
+                        <div class="tabDaddrss semibold">DELIVERY ADDRESS</div>
+                        <div class="yetanotherbuffer">
+                      <div class="fadeCnt fLeft" id="scndup">
                   <div class="dAdrsshdr fLeft semibold">CONFIRM NUMBER
                       <div class="cbrdr"></div>
                   </div>
@@ -44,11 +66,64 @@
                       </div>  
                    <div class="cotpTxt fLeft semibold"> <span id="confrm">CONFIRM OTP</span></div> 
                   <div class="cnclSbmt fLeft bolder">
-                       <div class="w50 fLeft" id="bck">BACK</div>
-                      <div class="w51 fRight" id="sbmtshpdata">SUBMIT</div> 
+                      <div class="w50 fLeft" onclick="opnscnd()">BACK</div>
+                      <div class="w51 fRight">SUBMIT</div>
                   </div>
+                  </div>
+                      <div class="fadeCnt fLeft" id="fstup">
+                          <div class="dAdrsshdr fLeft semibold">CONFIRM ORDER
+                      <div class="cbrdr"></div>
+                  </div>
+                  <div class="hdrcrsTxt fLeft regular">
+                      <div class="intTxt fLeft">Please fill in the details below to proceed</div>
+                      <div class="intTxt fLeft">To purchase this amazing product</div>
+                  </div>
+                  <div class="frmDtls fLeft semibold">
+                            <div class="inp_cont fmSansR fLeft w49">
+                                <input type="text" class="inp_box " id="shpdname" maxlength="30">
+                                <div class="inp_label fmSansB">Name*</div>
+                            </div>
+                            <div class="inp_cont fmSansR fRight w49">
+                                <input type="text" class="inp_box "  id="shpdmobile" maxlength="10">
+                                <div class="inp_label fmSansB">Mobile*</div>
+                            </div>
+                            <div class="inp_cont fmSansR fLeft">
+                                <input type="text" class="inp_box " id="shpdemail" maxlength="30">
+                                <div class="inp_label fmSansB">Email*</div>
+                            </div>
+                            <div class="inp_cont fmSansR fLeft">
+                                <input type="text" class="inp_box " id="shpdstreet" maxlength="15">
+                                <div class="inp_label fmSansB">Address*</div>
+                            </div>
+                            <div class="inp_cont fmSansR fLeft">
+                                <input type="text" class="inp_box "  id="shpdpincode">
+                                <div class="inp_label fmSansB">Zip code*</div>
+                            </div>
+                            <div class="inp_cont fmSansR fLeft w49">
+                                <input type="text" class="inp_box " id="shpdstate" maxlength="20">
+                                <div class="inp_label fmSansB">State*</div>
+                            </div>
+                            <div class="inp_cont fmSansR fRight w49">
+                                <input type="text" class="inp_box " id="shpdcity" maxlength="15">
+                                <div class="inp_label fmSansB">City*</div>
+                            </div>
+                  </div>
+                  <div class="cnclSbmt fLeft bolder">
+                      <div class="w50 fLeft" onclick="closeThrd()">BACK</div>
+                      <div class="w51 fRight" onclick="openfst()">SUBMIT</div>
+                  </div>
+                      </div>
+                            <div class="fadeCnt fLeft" id="thrdup">
+                                  <div class="dAdrsshdr fLeft semibold">Have an account?
+                      <div class="cbrdr"></div>
+                  </div>
+                    <div class="sgnUptxt fLeft regular"><span>Sign Up</span></div>
+                    <div class="dvdr fLeft"></div>
+                    <div class="sgnUptxt fLeft regular"><span onclick="openThrd()">Continue as a guest</span> </div>
+                            </div>
+                        </div>
               </div>
-              <div class="colleCont ePadding" id="txtAdd">
+<!--              <div class="colleCont ePadding" id="txtAdd">
                   <div class="tabDaddrss semibold">DELIVERY ADDRESS</div>
                   <div class="dAdrsshdr fLeft semibold">CONFIRM ORDER
                       <div class="cbrdr"></div>
@@ -93,7 +168,15 @@
                       <div class="w50 fLeft">BACK</div>
                       <div class="w51 fRight" id="nxt">SUBMIT</div>
                   </div>
-              </div>
+              </div>-->
+<!--                <div class="colleCont ePadding dn">
+                 <div class="dAdrsshdr fLeft semibold">Have an account?
+                      <div class="cbrdr"></div>
+                  </div>
+                    <div class="sgnUptxt fLeft regular"><span>Sign Up</span></div>
+                    <div class="dvdr fLeft"></div>
+                    <div class="sgnUptxt fLeft regular"><span>Continue as a guest</span> </div>
+                </div>-->
               <div class="colleCont v2 black">
                   
                    <div class="dAdrsshdr fLeft semibold">GRAND TOTAL
@@ -476,6 +559,40 @@
             }
 
         });
+//          $('#fstup').velocity({opacity: 1,translateY:'0px'}, {delay: 0, duration: 0,display:'block'});
+//            $('#scndup').velocity({opacity:0,translateY:'20px'}, {delay: 0, duration: 0,display:'none'});
+            function openfst(){
+                 $('#fstup').velocity({translateY: [-20, 0], opacity:[0,1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
+                $('#scndup').velocity({translateY: [0, 20], opacity:[1,0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
+            }
+            function opnscnd(){
+                 $('#fstup').velocity({translateY: [0, 20], opacity:[1,0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
+                $('#scndup').velocity({translateY: [-20, 0], opacity:[0,1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
+            }
+            function openThrd(){
+                 $('#fstup').velocity({translateY: [0, 20], opacity:[1,0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
+                $('#thrdup').velocity({translateY: [-20, 0], opacity:[0,1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
+            }
+            function closeThrd(){
+                 $('#fstup').velocity({translateY: [-20, 0], opacity:[0,1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
+                $('#thrdup').velocity({translateY: [0, 20], opacity:[1,0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
+            }
+             $('.entrotppopup').velocity({opacity: 0}, {delay: 0, duration: 0});
+          $('.enterotpCnt').velocity({scale: 0, borderRadius: "50%", opacity: 0}, {delay: 0, duration: 0});
+          function openotppop(){
+         $(".entrotppopup").css("display","block");    
+       $('.entrotppopup').velocity({opacity: 1}, {delay: 0, duration: 300, ease: 'swing'});
+        $(".enterotpCnt").velocity({scale: 1, borderRadius: "0", opacity: 1}, {delay: 180, duration: 300, ease: 'swing'});
+          }
+          function closeotppop(){
+               $(".entrotppopup").velocity({opacity: 0}, {delay: 0,duration: 200, ease: 'swing'});
+        $(".enterotpCnt").velocity({scale: 0, borderRadius: "50%", opacity: 0}, {duration: 200, delay: 0, ease: 'swing'});
+        setTimeout(function() {
+        $('.entrotppopup').css("display","none");
+    }, 400);
+
+          }
+          
 
     </script>
 </body>
