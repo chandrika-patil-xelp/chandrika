@@ -8,8 +8,8 @@ var stock = new Array();
 var aid;
 var stSearch = new Array();
 
-$(document).ready(function () {  
-   // var URL = APIDOMAIN + "index.php/?action=getProGrid"; 
+$(document).ready(function () {
+   // var URL = APIDOMAIN + "index.php/?action=getProGrid";
     var URL = APIDOMAIN + "index.php/?action=getProductdetailbycatid&id="+id;
     $.ajax({
         type: 'POST',
@@ -18,7 +18,7 @@ $(document).ready(function () {
 
 
             res = JSON.parse(res);
-	     
+
             if (res['error']['err_code'] == 0) {
                 getProdDtl = res["result"];
                    var total = res["total"];
@@ -480,7 +480,7 @@ var count=0;
         success: function (res) {
 
             res = JSON.parse(res);
-	    
+
             if (res['error']['err_code'] == 0) {
             var total = res['total'];
             $('#total_Product').html("<strong>" + total + "</strong> Products");
@@ -508,7 +508,7 @@ var count=0;
                     }
                   //  $('#gridDetail').append(str);
               //  var $we= str;
-	    } 
+	    }
                if(limitend >= total){
 
                         $('#gr_foot').remove();

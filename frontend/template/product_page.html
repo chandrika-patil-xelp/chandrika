@@ -199,10 +199,16 @@
                                         <div class="attTitle">  Purity</div>
                                         <div class="actBtn font12 bolder" id="carat" >carat</div>
                                     </div>
-                                    <div class="drop_dn fLeft " id="purity">
+                                    <div class="drop_dn fLeft pointNone " id="">
                                         <div class="attTitle">  Size</div>
-                                        <div class="actBtn font12 bolder" id="size" >28</div>
+                                        <div class="actBtn font12 bolder" id="size" >Size 28</div>
+                                        <div class="selectDefault"></div>
+                                        <div class="selectOptionC" id="genSize">
+
+
+                                        </div>
                                     </div>
+
                                 </div>
                                 <!-- <div class="pr_change fLeft">
 
@@ -234,24 +240,20 @@
                                 <div class="selector_cont diQ" id="diQ">
                                     <div class="options_back">Back</div>
                                     <div class="button_label ">Select Diamond Clarity</div>
-                                    <!-- <div class="diagofunckyourself"></div>
-                                    <div class="diagofunckyourself"></div>
-                                    <div class="diagofunckyourself"></div>
-                                    <div class="diagofunckyourself"></div>
-                                    <div class="diagofunckyourself"></div> -->
                                 </div>
                                 <div class="selector_cont" id="colr">
                                     <div class="options_back">Back</div>
                                     <div class="button_label">Select Metal Color</div>
-
                                 </div>
                                 <div class="selector_cont pur" id="pur">
                                     <div class="options_back">Back</div>
                                     <div class="button_label">Select metal purity</div>
-
                                 </div>
                                 <div class="selector_cont">
-                                    <div class="options_back">Back</div>
+                                    <div class="options_back"></div>
+                                    <div class="selectBox">
+
+                                    </div>
                                 </div>
                             </div>
 
@@ -445,8 +447,9 @@
         /* Customisation */
         var j = 0;
         $('.drop_dn').click(function () {
+          if(!$(this).hasClass('pointNone')){
           exprice =$('#price').text();
-        
+
             j = $(this).index();
             //$('body').addClass('over_hide');
             $('.cust_cont2').removeClass('dn');
@@ -454,6 +457,7 @@
                     //  $('body').removeClass('over_hide')
                 }});
             $('.selector_cont').eq(j).velocity({scale: [1, 0.5], opacity: [1, 0]}, {delay: '50', duration: '150', display: 'block'});
+            }
         });
         $('.options_back').click(function () {
             //$('body').addClass('over_hide');
@@ -620,6 +624,29 @@
             }
         }
 
+        //JZEVA DROPDOWN
+
+        function bindDrop(){
+             $('.selectDefault').click(function(){
+               var th= $(this);
+               $(this).addClass('pointNone');
+               $(this).siblings('.selectOptionC').css('opacity', 0)
+               .slideDown('150ms')
+               .animate(
+                 { opacity: 1 },
+                 { queue: false, duration: '150ms' }
+               );
+
+             });
+             $('.selectOptions').click(function(){
+               var sz= $(this).text();
+               $('#size').html(sz);
+               $(this).closest('.selectOptionC').fadeOut('150ms').siblings('.selectDefault').removeClass('pointNone');
+             });
+           }
+            // $(window)click(function(e){
+            //
+            // });
     </script>
 
 </body>

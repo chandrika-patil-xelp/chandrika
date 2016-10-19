@@ -78,7 +78,7 @@ $(document).ready(function(){
             success:function(res){
 
              data = JSON.parse(res);
-             
+
                 var dt = data['results'];
                 var basic = dt['basicDetails'];
                  var catAttr = dt['catAttr'];
@@ -108,8 +108,8 @@ $(document).ready(function(){
 
 
                 });
-                
-            
+
+
 
              $(basic).each(function(i, vl) {
 
@@ -227,7 +227,7 @@ $(document).ready(function(){
 
                }
                 $('#stn').append(Nstr);
-           
+
 
                    if (basic.hasSol == 1)
                         {
@@ -244,7 +244,7 @@ $(document).ready(function(){
 
                         }
 
-            
+
 
                    if (basic.hasDmd == 1)
                         {
@@ -288,7 +288,7 @@ $(document).ready(function(){
 
                         }
 
-              
+
 
                    if (basic.hasUnct == 1)
                         {
@@ -339,7 +339,7 @@ $(document).ready(function(){
                            var kar = mcarat;
                            var re = /^(\w+)\s(\w+)$/;
                            var kar = kar.replace(re,"$2_$1").toLowerCase();
-                          
+
                             purstr+='<div class="rad_wrap fLeft">';
 
                                   //purstr+='<input type="radio" name="size
@@ -361,7 +361,7 @@ $(document).ready(function(){
 
 
                         var clrstr="";
-                     
+
                         $.each(metalColor.results, function(j, vl) {
                             var apcol=vl.dVal.toLowerCase();
                            if(j==0){
@@ -384,8 +384,8 @@ $(document).ready(function(){
                    getTotal(3);
 
                     });
-                    
-                    
+
+
                 }
 
 
@@ -558,7 +558,7 @@ function setdmd(e){
 var grandtot=0;
 var gtotal=0
 function getTotal(type){
- 
+
        total=  parseFloat(basicValue)+ parseFloat(dmdValue) + parseFloat(metalValue) + uncPrice + soliprc + gemsPrice ;
 
     // total= parseFloat(dmdValue) + parseFloat(metalValue) + gemsPrice  + parseFloat(soliValue) + parseFloat(uncutValue)+ parseFloat(basicValue) ;
@@ -592,12 +592,12 @@ function getTotal(type){
 
 function getcatsize(s){
   var catAtt = s;
- 
+
   var catname = catAtt['results'][1]['name'];
-  
+
   if(catname == 'Rings' || catname == 'Bangles'){
-$('#size').on('click',function(){
-    
+//$('#size').on('click',function(){
+
    var cid = catsize;
   var URL= APIDOMAIN + "index.php/?action=getSizeListByCat&catid="+catsize;
      var dat ="";
@@ -606,27 +606,20 @@ $('#size').on('click',function(){
             url:URL,
             success:function(res){
               dat = JSON.parse(res);
-           
+
               var str = "";
                if (dat['error']['err_code'] == '0')
-            {   
-                 $(dat).each(function(x, y) {
-                     console.log(y);
-                 /* str+= '<div class="rad_wrap ">';
-                       //dQstr+= '<input type="radio" name="selectM" id="dQuality_'+x+'_'+y.id+'" checked  onchange=\"diamondPrice('+y.prcPrCrat+vl.crat+')\" class="filled-in dn">';
-                  str+= '<input type="radio" name="selectM" id="dQuality_'+x+'_'+y.id+'" value="'+y.sval+'"  onchange="setdmd(this)" class="filled-in dn">';
-                  str+= '<label for="dQuality_'+x+'_'+y.id+'"></label>';
-                  //str+= '<div class="check2 '+dClass+'"></div>';
-                  str+= '<div class=" selector_label" >';
-                  str+='<div class="labBuffer">'+y.sval+'</div>';
-                  str+='</div>';
-                  str+= '</div>';*/
+            {
+                 $(dat.result).each(function(x, y) {                    
+                     str+= '<div class="selectOptions">Size '+ y.sval +'</div>';
+
               });
-              $('#pur').append(str);
+                $('#genSize').append(str);
+                bindDrop();
             }
         }
         });
-});
+//});
   }
   else{
       $('#pur').remove();
