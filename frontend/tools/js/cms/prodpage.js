@@ -77,18 +77,17 @@ $(document).ready(function(){
             url:URL,
             xhrFields: {
               onprogress: function (e) {
-                console.log('here');
                 console.log(e);
-                  //console.log(e.total);
-              //  if (e.lengthComputable) {
+                  console.log(e.loaded);
+               if (e.lengthComputable) {
                   console.log(e.loaded / e.total * 100 + '%');
-                //  }
+                }
                 }
               },
             success:function(res){
 
              data = JSON.parse(res);
-
+             console.log(data);
                 var dt = data['results'];
                 var basic = dt['basicDetails'];
                  var catAttr = dt['catAttr'];
@@ -107,14 +106,23 @@ $(document).ready(function(){
                 if (data['error']['err_code'] == '0')
             {
                   var imgstr = "";
-		  if(dt['basicDetails']['default_image']!== null){
-		       imgstr='<div class="imgHolder img1" style="background:  url(\''+ IMGDOMAIN + dt['basicDetails']['default_image']+'\')no-repeat;background-size:115%;background-position:center"></div>';
-		        $('#img-view').prepend(imgstr);
-		  }
-                   $(images['images']).each(function(i, v) {
+                  var dn = '';
+		                   $(images['images']).each(function(i, v) {
 
-             imgstr='<div class="imgHolder " style="background:  url(\''+ v +'\')no-repeat;background-size:contain;background-position:center"></div>';
-                   $('#img-view').append(imgstr);
+                     var vdef=  IMGDOMAIN + dt['basicDetails']['default_image'] ;
+                     console.log( dt['basicDetails']['default_image']);
+
+                     if(vdef == v  ){
+                       dn='';
+                       }
+                       else if(dt['basicDetails']['default_image']== null ){
+                          dn='';
+                       }
+                       else{
+                         dn = 'dn';
+                       }
+                       imgstr='<div class="imgHolder '+ dn +'" style="background:  url(\''+ v +'\')no-repeat;background-size:contain;background-position:center"></div>';
+                       $('#img-view').append(imgstr);
 
 
                 });

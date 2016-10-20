@@ -1007,9 +1007,9 @@ input[type=radio]:checked ~ .selector_label:after {
 .PRODUCT_PAGE .check{left: 18px;top:5px;}
 .PRODUCT_GRID2 input[type=radio]:checked ~ label{font-family:bolder;}
 .PRODUCT_PAGE .darkCont{opacity:1;float:left;transform: translateY(0px);-webkit-transform: translateY(0px);-moz-transform: translateY(0px);-o-transform: translateY(0px);-ms-transform: translateY(0px);    padding: 100px 0 100px 0;}
-.PRODUCT_PAGE .collCenter{height:65%;padding:40px 60px;color:#fff;font-family:regular;font-size:14px;line-height:25px;text-align:center}
-
-.collCenterb{height:65%;padding:40px 60px;color:#15181b;font-family:regular;font-size:14px;line-height:25px;text-align:center}
+.PRODUCT_PAGE .collCenter{height:65%;padding:40px 120px;color:#fff;font-family:regular;font-size:14px;line-height:25px;text-align:center}
+.PRODUCT_PAGE .collCenterb{position:absolute;top:0;bottom:0;margin:auto;left:0;}
+.collCenterb{height:65%;padding:40px 120px;color:#15181b;font-family:regular;font-size:14px;line-height:25px;text-align:center;}
 .smUlineb{width:100%;height:40px;text-align:center;color:#15181b;position:relative;line-height:40px;font-size:12px;font-family: semibold;letter-spacing: 0.35em;position:absolute;left:0;top:60px;text-transform:uppercase}
 .smUlineb:after{content:"";width:50px;height:1px;background:#15181b;position:absolute;left:0;right:0;bottom:0px;margin:auto}
 /*Home page css*/
@@ -1892,8 +1892,8 @@ input[type=radio]:checked ~ .selector_label:after {
  .enterotpCnt .w100 .w30{width:25%;height:40px;line-height:46px;color:#15181b;padding:0px 10px;font-size:13px;cursor:pointer;text-align:center;}
  .sbmt{width:auto;height:30px;color:#15181b;line-height:30px;text-align:center;padding:0px 10px;display:inline-block;font-size:13px;cursor:pointer;}
  .btnhldr{width:100%;height:30px;position:absolute;left:0;bottom:10px;}
- 
- 
+
+
  /*range slider*/
  .rngDv{width:320px;height:50px;position:absolute;left:0;right:0;top:0;bottom:0;margin:auto;}
 /*john-rangeslider*/
