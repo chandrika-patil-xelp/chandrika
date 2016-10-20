@@ -88,7 +88,8 @@ function displaycartdata()
 	 	    success: function(results)
 	 	    {
 		      var obj=JSON.parse(results);
-
+		      if(obj.result !== null)
+		      {
 	       	      gblcartdata=obj.result;
 		      $(obj.result).each(function(r,v){
 			if(v.default_img!== null){
@@ -98,13 +99,13 @@ function displaycartdata()
 			   var abc=v.prdimage; abc=abc.split(',');
 			    abc=IMGDOMAIN+abc[5];
 			}
-
+			 
 	var cartstr="<div class='cart_item'>";
 	cartstr+="<div class='cart_image'><img src='"+abc+"'";
         cartstr+=" alt='Image not found'></div>";
 	cartstr+="<div class='cart_name'>"+v.prdname+"</div>";
-  	cartstr+="<div class='cart_desc  fLeft'>Gold 3.6gms 14Carat Gold</div>";
-	cartstr+="<div class='cart_price  fLeft'><span class='price_gen'>"+parseInt(v.price)+"</span></div>";
+  	cartstr+="<div class='cart_desc  fLeft'>Gold 3.6gms "+v.carat+" Gold</div>";
+	cartstr+="<div class='cart_price  fLeft'><span class='price_gen'>₹ "+parseInt(v.price)+"</span></div>";
         cartstr+="<div class='amt_selector' id='"+v.cart_id+"'>";
 	cartstr+="<a href='#' onclick='subqnty(this)'  id='sub_"+v.product_id+"_"+r+"_"+v.col_car_qty+"_"+v.cart_id+"'><div class='cart_btn fLeft sub_no'></div></a>";
         cartstr+="<div class='item_amt fLeft '>"+v.pqty+"</div>";
@@ -118,6 +119,7 @@ function displaycartdata()
 	r++;
 		    });
 		    gettotal();
+		  }
 		  }
 	      });  
 }
@@ -149,11 +151,12 @@ function displaycartdata()
         var e2=  $(ths).closest('.cart_item').find('.price_gen ')
         var price= $(ths).closest('.cart_item').find('.price_gen ').text(); 
         price=price.replace(/\,/g,'');
+	price=price.replace('₹','');
         price=parseInt(price,10);
         price=price/j;
           j++;
           price=price*j; 
-          $(e2).html(price);
+          $(e2).html('₹ '+price);
           $(e2).digits();
           $(e).html(j); 
     var ids=$(ths).attr('id'); ids=ids.split('_'); var pid=ids[1]; var col_car_qty=ids[3];var cart_id=ids[4];  
@@ -177,12 +180,13 @@ function displaycartdata()
         var e2=  $(evnt).closest('.cart_item').find('.price_gen');
         var price= $(evnt).closest('.cart_item').find('.price_gen ').text();
         price=price.replace(/\,/g,'');
+	price=price.replace('₹','');
         price=parseInt(price,10);
          if(j>1){
             price=price/j;
           j--;
           price=price*j;
-          $(e2).html(price);
+          $(e2).html('₹ '+price);
             $(e2).digits();
           $(e).html(j);
         }
