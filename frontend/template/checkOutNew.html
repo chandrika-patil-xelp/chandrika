@@ -46,28 +46,11 @@
                               <div class="text fLeft"><span>#657 5th A cross,17th E main road,Koromangala club,Bangalore,Karanataka,560095</span></div>
                            </div>
                       </div>
-                      <div class="entrOtp fLeft semibold">Enter OTP</div>
-                      <div class="centerDvHldr fLeft regular">
-                          <center>
-                              <div class="cntrDvcnt">
-                             <div class="inp_cont fmSansR fLeft">
-                                <input type="text" class="inp_box " id="otp_txt">
-                            </div>
-                              </div>
-                          </center>
-                          <center>
-                              <div class="txt">We have sent an OTP via sms to 7797553117</div>
-                          </center>
-                      </div>
-                      <div class="centerDvHldr fLeft regular">
-                          <center>
-                              <div class="txt1" id="resend_otp">Resend OTP</div>
-                          </center> 
-                      </div>  
-                   <div class="cotpTxt fLeft semibold"> <span id="confrm">CONFIRM OTP</span></div> 
+                          <div class="entrOtp fLeft semibold" onclick="opnscnd()">Different Address?</div>
                   <div class="cnclSbmt fLeft bolder">
-                      <div class="w50 fLeft" onclick="opnscnd()">BACK</div>
-                      <div class="w51 fRight">SUBMIT</div>
+                     <center>
+                              <div class="cntrBtn">SUBMIT</div>
+                          </center>
                   </div>
                   </div>
                       <div class="fadeCnt fLeft" id="fstup">
@@ -79,6 +62,7 @@
                       <div class="intTxt fLeft">To purchase this amazing product</div>
                   </div>
                   <div class="frmDtls fLeft semibold">
+                      <div class="neadHide">
                             <div class="inp_cont fmSansR fLeft w49">
                                 <input type="text" class="inp_box " id="shpdname" maxlength="30">
                                 <div class="inp_label fmSansB">Name*</div>
@@ -91,6 +75,7 @@
                                 <input type="text" class="inp_box " id="shpdemail" maxlength="30">
                                 <div class="inp_label fmSansB">Email*</div>
                             </div>
+                          </div>
                             <div class="inp_cont fmSansR fLeft">
                                 <input type="text" class="inp_box " id="shpdstreet" maxlength="15">
                                 <div class="inp_label fmSansB">Address*</div>
@@ -114,12 +99,64 @@
                   </div>
                       </div>
                             <div class="fadeCnt fLeft" id="thrdup">
-                                  <div class="dAdrsshdr fLeft semibold">Have an account?
+                        <div class="dAdrsshdr fLeft semibold">Verify 
                       <div class="cbrdr"></div>
                   </div>
-                    <div class="sgnUptxt fLeft regular"><span>Sign Up</span></div>
-                    <div class="dvdr fLeft"></div>
-                    <div class="sgnUptxt fLeft regular"><span onclick="openThrd()">Continue as a guest</span> </div>
+                    <div class="sgnUptxt fLeft  semibold">
+                        <div class="inp_cont fmSansR fLeft">
+                             <input type="text" class="inp_box " id="entereml" maxlength="30">
+                             <div class="inp_label fmSansB">Enter your email / phone number*</div>
+                        </div>
+                    </div>
+<!--                    <div class="dvdr fLeft"></div>
+                    <div class="sgnUptxt fLeft semibold">
+                          <div class="inp_cont fmSansR fLeft">
+                             <input type="text" class="inp_box " id="entereml" maxlength="30">
+                             <div class="inp_label fmSansB">Enter your phone number*</div>
+                        </div>
+                    </div>-->
+                      <div class="cnclSbmt fLeft bolder">
+                          <center>
+                              <div class="cntrBtn" onclick="openThrd()">SUBMIT</div>
+                          </center>
+                  </div>
+                            </div>
+                               <div class="fadeCnt fLeft" id="fourthup">
+                                      <div class="dAdrsshdr fLeft semibold">Verify 
+                                  <div class="cbrdr"></div>
+                                      </div>
+                                  <div class="sgnUptxt fLeft semibold">
+                                       <div class="inp_cont fmSansR fLeft">
+                                 <input type="text" class="inp_box " id="otp1" maxlength="30">
+                                  <div class="inp_label fmSansB">Enter OTP*</div>
+                                  <div class="matchIcn"></div>
+                                  <div class="unmatchIcn dn"></div>
+                                    </div>
+                                  </div>
+                                  <div class="sgnUptxt fLeft semibold">
+                                         <div class="inp_cont fmSansR fLeft">
+                                 <input type="password" class="inp_box " id="pswrd1" maxlength="30">
+                                  <div class="inp_label fmSansB">Enter password*</div>
+                                    </div> 
+                                  </div>
+                                  <div class="sgnUptxt fLeft semibold">
+                                         <div class="inp_cont fmSansR fLeft">
+                                 <input type="password" class="inp_box " id="pswrd2" maxlength="30">
+                                  <div class="inp_label fmSansB"> confirm password*</div>
+                                    </div>
+                                      <div class="matchIcn1 dn"></div>
+                                       <div class="unmatchIcn1 dn"></div>
+                                  </div>
+                                    <div class="centerDvHldr fLeft semibold">
+                                      <center>
+                                          <div class="txt1" id="resend_otp">Resend OTP</div>
+                                      </center> 
+                                  </div> 
+                                 <div class="cnclSbmt fLeft bolder">
+                                 <center>
+                                      <div class="cntrBtn" onclick="opnfrth()">CONTINUE</div>
+                                 </center>
+                                </div>
                             </div>
                         </div>
               </div>
@@ -568,14 +605,19 @@
             function opnscnd(){
                  $('#fstup').velocity({translateY: [0, 20], opacity:[1,0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
                 $('#scndup').velocity({translateY: [-20, 0], opacity:[0,1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
+                $('.neadHide').addClass('dn');
             }
             function openThrd(){
-                 $('#fstup').velocity({translateY: [0, 20], opacity:[1,0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
+                 $('#fourthup').velocity({translateY: [0, 20], opacity:[1,0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
                 $('#thrdup').velocity({translateY: [-20, 0], opacity:[0,1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
             }
             function closeThrd(){
                  $('#fstup').velocity({translateY: [-20, 0], opacity:[0,1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
                 $('#thrdup').velocity({translateY: [0, 20], opacity:[1,0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
+            }
+            function opnfrth(){
+                 $('#scndup').velocity({translateY: [0, 20], opacity:[1,0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
+                $('#fourthup').velocity({translateY: [-20, 0], opacity:[0,1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
             }
              $('.entrotppopup').velocity({opacity: 0}, {delay: 0, duration: 0});
           $('.enterotpCnt').velocity({scale: 0, borderRadius: "50%", opacity: 0}, {delay: 0, duration: 0});
@@ -592,6 +634,41 @@
     }, 400);
 
           }
+              $('#pswrd2').keyup(function() {
+                                var val1 = $('#pswrd1').val();
+                                var val2 = $('#pswrd2').val();
+                                var th = $(this);
+                                if (val1 != "" && val2 != "") {
+                                    if (val1 == val2) {
+                                        $('.matchIcn1').removeClass('dn');
+                                        $('.unmatchIcn1').addClass('dn');
+                                    }
+//
+                                    else {
+                                        $('.matchIcn1').addClass('dn');
+                                        $('.unmatchIcn1').removeClass('dn');
+                                    }
+                                }
+                                else {
+                                    $('.matchIcn1').addClass('dn');
+                                    $('.unmatchIcn1').addClass('dn');
+                                }
+                            });
+                            $('#pswrd1').keyup(function() {
+                                var th1 = $(this);
+                                var th2 = $('#pswrd2');
+                                if (th1.val() != "" && th2.val() != "") {
+                                    if (th1.val() == "" || th1.val() == 0) {
+                                        $('.matchIcn1').addClass('dn');
+                                    }
+                                    else {
+                                        $('.matchIcn1').addClass('dn');
+                                    }
+                                }
+                                else {
+                                    $('.matchIcn1').addClass('dn');
+                                }
+                            });
           
 
     </script>
