@@ -80,7 +80,6 @@ function displaycartdata()
      $(".cart_gen").html("");
      var userid=common.readFromStorage('jzeva_uid'); 
      var cartid=common.readFromStorage('jzeva_cartid'); 
-     if(userid !== null && cartid !== null){
    var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id="+cartid+"&userid="+userid+"";
 	       $.ajax({
 	 	    url: URL,
@@ -122,8 +121,7 @@ function displaycartdata()
 		    gettotal();
 		  }
 		  }
-	      });  
-	    }      
+	      });   
 }
 
   function cremove(el){
