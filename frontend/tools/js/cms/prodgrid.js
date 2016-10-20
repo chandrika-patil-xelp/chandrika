@@ -10,7 +10,7 @@ var stSearch = new Array();
 
 $(document).ready(function () {
    // var URL = APIDOMAIN + "index.php/?action=getProGrid";
-    var URL = APIDOMAIN + "index.php/?action=getProductdetailbycatid&id="+id;
+    var URL = APIDOMAIN + "index.php?action=getProductdetailbycatid&id="+id;
     $.ajax({
         type: 'POST',
         url: URL,
