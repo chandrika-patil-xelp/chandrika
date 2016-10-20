@@ -10,9 +10,9 @@
 <div class="head_wrap">
     <div class="shadow_head"></div>
     <div class="overlay"></div>
-    <div class="overlay2 transition300"></div>
+    <div class="overlay2 " onclick="closeCart()"></div>
     <div class="header">
-        <div class="logo fLeft"></div>
+          <a  target="" href='<?php echo DOMAIN?>index.php?action=landing_page'><div class="logo fLeft"></div></a>
     </div>
     <div class="tabWrap fRight">
         <div class="tab_buffer">
@@ -55,7 +55,7 @@
                 <div class="menu_elm ">
                     <div class="col33 fLeft">
                         <div class="col100 fLeft">
-			  <div class="menu_list fLeft" id="2920160603124607">Ring</div>
+			                       <div class="menu_list fLeft" id="2920160603124607">Ring</div>
                         </div>
                         <div class="col100 fLeft">
                             <div class="menu_list fLeft" id="2020160603124631">Earring</div>
@@ -232,7 +232,7 @@
     </div>
 </div>
 <script>
-    /*Overlay fade in/out  on menu hover*/ 
+    /*Overlay fade in/out  on menu hover*/
     $('.tabWrap').mouseover(function () {
         $('.overlay').stop(true, true).fadeTo(200, 1);
     });
@@ -293,49 +293,52 @@
         closeCart();
         cartF = 0;
     });
-    function openCart() { 
+    $('.over_open').click(function(){
+
+    });
+    function openCart() {
         $('.cart').css({'display': 'block'});
         $('.search_bar').removeClass('search_open');
         $('.tabWrap , .tabWrap2').addClass('deactive');
         $('.wrapper').removeClass('pointNone');
-        $('.cart').velocity({translateX: [0, 400]}, {duration: 300, easing: 'swing'});
-        $('.overlay2').addClass('over_open');
-        $('body').css({'overflow': 'hidden'});
+        $('.cart').velocity({translateX: [0, '100%']}, {duration: 300, easing: 'easeInOutExp'});
+        $('.overlay2').velocity({opacity:[1,0]} , {duration:300 , easing:'swing' , display:'block'});
+        //$('body').css({'overflow': 'hidden'});
         $('.wrapper').addClass('pointNone');
         $('.cart_item').each(function (i) {
             var t = (i * 30) + 50;
-            $(this).velocity({translateX: [0, 400]}, {duration: 600, delay: t, easing: [0.2, 1, 0.3, 1]});
+            $(this).velocity({translateX: [0, '100%']}, {duration: 600, delay: t, easing: [0.2, 1, 0.3, 1]});
         });
     }
     function closeCart() {
-        $('.cart').velocity({translateX: [400, 0]}, {duration: 300, easing: 'swing', complete: function () {
+        $('.cart').velocity({translateX: ['100%', 0]}, {duration: 300, easing: 'easeInOutExp', complete: function () {
                 $('.wrapper').removeClass('pointNone');
-                $('.overlay2').removeClass('over_open');
+              $('.overlay2').velocity({opacity:[0,1]} , {duration:300 , easing:'swing' , display:'none'})
                 $('.cart').css({'display': 'none'});
                 $('.tabWrap , .tabWrap2').removeClass('deactive');
             }});
-        $('body').css({'overflow': 'visible'});
+      //  $('body').css({'overflow': 'visible'});
         $('.wrapper').removeClass('pointNone');
     }
-    
+
     $('#2920160603124607').click(function(){
-      var catidv=$(this).attr('id'); 
-      window.location.href = DOMAIN + "index.php?action=product_grid&id="+catidv+""; 
+      var catidv=$(this).attr('id');
+      window.location.href = DOMAIN + "index.php?action=product_grid&id="+catidv+"";
     });
     $('#2020160603124631').click(function(){
-      var catid=$(this).attr('id'); 
-      window.location.href = DOMAIN + "index.php?action=product_grid&id="+catid+""; 
+      var catid=$(this).attr('id');
+      window.location.href = DOMAIN + "index.php?action=product_grid&id="+catid+"";
     });
     $('#9820160603124850').click(function(){
-      var catid=$(this).attr('id'); 
-      window.location.href = DOMAIN + "index.php?action=product_grid&id="+catid+""; 
+      var catid=$(this).attr('id');
+      window.location.href = DOMAIN + "index.php?action=product_grid&id="+catid+"";
     });
     $('#8120160603125512').click(function(){
-      var catid=$(this).attr('id'); 
-      window.location.href = DOMAIN + "index.php?action=product_grid&id="+catid+""; 
+      var catid=$(this).attr('id');
+      window.location.href = DOMAIN + "index.php?action=product_grid&id="+catid+"";
     });
     $('#3420160603124716').click(function(){
-      var catid=$(this).attr('id'); 
-      window.location.href = DOMAIN + "index.php?action=product_grid&id="+catid+""; 
+      var catid=$(this).attr('id');
+      window.location.href = DOMAIN + "index.php?action=product_grid&id="+catid+"";
     });
 </script>

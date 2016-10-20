@@ -1,8 +1,8 @@
 
- var data=new Array();
- var glbquality;
- var glbcolor;
- var glbcarat;
+var data=new Array();
+var glbquality;
+var glbcolor;
+var glbcarat;
 var catsize;
 
 var dmdValue =metalValue=soliValue=gemsValue=uncutValue =basicValue= 0;
@@ -75,15 +75,15 @@ $(document).ready(function(){
         $.ajax({
             type:'POST',
             url:URL,
-            xhrFields: {
-              onprogress: function (e) {
-                console.log(e);
-                  console.log(e.loaded);
-               if (e.lengthComputable) {
-                  console.log(e.loaded / e.total * 100 + '%');
-                }
-                }
-              },
+          //  xhrFields: {
+          //    onprogress: function (e) {
+              //  console.log(e);
+              //    console.log(e.loaded);
+            //   if (e.lengthComputable) {
+            //      console.log(e.loaded / e.total * 100 + '%');
+          //      }
+              //  }
+        //      },
             success:function(res){
 
              data = JSON.parse(res);

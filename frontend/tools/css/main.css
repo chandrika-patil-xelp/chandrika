@@ -135,7 +135,7 @@ a{color:#666;}
 .menu_wrap{position:absolute;top:60px;left:0;width:100%;height:0px;background:transparent;display:none;overflow:hidden}
 .menuB{width:100%;height:100%;position:relative;background:#f0f0f0;}
 .overlay{width:100%;height:100vh;position:fixed;background:rgba(0,0,0,0.55);z-index:13;display:none;opacity:0;pointer-events:none;}
-.overlay2{width:100%;height:100vh;position:fixed;background:rgba(0,0,0,0.2);z-index:13;opacity:0;pointer-events:none;}
+.overlay2{width:100%;height:100vh;position:fixed;background:rgba(0,0,0,0.2);z-index:13;opacity:0;cursor:pointer;display:none}
 .overlay3{width:100%;height:100%;position:fixed; background:rgba(255,255,255,0.8);z-index: 30;opacity:0;}
 .overlayF{width:100%;height:100vh;position:fixed;background:rgba(0,0,0,0.0);z-index:13;display:none;top:0; left:0;opacity:0;pointer-events:none;}
 .over_open.overlay2{opacity:1}
