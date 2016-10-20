@@ -79,7 +79,7 @@ function displaycartdata()
 {
      $(".cart_gen").html("");
      var userid=common.readFromStorage('jzeva_uid'); 
-     var cartid=common.readFromStorage('jzeva_cartid'); 
+     var cartid=common.readFromStorage('jzeva_cartid');
    var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id="+cartid+"&userid="+userid+"";
 	       $.ajax({
 	 	    url: URL,
@@ -219,6 +219,7 @@ function getglobaldata()
 {
   var userid=common.readFromStorage('jzeva_uid'); 
   var cartid=common.readFromStorage('jzeva_cartid'); 
+  if(cartid !== null || userid !== null){
   var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id="+cartid+"&userid="+userid+"";   
 	       $.ajax({
 	 	    url: URL,
@@ -233,6 +234,7 @@ function getglobaldata()
 		    
 		    }
 	       }); 
+  }
 }
 
  $(document).ready(function(){
