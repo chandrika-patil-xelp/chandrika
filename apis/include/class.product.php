@@ -4013,7 +4013,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
     public function getProductdetailbycatid($params) {
       
        global $comm;
-           $cid=$params['id'];
+           $cid=  urldecode($params['id']);
             $sqlcount = "  SELECT count(productid) AS cnt
 	     FROM tbl_category_product_mapping WHERE catid=".$cid." AND active_flag =1";
             $rescnt= $this->query($sqlcount);
