@@ -4,6 +4,12 @@ $params = array_merge($_GET, $_POST);
 $params = array_merge($params, $_FILES);
 $action = $_GET['action'];
 
+//   echo  $image = trim('../backend/image-upload/uploads/7020160831074925/1472630480RNG8610_00029.jpg');
+//   echo '<br>';
+// echo filesize($image)/1024;
+// die;
+//
+
 if($params['debug'])
 {
     echo "<pre>";    print_r($params);  echo "</pre>";
@@ -145,8 +151,8 @@ switch($action)
         $result	=$obj->addProduct($tmpaparams);
         $res = $result;
     break;
-    
-   
+
+
 
     case 'getMetalColorIdByValue':
         include APICLUDE.'class.product.php';
@@ -162,7 +168,7 @@ switch($action)
         $res = $result;
     break;
 
-   
+
 
     case 'getProGrid':
         include APICLUDE.'class.product.php';
@@ -170,23 +176,23 @@ switch($action)
         $result	=$obj->getProGrid($params);
         $res = $result;
     break;
-    
+
     case 'getProGridById':
         include APICLUDE.'class.product.php';
         $obj	= new product($db['jzeva']);
         $result	=$obj->getProGridById($params);
         $res = $result;
     break;
-    
-    
+
+
      case 'getAllratesById':
         include APICLUDE.'class.product.php';
         $obj	= new product($db['jzeva']);
         $result	=$obj->getAllratesById($params);
         $res = $result;
     break;
-    
-        
+
+
      case 'getjewellaryType':
         include APICLUDE.'class.product.php';
         $obj	= new product($db['jzeva']);
@@ -389,8 +395,8 @@ switch($action)
         $result	=$obj->getProductById($tmpParams);
         $res = $result;
     break;
-    
-   
+
+
 
 
     case 'getImagesByPid':
@@ -504,7 +510,7 @@ switch($action)
         include APICLUDE.'class.admin.php';
         $obj=new admin($db['jzeva']);
         $res=$obj->updateImageData($params);
-     
+
         break;
 
     case 'test':
@@ -516,14 +522,14 @@ switch($action)
         $result	=$obj->getCatgoryList($tmpParams);
     break;
 
-    
+
     #USER
     case 'addUser':
-       
+
         include APICLUDE.'class.user.php';
         $obj	= new user($db['jzeva']);
         $res	=$obj->addUser($params);
-      
+
     break;
 
     case 'getUser':
@@ -586,38 +592,38 @@ switch($action)
         $tmpParams = array('page'=>$params['page'],'limit' => $limit);
         $res	=$obj->getUserList($tmpParams);
     break;
- 
+
 
     case 'login':
             include APICLUDE.'class.user.php';
             $obj = new user($db['jzeva']);
             $res = $obj->login($params);
-            break; 
-    
-    
-    
+            break;
+
+
+
     case 'newforgotPass':
             include_once APICLUDE . 'class.user.php';
-           
+
             $obj=new user($db['jzeva']);
            // $tmp_params = array('email' => $email);
             $res = $obj->newforgotPass($params);
             break;
-       
+
       #CHANGE PASSWORD
      // localhost/jzeva/apis/index.php?action=changePassUrl&uid=8720161006153344&email=ss@gmail.com
-            
+
       case 'changePassUrl':
        include APICLUDE.'class.urlmaster.php';
           $obj	= new urlmaster($db['jzeva']);
         $result	= $obj->changePassUrl($params);
-      
+
         $res = $result;
-        break; 
-    
+        break;
+
 //  localhost/iftosi/apis/index.php?action=getUserDet&key=uvwxyz
     case 'getUserDet':
-       
+
         include APICLUDE.'class.urlmaster.php';
         $obj	= new urlmaster($db['jzeva']);
         $result	= $obj->getUserDet($params);
@@ -632,24 +638,24 @@ switch($action)
         $obj = new us($db['jzeva']);
         $res = $obj->addUsers($params);
         break;
-    
+
     //getUserDetailsById
-    
+
     //http://localhost/jzeva/apis/index.php/?action=getUserDetailsById&userid=6420160421142522
     case 'getUserDetailsById':
         include APICLUDE.'class.us.php';
         $obj = new us($db['jzeva']);
         $res = $obj->getUserDetailsById($params);
         break;
-    
+
     //getuserlist
-    //http://localhost/jzeva/apis/index.php/?action=getUserLists 
+    //http://localhost/jzeva/apis/index.php/?action=getUserLists
     case 'getUserLists':
         include APICLUDE.'class.us.php';
         $obj = new us($db['jzeva']);
         $res = $obj->getUserLists();
         break;
-    
+
     //orders
     //http://localhost/jzeva/apis/index.php/?action=addOrders&pid=6120160315162137&userid=6420160421142522&orddate=2016-04-22&deldate=2016-04-25&orderstat=5&actflg=1&updby=user&prodpri=84645&payment=4
     case 'addOrders':
@@ -658,7 +664,7 @@ switch($action)
 	$tmpaparams = array($params['dt']);print_r($tmpaparams);
         $res = $obj->addOrders($tmpaparams);
         break;
-    
+
     //getOrderDetailsByOrdIds
     //http://localhost/jzeva/apis/index.php/?action=getOrderDetailsByOrdIds&orderid=4220160422072902
     case 'getOrderDetailsByOrdIds':
@@ -666,16 +672,16 @@ switch($action)
         $obj = new us($db['jzeva']);
         $res = $obj->getOrderDetailsByOrdIds($params);
         break;
-    
+
     //getOrderDetailsByUserId
     //http://localhost/jzeva/apis/index.php/?action=getOrderDetailsByUserId&userid=6420160421142522
-    
+
     case 'getOrderDetailsByUserId':
         include APICLUDE.'class.us.php';
         $obj = new us($db['jzeva']);
         $res = $obj->getOrderDetailsByUserId($params);
         break;
-    
+
     //getAllUDetail
     //http://localhost/jzeva/apis/index.php/?action=getAllUDetail&userid=6420160421142522
     case 'getAllUDetail':
@@ -683,7 +689,7 @@ switch($action)
         $obj = new us($db['jzeva']);
         $res = $obj->getAllUDetail($params);
         break;
-    
+
     //getOrderList
     //http://localhost/jzeva/apis/index.php/?action=getOrderList
     case 'getOrderList':
@@ -691,19 +697,19 @@ switch($action)
         $obj = new us($db['jzeva']);
         $res = $obj->getOrderList();
         break;
-    
+
     //chngOrdStatus
     //http://localhost/jzeva/apis/index.php/?action=chngOrdStatus&dt={%22orderid%22:%224220160422072902%22,%22userid%22:%226420160421142522%22,%22ostatus%22:%222%22}
     case 'chngOrdStatus':
         include APICLUDE.'class.us.php';
         $obj = new us($db['jzeva']);
-        $tmpparam = array($params['dt']); 
+        $tmpparam = array($params['dt']);
         $res = $obj->chngOrdStatus($tmpparam);
         break;
-    
-        
+
+
     /** ADD USER CODDE ENDS **/
-    
+
    /** GET PRODUCT DETAILS BY ID START **/
     //http://localhost/jzeva/apis/index.php/?action=getProductDetailById&pid=6120160315162137
     case 'getProductDetailById':
@@ -711,100 +717,100 @@ switch($action)
         $obj = new product($db['jzeva']);
         $res = $obj->getProductDetailById($params);
         break;
-    
-    
+
+
     case 'getProductImgById':
         include APICLUDE.'class.product.php';
         $obj = new product($db['jzeva']);
         $res = $obj->getProductImgById($params);
         break;
-    
-    
-       
+
+
+
       case 'addTocart':
         include APICLUDE.'class.addtocart.php';
-        $obj = new addtocart($db['jzeva']);       
-	$tmpaparams = array($params['dt']);   
-       
-     //            
+        $obj = new addtocart($db['jzeva']);
+	$tmpaparams = array($params['dt']);
+
+     //
     //      foreach($tmpaparams as $key => $value)
-     //     {  
+     //     {
      //         $tmpaparams[$key] = strip_tags($value);
-     //     } 
+     //     }
   	     $res=$obj->addToCart($tmpaparams);
-         
+
         break;
-    
+
      case 'getcartdetail':
         include APICLUDE.'class.addtocart.php';
         $obj = new addtocart($db['jzeva']);
-         $res = $obj->getcartdetail($params); 
+         $res = $obj->getcartdetail($params);
         break;
-    
+
     /** CODE FOR ADD TO CART ENDS **/
-    
-	
-    
+
+
+
       case 'updatecartdata':
         include APICLUDE.'class.addtocart.php';
         $obj = new addtocart($db['jzeva']);
 	 $res = $obj->updatecartdata($params);
         break;
-      
+
       case 'updatecartincrz':
         include APICLUDE.'class.addtocart.php';
         $obj = new addtocart($db['jzeva']);
 	 $res = $obj->updatecartincrz($params);
         break;
-	
+
       case 'newcart':
         include APICLUDE.'class.addtocart.php';
         $obj = new addtocart($db['jzeva']);
 	 $res = $obj->newcart( $params);
         break;
-	
-      
+
+
       case 'updatecartdecrese':
         include APICLUDE.'class.addtocart.php';
         $obj = new addtocart($db['jzeva']);
 	 $res = $obj->updatecartdecrese($params);
         break;
-    
+
      case 'getcartdetailbyid':
         include APICLUDE.'class.addtocart.php';
         $obj = new addtocart($db['jzeva']);
         $res = $obj->getcartdetailbyid();
         break;
-      
+
       case 'updatecartincrz':
         include APICLUDE.'class.addtocart.php';
         $obj = new addtocart($db['jzeva']);
 	 $res = $obj->updatecartincrz($params);
         break;
-    
-    
+
+
         case 'updatecartdecrese':
         include APICLUDE.'class.addtocart.php';
         $obj = new addtocart($db['jzeva']);
 	 $res = $obj->updatecartdecrese($params);
         break;
-    
+
     /** CODE FOR get product and user details by order id start **/
-    
+
     case 'getProductByOrderId':
         include APICLUDE.'class.addtocart.php';
         $obj = new addtocart($db['jzeva']);
         $res = $obj->getProductByOrderId($params);
         break;
-    
+
     /** CODE FOR get product and user details by order id ends **/
-    
+
     case 'userAddress':
         include APICLUDE.'class.addtocart.php';
         $obj = new addtocart($db['jzeva']);
         $res = $obj->userAddress($params);
         break;
-    
+
     // CODE FOR REMOVE CART START
     //http://localhost/jzeva/apis/index.php/?action=removeItemFromCart&pid=4820160125153111&oid=1463130805589
     case 'removeItemFromCart':
@@ -812,25 +818,25 @@ switch($action)
         $obj = new addtocart($db['jzeva']);
         $res = $obj->removeItemFromCart($params);
         break;
-    
+
     case 'updateOptVal':
         include APICLUDE.'class.addtocart.php';
         $obj = new addtocart($db['jzeva']);
         $res = $obj->updateOptVal($params);
-      
+
         break;
-        
+
     //http://localhost/jzeva/apis/index.php/?action=getZipcode&zipcd=523105
-        
+
     case 'getZipcode':
         include APICLUDE.'class.addtocart.php';
         $obj = new addtocart($db['jzeva']);
         $res = $obj->getZipcode($params);
         break;
-    
-    
+
+
     // CODE FOR REMOVE CART ENDS
-    
+
     //code for login start
     //http://localhost/jzeva/apis/index.php/?action=login&name=skrahul0605@gmail.com&pass=khan0605
     case 'login':
@@ -839,123 +845,123 @@ switch($action)
         $res = $obj->login($params);
         break;
     //code for login ends
-    
+
     case 'forgotPass':
         include APICLUDE.'class.us.php';
         $obj = new us($db['jzeva']);
         $res = $obj->forgotPass($params);
         break;
-    
+
     case 'signUp':
         include APICLUDE.'class.us.php';
         $obj = new us($db['jzeva']);
         $res = $obj->signUp($params);
         break;
-    
+
     //http://localhost/jzeva/apis/index.php/?action=search&search=ring
     case 'search':
         include APICLUDE.'class.addtocart.php';
         $obj = new addtocart($db['jzeva']);
         $res = $obj->searchPrd($params);
         break;
-    
-    
-    case 'sendotp': 
+
+
+    case 'sendotp':
         include APICLUDE.'class.user.php';
         $obj	= new user($db['jzeva']);
-        $res	=$obj->sendotp($params); 
-    break; 
-   
+        $res	=$obj->sendotp($params);
+    break;
+
     case 'addshippingdetail':
         include APICLUDE.'class.user.php';
         $obj	= new user($db['jzeva']);
 	$tmpaparams = array($params['dt']);
         $res	=$obj->addshippingdetail($tmpaparams);
     break;
-  
+
     case 'addOrdersdetail':
         include APICLUDE.'class.us.php';
         $obj = new us($db['jzeva']);
-	$tmpaparams = array($params['dt']); 
+	$tmpaparams = array($params['dt']);
          $res = $obj->addOrdersdetail($tmpaparams);
     break;
-  
-   case 'checkopt': 
+
+   case 'checkopt':
         include APICLUDE.'class.user.php';
         $obj	= new user($db['jzeva']);
-        $res	=$obj->checkopt($params); 
-    break; 
-  
-    case 'getuserdetailbymail': 
+        $res	=$obj->checkopt($params);
+    break;
+
+    case 'getuserdetailbymail':
         include APICLUDE.'class.user.php';
         $obj	= new user($db['jzeva']);
-        $res	=$obj->getuserdetailbymail($params); 
-    break; 
-  
-    case 'getuserdatabyurl': 
+        $res	=$obj->getuserdetailbymail($params);
+    break;
+
+    case 'getuserdatabyurl':
         include APICLUDE.'class.urlmaster.php';
-        $obj	= new urlmaster($db['jzeva']); 
+        $obj	= new urlmaster($db['jzeva']);
         $result	= $obj->getuserdatabyurl($params);
         $res = $result;
     break;
-    
-    case 'updateuserpass': 
+
+    case 'updateuserpass':
         include APICLUDE.'class.user.php';
         $obj	= new user($db['jzeva']);
-        $res	=$obj->updateuserpass($params); 
-    break; 
-    
-    case 'sendotp':  
+        $res	=$obj->updateuserpass($params);
+    break;
+
+    case 'sendotp':
         include APICLUDE.'class.user.php';
         $obj	= new user($db['jzeva']);
-        $res	=$obj->sendotp($params); 
-    break; 
-   
+        $res	=$obj->sendotp($params);
+    break;
+
     case 'addshippingdetail':
         include APICLUDE.'class.user.php';
         $obj	= new user($db['jzeva']);
 	$tmpaparams = array($params['dt']);
         $res	=$obj->addshippingdetail($tmpaparams);
-    break; 
-  
+    break;
+
     case 'addOrdersdetail':
         include APICLUDE.'class.us.php';
         $obj = new us($db['jzeva']);
-	$tmpaparams = array($params['dt']); 
+	$tmpaparams = array($params['dt']);
          $res = $obj->addOrdersdetail($tmpaparams);
     break;
-  
-   case 'checkopt': 
+
+   case 'checkopt':
         include APICLUDE.'class.user.php';
         $obj	= new user($db['jzeva']);
-        $res	=$obj->checkopt($params); 
-    break; 
-  
-    case 'getuserdetailbymail': 
+        $res	=$obj->checkopt($params);
+    break;
+
+    case 'getuserdetailbymail':
         include APICLUDE.'class.user.php';
         $obj	= new user($db['jzeva']);
-        $res	=$obj->getuserdetailbymail($params); 
-    break; 
-  
-    case 'getuserdatabyurl': 
+        $res	=$obj->getuserdetailbymail($params);
+    break;
+
+    case 'getuserdatabyurl':
         include APICLUDE.'class.urlmaster.php';
-        $obj	= new urlmaster($db['jzeva']); 
+        $obj	= new urlmaster($db['jzeva']);
         $result	= $obj->getuserdatabyurl($params);
         $res = $result;
     break;
-    
+
     case 'setImagedeflt':
         include APICLUDE.'class.admin.php';
         $obj=new admin($db['jzeva']);
         $res=$obj->setImagedeflt($params);
-    break; 
-  
-    case 'updateuserpass': 
+    break;
+
+    case 'updateuserpass':
         include APICLUDE.'class.user.php';
         $obj	= new user($db['jzeva']);
-        $res	=$obj->updateuserpass($params); 
-    break; 
-  
+        $res	=$obj->updateuserpass($params);
+    break;
+
   case 'getProductdetailbycatid':
         include APICLUDE.'class.product.php';
         $obj = new product($db['jzeva']);
@@ -966,17 +972,17 @@ switch($action)
         include APICLUDE.'class.addtocart.php';
         $obj = new addtocart($db['jzeva']);
         $res = $obj->removCrtItemaftrcheckot($params);
-  break; 
-    
+  break;
+
    case 'setImagedeflt':
        include APICLUDE.'class.admin.php';
        $obj=new admin($db['jzeva']);
        $res=$obj->setImagedeflt($params);
-   break; 
-    
-    
+   break;
 
-    
+
+
+
 }
 echo json_encode($res);
 exit;
