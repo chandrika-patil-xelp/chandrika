@@ -115,7 +115,7 @@ function Common() {
 
     this.validateMobile = function (mobno) {
         var mobExp = /^[7,8,9]{1}[0-9]{9}$/;
-        if(mobno.length==11) 
+        if(mobno.length==11)
              mobExp = /^[0,7,8,9]{1}[0-9]{10}$/;
         var flag = true;
         if (mobno == '' || mobno == null || mobno == undefined) {
@@ -149,27 +149,112 @@ function Common() {
 
         return flag;
     }
+//
+//     this.toast = function (mType, msg) {
+// //        $('.close').click();
+// //        $.toast.config.width = 450;
+// //        $.toast.config.closeForStickyOnly = false;
+// //        if (mType == 0) {
+// //            $.toast(msg, {duration: 5000, type: "danger"});
+// //        } else if (mType == 1) {
+// //            $.toast(msg, {duration: 5000, type: "success"});
+// //        }
+// //        $('.toast').css('display', 'block');
+// //        setTimeout(function () {
+// //            $('.close').click();
+// //        }, 5000);
+// //
+//         if (mType == 1)
+//             mType = 2;
+//         Message.msg(mType, msg);
+//
+//
+//     }
 
-    this.toast = function (mType, msg) {
-//        $('.close').click();
-//        $.toast.config.width = 450;
-//        $.toast.config.closeForStickyOnly = false;
-//        if (mType == 0) {
-//            $.toast(msg, {duration: 5000, type: "danger"});
-//        } else if (mType == 1) {
-//            $.toast(msg, {duration: 5000, type: "success"});
-//        }
-//        $('.toast').css('display', 'block');
-//        setTimeout(function () {
-//            $('.close').click();
-//        }, 5000);
-//        
-        if (mType == 1)
-            mType = 2;
-        Message.msg(mType, msg);
-        
-        
-    }
+var $toastlast='';
+this.msg = function(t, e) {
+       if ($toastlast !== '')
+           toastr.clear();
+
+       if (t == 0)
+           t = 'danger';
+
+       if (t == 1)
+           t = 'info';
+
+       if (t == 2)
+           t = 'success';
+
+       if (t == 3)
+           t = 'warning';
+
+       $("danger" === t ? function() {
+           toastr.error(e)
+       } : "info" === t ? function() {
+           toastr.info(e)
+       } : "success" === t ? function() {
+           toastr.success(e)
+       } : "warning" === t ? function() {
+           toastr.warning(e)
+       } : function() {
+
+       });
+       $toastlast = toastr;
+   }, toastr.options = {
+       closeButton: 0,
+       debug: !1,
+       newestOnTop: !0,
+       progressBar: 1,
+       positionClass: "toast-bottom-right",
+       preventDuplicates: false,
+       showDuration: "100",
+       hideDuration: "1000",
+       timeOut: "5000",
+       extendedTimeOut: "1000",
+       showEasing: "",
+       hideEasing: "",
+       showMethod: "slideDown",
+       hideMethod: "slideUp"
+   }, this.decodeMsg = function(t) {
+       return decodeURIComponent(t.replace(/\+/g, " "))
+   }, this.encodeMsg = function(t) {
+       return encodeURIComponent(t)
+   }, this.uid = function() {
+       var t = webstore.get("uid");
+       return t
+   }, this.appendDiv = function(t, e, n) {
+       if ("" != n) {
+           var o = document.getElementById(t);
+           o.innerHTML = e ? n : o.innerHTML + n
+       }
+   }, this.replaceURLWithHTMLLinks = function(t) {
+       var e = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi;
+       return t.replace(e, "<a href='$1' target='_blank'>$1</a>")
+   }, this.getParameterByName = function(t) {
+       t = t.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+       var e = new RegExp("[\\?&]" + t + "=([^&#]*)"),
+               n = e.exec(location.search);
+       return null == n ? "" : decodeURIComponent(n[1].replace(/\+/g, " "))
+   }, this.redirect = function(t) {
+       window.location = t
+   }, this.capitaliseFirstLetter = function(t) {
+       var e = t.value;
+       "" != e && (t.value = e.charAt(0).toUpperCase() + e.slice(1))
+   }, this.capitalize = function(t) {
+       var e = t.value.toLowerCase();
+       "" != e && (t.value = e.replace(/\w\S*/g, function(t) {
+           return t.charAt(0).toUpperCase() + t.substr(1).toLowerCase()
+       }))
+   }, this.castLowerCase = function(t) {
+       document.getElementById(t).value = document.getElementById(t).value.toLowerCase()
+   };
+
+
+
+
+
+
+
     this.makeEmpty = function (val) {
         if (val == null || val == undefined || val == 'undefined') {
             return '';
@@ -219,7 +304,7 @@ function Common() {
                 return true;
             }
             return false;
-        } else 
+        } else
             return true;
     };
     this.loadListViewAll = function ()
@@ -250,7 +335,7 @@ function Common() {
         m = m.toString().split('').reverse().join('');
         return m;
     };
-    
+
     this.IND_money_format = function(money)
    {
 var m = '';
@@ -267,9 +352,9 @@ m += money[i];
 
 return m.split("").reverse().join("");
    };
-   
-   
-   
+
+
+
    /* this.number_format = function (number, decimals, dec_point, thousands_sep)
    {
        number = (number + '').replace(/[^0-9+\-Ee.]/g, '');
