@@ -1027,7 +1027,7 @@ input[type=radio]:checked ~ .selector_label:after {
 .addDiv{width:50%;height:auto;float:left;padding: 10px 60px 30px 60px;}
 .addDiv1{width:50%;height:auto;float:left;padding: 10px 60px 30px 60px;border-left:1px dotted #ccc;}
 .newAddDiv{width:100%;height:auto;float:left;padding-top:20px;}
-.txtB{margin-bottom:5px;width: 100%;height: 40px; position: relative;font-family:regular;}
+.txtB{margin-bottom:5px;width: 100%;height: 40px; position: relative;font-family:semibold;}
 .txtB::after{content:"";width:0;height:0;border-top:2px solid #4d4d4d; position:absolute;bottom:-1px;left:0;transition:300ms}
 .focul.txtB:after{width:100%}
 .prfinalCont{width:100%;height:auto;position: relative;padding-top: 20px;}
@@ -1616,12 +1616,18 @@ input[type=radio]:checked ~ .selector_label:after {
 .points{padding-left: 20px;background: url("../img/icons/505.svg")no-repeat;background-size: auto 10px;background-position: 0 10px;}
 
 /*contact*/
-.contactH{font-size: 22px;font-family: semibold;padding: 20px 0px;width: 100%;}
-.incnt{width: 50%;height: auto;font-size: 14px;font-family:regular;padding: 0px 15px;line-height: 22px;border-right: 1px solid #ccc;}
-.contOuter{width:100%;height: auto;}
+.contactH{font-size:40px;font-family:semibold;width:100%;padding: 10px 0px;}
+.contactH2{font-size:28px;font-family: regular;padding-bottom: 40px;}
+.incnt{width:50%;height:auto;font-size:14px;font-family:regular;padding:0px 15px;line-height:22px;}
+.contOuter{width:100%;height: auto; font-size: 14px;
+    font-family: regular;
+    padding: 5px 0px;}
 .contOuter:last-child{border: none!important;}
+.contactDiv{width: 100%;
+    padding-top: 25px;}
+.pad20{padding:20px 0px;}
 .bNone{border:none!important;}
-.subCont{width:70%;padding-left:20px;font-size:12px;font-family:regular;line-height:22px;color: #15181;}
+.subCont{width:70%;padding-left:20px;font-size:12px;font-family:regular;line-height:22px;color: #15181b;}
 .spoints{width:100%;height: auto;padding-bottom: 8px;font-size: 12px;    font-family: regular;    line-height: 22px;    color: #15181b;}
 /*warranty*/
 .warranty{}
@@ -1955,9 +1961,8 @@ input[type=radio]:checked ~ .selector_label:after {
 .myaccount .pCont{padding-left: 35px;}
 .dateTxt{width:100%;}
 .vatTxt{width:100%;font-size: 11px;}
-.vatTxt span{width:50%;}
+.vatTxt span{padding:0px 10px;}
 .orderCommon{width: 100%;height: auto;}
-.myaccount .col50{padding-right:40px;}
 .proFields{width: 100%;height: 40px;line-height: 40px;font-size: 13px;}
 .shipTo{width:50%;height: auto;}
 .inCourier{width:100%;height:auto;padding-bottom: 15px;}
@@ -1966,21 +1971,30 @@ input[type=radio]:checked ~ .selector_label:after {
 .addrName{width:100%;height: 40px;line-height: 40px;padding: 10px 0px;}
 .defaultHead{width:100%;height: 50px;line-height: 50px;text-transform: uppercase;font-family: semibold;}
 .defaulDiv{width:100%;height: auto;border: 1px solid #ccc;padding: 10px;}
-.myaccount .txtB{margin-bottom:20px;}
+.myaccount .txtB{margin-bottom:20px;padding-right: 40px;}
 .tArea{width:100%;height:100px;border:1px solid #ccc;padding:5px;}
 .detailsOuter{}
 .tOuter{width:100%;height:auto;padding:8px 0px;border-top: 1px solid #ccc;border-bottom: 1px solid #ccc;}
 .tOuter:before{content:"";position:absolute;border-left:1px solid #ccc;width:10px;top:-6px;height:10px;left:10%;border-bottom:1px solid #ccc;transform:rotate(135deg);background-color:#fff;}
-.wishBox{width: 32%;
-    height: 40vh;
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-right: 9px;}
+.wishBox{width:32%;height:40vh;border:1px solid #ccc;padding:10px;margin-right:9px;}
 .wishImg{height: 70%;background: url("")no-repeat;}
-.wCart{width: 50%;border-right:1px solid #ccc;}
+.wCart{width: 50%;}
 .btwLine:before{content: "";position: absolute;border-right: 1px solid #ccc;height: 15px;top: 5px;right: 38%;}
 .bgCommon{background: url("../img/jzeva21.png")no-repeat;background-size:auto 100%;background-position: center;}
+.w_100{width: 100%;}
+.blurDiv{width: 100%;height: 100%;position: absolute;top: 0;left: 0;background: rgb(243, 243, 243);opacity: 0.5;}
+.myaccount .grid_item{width: 16.5vw;}
+.myaccount .grid_item{width:100%;background:#fff;position: relative;height:auto;float:left}
+.myaccount .grid_item:after{content:"";width:100%;height:100%;position:absolute;left:0;top:0;background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.05) 100%);pointer-events: none;}
+.myaccount .grid3{width:33.33%;display:block;float:left;position:static !important;height:auto;text-transform:uppercase;opacity:0;transform:translateY(40px);-webkit-transform:translateY(40px);-moz-transform:translateY(40px);-ms-transform:translateY(40px);-o-transform:translateY(40px)}
+.myaccount .fadeInup{opacity:1;}
+.myaccount .grid3{width:50%;}
+.cServices{}
+.cServices .gemBanner{background:url(../img/601.jpg)no-repeat;background-size:cover;background-position: right;}
+.rHover:after{}
+.addrRemove{background: url("../img/601w.svg")no-repeat;background-size: auto 20px;transform:translateX(-20px);}
 
+/*.addrRemove:hover{transform: translateY(20px);}*/
 
 .selectBox{width:150px;height:50px;background:#53C9C7;position:relative}
 .selectDefault{width:100%;height:100%;background:transparent;line-height:50px;position:absolute;left:0;top:0;cursor:pointer;padding:0 40px;pointer-events:auto}
