@@ -210,5 +210,9 @@ switch ($action) {
         $page = 'bangleguide';
         include TEMPLATE . 'bangleguide.html';
         break;
+    case 'conciergeServices':
+        $page = 'conciergeServices';
+        include TEMPLATE . 'conciergeServices.html';
+        break;
 }
 ?>
