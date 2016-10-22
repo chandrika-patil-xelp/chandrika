@@ -1990,9 +1990,24 @@ input[type=radio]:checked ~ .selector_label:after {
 .myaccount .fadeInup{opacity:1;}
 .myaccount .grid3{width:50%;}
 .cServices{}
-.cServices .gemBanner{background:url(../img/601.jpg)no-repeat;background-size:cover;background-position: right;}
+.cServices .gemBanner{background:url(../img/concieregeImage.jpg)no-repeat;background-size:cover;background-position: right;}
 .rHover:after{}
 .addrRemove{background: url("../img/601w.svg")no-repeat;background-size: auto 20px;transform:translateX(-20px);}
+.psImage{width:100%;height:100%;border: 1px solid;}
+
+.pcImage{background:url("../img/icons/pc106.png")no-repeat;background-size: auto 100%;background-position: left;}
+.norImage{background:url("../img/icons/n103.png")no-repeat;background-size: auto 100%;background-position: left;}
+.masterImg{background:url("../img/icons/m104.png")no-repeat;background-size: auto 100%;background-position: left;}
+.visaLogo{background:url("../img/icons/v105.png")no-repeat;background-size: auto 100%;background-position: left;}
+.safeLogo{background:url("../img/icons/s102.png")no-repeat;background-size: auto 100%;background-position: left;}
+.rupayLogo{background:url("../img/icons/r107.png")no-repeat;background-size: auto 100%;background-position: left;}
+.jcbLogo{background:url("../img/icons/j101.png")no-repeat;background-size: auto 100%;background-position: left;}
+.imageHolder{width:20%;height:100px;}
+
+.craftBnr .gemBanner{background:url("../img/h_craftmanship.jpg")no-repeat;background-size:cover;background-position: left;}
+.promiseBnr .gemBanner{background:url("../img/h_ourpromise.jpg")no-repeat;background-size:cover;background-position: left;}
+.storyBnr .gemBanner{background:url("../img/h_ourstory.jpg")no-repeat;background-size:cover;background-position: left;}
+.responsibleBnr .gemBanner{background:url("../img/h_responsible.jpg")no-repeat;background-size:cover;background-position: left;}
 
 /*.addrRemove:hover{transform: translateY(20px);}*/
 
