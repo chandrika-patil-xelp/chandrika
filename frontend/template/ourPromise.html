@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<?php include 'jhead.html' ?>
+<body class="Terms promiseBnr">
+    <?php include 'Cart.html'?>
+    <?php include 'header.html'?>
+    <div class="fLeft gemBanner">
+        <div class="banner_over" id ="banner_over"></div>
+        <div class="termHeading">Our Promise</div>
+    </div>
+    <div class="wrapper_main fLeft">
+        <div class="container2 fLeft">
+            <div class="col100">
+                <div class="wrapper_max offsetTop offsetEffects transition600">
+                    <div class="tCommon fLeft">
+                        <div class="fLeft tHead"></div>
+                        <div class="fLeft pCont">
+                            <div class="tCont fLeft">Jzeva’s core values are drawn to ensure that you – our customer as the sole focus.</div>
+                            <div class="tCont fLeft">Jzeva promises to ensure that  our customer service strives to go above and beyond your expectations.</div>
+                            <div class="tCont fLeft">When you buy one of our jewellery you can be rest assured that you have invested in a piece of Art.</div>
+                            <div class="subH semibold fLeft">How do we do it?</div>
+                            <div class="fLeft subHm semibold">Fast and Ontime Shipping</div>
+                            <div class="fLeft tCont">We have 1-day order processing time plus the delivery time mentioned against each product. If you your product is not processed in the said time we will give you a flat 10% off on your next order and that’s a promise.</div>
+                            <div class="fLeft subHm semibold">Quick Response</div>
+                            <div class="fLeft tCont">We will answer all your queries within 1 business day and that’s a promise.</div>
+                            <div class="fLeft subHm semibold">Free returns</div>
+                            <div class="fLeft tCont">We have a 7 day no questions asked return on all products below INR 49,000 in value on which you will get a 100% refund and that’s a promise.</div>
+                            <div class="fLeft subH semibold">Safe and Secure Shopping</div>
+                            <div class="fLeft tCont">
+                                <div class="fLeft imageHolder pcImage"></div>
+                                <div class="fLeft imageHolder masterImg"></div>
+                                <div class="fLeft imageHolder norImage"></div>
+                                <div class="fLeft imageHolder visaLogo"></div>
+                            </div>
+                            <div class="fLeft tCont">
+                                <div class="fLeft imageHolder safeLogo"></div>
+                                <div class="fLeft imageHolder rupayLogo"></div>
+                                <div class="fLeft imageHolder jcbLogo"></div>
+                            </div>
+                            <div class="fLeft tCont">All the transactions you make on Jzeva are compliant to the highest orders of cyber security and that’s a promise.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php include 'footer.html'?>
+    <script>
+        $(document).ready(function () {
+            $('.wrapper_max').removeClass('offsetEffects');
+        });
+        $(window).scroll(function () {
+            var sc = $('body').scrollTop();
+            var ht = $('.gemBanner').outerHeight(true) - 130;
+            if (ht > sc) {
+                var op = 1 - (ht - sc) / ht;
+                $('#banner_over').css({'opacity': op});
+
+            }
+            if (ht - sc <= 5) {
+                $('.header').addClass('black_bg');
+                console.log('if');
+            } else {
+                $('.header').removeClass('black_bg');
+                console.log('else');
+            }
+//           if(ht-sc<=60){
+//           console.log(sc);
+//           $('.gemBanner').addClass('fixer');
+//       }
+//       else{
+//            $('.gemBanner').removeClass('fixer');
+//       }
+        });
+    </script>
+
+
+</body>
+
+
+
+
