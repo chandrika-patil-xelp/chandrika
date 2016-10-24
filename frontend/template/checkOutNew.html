@@ -37,7 +37,7 @@
                       <div class="cbrdr"></div>
                   </div>
                       <div class="delvrAdress fLeft regular" id="intscrl">
-                          <div class="col100 fLeft afterTick">
+                          <div class="col100 fLeft">
                           <div class="w50r fLeft">
                               <div class="text fLeft" id="spnd_name">Janardan prasanna ghosh</div>
                                <div class="text fLeft" id="spnd_email">janardan@xelpmoc.in</div>
@@ -723,6 +723,16 @@
                                 else {
                                     $('.matchIcn1').addClass('dn');
                                 }
+                            });
+                            $('.dlvrBtn').on('click',function(){
+                                var i=$(this);
+                                i.animate({
+                                 paddingLeft:'12px',
+                                 paddingRight:'32px'
+                                });
+                               setTimeout(function(){
+                                     i.addClass('afterTick');
+                               },100);
                             });
           
 
