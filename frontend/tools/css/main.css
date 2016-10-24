@@ -1940,8 +1940,9 @@ input[type=radio]:checked ~ .selector_label:after {
 .note{width:30%;height:auto;text-align: right;}
 .pName{width:100%;height:auto;}
 .rsCont{width:20%;height: auto;}
-.plusBox{width:15px;height:15px;border-radius:2px;background:#53C9C7 url("../img/icons/510w.svg")no-repeat;background-size: auto 15px;background-position: center;cursor: pointer;margin-top: 4px;margin-left: 10px;}
-.minusBox{width:15px;height:15px;border-radius:2px;background:#53C9C7 url("../img/icons/518w.svg")no-repeat;background-size: auto 15px;background-position: center;cursor: pointer;margin-top: 4px;margin-left: 10px;}
+.plusHolder{width:15px;height:15px;border-radius:2px;}
+.plusBox{background:#53C9C7 url("../img/icons/510w.svg")no-repeat;background-size: auto 15px;background-position: center;cursor: pointer;margin-top: 4px;margin-left: 10px;}
+.minusBox{background:#53C9C7 url("../img/icons/518w.svg")no-repeat;background-size: auto 15px;background-position: center;cursor: pointer;margin-top: 4px;margin-left: 10px;}
 .jColor{color:#53C9C7;}
 .proStep{width:40px;height:40px;border-radius:50%;position:absolute;z-index:1;top:0;bottom: 0;right: 0;left:0;margin: auto;}
 /*.proStep:after{content: "";width: 25%;border-bottom: 1px solid;position: absolute;top: 50%;left: 55px;}*/
@@ -1955,7 +1956,7 @@ input[type=radio]:checked ~ .selector_label:after {
 .detailOrder{font-size: 15px;width: 100%;height: 60px;line-height: 60px;text-transform: uppercase;font-family: semibold;border-bottom: 1px solid #ccc;}
 .trackOuter{width:100%;height:auto;}
 /*.trackName{width:100%;height:auto;padding:30px 0px;}*/
-.trackDivs{width:24%;height: 125px;position: relative;float: left;}
+.trackDivs{width:24%;height: 125px;position: relative;display: inline-block;}
 .trackDivs:after{content:"";position:absolute;border-bottom:1px solid #ccc;width: 100%;right:0;top:50%;left:50%;}
 #track .proStep{border:none;}
 .placedTxt{width: 100%;text-transform: uppercase;font-size: 13px;font-family: semibold;}
@@ -1970,7 +1971,7 @@ input[type=radio]:checked ~ .selector_label:after {
 .proFields{width: 100%;height: 40px;line-height: 40px;font-size: 13px;}
 .shipTo{width:50%;height: auto;}
 .inCourier{width:100%;height:auto;padding-bottom: 15px;}
-.addrBar{width:100%;height: 50px;line-height: 50px;border: 1px solid #ccc;margin-bottom: 10px;padding: 0px 10px;cursor: pointer;}
+.addrBar{width:100%;height:50px;line-height:35px;border:1px solid #ccc;margin-bottom: 10px;padding: 7px 20px 0px 20px;cursor: pointer;}
 .savedAddr{width:100%;height: auto;border: 1px solid #ccc;}
 .addrName{width:100%;height: 40px;line-height: 40px;padding: 10px 0px;}
 .defaultHead{width:100%;height: 50px;line-height: 50px;text-transform: uppercase;font-family: semibold;}
@@ -1993,11 +1994,14 @@ input[type=radio]:checked ~ .selector_label:after {
 .myaccount .grid3{width:33.33%;display:block;float:left;position:static !important;height:auto;text-transform:uppercase;opacity:0;transform:translateY(40px);-webkit-transform:translateY(40px);-moz-transform:translateY(40px);-ms-transform:translateY(40px);-o-transform:translateY(40px)}
 .myaccount .fadeInup{opacity:1;}
 .myaccount .grid3{width:50%;}
+
 .cServices{}
 .cServices .gemBanner{background:url(../img/concieregeImage.jpg)no-repeat;background-size:cover;background-position: right;}
 .rHover:after{}
-.addrRemove{background: url("../img/601w.svg")no-repeat;background-size: auto 20px;transform:translateX(-20px);}
+.addrRemove{background: url("../img/icons/601w.svg")no-repeat;background-size: auto 20px;}
 .psImage{width:100%;height:100%;border: 1px solid;}
+.minusBlack{background:#f3f3f3 url("../img/icons/518b.svg")no-repeat;background-size: auto 15px;background-position: center;}
+.marR{margin: 0px 10px!important;}
 
 .pcImage{background:url("../img/icons/pc106.png")no-repeat;background-size: auto 100%;background-position: left;}
 .norImage{background:url("../img/icons/n103.png")no-repeat;background-size: auto 100%;background-position: left;}
@@ -2007,6 +2011,10 @@ input[type=radio]:checked ~ .selector_label:after {
 .rupayLogo{background:url("../img/icons/r107.png")no-repeat;background-size: auto 100%;background-position: left;}
 .jcbLogo{background:url("../img/icons/j101.png")no-repeat;background-size: auto 100%;background-position: left;}
 .imageHolder{width:20%;height:100px;}
+.plusBlack{background:#f3f3f3 url("../img/icons/510b.svg")no-repeat;background-size:auto 15px;background-position:center;}
+.addrEditCnt{width: 30px;height: 30px;background-color: #f3f3f3;opacity: 0.5;}
+.addrEditCnt:hover{opacity: 1;}
+
 
 .craftBnr .gemBanner{background:url("../img/h_craftmanship.jpg")no-repeat;background-size:cover;background-position: left;}
 .promiseBnr .gemBanner{background:url("../img/h_ourpromise.jpg")no-repeat;background-size:cover;background-position: left;}
@@ -2022,3 +2030,14 @@ input[type=radio]:checked ~ .selector_label:after {
 
 .pad0{padding: 0px!important;}
 .pad10{padding: 0px 10px;}
+
+@media only screen and (min-width:320px) and (max-width:767px){
+    
+    .tHead{width: 100%;text-align: left;}
+    .pCont{width: 100%;padding: 0px;}
+    .offsetTop{padding: 20px;}
+    .footerH{padding: 25px 25px;}
+    .footerCont1{width: 100%;}
+    .fooH{margin: 10px 0px;}
+    .container2{padding-bottom:50px;}
+}
