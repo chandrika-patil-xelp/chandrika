@@ -48,7 +48,7 @@
                            </div>
                               <div class="btncnt fLeft bolder">
                                   <center>
-                                      <div class="dlvrBtn">DELIVER TO THIS ADDRESS</div>
+                                      <div class="dlvrBtn transition300">DELIVER TO THIS ADDRESS</div>
                                   </center>
                               </div>
                           </div>
@@ -63,7 +63,7 @@
                            </div>
                               <div class="btncnt fLeft bolder">
                                   <center>
-                                      <div class="dlvrBtn">DELIVER TO THIS ADDRESS</div>
+                                      <div class="dlvrBtn transition300">DELIVER TO THIS ADDRESS</div>
                                   </center>
                               </div>
                           </div>
@@ -78,7 +78,7 @@
                            </div>
                               <div class="btncnt fLeft bolder">
                                   <center>
-                                      <div class="dlvrBtn">DELIVER TO THIS ADDRESS</div>
+                                      <div class="dlvrBtn transition300">DELIVER TO THIS ADDRESS</div>
                                   </center>
                               </div>
                           </div>
@@ -93,7 +93,7 @@
                            </div>
                               <div class="btncnt fLeft bolder">
                                   <center>
-                                      <div class="dlvrBtn">DELIVER TO THIS ADDRESS</div>
+                                      <div class="dlvrBtn transition300">DELIVER TO THIS ADDRESS</div>
                                   </center>
                               </div>
                           </div>
@@ -726,13 +726,22 @@
                             });
                             $('.dlvrBtn').on('click',function(){
                                 var i=$(this);
+                               $('.dlvrBtn').each(function(){
+                                   setTimeout(function(){
+                                         $('.dlvrBtn').removeClass('afterTick');
+                                   },250);
+                                   $('.dlvrBtn').animate({
+                                 paddingLeft:'10px',
+                                 paddingRight:'10px'
+                                },50);
+                                });
                                 i.animate({
                                  paddingLeft:'12px',
                                  paddingRight:'32px'
-                                });
+                                },50);
                                setTimeout(function(){
                                      i.addClass('afterTick');
-                               },100);
+                               },250);
                             });
           
 
