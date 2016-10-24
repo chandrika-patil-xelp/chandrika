@@ -1869,8 +1869,8 @@ input[type=radio]:checked ~ .selector_label:after {
 .tabDaddrss{width: auto;padding: 0px 20px;color: #fff;height: 30px;font-size: 12px;transform: rotate(-90deg);position: absolute;left: -32px;transform-origin: 0 0;top:225px;letter-spacing: 0.35em;line-height: 28px;}
 .tabDaddrss1{width: auto;padding: 0px 20px;color: #fff;height: 30px;font-size: 12px;transform: rotate(-90deg);position: absolute;left: -32px;transform-origin: 0 0;bottom:0;letter-spacing: 0.35em;line-height: 28px;}
 .delvrAdress{width:100%;height:390px;padding:20px 0px 20px 0px;position: relative;}
-.dlvrBtn{width: auto; padding: 0px 10px;font-size: 12px;height: 30px;line-height: 30px;cursor: pointer;display: inline-block;border: 1px solid #ccc;border-radius: 2px;}
-.afterTick:before{content:'';width:30px;height:30px;position:absolute;left:0;top:30px;background:url(../img/02g.svg)no-repeat;background-size:auto 40px;background-position:center;}
+.dlvrBtn{width: auto; padding: 0px 10px;font-size: 12px;height: 30px;line-height: 30px;cursor: pointer;display: inline-block;border: 1px solid #ccc;border-radius: 2px;position: relative;}
+.afterTick:before{content:'';width:30px;height:27px;position:absolute;right:0;top:0px;background:url(../img/02g.svg)no-repeat;background-size:auto 35px;background-position:center;}
 .delvrAdress .col100{width:100%;height:auto;min-height:100px;position:relative;margin-bottom: 10px;}
 .delvrAdress .col100 .btncnt{width:100%;height:auto;margin-top: 5px;}
 .delvrAdress .w50r{width:50%;height:auto;padding-right:20px;}
