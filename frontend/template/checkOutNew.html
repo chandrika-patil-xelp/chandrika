@@ -36,7 +36,8 @@
                   <div class="dAdrsshdr fLeft semibold">CONFIRM NUMBER
                       <div class="cbrdr"></div>
                   </div>
-                      <div class="delvrAdress fLeft regular">
+                      <div class="delvrAdress fLeft regular" id="intscrl">
+                          <div class="col100 fLeft afterTick">
                           <div class="w50r fLeft">
                               <div class="text fLeft" id="spnd_name">Janardan prasanna ghosh</div>
                                <div class="text fLeft" id="spnd_email">janardan@xelpmoc.in</div>
@@ -45,6 +46,57 @@
                           <div class="w50l fRight"> 
                               <div class="text fLeft"><span>#657 5th A cross,17th E main road,Koromangala club,Bangalore,Karanataka,560095</span></div>
                            </div>
+                              <div class="btncnt fLeft bolder">
+                                  <center>
+                                      <div class="cntrBtn">DELIVER TO THIS ADDRESS</div>
+                                  </center>
+                              </div>
+                          </div>
+                          <div class="col100 fLeft">
+                          <div class="w50r fLeft">
+                              <div class="text fLeft" id="spnd_name">Janardan prasanna ghosh</div>
+                               <div class="text fLeft" id="spnd_email">janardan@xelpmoc.in</div>
+                                <div class="text fLeft" id="spnd_city_pin">bangalore-560095</div>
+                          </div>
+                          <div class="w50l fRight"> 
+                              <div class="text fLeft"><span>#657 5th A cross,17th E main road,Koromangala club,Bangalore,Karanataka,560095</span></div>
+                           </div>
+                              <div class="btncnt fLeft bolder">
+                                  <center>
+                                      <div class="cntrBtn">DELIVER TO THIS ADDRESS</div>
+                                  </center>
+                              </div>
+                          </div>
+                          <div class="col100 fLeft">
+                          <div class="w50r fLeft">
+                              <div class="text fLeft" id="spnd_name">Janardan prasanna ghosh</div>
+                               <div class="text fLeft" id="spnd_email">janardan@xelpmoc.in</div>
+                                <div class="text fLeft" id="spnd_city_pin">bangalore-560095</div>
+                          </div>
+                          <div class="w50l fRight"> 
+                              <div class="text fLeft"><span>#657 5th A cross,17th E main road,Koromangala club,Bangalore,Karanataka,560095</span></div>
+                           </div>
+                              <div class="btncnt fLeft bolder">
+                                  <center>
+                                      <div class="cntrBtn">DELIVER TO THIS ADDRESS</div>
+                                  </center>
+                              </div>
+                          </div>
+                             <div class="col100 fLeft">
+                          <div class="w50r fLeft">
+                              <div class="text fLeft" id="spnd_name">Janardan prasanna ghosh</div>
+                               <div class="text fLeft" id="spnd_email">janardan@xelpmoc.in</div>
+                                <div class="text fLeft" id="spnd_city_pin">bangalore-560095</div>
+                          </div>
+                          <div class="w50l fRight"> 
+                              <div class="text fLeft"><span>#657 5th A cross,17th E main road,Koromangala club,Bangalore,Karanataka,560095</span></div>
+                           </div>
+                              <div class="btncnt fLeft bolder">
+                                  <center>
+                                      <div class="cntrBtn">DELIVER TO THIS ADDRESS</div>
+                                  </center>
+                              </div>
+                          </div>
                       </div>
                           <div class="entrOtp fLeft semibold" onclick="opnscnd()">Different Address?</div>
                   <div class="cnclSbmt fLeft bolder">
@@ -117,7 +169,7 @@
                     </div>-->
                       <div class="cnclSbmt fLeft bolder">
                           <center>
-                              <div class="cntrBtn" onclick="openThrd()">SUBMIT</div>
+                              <div class="cntrBtn">SUBMIT</div>
                           </center>
                   </div>
                             </div>
@@ -547,6 +599,7 @@
     <script type="text/javascript" src="<?php echo $fjvs['Common']; ?>"></script>
     <script type="text/javascript">
         $(window).load(function () {
+            
             setTimeout(function () {
                 load_page();
             }, 2000);
@@ -601,6 +654,7 @@
             function openfst(){
                  $('#fstup').velocity({translateY: [-20, 0], opacity:[0,1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
                 $('#scndup').velocity({translateY: [0, 20], opacity:[1,0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
+                 $('#intscrl').niceScroll({cursorcolor: "#000000", touchbehavior: true, cursorwidth: "4px", autohidemode: false, cursorborder: "0px solid #fff", cursoropacitymin: "0.3", cursoropacitymax: "0.3", railpadding: {top: 2, right: 2, left: 2, bottom: 2}});
             }
             function opnscnd(){
                  $('#fstup').velocity({translateY: [0, 20], opacity:[1,0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
@@ -618,6 +672,7 @@
             function opnfrth(){
                  $('#scndup').velocity({translateY: [0, 20], opacity:[1,0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
                 $('#fourthup').velocity({translateY: [-20, 0], opacity:[0,1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
+                 $('#intscrl').niceScroll({cursorcolor: "#000000", touchbehavior: true, cursorwidth: "4px", autohidemode: false, cursorborder: "0px solid #fff", cursoropacitymin: "0.3", cursoropacitymax: "0.3", railpadding: {top: 2, right: 2, left: 2, bottom: 2}});
             }
              $('.entrotppopup').velocity({opacity: 0}, {delay: 0, duration: 0});
           $('.enterotpCnt').velocity({scale: 0, borderRadius: "50%", opacity: 0}, {delay: 0, duration: 0});
