@@ -1868,12 +1868,15 @@ input[type=radio]:checked ~ .selector_label:after {
 
 .tabDaddrss{width: auto;padding: 0px 20px;color: #fff;height: 30px;font-size: 12px;transform: rotate(-90deg);position: absolute;left: -32px;transform-origin: 0 0;top:225px;letter-spacing: 0.35em;line-height: 28px;}
 .tabDaddrss1{width: auto;padding: 0px 20px;color: #fff;height: 30px;font-size: 12px;transform: rotate(-90deg);position: absolute;left: -32px;transform-origin: 0 0;bottom:0;letter-spacing: 0.35em;line-height: 28px;}
-.delvrAdress{width:100%;height:auto;padding:50px 0px 30px 0px;}
-.delvrAdress .w50r{width:50%;height:auto;padding-right:30px;}
+.delvrAdress{width:100%;height:390px;padding:20px 0px 20px 0px;position: relative;}
+.afterTick:before{content:'';width:30px;height:30px;position:absolute;left:0;top:30px;background:url(../img/02g.svg)no-repeat;background-size:auto 40px;background-position:center;}
+.delvrAdress .col100{width:100%;height:auto;min-height:100px;position:relative;margin-bottom: 10px;}
+.delvrAdress .col100 .btncnt{width:100%;height:auto;}
+.delvrAdress .w50r{width:50%;height:auto;padding-right:20px;}
 .delvrAdress .w50r .text{width:100%;height:auto;text-align:right;font-size:13px;line-height:26px;color:#333;}
-.delvrAdress .w50l{width:50%;height:auto;padding-left:30px;}
+.delvrAdress .w50l{width:50%;height:auto;padding-left:20px;}
 .delvrAdress .w50l .text{width:100%;height:auto;text-align:left;font-size:13px;line-height:22px;color:#333;}
-.delvrAdress .w50l .text span{display:inline-block;line-height:inherit;vertical-align:middle;}
+.delvrAdress .w50l .text span{display:inline-block;line-height:inherit;vertical-align:middle;word-wrap: break-word;width: 100%;}
 .entrOtp{width:100%;height:auto;font-size:15px;line-height:30px;text-align:center;color:#333;margin-top: 10px;cursor: pointer;}
 .neadHide{width:100%;height:auto;}
 .centerDvHldr{width:100%;height:auto;margin-top: 40px;}
