@@ -692,12 +692,12 @@ function calculatePrice()
     
     if(catname == 'Rings'){
    bseSize = parseFloat(14);
-   currentSize = 14;
+   currentSize = parseFloat($('#size').html().replace('Size',''));
  $('#size').html('Size ' +14.0);
     }
      if(catname == 'Bangles'){
    bseSize = parseFloat(2.4);
-   currentSize = 2.4;
+   currentSize = parseFloat($('#size').html().replace('Size',''));
     $('#size').html('Size ' + 2.4);
     }
     
@@ -709,7 +709,7 @@ function calculatePrice()
     
    
     
-    var changeInWeight=(currentSize-bseSize)*mtlWgDav;console.log(changeInWeight);
+    var changeInWeight=(currentSize-bseSize)*mtlWgDav;console.log(currentSize);
     var newWeight=parseFloat(storedWt+(changeInWeight));
     
     
@@ -718,7 +718,7 @@ function calculatePrice()
     var ttl=parseFloat(goldPrice+dmdPrice+mkCharges+ uncPrice + soliprc + gemsPrice);
     
 
-//console.log("dmdPrice-> "+dmdPrice +" --- " + "changeInWeight -> "+changeInWeight+"  ---- "+"newWeight -> "+newWeight+ " goldPrice ->" +goldPrice +" mkCharges ->" +mkCharges);
+console.log("dmdPrice-> "+dmdPrice +" --- " + "changeInWeight -> "+changeInWeight+"  ---- "+"newWeight -> "+newWeight+ " goldPrice ->" +goldPrice +" mkCharges ->" +mkCharges);
     
     
     var totalNewPrice= Math.round(ttl+(ttl*vatRate));
