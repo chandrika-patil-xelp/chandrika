@@ -1027,7 +1027,7 @@ input[type=radio]:checked ~ .selector_label:after {
 .addDiv{width:50%;height:auto;float:left;padding: 10px 60px 30px 60px;}
 .addDiv1{width:50%;height:auto;float:left;padding: 10px 60px 30px 60px;border-left:1px dotted #ccc;}
 .newAddDiv{width:100%;height:auto;float:left;padding-top:20px;}
-.txtB{margin-bottom:5px;width: 100%;height: 40px; position: relative;font-family:semibold;}
+.txtB{margin-bottom:15px;width: 100%;height: 40px; position: relative;font-family:semibold;}
 .txtB::after{content:"";width:0;height:0;border-top:2px solid #4d4d4d; position:absolute;bottom:-1px;left:0;transition:300ms}
 .focul.txtB:after{width:100%}
 .prfinalCont{width:100%;height:auto;position: relative;padding-top: 20px;}
@@ -1564,7 +1564,7 @@ input[type=radio]:checked ~ .selector_label:after {
 .grStyl7{height:45%;background:url(../img/info4.jpg)no-repeat;background-position:center;background-size:cover;vertical-align:top;transition-delay:1000ms;-webkit-transition-delay:1000ms;-moz-transition-delay:1000ms;-ms-transition-delay:1000ms;-o-transition-delay:1000ms}
 .grCap{font-size:11px;font-family:semibold;letter-spacing:0.35em;color:#15181b;position:absolute;cursor:pointer}
 .grStyl2 .grCap{transform: rotate(-90deg);transform-origin:0 0 ;left:-18px;top:130px;}
-.grStyl3 .grCap{transform: rotate(-90deg);transform-origin:195px 0;right:-10px;top:0;}
+.grStyl3 .grCap{transform: rotate(-90deg);transform-origin:195px 0;right:50px;top:-55px;}
 .grStyl4 .grCap{transform: rotate(-90deg);transform-origin:0 0 ;left:-18px;bottom:-12px;}
 .grStyl5 .grCap{transform: rotate(-90deg);transform-origin:0 0 ;left:-18px;bottom:-12px;}
 .grStyl6 .grCap{transform: rotate(-90deg);transform-origin:195px 0;right:0px;top:-12px;}
@@ -1671,7 +1671,7 @@ input[type=radio]:checked ~ .selector_label:after {
 .bangle .shRow{width:50%;}
 .bangle .sRow{width:50%;}
 .opt2Img1{background:url(../img/icons/512.svg)no-repeat;background-size: auto 100%;}
-.opt2Img2{background:url(../img/icons/516.svg)no-repeat;background-size: auto 100%;}
+.opt2Img2{background:url(../img/icons/516w.svg)no-repeat;background-size: auto 100%;}
 .opt2Img3{background:url(../img/icons/514.svg)no-repeat;background-size: auto 100%;}
 .opt2Img4{background:url(../img/icons/513.svg)no-repeat;background-size: auto 100%;}
 
@@ -1929,20 +1929,20 @@ input[type=radio]:checked ~ .selector_label:after {
 .tabdata{width:100%;height: 30px;line-height: 30px;letter-spacing: 0.15em;text-transform: uppercase;line-height: 25px;cursor: pointer;font-family: regular;font-size: 11px;color: #15181b;text-align: right; }
 .tabHead{width: 100%;height: 30px;line-height:30px;color:#222529;letter-spacing: 0.35em;text-transform: uppercase;cursor: pointer;font-family: bolder;font-size: 13px;color: #15181b;text-align: right;}
 .tabDetails{width: 80%;height: auto;padding-left: 15px;}
-.orderOuter{width: 100%;height: auto;border-bottom: 1px solid #ccc;}
-.Morder{width:25%;height:30px;line-height: 30px;letter-spacing: 0.15em;text-transform: uppercase;font-size: 12px;font-family: light;color: #15181b;}
+.orderOuter{width: 100%;height: auto;border-bottom: 1px solid #ccc;padding-bottom: 10px;}
+.Morder{width:25%;height:20px;letter-spacing: 0.15em;text-transform: uppercase;font-size:12px;font-family: light;color: #15181b;}
 .orderidOuter{width: 100%;height: auto;padding: 15px 0px;border-bottom: 1px solid #ccc;}
 .ordTxt{width: auto;height:30px;line-height:30px;padding:0px 15px;font-size:14px;font-family: regular;}
 .inShip{width: 100%;height: auto;}
-.detailsOuter{width: 100%;height: auto;padding: 30px 0px;border-bottom: 1px solid #ccc;}
+.detailsOuter{width: 100%;height: auto;padding:20px 0px;border-bottom: 1px solid #ccc;}
 .orderImg{width: 20%;height: 100px;border: 1px solid #ccc;}
 .orderName{width:30%;height:auto;padding-left:10px;}
 .note{width:30%;height:auto;text-align: right;}
 .pName{width:100%;height:auto;}
 .rsCont{width:20%;height: auto;}
-.plusHolder{width:15px;height:15px;border-radius:2px;}
-.plusBox{background:#53C9C7 url("../img/icons/510w.svg")no-repeat;background-size: auto 15px;background-position: center;cursor: pointer;margin-top: 4px;margin-left: 10px;}
-.minusBox{background:#53C9C7 url("../img/icons/518w.svg")no-repeat;background-size: auto 15px;background-position: center;cursor: pointer;margin-top: 4px;margin-left: 10px;}
+.plusHolder{width:15px;height:15px;border-radius:2px;cursor: pointer;margin-top: 4px;margin-left: 10px;}
+.plusBox{background:#53C9C7 url("../img/icons/510w.svg")no-repeat;background-size: auto 15px;background-position: center;}
+.minusBox{background:#53C9C7 url("../img/icons/518w.svg")no-repeat;background-size: auto 15px;background-position: center;}
 .jColor{color:#53C9C7;}
 .proStep{width:40px;height:40px;border-radius:50%;position:absolute;z-index:1;top:0;bottom: 0;right: 0;left:0;margin: auto;}
 /*.proStep:after{content: "";width: 25%;border-bottom: 1px solid;position: absolute;top: 50%;left: 55px;}*/
@@ -1975,8 +1975,7 @@ input[type=radio]:checked ~ .selector_label:after {
 .savedAddr{width:100%;height: auto;border: 1px solid #ccc;}
 .addrName{width:100%;height: 40px;line-height: 40px;padding: 10px 0px;}
 .defaultHead{width:100%;height: 50px;line-height: 50px;text-transform: uppercase;font-family: semibold;}
-.defaulDiv{width:100%;height: auto;border: 1px solid #ccc;padding: 10px;}
-.myaccount .txtB{margin-bottom:20px;padding-right: 40px;}
+.defaulDiv{width:100%;height: auto;border: 1px solid #ccc;padding: 10px;margin-bottom: 15px;}
 .tArea{width:100%;height:100px;border:1px solid #ccc;padding:5px;}
 .detailsOuter{}
 .tOuter{width:100%;height:auto;padding:8px 0px;border-top: 1px solid #ccc;border-bottom: 1px solid #ccc;}
@@ -1994,6 +1993,8 @@ input[type=radio]:checked ~ .selector_label:after {
 .myaccount .grid3{width:33.33%;display:block;float:left;position:static !important;height:auto;text-transform:uppercase;opacity:0;transform:translateY(40px);-webkit-transform:translateY(40px);-moz-transform:translateY(40px);-ms-transform:translateY(40px);-o-transform:translateY(40px)}
 .myaccount .fadeInup{opacity:1;}
 .myaccount .grid3{width:50%;}
+.myaccount .col50{padding-right: 40px;}
+.myaccount .txtB{margin-bottom: 20px;}
 
 .cServices{}
 .cServices .gemBanner{background:url(../img/concieregeImage.jpg)no-repeat;background-size:cover;background-position: right;}
@@ -2040,7 +2041,13 @@ input[type=radio]:checked ~ .selector_label:after {
     .footerCont1{width: 100%;}
     .fooH{margin: 10px 0px;}
     .container2{padding-bottom:50px;}
+    .tabWrap{display:none;} 
     
+}
+@media only screen and (min-width:768px) and (max-width:1023px){
     
-    
+     .footerCont1{width:33%;}
+     .footerH{padding: 10px 10px;}
+     .resHello{padding-top:10px;width:100%;}
+     
 }
