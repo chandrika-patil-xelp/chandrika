@@ -1652,11 +1652,11 @@ input[type=radio]:checked ~ .selector_label:after {
 .subH{margin: 30px 0px 10px 0px;letter-spacing: 0.15em;font-size:12px;font-family: bolder;line-height:30px;color: #15181b;text-transform: uppercase;width:100%;height:auto;text-align: left;}
 .subHm{margin: 10px 0px 10px 0px;letter-spacing: 0.15em;font-size:12px;font-family: bolder;line-height:30px;color: #15181b;text-transform: uppercase;width:100%;height:auto;text-align: left;}
 .sizeDiv{width: 100px;height: 100px;}
-.scaleSize{background:url(../img/icons/507.svg)no-repeat;background-size: auto 100%;}
-.fingerSize{background:url(../img/icons/508.svg)no-repeat;background-size: auto 100%;}
-.mPointImg{background:url(../img/icons/509.svg)no-repeat;background-size: auto 100%;}
-.sample{background:url(../img/icons/506.svg)no-repeat;background-size: auto 100%;}
-.circum{background:url(../img/icons/511.svg)no-repeat;background-size: auto 100%;}
+.scaleSize{background:url(../img/icons/measurementicons/406.svg)no-repeat;background-size: auto 100%;}
+.fingerSize{background:url(../img/icons/measurementicons/407.svg)no-repeat;background-size: auto 100%;}
+.mPointImg{background:url(../img/icons/measurementicons/408.svg)no-repeat;background-size: auto 100%;}
+.sample{background:url(../img/icons/measurementicons/405.svg)no-repeat;background-size: auto 100%;}
+.circum{background:url(../img/icons/measurementicons/409.svg)no-repeat;background-size: auto 100%;}
 
 .hRow{width:100%;height: 50px;line-height: 50px;border-bottom: 1px solid;}
 .sizeRow{width:100%;height: 25px;line-height: 25px;border-bottom: 1px solid;}
@@ -1670,10 +1670,10 @@ input[type=radio]:checked ~ .selector_label:after {
 .bangle .dtable{width:50%;}
 .bangle .shRow{width:50%;}
 .bangle .sRow{width:50%;}
-.opt2Img1{background:url(../img/icons/512.svg)no-repeat;background-size: auto 100%;}
-.opt2Img2{background:url(../img/icons/516w.svg)no-repeat;background-size: auto 100%;}
-.opt2Img3{background:url(../img/icons/514.svg)no-repeat;background-size: auto 100%;}
-.opt2Img4{background:url(../img/icons/513.svg)no-repeat;background-size: auto 100%;}
+.opt2Img1{background:url(../img/icons/measurementicons/403.svg)no-repeat;background-size: auto 100%;}
+.opt2Img2{background:url(../img/icons/measurementicons/402.svg)no-repeat;background-size: auto 100%;}
+.opt2Img3{background:url(../img/icons/measurementicons/401.svg)no-repeat;background-size: auto 100%;}
+.opt2Img4{background:url(../img/icons/measurementicons/404.svg)no-repeat;background-size: auto 100%;}
 
 
 
