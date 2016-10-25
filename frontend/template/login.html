@@ -1,5 +1,4 @@
-'
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <?php include 'jhead.html' ?>
 <script type="text/javascript" src="<?php echo $fjvs['Common']; ?>"></script>
 <script>
@@ -56,15 +55,15 @@
                 <div class="inp_label">Name*</div>
             </div>
             <div class="txtB fLeft">
-                <input type="text" class="inp_box " maxlength="30" id="email" autocomplete="off">
+                <input type="text" class="inp_box " maxlength="30" id="signupemail" autocomplete="off">
                 <div class="inp_label">Email-Id*</div>
             </div>
             <div class="txtB fLeft">
-                <input type="tel" class="inp_box " maxlength="30" id="mobile" autocomplete="off">
+                <input type="tel" class="inp_box " maxlength="11" id="mobile" autocomplete="off">
                 <div class="inp_label">Mobile*</div>
             </div>
             <div class="txtB fLeft">
-                <input type="password" class="inp_box " maxlength="30" id="pass" autocomplete="off">
+                <input type="password" class="inp_box " maxlength="30" id="signuppass" autocomplete="off">
                 <div class="inp_label">Password*</div>
             </div>
             <div class="filterSec fLeft">
@@ -78,12 +77,12 @@
         <div class="loginCont fLeft" id="otpCont">
             <div class="txtTitle" id="hTxt">Luxury or nothing</div>
             <div class="txtB fLeft">
-                <input type="tel" class="inp_box" autocomplete="off">
+                <input type="tel" class="inp_box" id="otp_inpt" autocomplete="off">
                 <div class="inp_label">Please enter the otp</div>
             </div>
             <div class="filterSec fLeft">
-                <center>
-                    <div class="button actBtn transition300" id="otpsubId">SUBMIT</div>
+                <center>  
+                    <div class="button actBtn transition300" id="otpsubId">SUBMIT</div> 
                 </center>
             </div>
         </div>
@@ -92,12 +91,12 @@
         <div class="loginCont fLeft" id="otpCont2">
             <div class="txtTitle" id="hTxt">Luxury or nothing</div>
             <div class="txtB fLeft">
-                <input type="tel" class="inp_box" autocomplete="off">
+                <input type="tel" class="inp_box" autocomplete="off" id="signup_otp">
                 <div class="inp_label">Please enter the otp</div>
             </div>
             <div class="filterSec fLeft">
                 <center>
-                    <div class="button actBtn transition300">SUBMIT</div>
+                    <div class="button actBtn transition300" id="signup_submt">SUBMIT</div>
                 </center>
             </div>
         </div>
@@ -106,11 +105,11 @@
         <div class="loginCont fLeft" id="inresetId">
             <div class="txtTitle" id="hTxt">Reset Your Password</div>
             <div class="txtB fLeft">
-                <input type="password" class="inp_box " maxlength="30" id="pass">
+                <input type="password" class="inp_box " maxlength="30" id="resetpass">
                 <div class="inp_label">Please Enter New Password*</div>
             </div>
             <div class="txtB  fLeft">
-                <input type="password" class="inp_box " maxlength="30" id="cpass">
+                <input type="password" class="inp_box " maxlength="30" id="resetcpass">
                 <div class="inp_label">Confirm Password*</div>
             </div>        
             <center>
@@ -131,7 +130,7 @@
             }
         });
 
-
+	  
         $('#hTxt,#loginId,#lgnId').velocity({opacity: [0]}, {duration: 0, easing: 'ease-in-out'});
         $(document).ready(function () {
             $('#hTxt,#loginId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
@@ -150,24 +149,12 @@
             $('#signUpId').removeClass("dn");
             $('#loginId').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
             $('#signCont').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-        });
+        });  
         $('#otpCont,#otpCont2').velocity({opacity: [0]}, {duration: 0, easing: 'ease-in-out'});
-        $('#fsubId').click(function (){
-            $('#otpOuter').removeClass("dn");
-            $('#loginId1').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-            $('#otpCont').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-        });
-        $('#rsubId').click(function () {
-            $('#otpOuter2').removeClass("dn");
-            $('#signCont').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-            $('#otpCont2').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-        });
+        
+         
         $('#inresetId').velocity({opacity: [0]}, {duration: 0, easing: 'ease-in-out'});
-        $('#otpsubId').click(function () {
-            $('#resetId').removeClass("dn");
-            $('#otpCont').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-            $('#inresetId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-        });
+         
 
     </script>
     <script type="text/javascript" src="<?php echo $jvs['login']; ?>"></script>

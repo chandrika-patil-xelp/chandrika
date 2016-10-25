@@ -996,7 +996,7 @@
 	    
 	    $sql="UPDATE tbl_user_master PASSWORD SET "
 		    . "PASSWORD='".urldecode(md5($params['pass']))."' WHERE user_id='".$params['user_id']."'"
-		    . "AND logmobile='".$params['mobile']."'AND email='".$params['email']."'";
+		    . "AND logmobile='".$params['mobile']."'OR email='".$params['email']."'";
 	                      
             $res=$this->query($sql); 
             $result = array();
@@ -1310,7 +1310,7 @@
                     }
 		   
 		    $key=$arr[0]['urlkey'];
-		  //   print_r($arr[0]['urlkey']); 
+		   //   print_r($arr[0]['urlkey']); 
                        /* while($urlgetRow = $this->fetchData($urlgetRes))
                         {
                             
@@ -1369,6 +1369,33 @@
             }
             return $string;
         }
+	
+	   public function getUserdetailbymob($params)
+        { 
+                $sql="SELECT user_name as name,logmobile as mb,email,user_id from tbl_user_master WHERE logmobile='".$params['mob']."'";
+                $res=$this->query($sql);
+                
+                $result = array();
+                if ($res) 
+                {
+                    $row=$this->fetchData($res); 
+		    $result['mob']=$row['mb'];
+		    $result['email']=$row['email'];
+                    $result['user_id']=$row['user_id'];
+                    $err = array('err_code' => 0, 'err_msg' => 'Data fetched successfully');
+                } 
+                else 
+                {
+                    $err = array('err_code' => 1, 'err_msg' => 'Error in fetching data');
+                }
+                $results = array('result' => $result, 'error' => $err);
+                return $results;
+ 
+            
+        }
+	
+	
+        
     }
      
 ?>

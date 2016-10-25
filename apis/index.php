@@ -951,12 +951,7 @@ switch($action)
         $res=$obj->setImagedeflt($params);
     break;
 
-    case 'updateuserpass':
-        include APICLUDE.'class.user.php';
-        $obj	= new user($db['jzeva']);
-        $res	=$obj->updateuserpass($params);
-    break;
-
+    
   case 'getProductdetailbycatid':
         include APICLUDE.'class.product.php';
         $obj = new product($db['jzeva']);
@@ -1050,6 +1045,14 @@ switch($action)
         $obj = new addtocart($db['jzeva']); 
         $res = $obj->getwishdetail($params);
   break;
+
+case 'getUserdetailbymob':
+        include APICLUDE.'class.user.php';
+        $obj	= new user($db['jzeva']); 
+        $res	=$obj->getUserdetailbymob($params);
+    break;
+  
+    
 }
 echo json_encode($res);
 exit;
