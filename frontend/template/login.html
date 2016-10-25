@@ -11,7 +11,7 @@
 
 </script>
 <body>
-    <?php include 'header.html' ?>
+    <!--<?php include 'header.html' ?>-->
     <div class="outerContr" id="signInId">
         <div class="loginCont fLeft" id="loginId">
             <div class="txtTitle" id="hTxt">Luxury or nothing<br></div>
@@ -39,7 +39,7 @@
             <div class="txtTitle" id="hTxt">Luxury or nothing</div>
             <div class="txtB fLeft">
                 <input type="text" class="inp_box " maxlength="30" id="femail" autocomplete="off">
-                <div class="inp_label" >Email-Id*</div>
+                <div class="inp_label" >Email-Id/Mobile</div>
             </div>
             <div class="filterSec fLeft">
                 <center>
@@ -83,9 +83,26 @@
             </div>
             <div class="filterSec fLeft">
                 <center>
-                    <div class="button actBtn transition300">SUBMIT</div>
+                    <div class="button actBtn transition300" id="otpsubId">SUBMIT</div>
                 </center>
             </div>
+        </div>
+    </div>
+    <div class="outerContr dn" id="resetId">
+        <div class="loginCont fLeft" id="inresetId">
+            <div class="txtTitle" id="hTxt">Reset Your Password</div>
+            <div class="txtB fLeft">
+                <input type="password" class="inp_box " maxlength="30" id="pass">
+                <div class="inp_label">Please Enter New Password*</div>
+            </div>
+            <div class="txtB  fLeft">
+                <input type="password" class="inp_box " maxlength="30" id="cpass">
+                <div class="inp_label">Confirm Password*</div>
+            </div>        
+            <center>
+                <a href=""><div class="button actBtn transition300">BACK TO LOGIN</div></a>
+                <div class="button actBtn transition300" id="respsssub">SUBMIT</div>
+            </center>
         </div>
     </div>
 
@@ -121,19 +138,22 @@
             $('#signCont').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
         });
         $('#otpCont').velocity({opacity: [0]}, {duration: 0, easing: 'ease-in-out'});
-        $('#fsubId').click(function () {
+        $('#fsubId').click(function (){
             $('#otpOuter').removeClass("dn");
-            $('#forgot').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+            $('#loginId1').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
             $('#otpCont').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
         });
-        
         $('#rsubId').click(function () {
             $('#otpOuter').removeClass("dn");
             $('#signUpId').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
             $('#otpCont').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
         });
-        
-        
+        $('#inresetId').velocity({opacity: [0]}, {duration: 0, easing: 'ease-in-out'});
+        $('#otpsubId').click(function () {
+            $('#resetId').removeClass("dn");
+            $('#otpCont').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+            $('#inresetId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+        });
 
     </script>
     <script type="text/javascript" src="<?php echo $jvs['login']; ?>"></script>
