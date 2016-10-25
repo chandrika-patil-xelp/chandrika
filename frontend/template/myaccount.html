@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="fLeft rsCont">
                                     <span class="fLeft">&#8377 45,000</span>
-                                    <span class="plusBox plusHolder fLeft"></span>
+                                    <span class="plusBox plusHolder fLeft" id="p1"></span>
                                     <div class="fLeft vatTxt dn">
                                         <div class="fLeft col100">MRP<span>&#8377 50,000</span></div>
                                         <div class="fLeft col100">VAT:<span>7487384</span></div>
@@ -80,7 +80,7 @@
                                 </div>
                                 <div class="fLeft rsCont">
                                     <span class="fLeft">&#8377 45,000</span>
-                                    <span class="plusBox plusHolder fLeft"></span>
+                                    <span class="plusBox plusHolder fLeft" id="p2"></span>
                                     <div class="fLeft vatTxt dn">
                                         <div class="fLeft col100">MRP<span>&#8377 50,000</span></div>
                                         <div class="fLeft col100">VAT:<span>7487384</span></div>
@@ -134,7 +134,7 @@
                                         <span class="font13 semibold">0123456788</span>
                                     </div>
                                 </div>
-                                <div class="inCourier fLeft">
+                                <div class="inCourier fLeft pad0">
                                     <div class="fLeft inShip">    
                                         <div class="font13 regular">want to return or exchange item(s)?</div>
                                         <div class="font13 semibold">confirm delivery of your order to create a return request </div> 
@@ -163,7 +163,7 @@
                                     <div class="fLeft inShip font13 regular ">Shipping Address </div>
                                     <div class="fLeft inShipfont13 semibold ">#657 6th block kormangala,Bangalore 560095</div>
                                 </div>
-                                <div class="inCourier fLeft">
+                                <div class="inCourier fLeft pad0">
                                     <div class="fLeft inShip font13 regular ">Payment Mode</div>
                                     <div class="fLeft inShipfont13 semibold ">Online</div>
                                 </div>
@@ -277,7 +277,7 @@
 
                             </div>
                             <!--<div class="fLeft savedAddr">Chandrika</div>-->
-                            <div class="fLeft defaultHead">default address</div>
+                            <div class="fLeft defaultHead">my addresses</div>
                             <div class="fLeft defaulDiv">
                                 <div class="fLeft col100">
                                     <div class="font13">#657 6th block 17th main,</div>
@@ -291,8 +291,8 @@
                                     </center>
                                 </div>
                             </div>
-                            <div class="fLeft defaultHead">other address</div>
-                            <div class="fLeft defaulDiv mBot15">
+                            <!--<div class="fLeft defaultHead">other address</div>-->
+                            <div class="fLeft defaulDiv">
                                 <div class="fLeft col100">
                                     <div class="font13">#657 6th block 17th main,</div>
                                     <div class="font13">Kormanagala</div>
@@ -362,7 +362,7 @@
                                                         <div class="actBtn fLeft bolder" id="add_to_cart" >Add To Cart</div>
                                                     </div>
                                                     <div class="col50 fLeft  padXl5">
-                                                        <div class="actBtn fRight bolder">WISHLIST</div>
+                                                        <div class="actBtn fRight bolder">delete</div>
                                                     </div>
                                                 </div>
                                                 <div class="fmSansB smBtnDiv fLeft transition300">
@@ -392,7 +392,7 @@
                                                         <div class="actBtn fLeft bolder" id="add_to_cart" >Add To Cart</div>
                                                     </div>
                                                     <div class="col50 fLeft  padXl5">
-                                                        <div class="actBtn fRight bolder">WISHLIST</div>
+                                                        <div class="actBtn fRight bolder">delete</div>
                                                     </div>
                                                 </div>
                                                 <div class="fmSansB smBtnDiv fLeft transition300">
@@ -422,7 +422,7 @@
                                                         <div class="actBtn fLeft bolder" id="add_to_cart" >Add To Cart</div>
                                                     </div>
                                                     <div class="col50 fLeft  padXl5">
-                                                        <div class="actBtn fRight bolder">WISHLIST</div>
+                                                        <div class="actBtn fRight bolder">delete</div>
                                                     </div>
                                                 </div>
                                                 <div class="fmSansB smBtnDiv fLeft transition300">
@@ -560,15 +560,48 @@
                 $(this).closest('.txtB').removeClass('focul');
             }
         });
-        $('.plusBlack').click(function () {
-            // $(this).removeClass("plusBlack");
-            $(this).toggleClass('minusBlack');
-            $('#openAddrId').toggleClass("dn");
+//        $('.plusBlack').click(function () {
+//            // $(this).removeClass("plusBlack");
+//            $(this).toggleClass('minusBlack');
+//            $('#openAddrId').toggleClass("dn");
+//        });
+//        $('.plusBox').click(function () {
+//            $(this).toggleClass('minusBox');
+//            $(this).siblings('.vatTxt').toggleClass("dn");
+//        });
+
+        $('.plusHolder').click(function () {
+            var boxId = $(this).attr("id");
+            if ($("#" + boxId).hasClass("plusBox")) {
+                console.log(boxId);
+                $("#" + boxId).removeClass("plusBox");
+                $("#" + boxId).addClass("minusBox");
+                $("#" + boxId).siblings('.vatTxt').removeClass("dn");
+
+            } else {
+                $("#" + boxId).removeClass("minusBox");
+                $("#" + boxId).addClass("plusBox");
+                $("#" + boxId).siblings('.vatTxt').addClass("dn");
+            }
         });
-        $('.plusBox').click(function () {
-            $(this).toggleClass('minusBox');
-            $(this).siblings('.vatTxt').toggleClass("dn");
+
+        $('.addrEditCnt').click(function () {
+            var boxId = $(this).attr("id");
+            if ($("#" + boxId).hasClass("plusBlack")) {
+                console.log(boxId);
+                $("#" + boxId).removeClass("plusBlack");
+                $("#" + boxId).addClass("minusBlack");
+              $("#" + boxId).parent().siblings('#openAddrId').removeClass("dn");
+
+            } else {
+                $("#" + boxId).removeClass("minusBlack");
+                $("#" + boxId).addClass("plusBlack");
+                $("#" + boxId).parent().siblings('#openAddrId').addClass("dn");
+//              $("#" + boxId).siblings('.vatTxt').addClass("dn");
+            }
         });
+
+
         $(document).ready(function () {
             $('.wrapper_max').removeClass('offsetEffects');
         });
