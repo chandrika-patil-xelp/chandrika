@@ -201,6 +201,7 @@
                             order_id,
                             product_id,
                             user_id,
+			    shipping_id,
 			    col_car_qty,
 			    pqty,
 			    price,
@@ -217,24 +218,17 @@
 	    
 	    foreach($params['data'] as $kye=> $val){
 	     
-	    $sql.="(".$val['orderid'].", '".$val['pid']."', '".$val['userid']."', '".$val['col_car_qty']."','".$val['pqty']."','".$val['prodpri']."',NOW(),";  
-	     if($val['diloptn']==1){
-	      $sql.="ADDDATE(now(), INTERVAL 7 DAY),";
-	    }
-	    else if($val['diloptn']==2){
-	      $sql.="ADDDATE(now(), INTERVAL 2 DAY),";
-	    }
-	    else if($val['diloptn']==3){
-	      $sql.="ADDDATE(now(), INTERVAL 5 HOUR),";
-	    }
+	    $sql.="(".$val['orderid'].", '".$val['pid']."', '".$val['userid']."', '".$val['shipping_id']."','".$val['col_car_qty']."','".$val['pqty']."','".$val['prodpri']."',NOW(),NOW(),";  
+	    
 	     $sql.= " '".$ordstatus."', NOW(), NOW(), '".$updby."',"
                     . "'".$val['payment']."', '".$val['payment_type']."' ),"; 
 	    }
 	    $sql = trim($sql, ","); 
-            $sql.="ON DUPLICATE KEY UPDATE user_id = VALUES(user_id),user_id = VALUES(user_id),pqty = VALUES(pqty),price = VALUES(price),"
+            $sql.="ON DUPLICATE KEY UPDATE user_id = VALUES(user_id),pqty = VALUES(pqty),price = VALUES(price),"
 		    . "order_date = VALUES(order_date),delivery_date = VALUES(delivery_date),order_status = VALUES(order_status),"
 		    . "createdon = VALUES(createdon),updatedon = VALUES(updatedon),updatedby = VALUES(updatedby),payment = VALUES(payment),payment_type = VALUES(payment_type)";
-             $res = $this->query($sql);
+           
+	    $res = $this->query($sql);
             $resp = array();
             if($res){
                 

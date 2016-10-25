@@ -56,7 +56,7 @@ $('#reg').on('click',function(){
     }*/
     if (validationFlag = 1)
     {
-	sendotp(mobile,1);
+	//sendotp(mobile,1);
        var URLreg= APIDOMAIN + "index.php/?action=addUser&name="+name+"&email="+email+"&mobile="+mobile+"&pass="+pass;
      
    $.ajax({
@@ -67,8 +67,7 @@ $('#reg').on('click',function(){
          
             if(data1['error']['err_code']==0)
             {
-                alert('Registered Successfully');
-                sendotp(mobile);
+                alert('Registered Successfully'); 
               window.location.href = DOMAIN + "index.php?action=login";
             }
             else if(data1['error']['err_code']==1){
@@ -82,11 +81,7 @@ $('#reg').on('click',function(){
       
      
 });
-
-function storeuserdata()
-{
-  
-}
+ 
 
 var logDetails = new Array();
 var glbcartdeatil;
@@ -125,14 +120,15 @@ $('#log').click(function(){
 	      data = JSON.parse(res);
 	      logDetails = data['result'];
             if(data['error']['err_code']==0)
-            {
-	      
-              common.addToStorage("email", logDetails['0']['email']);
-              common.addToStorage("name", logDetails['0']['name']);
-              common.addToStorage("uid", logDetails['0']['uid']);
-	      var oldcartid=common.readFromStorage('cartid'); 
-	      var olduserid=common.readFromStorage('uid');
-	      var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id="+oldcartid+"&userid="+olduserid+"";   
+            {   
+              common.addToStorage("jzeva_email", logDetails['0']['email']);
+              common.addToStorage("jzeva_name", logDetails['0']['name']);
+              common.addToStorage("jzeva_uid", logDetails['0']['uid']);
+	       common.addToStorage("jzeva_mob", logDetails['0']['mobile']);
+	      var oldcartid=common.readFromStorage('jzeva_cartid'); 
+	      var olduserid=common.readFromStorage('jzeva_uid');
+	     
+	       var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id="+oldcartid+"&userid="+olduserid+"";   
 	       $.ajax({
 	 	    url: URL,
 	 	    type: "GET",
@@ -148,15 +144,15 @@ $('#log').click(function(){
 			       var cartid=glbcartdeatil[0].cart_id;  
 			  }
 			      if(cartid){
-				  common.addToStorage("cartid", cartid);}
+				  common.addToStorage("jzeva_cartid", cartid);}
 			      else{
-				  common.addToStorage("cartid", gencartId()); }
+				  common.addToStorage("jzeva_cartid", gencartId()); }
 		      }
 		      else{
 			   hasitem(oldcartid,olduserid);
 		      }
 		    alert('signed in successfully'); 
-		           window.location.href = DOMAIN + "index.php?action=product_grid";
+		            window.location.href = DOMAIN + "index.php?action=product_grid";
 		    }
 		});  
             }

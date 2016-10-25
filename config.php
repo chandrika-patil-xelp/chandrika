@@ -24,9 +24,11 @@ else
 	$db['jzeva'] = array('localhost','root','','db_jzeva');
 
 }
-
+ 
+//define('SMSAPI','http://alerts.sinfini.com/api/web2sms.php?workingkey=A31cf85c3cc3b65100bf9bd7fbe30cd90&to=+91_MOBILE&sender=SIDEMO&message=_MESSAGE');
+ define('SMSAPI','http://alerts.sinfini.com/api/web2sms.php?workingkey=A31cf85c3cc3b65100bf9bd7fbe30cd90&to=+91_MOBILE&sender=SIDEMO&message=_MESSAGE');
 //define('SMSAPI','http://alerts.sinfini.com/api/web2sms.php?workingkey=Ae24f0c241588043b00e0449d6e2a5664&to=+91_MOBILE&sender=jzeva&message=_MESSAGE');
-define('SMSAPI','http://alerts.sinfini.com/api/web2sms.php?workingkey=A31cf85c3cc3b65100bf9bd7fbe30cd90&to=+91_MOBILE&sender=SIDEMO&message=_MESSAGE');
+ 
 define('BTEMPLATE',BACKWEBROOT.'template/');
 define('BINCLUDES',BACKWEBROOT.'include/');
 define('BAPICLUDE',BACKWEBROOT.'apis/include/');
@@ -127,12 +129,16 @@ $jvs = array();
             $jvs['prodGrid']                 = DOMAIN.'frontend/tools/js/cms/prodgrid.js?v='.VERSION;
             $jvs['protry']                 = DOMAIN.'frontend/tools/js/cms/protry.js?v='.VERSION;
             $jvs['login']                 = DOMAIN.'frontend/tools/js/cms/login.js?v='.VERSION;
-            $jvs['cart']                 = DOMAIN.'frontend/tools/js/cms/cart.js?v='.VERSION;
-            $jvs['filter']                 = DOMAIN.'frontend/tools/js/cms/filter.js?v='.VERSION;
+            $jvs['cart']                 = DOMAIN.'frontend/tools/js/cms/cart.js?v='.VERSION; 
+            $jvs['filter']                 = DOMAIN.'frontend/tools/js/cms/filter.js?v='.VERSION;  
             $jvs['checkout']                 = DOMAIN.'frontend/tools/js/cms/checkout.js?v='.VERSION;
+ 
+            $jvs['filter']                 = DOMAIN.'frontend/tools/js/cms/filter.js?v='.VERSION;
+           
             $jvs['otp']                 = DOMAIN.'frontend/tools/js/cms/otp.js?v='.VERSION;
             $jvs['resetpass']                 = DOMAIN.'frontend/tools/js/cms/resetpass.js?v='.VERSION;
-
+	    $jvs['header']		      = DOMAIN.'frontend/tools/js/cms/header.js?v='.VERSION;
+	   
 include APICLUDE.'common/class.common.php';
 $comm = new Common();
 $comm->clearParam($_GET);

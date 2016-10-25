@@ -7,6 +7,13 @@
             parent::DB($db);
         }
         
+	 private function generateId() 
+        {
+            $curdate = date('YmdHis');
+            $rNo = mt_rand(11, 99);
+            $genId = $rNo . $curdate;
+            return $genId; 
+        }
         
         public function addUser($params)
         {
@@ -714,7 +721,7 @@
             $lrow = $this->fetchData($lres);
             $cnt1 = $this->numRows($lres);   
 	     if ($cnt1 > 0)
-            { 
+            {
              //   $err = array('err_code' => 0, 'err_msg' => 'mobile number exist'); 
                 
                 global $comm;
@@ -776,18 +783,22 @@
        }
        
        public function addshippingdetail($params)
-        { 
+        {
             global $comm;
             $params= (json_decode($params[0],1));
-            
+            if(empty($params['shipping_id'])){
+	      $ship_id=$comm->generateId();
+	    }
+	    else{
+	      $ship_id=$params['shipping_id'];
+	    }
             $userid = (!empty($params['user_id'])) ? trim($params['user_id']) : '';
             $name = (!empty($params['name'])) ? trim($params['name']) : '';
             $mobile = (!empty($params['mobile'])) ? trim($params['mobile']) : '';
             $city = (!empty($params['city'])) ? trim($params['city']) : ''; 
-            $email = (!empty($params['email'])) ? trim($params['email']) : '';
-            $deliveryopt = (!empty($params['delivery_option'])) ? trim($params['delivery_option']) : '';
+            $email = (!empty($params['email'])) ? trim($params['email']) : ''; 
             
-           if((empty($userid)) || (empty($name)) || (empty($mobile)) || (empty($email)) || (empty($city)) || (empty($deliveryopt)))
+           if((empty($mobile)) && (empty($email)))
             {
                 $resp = array();
                 $error = array('errCode' => 1, 'errMsg' => 'Parameter Missing');
@@ -796,16 +807,16 @@
             }
               
             $sql="INSERT INTO tbl_order_shipping_details "
-                    . "(user_id,name,mobile,email,city,address,state,pincode,delivery_option,createdon) VALUES ("
+                    . "(user_id,shipping_id,name,mobile,email,city,address,state,pincode,createdon) VALUES ("
                     . "\"".$userid."\""
+		    . ",\"" . $ship_id . "\""
                     . ",\"" . $name . "\""
                     . ",\"" . $mobile . "\""
                     . ",\"" . $email . "\""
                     . ",\"" . $city . "\""
                     . ",\"" . urldecode($params['address']) . "\"" 
                     . ",\"" . urldecode(($params['state'])) . "\""
-		    . ",\"" . urldecode(($params['pincode'])) . "\""
-		    . ",\"" . $deliveryopt . "\""
+		    . ",\"" . urldecode(($params['pincode'])) . "\"" 
                     . ",now())"
                     . " ON DUPLICATE KEY UPDATE "
                             ."name    = \"".$name."\"," 
@@ -814,16 +825,15 @@
                             ."city    = \"" .$city."\","
                             ."address  = \"" .$params['address']."\","
 			    ."state    = \"" .urldecode($params['state'])."\","
-			    ."pincode  = \"" .urldecode($params['pincode'])."\","
-			    ."delivery_option   = \"" .$deliveryopt."\"";
-                                    
+			    ."pincode  = \"" .urldecode($params['pincode'])."\""; 
+                                
             $res=$this->query($sql);
             
-            $result = array();
+            $result = array(); 
             if ($res) {
-                $err = array('err_code' => 0, 'err_msg' => 'Data inserted successfully');
+                $err = array('shipping_id' => $ship_id,'err_code' => 0, 'err_msg' => 'Data inserted successfully');
             } else {
-                $err = array('err_code' => 1, 'err_msg' => 'Error in inserting');
+                $err = array('shipping_id' => $ship_id,'err_code' => 1, 'err_msg' => 'Error in inserting');
             }
             $results = array('result' => $result, 'error' => $err);
             return $results;
@@ -869,7 +879,7 @@
 	   
             $res  = $comm->executeCurl($url);
             $data = $res;
-	      //    print_r($res);
+	          
 	     
              $urlkey =  $data['result'][0]['urlkey'];
 	   
@@ -999,6 +1009,366 @@
             return $results;
 	    
 	}
+	
+	 public function sendnewuserotp($params)
+       {
+            $mobile = (!empty($params['mobile'])) ? trim($params['mobile']) : '';
+               if( empty($mobile) )
+            {
+                $resp = array();
+                $error = array('errCode' => 1, 'errMsg' => 'Parameter Missing');
+                $result = array('results' => $resp, 'error' => $error);
+                return $result;
+            }
+             
+                global $comm;
+                $isValidate = true;
+                $sql = "SELECT
+                        *,
+                        DATE_SUB(`updated_on`,INTERVAL - 10 MINUTE) as intervl,
+                        now()
+                        FROM
+                                tbl_verification_code
+                        WHERE
+                                mobile = " . $params['mobile'] . "
+                        AND
+                                DATE_SUB(`updated_on`,INTERVAL - 10 MINUTE) > now() limit 1";
+                $res = $this->query($sql);
+                  if ($res)
+                    { 
+                        $row = $this->fetchData($res); 
+                        if ($row['vcode'])
+                        {
+                            $rno = $row['vcode'];
+                             $isValidate = false; 
+                        }
+                    }
+                    if ($isValidate)
+                    {
+                        $rno = rand(100000, 999999);
+                        $sql = "INSERT
+                                INTO
+                                            tbl_verification_code (mobile,vcode)
+                                VALUES
+                                            (" . $params['mobile'] . ",
+                                             " . $rno . ")";
+                        $res = $this->query($sql); 
+                    }
+                    if($rno)
+                    {
+                        $txt = 'Your OTP is ' . $rno;
+                        $url = str_replace('_MOBILE', $params['mobile'], SMSAPI);
+                        $url = str_replace('_MESSAGE', urlencode($txt), $url);  // print_r($url);  
+                        $res = $comm->executeCurl($url, true);
+                        if (!empty($res))
+                        {
+                          $err = array('err_code' => 0, 'err_msg' => 'OTP is sent to your mobile number');  
+                        }
+                        else
+                        {
+                           $err = array('err_code' => 1, 'err_msg' => 'OTP sending failed');  
+                        }
+                    }
+	     
+            $result = array();
+            $results = array('result' => $result, 'error' => $err);
+            return $results; 
+            
+       }
+       
+         public function addnewUser($params)
+        {
+         
+            global $comm; 
+            $name = (!empty($params['name'])) ? trim($params['name']) : '';
+            $mobile = (!empty($params['mobile'])) ? trim($params['mobile']) : '';
+            $pass = (!empty($params['pass'])) ? trim($params['pass']) : ''; 
+            $email = (!empty($params['email'])) ? trim($params['email']) : ''; 
+            $city=(!empty($params['city'])) ? trim($params['city']) : '';
+            
+            if( (empty($mobile)) && (empty($email)) && (empty($pass)) )
+            {
+                $resp = array();
+                $error = array('errCode' => 1, 'errMsg' => 'Parameter Missing');
+                $result = array('results' => $resp, 'error' => $error);
+                return $result;
+            }
+             
+            if(!$params['userid'])
+            {
+                $userid=$comm->generateId();
+            }
+            else
+            {
+                $userid = $params['userid'];
+            }
+           
+            
+            $sql="INSERT INTO tbl_user_master "
+                    . "(user_id,user_name,password,logmobile,email,city,address,date_time,updated_by,is_active,gender) VALUES ("
+                    . "\"".$userid."\""
+                    . ",\"" . urldecode($params['name']) . "\""
+                    . ",\"" . urldecode(md5($params['pass'])) . "\""
+                    . ",\"" . $params['mobile'] . "\""
+                    . ",\"" . urldecode($params['email']) . "\""
+                    . ",\"" . urldecode($params['city']) . "\""
+                    . ",\"" . urldecode($params['address']) . "\""
+                    . ",now()"
+                    . ",\"" . $userid . "\""
+                   
+                    . ",\"" . 1 . "\""
+                    . ",\"" . $params['gender'] . "\")"
+                    . " ON DUPLICATE KEY UPDATE "
+                            ."user_name             = \"".urldecode($params['name'])."\","
+                            ."password              = \"" .urldecode(md5($params['pass']))."\","
+                            ."logmobile             = \"" .$params['mobile']."\","
+                            ."email                 = \"" .urldecode($params['email'])."\","
+                            ."city                  = \"" .urldecode($params['city'])."\","
+                            ."updated_by            = \"" .$params['userid']."\"";
+                                    
+            $res=$this->query($sql);
+             
+             
+            $result = array();
+            if ($res) {
+                $err = array('userid'=>$userid,'err_code' => 0, 'err_msg' => 'Data inserted successfully');
+            } else {
+                $err = array('err_code' => 1, 'err_msg' => 'Error in inserting');
+            }
+            $results = array('result' => $result, 'error' => $err);
+            return $results;
+            
+        }
+	
+	public function getshippingdatabyid($params)
+	{
+	   
+	  $userid=(!empty($params['userid'])) ? trim($params['userid']): '';
+	  if ($userid == "" || $userid == null || $userid == "undefined") { 
+                $resp = array();
+                $error = array('Code' => 1, 'Msg' => 'Invalid parameter');
+                $res = array('results' => $resp, 'error' => $error);
+                return $res;
+            }
+	    $sql="SELECT user_id,shipping_id,name,mobile,email,city,address,state,pincode,createdon FROM tbl_order_shipping_details WHERE user_id='".$params['userid']."'";
+	    $res=  $this->query($sql);
+	    if($res){
+	    while($row=  $this->fetchData($res)){
+	      $arr['user_id']=$row['user_id'];
+	      $arr['shipping_id']=$row['shipping_id'];
+	      $arr['name']=$row['name'];
+	      $arr['mobile']=$row['mobile'];
+	      $arr['email']=$row['email'];
+	      $arr['city']=$row['city'];
+	      $arr['address']=$row['address'];
+	      $arr['state']=$row['state'];
+	      $arr['pincode']=$row['pincode'];
+	      $arr['createdon']=$row['createdon'];
+	      $reslt[]=$arr;
+	    }
+	     $err = array('Code' => 0, 'Msg' => 'Data fetched successfully');
+	    }
+	    else{
+	      $err = array('Code' => 1, 'Msg' => 'error in fetching detail');
+	    }
+	    $result = array('results' => $reslt, 'error' => $err); 
+            return $result; 
+	}
+	
+	public function sendmailotp($params)
+        {
+             
+            $email = (!empty($params['email'])) ? trim($params['email']) : '';
+        
+            if (empty($email)) {
+                
+                $resp = array();
+                $error = array('Code' => 1, 'Msg' => 'Invalid parameters');
+                $res = array('results' => $resp, 'error' => $error);
+                return $res;
+            }
+//            $vsql = "   SELECT
+//                                email,
+//                                user_id,
+//                                logmobile,
+//                                user_name
+//                        FROM
+//                                tbl_user_master
+//                        WHERE
+//                                email=\"" . $params['email'] . "\"
+//                        AND
+//                                is_active = 1";
+//            $vres = $this->query($vsql);
+//            
+//            $row = $this->fetchData($vres);
+//            $cnt1 = $this->numRows($vres); 
+//            $mobile = $row['logmobile']; 
+//            $uid = $row['user_id'];
+//            $em = urlencode($row['email']);
+//            $uname = urlencode($row['user_name']);
+	    
+	  
+	    
+            global $comm;
+            $url = APIDOMAIN."index.php?action=createemailUrl&email=".$email;
+	      
+            $res  = $comm->executeCurl($url);
+            $data = $res;
+	     //	 print_r($res);  
+	     
+             $urlkey =  $data['result'][0]['urlkey'];
+	    
+            if ($res)
+            {
+                    $subject  = "JZEVA Password Change Request";
+                    $message  = "Dear ".$uname.", the link to change your password is as follows";
+                    $message .= "<br/><br/>";
+		    $message .= DOMAIN."FP-". $urlkey;
+                   // $message .= DOMAIN."FP-". $urlkey;
+                    $message .= "<br/><br/>";
+                    $message .= "For any assistance, Call: 022-32623263. Email: info@jzeva.com";
+                    $message .= "<br/><br/>";
+                    $message .= "Team jzeva";
+
+                    $headers  = "Content-type:text/html;charset=UTF-8" . "<br/><br/>";
+
+                    $headers .= 'From: info@jzeva.com' . "<br/><br/>";
+
+                    $mail = mail($row['email'], $subject, $message, $headers); 
+		              print_r($message);
+                     
+                        $arr = array();
+                        $err = array('Code' => 0, 'Msg' => 'Link for changing password is sent to: '.$row['email'].'');
+           }
+           else
+            {
+                $arr = array();
+                $err = array('Code' => 1, 'Msg' => 'Failed to send mail');
+            }
+            $result = array('results' => $arr, 'error' => $err); 
+             return $result; 
+        }
+	
+	 public function createemailUrl($params)
+        {
+           
+        $email=(!empty($params['email'])) ? trim(urldecode($params['email'])) : ''; 
+        $url=(!empty($params['url'])) ? trim(urldecode($params['url'])) : '';
+	
+         if(empty($email)){
+                
+                $error = array('err_code'=>1, 'err_msg'=>'parameters are missing');
+                $result = array('result'=>$resp, 'error'=>$error);
+                return $result;
+            }
+       
+            $urlmaker = $this->generateURL(6);
+              
+            
+                $isql = "   INSERT
+                            INTO
+                                    tbl_url_master
+                                   (urlkey,
+                                    user_id,
+                                    logmobile,
+                                    email,
+                                    cPass_url,
+                                    active_flag,
+                                    created_date)
+                            VALUES
+                                    (\"".$urlmaker."\",
+                                    \"".$params['uid']."\",    
+                                    \"".$params['mobile']."\",
+                                    \"".$params['email']."\",
+                                    \"".$params['url']."\",
+                                        1,
+                                        now()
+                                    )";
+		 
+                $res = $this->query($isql);
+		$cntRes=$this->numRows($res);
+		if($cntRes == 0)
+		{
+                if($res)
+                {
+                    $sql = "    SELECT
+                                       *
+                                FROM 
+                                        tbl_url_master
+                                WHERE 
+                                        urlkey =\"".$urlmaker."\"
+                                AND
+                                        active_flag=1";
+                    $urlgetRes = $this->query($sql);
+                    if($urlgetRes)
+                    {
+                        
+                        while($urlgetRow = $this->fetchData($urlgetRes))
+                        {
+                            $arr[] = $urlgetRow;
+                        }
+                    }
+		   
+		    $key=$arr[0]['urlkey'];
+		  //   print_r($arr[0]['urlkey']); 
+                       /* while($urlgetRow = $this->fetchData($urlgetRes))
+                        {
+                            
+                        $reslt['uid'] = $row['user_id'];
+                        $reslt['mob'] = $row['logmobile'];
+                        $reslt['email'] = $row['email'];
+                       // $reslt['key'] = $row['urlkey'];
+                           
+                            $arr[] = $reslt;
+                        }*/
+		     
+                   //    $urlParm = "http://www.jeva.com?action=resetpassword&key=".$key."&userid=".$userid;
+                    //     $msg= '<a href='
+                //         mail($key, $userid, $sql);
+                    
+                    $err = array('code'=>0,'msg'=>'url is created');
+                }
+                else
+                {
+                    $arr = array();
+                    $err = array('code'=>0,'msg'=>'Error in url creation');
+                }
+            }
+            else
+            {
+                $row = $this->fetchData($res); 
+                $arr = $row['urlkey'];
+                $err = array('code'=>0,'msg'=>'url is created');
+            }
+            $result = array('result'=>$arr,'error'=>$err);
+            return $result;
+        }
+	
+	private function generateURL($strLength)
+        {
+          
+            $chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            for($i=0;$i<=$strLength;$i++)
+            {
+                $string = substr($chars,rand(6,strlen($chars)),6);
+               
+            }
+            $chkSql = " SELECT
+                                urlkey
+                        FROM
+                                tbl_url_master
+                        WHERE
+                                urlkey = \"".$string."\"
+                        AND 
+                                active_flag=1";
+            $chkRes = $this->query($chkSql);
+            $cntRes = $this->numRows($chkRes);
+            if($cntRes > 0)
+            {
+                $string = $this->generateURL(6);
+            }
+            return $string;
+        }
     }
      
 ?>

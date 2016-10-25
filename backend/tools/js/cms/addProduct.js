@@ -1309,7 +1309,7 @@ function bindDmdQuaity()
             $('#notcustQuality' + cnt).removeClass('dn');
         }
 
-
+	 
         $('[name=dmdquality_notCust' + cnt + ']').prop('checked', false);
         $('[name=dmdquality_cust' + cnt + ']').prop('checked', false);
     });
@@ -1791,7 +1791,7 @@ function submitData()
     
     var dt = JSON.stringify(previewData);
  
-    var URL = APIDOMAIN + "index.php?action=addProduct";
+     var URL = APIDOMAIN + "index.php?action=addProduct";
  
     $.ajax({
         url: URL,

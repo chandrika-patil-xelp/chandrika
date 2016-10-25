@@ -5,21 +5,24 @@ var shipngdata={};
 var validationFlag=1;
 var corrctotp=0;
 var mobileno;
+var contnu_enble=0;
+var inp_data;
+var shipng_id;
+
 $(document).ready(function(){ 
   
-  $('#sbmtshpdata').click(function(){  
-     if(corrctotp == 1){
-    //  storeshippingdata();
-     //  storeorderdata();
-     }
-     else{
-      // alert('Please Enter OTP')
-     }
-  });
-    
-  $('#nxt').click(function(){
-  //  getshippingdata();
-  }); 
+  var userid=common.readFromStorage('jzeva_uid'); 
+  if(userid !== null){
+//   dfltscndopn();
+  openfst();
+   displayaddrs(userid);
+  }
+  else{
+   // openfst(); 
+   
+  closeThrd();
+  }
+  
   displaycartdetail();
 });
 
@@ -47,7 +50,7 @@ function displaycartdetail()
 			    abc=IMGDOMAIN+abc[5];
 			}
 			totalprice+=parseInt(v.price); 
-			 
+		
 var chckoutstr=" <div class='jwlCntdtls fLeft regular'>";
     chckoutstr+="  <div class='clsePrdct' id='"+v.product_id+"_"+r+"_"+v.col_car_qty+"_"+v.cart_id+"'";
     chckoutstr+="  onclick='remove(this)'></div>";
@@ -176,139 +179,377 @@ var chckoutstr=" <div class='jwlCntdtls fLeft regular'>";
         });	 
 }
 
-function getshippingdata()
+function checkotp(inptmob,otp)
 {
-    var name=$('#shpdname').val();
-   mobileno=$('#shpdmobile').val();
-   var mail=$('#shpdemail').val();
-   var addrs=$('#shpdstreet').val();
-   var city=$('#shpdcity').val(); 
-   var state=$('#shpdstate').val();
-   var pincode=$('#shpdpincode').val(); 
-   var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
-     
+ // var otptxt=$('#otp_txt').val();
+  var URL= APIDOMAIN + "index.php/?action=checkopt&mobile="+inptmob+"&otpval="+otp;  
+	     $.ajax({  url: URL,  type: "GET",  datatype: "JSON",  success: function(results)   {
+		      var obj=JSON.parse(results); 
+		      var data=obj.result;
+		      if(data !== undefined){
+		      if(data.otp==null){
+			alert('time is over plz try it again');
+		      }
+		      else{
+		      if(otp==data.otp){
+			corrctotp=1;
+			$('.matchIcn').removeClass('dn');
+			$('.unmatchIcn').addClass('dn');
+			$('#paswrd1id').removeClass('dn');
+			$('#paswrd2id').removeClass('dn');	
+			$('#resend_otp').addClass('dn');
+			alert('otp is correct');  
+		      }
+		      else{
+			$('.matchIcn').addClass('dn');
+			$('.unmatchIcn').removeClass('dn');
+			alert('you entered otp is wrong');
+		      }
+		    }
+		    }
+		  }
+	     });
+}
+ 
+ $('#otp_countn').click(function(){
+   if(contnu_enble == 1){
+     openfst1();
+   }
+   else{
+     alert('Please Enter Password');
+   } 
+ });
+ 
+ $('#shpng_sub').click(function(){
+   validationFlag=1;
+   var name;
+    if($('.neadHide').hasClass('dn')){
+     // alert('hi');
+    }
+    else{
+    name=$('#shpdname').val();  
     if(name ===''|| name === null){ 
      // common.toast(0, 'Please Enter Name');
         alert('Please enter your Name');
-        validationFlag=0;
-        return false;
+        validationFlag=0; 
     }
     else if(!isNaN(name)){
        //common.toast(0, 'Name should be alphanumeric');
         alert('Name should be alphanumeric');
-         validationFlag=0;
-        return false;
+         validationFlag=0; 
     }
-    else if(mobileno===''|| mobileno=== null){
-      // common.toast(0, 'Please enter your Mobile no.');
-        alert('Please enter your Mobile no.');
-        validationFlag=0;
-        return false;
+      shipngdata['name']=name;
+     shipngdata['email']=$('#shpdemail').val();
+     shipngdata['mobile']=$('#shpdmobile').val();
     }
-    else if(isNaN(mobileno) || (mobileno.length < 10) || (mobileno.length > 11) ){
-      // common.toast(0, 'Mobile no. Invalid');
-        alert('Mobile no. Invalid');
-        validationFlag=0;
-        return false;
-    }
-    else if(mail===''|| mail=== null){
-     //   common.toast(0, 'Please enter your Email.id');
-        alert('Please enter your Email.id');
-        validationFlag=0;
-        return false;
-    }
-   else if (!reg.test(mail)){
-      // common.toast(0, 'Invalid Email.id');
-      alert('Invalid Email.id');
-        validationFlag=0;
-        return false;
-    } 
-    else if(addrs ===''|| addrs === null){
+    var addrs=$('#shpdaddrs').val();
+    var city=$('#shpdcity').val(); 
+    var state=$('#shpdstate').val();
+    var pincode=$('#shpdpincode').val(); 
+    
+    if(addrs ===''|| addrs === null){
       //  common.toast(0, 'Please enter your street name');
-        alert('Please enter your street name');
-        validationFlag=0;
-        return false;
-    } 
+        alert('Please enter your address');
+        validationFlag=0; 
+    }
     else if(pincode ===''|| pincode === null){
       //  common.toast(0, 'Please enter your Zip code');
         alert('Please enter your Zip code');
-        validationFlag=0;
-        return false;
-    }
-    else if(state ===''|| state === null){
-      //  common.toast(0, 'Please enter your Zip code');
-        alert('Please enter your state');
-        validationFlag=0;
-        return false;
-    }
-    else if(city===''|| city=== null){
-       // common.toast(0, 'Please enter the confirm password');
-        alert('Please enter the city name');
-        validationFlag=0;
-        return false;
-    }
-    else{
-      validationFlag=2;
+        validationFlag=0; 
     }
     
-   $('#spnd_name').html(name); 
-   $('#spnd_email').html(mail);
-   $('#spnd_city_pin').html(city+"-"+pincode);
-   $('.w50l').html(addrs);  
+    if (validationFlag == 1){
+      
+    // storeorderdata();
+     if(inp_data !== undefined ){
+    if($.isNumeric(inp_data)){
+    
+    var URLreg= APIDOMAIN + "index.php/?action=addnewUser&name="+name+"&mobile="+inp_data+"&pass="+passwrd+"&address="+addrs+"&city="+city; 
+    }
+    else{
+      shipngdata['email']=mail;
+      var URLreg= APIDOMAIN + "index.php/?action=addnewUser&name="+name+"&email="+email+"&pass="+passwrd+"&address="+addrs+"&city="+city; 
+    }
+    $.ajax({  type:'POST', url:URLreg,  success:function(res){
+			  var data1 = JSON.parse(res); 
+			  if(data1['error']['err_code']==0){
+			    alert('Registered Successfully');
+			    var uid=data1['error']['userid'];
+			    common.addToStorage('jzeva_uid',uid);
+			  }   
+			  else if(data1['error']['err_code']==1)   alert(data1['error']['err_msg']); 
+		  }
+	    });
+  }
+  else{
+    var name=common.readFromStorage('jzeva_name'); 
+    var email=common.readFromStorage('jzeva_email'); 
+    var moblno=common.readFromStorage('jzeva_mob'); 
+    shipngdata['name']=name;
+    shipngdata['email']=email;
+    shipngdata['mobile']=moblno;
+  }
   
-   shipngdata['name']=name;	    shipngdata['mobile']=mobileno;
-   shipngdata['email']=mail;	    shipngdata['city']=city;
+   shipngdata['city']=city;
    shipngdata['address']=addrs;	    shipngdata['state']=state;
-   shipngdata['pincode']=pincode; 
-   var usrid=common.readFromStorage('jzeva_uid'); 
+   shipngdata['pincode']=pincode;
+   setTimeout(function(){
+     var usrid=common.readFromStorage('jzeva_uid');
    if(usrid == null || usrid == ""){
      shipngdata['user_id']=1111;
    }
    else{
      shipngdata['user_id']=usrid;
-   }  
+   }
+   storeshippingdata();
+   },1000);
+   
+   
+    
+   }
+ });
+ 
+
+$('#mob_mailsub').click(function(){
+    inp_data=$('#entereml').val(); 
+    var validationflg=1;
+  //console.log(inp_data);
+  if($.isNumeric(inp_data)){
+    if(inp_data===''|| inp_data=== null){
+      // common.toast(0, 'Please enter your Mobile no.');
+        alert('Please enter your Mobile no.');
+        validationflg=0; 
+    }
+    else if(isNaN(inp_data) || (inp_data.length < 10) || (inp_data.length > 11) ){
+      // common.toast(0, 'Mobile no. Invalid');
+        alert('Mobile no. Invalid');
+        validationflg=0; 
+    }
+    
+    if(validationflg == 1){
+      openThrd();
+       $('#paswrd1id').addClass('dn');
+       $('#paswrd2id').addClass('dn');
+     //  sendnewuserotp(); 
+    }
+  }
+  else{
+    var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
+    if(inp_data===''|| inp_data=== null){
+     //   common.toast(0, 'Please enter your Email.id');
+        alert('Please enter your Email.id');
+        validationflg=0; 
+    }
+    else if (!reg.test(inp_data)){
+      // common.toast(0, 'Invalid Email.id');
+      alert('Invalid Email.id');
+        validationflg=0; 
+    }
+     if(validationflg == 1){
+      openThrd();
+       sendotpmail(); 
+      }  
+  } 
+});
+
+ $('#otp1').keyup(function(){
+       var otp=$(this).val();  
+         checkotp(inp_data,otp); 
+    });
+
+$('#resend_otp').click(function(){ 
+  //  sendnewuserotp();
+});
+
+function sendnewuserotp()
+{
+  var URL= APIDOMAIN + "index.php/?action=sendnewuserotp&mobile="+inp_data; 
+	$.ajax({ type:'POST', url:URL, success:function(res){
+		  var data1 = JSON.parse(res);  
+		  if(data1['error']['err_code']==0) { 
+		    alert(data1['error']['err_msg']);
+		  }
+		  else if(data1['error']['err_code']==1){
+		   alert(data1['error']['err_msg']);
+		  }
+		  else if(data1['error']['err_code']==2){
+		   alert(data1['error']['err_msg']);
+		  }
+		}
+	      }); 
+}
+ 
+function sendotpmail()
+{
+  var URL= APIDOMAIN + "index.php/?action=sendnewuserotp&mobile="+inp_data; 
+	$.ajax({ type:'POST', url:URL, success:function(res){
+		  var data1 = JSON.parse(res);  
+		  if(data1['error']['err_code']==0) { 
+		    alert(data1['error']['err_msg']);
+		  }
+		  else if(data1['error']['err_code']==1){
+		   alert(data1['error']['err_msg']);
+		  }
+		  else if(data1['error']['err_code']==2){
+		   alert(data1['error']['err_msg']);
+		  }
+		}
+	      }); 
 }
 
 function storeshippingdata()
-{ 
-  if (validationFlag == 2){
+{
+  if (validationFlag == 1){
    var URL= APIDOMAIN + "index.php?action=addshippingdetail";
     var data=shipngdata;
     var  dt = JSON.stringify(data); 
-	$.ajax({
-	    type:"post",
-	    url:URL,
-	    data: {dt: dt}, 
-	    success:function(data){  
-		//      console.log(data);     
-            }
+	$.ajax({ type:"post",  url:URL,  data: {dt: dt}, success:function(res){  
+		      //   console.log(res); 
+			 var data=JSON.parse(res);
+			 shipng_id=data['error']['shipping_id'];
+			 storeorderdata();
+        }
         });
- }
+  }
 }
 
+function displayaddrs(userid)
+{
+   var URL= APIDOMAIN + "index.php/?action=getshippingdatabyid&userid="+userid; 
+      $.ajax({  url: URL,  type: "GET",   datatype: "JSON",   success: function(results)   { 
+		     var data=JSON.parse(results);
+		     
+		     var res=data['results'];
+		     if(res !== null){
+		       $('addr_main').html('');
+		     $(res).each(function(r,v){
+	var addstr="";
+		       
+		      
+    addstr+="  <div class='col100 fLeft'>";
+    addstr+="<div class='w50r fLeft'> ";
+    addstr+="  <div class='text fLeft' id='spnd_name'>"+v.name+" </div>";
+    addstr+=" <div class='text fLeft' id='spnd_email'>"+v.email+"  </div>";
+    addstr+="  <div class='text fLeft' id='spnd_city_pin'>"+v.city+"-"+v.pincode+"</div>";
+    addstr+="  </div>";
+    addstr+=" <div class='w50l fRight'> ";
+    addstr+="  <div class='text fLeft'><span id='addr_id'>"+v.address+"</span></div>";
+    addstr+="  </div>";
+    addstr+="  <div class='btncnt fLeft bolder'>";
+    addstr+="  <center>  <div class='dlvrBtn' id='"+v.shipping_id+"' onclick='checkicon(this)'>DELIVER TO THIS ADDRESS</div>";
+    addstr+="   </center>  </div>";
+    addstr+="  </div>";
+    $('#intscrl').append(addstr);
+     });
+     $('#diff_adr').html('Add New Address');
+		    }
+		    else{
+		      opnscnd(); 
+		    }
+		   }
+		 });
+}
+
+$('#shpdpincode').blur(function(){
+   var zipcode= $(this).val();
+   if(zipcode.length == 6){
+      var URL = APIDOMAIN + "index.php?action=viewbyPincode&code="+zipcode;  
+	       $.ajax({
+	 	    url: URL,
+	 	    type: "GET",
+	 	    datatype: "JSON",
+	 	    success: function(results)
+	 	    {
+		      var obj=JSON.parse(results);  
+		      $('#shpdstate').focus();
+		      $('#shpdstate').val(obj.results[0].state);
+		      $('#shpdcity').focus();
+		      $('#shpdcity').val(obj.results[0].city); 
+		    }
+		  }); 
+   }
+   else{
+    alert('Please Enter correct Zip Code');
+   }
+}); 
+ 
 function  storeorderdata()
 {
+  if (validationFlag == 1){
   var userid=common.readFromStorage('jzeva_uid'); 
   var cartid=common.readFromStorage('jzeva_cartid');
   var data=[],ordobj={};
+  if(cartid !== null || userid !== null){
   var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id="+cartid+"&userid="+userid+"";  
   $.ajax({  url: URL, type: "GET",  datatype: "JSON", success: function(results) {
     var obj=JSON.parse(results); 
     $(obj.result).each(function(r,v){
-	var ordrdata={}; 
+	var ordrdata={};  
+	if(userid !== null || userid !== 0){
+	  ordrdata['userid']=userid;}
+	else{
+	  ordrdata['userid']=v.userid;}
 	ordrdata['orderid']=v.cart_id;	 ordrdata['pid']=v.product_id;
-	ordrdata['userid']=v.userid;	 ordrdata['col_car_qty']=v.col_car_qty;
+		 ordrdata['col_car_qty']=v.col_car_qty;
 	ordrdata['pqty']=v.pqty;	 ordrdata['prodpri']=v.price;  
 	ordrdata['order_status']="" ;	 ordrdata['updatedby']="" ;
 	ordrdata['payment']="";		 ordrdata['payment_type']=""; 
+	ordrdata['shipping_id']=shipng_id;
 	data[r]=ordrdata; r++;
     });
     ordobj['data']=data;
-    setordrdata(ordobj);
+       setordrdata(ordobj);
     }
   }); 
   }
-
+   }
+ }
+	 
+ function checkicon(ths)
+ {
+   
+                                var i=$(ths);
+				if($('.dlvrBtn').length>1){
+                               $('.dlvrBtn').each(function(){
+                                   setTimeout(function(){
+                                         $('.dlvrBtn').removeClass('afterTick');
+                                   },250);
+                                   $('.dlvrBtn').animate({
+                                 paddingLeft:'10px',
+                                 paddingRight:'10px'
+                                },50);
+                                });
+			      }
+			      
+                                i.animate({
+                                 paddingLeft:'12px',
+                                 paddingRight:'32px'
+                                },50);
+                               setTimeout(function(){
+                                    if(i.hasClass('afterTick')){
+				      i.removeClass('afterTick');
+				         $('.dlvrBtn').animate({
+                                 paddingLeft:'10px',
+                                 paddingRight:'10px'
+                                },50);
+				    }
+				    else{
+				      
+				      i.addClass('afterTick');
+				    }
+                               },250); 
+	    shipng_id=$(ths).attr('id');
+ }
+ 
+ $('#all_submt').click(function(){
+   if(shipng_id == undefined){
+     alert('Please select Your shipping Address');
+   }
+   else{
+    storeorderdata();
+   }
+ });
+ 
   function setordrdata(ordobj)
   { 
     var URL= APIDOMAIN + "index.php?action=addOrdersdetail"; 
@@ -342,33 +583,6 @@ $("#confrm").hover(function() {
     $(this).css('cursor','auto');
 });
 
-function checkotp()
-{
-  var otptxt=$('#otp_txt').val();
-  var URL= APIDOMAIN + "index.php/?action=checkopt&mobile="+mobileno+"&otpval="+otptxt; 
-	     $.ajax({  url: URL,  type: "GET",  datatype: "JSON",  success: function(results)   {
-		      var obj=JSON.parse(results); 
-		      var data=obj.result;
-		      if(data.otp==null){
-			alert('time is over plz try it again');
-		      }
-		      else{
-		      if(otptxt==data.otp){
-			corrctotp=1;
-			alert('otp is correct');  
-		      }
-		      else{
-			alert('you entered otp is wrong');
-		      }
-		    }
-		    }
-	     });
-}
-
-$('#resend_otp').click(function(){ 
-  // sendotp();
-});
-
 function sendotp()
 {
   var URL= APIDOMAIN + "index.php/?action=sendotp&mobile="+mobileno; 
@@ -386,5 +600,3 @@ function sendotp()
 		}
 	      }); 
 }
-
- 
