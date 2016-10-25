@@ -88,6 +88,20 @@
             </div>
         </div>
     </div>
+    <div class="outerContr dn" id="otpOuter2">
+        <div class="loginCont fLeft" id="otpCont2">
+            <div class="txtTitle" id="hTxt">Luxury or nothing</div>
+            <div class="txtB fLeft">
+                <input type="tel" class="inp_box" autocomplete="off">
+                <div class="inp_label">Please enter the otp</div>
+            </div>
+            <div class="filterSec fLeft">
+                <center>
+                    <div class="button actBtn transition300">SUBMIT</div>
+                </center>
+            </div>
+        </div>
+    </div>
     <div class="outerContr dn" id="resetId">
         <div class="loginCont fLeft" id="inresetId">
             <div class="txtTitle" id="hTxt">Reset Your Password</div>
@@ -100,8 +114,8 @@
                 <div class="inp_label">Confirm Password*</div>
             </div>        
             <center>
-                <a href=""><div class="button actBtn transition300">BACK TO LOGIN</div></a>
-                <div class="button actBtn transition300" id="respsssub">SUBMIT</div>
+                <a href=""><div class="button actBtn transition300 marReq">BACK TO LOGIN</div></a>
+                <div class="button actBtn transition300 marReq" id="respsssub">SUBMIT</div>
             </center>
         </div>
     </div>
@@ -137,16 +151,16 @@
             $('#loginId').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
             $('#signCont').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
         });
-        $('#otpCont').velocity({opacity: [0]}, {duration: 0, easing: 'ease-in-out'});
+        $('#otpCont,#otpCont2').velocity({opacity: [0]}, {duration: 0, easing: 'ease-in-out'});
         $('#fsubId').click(function (){
             $('#otpOuter').removeClass("dn");
             $('#loginId1').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
             $('#otpCont').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
         });
         $('#rsubId').click(function () {
-            $('#otpOuter').removeClass("dn");
-            $('#signUpId').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-            $('#otpCont').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+            $('#otpOuter2').removeClass("dn");
+            $('#signCont').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+            $('#otpCont2').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
         });
         $('#inresetId').velocity({opacity: [0]}, {duration: 0, easing: 'ease-in-out'});
         $('#otpsubId').click(function () {
