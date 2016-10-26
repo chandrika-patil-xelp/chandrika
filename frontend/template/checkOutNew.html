@@ -210,6 +210,42 @@
                                  </center>
                                 </div>
                             </div>
+                            <div class="fadeCnt fLeft" id="fifthup">
+                                  <div class="dAdrsshdr fLeft semibold">Verify 
+                                  <div class="cbrdr"></div>
+                                      </div>
+                             <div class="sgnUptxt fLeft  semibold">
+                               <div class="inp_cont fmSansR fLeft">
+                                   <input type="text" class="inp_box " id="pswrd8" maxlength="30">
+                                  <div class="inp_label fmSansB">Password*</div>
+                               </div>
+                             </div>
+                                <div class="dvdrHldr fLeft">
+                                <div class="dvdr1"></div>
+                                </div>
+                                <div class="lgnwTxt fLeft semibold"><span onclick="openSixth()">Login with OTP</span></div>
+                                <div class="cnclSbmt fLeft bolder">
+                                 <center>
+                                      <div class="cntrBtn">CONTINUE</div>
+                                 </center>
+                                </div>
+                            </div>
+                            <div class="fadeCnt fLeft otpscreen" id="sixthup">
+                              <div class="w100 fLeft">
+                                  <div class="w70 fLeft">
+                            <div class="inp_cont fmSansR fLeft">
+                               <input type="text" class="inp_box " id="shpdemail3" maxlength="30">
+                               <div class="inp_label fmSansB bolder">Enter OTP*</div>
+                          </div> 
+                               </div>
+                            <div class="w30 fLeft semibold">Resend</div>
+                              </div>
+                               <div class="cnclSbmt fLeft bolder">
+                                 <center>
+                                      <div class="cntrBtn">CONTINUE</div>
+                                 </center>
+                                </div> 
+                            </div>
                         </div>
               </div>
 <!--              <div class="colleCont ePadding" id="txtAdd">
@@ -668,6 +704,14 @@
             function openThrd(){
                  $('#fourthup').velocity({translateY: [0, 20], opacity:[1,0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
                 $('#thrdup').velocity({translateY: [-20, 0], opacity:[0,1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
+            }
+             function openFifth(){
+                 $('#fifthup').velocity({translateY: [0, 20], opacity:[1,0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
+                $('#fstup').velocity({translateY: [-20, 0], opacity:[0,1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
+            }
+              function openSixth(){
+                 $('#sixthup').velocity({translateY: [0, 20], opacity:[1,0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
+                $('#fifthup').velocity({translateY: [-20, 0], opacity:[0,1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
             }
             function closeThrd(){
                  $('#fstup').velocity({translateY: [-20, 0], opacity:[0,1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
