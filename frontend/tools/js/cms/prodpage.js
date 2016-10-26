@@ -6,10 +6,11 @@ var glbcarat;
 var catsize;
 var makchrg = 0;
 
-//Shubham
+
 var storedWt = 0;
 var storedMkCharge = 0;
 var storedDmdCarat = 0;
+var newWeight;
 
 var metalwgt = 0;
 var dmdValue = metalValue = soliValue = gemsValue = uncutValue = basicValue = 0;
@@ -50,11 +51,14 @@ function IND_money_format(money)
 ;
 
 var pid;
-$('#add_to_cart').on('click', function () {
+ var arrdata = new Array();
+function getarraydata() {
 
-    var arrdata = new Array();
+     arrdata=[];
     arrdata.push(pid);
-    arrdata.push(grandtot);
+     var pprice=$('#price').html();
+	  arrdata.push(pprice);
+  
 
     var xx = $('#qual').attr('qual_id').split('_');
     var quality = xx[xx.length - 1];
@@ -64,13 +68,21 @@ $('#add_to_cart').on('click', function () {
 
     var zz = $('#carat').attr('carat_id').split('_');
     var metal = zz[zz.length - 1];
-
+    
+    
     arrdata.push(color);
     arrdata.push(quality);
     arrdata.push(metal);
+   
+   
+}
 
-
-    newaddToCart(arrdata);
+$('#add_to_cart').on('click', function () {
+    
+    getarraydata();
+	
+      newaddToCart(arrdata);
+     
 });
 $(document).ready(function () {
    
@@ -144,6 +156,7 @@ $(document).ready(function () {
                     $('#proname').text(vl.prdNm);
                     $('#descrp').text(vl.productDescription);
                     var metalwght = vl.mtlWgt;
+                   
                     var makingchrg = vl.mkngCrg;
 
                     var proccost = vl.procmtCst;
@@ -157,15 +170,16 @@ $(document).ready(function () {
                     } else if (basic.jewelleryType == 3) {
                         $('#stn').html('Platinum');
                     }
-
+                    
                     var lstr = "";
                     lstr += '<span class="semibold">' + vl.leadTime + ' Days or less</span>';
                     $('#leadtime').append(lstr);
-
-                    var bstr = "";
-                    bstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span> Gold </span></span><span class="fRight fmSansR"><span> ' + vl.mtlWgt + '</span> Gms </span></div>';
-                    $('#desc').append(bstr);
-
+                    
+                    
+                 var bstr = "";
+                 
+               bstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span> Gold </span></span><span class="fRight fmSansR"><span> ' + metalwght + '</span> Gms </span></div>';
+               $('#desc').append(bstr);   
 
                     var type = 0;
                     if (basic.hasSol == 1) {
@@ -427,10 +441,21 @@ $(document).ready(function () {
 
 
     });
+    
+    
+                 
+
 
 });
-
-
+   /*function metalwtt(a){
+      var mtw=a;
+      var bstr = "";
+                 
+               bstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span> Gold </span></span><span class="fRight fmSansR"><span> ' + mtw + '</span> Gms </span></div>';
+               $('#desc').append(bstr);                  
+ 
+   }*/
+      
 
 
 var bs = [];
@@ -603,7 +628,7 @@ function getTotal(type) {
 
         total = parseFloat(basicValue) + parseFloat(dmdValue) + parseFloat(metalValue) + uncPrice + soliprc + gemsPrice;
 
-        var vat = (1.20 / 100) * total;
+        var vat = (1/ 100) * total;
 
         gtotal = total + vat;
 
@@ -635,7 +660,8 @@ function getTotal(type) {
 
 
 }
-
+var sizdefault;
+var sizdefaulval;
 function getcatsize(s, m) {
     catid = s;
     metalwt = m;
@@ -654,19 +680,40 @@ function getcatsize(s, m) {
             url: URL,
             success: function (res) {
                 dat = JSON.parse(res);
-
+               
+                var strd="";
                 var str = "";
-             
+                if(catname== 'Rings'){
+                 sizdefault = dat.result[20]['id'];
+                 sizdefaulval = dat.result[20]['sval'];
+            }else if(catname== 'Bangles'){
+                
+                 sizdefault = dat.result[1]['id']; 
+                sizdefaulval = dat.result[1]['sval'];
+            }
+              
                 if (dat['error']['err_code'] == '0')
-                {
+                {   
+                    
+                    strd+=  '<div class="actBtn font12 bolder" id="size"  name="sizes" data-size="'+sizdefault+'">Size '+sizdefaulval+'</div>';
+                
                     $(dat.result).each(function (x, y) {
-
-                        str += '<div class="selectOptions" >Size ' + y.sval + '</div>';
-
+                      
+                            if(y.sval==0.0){
+                                y.sval='None';}
+                        
+                      
+                           str += '<div class="selectOptions" name="siz" size_id ="'+y.id+'" data-val="'+y.sval+'" >Size ' + y.sval + '</div>';
+                            
                     });
+                  
+                  $('#size').html(strd);
                     $('#genSize').append(str);
-                    bindDrop();
                    
+                  //$('input[name="sizes"]').eq(0).prop('checked', true);
+            
+                    bindDrop();
+                 
                 }
             }
         });
@@ -677,12 +724,13 @@ function getcatsize(s, m) {
 
 
 function calculatePrice()
-{
-    var vatRate =(1.20)/100;
+{  
+    var vatRate =(1/100);
     var selDiamond= parseFloat($('input[name="selectM"]:checked').attr('data-value')); 
     var selPurity= parseFloat($('input[name="purity"]:checked').attr('data-price'));
-  //  var currentSize=parseFloat($('#size').html().replace('Size',''));
-    var currentSize=0;
+ 
+    var currentSize=parseFloat($('#size').html().replace('Size',''));
+  
     var mtlWgDav=0.05;
     var dmdPrice=0;
     var goldPrice=0;
@@ -690,29 +738,37 @@ function calculatePrice()
     var dmdLength=$('input[name="selectM"]').length; 
     var bseSize=0;
     
-    if(catname == 'Rings'){
-   bseSize = parseFloat(14);
-   currentSize = parseFloat($('#size').html().replace('Size',''));
- $('#size').html('Size ' +14.0);
-    }
-     if(catname == 'Bangles'){
-   bseSize = parseFloat(2.4);
-   currentSize = parseFloat($('#size').html().replace('Size',''));
-    $('#size').html('Size ' + 2.4);
-    }
+    if(catname == 'Rings')
+        bseSize = parseFloat(14);
+       
+    else if(catname == 'Bangles')
+        bseSize = parseFloat(2.4);
+   
+   
+    if(!currentSize)
+    {
     
-    
+        if(catname == 'Rings')
+        currentSize = parseFloat(14);
+
+        else if(catname == 'Bangles')
+            currentSize = parseFloat(2.4);
+        else if(catname !== 'Rings' && catname !== 'Bangles'){
+            currentSize =0;
+        }
+        
+        
+    }
+
     if(dmdLength>0)
     {
         dmdPrice=storedDmdCarat*selDiamond;
     }
     
-   
-    
-    var changeInWeight=(currentSize-bseSize)*mtlWgDav;console.log(currentSize);
-    var newWeight=parseFloat(storedWt+(changeInWeight));
-    
-    
+    var changeInWeight=(currentSize-bseSize)*mtlWgDav;
+     newWeight=parseFloat(storedWt+(changeInWeight));
+        newWeight= newWeight.toFixed(2);
+  // metalwtt(newWeight);
     goldPrice=parseFloat(selPurity*newWeight);
     var mkCharges=parseFloat(storedMkCharge*newWeight);
     var ttl=parseFloat(goldPrice+dmdPrice+mkCharges+ uncPrice + soliprc + gemsPrice);
@@ -730,4 +786,33 @@ console.log("dmdPrice-> "+dmdPrice +" --- " + "changeInWeight -> "+changeInWeigh
     
  
 }
+
+$('#addwishlist').click(function(){
+    var userid=localStorage.getItem('uid');  
+    if(userid == undefined){
+        alert('Please Do login for adding to Your wishlist');
+    }
+    else{ 
+    getarraydata();
+  
+    var userid,wishdata={};
+   wishdata['pid']= arrdata[0]; 
+   var chr=""+arrdata[2]+"|@|"+arrdata[4]+"|@|"+arrdata[3];
+   wishdata['col_car_qty']=chr; 
+   wishdata['price']=arrdata[1];
+   wishdata['user_id']=userid;
+   var wishid=genOrdId();
+   wishdata['wish_id']=wishid;
+  
+     var URL= APIDOMAIN + "index.php?action=addtowishlist";
+    var data=wishdata; 
+    var  dt = JSON.stringify(data);   
+	$.ajax({  type:"post",  url:URL,  data: {dt: dt},   success:function(results){
+		      console.log(results); 
+		 
+		} 
+            });
+      
+    } 
+});
   
