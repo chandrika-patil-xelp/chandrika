@@ -2701,7 +2701,7 @@ class product extends DB {
                                         AND
                                                 active_flag =1
                                     )
-                         ";
+                        order by price_per_carat ASC ";
             // WHERE active_flag=1 ";
             $res = $this->query($sql);
             if ($res) {
@@ -2907,9 +2907,9 @@ class product extends DB {
                                         WHERE
                                                 productid = " . $params['pid'] . "
                                             AND
-                                                active_flag=1
+                                                active_flag=1 
 
-                                    )";
+                                    )order by price DESC";
             // WHERE active_flag=1 ";
             $res = $this->query($sql);
             if ($res) {
@@ -3795,7 +3795,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                              updatedby,
                            
                             (SELECT GROUP_CONCAT(diamond_id) FROM tbl_product_diamond_mapping WHERE productid = pid AND active_flag = 1 ) AS allDimonds,
-                            (SELECT GROUP_CONCAT(carat) FROM tbl_product_diamond_mapping WHERE FIND_IN_SET(diamond_id,allDimonds)) AS dmdcarat,
+                            (SELECT GROUP_CONCAT(carat) FROM tbl_product_diamond_mapping WHERE FIND_IN_SET(diamond_id,allDimonds)) AS dmdcarat ,
                             (SELECT GROUP_CONCAT(total_no) FROM tbl_product_diamond_mapping WHERE FIND_IN_SET(diamond_id,allDimonds)) AS totaldmd,
                             (SELECT GROUP_CONCAT(shape) FROM tbl_product_diamond_mapping WHERE FIND_IN_SET(diamond_id,allDimonds)) AS shape,
                             
@@ -3832,7 +3832,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                             (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND active_flag !=2 ORDER BY
                             image_sequence DESC) AS images,
 			    (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND active_flag != 2 AND  default_img_flag=1) 
-  AS default_image
+                            AS default_image
                                
                         FROM 
                             tbl_product_master  
