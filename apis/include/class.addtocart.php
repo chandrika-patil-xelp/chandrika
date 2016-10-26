@@ -683,6 +683,103 @@
             return $results;
             
         }
+        
+         public function addtowishlist($params)
+	{ 
+	     $params = json_decode($params[0],1);
+                          
+	    if(empty($params['user_id']) || empty($params['wish_id']) || empty($params['col_car_qty'])){
+                $resp = array();
+                $error = array('err_code'=>1, 'err_msg'=>'Parameters Missing');
+                $result = array('result'=>$resp, 'error'=>$error);
+                return $result;
+            }
+            $sql = "INSERT INTO tbl_wishlist_master (
+                                    wish_id,
+                                    user_id,
+                                    product_id, 
+				    col_car_qty,
+                                    price,
+				    active_flag, 
+                                    created_on,
+				    updatedon
+                                  ) 
+                                  VALUES ";
+	    
+                      $sql .= " (".$params['wish_id'].", '".$params['user_id']."','".$params['pid']."','".$params['col_car_qty']."','".$params['price'].""
+			    . "',1,NOW(), NOW())";
+                                   
+     
+	 	      $sql.="
+                    ON DUPLICATE KEY UPDATE
+                                user_id = VALUES(user_id),product_id = VALUES(product_id),col_car_qty=VALUES(col_car_qty),
+				updatedon=VALUES(updatedon)";
+		       
+	      $res = $this->query($sql); 
+            $resp = array();
+             
+            if($res){
+                $error = array('err_msg'=>0, 'err_code'=>'Add To Wishlist Successfully');
+            }else{
+                $error = array('err_msg'=>1, 'err_code'=>'Error Inserting Wishlist Data');
+            }
+            
+            $result = array('result'=>$resp, 'error'=>$error);
+            return $result;
+	  
+        }
+        
+        public function  getwishdetail($params)
+	{
+	  if(empty($params['userid']) || $params['userid']== 'null'){
+                $resp = array();
+                $error = array('err_code'=>1, 'err_msg'=>'Parameters Missing');
+                $result = array('result'=>$resp, 'error'=>$error);
+                return $result;
+            }
+	  
+	   
+         $sql = "  SELECT  wish_id,user_id,product_id AS pid,col_car_qty AS combine,price,active_flag,created_on,updatedon, "
+              . "(SELECT  GROUP_CONCAT(dname) FROM tbl_metal_color_master WHERE id = SUBSTRING_INDEX(combine, '|@|',1) AND active_flag = 1 ) AS color,"
+	    ."(SELECT  GROUP_CONCAT(dname) FROM tbl_metal_purity_master WHERE id = SUBSTRING_INDEX(SUBSTRING_INDEX(combine,'|@|',2),'|@|',-1) AND active_flag = 1 ) AS carat,"
+             ."(SELECT  GROUP_CONCAT(dname) FROM tbl_diamond_quality_master WHERE id = SUBSTRING_INDEX(combine,'|@|',-1)  AND active_flag = 1 ) AS quality,"
+            . "(SELECT  GROUP_CONCAT(product_name) FROM tbl_product_master WHERE productid = pid AND active_flag = 1 ) AS prdname,"
+	    . "(SELECT  GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid  AND active_flag !=2 ORDER BY
+                            image_sequence DESC) AS prdimage";
+            
+            
+	        
+		 $sql.=" FROM tbl_wishlist_master WHERE active_flag=1 AND user_id='".$params['userid']."'";
+	   
+      $res = $this->query($sql);
+            if ($res) {
+                while ($row = $this->fetchData($res)) {
+		    
+                    $arr['wish_id'] = $row['wish_id'];
+                    $arr['product_id'] = $row['pid'];
+                    $arr['user_id'] = $row['user_id'];
+		    $arr['col_car_qty'] = $row['combine']; 
+                    $arr['price'] = $row['price'];
+		    $arr['active_flag'] = $row['active_flag']; 
+                    $arr['created_on'] = $row['created_on'];
+		    $arr['updatedon'] = $row['updatedon'];
+		    $arr['prdname'] = $row['prdname']; 
+                    $arr['prdimage'] = $row['prdimage']; 
+                    $arr['color'] = $row['color']; 
+                    $arr['carat'] = $row['carat']; 
+                    $arr['quality'] = $row['quality'];
+                    $resArr[] = $arr;
+                        }  
+                        
+                   $err=array('err_code'=>0,'err_msg'=>'Data fetched successfully');
+                }  
+	    else
+	    {
+	      $err=array('err_code'=>1,'err_msg'=>'Error in fetching data');
+	    }
+            $results=array('result'=>$resArr,'error'=>$err);   
+		    return $results; 
+	}
     }
      
     ?>
