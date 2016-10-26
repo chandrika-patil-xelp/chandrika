@@ -788,7 +788,7 @@ console.log("dmdPrice-> "+dmdPrice +" --- " + "changeInWeight -> "+changeInWeigh
 }
 
 $('#addwishlist').click(function(){
-    var userid=localStorage.getItem('uid');  
+    var userid=localStorage.getItem('jzeva_uid');  
     if(userid == undefined){
         alert('Please Do login for adding to Your wishlist');
     }
