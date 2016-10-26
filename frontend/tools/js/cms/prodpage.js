@@ -639,20 +639,20 @@ function getTotal(type) {
         // $("#price").html(IND_money_format(TotalPrice).toLocaleString('en'));
 
     }
-    $('#price').numerator({
-        toValue: grandtot,
-        delimiter: ',',
-        onStart: function () {
-            isStop = true;
-        },
-        onComplete: function () {
-            $("#price").html(IND_money_format(grandtot).toLocaleString('en'));
-        }
+//    $('#price').numerator({
+//        toValue: grandtot,
+//        delimiter: ',',
+//        onStart: function () {
+//            isStop = true;
+//        },
+//        onComplete: function () {
+//            $("#price").html(IND_money_format(grandtot).toLocaleString('en'));
+//        }
 
 
-    });
+   // });
 
-    $('#ch_price').find('.labBuffer').append(' @ ' + exprice);
+   // $('#ch_price').find('.labBuffer').append(' @ ' + exprice);
     //  if (type == 1){
 
     //  $("#price").html(IND_money_format(grandtot).toLocaleString('en'));
@@ -780,9 +780,22 @@ console.log("dmdPrice-> "+dmdPrice +" --- " + "changeInWeight -> "+changeInWeigh
     var totalNewPrice= Math.round(ttl+(ttl*vatRate));
     
      
-    
-    $('#price').text(totalNewPrice);
-    
+    var abc =$('#price').html();
+  //  $('#price').text(totalNewPrice);
+     $('#price').numerator({
+        toValue: totalNewPrice,
+        delimiter: ',',
+        onStart: function () {
+            isStop = true;
+        },
+        onComplete: function () {
+            $("#price").html(IND_money_format(totalNewPrice).toLocaleString('en'));
+        }
+
+
+    });
+//var abc = IND_money_format(totalNewPrice).toLocaleString('en');
+    $('#ch_price').find('.labBuffer').append(' @ ' + abc);
     
  
 }
