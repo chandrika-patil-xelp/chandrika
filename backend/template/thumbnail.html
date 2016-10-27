@@ -36,11 +36,12 @@
                                                 <input type="radio" value="0" name="accept_<?php echo $data[$i]['id']; ?>"<?php if($data[$i]['active_flag']==0) { echo 'checked'; } ?> class="filled-in" id="reject_<?php echo $data[$i]['id']; ?>">
                                                 <label for="reject_<?php echo $data[$i]['id']; ?>">Delete</label>
                                             </div>
+
                                             <div class="checkDiv fLeft"> 
-					      <input type="radio" value="<?php echo $data[$i]['id'];?>"   name="forImg" <?php if($data[$i]['default_img_flag']=='1') { echo 'checked'; } ?> class="filled-in" id="frimg_<?php echo $data[$i]['id']; ?>">
+					      <input type="radio" value="<?php echo $data[$i]['id'];?>"   name="forImg" <?php if($data[$i]['default_img_flag']==1) { echo 'checked'; } ?> class="filled-in" id="frimg_<?php echo $data[$i]['id']; ?>">
 					      <label for="frimg_<?php echo $data[$i]['id']; ?>">First Image</label> 
-                                            </div>
-                                        </div>
+
+                                       
                                         <div class="seq fRight">
                                             <div class="seqTitle fLeft">Position</div>
                                             <input type="text" id="seq_<?php echo $data[$i]['id']; ?>" value="<?php echo $data[$i]['image_sequence']; ?>" class="seqTxt fLeft fmOpenR font14" placeholder=" eg 1">
@@ -66,23 +67,26 @@
             </div>
             <div class="overlay dn"></div>
             <div class="loader dn"></div>
+
         </div> 
         <script> 
 	    $('document').ready(function()
             {   
-                $('.saveProduct').bind('click',function() 
-                {		 
-		  var imgval= $("input[name='forImg']:checked"). val();  
-		  var URL= APIDOMAIN + "index.php?action=setImagedeflt&id="+imgval;  
-		    $.ajax({  type:"post",   url:URL,  data: '',  success:function(data)
-                        {
-			
-			// common.toast(1,'Default Image Updated Successfully')
+                $('.saveProduct').bind('click',function()
+                { 		 
+		  var imgval= $("input[name='forImg']:checked"). val(); 
+		   var URL= APIDOMAIN + "index.php?action=setImagedeflt&id="+imgval;  
+		    $.ajax({  type:"post",  
+                               url:URL,  
+                               data: '',  
+                               success:function(data){
+			 common.toast(1,'Default Image Updated Successfully')
 		    }
 		    });	
-                  
-                        updateData($(this).attr('id'));
-                });   
+                       updateData($(this).attr('id'));
+                }); 
+
+	    
             });
             function showLoader()
             {
