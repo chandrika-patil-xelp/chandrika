@@ -3830,9 +3830,11 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                             (SELECT GROUP_CONCAT(catid) FROM tbl_category_product_mapping WHERE productid = pid AND active_flag = 1 ) AS catpro,
                             (SELECT GROUP_CONCAT(attributeid) FROM tbl_product_attributes_mapping WHERE productid = pid AND active_flag = 1 ) AS attrpro,
                             (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND active_flag !=2 ORDER BY
+
                             image_sequence DESC) AS images,
 			    (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND active_flag != 2 AND  default_img_flag=1) 
-                            AS default_image
+  AS default_image
+  
                                
                         FROM 
                             tbl_product_master  
