@@ -106,7 +106,7 @@ function generatelist(obj) {
     var gemsName = obj['gemstoneName'];
     var Dshape = obj['shape'];
     var pid = obj['prdId'];
-filter(pid,gender,jType,Mclr,gemsName,Dshape);
+
 
     if(obj['totalgems'] !== null && obj['totalgems'] !== undefined && obj['gemstoneName'] !== null && obj['gemstoneName'] !== undefined && obj['gemscarat'] !== null && obj['gemscarat'] !== undefined ){
 
@@ -148,7 +148,7 @@ filter(pid,gender,jType,Mclr,gemsName,Dshape);
         var Soliprc = obj['SoliPricepercarat'];
         var Solitot = obj['totalSolitaire'];
 
-        price = price + getSoliPrice(Solicarat, Soliprc);
+        price = price + getSoliPrice(Solicarat, Soliprc); console.log("soliPrice-> "+price +"");
 
     }
     if (uncut == '1' && uncut !== 'null' && uncut !== '1')
@@ -156,7 +156,7 @@ filter(pid,gender,jType,Mclr,gemsName,Dshape);
         var Uncutcarat = obj['Uncutcarat'];
         var Uncutprc = obj['UncutPricepercarat'];
         var Uncuttot = obj['totalUncut'];
-        price = price + getUncutPrice(Uncutcarat, Uncutprc);
+        price = price + getUncutPrice(Uncutcarat, Uncutprc);console.log("unPrice-> "+price +"");
 
     }
     if (gems == '1' && gems !== 'null')
@@ -165,20 +165,20 @@ filter(pid,gender,jType,Mclr,gemsName,Dshape);
         var Gemsprc = obj['gemsPricepercarat'];
         var Gemstot = obj['totalgems'];
 
-        price = price + getGemsPrice(Gemscarat, Gemsprc);
+        price = price + getGemsPrice(Gemscarat, Gemsprc);console.log("gemsPrice-> "+price +"");
 
     }
     if (diamond == '1' && diamond !== 'null')
     {
         var Diacarat = obj['dmdcarat'];
-        var Diaprc = obj['dmdQPricepercarat'];
-        price = price + getdmdprice(Diacarat, Diaprc);
+        var Diaprc = obj['dmdQPricepercarat'];console.log(Diaprc);
+        price = price + getdmdprice(Diacarat, Diaprc); console.log("dmdPrice-> "+price +"");
     }
 
-    price = price + getPurPrice(Mprc, Metalwgt);
-    price = price + getbasicprice(Makchrg, Metalwgt);
+    price = price + getPurPrice(Mprc, Metalwgt);// console.log("goldPrice-> "+price +"");
+    price = price + getbasicprice(Makchrg, Metalwgt);//console.log("basicPrice-> "+price +"");
 
-    var vat = (1.20 / 100) * price;
+    var vat = (1 / 100) * price;
     gtotal = price + vat;
 
     grandtot = gtotal.toFixed();
@@ -522,37 +522,6 @@ var count=0;
     });
 
 
-// $('#filter').click(function(){
-//      window.location.href = DOMAIN + "index.php?action=filterPage";
-// });
 
 
 
-function filter(a,b,c,d,e,f){
- var proid = a;
- var gender = b;
- if(gender == '0'){
-     var g = f;
- }
- var jweltype = c;
- var color = d;
- var gemstone_name = e;
- var diam_shape = f;
-
-
- /* $('.gemstone21').click(function(){
-        $('#proid').addClass('dn');
-       $('#pgrid').click(function(){
-
-           if(gemstone_name == 'Ruby'){
-            //   var len = stSearch.length;
-          var selectedpid = proid;
-           $('#proid').removeClass('dn');
-
-
-
-
-           }
-       });
-   });*/
-}
