@@ -374,7 +374,9 @@ function  sendotp()
     }
     else{
        var URL= APIDOMAIN + "index.php/?action=updateuserpass&user_id="+newuserid+"&pass="+pass+"&mobile="+inptval; 
-      $.ajax({  type:'POST',   url:URL,  success:function(res){
+      $.ajax({  type:'POST',  
+                url:URL, 
+                success:function(res){
 	      // console.log(res);
 	       alert('Password Changed Successfully'); 
 	   }
@@ -396,12 +398,17 @@ function  sendotp()
 		      if(otpval==data.otp){
 			 
    var URLreg= APIDOMAIN + "index.php/?action=addUser&name="+userdata[0]+"&email="+userdata[1]+"&mobile="+userdata[2]+"&pass="+userdata[3]; 
-   $.ajax({  type:'POST',  url:URLreg,  success:function(res){
+   $.ajax({  type:'POST', 
+             url:URLreg,  
+             success:function(res){
 	    var data1 = JSON.parse(res); 
-            if(data1['error']['err_code']==0)  
-                alert('Registered Successfully');   
-            else if(data1['error']['err_code']==1)
+            if(data1['error']['err_code']==0)  {
+                alert('Registered Successfully'); 
+              window.location.href = DOMAIN + "index.php?action=login";
+            
+                 }else if(data1['error']['err_code']==1){
                 alert(data1['error']['err_msg']); 
+            }
     }
     });
 		      }
