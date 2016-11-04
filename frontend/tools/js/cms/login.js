@@ -379,6 +379,7 @@ function  sendotp()
                 success:function(res){
 	      // console.log(res);
 	       alert('Password Changed Successfully'); 
+                window.location.href = DOMAIN + "index.php?action=login";
 	   }
        }); 
     }
