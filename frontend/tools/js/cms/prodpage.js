@@ -82,7 +82,7 @@ $('#add_to_cart').on('click', function () {
     getarraydata();
 	
       newaddToCart(arrdata);
-     
+    
 });
 $(document).ready(function () {
    

@@ -175,7 +175,7 @@ function generatelist(obj) {
         price = price + getdmdprice(Diacarat, Diaprc); // console.log("diaPrice-> "+price+"");
     }
 
-    price = price + getPurPrice(Mprc, Metalwgt); console.log("goldPrice-> "+price +"");
+    price = price + getPurPrice(Mprc, Metalwgt); //console.log("goldPrice-> "+price +"");
     price = price + getbasicprice(Makchrg, Metalwgt);//console.log("basicPrice-> "+price +"");
 
     var vat = (1 / 100) * price;
@@ -452,7 +452,7 @@ function getdmdprice(dvprc, dcarat) {
 
 
 function getPurPrice(Mprc, mwght) {
-console.log(Mprc);
+
     var mprc = parseFloat(Mprc);
     var metalwght = parseFloat(mwght);
     var mpurprc = mprc * metalwght;
