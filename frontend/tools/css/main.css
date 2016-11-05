@@ -1646,12 +1646,9 @@ background-position: center;cursor: pointer;}
 .contactH{font-size:40px;font-family:semibold;width:100%;padding: 10px 0px;}
 .contactH2{font-size:28px;font-family: regular;padding-bottom: 40px;}
 .incnt{width:50%;height:auto;font-size:14px;font-family:regular;padding:0px 15px;line-height:22px;}
-.contOuter{width:100%;height: auto; font-size: 14px;
-    font-family: regular;
-    padding: 5px 0px;}
+.contOuter{width:100%;height: auto; font-size: 14px;font-family: regular;padding: 5px 0px;}
 .contOuter:last-child{border: none!important;}
-.contactDiv{width: 100%;
-    padding-top: 25px;}
+.contactDiv{width: 100%;padding-top: 25px;}
 .pad20{padding:20px 0px;}
 .bNone{border:none!important;}
 .subCont{width:70%;padding-left:20px;font-size:12px;font-family:regular;line-height:22px;color: #15181b;}
