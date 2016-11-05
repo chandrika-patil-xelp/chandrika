@@ -379,7 +379,7 @@ function  sendotp()
                 success:function(res){
 	      // console.log(res);
 	       alert('Password Changed Successfully'); 
-                window.location.href = DOMAIN + "index.php?action=login";
+               // window.location.href = DOMAIN + "index.php?action=login";
 	   }
        }); 
     }
@@ -405,7 +405,7 @@ function  sendotp()
 	    var data1 = JSON.parse(res); 
             if(data1['error']['err_code']==0)  {
                 alert('Registered Successfully'); 
-              window.location.href = DOMAIN + "index.php?action=login";
+            //  window.location.href = DOMAIN + "index.php?action=login";
             
                  }else if(data1['error']['err_code']==1){
                 alert(data1['error']['err_msg']); 
