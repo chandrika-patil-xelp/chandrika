@@ -12,7 +12,7 @@
     <div class="overlay"></div>
     <div class="overlay2 " onclick="closeCart()"></div>
     <div class="header">
-          <a  target="" href='<?php echo DOMAIN?>index.php?action=landing_page'><div class="logo fLeft"></div></a>
+        <a  target="" href='<?php echo DOMAIN?>index.php?action=landing_page'><div class="logo fLeft"></div></a>
     </div>
     <div class="tabWrap fRight">
         <div class="tab_buffer">
@@ -41,7 +41,7 @@
                     EDUCATION
                 </div>
             </div>
-            <div class="tab2 fLeft">
+            <div class="tab2 fLeft" id="userProfId">
                 <div class="tab userprofile"></div>
             </div>
             <div class="tab2 fLeft">
@@ -56,35 +56,35 @@
                     <div class="menu_banner"></div>
                 </div>
                 <div class="menu_elm ">
-                  <div class="col33 fLeft">
-                      <div class="col100 fLeft">
-                           <div class="menu_list fLeft" id="2920160603124607">Ring</div>
-                      </div>
-                      <div class="col100 fLeft">
-                          <div class="menu_list fLeft" id="2020160603124631">Earring</div>
-                      </div>
+                    <div class="col33 fLeft">
+                        <div class="col100 fLeft">
+                            <div class="menu_list fLeft" id="2920160603124607">Ring</div>
+                        </div>
+                        <div class="col100 fLeft">
+                            <div class="menu_list fLeft" id="2020160603124631">Earring</div>
+                        </div>
 
-                  </div>
-                  <div class="col33 fLeft">
-                      <div class="col100 fLeft">
-                           <div class="menu_list fLeft" id="8120160603125512">Pendant</div>
-                      </div>
-                      <div class="col100 fLeft">
-                          <div class="menu_list fLeft" id="3420160603124716">Necklace</div>
-                      </div>
-                  </div>
-                  <div class="col33 fLeft">
-                    <div class="col100 fLeft">
-                        <div class="menu_list fLeft" id="9820160603124850">Bangles</div>
                     </div>
+                    <div class="col33 fLeft">
+                        <div class="col100 fLeft">
+                            <div class="menu_list fLeft" id="8120160603125512">Pendant</div>
+                        </div>
+                        <div class="col100 fLeft">
+                            <div class="menu_list fLeft" id="3420160603124716">Necklace</div>
+                        </div>
+                    </div>
+                    <div class="col33 fLeft">
+                        <div class="col100 fLeft">
+                            <div class="menu_list fLeft" id="9820160603124850">Bangles</div>
+                        </div>
 
-                  </div>
+                    </div>
                 </div>
                 <div class="menu_elm ">
                     <div class="menu_banner"></div>
                 </div>
                 <div class="menu_elm ">
-                      <div class="menu_banner"></div>
+                    <div class="menu_banner"></div>
                 </div>
                 <div class="menu_elm ">
                     <div class="col33 fLeft">
@@ -105,9 +105,9 @@
                         </div>
                     </div>
                     <div class="col33 fLeft">
-                      <div class="col100 fLeft">
-                          <a  target="_blank" href='<?php echo DOMAIN?>index.php?action=preciousmetalguide'><div class="menu_list fLeft">PRECIOUS METAL GUIDE</div></a>
-                      </div>
+                        <div class="col100 fLeft">
+                            <a  target="_blank" href='<?php echo DOMAIN?>index.php?action=preciousmetalguide'><div class="menu_list fLeft">PRECIOUS METAL GUIDE</div></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -116,15 +116,14 @@
 </div>
 <script>
     /*Overlay fade in/out  on menu hover*/
-    $('.tabWrap').mouseover(function () {
-        $('.overlay').stop(true, true).fadeTo(200, 1);
-    });
+//    $('.tabWrap').mouseover(function () {
+//        $('.overlay').stop(true, true).fadeTo(200, 1);
+//    });
     /*Main menu slidedown/slideup , Menu tab colour change*/
     $('.tabB').mouseover(function () {
+        $('.overlay').stop(true, true).fadeTo(200, 1);
         $('.tab').removeClass('selec');
-
         $('.menu_wrap').velocity('stop').velocity({height: [180]}, {duration: 200, easing: 'ease-in-out', display: 'block'});
-
     });
     $('.tabWrap').mouseleave(function () {
         $('.overlay').stop(true, true).fadeTo(200, 0);
@@ -138,7 +137,7 @@
     /*Sub menu slidedown/slideup , Menu tab colour change*/
     $('.tab').mouseenter(function () {
         var k = $(this).closest('.tabB').index();
-     //   console.log(k);
+        //   console.log(k);
         $('.menu_elm').css({'z-index': '50'}).removeClass('tab_select').addClass('remo');
         $('.menu_elm').eq(k).css({'z-index': '9999'}).addClass('tab_select').removeClass('remo');
         $('.menu_elm').eq(k).stop(true, true).slideDown(200, function () {
@@ -176,7 +175,7 @@
         closeCart();
         cartF = 0;
     });
-    $('.over_open').click(function(){
+    $('.over_open').click(function () {
 
     });
     function openCart() {
@@ -185,7 +184,7 @@
         $('.tabWrap , .tabWrap2').addClass('deactive');
         $('.wrapper').removeClass('pointNone');
         $('.cart').velocity({translateX: [0, '100%']}, {duration: 300, easing: 'easeInOutExp'});
-        $('.overlay2').velocity({opacity:[1,0]} , {duration:300 , easing:'swing' , display:'block'});
+        $('.overlay2').velocity({opacity: [1, 0]}, {duration: 300, easing: 'swing', display: 'block'});
         //$('body').css({'overflow': 'hidden'});
         $('.wrapper').addClass('pointNone');
         $('.cart_item').each(function (i) {
@@ -196,32 +195,49 @@
     function closeCart() {
         $('.cart').velocity({translateX: ['100%', 0]}, {duration: 300, easing: 'easeInOutExp', complete: function () {
                 $('.wrapper').removeClass('pointNone');
-              $('.overlay2').velocity({opacity:[0,1]} , {duration:300 , easing:'swing' , display:'none'})
+                $('.overlay2').velocity({opacity: [0, 1]}, {duration: 300, easing: 'swing', display: 'none'})
                 $('.cart').css({'display': 'none'});
                 $('.tabWrap , .tabWrap2').removeClass('deactive');
             }});
-      //  $('body').css({'overflow': 'visible'});
+        //  $('body').css({'overflow': 'visible'});
         $('.wrapper').removeClass('pointNone');
     }
 
-    $('#2920160603124607').click(function(){
-      var catidv=$(this).attr('id');
-      window.location.href = DOMAIN + "index.php?action=product_grid&id="+catidv+"";
+    $('#2920160603124607').click(function () {
+        var catidv = $(this).attr('id');
+        window.location.href = DOMAIN + "index.php?action=product_grid&id=" + catidv + "";
     });
-    $('#2020160603124631').click(function(){
-      var catid=$(this).attr('id');
-      window.location.href = DOMAIN + "index.php?action=product_grid&id="+catid+"";
+    $('#2020160603124631').click(function () {
+        var catid = $(this).attr('id');
+        window.location.href = DOMAIN + "index.php?action=product_grid&id=" + catid + "";
     });
-    $('#9820160603124850').click(function(){
-      var catid=$(this).attr('id');
-      window.location.href = DOMAIN + "index.php?action=product_grid&id="+catid+"";
+    $('#9820160603124850').click(function () {
+        var catid = $(this).attr('id');
+        window.location.href = DOMAIN + "index.php?action=product_grid&id=" + catid + "";
     });
-    $('#8120160603125512').click(function(){
-      var catid=$(this).attr('id');
-      window.location.href = DOMAIN + "index.php?action=product_grid&id="+catid+"";
+    $('#8120160603125512').click(function () {
+        var catid = $(this).attr('id');
+        window.location.href = DOMAIN + "index.php?action=product_grid&id=" + catid + "";
     });
-    $('#3420160603124716').click(function(){
-      var catid=$(this).attr('id');
-      window.location.href = DOMAIN + "index.php?action=product_grid&id="+catid+"";
+
+    $('#3420160603124716').click(function () {
+        var catid = $(this).attr('id');
+        window.location.href = DOMAIN + "index.php?action=product_grid&id=" + catid + "";
     });
+//
+// $('#userProfId').on('mouseover',function(){
+//         $('.tab,.tabB').css("background-color","transparent");
+//         $('.menu_wrap').css("height","0");
+//       $('.tabB').unbind('mouseover');
+//        
+//        });
+//        
+//        $('#userProfId').on('mouseleave',function(){
+//        
+//         $('.menu_wrap').css("height","180");
+//       $('.tabB').bind('mouseover');
+//        
+//        });
+    
+
 </script>
