@@ -148,7 +148,7 @@ function generatelist(obj) {
         var Soliprc = obj['SoliPricepercarat'];
         var Solitot = obj['totalSolitaire'];
 
-        price = price + getSoliPrice(Solicarat, Soliprc); console.log("soliPrice-> "+price +"");
+        price = price + getSoliPrice(Solicarat, Soliprc);
 
     }
     if (uncut == '1' && uncut !== 'null' && uncut !== '1')
@@ -156,7 +156,7 @@ function generatelist(obj) {
         var Uncutcarat = obj['Uncutcarat'];
         var Uncutprc = obj['UncutPricepercarat'];
         var Uncuttot = obj['totalUncut'];
-        price = price + getUncutPrice(Uncutcarat, Uncutprc);console.log("unPrice-> "+price +"");
+        price = price + getUncutPrice(Uncutcarat, Uncutprc);
 
     }
     if (gems == '1' && gems !== 'null')
@@ -165,17 +165,17 @@ function generatelist(obj) {
         var Gemsprc = obj['gemsPricepercarat'];
         var Gemstot = obj['totalgems'];
 
-        price = price + getGemsPrice(Gemscarat, Gemsprc);console.log("gemsPrice-> "+price +"");
+        price = price + getGemsPrice(Gemscarat, Gemsprc);
 
     }
     if (diamond == '1' && diamond !== 'null')
     {
         var Diacarat = obj['dmdcarat'];
-        var Diaprc = obj['dmdQPricepercarat'];console.log(Diaprc);
-        price = price + getdmdprice(Diacarat, Diaprc); console.log("dmdPrice-> "+price +"");
+        var Diaprc = obj['dmdQPricepercarat'];
+        price = price + getdmdprice(Diacarat, Diaprc); // console.log("diaPrice-> "+price+"");
     }
 
-    price = price + getPurPrice(Mprc, Metalwgt);// console.log("goldPrice-> "+price +"");
+    price = price + getPurPrice(Mprc, Metalwgt); console.log("goldPrice-> "+price +"");
     price = price + getbasicprice(Makchrg, Metalwgt);//console.log("basicPrice-> "+price +"");
 
     var vat = (1 / 100) * price;
@@ -452,7 +452,7 @@ function getdmdprice(dvprc, dcarat) {
 
 
 function getPurPrice(Mprc, mwght) {
-
+console.log(Mprc);
     var mprc = parseFloat(Mprc);
     var metalwght = parseFloat(mwght);
     var mpurprc = mprc * metalwght;
@@ -520,6 +520,7 @@ var count=0;
     });
 
     });
+
 
 
 
