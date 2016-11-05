@@ -1,5 +1,5 @@
 <!DOCTYPE html>
- 
+
 <?php include 'jhead.html' ?>
 <script>
     var BWEBROOT = '<?php echo BACKWEBROOT?>';
@@ -9,7 +9,7 @@
     var page = '<?php echo $page?>';
 
 </script>
- <body>
+<body>
     <div class="outerContr sigNup">
         <div class="loginCont fLeft">
             <div class="txtTitle" id="hTxt">Reset Your Password</div>
@@ -20,30 +20,24 @@
             <div class="txtB  fLeft">
                 <input type="password" class="inp_box " maxlength="30" id="cpass">
                 <div class="inp_label">Confirm Password*</div>
-            </div>
-            <div class="filterSec fLeft">
+            </div>        
                 <center>
-                    <div class="btnContainr">
-                        <a href=""><div class="button button2 btnc1 transition300 fLeft">BACK TO LOGIN</div></a>
-                    </div>
-                    <div class="btnContainr">
-                        <div class="button button2 btnc1 transition300 fLeft" id="respsssub">SUBMIT</div>
-                    </div>
+                    <a href=""><div class="button actBtn transition300">BACK TO LOGIN</div></a>
+                    <div class="button actBtn transition300" id="respsssub">SUBMIT</div>
                 </center>
-            </div>
         </div>
     </div>
-  <script type="text/javascript" src="<?php echo $jvs['resetpass']; ?>"></script>
+    <script type="text/javascript" src="<?php echo $jvs['resetpass']; ?>"></script>
     <script>
-        $('.inp_box').focus(function () {
-            $(this).closest('.txtB').addClass('focul');
-        });
-        $('.inp_box').blur(function () {
-            var k = $(this).val();
-            if (k === "") {
-                $(this).closest('.txtB').removeClass('focul');
-            }
+            $('.inp_box').focus(function () {
+        $(this).closest('.txtB').addClass('focul');
+    });
+    $('.inp_box').blur(function () {
+        var k = $(this).val();
+        if (k === "") {
+            $(this).closest('.txtB').removeClass('focul');
+        }
 
-        });
+    });
     </script>
 </body>

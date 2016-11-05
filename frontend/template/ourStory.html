@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<?php include 'jhead.html' ?>
+<body class="Terms">
+    <?php include 'Cart.html'?>
+    <?php include 'header.html'?>
+     <?php include 'login.html'?>
+    <div class="fLeft gemBanner">
+        <div class="banner_over" id ="banner_over"></div>
+        <div class="termHeading">Our Story</div>
+    </div>
+    <div class="wrapper_main  fLeft">
+        <div class="container2 fLeft">
+            <div class="col100">
+                <div class="wrapper_max offsetTop offsetEffects transition600">
+                    <div class="tCommon fLeft">
+                        <div class="tHead fLeft"></div>
+                        <div  class="pCont fLeft">
+                            <div class="fLeft tCont">Jzeva was founded in Bangalore by group of seasoned people with varied backgrounds, jewellery experts, internet pathfinders and fashion enthusiasts make up the small yet a great team at Jeva. We established Jzeva with the sole intention of making jewellery a fashion mainstay. The modern consumer closely follows fashion trends and knows what they exactly want, all they need is a destination that understands their needs and delivers what they are looking for. We at Jzeva understood that no matter what we do we will only be successful as a brand when we keep our customers happy, exceed their expectations and consistently wow them with our service.</div>
+                            <div class="fLeft tCont">India introduced the concept of modern jewellery to the world and we at Jzeva want to celebrate that fact and truly uncover the potential of the imagination and creativity of artisans, designers and craftsmen in the country. Attention to detail in everything we do is central to belief. Our jewellery is fun, colourful and drop dead gorgeous.</div>
+                            <div class="fLeft tCont">Jewellery at Jzeva celebrates fashion, design and colour, we love to experiment and challenge ourselves to give you only the latest in international fashion and design. We desire to speak to the women around the world to establish Jzeva as a brand that they will look at to buy the finest of jewellery in terms of quality, fashion and design.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php include 'footer.html'?>
+    <script>
+        $(document).ready(function () {
+            $('.wrapper_max').removeClass('offsetEffects');
+        });
+        $(window).scroll(function () {
+            var sc = $('body').scrollTop();
+            var ht = $('.gemBanner').outerHeight(true) - 130;
+            if (ht > sc) {
+                var op = 1 - (ht - sc) / ht;
+                $('#banner_over').css({'opacity': op});
+
+            }
+            if (ht - sc <= 5) {
+                $('.header').addClass('black_bg');
+                console.log('if');
+            } else {
+                $('.header').removeClass('black_bg');
+                console.log('else');
+            }
+            //           if(ht-sc<=60){
+            //           console.log(sc);
+            //           $('.gemBanner').addClass('fixer');
+            //       }
+            //       else{
+            //            $('.gemBanner').removeClass('fixer');
+            //       }
+        });
+    </script>
+
+
+</body>
