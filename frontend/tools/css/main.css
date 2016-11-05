@@ -129,8 +129,9 @@ a{color:#666;}
 .tabB:hover .tabe, .selec.tabe{background:#222529 !important;color:#fff !important}
 .tabWrap:hover .tab{background-color:#15181b;}
 
+
 .selec{background:#22B9C7;color:#fff}
-.over_hide{overflow:hidden !important}
+.over_hide{overflow:hidden !important;}
 .add_sign{padding-right:40px;background: #fff url(../img/icons/87.svg) no-repeat; background-size: 70%; background-position: center;}
 .menu_wrap{position:absolute;top:60px;left:0;width:100%;height:0px;background:transparent;display:none;overflow:hidden}
 .menuB{width:100%;height:100%;position:relative;background:#f0f0f0;}
@@ -150,7 +151,7 @@ a{color:#666;}
 
 
 
-
+.addPointer{pointer-events: none;}
 .menu_wrap .col100{margin-bottom:10px;}
 .left_arrow{padding-left:40px;background:url("../img/icons/13.svg")no-repeat;background-size:30px;background-position:left center;opacity:0.3}
 .left_arrow:hover{opacity:0.5}
@@ -1376,13 +1377,15 @@ input[type=radio]:checked ~ .selector_label:after {
 .lgnHead{padding:0px 40px;height: 120px;width: 100%; position: absolute;top: 0;left: 0;}
 .lgnLogo{background-image:url('../img/jzevalogoccc.svg');background-repeat:no-repeat;background-size:auto 40%;background-position:left;width:300px;height:100%;}
 .signUp{width:auto;height:auto;line-height:100px;color: #2d2d2d;}
-.outerContr{width: 450px;    height: 500px;    background: #fff;   position: absolute;    top: 0;    bottom: 0;    margin: auto;   /* border-radius: 50%; */ border: 1px solid;    right: 10%;}
+.outerContr{transform: translateY(150%);width:450px;height: 500px;    background: #fff;   position: fixed;    top: 0;    bottom: 0;    margin: auto;   /* border-radius: 50%; */ border: 1px solid;    right: 0;left: 0;z-index: 24;}
 .signUpIcon{background-image:url('../img/signUp.svg');background-repeat:no-repeat;background-position:left;background-size:auto 28px;display: inline-block; padding-left: 28px; cursor: pointer;line-height:20px}
 .subTxt{width:100%;height:auto;color:#2d2d2d;text-align: right;cursor:pointer;font-family: bolder;}
 .signUpBanner{width:100%;height:100%;background-color:#f8f8f8;background-image:url('../img/loginBanner.png');background-repeat:no-repeat;background-size: auto;background-position:20% center;}
 /*.signUpBanner .outerContr{height:450px;left:60%;}*/
 .cMoreTxt{width:100%;height:auto;line-height:25px;text-align:center;color:#2d2d2d;background-color:#fff;cursor:pointer;font-size:12px;float:left;}
 .seeM{height:auto;overflow:visible;}
+.outerContr::after{}
+
 
 /*.diaSh{display:none;}*/
 /*.ringSz{display:none;}*/
@@ -1598,7 +1601,30 @@ input[type=radio]:checked ~ .selector_label:after {
 .brkCnt:before{content:'';width:100px;height:1px;border-bottom:1px solid #ccc;position:absolute;top:20px;left:0px;}
 .brkCnt:after{content:'';width:100px;height:1px;border-bottom:1px solid #ccc;position:absolute;top:20px;right:0px;}
 .orTcnt{width:60px;height:40px;position:absolute;left:0;right:0;margin:auto;font-size:15px;line-height:40px;color:#666;z-index:50}
+.backCont{width:600px;height:300px;margin:auto;position:absolute;top:0;left:0;right:0;bottom:0;border: 1px solid;}
+.keyeffect{transform:translateX(-100%);transition:600ms ease-in-out;}
+.popUpOuter{z-index: 200;width:100%;height:100%;position:fixed;top:0;left:0;right:0;bottom:0;/* opacity: 0.5; */background-color: rgba(0,0,0,0.3);}
+.closeLogin{content: "";
+background: url(../img/close_black.svg)no-repeat;
+background-size: auto 70%;
+position: absolute;
+width: 60px;
+height: 60px;
+top: 0;
+right: 0;
+background-position: center;cursor: pointer;}
 
+/*@keyframes bounce{
+    0%{
+        transform:translateX(-50%);
+        opacity:0;
+    }
+   
+    15%{
+        transform:translateX(-100%);
+        opacity:0;
+    } 
+}*/
 
 /*T and C*/
 .Terms{}
@@ -1834,6 +1860,7 @@ input[type=radio]:checked ~ .selector_label:after {
      height:0px;
    }
 }
+.goBack{content:"";background:url("../img/arrow1.svg")no-repeat;background-size: auto 60%;background-position:center;width: 60px;height:60px;position: absolute;left: 0;transform: rotate(180deg);cursor: pointer;}
 /*new checkout*/
 .chkout{}
 .chkout .colleCont{padding: 50px 40px; overflow:initial;}
@@ -1936,7 +1963,7 @@ input[type=radio]:checked ~ .selector_label:after {
 .lgnwTxt{width:100%;height:30px;font-size:15px;color:#15181b;text-align:center;line-height:30px;margin-top: 35px;}
 
 
-
+.fade{}
 /*my account*/
 .myaccount{}
 .tabCont{width: 20%;height: auto;}
@@ -2034,6 +2061,7 @@ input[type=radio]:checked ~ .selector_label:after {
 .plusBlack{background:#f3f3f3 url("../img/icons/510b.svg")no-repeat;background-size:auto 15px;background-position:center;}
 .addrEditCnt{width: 30px;height: 30px;background-color: #f3f3f3;opacity: 0.5;}
 .addrEditCnt:hover{opacity: 1;}
+
 
 
 .craftBnr .gemBanner{background:url("../img/h_craftmanship.jpg")no-repeat;background-size:cover;background-position: left;}
