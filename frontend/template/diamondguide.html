@@ -96,8 +96,8 @@
                             </div>
                             <div class="subH semibold fLeft">Cut</div>
                             <div class="fLeft  tCont">Diamond cutting is an art of processing a rough diamond obtained from a mine to making it into a gemstone usable in jewellery. The precision in which a diamond is cut decides how much light it reflects. Cuts are graded as follows:</div>
-                            
-                            
+
+
                             <div class="fLeft points regular subHm">Excellent
                                 <span class="tCont fLeft">Cut to the most exacting standards these diamonds will reflect the maximum possible light. The hearts and arrows patterns formed will be the clearest in case of Excellent cut diamonds.</span></div>
                             <div class="fLeft points regular subHm">IDEAL
@@ -116,20 +116,24 @@
                     </div>
 
 
-                    
-                    
-                    
-                        
-                    
+
+
+
+
+
                 </div>
             </div>
         </div>
 
     </div>
     <?php include 'footer.html'?>
+    <?php include 'loader.html'?>
     <script>
+    function loadComplete(){
+      $('.wrapper_max').removeClass('offsetEffects');
+    }
         $(document).ready(function () {
-            $('.wrapper_max').removeClass('offsetEffects');
+            load_page();
         });
         $(window).scroll(function () {
             var sc = $('body').scrollTop();
@@ -158,4 +162,3 @@
 
 
 </body>
-

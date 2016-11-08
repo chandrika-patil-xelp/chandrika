@@ -8,7 +8,7 @@
         <div class="banner_over" id ="banner_over"></div>
         <div class="termHeading">Privacy Policy</div>
     </div>
-    <div class="wrapper_main   fLeft">
+    <div class="wrapper_main fLeft">
         <div class="container2 fLeft">
             <div class="col100">
                 <div class="wrapper_max offsetTop offsetEffects transition600">
@@ -139,9 +139,13 @@
         </div>
     </div>
     <?php include 'footer.html'?>
+      <?php include 'loader.html'?>
     <script>
+    function loadComplete(){
+      $('.wrapper_max').removeClass('offsetEffects');
+    }
         $(document).ready(function () {
-            $('.wrapper_max').removeClass('offsetEffects');
+            load_page();
         });
         $(window).scroll(function () {
             var sc = $('body').scrollTop();

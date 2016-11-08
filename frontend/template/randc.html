@@ -86,9 +86,13 @@
 
     </div>
     <?php include 'footer.html'?>
+      <?php include 'loader.html'?>
     <script>
+    function loadComplete(){
+      $('.wrapper_max').removeClass('offsetEffects');
+    }
         $(document).ready(function () {
-            $('.wrapper_max').removeClass('offsetEffects');
+            load_page();
         });
         $(window).scroll(function () {
             var sc = $('body').scrollTop();

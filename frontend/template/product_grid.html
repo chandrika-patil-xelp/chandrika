@@ -788,16 +788,7 @@
       </div>
           <div class="loader_quote  fmSansL">The meek may inherit the earth but not its mineral rights</div>
     </div> -->
-    <div class="page_loader2">
-        <div class="cs-loader-inner fmsansb">
-            <label>J</label>
-            <label>Z</label>
-            <label>E</label>
-            <label>V</label>
-            <label>A</label>
-        </div>
-        <div class="loader_quote fmrobot">Luxury or Nothing</div>
-    </div>
+    <?php include 'loader.html'?>
 
     <!--<script type="text/javascript" src="<?php echo $jvs['prodGrid']; ?>"></script>-->
 
@@ -805,15 +796,14 @@
 
         var window_width;
         $(document).ready(function () {
+       load_page();
 
-            $('body').addClass('over_hide');
             window_width = $(window).width();
             getHeight();
             if (window_width < 960) {
             }
             wid = $('.rota').width();
             // bindrota();
-
             $("#range").ionRangeSlider({
                 type: "double",
                 min: 1000,
@@ -823,12 +813,6 @@
 
         });
         $(window).load(function () {
-            setPosition();
-            setTimeout(function () {
-                load_page();
-            }, 1000);
-
-
 
         });
         $(window).resize(function () {
@@ -839,11 +823,7 @@
             }, 50);
         });
 
-        function load_page() {
-            $('.page_loader2').velocity({translateY: ['100%', 0]}, {duration: 600, easing: 'easeInQuart', display: 'none', complete: function () {
-                    $('body').removeClass('over_hide');
-                }});
-        }
+
         /* Add commas in numbers */
         $.fn.digits = function () {
             return this.each(function () {
@@ -983,7 +963,7 @@
                     } else if (h4t + h4 > hm) {
                         hm = h4 + h4t;
                     }
-                    $('.grid_cont').css({'height': hm + 100});
+                  //  $('.grid_cont').css({'height': hm + 100});
                 }
             });
         }
@@ -1267,12 +1247,12 @@
         $('.filterCommon').click(function () {
             $(this).toggleClass('filSelec');
         });
-       
+
 //       $('#userProfId').on('mouseover',function(){
 //         $('.tab').css("background-color","transparent");
 //         $('.menu_wrap').css("height","0");
-//       
-//        
+//
+//
 //        });
 
     </script>

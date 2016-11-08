@@ -19,7 +19,7 @@
                             <div class="fLeft contOuter">Well at Jzeva anything you need clarification on is worth addressing for us, </div>
                             <div class="fLeft contOuter">so stop thinking and just call us at the</div>
                         </div>
-                        <div class="fLeft contOuter semibold font28 pad20">9632581478</div> 
+                        <div class="fLeft contOuter semibold font28 pad20">9632581478</div>
                         <div class="fLeft contactDiv pad0">
                             <div class="fLeft contOuter">and we will do our best to help you out with your queries.</div>
                             <div class="fLeft contOuter">If you prefer to email us, you are welcome to write to us at</div>
@@ -32,9 +32,14 @@
         </div>
     </div>
     <?php include 'footer.html'?>
+      <?php include 'loader.html'?>
     <script>
+    function loadComplete(){
+      $('.wrapper_max').removeClass('offsetEffects');
+    }
         $(document).ready(function () {
-            $('.wrapper_max').removeClass('offsetEffects');
+          load_page();
+
         });
     </script>
 </body>

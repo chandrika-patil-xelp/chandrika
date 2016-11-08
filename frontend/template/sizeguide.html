@@ -123,7 +123,7 @@
                                         <div class="fLeft sRow"></div>
                                         <div class="fLeft sRow"></div>
                                     </div>
-                                </div>   
+                                </div>
                             </div>
                             <div class="tCont fLeft">In the event that your ring size falls between two ring sizes we recommend you go for the bigger of the both.</div>
                             <div class="subHm fLeft semibold">Option 3 ( not so accurate but will do)</div>
@@ -248,7 +248,7 @@
                                         <div class="fLeft sRow"></div>
                                         <div class="fLeft sRow"></div>
                                     </div>
-                                </div>   
+                                </div>
                             </div>
                             <div class="tCont fLeft">In the event that your ring size falls between two ring sizes we recommend you go for the bigger of the both.</div>
                             <div class="tCont fLeft">We recommend you go for this option only in dire scenarios as it is not the most accurate one.</div>
@@ -259,9 +259,14 @@
         </div>
     </div>
     <?php include 'footer.html'?>
+      <?php include 'loader.html'?>
     <script>
+
+    function loadComplete(){
+      $('.wrapper_max').removeClass('offsetEffects');
+    }
         $(document).ready(function () {
-            $('.wrapper_max').removeClass('offsetEffects');
+            load_page();
         });
         $(window).scroll(function () {
             var sc = $('body').scrollTop();

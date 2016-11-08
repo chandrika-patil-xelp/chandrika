@@ -45,7 +45,7 @@
 <!--                                <div class="fLeft orderImg bgCommon"></div>
                                 <div class="fLeft orderName">
                                     <div class="fLeft col100 semibold">Dual eternity ring</div>
-                                  
+
                                     <div class="fLeft  col10">
                                         <span class="fLeft">Diamond Qty:</span>
                                         <span class="fLeft"></span>
@@ -119,7 +119,7 @@
                                     </div>
                                 </div>-->
                             </div>
-                          
+
 <!--                                <div class="fLeft orderImg bgCommon"></div>
                                 <div class="fLeft orderName">
                                     <div class="fLeft col100 semibold">Dual eternity ring</div>
@@ -196,22 +196,22 @@
                                         <div class="fLeft shipTo">shipped to third party</div>
                                     </div>
                                 </div>-->
-                        
+
                             <div class="fLeft detailsOuter dn">
                                 <div class="inCourier fLeft">
-                                    <div class="fLeft inShip">    
+                                    <div class="fLeft inShip">
                                         <span class="font13 regular">Courier Name:</span>
-                                        <span class="font13 semibold">some name</span> 
+                                        <span class="font13 semibold">some name</span>
                                     </div>
-                                    <div class="fLeft inShip">  
+                                    <div class="fLeft inShip">
                                         <span class="font13 regular">Tracking Number:</span>
                                         <span class="font13 semibold">0123456788</span>
                                     </div>
                                 </div>
                                 <div class="inCourier fLeft pad0">
-                                    <div class="fLeft inShip">    
+                                    <div class="fLeft inShip">
                                         <div class="font13 regular">want to return or exchange item(s)?</div>
-                                        <div class="font13 semibold">confirm delivery of your order to create a return request </div> 
+                                        <div class="font13 semibold">confirm delivery of your order to create a return request </div>
                                     </div>
                                 </div>
                             </div>
@@ -221,18 +221,18 @@
                             <div class="fLeft  detailsOuter dn">
                                 <div class="fLeft ordersCard">
                                     <div class="inCourier fLeft">
-                                        <div class="fLeft inShip">    
+                                        <div class="fLeft inShip">
                                             <span class="font13 regular">Order No:</span>
-                                            <span class="font13 semibold"  >123456789</span> 
+                                            <span class="font13 semibold"  >123456789</span>
                                         </div>
-                                        <div class="fLeft inShip">  
+                                        <div class="fLeft inShip">
                                             <span class="font13 regular">Order Placed:</span>
                                             <span class="font13 semibold">0123456788</span>
                                         </div>
                                     </div>
                                     <div class="inCourier fLeft">
                                         <div class="fLeft inShip font13 regular">Total Amount</div>
-                                        <div class="fLeft inShip font13 semibold">&#8377 45,000</div>    
+                                        <div class="fLeft inShip font13 semibold">&#8377 45,000</div>
                                     </div>
                                     <div class="inCourier fLeft">
                                         <div class="fLeft inShip font13 regular ">Shipping Address </div>
@@ -249,18 +249,18 @@
                                 </div>
                                 <div class="fLeft ordersCard bNone">
                                     <div class="inCourier fLeft">
-                                        <div class="fLeft inShip">    
+                                        <div class="fLeft inShip">
                                             <span class="font13 regular">Order No:</span>
-                                            <span class="font13 semibold">123456789</span> 
+                                            <span class="font13 semibold">123456789</span>
                                         </div>
-                                        <div class="fLeft inShip">  
+                                        <div class="fLeft inShip">
                                             <span class="font13 regular">Order Placed:</span>
                                             <span class="font13 semibold">0123456788</span>
                                         </div>
                                     </div>
                                     <div class="inCourier fLeft">
                                         <div class="fLeft inShip font13 regular">Total Amount</div>
-                                        <div class="fLeft inShip font13 semibold">&#8377 45,000</div>    
+                                        <div class="fLeft inShip font13 semibold">&#8377 45,000</div>
                                     </div>
                                     <div class="inCourier fLeft">
                                         <div class="fLeft inShip font13 regular ">Shipping Address </div>
@@ -325,7 +325,7 @@
                             </div>
                         </div>
                         <div class="fLeft orderCommon dn" id="profileId">
-                            <div class="fLeft tabHead txt_left mBot15">Profile</div> 
+                            <div class="fLeft tabHead txt_left mBot15">Profile</div>
                             <div class="fLeft col50">
                                 <div class="fLeft col50">
                                     <div class="proFields">First Name</div>
@@ -564,7 +564,7 @@
                                                                 </div>-->
                             </div>
                             <!--                            <div class="fLeft wishBox poR">
-                                                           
+
                                                             <div class="blurDiv">
                                                                 <div class="">out of stock</div>
                                                             </div>
@@ -609,6 +609,7 @@
 
 
     <?php include 'footer.html'?>
+    <?php include 'loader.html'?>
      <script type="text/javascript" src="<?php echo $jvs['account']; ?>"></script>
     <script>
 
@@ -731,6 +732,7 @@
 
         $(document).ready(function () {
             $('.wrapper_max').removeClass('offsetEffects');
+            load_page();
         });
         $(window).scroll(function () {
             var sc = $('body').scrollTop();

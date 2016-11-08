@@ -334,26 +334,8 @@
         <?php include 'footer.html'?>
     </div>
 
-    <div class="page_loader">
-        <div class="cs-loader-inner">
-            <!-- <label>J</label>
-            <label>Z</label>
-            <label>E</label>
-            <label>V</label>
-            <label>A</label> -->
-        </div>
-        <div class="loader_quote"></div>
-    </div>
-    <div class="page_loader2">
-        <div class="cs-loader-inner ">
-            <!-- <label>J</label>
-            <label>Z</label>
-            <label>E</label>
-            <label>V</label>
-            <label>A</label> -->
-        </div>
-        <div class="loader_quote"></div>
-    </div>
+  
+        <?php include 'loader.html'?>
 
     <div class="overlay3 pointNone"></div>
     <div class="close_fs dn"></div>
@@ -551,18 +533,10 @@
         });
 
         $(window).load(function () {
-            setTimeout(function () {
                 load_page();
-            }, 2000);
         });
-        function load_page() {
-            //$('body').addClass('over_hide');
-            $('.page_loader2').velocity({translateY: ['100%', 0]}, {duration: 600, easing: 'easeInQuart', display: 'none', complete: function () {
-                    //   $('body').removeClass('over_hide');
-                    load_effects();
-                }});
-        }
-        function load_effects() {
+
+        function loadComplete() {
             //$('body').addClass('over_hide');
             $('.rota_wrap').velocity({translateY: [0, 10], opacity: [1, 0]}, {duration: 600, easing: 'swing', complete: function () {
                     $('.details_cont').velocity({translateY: [0, 10], opacity: [1, 0]}, {duration: 600, easing: 'swing', complete: function () {
