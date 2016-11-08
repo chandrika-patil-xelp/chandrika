@@ -729,7 +729,7 @@ function calculatePrice()
     var selDiamond= parseFloat($('input[name="selectM"]:checked').attr('data-value')); 
     var selPurity= parseFloat($('input[name="purity"]:checked').attr('data-price'));
  
-    var currentSize=parseFloat($('#size').html().replace('Size',''));
+    var currentSize=parseFloat($('#size').text().replace('Size ',''));
   
     var mtlWgDav=0.05;
     var dmdPrice=0;
@@ -745,7 +745,7 @@ function calculatePrice()
         bseSize = parseFloat(2.4);
    
    
-    if(!currentSize)
+    if(!isNaN(currentSize))
     {
     
         if(catname == 'Rings')
