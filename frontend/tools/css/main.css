@@ -1604,27 +1604,7 @@ input[type=radio]:checked ~ .selector_label:after {
 .backCont{width:600px;height:300px;margin:auto;position:absolute;top:0;left:0;right:0;bottom:0;border: 1px solid;}
 .keyeffect{transform:translateX(-100%);transition:600ms ease-in-out;}
 .popUpOuter{z-index: 200;width:100%;height:100%;position:fixed;top:0;left:0;right:0;bottom:0;/* opacity: 0.5; */background-color: rgba(0,0,0,0.3);}
-.closeLogin{content: "";
-background: url(../img/close_black.svg)no-repeat;
-background-size: auto 70%;
-position: absolute;
-width: 60px;
-height: 60px;
-top: 0;
-right: 0;
-background-position: center;cursor: pointer;}
-
-/*@keyframes bounce{
-    0%{
-        transform:translateX(-50%);
-        opacity:0;
-    }
-   
-    15%{
-        transform:translateX(-100%);
-        opacity:0;
-    } 
-}*/
+.closeLogin{content: "";background: url(../img/close_black.svg)no-repeat;background-size: auto 50%;position: absolute;width: 60px;height: 60px;top: 0;right: 0;background-position: center;cursor: pointer;}
 
 /*T and C*/
 .Terms{}
@@ -1655,14 +1635,15 @@ background-position: center;cursor: pointer;}
 .spoints{width:100%;height: auto;padding-bottom: 8px;font-size: 12px;    font-family: regular;    line-height: 22px;    color: #15181b;}
 /*warranty*/
 .warranty{}
-.dtable{width: 100%;height: auto;border:1px solid;margin-bottom: 7px;}
-.drow{width: 100%;height: 30px;height: 30px;border-bottom: 1px solid;}
-.rowTxt{width:16.66%;height:100%;line-height:30px;text-align:center;border-right:1px solid;}
+.dtable{width: 100%;height: auto;border:1px solid #ccc;margin-bottom: 7px;}
+.drow{width: 100%;height: 30px;height: 30px;border-bottom: 1px solid #ccc;}
+.bRight{border-right: 1px solid #ccc;}
+.rowTxt{width:16.66%;height:100%;line-height:30px;text-align:center;border-right:1px solid #ccc;}
 .pad3{LINE-HEIGHT: 13PX;PADDING: 3PX 0PX;}
 .subRow{width: 50%;}
 .chartH{width: 100%;height: 30px;float: left;line-height: 30px;font-family: semibold;}
-.letters{width: 4.3%;height: 100%;border-right: 1px solid;text-align: center;line-height: 30px; font-family: semibold; font-size: 11px; text-transform:uppercase;}
-.lettersresult{border-right: 1px solid;line-height: 30px;text-align: center;font-family: semibold; font-size: 10px; text-transform:uppercase;}
+.letters{width: 4.3%;height: 100%;border-right: 1px solid #ccc;text-align: center;line-height: 30px; font-family: semibold; font-size: 11px; text-transform:uppercase;}
+.lettersresult{border-right: 1px solid #ccc;line-height: 30px;text-align: center;font-family: semibold; font-size: 10px; text-transform:uppercase;}
 .w1{width: 12.9%;}
 .w2{width: 17.2%;}
 .w3{width: 21.5%;}
