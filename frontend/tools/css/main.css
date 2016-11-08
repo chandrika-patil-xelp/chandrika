@@ -1664,14 +1664,14 @@ input[type=radio]:checked ~ .selector_label:after {
 .sample{background:url(../img/icons/remeasurementicons/404.svg)no-repeat;background-size: auto 100%;}
 .circum{background:url(../img/icons/remeasurementicons/406.svg)no-repeat;background-size: auto 100%;}
 
-.hRow{width:100%;height: 50px;line-height: 50px;border-bottom: 1px solid;}
-.sizeRow{width:100%;height: 25px;line-height: 25px;border-bottom: 1px solid;}
-.sRow{width: 25%;height: 100%;border-right: 1px solid;text-align: center;font-family: regular;font-size: 13px;}
+.hRow{width:100%;height: 50px;line-height: 50px;border-bottom: 1px solid #ccc;}
+.sizeRow{width:100%;height: 25px;line-height: 25px;border-bottom: 1px solid #ccc;}
+.sRow{width: 25%;height: 100%;border-right: 1px solid #ccc;text-align: center;font-family: regular;font-size: 13px;}
 .sRow:last-child{border: none;}
 .shRow:last-child{border: none;}
 .sizeRow:last-child{border: none;}
 .sizeRow:nth-child(odd){background-color:#f3f3f3;}
-.shRow{width: 25%;height: 100%;border-right: 1px solid;text-align: center;font-family: semibold;font-size: 13px;}
+.shRow{width: 25%;height: 100%;border-right: 1px solid #ccc;text-align: center;font-family: semibold;font-size: 13px;}
 .bangle{}
 .bangle .dtable{width:50%;}
 .bangle .shRow{width:50%;}
