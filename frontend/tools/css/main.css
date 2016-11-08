@@ -1396,7 +1396,7 @@ input[type=radio]:checked ~ .selector_label:after {
 .jzevaLogo{background:url(../img/jzevalogoccc.svg)no-repeat;background-size:auto 15px;background-position:center;}
 .mBtm5{margin-bottom:5px !important;}
 
-.loginCont:before{width: 100%;height: 40px;position: absolute;top: 20px;left: 0;bottom: 0;ight: 0;content:"";background: url(../img/jzevalogoccc.svg)no-repeat;background-size: auto 20px;background-position: center;}
+/*.loginCont:before{width:100%;height: 40px;position: absolute;top: 20px;left: 0;bottom: 0;ight: 0;content:"";background: url(../img/jzevalogoccc.svg)no-repeat;background-size: auto 20px;background-position: center;}*/
 
 /*forgot password*/
 #forgot .btnContainr{width:140px;}
