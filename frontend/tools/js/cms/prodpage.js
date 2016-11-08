@@ -744,8 +744,10 @@ function calculatePrice()
     else if(catname == 'Bangles')
         bseSize = parseFloat(2.4);
    
+        
+        console.log(currentSize +" 0")
    
-    if(!isNaN(currentSize))
+    if(isNaN(currentSize))
     {
     
         if(catname == 'Rings')
@@ -765,10 +767,13 @@ function calculatePrice()
         dmdPrice=storedDmdCarat*selDiamond;
     }
     
+    console.log(currentSize +" 1")
     var changeInWeight=(currentSize-bseSize)*mtlWgDav;
      newWeight=parseFloat(storedWt+(changeInWeight));
         newWeight= newWeight.toFixed(2);
   // metalwtt(newWeight);
+  
+  
     goldPrice=parseFloat(selPurity*newWeight);
     var mkCharges=parseFloat(storedMkCharge*newWeight);
     var ttl=parseFloat(goldPrice+dmdPrice+mkCharges+ uncPrice + soliprc + gemsPrice);

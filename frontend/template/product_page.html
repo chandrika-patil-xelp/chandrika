@@ -639,6 +639,8 @@
              });
              $('.selectOptions').click(function(){
                var sz= $(this).text();
+               
+               console.log("new Size -> "+sz);
                $('#size').html(sz);
                $(this).closest('.selectOptionC').fadeOut('150ms').siblings('.selectDefault').removeClass('pointNone');
 			   calculatePrice();
