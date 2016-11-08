@@ -2688,7 +2688,7 @@ function calcGrandTotal(type)
 
     });
 
-    vat = (1.20 / 100) * total;
+    vat = (1 / 100) * total;
     var vat1 = vat;
     if(!isNaN(vat)){
         var vat1 =  vat.toFixed();
@@ -2703,7 +2703,7 @@ function calcGrandTotal(type)
     if (type == 1)
     {
         var vstr = "<li id='vatCharges'>";
-        vstr += "<div class='forComponent fLeft pl15'>VAT (1.20%)</div>";
+        vstr += "<div class='forComponent fLeft pl15'>VAT (1%)</div>";
         vstr += "<div class='forRate fLeft'></div>";
         vstr += "<div class='forWeight fLeft'></div>";
         vstr += "<div class='forPrice fLeft' id='tvat'>&#8377;" + vat1 + "</div>";
