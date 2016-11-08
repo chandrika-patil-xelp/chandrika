@@ -176,7 +176,7 @@
 
         $(document).on('click', '#userProfId', function () {
             $('.menu_wrap').css("height", "0");
-            $('.tabWrap').unbind("mouseleave");
+            $('.tabWrap').addClass("addPointer");
             $('.overlay').stop(true, true).fadeTo(200, 1);
             $('#loginId').css("opacity", "1");
             $('#forgot,#otpOuter,#otpOuter2,#signUpId').addClass("dn")
