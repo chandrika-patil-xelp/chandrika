@@ -1,6 +1,7 @@
 <?php
 header("Content-Length");
 include './config.php';
+
 $params = array_merge($_GET, $_POST);
 $action = (!empty($params['action'])) ? trim($params['action']) : '';
 $case = (!empty($params['case'])) ? trim($params['case']) : '';
