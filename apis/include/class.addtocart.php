@@ -10,14 +10,15 @@
         }
         
         public function addToCart($params)
-	{ 
-	    $params = json_decode($params[0],1);
+	{
+	    $params = json_decode($params[0],1); 
 	    if(empty($params['pid']) || empty($params['cartid']) || empty($params['col_car_qty'])){
                 $resp = array();
                 $error = array('err_code'=>1, 'err_msg'=>'Parameters Missing');
                 $result = array('result'=>$resp, 'error'=>$error);
                 return $result;
             }
+          
             $sql = "INSERT INTO tbl_cart_master (
                                     cart_id,
                                     product_id,
@@ -31,8 +32,8 @@
                                   ) 
                                   VALUES ";
 	    
-                      $sql .= " (".$params['cartid'].", '".$params['pid']."','".$params['userid']."','".$params['col_car_qty']."','".$params['qty']."','"
-			    . $params['price']."',1,NOW(), NOW())";
+                      $sql .= " (".$params['cartid'].", '".$params['pid']."','".$params['userid']."','".$params['col_car_qty']."','".$params['qty']."',
+			    '".$params['price']."',1,NOW(), NOW())";
                                         
      
 	 	      $sql.="
@@ -41,15 +42,15 @@
 				updatedon=VALUES(updatedon)";
 		        
 	     $res = $this->query($sql); 
-            $resp = array();
+          
              
             if($res){
                 $error = array('err_msg'=>0, 'err_code'=>'Add To Cart Data Inserted Successfully');
             }else{
                 $error = array('err_msg'=>1, 'err_code'=>'Error Inserting Add To Cart Data');
             }
-            
-            $result = array('result'=>$resp, 'error'=>$error);
+           
+            $result = array('result'=>$params , 'error'=>$error); 
             return $result;
 	  
         }
@@ -528,11 +529,14 @@
               . "(SELECT  GROUP_CONCAT(dname) FROM tbl_metal_color_master WHERE id = SUBSTRING_INDEX(combine, '|@|',1) AND active_flag = 1 ) AS color,"
 	    ."(SELECT  GROUP_CONCAT(dname) FROM tbl_metal_purity_master WHERE id = SUBSTRING_INDEX(SUBSTRING_INDEX(combine,'|@|',2),'|@|',-1) AND active_flag = 1 ) AS carat,"
              ."(SELECT  GROUP_CONCAT(dname) FROM tbl_diamond_quality_master WHERE id = SUBSTRING_INDEX(combine,'|@|',-1)  AND active_flag = 1 ) AS quality,"
-            . "(SELECT  GROUP_CONCAT(product_name) FROM tbl_product_master WHERE productid = pid AND active_flag = 1 ) AS prdname,"
+            . "(SELECT  GROUP_CONCAT(product_name) FROM tbl_product_master WHERE productid = pid ) AS prdname,"
 	    . "(SELECT  GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid  AND active_flag !=2 ORDER BY
                             image_sequence DESC) AS prdimage,"
             . "(SELECT  GROUP_CONCAT(jewelleryType) FROM tbl_product_master WHERE productid = pid  AND active_flag !=2) 
                             AS jewelleryType,"
+            . "(SELECT  GROUP_CONCAT(metal_weight) FROM tbl_product_master WHERE productid = pid  AND active_flag !=2) 
+                            AS metal_weight,"
+                     
             ." (SELECT GROUP_CONCAT(diamond_id) FROM tbl_product_diamond_mapping WHERE productid = pid AND active_flag = 1 ) AS allDimonds,
                (SELECT GROUP_CONCAT(carat) FROM tbl_product_diamond_mapping WHERE FIND_IN_SET(diamond_id,allDimonds)) AS dmdcarat,
                (SELECT GROUP_CONCAT(total_no) FROM tbl_product_diamond_mapping WHERE FIND_IN_SET(diamond_id,allDimonds)) AS totaldmd,
@@ -561,7 +565,9 @@
 	       } 
 	       else{
 		 $sql.=" FROM tbl_cart_master WHERE active_flag=1 AND (cart_id='".$params['cart_id']."' OR userid='".$params['userid']."') order by created_on DESC";
-	       }  //  print_r($sql);
+	       } 
+	       
+	       //  print_r($sql);
       $res = $this->query($sql);
             if ($res) {
                 while ($row = $this->fetchData($res)) {
@@ -576,6 +582,7 @@
                     $arr['created_on'] = $row['created_on'];
 		    $arr['updatedon'] = $row['updatedon'];
 		    $arr['prdname'] = $row['prdname']; 
+                     $arr['metal_weight'] = $row['metal_weight']; 
                     $arr['prdimage'] = $row['prdimage']; 
                     $arr['color'] = $row['color']; 
                     $arr['carat'] = $row['carat']; 
@@ -682,8 +689,8 @@
             $results = array('result'=>$resp, 'error'=>$error);
             return $results;
             
-        }
-        
+        } 
+	 
          public function addtowishlist($params)
 	{ 
 	     $params = json_decode($params[0],1);
@@ -780,6 +787,50 @@
             $results=array('result'=>$resArr,'error'=>$err);   
 		    return $results; 
 	}
+	
+	  public function checkpassw($params){
+             
+            $pass = (!empty($params['pass'])) ? trim($params['pass']) : "";
+            // print_r($params);
+             if(empty($pass)){
+                $resp = array();
+                $error = array('err_msg'=>0, 'err_code'=>'Parameters Missing');
+                $result = array('result'=>$resp, 'error'=>$error);
+                return $result;
+            }
+            
+            $sql = "SELECT  
+			 password
+                      FROM
+                        tbl_user_master 
+                      WHERE logmobile='".$params['mob']."' ";
+                     
+            
+            $res = $this->query($sql);
+           
+            if($res){
+                
+                if($this->numRows($res)>0){
+                    
+                    //$fetLogDt = $this->fetchData($res);
+                    while ($row = $this->fetchData($res)){ 
+			$arr['password'] = ($row['password']!=NULL) ? $row['password'] : '';
+                         if(md5($pass) == $arr['password'])
+                        $error = array('err_code'=>0, 'err_msg'=>'Password is correct');
+			 else
+			 $error = array('err_code'=>1, 'err_msg'=>'Invalid Password');  
+                    }
+                    
+                }  
+            }
+	    else{ 
+                $error = array('err_code'=>2, 'err_msg'=>'Error in fetching data');
+            }
+            $resp=array();
+            $results = array('result'=>$resp, 'error'=>$error);  
+             return $results;
+            
+        }
     }
      
     ?>
