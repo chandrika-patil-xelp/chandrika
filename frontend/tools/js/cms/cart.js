@@ -8,10 +8,10 @@ var gblcartdata;
 }
 
 function newaddToCart(paramtr)
-{
+{  
    var userid,cartdata={};
    cartdata['pid']= paramtr[0];
-   cartdata['price']=paramtr[1];
+   cartdata['price']= paramtr[1];
    cartdata['qty']=1;
    var chr=""+paramtr[2]+"|@|"+paramtr[4]+"|@|"+paramtr[3];
    cartdata['col_car_qty']=chr;
@@ -20,11 +20,14 @@ function newaddToCart(paramtr)
    var cartid=common.readFromStorage('jzeva_cartid');   
 
    if(userid=="" || userid==null){
+       common.addToStorage('jzeva_uid','0');
+	userid=common.readFromStorage('jzeva_uid');  
       if(cartid=="" || cartid==null){
 	common.addToStorage('jzeva_cartid',genOrdId());
 	cartid=common.readFromStorage('jzeva_cartid');  
       }
      cartdata['cartid']= cartid;
+     
     }
     else{ 
       cartdata['userid']=userid;
@@ -37,10 +40,12 @@ function newaddToCart(paramtr)
     }
     else{
       $(gblcartdata).each(function(r,v){  
-          
+        
 	if(cartdata.col_car_qty==v.col_car_qty && cartdata.pid==v.product_id){
 	  cartdata['qty']=parseInt(v.pqty)+1;
-	  cartdata['price']=parseInt(cartdata.price)*cartdata.qty;
+          cartdata.price=(cartdata.price).replace(/,/g,"");
+          cartdata['price']=parseInt(cartdata.price)*cartdata.qty;
+         
 	  flag=2;
 	}
       });
@@ -57,15 +62,22 @@ function newaddToCart(paramtr)
  
 function storecartdata(cartdata,chk)
 { 
+    
+    if(cartdata['qty']==1 && chk==1)
+   {
+   cartdata['price']=cartdata['price'].replace(/,/g,"");
+   }
      var URL= APIDOMAIN + "index.php?action=addTocart";
+    
     var data=cartdata; 
-    var  dt = JSON.stringify(data);   
+    var  dt = JSON.stringify(data);    
 	$.ajax({
 	    type:"post",
 	    url:URL,
-	    data: {dt: dt},
+	    data: {dt: dt}, 
+          
 	    success:function(results){
-		   //  console.log(data); 
+		
 		getglobaldata(); 
 		if(chk==1){
 		  $(".cart_gen").html("");
@@ -82,17 +94,19 @@ function displaycartdata()
      var cartid=common.readFromStorage('jzeva_cartid');
      if(cartid !== null || userid !== null){
    var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id="+cartid+"&userid="+userid+"";
+   
 	       $.ajax({
 	 	    url: URL,
 	 	    type: "GET",
 	 	    datatype: "JSON",
 	 	    success: function(results)
-	 	    {
-		      var obj=JSON.parse(results);
+	 	    {  
+		      var obj=JSON.parse(results); 
 		      if(obj.result !== null)
 		      {
 	       	      gblcartdata=obj.result;
 		      $(obj.result).each(function(r,v){
+                    
 			if(v.default_img!== null){
 			   abc=IMGDOMAIN + v.default_img;
 			}
@@ -105,8 +119,8 @@ function displaycartdata()
 	cartstr+="<div class='cart_image'><img src='"+abc+"'";
         cartstr+=" alt='Image not found'></div>";
 	cartstr+="<div class='cart_name'>"+v.prdname+"</div>";
-  	cartstr+="<div class='cart_desc  fLeft'>Gold 3.6gms "+v.carat+" Gold</div>";
-	cartstr+="<div class='cart_price  fLeft'><span class='price_gen'>₹ "+parseInt(v.price)+"</span></div>";
+  	cartstr+="<div class='cart_desc  fLeft'>"+v.jewelleryType+" "+ v.metal_weight+" gms , "+v.carat+" </div>";
+	cartstr+="<div class='cart_price  fLeft'><span class='price_gen'>₹ "+indianMoney(parseInt(v.price))+"</span></div>";
         cartstr+="<div class='amt_selector' id='"+v.cart_id+"'>";
 	cartstr+="<a href='#' onclick='subqnty(this)'  id='sub_"+v.product_id+"_"+r+"_"+v.col_car_qty+"_"+v.cart_id+"'><div class='cart_btn fLeft sub_no'></div></a>";
         cartstr+="<div class='item_amt fLeft '>"+v.pqty+"</div>";
@@ -126,6 +140,23 @@ function displaycartdata()
 	    }
 }
 
+ function indianMoney(x){
+          x=x.toString();
+          var afterPoint = '';
+          if(x.indexOf('.') > 0)
+             afterPoint = x.substring(x.indexOf('.'),x.length);
+          x = Math.floor(x);
+          //alert(x);
+          x=x.toString();
+          var lastThree = x.substring(x.length-3);
+          var otherNumbers = x.substring(0,x.length-3);
+          if(otherNumbers != '')
+              lastThree = ',' + lastThree;
+          var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree + afterPoint;
+          //res = res.parseInt();
+          //res = res.toFixed(2);
+          return res;
+     }
   function cremove(el){
      var yesno=confirm('Are u sure Do you want to remove This item');
      if(yesno== true)
@@ -134,12 +165,14 @@ function displaycartdata()
 	var a=id.split('_');
         var col_car_qty=a[2],product_id=a[0],cartid=a[3];
         var URL = APIDOMAIN+"index.php?action=removeItemFromCart&col_car_qty="+col_car_qty+"&pid="+product_id+"&cartid="+cartid;
+        
 	$.ajax({
 	      type:'POST',
 	      url:URL,
 	      success:function(res){
-                 // console.log(res);
+               gettotal();
 	        displaycartdata(); 
+                
 	      }
           });
       }
@@ -170,6 +203,7 @@ function displaycartdata()
 	dat['userid']=v.userid;     dat['col_car_qty']=v.col_car_qty;
 	dat['qty']=j;		       dat['price']=price;
 	storecartdata(dat,2); 
+       // gettotal();
       }
      });
       
@@ -201,18 +235,21 @@ function displaycartdata()
       dat['userid']=v.userid;     dat['col_car_qty']=v.col_car_qty;
       dat['qty']=j;		       dat['price']=price;
       storecartdata(dat,2); 
+     // gettotal();
     }
     });
  }
  
  function gettotal()
  {
+     getglobaldata();
     var itemcnt=0,total=0;
     $(gblcartdata).each(function(r,v){
+        
 	  total=parseInt(v.price)+total;  
 	  itemcnt=parseInt(v.pqty)+itemcnt;  
     });
-    $(".total_price_gen").html(total);
+     $(".total_price_gen").html(indianMoney(total));
     $(".lnHt30").html("Total Items: "+itemcnt);
     $(".cartCount").html(itemcnt);
  }
@@ -229,7 +266,7 @@ function getglobaldata()
 	 	    datatype: "JSON",
 	 	    success: function(results)
 	 	    {
-		      //console.log(results);
+		   
 		      var obj=JSON.parse(results);
 		      gblcartdata=obj.result;
 		      gettotal();
@@ -240,6 +277,7 @@ function getglobaldata()
 }
 
  $(document).ready(function(){
+    
       displaycartdata(); 
       getglobaldata();
  });
