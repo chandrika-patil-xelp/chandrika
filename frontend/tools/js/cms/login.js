@@ -50,9 +50,10 @@ $('#rsubId').on('click',function(){
     if (validationFlag == 1)
     {
       inptval=mobile;
-    $('#otpOuter2').removeClass("dn");
-    $('#signCont').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-    $('#otpCont2').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+    $('#signUpId').addClass("dn");
+            $('#otpOuter').removeClass("dn");
+            $('#signCont').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+            $('#otpCont').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
           
 	  sendotp();
 	  userdata[0]=name;
@@ -186,7 +187,7 @@ function hasitem(oldcartid,olduserid)
 			url:URL,
 			data: {dt: dt},
 			success:function(data){
-			     //   console.log(data);  
+			    
 			}
 		  });
 
@@ -195,7 +196,7 @@ function hasitem(oldcartid,olduserid)
 			    type:'POST',
 			    url:URL,
 			    success:function(res){
-			     //console.log(res);
+			    
 			    }
 		    });  
 	      }
@@ -312,7 +313,10 @@ function  sendotp()
 			  $('#resetId').removeClass("dn");
   $('#otpCont').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
   $('#inresetId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-     
+//     
+//  $('#otpOuter').addClass("dn");
+//            $('#otpCont').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+//            $('#loginId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
 		      }
 		      else{
 			alert('you entered otp is wrong');
@@ -379,6 +383,10 @@ function  sendotp()
                 success:function(res){
 	      // console.log(res);
 	       alert('Password Changed Successfully'); 
+                 $('#signUpId').addClass("dn");
+            $('#otpOuter').removeClass("dn");
+            $('#signCont').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+            $('#otpCont').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
                // window.location.href = DOMAIN + "index.php?action=login";
 	   }
        }); 
@@ -404,7 +412,7 @@ function  sendotp()
              success:function(res){
 	    var data1 = JSON.parse(res); 
             if(data1['error']['err_code']==0)  {
-                alert('Registered Successfully'); 
+                alert('Registered Successfullllly'); 
             //  window.location.href = DOMAIN + "index.php?action=login";
             
                  }else if(data1['error']['err_code']==1){
