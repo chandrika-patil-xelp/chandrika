@@ -9,6 +9,7 @@ var aid;
 var stSearch = new Array();
 
 $(document).ready(function () {
+      getmenu();
    // var URL = APIDOMAIN + "index.php/?action=getProGrid";
     var URL = APIDOMAIN + "index.php?action=getProductdetailbycatid&id="+id;
     $.ajax({
@@ -68,6 +69,7 @@ $(document).ready(function () {
             }
         }
     });
+  
 });
 
 function generatelist(obj) {
@@ -522,7 +524,124 @@ var count=0;
     });
 
 
+function getmenu(){
+    
+    var datamenu;
+    var menuURL = APIDOMAIN + "index.php/?action=getAttributeList";
+     $.ajax({
+        type: 'POST',
+        url: menuURL,
+        success: function(res) {
 
-
+            datamenu = JSON.parse(res);
+           console.log(datamenu);
+             if (datamenu['error']['err_code'] == 0) {
+            var necklaceType = datamenu['result'][4];
+            var banglesType = datamenu['result'][5];
+            var earingType = datamenu['result'][6];
+            var pendentType = datamenu['result'][3];
+            var ringType = datamenu['result'][12];
+           var gemstoneType = datamenu['result'][11];
+           
+            var nt = (necklaceType.name).toUpperCase();
+            var bt =(banglesType.name).toUpperCase();
+            var et = (earingType.name).toUpperCase();
+            var pt = (pendentType.name).toUpperCase();
+            var rt = (ringType.name).toUpperCase();
+            var gt = (gemstoneType.name).toUpperCase();
+            $('#necklace').html(nt);
+            $('#bangles').html(bt);
+            $('#earings').html(et);
+            $('#pendants').html(pt);
+            $('#rings').html(rt);
+            
+            var neckstr = "";
+            var necktype= necklaceType.vals;
+            var neckStyle =necktype.split(',');
+            $(neckStyle).each(function(m,n){
+               
+                var classname = n.replace(' ','');
+                classname  = classname.toLowerCase();
+                console.log(classname);
+                neckstr+='<div class="filterCommon '+classname+'">';
+                neckstr+='<div class="filterLabel">';
+                neckstr+='<div class="labBuffer" id="'+n+'">'+n+'</div>';
+                neckstr+='</div>';
+                neckstr+='</div>';
+            });
+             $('#necklaceStyle').append(neckstr);
+             
+            var banglestr ="";
+            var bangletype= banglesType.vals;
+            var bangleStyle = bangletype.split(',');
+             $(bangleStyle).each(function(i,j){
+                
+                  var classname = j.replace(' ','');
+                classname  = classname.toLowerCase(); 
+               console.log(classname);
+               banglestr+= '<div class="filterCommon '+classname+'">';
+               banglestr+='<div class="filterLabel">';
+               banglestr+='<div class="labBuffer" id="'+j+'">'+j+'</div>';
+               banglestr+='</div>';
+               banglestr+='</div>';
+             });
+              $('#banglestyle').append(banglestr);
+              
+            var earingstr ="";
+            var earingtype= earingType.vals;
+            var earingStyle = earingtype.split(',');
+            $(earingStyle).each(function(k,l){
+                
+                  var classname = l.replace(' ','');
+                classname  = classname.toLowerCase(); 
+             
+                earingstr+='<div class="filterCommon '+classname+'">';
+                earingstr+='<div class="filterLabel">';
+                earingstr+='<div class="labBuffer" id="'+l+'">'+l+'</div>';
+                earingstr+='</div>';
+                earingstr+='</div>';
+            });
+             $('#earingStyle').append(earingstr);
+             
+            var pendantstr ="";
+            var pendantype= pendentType.vals;
+            var pendantStyle = pendantype.split(',');
+             $(pendantStyle).each(function(j,s){
+                
+                  var classname = s.replace(' ','');
+                classname  = classname.toLowerCase(); 
+               
+                pendantstr+='<div class="filterCommon '+classname+'">';
+                pendantstr+='<div class="filterLabel">';
+                pendantstr+='<div class="labBuffer" id="'+s+'">'+s+'</div>';
+                pendantstr+='</div>';
+                pendantstr+='</div>';
+             });
+             
+              $('#pendantStyle').append(pendantstr);
+              
+            var ringstr ="";
+            var ringtype= ringType.vals;
+            var ringStyle = ringtype.split(',');
+            $(ringStyle).each(function(r,t){
+                
+                  var classname = t.replace(' ','');
+                classname = classname.toLowerCase(); 
+                
+                ringstr+='<div class="filterCommon '+classname+'">';
+                ringstr+='<div class="filterLabel">';
+                ringstr+='<div class="labBuffer" id="'+t+'">'+t+'</div>';
+                ringstr+='</div>';
+                ringstr+='</div>';
+                
+            });
+             $('#ringStyle').append(ringstr);
+           
+            }
+             
+    }
+    });
+    
+}
 
 
