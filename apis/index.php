@@ -728,20 +728,20 @@ switch($action)
 
 
       case 'addTocart':
-        include APICLUDE.'class.addtocart.php';
+
+        include APICLUDE . 'class.addtocart.php';
         $obj = new addtocart($db['jzeva']);
-	$tmpaparams = array($params['dt']);
-
-     //
-    //      foreach($tmpaparams as $key => $value)
-     //     {
-     //         $tmpaparams[$key] = strip_tags($value);
-     //     }
-  	     $res=$obj->addToCart($tmpaparams);
-
+        $tmpaparams = array($params['dt']);
+     
+        //
+        //      foreach($tmpaparams as $key => $value)
+        //     {
+        //         $tmpaparams[$key] = strip_tags($value);
+        //     }
+        $res = $obj->addToCart($tmpaparams);
         break;
 
-     case 'getcartdetail':
+    case 'getcartdetail':
         include APICLUDE.'class.addtocart.php';
         $obj = new addtocart($db['jzeva']);
          $res = $obj->getcartdetail($params);
@@ -881,11 +881,6 @@ switch($action)
          $res = $obj->addOrdersdetail($tmpaparams);
     break;
 
-   case 'checkopt':
-        include APICLUDE.'class.user.php';
-        $obj	= new user($db['jzeva']);
-        $res	=$obj->checkopt($params);
-    break;
 
     case 'getuserdetailbymail':
         include APICLUDE.'class.user.php';
