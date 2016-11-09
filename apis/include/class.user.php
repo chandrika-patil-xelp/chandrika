@@ -398,7 +398,7 @@
         return $result;
     }*/
         
-        public function getUserDetailsById($params)
+       /* public function getUserDetailsById($params)
         {
             
             if($params['userid'])
@@ -433,7 +433,7 @@
             }
             
         }
-        
+        */
         
         
         
@@ -1372,7 +1372,7 @@
 	
 	   public function getUserdetailbymob($params)
         { 
-                $sql="SELECT user_name as name,logmobile as mb,email,user_id from tbl_user_master WHERE logmobile='".$params['mob']."'";
+                $sql="SELECT user_name as name,logmobile as mb,email,user_id from tbl_user_master WHERE logmobile='".$params['mob']."' or email='".$params['mob']."'";
                 $res=$this->query($sql);
                 
                 $result = array();
