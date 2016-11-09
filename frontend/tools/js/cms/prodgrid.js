@@ -534,7 +534,7 @@ function getmenu(){
         success: function(res) {
 
             datamenu = JSON.parse(res);
-           console.log(datamenu);
+        
              if (datamenu['error']['err_code'] == 0) {
             var necklaceType = datamenu['result'][4];
             var banglesType = datamenu['result'][5];
@@ -562,7 +562,7 @@ function getmenu(){
                
                 var classname = n.replace(' ','');
                 classname  = classname.toLowerCase();
-                console.log(classname);
+              
                 neckstr+='<div class="filterCommon '+classname+'">';
                 neckstr+='<div class="filterLabel">';
                 neckstr+='<div class="labBuffer" id="'+n+'">'+n+'</div>';
@@ -578,7 +578,7 @@ function getmenu(){
                 
                   var classname = j.replace(' ','');
                 classname  = classname.toLowerCase(); 
-               console.log(classname);
+           
                banglestr+= '<div class="filterCommon '+classname+'">';
                banglestr+='<div class="filterLabel">';
                banglestr+='<div class="labBuffer" id="'+j+'">'+j+'</div>';
