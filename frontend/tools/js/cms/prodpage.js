@@ -730,7 +730,7 @@ function calculatePrice()
     var selPurity= parseFloat($('input[name="purity"]:checked').attr('data-price'));
  
     var currentSize=parseFloat($('#size').text().replace('Size ',''));
- console.log(currentSize);
+
     var mtlWgDav=0.05;
     var dmdPrice=0;
     var goldPrice=0;
