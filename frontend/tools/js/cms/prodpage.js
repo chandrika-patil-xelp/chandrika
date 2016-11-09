@@ -698,7 +698,7 @@ function getcatsize(s, m) {
                     strd+=  '<div class="actBtn font12 bolder" id="size"  name="sizes" data-size="'+sizdefault+'">Size '+sizdefaulval+'</div>';
                 
                     $(dat.result).each(function (x, y) {
-                      
+                     
                             if(y.sval==0.0){
                                 y.sval='None';}
                         
@@ -730,7 +730,7 @@ function calculatePrice()
     var selPurity= parseFloat($('input[name="purity"]:checked').attr('data-price'));
  
     var currentSize=parseFloat($('#size').text().replace('Size ',''));
-  
+ console.log(currentSize);
     var mtlWgDav=0.05;
     var dmdPrice=0;
     var goldPrice=0;
@@ -745,7 +745,7 @@ function calculatePrice()
         bseSize = parseFloat(2.4);
    
         
-        console.log(currentSize +" 0")
+       // console.log(currentSize +" 0")
    
     if(isNaN(currentSize))
     {
@@ -768,13 +768,13 @@ function calculatePrice()
     }
     
     console.log(currentSize +" 1")
-    var changeInWeight=(currentSize-bseSize)*mtlWgDav;
+    var changeInWeight=(currentSize-bseSize)*mtlWgDav; 
      newWeight=parseFloat(storedWt+(changeInWeight));
-        newWeight= newWeight.toFixed(2);
+        newWeight= newWeight.toFixed(3);
   // metalwtt(newWeight);
   
   
-    goldPrice=parseFloat(selPurity*newWeight);
+    goldPrice=parseFloat(selPurity*newWeight);console.log(selPurity * newWeight);
     var mkCharges=parseFloat(storedMkCharge*newWeight);
     var ttl=parseFloat(goldPrice+dmdPrice+mkCharges+ uncPrice + soliprc + gemsPrice);
     
@@ -783,7 +783,7 @@ console.log("dmdPrice-> "+dmdPrice +" --- " + "changeInWeight -> "+changeInWeigh
     
     
     var totalNewPrice= Math.round(ttl+(ttl*vatRate));
-    
+  
      
     var abc =$('#price').html();
   //  $('#price').text(totalNewPrice);
