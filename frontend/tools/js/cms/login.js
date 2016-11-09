@@ -333,9 +333,15 @@ function  sendotp()
  
  function checkuser()
  {
+    
     var URL= APIDOMAIN + "index.php/?action=getUserdetailbymob&mob="+inptval; 
-      $.ajax({  url: URL,  type: "GET", datatype: "JSON", success: function(res)  {
+    
+      $.ajax({  url: URL, 
+                type: "GET",
+                datatype: "JSON", 
+                success: function(res)  {
 		       var data=JSON.parse(res); 
+                       
 		       if(data['result']['mob'] == inptval){
 		      
 		       newuserid=data['result']['user_id'];
@@ -350,8 +356,10 @@ function  sendotp()
 			// sendmail(inptval);
 		       }
 		       else{
-			 if($.isNumeric(inptval))   alert('Mob No not exist');
-			 else		alert('email id not exist');
+			 if($.isNumeric(inptval))  
+                             alert('Mob No not exist');
+			 else		
+                             alert('email id not exist');
 		       } 
 		    }
       });
@@ -422,7 +430,7 @@ function  sendotp()
     });
 		      }
 		      else{
-			alert('you entered otp is wrong');
+			alert('your entered otp is wrong');
 		      }
 		    }
     }
