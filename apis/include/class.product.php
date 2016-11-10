@@ -2701,7 +2701,7 @@ class product extends DB {
                                         AND
                                                 active_flag =1
                                     )
-                        order by price_per_carat ASC ";
+                        order by price_per_carat DESC";
             // WHERE active_flag=1 ";
             $res = $this->query($sql);
             if ($res) {
