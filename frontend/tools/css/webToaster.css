@@ -71,7 +71,7 @@ button.toast-close-button {
     right: 12px
 }
 .toast-bottom-right {
-    right: 12px;
+    /*right: 12px;*/
     bottom: 12px
 }
 .toast-bottom-left {
@@ -79,11 +79,12 @@ button.toast-close-button {
     left: 12px
 }
 #toast-container {
-    position: fixed;
+    position: absolute;
     z-index: 999999;
     pointer-events: nonel;
     font-family: sansR;
     font-size: 13px;
+    top:101px;
 }
 #toast-container * {
     -moz-box-sizing: border-box;
@@ -96,7 +97,8 @@ button.toast-close-button {
     overflow: hidden;
     margin: 0 0 6px;
     padding: 15px 15px 15px 50px;
-    width: 300px;
+    width:1400px;
+    top:0;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
@@ -144,7 +146,7 @@ button.toast-close-button {
     background-color: #0CCDB8;color:#fff;
 }
 .toast-error {
-    background-color: #ff8972;color:#fff;
+    background-color: #E00000;color:#fff;
 }
 .toast-info {
     background-color: #0CCDB8;color:#fff;
