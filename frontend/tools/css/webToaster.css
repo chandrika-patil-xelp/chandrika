@@ -84,7 +84,7 @@ button.toast-close-button {
     pointer-events: nonel;
     font-family: sansR;
     font-size: 13px;
-    top:101px;
+    top:0px;
 }
 #toast-container * {
     -moz-box-sizing: border-box;
@@ -143,7 +143,7 @@ button.toast-close-button {
     background-color: #030303; color:#fff;
 }
 .toast-success {
-    background-color: #0CCDB8;color:#fff;
+    background-color: #22b9c7;color:#fff;
 }
 .toast-error {
     background-color: #E00000;color:#fff;
