@@ -356,7 +356,8 @@ function generatelist(obj) {
 
 function getProId(pid) {
 
-    window.location.href = DOMAIN + "index.php?action=product_page&pid="+ pid;
+   window.href = DOMAIN + "index.php?action=product_page&pid="+ pid;
+    onclick=window.open(this.href, '');
 
 }
 
