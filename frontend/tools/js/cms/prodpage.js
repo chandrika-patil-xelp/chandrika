@@ -69,11 +69,14 @@ function getarraydata() {
     var zz = $('#carat').attr('carat_id').split('_');
     var metal = zz[zz.length - 1];
     
+   var sz = ($('#size').text().replace('Size',''));
+   
     
     arrdata.push(color);
     arrdata.push(quality);
     arrdata.push(metal);
-   
+    arrdata.push(sz);
+     
    
 }
 
@@ -81,7 +84,7 @@ $('#add_to_cart').on('click', function () {
     
     getarraydata();
 	
-      newaddToCart(arrdata);
+       newaddToCart(arrdata);
     
 });
 $(document).ready(function () {
@@ -178,7 +181,7 @@ $(document).ready(function () {
                     
                  var bstr = "";
                  
-               bstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span> Gold </span></span><span class="fRight fmSansR"><span> ' + metalwght + '</span> Gms </span></div>';
+               bstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span> Gold </span></span><span class="fRight fmSansR" id="newWt"><span> ' + metalwght + '</span> Gms </span></div>';
                $('#desc').append(bstr);   
 
                     var type = 0;
@@ -291,26 +294,37 @@ $(document).ready(function () {
                        
                         var diamstr = "";
                         var dQstr = "";
-                        $(diamonds['results']).each(function (i, vl) {
                        
+                         var defaultDia;
+                         var defaultDiaVal;
+                         var defaultDiaPrc;
+                        $(diamonds['results']).each(function (i, vl) {
+                           
+                             defaultDia= vl.QMast.results[4]['id'];
+                             defaultDiaVal =vl.QMast.results[4]['dVal'];
+                            defaultDiaPrc =vl.QMast.results[4]['prcPrCrat'];
+                               
                             var dcarat = vl.crat;
                             storedDmdCarat = parseFloat(vl.crat);
                             
                             
-                            var defaultDia;
+                           
                             $.each(vl.QMast.results, function (x, y) {
-                             
+                               
                                 if (x == 0) {
-                                    $('#qual').text(y.dNm);
-                                    $('#qual').attr('qual_id', y.id);
+                                    $('#qual').text(defaultDiaVal);
+                                    $('#qual').attr('qual_id', defaultDia);
                                 }
-
+                                
                                 var dvdia = y.dVal;
                                 var dvprc = y.prcPrCrat;
                                 var dvdiaid = y.id;
                                 
                                 var dClass = dvdia.replace(/-|\s/g, "");
                                 dClass = dClass.toLowerCase();
+                                
+                              
+                                
                                 dQstr += '<div class="rad_wrap ">';
                                 //dQstr+= '<input type="radio" name="selectM" id="dQuality_'+x+'_'+y.id+'" checked  onchange=\"diamondPrice('+y.prcPrCrat+vl.crat+')\" class="filled-in dn">';
                                 dQstr += '<input type="radio" name="selectM" id="dQuality_' + x + '_' + y.id + '" value="' + y.dVal + '" data-value="' + y.prcPrCrat + '" onchange="setdmd(this)" class="filled-in dn">';
@@ -321,14 +335,17 @@ $(document).ready(function () {
                                 dQstr += '</div>';
                                 dQstr += '</div>';
 
-                                getdmdprice(dvprc, dcarat);
+                                getdmdprice(dvprc,dcarat);
 
                             });
+                          
                             $('#diQ').append(dQstr);
+                            
                              diamstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>' + vl.totNo + '</span><span> Diamonds</span></span><span class="fRight fmSansR"><span> ' + vl.crat + '</span> Carat</span></div>';
-                             $('input[name="selectM"]').eq(0).attr('checked', true);
+                             $('input[name="selectM"]').eq(4).attr('checked', true);
 
                         });
+                        
                          $('#desc').append(diamstr);
 
                     }
@@ -671,7 +688,7 @@ function getcatsize(s, m) {
     if (catname == 'Rings' || catname == 'Bangles') {
 
 
-        $('#pure').removeClass('dn');
+        $('#sizes').removeClass('dn');
         var cid = catsize;
         var URL = APIDOMAIN + "index.php/?action=getSizeListByCat&catid=" + catsize;
         var dat = "";
@@ -713,7 +730,7 @@ function getcatsize(s, m) {
                   //$('input[name="sizes"]').eq(0).prop('checked', true);
             
                     bindDrop();
-                 
+                 getarraydata();
                 }
             }
         });
@@ -767,14 +784,14 @@ function calculatePrice()
         dmdPrice=storedDmdCarat*selDiamond;
     }
     
-    console.log(currentSize +" 1")
+   // console.log(currentSize +" 1")
     var changeInWeight=(currentSize-bseSize)*mtlWgDav; 
      newWeight=parseFloat(storedWt+(changeInWeight));
         newWeight= newWeight.toFixed(3);
-  // metalwtt(newWeight);
+       
+  $('#newWt').html(newWeight);
   
-  
-    goldPrice=parseFloat(selPurity*newWeight);console.log(selPurity * newWeight);
+    goldPrice=parseFloat(selPurity*newWeight);//console.log(selPurity * newWeight);
     var mkCharges=parseFloat(storedMkCharge*newWeight);
     var ttl=parseFloat(goldPrice+dmdPrice+mkCharges+ uncPrice + soliprc + gemsPrice);
     
