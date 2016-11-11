@@ -2044,10 +2044,20 @@ input[type=radio]:checked ~ .selector_label:after {
 .tabDaddrss{width: auto;padding: 0px 20px;color: #fff;height: 30px;font-size: 12px;transform: rotate(-90deg);position: absolute;left: -32px;transform-origin: 0 0;top:225px;letter-spacing: 0.35em;line-height: 28px;}
 .tabDaddrss1{width: auto;padding: 0px 20px;color: #fff;height: 30px;font-size: 12px;transform: rotate(-90deg);position: absolute;left: -32px;transform-origin: 0 0;bottom:0;letter-spacing: 0.35em;line-height: 28px;}
 .delvrAdress{width:100%;height:390px;padding:20px 0px 20px 0px;position: relative;}
-.dlvrBtn{width: auto; padding: 0px 10px;font-size: 12px;height: 30px;line-height: 30px;cursor: pointer;display: inline-block;border: 1px solid #ccc;border-radius: 2px;position: relative;}
+.dlvrBtn{width: auto; padding: 0px 30px;font-size: 12px;height: 30px;line-height: 30px;cursor: pointer;display: inline-block;border: 1px solid #ccc;border-radius: 2px;position: relative;}
+.rdo{display:none}
+
+.radTor{position:relative}
+.radTor label{position:absolute;left:0;top:0;width:100%;height:100%}
+
+
+input[type=radio]:checked ~ .btncnt {
+  display:block;
+}
+
 .afterTick:before{content:'';width:30px;height:27px;position:absolute;right:0;top:0px;background:url(../img/02g.svg)no-repeat;background-size:auto 35px;background-position:center;}
 .delvrAdress .col100{width:100%;height:auto;min-height:100px;position:relative;margin-bottom: 10px;}
-.delvrAdress .col100 .btncnt{width:100%;height:auto;margin-top: 5px;}
+.delvrAdress .col100 .btncnt{width:100%;height:auto;margin-top: 5px;display:none}
 .delvrAdress .w50r{width:50%;height:auto;padding-right:20px;}
 .delvrAdress .w50r .text{width:100%;height:auto;text-align:right;font-size:13px;line-height:26px;color:#333;}
 .delvrAdress .w50l{width:50%;height:auto;padding-left:20px;}
@@ -2070,11 +2080,12 @@ input[type=radio]:checked ~ .selector_label:after {
  .ePadding{padding:50px 113px !important}
  .cotpTxt{width:100%;height: 28px;font-size: 12px;color: #333;text-align: center;text-transform: uppercase;line-height: 24px;letter-spacing: 0.05em;}
  .fadeCnt{width:100%;height:500px;position:absolute;top:0;left:0;background:#fff;}
- #scndup{opacity:0;transform:translateY(20px);display:none}
+ #scndup{opacity:0 ;transform:translateY(20px) ;display:none }
  #fstup{opacity:0;transform:translateY(20px);display:none}
- #fourthup{opacity:0;transform:translateY(20px);display:none}
+ #fourthup{opacity:0;transform:translateY(20px);display:none} 
+ #thrdup{opacity:0;transform:translateY(20px);display:none} 
  #fifthup{opacity:0;transform:translateY(20px);display:none}
- #sixthup{opacity:0;transform:translateY(20px);display:none}
+ #sixthup{opacity:0;transform:translateY(20px);display:none} 
  .yetanotherbuffer{width:100%;height:100%;position:relative}
  .w49{width:49% !important;}
  .entrotppopup{width:100%;height:100%;position:fixed;background-color:rgba(0,0,0,0.7);z-index:999;left:0;top:0;opacity:0;display:none;}
