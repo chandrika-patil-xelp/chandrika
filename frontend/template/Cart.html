@@ -1,121 +1,119 @@
 
-     <div class="cart ">
-        <!-- <div class="cart_head ">
-          YOUR CART
+<div class="cart">
+    <!-- <div class="cart_head ">
+      YOUR CART
 
-        </div> -->
-         <div class="cart_sub ">
-           <div class="fLeft col100 lnHt30 "> </div>
-           <div class="fLeft col100">
-            <span class="cart_price  fLeft ">&#8377
-                <span class="total_price_gen ">126,000</span>
-              </span>
+    </div> -->
+    <div class="fLeft totalItem">
+    <div class="closeCart"></div>
+    <div class="fLeft col100 pBtm5">Total Items</div>
+    <div class="col100 fLeft">
+        <div class="fLeft cart_price font20">&#8377<span class="total_price_gen ">126,000</span></div>
+        <div class="button actBtn transition300 mar0 fRight">CHECKOUT</div>
+    </div>
+    </div>
+    <div class="cart_gen fLeft">
+        <!-- <div class="cart_item" id="cartItems">
+            <div class="cart_image"></div>
+            <div class="cart_name ">Étourdissant Cartier</div>
+            <div class="cart_price  fLeft">&#8377 <span class="price_gen">26,000</span></div>
+            <div class="amt_selector ">
+              <div class="cart_btn fLeft sub_no"></div>
+              <div class="item_amt fLeft fmOsR">1</div>
+              <div class="cart_btn fLeft add_no"></div>
             </div>
-            <div class="chk_out "><div class="button actBtn transition300" id="check_out">Checkout</div></div>
-              <div class="closeCart"></div>
-          </div>
-            <div class="cart_gen fLeft">
-            <!-- <div class="cart_item" id="cartItems">
-                <div class="cart_image"></div>
-                <div class="cart_name ">Étourdissant Cartier</div>
-                <div class="cart_price  fLeft">&#8377 <span class="price_gen">26,000</span></div>
-                <div class="amt_selector ">
-                  <div class="cart_btn fLeft sub_no"></div>
-                  <div class="item_amt fLeft fmOsR">1</div>
-                  <div class="cart_btn fLeft add_no"></div>
-                </div>
-                  <div class="cart_remove ">Remove</div>
-              </div>-->
-             <!-- <div class="cart_item">
-                <div class="cart_image"></div>
-                <div class="cart_name ">Étourdissant Cartier</div>
-                <div class="cart_price  fLeft">&#8377 <span class="price_gen">26,000</span></div>
-                <div class="amt_selector ">
-                  <div class="cart_btn fLeft sub_no"></div>
-                  <div class="item_amt fLeft fmOsR">1</div>
-                  <div class="cart_btn fLeft add_no"></div>
-                </div>
-                <div class="cart_remove ">Remove</div>
-              </div>
-              <div class="cart_item">
-                <div class="cart_image"></div>
-                <div class="cart_name ">Étourdissant Cartier</div>
-                <div class="cart_price  fLeft">&#8377 <span class="price_gen">26,000</span></div>
-                <div class="amt_selector ">
-                  <div class="cart_btn fLeft sub_no"></div>
-                  <div class="item_amt fLeft fmOsR">1</div>
-                  <div class="cart_btn fLeft add_no"></div>
-                </div>
-                  <div class="cart_remove">Remove</div>
-              </div>
-              <div class="cart_item">
-                <div class="cart_image"></div>
-                <div class="cart_name ">Étourdissant Cartier</div>
-                <div class="cart_price fLeft">&#8377 <span class="price_gen">26,000</span></div>
-                <div class="amt_selector ">
-                  <div class="cart_btn fLeft sub_no"></div>
-                  <div class="item_amt fLeft fmOsR">1</div>
-                  <div class="cart_btn fLeft add_no"></div>
-                </div>
-                  <div class="cart_remove">Remove</div>
-              </div>-->
-            </div>
-            <!-- <div class="cart_foot ">Checkout</div> -->
-        </div>
-    <script type="text/javascript" src="<?php echo $jvs['cart']; ?>"></script>
-    <script type="text/javascript" src="<?php echo $fjvs['Common']; ?>"></script>
-      <script>
-      /* Add commas in numbers */
-      $.fn.digits = function(){
-          return this.each(function(){
-              $(this).text( $(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") );
-          })
-      }
-      /*Increase/Decrease number of Items in Cart and the corresponding price , comma spacing of price  */
-     /* $('.sub_no').click(function(){
-        var e=$(this).siblings('.item_amt');
-        var j =$(this).siblings('.item_amt').text();
-        var e2=  $(this).closest('.cart_item').find('.price_gen');
-        var price= $(this).closest('.cart_item').find('.price_gen ').text();
-        price=price.replace(/\,/g,'');
-        price=parseInt(price,10);
-        if(j>1){
-            price=price/j;
-          j--;
-          price=price*j;
-          $(e2).html(price);
-            $(e2).digits();
-          $(e).html(j);
-        }
-      });
-      $('.add_no').click(function(){
-        var e=$(this).siblings('.item_amt');
-        var j =$(this).siblings('.item_amt').text();
-        var e2=  $(this).closest('.cart_item').find('.price_gen ')
-        var price= $(this).closest('.cart_item').find('.price_gen ').text();
-        price=price.replace(/\,/g,'');
-        price=parseInt(price,10);
-        price=price/j;
-          j++;
-          price=price*j;
-          $(e2).html(price);
-          $(e2).digits();
-          $(e).html(j);
-      });*/
-      $('#check_out').click(function(){
+              <div class="cart_remove ">Remove</div>
+          </div>-->
+        <!-- <div class="cart_item">
+           <div class="cart_image"></div>
+           <div class="cart_name ">Étourdissant Cartier</div>
+           <div class="cart_price  fLeft">&#8377 <span class="price_gen">26,000</span></div>
+           <div class="amt_selector ">
+             <div class="cart_btn fLeft sub_no"></div>
+             <div class="item_amt fLeft fmOsR">1</div>
+             <div class="cart_btn fLeft add_no"></div>
+           </div>
+           <div class="cart_remove ">Remove</div>
+         </div>
+         <div class="cart_item">
+           <div class="cart_image"></div>
+           <div class="cart_name ">Étourdissant Cartier</div>
+           <div class="cart_price  fLeft">&#8377 <span class="price_gen">26,000</span></div>
+           <div class="amt_selector ">
+             <div class="cart_btn fLeft sub_no"></div>
+             <div class="item_amt fLeft fmOsR">1</div>
+             <div class="cart_btn fLeft add_no"></div>
+           </div>
+             <div class="cart_remove">Remove</div>
+         </div>
+         <div class="cart_item">
+           <div class="cart_image"></div>
+           <div class="cart_name ">Étourdissant Cartier</div>
+           <div class="cart_price fLeft">&#8377 <span class="price_gen">26,000</span></div>
+           <div class="amt_selector ">
+             <div class="cart_btn fLeft sub_no"></div>
+             <div class="item_amt fLeft fmOsR">1</div>
+             <div class="cart_btn fLeft add_no"></div>
+           </div>
+             <div class="cart_remove">Remove</div>
+         </div>-->
+    </div>
+    <!-- <div class="cart_foot ">Checkout</div> -->
+</div>
+<script type="text/javascript" src="<?php echo $jvs['cart']; ?>"></script>
+<script type="text/javascript" src="<?php echo $fjvs['Common']; ?>"></script>
+<script>
+            /* Add commas in numbers */
+            $.fn.digits = function () {
+                return this.each(function () {
+                    $(this).text($(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+                })
+            }
+    /*Increase/Decrease number of Items in Cart and the corresponding price , comma spacing of price  */
+    /* $('.sub_no').click(function(){
+     var e=$(this).siblings('.item_amt');
+     var j =$(this).siblings('.item_amt').text();
+     var e2=  $(this).closest('.cart_item').find('.price_gen');
+     var price= $(this).closest('.cart_item').find('.price_gen ').text();
+     price=price.replace(/\,/g,'');
+     price=parseInt(price,10);
+     if(j>1){
+     price=price/j;
+     j--;
+     price=price*j;
+     $(e2).html(price);
+     $(e2).digits();
+     $(e).html(j);
+     }
+     });
+     $('.add_no').click(function(){
+     var e=$(this).siblings('.item_amt');
+     var j =$(this).siblings('.item_amt').text();
+     var e2=  $(this).closest('.cart_item').find('.price_gen ')
+     var price= $(this).closest('.cart_item').find('.price_gen ').text();
+     price=price.replace(/\,/g,'');
+     price=parseInt(price,10);
+     price=price/j;
+     j++;
+     price=price*j;
+     $(e2).html(price);
+     $(e2).digits();
+     $(e).html(j);
+     });*/
+    $('#check_out').click(function () {
         load_checkout();
-      }); 
-      function load_checkout(){ 
-           
+    });
+    function load_checkout() {
+
         $('body').addClass('over_hide');
-       $('.page_loader').velocity({translateX:[0,'-100%']} , {duration:300 , easing:'easeInOutExp',display:'block' ,
-       complete:function(){
-          setTimeout(function(){
-            window.location.assign(DOMAIN+'index.php?action=checkOutNew');
-          },1000);
-       }
-      });
+        $('.page_loader').velocity({translateX: [0, '-100%']}, {duration: 300, easing: 'easeInOutExp', display: 'block',
+            complete: function () {
+                setTimeout(function () {
+                    window.location.assign(DOMAIN + 'index.php?action=checkOutNew');
+                }, 1000);
+            }
+        });
 
-      }
+    }
 
-      </script>
+</script>
