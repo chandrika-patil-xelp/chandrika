@@ -6,8 +6,8 @@
  *    user zoom.
  */
 
-html {
-    font-family: sans-serif; /* 1 */
+html 
+{
     -ms-text-size-adjust: 100%; /* 2 */
     -webkit-text-size-adjust: 100%; /* 2 */
 }
@@ -16,7 +16,8 @@ html {
  * Remove default margin.
  */
 
-body {
+body 
+{
     margin: 0;
 }
 
