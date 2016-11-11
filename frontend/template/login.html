@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <body>
     <div class="fLeft"></div>
     <div class="col100 fade">
@@ -42,7 +41,6 @@
             <div class="closeLogin"></div>
             <div class="goBack"></div>
         </div>
-
         <div class="outerContr dn" id="signUpId">
             <div class="loginCont fLeft" id="signCont">
                 <div class="txtTitle" id="hTxt">please enter the relevant information</div>
@@ -87,7 +85,6 @@
             <div class="closeLogin"></div>
             <div class="goBack"></div>
         </div>
-
         <div class="outerContr dn" id="otpOuter2">
             <div class="loginCont fLeft" id="otpCont2">
                 <div class="txtTitle" id="hTxt">Please enter the OTP you received on your email/phone number.</div>
@@ -116,7 +113,7 @@
                     <div class="inp_label">Confirm Password*</div>
                 </div>        
                 <center>
-                    <a href=""><div class="button actBtn transition300">BACK TO LOGIN</div></a>
+                    <!--                    <a href=""><div class="button actBtn transition300">BACK TO LOGIN</div></a>-->
                     <div class="button actBtn transition300" id="respsssub">SUBMIT</div>
                 </center>
             </div>
@@ -125,20 +122,19 @@
         </div>
     </div>
 
-
     <script type="text/javascript">
 
         $('.inp_box').focus(function () {
             $(this).closest('.txtB').addClass('focul');
         });
-        
+
         $('.inp_box').blur(function () {
             var k = $(this).val();
             if (k === "") {
                 $(this).closest('.txtB').removeClass('focul');
             }
         });
-        
+
         $('#hTxt,#loginId,#lgnId').velocity({opacity: [0]}, {duration: 0, easing: 'ease-in-out'});
         $(document).ready(function () {
             $('#hTxt,#loginId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
@@ -175,28 +171,34 @@
             $('#otpCont').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
         });
 
-        $(document).on('click', '#userProfId', function () {
+        function openPopUp() {
+            $('.overlay').velocity({opacity: [1, 0]});
+//            $('.overlay').stop(true, true).fadeTo(200, 1);
+//          $('.overlay').css("opacity", "1");
             $('.menu_wrap').css("height", "0");
             $('.tabWrap').addClass("addPointer");
-            $('.overlay').stop(true, true).fadeTo(200, 1);
             $('#loginId').css("opacity", "1");
             $('#forgot,#otpOuter,#otpOuter2,#signUpId').addClass("dn")
             $('.outerContr').css("z-index", "203", "opacity", "1");
             $(this).parent().parent().addClass("addPointer");
             $('.ftabB').addClass("addPointer");
             $('.outerContr').velocity({translateY: [0, '150%']}, {duration: 150, delay: 100, easing: ''});
+        }
+
+        $(document).on('click', '#userProfId', function () {
+            openPopUp();
         });
 
         $('.closeLogin').click(function () {
+            $('.overlay').stop(true, true).fadeTo(200, 0);
             $('.tabWrap').removeClass("addPointer");
             $('.ftabB').removeClass("addPointer");
             $('.fade').fadeOut("slow");
             $('.outerContr').css("z-index", "203", "opacity", "0");
             $('.outerContr').velocity({translateY: ['150%', 0]}, {duration: 150, delay: 100, easing: ''});
-            $('.overlay').stop(true, true).fadeTo(200, 0);
             $('.fade').fadeIn();
         });
-
+//
         $('.goBack').click(function () {
             $(this).parent().addClass("dn");
             var backId = $(this).parent().children('.loginCont').attr("id");
@@ -206,6 +208,7 @@
 
     </script>
     <script type="text/javascript" src="<?php echo $jvs['login']; ?>"></script>
+    <script type="text/javascript" src="<?php echo $fcss['main']; ?>"></script>
 
 </body>
 </html>
