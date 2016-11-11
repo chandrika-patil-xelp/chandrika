@@ -1394,7 +1394,55 @@
             
         }
 	
-	
+	public function getUserDetailsbyinpt($params)
+	{
+	  
+	  $email=(!empty($params['email'])) ? trim($params['email']): '';
+	  $mobile=(!empty($params['mobile'])) ? trim($params['mobile']): '';
+	  if (($email == "" || $email == null) && ($mobile == "" || $mobile == null)) {
+                
+                $resp = array();
+                $error = array('Code' => 1, 'Msg' => 'Invalid parameter ');
+                $res = array('results' => $resp, 'error' => $error);
+                return $res;
+            }
+	     $flag=0;
+	    if (empty($params['email']) || $params['email']=='null')
+	    {    $flg=1;  
+	    } 
+	   else if (empty($params['mobile']) || $params['mobile']=='null')
+	   {    $flg=2; 
+	   }
+	    
+	   
+	    $sql="select user_id,user_name,logmobile,email from tbl_user_master ";
+	    if($flg ==1){
+	      $sql.="where logmobile='".$params['mobile']."'";
+	    }
+	    else if($flg ==2){
+	      $sql.="where email='".$params['email']."'";
+	    }
+	    else{
+	      $sql.="where logmobile='".$params['mobile']."' OR email='".$params['email']."'";
+	    }
+	    $res=  $this->query($sql);
+	    if($res){
+	    
+	    while($row=  $this->fetchData($res)){  
+	      $arr['user_id']=$row['user_id'];
+	      $arr['user_name']=$row['user_name'];
+	      $arr['logmobile']=$row['logmobile'];
+	      $arr['email']=$row['email'];
+	      $reslt[]=$arr;
+	    }
+	     $err = array('Code' => 0, 'Msg' => 'Data fetched successfully');
+	    }
+	    else{
+	      $err = array('Code' => 1, 'Msg' => 'error in fetching detail');
+	    }
+	    $result = array('results' => $reslt, 'error' => $err); 
+            return $result; 
+	}
         
     }
      

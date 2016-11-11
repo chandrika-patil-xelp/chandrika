@@ -1045,10 +1045,16 @@ case 'getUserdetailbymob':
         include APICLUDE.'class.user.php';
         $obj	= new user($db['jzeva']); 
         $res	=$obj->getUserdetailbymob($params);
-    break;
-  
+    break; 
+
     
-}
+  case 'getUserDetailsbyinpt':
+        include APICLUDE.'class.user.php';
+        $obj	= new user($db['jzeva']); 
+        $res	=$obj->getUserDetailsbyinpt($params);
+    break;
+    
+  }
 echo json_encode($res);
 exit;
 ?>

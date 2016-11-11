@@ -1,7 +1,7 @@
 var logDetails = new Array();
 var glbcartdeatil; 
 var inptval;
-var newuserid; 
+var newuserid,otpflg=0; 
 var userdata=[];
 
 $('#rsubId').on('click',function(){
@@ -40,7 +40,7 @@ $('#rsubId').on('click',function(){
     else if(isNaN(mobile) || (mobile.length < 10) ){
        validationFlag=0; 
       // common.toast(0, 'Mobile no. Invalid');
-        alert('Mobile no. Invalid'); 
+        common.msg(0,'Mobile no. Invalid'); 
     }
     else if(pass ===''|| pass === null){
        validationFlag=0; 
@@ -49,20 +49,37 @@ $('#rsubId').on('click',function(){
     }
     if (validationFlag == 1)
     {
-      inptval=mobile;
-    $('#signUpId').addClass("dn");
+      
+      var URL= APIDOMAIN + "index.php/?action=getUserDetailsbyinpt&email="+email+"&mobile="+mobile; 
+      $.ajax({  url: URL, type: "GET", datatype: "JSON",  success: function(res)  {
+		       var data=JSON.parse(res); 
+                       
+		       $(data['results']).each(function(r,v){ 
+		       if(v.logmobile == mobile ){
+			 common.msg(0,'You Entered mobile number is already registered');
+		       }
+		       else if( v.email == email){
+			 common.msg(0,'You Entered email id is already registered');
+		       } 
+	  });
+	 if(data['results'] == null)  {
+	    inptval=mobile;
+	    $('#signUpId').addClass("dn");
             $('#otpOuter').removeClass("dn");
             $('#signCont').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
             $('#otpCont').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-          
+          otpflg=1;
 	  sendotp();
 	  userdata[0]=name;
 	  userdata[1]=email;
 	  userdata[2]=mobile;
 	  userdata[3]=pass; 
-	  } 
+	  }
+	  
+	        }
 });
- 
+     }
+});
  
 
 $('#log').click(function(){ 
@@ -129,13 +146,18 @@ $('#log').click(function(){
 		      else{
 			   hasitem(oldcartid,olduserid);
 		      }
-		    alert('signed in successfully'); 
-		            window.location.href = DOMAIN + "index.php?action=product_grid";
+		    common.msg(0,'signed in successfully'); 
+		        var URLactn = window.location.search; 
+		      var url=DOMAIN + '/index.php' +URLactn;
+		      setTimeout(function(){
+			window.location.href = url; 
+		      },3000)
+		      
 		    }
 		});  
             }
             else if(data['error']['err_code']==1){
-                alert(data['error']['err_msg']);
+                common.msg(0,data['error']['err_msg']);
             }
         }
     });
@@ -244,14 +266,14 @@ $('#fsubId').on('click',function(){
     if($.isNumeric(inptval)){
       
       if(inptval===''|| inptval=== null){
+	 validationflg=0; 
       // common.toast(0, 'Please enter your Mobile no.');
-        common.msg(0,'Please enter your Mobile no.');
-        validationflg=0; 
+        common.msg(0,'Please enter your Mobile no.'); 
       }
       else if(isNaN(inptval) || (inptval.length < 10) || (inptval.length > 11) ){
+	 validationflg=0; 
 	// common.toast(0, 'Mobile no. Invalid');
-	  common.msg(0,'Invalid Mobile no.');
-	  validationflg=0; 
+	  common.msg(0,'Invalid Mobile no.'); 
       } 
     }
     else{
@@ -271,7 +293,8 @@ $('#fsubId').on('click',function(){
 	  
     if(validationflg == 1)
     {
-  	   checkuser(inptval); 
+  	   otpflg=2;
+  	   checkuser(); 
 	 
   }
 }); 
@@ -288,18 +311,24 @@ function  sendotp()
 	       var data1 = JSON.parse(res);  
 	       if(data1['error']['err_code']==0)
 	       {
-		    alert(data1['error']['err_msg']);  
+		    common.msg(0,data1['error']['err_msg']);  
 	       }
 	       else if(data1['error']['err_code']==1){
-		   alert(data1['error']['err_msg']);
+		   common.msg(0,data1['error']['err_msg']);
 	       } 
 	   }
        }); 
 }  
  
- $('#otpsubId').click(function(){
+$('#otpsubId').click(function(){
+   
    var otpval=$('#otp_inpt').val();
    if($.isNumeric(inptval)){
+     if(otpval.length == 6) {
+        
+	  checkotp(otpval);
+        
+       /*
       var URL= APIDOMAIN + "index.php/?action=checkopt&mobile="+inptval+"&otpval="+otpval; 
       $.ajax({  url: URL, type: "GET",  datatype: "JSON", success: function(results) {
 		      var obj=JSON.parse(results); 
@@ -308,12 +337,12 @@ function  sendotp()
 			common.msg(0,'time is over plz try it again');
 		      }
 		      else{
-		      if(otpval==data.otp){
+		      if(otpval==data.otp){ 
 			common.msg(1,'otp is correct'); 
 			  $('#resetId').removeClass("dn");
   $('#otpCont').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
   $('#inresetId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-//     
+ //     
 //  $('#otpOuter').addClass("dn");
 //            $('#otpCont').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
 //            $('#loginId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
@@ -324,6 +353,14 @@ function  sendotp()
 		    }
 		    }
 	     });
+	     */
+     }
+     else if(otpval.length == '' || otpval.length == 0){
+			  common.msg(0,'Please Enter OTP');
+		      }
+     else{
+       common.msg(0,'you entered otp is wrong')
+     }
    }
    else{
      // mail
@@ -333,9 +370,11 @@ function  sendotp()
  
  function checkuser()
  {
-    
+    if($.isNumeric(inptval))
     var URL= APIDOMAIN + "index.php/?action=getUserdetailbymob&mob="+inptval; 
-    
+     else
+      var URL= APIDOMAIN + "index.php/?action=getUserdetailbymob&email="+inptval; 
+   
       $.ajax({  url: URL, 
                 type: "GET",
                 datatype: "JSON", 
@@ -390,21 +429,17 @@ function  sendotp()
                 url:URL, 
                 success:function(res){
 	      // console.log(res);
-	       common.msg(1,'Password Changed Successfully'); 
-            $('#signUpId').addClass("dn");
-            $('#otpOuter').removeClass("dn");
-            $('#signCont').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-            $('#otpCont').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-               // window.location.href = DOMAIN + "index.php?action=login";
+	     //  common.msg(1,'Password Changed Successfully');  
+		openPopUp();
 	   }
        }); 
     }
  });
  
- $('#signup_submt').click(function(){
-   
-   var otpval=$('#signup_otp').val();
-   var URL= APIDOMAIN + "index.php/?action=checkopt&mobile="+inptval+"&otpval="+otpval; 
+  
+   function checkotp(otpval)
+  {
+    var URL= APIDOMAIN + "index.php/?action=checkopt&mobile="+inptval+"&otpval="+otpval; 
       $.ajax({  url: URL, type: "GET",  datatype: "JSON", success: function(results) {
 		      var obj=JSON.parse(results); 
 		      var data=obj.result;
@@ -413,27 +448,35 @@ function  sendotp()
 		      }
 		      else{
 		      if(otpval==data.otp){
-			 
+		if(otpflg == 1)	 
+		{ 
    var URLreg= APIDOMAIN + "index.php/?action=addUser&name="+userdata[0]+"&email="+userdata[1]+"&mobile="+userdata[2]+"&pass="+userdata[3]; 
    $.ajax({  type:'POST', 
              url:URLreg,  
              success:function(res){
 	    var data1 = JSON.parse(res); 
             if(data1['error']['err_code']==0)  {
-               common.msg(1,'Registered Successfullllly'); 
-            //  window.location.href = DOMAIN + "index.php?action=login";
-            
-                 }else if(data1['error']['err_code']==1){
-                alert(data1['error']['err_msg']); 
+                common.msg(0,'Registered Successfullllly'); 
+		openPopUp();
+		 
+            }else if(data1['error']['err_code']==1){
+                common.msg(0,data1['error']['err_msg']); 
             }
     }
     });
+  }
+   else if(otpflg == 2){
+	  $('#resetId').removeClass("dn");
+  $('#otpCont').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+  $('#inresetId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+     
+       }
 		      }
 		      else{
 			common.msg(0,'your entered otp is wrong');
 		      }
 		    }
     }
-    }); 
- });
+    });  
+  } 
    
