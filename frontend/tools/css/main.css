@@ -172,7 +172,7 @@ a{color:#666;}
 .cart_item{padding:25px 25px 25px 120px; height:110px;width:100%;position:relative;}
 .cart_image{width:70px; height:70px;position:absolute;left:35px;top:20px;background:url("../img/jzeva1.png")no-repeat;background-size:140%;background-position:center -20px;}
 .cart_name{width:100%;line-height:24px;color:#fff;font-size: 12px;  font-family: bolder;  text-transform: uppercase;letter-spacing: 0.15em;}
-.cart_price{width:auto;line-height:20px;font-family:bolder;color:#fff;font-size:13px}
+.cart_price{width:100%;font-family:light;color:#fff;font-size:13px}
 .cart_foot{width:100%;position:absolute;bottom:0;height:50px;background:#2d2d2d;color:#fff;text-align:center;line-height:50px;cursor:pointer;font-size:18px;}
 .amt_selector{width:80px;height:20px;position:absolute;right:10px;bottom:30px;font-size:13px}
 .cart_remove{width:40px;height:40px;position:absolute;left:-10px; top: 0;bottom:0;margin:auto;cursor:pointer;background: url(../img/icons/remove.svg) no-repeat; background-size: 20px; background-position: center;}
@@ -455,14 +455,11 @@ img{width:100%;height:100%;border:0}
 .rota_stop{background:url("../img/pause.svg")no-repeat;background-size:50px;background-position:center;width:70px;display:inline-block;height:70px;line-height:70px;font-size:12px;margin:0 10px;}
 .rota_btn{width: 100%;height: 15%; background-position: center; cursor: pointer; position: absolute; bottom: 0; left: 0; right: 0;}
 .closeCart{width: 100%;height: 30px;background:url("../img/closeW.svg")no-repeat;background-size:auto 100%;background-position:right;cursor:pointer;}
-.totalItem{ width: 100%;
-    color: #fff;
-    font-family: regular;
-    padding: 10px 10px 10px 10px;}
+.totalItem{width: 100%;color: #fff;font-family: light;    padding: 10px 15px 10px 15px;   background-color: #15181b;}
 
 .grid_cont{width:100%;height:calc(100vh - 180px);padding:0;background:#fff;white-space:nowrap;overflow:hidden;min-height:450px;}
 .grid3{width:auto;height:auto; max-height: 600px;display:inline-block;vertical-align:top; -webkit-transform-style: preserve-3d;transform-style: preserve-3d;border:1px solid transparent}
-.grid3:hover div{color:#fff !important }
+.grid3:hover div{color:#fff;}
 .grid3:nth-child(12n + 1){transition-delay:100ms;-webkit-transition-delay:100ms;-moz-transition-delay:100ms;-ms-transition-delay:100ms;-o-transition-delay:100ms;}
 .grid3:nth-child(12n + 2){transition-delay:200ms;-webkit-transition-delay:200ms;-moz-transition-delay:200ms;-ms-transition-delay:200ms;-o-transition-delay:200ms;}
 .grid3:nth-child(12n + 3){transition-delay:300ms;-webkit-transition-delay:300ms;-moz-transition-delay:300ms;-ms-transition-delay:300ms;-o-transition-delay:300ms;}
@@ -504,7 +501,6 @@ img{width:100%;height:100%;border:0}
 .breadH{background:url("../img/icons/26.svg") no-repeat;background-size:15px; background-position:left center; padding: 0 10px 0 20px;}
 .breadP{background:url("../img/icons/25.svg") no-repeat;background-size:17px; background-position:left center; padding: 0 10px 0 20px;}
 .breadC{background:url("../img/icons/25.svg") no-repeat;background-size:17px; background-position:left center; padding: 0 10px 0 20px;}
-
 
 
 .filter_btn{width:50px;height:50px ;background:url("../img/icons/503b.svg")no-repeat;background-size:20px;background-position:center;cursor:pointer}
@@ -2189,6 +2185,9 @@ input[type=radio]:checked ~ .btncnt {
 .myaccount .grid_item{width:100%;background:#fff;position: relative;height:auto;float:left}
 .myaccount .grid_item:after{content:"";width:100%;height:100%;position:absolute;left:0;top:0;background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.05) 100%);pointer-events: none;}
 .myaccount .grid3{width:33.33%;display:block;float:left;position:static !important;height:auto;text-transform:uppercase;opacity:0;transform:translateY(40px);-webkit-transform:translateY(40px);-moz-transform:translateY(40px);-ms-transform:translateY(40px);-o-transform:translateY(40px)}
+.myaccount .grid3:hover div{color:#15181b;}
+.grid3:hover .grid_dets:before{background:#15181b;}
+.myaccount .soc_icons{display: none;}
 .myaccount .fadeInup{opacity:1;}
 .myaccount .grid3{width:50%;}
 .myaccount .col50{padding-right: 40px;}
@@ -2238,8 +2237,13 @@ input[type=radio]:checked ~ .btncnt {
 .mbledvHld{width:100%;height:auto;display:none;}
 .mbloff{}
 
-
+.txtUpper{text-transform: uppercase;font-size: 12px;    padding: 10px 0px 10px 0px;}
 .tLeft{right:48%!important;}
+.cartHeader{ width: 100%;   height: 60px;
+    /* line-height: 60px; */
+    background-color: #222529;
+   padding: 20px 20px 15px 20px;color: #fff;}
+
 
 @media only screen and (min-width:320px) and (max-width:767px){
 
