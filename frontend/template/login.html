@@ -25,7 +25,7 @@
             </div>
             <div class="closeLogin"></div>
         </div>
-        <div class="outerContr dn" id="forgot">
+                <div class="outerContr dn" id="forgot">
             <div class="loginCont fLeft" id="loginId1">
                 <div class="txtTitle" id="hTxt">To receive your password, please enter the e-mail address or phone number address linked to your Jzeva account.</div>
                 <div class="txtB fLeft">
@@ -92,9 +92,10 @@
                     <input type="tel" class="inp_box" autocomplete="off" id="signup_otp">
                     <div class="inp_label">Please enter the otp</div>
                 </div>
-                <div class="fLeft">
+                <div class="fLeft col100">
                     <center>
                         <div class="button actBtn transition300" id="signup_submt">SUBMIT</div>
+                        <div class="button actBtn transition300">RESEND</div>
                     </center>
                 </div>
             </div>
@@ -135,46 +136,89 @@
             }
         });
 
-        $('#hTxt,#loginId,#lgnId').velocity({opacity: [0]}, {duration: 0, easing: 'ease-in-out'});
+        $('#hTxt,#loginId,#lgnId,#loginId1,#otpCont,#otpCont2,#inresetId,#signCont').velocity({opacity: [0]}, {duration: 0, easing: 'ease-in-out'});
         $(document).ready(function () {
             $('#hTxt,#loginId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
             $('#lgnId').velocity({opacity: [1, 0], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
         });
 
-        $('#loginId1').velocity({opacity: [0]}, {duration: 0, easing: 'ease-in-out'});
-        $('#forId').click(function () {
+        function forgot() {
             $('#forgot').removeClass("dn");
             $('#loginId1').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-        });
+        }
 
-        $('#hTxt,#signCont').velocity({opacity: [0]}, {duration: 0, easing: 'ease-in-out'});
-        $('.brkCnt').click(function () {
+        function fSubmit() {
+            $('#forgot').addClass("dn");
+            $('#loginId1').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+            $('#otpOuter').removeClass("dn");
+            $('#otpCont').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+        }
+
+        function otpSubmit() {
+            $('#otpOuter').addClass("dn");
+            $('#otpCont').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+            $('#loginId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+        }
+
+        function signup() {
             $('#signUpId').removeClass("dn");
             $('#loginId').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
             $('#signCont').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+        }
+
+        function signupSubmit() {
+            $('#otpOuter2').removeClass("dn");
+            $('#otpCont2').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+            $('#signUpId').addClass("dn");
+            $('#signCont').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+
+        }
+
+        function signupOtpSubmit() {
+            $('#resetId').removeClass("dn");
+            $('#inresetId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+            $('#otpOuter2').addClass("dn");
+            $('#otpCont2').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+
+        }
+
+        function resetSubmit() {
+            $('#resetId').addClass("dn");
+            $('#inresetId').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+            $('#signInId').removeClass("dn");
+            $('#loginId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+        }
+
+//        $('').velocity({opacity: [0]}, {duration: 0, easing: 'ease-in-out'});
+        $('#forId').click(function () {
+            forgot();
         });
 
-        $('#otpCont,#otpCont2').velocity({opacity: [0]}, {duration: 0, easing: 'ease-in-out'});
-        $('#inresetId').velocity({opacity: [0]}, {duration: 0, easing: 'ease-in-out'});
-        $('#otpCont').velocity({opacity: [0]}, {duration: 0, easing: 'ease-in-out'});
+        $("#fsubId").click(function () {
+            fSubmit();
+        });
 
-//        $('#otpsubId').click(function () {
-//            $('#otpOuter').addClass("dn");
-//            $('#otpCont').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-//            $('#loginId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-//        });
+        $('.brkCnt').click(function () {
+            signup();
+        });
 
-//        $('#rsubId').click(function () {
-//            $('#signUpId').addClass("dn");
-//            $('#otpOuter').removeClass("dn");
-//            $('#signCont').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-//            $('#otpCont').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-//        });
+        $('#rsubId').click(function () {
+            signupSubmit();
+        });
+
+        /*signup otp submit*/
+        $('#signup_submt').click(function () {
+            signupOtpSubmit();
+        });
+
+        $('#respsssub').click(function () {
+            resetSubmit();
+        });
+
+
 
         function openPopUp() {
             $('.overlay').velocity({opacity: [1, 0]});
-//            $('.overlay').stop(true, true).fadeTo(200, 1);
-//          $('.overlay').css("opacity", "1");
             $('.menu_wrap').css("height", "0");
             $('.tabWrap').addClass("addPointer");
             $('#loginId').css("opacity", "1");
@@ -200,14 +244,16 @@
         });
  
         $('.goBack').click(function () {
-             $(this).parent().addClass("dn");
-             var backId = $(this).parent().children('.loginCont').attr("id");
-             $('#' + backId).velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-             $('#loginId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+            $(this).parent().addClass("dn");
+            var backId = $(this).parent().children('.loginCont').attr("id");
+            $('#' + backId).velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+            $(this).parent().prev().removeClass("dn");
+            $(this).parent().prev().children(':first-child').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+//        $('#loginId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
         });
 	 
     </script>
-    <script type="text/javascript" src="<?php echo $jvs['login']; ?>"></script>
+    <!--<script type="text/javascript" src="<?php echo $jvs['login']; ?>"></script>-->
     <script type="text/javascript" src="<?php echo $fcss['main']; ?>"></script>
 
 </body>
