@@ -17,12 +17,9 @@
                 <div class="col100 fLeft">
                     <center>
                         <div class="button actBtn transition300" id="log">SIGN IN</div>
-                        <div class="fLeft col100 signupTxt">Dont have account?<span>signup</span></div>
-                        <!--                        <div class="brkCnt">
-                                                    <div class="orTcnt">Sign Up</div>
-                                                </div>-->
                     </center>
                 </div>
+                <div class="fLeft col100 signupTxt">Dont have account?<span>Signup</span></div>
             </div>
             <div class="closeLogin"></div>
         </div>
@@ -95,8 +92,13 @@
                 </div>
                 <div class="fLeft col100">
                     <center>
-                        <div class="button actBtn transition300" id="signup_submt">SUBMIT</div>
-                        <div class="button actBtn transition300">RESEND</div>
+                        <div class="col50 fLeft">
+                            <div class="button actBtn transition300">RESEND</div>
+                        </div>
+                        <div class="col50 fRight">
+                            <div class="button actBtn transition300" id="signup_submt">SUBMIT</div>
+                        </div>
+
                     </center>
                 </div>
             </div>
@@ -189,7 +191,7 @@
             $('#signInId').removeClass("dn");
             $('#loginId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
         }
-        
+
         function otpBack() {
             $('#otpOuter').addClass("dn");
             $('#otpCont').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
@@ -202,7 +204,7 @@
             $('#signCont').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
             $('#loginId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
         }
-        
+
         /*sign up otp Back button*/
         function otp2Back() {
             $('#otpOuter2').addClass("dn");
@@ -217,14 +219,14 @@
             $('#otpOuter2').removeClass("dn");
             $('#otpCont2').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
         }
-        
+
         function forgotBack() {
             $('#forgot').addClass("dn");
             $('#loginId1').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
 //            $('#signInId').removeClass("dn");
             $('#loginId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
         }
-        
+
         $('#forId').click(function () {
             forgot();
         });
@@ -265,11 +267,11 @@
         $('#resetpg_bak').click(function () {
             resetBack();
         });
-        
+
         $('#frgpw_bak').click(function () {
             forgotBack();
         });
-        
+
 
 
         function openPopUp() {
