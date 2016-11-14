@@ -48,9 +48,9 @@
                 $error = array('err_msg'=>0, 'err_code'=>'Add To Cart Data Inserted Successfully');
             }else{
                 $error = array('err_msg'=>1, 'err_code'=>'Error Inserting Add To Cart Data');
-            }
-           
-            $result = array('result'=>$params , 'error'=>$error); 
+            } 
+             
+            $result = array('result'=>$params , 'error'=>$error);  
             return $result;
 	  
         }
@@ -800,6 +800,8 @@
             }
             
             $sql = "SELECT  
+		      user_id,user_name,logmobile,email,
+		      (SELECT GROUP_CONCAT(cart_id) FROM tbl_cart_master WHERE userid =user_id) AS cart_id,
 			 password
                       FROM
                         tbl_user_master 
@@ -807,7 +809,7 @@
                      
             
             $res = $this->query($sql);
-           
+           $resp=array();
             if($res){
                 
                 if($this->numRows($res)>0){
@@ -816,17 +818,25 @@
                     while ($row = $this->fetchData($res)){ 
 			$arr['password'] = ($row['password']!=NULL) ? $row['password'] : '';
                          if(md5($pass) == $arr['password'])
-                        $error = array('err_code'=>0, 'err_msg'=>'Password is correct');
+			 {
+			    $arr['uid'] = ($row['user_id']!=NULL) ? $row['user_id'] : '';
+			    $arr['uname'] = ($row['user_name']!=NULL) ? $row['user_name'] : '';
+			    $arr['mob'] = ($row['logmobile']!=NULL) ? $row['logmobile'] : '';
+			    $arr['email'] = ($row['email']!=NULL) ? $row['email'] : '';
+			    $arr['cart_id'] = ($row['cart_id']!=NULL) ? $row['cart_id'] : '';
+			    $resp =$arr; 	  
+			    $error = array('err_code'=>0, 'err_msg'=>'Password is correct');
+			 }
 			 else
 			 $error = array('err_code'=>1, 'err_msg'=>'Invalid Password');  
                     }
                     
-                }  
+                } 
             }
 	    else{ 
                 $error = array('err_code'=>2, 'err_msg'=>'Error in fetching data');
             }
-            $resp=array();
+            
             $results = array('result'=>$resp, 'error'=>$error);  
              return $results;
             

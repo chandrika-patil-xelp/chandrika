@@ -1054,6 +1054,13 @@ case 'getUserdetailbymob':
         $res	=$obj->getUserDetailsbyinpt($params);
     break;
     
+  
+  
+     case 'checkpassw':
+        include APICLUDE.'class.addtocart.php';
+        $obj = NEW addtocart($db['jzeva']);
+        $res = $obj->checkpassw($params);
+  break;
   }
 echo json_encode($res);
 exit;

@@ -831,9 +831,9 @@
             
             $result = array(); 
             if ($res) {
-                $err = array('shipping_id' => $ship_id,'err_code' => 0, 'err_msg' => 'Data inserted successfully');
+                $err = array( 'err_code' => 0, 'err_msg' => 'Data inserted successfully');
             } else {
-                $err = array('shipping_id' => $ship_id,'err_code' => 1, 'err_msg' => 'Error in inserting');
+                $err = array( 'err_code' => 1, 'err_msg' => 'Error in inserting');
             }
             $results = array('result' => $result, 'error' => $err);
             return $results;
@@ -1405,26 +1405,13 @@
                 $error = array('Code' => 1, 'Msg' => 'Invalid parameter ');
                 $res = array('results' => $resp, 'error' => $error);
                 return $res;
-            }
-	     $flag=0;
-	    if (empty($params['email']) || $params['email']=='null')
-	    {    $flg=1;  
-	    } 
-	   else if (empty($params['mobile']) || $params['mobile']=='null')
-	   {    $flg=2; 
-	   }
-	    
+            } 
 	   
-	    $sql="select user_id,user_name,logmobile,email from tbl_user_master ";
-	    if($flg ==1){
-	      $sql.="where logmobile='".$params['mobile']."'";
-	    }
-	    else if($flg ==2){
-	      $sql.="where email='".$params['email']."'";
-	    }
-	    else{
+	    $sql="select user_id,user_name,logmobile,email,"
+		     ." (SELECT GROUP_CONCAT(cart_id) FROM tbl_cart_master WHERE userid =user_id) AS cart_id "
+		    . " from tbl_user_master "; 
 	      $sql.="where logmobile='".$params['mobile']."' OR email='".$params['email']."'";
-	    }
+	 
 	    $res=  $this->query($sql);
 	    if($res){
 	    
@@ -1433,6 +1420,7 @@
 	      $arr['user_name']=$row['user_name'];
 	      $arr['logmobile']=$row['logmobile'];
 	      $arr['email']=$row['email'];
+	       $arr['cart_id']=$row['cart_id'];
 	      $reslt[]=$arr;
 	    }
 	     $err = array('Code' => 0, 'Msg' => 'Data fetched successfully');
