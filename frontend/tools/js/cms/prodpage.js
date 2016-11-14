@@ -697,16 +697,16 @@ function getcatsize(s, m) {
             url: URL,
             success: function (res) {
                 dat = JSON.parse(res);
-               
+            
                 var strd="";
                 var str = "";
                 if(catname== 'Rings'){
-                 sizdefault = dat.result[20]['id'];
-                 sizdefaulval = dat.result[20]['sval'];
+                 sizdefault = dat.result[9]['id'];
+                 sizdefaulval = dat.result[9]['sval'];
             }else if(catname== 'Bangles'){
                 
-                 sizdefault = dat.result[1]['id']; 
-                sizdefaulval = dat.result[1]['sval'];
+                 sizdefault = dat.result[2]['id']; 
+                sizdefaulval = dat.result[2]['sval'];
             }
               
                 if (dat['error']['err_code'] == '0')
@@ -748,20 +748,20 @@ function calculatePrice()
  
     var currentSize=parseFloat($('#size').text().replace('Size ',''));
 
-    var mtlWgDav=0.05;
+    var mtlWgDav=0;
     var dmdPrice=0;
     var goldPrice=0;
    
     var dmdLength=$('input[name="selectM"]').length; 
     var bseSize=0;
     
-    if(catname == 'Rings')
+    if(catname == 'Rings'){
         bseSize = parseFloat(14);
-       
-    else if(catname == 'Bangles')
+        mtlWgDav = 0.05;
+    } else if(catname == 'Bangles'){
         bseSize = parseFloat(2.4);
-   
-        
+        mtlWgDav = 0.7;
+    }
        // console.log(currentSize +" 0")
    
     if(isNaN(currentSize))
