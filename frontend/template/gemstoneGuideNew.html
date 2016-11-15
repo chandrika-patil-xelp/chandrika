@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<?php include 'jhead.html' ?>
+<body class="Terms">
+    <?php include 'Cart.html'?>
+    <?php include 'header.html'?>
+    <?php include 'login.html'?>
+    <div class="fLeft gemBanner">
+        <div class="banner_over" id ="banner_over"></div>
+        <div class="termHeading"></div>
+    </div>
+    <div class="wrapper_main   fLeft">
+        <div class="container2 fLeft">
+            <div class="col100">
+                <div class="wrapper_max offsetTop offsetEffects transition600">
+                    <div class="tCommon fLeft">
+                        <div class="tHead fLeft">
+                            <div class="imgHead fLeft">ALEXANDRITE</div>
+                            <div class="imageCont satellite1 fLeft"></div>
+                        </div>
+                        <div class="fLeft pCont">
+                            <div class="fLeft subH mar0">Green in sunlight.Red in lamplight.Color - changing alexandrite is nature’s magic trick.</div>
+                            <div class="fLeft">It’s the color - change variety of the mineral, chrysoberyl.Bluish green in daylight, purplish red under incandescent light; hard and durable.Top quality examples are rare and valuable.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php include 'footer.html'?>
+    <?php include 'loader.html'?>
+    <script>
+        function loadComplete() {
+            $('.wrapper_max').removeClass('offsetEffects');
+        }
+        $(document).ready(function () {
+            load_page();
+        });
+        $(window).scroll(function () {
+            var sc = $('body').scrollTop();
+            var ht = $('.gemBanner').outerHeight(true) - 130;
+            if (ht > sc) {
+                var op = 1 - (ht - sc) / ht;
+                $('#banner_over').css({'opacity': op});
+
+            }
+            if (ht - sc <= 5) {
+                $('.header').addClass('black_bg');
+                console.log('if');
+            } else {
+                $('.header').removeClass('black_bg');
+                console.log('else');
+            }
+            //           if(ht-sc<=60){
+            //           console.log(sc);
+            //           $('.gemBanner').addClass('fixer');
+            //       }
+            //       else{
+            //            $('.gemBanner').removeClass('fixer');
+            //       }
+        });
+    </script>
+
+
+</body>
