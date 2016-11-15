@@ -473,6 +473,7 @@ img{width:100%;height:100%;border:0}
 .grid_cont{width:100%;height:calc(100vh - 180px);padding:0;background:#fff;white-space:nowrap;overflow:hidden;min-height:450px;}
 .grid3{width:auto;height:auto; max-height: 600px;display:inline-block;vertical-align:top; -webkit-transform-style: preserve-3d;transform-style: preserve-3d;border:1px solid transparent}
 .grid3:hover div{color:#fff;}
+.grid3:hover .gridRupee{background:url(../img/icons/519s15w.svg)no-repeat;  background-size: auto 10px;background-position: right center;}
 .grid3:nth-child(12n + 1){transition-delay:100ms;-webkit-transition-delay:100ms;-moz-transition-delay:100ms;-ms-transition-delay:100ms;-o-transition-delay:100ms;}
 .grid3:nth-child(12n + 2){transition-delay:200ms;-webkit-transition-delay:200ms;-moz-transition-delay:200ms;-ms-transition-delay:200ms;-o-transition-delay:200ms;}
 .grid3:nth-child(12n + 3){transition-delay:300ms;-webkit-transition-delay:300ms;-moz-transition-delay:300ms;-ms-transition-delay:300ms;-o-transition-delay:300ms;}
@@ -2284,37 +2285,37 @@ input[type=radio]:checked ~ .btncnt {
 .satellite2{background: url('../img/Satellite2.png')no-repeat;background-size: auto 70%;background-position: top;}
 .satellite3{background: url('../img/Satellite3.png')no-repeat;background-size: auto 70%;background-position: top;}
 .satellite4{background: url('../img/Satellite4.png')no-repeat;background-size:  auto 70%;background-position: top;}
-.satellite5{background: url('../img/Satellite5.png')no-repeat;background-size: initial;background-position: top;}
-.satellite6{background: url('../img/Satellite6.png')no-repeat;background-size: initial;background-position: top;}
-.satellite7{background: url('../img/Satellite7.png')no-repeat;background-size: initial;background-position: top;}
-.satellite8{background: url('../img/Satellite8.png')no-repeat;background-size: initial;background-position: top;}
-.satellite9{background: url('../img/Satellite9.png')no-repeat;background-size: initial;background-position: top;}
-.satellite10{background: url('../img/Satellite10.png')no-repeat;background-size: initial;background-position: top;}
-.satellite11{background: url('../img/Satellite11.png')no-repeat;background-size: initial;background-position: top;}
-.satellite12{background: url('../img/Satellite12.png')no-repeat;background-size: initial;background-position: top;}
-.satellite13{background: url('../img/Satellite13.png')no-repeat;background-size: initial;background-position: top;}
-.satellite14{background: url('../img/Satellite14.png')no-repeat;background-size: initial;background-position: top;}
-.satellite15{background: url('../img/Satellite15.png')no-repeat;background-size: initial;background-position: top;}
-.satellite16{background: url('../img/Satellite16.png')no-repeat;background-size: initial;background-position: top;}
-.satellite17{background: url('../img/Satellite17.png')no-repeat;background-size: initial;background-position: top;}
-.satellite18{background: url('../img/Satellite18.png')no-repeat;background-size: initial;background-position: top;}
-.satellite19{background: url('../img/Satellite19.png')no-repeat;background-size: initial;background-position: top;}
-.satellite20{background: url('../img/Satellite20.png')no-repeat;background-size: initial;background-position: top;}
-.satellite21{background: url('../img/Satellite21.png')no-repeat;background-size: initial;background-position: top;}
-.satellite22{background: url('../img/Satellite22.png')no-repeat;background-size: initial;background-position: top;}
-.satellite23{background: url('../img/Satellite23.png')no-repeat;background-size: initial;background-position: top;}
-.satellite24{background: url('../img/Satellite24.png')no-repeat;background-size: initial;background-position: top;}
-.satellite25{background: url('../img/Satellite25.png')no-repeat;background-size: initial;background-position: top;}
-.satellite26{background: url('../img/Satellite26.png')no-repeat;background-size: initial;background-position: top;}
-.satellite27{background: url('../img/Satellite27.png')no-repeat;background-size: initial;background-position: top;}
-.satellite28{background: url('../img/Satellite28.png')no-repeat;background-size: initial;background-position: top;}
-.satellite29{background: url('../img/Satellite29.png')no-repeat;background-size: initial;background-position: top;}
+.satellite5{background: url('../img/Satellite5.png')no-repeat;background-size: auto 70%;background-position: top;}
+.satellite6{background: url('../img/Satellite6.png')no-repeat;background-size: auto 70%;background-position: top;}
+.satellite7{background: url('../img/Satellite7.png')no-repeat;background-size: auto 70%;background-position: top;}
+.satellite8{background: url('../img/Satellite8.png')no-repeat;background-size: auto 70%;background-position: top;}
+.satellite9{background: url('../img/Satellite9.png')no-repeat;background-size:auto 70%;background-position: top;}
+.satellite10{background: url('../img/Satellite10.png')no-repeat;background-size: auto 70%;background-position: top;}
+.satellite11{background: url('../img/Satellite11.png')no-repeat;background-size: auto 70%;background-position: top;}
+.satellite12{background: url('../img/Satellite12.png')no-repeat;background-size: auto 70%;background-position: top;}
+.satellite13{background: url('../img/Satellite13.png')no-repeat;background-size: auto 70%;background-position: top;}
+.satellite14{background: url('../img/Satellite14.png')no-repeat;background-size: auto 70%;background-position: top;}
+.satellite15{background: url('../img/Satellite15.png')no-repeat;background-size: auto 70%;background-position: top;}
+.satellite16{background: url('../img/Satellite16.png')no-repeat;background-size: auto 70%;background-position: top;}
+.satellite17{background: url('../img/Satellite17.png')no-repeat;background-size: auto 70%;background-position: top;}
+.satellite18{background: url('../img/Satellite18.png')no-repeat;background-size: auto 70%;background-position: top;}
+.satellite19{background: url('../img/Satellite19.png')no-repeat;background-size: auto 70%;background-position: top;}
+.satellite20{background: url('../img/Satellite20.png')no-repeat;background-size: auto 70%;background-position: top;}
+.satellite21{background: url('../img/Satellite21.png')no-repeat;background-size: auto 70%;background-position: top;}
+.satellite22{background: url('../img/Satellite22.png')no-repeat;background-size: auto 70%;background-position: top;}
+.satellite23{background: url('../img/Satellite23.png')no-repeat;background-size: auto 70%;background-position: top;}
+.satellite24{background: url('../img/Satellite24.png')no-repeat;background-size: auto 70%;background-position: top;}
+.satellite25{background: url('../img/Satellite25.png')no-repeat;background-size: auto 70%;background-position: top;}
+.satellite26{background: url('../img/Satellite26.png')no-repeat;background-size: auto 70%;background-position: top;}
+.satellite27{background: url('../img/Satellite27.png')no-repeat;background-size: auto 70%;background-position: top;}
+.satellite28{background: url('../img/Satellite28.png')no-repeat;background-size: auto 70%;background-position: top;}
+.satellite29{background: url('../img/Satellite29.png')no-repeat;background-size: auto 70%;background-position: top;}
 
 
 .imageCont{width: 100%;height:200px;}
 .imgHead{color: #15181b;font-size: 14px;width: 100%;text-align: center;padding-top: 20px;font-size: 14px;font-family: semibold;letter-spacing: 0.35em;}
 .descHead{width:100%;height:30px;text-transform: uppercase;font-size: 14px;font-family: semibold;letter-spacing: 0.35em;line-height: 30px;}
-.hideDiv{width:0%;position:absolute;height:0px;background-color: #fff;}
+.hideDiv{width:0%;position:absolute;height:0px;background-color: #333;z-index: 20;}
 .try{width:1%;border:1px solid;}
 .imageOutr{width:25%;
     height: auto;
