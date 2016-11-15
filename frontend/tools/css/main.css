@@ -173,12 +173,10 @@ a{color:#666;}
 .cart_image{width:70px; height:70px;position:absolute;left:35px;top:20px;background:url("../img/jzeva1.png")no-repeat;background-size:140%;background-position:center -20px;}
 .cart_name{width:100%;line-height:24px;color:#fff;font-size: 12px;  font-family: bolder;  text-transform: uppercase;letter-spacing: 0.15em;}
 .cart_price{width:100%;font-family:light;color:#fff;font-size:13px;}
-.cartRupee{background: url(../img/icons/519w.svg);
-    background-repeat: no-repeat;
-    background-size: auto 24px;
-    background-position: left center;padding: 0px 25px;}
-.posbtn{position: relative;
-    top: 40px;}
+.cartRupee{background: url(../img/icons/519w.svg);background-repeat: no-repeat;background-size: auto 24px;background-position: left center;padding: 0px 25px;}
+.cartRup15{width: auto;background: url(../img/icons/519s15w.svg);background-repeat: no-repeat;background-size: auto 11px;background-position:left center;padding: 0px 15px;}
+.gridRupee{height: 15px;width: auto;background-size: auto 10px;background-position: right;background: url(../img/icons/519s15.svg)no-repeat;}
+.posbtn{position: relative;top: 40px;}
 .cart_foot{width:100%;position:absolute;bottom:0;height:50px;background:#2d2d2d;color:#fff;text-align:center;line-height:50px;cursor:pointer;font-size:18px;}
 .amt_selector{width:80px;height:20px;position:absolute;right:10px;bottom:30px;font-size:13px}
 .cart_remove{width:40px;height:40px;position:absolute;left:-10px; top: 0;bottom:0;margin:auto;cursor:pointer;background: url(../img/icons/remove.svg) no-repeat; background-size: 20px; background-position: center;}
@@ -2252,6 +2250,48 @@ input[type=radio]:checked ~ .btncnt {
     /* line-height: 60px; */
     background-color: #222529;
    padding: 20px 20px 15px 20px;color: #fff;}
+
+
+.satellite1{background: url('../img/Satellite1.png')no-repeat;background-size: initial;background-position: top;}
+.satellite2{background: url('../img/Satellite2.png')no-repeat;background-size: initial;background-position: top;}
+.satellite3{background: url('../img/Satellite3.png')no-repeat;background-size: initial;background-position: top;}
+.satellite4{background: url('../img/Satellite4.png')no-repeat;background-size: initial;background-position: top;}
+.satellite5{background: url('../img/Satellite5.png')no-repeat;background-size: initial;background-position: top;}
+.satellite6{background: url('../img/Satellite6.png')no-repeat;background-size: initial;background-position: top;}
+.satellite7{background: url('../img/Satellite7.png')no-repeat;background-size: initial;background-position: top;}
+.satellite8{background: url('../img/Satellite8.png')no-repeat;background-size: initial;background-position: top;}
+.satellite9{background: url('../img/Satellite9.png')no-repeat;background-size: initial;background-position: top;}
+.satellite10{background: url('../img/Satellite10.png')no-repeat;background-size: initial;background-position: top;}
+.satellite11{background: url('../img/Satellite11.png')no-repeat;background-size: initial;background-position: top;}
+.satellite12{background: url('../img/Satellite12.png')no-repeat;background-size: initial;background-position: top;}
+.satellite13{background: url('../img/Satellite13.png')no-repeat;background-size: initial;background-position: top;}
+.satellite14{background: url('../img/Satellite14.png')no-repeat;background-size: initial;background-position: top;}
+.satellite15{background: url('../img/Satellite15.png')no-repeat;background-size: initial;background-position: top;}
+.satellite16{background: url('../img/Satellite16.png')no-repeat;background-size: initial;background-position: top;}
+.satellite17{background: url('../img/Satellite17.png')no-repeat;background-size: initial;background-position: top;}
+.satellite18{background: url('../img/Satellite18.png')no-repeat;background-size: initial;background-position: top;}
+.satellite19{background: url('../img/Satellite19.png')no-repeat;background-size: initial;background-position: top;}
+.satellite20{background: url('../img/Satellite20.png')no-repeat;background-size: initial;background-position: top;}
+.satellite21{background: url('../img/Satellite21.png')no-repeat;background-size: initial;background-position: top;}
+.satellite22{background: url('../img/Satellite22.png')no-repeat;background-size: initial;background-position: top;}
+.satellite23{background: url('../img/Satellite23.png')no-repeat;background-size: initial;background-position: top;}
+.satellite24{background: url('../img/Satellite24.png')no-repeat;background-size: initial;background-position: top;}
+.satellite25{background: url('../img/Satellite25.png')no-repeat;background-size: initial;background-position: top;}
+.satellite26{background: url('../img/Satellite26.png')no-repeat;background-size: initial;background-position: top;}
+.satellite27{background: url('../img/Satellite27.png')no-repeat;background-size: initial;background-position: top;}
+.satellite28{background: url('../img/Satellite28.png')no-repeat;background-size: initial;background-position: top;}
+.satellite29{background: url('../img/Satellite29.png')no-repeat;background-size: initial;background-position: top;}
+
+
+.imageCont{width:100%;height: 200px;}
+.imgHead{color: #15181b;font-size: 14px;width: 100%;text-align: center;}
+.descHead{    width: 100%;
+    height: 30px;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-family: semibold;
+    letter-spacing: 0.35em;
+    line-height: 30px;}
 
 
 @media only screen and (min-width:320px) and (max-width:767px){
