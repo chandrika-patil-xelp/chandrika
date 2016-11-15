@@ -16,10 +16,10 @@
                 <div class="subTxt fLeft" id="forId"><span>Forgot Password?</span></div>
                 <div class="col100 fLeft posbtn">
                     <center>
-                        <div class="button actBtn transition300" id="log">SIGN IN</div>
-                    </center>
+                        <div class="button actBtn transition300" id="log">SIGN IN</div>  
+                     </center>
                 </div>
-                <div class="fLeft col100 signupTxt">Dont have account?<span>Signup</span></div>
+                <div class="fLeft col100 signupTxt">Dont have account?<span id="signinbtn">Signup</span></div>
             </div>
             <div class="closeLogin"></div>
         </div>
@@ -91,19 +91,20 @@
                     <div class="inp_label">Please enter the otp</div>
                 </div>
                 <div class="fLeft col100">
-                    <center>
+                    <center> 
+                      
                         <div class="col50 fLeft">
-                            <div class="button actBtn transition300">RESEND</div>
+                            <div class="button actBtn transition300" id="resnd_otp">RESEND</div>
                         </div>
                         <div class="col50 fRight">
                             <div class="button actBtn transition300" id="signup_submt">SUBMIT</div>
                         </div>
-
+ 
                     </center>
                 </div>
             </div>
-            <div class="closeLogin"></div>
-            <div class="goBack" id="otp2pg_bak"></div>
+            <div class="closeLogin"></div>  
+            <div class="goBack" id="otp2pg_bak"></div> 
         </div>
         <div class="outerContr dn" id="resetId">
             <div class="loginCont fLeft" id="inresetId">
@@ -188,7 +189,7 @@
         function resetSubmit() {
             $('#resetId').addClass("dn");
             $('#inresetId').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-            $('#signInId').removeClass("dn");
+            $('#otpOuter').addClass("dn");
             $('#loginId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
         }
 
@@ -216,8 +217,8 @@
         function resetBack() {
             $('#resetId').addClass("dn");
             $('#inresetId').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-            $('#otpOuter2').removeClass("dn");
-            $('#otpCont2').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+            $('#otpOuter').removeClass("dn");
+            $('#otpCont').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
         }
 
         function forgotBack() {
@@ -226,53 +227,8 @@
 //            $('#signInId').removeClass("dn");
             $('#loginId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
         }
-
-        $('#forId').click(function () {
-            forgot();
-        });
-
-        $("#fsubId").click(function () {
-            fSubmit();
-        });
-
-        $('.signupTxt span').click(function () {
-            signup();
-        });
-
-        $('#rsubId').click(function () {
-            signupSubmit();
-        });
-
-        /*signup otp submit*/
-        $('#signup_submt').click(function () {
-            signupOtpSubmit();
-        });
-
-        $('#respsssub').click(function () {
-            resetSubmit();
-        });
-
-        $('#otppg_bak').click(function () {
-            otpBack();
-        });
-
-        $('#sig_pgbak').click(function () {
-            signupBack();
-        });
-
-        $('#otp2pg_bak').click(function () {
-            otp2Back();
-        });
-
-        $('#resetpg_bak').click(function () {
-            resetBack();
-        });
-
-        $('#frgpw_bak').click(function () {
-            forgotBack();
-        });
-
-
+  
+ 
 
         function openPopUp() {
             $('.overlay').velocity({opacity: [1, 0]});
@@ -298,8 +254,16 @@
             $('.outerContr').css("z-index", "203", "opacity", "0");
             $('.outerContr').velocity({translateY: ['150%', 0]}, {duration: 150, delay: 100, easing: ''});
             $('.fade').fadeIn();
+        }); 
+        $('.goBack').click(function () {
+//            $(this).parent().addClass("dn");
+//            var backId = $(this).parent().children('.loginCont').attr("id");
+//            $('#' + backId).velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+//            $(this).parent().prev().removeClass("dn");
+//            $(this).parent().prev().children(':first-child').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+//        $('#loginId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
         });
-
+	  
 //        $('#frgpw_bak').click(function () {
 //            $(this).parent().addClass("dn");
 //            var backId = $(this).parent().children('.loginCont').attr("id");
@@ -312,9 +276,9 @@
 
 
 
-
+ 
     </script>
-    <!--<script type="text/javascript" src="<?php echo $jvs['login']; ?>"></script>-->
+    <script type="text/javascript" src="<?php echo $jvs['login']; ?>"></script>
     <script type="text/javascript" src="<?php echo $fcss['main']; ?>"></script>
 
 </body>
