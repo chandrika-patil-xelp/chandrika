@@ -14,9 +14,8 @@ if ($params['debug']) {
     echo "</pre>";
 }
 
-
-
 switch ($action) {
+    
     case 'icons':
         $page = 'Icons';
         include 'icons.html';
@@ -215,5 +214,36 @@ switch ($action) {
         $page = 'conciergeServices';
         include TEMPLATE . 'conciergeServices.html';
         break;
+      case 'gemstonenew':
+        $page = 'gemstonenew';
+        include TEMPLATE . 'gemstonenew.html';
+        break;
+     case 'logintest':
+        $page = 'logintest';
+        include TEMPLATE . 'logintest.html';
+        break;
+     case 'ourPromise':
+        $page = 'ourPromise';
+        include TEMPLATE . 'ourPromise.html';
+        break;
+    case 'ourStory':
+        $page = 'ourStory';
+        include TEMPLATE . 'ourStory.html';
+        break;
+     case 'craftsmanship':
+        $page = 'craftsmanship';
+        include TEMPLATE . 'craftsmanship.html';
+        break;
+    case 'craftsmanship':
+        $page = 'craftsmanship';
+        include TEMPLATE . 'craftsmanship.html';
+        break;
+    
+    
+     case 'gemstoneGuideNew':
+        $page = 'gemstoneGuideNew';
+        include TEMPLATE . 'gemstoneGuideNew.html';
+        break;
+    
 }
 ?>
