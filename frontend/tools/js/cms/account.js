@@ -1,10 +1,20 @@
 
 $(document).ready(function(){
-   
-   displayorders();
-   wishlist();
-   persnlInfo();
-   storenewpass();
+ 
+    displayorders();
+    wishlist();
+    persnlInfo();
+    
+   if(actn == 'pId')
+        perninfo();
+   else if(actn == 'oId')
+	ordrinfo(); 
+   else if(actn == 'sId')
+	saveadrinfo();
+   else if(actn == 'cId')
+	chngpasrd();  
+   else if(actn == 'wId')
+	 whlist();   
 });
 
 function displayorders()
@@ -22,7 +32,7 @@ function displayorders()
 	 	    success: function(results)
 	 	    {
 		      var obj=JSON.parse(results);
-                    
+                 
                       $(obj['result']).each(function(r,v){
                           
                        var ordrId = $('#ordId').html(v.oid);
@@ -181,7 +191,7 @@ function wishlist()
 		      var obj=JSON.parse(res);
                       var wishStr="";
                        $(obj['result']).each(function(s,j){
-                           console.log(j);
+                         
                            var xyz=j.prdimage; xyz=xyz.split(',');
 			    xyz=IMGDOMAIN+xyz[5];
                             
@@ -238,7 +248,7 @@ function wishlist()
                      
                         var profileStr="";
                        $(obj['result']).each(function(k,l){
-                       console.log(l);
+                     
                           profileStr+= '<div class="proFields">'+l.uname+'</div>';
                           profileStr+= '<div class="proFields">'+l.mob+'</div>';   
                           profileStr+='<div class="proFields">'+l.email+'</div>';
@@ -249,35 +259,15 @@ function wishlist()
                     });
       }
       
-function storenewpass()
+function storenewpass(newpass)
  {
-   
-    $('#resetpass').click(function(){
-        var newpass = $("#newpass").val();
-   var cpass = $("#cpass").val();
-   var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
-    var validationFlag=1;
-   if(newpass ===''|| newpass === null){
-      //  common.toast(0, 'Please enter your Password');
-       alert('Please Enter Your New Password');
-        validationFlag=0;
-        return false;
-    }
-    else if(cpass===''|| cpass=== null){
-       // common.toast(0, 'Please enter the confirm password');
-        alert('Please Enter the Confirm password');
-        validationFlag=0;
-        return false;
-    }
-    if(newpass !== cpass){
-      alert('Password Does Not Match');
-    }
-    else{
-      alert('Password Match');
-      getuserdetail(newpass);
-    }
-});
-    
+    var userid=common.readFromStorage('jzeva_uid'); 
+    var mob=common.readFromStorage('jzeva_mob');
+     var URL= APIDOMAIN + "index.php/?action=updateuserpass&user_id="+userid+"&pass="+newpass+"&mobile="+mob; 
+     $.ajax({  type:'POST',  url:URL, success:function(res){ 
+	        common.msg(1,'Password Changed Successfully');   
+	   }
+       });  
  }
  
  function getuserdetail(pass)
@@ -290,7 +280,7 @@ function storenewpass()
 	 	    datatype: "JSON",
 	 	    success: function(res)
 	 	    { 
-		     var data=JSON.parse(res);  console.log(data);
+		     var data=JSON.parse(res);   
 		     var email=data.result['email'];
 		     var mobile=data.result['mobile'];
 		     var user_id=data.result['user_id'];
@@ -299,7 +289,7 @@ function storenewpass()
 			     type:'POST',
 			     url:URLreg,
 			     success:function(res){
-			    console.log(res);
+			   
                             alert('password reset successfully');
 			  }
 			});
@@ -310,4 +300,108 @@ function storenewpass()
     
  }
  
+   $('#restpas').click(function(){
+      
+      var oldpas=$('#oldpass').val();
+      var newpass = $("#newpass").val();
+      var cpass = $("#cpass").val();
+      var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
+      var validationFlag=1;
+      
+      var mobl=common.readFromStorage('jzeva_mob');
+      var URL = APIDOMAIN + "index.php?action=checkpassw&pass="+oldpas+"&mob="+mobl;  
+      $.ajax({  url: URL,  type: "GET",   datatype: "JSON", success: function(results)  {
+	var obj=JSON.parse(results);  
+	if(obj['error']['err_code'] == 0){ 
+	      if(newpass ===''|| newpass === null){ 
+		  validationFlag=0;
+		  common.msg(0,'Please Enter Your New Password');
+	      }
+	      else if(cpass===''|| cpass=== null){ 
+		 validationFlag=0;
+		  common.msg(0,'Please Enter the Confirm password');
+	      }
+	      if(newpass !== cpass){
+		common.msg(0,'Password Does Not Match');
+	      }
+	      else{
+		if( validationFlag == 1) 
+	        storenewpass(newpass); 
+	      }
+	}
+	else if(obj['error']['err_code'] == 1)
+	  common.msg(0,'Please Enter Correct password');
+	else if(obj['error']['err_code'] == 2)
+	   common.msg(0,obj['error']['err_msg']);
+      }
+    }); 
+  }); 
   
+  $('#pId').click(function () {
+    perninfo();
+    });
+ 
+  $('#oId').click(function () {
+       ordrinfo();                                                   
+  });
+	
+  $('#sId').click(function () {
+      saveadrinfo();
+  });
+  
+  $('#cId').click(function () {
+     chngpasrd();                     
+  });
+  
+  $('#wId').click(function () {
+     whlist();                                                  
+  });
+  
+  function ordrinfo()
+   {
+      $('#myordId').removeClass("dn");
+      $('#profileId').addClass("dn");
+      $('#editpId').addClass("dn");
+      $('#saveAddrId').addClass("dn");
+      $('#pChange').addClass("dn");
+      $('#wishlistId').addClass("dn");
+   }
+   
+  function perninfo(){
+      $('#myordId').addClass("dn");
+      $('#profileId').removeClass("dn");
+      $('#editpId').addClass("dn");
+      $('#saveAddrId').addClass("dn");
+      $('#pChange').addClass("dn");
+      $('#wishlistId').addClass("dn");
+  }
+  
+  function saveadrinfo()
+  {
+    $('#saveAddrId').removeClass("dn");
+    $('#myordId').addClass("dn");
+    $('#profileId').addClass("dn");
+    $('#editpId').addClass("dn");
+    $('#pChange').addClass("dn");
+    $('#wishlistId').addClass("dn");
+  }
+  
+  function chngpasrd()
+  {
+    $('#pChange').removeClass("dn");
+    $('#myordId').addClass("dn");
+    $('#profileId').addClass("dn");
+    $('#editpId').addClass("dn");
+    $('#saveAddrId').addClass("dn");
+    $('#wishlistId').addClass("dn");
+  }
+  
+  function whlist()
+  {
+    $('#wishlistId').removeClass("dn");
+    $('#myordId').addClass("dn");
+    $('#profileId').addClass("dn");
+    $('#editpId').addClass("dn");
+    $('#saveAddrId').addClass("dn");
+    $('#pChange').addClass("dn");
+  }

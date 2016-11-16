@@ -111,26 +111,26 @@
                 <div class="menu_elm">
                     <div class="col33 fLeft">
                         <div class="col100 fLeft">
-                            <a  target="_blank" href='<?php echo DOMAIN?>index.php?action=myaccount'><div class="menu_list fLeft">my orders</div></a>
+                            <a  target="_blank" href='<?php echo DOMAIN?>index.php?action=myaccount&actn=oId'><div class="menu_list fLeft">my orders</div></a>
                         </div>
                         <div class="col100 fLeft">
-                            <a  target="_blank" href='<?php echo DOMAIN?>index.php?action=myaccount'><div class="menu_list fLeft">wishlist</div></a>
-                        </div>
-                    </div>
-                    <div class="col33 fLeft">
-                        <div class="col100 fLeft">
-                            <a  target="_blank" href='<?php echo DOMAIN?>index.php?action=myaccount'><div class="menu_list fLeft">personnal info</div></a>
-                        </div>
-                        <div class="col100 fLeft">
-                            <a  target="_blank" href='<?php echo DOMAIN?>index.php?action=myaccount'><div class="menu_list fLeft">change password</div></a>
+                            <a  target="_blank" href='<?php echo DOMAIN?>index.php?action=myaccount&actn=wId'><div class="menu_list fLeft">wishlist</div></a>
                         </div>
                     </div>
                     <div class="col33 fLeft">
                         <div class="col100 fLeft">
-                            <a  target="_blank" href='<?php echo DOMAIN?>index.php?action=myaccount'><div class="menu_list fLeft">saved addresses</div></a>
+                            <a  target="_blank" href='<?php echo DOMAIN?>index.php?action=myaccount&actn=pId'><div class="menu_list fLeft">personnal info</div></a>
                         </div>
                         <div class="col100 fLeft">
-                            <a  target="_blank" href='<?php echo DOMAIN?>index.php?action=myaccount'><div class="menu_list fLeft">Logout</div></a>
+                            <a  target="_blank" href='<?php echo DOMAIN?>index.php?action=myaccount&actn=cId'><div class="menu_list fLeft">change password</div></a>
+                        </div>
+                    </div>
+                    <div class="col33 fLeft">
+                        <div class="col100 fLeft">
+                            <a  target="_blank" href='<?php echo DOMAIN?>index.php?action=myaccount&actn=sId'><div class="menu_list fLeft">saved addresses</div></a>
+                        </div>
+                        <div class="col100 fLeft">
+                            <a  href='<?php echo DOMAIN?>index.php?action=landing_page'><div class="menu_list fLeft" id="usrlogout">Logout</div></a>
                         </div>
                     </div>
                 </div>
@@ -138,6 +138,7 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="<?php echo $jvs['header']; ?>"></script>
 <script>
     /*Overlay fade in/out  on menu hover*/ 
     $('.tabWrap').mouseover(function () {
@@ -146,9 +147,27 @@
   
     /*Main menu slidedown/slideup , Menu tab colour change*/
     $('.tabB').mouseover(function () {
-        $('.overlay').stop(true, true).fadeTo(200, 1);
-        $('.tab').removeClass('selec');
-        $('.menu_wrap').velocity('stop').velocity({height: [180]}, {duration: 200, easing: 'ease-in-out', display: 'block'});
+       var userid=common.readFromStorage('jzeva_uid');  
+       if($(this).attr('id') == 'userProfId')
+        {    
+            if(userid == null)
+            {     
+              $('.overlay').stop(true, true).fadeTo(200, 1);
+              $('.tab').removeClass('selec');
+              $('.menu_wrap').velocity('stop').velocity({height: [0]}, {duration: 200, easing: 'ease-in-out', display: 'block'});
+            }
+	    else{
+	       $('.overlay').stop(true, true).fadeTo(200, 1);
+              $('.tab').removeClass('selec');
+              $('.menu_wrap').velocity('stop').velocity({height: [180]}, {duration: 200, easing: 'ease-in-out', display: 'block'});
+             }
+        }
+        else
+        { 
+	    $('.overlay').stop(true, true).fadeTo(200, 1);
+	    $('.tab').removeClass('selec');
+	    $('.menu_wrap').velocity('stop').velocity({height: [180]}, {duration: 200, easing: 'ease-in-out', display: 'block'});
+	}
     });
     $('.tabWrap').mouseleave(function () {
         $('.overlay').stop(true, true).fadeTo(200, 0);
@@ -163,7 +182,7 @@
     $('.tab').mouseenter(function () {
         
         var k = $(this).closest('.tabB').index();
-        //   console.log(k);
+       
         $('.menu_elm').css({'z-index': '50'}).removeClass('tab_select').addClass('remo');
         $('.menu_elm').eq(k).css({'z-index': '9999'}).addClass('tab_select').removeClass('remo');
         $('.menu_elm').eq(k).stop(true, true).slideDown(200, function () {
@@ -189,7 +208,7 @@
     var fr = 0;
     var cartF = 0;
     $('.openC').click(function () {
-        console.log();
+        
         if (cartF == 0) {
             openCart();
             cartF = 1;
@@ -256,5 +275,12 @@
         window.location.href = DOMAIN + "index.php?action=landing_page";
     });
  
+    $('#usrlogout').click(function(){ 
+      common.removeFromStorage('jzeva_email');
+      common.removeFromStorage('jzeva_name');
+      common.removeFromStorage('jzeva_uid');
+      common.removeFromStorage('jzeva_mob');
+      common.removeFromStorage('jzeva_cartid'); 
+    });
      
 </script>

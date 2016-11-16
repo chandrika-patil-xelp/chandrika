@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <?php include 'jhead.html' ?>
+<script>
+  var actn="<?php echo $_GET['actn'];  ?>";
+  </script>
 <body class="Terms myaccount">
     <?php include 'Cart.html'?>
     <?php include 'header.html'?>
@@ -430,21 +433,21 @@
                         <div class="fLeft orderCommon dn" id='pChange'>
                             <div class="fLeft tabHead txt_left mBot15">Change Password</div>
                             <div class="col50 fLeft">
-                                <!--                                <div class="txtB fLeft">
-                                                                    <input type="text" class="inp_box " maxlength="30">
+                                                                <div class="txtB fLeft">
+                                                                    <input type="password" class="inp_box " id="oldpass" maxlength="30">
                                                                     <div class="inp_label">Old Password</div>
-                                                                </div>-->
+                                                                </div> 
                                 <div class="txtB fLeft">
-                                    <input type="text" class="inp_box " id="newpass" maxlength="30">
+                                    <input type="password" class="inp_box " id="newpass" maxlength="30">
                                     <div class="inp_label">New Password</div>
                                 </div>
                                 <div class="txtB fLeft">
-                                    <input type="text" class="inp_box " id="cpass" maxlength="30">
+                                    <input type="password" class="inp_box " id="cpass" maxlength="30">
                                     <div class="inp_label">Confirm Password</div>
                                 </div>
                                 <div class="filterSec fLeft">
                                     <center>
-                                        <div class="button actBtn transition300" id="resetpass">SUBMIT</div>
+                                        <div class="button actBtn transition300" id="restpas">SUBMIT</div>
                                     </center>
                                 </div>
                             </div>
@@ -616,7 +619,7 @@
                                                         var lastfID = "";
                                                         $('.fCommon').click(function () {
                                                             var fooID = $(this).attr("id");
-                                                            console.log(fooID);
+                                                          
                                                             $('#' + fooID).addClass('jzevaColor');
 
                                                             if (lastfID !== fooID) {
@@ -624,25 +627,7 @@
                                                             }
                                                             lastfID = fooID;
                                                         });
-
-
-
-                                                        $('#pId').click(function () {
-                                                            $('#myordId').addClass("dn");
-                                                            $('#profileId').removeClass("dn");
-                                                            $('#editpId').addClass("dn");
-                                                            $('#saveAddrId').addClass("dn");
-                                                            $('#pChange').addClass("dn");
-                                                            $('#wishlistId').addClass("dn");
-                                                        });
-                                                        $('#oId').click(function () {
-                                                            $('#myordId').removeClass("dn");
-                                                            $('#profileId').addClass("dn");
-                                                            $('#editpId').addClass("dn");
-                                                            $('#saveAddrId').addClass("dn");
-                                                            $('#pChange').addClass("dn");
-                                                            $('#wishlistId').addClass("dn");
-                                                        });
+ 
                                                         $('#edId').click(function () {
                                                             $('#profileId').addClass("dn");
                                                             $('#editpId').removeClass("dn");
@@ -650,44 +635,20 @@
                                                             $('#pChange').addClass("dn");
                                                             $('#wishlistId').addClass("dn");
                                                         });
-                                                        $('#sId').click(function () {
-                                                            $('#saveAddrId').removeClass("dn");
-                                                            $('#myordId').addClass("dn");
-                                                            $('#profileId').addClass("dn");
-                                                            $('#editpId').addClass("dn");
-                                                            $('#pChange').addClass("dn");
-                                                            $('#wishlistId').addClass("dn");
-                                                        });
-                                                        $('#cId').click(function () {
-                                                            $('#pChange').removeClass("dn");
-                                                            $('#myordId').addClass("dn");
-                                                            $('#profileId').addClass("dn");
-                                                            $('#editpId').addClass("dn");
-                                                            $('#saveAddrId').addClass("dn");
-                                                            $('#wishlistId').addClass("dn");
-                                                        });
-                                                        $('#wId').click(function () {
-                                                            $('#wishlistId').removeClass("dn");
-                                                            $('#myordId').addClass("dn");
-                                                            $('#profileId').addClass("dn");
-                                                            $('#editpId').addClass("dn");
-                                                            $('#saveAddrId').addClass("dn");
-                                                            $('#pChange').addClass("dn");
-                                                        });
-
+                                                        
+                                                         
                                                         $('.button').click(function () {
                                                             var trkID = $(this).attr('id');
-//            console.log(trkID);
-                                                            var trackTxt = $(this).text();
-//            console.log(trackTxt);
+                                                             var trackTxt = $(this).text();
+ 
                                                             var cls = "see less";
                                                             var trk = "track";
                                                             if (($('#' + trkID).html()) === "track") {
-                                                                console.log($('#' + trkID).parent());
+                                                               
                                                                 $('#' + trkID).html(cls);
                                                                 $('#' + trkID).parent().parent().parent().next().slideDown(400);
                                                             } else {
-                                                                console.log(trkID);
+                                                            
                                                                 $('#' + trkID).html(trk);
                                                                 $('#' + trkID).parent().parent().parent().next().slideUp(400);
                                                             }
@@ -715,7 +676,7 @@
                                                         $('.plusHolder').click(function () {
                                                             var boxId = $(this).attr("id");
                                                             if ($("#" + boxId).hasClass("plusBox")) {
-                                                                console.log(boxId);
+                                                            
                                                                 $("#" + boxId).removeClass("plusBox");
                                                                 $("#" + boxId).addClass("minusBox");
                                                                 $("#" + boxId).siblings('.vatTxt').removeClass("dn");
@@ -730,7 +691,7 @@
                                                         $('.addrEditCnt').click(function () {
                                                             var boxId = $(this).attr("id");
                                                             if ($("#" + boxId).hasClass("plusBlack")) {
-                                                                console.log(boxId);
+                                                         
                                                                 $("#" + boxId).removeClass("plusBlack");
                                                                 $("#" + boxId).addClass("minusBlack");
                                                                 $("#" + boxId).parent().siblings('#openAddrId').removeClass("dn");
@@ -758,10 +719,10 @@
                                                             }
                                                             if (ht - sc <= 5) {
                                                                 $('.header').addClass('black_bg');
-                                                                console.log('if');
+                                                               
                                                             } else {
                                                                 $('.header').removeClass('black_bg');
-                                                                console.log('else');
+                                                               
                                                             }
                                                             //           if(ht-sc<=60){
                                                             //           console.log(sc);
