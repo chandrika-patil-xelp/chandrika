@@ -2,16 +2,13 @@
 var gblcheckodata,bakflag=0,totalprice=0,shipngdata={},validationFlag=1,logotpflag=0, mobileno,contnu_enble=0,inp_data,shipng_id; 
  
 $(document).ready(function(){ 
-    
+ 
   var userid=common.readFromStorage('jzeva_uid'); 
-  if(userid !== null){
-//   dfltscndopn();
+  if(userid !== null){ 
   openfst();
    displayaddrs(userid);
   }
-  else{
-  //   openfst(); 
-   
+  else{ 
   closeThrd();
   }
   
@@ -25,54 +22,81 @@ function displaycartdetail()
   $('.jwlCnt').html("");
   totalprice=0;
   var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id="+cartid+"&userid="+userid+"";  
-	       $.ajax({
-	 	    url: URL,
-	 	    type: "GET",
-	 	    datatype: "JSON",
-	 	    success: function(results)
-	 	    {
+  $.ajax({ url: URL, type: "GET",  datatype: "JSON", success: function(results)  {
 		      var obj=JSON.parse(results); 
 	       	      gblcheckodata=obj.result;    
 		      $(obj.result).each(function(r,v){
-			if(v.default_img!== null){
+		      if(v.default_img!== null){
 			   abc=IMGDOMAIN + v.default_img;
-			}
-			else{
-			   var abc=v.prdimage; abc=abc.split(','); 
-			    abc=IMGDOMAIN+abc[5];
-			}
-			totalprice+=parseInt(v.price); 
-		
+		      }
+		      else{
+			  var abc=v.prdimage; abc=abc.split(','); 
+			  abc=IMGDOMAIN+abc[5];
+		      }
+		      totalprice+=parseInt(v.price);  
+		      var wht;
+		      if(v.ccatname !== null){
+                        wht=getweight(v.size,v.ccatname,v.metal_weight);     
+		      }
+		      else{
+                        wht=v.metal_weight; 
+		      }
+		 
 var chckoutstr=" <div class='jwlCntdtls fLeft regular'>";
     chckoutstr+="  <div class='clsePrdct' id='"+v.product_id+"_"+r+"_"+v.col_car_qty+"_"+v.cart_id+"'";
     chckoutstr+="  onclick='remove(this)'></div>";
     chckoutstr+=" <div class='ordrJwl' style='background-image:url("+abc+")'> </div>";
     chckoutstr+=" <div class='jwlryDtls fLeft'> <div class='w60 fLeft'>" ;
     chckoutstr+=" <div class='text fLeft bolder'>"+v.prdname+"</div>";
-    chckoutstr+="<div class='text fLeft'>"+v.color+" "+v.jewelleryType+" "+v.carat+",Diamond "+v.dmdcarat+"</div>";
+    chckoutstr+="<div class='text fLeft'>"+v.color+" "+v.jewelleryType+" "+wht+" gms,Diamond "+v.dmdcarat+"</div>";
     chckoutstr+=" <div class='text fLeft'>";
     chckoutstr+="<span>Quality :"+v.quality+"</span>";
     chckoutstr+="<span class='spanl'>Purity -"+v.carat+"</span>";
     chckoutstr+="</div>";
     chckoutstr+=" <div class='text fLeft'>";
     chckoutstr+="<span>Color :"+v.color+"</span>";
-    chckoutstr+="<span class='spanl'>Size - 28</span></div>";
-    chckoutstr+=" </div>";
+     if(v.ccatname !== null)
+    chckoutstr+="<span class='spanl'>Size - "+v.size+"</span>";
+    chckoutstr+="</div> </div>";
     chckoutstr+="  <div class='w40 fLeft'>";
-    chckoutstr+="  <div class='text fLeft' id='item_amt'>₹ "+parseInt(v.price)+"</div>";
+    chckoutstr+="  <div class='text fLeft' id='item_amt'>₹ "+indianMoney(parseInt(v.price))+"</div>";
     chckoutstr+=" <div class='pCount fLeft'> ";
-    chckoutstr+="<center><a href='#' onclick='subqnty(this)'  id='sub_"+v.product_id+"_"+r+"_"+v.col_car_qty+"_"+v.cart_id+"'> <div class='incr icnMns'></div></a> ";
+    chckoutstr+="<center> <div class='incr icnMns'  onclick='subqnty(this)'  id='sub_"+v.product_id+"_"+r+"_"+v.col_car_qty+"_"+v.cart_id+"'></div>";
     chckoutstr+=" <div class='pNumber light'>"+v.pqty+"</div>";
-    chckoutstr+=" <a href='#' id='add_"+v.product_id+"_"+r+"_"+v.col_car_qty+"_"+v.cart_id+"' onclick='addqnty(this)'> <div class='incr  icnPls'></div></a>";
+       chckoutstr+="  <div class='incr  icnPls' id='add_"+v.product_id+"_"+r+"_"+v.col_car_qty+"_"+v.cart_id+"' onclick='addqnty(this)'></div>"; 
     chckoutstr+=" </center></div>  </div> </div></div>";
     r++;
      $('.jwlCnt').append(chckoutstr);
 		      });  
-		      $('.prcTxt').html("₹ "+totalprice);
+		      $('.prcTxt').html("₹ "+indianMoney(totalprice));
 		    }
 		  }); 
 }
   
+function getweight(currentSize,catName,storedWt)
+{   
+    var mtlWgDav=0;  
+    var bseSize=0;  
+    if(catName.toLowerCase() == 'rings'){
+         bseSize = parseFloat(14);
+         mtlWgDav = 0.05;}
+    else if(catName.toLowerCase() == 'bangles'){
+         bseSize = parseFloat(2.4);
+          mtlWgDav = 7;
+    } 
+    if(isNaN(currentSize))
+    { 
+        if(catName == 'Rings')
+        currentSize = parseFloat(14); 
+        else if(catName == 'Bangles')
+            currentSize = parseFloat(2.4);
+        else if(catName !== 'Rings' && catName !== 'Bangles')
+            currentSize =0; 
+    } 
+    var changeInWeight=(currentSize-bseSize)*mtlWgDav;  
+    var newWeight=(parseFloat(storedWt)+parseFloat(changeInWeight)).toFixed(3);  
+    return newWeight; 
+} 
   
   function remove(el){
      var yesno=confirm('Are u sure Do you want to remove This item');
@@ -82,15 +106,11 @@ var chckoutstr=" <div class='jwlCntdtls fLeft regular'>";
 	var a=id.split('_');
         var col_car_qty=a[2],product_id=a[0],cartid=a[3];
         var URL = APIDOMAIN+"index.php?action=removeItemFromCart&col_car_qty="+col_car_qty+"&pid="+product_id+"&cartid="+cartid; 
-	$.ajax({
-	      type:'POST',
-	      url:URL,
-	      success:function(res){
-	          displaycartdetail();
-		//$(".cart_gen").show();  
+	$.ajax({ type:'POST',  url:URL, success:function(res){
+	          displaycartdetail(); 
 	      }
           });
-      }
+     }
   }
   
    function addqnty(ths)
@@ -106,7 +126,7 @@ var chckoutstr=" <div class='jwlCntdtls fLeft regular'>";
 	 totalprice+=price;
         j++;
         price=price*j; 
-	$(e2).html("₹ "+price);
+	$(e2).html("₹ "+indianMoney(price));
         $(e2).digits();
         $(e).html(j);
     var ids=$(ths).attr('id'); ids=ids.split('_'); var pid=ids[1]; var col_car_qty=ids[3];var cart_id=ids[4]; 
@@ -117,8 +137,9 @@ var chckoutstr=" <div class='jwlCntdtls fLeft regular'>";
 	dat['cartid']=v.cart_id;    dat['pid']=v.product_id;
 	dat['userid']=v.userid;     dat['col_car_qty']=v.col_car_qty;
 	dat['qty']=j;		       dat['price']=price;  
+	dat['RBsize']=v.size;
 	   storecartdata(dat);  
-	   $('.prcTxt').html("₹ "+totalprice);
+	   $('.prcTxt').html("₹ "+indianMoney(totalprice));
       }
      }); 
    }
@@ -137,7 +158,7 @@ var chckoutstr=" <div class='jwlCntdtls fLeft regular'>";
 	     totalprice-=price;
 	    j--;
 	    price=price*j;
-	    $(e2).html("₹ "+price);
+	    $(e2).html("₹ "+indianMoney(price));
             $(e2).digits();
 	    $(e).html(j);
       } 
@@ -149,8 +170,9 @@ var chckoutstr=" <div class='jwlCntdtls fLeft regular'>";
 	dat['cartid']=v.cart_id;    dat['pid']=v.product_id;
 	dat['userid']=v.userid;     dat['col_car_qty']=v.col_car_qty;
 	dat['qty']=j;		       dat['price']=price;  
+	dat['RBsize']=v.size;
 	  storecartdata(dat); 
-	 $('.prcTxt').html("₹ "+totalprice);
+	 $('.prcTxt').html("₹ "+indianMoney(totalprice));
       }
      }); 
   }
@@ -160,13 +182,8 @@ var chckoutstr=" <div class='jwlCntdtls fLeft regular'>";
     var URL= APIDOMAIN + "index.php?action=addTocart";
     var data=cartdata; 
     var  dt = JSON.stringify(data);
-	$.ajax({
-	    type:"post",
-	    url:URL,
-	    data: {dt: dt},
-	    success:function(data){
-		 // console.log(data);  
-		//    displaycartdetail(); 
+    $.ajax({  type:"post", url:URL, data: {dt: dt},  success:function(data){
+		 // console.log(data); 
             }
         });	 
 }
@@ -175,12 +192,12 @@ function checkotp(inptmob,otp)
 {
  
   var URL= APIDOMAIN + "index.php/?action=checkopt&mobile="+inptmob+"&otpval="+otp;  
-	     $.ajax({  url: URL,  type: "GET",  datatype: "JSON",  success: function(results)   {
+  $.ajax({  url: URL,  type: "GET",  datatype: "JSON",  success: function(results)   {
 		      var obj=JSON.parse(results); 
 		      var data=obj.result;
 		      if(data !== undefined){
 			if(data.otp==null){
-			  alert('time is over plz try it again');
+			  common.msg(0,'time is over plz try it again');
 			  $('.matchIcn').addClass('dn');
 			  $('.unmatchIcn').removeClass('dn');
 			}
@@ -198,13 +215,13 @@ function checkotp(inptmob,otp)
 			  $('#paswrd2id').removeClass('dn');	
 			  $('#resend_otp').addClass('dn');
 			  $('#otp_countn').removeClass('dn');
-			  //alert('otp is correct');  
+			  //common.msg(0,'otp is correct');  
 			}
 		      }
 		      else{
 			$('.matchIcn').addClass('dn');
 			$('.unmatchIcn').removeClass('dn');
-			alert('your entered otp is wrong');
+			common.msg(0,'your entered otp is wrong');
 		      }
 		    }
 		    }
@@ -218,7 +235,7 @@ function checkotp(inptmob,otp)
      openfst1();
    }
    else{
-     alert('Please Enter Correct Password ');
+     common.msg(0,'Please Enter Correct Password ');
    } 
  });
  
@@ -228,7 +245,7 @@ function checkotp(inptmob,otp)
    var name,email,mobile;
    
     if($('.neadHide').hasClass('dn')){
-     // alert('hi');
+     // common.msg(0,'hi');
     }
     else{
     name=$('#shpdname').val();  
@@ -236,33 +253,28 @@ function checkotp(inptmob,otp)
     mobile=$('#shpdmobile').val(); 
      var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
     if(name ===''|| name === null){
-       validationFlag=0; 
-     // common.toast(0, 'Please Enter Name');
-        alert('Please enter your Name'); 
+       validationFlag=0;  
+        common.msg(0,'Please enter your Name'); 
     }
     else if(!isNaN(name)){
-       validationFlag=0; 
-       //common.toast(0, 'Name should be alphanumeric');
-        alert('Name should be alphanumeric'); 
+       validationFlag=0;  
+        common.msg(0,'Name should be alphanumeric'); 
     }
     else if(email===''|| email=== null){
-      validationFlag=0; 
-       // common.toast(1, 'Please Enter Name');
-        alert('Please enter your Email.id'); 
+      validationFlag=0;  
+        common.msg(0,'Please enter your Email.id'); 
     }
    else if (!reg.test(email)){
      validationFlag=0; 
-      alert('Invalid Email.id'); 
+      common.msg(0,'Invalid Email.id'); 
     }
     else if(mobile===''|| mobile=== null){
-       validationFlag=0; 
-      // common.toast(0, 'Please enter your Mobile no.');
-        alert('Please enter your Mobile no.'); 
+       validationFlag=0;  
+        common.msg(0,'Please enter your Mobile no.'); 
     }
     else if(isNaN(mobile) || (mobile.length < 10) ){
-       validationFlag=0; 
-      // common.toast(0, 'Mobile no. Invalid');
-        alert('Mobile no. Invalid'); 
+       validationFlag=0;  
+        common.msg(0,'Mobile no. Invalid'); 
     }
      shipngdata['name']=name;
      shipngdata['email']=email;
@@ -274,14 +286,12 @@ function checkotp(inptmob,otp)
     var pincode=$('#shpdpincode').val(); 
     
     if(addrs ===''|| addrs === null){
-       validationFlag=0; 
-      //  common.toast(0, 'Please enter your street name');
-        alert('Please enter your address'); 
+       validationFlag=0;  
+        common.msg(0,'Please enter your address'); 
     }
     else if(pincode ===''|| pincode === null){
-       validationFlag=0; 
-      //  common.toast(0, 'Please enter your Zip code');
-        alert('Please enter your Zip code'); 
+       validationFlag=0;  
+        common.msg(0,'Please enter your Zip code'); 
     }
     
     if (validationFlag == 1){
@@ -308,7 +318,7 @@ function checkotp(inptmob,otp)
 			  if($.isNumeric(inp_data))   common.addToStorage("jzeva_mob", inp_data);
 			  else   common.addToStorage("jzeva_mob", mobile);
 			  }   
-			  else if(data1['error']['err_code']==1)   alert(data1['error']['err_msg']); 
+			  else if(data1['error']['err_code']==1)   common.msg(0,data1['error']['err_msg']); 
 		  }
 	    });
      }
@@ -341,18 +351,15 @@ function checkotp(inptmob,otp)
 
 $('#mob_mailsub').click(function(){
     inp_data=$('#entereml').val(); 
-    var validationflg=1;
-  //console.log(inp_data);
+    var validationflg=1; 
   if($.isNumeric(inp_data)){
     if(inp_data===''|| inp_data=== null){
-      validationflg=0; 
-      // common.toast(0, 'Please enter your Mobile no.');
-        alert('Please enter your Mobile no.'); 
+      validationflg=0;  
+        common.msg(0,'Please enter your Mobile no.'); 
     }
     else if(isNaN(inp_data) || (inp_data.length < 10) || (inp_data.length > 11) ){
-      validationflg=0; 
-      // common.toast(0, 'Mobile no. Invalid');
-        alert('Mobile no. Invalid'); 
+      validationflg=0;  
+        common.msg(0,'Invalid Mobile no '); 
     }
       
     if(validationflg == 1){
@@ -362,14 +369,12 @@ $('#mob_mailsub').click(function(){
   }
   else{
     var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
-    if(inp_data===''|| inp_data=== null){
-     //   common.toast(0, 'Please enter your Email.id');
-        alert('Please enter your Email.id or mobile no');
+    if(inp_data===''|| inp_data=== null){ 
+        common.msg(0,'Please enter your Email.id or mobile no');
         validationflg=0; 
     }
-    else if (!reg.test(inp_data)){
-      // common.toast(0, 'Invalid Email.id');
-      alert('Invalid Email.id');
+    else if (!reg.test(inp_data)){ 
+      common.msg(0,'Invalid Email.id');
         validationflg=0; 
     }
      if(validationflg == 1){
@@ -396,13 +401,13 @@ function sendnewuserotp()
 	$.ajax({ type:'POST', url:URL, success:function(res){
 		  var data1 = JSON.parse(res);  
 		  if(data1['error']['err_code']==0) { 
-		    alert(data1['error']['err_msg']);
+		    common.msg(0,data1['error']['err_msg']);
 		  }
 		  else if(data1['error']['err_code']==1){
-		   alert(data1['error']['err_msg']);
+		   common.msg(0,data1['error']['err_msg']);
 		  }
 		  else if(data1['error']['err_code']==2){
-		   alert(data1['error']['err_msg']);
+		   common.msg(0,data1['error']['err_msg']);
 		  }
 		}
 	      }); 
@@ -414,13 +419,13 @@ function sendotpmail()
 	$.ajax({ type:'POST', url:URL, success:function(res){
 		  var data1 = JSON.parse(res);  
 		  if(data1['error']['err_code']==0) { 
-		    alert(data1['error']['err_msg']);
+		    common.msg(0,data1['error']['err_msg']);
 		  }
 		  else if(data1['error']['err_code']==1){
-		   alert(data1['error']['err_msg']);
+		   common.msg(0,data1['error']['err_msg']);
 		  }
 		  else if(data1['error']['err_code']==2){
-		   alert(data1['error']['err_msg']);
+		   common.msg(0,data1['error']['err_msg']);
 		  }
 		}
 	      }); 
@@ -506,7 +511,7 @@ $('#shpdpincode').blur(function(){
    } 
    else{
       validationFlag=0; 
-    alert('Please Enter correct Zip Code');
+    common.msg(0,'Please Enter correct Zip Code');
    }
 }); 
  
@@ -541,68 +546,10 @@ function  storeorderdata()
   }
    
  }
-/*	 
- function checkicon(ths)
- {
-   
-   
-                                var i=$(ths);
-				if($('.dlvrBtn').length>1){
-                               $('.dlvrBtn').each(function(){
-                                   setTimeout(function(){
-//                                        $('.dlvrBtn').removeClass('afterTick');
-                                  
-				    $('.dlvrBtn').removeClass('loknath');
-                                   },250);
-                                   $('.dlvrBtn').animate({
-                                 paddingLeft:'10px',
-                                 paddingRight:'10px'
-                                },50);
-                                });
-			      }
-			      
-                                i.animate({
-                                 paddingLeft:'12px',
-                                 paddingRight:'32px'
-                                },50);
-                               setTimeout(function(){
-                                    if(i.hasClass('afterTick')){
-				      i.removeClass('afterTick');
-				         $('.dlvrBtn').animate({
-                                 paddingLeft:'10px',
-                                 paddingRight:'10px'
-                                },50);
-				    }
-				    else if(!i.hasClass('loknath')){
-				      i.toggleClass('afterTick');
-				    }
-				    else{
-				      i.addClass('afterTick');
-				      i.addClass('loknath');
-				    }
-				    
-                               },250); 
-   console.log($(ths).hasClass('afterTick'));
-   if($(ths).hasClass('afterTick')){
-      $(ths).removeClass('afterTick');
-    }
-    else{
-      $(ths).addClass('afterTick');
-    }
-    $('.dlvrBtn').each(function(){
-      if($('.dlvrBtn').hasClass('afterTick')){
-	 // $('.dlvrBtn').removeClass('afterTick');
-      }
-    });
-    
-    
-    
-	    shipng_id=$(ths).attr('id');
- }
- */
+ 
  $('#all_submt').click(function(){
    if(shipng_id == undefined){
-     alert('Please select Your shipping Address');
+     common.msg(0,'Please select Your shipping Address');
    }
    else{
      storeorderdata();
@@ -624,7 +571,7 @@ function  storeorderdata()
 		  $.ajax({  url: URL,   type: "GET",  datatype: "JSON",  success: function(results)  {
 				//  console.log(results);
 				displaycartdetail(); 
-				alert('Your Order Placed successfully'); 
+				common.msg(0,'Your Order Placed successfully'); 
 				}
 		  }); 
 		
@@ -663,9 +610,8 @@ function checkuser(inpt)
 $('#suboldusrpasw').click(function(){
  
   var pass=$('#pswrd8').val();
-  if(pass ===''|| pass === null){ 
-      //  common.toast(0, 'Please enter your Password');
-        alert('Please enter your Password'); 
+  if(pass ===''|| pass === null){  
+        common.msg(0,'Please enter your Password'); 
     }
     else{
       var URL = APIDOMAIN + "index.php?action=checkpassw&pass="+pass+"&mob="+inp_data; 
@@ -681,12 +627,12 @@ $('#suboldusrpasw').click(function(){
 	   common.addToStorage("jzeva_mob",obj['result']['mob']);
 	   mtrmklm();
 	   displayaddrs(obj['result']['uid']);
-	 //  alert(obj['error']['err_msg']);
+	 //  common.msg(0,obj['error']['err_msg']);
 	}
 	else if(obj['error']['err_code'] == 1)
-	   alert(obj['error']['err_msg']);
+	   common.msg(0,obj['error']['err_msg']);
 	else if(obj['error']['err_code'] == 2)
-	   alert(obj['error']['err_msg']);
+	   common.msg(0,obj['error']['err_msg']);
       }
     }); 
     } 
@@ -754,3 +700,19 @@ $('#sub_lototp').click(function(){
 $('#resend_lotp').click(function(){
     sendnewuserotp();
 });
+
+function indianMoney(x){
+          x=x.toString();
+          var afterPoint = '';
+          if(x.indexOf('.') > 0)
+             afterPoint = x.substring(x.indexOf('.'),x.length);
+          x = Math.floor(x); 
+          x=x.toString();
+          var lastThree = x.substring(x.length-3);
+          var otherNumbers = x.substring(0,x.length-3);
+          if(otherNumbers != '')
+              lastThree = ',' + lastThree;
+          var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree + afterPoint;
+          
+          return res;
+     }
