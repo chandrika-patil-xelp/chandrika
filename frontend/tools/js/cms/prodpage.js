@@ -366,7 +366,6 @@ $(document).ready(function () {
                     }
                     if (basic.hasGem == 1)
                     {
-
                         var gemstr = "";
                         var gemNstr = "";
                         $(gemstone['results']).each(function (i, vl) {
@@ -797,14 +796,18 @@ $('#addwishlist').click(function(){
    var chr=""+arrdata[2]+"|@|"+arrdata[4]+"|@|"+arrdata[3];
    wishdata['col_car_qty']=chr; 
    wishdata['price']=arrdata[1];
+   wishdata['price']=wishdata['price'].replace(/,/g,"");
    wishdata['user_id']=userid;
    var wishid=genOrdId();
    wishdata['wish_id']=wishid;
   
      var URL= APIDOMAIN + "index.php?action=addtowishlist";
-    var data=wishdata; 
+    var data=wishdata; console.log(data);
     var  dt = JSON.stringify(data);   
-	$.ajax({  type:"post",  url:URL,  data: {dt: dt},   success:function(results){
+	$.ajax({  type:"post",  
+                  url:URL, 
+                  data: {dt: dt},   
+                  success:function(results){
 		      console.log(results); 
 		 
 		} 
