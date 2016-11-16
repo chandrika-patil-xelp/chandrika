@@ -12,7 +12,7 @@
     <div class="overlay"></div>
     <div class="overlay2 " onclick="closeCart()"></div>
     <div class="header">
-        <a  target="" href='<?php echo DOMAIN?>index.php?action=landing_page'><div class="logo fLeft"></div></a>
+         <div class="logo fLeft" id="jzeva_log"></div> 
     </div>
     <div class="tabWrap fRight">
         <div class="tab_buffer">
@@ -46,7 +46,7 @@
             </div>
             <div class="tab2 fLeft">
                 <div class="tab cartIcon openC">
-                    <div class="cartCount">10</div>
+                    <div class="cartCount">0</div>
                 </div>
             </div>
         </div>
@@ -139,12 +139,11 @@
     </div>
 </div>
 <script>
-    /*Overlay fade in/out  on menu hover*/
-
+    /*Overlay fade in/out  on menu hover*/ 
     $('.tabWrap').mouseover(function () {
         $('.overlay').stop(true, true).fadeTo(200, 1);
-    });
-
+    });  
+  
     /*Main menu slidedown/slideup , Menu tab colour change*/
     $('.tabB').mouseover(function () {
         $('.overlay').stop(true, true).fadeTo(200, 1);
@@ -251,8 +250,11 @@
     $('#3420160603124716').click(function () {
         var catid = $(this).attr('id');
         window.location.href = DOMAIN + "index.php?action=product_grid&id=" + catid + "";
+    }); 
+    
+    $('#jzeva_log').click(function(){
+        window.location.href = DOMAIN + "index.php?action=landing_page";
     });
-
-
-
+ 
+     
 </script>

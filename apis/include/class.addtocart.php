@@ -10,7 +10,7 @@
         }
         
         public function addToCart($params)
-	{
+	{  
 	    $params = json_decode($params[0],1); 
 	    if(empty($params['pid']) || empty($params['cartid']) || empty($params['col_car_qty'])){
                 $resp = array();
@@ -26,6 +26,7 @@
 				    col_car_qty,
                                     pqty, 
 				    price, 
+                                    size,
 				    active_flag, 
                                     created_on,
 				    updatedon
@@ -33,12 +34,12 @@
                                   VALUES ";
 	    
                       $sql .= " (".$params['cartid'].", '".$params['pid']."','".$params['userid']."','".$params['col_car_qty']."','".$params['qty']."',
-			    '".$params['price']."',1,NOW(), NOW())";
+			    '".$params['price']."','".$params['RBsize']."',1,NOW(), NOW())";
                                         
      
 	 	      $sql.="
                     ON DUPLICATE KEY UPDATE
-                                pqty = VALUES(pqty),price = VALUES(price),active_flag=VALUES(active_flag),
+                                pqty = VALUES(pqty),price = VALUES(price),size= VALUES(size),active_flag=VALUES(active_flag),
 				updatedon=VALUES(updatedon)";
 		        
 	     $res = $this->query($sql); 
@@ -229,7 +230,7 @@
                           SET
                             active_flag = 2 
                           WHERE col_car_qty = '".$params['col_car_qty']."' 
-                            AND product_id = '".$params['pid']."' AND cart_id = '".$params['cartid']."' ";
+                            AND product_id = '".$params['pid']."' AND cart_id = '".$params['cartid']."' AND size = '".$params['size']."'";
             
             $res = $this->query($sql);
             
@@ -525,7 +526,7 @@
 	   }
 	    
 	   
-         $sql = "  SELECT  cart_id,product_id AS pid,userid,col_car_qty AS combine, pqty, price,created_on,updatedon,active_flag, "
+         $sql = "  SELECT  cart_id,product_id AS pid,userid,col_car_qty AS combine, pqty, price,size,created_on,updatedon,active_flag, "
               . "(SELECT  GROUP_CONCAT(dname) FROM tbl_metal_color_master WHERE id = SUBSTRING_INDEX(combine, '|@|',1) AND active_flag = 1 ) AS color,"
 	    ."(SELECT  GROUP_CONCAT(dname) FROM tbl_metal_purity_master WHERE id = SUBSTRING_INDEX(SUBSTRING_INDEX(combine,'|@|',2),'|@|',-1) AND active_flag = 1 ) AS carat,"
              ."(SELECT  GROUP_CONCAT(dname) FROM tbl_diamond_quality_master WHERE id = SUBSTRING_INDEX(combine,'|@|',-1)  AND active_flag = 1 ) AS quality,"
@@ -555,7 +556,9 @@
                (SELECT GROUP_CONCAT(total_no) FROM tbl_product_uncut_mapping WHERE FIND_IN_SET(uncut_id,allUncut) AND productid =pid) AS totalUncut,
                (SELECT GROUP_CONCAT(carat) FROM tbl_product_uncut_mapping WHERE FIND_IN_SET(uncut_id,allUncut) AND productid =pid) AS Uncutcarat,
                (SELECT GROUP_CONCAT(price_per_carat) FROM tbl_product_uncut_mapping WHERE FIND_IN_SET(uncut_id,allUncut) AND productid =pid) AS UncutPricepercarat,
-		(SELECT  GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND default_img_flag = 1 ) AS default_img";
+		(SELECT  GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND default_img_flag = 1 ) AS default_img,
+      		(SELECT GROUP_CONCAT(catid) FROM tbl_category_product_mapping WHERE  productid =pid ) AS ccatid,
+                (SELECT DISTINCT(NAME) FROM tbl_size_master WHERE  FIND_IN_SET(catid,ccatid) )AS ccatname";
 	       
 	       if($flg == 1){
 		 $sql.= " FROM tbl_cart_master WHERE active_flag=1 AND userid='".$params['userid']."' order by created_on DESC";  
@@ -578,6 +581,7 @@
 		    $arr['col_car_qty'] = $row['combine'];
                     $arr['pqty'] = $row['pqty']; 
 		    $arr['price'] = $row['price']; 
+                    $arr['size'] = $row['size']; 
 		    $arr['active_flag'] = $row['active_flag']; 
                     $arr['created_on'] = $row['created_on'];
 		    $arr['updatedon'] = $row['updatedon'];
@@ -610,6 +614,8 @@
                     $arr['Uncutcarat'] = $row['Uncutcarat'];
                     $arr['UncutPricepercarat'] = $row['UncutPricepercarat'];
                     $arr['default_img'] = $row['default_img'];
+                    $arr['ccatname'] = $row['ccatname'];
+                    $arr['ccatid'] = $row['ccatid'];
                      if($row['jewelleryType'] === '1'){
                              $arr['jewelleryType'] ='Gold';
                         }else  if($row['jewelleryType'] === '2'){

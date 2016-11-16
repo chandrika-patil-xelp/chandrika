@@ -7,7 +7,7 @@ var catsize;
 var makchrg = 0;
 
 
-var storedWt = 0;
+var storedWt;
 var storedMkCharge = 0;
 var storedDmdCarat = 0;
 var newWeight;
@@ -76,10 +76,10 @@ function getarraydata() {
     arrdata.push(quality);
     arrdata.push(metal);
     arrdata.push(sz);
-     
    
+    
 }
-
+ 
 $('#add_to_cart').on('click', function () {
     
     getarraydata();
@@ -111,17 +111,13 @@ $(document).ready(function () {
             var diamonds = dt['dimond'];
             var uncut = dt['uncut'];
 
-            storedWt = metalwgt = parseFloat(dt['basicDetails']['mtlWgt']);
+            storedWt  = parseFloat(dt['basicDetails']['mtlWgt']);
             storedMkCharge = parseFloat(dt['basicDetails']['mkngCrg']);
 
 
 
-            metalwgt = dt['basicDetails']['mtlWgt'];
+           // metalwgt = dt['basicDetails']['mtlWgt'];
             makchrg = dt['basicDetails']['mkngCrg'];
-
-
-
-
             //  metalprcprgm =  dt['metalPurity']['results']['prc']; console.log( dt['metalPurity']);
             var gemstone = dt['gamestone'];
             var images = dt['images'];
@@ -637,46 +633,7 @@ var grandtot = 0;
 var gtotal = 0
 var catname;
 var catid = 0;
-function getTotal(type) {
 
-    catname = catid['results'][1]['name'];
-
-    if (catname != 'Rings' && catname != 'Bangles') {
-
-        total = parseFloat(basicValue) + parseFloat(dmdValue) + parseFloat(metalValue) + uncPrice + soliprc + gemsPrice;
-
-        var vat = (1/ 100) * total;
-
-        gtotal = total + vat;
-
-        grandtot = gtotal.toFixed();
-    } else {
-
-        grandtot = TotalPrice;
-        // $("#price").html(IND_money_format(TotalPrice).toLocaleString('en'));
-
-    }
-//    $('#price').numerator({
-//        toValue: grandtot,
-//        delimiter: ',',
-//        onStart: function () {
-//            isStop = true;
-//        },
-//        onComplete: function () {
-//            $("#price").html(IND_money_format(grandtot).toLocaleString('en'));
-//        }
-
-
-   // });
-
-   // $('#ch_price').find('.labBuffer').append(' @ ' + exprice);
-    //  if (type == 1){
-
-    //  $("#price").html(IND_money_format(grandtot).toLocaleString('en'));
-    // }
-
-
-}
 var sizdefault;
 var sizdefaulval;
 function getcatsize(s, m) {
@@ -755,23 +712,28 @@ function calculatePrice()
     var dmdLength=$('input[name="selectM"]').length; 
     var bseSize=0;
     
-    if(catname == 'Rings'){
+    if(catname == 'Rings')
         bseSize = parseFloat(14);
-        mtlWgDav = 0.05;
-    } else if(catname == 'Bangles'){
+      
+     else if(catname == 'Bangles')
         bseSize = parseFloat(2.4);
-        mtlWgDav = 0.7;
-    }
-       // console.log(currentSize +" 0")
+       
+    
+    if(catname == 'Rings'){
+          mtlWgDav = 0.05;}
+    else if(catname == 'Bangles'){
+         mtlWgDav = 7;
+     }
    
     if(isNaN(currentSize))
     {
     
         if(catname == 'Rings')
         currentSize = parseFloat(14);
-
+           
         else if(catname == 'Bangles')
             currentSize = parseFloat(2.4);
+        
         else if(catname !== 'Rings' && catname !== 'Bangles'){
             currentSize =0;
         }
@@ -783,8 +745,8 @@ function calculatePrice()
     {
         dmdPrice=storedDmdCarat*selDiamond;
     }
-    
-   // console.log(currentSize +" 1")
+  
+   //console.log(currentSize +" 1")
     var changeInWeight=(currentSize-bseSize)*mtlWgDav; 
      newWeight=parseFloat(storedWt+(changeInWeight));
         newWeight= newWeight.toFixed(3);
@@ -796,7 +758,7 @@ function calculatePrice()
     var ttl=parseFloat(goldPrice+dmdPrice+mkCharges+ uncPrice + soliprc + gemsPrice);
     
 
-console.log("dmdPrice-> "+dmdPrice +" --- " + "changeInWeight -> "+changeInWeight+"  ---- "+"newWeight -> "+newWeight+ " goldPrice ->" +goldPrice +" mkCharges ->" +mkCharges);
+//console.log("dmdPrice-> "+dmdPrice +" --- " + "changeInWeight -> "+changeInWeight+"  ---- "+"newWeight -> "+newWeight+ " goldPrice ->" +goldPrice +" mkCharges ->" +mkCharges);
     
     
     var totalNewPrice= Math.round(ttl+(ttl*vatRate));

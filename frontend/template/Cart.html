@@ -1,4 +1,12 @@
 
+<script>
+    var BWEBROOT = '<?php echo BACKWEBROOT?>';
+    var DOMAIN = '<?php echo DOMAIN?>';
+    var APIDOMAIN = '<?php echo APIDOMAIN?>';
+    var IMGDOMAIN = '<?php echo IMGDOMAIN ?>';
+    var page = '<?php echo $page?>';
+
+</script>
 <div class="cart">
     <!-- <div class="cart_head ">
       YOUR CART
@@ -6,7 +14,7 @@
     </div> -->
     <div class="cartHeader fLeft">
         <div class="button actBtn transition300 mar0 fLeft" id="closeCart">CLOSE</div>
-        <div class="button actBtn transition300 mar0 fRight">CHECKOUT</div>
+        <div class="button actBtn transition300 mar0 fRight" id="check_out">CHECKOUT</div>
     </div>
     <div class="fLeft totalItem">
         <div class="fLeft col100 cart_name light">Total Items</div>
@@ -113,12 +121,12 @@
         load_checkout();
     });
     function load_checkout() {
-
+        window.location.assign(DOMAIN + 'index.php?action=checkOutNew');
         $('body').addClass('over_hide');
         $('.page_loader').velocity({translateX: [0, '-100%']}, {duration: 300, easing: 'easeInOutExp', display: 'block',
             complete: function () {
                 setTimeout(function () {
-                    window.location.assign(DOMAIN + 'index.php?action=checkOutNew');
+                  //  window.location.assign(DOMAIN + 'index.php?action=checkOutNew');
                 }, 1000);
             }
         });

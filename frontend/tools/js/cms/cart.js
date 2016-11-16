@@ -6,7 +6,7 @@ var gblcartdata;
     var ti = d.getTime();
   return ti; 
 }
-var catName;
+  
 function newaddToCart(paramtr)
 {  
     
@@ -18,9 +18,8 @@ function newaddToCart(paramtr)
   
    cartdata['col_car_qty']=chr;
    cartdata['RBsize']= paramtr[5]; 
-  cartdata['catName']= paramtr[6]; 
-  
-  catName= cartdata['catName'];
+ // cartdata['catName']= paramtr[6]; 
+   
    var userid=common.readFromStorage('jzeva_uid');  
    var cartid=common.readFromStorage('jzeva_cartid');   
 
@@ -44,24 +43,26 @@ function newaddToCart(paramtr)
        flag=1;
     }
     else{
-      $(gblcartdata).each(function(r,v){  
-          
-	if(cartdata.col_car_qty==v.col_car_qty && cartdata.pid==v.product_id && cartdata.RBsize==v.size ){
-           
-	  cartdata['qty']=parseInt(v.pqty)+1;
-          cartdata.price=(cartdata.price).replace(/,/g,"");
-          cartdata['price']=parseInt(cartdata.price)*cartdata.qty;
+      $(gblcartdata).each(function(r,v){
          
+	if((cartdata.col_car_qty==v.col_car_qty && cartdata.pid==v.product_id) && parseFloat(cartdata.RBsize) == parseFloat(v.size)){
+           
+ 	  cartdata['qty']=parseInt(v.pqty)+1;
+           cartdata.price=(cartdata.price).replace(/,/g,"");
+           cartdata['price']=parseInt(cartdata.price)*cartdata.qty;  
+	  flag=2;
+	}
+        else if((cartdata.col_car_qty==v.col_car_qty && cartdata.pid==v.product_id) || parseFloat(cartdata.RBsize) == parseFloat(v.size) ){
 	  flag=2;
 	}
       });
     }
 
-    if(flag==1 || flag==0){
-            storecartdata(cartdata,1);
+    if(flag==1 || flag==0){ 
+             storecartdata(cartdata,1);
     }
-    else{
-           storecartdata(cartdata,1);
+    else{ 
+            storecartdata(cartdata,1);
     }
 }
 
@@ -81,9 +82,9 @@ function storecartdata(cartdata,chk)
 	    type:"post",
 	    url:URL,
 	    data: {dt: dt}, 
-          
+        
 	    success:function(results){
-		
+		  
 		getglobaldata(); 
 		if(chk==1){
 		  $(".cart_gen").html("");
@@ -121,14 +122,23 @@ function displaycartdata()
 			   var abc=v.prdimage; abc=abc.split(',');
 			    abc=IMGDOMAIN+abc[5];
 			}
-                       
-              //var wht=getweight(v.size);     
-			 
+                    
+                     var wht;
+                    if(v.ccatname !== null){
+                        wht=getweight(v.size,v.ccatname,v.metal_weight);     
+                    }
+                    else{
+                        wht=v.metal_weight; 
+                    }
+                        
         cartstr="<div class='cart_item'>";
 	cartstr+="<div class='cart_image'><img src='"+abc+"'";
         cartstr+=" alt='Image not found'></div>";
 	cartstr+="<div class='cart_name'>"+v.prdname+"</div>";
-  	cartstr+="<div class='cart_desc  fLeft' id='nwwt'>"+v.jewelleryType+" "+  +" gms , "+v.carat+" , Size "+v.size+" </div>";
+  	cartstr+="<div class='cart_desc  fLeft' id='nwwt'>"+v.jewelleryType+" "+wht  +" gms , "+v.carat+" ";
+        if(v.ccatname !== null)
+        cartstr+=", Size "+v.size+",";
+        cartstr+="</div>";
 	cartstr+="<div class='cart_price  fLeft'><span class='price_gen'>₹ "+indianMoney(parseInt(v.price))+"</span></div>";
         cartstr+="<div class='amt_selector' id='"+v.cart_id+"'>";
 	cartstr+="<a href='#' onclick='subqnty(this)'  id='sub_"+v.product_id+"_"+r+"_"+v.col_car_qty+"_"+v.cart_id+"_"+v.size+"'><div class='cart_btn fLeft sub_no'></div></a>";
@@ -151,32 +161,19 @@ function displaycartdata()
 	    }
 }
 
-function getweight(currentSize)
-{
-    
-    var vatRate =(1/100);
-    var selDiamond= parseFloat($('input[name="selectM"]:checked').attr('data-value')); 
-    var selPurity= parseFloat($('input[name="purity"]:checked').attr('data-price'));
+function getweight(currentSize,catName,storedWt)
+{   
+    var mtlWgDav=0;  
+    var bseSize=0; 
  
-   // var currentSize=parseFloat($('#size').text().replace('Size ',''));
-    
-    var mtlWgDav=0;
-    
-    var dmdPrice=0;
-    var goldPrice=0;
-   
-    var dmdLength=$('input[name="selectM"]').length; 
-    var bseSize=0;
-   
-    if(catName == 'Rings'){
-        bseSize = parseFloat(14);
-        mtlWgDav = 0.05;}
-    else if(catName == 'Bangles'){
-        bseSize = parseFloat(2.4);
-         mtlWgDav = 0.7;
-     }
-       // console.log(currentSize +" 0")
-    
+     if(catName.toLowerCase() == 'rings'){
+         bseSize = parseFloat(14);
+         mtlWgDav = 0.05;}
+     else if(catName.toLowerCase() == 'bangles'){
+         bseSize = parseFloat(2.4);
+          mtlWgDav = 7;
+      }
+      
     if(isNaN(currentSize))
     {
     
@@ -187,20 +184,13 @@ function getweight(currentSize)
             currentSize = parseFloat(2.4);
         else if(catName !== 'Rings' && catName !== 'Bangles'){
             currentSize =0;
-        }
-        
-        
+        } 
     }
 
-    if(dmdLength>0)
-    {
-        dmdPrice=storedDmdCarat*selDiamond;
-    }
-    console.log(storedWt);
    
-    var changeInWeight=(currentSize-bseSize)*mtlWgDav; 
-    var newWeight=parseFloat(storedWt+(changeInWeight));
-        newWeight= newWeight.toFixed(3);
+ var changeInWeight=(currentSize-bseSize)*mtlWgDav;  
+ var newWeight=(parseFloat(storedWt)+parseFloat(changeInWeight)).toFixed(3); 
+  
        
        return newWeight;
  
@@ -316,7 +306,7 @@ function getweight(currentSize)
    
     var itemcnt=0,total=0;
     $(gblcartdata).each(function(r,v){
-        //console.log(v);
+       
 	  total=parseInt(v.price)+total;  
 	  itemcnt=parseInt(v.pqty)+itemcnt;  
     });
