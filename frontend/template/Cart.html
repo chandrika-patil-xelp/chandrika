@@ -5,12 +5,12 @@
 
     </div> -->
     <div class="cartHeader fLeft">
-        <div class="button actBtn transition300 mar0 fLeft">CLOSE</div>
+        <div class="button actBtn transition300 mar0 fLeft" id="closeCart">CLOSE</div>
         <div class="button actBtn transition300 mar0 fRight">CHECKOUT</div>
     </div>
     <div class="fLeft totalItem">
         <div class="fLeft col100 cart_name light">Total Items</div>
-        <div class="fLeft cart_price font35">&#8377<span class="total_price_gen font35">126,000</span></div>
+        <div class="fLeft cart_price font35"><span class="total_price_gen  cartRupee font35">126,000</span></div>
         <!--<div class="closeCart"></div>-->
     </div>
     <!--    <div class="fLeft totalItem">
@@ -124,5 +124,10 @@
         });
 
     }
+    
+    $('#closeCart').click(function(){
+//        alert("sdjkfvkd");
+        $('.cart').velocity({trnslateX:['100%',0]},{duration:[400]});
+    });
 
 </script>
