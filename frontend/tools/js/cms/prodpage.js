@@ -291,23 +291,26 @@ $(document).ready(function () {
                         var diamstr = "";
                         var dQstr = "";
                        
-                      
+                         var defaultDia;
+                         var defaultDiaVal;
+                         var defaultDiaPrc;
                         $(diamonds['results']).each(function (i, vl) {
-                        
-//                         
+                           
+//                             defaultDia= vl.QMast.results[4]['id'];
+//                             defaultDiaVal =vl.QMast.results[4]['dVal'];
+//                            defaultDiaPrc =vl.QMast.results[4]['prcPrCrat'];
+                               
                             var dcarat = vl.crat;
                             storedDmdCarat = parseFloat(vl.crat);
                             
                             
                            
                             $.each(vl.QMast.results, function (x, y) {
-                               
-                                if (x == 0) {
-                                    $('#qual').text(y.dVal="SI - IJ");
-                                    $('#qual').attr('qual_id', y.id="9");
-                                }
-                                
-                                
+                                if(y.id == "9"){
+                                 $('#qual').text(y.dVal);
+                                 $('#qual').attr('qual_id', y.id);
+                             }
+                                 
                                 var dvdia = y.dVal;
                                 var dvprc = y.prcPrCrat;
                                 var dvdiaid = y.id;
@@ -315,7 +318,8 @@ $(document).ready(function () {
                                 var dClass = dvdia.replace(/-|\s/g, "");
                                 dClass = dClass.toLowerCase();
                                 
-                             
+                              
+                                
                                 dQstr += '<div class="rad_wrap ">';
                                 //dQstr+= '<input type="radio" name="selectM" id="dQuality_'+x+'_'+y.id+'" checked  onchange=\"diamondPrice('+y.prcPrCrat+vl.crat+')\" class="filled-in dn">';
                                 dQstr += '<input type="radio" name="selectM" id="dQuality_' + x + '_' + y.id + '" value="' + y.dVal + '" data-value="' + y.prcPrCrat + '" onchange="setdmd(this)" class="filled-in dn">';
@@ -333,7 +337,8 @@ $(document).ready(function () {
                             $('#diQ').append(dQstr);
                             
                              diamstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>' + vl.totNo + '</span><span> Diamonds</span></span><span class="fRight fmSansR"><span> ' + vl.crat + '</span> Carat</span></div>';
-                             $('input[name="selectM"]').prop('checked', true);
+                        
+                          $('.filled-in:last').prop('checked',true);
 
                         });
                         
