@@ -242,19 +242,9 @@
             $('.outerContr').velocity({translateY: [0, '150%']}, {duration: 150, delay: 100, easing: ''});
         }
 
-        $(document).on('click', '#userProfId', function () {
-            openPopUp();
-        });
+        
 
-        $('.closeLogin').click(function () {
-            $('.overlay').stop(true, true).fadeTo(200, 0);
-            $('.tabWrap').removeClass("addPointer");
-            $('.ftabB').removeClass("addPointer");
-            $('.fade').fadeOut("slow");
-            $('.outerContr').css("z-index", "203", "opacity", "0");
-            $('.outerContr').velocity({translateY: ['150%', 0]}, {duration: 150, delay: 100, easing: ''});
-            $('.fade').fadeIn();
-        }); 
+        
         $('.goBack').click(function () {
 //            $(this).parent().addClass("dn");
 //            var backId = $(this).parent().children('.loginCont').attr("id");

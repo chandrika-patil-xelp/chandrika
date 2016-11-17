@@ -1,4 +1,4 @@
-var logDetails = new Array();
+ 
 var glbcartdeatil, inptval, newuserid, otpflg=0, userdata=[];
 
 $('#rsubId').on('click',function(){
@@ -102,7 +102,7 @@ $('#log').click(function(){
             success:function(res){
                 
 	      data = JSON.parse(res);
-	      logDetails = data['result'];
+	      var logDetails = data['result'];
             if(data['error']['err_code']==0)
             {   
               common.addToStorage("jzeva_email", logDetails['0']['email']);
@@ -409,8 +409,21 @@ $('#signup_submt').click(function(){
              success:function(res){
 	    var data1 = JSON.parse(res); 
             if(data1['error']['err_code']==0)  {
-                common.msg(0,'Registered Successfullllly');  
-		 openPopUp();
+                common.msg(0,'Registered Successfullllly');
+		var URL = APIDOMAIN + "index.php/?action=login&email="+userdata[1]+"&pass="+userdata[3]; 
+		$.ajax({ type:'POST',  url:URL, success:function(res){ 
+		    var data = JSON.parse(res); 
+		    var logDetails = data['result'];
+		    if(data['error']['err_code']==0)
+		    {   
+		      common.addToStorage("jzeva_email", logDetails['0']['email']);
+		      common.addToStorage("jzeva_name", logDetails['0']['name']);
+		      common.addToStorage("jzeva_uid", logDetails['0']['uid']);
+		      common.addToStorage("jzeva_mob", logDetails['0']['mobile']); 
+		      closelogpg();
+		    }
+		}
+		}); 
 		 
             }else if(data1['error']['err_code']==1){
                 common.msg(0,data1['error']['err_msg']); 
@@ -473,3 +486,24 @@ $('#signup_submt').click(function(){
     $('#forId').click(function () {
             forgot();
     });
+    
+    $('.closeLogin').click(function () {
+           closelogpg();
+    }); 
+    
+    function closelogpg()
+   {
+      $('.overlay').stop(true, true).fadeTo(200, 0);
+      $('.tabWrap').removeClass("addPointer");
+      $('.ftabB').removeClass("addPointer");
+      $('.fade').fadeOut("slow");
+      $('.outerContr').css("z-index", "203", "opacity", "0");
+      $('.outerContr').velocity({translateY: ['150%', 0]}, {duration: 150, delay: 100, easing: ''});
+      $('.fade').fadeIn();
+ }
+ 
+  $(document).on('click', '#userProfId', function () {
+	  var uid=common.readFromStorage('jzeva_uid');
+	  if(uid == null || uid == "")
+            openPopUp();
+  });

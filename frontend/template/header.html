@@ -130,7 +130,7 @@
                             <a  target="_blank" href='<?php echo DOMAIN?>index.php?action=myaccount&actn=sId'><div class="menu_list fLeft">saved addresses</div></a>
                         </div>
                         <div class="col100 fLeft">
-                            <a  href='<?php echo DOMAIN?>index.php?action=landing_page'><div class="menu_list fLeft" id="usrlogout">Logout</div></a>
+                           <div class="menu_list fLeft" id="usrlogout">Logout</div> 
                         </div>
                     </div>
                 </div>
@@ -281,6 +281,10 @@
       common.removeFromStorage('jzeva_uid');
       common.removeFromStorage('jzeva_mob');
       common.removeFromStorage('jzeva_cartid'); 
+      var URLactn = window.location.search;  
+      var url=DOMAIN + '/index.php' +URLactn;
+      window.location.href = url; 
+	
     });
      
 </script>
