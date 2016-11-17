@@ -41,9 +41,9 @@ function displaycartdetail()
 		      else{
                         wht=v.metal_weight; 
 		      }
-		 
+		
 var chckoutstr=" <div class='jwlCntdtls fLeft regular'>";
-    chckoutstr+="  <div class='clsePrdct' id='"+v.product_id+"_"+r+"_"+v.col_car_qty+"_"+v.cart_id+"'";
+    chckoutstr+="  <div class='clsePrdct' id='"+v.product_id+"_"+r+"_"+v.col_car_qty+"_"+v.cart_id+"_"+v.size+"'";
     chckoutstr+="  onclick='remove(this)'></div>";
     chckoutstr+=" <div class='ordrJwl' style='background-image:url("+abc+")'> </div>";
     chckoutstr+=" <div class='jwlryDtls fLeft'> <div class='w60 fLeft'>" ;
@@ -104,8 +104,8 @@ function getweight(currentSize,catName,storedWt)
      {
 	var id=$(el).attr('id');
 	var a=id.split('_');
-        var col_car_qty=a[2],product_id=a[0],cartid=a[3];
-        var URL = APIDOMAIN+"index.php?action=removeItemFromCart&col_car_qty="+col_car_qty+"&pid="+product_id+"&cartid="+cartid; 
+        var col_car_qty=a[2],product_id=a[0],cartid=a[3];var size=id=a[4];
+        var URL = APIDOMAIN+"index.php?action=removeItemFromCart&col_car_qty="+col_car_qty+"&pid="+product_id+"&cartid="+cartid+"&size="+size; 
 	$.ajax({ type:'POST',  url:URL, success:function(res){
 	          displaycartdetail(); 
 	      }
