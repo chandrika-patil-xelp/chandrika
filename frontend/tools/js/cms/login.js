@@ -420,6 +420,9 @@ $('#signup_submt').click(function(){
 		      common.addToStorage("jzeva_name", logDetails['0']['name']);
 		      common.addToStorage("jzeva_uid", logDetails['0']['uid']);
 		      common.addToStorage("jzeva_mob", logDetails['0']['mobile']); 
+		      var cartid=common.readFromStorage('jzeva_cartid'); 
+		      if(cartid == null || cartid == "")
+			 common.addToStorage("jzeva_cartid", gencartId()); 
 		      closelogpg();
 		    }
 		}
