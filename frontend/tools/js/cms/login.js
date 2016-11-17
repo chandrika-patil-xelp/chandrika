@@ -420,9 +420,32 @@ $('#signup_submt').click(function(){
 		      common.addToStorage("jzeva_name", logDetails['0']['name']);
 		      common.addToStorage("jzeva_uid", logDetails['0']['uid']);
 		      common.addToStorage("jzeva_mob", logDetails['0']['mobile']); 
-		      var cartid=common.readFromStorage('jzeva_cartid'); 
-		      if(cartid == null || cartid == "")
-			 common.addToStorage("jzeva_cartid", gencartId()); 
+		
+	      var oldcartid=common.readFromStorage('jzeva_cartid'); 
+	      var olduserid=common.readFromStorage('jzeva_uid'); 
+	       var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id="+oldcartid+"&userid="+olduserid+"";   
+	       $.ajax({
+	 	    url: URL,
+	 	    type: "GET",
+	 	    datatype: "JSON",
+	 	    success: function(results)
+	 	    {
+		      var obj=JSON.parse(results); 
+		      glbcartdeatil=obj.result; 
+		      if(oldcartid=="" || oldcartid==null){
+			  if(glbcartdeatil!= null){
+			       var cartid=glbcartdeatil[0].cart_id;  
+			  }
+			      if(cartid){
+				  common.addToStorage("jzeva_cartid", cartid);}
+			      else{
+				  common.addToStorage("jzeva_cartid", gencartId()); }
+		      }
+		      else{
+			   hasitem(oldcartid,olduserid);
+		      } 
+		    }
+		});  
 		      closelogpg();
 		    }
 		}
