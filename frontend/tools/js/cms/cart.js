@@ -113,8 +113,9 @@ function displaycartdata()
 		      if(obj.result !== null)
 		      {
 	       	      gblcartdata=obj.result;
+                      
 		      $(obj.result).each(function(r,v){
-                         
+                        
 			if(v.default_img!== null){
 			   abc=IMGDOMAIN + v.default_img;
 			}
@@ -135,11 +136,15 @@ function displaycartdata()
 	cartstr+="<div class='cart_image'><img src='"+abc+"'";
         cartstr+=" alt='Image not found'></div>";
 	cartstr+="<div class='cart_name'>"+v.prdname+"</div>";
-  	cartstr+="<div class='cart_desc  fLeft' id='nwwt'>"+v.jewelleryType+" "+wht  +" gms , "+v.carat+" ";
+  	cartstr+="<div class='cart_desc  fLeft' id='nwwt'>"+v.jewelleryType+" "+wht  +" gms  |  "+v.carat+" ";
         if(v.ccatname !== null)
-        cartstr+=", Size "+v.size+",";
         cartstr+="</div>";
-	cartstr+="<div class='cart_price  fLeft'><span class='price_gen'>₹ "+indianMoney(parseInt(v.price))+"</span></div>";
+        cartstr+="<div class='cart_desc  fLeft' id='nwwt'>";
+        if(v.ccatname !== null)
+        cartstr+="   Size "+v.size+" ";
+        cartstr+="  |  "+v.quality+" ";
+        cartstr+="</div>";
+	cartstr+="<div class='cart_price cartRup15  fLeft'><span class='price_gen'>"+indianMoney(parseInt(v.price))+"</span></div>";
         cartstr+="<div class='amt_selector' id='"+v.cart_id+"'>";
 	cartstr+="<a href='#' onclick='subqnty(this)'  id='sub_"+v.product_id+"_"+r+"_"+v.col_car_qty+"_"+v.cart_id+"_"+v.size+"'><div class='cart_btn fLeft sub_no'></div></a>";
         cartstr+="<div class='item_amt fLeft '>"+v.pqty+"</div>";
