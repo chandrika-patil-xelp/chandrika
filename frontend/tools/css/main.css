@@ -1531,9 +1531,10 @@ input[type=radio]:checked ~ .selector_label:after {
 .banner_over{width:100%;height:100%;position:absolute;top:0;left:0;background:#000;opacity:0}
 .coverImgsli{position:absolute; height:40vh; width:40%; left:20%; top:0; bottom:0; margin:auto;background-size:contain; background-position:left center;overflow:hidden}
 .coverImgsli:before{content:"";width:100%;height:100%;position:absolute;left:0;top:0; background:url('../img/icons/lorn.svg') no-repeat;background-size:contain; background-position:left center;opacity:0;transition-delay:300ms}
-.coverImgsli:after{content:"";width:100%;height:100%;position:absolute;left:0;top:0;background:#000;transform:translateX(-100%);-webkit-transform:translateX(-100%);-moz-transform:translateX(-100%);-o-transform:translateX(-100%);-ms-transform:translateX(-100%);transition:400ms cubic-bezier(0.19, 1, 0.22, 1);-webkit-transition:400ms cubic-bezier(0.19, 1, 0.22, 1);-moz-transition:400ms cubic-bezier(0.19, 1, 0.22, 1);-o-transition:400ms cubic-bezier(0.19, 1, 0.22, 1);-ms-transition:400ms cubic-bezier(0.19, 1, 0.22, 1);}
-.mehB.coverImgsli:after{-webkit-animation: slideoff 600ms cubic-bezier(0.19, 1, 0.22, 1);-moz-animation: slideoff 600ms cubic-bezier(0.19, 1, 0.22, 1) ;-ms-animation: slideoff 600ms cubic-bezier(0.19, 1, 0.22, 1);animation: slideoff 600ms ease-in-out ;-webkit-animation-fill-mode: forwards;  animation-fill-mode: forwards;}
+.coverImgsli:after{content:"";width:100%;height:100%;position:absolute;left:0;top:0;background:#000;transform:translateX(-100%);-webkit-transform:translateX(-100%);-moz-transform:translateX(-100%);-o-transform:translateX(-100%);-ms-transform:translateX(-100%);transition:400ms cubic-bezier(0.77, 0, 0.175, 1);-webkit-transition:400ms cubic-bezier(0.77, 0, 0.175, 1);-moz-transition:400ms cubic-bezier(0.77, 0, 0.175, 1);-o-transition:400ms cubic-bezier(0.77, 0, 0.175, 1);-ms-transition:400ms cubic-bezier(0.77, 0, 0.175, 1);}
+.mehB.coverImgsli:after{-webkit-animation: slideoff 600ms cubic-bezier(0.77, 0, 0.175, 1);-moz-animation: slideoff 600ms cubic-bezier(0.77, 0, 0.175, 1) ;-ms-animation: slideoff 600ms cubic-bezier(0.77, 0, 0.175, 1);animation: slideoff 600ms ease-in-out ;-webkit-animation-fill-mode: forwards;  animation-fill-mode: forwards;}
 .mehB.coverImgsli:before{opacity:1}
+
 @keyframes slideoff {
   0% {
   transform:translateX(-100%);-webkit-transform:translateX(-100%);-moz-transform:translateX(-100%);-o-transform:translateX(-100%);-ms-transform:translateX(-100%);
@@ -2107,10 +2108,10 @@ input[type=radio]:checked ~ .btncnt {
  .fadeCnt{width:100%;height:500px;position:absolute;top:0;left:0;background:#fff;}
  #scndup{opacity:0 ;transform:translateY(20px) ;display:none }
  #fstup{opacity:0;transform:translateY(20px);display:none}
- #fourthup{opacity:0;transform:translateY(20px);display:none} 
- #thrdup{opacity:0;transform:translateY(20px);display:none} 
+ #fourthup{opacity:0;transform:translateY(20px);display:none}
+ #thrdup{opacity:0;transform:translateY(20px);display:none}
  #fifthup{opacity:0;transform:translateY(20px);display:none}
- #sixthup{opacity:0;transform:translateY(20px);display:none} 
+ #sixthup{opacity:0;transform:translateY(20px);display:none}
  .yetanotherbuffer{width:100%;height:100%;position:relative}
  .w49{width:49% !important;}
  .entrotppopup{width:100%;height:100%;position:fixed;background-color:rgba(0,0,0,0.7);z-index:999;left:0;top:0;opacity:0;display:none;}

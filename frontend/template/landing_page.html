@@ -7,6 +7,7 @@
     <div class="wrapper_main fLeft HOME_PAGE">
         <div class="wrapper">
             <div class="coverImg">
+                <div class="coverImgsli"></div>
                 <div class="banner_over" id="banner_over"></div>
             </div>
             <!-- <div class="three_col fLeft img2m">
@@ -198,7 +199,9 @@
 
         });
 
-        function loadComplete() {}
+        function loadComplete() {
+        $('.coverImgsli').addClass('mehB');
+        }
         /* Radia Button */
         $('.selector1').click(function () {
             $(this).closest('.selector_cont').find('.selector1').removeClass('select_active');

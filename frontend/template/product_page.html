@@ -206,7 +206,7 @@
                                         <div class="actBtn font12 bolder" id="size" name="sizes">Size </div>
                                         <div class="selectDefault" ></div>
 
-                                      
+
                                         <div class="selectOptionC" id="genSize">
 
 
@@ -337,7 +337,7 @@
         <?php include 'footer.html'?>
     </div>
 
-  
+
         <?php include 'loader.html'?>
 
     <div class="overlay3 pointNone"></div>
@@ -604,7 +604,7 @@
 
         function bindDrop(){
              $('.selectDefault').click(function(){
-                  
+
                var th= $(this);
                $(this).addClass('pointNone');
                $(this).siblings('.selectOptionC').css('opacity', 0)
@@ -613,14 +613,14 @@
                  { opacity: 1 },
                  { queue: false, duration: '150ms' }
                );
-                
+
              });
              var sz;
               $('.selectOptions').click(function(){
-                 
+
                 sz= $(this).text();
                $('#size').html(sz);
-               
+
                    //calculatePrice();
                $(this).closest('.selectOptionC').fadeOut('150ms').siblings('.selectDefault').removeClass('pointNone');
                   setTimeout(function () {
@@ -638,7 +638,7 @@
                     $('#ch_price').removeClass('showCh');
                     $('#ch_price').velocity({opacity: [0, 1]});
                 }, 3000);
-               
+
              });
            }
             // $(window)click(function(e){
