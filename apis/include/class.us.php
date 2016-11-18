@@ -196,8 +196,8 @@
         public function addOrdersdetail($params)
 	{
             global $comm; 
-            $params= (json_decode($params[0],1));
-	    
+             $params= (json_decode($params[0],1));
+	   
             $ordstatus="";
 	    $updby="user"; 
 	    
@@ -207,6 +207,7 @@
                             user_id,
 			    shipping_id,
 			    col_car_qty,
+			    size,
 			    pqty,
 			    price,
                             order_date,
@@ -220,17 +221,17 @@
                           ) 
                           VALUES ";
 	    
-	    foreach($params['data'] as $kye=> $val){
-	     
-	    $sql.="(".$val['orderid'].", '".$val['pid']."', '".$val['userid']."', '".$val['shipping_id']."','".$val['col_car_qty']."','".$val['pqty']."','".$val['prodpri']."',NOW(),NOW(),";  
+	     foreach($params['data'] as $kye=> $val){
+	    
+	    $sql.="(".$val['orderid'].", '".$val['pid']."', '".$val['userid']."', '".$val['shipping_id']."','".$val['col_car_qty']."','".$val['size']."','".$val['pqty']."','".$val['prodpri']."',NOW(),NOW(),";  
 	    
 	     $sql.= " '".$ordstatus."', NOW(), NOW(), '".$updby."',"
                     . "'".$val['payment']."', '".$val['payment_type']."' ),"; 
-	    }
+	     }
 	    $sql = trim($sql, ","); 
-            $sql.="ON DUPLICATE KEY UPDATE user_id = VALUES(user_id),pqty = VALUES(pqty),price = VALUES(price),"
-		    . "order_date = VALUES(order_date),delivery_date = VALUES(delivery_date),order_status = VALUES(order_status),"
-		    . "createdon = VALUES(createdon),updatedon = VALUES(updatedon),updatedby = VALUES(updatedby),payment = VALUES(payment),payment_type = VALUES(payment_type)";
+             $sql.="ON DUPLICATE KEY UPDATE user_id = VALUES(user_id),pqty = VALUES(pqty),price = VALUES(price),"
+	 	    . "order_date = VALUES(order_date),delivery_date = VALUES(delivery_date),order_status = VALUES(order_status),"
+	 	    . "createdon = VALUES(createdon),updatedon = VALUES(updatedon),updatedby = VALUES(updatedby),payment = VALUES(payment),payment_type = VALUES(payment_type)";
            
 	    $res = $this->query($sql);
             $resp = array();

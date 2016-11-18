@@ -34,6 +34,7 @@ function displaycartdetail()
 			  abc=IMGDOMAIN+abc[5];
 		      }
 		      totalprice+=parseInt(v.price);  
+		       var bprize=parseInt(v.price/v.pqty);
 		      var wht;
 		      if(v.ccatname !== null){
                         wht=getweight(v.size,v.ccatname,v.metal_weight);     
@@ -46,9 +47,9 @@ var chckoutstr=" <div class='jwlCntdtls fLeft regular'>";
     chckoutstr+="  <div class='clsePrdct' id='"+v.product_id+"_"+r+"_"+v.col_car_qty+"_"+v.cart_id+"_"+v.size+"'";
     chckoutstr+="  onclick='remove(this)'></div>";
     chckoutstr+=" <div class='ordrJwl' style='background-image:url("+abc+")'> </div>";
-    chckoutstr+=" <div class='jwlryDtls fLeft'> <div class='w60 fLeft'>" ;
-    chckoutstr+=" <div class='cart_name fLeft'>"+v.prdname+"</div>";
-    chckoutstr+="<div class='text fLeft'>"+v.color+" "+v.jewelleryType+" "+wht+" gms &nbsp|&nbsp Diamond "+v.dmdcarat+"</div>";
+    chckoutstr+=" <div class='jwlryDtls fLeft'> <div class='w60 fLeft'>" ; 
+    chckoutstr+=" <div class='text fLeft bolder'>"+(v.prdname).toUpperCase()+"</div>"; 
+    chckoutstr+="<div class='text fLeft'>"+v.color+" "+v.jewelleryType+" "+wht+" gms &nbsp|&nbsp Diamond "+v.dmdcarat+"</div>"; 
     chckoutstr+=" <div class='text fLeft'>";
     chckoutstr+="<span>Quality : "+v.quality+"</span>";
     chckoutstr+="<span class='spanl'>Purity : "+v.carat+"</span>";
@@ -58,8 +59,8 @@ var chckoutstr=" <div class='jwlCntdtls fLeft regular'>";
      if(v.ccatname !== null)
     chckoutstr+="<span class='spanl'>Size : "+v.size+"</span>";
     chckoutstr+="</div> </div>";
-    chckoutstr+="  <div class='w40 fLeft'>";
-    chckoutstr+="  <div class='text fLeft cartRup15' id='item_amt'>"+indianMoney(parseInt(v.price))+"</div>";
+    chckoutstr+="  <div class='w40 fLeft'>";  
+    chckoutstr+="  <div class='text fLeft cartRup15' id='item_amt'>"+indianMoney(bprize)+"</div>"; 
     chckoutstr+=" <div class='pCount fLeft'> ";
     chckoutstr+="<div class='col100 fLeft'> <div class='incr icnMns fLeft'  onclick='subqnty(this)'  id='sub_"+v.product_id+"_"+r+"_"+v.col_car_qty+"_"+v.cart_id+"'></div>";
     chckoutstr+=" <div class='pNumber light fLeft'>"+v.pqty+"</div>";
@@ -68,7 +69,7 @@ var chckoutstr=" <div class='jwlCntdtls fLeft regular'>";
     r++;
      $('.jwlCnt').append(chckoutstr);
 		      });  
-		      $('.prcTxt').html("₹ "+indianMoney(totalprice));
+		      $('.total_price_gen').html(indianMoney(totalprice));
 		    }
 		  }); 
 }
@@ -119,15 +120,11 @@ function getweight(currentSize,catName,storedWt)
 	var j=$(ths).siblings('.pNumber').text();
 	var e2=  $(ths).parent().closest('.w40').find('#item_amt'); 
 	var price=$(ths).parent().closest('.w40').find('#item_amt').text(); 
-	price=price.replace(/\,/g,'');
-	price=price.replace('₹','');
-        price=parseInt(price,10); 
-        price=price/j; 
+	price=price.replace(/\,/g,''); 
+        price=parseInt(price,10);
+	var totprice=price * j; totprice=totprice+price; 
 	 totalprice+=price;
-        j++;
-        price=price*j; 
-	$(e2).html("₹ "+indianMoney(price));
-        $(e2).digits();
+        j++; 
         $(e).html(j);
     var ids=$(ths).attr('id'); ids=ids.split('_'); var pid=ids[1]; var col_car_qty=ids[3];var cart_id=ids[4]; 
     $(gblcheckodata).each(function(r,v){
@@ -136,10 +133,10 @@ function getweight(currentSize,catName,storedWt)
 	var dat={};
 	dat['cartid']=v.cart_id;    dat['pid']=v.product_id;
 	dat['userid']=v.userid;     dat['col_car_qty']=v.col_car_qty;
-	dat['qty']=j;		       dat['price']=price;  
+	dat['qty']=j;		       dat['price']=totprice;  
 	dat['RBsize']=v.size;
 	   storecartdata(dat);  
-	   $('.prcTxt').html("₹ "+indianMoney(totalprice));
+	   $('.total_price_gen').html(indianMoney(totalprice));
       }
      }); 
    }
@@ -150,18 +147,15 @@ function getweight(currentSize,catName,storedWt)
     var j=$(evnt).siblings('.pNumber').text();
     var e2=  $(evnt).parent().closest('.w40').find('#item_amt'); 
     var price=$(evnt).parent().closest('.w40').find('#item_amt').text();
-    price=price.replace(/\,/g,'');
-    price=price.replace('₹','');
+    price=price.replace(/\,/g,''); 
     var price=parseInt(price,10); 
       if(j>1){
-            price=price/j;
+         
 	     totalprice-=price;
-	    j--;
-	    price=price*j;
-	    $(e2).html("₹ "+indianMoney(price));
-            $(e2).digits();
+	    var totprice=price * j; totprice=totprice-price;
+	    j--;  
 	    $(e).html(j);
-      } 
+     
     var ids=$(evnt).attr('id'); ids=ids.split('_'); var pid=ids[1]; var col_car_qty=ids[3];var cart_id=ids[4]; 
     $(gblcheckodata).each(function(r,v){
       if(v.product_id==pid && v.col_car_qty==col_car_qty && v.cart_id==cart_id)
@@ -169,12 +163,13 @@ function getweight(currentSize,catName,storedWt)
 	var dat={};
 	dat['cartid']=v.cart_id;    dat['pid']=v.product_id;
 	dat['userid']=v.userid;     dat['col_car_qty']=v.col_car_qty;
-	dat['qty']=j;		       dat['price']=price;  
+	dat['qty']=j;		       dat['price']=totprice;  
 	dat['RBsize']=v.size;
 	  storecartdata(dat); 
-	 $('.prcTxt').html("₹ "+indianMoney(totalprice));
+	 $('.total_price_gen').html(indianMoney(totalprice));
       }
      }); 
+      } 
   }
   
   function storecartdata(cartdata)
@@ -213,7 +208,7 @@ function checkotp(inptmob,otp)
 			  $('.unmatchIcn').addClass('dn');
 			  $('#paswrd1id').removeClass('dn');
 			  $('#paswrd2id').removeClass('dn');	
-			  $('#resend_otp').addClass('dn');
+			  $('.centerDvHldr').addClass('dn');
 			  $('#otp_countn').removeClass('dn');
 			  //common.msg(0,'otp is correct');  
 			}
@@ -298,19 +293,31 @@ function checkotp(inptmob,otp)
       
      var usrid=common.readFromStorage('jzeva_uid'); 
      if(inp_data !== undefined && usrid == null){
-      
-    if($.isNumeric(inp_data)){
+     var shpflag=0; 
+      var URL= APIDOMAIN + "index.php/?action=getUserDetailsbyinpt&email="+email+"&mobile="+inp_data; 
+      $.ajax({  url: URL, type: "GET", datatype: "JSON",  success: function(res)  {
+	  var data=JSON.parse(res);                  
+	  $(data['results']).each(function(r,v){
+	    if(v.logmobile == inp_data ){
+		common.msg(0,'You Entered mobile number is already registered');
+	    }
+	    else if( v.email == email){
+		common.msg(0,'You Entered email id is already registered');
+	    } 
+	  });
+	  if(data['results'] == null)  {
+	    if($.isNumeric(inp_data)){
       
     var URLreg= APIDOMAIN + "index.php/?action=addnewUser&name="+name+"&mobile="+inp_data+"&pass="+passwrd+"&email="+email+"&city="+city+"&address="+addrs; 
-    }
-    else{
+	    }
+	    else{
       shipngdata['email']=mail;
       var URLreg= APIDOMAIN + "index.php/?action=addnewUser&name="+name+"&email="+email+"&pass="+passwrd+"&mobile="+mobile+"&city="+city+"&address="+addrs; 
-    } 
+	    } 
     $.ajax({  type:'POST', url:URLreg,  success:function(res){
 			  var data1 = JSON.parse(res); 
 			  if(data1['error']['err_code']==0){
-			  
+			  shpflag=1; 
 			  var uid=data1['error']['userid'];
 			  common.addToStorage('jzeva_uid',uid);
 			  common.addToStorage("jzeva_email", email);
@@ -321,6 +328,9 @@ function checkotp(inptmob,otp)
 			  else if(data1['error']['err_code']==1)   common.msg(0,data1['error']['err_msg']); 
 		  }
 	    });
+	}
+	   }
+      });    
      }
   else{
     var name=common.readFromStorage('jzeva_name'); 
@@ -329,8 +339,9 @@ function checkotp(inptmob,otp)
     shipngdata['name']=name;
     shipngdata['email']=email;
     shipngdata['mobile']=moblno;
+    shpflag=1; 
   }
-  
+    if(shpflag == 1){
    shipngdata['city']=city;
    shipngdata['address']=addrs;	    shipngdata['state']=state;
    shipngdata['pincode']=pincode;
@@ -346,6 +357,7 @@ function checkotp(inptmob,otp)
    },1000);
     
    }
+ }
  });
  
 
@@ -536,7 +548,7 @@ function  storeorderdata()
 	ordrdata['pqty']=v.pqty;	 ordrdata['prodpri']=v.price;  
 	ordrdata['order_status']="" ;	 ordrdata['updatedby']="" ;
 	ordrdata['payment']="";		 ordrdata['payment_type']=""; 
-	ordrdata['shipping_id']=shipng_id;
+	ordrdata['shipping_id']=shipng_id;  ordrdata['size']=v.size; 
 	data[r]=ordrdata; r++;
     });
     ordobj['data']=data;
