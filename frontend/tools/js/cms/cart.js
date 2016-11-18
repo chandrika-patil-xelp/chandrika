@@ -18,13 +18,12 @@ function newaddToCart(paramtr)
   
    cartdata['col_car_qty']=chr;
    cartdata['RBsize']= paramtr[5]; 
- // cartdata['catName']= paramtr[6]; 
-   
+    
    var userid=common.readFromStorage('jzeva_uid');  
    var cartid=common.readFromStorage('jzeva_cartid');   
 
    if(userid=="" || userid==null){
-       common.addToStorage('jzeva_uid','0');
+      // common.addToStorage('jzeva_uid','0');
 	userid=common.readFromStorage('jzeva_uid');  
       if(cartid=="" || cartid==null){
 	common.addToStorage('jzeva_cartid',genOrdId());
@@ -48,8 +47,8 @@ function newaddToCart(paramtr)
 	if((cartdata.col_car_qty==v.col_car_qty && cartdata.pid==v.product_id) && parseFloat(cartdata.RBsize) == parseFloat(v.size)){
            
  	  cartdata['qty']=parseInt(v.pqty)+1;
-           cartdata.price=(cartdata.price).replace(/,/g,"");
-           cartdata['price']=parseInt(cartdata.price)*cartdata.qty;  
+       //    cartdata.price=(cartdata.price).replace(/,/g,"");
+           cartdata['price']=parseInt(cartdata['price'])*cartdata.qty;  
 	  flag=2;
 	}
         else if((cartdata.col_car_qty==v.col_car_qty && cartdata.pid==v.product_id) || parseFloat(cartdata.RBsize) == parseFloat(v.size) ){
@@ -69,11 +68,7 @@ function newaddToCart(paramtr)
  
 function storecartdata(cartdata,chk)
 { 
-   
-    if(cartdata['qty']==1 && chk==1)
-   {
-   cartdata['price']=cartdata['price'].replace(/,/g,"");
-   }
+    
      var URL= APIDOMAIN + "index.php?action=addTocart";
     
     var data=cartdata; 
@@ -123,7 +118,7 @@ function displaycartdata()
 			   var abc=v.prdimage; abc=abc.split(',');
 			    abc=IMGDOMAIN+abc[5];
 			}
-                    
+                    var bprize=parseInt(v.price/v.pqty);
                      var wht;
                     if(v.ccatname !== null){
                         wht=getweight(v.size,v.ccatname,v.metal_weight);     
@@ -136,15 +131,13 @@ function displaycartdata()
 	cartstr+="<div class='cart_image'><img src='"+abc+"'";
         cartstr+=" alt='Image not found'></div>";
 	cartstr+="<div class='cart_name'>"+v.prdname+"</div>";
-  	cartstr+="<div class='cart_desc  fLeft' id='nwwt'>"+v.jewelleryType+" "+wht  +" gms  |  "+v.carat+" ";
-        if(v.ccatname !== null)
-        cartstr+="</div>";
+  	cartstr+="<div class='cart_desc  fLeft' id='nwwt'>"+v.jewelleryType+" "+wht  +" gms  |  "+v.carat+" ";  
         cartstr+="<div class='cart_desc  fLeft' id='nwwt'>";
         if(v.ccatname !== null)
-        cartstr+="   Size "+v.size+" ";
-        cartstr+="  |  "+v.quality+" ";
-        cartstr+="</div>";
-	cartstr+="<div class='cart_price cartRup15  fLeft'><span class='price_gen'>"+indianMoney(parseInt(v.price))+"</span></div>";
+        cartstr+="Size "+v.size+" | ";
+        cartstr+="   "+v.quality+" ";
+        cartstr+="</div>"; 
+	cartstr+="<div class='cart_price cartRup15 fLeft'><span class='price_gen'> "+indianMoney(bprize)+"</span></div>"; 
         cartstr+="<div class='amt_selector' id='"+v.cart_id+"'>";
 	cartstr+="<a href='#' onclick='subqnty(this)'  id='sub_"+v.product_id+"_"+r+"_"+v.col_car_qty+"_"+v.cart_id+"_"+v.size+"'><div class='cart_btn fLeft sub_no'></div></a>";
         cartstr+="<div class='item_amt fLeft '>"+v.pqty+"</div>";
@@ -206,16 +199,13 @@ function getweight(currentSize,catName,storedWt)
           var afterPoint = '';
           if(x.indexOf('.') > 0)
              afterPoint = x.substring(x.indexOf('.'),x.length);
-          x = Math.floor(x);
-          //alert(x);
+          x = Math.floor(x); 
           x=x.toString();
           var lastThree = x.substring(x.length-3);
           var otherNumbers = x.substring(0,x.length-3);
           if(otherNumbers != '')
               lastThree = ',' + lastThree;
-          var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree + afterPoint;
-          //res = res.parseInt();
-          //res = res.toFixed(2);
+          var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree + afterPoint; 
           return res;
      }
   function cremove(el){
@@ -247,16 +237,12 @@ function getweight(currentSize,catName,storedWt)
 	var e=$(ths).siblings('.item_amt');
         var j =$(ths).siblings('.item_amt').text(); 
         var e2=  $(ths).closest('.cart_item').find('.price_gen ')
-        var price= $(ths).closest('.cart_item').find('.price_gen ').text(); 
+        var price= $(ths).closest('.cart_item').find('.price_gen ').text();  
         price=price.replace(/\,/g,'');
 	price=price.replace('₹','');
         price=parseInt(price,10);
-        price=price/j;
-          j++;
-          price=price*j; 
-         $(e2).html('₹ '+indianMoney(price));
-          $(e2).digits();
-          $(e).html(j); 
+	var totprice=price * j; totprice=totprice+price;  j++; 
+          $(e).html(j);  
     var ids=$(ths).attr('id'); ids=ids.split('_'); var pid=ids[1]; var col_car_qty=ids[3];var cart_id=ids[4];  var size=ids[5];
     $(gblcartdata).each(function(r,v){
       if(v.product_id==pid && v.col_car_qty==col_car_qty && v.cart_id==cart_id && v.size==size)
@@ -265,7 +251,7 @@ function getweight(currentSize,catName,storedWt)
 	dat['cartid']=v.cart_id;    dat['pid']=v.product_id;
 	dat['userid']=v.userid;     dat['col_car_qty']=v.col_car_qty;
 	dat['qty']=j;
-        dat['price']=price;
+        dat['price']=totprice;
         dat['RBsize']=v.size;
 	storecartdata(dat,2); 
       
@@ -284,13 +270,9 @@ function getweight(currentSize,catName,storedWt)
 	price=price.replace('₹','');
         price=parseInt(price,10);
          if(j>1){
-            price=price/j;
-          j--;
-          price=price*j;
-          $(e2).html('₹ '+indianMoney(price));
-            $(e2).digits();
+	   var totprice=price * j; totprice=totprice-price;  j--; 
           $(e).html(j);
-        }
+        
     var ids=$(evnt).attr('id'); ids=ids.split('_'); var pid=ids[1]; var col_car_qty=ids[3]; var cart_id=ids[4];var size=ids[5];
     $(gblcartdata).each(function(r,v){
     if(v.product_id==pid && v.col_car_qty==col_car_qty  && v.cart_id==cart_id && v.size==size)
@@ -298,12 +280,13 @@ function getweight(currentSize,catName,storedWt)
       var dat={};
       dat['cartid']=v.cart_id;    dat['pid']=v.product_id;
       dat['userid']=v.userid;     dat['col_car_qty']=v.col_car_qty;
-      dat['qty']=j;		       dat['price']=price;
+      dat['qty']=j;		       dat['price']=totprice;
       dat['RBsize']=v.size;
       storecartdata(dat,2); 
      
     }
     });
+    }
  }
  
  function gettotal()

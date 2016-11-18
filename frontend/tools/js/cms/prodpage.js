@@ -48,7 +48,7 @@ function IND_money_format(money)
 
     return m.split("").reverse().join("");
 }
-;
+
 
 var pid;
  var arrdata = new Array();
@@ -57,8 +57,10 @@ function getarraydata() {
      arrdata=[];
     arrdata.push(pid);
      var pprice=$('#price').html();
+       pprice=pprice.replace(/\,/g,'');
+	  pprice=parseInt(pprice,10);
 	  arrdata.push(pprice);
-  
+	
 
     var xx = $('#qual').attr('qual_id').split('_');
     var quality = xx[xx.length - 1];
