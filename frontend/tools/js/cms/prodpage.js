@@ -180,8 +180,9 @@ $(document).ready(function () {
                  var bstr = "";
                  
                bstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span> Gold </span></span><span class="fRight fmSansR" id="newWt"><span> ' + metalwght + '</span> Gms </span></div>';
-               $('#desc').append(bstr);   
-
+                bstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span> Certification </span></span><span class="fRight fmSansR" id="newWt"><span> ' + vl.crtficte + '</span> </span></div>';
+               $('#desc').append(bstr);  
+               
                     var type = 0;
                     if (basic.hasSol == 1) {
 
@@ -275,10 +276,13 @@ $(document).ready(function () {
                         //  $('#stn').html('Solitaire');
                         var solistr = "";
                         $(solitaire['results']).each(function (i, vl) {
+                            console.log(vl);
                             var carat = vl.carat;
                             var price_per_carat = vl.prcPrCrat;
 
-                            solistr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>' + vl.nofs + '</span><span> Solitaire</span></span><span class="fRight fmSansR"><span> ' + vl.carat + '</span> Carat</span></div>';
+                            //solistr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>' + vl.nofs + '</span><span> Solitaire</span></span><span class="fRight fmSansR"><span> ' + vl.carat + '</span> Carat</span></div>';
+                            solistr +=  '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>Solitaire</span></span><span class="fRight fmSansR"><span>'+vl.nofs+'</span></span></div>';  
+                             solistr +=  '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>Solitaire Carat</span></span><span class="fRight fmSansR"><span>'+vl.carat+'</span></span></div>';  
                             getSoliPrice(carat, price_per_carat);
                         });
                         $('#desc').append(solistr);
@@ -297,7 +301,7 @@ $(document).ready(function () {
                          var defaultDiaVal;
                          var defaultDiaPrc;
                         $(diamonds['results']).each(function (i, vl) {
-                           
+                          
 //                             defaultDia= vl.QMast.results[4]['id'];
 //                             defaultDiaVal =vl.QMast.results[4]['dVal'];
 //                            defaultDiaPrc =vl.QMast.results[4]['prcPrCrat'];
@@ -338,9 +342,12 @@ $(document).ready(function () {
                           
                             $('#diQ').append(dQstr);
                             
-                             diamstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>' + vl.totNo + '</span><span> Diamonds</span></span><span class="fRight fmSansR"><span> ' + vl.crat + '</span> Carat</span></div>';
+                            // diamstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>' + vl.totNo + '</span><span> Diamonds</span></span><span class="fRight fmSansR"><span> ' + vl.crat + '</span> Carat</span></div>';
+                          diamstr +=  '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>Diamonds</span></span><span class="fRight fmSansR"><span>'+vl.totNo+'</span></span></div>';
+                          diamstr +=  '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>Diamond Shape</span></span><span class="fRight fmSansR"><span>'+vl.shape+'</span></span></div>';
+                          diamstr +=  '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>Diamond Carat</span></span><span class="fRight fmSansR"><span>'+vl.crat+'</span></span></div>';
                         
-                          $('.filled-in:last').prop('checked',true);
+                            $('.filled-in:last').prop('checked',true);
 
                         });
                         
@@ -371,12 +378,15 @@ $(document).ready(function () {
                         var gemstr = "";
                         var gemNstr = "";
                         $(gemstone['results']).each(function (i, vl) {
+                            console.log(vl);
                             var ids = vl.gemId;
                             var gvalue = vl.gemNm;
                             var carat = vl.crat;
                             var price = vl.prcPrCrat;
 
-                            gemstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>' + vl.totNo + '</span><span> ' + vl.gemNm + ' </span></span><span class="fRight fmSansR"><span> ' + vl.crat + '</span> Carat</span></div>';
+                           // gemstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>' + vl.totNo + '</span><span> ' + vl.gemNm + ' </span></span><span class="fRight fmSansR"><span> ' + vl.crat + '</span> Carat</span></div>';
+                           gemstr +=  '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>Gemstone</span></span><span class="fRight fmSansR"><span>'+vl.gemNm+'</span></span></div>';   
+                           gemstr +=  '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>Gemstone Carat</span></span><span class="fRight fmSansR"><span>'+vl.crat+'</span></span></div>';   
                             getGemsPrice(carat, price);
 
                         });
@@ -441,7 +451,7 @@ $(document).ready(function () {
 
                    // getTotal(catAttr);
                     
-                    
+                   
 
                 });
 
@@ -788,7 +798,7 @@ function calculatePrice()
 $('#addwishlist').click(function(){
     var userid=localStorage.getItem('jzeva_uid');  
     if(userid == undefined){
-        alert('Please Do login for adding to Your wishlist');
+        common.msg(0,'Please Do login for adding to Your wishlist');
     }
     else{ 
     getarraydata();
@@ -802,15 +812,15 @@ $('#addwishlist').click(function(){
    wishdata['user_id']=userid;
    var wishid=genOrdId();
    wishdata['wish_id']=wishid;
-  
+   wishdata['size']=arrdata[5];
      var URL= APIDOMAIN + "index.php?action=addtowishlist";
-    var data=wishdata; console.log(data);
+    var data=wishdata;
     var  dt = JSON.stringify(data);   
 	$.ajax({  type:"post",  
                   url:URL, 
                   data: {dt: dt},   
                   success:function(results){
-		      console.log(results); 
+		     
 		 
 		} 
             });
