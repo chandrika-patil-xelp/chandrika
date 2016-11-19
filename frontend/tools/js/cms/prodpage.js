@@ -103,7 +103,7 @@ $(document).ready(function () {
 
             data = JSON.parse(res);
             
-            var dt = data['results'];console.log(dt);
+            var dt = data['results'];
             var basic = dt['basicDetails'];
             var catAttr = dt['catAttr'];
             var vendor = dt['vendor'];
@@ -280,7 +280,7 @@ $(document).ready(function () {
                         //  $('#stn').html('Solitaire');
                         var solistr = "";
                         $(solitaire['results']).each(function (i, vl) {
-                            console.log(vl);
+                           
                             var carat = vl.carat;
                             var price_per_carat = vl.prcPrCrat;
 
@@ -382,7 +382,7 @@ $(document).ready(function () {
                         var gemstr = "";
                         var gemNstr = "";
                         $(gemstone['results']).each(function (i, vl) {
-                            console.log(vl);
+                           
                             var ids = vl.gemId;
                             var gvalue = vl.gemNm;
                             var carat = vl.crat;
@@ -521,7 +521,7 @@ function getPurPrice(metalprc, metalwght) {
 
     var mprc = parseFloat(metalprc);
     var metalwght = parseFloat(metalwght);
-    mpurprc = mprc * metalwght; //console.log(mpurprc);
+    mpurprc = mprc * metalwght; 
     // mpurprc += mpurp;
     mp.push(mpurprc);
     metalValue = mp[gIndex];
@@ -811,20 +811,22 @@ $('#addwishlist').click(function(){
    wishdata['pid']= arrdata[0]; 
    var chr=""+arrdata[2]+"|@|"+arrdata[4]+"|@|"+arrdata[3];
    wishdata['col_car_qty']=chr; 
-   wishdata['price']=arrdata[1];
-   wishdata['price']=wishdata['price'].replace(/,/g,"");
+   wishdata['price']=arrdata[1]; 
+  // wishdata['price']=wishdata['price'].replace(/,/g,"");
+  
    wishdata['user_id']=userid;
    var wishid=genOrdId();
    wishdata['wish_id']=wishid;
    wishdata['size']=arrdata[5];
      var URL= APIDOMAIN + "index.php?action=addtowishlist";
+     
     var data=wishdata;
     var  dt = JSON.stringify(data);   
 	$.ajax({  type:"post",  
                   url:URL, 
                   data: {dt: dt},   
                   success:function(results){
-		     
+		    
 		 common.msg(1,'This Product Added To Your Wishlist Successfully');
 		} 
             });
