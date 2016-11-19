@@ -34,7 +34,7 @@
             <div class="button actBtn transition300 mar0 fRight">CHECKOUT</div>
         </div>
         </div>-->
-    <div class="cart_gen fLeft">
+    <div class="cart_gen fLeft" id="niceCart">
         <!-- <div class="cart_item" id="cartItems">
             <div class="cart_image"></div>
             <div class="cart_name ">Étourdissant Cartier</div>
@@ -143,4 +143,5 @@
         $('.cart').velocity({trnslateX:['100%',0]},{duration:[400]});
     });
 
+    $('#niceCart').niceScroll({cursorcolor: "#000000", touchbehavior: true, cursorwidth: "4px", autohidemode: false, cursorborder: "0px solid #fff", cursoropacitymin: "0.3", cursoropacitymax: "0.3", railpadding: {top: 2, right: 2, left: 2, bottom: 2}});
 </script>
