@@ -1,8 +1,12 @@
  
-var glbcartdeatil, inptval, newuserid, otpflg=0, userdata=[];
+var glbcartdeatil, inptval, newuserid, otpflg=0, userdata=[], entrflg=0;;
 
 $('#rsubId').on('click',function(){
- 
+  dosignup();
+});
+  
+ function dosignup()
+ {
     var name = $("#name").val();
    var email = $("#signupemail").val();
    var  mobile = $("#mobile").val();
@@ -67,10 +71,15 @@ $('#rsubId').on('click',function(){
 	        }
 });
      }
-});
+}
  
 
 $('#log').click(function(){ 
+  chklogin();
+});
+
+function chklogin()
+{
   var email = $("#email").val();
   var pass = $("#pass").val();
   var validationFlag=1;
@@ -133,7 +142,7 @@ $('#log').click(function(){
 		      else{
 			   hasitem(oldcartid,olduserid);
 		      }
-		    common.msg(0,'signed in successfully'); 
+		    common.msg(1,'signed in successfully'); 
 		        var URLactn = window.location.search; 
 		      var url=DOMAIN + '/index.php' +URLactn;
 		      setTimeout(function(){
@@ -149,7 +158,7 @@ $('#log').click(function(){
         }
     });
     } 
-});
+}
 
 
 function hasitem(oldcartid,olduserid)
@@ -247,7 +256,11 @@ function updatecartiddetail(oldcartid,olduserid,newcartid)
 }
 
 $('#fsubId').on('click',function(){
+  forgtpass();
+});
   
+  function forgtpass()
+  {
       inptval=$('#femail').val();
     var validationflg=1;
     if($.isNumeric(inptval)){
@@ -266,7 +279,7 @@ $('#fsubId').on('click',function(){
        var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
 	   if(inptval===''|| inptval=== null){
 	     validationflg=0;  
-	       common.msg(0,'Please enter your Email.id'); 
+	       common.msg(0,'Please enter your Email.id or Mobile no.'); 
 	   }
 	   else if (!reg.test(inptval)){
 	     validationflg=0; 
@@ -281,7 +294,7 @@ $('#fsubId').on('click',function(){
   	   checkuser(); 
 	 
   }
-}); 
+}
 
 function  sendotp()
 {
@@ -295,7 +308,7 @@ function  sendotp()
 	       var data1 = JSON.parse(res);  
 	       if(data1['error']['err_code']==0)
 	       {
-		    common.msg(0,data1['error']['err_msg']);  
+		    common.msg(1,data1['error']['err_msg']);  
 	       }
 	       else if(data1['error']['err_code']==1){
 		   common.msg(0,data1['error']['err_msg']);
@@ -305,7 +318,12 @@ function  sendotp()
 }  
  
 $('#signup_submt').click(function(){
+  sugnupsubmt();
+});
    
+
+function sugnupsubmt()
+{
    var otpval=$('#signup_otp').val();
    if($.isNumeric(inptval)){
      if(otpval.length == 6) {
@@ -324,7 +342,7 @@ $('#signup_submt').click(function(){
      // mail
    }
      
- });
+ }
  
  function checkuser()
  {
@@ -360,7 +378,11 @@ $('#signup_submt').click(function(){
  }
  
  $('#respsssub').click(function(){
+   restpasssubmt();
+ });
    
+ function restpasssubmt()
+ {
     var pass = $("#resetpass").val();
    var cpass = $("#resetcpass").val();
    var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
@@ -373,8 +395,9 @@ $('#signup_submt').click(function(){
         common.msg(0,'Please enter the confirm password');
         validationFlag=0; 
     }
+    if(validationFlag == 1){ 
     if(pass !== cpass){
-      common.msg(0,'please enter correct password');
+      common.msg(0,'please enter same password');
     }
     else{
        var URL= APIDOMAIN + "index.php/?action=updateuserpass&user_id="+newuserid+"&pass="+pass+"&mobile="+inptval; 
@@ -387,7 +410,8 @@ $('#signup_submt').click(function(){
 	   }
        }); 
     }
- });
+    }
+ }
  
   
    function checkotp(otpval)
@@ -409,7 +433,7 @@ $('#signup_submt').click(function(){
              success:function(res){
 	    var data1 = JSON.parse(res); 
             if(data1['error']['err_code']==0)  {
-                common.msg(0,'Registered Successfullllly');
+                common.msg(1,'Registered Successfullllly');
 		var URL = APIDOMAIN + "index.php/?action=login&email="+userdata[1]+"&pass="+userdata[3]; 
 		$.ajax({ type:'POST',  url:URL, success:function(res){ 
 		    var data = JSON.parse(res); 
@@ -458,6 +482,7 @@ $('#signup_submt').click(function(){
     });
   }
    else if(otpflg == 2){
+     entrflg=5;
 	  $('#resetId').removeClass("dn");
   $('#otpCont').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
   $('#inresetId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
@@ -493,17 +518,21 @@ $('#signup_submt').click(function(){
          resetBack();
     });
      
-      $('.signupTxt span').click(function () {
+      $('#signinbtn').click(function () {
             signup();
         }); 
 	
     $('#otpsubId').click(function(){
+       frgpassotpsub();
+    });
+    
+    function frgpassotpsub(){
       var otp=$('#otp_inpt').val();
       if(otp.length == 6)
 	checkotp(otp);
       else
 	 common.msg(0,'Please Enter correct OTP');
-    });
+    }
     
     $('#resnd_otp').click(function(){ 
       sendotp();
@@ -531,5 +560,5 @@ $('#signup_submt').click(function(){
   $(document).on('click', '#userProfId', function () {
 	  var uid=common.readFromStorage('jzeva_uid');
 	  if(uid == null || uid == "")
-            openPopUp();
+            openPopUp(); 
   });

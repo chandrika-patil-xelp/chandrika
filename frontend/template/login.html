@@ -128,7 +128,7 @@
     </div>
 
     <script type="text/javascript">
-
+	
         $('.inp_box').focus(function () {
             $(this).closest('.txtB').addClass('focul');
         });
@@ -141,17 +141,36 @@
         });
 
         $('#hTxt,#loginId,#lgnId,#loginId1,#otpCont,#otpCont2,#inresetId,#signCont').velocity({opacity: [0]}, {duration: 0, easing: 'ease-in-out'});
-        $(document).ready(function () {
+        $(document).ready(function () { 
+	    entrflg =4;
             $('#hTxt,#loginId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
             $('#lgnId').velocity({opacity: [1, 0], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+	    $(document).keypress(function(e) {
+	      if(e.which == 13) { 
+		if(entrflg == 1)
+		  forgtpass();
+		else if(entrflg == 2)
+		  dosignup();
+		else if(entrflg == 3)
+		  frgpassotpsub();
+		else if(entrflg == 4)
+		  chklogin();
+		else if(entrflg == 5)
+		   restpasssubmt();
+		else if(entrflg == 6)
+		   sugnupsubmt();
+	      }
+	    });
         });
 
         function forgot() {
+	    entrflg=1;
             $('#forgot').removeClass("dn");
-            $('#loginId1').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+            $('#loginId1').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'}); 
         }
 
         function fSubmit() {
+	    entrflg=3;
             $('#forgot').addClass("dn");
             $('#loginId1').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
             $('#otpOuter').removeClass("dn");
@@ -165,12 +184,14 @@
         }
 
         function signup() {
+	    entrflg=2;
             $('#signUpId').removeClass("dn");
             $('#loginId').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
             $('#signCont').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
         }
 
         function signupSubmit() {
+	    entrflg=6;
             $('#otpOuter2').removeClass("dn");
             $('#otpCont2').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
             $('#signUpId').addClass("dn");
@@ -178,7 +199,7 @@
 
         }
 
-        function signupOtpSubmit() {
+        function signupOtpSubmit() { 
             $('#resetId').removeClass("dn");
             $('#inresetId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
             $('#otpOuter2').addClass("dn");
@@ -187,6 +208,7 @@
         }
 
         function resetSubmit() {
+	    entrflg=4;
             $('#resetId').addClass("dn");
             $('#inresetId').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
             $('#otpOuter').addClass("dn");
@@ -201,6 +223,7 @@
         }
 
         function signupBack() {
+	    entrflg=4;
             $('#signUpId').addClass("dn");
             $('#signCont').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
             $('#loginId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
@@ -222,6 +245,7 @@
         }
 
         function forgotBack() {
+	    entrflg=4;
             $('#forgot').addClass("dn");
             $('#loginId1').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
 //            $('#signInId').removeClass("dn");
@@ -230,7 +254,7 @@
   
  
 
-        function openPopUp() {
+        function openPopUp() { 
             $('.overlay').velocity({opacity: [1, 0]});
             $('.menu_wrap').css("height", "0");
             $('.tabWrap').addClass("addPointer");
@@ -239,7 +263,7 @@
             $('.outerContr').css("z-index", "203", "opacity", "1");
             $(this).parent().parent().addClass("addPointer");
             $('.ftabB').addClass("addPointer");
-            $('.outerContr').velocity({translateY: [0, '150%']}, {duration: 150, delay: 100, easing: ''});
+            $('.outerContr').velocity({translateY: [0, '150%']}, {duration: 150, delay: 100, easing: ''}); 
         }
 
         
