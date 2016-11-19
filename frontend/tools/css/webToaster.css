@@ -79,7 +79,7 @@ button.toast-close-button {
     left: 12px
 }
 #toast-container {
-    position: absolute;
+    position:fixed;
     z-index: 999999;
     pointer-events: nonel;
     font-family: sansR;
@@ -92,13 +92,13 @@ button.toast-close-button {
     box-sizing: border-box
 }
 #toast-container>div {
-    position: relative;
+    position: absolute;
     pointer-events: auto;
     overflow: hidden;
     margin: 0 0 6px;
     padding: 15px 15px 15px 50px;
     width:1400px;
-    top:0;
+    top:0px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
