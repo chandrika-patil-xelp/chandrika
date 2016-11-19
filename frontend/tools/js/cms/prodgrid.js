@@ -187,9 +187,10 @@ function generatelist(obj) {
    grandtotal = common.IND_money_format(grandtot,0);
  // grandtotal = Number(grandtot).toLocaleString('en');
 
+    proStr += '<a  target="_blank" href="'+DOMAIN+'index.php?action=product_page&pid='+ obj['prdId']+'">'; 
     proStr += '<div class="grid3 transition400" id="'+ obj['prdId'] +'"  >';
     proStr += '<div class="facet_front">';
-    proStr += '<div class="grid_item" onclick=\"getProId(\''+ obj['prdId'] + '\')\" >';
+    proStr += '<div class="grid_item"  >';
     proStr += '<div class="grid_img"  onmousemove="bindrota(this , event)" lcor="0">';
 
 
@@ -349,17 +350,11 @@ function generatelist(obj) {
   //   proStr += '<div class="grid_back" onclick="flipBack(this)"></div>';
   //   proStr += '</div>';
   //   proStr += '</div>';
-    proStr += '</div>';
+    proStr += '</div> </a>';
     return proStr;
 
 }
 
-function getProId(pid) {
-
-   window.href = DOMAIN + "index.php?action=product_page&pid="+ pid;
-    onclick=window.open(this.href, '');
-
-}
 
 function imgLoad(p,event){
     event.stopPropagation();
