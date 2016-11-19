@@ -2059,8 +2059,8 @@ input[type=radio]:checked ~ .selector_label:after {
 .jwlryDtls .w60{width:70%;height:auto;}
 .jwlryDtls .w60 .text{width:100%;height:auto;font-size:12px;color:#fff;line-height:22px;}
 .jwlryDtls .w60 .text .spanl{width:50%;float:left;}
-.jwlryDtls .w40{width:30%;height:auto;}
-.jwlryDtls .w40 .text{width:100%;height:auto;font-size:13px;color:#fff;line-height:16px;}
+.jwlryDtls .w40{width:30%;height:auto;padding-left: 10PX;}
+.jwlryDtls .w40 .text{width:100%;height:auto;font-size:13px;color:#fff;line-height:16px;margin-top: 4PX;}
 .pCount{width:100%;height:auto;margin-top: 40px;}
 .pCount .incr{width:25px;height:25px;display:inline-block;}
 .pCount .pNumber{width:25px;height:25px;color:#fff;line-height:25px;font-size:14px;text-align:center;display:inline-block;}
