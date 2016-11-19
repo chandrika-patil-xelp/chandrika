@@ -1,10 +1,9 @@
 
 $(document).ready(function(){
- 
-    displayorders();
-    wishlist();
-    persnlInfo();
-    
+   displayorders();
+   wishlist();
+   persnlInfo();
+   displayaddrs();
    if(actn == 'pId')
         perninfo();
    else if(actn == 'oId')
@@ -21,26 +20,31 @@ function displayorders()
 {
     var titod="";
     var orderstr="";
-   
+  
     
-    var userid=localStorage.getItem('jzeva_uid'); 
+    var userid=localStorage.getItem('jzeva_uid');  
      var URL = APIDOMAIN + "index.php?action=getOrderDetailsByUserId&userid="+userid;
+    
 	       $.ajax({
 	 	    url: URL,
 	 	    type: "GET",
 	 	    datatype: "JSON",
 	 	    success: function(results)
-	 	    {
+	 	    {  
 		      var obj=JSON.parse(results);
-                 
+                       console.log(obj);
+                    if(obj["result"] == null){
+                        $('#ordTitle').html('No Order Placed Yet From Your Account');
+                    }
+                      var totalprice = $('#ordPrice').html(indianMoney(parseInt(obj.totalprice)));
                       $(obj['result']).each(function(r,v){
-                          
-                       var ordrId = $('#ordId').html(v.oid);
-                       var ordDate = $('#ordDate').html(v.order_date);
-                       var ordrprc = $('#ordPrice').html(v.price);
-                       var abc=v.prdimage; abc=abc.split(',');
+                         console.log(v);
+                         var orderID = $('#ordId').html(v.oid);
+                         var orderDate =$('#ordDate').html(v.order_date);
+                                          
+                        var abc=v.prdimage; abc=abc.split(',');
 			    abc=IMGDOMAIN+abc[5];
- //orderstr+='<div class="fLeft orderImg bgCommon"></div>';
+ 
  orderstr+='<div class="fLeft orderImg bgCommon" style="background-image: url('+abc+');"></div>';
  orderstr+='<div class="fLeft orderName">';
  orderstr+='<div class="fLeft col100 semibold">'+v.prdname+'</div>';
@@ -63,12 +67,14 @@ function displayorders()
  orderstr+='</div>';
 
  orderstr+='<div class="fLeft  shipTo">';
+ if(v.size != 0.0){
  orderstr+='<span class="fLeft">Size:</span>';
- orderstr+='<span class="fLeft">4</span>';
+ orderstr+='<span class="fLeft">'+v.size+'</span>';
+ }
  orderstr+='</div>';
  orderstr+='</div>';
  orderstr+='<div class="fLeft rsCont">';
- orderstr+='<span class="fLeft">&#8377 '+v.price+'</span>';
+ orderstr+='<span class="fLeft">&#8377 '+indianMoney(parseInt(v.price))+'</span>';
  orderstr+='<div class="fLeft vatTxt dn">';
  orderstr+='<div class="fLeft col100">MRP<span>&#8377 50,000</span></div>';
  orderstr+='<div class="fLeft col100">VAT:<span>7487384</span></div>';
@@ -83,7 +89,7 @@ orderstr+='<div class="fLeft col100">tax:<span>675675</span></div>';
  
  orderstr+='<div class="filterSec fLeft">';
  orderstr+='<center>';
- orderstr+='<div class="button actBtn transition300 fRight mar0" id="trackId1">track</div>';
+ orderstr+='<div class="button actBtn transition300 fRight mar0 trackCommon" id="trackId1">track</div>';
 orderstr+= '</center>';
  orderstr+= '</div>';
 orderstr+='</div>';
@@ -115,66 +121,20 @@ orderstr+= '<div class="fLeft date semibold font15">07 oct</div>';
 orderstr+= '<div class="fLeft shipTo">shipped to third party</div>';
 orderstr+= '</div>';
 orderstr+= '</div>';
-                        
-//                        
-//orderstr+='<div class="fLeft orderImg bgCommon" style="background-image: url('+abc+');"></div>';
-//orderstr+=' <div class="fLeft orderName">';
-//orderstr+=' <div class="fLeft pName semibold">'+v.prdname+'</div>';
-// orderstr+='  <div class="fLeft pPrice pName">';
-// orderstr+=' <span class="fLeft">Code:</span>';
-//orderstr+='<span class="fLeft">'+v.product_code+'</span>';
-//orderstr+='  </div>';
-//orderstr+='<div class="fLeft pPrice pName">';
-//orderstr+='  <span class="fLeft">Qty:</span>';
-//orderstr+='  <span class="fLeft">'+parseInt(v.pqty)+'</span> </div> </div>';
-// orderstr+=' <div class="fLeft rsCont">';
-//orderstr+=' <span class="fLeft">&#8377 '+v.price+'</span>';
-//orderstr+=' <span class="plusBox plusHolder fLeft"></span>';
-//orderstr+=' <div class="fLeft vatTxt dn">';
-//orderstr+=' <div class="fLeft col100">MRP<span>&#8377 50,000</span></div>';
-//orderstr+='  <div class="fLeft col100">VAT:<span>7487384</span></div>';
-//orderstr+=' <div class="fLeft col100">tax:<span>675675</span></div>';
-//orderstr+=' </div>   </div>  <div class="fLeft note">';
-//orderstr+=' <div class="">Please Note</div>';
-//orderstr+=' <div class="">The item has not been delivered yet</div>';
-//orderstr+=' </div>';
-//
-//titod+='<div class="fLeft Morder bolder">&#8377 '+v.price+' </div>';
-//titod+='<div class="fLeft Morder bolder">'+v.pqty+'</div>';
-//titod+='<div class="fLeft Morder bolder">'+v.order_status+'</div>';
-//
-//orderShp+='<div class="inCourier fLeft">';
-//orderShp+='<div class="fLeft inShip">';  
-//orderShp+='<span class="font13 regular">Order No:</span>';
-//orderShp+='<span class="font13 semibold">123456789</span>';
-//orderShp+='</div>';
-//orderShp+='<div class="fLeft inShip">';
-//orderShp+= '<span class="font13 regular">Order Placed:</span>';
-//orderShp+= '<span class="font13 semibold">0123456788</span>';
-//orderShp+='</div>';
-//orderShp+='</div>';
-//orderShp+= '<div class="inCourier fLeft">';
-//orderShp+='<div class="fLeft inShip font13 regular">Total Amount</div>';
-//orderShp+= '<div class="fLeft inShip font13 semibold">&#8377 '+v.price+'</div>';    
-//orderShp+='</div>';
-//orderShp+= '<div class="inCourier fLeft">';
-//orderShp+= '<div class="fLeft inShip font13 regular ">Shipping Address </div>';
-//orderShp+= '<div class="fLeft inShipfont13 semibold ">'+v.customerAddrs+','+v.customerCity+''+v.customerPincode+'</div>';
-//orderShp+='</div>';
-//orderShp+='<div class="inCourier fLeft pad0">';
-//orderShp+= '<div class="fLeft inShip font13 regular ">Payment Mode</div>';
-//orderShp+='<div class="fLeft inShipfont13 semibold ">'+v.payment_type+'</div>';
-//orderShp+='</div>';
-      
+                          
       });
+       
       $('#ordDetail').append(orderstr);
-      //$('#titleod').append(titod);
-    //  $('#ordShipng').append(orderShp);
-                    }
-                    });
+       
+                }
                 
+                 
+                    });
+                    
+           
+           
    }
-   
+ 
 function wishlist()
 {
    var userid=localStorage.getItem('jzeva_uid');
@@ -191,49 +151,105 @@ function wishlist()
 		      var obj=JSON.parse(res);
                       var wishStr="";
                        $(obj['result']).each(function(s,j){
-                         
+                       console.log(j);
                            var xyz=j.prdimage; xyz=xyz.split(',');
 			    xyz=IMGDOMAIN+xyz[5];
-                            
- wishStr+= '<div class="facet_front">';
- wishStr+= '<div class="grid_item">';
- wishStr+= '<div class="grid_img">';
- wishStr+= '<div style="background:url('+xyz+')no-repeat ; background-size: contain ; background-position: center" class=""></div></div>';
- wishStr+= '<div class="hovTr">';
- wishStr+= '<div class="hovTrans" style="display: none; transform: translateX(101%);">';
- wishStr+= '<div class="plusCont" style="transform: scale(0);"></div></div></div>';
- wishStr+= '<div class="grid_dets">';
- wishStr+= '<div class="grid_name txtOver transition300">'+j.prdname+'</div>';
- wishStr+= '<div class="col100  font11 transition300 txtOver">Gold  Φ  Diamond </div>';
- wishStr+= '<div class="grid_price txtOver transition300">₹ '+j.price+'</div>';
- wishStr+= '<div class="action_btns">';
- wishStr+= '<div class="col50 fLeft  padXr5">';
- wishStr+='<div class="actBtn fLeft bolder" id="add_to_cart" >Add To Cart</div>';
- wishStr+='</div>';
- wishStr+='<div class="col50 fLeft  padXl5">';
- wishStr+='<div class="actBtn fRight bolder">delete</div>';
- wishStr+='</div>';
- wishStr+='</div>';
- wishStr+='<div class="fmSansB smBtnDiv fLeft transition300">';
- wishStr+='<div class="v360Btn" onclick="imgLoad(1320160808054906, event)"></div></div></div>';
- wishStr+='<div class="soc_icons">';
- wishStr+='<div class="soc_elem soc_wish2 transition300"></div>';
- wishStr+='<div class="soc_elem soc_share transition300"></div>';
- wishStr+='</div>';
- wishStr+='</div>';
-                       });
-                        $('#wishid').append(wishStr);
+ 
+ wishStr+= '<div class="grid3 transition400 fadeInup" > ';
+ wishStr+= ' <div class="">out of stock</div> ';
+ wishStr+= ' <div class="facet_front">';
+ wishStr+= ' <div class="grid_item"> ';
+ wishStr+= '    <div class="grid_img">';
+ wishStr+= ' <div style="background:url('+xyz+')no-repeat ; background-size: contain ; background-position: center" class=""></div></div>';
+ wishStr+= '   <div class="hovTr"> ';
+ wishStr+= '  <div class="hovTrans" style="display: none; transform: translateX(101%);">';
+ wishStr+= '  <div class="plusCont" style="transform: scale(0);"></div></div></div>';
+ wishStr+= '   <div class="grid_dets">';
+ wishStr+= '  <div class="grid_name txtOver transition300">'+j.prdname+'</div>';
+ wishStr+= ' <div class="col100  font11 transition300 txtOver"> '+j.jweltype+' Φ '+j.hasdmd+' </div>';
+ wishStr+= '   <div class="grid_price txtOver transition300"> '+indianMoney(parseInt(j.price))+'</div>';
+ wishStr+= '  <div class="action_btns">';
+ wishStr+= '  <div class="col50 fLeft  pad0">';
+ wishStr+= '  <div class="actBtn fLeft bolder addcrt" id="'+j.wish_id+'_'+j.col_car_qty+'_'+j.product_id+'_'+j.size+'" ';
+ wishStr+= '   onclick="addtocart(this)">Add To Cart</div> </div>';
+ wishStr+= '  <div class="col50 fLeft  pad0">';
+ wishStr+= '  <div class="actBtn fRight bolder" onclick="removeitm(this)">delete</div>';
+ wishStr+= '   </div>';
+ wishStr+= '  </div>';
+ wishStr+= ' <div class="fmSansB smBtnDiv fLeft transition300">';
+ wishStr+= '  <div class="v360Btn" onclick="imgLoad(1320160808054906, event)"></div></div></div>';
+ wishStr+= '   <div class="soc_icons">';
+ wishStr+= '  <div class="soc_elem soc_wish2 transition300"></div>';
+ wishStr+= '   <div class="soc_elem soc_share transition300"></div>';
+ wishStr+= '   </div>';
+ wishStr+= '   </div> </div>  </div>';
+     
+                  });
+                         $('#wishid').html(wishStr);
                   }
                    
               });
-              
+        
   
     }
     
+     
+  function addtocart(ths){
+        var ids=$(ths).attr('id');
+        ids=ids.split('_');
+        var price=$(ths).closest('.grid_dets').find('.grid_price ').text(); 
+        price=price.replace(/\,/g,'');
+        var userid=common.readFromStorage('jzeva_uid'); 
+        var cartid=common.readFromStorage('jzeva_cartid');
+        var cartdata={};
+        cartdata['pid']= ids[2];
+        cartdata['price']= price;
+        cartdata['qty']=1;
+        cartdata['col_car_qty']=ids[1];
+        cartdata['RBsize']= ids[3]; 
+        cartdata['cartid']= cartid;
+        cartdata['userid']=userid;
+        storecartdata(cartdata,2);
+        var URL = APIDOMAIN+"index.php?action=removeItmFrmWishlist&wish_id="+ids[0]+"&col_car_qty="+ids[1]+"&pid="+ids[2]+"&size="+ids[3];
+        $.ajax({  type:'POST', url:URL, success:function(res){ 
+             wishlist();
+	      }
+        });
+  } 
+ 
+   function removeitm(ths)
+   {
+      var ids=$(ths).closest('.action_btns').find('.addcrt').attr('id');
+      ids=ids.split('_');
+      var URL = APIDOMAIN+"index.php?action=removeItmFrmWishlist&wish_id="+ids[0]+"&col_car_qty="+ids[1]+"&pid="+ids[2]+"&size="+ids[3];
+      $.ajax({  type:'POST', url:URL, success:function(res){ 
+        wishlist();
+	}
+      }); 
+   }
+
+  function indianMoney(x){
+          x=x.toString();
+          var afterPoint = '';
+          if(x.indexOf('.') > 0)
+             afterPoint = x.substring(x.indexOf('.'),x.length);
+          x = Math.floor(x);
+          //alert(x);
+          x=x.toString();
+          var lastThree = x.substring(x.length-3);
+          var otherNumbers = x.substring(0,x.length-3);
+          if(otherNumbers != '')
+              lastThree = ',' + lastThree;
+          var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree + afterPoint;
+          
+          return res;
+     } 
+ 
   
  function persnlInfo(){
      var userid=localStorage.getItem('jzeva_uid');
      var perStr ="";
+      
       var perInfoURL = APIDOMAIN + "index.php?action=getUserDetailsById&userid="+userid;
      
       
@@ -248,7 +264,7 @@ function wishlist()
                      
                         var profileStr="";
                        $(obj['result']).each(function(k,l){
-                     
+                      
                           profileStr+= '<div class="proFields">'+l.uname+'</div>';
                           profileStr+= '<div class="proFields">'+l.mob+'</div>';   
                           profileStr+='<div class="proFields">'+l.email+'</div>';
@@ -257,10 +273,11 @@ function wishlist()
                    }
                   
                     });
-      }
+                }
+      
       
 function storenewpass(newpass)
- {
+ { 
     var userid=common.readFromStorage('jzeva_uid'); 
     var mob=common.readFromStorage('jzeva_mob');
      var URL= APIDOMAIN + "index.php/?action=updateuserpass&user_id="+userid+"&pass="+newpass+"&mobile="+mob; 
@@ -270,58 +287,186 @@ function storenewpass(newpass)
        });  
  }
  
- function getuserdetail(pass)
- {
-    alert(pass);
-    var URL= APIDOMAIN + "index.php/?action=getuserdatabyurl&key="+key; 
-    $.ajax({
+ 
+    
+   $('#shpaddr').on('click',function(){
+      savemyaddress();
+  });
+  
+   function savemyaddress(){
+      var shipngdata={}; 
+       var userid=common.readFromStorage('jzeva_uid');
+        
+          var address = $('#addr').val();
+          var state = $('#state').val();
+          var zipcode = $('#zipcode').val();
+          var city = $('#city').val();
+          var validationFlag=1;
+          
+          if(address ===''|| address === null){
+             validationFlag=0; 
+      common.msg(0, 'Please Enter Your Address');
+       }
+       else if(state === '' || state === null){
+           validationFlag=0; 
+      common.msg(0, 'Please Enter Your State');
+       }
+        else if(zipcode === '' || zipcode === null){
+           validationFlag=0; 
+      common.msg(0, 'Please Enter The Zipcode');
+       }
+       else if(city === '' || city === null){
+           validationFlag=0; 
+      common.msg(0, 'Please Enter Your City');
+       }
+     var name=common.readFromStorage('jzeva_name'); 
+     var email=common.readFromStorage('jzeva_email'); 
+     var moblno=common.readFromStorage('jzeva_mob'); 
+    
+    shipngdata['name']=name;
+    shipngdata['email']=email;
+    shipngdata['mobile']=moblno;
+   shipngdata['city']=city;
+   shipngdata['address']=address;	    
+   shipngdata['state']=state;
+   shipngdata['pincode']=zipcode;
+   shipngdata['user_id']=userid;
+    
+   if(validationFlag == 1){
+      
+    var URL= APIDOMAIN + "index.php?action=addshippingdetail";
+    var data=shipngdata; 
+    var dt = JSON.stringify(data);   
+	$.ajax({ type:"post",
+                 url:URL,  
+                 data: {dt: dt}, 
+                 success:function(res){  
+		           
+			 var data=JSON.parse(res);
+                       common.msg(1, 'Your New Address Added Successfully')
+                        displayaddrs();
+                     }
+                 });
+    
+           }
+     
+       
+     
+                     
+  }
+  
+  function displayaddrs(){
+      
+      var userid=localStorage.getItem('jzeva_uid');
+   var URL= APIDOMAIN + "index.php/?action=getshippingdatabyid&userid="+userid;  
+    
+       $.ajax({  
+                 url: URL,
+                 type: "GET",   
+                 datatype: "JSON",   
+                 success: function(results){ 
+                     
+		     var data=JSON.parse(results);
+                   
+                     var addrStr="";
+                     $(data['results']).each(function(m,n){
+                     
+                    addrStr+= '<div class="fLeft defaulDiv" >';
+                    addrStr+= '<div class="fLeft col100">';
+                    addrStr+='<div class="font13">'+n.address+'</div>';
+                    //addrStr+='<div class="font13">Kormanagala</div>';
+                    addrStr+='<div class="font13">'+n.city+'-'+n.pincode+'</div>';
+                    addrStr+='</div>';
+                    addrStr+='<div class="filterSec fLeft">';
+                    addrStr+='<center>';
+                    addrStr+='<div class="button actBtn marR transition300" onclick="removeaddr(this)" id='+n.shipping_id+'>remove</div>';
+                  //  addrStr+='<div class="button actBtn marR  transition300">edit</div>';
+                    addrStr+='</center>';
+                    addrStr+='</div>';
+                    addrStr+='</div>';
+                 });
+                 $('#myaddrs').html(addrStr);
+             }
+             });
+         }
+ 
+ function removeaddr(ths)
+{ 
+     var yesno=confirm('Are u sure Do you want to remove This Address');
+     if(yesno== true)
+     {
+    var shpid=$(ths).attr('id'); 
+    var userid=localStorage.getItem('jzeva_uid');
+    console.log(userid);
+    
+    var URL= APIDOMAIN + "index.php/?action=removeShipngdetail&shipping_id="+shpid+"&user_id="+userid;
+       $.ajax({  
+                 url: URL,
+                 type: "GET",   
+                 datatype: "JSON",   
+                 success: function(results){ 
+                     
+		     var data=JSON.parse(results);
+                     common.msg(1, 'Your Address Removed Successfully')
+                     displayaddrs();
+                 }
+             });
+         }
+}
+
+
+    $('#zipcode').blur(function(){
+   var zipcode= $(this).val();
+   if(zipcode.length == 6){
+      var URL = APIDOMAIN + "index.php?action=viewbyPincode&code="+zipcode;  
+	       $.ajax({
 	 	    url: URL,
 	 	    type: "GET",
 	 	    datatype: "JSON",
-	 	    success: function(res)
+	 	    success: function(results)
 	 	    { 
-		     var data=JSON.parse(res);   
-		     var email=data.result['email'];
-		     var mobile=data.result['mobile'];
-		     var user_id=data.result['user_id'];
- var URLreg= APIDOMAIN + "index.php/?action=updateuserpass&user_id="+user_id+"&email="+email+"&mobile="+mobile+"&pass="+pass;
-		    $.ajax({
-			     type:'POST',
-			     url:URLreg,
-			     success:function(res){
-			   
-                            alert('password reset successfully');
-			  }
-			});
-
-		   }
-    });
-    
-    
- }
+		      var obj=JSON.parse(results);  
+		 
+                    $('#state').val(obj.results[0].state);
+                    $('#city').val(obj.results[0].city);  
+		    }
+		  }); 
+   } 
+   else{ 
+    common.msg(0,'Please Enter correct Zip Code');
+   }
+}); 
  
    $('#restpas').click(function(){
-      
+     
       var oldpas=$('#oldpass').val();
       var newpass = $("#newpass").val();
       var cpass = $("#cpass").val();
-      var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
+     // var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
       var validationFlag=1;
-      
+      if(oldpas ===''|| oldpas === null){ 
+		  validationFlag=0;
+		  common.msg(0,'Please Enter Your Old Password');
+	      }
       var mobl=common.readFromStorage('jzeva_mob');
       var URL = APIDOMAIN + "index.php?action=checkpassw&pass="+oldpas+"&mob="+mobl;  
-      $.ajax({  url: URL,  type: "GET",   datatype: "JSON", success: function(results)  {
+      $.ajax({  url: URL, 
+                type: "GET",   
+                datatype: "JSON", 
+                success: function(results)  {
 	var obj=JSON.parse(results);  
+      
 	if(obj['error']['err_code'] == 0){ 
+            
 	      if(newpass ===''|| newpass === null){ 
 		  validationFlag=0;
 		  common.msg(0,'Please Enter Your New Password');
 	      }
-	      else if(cpass===''|| cpass=== null){ 
+	     else if(cpass===''|| cpass=== null){ 
 		 validationFlag=0;
 		  common.msg(0,'Please Enter the Confirm password');
 	      }
-	      if(newpass !== cpass){
+	      else if(newpass !== cpass){
 		common.msg(0,'Password Does Not Match');
 	      }
 	      else{
@@ -329,11 +474,12 @@ function storenewpass(newpass)
 	        storenewpass(newpass); 
 	      }
 	}
-	else if(obj['error']['err_code'] == 1)
-	  common.msg(0,'Please Enter Correct password');
-	else if(obj['error']['err_code'] == 2)
+	else if(obj['error']['err_code'] == 1){
+         common.msg(0,'Please Enter Correct password');
+     }else if(obj['error']['err_code'] == 2){
 	   common.msg(0,obj['error']['err_msg']);
       }
+  }
     }); 
   }); 
   
@@ -404,4 +550,23 @@ function storenewpass(newpass)
     $('#editpId').addClass("dn");
     $('#saveAddrId').addClass("dn");
     $('#pChange').addClass("dn");
-  }
+  } 
+
+ $(document).on('click','.trackCommon', function () {
+           
+            var trkID = $(this).attr('id');
+          
+            var trackTxt = $(this).text();
+           
+            var cls = "see less";
+            var trk = "track";
+            if (($('#' + trkID).html()) === "track") {
+              //  console.log($('#' + trkID).parent());
+                $('#' + trkID).html(cls);
+                $('#' + trkID).parent().parent().parent().next().slideDown(400);
+            } else {
+               
+                $('#' + trkID).html(trk);
+                $('#' + trkID).parent().parent().parent().next().slideUp(400);
+            }
+        });

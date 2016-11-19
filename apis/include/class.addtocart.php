@@ -713,6 +713,7 @@
                                     product_id, 
 				    col_car_qty,
                                     price,
+                                    size,
 				    active_flag, 
                                     created_on,
 				    updatedon
@@ -720,7 +721,7 @@
                                   VALUES ";
 	    
                       $sql .= " (".$params['wish_id'].", '".$params['user_id']."','".$params['pid']."','".$params['col_car_qty']."','".$params['price'].""
-			    . "',1,NOW(), NOW())";
+			    . "','".$params['size']."',1,NOW(), NOW())";
                                    
      
 	 	      $sql.="
@@ -752,11 +753,13 @@
             }
 	  
 	   
-         $sql = "  SELECT  wish_id,user_id,product_id AS pid,col_car_qty AS combine,price,active_flag,created_on,updatedon, "
+         $sql = "  SELECT  wish_id,user_id,product_id AS pid,col_car_qty AS combine,price,size,active_flag,created_on,updatedon, "
               . "(SELECT  GROUP_CONCAT(dname) FROM tbl_metal_color_master WHERE id = SUBSTRING_INDEX(combine, '|@|',1) AND active_flag = 1 ) AS color,"
 	    ."(SELECT  GROUP_CONCAT(dname) FROM tbl_metal_purity_master WHERE id = SUBSTRING_INDEX(SUBSTRING_INDEX(combine,'|@|',2),'|@|',-1) AND active_flag = 1 ) AS carat,"
              ."(SELECT  GROUP_CONCAT(dname) FROM tbl_diamond_quality_master WHERE id = SUBSTRING_INDEX(combine,'|@|',-1)  AND active_flag = 1 ) AS quality,"
             . "(SELECT  GROUP_CONCAT(product_name) FROM tbl_product_master WHERE productid = pid AND active_flag = 1 ) AS prdname,"
+            . "(SELECT  GROUP_CONCAT(jewelleryType) FROM tbl_product_master WHERE productid = pid AND active_flag = 1 ) AS jweltype,"
+             . "(SELECT  GROUP_CONCAT(has_diamond) FROM tbl_product_master WHERE productid = pid AND active_flag = 1 ) AS hasdmd,"
 	    . "(SELECT  GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid  AND active_flag !=2 ORDER BY
                             image_sequence DESC) AS prdimage";
             
@@ -781,6 +784,24 @@
                     $arr['color'] = $row['color']; 
                     $arr['carat'] = $row['carat']; 
                     $arr['quality'] = $row['quality'];
+                    $arr['size'] = $row['size'];
+                    $arr['hasdmd'] = $row['hasdmd'];
+                    $arr['jweltype'] = $row['jweltype'];
+                    
+                   if($row['jweltype'] === '1'){
+                             $arr['jweltype'] ='Gold';
+                        }else  if($row['jweltype'] === '2'){
+                             $arr['jweltype'] ='Plain Gold';
+                        }else  if($row['jweltype'] === '3'){
+                             $arr['jweltype'] ='Platinum';
+                        }  
+                        
+                    if($row['hasdmd'] === '1'){
+                             $arr['hasdmd'] ='Diamond';
+                        }else  if($row['hasdmd'] === '0'){
+                             $arr['hasdmd'] ='';
+                        }
+                        
                     $resArr[] = $arr;
                         }  
                         
@@ -845,6 +866,36 @@
             
             $results = array('result'=>$resp, 'error'=>$error);  
              return $results;
+            
+        }
+        
+        
+        public function removeItmFrmWishlist($params){
+             
+            if(empty($params['wish_id']) || empty($params['col_car_qty'])){
+                $resp = array();
+                $error = array('err_code'=>1, 'err_msg'=>'Parameters Missing');
+                $result = array('result'=>$resp, 'error'=>$error);
+                return $result;
+            }
+            
+            $sql = "UPDATE 
+                            tbl_wishlist_master 
+                          SET
+                            active_flag = 0 
+                          WHERE col_car_qty = '".$params['col_car_qty']."' 
+                            AND product_id = '".$params['pid']."' AND wish_id = '".$params['wish_id']."' AND size = '".$params['size']."'";
+            
+            $res = $this->query($sql);
+            
+            if($res){
+                $error = array('err_code'=>0, 'err_msg'=>'Updated Successfully');
+            }else{
+                $error = array('err_code'=>1, 'err_msg'=>'Error In Updating' );
+            }
+            
+            $results = array('result'=>$resp, 'error'=>$error);
+            return $results;
             
         }
     }

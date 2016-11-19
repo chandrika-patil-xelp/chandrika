@@ -797,7 +797,7 @@
             $mobile = (!empty($params['mobile'])) ? trim($params['mobile']) : '';
             $city = (!empty($params['city'])) ? trim($params['city']) : ''; 
             $email = (!empty($params['email'])) ? trim($params['email']) : ''; 
-            
+         
            if((empty($mobile)) && (empty($email)))
             {
                 $resp = array();
@@ -807,7 +807,7 @@
             }
               
             $sql="INSERT INTO tbl_order_shipping_details "
-                    . "(user_id,shipping_id,name,mobile,email,city,address,state,pincode,createdon) VALUES ("
+                    . "(user_id,shipping_id,name,mobile,email,city,address,state,pincode,active_flag,createdon) VALUES ("
                     . "\"".$userid."\""
 		    . ",\"" . $ship_id . "\""
                     . ",\"" . $name . "\""
@@ -816,7 +816,8 @@
                     . ",\"" . $city . "\""
                     . ",\"" . urldecode($params['address']) . "\"" 
                     . ",\"" . urldecode(($params['state'])) . "\""
-		    . ",\"" . urldecode(($params['pincode'])) . "\"" 
+		    . ",\"" . urldecode(($params['pincode'])) . "\""
+                    . ",1"
                     . ",now())"
                     . " ON DUPLICATE KEY UPDATE "
                             ."name    = \"".$name."\"," 
@@ -825,8 +826,10 @@
                             ."city    = \"" .$city."\","
                             ."address  = \"" .$params['address']."\","
 			    ."state    = \"" .urldecode($params['state'])."\","
-			    ."pincode  = \"" .urldecode($params['pincode'])."\""; 
-                                
+			    ."pincode  = \"" .urldecode($params['pincode'])."\"";
+                           
+                            
+                               
             $res=$this->query($sql);
             
             $result = array(); 
@@ -836,6 +839,39 @@
                 $err = array( 'err_code' => 1, 'err_msg' => 'Error in inserting');
             }
             $results = array('result' => $result, 'error' => $err);
+            return $results;
+            
+        }
+        
+        
+         public function removeShipngdetail($params){
+            
+//            $shipping_id = (!empty($params['shipping_id'])) ? trim($params['shipping_id']) : '';
+//            $user_id = (!empty($params['name'])) ? trim($params['user_id']) : '';
+            
+            if(empty($params['shipping_id']) || empty($params['user_id'])){
+                $resp = array();
+                $error = array('err_code'=>1, 'err_msg'=>'Parameters Missing');
+                $result = array('result'=>$resp, 'error'=>$error);
+                return $result;
+            }
+            
+            $sql = "UPDATE 
+                            tbl_order_shipping_details 
+                          SET
+                            active_flag = 2 
+                          WHERE shipping_id = '".$params['shipping_id']."' 
+                            AND user_id = '".$params['user_id']."' ";
+            
+            $res = $this->query($sql);
+            
+            if($res){
+                $error = array('err_code'=>0, 'err_msg'=>'Updated Successfully');
+            }else{
+                $error = array('err_code'=>1, 'err_msg'=>'Error In Updating' );
+            }
+            
+            $results = array('result'=>$resp, 'error'=>$error);
             return $results;
             
         }
@@ -993,7 +1029,7 @@
                 $result = array('results' => $resp, 'error' => $error);
                 return $result;
             }
-	    
+	              
 	    $sql="UPDATE tbl_user_master PASSWORD SET "
 		    . "PASSWORD='".urldecode(md5($params['pass']))."' WHERE user_id='".$params['user_id']."'"
 		    . "AND logmobile='".$params['mobile']."'OR email='".$params['email']."'";
@@ -1150,7 +1186,7 @@
                 $res = array('results' => $resp, 'error' => $error);
                 return $res;
             }
-	    $sql="SELECT user_id,shipping_id,name,mobile,email,city,address,state,pincode,createdon FROM tbl_order_shipping_details WHERE user_id='".$params['userid']."'";
+	    $sql="SELECT user_id,shipping_id,name,mobile,email,city,address,state,pincode,createdon FROM tbl_order_shipping_details WHERE user_id='".$params['userid']."' AND active_flag=1";
 	    $res=  $this->query($sql);
 	    if($res){
 	    while($row=  $this->fetchData($res)){

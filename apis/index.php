@@ -732,7 +732,7 @@ switch($action)
         include APICLUDE . 'class.addtocart.php';
         $obj = new addtocart($db['jzeva']);
         $tmpaparams = array($params['dt']);
-     
+    
         //
         //      foreach($tmpaparams as $key => $value)
         //     {
@@ -913,6 +913,12 @@ switch($action)
 	$tmpaparams = array($params['dt']);
         $res	=$obj->addshippingdetail($tmpaparams);
     break;
+    
+     case 'removeShipngdetail':
+        include APICLUDE.'class.user.php';
+        $obj = new user($db['jzeva']);
+        $res = $obj->removeShipngdetail($params);
+        break;
 
     case 'addOrdersdetail':
         include APICLUDE.'class.us.php';
@@ -1061,6 +1067,13 @@ case 'getUserdetailbymob':
         $obj = NEW addtocart($db['jzeva']);
         $res = $obj->checkpassw($params);
   break;
+
+case 'removeItmFrmWishlist':
+        include APICLUDE.'class.addtocart.php';
+        $obj = new addtocart($db['jzeva']);
+        $res = $obj->removeItmFrmWishlist($params);
+        break;
+
   }
 echo json_encode($res);
 exit;

@@ -220,7 +220,8 @@
                             payment_type
                           ) 
                           VALUES ";
-	    
+
+	   
 	     foreach($params['data'] as $kye=> $val){
 	    
 	    $sql.="(".$val['orderid'].", '".$val['pid']."', '".$val['userid']."', '".$val['shipping_id']."','".$val['col_car_qty']."','".$val['size']."','".$val['pqty']."','".$val['prodpri']."',NOW(),NOW(),";  
@@ -321,7 +322,19 @@
         }
         
          global $comm;
-             
+         
+           
+            $sqlcount = "  SELECT
+                                    count(product_id) AS  cnt,
+                                    sum(price) AS  totprc
+                                            FROM
+                                     tbl_order_master
+                                         WHERE user_id = ".$params['userid']." and
+                                      active_flag =1";  
+            $rescnt= $this->query($sqlcount); 
+            $row = $this->fetchData($rescnt);
+            $totalprc= $row['totprc'];
+            $total= $row['cnt']; 
            
                 $sql = "SELECT 
                             order_id AS oid,
@@ -329,6 +342,7 @@
                             user_id AS uid,
                             shipping_id AS shpId,
                             col_car_qty AS combine,
+                            size,
                             pqty,
                             price,
                             order_date,
@@ -339,16 +353,18 @@
                             payment,
                             payment_type,
                             
-                            (SELECT product_seo_name FROM tbl_product_master WHERE productid=pid) AS pname,
-(SELECT  GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid  AND active_flag !=2 ) AS prdimage,
-(SELECT  GROUP_CONCAT(product_name) FROM tbl_product_master WHERE productid = pid AND active_flag = 1 ) AS prdname,
-(SELECT  GROUP_CONCAT(product_code) FROM tbl_product_master WHERE productid = pid AND active_flag = 1 ) AS product_code,
+                            (SELECT product_seo_name FROM tbl_product_master WHERE productid=pid) AS prdSeoname,
+(SELECT  GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid  AND active_flag !=2) AS prdimage,
+(SELECT  GROUP_CONCAT(product_name) FROM tbl_product_master WHERE productid = pid AND active_flag !=2 ) AS prdname,
+(SELECT  GROUP_CONCAT(product_code) FROM tbl_product_master WHERE productid = pid AND active_flag !=2 ) AS product_code,
 
-(SELECT  GROUP_CONCAT(dname) FROM tbl_metal_color_master WHERE id = SUBSTRING_INDEX(combine, '|@|',1) AND active_flag = 1 ) AS color,
-(SELECT  GROUP_CONCAT(dname) FROM tbl_metal_purity_master WHERE id = SUBSTRING_INDEX(SUBSTRING_INDEX(combine,'|@|',2),'|@|',-1) AND active_flag = 1 ) AS Metalcarat,
-(SELECT  GROUP_CONCAT(dname) FROM tbl_diamond_quality_master WHERE id = SUBSTRING_INDEX(combine,'|@|',-1)  AND active_flag = 1 ) AS quality,
 
- (SELECT GROUP_CONCAT(shipping_id) FROM tbl_order_shipping_details WHERE shipping_id = shpId AND active_flag = 1 ) AS shipngDet,
+(SELECT  GROUP_CONCAT(dname) FROM tbl_metal_color_master WHERE id = SUBSTRING_INDEX(combine, '|@|',1) AND active_flag !=2 ) AS color,
+(SELECT  GROUP_CONCAT(dname) FROM tbl_metal_purity_master WHERE id = SUBSTRING_INDEX(SUBSTRING_INDEX(combine,'|@|',2),'|@|',-1) AND active_flag !=2 ) AS Metalcarat,
+(SELECT  GROUP_CONCAT(dname) FROM tbl_diamond_quality_master WHERE id = SUBSTRING_INDEX(combine,'|@|',-1)  AND active_flag !=2 ) AS quality,
+
+
+ (SELECT GROUP_CONCAT(shipping_id) FROM tbl_order_shipping_details WHERE shipping_id = shpId) AS shipngDet,
  (SELECT GROUP_CONCAT(name) FROM tbl_order_shipping_details WHERE FIND_IN_SET(shipping_id,shipngDet)) AS customername,
  (SELECT GROUP_CONCAT(mobile) FROM tbl_order_shipping_details WHERE FIND_IN_SET(shipping_id,shipngDet)) AS customerMob,
  (SELECT GROUP_CONCAT(city) FROM tbl_order_shipping_details WHERE FIND_IN_SET(shipping_id,shipngDet)) AS customerCity,
@@ -357,24 +373,28 @@
  (SELECT GROUP_CONCAT(address) FROM tbl_order_shipping_details WHERE FIND_IN_SET(shipping_id,shipngDet)) AS customerAddrs
  
 
- FROM tbl_order_master WHERE user_id= ".$params['userid']." ";
+ FROM tbl_order_master WHERE user_id= ".$params['userid']."  ";
                 
                 $res = $this->query($sql);
                 
                 if($res){
                     
-                     $row = $this->fetchData($res);
+                     while ($row = $this->fetchData($res)){
                     
                      $reslt['oid'] = ($row['oid']!=null) ? $row['oid'] : '';
                      $reslt['pid'] = ($row['pid']!=NULL) ? $row['pid'] : '';
                      $reslt['uid'] = ($row['uid']!=NULL) ? $row['uid'] : '';
+                     $reslt['prdSeoname'] = ($row['prdSeoname']!=NULL) ? $row['prdSeoname'] : '';
                      $reslt['shipping_id'] = ($row['shipping_id']!=NULL) ? $row['shipping_id'] : '';
                      $reslt['col_car_qty'] = ($row['col_car_qty']!=NULL) ? $row['col_car_qty'] : '';
+                     $reslt['size'] = ($row['size']!=NULL) ? $row['size'] : '';
                      $reslt['color'] = ($row['color']!=NULL) ? $row['color'] : '';
                      $reslt['Metalcarat'] = ($row['Metalcarat']!=NULL) ? $row['Metalcarat'] : '';
                       $reslt['quality'] = ($row['quality']!=NULL) ? $row['quality'] : '';
                      $reslt['pqty'] = ($row['pqty']!=NULL) ? $row['pqty'] : '';
                      $reslt['price'] = ($row['price']!=NULL) ? $row['price'] : '';
+                     $reslt['cartid'] = ($row['cartid']!=NULL) ? $row['cartid'] : '';
+                      
                      $reslt['order_date'] = ($row['order_date']);
                      $reslt['delivery_date'] = ($row['delivery_date']);
                      $reslt['order_status'] = ($row['order_status']!=NULL) ? $row['order_status'] : '';
@@ -424,19 +444,20 @@
                        
                      $resp[] = $reslt;
                      
-                     
+                     }
                      $error = array('err_code'=>0, 'err_msg'=>' Fetched Data Successfully ');
                     
                 }else{
                     $error = array('err_code'=>1, 'err_msg'=>' Error Fetching Data ');
                 }
                  
-            $result = array('result'=>$resp, 'error'=>$error );
+            $result = array('result'=>$resp, 'error'=>$error, 'total'=>$total ,'totalprice'=> $totalprc);
             return $result;
             
     }
-        /** GET PRODUCT DETAILS BY PRODUCT ID ENDS **/
-        
+    
+   
+      
         /** GET ALL USER DETAILS START **/
         public function getAllUDetail($params){
             
