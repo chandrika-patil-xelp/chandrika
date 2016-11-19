@@ -103,7 +103,7 @@ $(document).ready(function () {
 
             data = JSON.parse(res);
             
-            var dt = data['results'];
+            var dt = data['results'];console.log(dt);
             var basic = dt['basicDetails'];
             var catAttr = dt['catAttr'];
             var vendor = dt['vendor'];
@@ -112,7 +112,10 @@ $(document).ready(function () {
             var solitaire = dt['solitaire'];
             var diamonds = dt['dimond'];
             var uncut = dt['uncut'];
-
+            if(dt['catAttr']['results'][1]['name']== 'Pendants'){
+                $('#Ifpendant').html('Chain Is Not Available With This Pendent');
+            }
+            
             storedWt  = parseFloat(dt['basicDetails']['mtlWgt']);
             storedMkCharge = parseFloat(dt['basicDetails']['mkngCrg']);
 
@@ -126,6 +129,7 @@ $(document).ready(function () {
 
 
             catsize = dt['catAttr']['results'][1]['cid'];
+            
             getcatsize(catAttr, metalwgt);
             if (data['error']['err_code'] == '0')
             {
@@ -178,9 +182,9 @@ $(document).ready(function () {
                     
                     
                  var bstr = "";
-                 
-               bstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span> Gold </span></span><span class="fRight fmSansR" id="newWt"><span> ' + metalwght + '</span> Gms </span></div>';
-                bstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span> Certification </span></span><span class="fRight fmSansR" id="newWt"><span> ' + vl.crtficte + '</span> </span></div>';
+                
+               bstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span> Gold </span></span><span class="fRight" id="newWt"><span> ' + metalwght + '  <span class="fRight">gms</span></span></span></div>';
+                bstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span> Certification </span></span><span class="fRight fmSansR" ><span> ' + vl.crtficte + '</span> </span></div>';
                $('#desc').append(bstr);  
                
                     var type = 0;
@@ -821,7 +825,7 @@ $('#addwishlist').click(function(){
                   data: {dt: dt},   
                   success:function(results){
 		     
-		 
+		 common.msg(1,'This Product Added To Your Wishlist Successfully');
 		} 
             });
       
