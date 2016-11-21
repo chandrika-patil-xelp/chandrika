@@ -362,34 +362,35 @@
                             <div class="fLeft EditAddr dn" id="openAddrId">
                                 <div class="fLeft col50">
                                     <div class="txtB fLeft">
-                                        <input type="text" class="inp_box">
+                                        <input type="text" id="addr" class="inp_box">
                                         <div class="inp_label">Address</div>
                                     </div>
                                     <div class="txtB fLeft">
-                                        <input type="text" class="inp_box " maxlength="30">
-                                        <div class="inp_label">State</div>
+                                        <input type="text" class="inp_box " id="city" maxlength="30">
+                                        <div class="inp_label">City</div>
                                     </div>
                                 </div>
                                 <div class="fLeft col50">
                                     <div class="txtB fLeft">
-                                        <input type="text" class="inp_box " maxlength="30">
-                                        <div class="inp_label">City</div>
+                                        <input type="text" class="inp_box " id="zipcode" maxlength="30">
+                                        <div class="inp_label">Pincode</div>
                                     </div>
                                     <div class="txtB fLeft">
-                                        <input type="text" class="inp_box " maxlength="30">
-                                        <div class="inp_label">Pincode</div>
+                                        <input type="text" class="inp_box " id="state" maxlength="30">
+                                        <div class="inp_label">State</div>
                                     </div>
                                 </div>
                                 <div class="filterSec fLeft">
                                     <center>
-                                        <div class="button actBtn marR transition300">save</div>
+                                        <div class="button actBtn marR transition300" id="shpaddr">save</div>
                                     </center>
                                 </div>
 
                             </div>
                             <!--<div class="fLeft savedAddr">Chandrika</div>-->
-                            <div class="fLeft defaultHead">my addresses</div>
-                            <div class="fLeft defaulDiv">
+                            <div class="fLeft defaultHead"  >my addresses</div>
+                            <div id="myaddrs">
+                            <!--<div class="fLeft defaulDiv">
                                 <div class="fLeft col100">
                                     <div class="font13">#657 6th block 17th main,</div>
                                     <div class="font13">Kormanagala</div>
@@ -398,12 +399,12 @@
                                 <div class="filterSec fLeft">
                                     <center>
                                         <div class="button actBtn marR transition300">remove</div>
-                                        <!--<div class="button actBtn marR  transition300">edit</div>-->
+                                         <div class="button actBtn marR  transition300">edit</div>
                                     </center>
                                 </div>
-                            </div>
+                            </div>-->
                             <!--<div class="fLeft defaultHead">other address</div>-->
-                            <div class="fRight defaulDiv">
+                            <!--<div class="fRight defaulDiv">
                                 <div class="fLeft col100">
                                     <div class="font13">#657 6th block 17th main,</div>
                                     <div class="font13">Kormanagala</div>
@@ -412,11 +413,11 @@
                                 <div class="filterSec fLeft">
                                     <center>
                                         <div class="button actBtn marR transition300">remove</div>
-                                        <!--<div class="button actBtn marR transition300">edit</div>-->
+                                         <div class="button actBtn marR transition300">edit</div> 
                                     </center>
                                 </div>
-                            </div>
-                            <div class="fLeft defaulDiv">
+                            </div>-->
+                            <!--<div class="fLeft defaulDiv">
                                 <div class="fLeft col100">
                                     <div class="font13">#657 6th block 17th main,</div>
                                     <div class="font13">Kormanagala</div>
@@ -425,10 +426,11 @@
                                 <div class="filterSec fLeft">
                                     <center>
                                         <div class="button actBtn marR transition300">remove</div>
-                                        <!--<div class="button actBtn marR transition300">edit</div>-->
+                                        <div class="button actBtn marR transition300">edit</div> 
                                     </center>
                                 </div>
-                            </div>
+                            </div>-->
+                        </div>
                         </div>
                         <div class="fLeft orderCommon dn" id='pChange'>
                             <div class="fLeft tabHead txt_left mBot15">Change Password</div>
@@ -454,8 +456,8 @@
                         </div>
                         <div class="fLeft orderCommon dn" id="wishlistId">
                             <div class="fLeft tabHead txt_left mBot15">My Wishlist</div>
-                            <div class="col100 fLeft poR">
-                                <div class="grid3 transition400 fadeInup" id="wishid">
+                            <div class="col100 fLeft poR" id="wishid">
+                                <!--<div class="grid3 transition400 fadeInup" >
                                     <div class="">out of stock</div>
                                     <div class="facet_front">
                                         <div class="grid_item">
@@ -484,7 +486,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>-->
                                 <!--                                <div class="grid3 transition400 fadeInup">
                                                                     <div class="">out of stock</div>
                                                                     <div class="facet_front">
@@ -637,22 +639,7 @@
                                                         });
                                                         
                                                          
-                                                        $('.button').click(function () {
-                                                            var trkID = $(this).attr('id');
-                                                             var trackTxt = $(this).text();
- 
-                                                            var cls = "see less";
-                                                            var trk = "track";
-                                                            if (($('#' + trkID).html()) === "track") {
-                                                               
-                                                                $('#' + trkID).html(cls);
-                                                                $('#' + trkID).parent().parent().parent().next().slideDown(400);
-                                                            } else {
-                                                            
-                                                                $('#' + trkID).html(trk);
-                                                                $('#' + trkID).parent().parent().parent().next().slideUp(400);
-                                                            }
-                                                        });
+                                                        
 
                                                         $('.inp_box').focus(function () {
                                                             $(this).closest('.txtB').addClass('focul');
