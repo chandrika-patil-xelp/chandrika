@@ -38,14 +38,14 @@ function displayorders()
                     }
                       var totalprice = $('#ordPrice').html(indianMoney(parseInt(obj.totalprice)));
                       $(obj['result']).each(function(r,v){
-                         console.log(v);
+                        
                          var orderID = $('#ordId').html(v.oid);
                          var orderDate =$('#ordDate').html(v.order_date);
                                           
-                        var abc=v.prdimage; abc=abc.split(',');
-			    abc=IMGDOMAIN+abc[5];
+                        var image=v.prdimage; image=image.split(',');
+			    image=IMGDOMAIN+image[0]; 
  
- orderstr+='<div class="fLeft orderImg bgCommon" style="background-image: url('+abc+');"></div>';
+ orderstr+='<div class="fLeft orderImg bgCommon" style="background: #fff url(\''+ image+ '\')no-repeat;background-size: contain;background-position:center; background-color:#FFF;"></div>';
  orderstr+='<div class="fLeft orderName">';
  orderstr+='<div class="fLeft col100 semibold">'+v.prdname+'</div>';
                                   
@@ -160,7 +160,7 @@ function wishlist()
  wishStr+= ' <div class="facet_front">';
  wishStr+= ' <div class="grid_item"> ';
  wishStr+= '    <div class="grid_img">';
- wishStr+= ' <div style="background:url('+xyz+')no-repeat ; background-size: contain ; background-position: center" class=""></div></div>';
+ wishStr+= ' <div style="background:url(\''+xyz+'\')no-repeat ; background-size: contain ; background-position: center"></div></div>';
  wishStr+= '   <div class="hovTr"> ';
  wishStr+= '  <div class="hovTrans" style="display: none; transform: translateX(101%);">';
  wishStr+= '  <div class="plusCont" style="transform: scale(0);"></div></div></div>';
