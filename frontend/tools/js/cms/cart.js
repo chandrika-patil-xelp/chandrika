@@ -326,7 +326,7 @@ function getglobaldata()
 }
 
  $(document).ready(function(){
-    
+      gettotal();
       displaycartdata(); 
       getglobaldata();
  });
