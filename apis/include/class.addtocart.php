@@ -828,7 +828,7 @@
             
             $sql = "SELECT  
 		      user_id,user_name,logmobile,email,
-		      (SELECT GROUP_CONCAT(cart_id) FROM tbl_cart_master WHERE userid =user_id) AS cart_id,
+		      (SELECT DISTINCT(cart_id) FROM tbl_cart_master WHERE userid =user_id AND active_flag=1) AS cart_id,
 			 password
                       FROM
                         tbl_user_master 

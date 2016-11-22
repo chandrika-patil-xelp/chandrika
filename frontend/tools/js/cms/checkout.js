@@ -1,5 +1,6 @@
 
-var gblcheckodata,bakflag=0,totalprice=0,shipngdata={},validationFlag=1,logotpflag=0, mobileno,contnu_enble=0,inp_data,shipng_id; 
+var gblcheckodata,bakflag=0,totalprice=0,shipngdata={},validationFlag=1,logotpflag=0, mobileno,contnu_enble=0;
+var inp_data,shipng_id,chkouttentrflag=0; 
  
 $(document).ready(function(){ 
  
@@ -13,6 +14,22 @@ $(document).ready(function(){
   }
   
   displaycartdetail();
+  
+  $(document).keypress(function(e){
+      if(e.which == 13){ 
+	if(chkouttentrflag == 1)
+	  mob_mailsubmt();
+	else if(chkouttentrflag == 2)
+	  suboldusrpass();
+	else if(chkouttentrflag == 3){
+	  if(contnu_enble == 1)
+	    otpcontn();}
+	else if(chkouttentrflag == 4)
+	  sublogwthotp();
+	else if(chkouttentrflag == 5)
+	  shpngsubmt();
+      }
+  });
 });
 
 function displaycartdetail()
@@ -46,7 +63,7 @@ function displaycartdetail()
 var chckoutstr=" <div class='jwlCntdtls fLeft regular'>";
     chckoutstr+="  <div class='clsePrdct' id='"+v.product_id+"_"+r+"_"+v.col_car_qty+"_"+v.cart_id+"_"+v.size+"'";
     chckoutstr+="  onclick='remove(this)'></div>";
-    chckoutstr+=" <div class='ordrJwl' style='background-image:url("+abc+")'> </div>";
+    chckoutstr+=" <div class='ordrJwl' style='background-image:url(\"" +abc+"\")'> </div>";
     chckoutstr+=" <div class='jwlryDtls fLeft'> <div class='w60 fLeft'>" ; 
     chckoutstr+=" <div class='text fLeft bolder'>"+(v.prdname).toUpperCase()+"</div>"; 
     chckoutstr+="<div class='text fLeft'>"+v.color+" "+v.jewelleryType+" "+wht+" gms &nbsp|&nbsp Diamond "+v.dmdcarat+"</div>"; 
@@ -225,6 +242,11 @@ function checkotp(inptmob,otp)
 }
  
  $('#otp_countn').click(function(){
+   otpcontn();
+ });
+ 
+function otpcontn()
+{
    bakflag=1;
    if(contnu_enble == 1){
      openfst1();
@@ -232,10 +254,15 @@ function checkotp(inptmob,otp)
    else{
      common.msg(0,'Please Enter Correct Password ');
    } 
- });
+ }
  
  
  $('#shpng_sub').click(function(){
+   shpngsubmt();
+ });
+   
+function shpngsubmt()
+{
    validationFlag=1;
    var name,email,mobile;
    
@@ -255,14 +282,6 @@ function checkotp(inptmob,otp)
        validationFlag=0;  
         common.msg(0,'Name should be alphanumeric'); 
     }
-    else if(email===''|| email=== null){
-      validationFlag=0;  
-        common.msg(0,'Please enter your Email.id'); 
-    }
-   else if (!reg.test(email)){
-     validationFlag=0; 
-      common.msg(0,'Invalid Email.id'); 
-    }
     else if(mobile===''|| mobile=== null){
        validationFlag=0;  
         common.msg(0,'Please enter your Mobile no.'); 
@@ -271,10 +290,19 @@ function checkotp(inptmob,otp)
        validationFlag=0;  
         common.msg(0,'Mobile no. Invalid'); 
     }
+    else if(email===''|| email=== null){
+      validationFlag=0;  
+        common.msg(0,'Please enter your Email.id'); 
+    }
+   else if (!reg.test(email)){
+     validationFlag=0; 
+      common.msg(0,'Invalid Email.id'); 
+    } 
      shipngdata['name']=name;
      shipngdata['email']=email;
      shipngdata['mobile']=mobile;
     }
+    if (validationFlag == 1){
     var addrs=$('#shpdaddrs').val();
     var city=$('#shpdcity').val(); 
     var state=$('#shpdstate').val();
@@ -288,7 +316,7 @@ function checkotp(inptmob,otp)
        validationFlag=0;  
         common.msg(0,'Please enter your Zip code'); 
     }
-    
+    }
     if (validationFlag == 1){
       
      var usrid=common.readFromStorage('jzeva_uid'); 
@@ -358,10 +386,15 @@ function checkotp(inptmob,otp)
     
    }
  }
- });
+ }
  
 
 $('#mob_mailsub').click(function(){
+  mob_mailsubmt();
+});
+  
+function mob_mailsubmt()
+{
     inp_data=$('#entereml').val(); 
     var validationflg=1; 
   if($.isNumeric(inp_data)){
@@ -395,7 +428,7 @@ $('#mob_mailsub').click(function(){
      //  sendotpmail(); 
       }  
   } 
-});
+}
 
  $('#otp1').on('keyup',function(){
        var otp=$(this).val();  
@@ -583,7 +616,7 @@ function  storeorderdata()
 		  $.ajax({  url: URL,   type: "GET",  datatype: "JSON",  success: function(results)  {
 				//  console.log(results);
 				displaycartdetail(); 
-				common.msg(0,'Your Order Placed successfully'); 
+				common.msg(1,'Your Order Placed successfully'); 
 				}
 		  }); 
 		
@@ -600,7 +633,7 @@ function checkuser(inpt)
     var URL = APIDOMAIN + "index.php?action=getUserDetailsbyinpt&email="+inpt;  
   } 
    $.ajax({  url: URL,  type: "GET",   datatype: "JSON", success: function(results)  {
-	var obj=JSON.parse(results);  
+	var obj=JSON.parse(results);
 	if(obj['error']['Code'] == 0){ 
 	    if(obj['results'] == null || obj['results'] == undefined){
 		openThrd();
@@ -620,25 +653,46 @@ function checkuser(inpt)
 }
 
 $('#suboldusrpasw').click(function(){
+  suboldusrpass();
+});
  
+ 
+ function suboldusrpass()
+ {
   var pass=$('#pswrd8').val();
-  if(pass ===''|| pass === null){  
+  var glbcartdeatil;
+  if(pass ===''|| pass === null){
         common.msg(0,'Please enter your Password'); 
     }
     else{
       var URL = APIDOMAIN + "index.php?action=checkpassw&pass="+pass+"&mob="+inp_data; 
        
        $.ajax({  url: URL,  type: "GET",   datatype: "JSON", success: function(results)  {
-	var obj=JSON.parse(results);  
-	if(obj['error']['err_code'] == 0){
-	    
-	   common.addToStorage('jzeva_uid', obj['result']['uid']);
-	   common.addToStorage('jzeva_cartid',obj['result']['cart_id']);
+	  var obj=JSON.parse(results);
+	  if(obj['error']['err_code'] == 0){
+	  
+	   common.addToStorage('jzeva_uid', obj['result']['uid']); 
 	   common.addToStorage("jzeva_email", obj['result']['email']);
            common.addToStorage("jzeva_name", obj['result']['uname']); 
 	   common.addToStorage("jzeva_mob",obj['result']['mob']);
-	   mtrmklm();
-	   displayaddrs(obj['result']['uid']);
+	   
+	   if(obj['result']['cart_id'] !== null){
+	      var oldcartid=common.readFromStorage('jzeva_cartid'); 
+	      var olduserid=common.readFromStorage('jzeva_uid'); 
+	      
+	       var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id="+oldcartid+"&userid="+olduserid+"";   
+	       $.ajax({ url: URL, type: "GET", datatype: "JSON", success: function(results)  {
+		      var obj=JSON.parse(results); 
+		        glbcartdeatil=obj.result;  
+		    }
+		});   
+	   }
+	   setTimeout(function(){
+	     if(oldcartid !== "" || oldcartid !== null)
+			  hasitem(oldcartid,olduserid,glbcartdeatil);
+	   },1000); 
+	    mtrmklm();
+	    displayaddrs(obj['result']['uid']);
 	 //  common.msg(0,obj['error']['err_msg']);
 	}
 	else if(obj['error']['err_code'] == 1)
@@ -648,8 +702,83 @@ $('#suboldusrpasw').click(function(){
       }
     }); 
     } 
-});
+}
+  
+  
+  function hasitem(oldcartid,olduserid,glbcartdeatil)
+{ 
+  var newcartid,hasusrid=[],ccnt=0,hasoldcartid=[],ocnt=0;  
+  $(glbcartdeatil).each(function(r,v){
+     if(v.userid!=0){
+       hasusrid[ccnt]=v;ccnt++;
+         newcartid=v.cart_id;  
+     }
+     else{
+       hasoldcartid[ocnt]=v;ocnt++; 
+     } 
+  });
+    if(hasusrid=="" || hasusrid==null){
+     updatecartiddetail(oldcartid,olduserid,newcartid);  
+    }
+    else
+    {
+      var start=1,last=hasusrid.length;
+      $(hasusrid).each(function(r,v){
+      var prdid=v.product_id; 
+      var col_car_qty=v.col_car_qty;   
+      
+	$(hasoldcartid).each(function(m,n){
+	      if(prdid==n.product_id && col_car_qty==n.col_car_qty){
+		  var price=parseInt(v.price);  
+		  var j=parseInt(v.pqty);   var l=parseInt(n.pqty);
+		  price=price/j;	    j=j+l;
+		  price=price*j;
 
+		  var dat={};
+		  dat['cartid']=v.cart_id;    dat['pid']=v.product_id;
+		  dat['userid']=v.userid;     dat['col_car_qty']=v.col_car_qty;
+		  dat['qty']=j;		  dat['price']=price; 
+		  dat['RBsize']=v.size;
+		  var URL= APIDOMAIN + "index.php?action=addTocart";
+		  var data=dat; 
+		  var  dt = JSON.stringify(data); 
+		  $.ajax({ type:"post", url:URL, data: {dt: dt}, success:function(data){
+			    
+			}
+		  }); 
+	var URL = APIDOMAIN+"index.php?action=removeItemFromCart&col_car_qty="+col_car_qty+"&pid="+prdid+"&cartid="+n.cart_id+"&size="+n.size;
+		  $.ajax({ type:'POST',url:URL, success:function(res){
+			    
+		  }
+		  });  
+	      }
+	}); 
+      if(last==start){  
+	updatecartiddetail(oldcartid,olduserid,newcartid);   
+      }
+      start++;
+   });
+   } 
+} 
+
+function updatecartiddetail(oldcartid,olduserid,newcartid)
+{
+  if(newcartid=="" || newcartid==null){
+    var URL = APIDOMAIN + "index.php?action=updatecartdata&cartid="+oldcartid+"&userid="+olduserid+"&newcartid="+oldcartid;
+  }
+  else{
+    var URL = APIDOMAIN + "index.php?action=updatecartdata&cartid="+oldcartid+"&userid="+olduserid+"&newcartid="+newcartid;
+  } 
+  common.removeFromStorage('jzeva_cartid');
+  common.addToStorage('jzeva_cartid',newcartid);
+  $.ajax({ url: URL, type: "GET", datatype: "JSON",  success: function(results)  { 
+	 
+	displaycartdetail();
+  }
+  });   
+}
+  
+  
 function addrsel(ths)
 { 
   var id=$(ths).attr('id'); 
@@ -666,14 +795,14 @@ function getuserdetail(inpt)
   } 
    $.ajax({  url: URL,  type: "GET",   datatype: "JSON", success: function(results)  {
 	var obj=JSON.parse(results);  
-	console.log(obj['results']['0']);
+	 
 	   common.addToStorage('jzeva_uid', obj['results']['0'].user_id);
 	   common.addToStorage('jzeva_cartid',obj['results']['0'].cart_id);
 	   common.addToStorage("jzeva_email", obj['results']['0'].email);
            common.addToStorage("jzeva_name", obj['results']['0'].user_name); 
 	   common.addToStorage("jzeva_mob",obj['results']['0'].logmobile);
 	   lmtmkm();
-	   displayaddrs(obj['results']['0'].user_id);
+	   displayaddrs(obj['results']['0'].user_id); 
       }
     });
    var userid=common.readFromStorage('jzeva_uid');
@@ -701,16 +830,35 @@ $('#log_otp').click(function(){
 });
 
 $('#sub_lototp').click(function(){
+  sublogwthotp();
+});
+  
+function sublogwthotp()
+{
   var otp=$('#shpdemail3').val();
-   if($.isNumeric(inp_data)){
+  if(otp == "" || otp == null)
+    common.msg(0,'Please Enter OTP');
+  if($.isNumeric(inp_data)){
       logotpflag=2;
      checkotp(inp_data,otp);
    } 
- 
-});
+   
+}
 
 $('#resend_lotp').click(function(){
     sendnewuserotp();
+});
+
+$('#bak_oldusrpg').click(function(){
+  bmtm();
+});
+
+$('#bak_nwursotppg').click(function(){
+  bmtm1();
+});
+
+$('#bak_logwthotp').click(function(){
+    bmtm2();
 });
 
 function indianMoney(x){
