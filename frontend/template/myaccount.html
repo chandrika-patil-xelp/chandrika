@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 <?php include 'jhead.html' ?>
 <script>
-  var actn="<?php echo $_GET['actn'];  ?>";
-  </script>
+    var actn = "<?php echo $_GET['actn'];  ?>";
+</script>
 <body class="Terms myaccount">
     <?php include 'Cart.html'?>
     <?php include 'header.html'?>
     <?php include 'login.html'?>
+    <div class="col100 fade">
+        <div class="deleteContr height200 dn" id="dltPopup">
+            <div class="loginCont fLeft" id="inDlt">
+                <div class="txtTitle mar0" id="hTxt">Do you want to remove this address</div>
+                <center>
+                    <div class="col50 fLeft pad0"><div class="button actBtn transition300" id="dltNo">no</div></div>
+                    <div class="col50 fRight pad0"><div class="button actBtn transition300" id="dltYes">yes</div></div>
+                </center>
+            </div>
+        </div>
+    </div>
     <div class="fLeft gemBanner">
         <div class="banner_over" id ="banner_over"></div>
         <div class="termHeading">my account</div>
@@ -390,55 +401,55 @@
                             <!--<div class="fLeft savedAddr">Chandrika</div>-->
                             <div class="fLeft defaultHead"  >my addresses</div>
                             <div id="myaddrs">
-                            <!--<div class="fLeft defaulDiv">
-                                <div class="fLeft col100">
-                                    <div class="font13">#657 6th block 17th main,</div>
-                                    <div class="font13">Kormanagala</div>
-                                    <div class="font13">Bengaluru-560095</div>
-                                </div>
-                                <div class="filterSec fLeft">
-                                    <center>
-                                        <div class="button actBtn marR transition300">remove</div>
-                                         <div class="button actBtn marR  transition300">edit</div>
-                                    </center>
-                                </div>
-                            </div>-->
-                            <!--<div class="fLeft defaultHead">other address</div>-->
-                            <!--<div class="fRight defaulDiv">
-                                <div class="fLeft col100">
-                                    <div class="font13">#657 6th block 17th main,</div>
-                                    <div class="font13">Kormanagala</div>
-                                    <div class="font13">Bengaluru-560095</div>
-                                </div>
-                                <div class="filterSec fLeft">
-                                    <center>
-                                        <div class="button actBtn marR transition300">remove</div>
-                                         <div class="button actBtn marR transition300">edit</div> 
-                                    </center>
-                                </div>
-                            </div>-->
-                            <!--<div class="fLeft defaulDiv">
-                                <div class="fLeft col100">
-                                    <div class="font13">#657 6th block 17th main,</div>
-                                    <div class="font13">Kormanagala</div>
-                                    <div class="font13">Bengaluru-560095</div>
-                                </div>
-                                <div class="filterSec fLeft">
-                                    <center>
-                                        <div class="button actBtn marR transition300">remove</div>
-                                        <div class="button actBtn marR transition300">edit</div> 
-                                    </center>
-                                </div>
-                            </div>-->
-                        </div>
+                                <!--<div class="fLeft defaulDiv">
+                                    <div class="fLeft col100">
+                                        <div class="font13">#657 6th block 17th main,</div>
+                                        <div class="font13">Kormanagala</div>
+                                        <div class="font13">Bengaluru-560095</div>
+                                    </div>
+                                    <div class="filterSec fLeft">
+                                        <center>
+                                            <div class="button actBtn marR transition300">remove</div>
+                                             <div class="button actBtn marR  transition300">edit</div>
+                                        </center>
+                                    </div>
+                                </div>-->
+                                <!--<div class="fLeft defaultHead">other address</div>-->
+                                <!--<div class="fRight defaulDiv">
+                                    <div class="fLeft col100">
+                                        <div class="font13">#657 6th block 17th main,</div>
+                                        <div class="font13">Kormanagala</div>
+                                        <div class="font13">Bengaluru-560095</div>
+                                    </div>
+                                    <div class="filterSec fLeft">
+                                        <center>
+                                            <div class="button actBtn marR transition300">remove</div>
+                                             <div class="button actBtn marR transition300">edit</div> 
+                                        </center>
+                                    </div>
+                                </div>-->
+                                <!--<div class="fLeft defaulDiv">
+                                    <div class="fLeft col100">
+                                        <div class="font13">#657 6th block 17th main,</div>
+                                        <div class="font13">Kormanagala</div>
+                                        <div class="font13">Bengaluru-560095</div>
+                                    </div>
+                                    <div class="filterSec fLeft">
+                                        <center>
+                                            <div class="button actBtn marR transition300">remove</div>
+                                            <div class="button actBtn marR transition300">edit</div> 
+                                        </center>
+                                    </div>
+                                </div>-->
+                            </div>
                         </div>
                         <div class="fLeft orderCommon dn" id='pChange'>
                             <div class="fLeft tabHead txt_left mBot15">Change Password</div>
                             <div class="col50 fLeft">
-                                                                <div class="txtB fLeft">
-                                                                    <input type="password" class="inp_box " id="oldpass" maxlength="30">
-                                                                    <div class="inp_label">Old Password</div>
-                                                                </div> 
+                                <div class="txtB fLeft">
+                                    <input type="password" class="inp_box " id="oldpass" maxlength="30">
+                                    <div class="inp_label">Old Password</div>
+                                </div> 
                                 <div class="txtB fLeft">
                                     <input type="password" class="inp_box " id="newpass" maxlength="30">
                                     <div class="inp_label">New Password</div>
@@ -611,45 +622,65 @@
             </div>
         </div>
     </div>
-
-
     <?php include 'footer.html'?>
     <?php include 'loader.html'?>
     <script type="text/javascript" src="<?php echo $jvs['account']; ?>"></script>
+    <!--<script type="text/javascript" src="<?php echo $jvs['cart']; ?>"></script>-->
     <script>
 
-                                                        var lastfID = "";
-                                                        $('.fCommon').click(function () {
-                                                            var fooID = $(this).attr("id");
-                                                          
-                                                            $('#' + fooID).addClass('jzevaColor');
+    
+    $('#inDlt').velocity({opacity: 0});
+    function deletePopUp(){
+         openPopUp();
+        $('#signInId').addClass("dn");
+        $('#loginId').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+        $('.deleteContr').removeClass("dn");
+        $('.deleteContr').velocity({translateY: [0, '500%']}, {duration: 150, delay: 100, easing: ''});
+        $('#inDlt').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+        
+    }
+    
+//    $(document).on('click', '.addrCommon', function () {
+//       
+//    });
+//
+//    $('#dltNo').click(function () {
+//        closelogpg();
+//    });
 
-                                                            if (lastfID !== fooID) {
-                                                                $('#' + lastfID).removeClass("jzevaColor");
-                                                            }
-                                                            lastfID = fooID;
-                                                        });
- 
-                                                        $('#edId').click(function () {
-                                                            $('#profileId').addClass("dn");
-                                                            $('#editpId').removeClass("dn");
-                                                            $('#saveAddrId').addClass("dn");
-                                                            $('#pChange').addClass("dn");
-                                                            $('#wishlistId').addClass("dn");
-                                                        });
-                                                        
-                                                         
-                                                        
 
-                                                        $('.inp_box').focus(function () {
-                                                            $(this).closest('.txtB').addClass('focul');
-                                                        });
-                                                        $('.inp_box').blur(function () {
-                                                            var k = $(this).val();
-                                                            if (k === "") {
-                                                                $(this).closest('.txtB').removeClass('focul');
-                                                            }
-                                                        });
+    var lastfID = "";
+    $('.fCommon').click(function () {
+        var fooID = $(this).attr("id");
+
+        $('#' + fooID).addClass('jzevaColor');
+
+        if (lastfID !== fooID) {
+            $('#' + lastfID).removeClass("jzevaColor");
+        }
+        lastfID = fooID;
+    });
+
+    $('#edId').click(function () {
+        $('#profileId').addClass("dn");
+        $('#editpId').removeClass("dn");
+        $('#saveAddrId').addClass("dn");
+        $('#pChange').addClass("dn");
+        $('#wishlistId').addClass("dn");
+    });
+
+
+
+
+    $('.inp_box').focus(function () {
+        $(this).closest('.txtB').addClass('focul');
+    });
+    $('.inp_box').blur(function () {
+        var k = $(this).val();
+        if (k === "") {
+            $(this).closest('.txtB').removeClass('focul');
+        }
+    });
 //        $('.plusBlack').click(function () {
 //            // $(this).removeClass("plusBlack");
 //            $(this).toggleClass('minusBlack');
@@ -660,65 +691,65 @@
 //            $(this).siblings('.vatTxt').toggleClass("dn");
 //        });
 
-                                                        $('.plusHolder').click(function () {
-                                                            var boxId = $(this).attr("id");
-                                                            if ($("#" + boxId).hasClass("plusBox")) {
-                                                            
-                                                                $("#" + boxId).removeClass("plusBox");
-                                                                $("#" + boxId).addClass("minusBox");
-                                                                $("#" + boxId).siblings('.vatTxt').removeClass("dn");
+    $('.plusHolder').click(function () {
+        var boxId = $(this).attr("id");
+        if ($("#" + boxId).hasClass("plusBox")) {
 
-                                                            } else {
-                                                                $("#" + boxId).removeClass("minusBox");
-                                                                $("#" + boxId).addClass("plusBox");
-                                                                $("#" + boxId).siblings('.vatTxt').addClass("dn");
-                                                            }
-                                                        });
+            $("#" + boxId).removeClass("plusBox");
+            $("#" + boxId).addClass("minusBox");
+            $("#" + boxId).siblings('.vatTxt').removeClass("dn");
 
-                                                        $('.addrEditCnt').click(function () {
-                                                            var boxId = $(this).attr("id");
-                                                            if ($("#" + boxId).hasClass("plusBlack")) {
-                                                         
-                                                                $("#" + boxId).removeClass("plusBlack");
-                                                                $("#" + boxId).addClass("minusBlack");
-                                                                $("#" + boxId).parent().siblings('#openAddrId').removeClass("dn");
+        } else {
+            $("#" + boxId).removeClass("minusBox");
+            $("#" + boxId).addClass("plusBox");
+            $("#" + boxId).siblings('.vatTxt').addClass("dn");
+        }
+    });
 
-                                                            } else {
-                                                                $("#" + boxId).removeClass("minusBlack");
-                                                                $("#" + boxId).addClass("plusBlack");
-                                                                $("#" + boxId).parent().siblings('#openAddrId').addClass("dn");
+    $('.addrEditCnt').click(function () {
+        var boxId = $(this).attr("id");
+        if ($("#" + boxId).hasClass("plusBlack")) {
+
+            $("#" + boxId).removeClass("plusBlack");
+            $("#" + boxId).addClass("minusBlack");
+            $("#" + boxId).parent().siblings('#openAddrId').removeClass("dn");
+
+        } else {
+            $("#" + boxId).removeClass("minusBlack");
+            $("#" + boxId).addClass("plusBlack");
+            $("#" + boxId).parent().siblings('#openAddrId').addClass("dn");
 //              $("#" + boxId).siblings('.vatTxt').addClass("dn");
-                                                            }
-                                                        });
+        }
+    });
 
 
-                                                        $(document).ready(function () {
-                                                            $('.wrapper_max').removeClass('offsetEffects');
-                                                            load_page();
-                                                        });
-                                                        $(window).scroll(function () {
-                                                            var sc = $('body').scrollTop();
-                                                            var ht = $('.gemBanner').outerHeight(true) - 130;
-                                                            if (ht > sc) {
-                                                                var op = 1 - (ht - sc) / ht;
-                                                                $('#banner_over').css({'opacity': op});
+    $(document).ready(function () {
+        $('.wrapper_max').removeClass('offsetEffects');
+        load_page();
+    });
+    $(window).scroll(function () {
+        var sc = $('body').scrollTop();
+        var ht = $('.gemBanner').outerHeight(true) - 130;
+        if (ht > sc) {
+            var op = 1 - (ht - sc) / ht;
+            $('#banner_over').css({'opacity': op});
 
-                                                            }
-                                                            if (ht - sc <= 5) {
-                                                                $('.header').addClass('black_bg');
-                                                               
-                                                            } else {
-                                                                $('.header').removeClass('black_bg');
-                                                               
-                                                            }
-                                                            //           if(ht-sc<=60){
-                                                            //           console.log(sc);
-                                                            //           $('.gemBanner').addClass('fixer');
-                                                            //       }
-                                                            //       else{
-                                                            //            $('.gemBanner').removeClass('fixer');
-                                                            //       }
-                                                        });
+        }
+        if (ht - sc <= 5) {
+            $('.header').addClass('black_bg');
+
+        } else {
+            $('.header').removeClass('black_bg');
+
+        }
+        //           if(ht-sc<=60){
+        //           console.log(sc);
+        //           $('.gemBanner').addClass('fixer');
+        //       }
+        //       else{
+        //            $('.gemBanner').removeClass('fixer');
+        //       }
+    });
     </script>
 
 
