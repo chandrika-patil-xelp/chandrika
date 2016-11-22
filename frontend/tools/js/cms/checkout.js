@@ -327,10 +327,10 @@ function shpngsubmt()
 	  var data=JSON.parse(res);                  
 	  $(data['results']).each(function(r,v){
 	    if(v.logmobile == inp_data ){
-		common.msg(0,'You Entered mobile number is already registered');
+		common.msg(0,'Your Entered mobile number is already registered');
 	    }
 	    else if( v.email == email){
-		common.msg(0,'You Entered email id is already registered');
+		common.msg(0,'Your Entered email id is already registered');
 	    } 
 	  });
 	  if(data['results'] == null)  {
