@@ -4096,10 +4096,11 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 			    
 			    (SELECT pcatid FROM tbl_category_master WHERE catid =".$cid.") AS cpcatid,
 			    (SELECT cat_name FROM tbl_category_master WHERE catid = cpcatid ) AS parntcatname,
-			    (SELECT cat_name FROM tbl_category_master WHERE catid =".$cid." ) AS chldcatname
+			    (SELECT cat_name FROM tbl_category_master WHERE catid =".$cid." ) AS chldcatname,
+			    (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND active_flag != 2 AND  default_img_flag=1) AS default_image
 			    
-	  FROM tbl_product_master WHERE active_flag != 2 AND productid  IN (SELECT
-	    productid FROM tbl_category_product_mapping WHERE catid=".$cid.")" ;
+	  FROM tbl_product_master WHERE active_flag =1 AND productid  IN (SELECT
+	    productid FROM tbl_category_product_mapping WHERE catid=".$cid." AND active_flag =1)" ;
       
       $price = $comm->IND_money_format(price);
       
@@ -4176,6 +4177,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                     $arr['Uncutcarat'] = $row['Uncutcarat'];
                     $arr['UncutPricepercarat'] = $row['UncutPricepercarat'];
                     
+		     $arr['default_image'] = $row['default_image'];
                     $arr['allmetalpurity'] = $row['allmetalpurity'];
                      $arr['purity'] = $row['purity'];
                      $arr['purprice'] = $row['purprice'];
@@ -4229,6 +4231,6 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
      
     $result = array('result'=>$reslt, 'error'=>$error, 'total'=>$total);
       return $result;
-    }
+    } 
 }
 ?>
