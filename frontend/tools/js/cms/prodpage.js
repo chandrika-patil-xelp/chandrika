@@ -17,6 +17,7 @@ var dmdValue = metalValue = soliValue = gemsValue = uncutValue = basicValue = 0;
 var gIndex = 0;
 var total = 0;
 var metalprc = 0;
+var wshlstflag=0;
 
 function GetURLParameter(Param)
 {
@@ -90,7 +91,7 @@ $('#add_to_cart').on('click', function () {
     
 });
 $(document).ready(function () {
-   
+   showwishbtn();
     pid = GetURLParameter('pid');
 
     var URL = APIDOMAIN + "index.php/?action=getProductById&pid=" + pid;
@@ -766,7 +767,7 @@ function calculatePrice()
      newWeight=parseFloat(storedWt+(changeInWeight));
         newWeight= newWeight.toFixed(3);
        
-  $('#newWt').html(newWeight);
+  $('#newWt').html(newWeight+" gms");
   
     goldPrice=parseFloat(selPurity*newWeight);//console.log(selPurity * newWeight);
     var mkCharges=parseFloat(storedMkCharge*newWeight);
@@ -804,33 +805,55 @@ $('#addwishlist').click(function(){
     if(userid == undefined){
         common.msg(0,'Please Do login for adding to Your wishlist');
     }
-    else{ 
-    getarraydata();
+    else{
+      if(wshlstflag == 0)
+      {
+	getarraydata();
   
-    var userid,wishdata={};
-   wishdata['pid']= arrdata[0]; 
-   var chr=""+arrdata[2]+"|@|"+arrdata[4]+"|@|"+arrdata[3];
-   wishdata['col_car_qty']=chr; 
-   wishdata['price']=arrdata[1]; 
-  // wishdata['price']=wishdata['price'].replace(/,/g,"");
-  
-   wishdata['user_id']=userid;
-   var wishid=genOrdId();
-   wishdata['wish_id']=wishid;
-   wishdata['size']=arrdata[5];
-     var URL= APIDOMAIN + "index.php?action=addtowishlist";
-     
-    var data=wishdata;
-    var  dt = JSON.stringify(data);   
-	$.ajax({  type:"post",  
-                  url:URL, 
-                  data: {dt: dt},   
-                  success:function(results){
-		    
+	var userid,wishdata={};
+       wishdata['pid']= arrdata[0]; 
+       var chr=""+arrdata[2]+"|@|"+arrdata[4]+"|@|"+arrdata[3];
+       wishdata['col_car_qty']=chr; 
+       wishdata['price']=arrdata[1];  
+       wishdata['user_id']=userid;
+       var wishid=genOrdId();
+       wishdata['wish_id']=wishid;
+       wishdata['size']=arrdata[5];
+	 var URL= APIDOMAIN + "index.php?action=addtowishlist"; 
+	var data=wishdata;
+	var  dt = JSON.stringify(data);   
+	$.ajax({  type:"post",  url:URL,  data: {dt: dt}, success:function(results){
+		 wshlstflag=1;  
 		 common.msg(1,'This Product Added To Your Wishlist Successfully');
 		} 
             });
-      
-    } 
+      }
+      else
+    	 common.msg(0,'This Product Already In Your Wishlist');
+    }
 });
-  
+
+function showwishbtn()
+{
+    var userid=common.readFromStorage('jzeva_uid');
+    
+    var URL=APIDOMAIN + "index.php?action=getwishdetail&userid="+userid;
+    $.ajax({  type: 'POST', url: URL, success: function (res) {
+	
+        var data=JSON.parse(res); 
+	$(data['result']).each(function(r,v){ 
+	  if(v.product_id == pid)
+	    wshlstflag=1;
+	});
+	
+	setTimeout(function(){
+	  if(wshlstflag == 1){
+	      console.log('already in wishlist');
+	    }
+	  else{
+	      console.log('not in wishlist');
+	    }
+	},1000); 
+    }
+    }); 
+} 
