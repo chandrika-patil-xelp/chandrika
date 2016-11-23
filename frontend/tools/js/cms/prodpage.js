@@ -113,7 +113,7 @@ $(document).ready(function () {
             var solitaire = dt['solitaire'];
             var diamonds = dt['dimond'];
             var uncut = dt['uncut'];
-            if(dt['catAttr']['results'][1]['name']== 'Pendants'){
+            if(dt['catAttr']['results'][1]['name'] == 'Pendants'){
                 $('#Ifpendant').html('Chain Is Not Available With This Pendent');
             }
             
@@ -825,6 +825,8 @@ $('#addwishlist').click(function(){
 	$.ajax({  type:"post",  url:URL,  data: {dt: dt}, success:function(results){
 		 wshlstflag=1;  
 		 common.msg(1,'This Product Added To Your Wishlist Successfully');
+                      $('.wishBtn').addClass("colorfff");
+                    $('.addWish').addClass("moveWish");
 		} 
             });
       }
@@ -848,7 +850,9 @@ function showwishbtn()
 	
 	setTimeout(function(){
 	  if(wshlstflag == 1){
-	      console.log('already in wishlist');
+//	      console.log('already in wishlist');
+                $('.wishBtn').addClass("colorfff");
+                    $('.addWish').addClass("moveWish");
 	    }
 	  else{
 	      console.log('not in wishlist');
