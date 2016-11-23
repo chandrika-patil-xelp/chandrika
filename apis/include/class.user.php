@@ -901,7 +901,7 @@
                                 is_active = 1";
             $vres = $this->query($vsql);
             
-            $row = $this->fetchData($vres);
+            $row = $this->fetchData($vres); 
             $cnt1 = $this->numRows($vres); 
             $mobile = $row['logmobile']; 
             $uid = $row['user_id'];
@@ -915,7 +915,7 @@
 	   
             $res  = $comm->executeCurl($url);
             $data = $res;
-	          
+	      
 	     
              $urlkey =  $data['result'][0]['urlkey'];
 	   
@@ -927,16 +927,16 @@
 		    $message .= DOMAIN."FP-". $urlkey;
                    // $message .= DOMAIN."FP-". $urlkey;
                     $message .= "<br/><br/>";
-                    $message .= "For any assistance, Call: 022-32623263. Email: info@jzeva.com";
+                    $message .= "For any assistance, Call: +91 9980051525. Email: care@jzeva.com";
                     $message .= "<br/><br/>";
                     $message .= "Team jzeva";
 
                     $headers  = "Content-type:text/html;charset=UTF-8" . "<br/><br/>";
 
-                    $headers .= 'From: info@jzeva.com' . "<br/><br/>";
+                    $headers .= 'From: care@jzeva.com' . "<br/><br/>";
 
                     $mail = mail($row['email'], $subject, $message, $headers); 
-		              print_r($message);
+		               print_r($message);
                      
                         $arr = array();
                         $err = array('Code' => 0, 'Msg' => 'Link for changing password is sent to: '.$row['email'].'');

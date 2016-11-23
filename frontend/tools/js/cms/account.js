@@ -31,8 +31,7 @@ function displayorders()
 	 	    datatype: "JSON",
 	 	    success: function(results)
 	 	    {  
-		      var obj=JSON.parse(results);
-                       console.log(obj);
+		      var obj=JSON.parse(results); 
                     if(obj["result"] == null){
                         $('#ordTitle').html('No Order Placed Yet From Your Account');
                     }
@@ -150,8 +149,7 @@ function wishlist()
                         
 		      var obj=JSON.parse(res);
                       var wishStr="";
-                       $(obj['result']).each(function(s,j){
-                       console.log(j);
+                       $(obj['result']).each(function(s,j){ 
                            var xyz=j.prdimage; xyz=xyz.split(',');
 			    xyz=IMGDOMAIN+xyz[5];
  
@@ -219,15 +217,23 @@ function wishlist()
  
    function removeitm(ths)
    {
-      var ids=$(ths).closest('.action_btns').find('.addcrt').attr('id');
-      ids=ids.split('_');
-      var URL = APIDOMAIN+"index.php?action=removeItmFrmWishlist&wish_id="+ids[0]+"&col_car_qty="+ids[1]+"&pid="+ids[2]+"&size="+ids[3];
-      $.ajax({  type:'POST', url:URL, success:function(res){ 
-        wishlist();
-	}
+      $('#rmvpoptxt').html('Do you want to delete this Product From Wishlist');
+      cartpopUp();
+      
+      $(document).on('click', '#cYes',function(){
+	  var ids=$(ths).closest('.action_btns').find('.addcrt').attr('id');
+	  ids=ids.split('_');
+	  var URL = APIDOMAIN+"index.php?action=removeItmFrmWishlist&wish_id="+ids[0]+"&col_car_qty="+ids[1]+"&pid="+ids[2]+"&size="+ids[3];
+	  $.ajax({  type:'POST', url:URL, success:function(res){ 
+	    wishlist();
+	    cartpopUpClose();
+	  }
+	  }); 
+      });
+      $(document).on('click', '#cNo',function(){
+       cartpopUpClose();
       }); 
-   }
-
+ }
   function indianMoney(x){
           x=x.toString();
           var afterPoint = '';
@@ -343,8 +349,9 @@ function storenewpass(newpass)
                  success:function(res){  
 		           
 			 var data=JSON.parse(res);
-                       common.msg(1, 'Your New Address Added Successfully')
+                       common.msg(1, 'Your New Address Added Successfully');
                         displayaddrs();
+			addAddress();
                      }
                  });
     
@@ -392,26 +399,24 @@ function storenewpass(newpass)
  
  function removeaddr(ths)
 { 
-     var yesno=confirm('Are u sure Do you want to remove This Address');
-     if(yesno== true)
-     {
-    var shpid=$(ths).attr('id'); 
-    var userid=localStorage.getItem('jzeva_uid');
-    console.log(userid);
-    
-    var URL= APIDOMAIN + "index.php/?action=removeShipngdetail&shipping_id="+shpid+"&user_id="+userid;
-       $.ajax({  
-                 url: URL,
-                 type: "GET",   
-                 datatype: "JSON",   
-                 success: function(results){ 
-                     
-		     var data=JSON.parse(results);
-                     common.msg(1, 'Your Address Removed Successfully')
-                     displayaddrs();
-                 }
-             });
-         }
+    cartpopUp(); 
+    $(document).on('click', '#cYes',function(){
+     
+	var shpid=$(ths).attr('id'); 
+	var userid=localStorage.getItem('jzeva_uid'); 
+	var URL= APIDOMAIN + "index.php/?action=removeShipngdetail&shipping_id="+shpid+"&user_id="+userid;
+	$.ajax({  url: URL, type: "GET",  datatype: "JSON",  success: function(results){ 
+
+		var data=JSON.parse(results);
+		common.msg(1, 'Your Address Removed Successfully')
+		displayaddrs();
+		cartpopUpClose();
+	}
+	});
+    });
+    $(document).on('click', '#cNo',function(){
+	  cartpopUpClose();
+    });
 }
 
 
@@ -426,7 +431,7 @@ function storenewpass(newpass)
 	 	    success: function(results)
 	 	    { 
 		      var obj=JSON.parse(results);  
-		 
+	 
                     $('#state').val(obj.results[0].state);
                     $('#city').val(obj.results[0].city);  
 		    }
@@ -498,10 +503,28 @@ function storenewpass(newpass)
   $('#cId').click(function () {
      chngpasrd();                     
   });
-  
+   
   $('#wId').click(function () {
      whlist();                                                  
   });
+  
+  $('.addrEditCnt').click(function () {
+	addAddress(); 
+  });
+   
+  function addAddress()
+  { 
+        if ($("#plusCont").hasClass("plusBlack")) { 
+            $("#plusCont").removeClass("plusBlack");
+            $("#plusCont").addClass("minusBlack");
+            $("#plusCont").parent().siblings('#openAddrId').removeClass("dn");
+
+        } else {
+            $("#plusCont").removeClass("minusBlack");
+            $("#plusCont").addClass("plusBlack");
+            $("#plusCont").parent().siblings('#openAddrId').addClass("dn"); 
+        }
+  }
   
   function ordrinfo()
    {
@@ -560,8 +583,7 @@ function storenewpass(newpass)
            
             var cls = "see less";
             var trk = "track";
-            if (($('#' + trkID).html()) === "track") {
-              //  console.log($('#' + trkID).parent());
+            if (($('#' + trkID).html()) === "track") { 
                 $('#' + trkID).html(cls);
                 $('#' + trkID).parent().parent().parent().next().slideDown(400);
             } else {

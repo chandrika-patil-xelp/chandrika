@@ -117,18 +117,23 @@ function getweight(currentSize,catName,storedWt)
 } 
   
   function remove(el){
-     var yesno=confirm('Are u sure Do you want to remove This item');
-     if(yesno== true)
-     {
+     $('#rmvpoptxt').html('Do you want to delete this Cart');
+     cartpopUp();
+     $(document).on('click', '#cYes',function(){
+     
 	var id=$(el).attr('id');
 	var a=id.split('_');
         var col_car_qty=a[2],product_id=a[0],cartid=a[3];var size=id=a[4];
         var URL = APIDOMAIN+"index.php?action=removeItemFromCart&col_car_qty="+col_car_qty+"&pid="+product_id+"&cartid="+cartid+"&size="+size; 
 	$.ajax({ type:'POST',  url:URL, success:function(res){
 	          displaycartdetail(); 
+		  cartpopUpClose();
 	      }
           });
-     }
+     });
+    $(document).on('click', '#cNo',function(){
+     cartpopUpClose();
+    });
   }
   
    function addqnty(ths)

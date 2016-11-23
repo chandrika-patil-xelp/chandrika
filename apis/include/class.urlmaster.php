@@ -32,7 +32,7 @@
                                     tbl_url_master
                                    (urlkey,
                                     user_id,
-                                    mobile,
+                                    logmobile,
                                     email,
                                     cPass_url,
                                     active_flag,

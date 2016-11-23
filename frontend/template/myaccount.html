@@ -705,24 +705,7 @@
             $("#" + boxId).siblings('.vatTxt').addClass("dn");
         }
     });
-
-    $('.addrEditCnt').click(function () {
-        var boxId = $(this).attr("id");
-        if ($("#" + boxId).hasClass("plusBlack")) {
-
-            $("#" + boxId).removeClass("plusBlack");
-            $("#" + boxId).addClass("minusBlack");
-            $("#" + boxId).parent().siblings('#openAddrId').removeClass("dn");
-
-        } else {
-            $("#" + boxId).removeClass("minusBlack");
-            $("#" + boxId).addClass("plusBlack");
-            $("#" + boxId).parent().siblings('#openAddrId').addClass("dn");
-//              $("#" + boxId).siblings('.vatTxt').addClass("dn");
-        }
-    });
-
-
+ 
     $(document).ready(function () {
         $('.wrapper_max').removeClass('offsetEffects');
         load_page();
