@@ -370,8 +370,8 @@
  (SELECT GROUP_CONCAT(city) FROM tbl_order_shipping_details WHERE FIND_IN_SET(shipping_id,shipngDet)) AS customerCity,
  (SELECT GROUP_CONCAT(state) FROM tbl_order_shipping_details WHERE FIND_IN_SET(shipping_id,shipngDet)) AS customerState,
  (SELECT GROUP_CONCAT(pincode) FROM tbl_order_shipping_details WHERE FIND_IN_SET(shipping_id,shipngDet)) AS customerPincode,
- (SELECT GROUP_CONCAT(address) FROM tbl_order_shipping_details WHERE FIND_IN_SET(shipping_id,shipngDet)) AS customerAddrs
- 
+ (SELECT GROUP_CONCAT(address) FROM tbl_order_shipping_details WHERE FIND_IN_SET(shipping_id,shipngDet)) AS customerAddrs,
+ (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND active_flag = 1 AND  default_img_flag=1) AS default_image
 
  FROM tbl_order_master WHERE user_id= ".$params['userid']."  ";
                 
@@ -413,7 +413,7 @@
                        $reslt['customerState'] = ($row['shipngDet']!=NULL) ? $row['customerState'] : '';
                       $reslt['customerPincode'] = ($row['prdimage']!=NULL) ? $row['customerPincode'] : '';
                        $reslt['customerAddrs'] = ($row['prdname']!=NULL) ? $row['customerAddrs'] : '';
-                     
+                      $reslt['default_image'] = $row['default_image'];
                        
                        
                        if($row['order_status']== '0'){

@@ -761,7 +761,8 @@
             . "(SELECT  GROUP_CONCAT(jewelleryType) FROM tbl_product_master WHERE productid = pid AND active_flag = 1 ) AS jweltype,"
              . "(SELECT  GROUP_CONCAT(has_diamond) FROM tbl_product_master WHERE productid = pid AND active_flag = 1 ) AS hasdmd,"
 	    . "(SELECT  GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid  AND active_flag !=2 ORDER BY
-                            image_sequence DESC) AS prdimage";
+                            image_sequence DESC) AS prdimage, 
+		(SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND active_flag =1 AND  default_img_flag=1) AS default_image ";
             
             
 	        
@@ -787,7 +788,8 @@
                     $arr['size'] = $row['size'];
                     $arr['hasdmd'] = $row['hasdmd'];
                     $arr['jweltype'] = $row['jweltype'];
-                    
+                    $arr['default_image'] = $row['default_image'];
+		      
                    if($row['jweltype'] === '1'){
                              $arr['jweltype'] ='Gold';
                         }else  if($row['jweltype'] === '2'){

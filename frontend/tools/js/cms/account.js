@@ -40,10 +40,14 @@ function displayorders()
                         
                          var orderID = $('#ordId').html(v.oid);
                          var orderDate =$('#ordDate').html(v.order_date);
-                                          
-                        var image=v.prdimage; image=image.split(',');
+                            
+			 if(v.default_image!== null){
+			  var image=IMGDOMAIN + v.default_image;
+			}
+			else{  
+			    var image=v.prdimage; image=image.split(',');
 			    image=IMGDOMAIN+image[0]; 
- 
+			 }
  orderstr+='<div class="fLeft orderImg bgCommon" style="background: #fff url(\''+ image+ '\')no-repeat;background-size: contain;background-position:center; background-color:#FFF;"></div>';
  orderstr+='<div class="fLeft orderName">';
  orderstr+='<div class="fLeft col100 semibold">'+v.prdname+'</div>';
@@ -150,9 +154,14 @@ function wishlist()
 		      var obj=JSON.parse(res);
                       var wishStr="";
                        $(obj['result']).each(function(s,j){ 
+			 if(j.default_image !== null){
+			  var xyz=IMGDOMAIN + j.default_image;
+			}
+			else{  
                            var xyz=j.prdimage; xyz=xyz.split(',');
 			    xyz=IMGDOMAIN+xyz[5];
- 
+			  }
+   
  wishStr+= '<div class="grid3 transition400 fadeInup" > ';
  wishStr+= ' <div class="">out of stock</div> ';
  wishStr+= ' <div class="facet_front">';
