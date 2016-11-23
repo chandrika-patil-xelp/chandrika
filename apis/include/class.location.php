@@ -14,7 +14,7 @@ class location extends DB {
             $res = $result;
             return $res;
       }
-        $vsql = "SELECT area,city,state,country,latitude,longitude from tbl_area_master where pincode='" . $params['code'] . "'";
+        $vsql = "SELECT area,city,state,country from tbl_area_master where pincode='" . $params['code'] . "'";
         $vres = $this->query($vsql);
         $cres = $this->numRows($vres);
         if ($cres > 0) {
