@@ -1371,35 +1371,35 @@ input[type=radio]:checked ~ .selector_label:after {
 
 .gemstone{display:inline-block;cursor:pointer;width:120px;background-size: auto 60px; background-position: top center ; height: auto;padding:65px 10px 0px 10px;font-size:10px;text-align:center;font-family:semibold;letter-spacing:0.1em;vertical-align:top;position:relative;overflow:hidden;color: #15181b;}
 .gemstone:after{content:"";width:100%;height:100%;position:absolute;left:0;top:0;background:#15181b;transform:translateX(-100%);-webkit-transform:translateX(-100%);-moz-transform:translateX(-100%);-o-transform:translateX(-100%);-ms-transform:translateX(-100%);transition:200ms ease-out;-webkit-transition:200ms ease-out;-moz-transition:200ms ease-out;-o-transition:200ms ease-out;-ms-transition:200ms ease-out}
-.gemstone1{background-image: url('../img/Satellite1.png');background-repeat:no-repeat;}
-.gemstone2{background-image: url('../img/Satellite2.png');background-repeat:no-repeat;}
-.gemstone3{background-image: url('../img/Satellite3.png');background-repeat:no-repeat;}
-.gemstone4{background-image: url('../img/Satellite4.png');background-repeat:no-repeat;}
-.gemstone5{background-image: url('../img/Satellite5.png');background-repeat:no-repeat;}
-.gemstone6{background-image: url('../img/Satellite6.png');background-repeat:no-repeat;}
-.gemstone7{background-image: url('../img/Satellite7.png');background-repeat:no-repeat;}
-.gemstone8{background-image: url('../img/Satellite8.png');background-repeat:no-repeat;}
-.gemstone9{background-image: url('../img/Satellite9.png');background-repeat:no-repeat;}
-.gemstone10{background-image: url('../img/Satellite10.png');background-repeat:no-repeat;}
-.gemstone11{background-image: url('../img/Satellite11.png');background-repeat:no-repeat;}
-.gemstone12{background-image: url('../img/Satellite12.png');background-repeat:no-repeat;}
-.gemstone13{background-image: url('../img/Satellite13.png');background-repeat:no-repeat;}
-.gemstone14{background-image: url('../img/Satellite14.png');background-repeat:no-repeat;}
-.gemstone15{background-image: url('../img/Satellite15.png');background-repeat:no-repeat;}
-.gemstone16{background-image: url('../img/Satellite16.png');background-repeat:no-repeat;}
-.gemstone17{background-image: url('../img/Satellite17.png');background-repeat:no-repeat;}
-.gemstone18{background-image: url('../img/Satellite18.png');background-repeat:no-repeat;}
-.gemstone19{background-image: url('../img/Satellite19.png');background-repeat:no-repeat;}
-.gemstone20{background-image: url('../img/Satellite20.png');background-repeat:no-repeat;}
-.gemstone21{background-image: url('../img/Satellite21.png');background-repeat:no-repeat;}
-.gemstone22{background-image: url('../img/Satellite22.png');background-repeat:no-repeat;}
-.gemstone23{background-image: url('../img/Satellite23.png');background-repeat:no-repeat;}
-.gemstone24{background-image: url('../img/Satellite24.png');background-repeat:no-repeat;}
-.gemstone25{background-image: url('../img/Satellite25.png');background-repeat:no-repeat;}
-.gemstone26{background-image: url('../img/Satellite26.png');background-repeat:no-repeat;}
-.gemstone27{background-image: url('../img/Satellite27.png');background-repeat:no-repeat;}
-.gemstone28{background-image: url('../img/Satellite28.png');background-repeat:no-repeat;}
-.gemstone29{background-image: url('../img/Satellite29.png');background-repeat:no-repeat;}
+.alexandriteIc{background-image: url('../img/Satellite1.png');background-repeat:no-repeat;}
+.amberIc{background-image: url('../img/Satellite2.png');background-repeat:no-repeat;}
+.amethystIc{background-image: url('../img/Satellite3.png');background-repeat:no-repeat;}
+.ametrineIc{background-image: url('../img/Satellite4.png');background-repeat:no-repeat;}
+.aquamarineIc{background-image: url('../img/Satellite5.png');background-repeat:no-repeat;}
+.citrineIc{background-image: url('../img/Satellite6.png');background-repeat:no-repeat;}
+.diamondIc{background-image: url('../img/Satellite7.png');background-repeat:no-repeat;}
+.colourdiamondIc{background-image: url('../img/Satellite8.png');background-repeat:no-repeat;}
+.emeraldIc{background-image: url('../img/Satellite9.png');background-repeat:no-repeat;}
+.granetIc{background-image: url('../img/Satellite10.png');background-repeat:no-repeat;}
+.ioliteIc{background-image: url('../img/Satellite11.png');background-repeat:no-repeat;}
+.jadeIc{background-image: url('../img/Satellite12.png');background-repeat:no-repeat;}
+.kunziteIc{background-image: url('../img/Satellite13.png');background-repeat:no-repeat;}
+.lapislazuliIc{background-image: url('../img/Satellite14.png');background-repeat:no-repeat;}
+.moonstoneIc{background-image: url('../img/Satellite15.png');background-repeat:no-repeat;}
+.morganiteIc{background-image: url('../img/Satellite16.png');background-repeat:no-repeat;}
+.opalIc{background-image: url('../img/Satellite17.png');background-repeat:no-repeat;}
+.pearlIc{background-image: url('../img/Satellite18.png');background-repeat:no-repeat;}
+.peridotIc{background-image: url('../img/Satellite19.png');background-repeat:no-repeat;}
+.rosequartzIc{background-image: url('../img/Satellite20.png');background-repeat:no-repeat;}
+.rubyIc{background-image: url('../img/Satellite21.png');background-repeat:no-repeat;}
+.sapphireIc{background-image: url('../img/Satellite22.png');background-repeat:no-repeat;}
+.spinelIc{background-image: url('../img/Satellite23.png');background-repeat:no-repeat;}
+.sunstoneIc{background-image: url('../img/Satellite24.png');background-repeat:no-repeat;}
+.tanzaniteIc{background-image: url('../img/Satellite25.png');background-repeat:no-repeat;}
+.topazIc{background-image: url('../img/Satellite26.png');background-repeat:no-repeat;}
+.tormalineIc{background-image: url('../img/Satellite27.png');background-repeat:no-repeat;}
+.turquoiseIc{background-image: url('../img/Satellite28.png');background-repeat:no-repeat;}
+.zirconIc{background-image: url('../img/Satellite29.png');background-repeat:no-repeat;}
 
 .colbox1{width:100%;height:200px;background:#111}
 .colbox2{width:100%;height:200px;background:#222}
@@ -2387,6 +2387,8 @@ input[type=radio]:checked ~ .btncnt {
 .pad0{padding: 0px!important;}
 
 /*.imgHead:after{content: "";width:20px;position: absolute;}*/
+.cartPopup{width:100%;height: 100%;position:fixed;}
+.inCartPop{width:450px;height:500px;position:absolute;top: 0;left: 0;right: 0;bottom: 0;}
 
 
 @media only screen and (min-width:320px) and (max-width:767px){
