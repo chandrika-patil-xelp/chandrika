@@ -7,22 +7,29 @@
     var page = '<?php echo $page?>';
 
 </script>
-<div class="cart">
+<div class="cartPopup dn" id="cartpID">
+    <div class="inCartPop" id="inCartID">
+        <div class="txtTitle mar0">Do you want to delete this addresses</div>
+        <div class="col100 fLeft bolder">
+            <center>
+                <div class="col50 fLeft"><div class="actBtn button" id="cYes">YES</div></div>
+                <div class="col50 fRight"><div class="actBtn button" id="cNo">NO</div></div>
+            </center>
+        </div>
+    </div>
+</div>
+<div class="cart">   
     <!-- <div class="cart_head ">
       YOUR CART
 
     </div> -->
     <div class="cartHeader fLeft">
         <div class="transition300 mar0 fLeft closeCart" id="closeCart"></div>
-       
     </div>
     <div class="fLeft totalItem">
-        
-        <div class="fLeft col100 cart_name light">Total Price
-       
-        </div>
+        <div class="fLeft col100 cart_name light">Total Price</div>
         <div class="fLeft cart_price font35"><span class="total_price_gen  cartRupee font35">126,000</span>
-          <div class="button actBtn col50 transition300 mTop17 fRight" id="check_out">CHECKOUT</div>
+            <div class="button actBtn col50 transition300 mTop17 fRight" id="check_out">CHECKOUT</div>
         </div>
         <!--<div class="closeCart"></div>-->
     </div>
@@ -131,16 +138,34 @@
         $('.page_loader').velocity({translateX: [0, '-100%']}, {duration: 300, easing: 'easeInOutExp', display: 'block',
             complete: function () {
                 setTimeout(function () {
-                  //  window.location.assign(DOMAIN + 'index.php?action=checkOutNew');
+                    //  window.location.assign(DOMAIN + 'index.php?action=checkOutNew');
                 }, 1000);
             }
         });
 
     }
     
-    $('#closeCart').click(function(){
+  function cartpopUp(){
+       $('#cartpID').removeClass("dn");
+        $('#cartpID').velocity({opacity: [1, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+        $('#inCartID').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+  }
+   function cartpopUpClose(){
+       $('#cartpID').addClass("dn");
+        $('#cartpID').velocity({opacity: [0, 1]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+        $('#inCartID').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+  }
+    
+//    $(document).on('click', '.addrCommon', function () {
+//
+//       
+//    });
+    
+   
+    
+    $('#closeCart').click(function () {
 //        alert("sdjkfvkd");
-        $('.cart').velocity({trnslateX:['100%',0]},{duration:[400]});
+        $('.cart').velocity({trnslateX: ['100%', 0]}, {duration: [400]});
     });
 
     $('#niceCart').niceScroll({cursorcolor: "#000000", touchbehavior: true, cursorwidth: "4px", autohidemode: false, cursorborder: "0px solid #fff", cursoropacitymin: "0.3", cursoropacitymax: "0.3", railpadding: {top: 2, right: 2, left: 2, bottom: 2}});
