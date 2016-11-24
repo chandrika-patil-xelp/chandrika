@@ -1391,7 +1391,7 @@ input[type=radio]:checked ~ .selector_label:after {
 .opalIc{background-image: url('../img/Satellite17.png');background-repeat:no-repeat;}
 .pearlIc{background-image: url('../img/Satellite18.png');background-repeat:no-repeat;}
 .peridotIc{background-image: url('../img/Satellite19.png');background-repeat:no-repeat;}
-.rosequartzIc{background-image: url('../img/Satellite20.png');background-repeat:no-repeat;}
+.quartzIc{background-image: url('../img/Satellite20.png');background-repeat:no-repeat;}
 .rubyIc{background-image: url('../img/Satellite21.png');background-repeat:no-repeat;}
 .sapphireIc{background-image: url('../img/Satellite22.png');background-repeat:no-repeat;}
 .spinelIc{background-image: url('../img/Satellite23.png');background-repeat:no-repeat;}
@@ -1399,7 +1399,7 @@ input[type=radio]:checked ~ .selector_label:after {
 .tanzaniteIc{background-image: url('../img/Satellite25.png');background-repeat:no-repeat;}
 .topazIc{background-image: url('../img/Satellite26.png');background-repeat:no-repeat;}
 .tormalineIc{background-image: url('../img/Satellite27.png');background-repeat:no-repeat;}
-.turquoiseIc{background-image: url('../img/Satellite28.png');background-repeat:no-repeat;}
+.turquioseIc{background-image: url('../img/Satellite28.png');background-repeat:no-repeat;}
 .zirconIc{background-image: url('../img/Satellite29.png');background-repeat:no-repeat;}
 
 .colbox1{width:100%;height:200px;background:#111}
@@ -1419,7 +1419,7 @@ input[type=radio]:checked ~ .selector_label:after {
 .filterLabel:after{content:"";width:100%;height:100%;background:#15181b;position:absolute;top:0;left:0;transform:translateX(-100%);-webkit-transform:translateX(-100%);-moz-transform:translateX(-100%);-o-transform:translateX(-100%);-ms-transform:translateX(-100%);transition:200ms;-webkit-transition:200ms;-moz-transition:200ms;-o-transition:200ms;-ms-transition:200ms;}
 .filSelec .filterLabel:after{transform:translateX(-100%);-webkit-transform:translateX(0%);-moz-transform:translateX(0%);-o-transform:translateX(0%);-ms-transform:translateX(0%);background:#53C9C7;}
 .twoFingerIc{background-image: url('../img/filterIcons/300.svg');background-repeat:no-repeat;}
-.braceletIc{background-image: url('../img/filterIcons/301.svg');background-repeat:no-repeat;}
+.braceletsIc{background-image: url('../img/filterIcons/301.svg');background-repeat:no-repeat;}
 .bridalIc{background-image: url('../img/filterIcons/302.svg');background-repeat:no-repeat;}
 .broadIc{background-image: url('../img/filterIcons/303.svg');background-repeat:no-repeat;}
 .casualIc{background-image: url('../img/filterIcons/304.svg');background-repeat:no-repeat;}
@@ -1465,17 +1465,17 @@ input[type=radio]:checked ~ .selector_label:after {
 /*Ring Style Filter Icons*/
 
 .solitaireIc{background-image: url('../img/filterIcons/322.svg');background-repeat:no-repeat;}
-.paveIc{background-image: url('../img/filterIcons/323.svg');background-repeat:no-repeat;}
+.pavéIc{background-image: url('../img/filterIcons/323.svg');background-repeat:no-repeat;}
 .channelIc{background-image: url('../img/filterIcons/324.svg');background-repeat:no-repeat;}
 .sidestonesIc{background-image: url('../img/filterIcons/325.svg');background-repeat:no-repeat;}
 .threestoneIc{background-image: url('../img/filterIcons/326.svg');background-repeat:no-repeat;}
 .tensionIc{background-image: url('../img/filterIcons/327.svg');background-repeat:no-repeat;}
 .haloIc{background-image: url('../img/filterIcons/328.svg');background-repeat:no-repeat;}
 .vintageIc{background-image: url('../img/filterIcons/328.svg');background-repeat:no-repeat;}
-.weddingsetIc{background-image: url('../img/filterIcons/329.svg');background-repeat:no-repeat;}
+.weddingIc{background-image: url('../img/filterIcons/329.svg');background-repeat:no-repeat;}
 
 .prongIc{background-image: url('../img/filterIcons/330.svg');background-repeat:no-repeat;}
-.flushsetIc{background-image: url('../img/filterIcons/332.svg');background-repeat:no-repeat;}
+.flushIc{background-image: url('../img/filterIcons/332.svg');background-repeat:no-repeat;}
 .bezelIc{background-image: url('../img/filterIcons/333.svg');background-repeat:no-repeat;}
 .clusterIc{background-image: url('../img/filterIcons/334.svg');background-repeat:no-repeat;}
 .invisibleIc{background-image: url('../img/filterIcons/335.svg');background-repeat:no-repeat;}
