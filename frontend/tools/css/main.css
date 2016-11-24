@@ -2095,14 +2095,18 @@ input[type=radio]:checked ~ .selector_label:after {
 .tabDaddrss{width: auto;padding: 0px 20px;color: #fff;height: 30px;font-size: 12px;transform: rotate(-90deg);position: absolute;left: -32px;transform-origin: 0 0;top:225px;letter-spacing: 0.35em;line-height: 28px;}
 .tabDaddrss1{width: auto;padding: 0px 20px;color: #fff;height: 30px;font-size: 12px;transform: rotate(-90deg);position: absolute;left: -32px;transform-origin: 0 0;bottom:0;letter-spacing: 0.35em;line-height: 28px;}
 .delvrAdress{width:100%;height:390px;padding:20px 0px 20px 0px;position: relative;}
-.dlvrBtn{width: auto;padding: 0px 30px;font-size: 12px;height: 30px;line-height: 30px;cursor:pointer;display: inline-block;border: 1px solid #ccc;border-radius: 2px;vertical-align: top;}
+.dlvrBtn{width:auto;padding: 0px 30px;font-size: 11px;height: 30px;line-height: 30px;cursor:pointer;display: inline-block;border-radius: 2px;vertical-align: top;}
 .rdo{display:none}
+.dlvrBtn:after{content:"";width: 50px;border-top: 1px solid #ccc;position: absolute;right: 45%;}
 
 .radTor{position:relative}
 .radTor label{position:absolute;left:0;top:0;width:100%;height:100%}
 
 
 input[type=radio]:checked ~ .btncnt {
+  display:block;
+}
+input[type=radio]:checked ~ .matchIcn{
   display:block;
 }
 
@@ -2118,7 +2122,7 @@ input[type=radio]:checked ~ .btncnt {
 .neadHide{width:100%;height:auto;}
 .centerDvHldr{width:100%;height:auto;margin-top: 40px;}
 .cntrDvcnt{width:70%;height:auto;display:inline-block;}
-.matchIcn{width:30px;height:30px;position:absolute;top:10px;right:-40px;background:url(../img/02g.svg)no-repeat;background-size:auto 40px;background-position:center;}
+.matchIcn{display: none;width:30px;height:30px;position:absolute;top:10px;right:-40px;background:url(../img/02g.svg)no-repeat;background-size:auto 40px;background-position:center;}
 .unmatchIcn{width:30px;height:30px;position:absolute;top:10px;right:-40px;background:url(../img/01.svg)no-repeat;background-size:auto 40px;background-position:center;}
 .matchIcn1{width:30px;height:30px;position:absolute;top:10px;right:-40px;background:url(../img/02g.svg)no-repeat;background-size:auto 40px;background-position:center;}
 .unmatchIcn1{width:30px;height:30px;position:absolute;top:10px;right:-40px;background:url(../img/01.svg)no-repeat;background-size:auto 40px;background-position:center;}
@@ -2128,7 +2132,8 @@ input[type=radio]:checked ~ .btncnt {
 .dTab{}
  .dTab .cnclSbmt{}
  .scrollerCnt{width:100%;height:550px;}
- .ePadding{padding:50px 113px !important}
+ .ePadding{padding:50px 70px !important}
+ .right0{right: 0!important;}
  .cotpTxt{width:100%;height: 28px;font-size: 12px;color: #333;text-align: center;text-transform: uppercase;line-height: 24px;letter-spacing: 0.05em;}
  .fadeCnt{width:100%;height:500px;position:absolute;top:0;left:0;background:#fff;}
  #scndup{opacity:0 ;transform:translateY(20px) ;display:none }
