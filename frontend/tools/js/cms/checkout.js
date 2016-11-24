@@ -512,22 +512,25 @@ function displayaddrs(userid)
 		       $('addr_main').html('');
 		     $(res).each(function(r,v){
 	 
-    addstr+='<div class="col100 fLeft radTor">';
-    addstr+='  <div class="w50r fLeft">';
+    addstr+=' <div class="col100 fLeft radTor poR">';
+   
+    addstr+=' <div class="w50r fLeft">';
     addstr+=' <div class="text fLeft" id="spnd_name">'+v.name+'</div>';
     addstr+=' <div class="text fLeft" id="spnd_email">'+v.email+'</div>';
     addstr+=' <div class="text fLeft" id="spnd_city_pin">'+v.city+"-"+v.pincode+'</div>';
-    addstr+='  </div>   <div class="w50l fRight"> ';
+    addstr+=' </div>   <div class="w50l fRight"> ';
     addstr+=' <div class="text fLeft"><span>'+v.address+'</span></div>';
     addstr+=' </div>';
     addstr+=' <input type="radio" name="selectM" onclick="addrsel(this)" class="filled-in dn" id="'+v.shipping_id+'">';
-    addstr+='  <label for="'+v.shipping_id+'"></label> ';
+    addstr+=' <label for="'+v.shipping_id+'"></label>';
+     addstr+=' <div class="matchIcn right0" id="'+v.shipping_id+'">';
+    addstr+=' </div>';
     addstr+=' <div class="btncnt fLeft bolder">';
     addstr+='  <center> ';
     addstr+=' <div class="dlvrBtn transition300">DELIVER TO THIS ADDRESS</div> ';
     addstr+=' </center> ';
     addstr+=' </div>';
-    addstr+='  </div> ';
+    addstr+=' </div>';
        
    
      });
@@ -881,3 +884,4 @@ function indianMoney(x){
           
           return res;
      }
+     
