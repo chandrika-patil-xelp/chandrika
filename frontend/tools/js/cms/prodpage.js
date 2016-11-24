@@ -318,14 +318,9 @@ $(document).ready(function () {
                         var diamstr = "";
                         var dQstr = "";
                        
-                         var defaultDia;
-                         var defaultDiaVal;
-                         var defaultDiaPrc;
+                         $('#clar').removeClass('dn');
                         $(diamonds['results']).each(function (i, vl) {
                           
-//                             defaultDia= vl.QMast.results[4]['id'];
-//                             defaultDiaVal =vl.QMast.results[4]['dVal'];
-//                            defaultDiaPrc =vl.QMast.results[4]['prcPrCrat'];
                                
                             var dcarat = vl.crat;
                             storedDmdCarat = parseFloat(vl.crat);
