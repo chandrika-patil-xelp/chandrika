@@ -19,6 +19,9 @@ var total = 0;
 var metalprc = 0;
 var wshlstflag=0;
 
+ var dmdsoli="";
+ var jweltype = "";
+ 
 function GetURLParameter(Param)
 {
 
@@ -124,11 +127,11 @@ $(document).ready(function () {
 
            // metalwgt = dt['basicDetails']['mtlWgt'];
             makchrg = dt['basicDetails']['mkngCrg'];
-            //  metalprcprgm =  dt['metalPurity']['results']['prc']; console.log( dt['metalPurity']);
+            //  metalprcprgm =  dt['metalPurity']['results']['prc'];  
             var gemstone = dt['gamestone'];
             var images = dt['images'];
 
-
+ 
             catsize = dt['catAttr']['results'][1]['cid'];
             
             getcatsize(catAttr, metalwgt);
@@ -168,15 +171,28 @@ $(document).ready(function () {
                     var proccost = vl.procmtCst;
 
                     getbasicprice(makingchrg, metalwght);
-
+		     
                     if (basic.jewelleryType == 1) {
+			 jweltype = "Gold";
                         $('#stn').html('Gold');
                     } else if (basic.jewelleryType == 2) {
+			jweltype = "Plain Gold";
                         $('#stn').html('Plain-Gold');
                     } else if (basic.jewelleryType == 3) {
+			 jweltype = "Platinum";
                         $('#stn').html('Platinum');
                     }
                     
+		     
+                    if(basic.hasSol == 1){
+                        dmdsoli = "Solitaire";
+                    }
+                    else if (basic.hasDmd == 1){
+                        dmdsoli = "Diamond";
+                    }
+		   
+		     getDesc(dmdsoli,jweltype);
+		    
                     var lstr = "";
                     lstr += '<span class="semibold">' + vl.leadTime + ' Days or less</span>';
                     $('#leadtime').append(lstr);
@@ -594,7 +610,9 @@ function setdmd(e) {
     setTimeout(function () {
         $('#ch_price').removeClass('showCh');
         $('#ch_price').velocity({opacity: [0, 1]});
-    }, 3000);
+    }, 8000);
+     dmdsoli=va;
+     getDesc(va,jweltype);
 }
 
 function setmetal(m) {
@@ -604,7 +622,7 @@ function setmetal(m) {
     //  var t=mt-1;
     var mt = mt - 2;
     metalValue = mp[mt];
-    //console.log(metalValue);
+   
     $('#carat').attr("carat_id", b); //changes
     $('#carat').html(wx);
     // glbcarat=t;
@@ -623,8 +641,9 @@ function setmetal(m) {
     setTimeout(function () {
         $('#ch_price').removeClass('showCh');
         $('#ch_price').velocity({opacity: [0, 1]});
-    }, 3000);
-
+    }, 8000);  
+    jweltype=wx;
+   getDesc(dmdsoli,wx); 
 }
 
 function setclr(c) {
@@ -670,7 +689,7 @@ function getcatsize(s, m) {
             url: URL,
             success: function (res) {
                 dat = JSON.parse(res);
-            
+          
                 var strd="";
                 var str = "";
                 if(catname== 'Rings'){
@@ -762,20 +781,19 @@ function calculatePrice()
         dmdPrice=storedDmdCarat*selDiamond;
     }
   
-   //console.log(currentSize +" 1")
+    
     var changeInWeight=(currentSize-bseSize)*mtlWgDav; 
      newWeight=parseFloat(storedWt+(changeInWeight));
         newWeight= newWeight.toFixed(3);
        
   $('#newWt').html(newWeight+" gms");
   
-    goldPrice=parseFloat(selPurity*newWeight);//console.log(selPurity * newWeight);
+    goldPrice=parseFloat(selPurity*newWeight); 
     var mkCharges=parseFloat(storedMkCharge*newWeight);
     var ttl=parseFloat(goldPrice+dmdPrice+mkCharges+ uncPrice + soliprc + gemsPrice);
     
 
-//console.log("dmdPrice-> "+dmdPrice +" --- " + "changeInWeight -> "+changeInWeight+"  ---- "+"newWeight -> "+newWeight+ " goldPrice ->" +goldPrice +" mkCharges ->" +mkCharges);
-    
+ 
     
     var totalNewPrice= Math.round(ttl+(ttl*vatRate));
   
@@ -849,15 +867,48 @@ function showwishbtn()
 	});
 	
 	setTimeout(function(){
-	  if(wshlstflag == 1){
-//	      console.log('already in wishlist');
+	  if(wshlstflag == 1){ 
                 $('.wishBtn').addClass("colorfff");
                     $('.addWish').addClass("moveWish");
 	    }
 	  else{
-	      console.log('not in wishlist');
+	   //   console.log('not in wishlist');
 	    }
 	},1000); 
     }
     }); 
 } 
+
+function getDesc(dmdsol,jwlty){
+   var stone = dmdsol;
+   var metal =jwlty;
+   var descStr =""; 
+    var URL=APIDOMAIN + "index.php?action=getprodDescrp&jweltype="+metal+"&dmdsoli="+stone;
+    $.ajax({  type: 'POST',
+            url: URL, 
+            success: function (res) {
+	
+        var data=JSON.parse(res); 
+	 
+            $(data['result']).each(function(r,v){ 
+                 
+                if( r== 0){
+                    descStr+=' <div class="colleCont ">'; 
+                  descStr+='   <div class="smUlineb">'+v.name+'</div>';
+                  descStr+='   <div class="collCenterb ">';
+                  descStr+=''+v.desc+'';
+                  descStr+=' </div> </div>'; 
+                } 
+                else{
+                    descStr+=' <div class="colleCont v2">'; 
+                  descStr+='   <div class="smUline">'+v.name+'</div>';
+                  descStr+='   <div class="collCenter ">';
+                  descStr+=''+v.desc+'';
+                  descStr+=' </div> </div>';  
+                } 
+          });
+          $('.homeCollect').html(descStr);
+    }
+    });
+    
+}

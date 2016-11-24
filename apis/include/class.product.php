@@ -4231,6 +4231,38 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
      
     $result = array('result'=>$reslt, 'error'=>$error, 'total'=>$total);
       return $result;
-    } 
+    }
+      
+     public function getprodDescrp($params) { 
+       
+       $jweltype = (!empty($params['jweltype'])) ? trim($params['jweltype']) : '';
+        $dmdsoli = (!empty($params['dmdsoli'])) ? trim($params['dmdsoli']) : '';
+       $sql = "SELECT 
+                        id,
+                       name,
+                       description
+                        
+                      FROM
+                        tbl_productdetails_master WHERE  active_flag=1 
+                      AND  LOWER(REPLACE(NAME,' ','')) =LOWER(REPLACE('".$jweltype."',' ','')) OR 
+                            LOWER(REPLACE(NAME,' ','')) =LOWER(REPLACE('".$dmdsoli."',' ',''))";
+            
+            $res = $this->query($sql);
+             if($res){
+                while ($row = $this->fetchData($res)){
+                    $arr['name'] = $row['name'];
+                    $arr['desc'] = $row['description'];
+                    
+                    $resp[] = $arr;
+                }
+                 $error = array('err_code'=>0, 'err_msg'=>'details fetched successfully');
+             }
+             else{
+                $error = array('err_code'=>1, 'err_msg'=>'error in fetching details');
+            }
+             $result = array('result'=>$resp, 'error'=>$error);
+            return $result;
+       
+   }
 }
 ?>
