@@ -161,7 +161,81 @@ function generatelist(obj) {
     proStr += '<div class="grid_name txtOver transition300">' + obj['prdNm'] + '</div>';
     //proStr += '<div class="col100 color666">';
     //proStr += '<div class="col100  font11 transition300 txtOver">' + obj['jwelType'] + ' ' + obj['metal_weight'] + ' gms, Diamond ' + obj['dmdcarat'] + ' Carats</div>';
-    proStr += '<div class="col100  font11 transition300 txtOver">' + obj['jwelType'] + '  Φ  Diamond </div>';
+     
+     proStr += '<div class="col100  font11 transition300 txtOver" id="prdstonename">' + obj['jwelType'] + ''; 
+    var type = 0;
+    if (obj.hasSol == 1)
+        type = 1;
+    if (obj.hasDmd == 1)
+        type = 2;
+    if (obj.hasSol == 1 && obj.hasDmd == 1)
+        type = 3;
+    if (obj.hasDmd == 1 && obj.hasUnct == 1)
+        type = 4; 
+    
+    var gemcnt=obj.gemstoneName+"";    
+    gemcnt=gemcnt.split(',');   
+    if(obj.hasGem == 1){
+        if (gemcnt.length == 1) { 
+            type = 5;
+        if (gemcnt.length > 1)
+            type = 6;
+    }
+    } 
+    if (obj.hasDmd == 1 && obj.hasGem == 1) {
+        if (gemcnt.length == 1)
+            type = 7;
+        if (gemcnt.length > 1)
+            type = 8;
+    }
+    
+    var Nstr = "";
+    switch (type) {
+        case 1:
+        {
+            Nstr += '<span> Φ Solitaire</span>';
+            break;
+        }
+        case 2:
+        {
+            Nstr += '<span> Φ Diamond</span>';
+            break;
+        }
+        case 3:
+        {
+            Nstr += '<span> Φ Solitaire </span>';
+            break;
+        }
+        case 4:
+        {
+            Nstr += '<span> Φ Diamond</span>';
+            break;
+        }
+        case 5:
+        {
+            var gemstn = obj.gemstoneName;
+            Nstr += '<span> Φ ' + gemstn + ' /span>';
+            break;
+        }
+        case 6:
+        {
+            Nstr += '<span> Φ Gemstones </span>';
+            break;
+        }
+        case 7:
+        {
+            gemstn = obj.gemstoneName;
+            Nstr += '<span> Φ Diamond</span><span> Φ ' + gemstn + '</span>';
+            break;
+        }
+        case 8:
+        {
+            Nstr += '<span> Φ Diamond</span><span> Φ Gemstones</span>';
+            break;
+        }
+    } 
+    proStr += ' ' + Nstr + '</div>';
+     
     proStr += '<div class="grid_price txtOver transition300">&#8377 ' + grandtotal + '</div>';
     proStr += '<div class="fmSansB smBtnDiv fLeft transition300">';
 //    proStr += '<span class="u_line point lettSpace fLeft"  onclick=\"getProId(\''+ obj['prdId'] + '\')\">View Product</span>';
