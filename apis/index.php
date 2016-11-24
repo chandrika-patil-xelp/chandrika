@@ -877,7 +877,7 @@ switch($action)
     case 'addOrdersdetail':
         include APICLUDE.'class.us.php';
         $obj = new us($db['jzeva']);
-	$tmpaparams = array($params['dt']);
+	 $tmpaparams = array($params['dt']);
          $res = $obj->addOrdersdetail($tmpaparams);
     break;
 
@@ -1060,8 +1060,6 @@ case 'getUserdetailbymob':
         $res	=$obj->getUserDetailsbyinpt($params);
     break;
     
-  
-  
      case 'checkpassw':
         include APICLUDE.'class.addtocart.php';
         $obj = NEW addtocart($db['jzeva']);
@@ -1073,7 +1071,27 @@ case 'removeItmFrmWishlist':
         $obj = new addtocart($db['jzeva']);
         $res = $obj->removeItmFrmWishlist($params);
         break;
-
+    
+ case 'getprodDescrp':
+        include APICLUDE.'class.product.php';
+        $obj	= new product($db['jzeva']);
+        $result	=$obj->getprodDescrp($params);
+        $res = $result;
+    break;
+  
+   case 'getfiltrmenus':
+        include APICLUDE.'class.product.php';
+        $obj	= new product($db['jzeva']);
+        $result	=$obj->getfiltrmenus($params);
+        $res = $result;
+    break;
+    
+   case 'getprodByfiltr':
+        include APICLUDE.'class.product.php';
+        $obj	= NEW product($db['jzeva']);
+        $result	=$obj->getprodByfiltr($params);
+        $res = $result;
+    break;
   }
 echo json_encode($res);
 exit;

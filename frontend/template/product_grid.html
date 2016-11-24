@@ -860,7 +860,7 @@
                         //  $(this).find('.grid_img').attr('lcor', '30');
                     } else if (cnt == 1) {
                         h2t = h2t + h2;
-                        console.log('pax:' + pax);
+                     
                         $(this).css({position: 'absolute', left: w - pax + "px", top: h2t + "px", zIndex: z});
                         h2 = $(this).outerHeight(true);
                         //  $(this).find('.grid_img').attr('lcor', w-20 );
@@ -953,7 +953,7 @@
             isuck = l1Point;
             touchzone = document.getElementById(iddd);
             ooo = iddd;
-            //console.log(iddd);
+            
             touchzone.addEventListener("touchstart", getcor, false);
             touchzone.addEventListener("touchmove", draw, false);
             touchzone.addEventListener("touchend", end, false);
@@ -975,9 +975,9 @@
             var dt = (widt / 30);
             isuck = parseInt(isuck);
 
-            console.log('isuck:' + isuck + 'staticCordt:' + staticCordt);
+            
             xt = xt + isuck - jt;
-            console.log('xt' + xt);
+           
             kt = xt / dt;
             kt = (kt) % 30;
             kt = Math.floor(kt);
@@ -990,7 +990,7 @@
             staticCordt = xt;
             $("#" + ooo).attr('lcor', xt)
 
-            console.log('touchend');
+          
         }
         var divPos = {};
         var offset = $('.rota').offset();
@@ -1000,7 +1000,7 @@
 
             if (window_width > 960) {
                 var wid1 = $(th).width();
-                // console.log(wid1);
+                
                 var offset = $(th).offset();
                 var left = e.pageX - offset.left;
 
@@ -1086,6 +1086,7 @@
                 $(this).attr('initHeight', $(this).outerHeight(true));
             });
         }
+	 function bindFilterUi(){
         var vheight = 0;
         /*Overlay fade in/out  on menu hover*/
         $('.ftabWrap').mouseover(function () {
@@ -1096,7 +1097,7 @@
             $('.ftab').removeClass('selec');
             var inx = $(this).index();
             vheight = $('.fmenu_elm').eq(inx).attr('initHeight');
-            console.log(vheight);
+           
             //  $('.fmenu_wrap').css({'display':'block'});
             //
             setTimeout(function () {
@@ -1134,7 +1135,7 @@
             $('.ftab').removeClass('selec');
             $('.ftabB').find('.ftab').eq(k).addClass('selec');
         });
-
+	}
 //        $('#filter').click(function () {
 //            $('body').addClass('over_hide');
 //            $('.filterConter').velocity({translateX: [0, '-100%']}, {duration: 300, easing: 'easeInOutExpo', display: 'block'});
@@ -1168,10 +1169,11 @@
                 });
             });
         }
+	 function chk(){ 
         $('.filterCommon').click(function () {
             $(this).toggleClass('filSelec');
         });
-
+	}
 
     </script>
 

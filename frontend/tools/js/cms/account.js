@@ -163,7 +163,6 @@ function wishlist()
 			  }
    
  wishStr+= '<div class="grid3 transition400 fadeInup" > ';
- wishStr+= ' <div class="">out of stock</div> ';
  wishStr+= ' <div class="facet_front">';
  wishStr+= ' <div class="grid_item"> ';
  wishStr+= '    <div class="grid_img">';

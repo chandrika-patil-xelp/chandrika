@@ -7,68 +7,13 @@ var getProdDtl = new Array();
 var stock = new Array();
 var aid;
 var stSearch = new Array();
+var hlist="";
 
 $(document).ready(function () {
       getmenu();
    // var URL = APIDOMAIN + "index.php/?action=getProGrid";
-    var URL = APIDOMAIN + "index.php?action=getProductdetailbycatid&id="+id;
-    $.ajax({
-        type: 'POST',
-        url: URL,
-        success: function (res) {
-
-
-            res = JSON.parse(res);
-
-            if (res['error']['err_code'] == 0) {
-                getProdDtl = res["result"];
-                   var total = res["total"];
-                $('#total_Product').html( total + " Products");
-                var obj = res["result"];
-		if(total<12)
-		  $('#gr_foot').remove();
-		var parnt=obj[0]['parntcatname'];
-		if(parnt=='High Jewellery'){
-		parnt=parnt.split(' ');
-		parnt=parnt[1];
-		}
-		var chld=obj[0]['chldcatname'];
-		var dplstr='<div class="breadP fLeft">'+ parnt +'</div>';
-		dplstr+='<div class="breadP fLeft">'+ chld +'</div>';
-		$('#parnttyp').append(dplstr);
-		var len = obj.length;
-
-                var i = 0;
-                if (len > 0)
-                {
-                    var str = '';
-                    while (i < len)
-                    {
-                        str = generatelist(obj[i]);
-                        //stock.push(obj[i]);
-                        stSearch.push(obj[i]);
-                        i++;
-                          var k = i * 200;
-
-                                          //  $(str).velocity({opacity:[1,0] , translateY:[0,40]} , {duration:600 , easing:'linear', delay:k}).appendTo('#gridDetail');
-                                          $(str).appendTo('#gridDetail');
-                                          setTimeout(function(){
-                                          $('#gridDetail').find('.grid3').addClass('fadeInup');
-                                              bindhover();
-                                            },100);
-
-                                            bindhover();
-
-
-                    }
-                    //$('#gridDetail').append(str);
-                  //  var $(we)= str;
-
-
-                }
-            }
-        }
-    });
+      getprodbyid();
+   
   
 });
 
@@ -520,8 +465,48 @@ var count=0;
     });
 
 
-function getmenu(){
-    
+function getmenu()
+{
+     var menuURL = APIDOMAIN + "index.php/?action=getfiltrmenus&catid="+id;
+     $.ajax({  type: 'POST', url: menuURL, success: function(res) {
+	  var data=JSON.parse(res);
+	  var mainmenustr="";
+          var submenulist="",stoncnt=1; 
+	 
+	  if(data['result'] !== null){
+	     
+	      var reslt=data['result']['atr_val'];   
+	      $(reslt['result']).each(function(r,n){
+		 
+		  mainmenustr+="<div class='ftabB '>";
+		  mainmenustr+="  <div class='ftab fLeft taba' >";
+		  mainmenustr+=" "+n['attr_name'].toUpperCase()+" </div> </div>"; 
+		 
+		  submenulist+="<div class='fmenu_elm fLeft'>";
+		$(n['attr_values']).each(function(q,p){
+		   if(n['attr_name'] == "Stone"){
+		      submenulist+="<div class='filterCommon gemstone"+stoncnt+"' onclick='submenu(this)' "; stoncnt++;
+		   }
+		   else
+		  submenulist+="<div class='filterCommon "+p.toLowerCase()+"Ic' onclick='submenu(this)' "; 
+		  submenulist+=" id='"+p+"_"+n.attributeid+"' >";
+		  submenulist+=" <div class='filterLabel' >";
+		  submenulist+=" <div class='labBuffer'  >"+p+"</div>";
+		  submenulist+=" </div> </div>";   
+		});
+		submenulist+="</div>"; 
+	      }); 
+	  }
+	  setTimeout(function(){
+                  $('.ftab_buffer').html(mainmenustr);
+                  $('.fmenuB').html(submenulist);
+		bindFilterUi();
+		getHeight(); 
+		chk(); 
+	 },1000); 
+	}
+     });
+    /*
     var datamenu;
     var menuURL = APIDOMAIN + "index.php/?action=getAttributeList";
      $.ajax({
@@ -637,7 +622,160 @@ function getmenu(){
              
     }
     });
-    
+   */ 
 }
 
+function submenu(ths)
+{
+  var tid=$(ths).attr('id');  
+      tid=tid.split('_');
+    
+   if(!$(ths).hasClass('filSelec')){  
+      var pid=tid[1];      tid=tid[0];  
+      if(hlist == '')
+	  hlist+=""+tid+"|!|"+pid+"";
+      else
+	  hlist+="@"+tid+"|!|"+pid+"";  
+     
+    setTimeout(function(){
+	  displayproduct();
+    },100);
+   }
+   else{
+	var removeidx; 
+	var chck=hlist.split('@');  
+	var pid=tid[1];      tid=tid[0];  
+	var fltstr=""+tid+"|!|"+pid+"";
+	for(var e=0;e<chck.length;e++){
+	    if(chck[e] == fltstr){
+	       removeidx=e;
+	    }  
+	}
+	hlist="";
+	var arr=[];
+	for(var e=0;e<chck.length;e++){ 
+	    if(removeidx !== e) 
+		arr.push(chck[e]);
+	}
+	hlist=arr.join('@');
+	if(hlist == '@' || hlist == ''){
+	    $('#gridDetail').html('');
+	    hlist="";
+	}  
+	setTimeout(function(){
+	    displayproduct();
+	},500);
+   }
+} 
 
+function displayproduct(){
+   
+   var URL = APIDOMAIN + "index.php/?action=getprodByfiltr&hlist="+hlist+"&catid="+id;
+  $.ajax({ type:'GET', url:URL, success:function(result){
+	        	 
+            var res = JSON.parse(result); 
+            if (res['error']['err_code'] == 0) {
+		$('#gr_foot').remove();
+                getProdDtl = res["result"];
+                var total = res["total"]; 
+                $('#total_Product').html( total + " Products");
+                var obj = res["result"];  
+		   
+	       if(obj !== null){
+		var len = obj.length; 
+		$('#gridDetail').html('');
+                var i = 0;
+                if (len > 0)
+                {
+		  
+                    var str = '';
+                    while (i < len)
+                    {
+                        str = generatelist(obj[i]);
+                      
+                        stSearch.push(obj[i]);
+                        i++;
+                          var k = i * 200; 
+                                          $(str).appendTo('#gridDetail');
+                                          setTimeout(function(){
+                                          $('#gridDetail').find('.grid3').addClass('fadeInup');
+                                              bindhover();
+                                            },100);
+
+                                            bindhover(); 
+
+                    } 
+		}
+	       }
+	       else{
+		 if(hlist == "")
+		    getprodbyid();
+		 else
+		    $('#gridDetail').html('');
+	       }
+	  }
+    }
+    });
+}
+
+function getprodbyid()
+{
+   var URL = APIDOMAIN + "index.php?action=getProductdetailbycatid&id="+id;
+    $.ajax({
+        type: 'POST',
+        url: URL,
+        success: function (res) {
+
+	  
+            res = JSON.parse(res); 
+            if (res['error']['err_code'] == 0) {
+                getProdDtl = res["result"];
+                   var total = res["total"];
+                $('#total_Product').html( total + " Products");
+                var obj = res["result"];
+		if(total<12)
+		  $('#gr_foot').remove();
+		$('#parnttyp').html('');
+		var parnt=obj[0]['parntcatname'];
+		if(parnt=='High Jewellery'){
+		parnt=parnt.split(' ');
+		parnt=parnt[1];
+		}
+		var chld=obj[0]['chldcatname'];
+		var dplstr='<div class="breadP fLeft">'+ parnt +'</div>';
+		dplstr+='<div class="breadP fLeft">'+ chld +'</div>';
+		$('#parnttyp').append(dplstr);
+		var len = obj.length;
+
+                var i = 0;
+                if (len > 0)
+                {
+                    var str = '';
+                    while (i < len)
+                    {
+                        str = generatelist(obj[i]);
+                        //stock.push(obj[i]);
+                        stSearch.push(obj[i]);
+                        i++;
+                          var k = i * 200;
+
+                                          //  $(str).velocity({opacity:[1,0] , translateY:[0,40]} , {duration:600 , easing:'linear', delay:k}).appendTo('#gridDetail');
+                                          $(str).appendTo('#gridDetail');
+                                          setTimeout(function(){
+                                          $('#gridDetail').find('.grid3').addClass('fadeInup');
+                                              bindhover();
+                                            },100);
+
+                                            bindhover();
+
+
+                    }
+                    //$('#gridDetail').append(str);
+                  //  var $(we)= str;
+
+
+                }
+            }
+        }
+    });
+}
