@@ -150,8 +150,9 @@ function wishlist()
 	 	    datatype: "JSON",
 	 	    success: function(res)
 	 	    {
-                        
+                       
 		      var obj=JSON.parse(res);
+                      console.log(obj);
                       var wishStr="";
                        $(obj['result']).each(function(s,j){ 
 			 if(j.default_image !== null){
@@ -161,7 +162,7 @@ function wishlist()
                            var xyz=j.prdimage; xyz=xyz.split(',');
 			    xyz=IMGDOMAIN+xyz[5];
 			  }
-   
+                          
  wishStr+= '<div class="grid3 transition400 fadeInup" > ';
  wishStr+= ' <div class="facet_front">';
  wishStr+= ' <div class="grid_item"> ';
@@ -172,7 +173,80 @@ function wishlist()
  wishStr+= '  <div class="plusCont" style="transform: scale(0);"></div></div></div>';
  wishStr+= '   <div class="grid_dets">';
  wishStr+= '  <div class="grid_name txtOver transition300">'+j.prdname+'</div>';
- wishStr+= ' <div class="col100  font11 transition300 txtOver"> '+j.jweltype+' Φ '+j.hasdmd+' </div>';
+
+ wishStr+= ' <div class="col100  font11 transition300 txtOver"> '+j.jweltype+'';
+      var type = 0;
+    if (j.hasSoli == 'Solitaire')
+        type = 1;
+    if (j.hasdmd == 'Diamond')
+        type = 2;
+    if (j.hasSoli == 'Solitaire' && j.hasdmd == 'Diamond')
+        type = 3;
+    if (j.hasdmd == 'Diamond' && j.hasUncut == 'Uncut')
+        type = 4; 
+    console.log(j);
+    var gemcnt=j.gemstoneName+"";   
+    gemcnt=gemcnt.split(',');   
+    if(j.hasGems == 'Gemstone'){
+        if (gemcnt.length == 1) { 
+            type = 5;
+        if (gemcnt.length > 1)
+            type = 6;
+    }
+    } 
+    if (j.hasdmd == 'Diamond' && j.hasGems == 'Gemstone') {
+        if (gemcnt.length == 1)
+            type = 7;
+        if (gemcnt.length > 1)
+            type = 8;
+    }                    
+    var Nstr = "";
+    switch (type) {
+        case 1:
+        {
+            Nstr += '<span> Φ Solitaire</span>';
+            break;
+        }
+        case 2:
+        {
+            Nstr += '<span> Φ Diamond</span>';
+            break;
+        }
+        case 3:
+        {
+            Nstr += '<span> Φ Solitaire </span>';
+            break;
+        }
+        case 4:
+        {
+            Nstr += '<span> Φ Diamond</span>';
+            break;
+        }
+        case 5:
+        {
+            var gemstn = j.gemstoneName;
+            Nstr += '<span> Φ ' + gemstn + ' /span>';
+            break;
+        }
+        case 6:
+        {
+            Nstr += '<span> Φ Gemstones </span>';
+            break;
+        }
+        case 7:
+        {
+            gemstn = j.gemstoneName;
+            Nstr += '<span> Φ Diamond</span><span> Φ ' + gemstn + '</span>';
+            break;
+        }
+        case 8:
+        {
+            Nstr += '<span> Φ Diamond</span><span> Φ Gemstones</span>';
+            break;
+        }
+    } 
+    wishStr += ' ' + Nstr + '</div>';
+ 
  wishStr+= '   <div class="grid_price txtOver transition300"> '+indianMoney(parseInt(j.price))+'</div>';
  wishStr+= '  <div class="action_btns">';
  wishStr+= '  <div class="col50 fLeft  pad0">';
@@ -219,6 +293,7 @@ function wishlist()
         var URL = APIDOMAIN+"index.php?action=removeItmFrmWishlist&wish_id="+ids[0]+"&col_car_qty="+ids[1]+"&pid="+ids[2]+"&size="+ids[3];
         $.ajax({  type:'POST', url:URL, success:function(res){ 
              wishlist();
+             displaycartdata();
 	      }
         });
   } 
