@@ -53,7 +53,7 @@ function displayorders()
  orderstr+='<div class="fLeft col100 semibold">'+v.prdname+'</div>';
                                   
  orderstr+='<div class="fLeft  col10">';
- orderstr+='<span class="fLeft">Diamond Qty: '+v.quality+'</span>';
+ orderstr+='<span class="fLeft">Diamond Clarity: '+v.quality+'</span>';
  orderstr+='<span class="fLeft"></span>';
  orderstr+='</div>';
  orderstr+='<div class="fLeft  col100">';
@@ -77,7 +77,7 @@ function displayorders()
  orderstr+='</div>';
  orderstr+='</div>';
  orderstr+='<div class="fLeft rsCont">';
- orderstr+='<span class="fLeft">&#8377 '+indianMoney(parseInt(v.price))+'</span>';
+ orderstr+='<span class="fLeft cartRup15b"> '+indianMoney(parseInt(v.price))+'</span>';
  orderstr+='<div class="fLeft vatTxt dn">';
  orderstr+='<div class="fLeft col100">MRP<span>&#8377 50,000</span></div>';
  orderstr+='<div class="fLeft col100">VAT:<span>7487384</span></div>';
@@ -247,7 +247,7 @@ function wishlist()
     } 
     wishStr += ' ' + Nstr + '</div>';
  
- wishStr+= '   <div class="grid_price txtOver transition300"> '+indianMoney(parseInt(j.price))+'</div>';
+ wishStr+= '   <div class="grid_price txtOver transition300"><span class="cartRup15b"><span>  '+indianMoney(parseInt(j.price))+'</div>';
  wishStr+= '  <div class="action_btns">';
  wishStr+= '  <div class="col50 fLeft  pad0">';
  wishStr+= '  <div class="actBtn fLeft bolder addcrt" id="'+j.wish_id+'_'+j.col_car_qty+'_'+j.product_id+'_'+j.size+'" ';
