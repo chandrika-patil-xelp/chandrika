@@ -149,7 +149,7 @@ button.toast-close-button {
     background-color: #22b9c7;color:#fff;
 }
 .toast-error {
-    background-color: #E00000;color:#fff;
+    background-color: #f7f7f7;color:#fff;
 }
 .toast-info {
     background-color: #0CCDB8;color:#fff;
@@ -161,9 +161,9 @@ button.toast-close-button {
     position: absolute;
     left: 0;
     bottom: 0;
-    height: 4px;
-    background-color: #000;
-    opacity: .4;
+    height: 3px;
+    background-color: #D90000;
+    /*opacity: .4;*/
     filter: alpha(opacity=40)
 }
 @media all and (max-width: 240px) {
