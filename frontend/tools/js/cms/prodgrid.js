@@ -487,7 +487,7 @@ var count=0;
       var limit=12;
       var limitend = limit*page3;
      //$('#gr_foot').addClass('transdown');
-
+      
 
     var URL1 = APIDOMAIN + "index.php/?action=getProductdetailbycatid&id="+id+"&page="+page3+"&limit="+limit+"";
   var tot_len = 0;
@@ -525,7 +525,7 @@ var count=0;
                     }
                   //  $('#gridDetail').append(str);
               //  var $we= str;
-	    }
+	    } 
                if(limitend >= total){
 
                         $('#gr_foot').remove();
@@ -559,7 +559,7 @@ function getmenu()
 		  submenulist+="<div class='fmenu_elm fLeft'>";
 		$(n['attr_values']).each(function(q,p){
 		  
-		  submenulist+="<div class='filterCommon "+p.toLowerCase()+" "+p.toLowerCase()+"Ic' onclick='submenu(this)' ";
+		  submenulist+="<div class='filterCommon "+p.toLowerCase()+"Ic' onclick='submenu(this)' ";
 		  submenulist+=" id='"+p+"_"+n.attributeid+"' >";
 		  submenulist+=" <div class='filterLabel' >";
 		  submenulist+=" <div class='labBuffer'  >"+p+"</div>";
@@ -633,7 +633,12 @@ function displayproduct(){
 		$('#gr_foot').remove();
                 getProdDtl = res["result"];
                 var total = res["total"]; 
-                $('#total_Product').html( total + " Products");
+		if(total == 0)
+		  $('#total_Product').addClass('dn' );
+		else{ 
+		  $('#total_Product').removeClass('dn');
+		  $('#total_Product').html( total + " Products");
+		}
                 var obj = res["result"];  
 		   
 	       if(obj !== null){
