@@ -57,7 +57,7 @@ function displaycartdetail()
                         wht=getweight(v.size,v.ccatname,v.metal_weight);     
 		      }
 		      else{
-                        wht=v.metal_weight; 
+                        wht=parseFloat(v.metal_weight).toFixed(3); 
 		      }
 		
 var chckoutstr=" <div class='jwlCntdtls fLeft regular'>";
@@ -66,15 +66,16 @@ var chckoutstr=" <div class='jwlCntdtls fLeft regular'>";
     chckoutstr+=" <div class='ordrJwl' style='background-image:url(\"" +abc+"\")'> </div>";
     chckoutstr+=" <div class='jwlryDtls fLeft'> <div class='w60 fLeft'>" ; 
     chckoutstr+=" <div class='text fLeft bolder'>"+(v.prdname).toUpperCase()+"</div>"; 
-    chckoutstr+="<div class='text fLeft'>"+v.color+" "+v.jewelleryType+" "+wht+" gms &nbsp|&nbsp Diamond "+v.dmdcarat+"</div>"; 
+    chckoutstr+="<div class='text fLeft'> Diamond "+v.dmdcarat+"  ";
+    chckoutstr+=" <span class='spanl'>"+v.jewelleryType+" : "+wht+"gms &nbsp|&nbsp </span></div>"; 
     chckoutstr+=" <div class='text fLeft'>";
     chckoutstr+="<span>Quality : "+v.quality+"</span>";
-    chckoutstr+="<span class='spanl'>Purity : "+v.carat+"</span>";
+    chckoutstr+="<span class='spanl'>Purity : "+v.carat+" &nbsp&nbsp&nbsp|&nbsp </span>";
     chckoutstr+="</div>";
     chckoutstr+=" <div class='text fLeft'>";
     chckoutstr+="<span>Color : "+v.color+"</span>";
      if(v.ccatname !== null)
-    chckoutstr+="<span class='spanl'>Size : "+v.size+"</span>";
+    chckoutstr+="<span class='spanl'>Size : "+v.size+"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp| </span>";
     chckoutstr+="</div> </div>";
     chckoutstr+="  <div class='w40 fLeft'>";  
     chckoutstr+="  <div class='text fLeft cartRup15' id='item_amt'>"+indianMoney(bprize)+"</div>"; 
@@ -112,7 +113,7 @@ function getweight(currentSize,catName,storedWt)
             currentSize =0; 
     } 
     var changeInWeight=(currentSize-bseSize)*mtlWgDav;  
-    var newWeight=(parseFloat(storedWt)+parseFloat(changeInWeight)).toFixed(3);  
+    var newWeight=(parseFloat(storedWt)+parseFloat(changeInWeight)).toFixed(3);   
     return newWeight; 
 } 
   
