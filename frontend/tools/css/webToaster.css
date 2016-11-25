@@ -82,9 +82,11 @@ button.toast-close-button {
     position:fixed;
     z-index: 999999;
     pointer-events: nonel;
-    font-family: sansR;
+    font-family: semibold;
     font-size: 13px;
-    top:0px;
+    top:3px;
+    left: 25%;
+
 }
 #toast-container * {
     -moz-box-sizing: border-box;
@@ -97,7 +99,7 @@ button.toast-close-button {
     overflow: hidden;
     margin: 0 0 6px;
     padding: 15px 15px 15px 50px;
-    width:1400px;
+    width:700px;
     top:0px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
@@ -109,6 +111,7 @@ button.toast-close-button {
     box-shadow: 2px 3px 8px 0 rgba(0,0,0,0.2);
     opacity: 0.95;
     filter: alpha(opacity=95)
+    opacity: 0.5;
 }
 #toast-container>:hover {
     opacity: 1;
