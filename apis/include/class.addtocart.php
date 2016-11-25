@@ -754,12 +754,17 @@
 	  
 	   
          $sql = "  SELECT  wish_id,user_id,product_id AS pid,col_car_qty AS combine,price,size,active_flag,created_on,updatedon, "
-              . "(SELECT  GROUP_CONCAT(dname) FROM tbl_metal_color_master WHERE id = SUBSTRING_INDEX(combine, '|@|',1) AND active_flag = 1 ) AS color,"
+            . "(SELECT  GROUP_CONCAT(dname) FROM tbl_metal_color_master WHERE id = SUBSTRING_INDEX(combine, '|@|',1) AND active_flag = 1 ) AS color,"
 	    ."(SELECT  GROUP_CONCAT(dname) FROM tbl_metal_purity_master WHERE id = SUBSTRING_INDEX(SUBSTRING_INDEX(combine,'|@|',2),'|@|',-1) AND active_flag = 1 ) AS carat,"
-             ."(SELECT  GROUP_CONCAT(dname) FROM tbl_diamond_quality_master WHERE id = SUBSTRING_INDEX(combine,'|@|',-1)  AND active_flag = 1 ) AS quality,"
+            ."(SELECT  GROUP_CONCAT(dname) FROM tbl_diamond_quality_master WHERE id = SUBSTRING_INDEX(combine,'|@|',-1)  AND active_flag = 1 ) AS quality,"
             . "(SELECT  GROUP_CONCAT(product_name) FROM tbl_product_master WHERE productid = pid AND active_flag = 1 ) AS prdname,"
             . "(SELECT  GROUP_CONCAT(jewelleryType) FROM tbl_product_master WHERE productid = pid AND active_flag = 1 ) AS jweltype,"
-             . "(SELECT  GROUP_CONCAT(has_diamond) FROM tbl_product_master WHERE productid = pid AND active_flag = 1 ) AS hasdmd,"
+            . "(SELECT  GROUP_CONCAT(has_diamond) FROM tbl_product_master WHERE productid = pid AND active_flag = 1 ) AS hasdmd,"
+            . "(SELECT  GROUP_CONCAT(has_solitaire) FROM tbl_product_master WHERE productid = pid AND active_flag = 1 ) AS hasSoli,"
+            . "(SELECT  GROUP_CONCAT(has_uncut) FROM tbl_product_master WHERE productid = pid AND active_flag = 1 ) AS hasUncut,"
+            . "(SELECT  GROUP_CONCAT(has_gemstone) FROM tbl_product_master WHERE productid = pid AND active_flag = 1 ) AS hasGems,"
+            ."(SELECT GROUP_CONCAT(gemstone_id) FROM tbl_product_gemstone_mapping WHERE productid = pid AND active_flag = 1 ) AS allGemstone,"
+            ."(SELECT GROUP_CONCAT(gemstone_name) FROM tbl_gemstone_master WHERE FIND_IN_SET(id,allGemstone)) AS gemstoneName,"
 	    . "(SELECT  GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid  AND active_flag !=2 ORDER BY
                             image_sequence DESC) AS prdimage, 
 		(SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND active_flag =1 AND  default_img_flag=1) AS default_image ";
@@ -787,6 +792,11 @@
                     $arr['quality'] = $row['quality'];
                     $arr['size'] = $row['size'];
                     $arr['hasdmd'] = $row['hasdmd'];
+                    $arr['hasSoli'] = $row['hasSoli'];
+                    $arr['hasUncut'] = $row['hasUncut'];
+                    $arr['hasGems'] = $row['hasGems'];
+                     $arr['allGemstone'] = $row['allGemstone'];
+                      $arr['gemstoneName'] = $row['gemstoneName'];
                     $arr['jweltype'] = $row['jweltype'];
                     $arr['default_image'] = $row['default_image'];
 		      
@@ -803,6 +813,21 @@
                         }else  if($row['hasdmd'] === '0'){
                              $arr['hasdmd'] ='';
                         }
+                    if($row['hasSoli'] === '1'){
+                             $arr['hasSoli'] ='Solitaire';
+                        }else  if($row['hasSoli'] === '0'){
+                             $arr['hasSoli'] ='';
+                        }
+                    if($row['hasGems'] === '1'){
+                             $arr['hasGems'] ='Gemstone';
+                        }else  if($row['hasGems'] === '0'){
+                             $arr['hasGems'] ='';
+                        }
+                    if($row['hasUncut'] === '1'){
+                             $arr['hasUncut'] ='Uncut';
+                        }else  if($row['hasUncut'] === '0'){
+                             $arr['hasUncut'] ='';
+                        }
                         
                     $resArr[] = $arr;
                         }  
@@ -817,6 +842,9 @@
 		    return $results; 
 	}
 	
+         
+      
+  
 	  public function checkpassw($params){
              
             $pass = (!empty($params['pass'])) ? trim($params['pass']) : "";
