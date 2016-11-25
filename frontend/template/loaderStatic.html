@@ -1,0 +1,25 @@
+<div class="page_loaderS">
+      <div class="diamondL">
+        <div class="dCircle2"></div>
+        <div class="dCircle2"></div>
+        <div class="dCircle2"></div>
+        <div class="dCircle2"></div>
+        <div class="dCircle2 "></div>
+        <div class="dCircle2 "></div>
+        <div class="dCircle2 "></div>
+        <div class="dCircle2"></div>
+        <div class="dCircle2"></div>
+        <div class="dCircle2 "></div>
+        <div class="dCircle2"></div>
+        <div class="dCircle2"></div>
+      </div>
+</div>
+<script>
+function showLoader(){
+
+    $('.page_loaderS').velocity({opacity:[1,0]} , {duration:400 , easing:'easeInOutExp',display:'block' , complete:function(){
+  changeLink();
+    }});
+
+}
+</script>
