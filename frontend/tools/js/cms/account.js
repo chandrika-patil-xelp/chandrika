@@ -48,31 +48,33 @@ function displayorders()
 			    var image=v.prdimage; image=image.split(',');
 			    image=IMGDOMAIN+image[0]; 
 			 }
+                         
+ orderstr+='<div class="orderParent fLeft">';
  orderstr+='<div class="fLeft orderImg bgCommon" style="background: #fff url(\''+ image+ '\')no-repeat;background-size: contain;background-position:center; background-color:#FFF;"></div>';
  orderstr+='<div class="fLeft orderName">';
  orderstr+='<div class="fLeft col100 semibold">'+v.prdname+'</div>';
                                   
  orderstr+='<div class="fLeft  col10">';
- orderstr+='<span class="fLeft">Diamond Clarity: '+v.quality+'</span>';
+ orderstr+='<span class="fLeft">Diamond Clarity : '+v.quality+'</span>';
  orderstr+='<span class="fLeft"></span>';
  orderstr+='</div>';
  orderstr+='<div class="fLeft  col100">';
- orderstr+='<span class="fLeft">Metal purity: '+v.Metalcarat+'</span>';
+ orderstr+='<span class="fLeft">Metal purity : '+v.Metalcarat+'</span>';
  orderstr+='<span class="fLeft"></span>';
  orderstr+='</div>';
  orderstr+='<div class="fLeft  col100">';
- orderstr+='<span class="fLeft">Metal colour: '+v.color+'</span>';
+ orderstr+='<span class="fLeft">Metal colour : '+v.color+'</span>';
  orderstr+='<span class="fLeft"></span>';
  orderstr+='</div>';
  orderstr+='<div class="fLeft  shipTo">';
- orderstr+='<span class="fLeft">Qty:</span>';
- orderstr+='<span class="fLeft">'+v.pqty+'</span>';
+ orderstr+='<span class="fLeft">Qty :</span>';
+ orderstr+='<span class="fLeft">' +v.pqty+'</span>';
  orderstr+='</div>';
 
  orderstr+='<div class="fLeft  shipTo">';
  if(v.size != 0.0){
- orderstr+='<span class="fLeft">Size:</span>';
- orderstr+='<span class="fLeft">'+v.size+'</span>';
+ orderstr+='<span class="fLeft">Size :</span>';
+ orderstr+='<span class="fLeft">' +v.size+'</span>';
  }
  orderstr+='</div>';
  orderstr+='</div>';
@@ -124,7 +126,7 @@ orderstr+= '<div class="fLeft date semibold font15">07 oct</div>';
 orderstr+= '<div class="fLeft shipTo">shipped to third party</div>';
 orderstr+= '</div>';
 orderstr+= '</div>';
-                          
+orderstr+= '</div>';                          
       });
        
       $('#ordDetail').append(orderstr);
