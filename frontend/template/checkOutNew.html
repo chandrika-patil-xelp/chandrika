@@ -138,32 +138,32 @@
                                     <div class="frmDtls fLeft semibold">
                                         <div class="neadHide">
                                             <div class="txtB fLeft w49">
-                                                <input type="text" class="inp_box " id="shpdname" maxlength="30">
+                                                <input type="text" class="inp_box " autocomplete="off" id="shpdname" maxlength="30">
                                                 <div class="inp_label ">Name*</div>
                                             </div>
                                             <div class="inp_cont  fRight w49">
-                                                <input type="text" class="inp_box "  id="shpdmobile" maxlength="10">
+                                                <input type="text" class="inp_box " autocomplete="off"  id="shpdmobile" maxlength="10">
                                                 <div class="inp_label ">Mobile*</div>
                                             </div>
                                             <div class="txtB fLeft">
-                                                <input type="text" class="inp_box " id="shpdemail" maxlength="30">
+                                                <input type="text" class="inp_box " autocomplete="off" id="shpdemail" maxlength="30">
                                                 <div class="inp_label ">Email*</div>
                                             </div>
                                         </div>
                                         <div class="txtB fLeft">
-                                            <input type="text" class="inp_box " id="shpdaddrs" maxlength="45">
+                                            <input type="text" class="inp_box " autocomplete="off" id="shpdaddrs" maxlength="45">
                                             <div class="inp_label ">Address*</div>
                                         </div>
                                         <div class="txtB fLeft">
-                                            <input type="text" class="inp_box "  id="shpdpincode">
+                                            <input type="text" class="inp_box " autocomplete="off"  id="shpdpincode">
                                             <div class="inp_label ">Zip code*</div>
                                         </div>
                                         <div class="txtB fLeft w49">
-                                            <input type="text" class="inp_box " id="shpdstate" maxlength="20">
+                                            <input type="text" class="inp_box " autocomplete="off" id="shpdstate" maxlength="20">
                                             <div class="inp_label ">State*</div>
                                         </div>
                                         <div class="inp_cont  fRight w49">
-                                            <input type="text" class="inp_box " id="shpdcity" maxlength="15">
+                                            <input type="text" class="inp_box " autocomplete="off" id="shpdcity" maxlength="15">
                                             <div class="inp_label ">City*</div>
                                         </div>
                                     </div>
@@ -180,7 +180,7 @@
                                     </div>
                                     <div class="sgnUptxt fLeft  semibold">
                                         <div class="txtB fLeft">
-                                            <input type="text" class="inp_box " id="entereml" maxlength="30">
+                                            <input type="text" class="inp_box " autocomplete="off" id="entereml" maxlength="30">
                                             <div class="inp_label ">Enter your email / phone number*</div>
                                         </div>
                                     </div>
@@ -340,7 +340,7 @@
                             <div class="fLeft totalItem txt_center">
                                 <div class="fLeft col100 cart_name light">Grand Total
                                 </div>
-                                <div class="fLeft cart_price font35"><span class="total_price_gen  cartRupee font35">68,302</span>
+                                <div class="fLeft cart_price font35"><span class="total_price_gen  cartRupee font35">0</span>
                                     
                                 </div>
 
@@ -750,7 +750,9 @@
                                         }
                                         function opnscnd() {
                                             bakflag = 2; chkouttentrflag=5;
-                                            $('#fstup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
+					    $('#shpdaddrs').val(''); $('#shpdcity').val(''); $('#shpdstate').val(''); $('#shpdpincode').val(''); 
+					    $('.txtB ').removeClass('focul');
+					    $('#fstup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
                                             $('#scndup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
                                             $('.neadHide').addClass('dn');
                                         }
