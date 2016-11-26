@@ -302,10 +302,10 @@ function wishlist()
  
    function removeitm(ths)
    {
-      $('#rmvpoptxt').html('Do you want to delete this Product From Wishlist');
+      $('#rmvpoptxt').html('Do you want to delete this Product From Wishlist'); 
       cartpopUp();
-      
-      $(document).on('click', '#cYes',function(){
+      $('#cYes').unbind();
+      $('#cYes').click(function () {
 	  var ids=$(ths).closest('.action_btns').find('.addcrt').attr('id');
 	  ids=ids.split('_');
 	  var URL = APIDOMAIN+"index.php?action=removeItmFrmWishlist&wish_id="+ids[0]+"&col_car_qty="+ids[1]+"&pid="+ids[2]+"&size="+ids[3];
@@ -315,7 +315,7 @@ function wishlist()
 	  }
 	  }); 
       });
-      $(document).on('click', '#cNo',function(){
+      $('#cNo').click(function(){
        cartpopUpClose();
       }); 
  }
@@ -484,9 +484,10 @@ function storenewpass(newpass)
  
  function removeaddr(ths)
 { 
-    cartpopUp(); 
-    $(document).on('click', '#cYes',function(){
-     
+    $('#rmvpoptxt').html('Do you want to delete this Address');
+    cartpopUp();
+    $('#cYes').unbind();
+    $('#cYes').click(function () {
 	var shpid=$(ths).attr('id'); 
 	var userid=localStorage.getItem('jzeva_uid'); 
 	var URL= APIDOMAIN + "index.php/?action=removeShipngdetail&shipping_id="+shpid+"&user_id="+userid;
@@ -499,7 +500,7 @@ function storenewpass(newpass)
 	}
 	});
     });
-    $(document).on('click', '#cNo',function(){
+    $('#cNo').click(function(){
 	  cartpopUpClose();
     });
 }
@@ -521,7 +522,8 @@ function storenewpass(newpass)
                     $('#city').val(obj.results[0].city);  
 		    }
 		  }); 
-   } 
+   }
+   else if(zipcode.length == 0){ }
    else{ 
     common.msg(0,'Please Enter correct Zip Code');
    }
