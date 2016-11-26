@@ -85,19 +85,20 @@ function chklogin()
   var validationFlag=1;
   var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
  if(email===''|| email=== null){ 
-         common.msg(0,'Please enter your Email.id');
-        validationFlag=0;
-        return false;
+	  validationFlag=0;
+	  $('#subusreml ').addClass('focul');
+	  common.msg(0,'Please enter your Email.id');
     }
-   else if (!reg.test(email)){
-       common.msg(0,'Invalid Email.id');
-        validationFlag=0;
-        return false;
+   else if (!reg.test(email)){ 
+	  validationFlag=0; 
+	  $('#subusreml ').addClass('focul');
+	  common.msg(0,'Invalid Email.id');
     }
   else if(pass===''|| pass=== null){
-         common.msg(0,'Please enter Password');
-        validationFlag=0;
-        return false;
+	  validationFlag=0;
+	  $('#subusreml ').removeClass('focul');
+	  $('#subusrpass').addClass('focul');
+	  common.msg(0,'Please enter Password'); 
     }
     
     
@@ -548,9 +549,11 @@ function sugnupsubmt()
     
     function closelogpg()
    {
+      entrflg = 11;
       $('.overlay').stop(true, true).fadeTo(200, 0);
       $('.tabWrap').removeClass("addPointer");
       $('.ftabB').removeClass("addPointer");
+      $('.wrapper_max').removeClass("addPointer");
       $('.fade').fadeOut("slow");
       $('.outerContr').css("z-index", "203", "opacity", "0");
       $('.outerContr').velocity({translateY: ['150%', 0]}, {duration: 150, delay: 100, easing: ''});
