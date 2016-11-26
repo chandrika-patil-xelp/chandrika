@@ -86,18 +86,17 @@ function chklogin()
   var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
  if(email===''|| email=== null){ 
 	  validationFlag=0;
-	  $('#subusreml ').addClass('focul');
+	  $('#email ').focus();
 	  common.msg(0,'Please enter your Email.id');
     }
    else if (!reg.test(email)){ 
 	  validationFlag=0; 
-	  $('#subusreml ').addClass('focul');
+	  $('#email').focus();
 	  common.msg(0,'Invalid Email.id');
     }
   else if(pass===''|| pass=== null){
-	  validationFlag=0;
-	  $('#subusreml ').removeClass('focul');
-	  $('#subusrpass').addClass('focul');
+	  validationFlag=0; 
+	  $('#pass').focus();
 	  common.msg(0,'Please enter Password'); 
     }
     
