@@ -54,7 +54,7 @@ function IND_money_format(money)
 }
 
 
-var pid;
+var pid, clickdesbl;
  var arrdata = new Array();
 function getarraydata() {
 
@@ -87,16 +87,22 @@ function getarraydata() {
 }
  
 $('#add_to_cart').on('click', function () {
-    
-    getarraydata();
-	
+  
+       if(clickdesbl){
+	 return;
+       }
+       getarraydata(); 
        newaddToCart(arrdata);
-    
+       clickdesbl=true;
+       setTimeout(function(){
+	clickdesbl=false; 
+       },500);
+   
 });
 $(document).ready(function () {
    showwishbtn();
     pid = GetURLParameter('pid');
-
+    clickdesbl=false;
     var URL = APIDOMAIN + "index.php/?action=getProductById&pid=" + pid;
 
 
