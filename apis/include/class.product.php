@@ -4015,13 +4015,15 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
     public function getProductdetailbycatid($params) {
       
        global $comm;
-           $cid=  urldecode($params['id']);
-            $sqlcount = "  SELECT count(productid) AS cnt
-	     FROM tbl_category_product_mapping WHERE catid=".$cid." AND active_flag =1";
-            $rescnt= $this->query($sqlcount);
-            $row = $this->fetchData($rescnt);
-            $total= $row['cnt'];
-            
+           $cid=  urldecode($params['id']); 
+	 
+      $sqlcount = "SELECT productid,
+	      (SELECT GROUP_CONCAT(productid) FROM tbl_category_product_mapping WHERE catid= ".$cid." AND active_flag =1 ) AS prdids
+	      FROM tbl_product_master WHERE active_flag =1 HAVING 
+	      FIND_IN_SET(productid,prdids)   ";
+            $rescnt= $this->query($sqlcount );
+	    $total = $this->numRows($rescnt);
+	 
 	    $sqlglb='SET GLOBAL group_concat_max_len = 1000000';
            
             $res = $this->query($sqlglb);

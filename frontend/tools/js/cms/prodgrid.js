@@ -668,8 +668,10 @@ function displayproduct(){
 		}
 	       }
 	       else{
-		 if(hlist == "")
+		 if(hlist == ""){
 		    getprodbyid();
+		    $('#total_Product').removeClass('dn');
+		  }
 		 else
 		    $('#gridDetail').html('');
 	       }
