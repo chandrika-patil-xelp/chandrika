@@ -33,8 +33,12 @@ function displayorders()
 	 	    {  
 		      var obj=JSON.parse(results); 
                     if(obj["result"] == null){
-                        $('#ordTitle').html('No Order Placed Yet From Your Account');
+		      $('#noordrs').removeClass('dn');
+		      $('.orderOuter').addClass('dn'); 
                     }
+		    else
+		    {
+		      $('#noordrs').addClass('dn'); 
                       var totalprice = $('#ordPrice').html(indianMoney(parseInt(obj.totalprice)));
                       $(obj['result']).each(function(r,v){
                         
@@ -130,7 +134,7 @@ orderstr+= '</div>';
       });
        
       $('#ordDetail').append(orderstr);
-       
+    }
                 }
                 
                  
@@ -154,9 +158,15 @@ function wishlist()
 	 	    {
                        
 		      var obj=JSON.parse(res);
-                      console.log(obj);
+		      $('#wishid').html("");
+		      if(obj.result == null){
+			$('#nowishlst').removeClass('dn');
+		      }
+		      else
+		      {
+			$('#nowishlst').addClass('dn');
                       var wishStr="";
-                       $(obj['result']).each(function(s,j){ 
+                       $(obj['result']).each(function(s,j){
 			 if(j.default_image !== null){
 			  var xyz=IMGDOMAIN + j.default_image;
 			}
@@ -186,7 +196,7 @@ function wishlist()
         type = 3;
     if (j.hasdmd == 'Diamond' && j.hasUncut == 'Uncut')
         type = 4; 
-    console.log(j);
+ 
     var gemcnt=j.gemstoneName+"";   
     gemcnt=gemcnt.split(',');   
     if(j.hasGems == 'Gemstone'){
@@ -268,6 +278,7 @@ function wishlist()
      
                   });
                          $('#wishid').html(wishStr);
+		       }
                   }
                    
               });
