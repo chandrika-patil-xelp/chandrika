@@ -100,7 +100,7 @@ button.toast-close-button {
     pointer-events: auto;
     overflow: hidden;
     margin: 0 0 6px;
-    padding: 10px 15px 15px 50px;
+    padding: 11px 16px 11px 40px;
     width:500px;
     top:6px;
     left: 0;
@@ -121,14 +121,21 @@ button.toast-close-button {
     filter: alpha(opacity=100);
     cursor: pointer
 }
+
 #toast-container>.toast-info {
-    background-image: url('../img/icons/523.svg')no-repeat;
+    background:  #0CCDB8 url('../img/icons/525tick.svg')no-repeat;
+      background-position: left center;
+    background-size: auto 100%
+    
 }
-#toast-container>.toast-error {
-        background: #f3f3f3 url(../img/icons/523.svg)no-repeat;
+#toast-container>.toast-error{
+    background:  #FF5A5F url(../img/icons/527w.svg)no-repeat;
     background-position: left center;
     background-size: auto 100%;
 }
+.toast-error .toast-progress{background-color: #E34D52;}
+.toast-info .toast-progress{background-color: #349997;}
+
 #toast-container>.toast-success {
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADsSURBVEhLY2AYBfQMgf///3P8+/evAIgvA/FsIF+BavYDDWMBGroaSMMBiE8VC7AZDrIFaMFnii3AZTjUgsUUWUDA8OdAH6iQbQEhw4HyGsPEcKBXBIC4ARhex4G4BsjmweU1soIFaGg/WtoFZRIZdEvIMhxkCCjXIVsATV6gFGACs4Rsw0EGgIIH3QJYJgHSARQZDrWAB+jawzgs+Q2UO49D7jnRSRGoEFRILcdmEMWGI0cm0JJ2QpYA1RDvcmzJEWhABhD/pqrL0S0CWuABKgnRki9lLseS7g2AlqwHWQSKH4oKLrILpRGhEQCw2LiRUIa4lwAAAABJRU5ErkJggg==)!important
 }
@@ -154,10 +161,10 @@ button.toast-close-button {
     background-color: #f7f7f7;color:#15181b;
 }
 .toast-error {
-    background-color: #f7f7f7;color:#15181b;
+    background-color: #FF6E5E;color:#fff;
 }
 .toast-info {
-    background-color: #0CCDB8;color:#15181b;
+    color:#fff;
 }
 .toast-warning {
     background-color: #666;color:#15181b;
@@ -167,7 +174,7 @@ button.toast-close-button {
     left: 0;
     bottom: 0;
     height: 3px;
-    background-color: #D90000;
+  
     /*opacity: .4;*/
     filter: alpha(opacity=40)
 }
