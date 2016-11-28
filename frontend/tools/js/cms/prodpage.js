@@ -76,8 +76,9 @@ function getarraydata() {
     var metal = zz[zz.length - 1];
     
    var sz = ($('#size').text().replace('Size',''));
-   
-    
+     if(sz == " ")
+       sz=parseFloat("0.00");
+ 
     arrdata.push(color);
     arrdata.push(quality);
     arrdata.push(metal);
@@ -112,7 +113,7 @@ $(document).ready(function () {
         success: function (res) {
 
             data = JSON.parse(res);
-           console.log(data);
+           
             var dt = data['results'];
             var basic = dt['basicDetails'];
             var catAttr = dt['catAttr'];

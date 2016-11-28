@@ -16,7 +16,7 @@ function newaddToCart(paramtr)
     cartdata['qty'] = 1;
     var chr = "" + paramtr[2] + "|@|" + paramtr[4] + "|@|" + paramtr[3];
 
-    cartdata['col_car_qty'] = chr;
+    cartdata['col_car_qty'] = chr; 
     cartdata['RBsize'] = paramtr[5];
 
     var userid = common.readFromStorage('jzeva_uid');
@@ -36,19 +36,21 @@ function newaddToCart(paramtr)
         cartdata['cartid'] = cartid;
     }
     var flag = 0;
-
+    
     if (gblcartdata == null || gblcartdata == "") {
         flag = 1;
     } else {
         $(gblcartdata).each(function (r, v) {
-
+	 
             if ((cartdata.col_car_qty == v.col_car_qty && cartdata.pid == v.product_id) && parseFloat(cartdata.RBsize) == parseFloat(v.size)) {
 
                 cartdata['qty'] = parseInt(v.pqty) + 1;
                 //    cartdata.price=(cartdata.price).replace(/,/g,"");
                 cartdata['price'] = parseInt(cartdata['price']) * cartdata.qty;
                 flag = 2;
-            } else if ((cartdata.col_car_qty == v.col_car_qty && cartdata.pid == v.product_id) || parseFloat(cartdata.RBsize) == parseFloat(v.size)) {
+            } else if ((cartdata.col_car_qty == v.col_car_qty && cartdata.pid == v.product_id) && (parseFloat(cartdata.RBsize) == parseFloat(v.size))) {
+	      cartdata['qty'] = parseInt(v.pqty) + 1;
+	      cartdata['price'] = parseInt(cartdata['price']) * cartdata.qty;
                 flag = 2;
             }
         });
