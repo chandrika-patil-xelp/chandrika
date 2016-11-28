@@ -318,7 +318,7 @@ function shpngsubmt()
     shipngdata['mobile'] = mobile;
   }
 
-  if (validationFlag == 1)
+  if (usrid !== null || validationFlag == 1)
   {
     var addrs = $('#shpdaddrs').val();
     var city = $('#shpdcity').val();
@@ -329,7 +329,7 @@ function shpngsubmt()
       validationFlag = 0;
       common.msg(0, 'Please enter your address');
     } 
-    else if (pincode === '' || pincode === null) {
+    else if (pincode === '' || pincode.length === 0) {
       validationFlag = 0;
       common.msg(0, 'Please enter your Zip code');
     }
@@ -337,18 +337,17 @@ function shpngsubmt()
       validationFlag = 0;
       common.msg(0, 'Please enter Correct Zip code');
     }
-     else if (state === '' || state === null) {
+    else if (state === '' || state === null) {
       validationFlag = 0;
       common.msg(0, 'Please enter your state name');
     }
-     else if (city === '' || city === null) {
+    else if (city === '' || city === null) {
       validationFlag = 0;
       common.msg(0, 'Please enter your city name');
     }
     
-    if(validationFlag ==1){
-    var zipcode = $('#shpdpincode').val();
-    checkshpdpincode(zipcode);
+    if(pincode.length == 6){ 
+    checkshpdpincode(pincode);
     }
   }
 
@@ -931,24 +930,31 @@ function checkuserdetail()
 
 function checkshpdpincode(zipcode)
 {
-
+ 
   if (zipcode.length == 6) {
     var URL = APIDOMAIN + "index.php?action=viewbyPincode&code=" + zipcode;
     $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results)
       {
 	var obj = JSON.parse(results);
-	validationFlag = 1; 
+	validationFlag = 1;
+	if(obj['error']['code'] == 0)
+	{
 	$('#shpdstate').val(obj.results[0].state);
 	$('#shpdcity').val(obj.results[0].city);
 	$('#shpdcity').focus();
 	$('#shpdstate').focus(); 
+	}
+	else if(obj['error']['code'] == 1){
+	  validationFlag = 0;
+	  common.msg(0, obj['error']['msg']);
+	} 
       }
     });
   } 
   else if (zipcode.length == 0) {
   } 
   else {
-    validationFlag = 0;
+    
     common.msg(0, 'Please Enter correct Zip Code');
   }
 }
