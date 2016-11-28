@@ -321,6 +321,7 @@ function wishlist()
 	  ids=ids.split('_');
 	  var URL = APIDOMAIN+"index.php?action=removeItmFrmWishlist&wish_id="+ids[0]+"&col_car_qty="+ids[1]+"&pid="+ids[2]+"&size="+ids[3];
 	  $.ajax({  type:'POST', url:URL, success:function(res){ 
+                 
 	    wishlist();
 	    cartpopUpClose();
 	  }
@@ -406,20 +407,30 @@ function storenewpass(newpass)
           var validationFlag=1;
           
           if(address ===''|| address === null){
+             $('#addr').focus();
              validationFlag=0; 
       common.msg(0, 'Please Enter Your Address');
-       }
-       else if(state === '' || state === null){
-           validationFlag=0; 
-      common.msg(0, 'Please Enter Your State');
+     
        }
         else if(zipcode === '' || zipcode === null){
+           $('#zipcode').focus();
            validationFlag=0; 
       common.msg(0, 'Please Enter The Zipcode');
-       }
+      
+     
+       }    
        else if(city === '' || city === null){
+         
            validationFlag=0; 
       common.msg(0, 'Please Enter Your City');
+     
+      
+       }
+        else if(state === '' || state === null){
+             
+           validationFlag=0; 
+      common.msg(0, 'Please Enter Your State');
+      
        }
      var name=common.readFromStorage('jzeva_name'); 
      var email=common.readFromStorage('jzeva_email'); 
@@ -470,7 +481,13 @@ function storenewpass(newpass)
                  success: function(results){ 
                      
 		     var data=JSON.parse(results);
-                   
+                      if(data.results == null){
+			$('#noaddrs').removeClass('dn');
+		      }
+		      else
+		      {
+			$('#noaddrs').addClass('dn');
+                      }
                      var addrStr="";
                      $(data['results']).each(function(m,n){
                      
@@ -519,6 +536,7 @@ function storenewpass(newpass)
 
     $('#zipcode').blur(function(){
    var zipcode= $(this).val();
+   
    if(zipcode.length == 6){
       var URL = APIDOMAIN + "index.php?action=viewbyPincode&code="+zipcode;  
 	       $.ajax({
@@ -531,6 +549,9 @@ function storenewpass(newpass)
 	 
                     $('#state').val(obj.results[0].state);
                     $('#city').val(obj.results[0].city);  
+                     $('#state').focus();
+                     $('#city').focus();
+                     
 		    }
 		  }); 
    }
