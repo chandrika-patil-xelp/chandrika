@@ -7,17 +7,21 @@
     <?php include 'Cart.html'?>
     <?php include 'header.html'?>
     <?php include 'login.html'?>
-    <div class="col100 fade">
-        <div class="deleteContr height200 dn" id="dltPopup">
-            <div class="loginCont fLeft" id="inDlt">
-                <div class="txtTitle mar0" id="hTxt">Do you want to remove this address</div>
-                <center>
-                    <div class="col50 fLeft pad0"><div class="button actBtn transition300" id="dltNo">no</div></div>
-                    <div class="col50 fRight pad0"><div class="button actBtn transition300" id="dltYes">yes</div></div>
-                </center>
+    <!--    <div class="col100 fade">
+            <div class="deleteContr height200 dn" id="dltPopup">
+                <div class="loginCont fLeft" id="inDlt">
+                    <div class="txtTitle mar0" id="hTxt">Do you want to remove this address</div>
+                    <center>
+                        <div class="col50 fLeft pad0"><div class="button actBtn transition300" id="dltNo">no</div></div>
+                        <div class="col50 fRight pad0"><div class="button actBtn transition300" id="dltYes">yes</div></div>
+                    </center>
+                </div>
             </div>
-        </div>
+        </div>-->
+    <div class="accountPop">
+        <div class="inAccount"></div>
     </div>
+
     <div class="fLeft gemBanner">
         <div class="banner_over" id ="banner_over"></div>
         <div class="termHeading">my account</div>
@@ -38,7 +42,7 @@
                     </div>
                     <div class="fLeft pCont">
                         <div class="fLeft orderCommon" id="myordId">
-                            <div class="fLeft tabHead txt_left mBot15">my orders</div>
+                            <div class="fLeft tabHead headLine borBtm">my orders</div>
                             <div class="fLeft orderOuter">
                                 <div class="fLeft inShip" id="ordTitle">
                                     <div class="fLeft Morder">
@@ -51,10 +55,20 @@
                                     </div>
                                     <div class="fLeft Morder">
                                         <div class="fLeft col100">Total price</div>
-                                        <div class="fLeft col100 bolder" id="ordPrice">&#8377 23,000</div>
+                                        <div class="fLeft col100 bolder cartRup15b" id="ordPrice"> 23,000</div>
                                     </div>
                                 </div>
                             </div>
+                            <center>
+                                <div class="ordEmpty"></div>
+                                <div class="noOrdTxt">
+                                    <div class="">No Orders</div>
+                                    <div class="font13">Sorry,You have no order history</div>
+                                </div>
+                                <div class="col100">
+                                    <div class="actBtn button">continue shopping</div>
+                                </div>
+                            </center>
                             <div class="fLeft detailsOuter bNone" id="ordDetail">
                                 <!--                                <div class="fLeft orderImg bgCommon"></div>
                                                                 <div class="fLeft orderName">
@@ -292,7 +306,7 @@
                             </div>
                         </div>
                         <div class="orderCommon fLeft dn" id="editpId">
-                            <div class="fLeft tabHead txt_left mBot15">Profile</div>
+                            <div class="fLeft tabHead headLine">Profile</div>
                             <div class="fLeft col100">
                                 <div class="col50 fLeft">
                                     <div class="txtB fLeft">
@@ -339,7 +353,7 @@
                             </div>
                         </div>
                         <div class="fLeft orderCommon dn" id="profileId">
-                            <div class="fLeft tabHead txt_left mBot15">Profile</div>
+                            <div class="fLeft tabHead headLine">Profile</div>
                             <div class="fLeft col50">
                                 <div class="fLeft col50">
                                     <div class="proFields">First Name</div>
@@ -367,6 +381,7 @@
                             </div>
                         </div>
                         <div class="orderCommon fLeft dn" id='saveAddrId'>
+                            <div class="fLeft tabHead headLine borBtm">my addresses</div>
                             <div class="fLeft addrBar" id="addNewId">Add New Address
                                 <div class="plusBlack fRight addrEditCnt" id="plusCont"></div>
                             </div>
@@ -399,7 +414,15 @@
 
                             </div>
                             <!--<div class="fLeft savedAddr">Chandrika</div>-->
-                            <div class="fLeft defaultHead"  >my addresses</div>
+                            <div class="col100 fLeft">
+                            <center>
+                                <div class="addEmpty"></div>
+                                <div class="noOrdTxt">
+                                    <div class="">No Address</div>
+                                    <div class="font13">Sorry,You have no saved address</div>
+                                </div>
+                            </center>
+                            </div>
                             <div id="myaddrs">
                                 <!--<div class="fLeft defaulDiv">
                                     <div class="fLeft col100">
@@ -444,7 +467,7 @@
                             </div>
                         </div>
                         <div class="fLeft orderCommon dn" id='pChange'>
-                            <div class="fLeft tabHead txt_left mBot15">Change Password</div>
+                            <div class="fLeft tabHead headLine">Change Password</div>
                             <div class="col50 fLeft">
                                 <div class="txtB fLeft">
                                     <input type="password" class="inp_box " id="oldpass" maxlength="30">
@@ -466,7 +489,17 @@
                             </div>
                         </div>
                         <div class="fLeft orderCommon dn" id="wishlistId">
-                            <div class="fLeft tabHead txt_left mBot15">My Wishlist</div>
+                            <div class="fLeft tabHead headLine borBtm">My Wishlist</div>
+                            <center>
+                                <div class="wishEmptyImg"></div>
+                                <div class="noOrdTxt">
+                                    <div class="">No Wishlist</div>
+                                    <div class="font13">Sorry,you have not added anything to your wishlist</div>
+                                </div>
+                                <div class="col100">
+                                    <div class="actBtn button">continue shopping</div>
+                                </div>
+                            </center>
                             <div class="col100 fLeft poR" id="wishid">
                                 <!--<div class="grid3 transition400 fadeInup" >
                                     <div class="">out of stock</div>
@@ -625,26 +658,30 @@
     <?php include 'footer.html'?>
     <?php include 'loader.html'?>
     <script type="text/javascript" src="<?php echo $jvs['account']; ?>"></script>
-    <!--<script type="text/javascript" src="<?php echo $jvs['cart']; ?>"></script>-->
+    <script type="text/javascript" src="<?php echo $jvs['cart']; ?>"></script>
     <script>
 
-    
-    $('#inDlt').velocity({opacity: 0});
-    function deletePopUp(){
-         openPopUp();
+
+            $('#inDlt').velocity({opacity: 0});
+    function deletePopUp() {
+        openPopUp();
         $('#signInId').addClass("dn");
         $('#loginId').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
         $('.deleteContr').removeClass("dn");
         $('.deleteContr').velocity({translateY: [0, '500%']}, {duration: 150, delay: 100, easing: ''});
         $('#inDlt').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-        
     }
-    
+
 //    $(document).on('click', '.addrCommon', function () {
-//       
+//        $('#cartpID').addClass("dn");
+//        $('#inCartID').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
 //    });
 //
 //    $('#dltNo').click(function () {
+//        closelogpg();
+//    });
+//    
+//    $('#dltYes').click(function () {
 //        closelogpg();
 //    });
 
@@ -705,7 +742,7 @@
             $("#" + boxId).siblings('.vatTxt').addClass("dn");
         }
     });
- 
+
     $(document).ready(function () {
         $('.wrapper_max').removeClass('offsetEffects');
         load_page();

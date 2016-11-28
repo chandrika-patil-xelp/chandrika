@@ -12,13 +12,14 @@
         <div class="txtTitle mar0" id="rmvpoptxt">Do you want to delete this addresses</div>
         <div class="col100 fLeft bolder">
             <center>
-                <div class="col50 fLeft"><div class="actBtn button" id="cYes">YES</div></div>
-                <div class="col50 fRight"><div class="actBtn button" id="cNo">NO</div></div>
+                <div class="actBtn button padLR25" id="cYes">YES</div>
+                <div class="actBtn button padLR25" id="cNo">NO</div>
             </center>
         </div>
     </div>
 </div>
-<div class="cart">   
+<div class="cart"> 
+
     <!-- <div class="cart_head ">
       YOUR CART
 
@@ -33,6 +34,20 @@
         </div>
         <!--<div class="closeCart"></div>-->
     </div>
+   
+    <div class="col100 fLeft">
+        <center>
+            <div class="cartEmptyImg"></div>
+            <div class="noOrdTxt">
+                <div class="">No Wishlist</div>
+                <div class="font13">Sorry,you have not added anything to your wishlist</div>
+            </div>
+            <div class="col100">
+                <div class="actBtn button colorfff">continue shopping</div>
+            </div>
+        </center>
+    </div>
+
     <!--    <div class="fLeft totalItem">
         <div class="closeCart"></div>
         <div class="fLeft col100 pBtm5">Total Items</div>
@@ -144,25 +159,25 @@
         });
 
     }
-    
-  function cartpopUp(){
-       $('#cartpID').removeClass("dn");
+
+    function cartpopUp() {
+        $('#cartpID').removeClass("dn");
         $('#cartpID').velocity({opacity: [1, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
         $('#inCartID').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-  }
-   function cartpopUpClose(){
-       $('#cartpID').addClass("dn");
+    }
+    function cartpopUpClose() {
+        $('#cartpID').addClass("dn");
         $('#cartpID').velocity({opacity: [0, 1]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
         $('#inCartID').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-  }
-    
+    }
+
 //    $(document).on('click', '.addrCommon', function () {
 //
 //       
 //    });
-    
-   
-    
+
+
+
     $('#closeCart').click(function () {
 //        alert("sdjkfvkd");
         $('.cart').velocity({trnslateX: ['100%', 0]}, {duration: [400]});
