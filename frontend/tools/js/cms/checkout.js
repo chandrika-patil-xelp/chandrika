@@ -328,13 +328,28 @@ function shpngsubmt()
     if (addrs === '' || addrs === null) {
       validationFlag = 0;
       common.msg(0, 'Please enter your address');
-    } else if (pincode === '' || pincode === null) {
+    } 
+    else if (pincode === '' || pincode === null) {
       validationFlag = 0;
       common.msg(0, 'Please enter your Zip code');
     }
-
+    else if (pincode.length > 6 || pincode.length < 6) {
+      validationFlag = 0;
+      common.msg(0, 'Please enter Correct Zip code');
+    }
+     else if (state === '' || state === null) {
+      validationFlag = 0;
+      common.msg(0, 'Please enter your state name');
+    }
+     else if (city === '' || city === null) {
+      validationFlag = 0;
+      common.msg(0, 'Please enter your city name');
+    }
+    
+    if(validationFlag ==1){
     var zipcode = $('#shpdpincode').val();
     checkshpdpincode(zipcode);
+    }
   }
 
   setTimeout(function () {
@@ -344,7 +359,8 @@ function shpngsubmt()
       if (inp_data !== undefined && usrid == null)
       {
 	createuser(name, email, city, addrs);
-      } else
+      } 
+      else
       {
 	var name = common.readFromStorage('jzeva_name');
 	email = common.readFromStorage('jzeva_email');
@@ -354,14 +370,16 @@ function shpngsubmt()
 	shipngdata['mobile'] = moblno;
       }
 
-      openfst();
-      shipngdata['city'] = city;
+      
+      openfst(); 
       shipngdata['address'] = addrs;
-      shipngdata['state'] = state;
       shipngdata['pincode'] = pincode;
+      shipngdata['state'] = state;
+      shipngdata['city'] = city;
+      
 
+      
       setTimeout(function () {
-
 	var usrid = common.readFromStorage('jzeva_uid');
 	if (usrid == null || usrid == "") {
 	  shipngdata['user_id'] = 1111;
@@ -517,10 +535,11 @@ function displayaddrs(userid)
   });
 }
 
-$('#shpdpincode').blur(function () {
-  var zipcode = $(this).val();
+$('#shpdpincode').on('keyup',function () {
+  var zipcode = $(this).val(); 
+  if(zipcode.length == 6)
   checkshpdpincode(zipcode);
-
+  
 });
 
 function  storeorderdata()
@@ -918,11 +937,11 @@ function checkshpdpincode(zipcode)
     $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results)
       {
 	var obj = JSON.parse(results);
-	validationFlag = 1;
-	$('#shpdstate').focus();
+	validationFlag = 1; 
 	$('#shpdstate').val(obj.results[0].state);
-	$('#shpdcity').focus();
 	$('#shpdcity').val(obj.results[0].city);
+	$('#shpdcity').focus();
+	$('#shpdstate').focus(); 
       }
     });
   } 
