@@ -188,16 +188,7 @@ $(document).ready(function () {
 			 jweltype = "Platinum";
                         $('#stn').html('Platinum');
                     }
-                    
-		     
-//                    if(basic.hasSol == 1){
-//                        dmdsoli = "Solitaire";
-//                    }
-//                    else if (basic.hasDmd == 1){
-//                        dmdsoli = "Diamond";
-//                    }
-//                     
-		   
+                 
 		    
 		    
                     var lstr = "";
@@ -279,27 +270,27 @@ $(document).ready(function () {
                         {
                             var gemstn = gemstone.results[0].gemNm;
                             Nstr += '<span> ' + gemstn + ' /span>';
-                            dmdsoli = ''+ gemstn + '';
+                            dmdsoli = "Diamond";
                             break;
                         }
                         case 6:
                         {
                             Nstr += '<span> Gemstones </span>';
-                             dmdsoli = "gemstone";
+                             dmdsoli = "Diamond";
                             break;
                         }
                         case 7:
                         {
                             gemstn = gemstone.results[0].gemNm;
                             Nstr += '<span>Diamond</span><span>' + gemstn + '</span>';
-                            dmdsoli = ''+ gemstn + '';
+                           dmdsoli = "Diamond";
                             break;
                         }
 
                         case 8:
                         {
                             Nstr += '<span>Diamond</span><span>Gemstones</span>';
-                            dmdsoli = "gemstone";
+                            dmdsoli = "Diamond";
                             break;
                         }
                         
@@ -653,8 +644,7 @@ function setmetal(m) {
         $('#ch_price').removeClass('showCh');
         $('#ch_price').velocity({opacity: [0, 1]});
     }, 8000);  
-    jweltype=wx;
-   getDesc(dmdsoli,wx); 
+  
 }
 
 function setclr(c) {
