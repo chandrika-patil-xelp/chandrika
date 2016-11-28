@@ -86,7 +86,7 @@ function storecartdata(cartdata, chk)
 
 function displaycartdata()
 {
-    $(".cart_gen").html("");
+    $(".cart_gen").html(""); 
     var cartstr = "";
     var userid = common.readFromStorage('jzeva_uid');
     var cartid = common.readFromStorage('jzeva_cartid');
@@ -101,7 +101,7 @@ function displaycartdata()
             {
                 var obj = JSON.parse(results);
                 if (obj.result !== null)
-                {
+                { 
                     gblcartdata = obj.result;
 
                     $(obj.result).each(function (r, v) {
@@ -338,14 +338,33 @@ function getglobaldata()
                 var obj = JSON.parse(results);
                 gblcartdata = obj.result;
                 gettotal();
-
+                var nocart ="";
+                if(gblcartdata == null){
+                    $('#check_out').addClass('dn');
+                    $('.total_price_gen').addClass('dn');
+                    $('.cart_name ').addClass('dn');
+                    $('.cart_gen').addClass('dn');
+                     $("#nocart").removeClass("dn");
+                     $('.totalItem').addClass('dn');
+              
+                }
+                else{
+                     $('.cart_gen').removeClass('dn');
+                    $('#check_out').removeClass('dn');
+                    $('.total_price_gen').removeClass('dn');
+                    $('.cart_name ').removeClass('dn');
+                     $("#nocart").addClass("dn");
+                      $('.totalItem').removeClass('dn');
+                      
+                }
+              
             }
         });
     }
 }
 
 $(document).ready(function () {
-    gettotal();
+   // gettotal();
     displaycartdata();
-    getglobaldata();
+   getglobaldata();
 });
