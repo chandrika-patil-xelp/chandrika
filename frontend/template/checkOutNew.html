@@ -157,14 +157,14 @@
                                         <div class="txtB fLeft">
                                             <input type="text" class="inp_box " autocomplete="off"  id="shpdpincode">
                                             <div class="inp_label ">Zip code*</div>
-                                        </div>
-                                        <div class="txtB fLeft w49">
-                                            <input type="text" class="inp_box " autocomplete="off" id="shpdstate" maxlength="20">
-                                            <div class="inp_label ">State*</div>
-                                        </div>
-                                        <div class="inp_cont  fRight w49">
+                                        </div> 
+                                        <div class="inp_cont fLeft  w49">
                                             <input type="text" class="inp_box " autocomplete="off" id="shpdcity" maxlength="15">
                                             <div class="inp_label ">City*</div>
+                                        </div>
+				      <div class="txtB fRight w49">
+                                            <input type="text" class="inp_box " autocomplete="off" id="shpdstate" maxlength="20">
+                                            <div class="inp_label ">State*</div>
                                         </div>
                                     </div>
                                     <div class="cnclSbmt fLeft bolder">
@@ -744,12 +744,16 @@
                                             $('#intscrl').niceScroll({cursorcolor: "#000000", touchbehavior: true, cursorwidth: "4px", autohidemode: false, cursorborder: "0px solid #fff", cursoropacitymin: "0.3", cursoropacitymax: "0.3", railpadding: {top: 2, right: 2, left: 2, bottom: 2}});
                                         }
                                         function openfst1() {
-					    chkouttentrflag=5;
+					    chkouttentrflag=5;   
                                             $('#fourthup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
                                             $('#fstup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
+					  setTimeout(function(){  
+					  $('#shpdmobile').focus();
+					  },500);
                                         }
                                         function opnscnd() {
-                                            bakflag = 2; chkouttentrflag=5;
+                                            bakflag = 2; chkouttentrflag=5; 
+					    shipng_id = 0; 
 					    $('#shpdaddrs').val(''); $('#shpdcity').val(''); $('#shpdstate').val(''); $('#shpdpincode').val(''); 
 					    $('.txtB ').removeClass('focul');
 					    $('#fstup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
