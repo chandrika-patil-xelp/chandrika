@@ -100,7 +100,7 @@ button.toast-close-button {
     pointer-events: auto;
     overflow: hidden;
     margin: 0 0 6px;
-    padding: 11px 16px 11px 40px;
+    padding: 13px 19px 13px 55px;
     width:500px;
     top:6px;
     left: 0;
@@ -116,6 +116,7 @@ button.toast-close-button {
     filter: alpha(opacity=95)
     
 }
+
 #toast-container>:hover {
     opacity: 1;
     filter: alpha(opacity=100);
@@ -133,6 +134,12 @@ button.toast-close-button {
     background-position: left center;
     background-size: auto 100%;
 }
+#toast-container .toast-message{
+    background:  url(../img/close_blackw.svg)no-repeat;
+    background-position: right center;
+    background-size: auto 165%;
+}
+
 .toast-error .toast-progress{background-color: #E34D52;}
 .toast-info .toast-progress{background-color: #349997;}
 
@@ -154,6 +161,7 @@ button.toast-close-button {
     margin-left: auto;
     margin-right: auto
 }
+
 .toast {
     background-color: #030303; color:#15181b;
 }
