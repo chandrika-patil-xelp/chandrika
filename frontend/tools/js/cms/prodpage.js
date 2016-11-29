@@ -65,16 +65,19 @@ function getarraydata() {
 	  pprice=parseInt(pprice,10);
 	  arrdata.push(pprice);
 	
-
+if(data['results']['dimond']['results'] !== null){
     var xx = $('#qual').attr('qual_id').split('_');
     var quality = xx[xx.length - 1];
-
+    }
+ if(data['results']['metalColor']['results'] !== null){
     var yy = $('#clr').attr('clr_id').split('_');
     var color = yy[yy.length - 1];
-
+ }
+ if(data['results']['metalPurity']['results'] !== null){
     var zz = $('#carat').attr('carat_id').split('_');
     var metal = zz[zz.length - 1];
-    
+}
+
    var sz = ($('#size').text().replace('Size',''));
      if(sz == " ")
        sz=parseFloat("0.00");
