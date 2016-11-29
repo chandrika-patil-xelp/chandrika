@@ -58,7 +58,7 @@
 .c666{color: #666;}
 .searchBtn{width: auto;height: 40px; line-height: 40px;padding: 0 35px;display: inline-block;border-radius: 5px;color: #fff;font-size: 16px; margin: 10px 0;cursor: pointer;position: relative;background-color: #379496;}
 
-.satellite1{background: url('../img/Satellite1.png')no-repeat;background-size: initial;background-position: top;}
+/*.satellite1{background: url('../img/Satellite1.png')no-repeat;background-size: initial;background-position: top;}
 .satellite2{background: url('../img/Satellite2.png')no-repeat;background-size: initial;background-position: top;}
 .satellite3{background: url('../img/Satellite3.png')no-repeat;background-size: initial;background-position: top;}
 .satellite4{background: url('../img/Satellite4.png')no-repeat;background-size: initial;background-position: top;}
@@ -86,7 +86,7 @@
 .satellite26{background: url('../img/Satellite26.png')no-repeat;background-size: initial;background-position: top;}
 .satellite27{background: url('../img/Satellite27.png')no-repeat;background-size: initial;background-position: top;}
 .satellite28{background: url('../img/Satellite28.png')no-repeat;background-size: initial;background-position: top;}
-.satellite29{background: url('../img/Satellite29.png')no-repeat;background-size: initial;background-position: top;}
+.satellite29{background: url('../img/Satellite29.png')no-repeat;background-size: initial;background-position: top;}*/
 
 
 
@@ -160,7 +160,8 @@
 .info1{height: 400px;width: 1400px;float: left;background-color: #f0f0f0;padding-top: 25px;position:absolute;z-index:99;left:0px;}
 
 
-.large1{width:42%;height: 100%;float:left;background: url('../img/Satellite1L.png')no-repeat center;}
+
+/*.large1{width:42%;height: 100%;float:left;background: url('../img/Satellite1L.png')no-repeat center;}
 .large2{width:42%;height: 100%;float:left;background: url('../img/Satellite2L.png')no-repeat center;}
 .large3{width:42%;height: 100%;float:left;background: url('../img/Satellite3L.png')no-repeat center;}
 .large4{width:42%;height: 100%;float:left;background: url('../img/Satellite4L.png')no-repeat center;}
@@ -190,7 +191,7 @@
 .large28{width:42%;height: 100%;float:left;background: url('../img/Satellite28L.png')no-repeat center;}
 .large29{width:42%;height: 100%;float:left;background: url('../img/Satellite29L.png')no-repeat center;}
 .sideInfo{width:29%;height:auto;float: left;padding:15px;}
-.closeButton{width:100px;height:50px;background: url('../img/close.svg')no-repeat;cursor: pointer;}
+.closeButton{width:100px;height:50px;background: url('../img/close.svg')no-repeat;cursor: pointer;}*/
 
 
 /*gem_desc page*/
