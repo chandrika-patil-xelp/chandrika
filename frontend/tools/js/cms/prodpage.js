@@ -307,13 +307,14 @@ $(document).ready(function () {
                         //  $('#stn').html('Solitaire');
                         var solistr = "";
                         $(solitaire['results']).each(function (i, vl) {
-                           
+                      
                             var carat = vl.carat;
                             var price_per_carat = vl.prcPrCrat;
-
                             //solistr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>' + vl.nofs + '</span><span> Solitaire</span></span><span class="fRight fmSansR"><span> ' + vl.carat + '</span> Carat</span></div>';
                             solistr +=  '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>Solitaire</span></span><span class="fRight fmSansR"><span>'+vl.nofs+'</span></span></div>';  
                              solistr +=  '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>Solitaire Carat</span></span><span class="fRight fmSansR"><span>'+vl.carat+'</span></span></div>';  
+                            solistr +=  '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>Solitaire Clarity</span></span><span class="fRight fmSansR"><span>'+vl.clrty+'</span></span></div>';  
+                             solistr +=  '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>Solitaire Color</span></span><span class="fRight fmSansR"><span>'+vl.colr+'</span></span></div>';  
                             getSoliPrice(carat, price_per_carat);
                         });
                         $('#desc').append(solistr);
@@ -498,14 +499,7 @@ $(document).ready(function () {
 
 
 });
-   /*function metalwtt(a){
-      var mtw=a;
-      var bstr = "";
-                 
-               bstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span> Gold </span></span><span class="fRight fmSansR"><span> ' + mtw + '</span> Gms </span></div>';
-               $('#desc').append(bstr);                  
- 
-   }*/
+  
       
 
 
