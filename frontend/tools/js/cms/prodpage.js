@@ -818,8 +818,9 @@ function calculatePrice()
 }
 
 $('#addwishlist').click(function(){
-    var userid=localStorage.getItem('jzeva_uid');  
-    if(userid == undefined){
+    var userid=localStorage.getItem('jzeva_uid');
+    if(userid == undefined || userid == null){
+	openPopUp(); 
         common.msg(0,'Please Do login for adding to Your wishlist');
     }
     else{
@@ -833,7 +834,7 @@ $('#addwishlist').click(function(){
        wishdata['col_car_qty']=chr; 
        wishdata['price']=arrdata[1];  
        wishdata['user_id']=userid;
-       var wishid=genOrdId();
+       var wishid='';
        wishdata['wish_id']=wishid;
        wishdata['size']=arrdata[5];
 	 var URL= APIDOMAIN + "index.php?action=addtowishlist"; 

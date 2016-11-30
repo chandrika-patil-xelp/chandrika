@@ -707,7 +707,10 @@
 	{ 
 	     $params = json_decode($params[0],1);
                           
-	    if(empty($params['user_id']) || empty($params['wish_id']) || empty($params['col_car_qty'])){
+	     if(empty($params['wish_id'])){
+	       $wishid=  $this->generateId();
+	     } 
+	    if(empty($params['user_id']) ||  empty($params['col_car_qty'])){
                 $resp = array();
                 $error = array('err_code'=>1, 'err_msg'=>'Parameters Missing');
                 $result = array('result'=>$resp, 'error'=>$error);
@@ -726,7 +729,7 @@
                                   ) 
                                   VALUES ";
 	    
-                      $sql .= " (".$params['wish_id'].", '".$params['user_id']."','".$params['pid']."','".$params['col_car_qty']."','".$params['price'].""
+                      $sql .= " (".$wishid.", '".$params['user_id']."','".$params['pid']."','".$params['col_car_qty']."','".$params['price'].""
 			    . "','".$params['size']."',1,NOW(), NOW())";
                                    
      
