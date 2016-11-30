@@ -1,12 +1,7 @@
 
 
 var gblcartdata;
-function genOrdId() {
-    var d = new Date();
-    var ti = d.getTime();
-    return ti;
-}
-
+  
 function newaddToCart(paramtr)
 {
 
@@ -25,12 +20,12 @@ function newaddToCart(paramtr)
     if (userid == "" || userid == null) {
         // common.addToStorage('jzeva_uid','0');
         userid = common.readFromStorage('jzeva_uid');
-        if (cartid == "" || cartid == null) {
-            common.addToStorage('jzeva_cartid', genOrdId());
-            cartid = common.readFromStorage('jzeva_cartid');
+        if (cartid == "" || cartid == null) { 
+	  cartdata['cartid'] = '';
         }
-        cartdata['cartid'] = cartid;
-
+	else{
+	   cartdata['cartid'] = cartid;
+	} 
     } else {
         cartdata['userid'] = userid;
         cartdata['cartid'] = cartid;
@@ -55,11 +50,11 @@ function newaddToCart(paramtr)
             }
         });
     }
-
+ 
     if (flag == 1 || flag == 0) {
-        storecartdata(cartdata, 1);
+         storecartdata(cartdata, 1);
     } else {
-        storecartdata(cartdata, 1);
+         storecartdata(cartdata, 1);
     }
 }
 
@@ -76,7 +71,9 @@ function storecartdata(cartdata, chk)
         url: URL,
         data: {dt: dt},
         success: function (results) {
-
+	  var data=JSON.parse(results);
+	  common.addToStorage('jzeva_cartid', data.cartid);
+	  
             getglobaldata();
             if (chk == 1) {
                 $(".cart_gen").html("");

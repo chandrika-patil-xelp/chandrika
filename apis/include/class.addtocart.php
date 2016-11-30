@@ -12,7 +12,13 @@
         public function addToCart($params)
 	{  
 	    $params = json_decode($params[0],1); 
-	    if(empty($params['pid']) || empty($params['cartid']) || empty($params['col_car_qty'])){
+	    if(empty($params['cartid'])){
+	      $cartid=  $this->generateId();
+	    }
+	    else{
+	      $cartid=$params['cartid'];
+	    }
+	    if(empty($params['pid']) || empty($params['col_car_qty'])){
                 $resp = array();
                 $error = array('err_code'=>1, 'err_msg'=>'Parameters Missing');
                 $result = array('result'=>$resp, 'error'=>$error);
@@ -33,7 +39,7 @@
                                   ) 
                                   VALUES ";
 	    
-                      $sql .= " (".$params['cartid'].", '".$params['pid']."','".$params['userid']."','".$params['col_car_qty']."','".$params['qty']."',
+                      $sql .= " (".$cartid.", '".$params['pid']."','".$params['userid']."','".$params['col_car_qty']."','".$params['qty']."',
 			    '".$params['price']."','".$params['RBsize']."',1,NOW(), NOW())";
                                         
      
@@ -51,7 +57,7 @@
                 $error = array('err_msg'=>1, 'err_code'=>'Error Inserting Add To Cart Data');
             } 
              
-            $result = array('result'=>$params , 'error'=>$error);  
+            $result = array('result'=>$params , 'error'=>$error , 'cartid' => $cartid );  
             return $result;
 	  
         }
@@ -467,7 +473,7 @@
                 $result = array('result'=>$resp, 'error'=>$error);
                 return $result;
             }
-            
+         
             $sql = "SELECT 
                         product_name 
                       FROM
@@ -503,7 +509,7 @@
             return $genId;
             
         }
-        
+         
 	
 	public function  getcartdetail($params)
 	{

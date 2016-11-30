@@ -137,7 +137,8 @@ function chklogin()
 			      if(cartid){
 				  common.addToStorage("jzeva_cartid", cartid);}
 			      else{
-				  common.addToStorage("jzeva_cartid", gencartId()); }
+				//  common.addToStorage("jzeva_cartid", gencartId());  
+			      }
 		      }
 		      else{
 			   hasitem(oldcartid,olduserid);
@@ -228,12 +229,7 @@ function hasitem(oldcartid,olduserid)
    } 
 }
 
-function gencartId(){
-    var d = new Date();
-    var ti = d.getTime();
-  return ti;
-}
-
+ 
 function updatecartiddetail(oldcartid,olduserid,newcartid)
 {
   if(newcartid=="" || newcartid==null){
@@ -463,7 +459,8 @@ function sugnupsubmt()
 			      if(cartid){
 				  common.addToStorage("jzeva_cartid", cartid);}
 			      else{
-				  common.addToStorage("jzeva_cartid", gencartId()); }
+				//  common.addToStorage("jzeva_cartid", gencartId()); 
+				}
 		      }
 		      else{
 			   hasitem(oldcartid,olduserid);

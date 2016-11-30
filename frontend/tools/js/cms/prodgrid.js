@@ -558,8 +558,9 @@ function getmenu()
 		 
 		  submenulist+="<div class='fmenu_elm fLeft'>";
 		$(n['attr_values']).each(function(q,p){
-		  
-		  submenulist+="<div class='filterCommon "+p.toLowerCase()+"Ic' onclick='submenu(this)' ";
+		  var iconstr="";	 iconstr=p.toLowerCase();
+		  iconstr=iconstr.replace(' ','');
+		  submenulist+="<div class='filterCommon "+iconstr+"Ic' onclick='submenu(this)' ";
 		  submenulist+=" id='"+p+"_"+n.attributeid+"' >";
 		  submenulist+=" <div class='filterLabel' >";
 		  submenulist+=" <div class='labBuffer'  >"+p+"</div>";
@@ -593,7 +594,7 @@ function submenu(ths)
 	  hlist+="@"+tid+"|!|"+pid+"";  
      
     setTimeout(function(){
-	  displayproduct();
+	//  displayproduct();
     },100);
    }
    else{
@@ -614,71 +615,16 @@ function submenu(ths)
 	}
 	hlist=arr.join('@');
 	if(hlist == '@' || hlist == ''){
-	    $('#gridDetail').html('');
+	 //   $('#gridDetail').html('');
 	    hlist="";
 	}  
 	setTimeout(function(){
-	    displayproduct();
+	//    displayproduct();
 	},500);
    }
 } 
 
-function displayproduct(){
-   
-   var URL = APIDOMAIN + "index.php/?action=getprodByfiltr&hlist="+hlist+"&catid="+id;
-  $.ajax({ type:'GET', url:URL, success:function(result){
-	        	 
-            var res = JSON.parse(result); 
-            if (res['error']['err_code'] == 0) {
-		$('#gr_foot').remove();
-                getProdDtl = res["result"];
-                var total = res["total"]; 
-		if(total == 0)
-		  $('#total_Product').addClass('dn' );
-		else{ 
-		  $('#total_Product').removeClass('dn');
-		  $('#total_Product').html( total + " Products");
-		}
-                var obj = res["result"];  
-		   
-	       if(obj !== null){
-		var len = obj.length; 
-		$('#gridDetail').html('');
-                var i = 0;
-                if (len > 0)
-                {
-		  
-                    var str = '';
-                    while (i < len)
-                    {
-                        str = generatelist(obj[i]);
-                      
-                        stSearch.push(obj[i]);
-                        i++;
-                          var k = i * 200; 
-                                          $(str).appendTo('#gridDetail');
-                                          setTimeout(function(){
-                                          $('#gridDetail').find('.grid3').addClass('fadeInup');
-                                              bindhover();
-                                            },100);
-
-                                            bindhover(); 
-
-                    } 
-		}
-	       }
-	       else{
-		 if(hlist == ""){
-		    getprodbyid();
-		    $('#total_Product').removeClass('dn');
-		  }
-		 else
-		    $('#gridDetail').html('');
-	       }
-	  }
-    }
-    });
-}
+ 
 
 function getprodbyid()
 {
