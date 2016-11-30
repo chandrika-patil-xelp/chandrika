@@ -567,10 +567,15 @@ function getmenu()
 		  submenulist+=" </div> </div>";   
 		});
 		submenulist+="</div>"; 
-	      }); 
+	      });
+              submenulist+="<div class='fmenu_elm fLeft'>";
+             submenulist+='<div class="rngDv">';
+             submenulist+='<input type="text" value="" id="range">';
+              submenulist+='</div>'
+              submenulist+='</div>';
 	  }
 	  setTimeout(function(){
-                  $('.ftab_buffer').html(mainmenustr);
+                  $('.ftab_buffer').prepend(mainmenustr);
                   $('.fmenuB').html(submenulist);
 		bindFilterUi();
 		getHeight(); 
