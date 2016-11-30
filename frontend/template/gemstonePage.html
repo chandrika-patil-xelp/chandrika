@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php include 'jhead.html' ?>
-<body class="greyBg"  >
+<body class="greyBg">
     <?php include 'Cart.html' ?>
     <div class="wrapper_main fLeft PRODUCT_GRID2">
         <div class="container2 fmSansR fLeft">
@@ -95,8 +95,6 @@
                     <div class="gemContrDiv  " id="rturImg"><div class=" border_eff1 transition300 easing"></div><div class="imgHolder1 roughImg28 gemTitle rough ">TURQUOISE</div></div>
                     <div class="gemContrDiv  " id="rzirImg"><div class=" border_eff1 transition300 easing"></div><div class="imgHolder1 roughImg29 gemTitle rough ">ZIRCON</div></div>
                 </div>
-
-
             </div>
             <!--            </div>-->
         </div>
@@ -112,14 +110,12 @@
             var lpos = pos.left;
             $('.border_eff1').css('opacity', '1');
             $('#' + id).children('.border_eff1').addClass('active');
-
             generateInfo(id);
             $('.info1').css("left", "-=" + lpos + "px");
             $('#' + id + '_info').slideDown("400");
             $('#' + id + '_info').removeClass("dn");
             $("." + id + "_desc").removeClass("dn");
 //                $("." + id + "_desc").velocity({translateX:'0px'},3000);
-
             if (lastOpen !== id)
             {
                 $("." + lastOpen + "_desc").addClass("dn");
@@ -127,7 +123,6 @@
                 $('#' + lastOpen + '_info').addClass("dn");
                 $('#' + lastOpen).children('.border_eff1').removeClass('active');
             }
-
             $(".closeButton").click(function (event) {
                 event.stopPropagation();
                 $('.info1').slideUp("400");
@@ -135,8 +130,6 @@
             });
             lastOpen = id;
         });
-
-
 
         $('.butn').click(function () {
             var btn_id = $(this).attr('id');
