@@ -100,3 +100,16 @@
 
 .irs-disabled {
 }
+.irs-slider:after{
+    content: "";
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 50%;
+}

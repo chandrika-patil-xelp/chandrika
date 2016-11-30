@@ -33,8 +33,8 @@
 
 .irs-bar {
     height: 10px; top: 33px;
-    border-top: 1px solid #428bca;
-    border-bottom: 1px solid #428bca;
+/*    border-top: 1px solid #428bca;
+    border-bottom: 1px solid #428bca;*/
     background: #428bca;
     background: linear-gradient(to top, rgba(66,139,202,1) 0%,rgba(127,195,232,1) 100%); /* W3C */
 }
