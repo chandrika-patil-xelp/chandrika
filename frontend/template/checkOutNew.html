@@ -22,16 +22,16 @@
         </div>
     </div>
     <div class="cartPopup dn" id="cartpID">
-    <div class="inCartPop" id="inCartID">
-        <div class="txtTitle mar0" id="rmvpoptxt">Do you want to delete this addresses</div>
-        <div class="col100 fLeft bolder">
-            <center>
-                <div class="col50 fLeft"><div class="actBtn button" id="cYes">YES</div></div>
-                <div class="col50 fRight"><div class="actBtn button" id="cNo">NO</div></div>
-            </center>
+        <div class="inCartPop" id="inCartID">
+            <div class="txtTitle mar0" id="rmvpoptxt">Do you want to delete this addresses</div>
+            <div class="col100 fLeft bolder">
+                <center>
+                    <div class="col50 fLeft"><div class="actBtn button" id="cYes">YES</div></div>
+                    <div class="col50 fRight"><div class="actBtn button" id="cNo">NO</div></div>
+                </center>
+            </div>
         </div>
     </div>
-</div>
     <div class="chkoutHeader">
         <div class="logo fLeft"></div>
     </div>
@@ -158,11 +158,11 @@
                                             <input type="text" class="inp_box " autocomplete="off"  id="shpdpincode">
                                             <div class="inp_label ">Zip code*</div>
                                         </div> 
-                                        <div class="inp_cont fLeft  w49">
+                                        <div class="txtB fLeft  w49">
                                             <input type="text" class="inp_box " autocomplete="off" id="shpdcity" maxlength="15">
                                             <div class="inp_label ">City*</div>
                                         </div>
-				      <div class="txtB fRight w49">
+                                        <div class="txtB fRight w49">
                                             <input type="text" class="inp_box " autocomplete="off" id="shpdstate" maxlength="20">
                                             <div class="inp_label ">State*</div>
                                         </div>
@@ -202,6 +202,7 @@
                                         <div class="cbrdr"></div>
                                     </div>
                                     <div class="sgnUptxt fLeft semibold">
+
                                         <div class="txtB fLeft">
                                             <input type="text" class="inp_box " id="otp1" maxlength="30">
                                             <div class="inp_label ">Enter OTP*</div>
@@ -257,16 +258,28 @@
                                     </div>
                                 </div>
                                 <div class="fadeCnt fLeft otpscreen" id="sixthup">
-                                    <div class="w100 fLeft">
-                                        <div class="w70 fLeft">
-                                            <div class="txtB fLeft">
-                                                <input type="text" class="inp_box " id="shpdemail3" maxlength="30">
-                                                <div class="inp_label">Enter OTP*</div>
-                                            </div> 
-                                        </div>
-                                        <div class="subTxt fLeft resendIcon" id="resend_lotp"><span>Resend otp</span></div>
-                                        <!--<div class="w30 fLeft semibold resendIcon" id="resend_lotp">Resend</div>-->
+                                    <div class="dAdrsshdr fLeft semibold">Verify 
+                                        <div class="cbrdr"></div>
                                     </div>
+                                    <div class="sgnUptxt fLeft  semibold">
+                                        <div class="txtB fLeft">
+                                            <input type="text" class="inp_box " id="shpdemail3" maxlength="30">
+                                            <div class="inp_label ">Enter OTP</div>
+                                        </div>
+                                        <div class="subTxt fLeft pad0" id="resend_lotp"><span>Resend OTP</span></div>
+                                    </div>
+
+
+                                    <!--                                    <div class="w100 fLeft">
+                                                                            <div class="w70 fLeft">
+                                                                                <div class="txtB fLeft">
+                                                                                    <input type="text" class="inp_box " id="shpdemail3" maxlength="30">
+                                                                                    <div class="inp_label">Enter OTP*</div>
+                                                                                </div> 
+                                                                            </div>
+                                                                            <div class="subTxt fLeft resendIcon" id="resend_lotp"><span>Resend otp</span></div>
+                                                                            <div class="w30 fLeft semibold resendIcon" id="resend_lotp">Resend</div>
+                                                                        </div>-->
                                     <div class="cnclSbmt fLeft bolder">
                                         <center>
                                             <div class="col50 fLeft"><div class="actBtn button mar0" id="bak_logwthotp">BACK</div></div>
@@ -341,7 +354,7 @@
                                 <div class="fLeft col100 cart_name light">Grand Total
                                 </div>
                                 <div class="fLeft cart_price font35"><span class="total_price_gen  cartRupee font35">0</span>
-                                    
+
                                 </div>
 
                             </div>
@@ -691,7 +704,7 @@
                                                 load_page();
                                             }, 2000);
                                         });
-                                        function load_page() { 
+                                        function load_page() {
                                             $('body').addClass('over_hide');
                                             $('.page_loader2').velocity({translateY: ['100%', 0]}, {duration: 600, easing: 'easeInQuart', display: 'none', complete: function () {
                                                     $('body').removeClass('over_hide');
@@ -744,39 +757,43 @@
                                             $('#intscrl').niceScroll({cursorcolor: "#000000", touchbehavior: true, cursorwidth: "4px", autohidemode: false, cursorborder: "0px solid #fff", cursoropacitymin: "0.3", cursoropacitymax: "0.3", railpadding: {top: 2, right: 2, left: 2, bottom: 2}});
                                         }
                                         function openfst1() {
-					    chkouttentrflag=5;   
+                                            chkouttentrflag = 5;
                                             $('#fourthup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
                                             $('#fstup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
-					  setTimeout(function(){  
-					  $('#shpdmobile').focus();
-					  },500);
+                                            setTimeout(function () {
+                                                $('#shpdmobile').focus();
+                                            }, 500);
                                         }
                                         function opnscnd() {
-                                            bakflag = 2; chkouttentrflag=5; 
-					    shipng_id = 0; 
-					    $('#shpdaddrs').val(''); $('#shpdcity').val(''); $('#shpdstate').val(''); $('#shpdpincode').val(''); 
-					    $('.txtB ').removeClass('focul');
-					    $('#fstup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
+                                            bakflag = 2;
+                                            chkouttentrflag = 5;
+                                            shipng_id = 0;
+                                            $('#shpdaddrs').val('');
+                                            $('#shpdcity').val('');
+                                            $('#shpdstate').val('');
+                                            $('#shpdpincode').val('');
+                                            $('.txtB ').removeClass('focul');
+                                            $('#fstup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
                                             $('#scndup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
                                             $('.neadHide').addClass('dn');
                                         }
                                         function openThrd() {
-					    chkouttentrflag=3;
+                                            chkouttentrflag = 3;
                                             $('#fourthup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
                                             $('#thrdup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
                                         }
                                         function openFifth() {
-					    chkouttentrflag=2;
+                                            chkouttentrflag = 2;
                                             $('#fifthup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
                                             $('#fstup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
                                         }
                                         function openSixth() {
-					    chkouttentrflag=4;
+                                            chkouttentrflag = 4;
                                             $('#sixthup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
                                             $('#fifthup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
                                         }
                                         function closeThrd() {
-					    chkouttentrflag=1;
+                                            chkouttentrflag = 1;
                                             $('#fstup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
                                             $('#thrdup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
                                         }
@@ -790,7 +807,7 @@
                                             $('#scndup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
                                             $('#thrdup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
                                         }
-                                        function lmtmkm() { 
+                                        function lmtmkm() {
                                             $('#sixthup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
                                             $('#scndup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
                                             $('#thrdup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
@@ -819,19 +836,19 @@
                                             $('#fstup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
                                             $('#intscrl').niceScroll({cursorcolor: "#000000", touchbehavior: true, cursorwidth: "4px", autohidemode: false, cursorborder: "0px solid #fff", cursoropacitymin: "0.3", cursoropacitymax: "0.3", railpadding: {top: 2, right: 2, left: 2, bottom: 2}});
                                         }
-					
-					
-					  function bmtm() {
-					    chkouttentrflag=1;
+
+
+                                        function bmtm() {
+                                            chkouttentrflag = 1;
                                             $('#thrdup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
                                             $('#fifthup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
                                         }
-					 function bmtm1() {
-					    chkouttentrflag=1;
+                                        function bmtm1() {
+                                            chkouttentrflag = 1;
                                             $('#thrdup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
                                             $('#fourthup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
                                         }
-					 function bmtm2() {
+                                        function bmtm2() {
                                             $('#fifthup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
                                             $('#sixthup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
                                         }
