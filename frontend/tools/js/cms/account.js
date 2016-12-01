@@ -1,4 +1,6 @@
 
+var accntentrflag=0;
+
 $(document).ready(function(){
    displayorders();
    wishlist();
@@ -14,6 +16,17 @@ $(document).ready(function(){
 	chngpasrd();  
    else if(actn == 'wId')
 	 whlist();   
+       
+  $(document).keypress(function(e){
+      if(e.which == 13)
+      { 
+	if(accntentrflag == 1)
+	    savemyaddress();
+	else if(accntentrflag == 2)
+	    resetpasswrd(); 
+      }
+  });
+       
 });
 
 function displayorders()
@@ -459,6 +472,10 @@ function storenewpass(newpass)
                        common.msg(1, 'Your New Address Added Successfully');
                         displayaddrs();
 			addAddress();
+			$('#addr').val('');
+			$('#state').val('');
+			$('#zipcode').val('');
+			$('#city').val('');
                      }
                  });
     
@@ -561,8 +578,12 @@ function storenewpass(newpass)
    }
 }); 
  
-   $('#restpas').click(function(){
-     
+  $('#restpas').click(function(){ 
+     resetpasswrd(); 
+  }); 
+  
+  function resetpasswrd()
+  {
       var oldpas=$('#oldpass').val();
       var newpass = $("#newpass").val();
       var cpass = $("#cpass").val();
@@ -605,7 +626,7 @@ function storenewpass(newpass)
       }
   }
     }); 
-  }); 
+  }
   
   $('#pId').click(function () {
     perninfo();
@@ -637,8 +658,9 @@ function storenewpass(newpass)
             $("#plusCont").removeClass("plusBlack");
             $("#plusCont").addClass("minusBlack");
             $("#plusCont").parent().siblings('#openAddrId').removeClass("dn");
-
+	    accntentrflag=1;
         } else {
+	    accntentrflag=0;
             $("#plusCont").removeClass("minusBlack");
             $("#plusCont").addClass("plusBlack");
             $("#plusCont").parent().siblings('#openAddrId').addClass("dn"); 
@@ -647,6 +669,7 @@ function storenewpass(newpass)
   
   function ordrinfo()
    {
+      accntentrflag=5;
       $('#myordId').removeClass("dn");
       $('#profileId').addClass("dn");
       $('#editpId').addClass("dn");
@@ -656,6 +679,7 @@ function storenewpass(newpass)
    }
    
   function perninfo(){
+      accntentrflag=4;
       $('#myordId').addClass("dn");
       $('#profileId').removeClass("dn");
       $('#editpId').addClass("dn");
@@ -666,6 +690,7 @@ function storenewpass(newpass)
   
   function saveadrinfo()
   {
+    accntentrflag=6;
     $('#saveAddrId').removeClass("dn");
     $('#myordId').addClass("dn");
     $('#profileId').addClass("dn");
@@ -676,6 +701,7 @@ function storenewpass(newpass)
   
   function chngpasrd()
   {
+    accntentrflag=2;
     $('#pChange').removeClass("dn");
     $('#myordId').addClass("dn");
     $('#profileId').addClass("dn");
@@ -686,6 +712,7 @@ function storenewpass(newpass)
   
   function whlist()
   {
+    accntentrflag=3;
     $('#wishlistId').removeClass("dn");
     $('#myordId').addClass("dn");
     $('#profileId').addClass("dn");

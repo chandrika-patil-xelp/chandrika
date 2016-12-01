@@ -138,6 +138,7 @@ $jvs = array();
             $jvs['otp']                 = DOMAIN.'frontend/tools/js/cms/otp.js?v='.VERSION;
             $jvs['resetpass']                 = DOMAIN.'frontend/tools/js/cms/resetpass.js?v='.VERSION;
 	    $jvs['header']		      = DOMAIN.'frontend/tools/js/cms/header.js?v='.VERSION;
+	    $jvs['account']		      = DOMAIN.'frontend/tools/js/cms/account.js?v='.VERSION;
 	   
 include APICLUDE.'common/class.common.php';
 $comm = new Common();
