@@ -513,7 +513,7 @@ function storenewpass(newpass)
                      var addrStr="";
                      $(data['results']).each(function(m,n){
                      
-                    addrStr+= '<div class="fLeft defaulDiv" >';
+                    addrStr+= '<div class="fLeft defaulDiv">';
                     addrStr+= '<div class="fLeft col100">';
                     addrStr+='<div class="font13">'+n.address+'</div>';
                     //addrStr+='<div class="font13">Kormanagala</div>';
