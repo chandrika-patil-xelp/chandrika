@@ -65,7 +65,7 @@ function displayorders()
 			    var image=v.prdimage; image=image.split(',');
 			    image=IMGDOMAIN+image[0]; 
 			 }
-                         
+                     
  orderstr+='<div class="orderParent fLeft">';
  orderstr+='<div class="fLeft orderImg bgCommon" style="background: #fff url(\''+ image+ '\')no-repeat;background-size: contain;background-position:center; background-color:#FFF;"></div>';
  orderstr+='<div class="fLeft orderName">';
@@ -111,7 +111,7 @@ orderstr+='<div class="fLeft col100">tax:<span>675675</span></div>';
  
  orderstr+='<div class="filterSec fLeft">';
  orderstr+='<center>';
- orderstr+='<div class="button actBtn transition300 fRight mar0 trackCommon" id="trackId1">track</div>';
+ orderstr+='<div class="button actBtn transition300 fRight mar0 trackCommon" id="'+v.pid+'_'+r+'" onclick="trackslide(this)">track</div>';
 orderstr+= '</center>';
  orderstr+= '</div>';
 orderstr+='</div>';
@@ -722,11 +722,12 @@ function storenewpass(newpass)
     $('#pChange').addClass("dn");
   } 
 
- $(document).on('click','.trackCommon', function () {
-           
-            var trkID = $(this).attr('id');
+ 
+   function trackslide(ths)
+   {
+            var trkID = $(ths).attr('id');
           
-            var trackTxt = $(this).text();
+            var trackTxt = $(ths).text();
            
             var cls = "see less";
             var trk = "track";
@@ -738,4 +739,4 @@ function storenewpass(newpass)
                 $('#' + trkID).html(trk);
                 $('#' + trkID).parent().parent().parent().next().slideUp(400);
             }
-        });
+  }
