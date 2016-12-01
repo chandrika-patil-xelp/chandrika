@@ -67,11 +67,16 @@
                                             PRICE
                                         </div>
                                     </div>-->
+                                    <div class="ftabB">
+                                        <div class="ftab fLeft tabe">
+                                            PRICE
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="fmenu_wrap">
                                     <div class="fmenuB">
-                                        <div class="fmenu_elm fLeft" id="necklaceStyle">
-                                            <!--                                            <div class="filterCommon bridalIc">
+<!--                                        <div class="fmenu_elm fLeft" id="necklaceStyle">
+                                                                                        <div class="filterCommon bridalIc">
                                                                                             <div class="filterLabel">
                                                                                                 <div class="labBuffer">Bridal</div>
                                                                                             </div>
@@ -95,10 +100,10 @@
                                                                                             <div class="filterLabel">
                                                                                                 <div class="labBuffer">tennis</div>
                                                                                             </div>
-                                                                                        </div>-->
+                                                                                        </div>
                                         </div>
                                         <div class="fmenu_elm fLeft" id="banglestyle">
-                                            <!--                                            <div class="filterCommon braceletIc">
+                                                                                        <div class="filterCommon braceletIc">
                                                                                             <div class="filterLabel">
                                                                                                 <div class="labBuffer">Bracelet</div>
                                                                                             </div>
@@ -122,10 +127,10 @@
                                                                                             <div class="filterLabel">
                                                                                                 <div class="labBuffer">single line</div>
                                                                                             </div>
-                                                                                        </div>-->
+                                                                                        </div>
                                         </div>
                                         <div class="fmenu_elm fLeft" id="earingStyle">
-                                            <!--                                            <div class="filterCommon chandbaliIc">
+                                                                                        <div class="filterCommon chandbaliIc">
                                                                                             <div class="filterLabel">
                                                                                                 <div class="labBuffer">Chandbali</div>
                                                                                             </div>
@@ -159,10 +164,10 @@
                                                                                             <div class="filterLabel">
                                                                                                 <div class="labBuffer">jhumkas</div>
                                                                                             </div>
-                                                                                        </div>-->
+                                                                                        </div>
                                         </div>
                                         <div class="fmenu_elm fLeft" id="pendantStyle">
-                                            <!--                                            <div class="filterCommon casualIc">
+                                                                                        <div class="filterCommon casualIc">
                                                                                             <div class="filterLabel">
                                                                                                 <div class="labBuffer">Casual</div>
                                                                                             </div>
@@ -182,10 +187,10 @@
                                                                                             <div class="filterLabel">
                                                                                                 <div class="labBuffer">tanmaniya</div>
                                                                                             </div>
-                                                                                        </div>-->
+                                                                                        </div>
                                         </div>
                                         <div class="fmenu_elm fLeft" id="ringStyle">
-                                            <!--                                            <div class="fLeft ringContr poR">
+                                                                                        <div class="fLeft ringContr poR">
                                             
                                                                                             <div class="filterCommon solitaireIc">
                                                                                                 <div class="filterLabel">
@@ -273,8 +278,8 @@
                                                                                                 </div>
                                                                                             </div>
                                             
-                                                                                        </div>-->
-                                            <!-- <div class="colbox5"></div> -->
+                                                                                        </div>
+                                             <div class="colbox5"></div> 
                                         </div>
 
                                         <div class="fmenu_elm fLeft" ID="diamondID">
@@ -485,13 +490,13 @@
 
                                                 </center>
                                             </div>
-                                            <!-- <div class="colbox6"></div> -->
-                                        </div>
-                                        <div class="fmenu_elm fLeft dn">
+                                             <div class="colbox6"></div> 
+                                        </div>-->
+<!--                                        <div class="fmenu_elm fLeft" id="pRange">
                                             <div class="rngDv">
                                                 <input type="text" value="" id="range">
                                             </div>
-                                        </div>
+                                        </div>-->
                                     </div>
                                 </div>
                             </div>
@@ -616,7 +621,6 @@
                 </div>
             </div>
             <div class="col50 fLeft">
-
                 <div class="cMoreTxt fmSansB " id="diaSh"><span class="u_line lettSpace">SHOW MORE</span></div>
             </div>
             <div class="col50 fLeft poR">
@@ -717,6 +721,9 @@
     <!--<script type="text/javascript" src="<?php echo $jvs['prodGrid']; ?>"></script>-->
 
     <script>
+
+
+       
 
         var window_width;
         $(document).ready(function () {
@@ -1087,6 +1094,15 @@
             });
         }
 	 function bindFilterUi(){
+              $("#range").ionRangeSlider({
+                type:"double",
+                 min:5000,
+                 max:1500000,
+                 grid:true,
+                 step:200
+//              
+                 
+              });
         var vheight = 0;
         /*Overlay fade in/out  on menu hover*/
         $('.ftabWrap').mouseover(function () {
@@ -1174,6 +1190,17 @@
             $(this).toggleClass('filSelec');
         });
 	}
+        
+           function loadComplete() {
+            //$('body').addClass('over_hide');
+            $('.rota_wrap').velocity({translateY: [0, 10], opacity: [1, 0]}, {duration: 600, easing: 'swing', complete: function () {
+                    $('.details_cont').velocity({translateY: [0, 10], opacity: [1, 0]}, {duration: 600, easing: 'swing', complete: function () {
+                            $('.options').velocity({translateY: [0, 10], opacity: [1, 0]}, {duration: 600, easing: 'swing', complete: function () {
+                                    //  $('body').removeClass('over_hide');
+                                }});
+                        }});
+                }});
+        }
 
     </script>
 
