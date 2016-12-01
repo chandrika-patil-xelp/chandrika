@@ -420,7 +420,7 @@
                                 <center>
                                     <div class="addEmpty"></div>
                                     <div class="noOrdTxt">
-                                        <div class="">No Address</div>
+                                        <div class="fooH mar0">No Address</div>
                                         <div class="font13">Sorry,You have no saved address</div>
                                     </div>
                                 </center>
@@ -496,7 +496,7 @@
                                 <center>
                                     <div class="wishEmptyImg"></div>
                                     <div class="noOrdTxt">
-                                        <div class="">No Wishlist</div>
+                                        <div class="fooH mar0">No Wishlist</div>
                                         <div class="font13">Sorry,you have not added anything to your wishlist</div>
                                     </div>
                                     <div class="col100">
@@ -665,6 +665,10 @@
     <script type="text/javascript" src="<?php echo $jvs['cart']; ?>"></script>
     <script>
 
+      $('#fooPOP').click(function(){
+       openPopUp(); 
+    });
+     
 
             $('#inDlt').velocity({opacity: 0});
     function deletePopUp() {
