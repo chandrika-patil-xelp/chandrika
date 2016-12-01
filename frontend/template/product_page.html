@@ -180,10 +180,10 @@
                                 <span class="fLeft  actBtn bolder">PREVIOUS</span>
                                 <span class="fRight actBtn bolder">NEXT</span>
                             </div> -->
-                            <div class="another_buffer fLeft" id="cust" >
+                            <div class="another_buffer fLeft" id="cust">
                                 <div class="desc_row fLeft  font12 point transition300" >SKU: <span class="semibold" id="vpro"></span></div>
                                 <div class="desc_row fLeft  font12 point transition300" id="leadtime"> DELIVERY:</div>
-                                <div class="desc_row fLeft  font12 point transition300" id="Ifpendant"> </div>
+                                <div class="desc_row fLeft  font12 point transition300 bolder" id="Ifpendant"> </div>
                               <div class="cardHead fLeft">Customise</div>
                               <div class="cust_cont poR fLeft" >
                                    <div class="drop_dn fLeft dn" id="clar">
@@ -202,7 +202,7 @@
                                         <div class="attTitle">  Size</div>
 
                                         <div class="actBtn font12 bolder" id="size" >Size </div>
-                                        <div class="selectDefault"  ></div>
+                                        <div class="selectDefault"></div>
 
 
                                         <div class="selectOptionC" id="genSize">
@@ -602,28 +602,27 @@
                 }
             }
         }
-
-        //JZEVA DROPDOWN
-
-        function bindDrop(){
+    
+       //JZEVA DROPDOWN
+ 
+        function bindDrop(){ 
              $('.selectDefault').click(function(){
-
-               var th= $(this);
+ 
+               var th= $(this);  
                $(this).addClass('pointNone');
-               $(this).siblings('.selectOptionC').css('opacity', 0)
+               $(this).siblings('.selectOptionC')
                .slideDown('150ms')
                .animate(
                  { opacity: 1 },
                  { queue: false, duration: '150ms' }
                );
-
              });
              var sz;
               $('.selectOptions').click(function(){
 
                 sz= $(this).text();
                $('#size').html(sz);
-
+              
                    //calculatePrice();
                $(this).closest('.selectOptionC').fadeOut('150ms').siblings('.selectDefault').removeClass('pointNone');
                   setTimeout(function () {
@@ -644,6 +643,16 @@
 
              });
            }
+       $(document).click(function (event) {
+       if (!$(event.target).closest('.selectDefault').length)
+       {
+           if ($('.selectDefault').next('.selectOptionC').is(":visible"))
+           {
+               $('.selectDefault').next('.selectOptionC').slideUp('swing');
+                $('.selectDefault').removeClass('pointNone');
+           }
+       }
+   });
  
     </script>
 
