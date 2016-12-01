@@ -62,8 +62,7 @@ function displayorders()
                         ordrdate=v.order_date;	   
                         ordrdate=ordrdate.split(' ');
                         $('#ordDate').html(ordrdate[0]);
-                          var dateoid=   Date.parse('dd');
-                          console.log(dateoid);
+                         
 			 if(v.default_image!== null){
 			  var image=IMGDOMAIN + v.default_image;
 			}
