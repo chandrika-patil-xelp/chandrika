@@ -244,7 +244,7 @@ function generatelist(obj) {
     //proStr += '</div>';
     proStr += '</div>';
     proStr += '</div>';
-    proStr += '<div class="soc_icons">';
+    proStr += '<div class="soc_icons dn">';
     proStr += '<div class="soc_elem soc_wish2 transition300"></div>';
     // proStr += '<div class="soc_elem soc_comment transition300"></div>';
     proStr += '<div class="soc_elem soc_share transition300"></div>';
@@ -569,9 +569,11 @@ function getmenu()
 		submenulist+="</div>"; 
 	      });
               submenulist+="<div class='fmenu_elm fLeft'>";
+              submenulist+='<div class="rangeParent fLeft">';
              submenulist+='<div class="rngDv">';
              submenulist+='<input type="text" value="" id="range">';
-              submenulist+='</div>'
+              submenulist+='</div>';
+              submenulist+='</div>';
               submenulist+='</div>';
 	  }
 	  setTimeout(function(){
