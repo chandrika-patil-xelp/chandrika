@@ -56,8 +56,14 @@ function displayorders()
                       $(obj['result']).each(function(r,v){
                         
                          var orderID = $('#ordId').html(v.oid);
-                         var orderDate =$('#ordDate').html(v.order_date);
-                            
+                        // var orderDate =$('#ordDate').html(v.order_date);
+                          
+                           var ordrdate="";
+                        ordrdate=v.order_date;	   
+                        ordrdate=ordrdate.split(' ');
+                        $('#ordDate').html(ordrdate[0]);
+                          var dateoid=   Date.parse('dd');
+                          console.log(dateoid);
 			 if(v.default_image!== null){
 			  var image=IMGDOMAIN + v.default_image;
 			}
@@ -185,7 +191,7 @@ function wishlist()
 			}
 			else{  
                            var xyz=j.prdimage; xyz=xyz.split(',');
-			    xyz=IMGDOMAIN+xyz[5];
+			    xyz=IMGDOMAIN+xyz[0];
 			  }
                           
  wishStr+= '<div class="grid3 transition400 fadeInup" > ';
@@ -380,7 +386,7 @@ function wishlist()
                      
                         var profileStr="";
                        $(obj['result']).each(function(k,l){
-                      console.log(l);
+                   
                           profileStr+= '<div class="proFields">'+l.uname+'</div>';
                           profileStr+= '<div class="proFields">'+l.mob+'</div>';   
                           profileStr+='<div class="proFields">'+l.email+'</div>';
@@ -496,7 +502,7 @@ function storenewpass(newpass)
                  type: "GET",   
                  datatype: "JSON",   
                  success: function(results){ 
-                     console.log(results);
+                  
 		     var data=JSON.parse(results);
                       if(data.results == null){
 			$('#noaddrs').removeClass('dn');
