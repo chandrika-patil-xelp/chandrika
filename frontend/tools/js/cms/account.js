@@ -380,7 +380,7 @@ function wishlist()
                      
                         var profileStr="";
                        $(obj['result']).each(function(k,l){
-                      
+                      console.log(l);
                           profileStr+= '<div class="proFields">'+l.uname+'</div>';
                           profileStr+= '<div class="proFields">'+l.mob+'</div>';   
                           profileStr+='<div class="proFields">'+l.email+'</div>';
@@ -496,7 +496,7 @@ function storenewpass(newpass)
                  type: "GET",   
                  datatype: "JSON",   
                  success: function(results){ 
-                     
+                     console.log(results);
 		     var data=JSON.parse(results);
                       if(data.results == null){
 			$('#noaddrs').removeClass('dn');
@@ -513,6 +513,7 @@ function storenewpass(newpass)
                     addrStr+='<div class="font13">'+n.address+'</div>';
                     //addrStr+='<div class="font13">Kormanagala</div>';
                     addrStr+='<div class="font13">'+n.city+'-'+n.pincode+'</div>';
+                    addrStr+='<div class="font13">'+n.state+'</div>';
                     addrStr+='</div>';
                     addrStr+='<div class="filterSec fLeft">';
                     addrStr+='<center>';
