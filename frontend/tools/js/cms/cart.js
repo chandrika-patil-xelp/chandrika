@@ -110,7 +110,7 @@ function displaycartdata()
                         } else {
                             var abc = v.prdimage;
                             abc = abc.split(',');
-                            abc = IMGDOMAIN + abc[5];
+                            abc = IMGDOMAIN + abc[0];
                         }
                         var bprize = parseInt(v.price / v.pqty);
                         var wht;

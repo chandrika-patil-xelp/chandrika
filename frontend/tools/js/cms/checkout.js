@@ -47,7 +47,7 @@ function displaycartdetail()
 	} else {
 	  var abc = v.prdimage;
 	  abc = abc.split(',');
-	  abc = IMGDOMAIN + abc[5];
+	  abc = IMGDOMAIN + abc[0];
 	}
 	totalprice += parseInt(v.price);
 	var bprize = parseInt(v.price / v.pqty);

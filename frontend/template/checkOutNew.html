@@ -752,6 +752,7 @@
 //          $('#fstup').velocity({opacity: 1,translateY:'0px'}, {delay: 0, duration: 0,display:'block'});
 //            $('#scndup').velocity({opacity:0,translateY:'20px'}, {delay: 0, duration: 0,display:'none'});
                                         function openfst() {
+					    chkouttentrflag = 6;
                                             $('#fstup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
                                             $('#scndup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
                                             $('#intscrl').niceScroll({cursorcolor: "#000000", touchbehavior: true, cursorwidth: "4px", autohidemode: false, cursorborder: "0px solid #fff", cursoropacitymin: "0.3", cursoropacitymax: "0.3", railpadding: {top: 2, right: 2, left: 2, bottom: 2}});
