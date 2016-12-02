@@ -2453,6 +2453,7 @@ input[type=radio]:checked ~ .matchIcn{
 .largeRough29{width:42%;height: 100%;float:left;background: url('../img/rough29L.png')no-repeat center;}
 .largeRough30{width:42%;height: 100%;float:left;background: url('../img/redcoral1.png')no-repeat center;}
 
+
 .rangeParent{width:100%;height:135px;}
 .closeGem{float:left;background: url(../img/close_black.svg)no-repeat;background-size: auto 50%;width:100%;height: 60px;background-position: right;cursor: pointer;}
 .imageCont{width: 100%;height:200px;}
@@ -2496,7 +2497,11 @@ input[type=radio]:checked ~ .matchIcn{
 .noOrdTxt{font-family: regular;font-size: 16px;color: #666;}
 .borBtm{border-bottom: 1px solid #ccc!important;}
 .headLine{text-align:left!important;margin-bottom:15px!important;border-bottom: 1px solid #ccc;}
-
+.thankYou{background: url(../img/icons/524crt.svg)no-repeat;
+    background-size: auto 50%;
+    background-position: center 150px;
+    width: 100%;
+    height: 300px;}
 .rangeParent{width:100%;height: 130px;} 
 
 
