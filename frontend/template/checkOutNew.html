@@ -260,7 +260,7 @@
                                     </div>
                                     <div class="sgnUptxt fLeft  semibold">
                                         <div class="txtB fLeft">
-                                            <input type="text" class="inp_box " id="shpdemail3" maxlength="30">
+                                            <input type="text" class="inp_box " id="shpdemail3" autocomplete="off" maxlength="30">
                                             <div class="inp_label ">Enter OTP</div>
                                         </div>
                                         <div class="subTxt fLeft pad0" id="resend_lotp"><span>Resend OTP</span></div>
@@ -777,16 +777,22 @@
                                         }
                                         function openThrd() {
                                             chkouttentrflag = 3;
+					    $('#otp1').val('');	    $('#otp1').blur();
+					    $('#unmatchIcn').addClass('dn');  $('#unmatchIcn1').addClass('dn');
+					    $('#pswrd1').val('');     $('#pswrd1').blur();
+					    $('#pswrd2').val('');     $('#pswrd2').blur();
                                             $('#fourthup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
                                             $('#thrdup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
                                         }
                                         function openFifth() {
                                             chkouttentrflag = 2;
+					    $('#pswrd8').val('');     $('#pswrd8').blur();
                                             $('#fifthup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
                                             $('#fstup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
                                         }
                                         function openSixth() {
                                             chkouttentrflag = 4;
+					    $('#shpdemail3').val('');	  $('#shpdemail3').blur();
                                             $('#sixthup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
                                             $('#fifthup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
                                         }
@@ -838,15 +844,18 @@
 
                                         function bmtm() {
                                             chkouttentrflag = 1;
+					    $('#entereml').val('');	$('#entereml').blur();
                                             $('#thrdup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
                                             $('#fifthup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
                                         }
                                         function bmtm1() {
                                             chkouttentrflag = 1;
+					    $('#entereml').val('');	$('#entereml').blur();
                                             $('#thrdup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
                                             $('#fourthup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
                                         }
                                         function bmtm2() {
+					    $('#pswrd8').val('');	 $('#pswrd8').blur();
                                             $('#fifthup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
                                             $('#sixthup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
                                         }

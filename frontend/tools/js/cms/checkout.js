@@ -1,9 +1,9 @@
 
 var gblcheckodata, bakflag = 0, totalprice = 0, shipngdata = {}, validationFlag = 1, logotpflag = 0, contnu_enble = 0;
-var inp_data, shipng_id=0, chkouttentrflag = 0, shipngzpcodflg=1;
+var inp_data, shipng_id = 0, chkouttentrflag = 0, shipngzpcodflg = 1, shpngusrflg;
 
 $(document).ready(function () {
- 
+
   var userid = common.readFromStorage('jzeva_uid');
   if (userid !== null) {
     openfst();
@@ -236,9 +236,9 @@ function checkotp(inptmob, otp)
 	  if (otp == data.otp) {
 	    if (logotpflag == 2) {
 	      getuserdetail(inptmob);
-
+	      
 	    } else {
-	      $('#resend_otp').removeClass('dn');
+	      $('#resend_otp').addClass('dn');
 	      $('.matchIcn').removeClass('dn');
 	      $('.unmatchIcn').addClass('dn');
 	      $('#paswrd1id').removeClass('dn');
@@ -266,7 +266,7 @@ function otpcontn()
 {
   bakflag = 1;
   if (contnu_enble == 1) {
-    $('#shpdmobile').val(inp_data); 
+    $('#shpdmobile').val(inp_data);
     openfst1();
   } else {
     common.msg(0, 'Please Enter Correct Password ');
@@ -280,7 +280,7 @@ $('#shpng_sub').click(function () {
 
 function shpngsubmt()
 {
-  validationFlag=1; 
+  validationFlag = 1;
   var name, email, mobile;
   var usrid = common.readFromStorage('jzeva_uid');
   if ($('.neadHide').hasClass('dn')) {
@@ -322,7 +322,7 @@ function shpngsubmt()
       validationFlag = 0;
       common.msg(0, 'Please Enter New Email id');
     }
-   
+
     shipngdata['name'] = name;
     shipngdata['email'] = email;
     shipngdata['mobile'] = mobile;
@@ -342,64 +342,63 @@ function shpngsubmt()
     else if (pincode === '' || pincode.length === 0) {
       validationFlag = 0;
       common.msg(0, 'Please enter your Zip code');
-    }
+    } 
     else if (pincode.length > 6 || pincode.length < 6) {
       validationFlag = 0;
       common.msg(0, 'Please enter Correct Zip code');
-    }
+    } 
     else if (state === '' || state === null) {
       validationFlag = 0;
       common.msg(0, 'Please enter your state name');
-    }
+    } 
     else if (city === '' || city === null) {
       validationFlag = 0;
       common.msg(0, 'Please enter your city name');
     }
-    
+
     if(shipngzpcodflg !== 1 && validationFlag == 1){
       validationFlag = 0;
       common.msg(0, 'Please enter Valid Zip code');
     }
   }
 
-  
-    if (validationFlag == 1)
+
+  if (validationFlag == 1)
+  {
+    if (inp_data !== undefined && usrid == null)
     {
-      if (inp_data !== undefined && usrid == null)
-      {
-	createuser(name, email, city, addrs);
-      } 
-      else
-      {
-	var uname = common.readFromStorage('jzeva_name');
-	email = common.readFromStorage('jzeva_email');
-	var moblno = common.readFromStorage('jzeva_mob');
-	shipngdata['name'] = uname;
-	shipngdata['email'] = email;
-	shipngdata['mobile'] = moblno;
-      }
-
-      
-      openfst(); 
-      shipngdata['address'] = addrs;
-      shipngdata['pincode'] = pincode;
-      shipngdata['state'] = state;
-      shipngdata['city'] = city;
-      
-
-      
-      setTimeout(function () {
-	var usrid = common.readFromStorage('jzeva_uid');
-	if (usrid == null || usrid == "") {
-	  shipngdata['user_id'] = 1111;
-	} else {
-	  shipngdata['user_id'] = usrid;
-	}
-	storeshippingdata();
-      }, 1000);
-
+      createuser(name, email, city, addrs);
+    } else
+    {
+      var uname = common.readFromStorage('jzeva_name');
+      email = common.readFromStorage('jzeva_email');
+      var moblno = common.readFromStorage('jzeva_mob');
+      shipngdata['name'] = uname;
+      shipngdata['email'] = email;
+      shipngdata['mobile'] = moblno;
     }
-  
+
+
+    openfst();
+    shipngdata['address'] = addrs;
+    shipngdata['pincode'] = pincode;
+    shipngdata['state'] = state;
+    shipngdata['city'] = city;
+
+
+
+    setTimeout(function () {
+      var usrid = common.readFromStorage('jzeva_uid');
+      if (usrid == null || usrid == "") {
+	shipngdata['user_id'] = 1111;
+      } else {
+	shipngdata['user_id'] = usrid;
+      }
+      storeshippingdata();
+    }, 1000);
+
+  }
+
 }
 
 $('#mob_mailsub').click(function () {
@@ -444,6 +443,16 @@ $('#otp1').on('keyup', function () {
   var otp = $(this).val();
   if (otp.length == 6)
     checkotp(inp_data, otp);
+  else {
+    $('#paswrd1id').addClass('dn');
+    $('#paswrd2id').addClass('dn'); 
+    $('#otp_countn').addClass('dn');
+    $('#resend_otp').removeClass('dn');
+    $('.matchIcn1').addClass('dn');  
+    $('.unmatchIcn1').addClass('dn');  
+    $('#pswrd1').val('');     $('#pswrd1').blur();
+    $('#pswrd2').val('');     $('#pswrd2').blur();
+  }
 });
 
 $('#resend_otp').click(function () {
@@ -545,10 +554,10 @@ function displayaddrs(userid)
 }
 
 $('#shpdpincode').on('keyup',function () {
-  var zipcode = $(this).val();  
-  if(zipcode.length == 6)
-  checkshpdpincode(zipcode);
-  
+  var zipcode = $(this).val();
+  if (zipcode.length == 6)
+    checkshpdpincode(zipcode);
+
 });
 
 function  storeorderdata()
@@ -636,7 +645,7 @@ function checkuser(inpt)
 	  $('#paswrd1id').addClass('dn');
 	  $('#paswrd2id').addClass('dn');
 	  $('.matchIcn').addClass('dn');
-	  $('.unmatchIcn').removeClass('dn');
+	  $('.unmatchIcn1').addClass('dn');
 	  $('#otp_countn').addClass('dn');
 	  sendnewuserotp();
 	} else {
@@ -805,6 +814,9 @@ function getuserdetail(inpt)
 
 $('#shpd_bak').click(function () {
   if (bakflag == 1) {
+    contnu_enble=0;
+    $('#paswrd1id').addClass('dn');      $('#paswrd2id').addClass('dn');
+    $('#otp_countn').addClass('dn');  $('.matchIcn1').addClass('dn');
     openThrd();
   } else if (bakflag == 2) {
     var userid = common.readFromStorage('jzeva_uid');
@@ -876,32 +888,32 @@ $('#shpdemail').blur(function () {
 
 function createuser(name, email, city, addrs)
 {
-    if ($.isNumeric(inp_data)) {
+  if ($.isNumeric(inp_data)) {
 
-      var URLreg = APIDOMAIN + "index.php/?action=addnewUser&name=" + name + "&mobile=" + inp_data + "&pass=" + passwrd + "&email=" + email + "&city=" + city + "&address=" + addrs;
-    } 
-    else {
-      
-      shipngdata['email'] = mail;
-      var URLreg = APIDOMAIN + "index.php/?action=addnewUser&name=" + name + "&email=" + email + "&pass=" + passwrd + "&mobile=" + mobile + "&city=" + city + "&address=" + addrs;
-    }
+    var URLreg = APIDOMAIN + "index.php/?action=addnewUser&name=" + name + "&mobile=" + inp_data + "&pass=" + passwrd + "&email=" + email + "&city=" + city + "&address=" + addrs;
+  } 
+  else {
 
-    $.ajax({type: 'POST', url: URLreg, success: function (res) {
+    shipngdata['email'] = mail;
+    var URLreg = APIDOMAIN + "index.php/?action=addnewUser&name=" + name + "&email=" + email + "&pass=" + passwrd + "&mobile=" + mobile + "&city=" + city + "&address=" + addrs;
+  }
 
-	  var data1 = JSON.parse(res);
-	  if (data1['error']['err_code'] == 0)
-	  { 
-	    var uid = data1['error']['userid'];
-	    common.addToStorage('jzeva_uid', uid);
-	    common.addToStorage("jzeva_email", email);
-	    common.addToStorage("jzeva_name", name);
-	    if ($.isNumeric(inp_data))
-		common.addToStorage("jzeva_mob", inp_data);
-	    else
-		common.addToStorage("jzeva_mob", mobile);
-	  }
-	  else if (data1['error']['err_code'] == 1)
-	      common.msg(0, data1['error']['err_msg']);
+  $.ajax({type: 'POST', url: URLreg, success: function (res) {
+
+      var data1 = JSON.parse(res);
+      if (data1['error']['err_code'] == 0)
+      {
+	var uid = data1['error']['userid'];
+	common.addToStorage('jzeva_uid', uid);
+	common.addToStorage("jzeva_email", email);
+	common.addToStorage("jzeva_name", name);
+	if ($.isNumeric(inp_data))
+	  common.addToStorage("jzeva_mob", inp_data);
+	else
+	  common.addToStorage("jzeva_mob", mobile);
+      }
+      else if (data1['error']['err_code'] == 1)
+	common.msg(0, data1['error']['err_msg']);
     }
   });
 }
@@ -919,7 +931,7 @@ function checkuserdetail()
   }
 
   if (validnflg == 1) {
-    
+
     var URL = APIDOMAIN + "index.php/?action=getUserDetailsbyinpt&email=" + email + "&mobile=" + inp_data;
     $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (res)
       {
@@ -927,17 +939,17 @@ function checkuserdetail()
 	$(data['results']).each(function (r, v) {
 	  if (v.logmobile == inp_data) {
 	    setvalflg=1;
-	     shpngusrflg = 0;
+	    shpngusrflg = 0;
 	    common.msg(0, 'Your Entered mobile number is already registered');
 	  } 
 	  else if (v.email == email) {
 	    setvalflg=1;
-	   shpngusrflg =0;
+	    shpngusrflg =0;
 	    common.msg(0, 'Your Entered email id is already registered');
-	  }  
+	  }
 	});
- 	if( setvalflg !== 1)
- 	 shpngusrflg=1;
+	if( setvalflg !== 1)
+	  shpngusrflg=1;
       }
     });
   }
@@ -945,25 +957,25 @@ function checkuserdetail()
 
 function checkshpdpincode(zipcode)
 {
- 
+
   if (zipcode.length == 6) {
     var URL = APIDOMAIN + "index.php?action=viewbyPincode&code=" + zipcode;
     $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results)
       {
 	var obj = JSON.parse(results);
-	
+
 	if(obj['error']['code'] == 0)
-	{ 
-	$('#shpdstate').val(obj.results[0].state);
-	$('#shpdcity').val(obj.results[0].city);
-	shipngzpcodflg = 1;
-	$('#shpdcity').focus();
-	$('#shpdstate').focus(); 
-	}
+	{
+	  $('#shpdstate').val(obj.results[0].state);
+	  $('#shpdcity').val(obj.results[0].city);
+	  shipngzpcodflg = 1;
+	  $('#shpdcity').focus();
+	  $('#shpdstate').focus();
+	} 
 	else if(obj['error']['code'] == 1){
 	  shipngzpcodflg = 0;
 	  common.msg(0, obj['error']['msg']);
-	} 
+	}
       }
     });
   } 
@@ -972,5 +984,5 @@ function checkshpdpincode(zipcode)
   else {
     shipngzpcodflg=0;
     common.msg(0, 'Please Enter correct Zip Code');
-  } 
+  }
 }
