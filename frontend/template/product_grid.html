@@ -72,6 +72,11 @@
                                             PRICE
                                         </div>
                                     </div>
+                                    <div class="ftabB">
+                                        <div class="ftab fLeft tabe">
+                                            CARAT
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="fmenu_wrap">
                                     <div class="fmenuB">
@@ -503,6 +508,7 @@
                         </div>
                         <div class="grid_cont fLeft">
                             <div class="col100 fLeft poR" id="gridDetail">
+                                
                             </div>
                             <div class="grid_footer fLeft transition300" ><div class="actBtn " id="gr_foot">View More</div></div>
                         </div>
@@ -739,6 +745,12 @@
                 type: "double",
                 min: 1000,
                 max: 2000,
+                grid: true
+            });
+            $('#carat').ionRangeSlider({
+                type: "double",
+                min: 24,
+                max: 8,
                 grid: true
             });
 
