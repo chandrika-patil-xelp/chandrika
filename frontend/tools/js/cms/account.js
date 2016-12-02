@@ -55,7 +55,7 @@ function displayorders()
                       var totalprice = $('#ordPrice').html(indianMoney(parseInt(obj.totalprice)));
                       $(obj['result']).each(function(r,v){
                         
-                         var orderID = $('#ordId').html(v.oid);
+                         var orderID = $('#ordId').html(v.oid);  
                         // var orderDate =$('#ordDate').html(v.order_date);
                           
                            var ordrdate="";
@@ -70,7 +70,7 @@ function displayorders()
 			    var image=v.prdimage; image=image.split(',');
 			    image=IMGDOMAIN+image[0]; 
 			 }
-                     
+                    
  orderstr+='<div class="orderParent fLeft">';
  orderstr+='<div class="fLeft orderImg bgCommon" style="background: #fff url(\''+ image+ '\')no-repeat;background-size: contain;background-position:center; background-color:#FFF;"></div>';
  orderstr+='<div class="fLeft orderName">';
@@ -309,22 +309,21 @@ function wishlist()
         var ids=$(ths).attr('id');
         ids=ids.split('_');
         var price=$(ths).closest('.grid_dets').find('.grid_price ').text(); 
-        price=price.replace(/\,/g,'');
-        var userid=common.readFromStorage('jzeva_uid'); 
-        var cartid=common.readFromStorage('jzeva_cartid');
-        var cartdata={};
-        cartdata['pid']= ids[2];
-        cartdata['price']= price;
-        cartdata['qty']=1;
-        cartdata['col_car_qty']=ids[1];
-        cartdata['RBsize']= ids[3]; 
-        cartdata['cartid']= cartid;
-        cartdata['userid']=userid;
-        storecartdata(cartdata,2);
-        var URL = APIDOMAIN+"index.php?action=removeItmFrmWishlist&wish_id="+ids[0]+"&col_car_qty="+ids[1]+"&pid="+ids[2]+"&size="+ids[3];
+        price=price.replace(/\,/g,''); 
+        var cartdata=[], combnstr="";
+	
+        cartdata.push(ids[2]);
+        cartdata.push(price);
+	combnstr=ids[1];      combnstr=combnstr.split('|@|');
+	cartdata.push(combnstr[0]); 
+	cartdata.push(combnstr[2]);
+	cartdata.push(combnstr[1]); 
+        cartdata.push(ids[3]);
+	
+	newaddToCart(cartdata);
+         var URL = APIDOMAIN+"index.php?action=removeItmFrmWishlist&wish_id="+ids[0]+"&col_car_qty="+ids[1]+"&pid="+ids[2]+"&size="+ids[3];
         $.ajax({  type:'POST', url:URL, success:function(res){ 
              wishlist();
-             displaycartdata();
 	      }
         });
   } 
@@ -384,8 +383,7 @@ function wishlist()
 		      var obj=JSON.parse(res);
                      
                         var profileStr="";
-                       $(obj['result']).each(function(k,l){
-                   
+                       $(obj['result']).each(function(k,l){ 
                           profileStr+= '<div class="proFields">'+l.uname+'</div>';
                           profileStr+= '<div class="proFields">'+l.mob+'</div>';   
                           profileStr+='<div class="proFields">'+l.email+'</div>';
@@ -500,8 +498,7 @@ function storenewpass(newpass)
                  url: URL,
                  type: "GET",   
                  datatype: "JSON",   
-                 success: function(results){ 
-                  
+                 success: function(results){   
 		     var data=JSON.parse(results);
                       if(data.results == null){
 			$('#noaddrs').removeClass('dn');
