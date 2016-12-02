@@ -741,19 +741,7 @@
             }
             wid = $('.rota').width();
             // bindrota();
-            $("#range").ionRangeSlider({
-                type: "double",
-                min: 1000,
-                max: 2000,
-                grid: true
-            });
-            $('#carat').ionRangeSlider({
-                type: "double",
-                min: 24,
-                max: 8,
-                grid: true
-            });
-
+            
         });
         $(window).load(function () {
 
@@ -1115,6 +1103,15 @@
 //              
                  
               });
+              
+             
+            $('#carat').ionRangeSlider({
+                type: "double",
+                min: 8,
+                max: 24,
+                grid: true
+            });
+
         var vheight = 0;
         /*Overlay fade in/out  on menu hover*/
         $('.ftabWrap').mouseover(function () {
