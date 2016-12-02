@@ -337,7 +337,7 @@ $(document).ready(function () {
                             storedDmdCarat = parseFloat(vl.crat);
                             
                             
-                           
+                          
                             $.each(vl.QMast.results, function (x, y) {
                                 if(y.id == "9"){
                                  $('#qual').text(y.dVal);
@@ -355,7 +355,7 @@ $(document).ready(function () {
                                 
                                 dQstr += '<div class="rad_wrap ">';
                                 //dQstr+= '<input type="radio" name="selectM" id="dQuality_'+x+'_'+y.id+'" checked  onchange=\"diamondPrice('+y.prcPrCrat+vl.crat+')\" class="filled-in dn">';
-                                dQstr += '<input type="radio" name="selectM" id="dQuality_' + x + '_' + y.id + '" value="' + y.dVal + '" data-value="' + y.prcPrCrat + '" onchange="setdmd(this)" class="filled-in dn">';
+                                dQstr += '<input type="radio" name="selectM" id="dQuality_' + x + '_' + y.id + '" value="' + y.dVal + '" data-value="' + y.prcPrCrat + '" onclick="setdmd(this)" class="filled-in dn">';
                                 dQstr += '<label for="dQuality_' + x + '_' + y.id + '"></label>';
                                 dQstr += '<div class="check2 ' + dClass + '"></div>';
                                 dQstr += '<div class=" selector_label" >';
@@ -366,7 +366,7 @@ $(document).ready(function () {
                                 getdmdprice(dvprc,dcarat);
 
                             });
-                          
+			    
                             $('#diQ').append(dQstr);
                             
                             // diamstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>' + vl.totNo + '</span><span> Diamonds</span></span><span class="fRight fmSansR"><span> ' + vl.crat + '</span> Carat</span></div>';
@@ -440,7 +440,7 @@ $(document).ready(function () {
                         purstr += '<div class="rad_wrap fLeft">';
 
                         //" id="purity_'+k+'_'+val.id+'"   onchange=\"GoldPrice('+val.prc+')\"  class="filled-in dn">';
-                        purstr += '<input type="radio" name="purity" id="purity_' + k + '_' + val.id + '" value="' + val.dVal + '" data-price="' + val.prc + '" onchange="setmetal(this)" class="filled-in dn">';
+                        purstr += '<input type="radio" name="purity" id="purity_' + k + '_' + val.id + '" value="' + val.dVal + '" data-price="' + val.prc + '" onclick="setmetal(this)" class="filled-in dn">';
                         purstr += '<label for="purity_' + k + '_' + val.id + '"></label>';
                         purstr += '<div class="check2 ' + kar + '"></div>';
                         purstr += '<span class=" selector_label">';
@@ -457,7 +457,7 @@ $(document).ready(function () {
 
 
                     var clrstr = "";
-
+		   
                     $.each(metalColor.results, function (j, vl) {
                         var apcol = vl.dVal.toLowerCase();
                         if (j == 0) {
@@ -465,14 +465,14 @@ $(document).ready(function () {
                             $('#clr').attr('clr_id', vl.id);
                         }
                         clrstr += '<div class="rad_wrap fLeft">';
-                        clrstr += '<input type="radio" name="metal" id="color_' + j + '_' + vl.id + '" value= "' + vl.dVal + '" onchange="setclr(this)" class="filled-in dn">';
+                        clrstr += '<input type="radio" name="metal" id="color_' + j + '_' + vl.id + '" value= "' + vl.dVal + '" onclick="setclr(this)" class="filled-in dn">';
                         clrstr += '<label for="color_' + j + '_' + vl.id + '"></label>';
                         clrstr += '<div class="check2 ' + apcol + '"></div>';
                         clrstr += '<div class="fmSansB selector_label">';
                         clrstr += '<div class="labBuffer">' + vl.dVal + '</div>';
                         clrstr += '</div>';
                         clrstr += '</div>';
-                    });
+                    }); 
                     $('#colr').append(clrstr);
                     $('input[name="metal"]').eq(0).attr('checked', true);
 
@@ -594,7 +594,7 @@ function setdmd(e) {
     dmdValue = pr[t];
     $('#qual').attr("qual_id", a); //changes
     $('#qual').html(va);
-
+    
     // glbquality=s;
     setTimeout(function () {
         $(e).closest('.selector_cont ').find('.options_back').click();
@@ -612,7 +612,15 @@ function setdmd(e) {
         $('#ch_price').velocity({opacity: [0, 1]});
     }, 8000);
      dmdsoli=va;
-     getDesc(va,jweltype);
+    getDesc(va,jweltype);
+    $("input[name='selectM']").each(function() {
+	$(this).attr('disabled', true);
+    });
+    setTimeout(function(){
+       $("input[name='selectM']").each(function() {
+	  $(this).attr('disabled', false);
+       });
+    },1000);
 }
 
 function setmetal(m) {
@@ -626,7 +634,7 @@ function setmetal(m) {
     $('#carat').attr("carat_id", b); //changes
     $('#carat').html(wx);
     // glbcarat=t;
-
+     
     setTimeout(function () {
         $(m).closest('.selector_cont ').find('.options_back').click();
         $('#ch_price').find('.labBuffer').empty();
@@ -642,7 +650,14 @@ function setmetal(m) {
         $('#ch_price').removeClass('showCh');
         $('#ch_price').velocity({opacity: [0, 1]});
     }, 8000);  
-  
+    $("input[name='purity']").each(function() {
+	$(this).attr('disabled', true);
+    });
+    setTimeout(function(){
+       $("input[name='purity']").each(function() {
+	  $(this).attr('disabled', false);
+       });
+    },1000);
 }
 
 function setclr(c) {
@@ -653,12 +668,19 @@ function setclr(c) {
     var cl = cl - 2;
     $('#clr').html(cr);
     $('#clr').attr("clr_id", cc);
-
-
+ 
     setTimeout(function () {
         $(c).closest('.selector_cont').find('.options_back').click();
 
     }, 400);
+     $("input[name='metal']").each(function() {
+	$(this).attr('disabled', true);
+     });
+    setTimeout(function(){
+	 $("input[name='metal']").each(function() {
+	    $(this).attr('disabled', false);
+	 });
+      },800);
 
 }
 
@@ -892,17 +914,18 @@ function getDesc(dmdsol,jwlty){
         var data=JSON.parse(res); 
 	 
             $(data['result']).each(function(r,v){ 
-                 
+                 var descname="";
+		 descname=v.name;   descname=descname.replace(' ','-');
                 if( r== 0){
                     descStr+=' <div class="colleCont ">'; 
-                  descStr+='<div class="smUlineb">'+v.name+'</div>';
+                  descStr+='<div class="smUlineb">'+descname+'</div>';
                   descStr+='<div class="collCenterb ">';
                   descStr+=''+v.desc+'';
                   descStr+=' </div> </div>'; 
                 } 
                 else{
                     descStr+=' <div class="colleCont v2">'; 
-                  descStr+=' <div class="smUline">'+v.name+'</div>';
+                  descStr+=' <div class="smUline">'+descname+'</div>';
                   descStr+='<div class="collCenter ">';
                   descStr+=''+v.desc+'';
                   descStr+=' </div> </div>';  
