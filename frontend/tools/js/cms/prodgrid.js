@@ -134,7 +134,7 @@ function generatelist(obj) {
 
     proStr += '<a  target="_blank" href="'+DOMAIN+'index.php?action=product_page&pid='+ obj['prdId']+'">'; 
     proStr += '<div class="grid3 transition400" id="'+ obj['prdId'] +'"  >';
-    proStr += '<div class="noimgDiv"></div>';
+  // proStr += '<div class="noimgDiv"></div>';
     proStr += '<div class="facet_front">';
     proStr += '<div class="grid_item"  >';
     proStr += '<div class="grid_img"  onmousemove="bindrota(this , event)" lcor="0">';
@@ -501,6 +501,9 @@ var count=0;
 
             if (res['error']['err_code'] == 0) {
             var total = res['total'];
+	    if(total == 1)
+	       $('#total_Product').html("<strong>" + total + "</strong> Product");
+	    else
             $('#total_Product').html("<strong>" + total + "</strong> Products");
                 var obj1 = res["result"];
 		if(obj1 !== null){
@@ -647,7 +650,10 @@ function getprodbyid()
             if (res['error']['err_code'] == 0) {
                 getProdDtl = res["result"];
                    var total = res["total"];
-                $('#total_Product').html( total + " Products");
+		if(total == 1)
+		    $('#total_Product').html("<strong>" + total + "</strong> Product");
+		else   
+		    $('#total_Product').html("<strong>" + total + "</strong> Products");
                 var obj = res["result"];
 		if(total<12)
 		  $('#gr_foot').remove();

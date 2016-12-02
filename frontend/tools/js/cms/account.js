@@ -401,7 +401,15 @@ function storenewpass(newpass)
     var mob=common.readFromStorage('jzeva_mob');
      var URL= APIDOMAIN + "index.php/?action=updateuserpass&user_id="+userid+"&pass="+newpass+"&mobile="+mob; 
      $.ajax({  type:'POST',  url:URL, success:function(res){ 
-	        common.msg(1,'Password Changed Successfully');   
+	        common.msg(1,'Password Changed Successfully'); 
+		common.removeFromStorage('jzeva_email');
+		common.removeFromStorage('jzeva_name');
+		common.removeFromStorage('jzeva_uid');
+		common.removeFromStorage('jzeva_mob');
+		common.removeFromStorage('jzeva_cartid'); 
+		setTimeout(function(){
+		    window.location.href = DOMAIN + "index.php?action=landing_page";
+		},3000); 
 	   }
        });  
  }
