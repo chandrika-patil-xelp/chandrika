@@ -12,7 +12,7 @@
     <div class="overlay"></div>
     <div class="overlay2 " onclick="closeCart()"></div>
     <div class="header">
-         <div class="logo fLeft" id="jzeva_log"></div> 
+        <div class="logo fLeft" id="jzeva_log"></div> 
     </div>
     <div class="tabWrap fRight">
         <div class="tab_buffer">
@@ -130,7 +130,7 @@
                             <a  target="_blank" href='<?php echo DOMAIN?>index.php?action=myaccount&actn=sId'><div class="menu_list fLeft">saved addresses</div></a>
                         </div>
                         <div class="col100 fLeft">
-                           <div class="menu_list fLeft" id="usrlogout">Logout</div> 
+                            <div class="menu_list fLeft" id="usrlogout">Logout</div> 
                         </div>
                     </div>
                 </div>
@@ -140,162 +140,159 @@
 </div>
 <script type="text/javascript" src="<?php echo $jvs['header']; ?>"></script>
 <script>
-    /*Overlay fade in/out  on menu hover*/ 
-    $('.tabWrap').mouseover(function () {
-        $('.overlay').stop(true, true).fadeTo(200, 1);
-    });  
-  
-    /*Main menu slidedown/slideup , Menu tab colour change*/
-    $('.tabB').mouseover(function () {
-       var userid=common.readFromStorage('jzeva_uid');  
-       if($(this).attr('id') == 'userProfId')
-        {    
-            if(userid == null)
-            {     
-              $('.overlay').stop(true, true).fadeTo(200, 1);
-              $('.tab').removeClass('selec');
-              $('.menu_wrap').velocity('stop').velocity({height: [0]}, {duration: 200, easing: 'ease-in-out', display: 'block'});
-            }
-	    else{
-	       $('.overlay').stop(true, true).fadeTo(200, 1);
-              $('.tab').removeClass('selec');
-              $('.menu_wrap').velocity('stop').velocity({height: [180]}, {duration: 200, easing: 'ease-in-out', display: 'block'});
-             }
-        }
-        else
-        { 
-	    $('.overlay').stop(true, true).fadeTo(200, 1);
-	    $('.tab').removeClass('selec');
-	    $('.menu_wrap').velocity('stop').velocity({height: [180]}, {duration: 200, easing: 'ease-in-out', display: 'block'});
-	}
-    });
-    $('.tabWrap').mouseleave(function () {
-        $('.overlay').stop(true, true).fadeTo(200, 0);
-        $('.menu_wrap').velocity('stop').velocity({height: [0]}, {duration: 200, easing: 'ease-in-out', display: 'none',
-            complete: function () {
-                $('.menu_elm').stop(true, true).css({'display': 'block'});
-            }
+                /*Overlay fade in/out  on menu hover*/
+                $('.tabWrap').mouseover(function () {
+            $('.overlay').stop(true, true).fadeTo(200, 1);
         });
-        $('.tab').removeClass('selec');
-    });
-    /*Sub menu slidedown/slideup , Menu tab colour change*/
-    $('.tab').mouseenter(function () {
-        
-        var k = $(this).closest('.tabB').index();
-       
-        $('.menu_elm').css({'z-index': '50'}).removeClass('tab_select').addClass('remo');
-        $('.menu_elm').eq(k).css({'z-index': '9999'}).addClass('tab_select').removeClass('remo');
-        $('.menu_elm').eq(k).stop(true, true).slideDown(200, function () {
-            $('.remo').css({'display': 'none'});
-        });
-    });
-    /* Maintain colour of tab while hovering on corresponding submenu*/
-    $('.menu_elm').mouseenter(function () {
-        var k = $(this).index();
-        $('.tab').removeClass('selec');
-        $('.tabB').find('.tab').eq(k).addClass('selec');
-    });
 
-    /* Search Bar Open / Close*/
-    $('.search_btn').click(function () {
-        $('.search_bar').toggleClass('search_open');
-        $('.overlay2').toggleClass('over_open');
-        $(' .tabWrap , .wrapper').toggleClass('pointNone');
-        $('.search_ip').val("");
-        $('.search_ip').focus();
-    });
-    /* Open Clase cart*/
-    var fr = 0;
-    var cartF = 0;
-    $('.openC').click(function () {
-        
-        if (cartF == 0) {
-            openCart();
-            cartF = 1;
-        } else {
+        /*Main menu slidedown/slideup , Menu tab colour change*/
+        $('.tabB').mouseover(function () {
+            var userid = common.readFromStorage('jzeva_uid');
+            if ($(this).attr('id') == 'userProfId')
+            {
+                if (userid == null)
+                {
+                    $('.overlay').stop(true, true).fadeTo(200, 1);
+                    $('.tab').removeClass('selec');
+                    $('.menu_wrap').velocity('stop').velocity({height: [0]}, {duration: 200, easing: 'ease-in-out', display: 'block'});
+                } else {
+                    $('.overlay').stop(true, true).fadeTo(200, 1);
+                    $('.tab').removeClass('selec');
+                    $('.menu_wrap').velocity('stop').velocity({height: [180]}, {duration: 200, easing: 'ease-in-out', display: 'block'});
+                }
+            } else
+            {
+                $('.overlay').stop(true, true).fadeTo(200, 1);
+                $('.tab').removeClass('selec');
+                $('.menu_wrap').velocity('stop').velocity({height: [180]}, {duration: 200, easing: 'ease-in-out', display: 'block'});
+            }
+        });
+        $('.tabWrap').mouseleave(function () {
+            $('.overlay').stop(true, true).fadeTo(200, 0);
+            $('.menu_wrap').velocity('stop').velocity({height: [0]}, {duration: 200, easing: 'ease-in-out', display: 'none',
+                complete: function () {
+                    $('.menu_elm').stop(true, true).css({'display': 'block'});
+                }
+            });
+            $('.tab').removeClass('selec');
+        });
+        /*Sub menu slidedown/slideup , Menu tab colour change*/
+        $('.tab').mouseenter(function () {
+
+            var k = $(this).closest('.tabB').index();
+
+            $('.menu_elm').css({'z-index': '50'}).removeClass('tab_select').addClass('remo');
+            $('.menu_elm').eq(k).css({'z-index': '9999'}).addClass('tab_select').removeClass('remo');
+            $('.menu_elm').eq(k).stop(true, true).slideDown(200, function () {
+                $('.remo').css({'display': 'none'});
+            });
+        });
+        /* Maintain colour of tab while hovering on corresponding submenu*/
+        $('.menu_elm').mouseenter(function () {
+            var k = $(this).index();
+            $('.tab').removeClass('selec');
+            $('.tabB').find('.tab').eq(k).addClass('selec');
+        });
+
+        /* Search Bar Open / Close*/
+        $('.search_btn').click(function () {
+            $('.search_bar').toggleClass('search_open');
+            $('.overlay2').toggleClass('over_open');
+            $(' .tabWrap , .wrapper').toggleClass('pointNone');
+            $('.search_ip').val("");
+            $('.search_ip').focus();
+        });
+        /* Open Clase cart*/
+        var fr = 0;
+        var cartF = 0;
+        $('.openC').click(function () {
+
+            if (cartF == 0) {
+                openCart();
+                cartF = 1;
+            } else {
+                closeCart();
+                cartF = 0;
+            }
+        });
+        $('#closeCart').click(function () {
             closeCart();
             cartF = 0;
-        }
-    });
-    $('#closeCart').click(function () {
-        closeCart();
-        cartF = 0;
-    });
-    $('.over_open').click(function () {
-
-    });
-    function openCart() {
-        $('.cart').css({'display': 'block'});
-        $('.search_bar').removeClass('search_open');
-        $('.tabWrap , .tabWrap2').addClass('deactive');
-        $('.wrapper').removeClass('pointNone');
-        $('.cart').velocity({translateX: [0, '100%']}, {duration: 300, easing: 'easeInOutExp'});
-        $('.overlay2').velocity({opacity: [1, 0]}, {duration: 300, easing: 'swing', display: 'block'});
-        //$('body').css({'overflow': 'hidden'});
-        $('.wrapper').addClass('pointNone');
-        $('.cart_item').each(function (i) {
-            var t = (i * 30) + 50;
-            $(this).velocity({translateX: [0, '100%']}, {duration: 600, delay: t, easing: [0.2, 1, 0.3, 1]});
         });
-    }
-    function closeCart() {
-        $('.cart').velocity({translateX: ['100%', 0]}, {duration: 300, easing: 'easeInOutExp', complete: function () {
-                $('.wrapper').removeClass('pointNone');
-                $('.overlay2').velocity({opacity: [0, 1]}, {duration: 300, easing: 'swing', display: 'none'})
-                $('.cart').css({'display': 'none'});
-                $('.tabWrap , .tabWrap2').removeClass('deactive');
-            }});
-        //  $('body').css({'overflow': 'visible'});
-        $('.wrapper').removeClass('pointNone');
-    }
+        $('.over_open').click(function () {
 
-    $('#2920160603124607').click(function () {
-        var catidv = $(this).attr('id');
-        window.location.href = DOMAIN + "index.php?action=product_grid&id=" + catidv + "";
-    });
-    $('#2020160603124631').click(function () {
-        var catid = $(this).attr('id');
-        window.location.href = DOMAIN + "index.php?action=product_grid&id=" + catid + "";
-    });
-    $('#9820160603124850').click(function () {
-        var catid = $(this).attr('id');
-        window.location.href = DOMAIN + "index.php?action=product_grid&id=" + catid + "";
-    });
-    $('#8120160603125512').click(function () {
-        var catid = $(this).attr('id');
-        window.location.href = DOMAIN + "index.php?action=product_grid&id=" + catid + "";
-    });
+        });
+        function openCart() {
+            $('.cart').css({'display': 'block'});
+            $('.search_bar').removeClass('search_open');
+            $('.tabWrap , .tabWrap2').addClass('deactive');
+            $('.wrapper').removeClass('pointNone');
+            $('.cart').velocity({translateX: [0, '100%']}, {duration: 300, easing: 'easeInOutExp'});
+            $('.overlay2').velocity({opacity: [1, 0]}, {duration: 300, easing: 'swing', display: 'block'});
+            //$('body').css({'overflow': 'hidden'});
+            $('.wrapper').addClass('pointNone');
+            $('.cart_item').each(function (i) {
+                var t = (i * 30) + 50;
+                $(this).velocity({translateX: [0, '100%']}, {duration: 600, delay: t, easing: [0.2, 1, 0.3, 1]});
+            });
+        }
+        function closeCart() {
+            $('.cart').velocity({translateX: ['100%', 0]}, {duration: 300, easing: 'easeInOutExp', complete: function () {
+                    $('.wrapper').removeClass('pointNone');
+                    $('.overlay2').velocity({opacity: [0, 1]}, {duration: 300, easing: 'swing', display: 'none'})
+                    $('.cart').css({'display': 'none'});
+                    $('.tabWrap , .tabWrap2').removeClass('deactive');
+                }});
+            //  $('body').css({'overflow': 'visible'});
+            $('.wrapper').removeClass('pointNone');
+        }
 
-    $('#3420160603124716').click(function () {
-        var catid = $(this).attr('id');
-        window.location.href = DOMAIN + "index.php?action=product_grid&id=" + catid + "";
-    }); 
-    
-    $('#jzeva_log').click(function(){
-        window.location.href = DOMAIN + "index.php?action=landing_page";
-    });
- 
-    $('#usrlogout').click(function(){ 
-      common.removeFromStorage('jzeva_email');
-      common.removeFromStorage('jzeva_name');
-      common.removeFromStorage('jzeva_uid');
-      common.removeFromStorage('jzeva_mob');
-      common.removeFromStorage('jzeva_cartid'); 
-      var URLactn = window.location.search;  
-    
-     
-     var accnvar='';
-      accnvar=URLactn;           
-      accnvar=accnvar.split('=');
-      accnvar=accnvar[1].split('&');
-    // console.log(accnvar[0]);
-     if(accnvar[0] == 'myaccount'){
-         window.location.href = DOMAIN + "index.php?action=landing_page";
-     }
-     else{
-            var url=DOMAIN + '/index.php' +URLactn;
-            window.location.href = url; 
-       }
-    });
-     
+        $('#2920160603124607').click(function () {
+            var catidv = $(this).attr('id');
+            window.location.href = DOMAIN + "index.php?action=product_grid&id=" + catidv + "";
+        });
+        $('#2020160603124631').click(function () {
+            var catid = $(this).attr('id');
+            window.location.href = DOMAIN + "index.php?action=product_grid&id=" + catid + "";
+        });
+        $('#9820160603124850').click(function () {
+            var catid = $(this).attr('id');
+            window.location.href = DOMAIN + "index.php?action=product_grid&id=" + catid + "";
+        });
+        $('#8120160603125512').click(function () {
+            var catid = $(this).attr('id');
+            window.location.href = DOMAIN + "index.php?action=product_grid&id=" + catid + "";
+        });
+
+        $('#3420160603124716').click(function () {
+            var catid = $(this).attr('id');
+            window.location.href = DOMAIN + "index.php?action=product_grid&id=" + catid + "";
+        });
+
+        $('#jzeva_log').click(function () {
+            window.location.href = DOMAIN + "index.php?action=landing_page";
+        });
+
+        $('#usrlogout').click(function () {
+            common.removeFromStorage('jzeva_email');
+            common.removeFromStorage('jzeva_name');
+            common.removeFromStorage('jzeva_uid');
+            common.removeFromStorage('jzeva_mob');
+            common.removeFromStorage('jzeva_cartid');
+            var URLactn = window.location.search;
+
+
+            var accnvar = '';
+            accnvar = URLactn;
+            accnvar = accnvar.split('=');
+            accnvar = accnvar[1].split('&');
+
+            if (accnvar[0] == 'myaccount') {
+                window.location.href = DOMAIN + "index.php?action=landing_page";
+            } else {
+                var url = DOMAIN + '/index.php' + URLactn;
+                window.location.href = url;
+            }
+        });
+
 </script>
