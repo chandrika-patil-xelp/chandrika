@@ -60,6 +60,11 @@ $('#rsubId').on('click',function(){
 	    inptval=mobile;
 	    signupSubmit(); 
             $('#otpCont').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+	  $('#name').val('');		  $('#name').blur();
+	  $('#signupemail').val('');	  $('#signupemail').blur();
+	  $('#signuppass').val('');	  $('#signuppass').blur();
+	  $('#mobile').val('');		  $('#mobile').blur();
+	  $('#signup_otp').val('');	  $('#signup_otp').blur();
           otpflg=1; 
 	  sendotp();
 	  userdata[0]=name;
@@ -257,7 +262,8 @@ $('#fsubId').on('click',function(){
   
   function forgtpass()
   {
-      inptval=$('#femail').val();
+    
+    inptval=$('#femail').val();
     var validationflg=1;
     if($.isNumeric(inptval)){
       
@@ -429,7 +435,7 @@ function sugnupsubmt()
              success:function(res){
 	    var data1 = JSON.parse(res); 
             if(data1['error']['err_code']==0)  {
-                common.msg(1,'Registered Successfullllly');
+                common.msg(1,'Registered Successfullllly'); 
 		var URL = APIDOMAIN + "index.php/?action=login&email="+userdata[1]+"&pass="+userdata[3]; 
 		$.ajax({ type:'POST',  url:URL, success:function(res){ 
 		    var data = JSON.parse(res); 
@@ -479,8 +485,11 @@ function sugnupsubmt()
     });
   }
    else if(otpflg == 2){
-     entrflg=5;
+	  entrflg=5;
 	  $('#resetId').removeClass("dn");
+	  $('#otp_inpt').val('');     $('#otp_inpt').blur();
+	  $('#resetpass').val('');	$('#resetpass').blur();
+	  $('#resetcpass').val('');	$('#resetcpass').blur();
   $('#otpCont').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
   $('#inresetId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
      
@@ -533,6 +542,7 @@ function sugnupsubmt()
     
     $('#resnd_otp').click(function(){ 
       sendotp();
+      $('#signup_otp').val('');	    $('#signup_otp').blur();
     });
     
     $('#forId').click(function () {
@@ -545,7 +555,7 @@ function sugnupsubmt()
     
     function closelogpg()
    {
-      entrflg = 11;
+      entrflg = 11; 
       $('.overlay').stop(true, true).fadeTo(200, 0);
       $('.tabWrap').removeClass("addPointer");
       $('.ftabB').removeClass("addPointer");

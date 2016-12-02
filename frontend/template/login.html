@@ -166,6 +166,8 @@
         });
 
         function forgot() {
+	    $('#email').val('');    $('#pass').val('');	
+	    $('#pass').blur();	    $('#email').blur();
             entrflg = 1;
             $('#forgot').removeClass("dn");
             $('#loginId1').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
@@ -173,6 +175,8 @@
 
         function fSubmit() {
             entrflg = 3;
+	    $('#otp_inpt').val('');   $('#otp_inpt').blur();
+	    $('#femail').val('');     $('#femail').blur();
             $('#forgot').addClass("dn");
             $('#loginId1').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
             $('#otpOuter').removeClass("dn");
@@ -186,6 +190,8 @@
         }
 
         function signup() {
+	    $('#email').val('');    $('#pass').val('');	
+	    $('#pass').blur();	    $('#email').blur();
             entrflg = 2;
             $('#signUpId').removeClass("dn");
             $('#loginId').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
@@ -211,6 +217,8 @@
 
         function resetSubmit() {
             entrflg = 4;
+	    $('#resetpass').val('');	$('#resetpass').blur();
+	    $('#resetcpass').val('');	$('#resetcpass').blur();
             $('#resetId').addClass("dn");
             $('#inresetId').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
             $('#otpOuter').addClass("dn");
@@ -218,6 +226,8 @@
         }
 
         function otpBack() {
+	    entrflg = 1;
+	    $('#femail').val('');     $('#femail').blur();
             $('#otpOuter').addClass("dn");
             $('#otpCont').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
             $('#forgot').removeClass("dn");
@@ -229,10 +239,15 @@
             $('#signUpId').addClass("dn");
             $('#signCont').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
             $('#loginId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+	    $('#name').val('');		  $('#name').blur();
+	    $('#signupemail').val('');	  $('#signupemail').blur();
+	    $('#signuppass').val('');	  $('#signuppass').blur();
+	    $('#mobile').val('');	  $('#mobile').blur();
         }
 
         /*sign up otp Back button*/
-        function otp2Back() {
+        function otp2Back() { 
+	    entrflg = 2;
             $('#otpOuter2').addClass("dn");
             $('#otpCont2').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
             $('#signUpId').removeClass("dn");
@@ -240,18 +255,21 @@
         }
 
         function resetBack() {
+	    entrflg = 3;
+	    $('#otp_inpt').val('');   $('#otp_inpt').blur();
             $('#resetId').addClass("dn");
             $('#inresetId').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
             $('#otpOuter').removeClass("dn");
             $('#otpCont').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
         }
 
-        function forgotBack() {
+        function forgotBack() { 
             entrflg = 4;
             $('#forgot').addClass("dn");
             $('#loginId1').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
 //            $('#signInId').removeClass("dn");
             $('#loginId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+	    $('#femail').val('');     $('#femail').blur();
         }
 
 
