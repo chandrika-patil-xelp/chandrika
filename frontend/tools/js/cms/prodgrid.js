@@ -134,6 +134,7 @@ function generatelist(obj) {
 
     proStr += '<a  target="_blank" href="'+DOMAIN+'index.php?action=product_page&pid='+ obj['prdId']+'">'; 
     proStr += '<div class="grid3 transition400" id="'+ obj['prdId'] +'"  >';
+    proStr += '<div class="noimgDiv"></div>';
     proStr += '<div class="facet_front">';
     proStr += '<div class="grid_item"  >';
     proStr += '<div class="grid_img"  onmousemove="bindrota(this , event)" lcor="0">';
