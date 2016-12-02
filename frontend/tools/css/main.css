@@ -2389,10 +2389,74 @@ input[type=radio]:checked ~ .matchIcn{
 .closeButton{width:100px;height:50px;background: url('../img/close.svg')no-repeat;cursor: pointer;}
 
 
+.roughImg1{background: url('../img/rough1.png')no-repeat;background-size: initial;background-position: center;}
+.roughImg2{background: url('../img/rough2.png')no-repeat;background-size: initial;background-position: center;}
+.roughImg3{background: url('../img/rough3.png')no-repeat;background-size: initial;background-position: center;}
+.roughImg4{background: url('../img/rough4.png')no-repeat;background-size: initial;background-position: center;}
+.roughImg5{background: url('../img/rough5.png')no-repeat;background-size: initial;background-position: center;}
+.roughImg6{background: url('../img/rough6.png')no-repeat;background-size: initial;background-position: center;}
+.roughImg7{background: url('../img/rough7.png')no-repeat;background-size: initial;background-position: center;}
+.roughImg8{background: url('../img/rough8.png')no-repeat;background-size: initial;background-position: center;}
+.roughImg9{background: url('../img/rough9.png')no-repeat;background-size: initial;background-position: center;}
+.roughImg10{background: url('../img/rough10.png')no-repeat;background-size: initial;background-position: center;}
+.roughImg11{background: url('../img/rough11.png')no-repeat;background-size: initial;background-position: center;}
+.roughImg12{background: url('../img/rough12.png')no-repeat;background-size: initial;background-position: center;}
+.roughImg13{background: url('../img/rough13.png')no-repeat;background-size: initial;background-position: center;}
+.roughImg14{background: url('../img/rough14.png')no-repeat;background-size: initial;background-position: center;}
+.roughImg15{background: url('../img/rough15.png')no-repeat;background-size: initial;background-position: center;}
+.roughImg16{background: url('../img/rough16.png')no-repeat;background-size: initial;background-position: center;}
+.roughImg17{background: url('../img/rough17.png')no-repeat;background-size: initial;background-position: center;}
+.roughImg18{background: url('../img/rough18.png')no-repeat;background-size: initial;background-position: center;}
+.roughImg19{background: url('../img/rough19.png')no-repeat;background-size: initial;background-position: center;}
+.roughImg20{background: url('../img/rough20.png')no-repeat;background-size: initial;background-position: center;}
+.roughImg21{background: url('../img/rough21.png')no-repeat;background-size: initial;background-position: center;}
+.roughImg22{background: url('../img/rough22.png')no-repeat;background-size: initial;background-position: center;}
+.roughImg23{background: url('../img/rough23.png')no-repeat;background-size: initial;background-position: center;}
+.roughImg24{background: url('../img/rough24.png')no-repeat;background-size: initial;background-position: center;}
+.roughImg25{background: url('../img/rough25.png')no-repeat;background-size: initial;background-position: center;}
+.roughImg26{background: url('../img/rough26.png')no-repeat;background-size: initial;background-position: center;}
+.roughImg27{background: url('../img/rough27.png')no-repeat;background-size: initial;background-position: center;}
+.roughImg28{background: url('../img/rough28.png')no-repeat;background-size: initial;background-position: center;}
+.roughImg29{background: url('../img/rough29.png')no-repeat;background-size: initial;background-position: center;}
+.roughImg29{background: url('../img/rough29.png')no-repeat;background-size: initial;background-position: center;}
+.roughImg30{background: url('../img/redcoral2.png')no-repeat;background-size: initial;background-position: center;}
 
 
+.largeRough1{width:42%;height: 100%;float:left;background: url('../img/rough1L.png')no-repeat center;}
+.largeRough2{width:42%;height: 100%;float:left;background: url('../img/rough2L.png')no-repeat center;}
+.largeRough3{width:42%;height: 100%;float:left;background: url('../img/rough3L.png')no-repeat center;}
+.largeRough4{width:42%;height: 100%;float:left;background: url('../img/rough4L.png')no-repeat center;}
+.largeRough5{width:42%;height: 100%;float:left;background: url('../img/rough5L.png')no-repeat center;}
+.largeRough6{width:42%;height: 100%;float:left;background: url('../img/rough6L.png')no-repeat center;}
+.largeRough7{width:42%;height: 100%;float:left;background: url('../img/rough7L.png')no-repeat center;}
+.largeRough8{width:42%;height: 100%;float:left;background: url('../img/rough8L.png')no-repeat center;}
+.largeRough9{width:42%;height: 100%;float:left;background: url('../img/rough9L.png')no-repeat center;}
+.largeRough10{width:42%;height: 100%;float:left;background: url('../img/rough10L.png')no-repeat center;}
+.largeRough11{width:42%;height: 100%;float:left;background: url('../img/rough11L.png')no-repeat center;}
+.largeRough12{width:42%;height: 100%;float:left;background: url('../img/rough12L.png')no-repeat center;}
+.largeRough13{width:42%;height: 100%;float:left;background: url('../img/rough13L.png')no-repeat center;}
+.largeRough14{width:42%;height: 100%;float:left;background: url('../img/rough14L.png')no-repeat center;}
+.largeRough15{width:42%;height: 100%;float:left;background: url('../img/rough15L.png')no-repeat center;}
+.largeRough16{width:42%;height: 100%;float:left;background: url('../img/rough16L.png')no-repeat center;}
+.largeRough17{width:42%;height: 100%;float:left;background: url('../img/rough17L.png')no-repeat center;}
+.largeRough18{width:42%;height: 100%;float:left;background: url('../img/rough18L.png')no-repeat center;}
+.largeRough19{width:42%;height: 100%;float:left;background: url('../img/rough19L.png')no-repeat center;}
+.largeRough20{width:42%;height: 100%;float:left;background: url('../img/rough20L.png')no-repeat center;}
+.largeRough21{width:42%;height: 100%;float:left;background: url('../img/rough21L.png')no-repeat center;}
+.largeRough22{width:42%;height: 100%;float:left;background: url('../img/rough22L.png')no-repeat center;}
+.largeRough23{width:42%;height: 100%;float:left;background: url('../img/rough23L.png')no-repeat center;}
+.largeRough24{width:42%;height: 100%;float:left;background: url('../img/rough24L.png')no-repeat center;}
+.largeRough25{width:42%;height: 100%;float:left;background: url('../img/rough25L.png')no-repeat center;}
+.largeRough26{width:42%;height: 100%;float:left;background: url('../img/rough26L.png')no-repeat center;}
+.largeRough27{width:42%;height: 100%;float:left;background: url('../img/rough27L.png')no-repeat center;}
+.largeRough28{width:42%;height: 100%;float:left;background: url('../img/rough28L.png')no-repeat center;}
+.largeRough29{width:42%;height: 100%;float:left;background: url('../img/rough29L.png')no-repeat center;}
+.largeRough30{width:42%;height: 100%;float:left;background: url('../img/redcoral1.png')no-repeat center;}
+
+.rangeParent{width:100%;height:135px;}
+.closeGem{float:left;background: url(../img/close_black.svg)no-repeat;background-size: auto 50%;width:100%;height: 60px;background-position: right;cursor: pointer;}
 .imageCont{width: 100%;height:200px;}
-.imgHead{color: #15181b;font-size: 14px;width: 100%;text-align: center;font-size: 14px;font-family: semibold;letter-spacing: 0.35em;}
+.imgHead{color: #15181b;font-size: 12px;width: 100%;text-align: center;font-family: semibold;letter-spacing: 0.35em;}
 .descHead{width:100%;height:30px;text-transform: uppercase;font-size: 14px;font-family: semibold;letter-spacing: 0.35em;line-height: 30px;}
 .hideDiv{transform:translateX(150%);transition: 600ms;width:100%;position:absolute;background-color:#fff;z-index:20;overflow: hidden;height:450px;left: 0;}
 .try{width:0%;border:1px solid;}
@@ -2418,10 +2482,7 @@ input[type=radio]:checked ~ .matchIcn{
 .pad0{padding: 0px!important;}
 .menIc{background: url("../img/icons/529.svg")no-repeat;    background-size: auto 40px;    background-position: center 15px;}
 .womenIc{background: url("../img/icons/528.svg")no-repeat;    background-size: auto 40px;    background-position: center 15px;}
-.noimgDiv{width: 100%;height: 100%;background: url("../img/jzevaempty.svg")no-repeat;    background-size: auto 40%;
-    background-position: center;
-    position: absolute;
-    z-index: 1;}
+.noimgDiv{width: 100%;height: 100%;background: url("../img/jzevaempty.svg")no-repeat;    background-size: auto 40%;background-position: center 47px;position: absolute;z-index: 1;}
 .defaulDiv:nth-of-type(even){float:right!important;}
 
 /*.imgHead:after{content: "";width:20px;position: absolute;}*/
@@ -2430,7 +2491,7 @@ input[type=radio]:checked ~ .matchIcn{
 .cartEmpty{width:100%;height: 80%;top: 21%;background: url(../img/icons/524crt.svg)no-repeat;background-size: auto 20%;background-position: center 125px;    /*position: absolute;*/}
 .ordEmpty{background: url(../img/icons/524ord.svg)no-repeat;background-size: auto 75%;background-position: center 30px;width: 100%;height: 150px;}
 .addEmpty{background: url(../img/icons/524ad.svg)no-repeat;background-size: auto 75%;background-position: center 30px;width: 100%;height: 150px;}
-.wishEmptyImg{background: url(../img/icons/524wl.svg)no-repeat;background-size: auto 55%;background-position: center 100px;width: 100%;height: 200px;}
+.wishEmptyImg{background: url(../img/icons/524wl.svg)no-repeat;background-size: auto 75%;background-position: center 30px;width: 100%;height: 150px;}
 .cartEmptyImg{background: url(../img/icons/524crt.svg)no-repeat;background-size: auto 55%;background-position: center 125px;width: 100%;height: 250px;}
 .noOrdTxt{font-family: regular;font-size: 16px;color: #666;}
 .borBtm{border-bottom: 1px solid #ccc!important;}
