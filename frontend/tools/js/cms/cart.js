@@ -104,7 +104,7 @@ function displaycartdata()
                     gblcartdata = obj.result;
 
                     $(obj.result).each(function (r, v) {
-
+                       
                         if (v.default_img !== null) {
                             abc = IMGDOMAIN + v.default_img;
                         } else {
@@ -121,7 +121,7 @@ function displaycartdata()
                         }
 
                         cartstr = "<div class='cart_item'>";
-                        cartstr += "<div class='cart_image'><img src='" + abc + "'";
+                        cartstr += "<div class='cart_image'><img src='"+ abc +"'";
                         cartstr += " alt='Image not found'></div>";
                         cartstr += "<div class='cart_name'>" + v.prdname + "</div>";
                         cartstr += "<div class='cart_desc  fLeft' id='nwwt'>" + v.jewelleryType + " : " + wht + " gms &nbsp|&nbsp Diamond : " + v.dmdcarat + " &nbsp|&nbsp ";
@@ -225,9 +225,11 @@ function cremove(el) {
             }
         });
     });
-    $(document).on('click', '#cNo', function () {
-        cartpopUpClose();
-    });
+  
+     $('#cNo').click(function () {
+           cartpopUpClose();
+        $('#cNo').unbind();
+     });
 }
 
 function addqnty(ths)
@@ -345,7 +347,7 @@ function getglobaldata()
                     $('.cart_gen').addClass('dn');
                      $("#nocart").removeClass("dn");
                      $('.totalItem').addClass('dn');
-              
+             
                 }
                 else{
                      $('.cart_gen').removeClass('dn');
@@ -362,8 +364,12 @@ function getglobaldata()
     }
 }
 
+$('#contshop').click( function(){
+  window.location.href = DOMAIN + "index.php?action=landing_page";
+});
+
 $(document).ready(function () {
-   // gettotal();
-    displaycartdata();
+     displaycartdata();
    getglobaldata();
 });
+ 

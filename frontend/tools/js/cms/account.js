@@ -344,9 +344,10 @@ function wishlist()
 	  }
 	  }); 
       });
-      $('#cNo').click(function(){
-       cartpopUpClose();
-      }); 
+      $('#cNo').click(function () {
+           cartpopUpClose();
+        $('#cNo').unbind();
+     }); 
  }
   function indianMoney(x){
           x=x.toString();
@@ -556,9 +557,10 @@ function storenewpass(newpass)
 	}
 	});
     });
-    $('#cNo').click(function(){
-	  cartpopUpClose();
-    });
+    $('#cNo').click(function () {
+           cartpopUpClose();
+        $('#cNo').unbind();
+     });
 }
 
 

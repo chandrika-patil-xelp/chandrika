@@ -130,9 +130,10 @@ function remove(el) {
       }
     });
   });
-  $(document).on('click', '#cNo', function () {
-    cartpopUpClose();
-  });
+    $('#cNo').click(function () {
+           cartpopUpClose();
+        $('#cNo').unbind();
+     });
 }
 
 function addqnty(ths)
