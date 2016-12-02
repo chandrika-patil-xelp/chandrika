@@ -282,9 +282,20 @@
       common.removeFromStorage('jzeva_mob');
       common.removeFromStorage('jzeva_cartid'); 
       var URLactn = window.location.search;  
-      var url=DOMAIN + '/index.php' +URLactn;
-      window.location.href = url; 
-	
+    
+     
+     var accnvar='';
+      accnvar=URLactn;           
+      accnvar=accnvar.split('=');
+      accnvar=accnvar[1].split('&');
+    // console.log(accnvar[0]);
+     if(accnvar[0] == 'myaccount'){
+         window.location.href = DOMAIN + "index.php?action=landing_page";
+     }
+     else{
+            var url=DOMAIN + '/index.php' +URLactn;
+            window.location.href = url; 
+       }
     });
      
 </script>
