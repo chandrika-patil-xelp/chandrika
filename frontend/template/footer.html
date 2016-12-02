@@ -3,8 +3,9 @@
         <div class="footerContent fLeft">
             <div class="footerCont1 fLeft">
                 <div class="fooH">assistance</div>
-                <div class="col100 fLeft">
-                    <a  target="_blank" href='<?php echo DOMAIN?>index.php?action=myaccount'><div class="fooTxt fLeft">my account</div></a>
+                <div class="col100 fLeft" id="userAccnt">
+                    <div class="fooTxt fLeft">my account</div>
+<!--                    <a  target="_blank" href='<?php echo DOMAIN?>index.php?action=myaccount'><div class="fooTxt fLeft">my account</div></a>-->
                 </div>
                 <div class="col100 fLeft">
                     <a  target="_blank" href='<?php echo DOMAIN?>index.php?action=contact'><div class="fooTxt fLeft">contact us</div></a>
@@ -71,3 +72,18 @@
 </div>
 <!-- DOMAIN + "index.php?action=product_page&pid="+ pid; -->
         <div class="footer fLeft">©2016 created by xelpmoc.in</div>
+        
+        <script>
+            $('#userAccnt').on('click',function(){
+             var userid=common.readFromStorage('jzeva_uid'); 
+             console.log(userid);
+              if(userid == null)
+            {  
+                openPopUp();
+            }
+            else{
+                 window.location.href = DOMAIN + "index.php?action=myaccount";
+            }
+         });
+             
+        </script>

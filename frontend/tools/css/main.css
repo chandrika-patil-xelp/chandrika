@@ -529,7 +529,21 @@ img{width:100%;height:100%;border:0}
 .trns1:nth-child(3){animation-delay: 0s;}
 .grid3:hover .trns1:nth-child(3){animation-delay: 0.2s;}
 .grid3:hover .trns1:nth-child(1){animation-delay: 0s;}
-.grid_footer{width:100%;height:50px;background:#fff;position:static;bottom:0;left:0;right:0;line-height:50px;color:#15181b;font-size:12px;font-family: bolder;text-align:center;cursor:pointer;margin-top:20px}
+.grid_footer{    width: 100%;
+    height: 100px;
+    background: #fff;
+    position: static;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    line-height: 85px;
+    color: #15181b;
+    font-size: 12px;
+    font-family: bolder;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 20px;
+    padding: 20px 0px;}
 .grid_footer.transdown{transform:translateY(100%)}
 .grid_footer .actBtn{display:inline-block;padding:0 10px}
 .PRODUCT_GRID2 .grid3{width:33.33%;display:block;float:left;position:static !important;height:auto;text-transform:uppercase;opacity:0;transform:translateY(40px);-webkit-transform:translateY(40px);-moz-transform:translateY(40px);-ms-transform:translateY(40px);-o-transform:translateY(40px)}
