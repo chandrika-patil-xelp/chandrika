@@ -134,7 +134,7 @@ $(document).ready(function () {
             var diamonds = dt['dimond'];
             var uncut = dt['uncut'];
             if(dt['catAttr']['results'][1]['name'] == 'Pendants'){
-                $('#Ifpendant').html('Chain Is Not Available With This Pendent');
+                $('#Ifpendant').html('Chain Is Not Available With This Pendant');
             }
             
             storedWt  = parseFloat(dt['basicDetails']['mtlWgt']);
