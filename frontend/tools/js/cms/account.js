@@ -1,5 +1,5 @@
 
-var accntentrflag=0;
+var accntentrflag=0, shpngvalidflag=1;
 
 $(document).ready(function(){
    displayorders();
@@ -403,14 +403,9 @@ function storenewpass(newpass)
      var URL= APIDOMAIN + "index.php/?action=updateuserpass&user_id="+userid+"&pass="+newpass+"&mobile="+mob; 
      $.ajax({  type:'POST',  url:URL, success:function(res){ 
 	        common.msg(1,'Password Changed Successfully'); 
-		common.removeFromStorage('jzeva_email');
-		common.removeFromStorage('jzeva_name');
-		common.removeFromStorage('jzeva_uid');
-		common.removeFromStorage('jzeva_mob');
-		common.removeFromStorage('jzeva_cartid'); 
-		setTimeout(function(){
-		    window.location.href = DOMAIN + "index.php?action=landing_page";
-		},3000); 
+		$('#oldpass').val('');	  $('#oldpass').blur();
+		$('#newpass').val('');	  $('#newpass').blur();
+		$('#cpass').val('') ;	  $('#cpass').blur();
 	   }
        });  
  }
@@ -443,20 +438,7 @@ function storenewpass(newpass)
       common.msg(0, 'Please Enter The Zipcode');
       
      
-       }    
-       else if(city === '' || city === null){
-         
-           validationFlag=0; 
-      common.msg(0, 'Please Enter Your City');
-     
-      
-       }
-        else if(state === '' || state === null){
-             
-           validationFlag=0; 
-      common.msg(0, 'Please Enter Your State');
-      
-       }
+       }     
      var name=common.readFromStorage('jzeva_name'); 
      var email=common.readFromStorage('jzeva_email'); 
      var moblno=common.readFromStorage('jzeva_mob'); 
@@ -470,7 +452,11 @@ function storenewpass(newpass)
    shipngdata['pincode']=zipcode;
    shipngdata['user_id']=userid;
     
-   if(validationFlag == 1){
+  if(shpngvalidflag == 0 && validationFlag == 1)
+      common.msg(0, 'Please Enter Correct Pin code');
+    
+  if(validationFlag == 1 && shpngvalidflag == 1)
+  {
       
     var URL= APIDOMAIN + "index.php?action=addshippingdetail";
     var data=shipngdata; 
@@ -484,10 +470,10 @@ function storenewpass(newpass)
                        common.msg(1, 'Your New Address Added Successfully');
                         displayaddrs();
 			addAddress();
-			$('#addr').val('');
-			$('#state').val('');
-			$('#zipcode').val('');
-			$('#city').val('');
+			$('#addr').val('');	$('#addr').blur();
+			$('#state').val('');	$('#state').blur();
+			$('#zipcode').val('');	$('#zipcode').blur();
+			$('#city').val('');	$('#city').blur();
                      }
                  });
     
@@ -564,9 +550,11 @@ function storenewpass(newpass)
 }
 
 
-    $('#zipcode').blur(function(){
+    $('#zipcode').keyup(function(){
    var zipcode= $(this).val();
    
+   if($.isNumeric(zipcode))
+   {
    if(zipcode.length == 6){
       var URL = APIDOMAIN + "index.php?action=viewbyPincode&code="+zipcode;  
 	       $.ajax({
@@ -576,19 +564,33 @@ function storenewpass(newpass)
 	 	    success: function(results)
 	 	    { 
 		      var obj=JSON.parse(results);  
-	 
+		      
+		    if(obj['error']['code'] == 0)
+		    {
                     $('#state').val(obj.results[0].state);
                     $('#city').val(obj.results[0].city);  
                      $('#state').focus();
                      $('#city').focus();
-                     
+		     shpngvalidflag=1;
+		   }
+		   else if(obj['error']['code'] == 1){ 
+		      common.msg(0, obj['error']['msg']);
+		      shpngvalidflag=0;
+		  }
 		    }
 		  }); 
-   }
-   else if(zipcode.length == 0){ }
+   } 
    else{ 
-    common.msg(0,'Please Enter correct Zip Code');
+     shpngvalidflag=0; 
    }
+ }
+ else{
+   shpngvalidflag=0;
+   if(zipcode.length == 1)
+	common.msg(0,'Please Enter Numeric Value');
+   else if(zipcode.length == 6)
+	common.msg(0,'Please Enter Numeric Value');
+ }
 }); 
  
   $('#restpas').click(function(){ 
@@ -650,10 +652,10 @@ function storenewpass(newpass)
   });
 	
   $('#sId').click(function () {
-      saveadrinfo();
+      saveadrinfo();  
   });
   
-  $('#cId').click(function () {
+  $('#cId').click(function () { 
      chngpasrd();                     
   });
    
@@ -689,6 +691,9 @@ function storenewpass(newpass)
       $('#saveAddrId').addClass("dn");
       $('#pChange').addClass("dn");
       $('#wishlistId').addClass("dn");
+      $('#cntshp_ordr').click(function(){
+	window.location.href=DOMAIN + "index.php?action=landing_page"
+      });
    }
    
   function perninfo(){
@@ -709,7 +714,7 @@ function storenewpass(newpass)
     $('#profileId').addClass("dn");
     $('#editpId').addClass("dn");
     $('#pChange').addClass("dn");
-    $('#wishlistId').addClass("dn");
+    $('#wishlistId').addClass("dn"); 
   }
   
   function chngpasrd()
@@ -720,7 +725,7 @@ function storenewpass(newpass)
     $('#profileId').addClass("dn");
     $('#editpId').addClass("dn");
     $('#saveAddrId').addClass("dn");
-    $('#wishlistId').addClass("dn");
+    $('#wishlistId').addClass("dn"); 
   }
   
   function whlist()
@@ -732,6 +737,9 @@ function storenewpass(newpass)
     $('#editpId').addClass("dn");
     $('#saveAddrId').addClass("dn");
     $('#pChange').addClass("dn");
+    $('#cunshpng_wish').click(function(){
+       window.location.href = DOMAIN + "index.php?action=landing_page";
+    });
   } 
 
  

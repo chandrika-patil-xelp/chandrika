@@ -373,7 +373,7 @@
  (SELECT GROUP_CONCAT(address) FROM tbl_order_shipping_details WHERE FIND_IN_SET(shipping_id,shipngDet)) AS customerAddrs,
  (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND active_flag = 1 AND  default_img_flag=1) AS default_image
 
- FROM tbl_order_master WHERE user_id= ".$params['userid']."  ";
+ FROM tbl_order_master WHERE user_id= ".$params['userid']." AND active_flag = 1 ";
                 
                 $res = $this->query($sql);
                 
