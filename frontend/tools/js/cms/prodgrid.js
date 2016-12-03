@@ -584,13 +584,23 @@ function getmenu()
 		submenulist+="</div>"; 
 	      });
               submenulist+="<div class='fmenu_elm fLeft'>";
-              submenulist+='<div class="rangeParent fLeft">';
+             submenulist+='<div class="rangeParent fLeft">';
              submenulist+='<div class="rngDv">';
              submenulist+='<input type="text" value="" id="range">';
               submenulist+='</div>';
               submenulist+='</div>';
               submenulist+='</div>';
+             submenulist+="<div class='fmenu_elm fLeft'>";
+             submenulist+='<div class="rangeParent fLeft">';
+             submenulist+='<div class="rngDv">';
+             submenulist+='<input type="text" id="carat" value="">';
+              submenulist+='</div>';
+              submenulist+='</div>';
+              submenulist+='</div>';
+
 	  }
+           
+          
 	  setTimeout(function(){
                   $('.ftab_buffer').prepend(mainmenustr);
                   $('.fmenuB').html(submenulist);
@@ -602,6 +612,7 @@ function getmenu()
      });
      
 }
+
 
 function submenu(ths)
 {
