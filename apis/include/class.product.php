@@ -4338,7 +4338,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
     $atrid=implode(",", $attrids);
    
        $sql = "  SELECT DISTINCT(productid),
-		  (SELECT GROUP_CONCAT(productid) FROM tbl_category_product_mapping WHERE catid= 2920160603124607) AS pids 
+		  (SELECT GROUP_CONCAT(productid) FROM tbl_category_product_mapping WHERE catid=".$params['catid']." ) AS pids 
 		  FROM tbl_product_attributes_mapping WHERE active_flag =1 
 		  AND FIND_IN_SET(attributeid,'".$atrid."')  AND
 		    MATCH(VALUE) AGAINST('".$vals."')  HAVING FIND_IN_SET(productid,pids) ORDER BY productid ";
