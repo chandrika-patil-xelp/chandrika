@@ -1092,6 +1092,14 @@ case 'removeItmFrmWishlist':
         $result	=$obj->getprodByfiltr($params);
         $res = $result;
     break;
+  
+  case 'getProductdetailbypid':
+        include APICLUDE.'class.product.php';
+        $obj	= NEW product($db['jzeva']);
+        $result	=$obj->getProductdetailbypid($params);
+        $res = $result;
+    break;
+  
   }
 echo json_encode($res);
 exit;
