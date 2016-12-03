@@ -1100,18 +1100,25 @@
                  max:1500000,
                  grid:true,
                  step:200
-//              
-                 
+//               
               });
-              
              
             $('#carat').ionRangeSlider({
                 type: "double",
-                min: 8,
-                max: 24,
-                grid: true
+                from:1,
+                values: [
+       "9","14","18", "22"],
+                grid: true 
             });
-
+//$('#carat').data("ionRangeSlider").update({
+//    min: 9,
+//    max: 22,
+//    from: 9,
+//    to: 22,
+//    step: 1 
+//});
+            
+            
         var vheight = 0;
         /*Overlay fade in/out  on menu hover*/
         $('.ftabWrap').mouseover(function () {
