@@ -81,13 +81,20 @@ if(data['results']['dimond']['results'] !== null){
    var sz = ($('#size').text().replace('Size',''));
      if(sz == " ")
        sz=parseFloat("0.00");
- 
+    if (catname == 'Rings'){
+    if(sz == " None")
+       sz=parseFloat(14);
+   
+    }
+    else if (catname == 'Bangles'){
+    if(sz == " None")
+       sz=parseFloat(2.4);
+   
+    }
     arrdata.push(color);
     arrdata.push(quality);
     arrdata.push(metal);
-    arrdata.push(sz);
-   
-    
+    arrdata.push(sz); 
 }
  
 $('#add_to_cart').on('click', function () {
@@ -586,13 +593,13 @@ function getGemsPrice(price, carat) {
 }
 
 function setdmd(e) {
-    var t = $(e).closest('.rad_wrap').index();
+     var t = $(e).closest('.rad_wrap').index();
     var va = $(e).val();
-    var a = $(e).attr("id"); //changes
-    // var s=t;
-    var t = t - 2;
-    dmdValue = pr[t];
-    $('#qual').attr("qual_id", a); //changes
+    var a = $(e).attr("id"); 
+   
+    var t = t - 2; 
+    dmdValue = pr[t]; console.log(a);
+    $('#qual').attr("qual_id", a);
     $('#qual').html(va);
     
     // glbquality=s;
@@ -634,7 +641,7 @@ function setmetal(m) {
     $('#carat').attr("carat_id", b); //changes
     $('#carat').html(wx);
     // glbcarat=t;
-     
+
     setTimeout(function () {
         $(m).closest('.selector_cont ').find('.options_back').click();
         $('#ch_price').find('.labBuffer').empty();
@@ -668,7 +675,7 @@ function setclr(c) {
     var cl = cl - 2;
     $('#clr').html(cr);
     $('#clr').attr("clr_id", cc);
- 
+
     setTimeout(function () {
         $(c).closest('.selector_cont').find('.options_back').click();
 
