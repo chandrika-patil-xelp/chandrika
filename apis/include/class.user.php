@@ -1092,7 +1092,8 @@
                     }
                     if($rno)
                     {
-                        $txt = 'Your OTP is ' . $rno;
+                        $txt = 'Dear Customer, Your OTP is ' . $rno.' and it is Valid till next 10 mins. Please do not share this OTP with anyone. Thank You JZEVA.com';
+                         
                         $url = str_replace('_MOBILE', $params['mobile'], SMSAPI);
                         $url = str_replace('_MESSAGE', urlencode($txt), $url);  // print_r($url);  
                         $res = $comm->executeCurl($url, true);
