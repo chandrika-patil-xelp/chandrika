@@ -562,8 +562,19 @@ function getmenu()
 		 
 		  submenulist+="<div class='fmenu_elm fLeft'>";
 		$(n['attr_values']).each(function(q,p){
-		  var iconstr="";	 iconstr=p.toLowerCase();
-		  iconstr=iconstr.replace(' ','');
+		   var v=parseInt(p);	var iconstr="";
+		   if ($.isNumeric(v)) {
+		      if(v == 1)	 iconstr="one";
+		      if(v == 2)	 iconstr="two";
+		      if(v == 3)	 iconstr="three";
+		      if(v == 4)	 iconstr="four";
+		      var sr="";	 sr=p.toLowerCase();
+		      sr=sr.split(' ');	iconstr+=sr[1]; 
+		   } 
+		   else{
+		      iconstr=p.toLowerCase();
+		      iconstr=iconstr.replace(' ',''); 
+		   }
 		  submenulist+="<div class='filterCommon "+iconstr+"Ic' onclick='submenu(this)' ";
 		  submenulist+=" id='"+p+"_"+n.attributeid+"' >";
 		  submenulist+=" <div class='filterLabel' >";
