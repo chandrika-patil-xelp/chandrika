@@ -276,7 +276,7 @@ function otpcontn()
 
 
 $('#shpng_sub').click(function () {
-  shpngsubmt();
+  shpngsubmt(); 
 });
 
 function shpngsubmt()
@@ -556,9 +556,16 @@ function displayaddrs(userid)
 
 $('#shpdpincode').on('keyup',function () {
   var zipcode = $(this).val();
-  if (zipcode.length == 6)
-    checkshpdpincode(zipcode);
-
+  if($.isNumeric(zipcode)){
+    if (zipcode.length == 6)
+      checkshpdpincode(zipcode);
+  }
+  else{
+    if(zipcode.length == 6 || zipcode.length == 1)
+      common.msg(0, 'Please Enter Numeric Value');
+    $('#shpdcity').val('');   $('#shpdcity').blur();
+    $('#shpdstate').val('');  $('#shpdstate').blur();
+  }
 });
 
 function  storeorderdata()
