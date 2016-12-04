@@ -933,12 +933,7 @@ switch($action)
         $res	=$obj->checkopt($params);
     break;
 
-    case 'getuserdetailbymail':
-        include APICLUDE.'class.user.php';
-        $obj	= new user($db['jzeva']);
-        $res	=$obj->getuserdetailbymail($params);
-    break;
-
+    
     case 'getuserdatabyurl':
         include APICLUDE.'class.urlmaster.php';
         $obj	= new urlmaster($db['jzeva']);

@@ -1271,11 +1271,11 @@
 
                     $headers .= 'From: info@jzeva.com' . "<br/><br/>";
 
-                    $mail = mail($row['email'], $subject, $message, $headers); 
-		              print_r($message);
+                    $mail = mail($params['email'], $subject, $message, $headers); 
+		               print_r($message);
                      
                         $arr = array();
-                        $err = array('Code' => 0, 'Msg' => 'Link for changing password is sent to: '.$row['email'].'');
+                        $err = array('Code' => 0, 'Msg' => 'Link for changing password is sent to: '.$params['email'].'');
            }
            else
             {
