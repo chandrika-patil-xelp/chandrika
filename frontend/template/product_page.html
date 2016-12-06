@@ -263,18 +263,18 @@
                                     <div class="button_label">Select Your Size</div>
                                     <!--<div class="selectBox"></div>-->
                                     <div class="fLeft col100">
-                                        <div class="col100 sizeOuter fLeft">
-                                            <div class="incrCont incrIcon" id="inc"></div>
+                                        <div class="col100 sizeOuter fLeft ringclass dn">
+                                            <div class="incrCont incrIcon " id="inc"></div>
                                             <div class="incrCont decrIcon left40" id="dec"></div>
                                             <div class="circleOuter fLeft">
-                                                <div class="ringCircle transition600 poR">14</div>
+                                                <div class="ringCircle transition600 poR"> 14</div>
                                             </div>
                                         </div>
-                                        <div class="col100 sizeOuter fLeft dn">
+                                        <div class="col100 sizeOuter fLeft bangclass ">
                                             <div class="incrCont incrIcon" id="incB"></div>
                                             <div class="incrCont decrIcon left40" id="decB"></div>
                                             <div class="circleOuter fLeft">
-                                                <div class="ringCircle transition600 poR" id="bangCircle">0.0</div>
+                                                <div class="ringCircleB transition600 poR" id="bangCircle">2.4</div>
                                             </div>
                                         </div>
                                         <!--                                        <div class="col50 fLeft">
@@ -374,9 +374,8 @@
 
     <script>
 
-                //ring size code
+                
                 var tmp = 14;
-//        var addval = 20;
         var val1, val2, val3;
         var w, h, lh;
         val1 = $('.ringCircle').width();
@@ -388,16 +387,19 @@
             if (incVal > 25) {
                 return false;
             }
-            $(rtxt).html(incVal);
+
+              $('#size').text("Size "+incVal);
+             // parseFloat($('#size').text().replace('Size ', ''));
             val1 = val1 + 1;
             val2 = val2 + 1;
             val3 = parseInt(val3) + 1;
-            console.log("lh", lh);
+
             $('.ringCircle').css('width', val1 + 'px');
             $('.ringCircle').css('height', val2 + 'px');
             $('.ringCircle').css('line-height', val3 + 'px');
             $('.ringCircle').html(incVal);
             tmp++;
+            calculatePrice();
         });
 //        
 
@@ -407,7 +409,9 @@
             if (dTxt < 5) {
                 return false;
             } else
-                $(rtxt).html(dTxt);
+//                $(rtxt).html(dTxt);
+           
+         $('#size').text("Size "+dTxt);
             val1 = val1 - 1;
             val2 = val2 - 1;
             val3 = parseInt(val3) - 1;
@@ -416,6 +420,7 @@
             $('.ringCircle').css("line-height", val3 + 'px');
             $('.ringCircle').html(dTxt);
             tmp--;
+            calculatePrice();
         });
 
         //bangles size code 
@@ -430,34 +435,34 @@
         $('#incB').click(function () {
             var rtxt = $(this).parent().next();
             var incVal_b = tmp_b + 0.1;
-
-            console.log("increm", Math.round(incVal_b * 10) / 10);
+            
+          
             if (incVal_b > 3.0) {
                 return false;
             }
-            $(rtxt).html(Math.round(incVal_b * 10) / 10);
+            var incValb =Math.round(incVal_b * 10)/10 ;
+            $('#size').text("Size "+incValb);
             val1 = val1 + 1;
             val2 = val2 + 1;
             val3 = parseInt(val3) + 1;
-            console.log("lh", lh);
+           
             $('#bangCircle').css("width", val1 + 'px');
             $('#bangCircle').css("height", val2 + 'px');
             $('#bangCircle').css('line-height', val3 + 'px');
             $('#bangCircle').html(Math.round(incVal_b * 10) / 10);
             tmp_b = tmp_b + 0.1;
-            console.log("temp", tmp_b);
+            calculatePrice();
         });
 
         $('#decB').click(function () {
-//            alert("dhguj");
             var rtxt = $(this).parent().next();
             var dTxt_b = tmp_b - 0.1;
             if (dTxt_b <= 0.0) {
                 return false;
             } else if (dTxt_b < 2.1) {
                 return false;
-            }
-            $(rtxt).html(dTxt_b);
+            }       
+            
             val1 = val1 - 1;
             val2 = val2 - 1;
             val3 = parseInt(val3) - 1;
@@ -465,15 +470,14 @@
             $('#bangCircle').css("height", val2);
             $('#bangCircle').css("line-height", val3 + 'px');
             $('#bangCircle').html(Math.round(dTxt_b * 10) / 10);
+            var decValb =Math.round(dTxt_b * 10)/10 ;
+            $('#size').text("Size "+decValb);
             tmp_b = tmp_b - 0.1;
+            calculatePrice();
         });
 
 
 
-
-//       $('html').click(function(){
-//                   $(".selectOptionC").css("display","none");
-//       });
 
         var exprice = 0;
         var i = 0;
@@ -732,31 +736,28 @@
                 }
             }
         }
+        
+//        if(catname == 'Rings')
+//        {;
+//            $('.ringclass').addClass('dn');
+//        } else{
+//        $('.ringclass').addClass('dn');
+//        }
 
+//         if(catname == 'Bangles')
+//            $('.bangclass').addClass('dn');
+//        else
+//        $('.bangclass').removeClass('dn');
         //JZEVA DROPDOWN
 
         function bindDrop() {
-//             $('.selectDefault').click(function(){
-// 
-//               var th= $(this);  
-//               $(this).addClass('pointNone');
-//               
-//               
-//   setTimeout(function(){ $('.selectDefault').siblings('.selectOptionC').slideDown('fast');},500);
-//               
-////               $(this).siblings('.selectOptionC')
-////               .slideDown('150ms')
-////               .animate(
-////                 { opacity: 1 },
-////                 { queue: false, duration: '150ms' }
-////               );
-//             });
+
             var sz;
             $('.selectOptions').click(function () {
 
                 sz = $(this).text();
                 $('#size').html(sz);
-
+                
                 //calculatePrice();
                 $(this).closest('.selectOptionC').fadeOut('150ms').siblings('.selectDefault').removeClass('pointNone');
                 setTimeout(function () {
@@ -778,6 +779,16 @@
             });
         }
         $(document).click(function (event) {
+            
+            if(catname == 'Bangles'){
+                $('.ringclass').addClass('dn');
+                $('.bangclass').removeClass('dn');
+            }
+            else if(catname == 'Rings'){
+               $('.ringclass').removeClass('dn');
+               $('.bangclass').addClass('dn');
+            }
+                
             if (!$(event.target).closest('.selectDefault').length)
             {
                 if ($('.selectDefault').next('.selectOptionC').is(":visible"))
