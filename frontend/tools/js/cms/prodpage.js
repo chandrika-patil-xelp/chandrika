@@ -325,7 +325,6 @@ $(document).ready(function () {
                             getSoliPrice(carat, price_per_carat);
                         });
                         $('#desc').append(solistr);
-
                     }
 
 
@@ -443,19 +442,21 @@ $(document).ready(function () {
                         var kar = mcarat;
                         var re = /^(\w+)\s(\w+)$/;
                         var kar = kar.replace(re, "$2_$1").toLowerCase();
-
-                        purstr += '<div class="rad_wrap fLeft">';
-
+                        var karstr="";      karstr=kar;     karstr=karstr.split('_');
+                        console.log(karstr[1]);
+                       //  purstr += '<center>';
+                        purstr += '<div class="rad_wrap">';
                         //" id="purity_'+k+'_'+val.id+'"   onchange=\"GoldPrice('+val.prc+')\"  class="filled-in dn">';
                         purstr += '<input type="radio" name="purity" id="purity_' + k + '_' + val.id + '" value="' + val.dVal + '" data-price="' + val.prc + '" onclick="setmetal(this)" class="filled-in dn">';
                         purstr += '<label for="purity_' + k + '_' + val.id + '"></label>';
-                        purstr += '<div class="check2 ' + kar + '"></div>';
+                        purstr += '<div class="check2">' + karstr[1] +'</div>';
                         purstr += '<span class=" selector_label">';
                         purstr += '<div class="labBuffer">' + val.dVal + '</div>';
                         purstr += '</span>';
                         purstr += '</div>';
+                    //    purstr += '</center>';
 
-                        getPurPrice(metalprc, metalwght);
+                       getPurPrice(metalprc, metalwght);
                         //  something(metalprc);
                     });
                     $('#pur').append(purstr);
@@ -471,7 +472,7 @@ $(document).ready(function () {
                             $('#clr').text(vl.dNm);
                             $('#clr').attr('clr_id', vl.id);
                         }
-                        clrstr += '<div class="rad_wrap fLeft">';
+                        clrstr += '<div class="rad_wrap">';
                         clrstr += '<input type="radio" name="metal" id="color_' + j + '_' + vl.id + '" value= "' + vl.dVal + '" onclick="setclr(this)" class="filled-in dn">';
                         clrstr += '<label for="color_' + j + '_' + vl.id + '"></label>';
                         clrstr += '<div class="check2 ' + apcol + '"></div>';
