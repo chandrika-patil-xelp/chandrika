@@ -202,7 +202,9 @@ textarea:focus, input:focus{outline: none;}
   -webkit-animation: lol 3s 500ms infinite ease-in-out;
   animation: lol 3s 500ms infinite ease-in-out;
 }
-.button_label{width:100% ; font-size:12px; padding:5px;font-family:bolder;display:table}
+.button_label{width:100% ; font-size:12px; padding:5px;font-family:bolder;display:table;text-align: center;    font-size: 12px;
+    font-family: semibold;
+    letter-spacing: 0.35em;text-transform: uppercase;}
 .page_loader2 .cs-loader-inner , .page_loader .cs-loader-inner {
 
     transform: translateY(0%);
