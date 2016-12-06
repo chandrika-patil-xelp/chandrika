@@ -222,53 +222,69 @@
                                 </div>
                                 <div class="action_btns">
                                     <div class="col50 fLeft  padXr5">
-                                        <div class="actBtn fLeft bolder" id="add_to_cart" >Add To Cart</div>
+                                        <div class="actBtn  fLeft bolder" id="add_to_cart">ADD TO CART</div>
                                     </div>
-                                    <div class="col50 fLeft  padXl5">
-                                        <div class="wishBtn fRight bolder" id="addwishlist"><div class="addWish fRight"></div>WISHLIST</div>
+                                    <div class="col50 fLeft  padX15">
+                                        <div class="actBtn  fRight bolder" id="addwishlist">WISHLIST</div>
                                     </div>
+
+                                    <!--                                     <div class="col50 fLeft  padXl5">
+                                                                            <div class="cartBtn fRight bolder" id="add_to_cart"><div class="adddCart fRight"></div>ADD TO CART</div>
+                                                                        </div>-->
+                                    <!--                                    <div class="col50 fLeft  padXl5">
+                                                                            <div class="wishBtn fRight bolder" id="addwishlist"><div class="addWish fRight"></div>WISHLIST</div>
+                                                                        </div>-->
                                 </div>
                             </div>
                             <div class="cust_cont2 dn">
-                                <div class="selector_cont diQ" id="diQ">
-                                    <div class="options_back">Back</div>
-                                    <div class="button_label ">Select Diamond Clarity</div>
-                                </div>
-                                <div class="selector_cont" id="colr">
-                                    <div class="options_back">Back</div>
-                                    <div class="button_label">Select Metal Color</div>
-                                </div>
-                                <div class="selector_cont pur" id="pur">
-                                    <div class="options_back">Back</div>
-                                    <div class="button_label">Select Metal purity</div>
-                                </div>
+                                <div class="fLeft selectClose"></div>
+                                <center>
+                                    <div class="selector_cont diQ" id="diQ">
+                                        <!--<div class="options_back">Back</div>-->
+                                        <div class="button_label">Select Diamond Clarity</div>
+
+                                    </div>
+                                </center>
+                                <center>
+                                    <div class="selector_cont" id="colr">
+                                        <!--<div class="options_back">Back</div>-->
+                                        <div class="button_label">Select Metal Color</div>
+                                    </div>
+                                </center>
+                                <center>
+                                    <div class="selector_cont pur" id="pur">
+
+                                        <!--<div class="options_back">Back</div>-->
+                                        <div class="button_label">Select Metal purity</div>
+                                    </div>
+                                </center>
                                 <div class="selector_cont" id="size">
-                                    <div class="options_back">Back</div>
-                                     <div class="button_label">Select Your Size</div>
+                                    <!--<div class="options_back">Back</div>-->
+                                    <div class="button_label">Select Your Size</div>
                                     <!--<div class="selectBox"></div>-->
                                     <div class="fLeft col100">
-                                        <center>
-                                        <div class="col50 pad20">
-                                            <div class="ringBox">
-                                                <div class="incrBox fRight">
-                                                    <div class="incrCont incrIcon" id="inc"></div>
-                                                    <div class="incrCont decrIcon" id="dec"></div>
-                                                </div>
-                                                <div class="ringNum fLeft">
-                                                  14
-                                                </div>
+                                        <div class="col100 sizeOuter fLeft dn">
+                                            <div class="incrCont incrIcon" id="inc"></div>
+                                            <div class="incrCont decrIcon left40" id="dec"></div>
+                                            <div class="circleOuter fLeft">
+                                                <div class="ringCircle transition600 poR">14</div>
                                             </div>
                                         </div>
-                                             <div class="col50">
-                                                 <div class="ringCircle transition600 poR">14</div>
-                                             </div>
-                                        </center>
+                                        <div class="col100 sizeOuter fLeft">
+                                            <div class="incrCont incrIcon" id="incB"></div>
+                                            <div class="incrCont decrIcon left40" id="decB"></div>
+                                            <div class="circleOuter fLeft">
+                                                <div class="ringCircle transition600 poR" id="bangCircle">0.0</div>
+                                            </div>
+                                        </div>
+                                        <!--                                        <div class="col50 fLeft">
+                                        
+                                                                                </div>-->
+
                                     </div>
                                 </div>
                             </div>
-
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -357,68 +373,109 @@
     <script type="text/javascript" src="<?php echo $jvs['prodpage']; ?>"></script>
 
     <script>
-        var tmp = 14;
-        var addval = 20;
-        var val1,val2,val3;
-        var w,h,lh;
+
+                //ring size code
+                var tmp = 14;
+//        var addval = 20;
+        var val1, val2, val3;
+        var w, h, lh;
         val1 = $('.ringCircle').width();
         val2 = $('.ringCircle').height();
         val3 = $('.ringCircle').css('line-height');
-        $('#inc').click(function(){
-         var rtxt =  $(this).parent().next();
-         var incVal = tmp + 1;
-        
-        if(incVal > 25){
-            return false;
-        }
-          if(incVal  > 14){
-             $('.ringCircle').css("font-size",'30px');
-        }else{
-         $('.ringCircle').css("font-size",'20px');
-        }
-         $(rtxt).html(incVal);
-          val1 = val1 + 5;
-          val2 = val2 + 5;
-          val3 = parseInt(val3) + 5;
-          console.log("lh",lh);
-          $('.ringCircle').width(val1);
-          $('.ringCircle').height(val2);        
-          $('.ringCircle').css('line-height', val3 + 'px');
-          $('.ringCircle').html(incVal);
-          tmp++;
+        $('#inc').click(function () {
+            var rtxt = $(this).parent().next();
+            var incVal = tmp + 1;
+            if (incVal > 25) {
+                return false;
+            }
+            $(rtxt).html(incVal);
+            val1 = val1 + 1;
+            val2 = val2 + 1;
+            val3 = parseInt(val3) + 1;
+            console.log("lh", lh);
+            $('.ringCircle').css('width', val1 + 'px');
+            $('.ringCircle').css('height', val2 + 'px');
+            $('.ringCircle').css('line-height', val3 + 'px');
+            $('.ringCircle').html(incVal);
+            tmp++;
         });
 //        
-        $('#dec').click(function(){
-           var rtxt =  $(this).parent().next();
-           var dTxt = tmp - 1;
-           if(dTxt < 5 ){
-             return false;
-          }else
-        if(dTxt  < 14){
-             $('.ringCircle').css("font-size",'20px');
-        }else{
-         $('.ringCircle').css("font-size",'30px');
-        }
-         
-           $(rtxt).html(dTxt);
-           val1 = val1 - 5 ;
-           val2 = val2 - 5;
-           val3 = parseInt(val3) - 5;
-           
-          $('.ringCircle').width(val1);
-          $('.ringCircle').height(val2);        
-          $('.ringCircle').css("line-height", val3 + 'px' );
-           $('.ringCircle').html(dTxt);
-           tmp--;
+
+        $('#dec').click(function () {
+            var rtxt = $(this).parent().next();
+            var dTxt = tmp - 1;
+            if (dTxt < 5) {
+                return false;
+            } else
+                $(rtxt).html(dTxt);
+            val1 = val1 - 1;
+            val2 = val2 - 1;
+            val3 = parseInt(val3) - 1;
+            $('.ringCircle').css('width', val1 + 'px');
+            $('.ringCircle').css('height', val2 + 'px');
+            $('.ringCircle').css("line-height", val3 + 'px');
+            $('.ringCircle').html(dTxt);
+            tmp--;
         });
-        
-        
+
+        //bangles size code 
+        var tmp_b = 2.1;
+        var addval_b = 20;
+        var val1, val2, val3;
+        var w, h, lh;
+        val1 = $('#bangCircle').width();
+        val2 = $('#bangCircle').height();
+        val3 = $('#bangCircle').css('line-height');
+
+        $('#incB').click(function () {
+            var rtxt = $(this).parent().next();
+            var incVal_b = tmp_b + 0.1;
+
+            console.log("increm", Math.round(incVal_b * 10) / 10);
+            if (incVal_b > 3.0) {
+                return false;
+            }
+            $(rtxt).html(Math.round(incVal_b * 10) / 10);
+            val1 = val1 + 1;
+            val2 = val2 + 1;
+            val3 = parseInt(val3) + 1;
+            console.log("lh", lh);
+            $('#bangCircle').css("width", val1 + 'px');
+            $('#bangCircle').css("height", val2 + 'px');
+            $('#bangCircle').css('line-height', val3 + 'px');
+            $('#bangCircle').html(Math.round(incVal_b * 10) / 10);
+            tmp_b = tmp_b + 0.1;
+            console.log("temp", tmp_b);
+        });
+
+        $('#decB').click(function () {
+//            alert("dhguj");
+            var rtxt = $(this).parent().next();
+            var dTxt_b = tmp_b - 0.1;
+            if (dTxt_b <= 0.0) {
+                return false;
+            } else if (dTxt_b < 2.1) {
+                return false;
+            }
+            $(rtxt).html(dTxt_b);
+            val1 = val1 - 1;
+            val2 = val2 - 1;
+            val3 = parseInt(val3) - 1;
+            $('#bangCircle').css("width", val1);
+            $('#bangCircle').css("height", val2);
+            $('#bangCircle').css("line-height", val3 + 'px');
+            $('#bangCircle').html(Math.round(dTxt_b * 10) / 10);
+            tmp_b = tmp_b - 0.1;
+        });
+
+
+
 
 //       $('html').click(function(){
 //                   $(".selectOptionC").css("display","none");
 //       });
 
-       var exprice = 0;
+        var exprice = 0;
         var i = 0;
 
         /* 360 auto run */
@@ -504,23 +561,30 @@
 
                 j = $(this).index();
                 //$('body').addClass('over_hide');
-                $('.cust_cont2').removeClass('dn');
+                $('.selectClose').removeClass("dn");
+                $('.cust_cont2').velocity({scale: [1, 3], opacity: [1, 0]}, {duration: 100, easing: 'swing', display: 'block'});
                 $('#cust').velocity({scale: [3, 1], opacity: [0, 1]}, {duration: 200, easing: 'swing', display: 'none', complete: function () {
                         //  $('body').removeClass('over_hide')
                     }});
                 $('.selector_cont').eq(j).velocity({scale: [1, 0.5], opacity: [1, 0]}, {delay: '50', duration: '150', display: 'block'});
             }
         });
-        $('.options_back').click(function () {
-            //$('body').addClass('over_hide');
-            $('#cust').velocity({scale: [1, 3], opacity: [1, 0]}, {duration: 200, easing: 'swing', display: 'block',
-                complete: function () {
-                    //  $('body').removeClass('over_hide');
-                    $('.cust_cont2').addClass('dn');
-                }
-            });
+        $('.selectClose').click(function () {
+
+            $('.cust_cont2').velocity({scale: [3, 1], opacity: [0, 1]}, {delay: 100, duration: 400, easing: 'swing', display: 'none'});
+            $('#cust').velocity({scale: [1, 3], opacity: [1, 0]}, {duration: 200, easing: 'swing', display: 'block'});
+            $('.selectClose').addClass("dn");
+
+//$('body').addClass('over_hide');
+//            $('#cust').velocity({scale: [1, 3], opacity: [1, 0]}, {duration: 200, easing: 'swing', display: 'block',
+//                complete: function () {
+//                    //  $('body').removeClass('over_hide');
+//                    $('.cust_cont2').addClass('dn');
+//                }
+//            });
             $('.selector_cont').eq(j).velocity({scale: [0.5, 1], opacity: [0, 1]}, {delay: '50', duration: '150', display: 'none'});
         });
+
         $('#showDetails').click(function () {
             //$('body').addClass('over_hide');
             $('.writefaggery').velocity({scale: [3, 1], opacity: [0, 1]}, {duration: 200, easing: 'swing', display: 'none', complete: function () {
@@ -530,6 +594,7 @@
         });
         $('.closewritefaggery').click(function () {
             //$('body').addClass('over_hide');
+
             $('.writefaggery').velocity({scale: [1, 3], opacity: [1, 0]}, {duration: 200, easing: 'swing', display: 'block', complete: function () {
                     // $('body').removeClass('over_hide');
                 }
