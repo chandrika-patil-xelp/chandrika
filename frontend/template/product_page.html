@@ -269,14 +269,24 @@
                                             <div class="circleOuter fLeft">
                                                 <div class="ringCircle transition600 poR"> 14</div>
                                             </div>
+                                               <center>
+                                               <div class="button_label padTB25">Know Your ring size</div>
+                                               <div class="col50 padLR25"><div class="actBtn" id="ringGuide">ring size guide</div></div>
+                                           </center> 
                                         </div>
+                                                                                
                                         <div class="col100 sizeOuter fLeft bangclass ">
                                             <div class="incrCont incrIcon" id="incB"></div>
                                             <div class="incrCont decrIcon left40" id="decB"></div>
                                             <div class="circleOuter fLeft">
                                                 <div class="ringCircle transition600 poR" id="bangCircle">2.4</div>
                                             </div>
+                                             <center>
+                                               <div class="button_label padTB25">Know Your bangle size</div>
+                                               <div class="col50 padLR25"><div class="actBtn" id="bangleGuide">bangle size guide</div></div>
+                                           </center>   
                                         </div>
+                                                                                
                                         <!--                                        <div class="col50 fLeft">
                                         
                                                                                 </div>-->
@@ -424,7 +434,7 @@
         });
 
         //bangles size code 
-        var tmp_b = 2.1;
+        var tmp_b = 2.4;
         var addval_b = 20;
         var val1, val2, val3;
         var w, h, lh;
@@ -476,7 +486,12 @@
             calculatePrice();
         });
 
-
+        $('#ringGuide').click(function(s,l){
+             window.location.href = DOMAIN + "index.php?action=sizeguide";
+        });
+        $('#bangleGuide').click(function(s,l){
+             window.location.href = DOMAIN + "index.php?action=bangleguide";
+        });
 
 
         var exprice = 0;
