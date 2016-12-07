@@ -534,7 +534,7 @@ function displayaddrs(userid)
 	  addstr += ' </div>';
 	  addstr += '  <input type="radio" name="selectM"  class="filled-in dn" id="' + v.shipping_id + '">';
 	  addstr += ' <label for="' + v.shipping_id + '" id="' + v.shipping_id + '" onclick="addrsel(this)"></label> ';
-	  addstr += ' <div class="matchIcn right0" id="' + v.shipping_id + '">';
+	  addstr += ' <div class="matchIcn defaultIcn transition300" id="' + v.shipping_id + '">';
 	  addstr += ' </div>';
 	  addstr += ' <div class="btncnt fLeft bolder">';
 	  addstr += '  <center> ';
