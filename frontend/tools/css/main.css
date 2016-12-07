@@ -2153,7 +2153,7 @@ input[type=radio]:checked ~ .matchIcn{
 
 
 .afterTick:before{content:'';width:30px;height:27px;position:absolute;right:0;top:0px;background:url(../img/02g.svg)no-repeat;background-size:auto 35px;background-position:center;}
-.delvrAdress .col100{width:100%;height:auto;min-height:100px;position:relative;margin-bottom: 10px;border-bottom:1px solid #ccc;}
+.delvrAdress .col100{width:100%;height:auto;min-height:100px;position:relative;margin-bottom: 10px;border:1px solid #ccc;}
 .delvrAdress .col100:last-child{border:none;}
 .delvrAdress .col100 .btncnt{width:100%;height:auto;margin-top: 5px;display: none;}
 .delvrAdress .w50r{width:50%;height:auto;padding:20px;}
@@ -2581,6 +2581,10 @@ input[type=radio]:checked ~ .matchIcn{
 .r0{right:0!important;}
 .l0{left:0!important;}
 .thankTxt .col100{width: 100%!important;}
+.scrollCont{    width: 100%;
+    position: relative;
+    height: 465px;
+    overflow: hidden;}
 
 @media only screen and (min-width:320px) and (max-width:767px){
 
