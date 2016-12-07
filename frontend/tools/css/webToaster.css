@@ -124,9 +124,9 @@ button.toast-close-button {
 }
 
 #toast-container>.toast-info {
-    background:  #0CCDB8 url('../img/icons/525tick.svg')no-repeat;
-      background-position: left center;
-    background-size: auto 100%
+    background:  #0CCDB8 url('../img/icons/525tickW.svg')no-repeat;
+  background-position: left 10px center;
+    background-size: auto 75%;
     
 }
 #toast-container>.toast-error{
