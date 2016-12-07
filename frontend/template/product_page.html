@@ -200,7 +200,7 @@
 <!--                                        <div class="attTitle">Size</div>
                                         <div class="actBtn font12 bolder" id="size" >Size </div>-->
 <!--                                        <div class="selectDefault"></div>-->
-                                       
+
                                     </div>
                                 </div>
                                 <!-- <div class="pr_change fLeft">
@@ -237,26 +237,26 @@
                                 <div class="fLeft selectClose"></div>
                                 <center>
                                     <div class="selector_cont diQ" id="diQ">
-                                        <!--<div class="options_back">Back</div>-->
+                                        <div class="options_back"></div>
                                         <div class="button_label">Select Diamond Clarity</div>
 
                                     </div>
                                 </center>
                                 <center>
                                     <div class="selector_cont" id="colr">
-                                        <!--<div class="options_back">Back</div>-->
+                                        <div class="options_back"></div>
                                         <div class="button_label">Select Metal Color</div>
                                     </div>
                                 </center>
                                 <center>
                                     <div class="selector_cont pur" id="pur">
 
-                                        <!--<div class="options_back">Back</div>-->
+                                        <div class="options_back"></div>
                                         <div class="button_label">Select Metal purity</div>
                                     </div>
                                 </center>
                                 <div class="selector_cont" >
-                                    <!--<div class="options_back">Back</div>-->
+                                    <div class="options_back"></div>
                                     <div class="button_label">Select Your Size</div>
                                     <!--<div class="selectBox"></div>-->
                                     <div class="fLeft col100">
@@ -269,7 +269,7 @@
                                             <center>
                                                 <div class="button_label padTB25">Know Your ring size</div>
                                                 <div class="col50"><div class="actBtn" id="ringGuide">size guide</div></div>
-                                            </center> 
+                                            </center>
                                         </div>
 
                                         <div class="col100 sizeOuter fLeft bangclass">
@@ -281,11 +281,11 @@
                                             <center>
                                                 <div class="button_label padTB25">Know Your bangle size</div>
                                                 <div class="col50"><div class="actBtn" id="bangleGuide">size guide</div></div>
-                                            </center>   
+                                            </center>
                                         </div>
 
                                         <!--                                        <div class="col50 fLeft">
-                                        
+
                                                                                 </div>-->
 
                                     </div>
@@ -349,16 +349,16 @@
                        <div class="collCenterb ">
                          White gold is an alloy of gold and at least one white metal, usually nickel, manganese or palladium. In order to make the gold white, it is combined with metal alloys that are white in nature and plated with an extremely hard element called rhodium. Although strong, rhodium may wear away over time. Replating is a simple process that can be done to restore whiteness to rhodium-plated jewelry.
                        </div>
-       
-       
-       
+
+
+
                      </div>
                      <div class="colleCont v2">
                        <div class="smUline ">White Gold</div>
                        <div class="collCenter ">
                          White gold is an alloy of gold and at least one white metal, usually nickel, manganese or palladium. In order to make the gold white, it is combined with metal alloys that are white in nature and plated with an extremely hard element called rhodium. Although strong, rhodium may wear away over time. Replating is a simple process that can be done to restore whiteness to rhodium-plated jewelry.
                        </div>
-       
+
                      </div>-->
                 </div>
             </div>
@@ -382,7 +382,7 @@
     <script>
 
 
-                var tmp = 14; 
+                var tmp = 14;
         var val1, val2, val3;
         var w, h, lh;
         val1 = $('.ringCircle').width();
@@ -408,7 +408,7 @@
             tmp++;
             calculatePrice();
         });
-//        
+//
 
         $('#dec').click(function () {
             var rtxt = $(this).parent().next();
@@ -430,7 +430,7 @@
             calculatePrice();
         });
 
-        //bangles size code 
+        //bangles size code
         var tmp_b = 2.4;
         var addval_b = 20;
       var valb1, valb2, valb3;
@@ -440,7 +440,7 @@
         valb3 = $('#bangCircle').css('line-height');
 
         $('#incB').click(function () {
-            
+
             var rtxt = $(this).parent().next();
             var incVal_b = tmp_b + 0.1;
 
@@ -586,11 +586,11 @@
                 $('.selector_cont').eq(j).velocity({scale: [1, 0.5], opacity: [1, 0]}, {delay: '50', duration: '150', display: 'block'});
             }
         });
-        $('.selectClose').click(function () {
+        $('.options_back').click(function () {
 
             $('.cust_cont2').velocity({scale: [3, 1], opacity: [0, 1]}, {delay: 100, duration: 400, easing: 'swing', display: 'none'});
             $('#cust').velocity({scale: [1, 3], opacity: [1, 0]}, {duration: 200, easing: 'swing', display: 'block'});
-            $('.selectClose').addClass("dn");
+
 
 //$('body').addClass('over_hide');
 //            $('#cust').velocity({scale: [1, 3], opacity: [1, 0]}, {duration: 200, easing: 'swing', display: 'block',
@@ -774,7 +774,7 @@
                 //calculatePrice();
                 $(this).closest('.selectOptionC').fadeOut('150ms').siblings('.selectDefault').removeClass('pointNone');
                 setTimeout(function () {
-                    // $(e).closest('.selector_cont ').find('.options_back').click();
+                   $(e).closest('.selector_cont ').find('.options_back').click();
                     $('#ch_price').find('.labBuffer').empty();
                     $('#ch_price').find('.labBuffer').append('Previous Price:');
                     $('#ch_price').velocity({opacity: [1, 0]});
