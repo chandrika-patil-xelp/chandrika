@@ -196,12 +196,11 @@
                                         <div class="attTitle">Purity</div>
                                         <div class="actBtn font12 bolder" id="carat" >carat</div>
                                     </div>
-                                    <div class="drop_dn fLeft dn" id="sizes">
-                                        <div class="attTitle">Size</div>
-                                        <div class="actBtn font12 bolder" id="size" >Size </div>
-                                        <div class="selectDefault"></div>
-                                        <div class="selectOptionC" id="genSize">
-                                        </div>
+                                    <div class="drop_dn fLeft " id="sizes">
+<!--                                        <div class="attTitle">Size</div>
+                                        <div class="actBtn font12 bolder" id="size" >Size </div>-->
+<!--                                        <div class="selectDefault"></div>-->
+                                       
                                     </div>
                                 </div>
                                 <!-- <div class="pr_change fLeft">
@@ -256,7 +255,7 @@
                                         <div class="button_label">Select Metal purity</div>
                                     </div>
                                 </center>
-                                <div class="selector_cont" id="size">
+                                <div class="selector_cont" >
                                     <!--<div class="options_back">Back</div>-->
                                     <div class="button_label">Select Your Size</div>
                                     <!--<div class="selectBox"></div>-->
@@ -383,7 +382,7 @@
     <script>
 
 
-                var tmp = 14;
+                var tmp = 14; 
         var val1, val2, val3;
         var w, h, lh;
         val1 = $('.ringCircle').width();
@@ -434,13 +433,14 @@
         //bangles size code 
         var tmp_b = 2.4;
         var addval_b = 20;
-        var val1, val2, val3;
+      var valb1, valb2, valb3;
         var w, h, lh;
-        val1 = $('#bangCircle').width();
-        val2 = $('#bangCircle').height();
-        val3 = $('#bangCircle').css('line-height');
+        valb1 = $('#bangCircle').width();
+        valb2 = $('#bangCircle').height();
+        valb3 = $('#bangCircle').css('line-height');
 
         $('#incB').click(function () {
+            
             var rtxt = $(this).parent().next();
             var incVal_b = tmp_b + 0.1;
 
@@ -450,13 +450,13 @@
             }
             var incValb = Math.round(incVal_b * 10) / 10;
             $('#size').text("Size " + incValb);
-            val1 = val1 + 5;
-            val2 = val2 + 5;
-            val3 = parseInt(val3) + 5;
+            valb1 = valb1 + 5;
+            valb2 = valb2 + 5;
+            valb3 = parseInt(valb3) + 5;
 
-            $('#bangCircle').css("width", val1 + 'px');
-            $('#bangCircle').css("height", val2 + 'px');
-            $('#bangCircle').css('line-height', val3 + 'px');
+            $('#bangCircle').css("width", valb1 + 'px');
+            $('#bangCircle').css("height", valb2 + 'px');
+            $('#bangCircle').css('line-height', valb3 + 'px');
             $('#bangCircle').html(Math.round(incVal_b * 10) / 10);
             tmp_b = tmp_b + 0.1;
             calculatePrice();
@@ -471,12 +471,12 @@
                 return false;
             }
 
-            val1 = val1 - 5;
-            val2 = val2 - 5;
-            val3 = parseInt(val3) - 5;
-            $('#bangCircle').css("width", val1);
-            $('#bangCircle').css("height", val2);
-            $('#bangCircle').css("line-height", val3 + 'px');
+            valb1 = valb1 - 5;
+            valb2 = valb2 - 5;
+            valb3 = parseInt(valb3) - 5;
+            $('#bangCircle').css("width", valb1);
+            $('#bangCircle').css("height", valb2);
+            $('#bangCircle').css("line-height", valb3 + 'px');
             $('#bangCircle').html(Math.round(dTxt_b * 10) / 10);
             var decValb = Math.round(dTxt_b * 10) / 10;
             $('#size').text("Size " + decValb);

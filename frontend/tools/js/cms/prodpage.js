@@ -139,9 +139,7 @@ $(document).ready(function () {
             storedWt = parseFloat(dt['basicDetails']['mtlWgt']);
             storedMkCharge = parseFloat(dt['basicDetails']['mkngCrg']);
 
-
-
-            // metalwgt = dt['basicDetails']['mtlWgt'];
+           metalwgt = dt['basicDetails']['mtlWgt'];
             makchrg = dt['basicDetails']['mkngCrg'];
             //  metalprcprgm =  dt['metalPurity']['results']['prc'];  
             var gemstone = dt['gamestone'];
@@ -173,7 +171,7 @@ $(document).ready(function () {
 
                 });
 
-
+              
 
                 $(basic).each(function (i, vl) {
 
@@ -348,7 +346,10 @@ $(document).ready(function () {
                                 if (y.id == "9") {
                                     $('#qual').text(y.dVal);
                                     $('#qual').attr('qual_id', y.id);
+                                }else{
+                                    $('#qual').text(y.dVal);
                                 }
+                                    
 
                                 var dvdia = y.dVal;
                                 var dvprc = y.prcPrCrat;
@@ -712,20 +713,20 @@ function getcatsize(s, m) {
 
         $('#sizes').removeClass('dn');
         var cid = catsize;
-        var URL = APIDOMAIN + "index.php/?action=getSizeListByCat&catid=" + catsize;
+        var URL = APIDOMAIN + "index.php/?action=getSizeListByCat&catid=" + catsize; 
         var dat = "";
         $.ajax({
             type: 'POST',
             url: URL,
             success: function (res) {
                 dat = JSON.parse(res);
-
+               
                 var strd = "";
                 var str = "";
                 if (catname == 'Rings') {
                     sizdefault = dat.result[9]['id'];
-                    sizdefaulval = dat.result[9]['sval'];
-                    sizdefaulval=parseInt(sizdefaulval);
+                    sizdefaulval = dat.result[9]['sval'];;
+                    sizdefaulval=parseInt(sizdefaulval); 
                 } else if (catname == 'Bangles') {
 
                     sizdefault = dat.result[2]['id'];
@@ -734,29 +735,20 @@ function getcatsize(s, m) {
 
                 if (dat['error']['err_code'] == '0')
                 {
-
-                    strd += '<div class="actBtn font12 bolder" id="size"  name="sizes" data-size="' + sizdefault + '">Size ' + sizdefaulval + '</div>';
+                     strd+= '<div class="attTitle">Size</div>';
+                     strd+= '<div class="actBtn font12 bolder" id="size" >Size  ' + sizdefaulval + '</div>';
+                   // strd += '<div class="actBtn font12 bolder"  data-size="' + sizdefault + '">Size ' + sizdefaulval + '</div>';
 
                     $(dat.result).each(function (x, y) {
                        
                         if (y.sval == 0.0) {
                             y.sval = 'None';
                         }
-                        str += ' <div class="incrBox fRight">';
-                        str += '<div class="incrCont incrIcon" id="inc" size_id ="'+y.id+'" data-val="'+y.sval+'"></div>';
-                        str += '<div class="incrCont decrIcon" id="dec" size_id ="'+y.id+'" data-val="'+y.sval+'"></div>';
-                        str += ' </div>';
-                        str += ' <div class="ringNum fLeft" > '+y.sval+'</div>';
-
-                        
-                        // str += '<div class="selectOptions" name="siz" size_id ="'+y.id+'" data-val="'+y.sval+'" >Size ' + y.sval + '</div>';
 
                     });
 
-                    $('#size').html(strd);
-                    $('#genSize').html(str);
-
-                    //$('input[name="sizes"]').eq(0).prop('checked', true);
+                    $('#sizes').html(strd);
+                   
 
                     bindDrop();
                     getarraydata();
@@ -770,14 +762,14 @@ function getcatsize(s, m) {
 
 
 function calculatePrice()
-{
+{   
     var vatRate = (1 / 100);
-    var selDiamond = parseFloat($('input[name="selectM"]:checked').attr('data-value'));
+    var selDiamond = parseFloat($('input[name="selectM"]:checked').attr('data-value')); 
     var selPurity = parseFloat($('input[name="purity"]:checked').attr('data-price'));
 
     var currentSize;
     var tmpstr=""; tmpstr+=$('#size').text();  currentSize=tmpstr.split(' ');
-    currentSize=currentSize[1];
+    currentSize=currentSize[1]; 
     var mtlWgDav = 0;
     var dmdPrice = 0;
     var goldPrice = 0;
@@ -820,7 +812,7 @@ function calculatePrice()
     }
 
 
-    var changeInWeight = (currentSize - bseSize) * mtlWgDav;
+    var changeInWeight = (currentSize - bseSize) * mtlWgDav; 
     newWeight = parseFloat(storedWt + (changeInWeight));
     newWeight = newWeight.toFixed(3);
 
