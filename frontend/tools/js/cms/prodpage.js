@@ -442,9 +442,9 @@ $(document).ready(function () {
 
                         var kar = mcarat;
                         var re = /^(\w+)\s(\w+)$/;
-                        var kar = kar.replace(re, "$2_$1").toLowerCase();
+                        var kar = kar.replace(re, "$2_$1").toLowerCase(); 
                         var karstr="";      karstr=kar;     karstr=karstr.split('_');
-                        
+                      
                        //  purstr += '<center>';
                         purstr += '<div class="rad_wrap">';
                         //" id="purity_'+k+'_'+val.id+'"   onchange=\"GoldPrice('+val.prc+')\"  class="filled-in dn">';
@@ -456,7 +456,7 @@ $(document).ready(function () {
                         purstr += '</span>';
                         purstr += '</div>';
                     //    purstr += '</center>';
-
+                  console.log('mtprc='+metalprc ,'mwgt='+metalwght);
                        getPurPrice(metalprc, metalwght);
                         //  something(metalprc);
                     });
@@ -766,10 +766,9 @@ function calculatePrice()
     var vatRate = (1 / 100);
     var selDiamond = parseFloat($('input[name="selectM"]:checked').attr('data-value')); 
     var selPurity = parseFloat($('input[name="purity"]:checked').attr('data-price'));
-
-    var currentSize;
-    var tmpstr=""; tmpstr+=$('#size').text();  currentSize=tmpstr.split(' ');
-    currentSize=currentSize[1]; 
+   
+    var currentSize=parseFloat($('#size').text().replace('Size ',''));
+    
     var mtlWgDav = 0;
     var dmdPrice = 0;
     var goldPrice = 0;
@@ -823,7 +822,6 @@ function calculatePrice()
     var ttl = parseFloat(goldPrice + dmdPrice + mkCharges + uncPrice + soliprc + gemsPrice);
 
     var totalNewPrice = Math.round(ttl + (ttl * vatRate));
-
 
     var abc = $('#price').html();
     //  $('#price').text(totalNewPrice);
