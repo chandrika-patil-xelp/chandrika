@@ -12,7 +12,7 @@
     <div class="overlay"></div>
     <div class="overlay2 " onclick="closeCart()"></div>
     <div class="header">
-        <div class="logo fLeft" id="jzeva_log"></div> 
+        <div class="logo fLeft" id="jzeva_log"></div>
     </div>
     <div class="tabWrap fRight">
         <div class="tab_buffer">
@@ -130,7 +130,7 @@
                             <a  target="_blank" href='<?php echo DOMAIN?>index.php?action=myaccount&actn=sId'><div class="menu_list fLeft">saved addresses</div></a>
                         </div>
                         <div class="col100 fLeft">
-                            <div class="menu_list fLeft" id="usrlogout">Logout</div> 
+                            <div class="menu_list fLeft" id="usrlogout">Logout</div>
                         </div>
                     </div>
                 </div>
@@ -142,7 +142,7 @@
 <script>
                 /*Overlay fade in/out  on menu hover*/
                 $('.tabWrap').mouseover(function () {
-            $('.overlay').stop(true, true).fadeTo(200, 1);
+            $('.overlay').stop(true, true).delay(150).fadeTo(200, 1);
         });
 
         /*Main menu slidedown/slideup , Menu tab colour change*/
@@ -152,19 +152,19 @@
             {
                 if (userid == null)
                 {
-                    $('.overlay').stop(true, true).fadeTo(200, 1);
+                    $('.overlay').stop(true, true).delay(150).fadeTo(200, 1);
                     $('.tab').removeClass('selec');
                     $('.menu_wrap').velocity('stop').velocity({height: [0]}, {duration: 200, easing: 'ease-in-out', display: 'block'});
                 } else {
-                    $('.overlay').stop(true, true).fadeTo(200, 1);
+                    $('.overlay').stop(true, true).delay(150).fadeTo(200, 1);
                     $('.tab').removeClass('selec');
-                    $('.menu_wrap').velocity('stop').velocity({height: [180]}, {duration: 200, easing: 'ease-in-out', display: 'block'});
+                    $('.menu_wrap').velocity('stop').velocity({height: [180]}, {duration: 200, delay:150 ,easing: 'ease-in-out', display: 'block'});
                 }
             } else
             {
-                $('.overlay').stop(true, true).fadeTo(200, 1);
+                $('.overlay').stop(true, true).delay(150).fadeTo(200, 1);
                 $('.tab').removeClass('selec');
-                $('.menu_wrap').velocity('stop').velocity({height: [180]}, {duration: 200, easing: 'ease-in-out', display: 'block'});
+                $('.menu_wrap').velocity('stop').velocity({height: [180]}, {duration: 200,  delay:150 ,easing: 'ease-in-out', display: 'block'});
             }
         });
         $('.tabWrap').mouseleave(function () {
@@ -183,7 +183,7 @@
 
             $('.menu_elm').css({'z-index': '50'}).removeClass('tab_select').addClass('remo');
             $('.menu_elm').eq(k).css({'z-index': '9999'}).addClass('tab_select').removeClass('remo');
-            $('.menu_elm').eq(k).stop(true, true).slideDown(200, function () {
+            $('.menu_elm').eq(k).stop(true, true).slideDown(200,  function () {
                 $('.remo').css({'display': 'none'});
             });
         });
