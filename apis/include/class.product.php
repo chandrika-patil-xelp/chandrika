@@ -4324,53 +4324,86 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
     }
      
      function getprodByfiltr($params)
-    {
-         
-      $combn=explode("@",$params['hlist']); 
-      
-    foreach($combn as $val){ 
-        $subcombn=  explode("|!|", $val);
+    { 
+      $params= json_decode($params[0], 1);
         
-	$prdvals[]=$subcombn[0]; 
-	$attrids[]=$subcombn[1];
-    }
-    $vals=implode(",", $prdvals);
-    $atrid=implode(",", $attrids);
-   
-       $sql = "  SELECT DISTINCT(productid),
-		  (SELECT GROUP_CONCAT(productid) FROM tbl_category_product_mapping WHERE catid=".$params['catid']." ) AS pids 
-		  FROM tbl_product_attributes_mapping WHERE active_flag =1 
-		  AND FIND_IN_SET(attributeid,'".$atrid."')  AND
-		    MATCH(VALUE) AGAINST('".$vals."')  HAVING FIND_IN_SET(productid,pids) ORDER BY productid ";
-       
-       
-              $res = $this->query($sql);
-	     
-	      while ($row = $this->fetchData($res)) {
-                    $arr['productid'] = $row['productid'];
-                     $arr['val'] = $row['val'];
-                     $arr['att_name'] = $row['att_name']; 
-                    $prdids[] = $arr;  
-                } 
+      $sql=" select DISTINCT(productid) ,   ";
+      foreach ($params as $menuname => $value) {
+	
+	       
+	       if($menuname == 'catid'){
+			 $catflag=1;  
+			$catvalval=$value; 
+		      }
+
+		  foreach ($value as $menuid => $values) {
+			    $vals=[];
+			       
+			   
+			    foreach ($values as $val) { 
+			      $vals[]=$val;
  
-	$cnt=0;
-	foreach($prdids as $val){
-	   $prdid = array ( 'pid' => $val['productid'] );
+			    }
+			      $vals=  implode(",",$vals);
+			     
+		      
+		      if($menuname == 'stone'){
+			$stoneflag=1;
+			$stoneval=$vals; 
+		      }
+		      if($menuname == 'diamondcut'){
+			$dnmndcutflag=1;
+			$dnmndcutval=$vals; 
+		      }
+		      if($menuname == 'bangletype' || $menuname == 'ringtype' || $menuname == 'pendanttype' || $menuname == 'earringtype' || $menuname == 'necklacetype')
+		      {
+			$cattypeflag=1;
+			$cattypeval=$vals; 
+		      }
+		  }
+	  
+      }
+     
+    if( $catflag == 1){
+       $sql.="(select GROUP_CONCAT(productid) from tbl_category_product_mapping where catid=".$catvalval.") AS prdid from tbl_product_master where";
+    }  
+      
+    if($stoneflag == 1){ 
+	$sql.=" productid IN (SELECT productid FROM tbl_product_gemstone_mapping WHERE MATCH(gemstone_name) AGAINST('".$stoneval."') HAVING FIND_IN_SET(productid,prdid)) AND";
+    }
+    
+    if($dnmndcutflag == 1){ 
+      $sql.=" productid IN (SELECT productid FROM tbl_product_diamond_mapping WHERE MATCH(shape) AGAINST('".$dnmndcutval."') AND active_flag=1 HAVING FIND_IN_SET(productid,prdid)) AND";
+    } 
+ 	
+    if($cattypeflag == 1){ 
+      $sql.=" productid IN (SELECT productid FROM tbl_product_attributes_mapping WHERE MATCH(value) AGAINST('".$cattypeval."') AND active_flag=1 HAVING FIND_IN_SET(productid,prdid)) AND";
+    }
+ 	
+      $sql.="   active_flag=1";
+      $res=  $this->query($sql);
+      
+      while ($row = $this->fetchData($res)) {
+         $prdids[] = $row['productid'];
+      } 
+      
+      foreach($prdids as $val){  
+	    $prdid = array ( 'pid' => $val );
 	    $rsst = $this->getProductdetailbypid($prdid);
 	    if(!empty($rsst)){
 	      $rst[]=$rsst;
 	      $cnt++;
 	    } 
-	} 
-            if ($res) { 
-              $error = array('err_code'=>0, 'err_msg'=>'details fetched successfully' );  
-            }
-             else{
+	}
+      if ($res) { 
+          $error = array('err_code'=>0, 'err_msg'=>'details fetched successfully' );  
+      }
+      else{
 	  $error = array('err_code'=>1, 'err_msg'=>'error in fetching details' );
       }
      
       $result = array('result'=>$rst, 'error'=>$error,'total'=>$cnt);
-      return $result;
+      return $result; 
     }
     
      public function getProductdetailbypid($params) {
