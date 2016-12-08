@@ -1006,6 +1006,15 @@ switch($action)
         $result	= $obj->getshippingdatabyid($params);
         $res = $result;
   break;
+
+    case 'getshipdatabyUid': 
+      
+        include APICLUDE.'class.user.php';
+        $obj	= new user($db['jzeva']); 
+        $result	= $obj->getshipdatabyUid($params);
+        $res = $result;
+  break;
+  
   
   case 'sendmailotp':
             include_once APICLUDE . 'class.user.php'; 
@@ -1095,6 +1104,27 @@ case 'removeItmFrmWishlist':
         $res = $result;
     break;
   
+
+//http://localhost:8012/jzeva/backend/?action=orders
+  case 'getallOrderDtails':
+        include APICLUDE.'class.user.php';
+        $obj	= new user($db['jzeva']); 
+        $res=$obj->getallOrderDtails();
+  break;
+
+case 'orderTrack':
+    
+        include APICLUDE.'class.user.php';
+        $obj = new user($db['jzeva']);
+        $res =$obj->orderTrack($params);
+     break;
+//http://localhost:8012/jzeva/index.php?action=myaccount&actn=oId
+  case 'getAllOrderDetails':
+        include APICLUDE.'class.us.php';
+        $obj = new us($db['jzeva']);
+        $res = $obj->getAllOrderDetails($params);
+        break;
+
   }
 echo json_encode($res);
 exit;

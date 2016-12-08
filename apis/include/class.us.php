@@ -311,30 +311,30 @@
         /** GET ORDER DETAILS BY ORDER ID ENDS **/
         
         /** GET PRODUCT DETAILS BY PRODUCT ID START **/
-        
-        function getOrderDetailsByUserId($params)
+     function getOrderDetailsByUserId($params)
     {
-        if(empty($params['userid'])){
-            $resp = array();
-            $error = array('err_code'=>1, 'err_msg'=>'Parameters Missing');
-            $result = array('result'=>$resp, 'error'=>$error);
-            return $result;
-        }
+//        if(empty($params['userid'])){
+//            $resp = array();
+//            $error = array('err_code'=>1, 'err_msg'=>'Parameters Missing');
+//            $result = array('result'=>$resp, 'error'=>$error);
+//            return $result;
+//        }
+             $sqlcount = "  SELECT
+                                    count(product_id) AS  cnt,
+                                    sum(price) AS prc
+                                            FROM
+                                     tbl_order_master
+                                         WHERE
+                                      order_id=".$params['order_id']." AND
+                                      active_flag =1";  
+            $rescnt= $this->query($sqlcount);
+            $row = $this->fetchData($rescnt);
+            $total= $row['cnt'];
+            $totprice = $row['prc'];
         
          global $comm;
          
-           
-            $sqlcount = "  SELECT
-                                    count(product_id) AS  cnt,
-                                    sum(price) AS  totprc
-                                            FROM
-                                     tbl_order_master
-                                         WHERE user_id = ".$params['userid']." and
-                                      active_flag =1";  
-            $rescnt= $this->query($sqlcount); 
-            $row = $this->fetchData($rescnt);
-            $totalprc= $row['totprc'];
-            $total= $row['cnt']; 
+      
            
                 $sql = "SELECT 
                             order_id AS oid,
@@ -373,7 +373,8 @@
  (SELECT GROUP_CONCAT(address) FROM tbl_order_shipping_details WHERE FIND_IN_SET(shipping_id,shipngDet)) AS customerAddrs,
  (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND active_flag = 1 AND  default_img_flag=1) AS default_image
 
- FROM tbl_order_master WHERE user_id= ".$params['userid']." AND active_flag = 1 ";
+ FROM tbl_order_master WHERE order_id= ".$params['order_id']." AND active_flag = 1 ";
+   
                 
                 $res = $this->query($sql);
                 
@@ -414,7 +415,9 @@
                       $reslt['customerPincode'] = ($row['prdimage']!=NULL) ? $row['customerPincode'] : '';
                        $reslt['customerAddrs'] = ($row['prdname']!=NULL) ? $row['customerAddrs'] : '';
                       $reslt['default_image'] = $row['default_image'];
-                       
+                        $reslt['prc'] = $row['prc'];
+                         $reslt['cnt'] = $row['cnt'];
+                         
                        
                        if($row['order_status']== '0'){
                            $reslt['order_status'] ='order placed';
@@ -441,20 +444,24 @@
                        else if($row['payment_type']== '4'){
                            $reslt['payment_type'] ='COD';
                        }
-                       
+                       $reslt['cnt']=$total;
+                        $reslt['total']=$totprice;
                      $resp[] = $reslt;
+                    
+                     
                      
                      }
-                     $error = array('err_code'=>0, 'err_msg'=>' Fetched Data Successfully ');
+                   // $error = array('err_code'=>0, 'err_msg'=>' Fetched Data Successfully ');
                     
                 }else{
-                    $error = array('err_code'=>1, 'err_msg'=>' Error Fetching Data ');
+                  //  $error = array('err_code'=>1, 'err_msg'=>' Error Fetching Data ');
                 }
                  
-            $result = array('result'=>$resp, 'error'=>$error, 'total'=>$total ,'totalprice'=> $totalprc);
-            return $result;
+         //  $resl= array('result'=>$resp, 'error'=>$error);
+            return $resp;
             
     }
+    
     
    
       
@@ -745,6 +752,54 @@
         $results = array('result'=>$resp, 'error'=>$error);
         return $results;
         
+    }
+    
+     
+     function getAllOrderDetails($params)
+    {
+        
+       
+         global $comm;
+        
+            
+          $sql = "  SELECT DISTINCT(order_id )
+                                            FROM
+                                     tbl_order_master
+                                         WHERE 
+                                         user_id=".$params['userid']." AND
+                                      active_flag =1";  
+          
+           $page = ($params['page'] ? $params['page'] : 1);
+        $limit = ($params['limit'] ? $params['limit'] : 2);
+
+        if ($limit > 1) {
+            $limit = 2;
+        }
+        //$limit = 100;
+        if (!empty($page)) {
+            $start = ($page * $limit) - $limit;
+            $sql.=" LIMIT " . $start . ",$limit";
+        }
+            $res = $this->query($sql);
+                
+                if($res){
+                    
+                     while ($row = $this->fetchData($res)){
+                            $ordids=array('order_id'=>$row['order_id']);
+                            $resl[]=  $this->getOrderDetailsByUserId($ordids);
+                      
+                     }
+                    
+                     $error = array('err_code'=>0, 'err_msg'=>' Fetched Data Successfully '); 
+                }
+         
+                else{
+                    $error = array('err_code'=>1, 'err_msg'=>' Error Fetching Data ');
+                }
+                 
+            $result = array('result'=>$resl, 'error'=>$error);
+            return $result;
+            
     }
 
         /** code for sign up ends **/
