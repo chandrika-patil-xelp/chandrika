@@ -1,9 +1,11 @@
 
 <?php include 'jhead.html' ?>
 <body class="greyBg">
+   <?php include 'loader.html'?>
     <?php include 'Cart.html'?>
     <?php include 'header.html'?>
      <?php include 'login.html'?>
+
     <div class="wrapper_main fLeft HOME_PAGE">
         <div class="wrapper">
             <div class="coverImg">
@@ -95,7 +97,7 @@
                             <div class="galleryImg dn"></div>
                             <div class="galleryImg dn"></div>
                             <div class="galleryImg dn"></div>
-                            <div class="galleryCover"></div>
+                            <div class="galleryCover "></div>
                         </div>
                         <div class="colleCont v2">
                             <div class="smUline animFade">FRESH NEW</div>
@@ -106,7 +108,7 @@
                             <div class="smUBot animFade">EXPLORE</div>
                         </div>
                         <div class="sliderTimer">
-                            <div class="sliderProgress" id="sliderProgress"></div>
+                            <div class="sliderProgress " id="sliderProgress"></div>
                         </div>
                     </div>
                 </div>
@@ -177,7 +179,7 @@
             <?php include 'footer.html'?>
         </div>
 
-        <?php include 'loader.html'?>
+
         <?php include 'loaderStatic.html'?>
         <div class="overlay3 pointNone"></div>
 
@@ -197,50 +199,7 @@
             $(this).toggleClass('select_active');
         });
 
-        /* Fly to cart effect */
-        $('#add_to_cart').on('click', function () {
-            var wd = $('.rota').outerWidth();
-            var ht = $('.rota').outerHeight();
-            var cart = $('.cartIcon');
-            var imgtodrag;
-            $('.rota .imgHolder').each(function (i) {
-                if (!$(this).hasClass("dn")) {
-                    imgtodrag = $(this);
-                }
-            });
-            if (imgtodrag) {
-                var imgclone = imgtodrag.clone()
-                        .offset({
-                            top: imgtodrag.offset().top,
-                            left: imgtodrag.offset().left
-                        })
-                        .css({
-                            'opacity': '0.7',
-                            'position': 'absolute',
-                            'height': ht,
-                            'width': wd,
-                            'z-index': '900',
-                            'display': 'block'
-                        })
-                        .appendTo($('body'))
-                        .velocity({top: cart.offset().top, left: cart.offset().left, width: 0, height: 0, opacity: [0.1]}, {duration: 1000, easing: 'easeInOutExpo',
-                            complete: function () {
-                                $(this).detach();
-                            }});
 
-                setTimeout(function () {
-                    cart.velocity('stop').velocity({translateX: [-15, 15]}, {duration: 50, easing: 'swing', loop: 3}).velocity({translateX: [0]}, {duration: 25, easing: 'swing'});
-                }, 900);
-
-                // imgclone.animate({
-                //     'width': 0,
-                //         'height': 0
-                // }, function () {
-                //
-                // });
-            }
-        });
-        // Show close reviews page
 
 
         $(window).on('load', function () {
@@ -265,40 +224,8 @@
                 $('.header').removeClass('black_bg');
 
             }
-            //           if(ht-sc<=60){
-            //           console.log(sc);
-            //           $('.gemBanner').addClass('fixer');
-            //       }
-            //       else{
-            //            $('.gemBanner').removeClass('fixer');
-            //       }
+
         });
-        var block = false;
-        // $('.homeCcont').mouseenter(function(){
-        // var th=$(this);
-        //   if(!$(this).hasClass('blk')){
-        //     $(this).addClass('blk');
-        //     $(this).find('.plusCont').velocity('stop').velocity({scale:[1,0]} , {duration:200 , easing:'swing',delay:400 , complete:function(){
-        //         th.removeClass('blk');
-        //     }
-        //   });
-        //   $(this).find('.hovDiv').velocity('stop').velocity({width:['100%',0] , height:['4px',0]} , {duration:200 , easing:'swing'});
-        //   $(this).find('.hovDiv').velocity({height:['100%' , '4px']}, {duration:200 ,delay:50 , easing:'swing' });
-        // }
-        //
-        // });
-        // $('.homeCcont').mouseleave(function(){
-        //   var th=$(this);
-        //     $(this).removeClass('blk');
-        //     if(!$(this).hasClass('blk')){
-        //     $(this).addClass('blk');
-        //     $(this).find('.plusCont').velocity('stop').velocity({scale:[0,1]} , {duration:100 , easing:'swing'});
-        //     $(this).find('.hovDiv').velocity('stop').velocity({height:['4px' , '100%']}, {duration:200  , easing:'swing' }).velocity({width:[0 ,'100%'] , height:[0 ,'4px']} , {duration:200 , delay:50 ,easing:'swing' ,
-        //     complete:function(){
-        //     th.removeClass('blk');
-        //     }});
-        //   }
-        // });
 
         $('.jzgrid').mouseenter(function () {
             $(this).find('.plusCont').velocity('stop').velocity({scale: [1, 0]}, {duration: 200, delay: 200, easing: 'swing'});
@@ -314,37 +241,28 @@
                 }
             });
         });
-        function galleryRun() {
-            $('#sliderProgress').removeClass('trRight');
-            $('#sliderProgress').velocity({scaleX: [1, 0]}, {duration: 5350, easing: 'liner', complete: function () {
-                    $('#sliderProgress').addClass('trRight');
-                    $('#sliderProgress').velocity({scaleX: [0, 1]}, {duration: 300, easing: 'liner', delay: 250});
-                }
-            });
-            $('.galleryCover').velocity({translateX: [0, '-100%']}, {duration: 300, easing: 'easeInOutExpo', complete: function () {
-                    $('.galleryCover').velocity({translateX: ['100%', 0]}, {duration: 300, easing: 'easeInOutExpo', delay: 50});
 
-                }
-            });
-
-        }
         var iv = 1;
+        var timeoff = 6000;
         function gallerChange() {
             iv = (iv + 1) % 4;
-            galleryRun();
 
-            setTimeout(function () {
                 $('.galleryImg').addClass('dn');
                 $('.galleryImg').eq(iv).removeClass('dn');
-            }, 300);
+                console.log(iv);
+
         }
         function runslider() {
-
+          console.log(timeoff);
+          clearTimeout(stop);
+          console.log('called');
             gallerChange();
             stop = setTimeout(function () {
+
                 runslider();
 
-            }, 6000);
+            }, timeoff);
+
         }
 
         var sctrig = 0;
@@ -374,26 +292,25 @@
             var daroff = $('#darkCont').offset().top;
             var darBot = $('#darkCont').offset().top + $('#darkCont').outerHeight(true);
             if (window_top_position > daroff - 200 && window_top_position < darBot) {
-                if (!$('#darkCont').hasClass('runslider')) {
+              if(!$('#darkCont').hasClass('runslider'))
+              {
+                  runslider();
+                setTimeout(function(){
                     $('#darkCont').addClass('runslider');
-                    $('#sliderProgress').velocity({scaleX: [1, 0]}, {duration: 5350, easing: 'liner', complete: function () {
-                            $('#sliderProgress').addClass('trRight');
-                            $('#sliderProgress').velocity({scaleX: [0, 1]}, {duration: 300, easing: 'liner', delay: 350});
-                        }
-                    });
-                    setTimeout(function () {
-                        runslider();
+                    $('#sliderProgress').addClass('swipeLine');
+                    $('.galleryCover').addClass('swipeImg');
 
-                    }, 6000);
-                }
-
-
-
-
-            } else if (window_top_position > darBot) {
+                },250);
+              }
+            }
+             else if (window_top_position > darBot) {
                 clearTimeout(stop);
                 $('#darkCont').removeClass('runslider');
-            } else {
+                $('#sliderProgress').removeClass('swipeLine');
+                $('.galleryCover').removeClass('swipeImg');
+            }
+
+            else {
 
             }
         }
