@@ -96,7 +96,7 @@
                             <div class="galleryImg dn"></div>
                             <div class="galleryImg dn"></div>
                             <div class="galleryImg dn"></div>
-                            <div class="galleryImg dn"></div>
+                            <!-- <div class="galleryImg dn"></div> -->
                             <div class="galleryCover "></div>
                         </div>
                         <div class="colleCont v2">
@@ -291,7 +291,7 @@
             });
             var daroff = $('#darkCont').offset().top;
             var darBot = $('#darkCont').offset().top + $('#darkCont').outerHeight(true);
-            if (window_top_position > daroff - 200 && window_top_position < darBot) {
+            if (window_top_position > daroff - 200 && window_top_position < darBot + 200) {
               if(!$('#darkCont').hasClass('runslider'))
               {
                   runslider();
@@ -300,7 +300,7 @@
                     $('#sliderProgress').addClass('swipeLine');
                     $('.galleryCover').addClass('swipeImg');
 
-                },250);
+                },150);
               }
             }
              else if (window_top_position > darBot) {
@@ -308,6 +308,9 @@
                 $('#darkCont').removeClass('runslider');
                 $('#sliderProgress').removeClass('swipeLine');
                 $('.galleryCover').removeClass('swipeImg');
+                $('.galleryImg').addClass('dn');
+                $('.galleryImg').eq(1).removeClass('dn');
+                iv=1;
             }
 
             else {
