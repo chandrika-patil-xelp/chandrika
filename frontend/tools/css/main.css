@@ -1419,10 +1419,10 @@ input[type=radio]:checked ~ .selector_label:after {
     90% {
     transform:translateX(-100%);
     }
-    94% {
+    93% {
     transform:translateX(0%);
     }
-    96% {
+    97% {
     transform:translateX(0%);
     }
     100% {
@@ -1436,10 +1436,10 @@ input[type=radio]:checked ~ .selector_label:after {
     90% {
     transform:translateX(-100%);
     }
-    94% {
+    93% {
     transform:translateX(0%);
     }
-    96% {
+    97% {
     transform:translateX(0%);
     }
     100% {
@@ -1453,10 +1453,10 @@ input[type=radio]:checked ~ .selector_label:after {
     90% {
     transform:translateX(-100%);
     }
-    94% {
+    93% {
     transform:translateX(0%);
     }
-    96% {
+    97% {
     transform:translateX(0%);
     }
     100% {
@@ -1470,10 +1470,10 @@ input[type=radio]:checked ~ .selector_label:after {
      90% {
      transform:translateX(-100%);
      }
-     94% {
+     93% {
      transform:translateX(0%);
      }
-     96% {
+     97% {
      transform:translateX(0%);
      }
      100% {

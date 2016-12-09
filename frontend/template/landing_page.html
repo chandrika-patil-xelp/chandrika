@@ -294,13 +294,12 @@
             if (window_top_position > daroff - 200 && window_top_position < darBot + 200) {
               if(!$('#darkCont').hasClass('runslider'))
               {
+                  $('#darkCont').addClass('runslider');
                   runslider();
                 setTimeout(function(){
-                    $('#darkCont').addClass('runslider');
                     $('#sliderProgress').addClass('swipeLine');
                     $('.galleryCover').addClass('swipeImg');
-
-                },150);
+                },220);
               }
             }
              else if (window_top_position > darBot) {
@@ -309,12 +308,8 @@
                 $('#sliderProgress').removeClass('swipeLine');
                 $('.galleryCover').removeClass('swipeImg');
                 $('.galleryImg').addClass('dn');
-                $('.galleryImg').eq(1).removeClass('dn');
-                iv=1;
-            }
-
-            else {
-
+                $('.galleryImg').eq(0).removeClass('dn');
+                iv=0;
             }
         }
 
