@@ -242,15 +242,13 @@
             });
         });
 
-        var iv = 1;
+        var iv = -1;
         var timeoff = 6000;
         function gallerChange() {
             iv = (iv + 1) % 4;
-
                 $('.galleryImg').addClass('dn');
                 $('.galleryImg').eq(iv).removeClass('dn');
                 console.log(iv);
-
         }
         function runslider() {
           console.log(timeoff);
@@ -258,13 +256,9 @@
           console.log('called');
             gallerChange();
             stop = setTimeout(function () {
-
                 runslider();
-
             }, timeoff);
-
         }
-
         var sctrig = 0;
         var $window = $(window);
         $window.on('scroll', check_if_in_view);
@@ -274,7 +268,6 @@
             var window_height = $window.height();
             var window_top_position = $window.scrollTop();
             var window_bottom_position = (window_top_position + window_height);
-
             $('.homeCard , .darkCont ,.animFade').each(function (i) {
                 var $element = $(this);
                 var element_height = $element.outerHeight();
@@ -291,7 +284,7 @@
             });
             var daroff = $('#darkCont').offset().top;
             var darBot = $('#darkCont').offset().top + $('#darkCont').outerHeight(true);
-            if (window_top_position > daroff - 200 && window_top_position < darBot + 200) {
+            if (window_top_position > daroff && window_top_position < darBot + 200) {
               if(!$('#darkCont').hasClass('runslider'))
               {
                   $('#darkCont').addClass('runslider');
@@ -302,19 +295,17 @@
                 },220);
               }
             }
-             else if (window_top_position > darBot) {
+             else {
                 clearTimeout(stop);
                 $('#darkCont').removeClass('runslider');
                 $('#sliderProgress').removeClass('swipeLine');
                 $('.galleryCover').removeClass('swipeImg');
-                $('.galleryImg').addClass('dn');
-                $('.galleryImg').eq(0).removeClass('dn');
-                iv=0;
+                // $('.galleryImg').addClass('dn');
+                // $('.galleryImg').eq(0).removeClass('dn');
+                // iv=0;
             }
         }
-
         function redirect() {
-
             $('body').addClass('over_hide');
             $('.page_loader').velocity({translateX: [0, '-100%']}, {duration: 300, easing: 'easeInOutExp', display: 'block',
                 complete: function () {
