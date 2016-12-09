@@ -18,7 +18,7 @@
         </div>
     </div>
 </div>
-<div class="cart"> 
+<div class="cart">
 
     <!-- <div class="cart_head ">
       YOUR CART
@@ -43,7 +43,7 @@
                 <div class="font13">Sorry,you have not added anything in your Cart</div>
             </div>
             <div class="col100">
-                <div class="actBtn button colorfff" id="contshop">continue shopping</div>
+                <div class="actBtn button colorfff"  onclick="closeCart()">continue shopping</div>
             </div>
         </center>
     </div>
@@ -173,15 +173,11 @@
 
 //    $(document).on('click', '.addrCommon', function () {
 //
-//       
+//
 //    });
 
 
 
-    $('#closeCart').click(function () {
-//        alert("sdjkfvkd");
-        $('.cart').velocity({trnslateX: ['100%', 0]}, {duration: [400]});
-    });
 
     $('#niceCart').niceScroll({cursorcolor: "#000000", touchbehavior: true, cursorwidth: "4px", autohidemode: false, cursorborder: "0px solid #fff", cursoropacitymin: "0.3", cursoropacitymax: "0.3", railpadding: {top: 2, right: 2, left: 2, bottom: 2}});
 </script>
