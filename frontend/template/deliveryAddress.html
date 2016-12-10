@@ -1,0 +1,43 @@
+<?php include 'jhead.html' ?>
+<html>
+<body>
+    <div class="cont dAddress">
+        <div class="dAddhdr">
+            <div class="logo"></div>
+        </div>
+     
+          
+                <div class="gnrlWrp fLeft regular">
+<!--                    <div class="subHdr fLeft">Delivered
+                        <div class="dlvrSignal"></div>
+                    </div>-->
+                   
+                        <div class="sucUscBtnhldr">
+                            <center>
+                                <div class="button">ORDERD SUCCESSFUL</div>
+                                <div class="button">ORDERD UNSUCCESSFUL</div>
+                            </center>
+                        </div>
+                   
+                </div>
+            
+    </div>
+    <script>
+        $(document).ready(function(){
+            $('.button').on('click',function(){
+//               $('.button').each(function(){
+//                   $('.button').removeClass('addTik');
+//               });
+               if($(this).hasClass('addTik')){
+                  $(this).removeClass('addTik');  
+               }
+               else{
+                 $(this).addClass('addTik');
+                 $(this).siblings().removeClass('addTik');
+               }
+              
+            });
+        });
+    </script>
+</body>
+</html>
