@@ -1211,7 +1211,7 @@ input[type=radio]:checked ~ .selector_label:after {
 .lgnHead{padding:0px 40px;height: 120px;width: 100%; position: absolute;top: 0;left: 0;}
 .lgnLogo{background-image:url('../img/jzevalogoccc.svg');background-repeat:no-repeat;background-size:auto 40%;background-position:left;width:300px;height:100%;}
 .signUp{width:auto;height:auto;line-height:100px;color: #2d2d2d;}
-.outerContr{transform: translateY(150%);width:450px;height:500px;background: #fff;   position: fixed;    top: 0;    bottom: 0;    margin: auto;   right: 0;left: 0;z-index: 24;}
+.outerContr{transform: translateY(100vh);width:450px;height:500px;background: #fff;   position: fixed;    top: 0;    bottom: 0;    margin: auto;   right: 0;left: 0;z-index: 24;}
 .signUpIcon{background-image:url('../img/signUp.svg');background-repeat:no-repeat;background-position:left;background-size:auto 28px;display: inline-block; padding-left: 28px; cursor: pointer;line-height:20px}
 .subTxt{ color:#53C9C7;width:100%;height:auto;text-align: left;cursor:pointer;font-family: regular;font-size: 14px;}
 .forgotIcon{background: url("../img/icons/forgot.svg")no-repeat; background-size: auto 100%;background-position: left center;}
@@ -1331,6 +1331,8 @@ input[type=radio]:checked ~ .selector_label:after {
 /*.filterLabel:after{content:"";width:100%;height:100%;background:#15181b;position:absolute;top:0;left:0;transform:translateX(-100%);-webkit-transform:translateX(-100%);-moz-transform:translateX(-100%);-o-transform:translateX(-100%);-ms-transform:translateX(-100%);transition:200ms;-webkit-transition:200ms;-moz-transition:200ms;-o-transition:200ms;-ms-transition:200ms;}*/
 .wishBtn:hover.wishBtn{color: #fff;}
 .pad10{padding:0px 10px;}
+.clrfff{color:#fff !important;}
+.aftrClk#addwishlist:after{transform:translateX(0%);-moz-transform:translateX(0%);-webkit-transform:translateX(0%);-o-transform:translateX(0%);-ms-transform:translateX(0%);transition:450ms !important;z-index:-1}
 #addwishlist:after{content:"";width:120%;height:100%;position:absolute;left:0;top:0;background:#ff5a5f;transform:translateX(-120%);-moz-transform:translateX(-120%);-webkit-transform:translateX(-120%);-o-transform:translateX(-120%);-ms-transform:translateX(-120%);transition:0ms ease-in;pointer-events:none}
 .actBtn:after{content:"";width:120%;height:100%;position:absolute;left:0;top:0;background:#53C9C7;transform:translateX(-120%);-moz-transform:translateX(-120%);-webkit-transform:translateX(-120%);-o-transform:translateX(-120%);-ms-transform:translateX(-120%);transition:0ms ease-in;pointer-events:none}
 .actBtn:hover:after{transform:translateX(120%);-moz-transform:translateX(120%);-webkit-transform:translateX(120%);-o-transform:translateX(120%);-ms-transform:translateX(120%);transition:450ms !important}
@@ -1907,7 +1909,7 @@ input[type=radio]:checked ~ .matchIcn{
 .lgnwTxt{width:100%;height:30px;font-size:15px;color:#15181b;text-align:center;line-height:30px;margin-top: 35px;cursor: pointer;}
 
 
-.fade{}
+.fade{width: 100%;height: 100%;position: fixed;background-color: rgba(0,0,0,0.7);z-index: 999;display:none;opacity:0;}
 /*my account*/
 .myaccount{}
 .tabCont{width: 20%;height: auto;}
@@ -2244,6 +2246,16 @@ input[type=radio]:checked ~ .matchIcn{
 .r0{right:0!important;}
 .l0{left:0!important;}
 .thankTxt .col100{width: 100%!important;}
+/*dAddress*/
+.dAddress{}
+.dAddress.cont{width:100%;height:100%;padding-top:50px;}
+.dAddhdr{width:100%;height:50px;position:fixed;top:0;left:0;background-color:#333;z-index:99;}
+.dAddress .wrapper{width:100%;height:100%;}
+.dAddress .vMax{width:100%;height:auto;max-width:800px;margin:auto;}
+.dAddress .gnrlWrp{width:100%;height:100%;position:fixed;left:0;top:0;}
+.sucUscBtnhldr{width:100%;height:40px;position:absolute;left:0;right:0;top:0;bottom:0;margin:auto;}
+.sucUscBtnhldr .button{width:auto;height:40px;background-color:#0CCDB8;color:#fff;line-height:40px;text-align:center;color:#fff;padding:0px 40px;font-size:12px;display:inline-block;vertical-align:top;margin:0px;}
+.addTik{background:url(../img/02w.svg)no-repeat;background-position:100% center;background-size:auto 40px;}
 
 @media only screen and (min-width:320px) and (max-width:767px){
 
