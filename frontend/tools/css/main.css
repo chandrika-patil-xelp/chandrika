@@ -1350,10 +1350,10 @@ input[type=radio]:checked ~ .selector_label:after {
 .checkFoo{
     position: absolute;
     width: 100%;
-    height: 90px;
+    height: auto;
     bottom: 0;z-index: 99;}
-.logoComm{    width: 10%;
-    height: 100px;display: inline-block;}
+.logoComm{    width: 15%;
+    height: 87px;display: inline-block;}
 .aftrClk#addwishlist:after{transform:translateX(0%);-moz-transform:translateX(0%);-webkit-transform:translateX(0%);-o-transform:translateX(0%);-ms-transform:translateX(0%);transition:450ms !important;z-index:-1}
 #addwishlist:after{content:"";width:120%;height:100%;position:absolute;left:0;top:0;background:#ff5a5f;transform:translateX(-120%);-moz-transform:translateX(-120%);-webkit-transform:translateX(-120%);-o-transform:translateX(-120%);-ms-transform:translateX(-120%);transition:0ms ease-in;pointer-events:none}
 .actBtn:after{content:"";width:120%;height:100%;position:absolute;left:0;top:0;background:#53C9C7;transform:translateX(-120%);-moz-transform:translateX(-120%);-webkit-transform:translateX(-120%);-o-transform:translateX(-120%);-ms-transform:translateX(-120%);transition:0ms ease-in;pointer-events:none}
@@ -2024,13 +2024,13 @@ input[type=radio]:checked ~ .matchIcn{
 .minusBlack{background:#f3f3f3 url("../img/icons/518b.svg")no-repeat;background-size: auto 15px;background-position: center;}
 .marR{margin: 0px 10px!important;}
 
-.pcImage{background:url("../img/icons/pc106.png")no-repeat;background-size: auto 100%;background-position: left;}
-.norImage{background:url("../img/icons/n103.png")no-repeat;background-size: auto 100%;background-position: left;}
-.masterImg{background:url("../img/icons/m104.png")no-repeat;background-size: auto 100%;background-position: left;}
-.visaLogo{background:url("../img/icons/v105.png")no-repeat;background-size: auto 100%;background-position: left;}
-.safeLogo{background:url("../img/icons/s102.png")no-repeat;background-size: auto 100%;background-position: left;}
-.rupayLogo{background:url("../img/icons/r107.png")no-repeat;background-size: auto 100%;background-position: left;}
-.jcbLogo{background:url("../img/icons/j101.png")no-repeat;background-size: auto 100%;background-position: left;}
+.pcImage{background:url("../img/icons/pc106.png")no-repeat;background-size: auto 90%;background-position:center;}
+.norImage{background:url("../img/icons/n103.png")no-repeat;background-size: auto 90%;background-position:center;}
+.masterImg{background:url("../img/icons/m104.png")no-repeat;background-size: auto 90%;background-position:center;}
+.visaLogo{background:url("../img/icons/v105.png")no-repeat;background-size: auto 90%;background-position:center;}
+.safeLogo{background:url("../img/icons/s102.png")no-repeat;background-size: auto 90%;background-position:center;}
+.rupayLogo{background:url("../img/icons/r107.png")no-repeat;background-size: auto 90%;background-position:center;}
+.jcbLogo{background:url("../img/icons/j101.png")no-repeat;background-size: auto 90%;background-position: center;}
 .imageHolder{width:20%;height:100px;}
 .plusBlack{background:#f3f3f3 url("../img/icons/510b.svg")no-repeat;background-size:auto 15px;background-position:center;}
 .addrEditCnt{width: 30px;height: 30px;background-color: #f3f3f3;opacity: 0.5;}
