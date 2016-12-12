@@ -1931,7 +1931,7 @@ input[type=radio]:checked ~ .matchIcn{
 .plusBox{background:#53C9C7 url("../img/icons/510w.svg")no-repeat;background-size: auto 15px;background-position: center;}
 .minusBox{background:#53C9C7 url("../img/icons/518w.svg")no-repeat;background-size: auto 15px;background-position: center;}
 .jColor{color:#53C9C7;}
-.proStep{width:40px;height:40px;border-radius:50%;position:absolute;z-index:1;top:0;bottom: 0;right: 0;left:0;margin: auto;}
+.proStep{width:40px;height:40px;border-radius:50%;position:absolute;z-index:1;top:0;bottom: 0;right: 0;left:0;margin: auto;background-color:#f0f0f0;}
 /*.proStep:after{content: "";width: 25%;border-bottom: 1px solid;position: absolute;top: 50%;left: 55px;}*/
 .ordSteps{width: 25%;position: relative;}
 .ordLine{position: absolute;border-bottom:1px solid;width: 100%;}
@@ -1946,7 +1946,8 @@ input[type=radio]:checked ~ .matchIcn{
 .trackDivs:after{content:"";position:absolute;border-bottom:1px solid #ccc;width: 100%;right:0;top:50%;left:50%;}
 #track .proStep{border:none;}
 .placedTxt{width: 100%;text-transform: uppercase;font-size: 11px;font-family: semibold;}
-.tickIcon{background: #53C9C7 url(../img/icons/517w.svg)no-repeat;background-size: auto 15px;background-position: center;}
+.tickIcon{background: #53C9C7 url(../img/icons/checkw.svg)no-repeat;background-size: auto 15px;background-position: center;}
+.notDeliver{background: #53C9C7 url(../img/close_blackw.svg)no-repeat;background-size: auto 15px;background-position: center;}
 .trackDivs:last-child:after{display: none;}
 .myaccount .tHead{padding-right:35px;}
 .myaccount .pCont{padding-left: 35px;}
@@ -2228,6 +2229,8 @@ input[type=radio]:checked ~ .matchIcn{
 .rangeParent{width:100%;height: 130px;}
 .ringBox{width: 100px;height: 40px;display: inline-block;}
 .ringCircle{width:40px;height: 40px;border-radius: 50%;display: inline-block;margin-top:15px;line-height:40px;font-size:12px;background-color: #fff;font-family:semibold;border: 1px solid #15181b; color: #15181b;text-align: center;}
+.ringCircleB{width:40px;height: 40px;border-radius: 50%;display: inline-block;margin-top:15px;line-height:40px;font-size:12px;background-color: #fff;font-family:semibold;border: 1px solid #15181b;
+    color: #15181b;text-align: center;}
 .incrBox{width: 40%;border-left: 1px solid #ccc;height: 100%;}
 .ringNum{ width: 60%;height: 100%;line-height: 40px;font-size: 20px;font-family: semibold;color: #fff;background-color: #15181b;}
 .sizeIp{width: 100%;height: 100%;outline: none;border:none;}
