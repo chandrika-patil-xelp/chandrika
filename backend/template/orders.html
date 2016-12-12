@@ -6,7 +6,7 @@
             <div class="wrapperMax">
                 <div class="couponCont fLeft">
                     <div class="prdSearchDiv fLeft fmOpenR">
-                        <div class="commTitle2 fLeft"><span >No</span> Orders</div>
+                        <div class="commTitle2 fLeft"><span id="totalord" >No</span> Orders</div>
                         <input type="text"  autocomplete="off" class="prdSeachTxt lsearchTxt fRight fmOpenR marR" placeholder=" Search Order">
                         <div class="dn">
                             <div class="addCouponBtn fRight transition300">Filter By Date</div>
@@ -43,21 +43,28 @@
         
         function getOrderList()
         {
-            var URL=APIDOMAIN+"index.php?action=geOrderList";
+            var URL=APIDOMAIN+"index.php?action=getallOrderDtails";
             $.ajax({
                 url:URL,
                 type:'GET',
                 success:function(res){
-                    res=JSON.parse(res);
-                    listCallBack(res);
+                    var res=JSON.parse(res);
+                   
+                      $('#totalord').html(res.total);
+                      listCallBack(res);
                 }
             });
         }
         
         
         function listCallBack(data){
-            var str="";
-            $(data['result']).each(function(i,vl){
+            var str="";  
+            if(data['result'] == null)
+                $('#noresults').removeClass('dn');
+            else
+                $('#noresults').addClass('dn');
+             $(data['result']).each(function(i,vl){
+                
                 str+="<li class='transition300 searchRow'>";
                 str+="<div class='date fLeft fmOpenB'>"+vl.oid+"</div>";
                 str+="<div class='dmdWt fLeft'>";
@@ -109,14 +116,15 @@
                 
                 else 
                     ostatus="Cancelled";
-                                
+                             
                 str+="<div class='acct fLeft'>"+ostatus+"</div>";
-                str+="<a href='" + DOMAIN + "backend/index.php?action=ord_detail&orderid=" + vl.oid + "'><div class='fRight viewM transition300'></div></a>";
+                str+="<a href='" + DOMAIN + "backend/index.php?action=ord_detail&orderid=" + vl.oid + "&pid="+vl.pid+"&combn="+vl.col_car_qty+"&sz="+vl.size+"'><div class='fRight viewM transition300'></div></a>";
                 str+="</li>";
                                 
-            });
+             });
          
             $('#orderList').append(str);
+           
         }
 
         

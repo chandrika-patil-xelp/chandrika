@@ -419,19 +419,7 @@
                          $reslt['cnt'] = $row['cnt'];
                          
                        
-                       if($row['order_status']== '0'){
-                           $reslt['order_status'] ='order placed';
-                       }else if($row['order_status']== '6'){
-                           $reslt['order_status'] ='delivered';
-                       }else if($row['order_status']== '7'){
-                           $reslt['order_status'] ='not delivered';
-                       }else if($row['order_status']== '8'){
-                           $reslt['order_status'] ='rescheduled';
-                       }
-                       else if($row['order_status']== '9'){
-                           $reslt['order_status'] ='cancelled';
-                       }
-                       
+                        
                        if($row['payment_type']== '0'){
                            $reslt['payment_type'] ='Credit Card';
                        }else if($row['payment_type']== '1'){

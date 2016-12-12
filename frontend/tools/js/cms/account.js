@@ -29,7 +29,7 @@ $(document).ready(function () {
     });
 
 });
-
+ 
 function displayorders()
 {
     var titod = "";
@@ -52,15 +52,15 @@ function displayorders()
             if (obj["result"] == null) {
                 $('#noordrs').removeClass('dn');
                 $('.orderOuter').addClass('dn');
-                //  $('#od').addClass('dn');
+                
             } else
             {
                 $('#noordrs').addClass('dn');
-             $('#od').addClass('dn');
+           
                 // var totalprice = $('#ordPrice').html(indianMoney(parseInt(obj.totalprice)));
                 var totalprice = indianMoney(parseInt(obj.totalprice));
                 $(obj['result']).each(function (r, e) {
-                   
+                 
                     var ordrdate = "";
                     ordrdate += e[0].order_date;
                     ordrdate = ordrdate.split(' ');
@@ -75,6 +75,8 @@ function displayorders()
                     }
                     var month_Name = new Date().getMonthName();
                     var cnfDate = '' + cd + ' ' + month_Name + '';
+                    
+                   
 //                   if($('#oId').html()){
 //                   order += ' <div class="fLeft tabHead headLine borBtm " id="od">my orders</div>';
 //               }else
@@ -98,29 +100,6 @@ function displayorders()
                     orderstr += '</div>';
                     $(e).each(function (s, v) {
 
-                     var orderStatus = v.order_status; 
-                   if(v.order_status == 0)
-                       orderStatus ='Order-Placed';
-                  if(v.order_status == 1)
-                       orderStatus ='Order-Approved';
-                   if(v.order_status == 2)
-                       orderStatus == 'Getting-Manufactured';
-                    if(v.order_status == 3)
-                       orderStatus ='In-Qc';
-                    if(v.order_status == 4)
-                       orderStatus = 'In-Certification';
-                    if(v.order_status == 5)
-                       orderStatus = 'Shipped';
-                    if(v.order_status == 6)
-                       orderStatus = 'Delivered';
-                    if(v.order_status == 7)
-                       orderStatus = 'Not-Delivered';
-                    if(v.order_status == 8)
-                       orderStatus = 'Rescheduled';
-                    if(v.order_status == 9)
-                       orderStatus = 'Cancelled';
-                   
-                   console.log(orderStatus);
                         if (v.default_image !== null) {
                             var image = IMGDOMAIN + v.default_image;
                         } else {
@@ -173,34 +152,36 @@ function displayorders()
                         orderstr += '<div class="fLeft col100 ">' + v.customername + '</div>';
                         orderstr += '<div class="fLeft col100 shipAddr">' + v.customerAddrs + ' ' + v.customerCity + ' ' + v.customerState + ' ' + v.customerPincode + '</div>';
 
-                        orderstr += '<div class="filterSec fLeft">';
+                        orderstr += '<div class="filterSec fLeft" id="'+v.order_status+'">';
                         orderstr += '<center>';
-                        orderstr += '<div class="button actBtn transition300 fRight mar0 trackCommon" id="' + v.pid + '_' + r + '" onclick="trackslide(this)">track</div>';
+                        orderstr += '<div class="button actBtn transition300 fRight mar0 trackCommon" id="' + v.pid + '_' + s + '" onclick="trackslide(this)">track</div>';
                         orderstr += '</center>';
                         orderstr += '</div>';
                         orderstr += '</div>';
                         orderstr += '<div class="fLeft trackOuter poR dn">';
                         orderstr += '<center>';
                         orderstr += '<div class="trackDivs">';
-                        orderstr += '<div class="fLeft placedTxt">'+orderStatus+'</div>';
+                        orderstr += '<div class="fLeft placedTxt">Order Placed</div>';
                         orderstr += '<div class="fLeft dateTxt">' + cnfDate + '</div>';
-                        orderstr += '<div class="fLeft proStep tickIcon"></div>';
+                        orderstr += '<div class="fLeft proStep" id="1ststp"></div>';
                         orderstr += '</div>';
                         orderstr += '<div class="trackDivs">';
-                        orderstr += '<div class="fLeft placedTxt">quality check and certification</div>';
-                        orderstr += '<div class="fLeft dateTxt">10 Oct</div>';
-                        orderstr += '<div class="fLeft proStep tickIcon"></div>';
+                        orderstr += '<div class="fLeft placedTxt">Quality Check And Certification</div>';
+                        orderstr += '<div class="fLeft dateTxt"></div>';
+                        orderstr += '<div class="fLeft proStep" id="2ndstp"></div>';
                         orderstr += '</div>';
                         orderstr += '<div class="trackDivs">';
-                        orderstr += '<div class="fLeft placedTxt">out for delivery</div>';
-                        orderstr += '<div class="fLeft dateTxt">14 Oct</div>';
-                        orderstr += '<div class="fLeft proStep tickIcon"></div>';
+                        orderstr += '<div class="fLeft placedTxt"> Shipped </div>';
+                        orderstr += '<div class="fLeft dateTxt"></div>';
+                        orderstr += '<div class="fLeft proStep" id="3rdstp"></div>';
                         orderstr += '</div>';
-                        orderstr += '<div class="trackDivs">';
-                        orderstr += '<div class="fLeft placedTxt">Delivered</div>';
-                        orderstr += '<div class="fLeft dateTxt">16 Oct</div>';
-                        orderstr += '<div class="fLeft proStep tickIcon"></div>';
+                        orderstr += '<div class="trackDivs ">';
+                        orderstr += '<div class="fLeft placedTxt" id="delv">Delivered</div>';
+                        orderstr += '<div class="fLeft dateTxt"></div>';
+                        orderstr += '<div class="fLeft proStep" id="4thstp"></div>';
                         orderstr += '</div>';
+                       
+                        
                         orderstr += '</center>';
                         orderstr += '<div class="fLeft tOuter poR">';
                         orderstr += '<div class="fLeft date semibold font15">07 oct</div>';
@@ -747,6 +728,7 @@ function addAddress()
 function ordrinfo()
 {
     accntentrflag = 5;
+      $('#myord').removeClass('dn');
     $('#myordId').removeClass("dn");
     $('#profileId').addClass("dn");
     $('#editpId').addClass("dn");
@@ -806,9 +788,38 @@ function whlist()
 
 
 function trackslide(ths)
-{
+{       
+ 
+        var trackid=$(ths).parent().parent().attr('id');
+            
+        if(trackid == 0 || trackid == 1 || trackid== 2){
+            $(ths).closest('.detailsOuter').find('.trackDivs').eq(0).find('.proStep').addClass('tickIcon'); 
+        }  
+        if(trackid == 3 || trackid == 4){
+              $(ths).closest('.detailsOuter').find('.trackDivs').eq(0).find('.proStep').addClass('tickIcon');
+               $(ths).closest('.detailsOuter').find('.trackDivs').eq(1).find('.proStep').addClass('tickIcon');
+        } 
+        if(trackid == 5){
+              $(ths).closest('.detailsOuter').find('.trackDivs').eq(0).find('.proStep').addClass('tickIcon');
+               $(ths).closest('.detailsOuter').find('.trackDivs').eq(1).find('.proStep').addClass('tickIcon');
+                $(ths).closest('.detailsOuter').find('.trackDivs').eq(2).find('.proStep').addClass('tickIcon');
+              
+        }
+        if(trackid == 6){
+              $(ths).closest('.detailsOuter').find('.trackDivs').eq(0).find('.proStep').addClass('tickIcon');
+               $(ths).closest('.detailsOuter').find('.trackDivs').eq(1).find('.proStep').addClass('tickIcon');
+                $(ths).closest('.detailsOuter').find('.trackDivs').eq(2).find('.proStep').addClass('tickIcon');
+               $(ths).closest('.detailsOuter').find('.trackDivs').eq(3).find('.proStep').addClass('tickIcon');
+        } 
+         if(trackid == 7){
+             $('#delv').html('Not DELIVERED');
+              $(ths).closest('.detailsOuter').find('.trackDivs').eq(0).find('.proStep').addClass('tickIcon');
+               $(ths).closest('.detailsOuter').find('.trackDivs').eq(1).find('.proStep').addClass('tickIcon');
+                $(ths).closest('.detailsOuter').find('.trackDivs').eq(2).find('.proStep').addClass('tickIcon');
+               $(ths).closest('.detailsOuter').find('.trackDivs').eq(3).find('.proStep').addClass('notDeliver');
+        } 
     var trkID = $(ths).attr('id');
-
+  
     var trackTxt = $(ths).text();
 
     var cls = "see less";

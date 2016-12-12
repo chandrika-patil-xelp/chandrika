@@ -1,5 +1,6 @@
 <?php include 'jBhead.html' ?>
-<?php echo "<script>var orderid=$orderid;</script>"; ?>
+ <?php echo "<script>var orderid=$orderid;</script>"; ?> 
+ <script>  var pid = "<?php echo $_GET['pid'];  ?>";var combn = "<?php echo $_GET['combn'];  ?>";var sz = "<?php echo $_GET['sz'];  ?>"; </script>
 <body>
     <div class="container cust_detail">
         <?php include 'jBheader.html' ?>
@@ -73,7 +74,7 @@
                             <div class="fmOpenB font14 txtStyle">Name</div>
                             <div class="fmOpenR font14" id='uname'></div>
                         </div>
-                        <div class="outrDiv genderIcon ">
+                        <div class="outrDiv genderIcon dn" >
                             <div class="fmOpenB font14 txtStyle">Gender</div>
                             <div class="fmOpenR font14" id='ugender'></div>
                         </div>
@@ -111,8 +112,8 @@
                                 <div class="fieldTitle1 fLeft">Product Weight (grms) </div>
                                 <div class="fieldTitle2 fmOpenB fRight" id='prdWt'></div>
                             </div>
-                            <div class="divCon1 fLeft">
-                                <div class="fieldTitle1 fLeft">Gender</div>
+                            <div class="divCon1 fLeft" id="size">
+                                <div class="fieldTitle1 fLeft">Size</div>
                                 <div class="fieldTitle2 fmOpenB fRight" id='gender'></div>
                             </div>
                             <div class="divCon1 fLeft">
@@ -192,21 +193,36 @@
     <script>
         var data=new Array();
         var mpurity = [];
-        
-        $(document).ready(function(){
-            getOrderDetails();
-            
-            
+      
+        $(document).ready(function(){ 
+              getOrderDetails();
+           
+          
             $("input[name='status']").bind('click', function(event) {
-                stopPropGate(event);
-                var st=$(this).val();
-                showLoader();
-                changeOrderStatus(st);                    
-                if ($(this).is(":checked")){}
+                 stopPropGate(event);
+                 var st=$(this).val();
+                 showLoader();
+                   
+                  if($(this). prop("checked") == true){
+                    changeOrderStatus(st);  
+                  }
+                  else if($(this). prop("checked") == false){ 
+                    changeOrderStatus(st-1);  
+                  } 
+                 
+                if((st !== '7') && (st !== '8')){
+                    $("[name='status']").each( function(r,v) {
+                        if ($(this).val() < st) 
+                            $(this).attr('checked', true); 
+                    });  
+                }
+               
+                
             });
             
+             
         });
-        
+         
         function stopPropGate(event)
         {
             if (event && $.isFunction(event.stopImmediatePropagation))
@@ -214,18 +230,21 @@
             else
                 window.event.cancelBubble = true;
         }
-       
+      
         function getOrderDetails(){
-            var URL=APIDOMAIN+"index.php?action=OrderDtails&orderid="+orderid;
+            
+            var URL=APIDOMAIN+"index.php?action=orderTrack&orderid="+orderid+"&pid="+pid+"&combn="+combn+"&sz="+sz;
+          
             $.ajax({
                 url:URL,
                 type:'POST',
                 async: false,
-                success: function (res) {
-                    res=JSON.parse(res);
+                success: function(res) {
+                   
+                    res=JSON.parse(res);  
                     showLoader();
                     getOrderDetailsCallBack(res);
-                    
+                   
                 }
             });
             
@@ -233,36 +252,35 @@
         var _t;
         var userid;
         function getOrderDetailsCallBack(data)
-        {
+        {  
             hideLoader();
             
             if(data['error']['err_code']==0)
-            {
-                var dt=data['result'];
-                var uid=userid=dt.uid;
-                var pid=dt.pid;
-                var odate=dt.odate;
-                var ddate=dt.ddate;
-                var ostatus=dt.ostatus;
-                var price=dt.price;
-                var aflag=dt.aflag;
-                
+            {   
+                var l=data['result'][0];  
+              
+                var uid=userid=l.uid;
+                var pid=l.pid; 
+                var ostatus=l.ostatus;
+                var price=l.price;
+             
                 $('#prdprice').text(price);
-                getProductDetails(pid);
-                getUserDetails(uid);
+              // getProductDetails(pid,l);
+               // getorderdetails(l);
+                getDetails(l);
                 
                 var paytype='Credit Card';
                 
-                if(dt.pm==1)
+                if(l.pm==1)
                     paytype='Debit Card';
                 
-                if(dt.pm==2)
+                if(l.pm==2)
                     paytype='Net Banking';
                 
-                if(dt.pm==3)
+                if(l.pm==3)
                     paytype='EMI';
                 
-                if(dt.pm==3)
+                if(l.pm==3)
                     paytype='COD';
                 
                 
@@ -286,10 +304,10 @@
                         $('#Delivered').attr('checked',false);
                         
                     }
-                    
-                    
+                  
+                   
                 });
-                
+               
             }
             else
             {
@@ -300,22 +318,9 @@
             
         }
     
-        function getUserDetails(uid)
-        {
-            
-            var URL=APIDOMAIN+"index.php?action=getUser&userid="+uid;
-            $.ajax({                
-                url:URL,
-                type:'POST',
-                async: false,
-                success:function(res){
-                    
-                    var data=JSON.parse(res);
-                    
-                    if(data['error']['err_code']==0)
-                    {
-                        var dt=data['result'];
-                        $('#uname').text(dt.name);
+        function getDetails(dt)
+        { 
+                        $('#uname').text(dt.uname);
                         var gen="Female";
                         if(dt.gn==1)
                         {
@@ -324,20 +329,271 @@
                         else if(dt.gn==1){
                             gen="Other";
                         }
-                        $('#ugender').text(gen);
-                        $('#umobile').text(dt.mb);
-                        $('#uemail').text(dt.em);
-                        $('#uaddress').text(dt.address);
+                      
+                        $('#umobile').text(dt.umobile);
+                        $('#uemail').text(dt.email);
+                        $('#uaddress').text(""+dt.address+" , "+dt.city+" , "+dt.state+"  "+dt.pincode+"");
                         
-                    }
-                    
-                }
-                
-            });
-            
+               
+                var catName =dt.ccatname;
+   var catgryname = dt.catgryname;
+  catgryname= catgryname.split(',');
+  var catgName =catgryname[1]; 
+  
+                $('#prdCod').text(dt.prdcode);
+                            $('#prdseoname').text(dt.prdSeo);
+                            $('#prdName').text(dt.prdname);
+                            $('#prdWt').text(dt.prodwgt);
+                            $('#procureCost').html(dt.proccost);
+                            $('#prdCats').text(catgName);
+                            $('#procCost').html("&#8377;" + dt.proccost);
+                             $('#vendorName').text(dt.vendorname);
+                          $('#dmdSetting').html(dt.dmdsetting);
+                            $('#prdcrtficte').html(dt.certificate);
+                             $('#mrgn').html(dt.margin);
+                            $('#mesmnt').html(dt.measurement);
+                             $('#prdmetalpurity').text(dt.Metalcarat);
+                              $('#prdmetalcolor').text(dt.color);
+                              
+    var mtlWgDav = 0;
+    var bseSize = 0;
+  
+        
+   var currentSize=dt.sz;
+   var storedWt =dt.mtlwgt;
+   var storedMkCharge=dt.mkngchrg;
+    if (catName == 'Rings') {
+        bseSize = parseFloat(14);
+        mtlWgDav = 0.05;
+    } else if (catName== 'Bangles') {
+        bseSize = parseFloat(2.4);
+        mtlWgDav = 7;
+    }
+    
+     if (isNaN(currentSize))
+    {
+        
+        if (catName == 'Rings')
+            currentSize = parseFloat(14);
+        else if (catName == 'Bangles')
+            currentSize = parseFloat(2.4);
+        else if (catName !== 'Rings' && catName !== 'Bangles') {
+            currentSize = 0;
+        }
+    }
+
+
+    var changeInWeight = (currentSize - bseSize) * mtlWgDav;
+    var newWeight = (parseFloat(storedWt) + parseFloat(changeInWeight)).toFixed(3);
+     $('#mtlwght').html(newWeight + " gms");
+      var mkCharges = parseFloat(storedMkCharge * newWeight);
+      var mkc =mkCharges.toFixed();
+     $('#mkngCrg').html("&#8377;" + mkc + " /grm");
+     if(catgName == 'Rings' || catgName == 'Bangles'){
+       
+      $('#gender').text(dt.sz);
+        $('#size').removeClass('dn');
+     }else{
+          $('#size').addClass('dn');
+     }
+                              
+                            var dmdstr ="";
+                              
+                                dmdstr += "<div class='commCont fLeft forAuto'>";
+                              //  dmdstr +="<div class='shapeComm "+dt.dmdshape+"'></div>";
+                                dmdstr += "<div class='outContr'>";
+                                dmdstr += "<div class='fieldTitle fLeft w25'>";
+                                dmdstr += "<div class='w50 fLeft  padR15 fmOpenR'>Shape <span class='fRight'></span></div>";
+                                dmdstr += "<div class='w50 fRight fmOpenB txtRight'>" + dt.dmdshape + "</div>";
+                                dmdstr += "</div>";
+                                dmdstr += "<div class='fieldTitle fLeft w25'>";
+                                dmdstr += "<div class='w50 fLeft  padR15 fmOpenR'>Diamond Quality <span class='fRight'></span></div>";
+                                dmdstr += "<div class='w50 fRight fmOpenB txtRight'>" + dt.quality+ "</div>";
+                                dmdstr += "</div>";
+                                dmdstr += "<div class='fieldTitle fLeft w25'>";
+                                dmdstr += "<div class='w50 fLeft  padR15 fmOpenR'>Carat <span class='fRight'></span></div>";
+                                dmdstr += "<div class='w50 fRight fmOpenB txtRight'>" + dt.dmdcarat + "</div>";
+                                dmdstr += "</div>";
+                                dmdstr += "<div class='fieldTitle fRight w25 marR0'>";
+                                dmdstr += "<div class='w50 fLeft  padR15 fmOpenR'>Pieces<span class='fRight'></span></div>";
+                                dmdstr += "<div class='w50 fRight fmOpenB txtRight'>" + dt.totdmd + "</div>";
+                                dmdstr += "</div>";
+                                dmdstr += "</div>";
+                                dmdstr += "</div>";
+                                dmdstr += "<div class='breakLine'></div>";
+                                
+                                 $('#prnewDiamonds').html(dmdstr);
+                                 if(dt.alldmd !== null){
+                            $('#prdiamond_Section').removeClass('dn');
+                        }
+                        
+                        var gemstr ="";
+                        
+                        gemstr += "<div class='commCont fLeft forAuto'>";
+                                gemstr += "<div class='outContr fLeft'>";
+                                gemstr += "<div class='fieldTitle fLeft w25'>";
+                                gemstr += "<div class='w50 fLeft  padR15 fmOpenR'>Gemstone<span class='fRight'></span></div>";
+                                gemstr += "<div class='w50 fRight fmOpenB txtRight'>" + (dt.gemstoneName) + "</div>";
+                                gemstr += "</div>";
+                                gemstr += "<div class='fieldTitle fLeft w25'>";
+                                gemstr += "<div class='w50 fLeft  padR15 fmOpenR'>Carat <span class='fRight'></span></div>";
+                                gemstr += "<div class='w50 fRight fmOpenB txtRight'>" + dt.gemscarat + "</div>";
+                                gemstr += "</div>";
+                                gemstr += "<div class='fieldTitle fLeft w25'>";
+                                gemstr += "<div class='w50 fLeft  padR15 fmOpenR'>Price/Carat <span class='fRight'></span></div>";
+                                gemstr += "<div class='w50 fRight fmOpenB txtRight'>" + dt.gemsPricepercarat + "</div>";
+                                gemstr += "</div>";
+                                gemstr += "<div class='fieldTitle fRight w25 marR0'>";
+                                gemstr += "<div class='w50 fLeft  padR15 fmOpenR'>Pieces<span class='fRight'></span></div>";
+                                gemstr += "<div class='w50 fRight fmOpenB txtRight'>" + dt.totalgems + "</div>";
+                                gemstr += "</div>";
+                                gemstr += "</div>";
+                                gemstr += "</div>";
+                                gemstr += "<div class='breakLine'></div>";
+                                
+                               $('#prnewgemstone').html(gemstr);
+                               if(dt.allgems !== null){
+                            $('#prgemstone_Section').removeClass('dn');
+                        }
+                        
+                      var solistr ="";
+                        solistr += "<div class='commCont fLeft poR forAuto'>";
+                                solistr += "<div class='shapeComm " + dt.solishape + "'></div>";
+                                solistr += "<div class='fieldTitle fLeft '>";
+                                solistr += "<div class='w50 fLeft  padR15 fmOpenR'>Shape <span class='fRight'></span></div>";
+                                solistr += "<div class='w50 fRight fmOpenB txtRight'>" + dt.solishape + "</div>";
+                                solistr += "</div>";
+                                solistr += "<div class='fieldTitle fLeft '>";
+                                solistr += "<div class='w50 fLeft  padR15 fmOpenR'>Color <span class='fRight'></span></div>";
+                                solistr += "<div class='w50 fRight fmOpenB txtRight'>" + dt.soliclr + "</div>";
+                                solistr += "</div>";
+                                solistr += "<div class='fieldTitle fRight marR0'>";
+                                solistr += "<div class='w50 fLeft  padR15 fmOpenR'>Clarity <span class='fRight'></span></div>";
+                                solistr += "<div class='w50 fRight fmOpenB txtRight'>" + decodeURIComponent(dt.soliclar) + "</div>";
+                                solistr += "</div>";
+                                solistr += "<div class='fieldTitle fLeft'>";
+                                solistr += "<div class='w50 fLeft  padR15 fmOpenR'>Cut <span class='fRight'></span></div>";
+                                solistr += "<div class='w50 fRight fmOpenB txtRight'>" + decodeURIComponent(dt.solicut) + "</div>";
+                                solistr += "</div>";
+                                solistr += "<div class='fieldTitle fLeft'>";
+                                solistr += "<div class='w50 fLeft  padR15 fmOpenR'>Symmetry <span class='fRight'></span></div>";
+                                solistr += "<div class='w50 fRight fmOpenB txtRight'>" + decodeURIComponent(dt.solisymm) + "</div>";
+                                solistr += "</div>";
+                                solistr += "<div class='fieldTitle fRight marR0'>";
+                                solistr += "<div class='w50 fLeft  padR15 fmOpenR'>Polish <span class='fRight'></span></div>";
+                                solistr += "<div class='w50 fRight fmOpenB txtRight'>" + decodeURIComponent(dt.solipolish) + "</div>";
+                                solistr += "</div>";
+                                solistr += "<div class='fieldTitle fLeft'>";
+                                solistr += "<div class='w50 fLeft  padR15 fmOpenR'>Fluorescence <span class='fRight'></span></div>";
+                                solistr += "<div class='w50 fRight fmOpenB txtRight'>" + decodeURIComponent(dt.soliflrcnce) + "</div>";
+                                solistr += "</div>";
+                                solistr += "<div class='fieldTitle fLeft '>";
+                                solistr += "<div class='w50 fLeft  padR15 fmOpenR'>Carat <span class='fRight'></span></div>";
+                                solistr += "<div class='w50 fRight fmOpenB txtRight'>" + dt.Solicarat + "</div>";
+                                solistr += "</div>";
+                                solistr += "<div class='fieldTitle fRight marR0'>";
+                                solistr += "<div class='w50 fLeft  padR15 fmOpenR'>Price/Carat <span class='fRight'></span></div>";
+                                solistr += "<div class='w50 fRight fmOpenB txtRight'>&#8377;" + dt.SoliPricepercarat + "</div>";
+                                solistr += "</div>";
+                                solistr += "<div class='fieldTitle fLeft'>";
+                                solistr += "<div class='w50 fLeft  padR15 fmOpenR'>Table <span class='fRight'></span></div>";
+                                solistr += "<div class='w50 fRight fmOpenB txtRight'>" + dt.solitblno + "</div>";
+                                solistr += "</div>";
+                                solistr += "<div class='fieldTitle fLeft'>";
+                                solistr += "<div class='w50 fLeft  padR15 fmOpenR'>Crown Angle <span class='fRight'></span></div>";
+                                solistr += "<div class='w50 fRight fmOpenB txtRight'>" + dt.solicrwnangle + "</div>";
+                                solistr += "</div>";
+                                solistr += "<div class='fieldTitle fRight marR0'>";
+                                solistr += "<div class='w50 fLeft  padR15 fmOpenR'>Gridle<span class='fRight'></span></div>";
+                                solistr += "<div class='w50 fRight fmOpenB txtRight'>" + dt.soligirdle + "</div>";
+                                solistr += "</div>";
+                                solistr += "</div>";
+                                solistr += "<div class='breakLine'></div>";
+                                
+                                  $('#prnewSolitaires').html(solistr);
+                                 if(dt.allSolit !== null)
+                            $('#prsolitaires_Section').removeClass('dn');
+                        
+                        var uncutstr=""
+                        
+                        uncutstr += "<div class='commCont fLeft forAuto'>";
+                                uncutstr += "<div class='outContr fLeft'>";
+                                uncutstr += "<div class='fieldTitle fLeft '>";
+                                uncutstr += "<div class='w50 fLeft  padR15 fmOpenR'>Diamond Color <span class='fRight'></span></div>";
+                                uncutstr += "<div class='w50 fRight fmOpenB txtRight'>" + dt.Uncutclr + "</div>";
+                                uncutstr += "</div>";
+                                uncutstr += "<div class='fieldTitle fLeft '>";
+                                uncutstr += "<div class='w50 fLeft  padR15 fmOpenR'>Diamond Quality <span class='fRight'></span></div>";
+                                uncutstr += "<div class='w50 fRight fmOpenB txtRight'>" + dt.uncutqual + "</div>";
+                                uncutstr += "</div>";
+                                uncutstr += "<div class='fieldTitle fRight marR0'>";
+                                uncutstr += "<div class='w50 fLeft  padR15 fmOpenR'>Carat <span class='fRight'></span></div>";
+                                uncutstr += "<div class='w50 fRight fmOpenB txtRight'>" + dt.Uncutcarat + "</div>";
+                                uncutstr += "</div>";
+                                uncutstr += "<div class='fieldTitle fLeft '>";
+                                uncutstr += "<div class='w50 fLeft  padR15 fmOpenR'>Price/Carat <span class='fRight'></span></div>";
+                                uncutstr += "<div class='w50 fRight fmOpenB txtRight'>&#8377; " + dt.UncutPricepercarat + "</div>";
+                                uncutstr += "</div>";
+                                uncutstr += "<div class='fieldTitle fLeft'>";
+                                uncutstr += "<div class='w50 fLeft  padR15 fmOpenR'>Pieces<span class='fRight'></span></div>";
+                                uncutstr += "<div class='w50 fRight fmOpenB txtRight'>" + dt.totalUncut + "</div>";
+                                uncutstr += "</div>";
+                                uncutstr += "</div>";
+                                uncutstr += "</div>";
+                                uncutstr += "<div class='breakLine'></div>";
+                                
+                                 $('#prnewUncut').html(uncutstr);
+                                 if(dt.allUncut !== null)
+                            $('#pruncut_Section').removeClass('dn');
+                        
+                         
+                            if (dt.aflag == 1)
+                            {
+                                $('.backtxtSelect').addClass('inStockPrd').removeClass('outStockPrd');
+                                $('.backtxtSelect option').eq(0).attr('selected',true);
+                                $('.backtxtSelect option').eq(1).removeAttr('selected');
+                            }
+                            else{
+                                $('.backtxtSelect').addClass('outStockPrd').removeClass('inStockPrd');
+                                $('.backtxtSelect option').eq(1).attr('selected',true);
+                                $('.backtxtSelect option').eq(0).removeAttr('selected');
+                            }
+                            
+                            $('.backtxtSelect').removeClass('dn');
+                            
+                          
+                            if (dt.defimg !== null) {
+                            var image = IMGDOMAIN + dt.defimg;
+                        } else {
+                            var image = dt.prdimg;
+                            image = image.split(',');
+                            image = IMGDOMAIN + image[0];
+                        }
+                        
+                         
+                            
+                              if (image.length>0)
+                        {
+                            
+                             
+                            $('.prd_img').css({
+                                "background-image": "url(\"" + image + "\")",
+                                "background-position": "center",
+                                "background-repeat": "no-repeat",
+                                "background-size": "40% auto",
+                            });
+
+                            
+                            $('.prd_img').removeClass('noimage');
+                            
+                        }
+                        else{
+                            $('.prd_img').addClass('noimage');
+                        }
         }
         
-
+       
+     
         
         function getProductDetails(pid)
         {
@@ -347,10 +603,10 @@
                 type: 'POST',
                 success: function(res) {
                     data = JSON.parse(res);
-                    
+           
                     if (data['error']['err_code'] == '0')
                     {
-                        var dt = data['results'];
+                        var dt = data['results'];  
                         var basic = dt['basicDetails'];
                         var catAttr = dt['catAttr'];
                         var vendor = dt['vendor'];
@@ -438,9 +694,10 @@
                         $('#prdCats').text(locCat.toString());
 
 
-
+                        
                         var mcolor = [];
-                        $.each(metalPurity.results, function(i, vl) {
+                        $.each(metalPurity.results, function(i, vl) { 
+                          
                             mpurity.push(vl.dVal);
                         });
                         $('#prdmetalpurity').text(mpurity.toString());
@@ -639,14 +896,18 @@
             values['orderid']=orderid.toString();
             values['userid']=userid.toString();
             values['ostatus']=st;
+            values['pid']=pid;
+            values['combn']=combn;
+            values['sz']=sz;
             var dt=JSON.stringify(values);
-            
+         
             $.ajax({
                 url:URL,
                 type:'POST',
                 data:{dt:dt},
                 success: function (res) {
                     res=JSON.parse(res);
+                      
                     statusCallBack(res);
                 }
                

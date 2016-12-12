@@ -569,7 +569,7 @@ switch($action)
     case 'changeOrderStatus':
         include APICLUDE.'class.user.php';
         $obj	= new user($db['jzeva']);
-        $tmpparams = array($params['dt']);
+        $tmpparams = array($params['dt']); 
         $res	=$obj->changeOrderStatus($tmpparams);
     break;
 
