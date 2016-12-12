@@ -13,7 +13,7 @@
                 <div class="container poR">
                     <div class="details_cont fLeft">
                         <div class="details_buffer">
-                            <div class="details_head " id="proname">
+                            <div class="details_head fLeft" id="proname">
                                 Diamants LÉ Gers<br>
                                 DE Love
                             </div>
@@ -30,7 +30,7 @@
                                 </div>
                                 <div class="morewritefaggery fLeft" id="desc">
                                     <div class="para  fLeft"><span class="actBtn fRight pointNone">MORE INFO</span></div>
-                                    <!--<div class="closewritefaggery"></div>--> 
+                                    <!--<div class="closewritefaggery"></div>-->
                                 </div>
                             </div>
                         </div>
@@ -630,14 +630,17 @@
             }
         });
 
-        function setHeight() {
-            var tot = $('#proname').height() + $('#htCh').height();
-            var win_tot = ($(window).height()) * 0.9 + 50;
-            var acHt = ($('#proname').height() + $('#htCh').height()) / 0.9;
-            if (tot > win_tot) {
-                $('#wrapper').height(acHt);
-            }
-        }
+
+function setHeight(){
+  var tot = ($('#proname').outerHeight(true) + $('#htCh').outerHeight(true))/0.9;
+  var win_tot = ($(window).outerHeight(true));
+  var acHt = ($('#proname').outerHeight(true) + $('#htCh').outerHeight(true))/0.9 ;
+  console.log($('#proname').outerHeight(true) +':'+ $('#htCh').outerHeight(true));
+    if(tot> win_tot){
+       $('#wrapper').height(acHt);
+    }
+}
+
 
     </script>
 
