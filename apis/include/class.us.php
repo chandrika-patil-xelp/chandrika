@@ -758,10 +758,10 @@
                                       active_flag =1";  
           
            $page = ($params['page'] ? $params['page'] : 1);
-        $limit = ($params['limit'] ? $params['limit'] : 2);
+        $limit = ($params['limit'] ? $params['limit'] : 20);
 
         if ($limit > 1) {
-            $limit = 2;
+            $limit = 20;
         }
         //$limit = 100;
         if (!empty($page)) {
