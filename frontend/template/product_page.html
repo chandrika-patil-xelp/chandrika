@@ -29,8 +29,8 @@
                                     </div> -->
                                 </div>
                                 <div class="morewritefaggery fLeft" id="desc">
-                                  <div class="para  fLeft"><span class="actBtn fRight pointNone">MORE INFO</span></div>
-                                    <!-- <div class="closewritefaggery"></div> -->
+                                    <div class="para  fLeft"><span class="actBtn fRight pointNone">MORE INFO</span></div>
+                                    <!--<div class="closewritefaggery"></div>--> 
                                 </div>
                             </div>
                         </div>
@@ -136,7 +136,7 @@
                                             <div class="incrCont incrIcon " id="inc"></div>
                                             <div class="incrCont decrIcon left40" id="dec"></div>
                                             <div class="circleOuter fLeft">
-                                                <div class="ringCircle transition600 poR"> 14</div>
+                                                <div class="ringCircle transition600 poR"> 20</div>
                                             </div>
                                             <center>
                                                 <div class="col100 fLeft"><div class="col50"><div class="actBtn" id="ringGuide">size guide</div></div></div>
@@ -148,7 +148,7 @@
                                             <div class="incrCont incrIcon r0" id="incB"></div>
                                             <div class="incrCont decrIcon l0" id="decB"></div>
                                             <div class="circleOuter fLeft">
-                                                <div class="ringCircleB transition600 poR" id="bangCircle">2.4</div>
+                                                <div class="ringCircleB transition600 poR" id="bangCircle">2.5</div>
                                             </div>
                                             <center>
                                                 <div class="col100 fLeft"><div class="col50"><div class="actBtn" id="ringGuide">size guide</div></div></div>
@@ -211,25 +211,22 @@
     <script>
 
 
-                var tmp = 14;
+        var tmp = $('.ringCircle').html();
         var val1, val2, val3;
         var w, h, lh;
         val1 = $('.ringCircle').width();
         val2 = $('.ringCircle').height();
         val3 = $('.ringCircle').css('line-height');
         $('#inc').click(function () {
-            var rtxt = $(this).parent().next();
-            var incVal = tmp + 1;
+            var incVal = parseInt(tmp) + 1;
+            console.log(incVal);
             if (incVal > 25) {
                 return false;
             }
-
             $('#size').text("Size " + incVal);
-            // parseFloat($('#size').text().replace('Size ', ''));
             val1 = val1 + 1;
             val2 = val2 + 1;
             val3 = parseInt(val3) + 1;
-
             $('.ringCircle').css('width', val1 + 'px');
             $('.ringCircle').css('height', val2 + 'px');
             $('.ringCircle').css('line-height', val3 + 'px');
@@ -244,10 +241,8 @@
             var dTxt = tmp - 1;
             if (dTxt < 5) {
                 return false;
-            } else
-//                $(rtxt).html(dTxt);
-
-                $('#size').text("Size " + dTxt);
+            }
+            $('#size').text("Size " + dTxt);
             val1 = val1 - 1;
             val2 = val2 - 1;
             val3 = parseInt(val3) - 1;
@@ -260,7 +255,8 @@
         });
 
         //bangles size code
-        var tmp_b = 2.4;
+        var tmp_b = $('.ringCircleB').html();
+
         var addval_b = 20;
         var valb1, valb2, valb3;
         var w, h, lh;
@@ -269,16 +265,13 @@
         valb3 = $('#bangCircle').css('line-height');
 
         $('#incB').click(function () {
-
-            var rtxt = $(this).parent().next();
-            var incVal_b = tmp_b + 0.1;
-
-
-            if (incVal_b > 3.0) {
+             var inc = Math.round(tmp_b * 10) / 10;
+            var incVal_b = parseFloat(inc+0.1).toFixed(1);
+            if (incVal_b >= 3.0) {
                 return false;
             }
             var incValb = Math.round(incVal_b * 10) / 10;
-            $('#size').text("Size " + incValb);
+            $('#size').text("Size" + incVal_b);
             valb1 = valb1 + 5;
             valb2 = valb2 + 5;
             valb3 = parseInt(valb3) + 5;
@@ -286,8 +279,8 @@
             $('#bangCircle').css("width", valb1 + 'px');
             $('#bangCircle').css("height", valb2 + 'px');
             $('#bangCircle').css('line-height', valb3 + 'px');
-            $('#bangCircle').html(Math.round(incVal_b * 10) / 10);
-            tmp_b = tmp_b + 0.1;
+            $('#bangCircle').html(incVal_b);
+            tmp_b = parseFloat(tmp_b) + 0.1;
             calculatePrice();
         });
 
@@ -299,7 +292,6 @@
             } else if (dTxt_b < 2.1) {
                 return false;
             }
-
             valb1 = valb1 - 5;
             valb2 = valb2 - 5;
             valb3 = parseInt(valb3) - 5;
@@ -638,14 +630,14 @@
             }
         });
 
-function setHeight(){
-  var tot = $('#proname').height() + $('#htCh').height();
-  var win_tot = ($(window).height())* 0.9 +50;
-  var acHt = ($('#proname').height() + $('#htCh').height())/0.9;
-    if(tot> win_tot){
-       $('#wrapper').height(acHt);
-    }
-}
+        function setHeight() {
+            var tot = $('#proname').height() + $('#htCh').height();
+            var win_tot = ($(window).height()) * 0.9 + 50;
+            var acHt = ($('#proname').height() + $('#htCh').height()) / 0.9;
+            if (tot > win_tot) {
+                $('#wrapper').height(acHt);
+            }
+        }
 
     </script>
 
