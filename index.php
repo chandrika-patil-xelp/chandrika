@@ -239,11 +239,16 @@ switch ($action) {
         include TEMPLATE . 'craftsmanship.html';
         break;
     
-    
      case 'gemstoneGuideNew':
         $page = 'gemstoneGuideNew';
         include TEMPLATE . 'gemstoneGuideNew.html';
         break;
+    
+       case 'checkoutAfter':
+        $page = 'checkoutAfter';
+        include TEMPLATE . 'checkoutAfter.html';
+        break;
+    
     
 }
 ?>
