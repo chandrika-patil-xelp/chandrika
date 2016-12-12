@@ -701,7 +701,7 @@
     <script type="text/javascript">
 
 
-                                                $('.inp_box').focus(function () {
+                                        $('.inp_box').focus(function () {
                                             $(this).closest('.txtB').addClass('focul');
                                         });
 
@@ -711,12 +711,12 @@
                                                 $(this).closest('.txtB').removeClass('focul');
                                             }
                                         });
-                                        $(window).load(function () {
-
-                                            setTimeout(function () {
-                                                load_page();
-                                            }, 2000);
-                                        });
+//                                        $(window).load(function () {
+//
+//                                            setTimeout(function () {
+//                                                load_page();
+//                                            }, 2000);
+//                                        });
                                         function load_page() {
                                             $('body').addClass('over_hide');
                                             $('.page_loader2').velocity({translateY: ['100%', 0]}, {duration: 600, easing: 'easeInQuart', display: 'none', complete: function () {
