@@ -8,7 +8,7 @@
     <!-- <div class="fLeft gemBanner"></div> -->
 
     <div class="wrapper_main fLeft PRODUCT_PAGE">
-        <div class="wrapper">
+        <div class="wrapper" id="wrapper">
             <div class="wrapper_max">
                 <div class="container poR">
                     <div class="details_cont fLeft">
@@ -17,19 +17,20 @@
                                 Diamants LÉ Gers<br>
                                 DE Love
                             </div>
-                            <div class="details_desc">
+                            <div class="details_desc fLeft" id="htCh">
                                 <div class="writefaggery fLeft">
                                     <div class="para fLeft pr_head "  id="stn"><span>White gold, diamond</span></div>
                                     <div class="para fLeft" id="descrp">Diamants Legers de Cartier ring 18K white gold, set with a brilliant-cut diamond of 0.13 carat.</div>
-                                    <div class="para  fLeft"><span class="actBtn fRight" id="showDetails">MORE INFO</span></div>
+                                    <!-- <div class="para  fLeft"><span class="actBtn fRight" id="showDetails">MORE INFO</span></div>
                                     <div class="para  fLeft">
                                         <div class="col33 fRight point  icnLike transition300"></div>
-                                        <!-- <div class="col33 fRight point   icnCmnt transition300"></div> -->
+                                        <div class="col33 fRight point   icnCmnt transition300"></div>
                                         <div class="col33 fRight point review_btn icnShre transition300"></div>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="morewritefaggery fLeft" id="desc">
-                                    <div class="closewritefaggery"></div>
+                                  <div class="para  fLeft"><span class="actBtn fRight pointNone">MORE INFO</span></div>
+                                    <!-- <div class="closewritefaggery"></div> -->
                                 </div>
                             </div>
                         </div>
@@ -389,12 +390,9 @@
         });
         $(document).ready(function () {
             //runner();
+
             wid = $('.rota').width();
-            $(".review_cont").mCustomScrollbar({
-                axis: "y",
-                theme: "rounded-dots-dark",
-                mouseWheelPixels: 200
-            })
+
 
         });
 
@@ -519,6 +517,7 @@
 
         function loadComplete() {
             //$('body').addClass('over_hide');
+            setHeight();
             $('.rota_wrap').velocity({translateY: [0, 10], opacity: [1, 0]}, {duration: 600, easing: 'swing', complete: function () {
                     $('.details_cont').velocity({translateY: [0, 10], opacity: [1, 0]}, {duration: 600, easing: 'swing', complete: function () {
                             $('.options').velocity({translateY: [0, 10], opacity: [1, 0]}, {duration: 600, easing: 'swing', complete: function () {
@@ -639,7 +638,14 @@
             }
         });
 
-
+function setHeight(){
+  var tot = $('#proname').height() + $('#htCh').height();
+  var win_tot = ($(window).height())* 0.9 +50;
+  var acHt = ($('#proname').height() + $('#htCh').height())/0.9;
+    if(tot> win_tot){
+       $('#wrapper').height(acHt);
+    }
+}
 
     </script>
 
