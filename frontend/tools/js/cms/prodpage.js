@@ -54,7 +54,7 @@ function IND_money_format(money)
 }
 
 
-var pid, clickdesbl;
+var pid, clickdesbl, psize;
 var arrdata = new Array();
 function getarraydata() {
 
@@ -78,17 +78,17 @@ function getarraydata() {
         var metal = zz[zz.length - 1];
     }
 
-    var sz = ($('#size').text().replace('Size', '')); 
+     var sz; 
     if (sz == " ")
         sz = parseFloat("0.00");
     if (catname == 'Rings') {
         if (sz == " None")
             sz = parseFloat(14);
-
+	sz=$('.ringCircle').text();  
     } else if (catname == 'Bangles') {
         if (sz == " None")
             sz = parseFloat(2.4);
-
+	sz=$('.ringCircleB').text();
     }
     arrdata.push(color);
     arrdata.push(quality);
@@ -109,12 +109,22 @@ $('#add_to_cart').on('click', function () {
     }, 500);
 
 });
+
 $(document).ready(function () {
     showwishbtn();
     pid = GetURLParameter('pid');
+    var comb= GetURLParameter('comb');
+    psize= GetURLParameter('sz'); 
+    if(comb !== undefined){
+	comb=comb.split('|@|');
+	var p_qlty=comb[2];  
+	var p_purity=comb[1];
+	var p_color=comb[0];
+    }
+     
     clickdesbl = false;
     var URL = APIDOMAIN + "index.php/?action=getProductById&pid=" + pid;
-
+    
     
     $.ajax({
         type: 'POST',
@@ -341,16 +351,24 @@ $(document).ready(function () {
                             storedDmdCarat = parseFloat(vl.crat);
 
 
-
+			   var dval;
                             $.each(vl.QMast.results, function (x, y) {
-                                if (y.id == "9") {
+				if(p_qlty !== undefined){
+				    if(p_qlty == y.id){
+					  dval=y.dVal;
+					  $('#qual').text(y.dVal);
+					  $('#qual').attr('qual_id', y.id);
+				    }
+				}
+				else if (y.id == "9") {
                                     $('#qual').text(y.dVal);
                                     $('#qual').attr('qual_id', y.id);
-                                }else{
+                                }
+				else{
                                     $('#qual').text(y.dVal);
                                 }
                                     
-
+				    
                                 var dvdia = y.dVal;
                                 var dvprc = y.prcPrCrat;
                                 var dvdiaid = y.id;
@@ -358,33 +376,41 @@ $(document).ready(function () {
                                 var dClass = dvdia.replace(/-|\s/g, "");
                                 dClass = dClass.toLowerCase();
 
-
+ 
 
                                 dQstr += '<div class="rad_wrap ">';
                                 //dQstr+= '<input type="radio" name="selectM" id="dQuality_'+x+'_'+y.id+'" checked  onchange=\"diamondPrice('+y.prcPrCrat+vl.crat+')\" class="filled-in dn">';
-                                dQstr += '<input type="radio" name="selectM" id="dQuality_' + x + '_' + y.id + '" value="' + y.dVal + '" data-value="' + y.prcPrCrat + '" onclick="setdmd(this)" class="filled-in dn">';
-                                dQstr += '<label for="dQuality_' + x + '_' + y.id + '"></label>';
+                                dQstr += '<input type="radio"  name="selectM" id="dQuality_' + x + '_' + y.id + '" value="' + y.dVal + '" data-value="' + y.prcPrCrat + '" onclick="setdmd(this)" class="filled-in dn">'; 
+                                dQstr += '<label for="dQuality_' + x + '_' + y.id + '"></label>'; 
                                 dQstr += '<div class="check2 ' + dClass + '"></div>';
-                                dQstr += '<div class=" selector_label" >';
-                                dQstr += '<div class="labBuffer">' + y.dVal + '</div>';
+                                dQstr += '<div class=" selector_label" >'; 
+                                 dQstr += '<div class="labBuffer">' + y.dVal + '</div>';
                                 dQstr += '</div>';
                                 dQstr += '</div>';
 
                                 getdmdprice(dvprc, dcarat);
-
+				 
                             });
-
+ 
                             $('#diQ').append(dQstr);
 
                             // diamstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>' + vl.totNo + '</span><span> Diamonds</span></span><span class="fRight fmSansR"><span> ' + vl.crat + '</span> Carat</span></div>';
                             diamstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>Diamonds</span></span><span class="fRight fmSansR"><span>' + vl.totNo + '</span></span></div>';
                             diamstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>Diamond Shape</span></span><span class="fRight fmSansR"><span>' + vl.shape + '</span></span></div>';
                             diamstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>Diamond Carat</span></span><span class="fRight fmSansR"><span>' + vl.crat + '</span></span></div>';
-
-                            $('.filled-in:last').prop('checked', true);
+  
+		       if(p_qlty !== undefined){
+			    $("input[name='selectM']").each(function () {
+				     var val=$(this).val();
+				     if(dval == val)
+				     $(this).attr('checked', true); 
+			    });
+		       }
+		       else
+                          $('.filled-in:last').prop('checked', true);
 
                         });
-
+		     
                         $('#desc').append(diamstr);
 
                     }
@@ -429,14 +455,23 @@ $(document).ready(function () {
                     }
 
 
-                    var purstr = "";
+                    var purstr = "",pval;
                     $.each(metalPurity.results, function (k, val) {
+		     
+		      if(p_purity !== undefined){
+			    if(p_purity == val.id){
+				  pval=val.dVal;
+				  $('#carat').text(val.dNm);
+				  $('#carat').attr('carat_id', val.id);
+			    }
+		      }
+		      else{
+			  if (k == 0) {
 
-                        if (k == 0) {
-
-                            $('#carat').text(val.dNm);
-                            $('#carat').attr('carat_id', val.id);
-                        }
+			      $('#carat').text(val.dNm);
+			      $('#carat').attr('carat_id', val.id);
+			  }
+		      }
                         metalprc = val.prc;
                         var mcarat = val.dVal;
 
@@ -456,23 +491,40 @@ $(document).ready(function () {
                         purstr += '</span>';
                         purstr += '</div>';
                     //    purstr += '</center>';
-                  console.log('mtprc='+metalprc ,'mwgt='+metalwght);
+               
                        getPurPrice(metalprc, metalwght);
                         //  something(metalprc);
                     });
                     $('#pur').append(purstr);
-                    $('input[name="purity"]').eq(0).prop('checked', true);
+		    if(p_qlty !== undefined){
+			    $("input[name='purity']").each(function () {
+				     var val=$(this).val();
+				     if(pval == val)
+				     $(this).attr('checked', true); 
+			    });
+		    }
+		    else
+			  $('input[name="purity"]').eq(0).prop('checked', true);
 
 
 
-                    var clrstr = "";
+                    var clrstr = "", colrval;
 
                     $.each(metalColor.results, function (j, vl) {
-                        var apcol = vl.dVal.toLowerCase();
-                        if (j == 0) {
-                            $('#clr').text(vl.dNm);
-                            $('#clr').attr('clr_id', vl.id);
-                        }
+                        var apcol = vl.dVal.toLowerCase(); 
+			if(p_color !== undefined){
+			      if(p_color == vl.id){
+				    $('#clr').text(vl.dNm);
+				    $('#clr').attr('clr_id', vl.id);
+				    colrval=vl.dVal;
+			      }
+			}
+			else{
+			    if (j == 0) {
+				$('#clr').text(vl.dNm);
+				$('#clr').attr('clr_id', vl.id);
+			    }
+			}
                         clrstr += '<div class="rad_wrap">';
                         clrstr += '<input type="radio" name="metal" id="color_' + j + '_' + vl.id + '" value= "' + vl.dVal + '" onclick="setclr(this)" class="filled-in dn">';
                         clrstr += '<label for="color_' + j + '_' + vl.id + '"></label>';
@@ -483,7 +535,15 @@ $(document).ready(function () {
                         clrstr += '</div>';
                     });
                     $('#colr').append(clrstr);
-                    $('input[name="metal"]').eq(0).attr('checked', true);
+		    if(p_color !== undefined){
+			    $("input[name='metal']").each(function () {
+				     var val=$(this).val();
+				     if(colrval == val)
+					$(this).attr('checked', true); 
+			    });
+		    }
+		    else
+                         $('input[name="metal"]').eq(0).attr('checked', true);
 
 
                     // getTotal(catAttr);
@@ -494,8 +554,10 @@ $(document).ready(function () {
 
 
             }
-
-            calculatePrice();
+	    setTimeout(function(){
+	      calculatePrice();
+	    },500);
+            
         }
 
 
@@ -726,17 +788,26 @@ function getcatsize(s, m) {
                 if (catname == 'Rings') {
                     sizdefault = dat.result[9]['id'];
                     sizdefaulval = dat.result[9]['sval'];;
-                    sizdefaulval=parseInt(sizdefaulval); 
+                    sizdefaulval=parseInt(sizdefaulval);
+		    if(psize !== undefined){
+		      psize=parseInt(psize);
+		      $('.ringCircle').html(psize);
+		    }
                 } else if (catname == 'Bangles') {
 
                     sizdefault = dat.result[2]['id'];
                     sizdefaulval = dat.result[2]['sval'];
+		    if(psize !== undefined)
+		      $('.ringCircleB').html(psize);
                 }
 
                 if (dat['error']['err_code'] == '0')
                 {
                      strd+= '<div class="attTitle">Size</div>';
-                     strd+= '<div class="actBtn font12 bolder" id="size" >Size  ' + sizdefaulval + '</div>';
+		     if(psize !== undefined)
+			  strd+= '<div class="actBtn font12 bolder" id="size" >Size  ' + psize + '</div>';
+		     else
+			  strd+= '<div class="actBtn font12 bolder" id="size" >Size  ' + sizdefaulval + '</div>';
                    // strd += '<div class="actBtn font12 bolder"  data-size="' + sizdefault + '">Size ' + sizdefaulval + '</div>';
 
                     $(dat.result).each(function (x, y) {
@@ -767,8 +838,7 @@ function calculatePrice()
     var selDiamond = parseFloat($('input[name="selectM"]:checked').attr('data-value')); 
     var selPurity = parseFloat($('input[name="purity"]:checked').attr('data-price'));
    
-    var currentSize=parseFloat($('#size').text().replace('Size ',''));
-    
+    var currentSize;
     var mtlWgDav = 0;
     var dmdPrice = 0;
     var goldPrice = 0;
@@ -776,13 +846,17 @@ function calculatePrice()
     var dmdLength = $('input[name="selectM"]').length;
     var bseSize = 0;
 
-    if (catname == 'Rings')
-        bseSize = parseFloat(14);
+    if (catname == 'Rings'){
+      currentSize=$('.ringCircle').text();
+      bseSize = parseFloat(14);
+    } 
 
-    else if (catname == 'Bangles')
-        bseSize = parseFloat(2.4);
-
-
+    else if (catname == 'Bangles'){
+      bseSize = parseFloat(2.4);
+      currentSize=$('.ringCircleB').text();
+    }
+        
+ 
     if (catname == 'Rings') {
         mtlWgDav = 0.05;
     } else if (catname == 'Bangles') {
@@ -809,9 +883,9 @@ function calculatePrice()
     {
         dmdPrice = storedDmdCarat * selDiamond;
     }
-
-
-    var changeInWeight = (currentSize - bseSize) * mtlWgDav; 
+     
+    
+    var changeInWeight = (currentSize - bseSize) * mtlWgDav;
     newWeight = parseFloat(storedWt + (changeInWeight));
     newWeight = newWeight.toFixed(3);
 

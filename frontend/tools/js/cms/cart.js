@@ -1,7 +1,7 @@
 
 
 var gblcartdata;
-  
+
 function newaddToCart(paramtr)
 {
 
@@ -11,7 +11,7 @@ function newaddToCart(paramtr)
     cartdata['qty'] = 1;
     var chr = "" + paramtr[2] + "|@|" + paramtr[4] + "|@|" + paramtr[3];
 
-    cartdata['col_car_qty'] = chr; 
+    cartdata['col_car_qty'] = chr;
     cartdata['RBsize'] = paramtr[5];
 
     var userid = common.readFromStorage('jzeva_uid');
@@ -20,23 +20,23 @@ function newaddToCart(paramtr)
     if (userid == "" || userid == null) {
         // common.addToStorage('jzeva_uid','0');
         userid = common.readFromStorage('jzeva_uid');
-        if (cartid == "" || cartid == null) { 
+        if (cartid == "" || cartid == null) {
 	  cartdata['cartid'] = '';
         }
 	else{
 	   cartdata['cartid'] = cartid;
-	} 
+	}
     } else {
         cartdata['userid'] = userid;
         cartdata['cartid'] = cartid;
     }
     var flag = 0;
-    
+
     if (gblcartdata == null || gblcartdata == "") {
         flag = 1;
     } else {
         $(gblcartdata).each(function (r, v) {
-	 
+
             if ((cartdata.col_car_qty == v.col_car_qty && cartdata.pid == v.product_id) && parseFloat(cartdata.RBsize) == parseFloat(v.size)) {
 
                 cartdata['qty'] = parseInt(v.pqty) + 1;
@@ -50,11 +50,11 @@ function newaddToCart(paramtr)
             }
         });
     }
- 
+
     if (flag == 1 || flag == 0) {
-         storecartdata(cartdata, 1);
+          storecartdata(cartdata, 1);
     } else {
-         storecartdata(cartdata, 1);
+          storecartdata(cartdata, 1);
     }
 }
 
@@ -73,7 +73,7 @@ function storecartdata(cartdata, chk)
         success: function (results) {
 	  var data=JSON.parse(results);
 	  common.addToStorage('jzeva_cartid', data.cartid);
-	  
+
             getglobaldata();
             if (chk == 1) {
                 $(".cart_gen").html("");
@@ -85,7 +85,7 @@ function storecartdata(cartdata, chk)
 
 function displaycartdata()
 {
-    $(".cart_gen").html(""); 
+    $(".cart_gen").html("");
     var cartstr = "";
     var userid = common.readFromStorage('jzeva_uid');
     var cartid = common.readFromStorage('jzeva_cartid');
@@ -100,11 +100,11 @@ function displaycartdata()
             {
                 var obj = JSON.parse(results);
                 if (obj.result !== null)
-                { 
+                {
                     gblcartdata = obj.result;
 
                     $(obj.result).each(function (r, v) {
-                       
+
                         if (v.default_img !== null) {
                             abc = IMGDOMAIN + v.default_img;
                         } else {
@@ -121,6 +121,7 @@ function displaycartdata()
                         }
 
                         cartstr = "<div class='cart_item'>";
+			cartstr += "<div onclick='prdopen(this)' id='" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "_" + v.size + "'>";
                         cartstr += "<div class='cart_image'><img src='"+ abc +"'";
                         cartstr += " alt='Image not found'></div>";
                         cartstr += "<div class='cart_name'>" + v.prdname + "</div>";
@@ -133,6 +134,8 @@ function displaycartdata()
                         cartstr += "Color : " + v.color + "";
                         cartstr += "</div>";
                         cartstr += "<div class='cart_price cartRup15 fLeft'><span class='price_gen'> " + indianMoney(bprize) + "</span></div>";
+			cartstr += "</div>";
+			cartstr += "</div>";
                         cartstr += "<div class='amt_selector' id='" + v.cart_id + "'>";
                         cartstr += "<a href='#' onclick='subqnty(this)'  id='sub_" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "_" + v.size + "'><div class='cart_btn fLeft sub_no'></div></a>";
                         cartstr += "<div class='item_amt fLeft '>" + v.pqty + "</div>";
@@ -140,7 +143,7 @@ function displaycartdata()
                         cartstr += "</div>";
                         cartstr += "<div class='cart_remove addrCommon' id='" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "_" + v.size + "'onclick='cremove(this)'>";
                         cartstr += "</div>";
-                        cartstr += "</div>";
+                        
 
                         $(".cart_gen").append(cartstr);
 
@@ -154,7 +157,15 @@ function displaycartdata()
     }
 }
 
-
+function prdopen(ths)
+{
+  var ids=$(ths).attr('id');
+  ids=ids.split('_');	
+  var pid=ids[0];   var combn=ids[2];
+  var size=ids[4];
+  window.location.href=DOMAIN +"index.php?action=product_page&pid="+pid+"&comb="+combn+"&sz="+size+"";
+}
+ 
 function getweight(currentSize, catName, storedWt)
 {
     var mtlWgDav = 0;
@@ -181,10 +192,10 @@ function getweight(currentSize, catName, storedWt)
         }
     }
 
-
+    
     var changeInWeight = (currentSize - bseSize) * mtlWgDav;
-    var newWeight = (parseFloat(storedWt) + parseFloat(changeInWeight)).toFixed(3);
-
+    var newWeight = parseFloat(storedWt) + parseFloat(changeInWeight);
+    newWeight=newWeight.toFixed(3); 
 
     return newWeight;
 
@@ -225,7 +236,7 @@ function cremove(el) {
             }
         });
     });
-  
+
      $('#cNo').click(function () {
            cartpopUpClose();
         $('#cNo').unbind();
@@ -340,14 +351,15 @@ function getglobaldata()
                 gblcartdata = obj.result;
                 gettotal();
                 var nocart ="";
-                if(gblcartdata == null){
+                if(gblcartdata == null){ 
+		    closeCart();
                     $('#check_out').addClass('dn');
                     $('.total_price_gen').addClass('dn');
                     $('.cart_name ').addClass('dn');
                     $('.cart_gen').addClass('dn');
                      $("#nocart").removeClass("dn");
                      $('.totalItem').addClass('dn');
-             
+		     
                 }
                 else{
                      $('.cart_gen').removeClass('dn');
@@ -356,9 +368,9 @@ function getglobaldata()
                     $('.cart_name ').removeClass('dn');
                      $("#nocart").addClass("dn");
                       $('.totalItem').removeClass('dn');
-                      
+
                 }
-              
+
             }
         });
     }
@@ -372,4 +384,3 @@ $(document).ready(function () {
      displaycartdata();
    getglobaldata();
 });
- 

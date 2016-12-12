@@ -136,7 +136,7 @@
                                             <div class="incrCont incrIcon " id="inc"></div>
                                             <div class="incrCont decrIcon left40" id="dec"></div>
                                             <div class="circleOuter fLeft">
-                                                <div class="ringCircle transition600 poR"> 20</div>
+                                                <div class="ringCircle transition600 poR"> 14</div>
                                             </div>
                                             <center>
                                                 <div class="col100 fLeft"><div class="col50"><div class="actBtn" id="ringGuide">size guide</div></div></div>
@@ -148,7 +148,7 @@
                                             <div class="incrCont incrIcon r0" id="incB"></div>
                                             <div class="incrCont decrIcon l0" id="decB"></div>
                                             <div class="circleOuter fLeft">
-                                                <div class="ringCircleB transition600 poR" id="bangCircle">2.5</div>
+                                                <div class="ringCircleB transition600 poR" id="bangCircle">2.4</div>
                                             </div>
                                             <center>
                                                 <div class="col100 fLeft"><div class="col50"><div class="actBtn" id="ringGuide">size guide</div></div></div>
@@ -210,8 +210,10 @@
 
     <script>
 
-
-        var tmp = $('.ringCircle').html();
+	var tmp;
+	setTimeout(function(){
+          tmp = $('.ringCircle').html();
+	},1000); 
         var val1, val2, val3;
         var w, h, lh;
         val1 = $('.ringCircle').width();
@@ -219,7 +221,7 @@
         val3 = $('.ringCircle').css('line-height');
         $('#inc').click(function () {
             var incVal = parseInt(tmp) + 1;
-            console.log(incVal);
+          
             if (incVal > 25) {
                 return false;
             }
@@ -255,8 +257,10 @@
         });
 
         //bangles size code
-        var tmp_b = $('.ringCircleB').html();
-
+	var tmp_b;
+	setTimeout(function(){
+          tmp_b = $('.ringCircleB').html(); 
+	},1000);
         var addval_b = 20;
         var valb1, valb2, valb3;
         var w, h, lh;
@@ -635,7 +639,7 @@ function setHeight(){
   var tot = ($('#proname').outerHeight(true) + $('#htCh').outerHeight(true))/0.9;
   var win_tot = ($(window).outerHeight(true));
   var acHt = ($('#proname').outerHeight(true) + $('#htCh').outerHeight(true))/0.9 ;
-  console.log($('#proname').outerHeight(true) +':'+ $('#htCh').outerHeight(true));
+ 
     if(tot> win_tot){
        $('#wrapper').height(acHt);
     }

@@ -236,19 +236,19 @@ function wishlist()
                         xyz = xyz.split(',');
                         xyz = IMGDOMAIN + xyz[0];
                     }
-
+		 
                     wishStr += '<div class="grid3 transition400 fadeInup" > ';
-                    wishStr += ' <div class="facet_front">';
+                    wishStr += ' <div class="facet_front" id="'+j.product_id+'_'+j.col_car_qty+'_'+j.size+'_'+s+'">';
                     wishStr += ' <div class="grid_item"> ';
                     wishStr += '    <div class="grid_img">';
                     wishStr += ' <div style="background:url(\'' + xyz + '\')no-repeat ; background-size: contain ; background-position: center"></div></div>';
-                    wishStr += '   <div class="hovTr"> ';
+                    wishStr += '   <div class="hovTr"  onclick="prdopen(this)"> ';
                     wishStr += '  <div class="hovTrans" style="display: none; transform: translateX(101%);">';
                     wishStr += '  <div class="plusCont" style="transform: scale(0);"></div></div></div>';
                     wishStr += '   <div class="grid_dets">';
-                    wishStr += '  <div class="grid_name txtOver transition300">' + j.prdname + '</div>';
+                    wishStr += '  <div class="grid_name txtOver transition300" onclick="prdopen(this)">' + j.prdname + '</div>';
 
-                    wishStr += ' <div class="col100  font11 transition300 txtOver"> ' + j.jweltype + '';
+                    wishStr += ' <div class="col100  font11 transition300 txtOver" onclick="prdopen(this)"> ' + j.jweltype + '';
                     var type = 0;
                     if (j.hasSoli == 'Solitaire')
                         type = 1;
@@ -320,8 +320,8 @@ function wishlist()
                         }
                     }
                     wishStr += ' ' + Nstr + '</div>';
-
-                    wishStr += '   <div class="grid_price txtOver transition300"><span class="cartRup15b"><span>  ' + indianMoney(parseInt(j.price)) + '</div>';
+		    
+                    wishStr += '   <div class="grid_price txtOver transition300" onclick="prdopen(this)"><span class="cartRup15b"><span>  ' + indianMoney(parseInt(j.price)) + '</div>';
                     wishStr += '  <div class="action_btns">';
                     wishStr += '  <div class="col50 fLeft  pad0">';
                     wishStr += '  <div class="actBtn fLeft bolder addcrt" id="' + j.wish_id + '_' + j.col_car_qty + '_' + j.product_id + '_' + j.size + '" ';
@@ -348,6 +348,16 @@ function wishlist()
 
 }
 
+
+function prdopen(ths)
+{
+  var ids=$(ths).closest('.grid3').find('.facet_front').attr('id');
+  ids=ids.split('_');
+  var pid=ids[0];
+  var combn=ids[1];
+  var size=ids[2];
+  window.location.href=DOMAIN+"index.php?action=product_page&pid="+pid+"&comb="+combn+"&sz="+size+""; 
+}
 
 function addtocart(ths) {
     var ids = $(ths).attr('id');
