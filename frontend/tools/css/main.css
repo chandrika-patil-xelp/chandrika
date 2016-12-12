@@ -1336,7 +1336,7 @@ input[type=radio]:checked ~ .selector_label:after {
     /* padding: 0 153px; */
     position: absolute;
       padding: 23px 0px 23px 0px;
-    right: 153px;letter-spacing: 0.15em;}
+    right: 6%;letter-spacing: 0.15em;}
 .pay{width: auto;
     padding: 0 15PX;
     color: #fff;
@@ -1931,7 +1931,7 @@ input[type=radio]:checked ~ .matchIcn{
 .lgnwTxt{width:100%;height:30px;font-size:15px;color:#15181b;text-align:center;line-height:30px;margin-top: 35px;cursor: pointer;}
 
 
-.fade{width: 100%;height: 100%;position: fixed;background-color: rgba(0,0,0,0.7);z-index: 999;display:none;opacity:0;}
+.fade{}
 /*my account*/
 .myaccount{}
 .tabCont{width: 20%;height: auto;}
