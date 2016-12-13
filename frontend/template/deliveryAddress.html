@@ -104,11 +104,12 @@ function setordrdata(ordobj)
       var cartid = common.readFromStorage('jzeva_cartid');
       var URL = APIDOMAIN + "index.php?action=removCrtItemaftrcheckot&cartid=" + cartid;
       $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results) {
-	    
-	 // displaycartdetail();
+	   
 	  common.msg(1, 'Your Order Placed successfully');
-         
-          window.location.href = DOMAIN + "index.php?action=checkoutAfter&ordid="+cartid;
+        setTimeout(function(){
+         window.location.href = DOMAIN + "index.php?action=checkoutAfter&ordid="+cartid;
+                            },2000);
+          
            common.removeFromStorage('jzeva_cartid');
 	}
       });
