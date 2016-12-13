@@ -356,7 +356,7 @@ function prdopen(ths)
   var pid=ids[0];
   var combn=ids[1];
   var size=ids[2];
-  window.location.href=DOMAIN+"index.php?action=product_page&pid="+pid+"&comb="+combn+"&sz="+size+""; 
+  window.open(DOMAIN+"index.php?action=product_page&pid="+pid+"&comb="+combn+"&sz="+size+",'_blank'"); 
 }
 
 function addtocart(ths) {

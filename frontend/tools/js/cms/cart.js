@@ -163,7 +163,7 @@ function prdopen(ths)
   ids=ids.split('_');	
   var pid=ids[0];   var combn=ids[2];
   var size=ids[4];
-  window.location.href=DOMAIN +"index.php?action=product_page&pid="+pid+"&comb="+combn+"&sz="+size+"";
+  window.open(DOMAIN +"index.php?action=product_page&pid="+pid+"&comb="+combn+"&sz="+size+",'_blank'");
 }
  
 function getweight(currentSize, catName, storedWt)
