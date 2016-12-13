@@ -794,20 +794,19 @@ class user extends DB {
         return $results;
     }
 
-    public function newforgotPass($params) {
-
-        $email = (!empty($params['email'])) ? trim($params['email']) : '';
-
-        if (empty($email)) {
-
-            $resp = array();
-            $error = array('Code' => 1, 'Msg' => 'Invalid parameters');
-            $res = array('results' => $resp, 'error' => $error);
-            return $res;
-        }
-        $vsql = "   SELECT
-                                email,
-                                user_id,
+    public function newforgotPass($params)
+    {
+             
+            $email = (!empty($params['email'])) ? trim($params['email']) : '';
+         
+            if (empty($email)) {
+                
+                $resp = array();
+                $error = array('Code' => 1, 'Msg' => 'Invalid parameters');
+                $res = array('results' => $resp, 'error' => $error);
+                return $res;
+            }
+            $vsql = "   SELECT 
                                 logmobile,
                                 user_name
                         FROM
@@ -816,53 +815,65 @@ class user extends DB {
                                 email=\"" . $params['email'] . "\"
                         AND
                                 is_active = 1";
-        $vres = $this->query($vsql);
-
-        $row = $this->fetchData($vres);
-        $cnt1 = $this->numRows($vres);
-        $mobile = $row['logmobile'];
-        $uid = $row['user_id'];
-        $em = urlencode($row['email']);
-        $uname = urlencode($row['user_name']);
-
-
-
-        global $comm;
-        $url = APIDOMAIN . "index.php?action=changePassUrl&uid=" . $uid . "&email=" . $em . "&mobile=" . $mobile;
-
-        $res = $comm->executeCurl($url);
-        $data = $res;
-
-
-        $urlkey = $data['result'][0]['urlkey'];
-
-        if ($cnt1 > 0) {
-            $subject = "JZEVA Password Change Request";
-            $message = "Dear " . $uname . ", the link to change your password is as follows";
-            $message .= "<br/><br/>";
-            $message .= DOMAIN . "FP-" . $urlkey;
-            // $message .= DOMAIN."FP-". $urlkey;
-            $message .= "<br/><br/>";
-            $message .= "For any assistance, Call: +91 9980051525. Email: care@jzeva.com";
-            $message .= "<br/><br/>";
-            $message .= "Team jzeva";
-
-            $headers = "Content-type:text/html;charset=UTF-8" . "<br/><br/>";
-
+            $vres = $this->query($vsql);
+            
+            $row = $this->fetchData($vres); 
+             
+            $mobile = $row['logmobile'];  
+            $uname = urlencode($row['user_name']);
+	     
+	    global $comm;
+                $isValidate = true;
+                $msql = "SELECT
+                        *,
+                        DATE_SUB(`updated_on`,INTERVAL - 10 MINUTE) as intervl,
+                        now()
+                        FROM
+                                tbl_verification_code
+                        WHERE
+                                mobile = " . $mobile . "
+                        AND
+                                DATE_SUB(`updated_on`,INTERVAL - 10 MINUTE) > now() limit 1";
+                $mres = $this->query($msql);
+                  if ($mres)
+                    {
+                        $mrow = $this->fetchData($mres); 
+                        if ($mrow['vcode'])
+                        {
+                            $rno = $mrow['vcode'];
+                             $isValidate = false; 
+                        }
+                    }
+                    if ($isValidate)
+                    {
+                        $rno = rand(100000, 999999);
+                        $mssql = "INSERT
+                                INTO
+                                            tbl_verification_code (mobile,vcode)
+                                VALUES
+                                            (" . $mobile . ",
+                                             " . $rno . ")";
+                        $msres = $this->query($mssql); 
+                    }
+	     
+	   
+	    $subject  = "JZEVA password assistance";
+            $message=$this->frgotpassotpTemplate($uname,$rno);
+            $headers  = "Content-type:text/html;charset=UTF-8" . "<br/><br/>";
             $headers .= 'From: care@jzeva.com' . "<br/><br/>";
-
-            $mail = mail($row['email'], $subject, $message, $headers);
-            print_r($message);
-
-            $arr = array();
-            $err = array('Code' => 0, 'Msg' => 'Link for changing password is sent to: ' . $row['email'] . '');
-        } else {
-            $arr = array();
-            $err = array('Code' => 1, 'Msg' => 'Failed to Update Password');
+	 
+            if (!empty($params['email']))
+            {
+                     mail($params['email'], $subject, $message, $headers);
+	    } 
+	    else
+            {
+                $arr = array();
+                $err = array('code'=>1,'msg'=>'Error in sending mail');
+            }
+            $result = array('result'=>$arr,'error'=>$err);
+            return $result; 
         }
-        $result = array('results' => $arr, 'error' => $err);
-        return $result;
-    }
 
     public function checkopt($params) {
         $otpval = $params['otpval'];
@@ -1146,77 +1157,7 @@ class user extends DB {
         $result = array('results' => $reslt, 'error' => $err);
         return $result;
     }
-
-    public function sendmailotp($params) {
-
-        $email = (!empty($params['email'])) ? trim($params['email']) : '';
-
-        if (empty($email)) {
-
-            $resp = array();
-            $error = array('Code' => 1, 'Msg' => 'Invalid parameters');
-            $res = array('results' => $resp, 'error' => $error);
-            return $res;
-        }
-//            $vsql = "   SELECT
-//                                email,
-//                                user_id,
-//                                logmobile,
-//                                user_name
-//                        FROM
-//                                tbl_user_master
-//                        WHERE
-//                                email=\"" . $params['email'] . "\"
-//                        AND
-//                                is_active = 1";
-//            $vres = $this->query($vsql);
-//            
-//            $row = $this->fetchData($vres);
-//            $cnt1 = $this->numRows($vres); 
-//            $mobile = $row['logmobile']; 
-//            $uid = $row['user_id'];
-//            $em = urlencode($row['email']);
-//            $uname = urlencode($row['user_name']);
-
-
-
-        global $comm;
-        $url = APIDOMAIN . "index.php?action=createemailUrl&email=" . $email;
-
-        $res = $comm->executeCurl($url);
-        $data = $res;
-        //	 print_r($res);  
-
-        $urlkey = $data['result'][0]['urlkey'];
-
-        if ($res) {
-            $subject = "JZEVA Password Change Request";
-            $message = "Dear " . $uname . ", the link to change your password is as follows";
-            $message .= "<br/><br/>";
-            $message .= DOMAIN . "FP-" . $urlkey;
-            // $message .= DOMAIN."FP-". $urlkey;
-            $message .= "<br/><br/>";
-            $message .= "For any assistance, Call: 022-32623263. Email: info@jzeva.com";
-            $message .= "<br/><br/>";
-            $message .= "Team jzeva";
-
-            $headers = "Content-type:text/html;charset=UTF-8" . "<br/><br/>";
-
-            $headers .= 'From: info@jzeva.com' . "<br/><br/>";
-
-            $mail = mail($params['email'], $subject, $message, $headers);
-            print_r($message);
-
-            $arr = array();
-            $err = array('Code' => 0, 'Msg' => 'Link for changing password is sent to: ' . $params['email'] . '');
-        } else {
-            $arr = array();
-            $err = array('Code' => 1, 'Msg' => 'Failed to send mail');
-        }
-        $result = array('results' => $arr, 'error' => $err);
-        return $result;
-    }
-
+ 
     public function createemailUrl($params) {
 
         $email = (!empty($params['email'])) ? trim(urldecode($params['email'])) : '';
@@ -1326,7 +1267,7 @@ class user extends DB {
     }
 
     public function getUserdetailbymob($params) {
-        $sql = "SELECT user_name as name,logmobile as mb,email,user_id from tbl_user_master WHERE logmobile='" . $params['mob'] . "' or email='" . $params['mob'] . "'";
+        $sql = "SELECT user_name as name,logmobile as mb,email,user_id from tbl_user_master WHERE logmobile='" . $params['mob'] . "' or email='" . $params['email'] . "'";
         $res = $this->query($sql);
 
         $result = array();
@@ -1640,6 +1581,70 @@ class user extends DB {
         $results = array('result' => $result, 'error' => $err);
         return $results;
     }
+    
+    	public function frgotpassotpTemplate($uname,$otp)
+        {
+              
+	    $message='	<html>	
+			<head>
+			<title>otp email</title>
+			<meta charset="UTF-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<style>
+			    *{box-sizing:border-box;padding:0;margin:0;}
+			</style>
+			</head>
+			<body>
+			    <div style="width:100%;height:100%;background-color:#f3f3f3;padding-top:30px;padding-bottom:30px;font-family:sans-serif">
+			    <div style="width:100%;height:auto;margin:auto;max-width:750px">
+			    <div style="width:100%;height:auto;margin-bottom: 30px;">
+			    <div style="width:150px;height:auto;margin:auto">
+			    <img src="'.DOMAIN.'frontend/emailer/jzeva_logo.png" alt="" width="150" height="50">
+			    </div>
+			    </div>
+			    <div style="width:100%;height:auto;background-color:#fff;padding:25px;min-height:300px;padding-bottom:0px">
+			    <div style="width:100%;height:auto;margin-bottom:15px;">
+				<div style="width:70px;height:60px;margin:auto">
+				    <img src="'.DOMAIN.'frontend/emailer/otp.png" alt="" width="70" height="60">
+				</div>
+			    </div>
+			    <div style="width:100%;height:auto;font-size:22px;color:#0CCDB8;text-align:center;line-height:28px">Dear Mr. '.$uname.'</div>
+			    <div style="width:100%;height:auto;font-size:15px;text-align:center;color:#333;line-height:30px;margin-top:15px"><span style="display:inline-block;line-height:normal;vertical-align:middle">THANK YOU FOR YOUR INTEREST IN JZEVA</span></div>
+			    <div style="width:100%;height:auto;font-size:12px;color:#333;text-align:center;line-height:17px;margin-top: 5px">We are glad to assist you in changing the password of your jzeva account</div>
+			    <div style="width:100%;height:auto;font-size:14px;color:#333;text-align:center;line-height:28px;margin-top:12px"><span style="display:inline-block;line-height:normal;vertical-align:middle">Please use the OTP sent in this email to proceed with changing your password</span></div>
+			    <div style="width:100%;height:auto;font-size:45px;line-height:50px;color:#0CCDB8;text-align:center;margin-top: 12px;">'.$otp.'</div>
+			    <div style="width:100%;height:auto;padding:20px;background-color:#222529;margin-top:55px">
+			    <div style="width:100%;height:auto;font-size:12px;color:#fff;text-align:center;line-height:20px;margin-top:20px;">Should you have any question or require our assistance, our concierege services desk is available at</div>
+			    <div style="width:100%;height:auto;font-size:15px;line-height:20px;color:#0CCDB8;text-align:center;margin-top:13px">Call +91 9980051525 | Email care@jzeva.com</div>
+			    <div style="width:100%;height:auto;font-size:14px;line-height:25px;color:#666;text-align:center;margin-top: 6px;margin-bottom: 20px;">( Monday to Friday 10AM - 10PM IST and Saturday 10AM - 10PM IST )</div>
+			    </div>
+			    </div>
+			    <div style="width:100%;height:auto;padding:0px 25px 25px 25px;background-color:#15181b;min-height:200px">
+				<div style="width:100%;height:auto;padding:0px 25px 25px 25px;background-color:#222529">
+				<div style="width:100%;height:auto;font-size:14px;color:#fff;text-align:center;line-height:29px;">We look forward to serving you in the future. Happy Shopping!!!</div> 
+				 <div style="width:100%;height:auto;font-size:14px;color:#fff;text-align:center;line-height:25px;margin-top: 50px;">Yours Truly</div> 
+				  <div style="width:100%;height:auto;font-size:14px;color:#fff;text-align:center;line-height:20px; margin-bottom: 15px;">JZEVA</div> 
+			    </div>
+			    <div style="width:100%;height:auto;margin-top:55px;margin-bottom:15px">
+				<center> 
+				    <div style="width:auto;padding:0px 10px;color:#0CCDB8;display:inline-block;vertical-align:top;font-size:12px;line-height:16px;height:16px">FOLLOW US</div>
+				    <div style="width:auto;padding:0px 10px;color:#fff;display:inline-block;vertical-align:top;font-size:12px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">FACEBOOK</div>
+				    <div style="width:auto;padding:0px 10px;color:#fff;display:inline-block;vertical-align:top;font-size:12px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">TWITTER</div>
+				    <div style="width:auto;padding:0px 10px;color:#fff;display:inline-block;vertical-align:top;font-size:12px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">INSTAGRAM</div>
+				    <div style="width:auto;padding:0px 10px;color:#fff;display:inline-block;vertical-align:top;font-size:12px;line-height:16px;letter-spacing:0.02em;height:16px">PINTEREST</div>
+				</center>
+			    </div>
+			    <div style="width:100%;height:auto;font-size:14px;color:#666;line-height:25px;text-align:center;margin-top:40px">You are receiving this email in response to an order or request you submitted to  <a href="" style="color:#666;text-decoration:none !important">www.jzeva.com</a></div>
+			    <div style="width:100%;height:auto;font-size:14px;color:#666;line-height:25px;text-align:center;margin-bottom: 30px;">Please visit <a href="" style="color:#666;text-decoration:none !important">www.jzeva.com</a> to consult our privacy policy and condition of sail</div>
+			    </div>
+			    </div>
+			    </div>
+			</body>
+			</html>'; 
+ 
+            return $message;  
+	} 
+
 
 }
 

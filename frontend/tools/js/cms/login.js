@@ -66,7 +66,7 @@ $('#rsubId').on('click',function(){
 	  $('#mobile').val('');		  $('#mobile').blur();
 	  $('#signup_otp').val('');	  $('#signup_otp').blur();
           otpflg=1; 
-	  sendotp();
+	  sendotp(); 
 	  userdata[0]=name;
 	  userdata[1]=email;
 	  userdata[2]=mobile;
@@ -301,7 +301,7 @@ $('#fsubId').on('click',function(){
 function  sendotp()
 {
   		  
-       var URL= APIDOMAIN + "index.php/?action=sendnewuserotp&mobile="+inptval; 
+       var URL= APIDOMAIN + "index.php?action=sendnewuserotp&mobile="+inptval; 
       $.ajax({
 	       type:'POST',
 	       url:URL,
@@ -337,7 +337,7 @@ function sugnupsubmt()
 			  common.msg(0,'Please Enter OTP');
 		      }
      else{
-       common.msg(0,'you entered otp is wrong')
+       common.msg(0,'you entered otp is wrong');
      }
    }
    else{
@@ -367,7 +367,8 @@ function sugnupsubmt()
 		       }
 		       else if(data['result']['email'] == inptval){ 
 			 newuserid=data['result']['user_id'];
-			// sendmail(inptval);
+			  sendemailotp(inptval);
+			  fSubmit();  
 		       }
 		       else{
 			 if($.isNumeric(inptval))  
@@ -570,4 +571,20 @@ function sugnupsubmt()
 	  var uid=common.readFromStorage('jzeva_uid');
 	  if(uid == null || uid == "")
             openPopUp(); 
+  });
+  
+  function sendemailotp()
+  {
+    var URL=APIDOMAIN + "index.php?action=newforgotPass&email="+inptval;
+    $.ajax({type:"POST", url: URL, success:function(res){
+	 common.msg(0,'OTP had sent to your email id');
+    }
+    });
+  }
+  
+  $('#resendotp').click(function(){
+    if($.isNumeric(inptval))
+      sendotp();
+    else
+      sendemailotp();
   });
