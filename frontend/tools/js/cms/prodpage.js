@@ -145,7 +145,10 @@ $(document).ready(function () {
             if (dt['catAttr']['results'][1]['name'] == 'Pendants') {
                 $('#Ifpendant').html('Chain Is Not Available With This Pendant');
             }
-
+            var catgry =dt['catAttr']['results'][1]['name'];
+          catgry=  catgry.slice(0,-1);
+        
+          $('#custm').html('Customise This ' +catgry);
             storedWt = parseFloat(dt['basicDetails']['mtlWgt']);
             storedMkCharge = parseFloat(dt['basicDetails']['mkngCrg']);
 
