@@ -700,6 +700,9 @@
     <script type="text/javascript" src="<?php echo $fjvs['Common']; ?>"></script>
     <script type="text/javascript">
 
+    $(document).ready(function(){
+       $('#scroll').niceScroll({cursorcolor: "#000000", touchbehavior: true, cursorwidth: "4px", autohidemode: false, cursorborder: "0px solid #fff", cursoropacitymin: "0.3", cursoropacitymax: "0.3", railpadding: {top: 2, right: 2, left: 2, bottom: 2}}); 
+    });
 
                                         $('.inp_box').focus(function () {
                                             $(this).closest('.txtB').addClass('focul');
@@ -722,7 +725,7 @@
                                             $('.page_loader2').velocity({translateY: ['100%', 0]}, {duration: 600, easing: 'easeInQuart', display: 'none', complete: function () {
                                                     $('body').removeClass('over_hide');
                                                 }});
-                                            $('#scroll').niceScroll({cursorcolor: "#000000", touchbehavior: true, cursorwidth: "4px", autohidemode: false, cursorborder: "0px solid #fff", cursoropacitymin: "0.3", cursoropacitymax: "0.3", railpadding: {top: 2, right: 2, left: 2, bottom: 2}});
+                                            
                                         }
 
                                         $('#nxt').click(function () {
@@ -740,28 +743,18 @@
                                         });
 
 
-//        $('.inp_box').focus(function () {
-//            $(this).closest('.txtB').addClass('focul');
-//        });
-//        $('.inp_box').blur(function () {
-//            var k = $(this).val();
-//            if (k == "") {
-//                $(this).closest('.txtB').removeClass('focul');
-//            }
+
+
+//                                        $('.inp_box').focus(function () {
+//                                            $(this).closest('.inp_cont').addClass('focul');
+//                                        });
+//                                        $('.inp_box').blur(function () {
+//                                            var k = $(this).val();
+//                                            if (k == "") {
+//                                                $(this).closest('.inp_cont').removeClass('focul');
+//                                            }
 //
-//        });
-
-
-                                        $('.inp_box').focus(function () {
-                                            $(this).closest('.inp_cont').addClass('focul');
-                                        });
-                                        $('.inp_box').blur(function () {
-                                            var k = $(this).val();
-                                            if (k == "") {
-                                                $(this).closest('.inp_cont').removeClass('focul');
-                                            }
-
-                                        });
+//                                        });
 //          $('#fstup').velocity({opacity: 1,translateY:'0px'}, {delay: 0, duration: 0,display:'block'});
 //            $('#scndup').velocity({opacity:0,translateY:'20px'}, {delay: 0, duration: 0,display:'none'});
                                         function openfst() {
