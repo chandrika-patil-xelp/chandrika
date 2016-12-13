@@ -1,0 +1,731 @@
+
+<?php include 'jBhead.html' ?>
+<?php
+echo "<script>var edit=$edit; var pid = '$pid';</script>";
+?>
+<body>
+    <div class="container addProduct ">
+        <?php include 'jBheader.html' ?>
+        <div class="contents fLeft" id='prdForm'>
+            <div class="wrapperMax fmOpenR">
+                <!-----Category Section--!-->
+                <div class="noresDiv fLeft dn" id='noresults'>
+                    <div class="noresults font25 fLeft">There are no categories available.</div>
+                    <div class="noresults font20 fLeft">Please add categories.</div>
+                </div>
+
+                <section id='category_Section' class="dn">
+                    <!--                    <div class="commTitle1 fmOpenL fLeft">Select your category*</div>
+                                        <div class="divCon  fLeft fmOpenR dn">
+                                            <div class="treeCont fLeft">
+                                                <div class="tree transition300" id='parentCatg'></div>
+                                           </div>
+                    
+                                        </div>-->
+                    <div class="divCon fLeft">
+                        <div class="divCon2 fLeft mTop0">
+                            <div class="titleDiv txtCap fLeft">Customer Name</div>
+                            <input name="" type="text"  maxlength="40" autocomplete="false"  placeholder="Enter customer name" class="txtInput fLeft fmOpenR font14 c666">
+                        </div>
+                        <div class="divCon2 fRight mTop0">
+                            <div class="titleDiv txtCap fLeft">Customer Email</div>
+                            <input name="" type="text" maxlength="40" autocomplete="false"  placeholder="Enter customer email" class="txtInput fLeft fmOpenR font14 c666">
+                        </div>
+                    </div>
+                    <div class="divCon fLeft">
+                        <div class="divCon2 fLeft">
+                            <div class="titleDiv txtCap fLeft">Customer Telephone No</div>
+                            <input name="" type="text" autocomplete="false"  placeholder="Enter telephone no" class="txtInput fLeft fmOpenR font14 c666">
+                            <input type="hidden" id="prdCode">
+                        </div>
+                        <div class="divCon2 fRight">
+                            <div class="titleDiv txtCap fLeft">Customer Address</div>
+                            <textarea id="productDescription"  class="txtInput   txtarea fLeft fmOpenR font14 c666" placeholder="Enter the address"></textarea>
+                        </div>
+                    </div>
+                    <div class="divCon fLeft">
+                        <div class="divCon2 fLeft">
+                            <div class="titleDiv txtCap fLeft">Product code</div>
+                            <input name="" type="text" id="product_seo_name" autocomplete="false"  placeholder="Enter product code" class="txtInput fLeft fmOpenR font14 c666">
+                            <!--                            <textarea id="productDescription"  class="txtarea fLeft fmOpenR font14 c666" placeholder="Brief description about product"></textarea>-->
+                        </div>
+                        <div class="divCon2 fRight">
+                            <div class="titleDiv txtCap fLeft">Price</div>
+                            <input name="" type="text"  autocomplete="false"  placeholder="" class="txtInput fLeft fmOpenR font14 c666">
+                        </div>
+                    </div>
+                    <div class="divCon fLeft">
+                        <div class="divCon2 fLeft">
+                            <div class="titleDiv txtCap fLeft">Product Overview</div>
+                            <input name="" type="text"  autocomplete="false"  placeholder="Enter product weight" class="txtInput fLeft fmOpenR font14 c666" onkeypress="return common.isDecimalKey(event, this.value);">
+                        </div>
+                        <div class="divCon2 fRight">
+                            <div class="titleDiv txtCap fLeft">Payment mode</div>
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="jType" class="filled-in" value="1" id="jType1" checked="">
+                                <label for="jType1">cash</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="jType" class="filled-in" value="2" id="jType2">
+                                <label for="jType2">cheque</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="jType" class="filled-in" value="3" id="jType3">
+                                <label for="jType3">NEFT</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="jType" class="filled-in" value="4" id="jType4">
+                                <label for="jType4">RTGS</label>
+                            </div>
+                            <div class="checkDiv fLeft">
+                                <input type="radio" name="jType" class="filled-in" value="5" id="jType5">
+                                <label for="jType5">DD</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divCon fLeft">
+                        <div class="divCon2 fLeft">
+                            <div class="titleDiv txtCap fLeft">Notes</div>
+                            <textarea id="productDescription"  class="txtInput   txtarea fLeft fmOpenR font14 c666" placeholder="Enter the remarks"></textarea>
+                        </div>
+                    </div>
+                </section>
+                <section id='solitaires_Section' class="solitaireCont dn">
+                    <div class="commTitle1 fmOpenL fLeft">Add Solitaire</div>
+                    <div class="newElements fLeft" id="newSolitaires"></div>
+                    <div class="divCon fLeft">
+                        <center><div class="addBtn transition300" onclick="checkSolAdd()">Add Solitaire</div></center>
+                    </div>
+                </section>
+                <!-----Solitaire Section End--!-->
+
+                <!-----Diamond Section--!-->
+                <section id='diamond_Section' class="diamondCont dn">
+                    <div class="commTitle1 fmOpenL fLeft">Add Diamond</div>
+                    <div class="newElements fLeft" id="newDiamonds"></div>
+                    <div class="divCon fLeft">
+                        <center><div class="addBtn transition300" onclick="checkDmdAdd()">Add Diamond</div></center>
+                    </div>
+                </section>
+                <!-----Diamond Section End--!-->
+
+                <!-----Uncut Diamond Section--!-->
+                <section id='uncut_Section' class="uncutCont dn">
+                    <div class="commTitle1 fmOpenL fLeft">Add Uncut Diamond</div>
+                    <div class="newElements fLeft" id="newUncutDiamonds"></div>
+                    <div class="divCon fLeft">
+                        <center><div class="addBtn transition300" onclick="checkUncutAdd()">Add Uncut Diamond</div></center>
+                    </div>
+                </section>
+                <!-----Uncut Diamond Section End--!-->
+
+
+
+                <!-----Gemstone Section--!-->
+                <section id='gemstone_Section' class="gemstoneCont dn">
+                    <div class="commTitle1 fmOpenL fLeft">Add Gemstone</div>
+                    <div class="newElements fLeft" id="newGemstone"></div>
+                    <div class="divCon fLeft">
+                        <center><div class="addBtn transition300" onclick="checkGemsAdd()">Add Gemstone</div></center>
+                    </div>
+                </section>
+                <div class="btnCont fLeft dn">
+                    <center>
+                        <a href='<?php echo DOMAIN; ?>backend/?action=products'><div class="cancelBtn transition300 fmOpenR poR" onclick="">CANCEL</div></a>
+                        <div class="submitBtn transition300 fmOpenR poR" onclick="addProduct()" id="Submitdiv">PREVIEW</div>
+                    </center>
+                </div>
+            </div>
+        </div>
+
+        <div class="forScrollBtn op01" onclick="moveUp()"></div>
+        <div class="forScrollBtn op01 forScDown" onclick="moveDown()"></div>
+        <div class="overlay dn"></div>
+        <div class="loader dn"></div>
+    </div>
+
+
+    <!--Category Value Map-->
+
+
+    <link rel="stylesheet" href="<?php echo $css['rangeSlider']?>">
+    <link rel="stylesheet" href="<?php echo $css['rangeSkin']?>">
+    <link rel="stylesheet" href="<?php echo $css['rangeNormalize']?>">
+    <script type="text/javascript" src="<?php echo $jvs['rangeJS']; ?>"></script>
+    <script type="text/javascript" src="<?php echo $jvs['addProduct']; ?>"></script>
+    <script type="text/javascript" src="<?php echo $jvs['nicescroll']; ?>"></script>
+    <script>
+
+                    function showpreview(data)
+                    {
+
+                        var mpurity = data['mpurity'];
+                        var metalcolor = data['metalcolor'];
+                        var sizes = data['sizes'];
+                        var solitaires = data['solitaires'];
+                        var has_solitaire = data['has_solitaire'];
+                        var diamonds = data['diamonds'];
+                        var has_diamond = data['has_diamond'];
+                        var uncut = data['uncut'];
+                        var has_uncut = data['has_uncut'];
+                        var gemstone = data['gemstone'];
+                        var has_gemstone = data['has_gemstone'];
+                        var details = data['details'];
+                        var catid = data['catid'].split(",");
+                        $('#prnewSolitaires,#prnewDiamonds,#prnewgemstone,#prnewUncut').html('');
+                        $('#prsolitaires_Section,#prgemstone_Section,#pruncut_Section,#prdiamond_Section').addClass('dn');
+
+                        $('#prvendorid').text($('#vendorList option:selected').text());
+                        $('#prproduct_name').text(decodeURIComponent(details["product_name"]));
+                        $('#prproduct_seo_name').text(decodeURIComponent(details["product_seo_name"]));
+                        var gen = "Female";
+                        if (details["gender"] == 1)
+                            gen = "Female";
+
+                        else if (details["gender"] == 2)
+                            gen = "Unisex";
+
+                        $('#prgender').text(gen);
+                        $('#prproduct_weight').text(details["product_weight"]);
+                        $('#prcertificate').text(details["certificate"]);
+                        $('#prmetal_weight').text(details["metal_weight"] + " grm");
+                        $('#prmaking_charges').html("&#8377; " + details["making_charges"]);
+                        $('#prprocurement_cost').html("&#8377; " + details["procurement_cost"]);
+                        $('#prmargin').html(details["margin"]);
+                        $('#prmeasurement').html(details["measurement"]);
+                        $('#prdmdSetting').html(details["dmdSetting"]);
+
+
+                        var mpurity = [];
+                        var mcolor = [];
+                        if (metalColorCust)
+                        {
+
+                            $('[name=gcolorCustomize]').each(function () {
+                                if ($(this).is(':CHECKED'))
+                                    mcolor.push($(this).next('label').text());
+
+                                else if (!$(this).is(':CHECKED')) {
+                                    var removeItem = $(this).next('label').text();
+                                    mcolor = jQuery.grep(mcolor, function (value) {
+                                        return value !== removeItem;
+                                    });
+                                }
+
+                            });
+                        } else if (!metalColorCust)
+                        {
+                            mcolor.push($('[name=gcolorNotCustomize]:CHECKED').next('label').text());
+                        }
+
+
+
+                        if (metalPurityCust)
+                        {
+                            $('[name=gpurityCustomize]').each(function () {
+                                if ($(this).is(':CHECKED'))
+                                    mpurity.push($(this).next('label').text());
+                                else if (!$(this).is(':CHECKED')) {
+                                    var removeItem = $(this).next('label').text();
+                                    mpurity = jQuery.grep(mpurity, function (value) {
+                                        return value !== removeItem;
+                                    });
+                                }
+
+                            });
+                        } else if (!metalPurityCust)
+                        {
+                            mpurity.push($('[name=gpurityNotCustomize]:CHECKED').next('label').text());
+                        }
+
+                        $('#prmetalpurity').text(mpurity.toString());
+                        $('#prmetalcolor').text(mcolor.toString());
+
+
+                        if ($('[name=size]').length > 0)
+                        {
+
+                            var selsize = '';
+                            $("input[name='size']").each(function () {
+                                if ($(this).is(':CHECKED'))
+                                {
+                                    selsize = $(this).next('label').text();
+                                }
+
+                            });
+                            $('#prsize').text(selsize);
+                            $('#forSelectedSize').removeClass('dn');
+                        }
+
+                        var catstr = "";
+                        $(catid).each(function (i) {
+                            $(categories).each(function (j, vl) {
+
+                                if (catid[i] == vl.cid && i < catid.length - 1)
+                                {
+                                    catstr += vl.name + " , ";
+                                } else if (catid[i] == vl.cid)
+                                {
+                                    catstr += vl.name;
+                                }
+                            });
+
+                        });
+                        $('#prcategories').html(catstr);
+
+
+                        if (has_solitaire == 1)
+                        {
+
+                            var str = "";
+                            $(solitaires).each(function (j, vl) {
+
+                                str += "<div class='commCont fLeft poR forAuto '>";
+                                str += "<div class='shapeComm " + vl.shape + "'></div>";
+                                str += "<div class='fieldTitle fLeft '>";
+                                str += "<div class='w50 fLeft  padR15 fmOpenR'>Color </div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.color + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft '>";
+                                str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Clarity </div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + decodeURIComponent(vl.clarity) + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft'>";
+                                str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Cut </div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + decodeURIComponent(vl.cut) + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft'>";
+                                str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Symmetry </div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + decodeURIComponent(vl.symmetry) + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft'>";
+                                str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Polish </div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + decodeURIComponent(vl.polish) + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft'>";
+                                str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Fluorescence </div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + decodeURIComponent(vl.fluorescence) + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft '>";
+                                str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Carat </div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.carat + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft '>";
+                                str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Price/Carat </div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>&#8377;" + vl.price_per_carat + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft'>";
+                                str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Table </div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.table + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft'>";
+                                str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Crown Angle </div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.crown_angle + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft'>";
+                                str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Gridle</div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.girdle + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft'>";
+                                str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Number of Solitaires</div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.nofs + "</div>";
+                                str += "</div>";
+                                str += "</div>";
+                                str += "<div class='breakLine'></div>";
+
+                            });
+
+                            $('#prnewSolitaires').html(str);
+                            $('#prsolitaires_Section').removeClass('dn');
+                        }
+
+
+
+                        if (has_diamond == 1)
+                        {
+                            var str = "";
+                            $(diamonds).each(function (i, vl) {
+                                var ids = i + 1;
+                                var customiz = $('[name*=isDiamondCustz_' + ids + ']:checked').val();
+                                var dquality = new Array();
+                                if (customiz == 1)
+                                {
+
+                                    $('[name=dmdquality_cust' + ids + ']').each(function () {
+
+                                        if ($(this).is(':CHECKED'))
+                                        {
+                                            dquality.push($(this).next('label').text());
+
+                                        } else if (!$(this).is(':CHECKED')) {
+                                            var removeItem = $(this).next('label').text();
+                                            dquality = jQuery.grep(dquality, function (value) {
+                                                return value !== removeItem;
+                                            });
+                                        }
+
+                                    });
+
+                                } else if (customiz == 0)
+                                {
+                                    dquality.push($('[name*=dmdquality_notCust' + ids + ']:checked').next('label').text());
+                                }
+
+
+                                str += "<div class='commCont fLeft  forAuto'>";
+//                                    str += "<div class='shapeComm " + vl.shape + "'></div>";
+                                str += "<div class='outContr fLeft'>";
+                                str += "<div class='fieldTitle fLeft '>";
+                                str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Diamond Quality </div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + dquality.toString() + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft '>";
+                                str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Carat </div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.carat + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft'>";
+                                str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Pieces</div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.total_no + "</div>";
+                                str += "</div>";
+                                str += "</div>";
+                                str += "</div>";
+                                str += "<div class='breakLine'></div>";
+                            });
+
+                            $('#prnewDiamonds').html(str);
+                            $('#prdiamond_Section').removeClass('dn');
+
+                        }
+
+
+                        if (has_uncut == 1)
+                        {
+                            var str = "";
+                            $(uncut).each(function (i, vl) {
+                                str += "<div class='commCont fLeft forAuto'>";
+                                str += "<div class='outContr fLeft'>";
+//                                    str += "<div class='dtl_cont fLeft'>";
+                                str += "<div class='fieldTitle fLeft '>";
+                                str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Diamond Color </div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight '>" + vl.color + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft '>";
+                                str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Diamond Quality </div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.quality + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft '>";
+                                str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Carat </div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.carat + "</div>";
+                                str += "</div>";
+//                                    str += "</div>";
+//                                    str += "<div class='dtl_cont fRight'>";
+                                str += "<div class='fieldTitle fLeft '>";
+                                str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Price/Carat </div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>&#8377; " + vl.price_per_carat + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft'>";
+                                str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Pieces</div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.total_no + "</div>";
+                                str += "</div>";
+                                str += "</div>";
+//                                    str += "</div>";
+                                str += "</div>";
+                                str += "<div class='breakLine'></div>";
+                            });
+
+                            $('#prnewUncut').html(str);
+                            $('#pruncut_Section').removeClass('dn');
+
+                        }
+
+
+
+                        if (has_gemstone == 1)
+                        {
+                            var str = "";
+                            $(gemstone).each(function (i, vl) {
+                                str += "<div class='commCont fLeft forAuto'>";
+                                str += "<div class='outContr fLeft'>";
+//                                    str += "<div class='dtl_cont fLeft'>";
+                                str += "<div class='fieldTitle fLeft w25'>";
+                                str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Gemstone</div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + getGemstoneName(vl.gvalue) + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft w25'>";
+                                str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Carat </div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.carat + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft w25'>";
+                                str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Price/Carat </div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.price_per_carat + "</div>";
+                                str += "</div>";
+                                str += "<div class='fieldTitle fLeft w25'>";
+                                str += "<div class='w50 fLeft c4d padR15 fmOpenR'>Pieces</div>";
+                                str += "<div class='w50 fRight fmOpenB txtRight'>" + vl.total_no + "</div>";
+                                str += "</div>";
+                                str += "</div>";
+                                str += "</div>";
+                                str += "<div class='breakLine'></div>";
+                            });
+
+                            $('#prnewgemstone').html(str);
+                            $('#prgemstone_Section').removeClass('dn');
+
+                        }
+
+                        $('#prdForm').addClass('dn');
+                        $('#previewDiv').removeClass('dn');
+                        hideLoader();
+                        moveUp();
+                        getMultyCatMapping();
+                        //checkedTree(catid);
+                    }
+
+
+
+
+            function getGemstoneName(id)
+            {
+                var name;
+                $(gemstonelist).each(function (i, v) {
+                    if (v.id == id)
+                    {
+                        name = v.name;
+                        return v.name;
+                    }
+                });
+
+                return name;
+            }
+
+            function bindElementChange()
+            {
+                $('.shapeComm').bind('click', function () {
+                    $('.priceOverlay').removeClass('dn');
+
+                });
+
+                var txt_selector = ['input[type=text],textarea'];
+                //var radioCh_selector = ['input[type=radio],input[type=checkbox],label'];
+
+
+                $(txt_selector).bind('blur', function () {
+                    $('.priceOverlay').removeClass('dn');
+                });
+                $('label').bind('click', function () {
+                    $('.priceOverlay').removeClass('dn');
+                });
+
+            }
+
+            $(document).ready(function ( ) {
+                bindTree();
+            });
+
+            function bindTree()
+            {
+                $('#mapTree li').each(function () {
+                    if ($(this).children('ul').length > 0) {
+                        $(this).addClass('parent');
+                    }
+                });
+                $('#mapTree li.parent > a').bind('click', function ( ) {
+                    var id = $(this).parent().attr('id');
+                    $(this).parent().toggleClass('active');
+                    $(this).parent().children('ul').slideToggle('fast');
+                    if ($(this).parent().hasClass('active')) {
+                    } else
+                    {
+                        $('#' + id + ' :input[type=checkbox]').each(function () {
+                            // $(this).attr('checked',false);
+                        });
+                    }
+                });
+                if (edit == 0)
+                {
+                    $('#mapTree ul:first > li').eq(0).each(function () {
+                        $(this).toggleClass('active');
+                        $(this).children('ul').slideToggle('fast');
+                    });
+                } else if (edit == 1)
+                {
+                    $('#mapTree ul:first > li').eq(0).each(function () {
+                        $(this).toggleClass('active');
+                        $(this).children('ul').slideToggle('fast');
+                    });
+                }
+            }
+
+            function getMultyCatMapping(allCid)
+            {
+
+                var catArray = new Array();
+                $('[name=prtcateg]').each(function () {
+                    if ($(this).is(':CHECKED'))
+                    {
+                        catArray.push($(this).val());
+                    }
+//            else if (!$(this).is(':CHECKED')) {
+//                var removeItem = $(this).val();
+//                catArray = jQuery.grep(catArray, function(value) {
+//                    return value !== removeItem;
+//                });
+//            }
+                });
+
+                values = {};
+                values['catid'] = catArray.toString();
+                var dt = JSON.stringify(values);
+                $.ajax({
+                    url: APIDOMAIN + "index.php?action=getMultyCatMapping",
+                    type: 'POST',
+                    data: {dt: dt},
+                    success: function (res) {
+                        res = JSON.parse(res);
+                        attrValuesCallBack(res);
+                    }
+                });
+            }
+
+
+
+            function attrValuesCallBack(data)
+            {
+                var slider;
+                var rangeArr = new Array();
+                if (data['error']['err_code'] == 0)
+                {
+                    var str = "";
+                    var str2 = "";
+                    $(data['result']).each(function (i, vl)
+                    {
+                        if (vl.attrid && vl.type !== '4')
+                        {
+
+                            str += "<ul class='superparent'>";
+                            str += "<li id='attr_" + vl.attrid + "' class='parent'><a>" + vl.name + "</a>";
+                            str += "<ul>";
+                            var values = vl.values.split(",");
+                            $(values).each(function (j, v) {
+                                v = v.split('_').join(' ');
+                                str += "<li>";
+                                str += "<a>";
+                                str += "<div class='checkDiv fLeft'>";
+                                str += "<input type='checkbox' name='attrVals' class='filled-in' id='attr_" + vl.attrid + "_" + v.replace(/ /g, '_') + "' value='" + v + "'  data-for='" + vl.attrid + "'>";
+                                str += "<label for='attr_" + vl.attrid + "_" + v.replace(/ /g, '_') + "'>" + v + "</label>";
+                                str += "</div>";
+                                str += "</a>";
+                                str += "</li>";
+                            });
+                            str += "</ul>";
+                            str += "</li>";
+                            str += "</ul>";
+                        }
+                        /*                else
+                         {
+                         str2+="<ul class='superparent sprCnt '>";
+                         str2+="<div class='filterCont fLeft ffDmyCnt w100' id='demo_"+i+"'>";
+                         str2+="<div class='txtCap'>"+vl.name+" Range</div>";
+                         str2+="<div class='fLeft rangeCont'>";
+                         str2+="<div class='fLeft rangeDiv'>";
+                         str2+="<input type='text' id='range_"+i+"' class='fLeft rngInp irs-hidden-input' style='visibility: hidden;' readonly=''>";
+                         str2+="</div>";
+                         str2+="</div>";
+                         str2+="</div>";
+                         str2+="</ul>";
+                         }
+                         */
+                    });
+
+                    $('#mapTree').html(str);
+//            $('#mapRange').html(str2);
+
+                    /*For Range creation in preview*/
+
+                    /*            $(data['result']).each(function(i,vl)
+                     {
+                     
+                     if(vl.attrid && vl.type == '4')
+                     {
+                     
+                     var $range = $("#range_"+i);
+                     var values = vl.values.split(',');
+                     var val1 = values[0];
+                     var val2 = values[1];
+                     if(val1 !== '' && rangeArr.indexOf(val1) == -1)
+                     {
+                     rangeArr[0] = val1;
+                     }
+                     if(val2 !== '' && rangeArr.indexOf(val2) == -1)
+                     {
+                     rangeArr[1] = val2;
+                     }
+                     if(rangeArr.length==2 && rangeArr[0] !== '' && rangeArr[1] !== '')
+                     {
+                     $("#range_"+i).ionRangeSlider
+                     ({
+                     min: Math.floor(rangeArr[0]),
+                     max: Math.ceil(rangeArr[1]),
+                     from: Math.ceil(rangeArr[0]),
+                     to: Math.ceil(rangeArr[1]),
+                     type: 'double',
+                     Grid: true,
+                     hasGrid: true,
+                     drag_interval: true
+                     });
+                     slider = $range.data("ionRangeSlider");
+                     }
+                     else
+                     {
+                     slider && slider.destroy();
+                     }
+                     }
+                     
+                     });*/
+
+                    $('.catValDiv').removeClass('dn');
+                    bindTree();
+                } else {
+                    common.toast(0, 'Error in fetching data');
+                }
+
+
+                if (edit == 1)
+                {
+                    setAtttrValues(attrVals);
+                }
+
+            }
+
+//    function checkedTree(catArr)
+//    {
+//        var allCheckd = new Array();
+//        $('#parentCatg input[type=checkbox]').each(function()
+//        {
+//            if ($(this).is(':checked') == true)
+//            {
+//                allCheckd.push($(this).parent().parent().html());
+//            }
+//        });
+//        $('#mapTree').append(allCheckd);
+//
+//    }
+
+            function stopBodyScroll() {
+                $('body').bind('scroll touchmove mousewheel', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                });
+            }
+
+            function startBodyScroll() {
+                $('body').unbind();
+            }
+
+
+    </script>
+
+
+</body>
+</html>
