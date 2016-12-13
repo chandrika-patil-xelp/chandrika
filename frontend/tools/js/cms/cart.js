@@ -74,7 +74,7 @@ function storecartdata(cartdata, chk)
 	  var data=JSON.parse(results);
 	  common.addToStorage('jzeva_cartid', data.cartid);
 
-            getglobaldata();
+             getglobaldata();
             if (chk == 1) {
                 $(".cart_gen").html("");
                 displaycartdata();
@@ -99,9 +99,11 @@ function displaycartdata()
             success: function (results)
             {
                 var obj = JSON.parse(results);
+		gblcartdata = obj.result;
+		displaycartempty();
                 if (obj.result !== null)
                 {
-                    gblcartdata = obj.result;
+                    
 
                     $(obj.result).each(function (r, v) {
                         if (v.default_img !== null) {
@@ -142,7 +144,7 @@ function displaycartdata()
                         cartstr += "</div>";
                         cartstr += "<div class='cart_remove addrCommon' id='" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "_" + v.size + "'onclick='cremove(this)'>";
                         cartstr += "</div>";
-                        
+
 
                         $(".cart_gen").append(cartstr);
 
@@ -159,12 +161,12 @@ function displaycartdata()
 function prdopen(ths)
 {
   var ids=$(ths).attr('id');
-  ids=ids.split('_');	
+  ids=ids.split('_');
   var pid=ids[0];   var combn=ids[2];
   var size=ids[4];
-  window.open(DOMAIN +"index.php?action=product_page&pid="+pid+"&comb="+combn+"&sz="+size+",'_blank'");
+  window.open(DOMAIN +"index.php?action=product_page&pid="+pid+"&comb="+combn+"&sz="+size+"");
 }
- 
+
 function getweight(currentSize, catName, storedWt)
 {  
     var mtlWgDav = 0;
@@ -190,10 +192,10 @@ function getweight(currentSize, catName, storedWt)
         }
     }
 
-    
+
     var changeInWeight = (currentSize - bseSize) * mtlWgDav;
     var newWeight = parseFloat(storedWt) + parseFloat(changeInWeight);
-    newWeight=newWeight.toFixed(3); 
+    newWeight=newWeight.toFixed(3);
 
     return newWeight;
 
@@ -227,10 +229,12 @@ function cremove(el) {
         var URL = APIDOMAIN + "index.php?action=removeItemFromCart&col_car_qty=" + col_car_qty + "&pid=" + product_id + "&cartid=" + cartid + "&size=" + size + "";
 
         $.ajax({type: 'POST', url: URL, success: function (res) {
-                gettotal();
-                getglobaldata();
-                displaycartdata();
-                cartpopUpClose();
+		displaycartdata(); 
+		setTimeout(function(){
+		   displaycartempty(); 
+		    gettotal(); 
+		},500); 
+		cartpopUpClose();   
             }
         });
     });
@@ -348,35 +352,35 @@ function getglobaldata()
                 var obj = JSON.parse(results);
                 gblcartdata = obj.result;
                 gettotal();
-                var nocart ="";
-                if(gblcartdata == null){ 
-		    closeCart();
-                    $('#check_out').addClass('dn');
-                    $('.total_price_gen').addClass('dn'); 
-                    $('.cart_gen').addClass('dn');
-                     $("#nocart").removeClass("dn");
-                     $('.totalItem').addClass('dn');
-		     
-                }
-                else{
-                     $('.cart_gen').removeClass('dn');
-                    $('#check_out').removeClass('dn');
-                    $('.total_price_gen').removeClass('dn'); 
-                     $("#nocart").addClass("dn");
-                      $('.totalItem').removeClass('dn');
-
-                }
-
+                displaycartempty();
             }
         });
     }
 }
-
-$('#contshop').click( function(){
-  window.location.href = DOMAIN + "index.php?action=landing_page";
-});
+ 
 
 $(document).ready(function () {
-     displaycartdata();
-   getglobaldata();
+     displaycartdata(); 
+     setTimeout(function(){
+	 displaycartempty();
+     },1000);
 });
+
+function displaycartempty()
+{
+	if(gblcartdata == null)
+	{ 
+	    $('.totalItem').addClass('dn'); 
+	    $("#nocart").removeClass("dn");
+	    $('.cart_gen').addClass('dn');
+	    setTimeout(function(){
+		closeCart();
+	    },500);
+	}
+	else
+	{
+	    $('.cart_gen').removeClass('dn');
+	    $("#nocart").addClass("dn");
+	    $('.totalItem').removeClass('dn');
+	}
+}

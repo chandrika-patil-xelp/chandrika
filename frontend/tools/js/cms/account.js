@@ -17,7 +17,7 @@ $(document).ready(function () {
     else if (actn == 'wId')
         whlist();
 
-  
+
     $(document).keypress(function (e) {
         if (e.which == 13)
         {
@@ -29,13 +29,13 @@ $(document).ready(function () {
     });
 
 });
- 
+
 function displayorders()
 {
     var titod = "";
     var orderstr = "";
     var ordTitle = "";
- 
+
     var userid = localStorage.getItem('jzeva_uid');
     var orderid = localStorage.getItem('jzeva_cartid');
     var URL = APIDOMAIN + "index.php?action=getAllOrderDetails&userid=" + userid;
@@ -46,26 +46,26 @@ function displayorders()
         datatype: "JSON",
         success: function (results)
         {
-            
+
             var obj = JSON.parse(results);
-           
+
             if (obj["result"] == null) {
                 $('#noordrs').removeClass('dn');
                 $('.orderOuter').addClass('dn');
-                
+
             } else
             {
                 $('#noordrs').addClass('dn');
-           
+
                 // var totalprice = $('#ordPrice').html(indianMoney(parseInt(obj.totalprice)));
                 var totalprice = indianMoney(parseInt(obj.totalprice));
                 $(obj['result']).each(function (r, e) {
-                 
+
                     var ordrdate = "";
                     ordrdate += e[0].order_date;
                     ordrdate = ordrdate.split(' ');
                     var ordDate = ordrdate[0];
-               
+
                     var cc = ordDate.toString().split("-")[2];
                     var cd = cc.split(0).join('');
                     Date.prototype.getMonthName = function () {
@@ -75,13 +75,13 @@ function displayorders()
                     }
                     var month_Name = new Date().getMonthName();
                     var cnfDate = '' + cd + ' ' + month_Name + '';
-                    
-                   
+
+
 //                   if($('#oId').html()){
 //                   order += ' <div class="fLeft tabHead headLine borBtm " id="od">my orders</div>';
 //               }else
 //                    order+= ' <div class="fLeft tabHead headLine borBtm dn " id="od">my orders</div>';
-                   
+
                     orderstr += '<div class="fLeft orderOuter">';
                     orderstr += '<div class="fLeft inShip" id="ordTitle">';
                     orderstr += '<div class="fLeft Morder">';
@@ -180,8 +180,8 @@ function displayorders()
                         orderstr += '<div class="fLeft dateTxt"></div>';
                         orderstr += '<div class="fLeft proStep" id="4thstp"></div>';
                         orderstr += '</div>';
-                       
-                        
+
+
                         orderstr += '</center>';
                         orderstr += '<div class="fLeft tOuter poR">';
                         orderstr += '<div class="fLeft date semibold font15">07 oct</div>';
@@ -195,7 +195,7 @@ function displayorders()
 
 
                 $('#myordId').append(orderstr);
-               
+
                 //  $('#ordTitle').html(ordTitle);
             }
         }
@@ -236,7 +236,7 @@ function wishlist()
                         xyz = xyz.split(',');
                         xyz = IMGDOMAIN + xyz[0];
                     }
-		 
+
                     wishStr += '<div class="grid3 transition400 fadeInup" > ';
                     wishStr += ' <div class="facet_front" id="'+j.product_id+'_'+j.col_car_qty+'_'+j.size+'_'+s+'">';
                     wishStr += ' <div class="grid_item"> ';
@@ -320,7 +320,7 @@ function wishlist()
                         }
                     }
                     wishStr += ' ' + Nstr + '</div>';
-		    
+
                     wishStr += '   <div class="grid_price txtOver transition300" onclick="prdopen(this)"><span class="cartRup15b"><span>  ' + indianMoney(parseInt(j.price)) + '</div>';
                     wishStr += '  <div class="action_btns">';
                     wishStr += '  <div class="col50 fLeft  pad0">';
@@ -356,7 +356,7 @@ function prdopen(ths)
   var pid=ids[0];
   var combn=ids[1];
   var size=ids[2];
-  window.open(DOMAIN+"index.php?action=product_page&pid="+pid+"&comb="+combn+"&sz="+size+",'_blank'"); 
+  window.open(DOMAIN+"index.php?action=product_page&pid="+pid+"&comb="+combn+"&sz="+size+""); 
 }
 
 function addtocart(ths) {
@@ -802,38 +802,38 @@ function whlist()
 
 
 function trackslide(ths)
-{       
- 
+{
+
         var trackid=$(ths).parent().parent().attr('id');
-            
+
         if(trackid == 0 || trackid == 1 || trackid== 2){
-            $(ths).closest('.detailsOuter').find('.trackDivs').eq(0).find('.proStep').addClass('tickIcon'); 
-        }  
+            $(ths).closest('.detailsOuter').find('.trackDivs').eq(0).find('.proStep').addClass('tickIcon');
+        }
         if(trackid == 3 || trackid == 4){
               $(ths).closest('.detailsOuter').find('.trackDivs').eq(0).find('.proStep').addClass('tickIcon');
                $(ths).closest('.detailsOuter').find('.trackDivs').eq(1).find('.proStep').addClass('tickIcon');
-        } 
+        }
         if(trackid == 5){
               $(ths).closest('.detailsOuter').find('.trackDivs').eq(0).find('.proStep').addClass('tickIcon');
                $(ths).closest('.detailsOuter').find('.trackDivs').eq(1).find('.proStep').addClass('tickIcon');
                 $(ths).closest('.detailsOuter').find('.trackDivs').eq(2).find('.proStep').addClass('tickIcon');
-              
+
         }
         if(trackid == 6){
               $(ths).closest('.detailsOuter').find('.trackDivs').eq(0).find('.proStep').addClass('tickIcon');
                $(ths).closest('.detailsOuter').find('.trackDivs').eq(1).find('.proStep').addClass('tickIcon');
                 $(ths).closest('.detailsOuter').find('.trackDivs').eq(2).find('.proStep').addClass('tickIcon');
                $(ths).closest('.detailsOuter').find('.trackDivs').eq(3).find('.proStep').addClass('tickIcon');
-        } 
+        }
          if(trackid == 7){
              $('#delv').html('Not DELIVERED');
               $(ths).closest('.detailsOuter').find('.trackDivs').eq(0).find('.proStep').addClass('tickIcon');
                $(ths).closest('.detailsOuter').find('.trackDivs').eq(1).find('.proStep').addClass('tickIcon');
                 $(ths).closest('.detailsOuter').find('.trackDivs').eq(2).find('.proStep').addClass('tickIcon');
                $(ths).closest('.detailsOuter').find('.trackDivs').eq(3).find('.proStep').addClass('notDeliver');
-        } 
+        }
     var trkID = $(ths).attr('id');
-  
+
     var trackTxt = $(ths).text();
 
     var cls = "see less";
