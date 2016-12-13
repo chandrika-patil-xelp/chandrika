@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php include 'jhead.html' ?>
+ <script>  var orderid = "<?php echo $_GET['ordid'];  ?>"; </script>
 <body class="greyBg"  >
     <?php include 'Cart.html' ?>
 
@@ -31,7 +32,7 @@
                                     <div class="cbrdr"></div>
                                 </div>
                                 <div class="scrollCont">
-                                    <div class="col100 fLeft"><div class="fooH mar0 txtCenter">Mr Kshitij</div></div>
+                                    <div class="col100 fLeft"><div class="fooH mar0 txtCenter" id="uname">Mr Kshitij</div></div>
                                     <div class="thankYou fLeft"></div>
                                     <center>
                                         <div class="thankTxt fLeft">
@@ -46,19 +47,19 @@
                                                 </div>
                                                 <div class="invoice">
                                                     <div class="col100">Order No</div>
-                                                    <div class="col100 semibold PTop5">12345678923338</div>
+                                                    <div class="col100 semibold PTop5" id="ordrID">12345678923338</div>
                                                 </div>
                                                 <div class="invoice">
                                                     <div class="col100">Date</div>
-                                                    <div class="col100 semibold PTop5">01 jan 2017</div>
+                                                    <div class="col100 semibold PTop5" id="ordate">01 jan 2017</div>
                                                 </div>
                                             </center>
                                         </div>
                                         <!--<div class="">Your Order number is : <span>122334456566</span></div>-->
-                                        <div class="thankTxt fLeft">
-                                            <div class="fLeft  col100 fooH mar0 txt_center">Billing Address</div>
-                                            <div class="fLeft col100">#657 6th block 17th main Kormanagala</div>
-                                            <div class="fLeft col100">Bangalore 560095</div>
+                                        <div class="thankTxt fLeft" >
+                                        <div class="fLeft  col100 fooH mar0 txt_center" >Billing Address</div>
+                                            <div class="fLeft col100" id="addr">#657 6th block 17th main Kormanagala</div>
+                                            <div class="fLeft col100"  id="adcity">Bangalore 560095</div>
                                         </div>
                                         <div class="thankTxt fLeft">
                                             <div class="fLeft col100">If you need any further assistance regarding your order,</div>
@@ -80,15 +81,16 @@
                                                             <div class="fLeft col100 cart_name light">Your Orders</div>
                                                         </div>-->
                             <div class="jwlCnt fLeft regular" id="scroll">
-                                <div class='cart_item'>
-                                    <div class='cart_image'><img src=""></div>
+                                <div id="cartdet">
+<!--                                <div class='cart_item' id="cartdet">-->
+<!--                                <div class='cart_image'><img src=""></div>
                                     <div class="cart_name">chained bangle</div>
                                     <div class="cart_desc  fLeft" id='nwwt'>Gold: 150gms | Diamond : 14Ct | Quality : SI-JI;
                                         <div class="cart_desc  fLeft">Purity : 14carat</div>
                                         <div class='cart_price cartRup15 fLeft'><span class='price_gen'>22000</span></div>
-                                    </div>
-                                </div>
-                                <div class='cart_item'>
+                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class='cart_item'>
                                     <div class='cart_image'><img src=""></div>
                                     <div class="cart_name">chained bangle</div>
                                     <div class="cart_desc  fLeft" id='nwwt'>Gold: 150gms | Diamond : 14Ct | Quality : SI-JI;
@@ -96,6 +98,7 @@
                                         <div class='cart_price cartRup15 fLeft'><span class='price_gen'>22000</span></div>
                                     </div>
 
+                                </div>-->
                                 </div>
 
                             </div>
@@ -104,11 +107,12 @@
                 </div>
             </div>
 
-            <!--<script type="text/javascript" src="<?php echo $jvs['checkout']; ?>"></script>-->
+             <script type="text/javascript" src="<?php echo $jvs['checkoutafter']; ?>"></script> 
             <script type="text/javascript" src="<?php echo $fjvs['Common']; ?>"></script>
             <script type="text/javascript">
 
-                        $('#nice').niceScroll({cursorcolor: "#000000", touchbehavior: true, cursorwidth: "4px", autohidemode: false, cursorborder: "0px solid #fff", cursoropacitymin: "0.3", cursoropacitymax: "0.3", railpadding: {top: 2, right: 2, left: 2, bottom: 2}});
+         
+    $('#nice').niceScroll({cursorcolor: "#000000", touchbehavior: true, cursorwidth: "4px", autohidemode: false, cursorborder: "0px solid #fff", cursoropacitymin: "0.3", cursoropacitymax: "0.3", railpadding: {top: 2, right: 2, left: 2, bottom: 2}});
 
                 $('.inp_box').focus(function () {
                     $(this).closest('.txtB').addClass('focul');

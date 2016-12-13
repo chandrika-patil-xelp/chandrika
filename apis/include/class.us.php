@@ -260,15 +260,42 @@
                             order_id AS oid,
                             product_id AS pid,
                             user_id AS uid,
-                            (SELECT product_seo_name FROM tbl_product_master WHERE productid = pid) AS pname ,
+                            shipping_id AS shpId,
+                            col_car_qty AS combine,
+                            size,
+                            pqty,
+                            price,
+                            
+                            (SELECT product_name FROM tbl_product_master WHERE productid = pid) AS pname,
+                            (SELECT metal_weight FROM tbl_product_master WHERE productid = pid) AS pwgt,
+                            
                             (SELECT user_name FROM tbl_user_master WHERE user_id=uid) AS uname,
                             (SELECT logmobile FROM tbl_user_master WHERE user_id=uid) AS mobile,
                             (SELECT email FROM tbl_user_master WHERE user_id=uid) AS email,
+                            (SELECT GROUP_CONCAT(shipping_id) FROM tbl_order_shipping_details WHERE shipping_id = shpId) AS shipngDet,
+ 
+ (SELECT GROUP_CONCAT(city) FROM tbl_order_shipping_details WHERE FIND_IN_SET(shipping_id,shipngDet)) AS customerCity,
+ (SELECT GROUP_CONCAT(state) FROM tbl_order_shipping_details WHERE FIND_IN_SET(shipping_id,shipngDet)) AS customerState,
+ (SELECT GROUP_CONCAT(pincode) FROM tbl_order_shipping_details WHERE FIND_IN_SET(shipping_id,shipngDet)) AS customerPincode,
+ (SELECT GROUP_CONCAT(address) FROM tbl_order_shipping_details WHERE FIND_IN_SET(shipping_id,shipngDet)) AS customerAddrs,
+ 
+(SELECT GROUP_CONCAT(catid) FROM tbl_category_product_mapping WHERE  productid =pid ) AS ccatid,
+(SELECT DISTINCT(NAME) FROM tbl_size_master WHERE  FIND_IN_SET(catid,ccatid) )AS ccatname,
+(SELECT  GROUP_CONCAT(making_charges) FROM tbl_product_master WHERE productid = pid AND active_flag !=2 ) AS mkngchrg,
+(SELECT GROUP_CONCAT(diamond_id) FROM tbl_product_diamond_mapping WHERE productid = pid AND active_flag = 1 ) AS allDimonds,
+(SELECT GROUP_CONCAT(carat) FROM tbl_product_diamond_mapping WHERE FIND_IN_SET(diamond_id,allDimonds)) AS dmdcarat,
+ 
+(SELECT  GROUP_CONCAT(dname) FROM tbl_metal_color_master WHERE id = SUBSTRING_INDEX(combine, '|@|',1) AND active_flag !=2 ) AS color,
+(SELECT  GROUP_CONCAT(dname) FROM tbl_metal_purity_master WHERE id = SUBSTRING_INDEX(SUBSTRING_INDEX(combine,'|@|',2),'|@|',-1) AND active_flag !=2 ) AS Metalcarat,
+(SELECT  GROUP_CONCAT(dname) FROM tbl_diamond_quality_master WHERE id = SUBSTRING_INDEX(combine,'|@|',-1)  AND active_flag !=2 ) AS quality,
+(SELECT  GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid  AND active_flag !=2) AS prdimage,
+(SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND active_flag = 1 AND  default_img_flag=1) AS default_image,
+
                             order_date AS orddt,
                             delivery_date AS deldt,
                             order_status AS ordsta,
                             active_flag AS actflg,
-                            product_price AS pprice,
+                          
                             payment AS pay
                             FROM tbl_order_master WHERE order_id = ".$params['orderid']." ";
                 
@@ -276,7 +303,7 @@
                 
                 if($res){
                     
-                    $row = $this->fetchData($res);
+                 while ($row = $this->fetchData($res)){
                     
                     $reslt['oid'] = ($row['oid']!=NULL) ? $row['oid'] : '';
                     $reslt['pid'] = ($row['pid']!=NULL) ? $row['pid'] : '';
@@ -288,11 +315,27 @@
                     $reslt['orddt'] = $comm->makeDate($row['orddt']);
                     $reslt['deldt'] = $comm->makeDate($row['deldt']);
                     $reslt['actflg'] = ($row['actflg']!=NULL) ? $row['actflg'] : '';
-                    $reslt['ppri'] = ($row['pprice']!=NULL) ? $row['pprice'] : '';
+                    $reslt['ppri'] = ($row['price']!=NULL) ? $row['price'] : '';
+                    $reslt['size'] = ($row['size']!=NULL) ? $row['size'] : '';
+                    $reslt['pqty'] = ($row['pqty']!=NULL) ? $row['pqty'] : '';
                     $reslt['pay'] = ($row['pay']!=NULL) ? $row['pay'] : '';
-                    
-                    //$resp[] = $reslt;
-                    
+                    $reslt['ucity'] = ($row['customerCity']!=NULL) ? $row['customerCity'] : '';
+                    $reslt['ustate'] = ($row['customerState']!=NULL) ? $row['customerState'] : '';
+                    $reslt['upin'] = ($row['customerPincode']!=NULL) ? $row['customerPincode'] : '';
+                    $reslt['uaddres'] = ($row['customerAddrs']!=NULL) ? $row['customerAddrs'] : '';
+                     $reslt['oclr'] = ($row['color']!=NULL) ? $row['color'] : '';
+                    $reslt['ocarat'] = ($row['Metalcarat']!=NULL) ? $row['Metalcarat'] : '';
+                    $reslt['oqual'] = ($row['quality']!=NULL) ? $row['quality'] : '';
+                    $reslt['oimg'] = ($row['prdimage']!=NULL) ? $row['prdimage'] : '';
+                     $reslt['odefimg'] = ($row['default_image']!=NULL) ? $row['default_image'] : '';
+                     $reslt['pwgt'] = ($row['pwgt']!=NULL) ? $row['pwgt'] : '';
+                     $reslt['ccatid'] = ($row['ccatid']!=NULL) ? $row['ccatid'] : '';
+                     $reslt['ccatname'] = ($row['ccatname']!=NULL) ? $row['ccatname'] : '';
+                     $reslt['mkngchrg'] = ($row['mkngchrg']!=NULL) ? $row['mkngchrg'] : '';
+                     $reslt['allDimonds'] = ($row['allDimonds']!=NULL) ? $row['allDimonds'] : '';
+                     $reslt['dmdcarat'] = ($row['dmdcarat']!=NULL) ? $row['dmdcarat'] : '';
+                    $resp[] = $reslt;
+                 }
                     $error = array('err_code'=>0, 'err_msg'=>' getOrderDetailsByOrdId fetched successfully ' );
                     
                 }else{
@@ -303,7 +346,7 @@
                $error = array('err_code'=>1, 'err_msg'=>' Error In Fecthing Data ' );
             }
              
-            $result = array('result'=>$reslt, 'error'=>$error );
+            $result = array('result'=>$resp, 'error'=>$error );
             return $result;
             
         }

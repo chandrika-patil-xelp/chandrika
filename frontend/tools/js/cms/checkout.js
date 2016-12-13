@@ -570,41 +570,8 @@ $('#shpdpincode').on('keyup',function () {
 
 function  storeorderdata()
 {
-
-  var userid = common.readFromStorage('jzeva_uid');
-  var cartid = common.readFromStorage('jzeva_cartid');
-  var data = [], ordobj = {};
-  if (cartid !== null || userid !== null) {
-    var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id=" + cartid + "&userid=" + userid + "";
-    $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results) {
-	var obj = JSON.parse(results);
-	$(obj.result).each(function (r, v) {
-	  var ordrdata = {};
-	  if (userid !== null || userid !== 0) {
-	    ordrdata['userid'] = userid;
-	  } else {
-	    ordrdata['userid'] = v.userid;
-	  }
-	  ordrdata['orderid'] = v.cart_id;
-	  ordrdata['pid'] = v.product_id;
-	  ordrdata['col_car_qty'] = v.col_car_qty;
-	  ordrdata['pqty'] = v.pqty;
-	  ordrdata['prodpri'] = v.price;
-	  ordrdata['order_status'] = "";
-	  ordrdata['updatedby'] = "";
-	  ordrdata['payment'] = "";
-	  ordrdata['payment_type'] = "";
-	  ordrdata['shipping_id'] = shipng_id;
-	  ordrdata['size'] = v.size;
-	  data[r] = ordrdata;
-	  r++;
-	});
-	ordobj['data'] = data;
-	setordrdata(ordobj);
-      }
-    });
-  }
-
+   window.location.href = DOMAIN + "index.php?action=orderPlacing&shpid="+shipng_id;
+      
 }
 
 $('#all_submt').click(function () {
@@ -613,30 +580,8 @@ $('#all_submt').click(function () {
   } else {
     storeorderdata();
   }
+  
 });
-
-function setordrdata(ordobj)
-{
-  var URL = APIDOMAIN + "index.php?action=addOrdersdetail";
-  var dt = JSON.stringify(ordobj);
-  $.ajax({
-    type: "post",
-    url: URL,
-    data: {dt: dt},
-    success: function (data) {
-
-      var cartid = common.readFromStorage('jzeva_cartid');
-      var URL = APIDOMAIN + "index.php?action=removCrtItemaftrcheckot&cartid=" + cartid;
-      $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results) {
-	  //  console.log(results);
-	  displaycartdetail();
-	  common.msg(1, 'Your Order Placed successfully');
-	}
-      });
-
-    }
-  });
-}
 
 function checkuser(inpt)
 {

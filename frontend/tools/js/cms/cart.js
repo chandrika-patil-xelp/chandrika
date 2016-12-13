@@ -13,7 +13,7 @@ function newaddToCart(paramtr)
 
     cartdata['col_car_qty'] = chr;
     cartdata['RBsize'] = paramtr[5];
-
+  
     var userid = common.readFromStorage('jzeva_uid');
     var cartid = common.readFromStorage('jzeva_cartid');
 
@@ -104,7 +104,6 @@ function displaycartdata()
                     gblcartdata = obj.result;
 
                     $(obj.result).each(function (r, v) {
-
                         if (v.default_img !== null) {
                             abc = IMGDOMAIN + v.default_img;
                         } else {
@@ -113,7 +112,7 @@ function displaycartdata()
                             abc = IMGDOMAIN + abc[0];
                         }
                         var bprize = parseInt(v.price / v.pqty);
-                        var wht;
+                        var wht; 
                         if (v.ccatname !== null) {
                             wht = getweight(v.size, v.ccatname, v.metal_weight);
                         } else {
@@ -167,10 +166,10 @@ function prdopen(ths)
 }
  
 function getweight(currentSize, catName, storedWt)
-{
+{  
     var mtlWgDav = 0;
     var bseSize = 0;
-
+   
     if (catName.toLowerCase() == 'rings') {
         bseSize = parseFloat(14);
         mtlWgDav = 0.05;
@@ -178,13 +177,12 @@ function getweight(currentSize, catName, storedWt)
         bseSize = parseFloat(2.4);
         mtlWgDav = 7;
     }
-
-    if (isNaN(currentSize))
+ 
+   if (isNaN(currentSize))
     {
-
+        
         if (catName == 'Rings')
             currentSize = parseFloat(14);
-
         else if (catName == 'Bangles')
             currentSize = parseFloat(2.4);
         else if (catName !== 'Rings' && catName !== 'Bangles') {
@@ -354,8 +352,7 @@ function getglobaldata()
                 if(gblcartdata == null){ 
 		    closeCart();
                     $('#check_out').addClass('dn');
-                    $('.total_price_gen').addClass('dn');
-                    $('.cart_name ').addClass('dn');
+                    $('.total_price_gen').addClass('dn'); 
                     $('.cart_gen').addClass('dn');
                      $("#nocart").removeClass("dn");
                      $('.totalItem').addClass('dn');
@@ -364,8 +361,7 @@ function getglobaldata()
                 else{
                      $('.cart_gen').removeClass('dn');
                     $('#check_out').removeClass('dn');
-                    $('.total_price_gen').removeClass('dn');
-                    $('.cart_name ').removeClass('dn');
+                    $('.total_price_gen').removeClass('dn'); 
                      $("#nocart").addClass("dn");
                       $('.totalItem').removeClass('dn');
 

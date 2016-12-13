@@ -132,7 +132,7 @@ $jvs = array();
             $jvs['cart']                 = DOMAIN.'frontend/tools/js/cms/cart.js?v='.VERSION; 
             $jvs['filter']                 = DOMAIN.'frontend/tools/js/cms/filter.js?v='.VERSION;  
             $jvs['checkout']                 = DOMAIN.'frontend/tools/js/cms/checkout.js?v='.VERSION;
- 
+             $jvs['checkoutafter']          = DOMAIN.'frontend/tools/js/cms/checkoutafter.js?v='.VERSION;
             $jvs['filter']                 = DOMAIN.'frontend/tools/js/cms/filter.js?v='.VERSION;
            
             $jvs['otp']                 = DOMAIN.'frontend/tools/js/cms/otp.js?v='.VERSION;

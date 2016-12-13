@@ -243,6 +243,11 @@ switch ($action) {
         $page = 'gemstoneGuideNew';
         include TEMPLATE . 'gemstoneGuideNew.html';
         break;
+      case 'orderPlacing':
+        $page = 'orderplace';
+       
+        include TEMPLATE.'deliveryAddress.html';
+        break;
     
        case 'checkoutAfter':
         $page = 'checkoutAfter';
