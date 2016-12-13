@@ -945,8 +945,8 @@ $('#addwishlist').click(function () {
             $.ajax({type: "post", url: URL, data: {dt: dt}, success: function (results) {
                     wshlstflag = 1;
                     common.msg(1, 'This Product Added To Your Wishlist Successfully');
-                    $('.wishBtn').addClass("colorfff");
-                    $('.addWish').addClass("moveWish");
+                    $('#addwishlist').addClass("colorff5");
+//                    $('.addWish').addClass("moveWish");
                 }
             });
         } else
@@ -969,8 +969,8 @@ function showwishbtn()
 
             setTimeout(function () {
                 if (wshlstflag == 1) {
-                    $('.wishBtn').addClass("colorfff");
-                    $('.addWish').addClass("moveWish");
+                    $('#addwishlist').addClass("colorff5");
+//                    $('.addWish').addClass("moveWish");
                 } else {
                     //   console.log('not in wishlist');
                 }
