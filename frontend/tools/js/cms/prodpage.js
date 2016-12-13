@@ -148,7 +148,7 @@ $(document).ready(function () {
             var catgry =dt['catAttr']['results'][1]['name'];
           catgry=  catgry.slice(0,-1);
         
-          $('#custm').html('Customise This ' +catgry);
+          $('#custm').html('Customise Your ' +catgry);
             storedWt = parseFloat(dt['basicDetails']['mtlWgt']);
             storedMkCharge = parseFloat(dt['basicDetails']['mkngCrg']);
 
