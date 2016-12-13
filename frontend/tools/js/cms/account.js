@@ -738,7 +738,7 @@ function addAddress()
 function ordrinfo()
 {
     accntentrflag = 5;
-      $('#myord').removeClass('dn');
+    $('#myord').removeClass('dn');
     $('#myordId').removeClass("dn");
     $('#profileId').addClass("dn");
     $('#editpId').addClass("dn");
@@ -752,6 +752,7 @@ function ordrinfo()
 
 function perninfo() {
     accntentrflag = 4;
+     $('#myord').addClass('dn');
     $('#myordId').addClass("dn");
     $('#profileId').removeClass("dn");
     $('#editpId').addClass("dn");
@@ -763,6 +764,7 @@ function perninfo() {
 function saveadrinfo()
 {
     accntentrflag = 6;
+    $('#myord').addClass('dn');
     $('#saveAddrId').removeClass("dn");
     $('#myordId').addClass("dn");
     $('#profileId').addClass("dn");
@@ -774,6 +776,7 @@ function saveadrinfo()
 function chngpasrd()
 {
     accntentrflag = 2;
+    $('#myord').addClass('dn');
     $('#pChange').removeClass("dn");
     $('#myordId').addClass("dn");
     $('#profileId').addClass("dn");
@@ -785,6 +788,7 @@ function chngpasrd()
 function whlist()
 {
     accntentrflag = 3;
+    $('#myord').addClass('dn');
     $('#wishlistId').removeClass("dn");
     $('#myordId').addClass("dn");
     $('#profileId').addClass("dn");
