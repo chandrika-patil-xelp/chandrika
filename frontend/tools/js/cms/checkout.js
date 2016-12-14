@@ -536,11 +536,12 @@ function displayaddrs(userid)
 	  addstr += ' <label for="' + v.shipping_id + '" id="' + v.shipping_id + '" onclick="addrsel(this)"></label> ';
 	  addstr += ' <div class="matchIcn defaultIcn transition300" id="' + v.shipping_id + '">';
 	  addstr += ' </div>';
-	  addstr += ' <div class="btncnt fLeft bolder">';
-	  addstr += '  <center> ';
-	  addstr += ' <div class="dlvrBtn transition300">DELIVER TO THIS ADDRESS</div> ';
-	  addstr += ' </center> ';
-	  addstr += ' </div>';
+          addstr += '<div class="tabDaddrss semibold">DELIVERY ADDRESS</div>';
+//	  addstr += ' <div class="btncnt fLeft bolder">';
+//	  addstr += '  <center> ';
+//	  addstr += ' <div class="dlvrBtn transition300">DELIVER TO THIS ADDRESS</div> ';
+//	  addstr += ' </center> ';
+//	  addstr += ' </div>';
 	  addstr += ' </div>';
 
 
