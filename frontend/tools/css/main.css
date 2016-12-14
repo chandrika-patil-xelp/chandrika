@@ -200,6 +200,7 @@ a{color:#666;}
 .pr_head.para{font-family:regular;text-transform:uppercase;letter-spacing:0.35em;color:#15181b}
 .details_buffer{width:100%;height:90%;position:absolute; top:0;bottom:0;margin:auto;text-align:right}
 .para{width:100%;height:auto; font-family:regular;margin:5px 0px ;line-height:20px;font-size:12px;word-wrap: break-word; white-space: normal;color:#222529}
+.userInfo{text-align: center;width:100%;height:auto; font-family:regular;margin:5px 0px ;line-height:20px;font-size:12px;word-wrap: break-word; white-space: normal;color:#222529;position: absolute;z-index: 99;bottom:25px;}
 .rota_wrap{width:50%;height:100%;opacity:0;position:absolute; left:25%}
 .rota_exstate{height:100vh ; width:100vh; background:#fff;max-height:100vh; transform:translateY(-130px)!important }
 .options{width:25%;height:100%;position:relative;opacity:0}
@@ -1282,7 +1283,7 @@ input[type=radio]:checked ~ .selector_label:after {
 .fooTxt:after{content: "";width: 120%;height: 100%;position: absolute;left: 0;top: 0;background: #53C9C7;transform: translateX(-120%);-moz-transform: translateX(-120%);-webkit-transform: translateX(-120%);-o-transform: translateX(-120%);-ms-transform: translateX(-120%);transition: 0ms ease-in;}
 .fooTxt:hover{color:#53C9C7;}
 .fooTxt:hover:after{transform: translateX(120%);-moz-transform: translateX(120%);-webkit-transform: translateX(120%);-o-transform: translateX(120%);-ms-transform: translateX(120%);transition: 450ms !important; -moz-transition: 450ms !important; -ms-transition: 450ms !important; -o-transition: 450ms !important;}
-.fooH{width: auto; height: 30px; margin-bottom:20px; padding: 0 10px; color: #222529; letter-spacing: 0.35em; font-family:bolder; line-height: 30px; font-size: 12px; text-transform: uppercase;}
+.fooH{width:auto;height:30px;margin-bottom:20px; padding: 0 10px; color: #222529; letter-spacing: 0.35em; font-family:bolder; line-height: 30px; font-size: 12px; text-transform: uppercase;}
 .fooLogo{background: url(../img/jzevalogoccc.svg); background-repeat: no-repeat; background-size: auto 35%;background-position: left; height: 100%;}
 .pin{background: url(../img/101.svg) no-repeat; background-size: auto 80%; background-position:left;}
 .Lin{background: url(../img/102.svg) no-repeat; background-size: auto 80%; background-position:left;}
@@ -1348,7 +1349,7 @@ input[type=radio]:checked ~ .selector_label:after {
     color: #fff;
     font-size: 12px;
     font-family: regular;}
-.checkFoo{width:100%;height:auto;margin-top: 90px;background-color:#222529;}
+.checkFoo{width:100%;height:auto;margin-top: 60px;background-color:#222529;}
 .logoComm{width: 19%;height:60px;display: inline-block;}
 .aftrClk#addwishlist:after{transform:translateX(0%);-moz-transform:translateX(0%);-webkit-transform:translateX(0%);-o-transform:translateX(0%);-ms-transform:translateX(0%);transition:450ms !important;z-index:-1}
 /*#addwishlist:after{content:"";width:120%;height:100%;position:absolute;left:0;top:0;background:#ff5a5f;transform:translateX(-120%);-moz-transform:translateX(-120%);-webkit-transform:translateX(-120%);-o-transform:translateX(-120%);-ms-transform:translateX(-120%);transition:0ms ease-in;pointer-events:none}*/
@@ -1803,11 +1804,12 @@ input[type=radio]:checked ~ .selector_label:after {
 /*new checkout*/
 .chkout{}
 .chkout .colleCont{padding: 50px 40px; overflow:initial;}
-.chkout .darkCont{padding:0px 0 90px 0}
+.chkout .darkCont{padding:0px 0 60px 0}
 .chkoutHeader{width:100%;height:60px;background-color:#15181b;top:0;left:0;z-index:50;}
 .chkoutHeader .logo {cursor: pointer;width: 200px;height: 100%;background: url(../img/jzevalogo.svg)no-repeat;background-size:auto 20px;background-position: 30px center;}
 .dAdrsshdr{width:100%;height:28px;font-size:12px;color:#15181b;text-align:center;text-transform:uppercase;position:relative;line-height:24px;letter-spacing:0.35em;}
 .cbrdr{width: 50px;height: 0px;border-top: 1px solid #15181b;position: absolute;bottom: 0;left: 0;right: 0;margin: auto;top: 30px;}
+.checkTitle{width:auto;height:30px;margin-bottom:20px; padding: 0 10px; color: #222529; letter-spacing: 0.35em; font-family:bolder; line-height: 30px; font-size: 12px; text-transform: uppercase;text-align: center;margin: 0;padding-top: 7px;}
 .hdrcrsTxt{width:100%;height:auto;margin-top: 20px;}
 .hdrcrsTxt .intTxt{width:100%;height:25px;line-height:25px;text-align:center;color:#666;font-size:18px;}
 .frmDtls{width:100%;height:auto;margin-top: 20px;}
@@ -1967,7 +1969,7 @@ input[type=radio]:checked ~ .matchIcn{
 #track .proStep{border:none;}
 .placedTxt{width: 100%;text-transform: uppercase;font-size: 11px;font-family: semibold;}
 .tickIcon{background: #53C9C7 url(../img/icons/checkw.svg)no-repeat;background-size: auto 15px;background-position: center;}
-.notDeliver{background: #53C9C7 url(../img/close_blackw.svg)no-repeat;background-size: auto 15px;background-position: center;}
+.notDeliver{background: #FF5A5F url(../img/close_blackw.svg)no-repeat;background-size: auto 15px;background-position: center;}
 .trackDivs:last-child:after{display: none;}
 .myaccount .tHead{padding-right:35px;}
 .myaccount .pCont{padding-left: 35px;}
@@ -2262,7 +2264,7 @@ input[type=radio]:checked ~ .matchIcn{
 .noDiv{position:absolute;width: 100%;height: 100%;top:0;bottom: 0;right:0;margin: auto;}
 .sizeOuter{width: 100%;height: 200px;position: relative;}
 .circleOuter{width: 100%;height: 200px;line-height: 200px;text-align: center;}
-.invoice{width:30%;height:auto;letter-spacing: 0.15em;text-transform: uppercase;font-size:12px;font-family: light;color: #15181b;  display: inline-block;padding: 0px 10px;}
+.invoice{width:auto;height:auto;letter-spacing: 0.15em;text-transform: uppercase;font-size:12px;font-family: light;color: #15181b;  display: inline-block;padding: 0px 10px;}
 .MrTxt{width: 100%;font-size: 20px;font-family: semibold;letter-spacing: 0.15em;text-align: center; padding: 30px 0px 30px 0px;}
 .thankTxt{float: left;width: 100%;padding: 20px 0px;font-family:regular;color: #15181b;font-size: 13px;line-height: 19px;}
 .ringCircleB{width:100px;height: 100px;border-radius: 50%;display: inline-block;margin-top:15px;line-height:100px;font-size:12px;background-color: #fff;font-family:semibold;border: 1px solid #15181b;color: #15181b;text-align: center;}
