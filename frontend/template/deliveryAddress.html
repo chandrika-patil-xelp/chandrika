@@ -1,122 +1,127 @@
 <?php include 'jhead.html' ?>
 
 <html>
-<body>
-    <script>  var shipng_id = "<?php echo $_GET['shpid'];  ?>"; </script>
-    <script>
-    var BWEBROOT = '<?php echo BACKWEBROOT?>';
-    var DOMAIN = '<?php echo DOMAIN?>';
-    var APIDOMAIN = '<?php echo APIDOMAIN?>';
-    var IMGDOMAIN = '<?php echo IMGDOMAIN ?>';
-    var page = '<?php echo $page?>';
+    <body>
+        <script>  var shipng_id = "<?php echo $_GET['shpid'];  ?>";</script>
+        <script>
+            var BWEBROOT = '<?php echo BACKWEBROOT?>';
+            var DOMAIN = '<?php echo DOMAIN?>';
+            var APIDOMAIN = '<?php echo APIDOMAIN?>';
+            var IMGDOMAIN = '<?php echo IMGDOMAIN ?>';
+            var page = '<?php echo $page?>';
 
-</script>
-    <div class="cont dAddress">
-        <div class="dAddhdr">
-            <div class="logo"></div>
-        </div>
-     
-          
-                <div class="gnrlWrp fLeft regular">
-<!--                    <div class="subHdr fLeft">Delivered
-                        <div class="dlvrSignal"></div>
-                    </div>-->
-                   
-                        <div class="sucUscBtnhldr">
-                            <center>
-                                <div class="button" id="ordSuccess">ORDERED SUCCESSFUL</div>
-                                <div class="button" id="ordUnSuc">ORDERED UNSUCCESSFUL</div>
-                            </center>
-                        </div>
-                   
+        </script>
+        <div class="cont dAddress">
+            <div class="dAddhdr">
+                <div class="logo"></div>
+            </div>
+
+
+            <div class="gnrlWrp fLeft regular">
+                <!--                    <div class="subHdr fLeft">Delivered
+                                        <div class="dlvrSignal"></div>
+                                    </div>-->
+
+                <div class="sucUscBtnhldr">
+                    <center>
+                        <div class="button" id="ordSuccess">ORDERED SUCCESSFUL</div>
+                        <div class="button" id="ordUnSuc">ORDERED UNSUCCESSFUL</div>
+                    </center>
                 </div>
-            
-    </div>
-  
-    <script>
-        $(document).ready(function(){
-            $('.button').on('click',function(){
-//               $('.button').each(function(){
-//                   $('.button').removeClass('addTik');
-//               });
-               if($(this).hasClass('addTik')){
-                  $(this).removeClass('addTik');  
-               }
-               else{
-                 $(this).addClass('addTik');
-                 $(this).siblings().removeClass('addTik');
-               }
-               
-   $('#ordSuccess').click(function(){
-   
-      
-       var userid = common.readFromStorage('jzeva_uid');
-  var cartid = common.readFromStorage('jzeva_cartid');
-  var data = [], ordobj = {};
-  if (cartid !== null || userid !== null) {
-    var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id=" + cartid + "&userid=" + userid + "";
-    $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results) {
-	var obj = JSON.parse(results);
-        console.log(obj);
-	$(obj.result).each(function (r, v) {
-	  var ordrdata = {};
-	  if (userid !== null || userid !== 0) {
-	    ordrdata['userid'] = userid;
-	  } else {
-	    ordrdata['userid'] = v.userid;
-	  }
-	  ordrdata['orderid'] = v.cart_id;
-	  ordrdata['pid'] = v.product_id;
-	  ordrdata['col_car_qty'] = v.col_car_qty;
-	  ordrdata['pqty'] = v.pqty;
-	  ordrdata['prodpri'] = v.price;
-	  ordrdata['order_status'] = "";
-	  ordrdata['updatedby'] = "";
-	  ordrdata['payment'] = "";
-	  ordrdata['payment_type'] = "";
-	  ordrdata['shipping_id'] = shipng_id; 
-	  ordrdata['size'] = v.size;
-	  data[r] = ordrdata;
-	  r++;
-	});
-	ordobj['data'] = data;
-      
-setordrdata(ordobj);
-   
-      }
-  });
-  }
-   });    
+
+            </div>
+
+        </div>
+
+        <script>
+            $(document).ready(function () {
+
+
+                $('#ordSuccess').click(function () {
+
+                    if ($(this).hasClass('addTik')) {
+                        $(this).removeClass('addTik');
+                    } else {
+                        $(this).addClass('addTik');
+                        $(this).siblings().removeClass('addTik');
+                    }
+                    var userid = common.readFromStorage('jzeva_uid');
+                    var cartid = common.readFromStorage('jzeva_cartid');
+                    var data = [], ordobj = {};
+                    if (cartid !== null || userid !== null) {
+                        var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id=" + cartid + "&userid=" + userid + "";
+                        $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results) {
+                                var obj = JSON.parse(results);
+                                console.log(obj);
+                                $(obj.result).each(function (r, v) {
+                                    var ordrdata = {};
+                                    if (userid !== null || userid !== 0) {
+                                        ordrdata['userid'] = userid;
+                                    } else {
+                                        ordrdata['userid'] = v.userid;
+                                    }
+                                    ordrdata['orderid'] = v.cart_id;
+                                    ordrdata['pid'] = v.product_id;
+                                    ordrdata['col_car_qty'] = v.col_car_qty;
+                                    ordrdata['pqty'] = v.pqty;
+                                    ordrdata['prodpri'] = v.price;
+                                    ordrdata['order_status'] = "";
+                                    ordrdata['updatedby'] = "";
+                                    ordrdata['payment'] = "";
+                                    ordrdata['payment_type'] = "";
+                                    ordrdata['shipping_id'] = shipng_id;
+                                    ordrdata['size'] = v.size;
+                                    data[r] = ordrdata;
+                                    r++;
+                                });
+                                ordobj['data'] = data;
+
+                                setordrdata(ordobj);
+
+                            }
+                        });
+                    }
+                });
+
+
+                $('#ordUnSuc').on('click', function () {
+
+                    if ($(this).hasClass('addTik')) {
+                        $(this).removeClass('addTik');
+                    } else {
+                        $(this).addClass('addTik');
+                        $(this).siblings().removeClass('addTik');
+                    }
+                });
             });
-        });
-        
-        
-function setordrdata(ordobj)
-{ 
-  var URL = APIDOMAIN + "index.php?action=addOrdersdetail";
-  var dt = JSON.stringify(ordobj);
-  $.ajax({
-    type: "post",
-    url: URL,
-    data: {dt: dt},
-    success: function (data) {
 
-      var cartid = common.readFromStorage('jzeva_cartid');
-      var URL = APIDOMAIN + "index.php?action=removCrtItemaftrcheckot&cartid=" + cartid;
-      $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results) {
-	   
-	  common.msg(1, 'Your Order Placed successfully');
-        setTimeout(function(){
-         window.location.href = DOMAIN + "index.php?action=checkoutAfter&ordid="+cartid;
-                            },2000);
-          
-           common.removeFromStorage('jzeva_cartid');
-	}
-      });
+            function setordrdata(ordobj)
+            {
+                var URL = APIDOMAIN + "index.php?action=addOrdersdetail";
+                var dt = JSON.stringify(ordobj);
+                $.ajax({
+                    type: "post",
+                    url: URL,
+                    data: {dt: dt},
+                    success: function (data) {
 
-    }
-  });
-}
-    </script>
-</body>
+                        var cartid = common.readFromStorage('jzeva_cartid');
+                        common.msg(1, 'Your Order Placed successfully');
+                        var URL = APIDOMAIN + "index.php?action=removCrtItemaftrcheckot&cartid=" + cartid;
+                        $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results) {
+
+
+                                setTimeout(function () {
+                                    window.location.href = DOMAIN + "index.php?action=checkoutAfter&ordid=" + cartid;
+                                }, 2000);
+
+                                common.removeFromStorage('jzeva_cartid');
+                            }
+                        });
+
+                    }
+                });
+            }
+        </script>
+    </body>
 </html>
