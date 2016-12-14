@@ -220,9 +220,9 @@ $(document).ready(function () {
 
                     var bstr = "";
 
-                    bstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span> Gold </span></span><span class="fRight" id="newWt"><span> ' + metalwght + '  <span class="fRight">gms</span></span></span></div>';
-                    bstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span> Certification </span></span><span class="fRight fmSansR" ><span> ' + vl.crtficte + '</span> </span></div>';
-                    $('#desc').append(bstr);
+//                    bstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span> Gold </span></span><span class="fRight" id="newWt"><span> ' + metalwght + '  <span class="fRight">gms</span></span></span></div>';
+//                    bstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span> Certification </span></span><span class="fRight fmSansR" ><span> ' + vl.crtficte + '</span> </span></div>';
+//                    $('#desc').append(bstr);
 
                     var type = 0;
                     if (basic.hasSol == 1) {
@@ -329,13 +329,14 @@ $(document).ready(function () {
                             var carat = vl.carat;
                             var price_per_carat = vl.prcPrCrat;
                             //solistr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>' + vl.nofs + '</span><span> Solitaire</span></span><span class="fRight fmSansR"><span> ' + vl.carat + '</span> Carat</span></div>';
-                            solistr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>Solitaire</span></span><span class="fRight fmSansR"><span>' + vl.nofs + '</span></span></div>';
-                            solistr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>Solitaire Carat</span></span><span class="fRight fmSansR"><span>' + vl.carat + '</span></span></div>';
-                            solistr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>Solitaire Clarity</span></span><span class="fRight fmSansR"><span>' + vl.clrty + '</span></span></div>';
-                            solistr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>Solitaire Color</span></span><span class="fRight fmSansR"><span>' + vl.colr + '</span></span></div>';
+                            
+//                            solistr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>Solitaire</span></span><span class="fRight fmSansR"><span>' + vl.nofs + '</span></span></div>';
+//                            solistr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>Solitaire Carat</span></span><span class="fRight fmSansR"><span>' + vl.carat + '</span></span></div>';
+//                            solistr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>Solitaire Clarity</span></span><span class="fRight fmSansR"><span>' + vl.clrty + '</span></span></div>';
+//                            solistr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>Solitaire Color</span></span><span class="fRight fmSansR"><span>' + vl.colr + '</span></span></div>';
                             getSoliPrice(carat, price_per_carat);
                         });
-                        $('#desc').append(solistr);
+//                        $('#desc').append(solistr);
                     }
 
 
@@ -359,16 +360,16 @@ $(document).ready(function () {
 				if(p_qlty !== undefined){
 				    if(p_qlty == y.id){
 					  dval=y.dVal;
-					  $('#qual').text(y.dVal);
-					  $('#qual').attr('qual_id', y.id);
+//					  $('#qual').text(y.dVal);
+//					  $('#qual').attr('qual_id', y.id);
 				    }
 				}
 				else if (y.id == "9") {
-                                    $('#qual').text(y.dVal);
-                                    $('#qual').attr('qual_id', y.id);
+//                                    $('#qual').text(y.dVal);
+//                                    $('#qual').attr('qual_id', y.id);
                                 }
 				else{
-                                    $('#qual').text(y.dVal);
+                                 // $('#qual').text(y.dVal);
                                 }
                                     
 				    
@@ -381,7 +382,7 @@ $(document).ready(function () {
 
  
 
-                                dQstr += '<div class="rad_wrap ">';
+                                dQstr += '<div class="rad_wrap " id="r1">';
                                 //dQstr+= '<input type="radio" name="selectM" id="dQuality_'+x+'_'+y.id+'" checked  onchange=\"diamondPrice('+y.prcPrCrat+vl.crat+')\" class="filled-in dn">';
                                 dQstr += '<input type="radio"  name="selectM" id="dQuality_' + x + '_' + y.id + '" value="' + y.dVal + '" data-value="' + y.prcPrCrat + '" onclick="setdmd(this)" class="filled-in dn">'; 
                                 dQstr += '<label for="dQuality_' + x + '_' + y.id + '"></label>'; 
@@ -398,9 +399,10 @@ $(document).ready(function () {
                             $('#diQ').append(dQstr);
 
                             // diamstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>' + vl.totNo + '</span><span> Diamonds</span></span><span class="fRight fmSansR"><span> ' + vl.crat + '</span> Carat</span></div>';
-                            diamstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>Diamonds</span></span><span class="fRight fmSansR"><span>' + vl.totNo + '</span></span></div>';
-                            diamstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>Diamond Shape</span></span><span class="fRight fmSansR"><span>' + vl.shape + '</span></span></div>';
-                            diamstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>Diamond Carat</span></span><span class="fRight fmSansR"><span>' + vl.crat + '</span></span></div>';
+                            
+//                            diamstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>Diamonds</span></span><span class="fRight fmSansR"><span>' + vl.totNo + '</span></span></div>';
+//                            diamstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>Diamond Shape</span></span><span class="fRight fmSansR"><span>' + vl.shape + '</span></span></div>';
+//                            diamstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>Diamond Carat</span></span><span class="fRight fmSansR"><span>' + vl.crat + '</span></span></div>';
   
 		       if(p_qlty !== undefined){
 			    $("input[name='selectM']").each(function () {
@@ -431,7 +433,7 @@ $(document).ready(function () {
                             var carat = vl.crat;
                             var price = vl.prcPrCrat;
 
-                            uncutstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>' + vl.totNo + '</span><span> Uncut-Diamond</span></span><span class="fRight fmSansR"><span> ' + vl.crat + '</span> Carat</span></div>';
+//                            uncutstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>' + vl.totNo + '</span><span> Uncut-Diamond</span></span><span class="fRight fmSansR"><span> ' + vl.crat + '</span> Carat</span></div>';
                             getUncutPrice(price, carat);
                         });
                         $('#desc').append(uncutstr);
@@ -448,8 +450,9 @@ $(document).ready(function () {
                             var price = vl.prcPrCrat;
 
                             // gemstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>' + vl.totNo + '</span><span> ' + vl.gemNm + ' </span></span><span class="fRight fmSansR"><span> ' + vl.crat + '</span> Carat</span></div>';
-                            gemstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>Gemstone</span></span><span class="fRight fmSansR"><span>' + vl.gemNm + '</span></span></div>';
-                            gemstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>Gemstone Carat</span></span><span class="fRight fmSansR"><span>' + vl.crat + '</span></span></div>';
+                            
+//                            gemstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>Gemstone</span></span><span class="fRight fmSansR"><span>' + vl.gemNm + '</span></span></div>';
+//                            gemstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>Gemstone Carat</span></span><span class="fRight fmSansR"><span>' + vl.crat + '</span></span></div>';
                             getGemsPrice(carat, price);
 
                         });
@@ -464,15 +467,15 @@ $(document).ready(function () {
 		      if(p_purity !== undefined){
 			    if(p_purity == val.id){
 				  pval=val.dVal;
-				  $('#carat').text(val.dNm);
-				  $('#carat').attr('carat_id', val.id);
+//				  $('#carat').text(val.dNm);
+//				  $('#carat').attr('carat_id', val.id);
 			    }
 		      }
 		      else{
 			  if (k == 0) {
 
-			      $('#carat').text(val.dNm);
-			      $('#carat').attr('carat_id', val.id);
+//			      $('#carat').text(val.dNm);
+//			      $('#carat').attr('carat_id', val.id);
 			  }
 		      }
                         metalprc = val.prc;
@@ -517,15 +520,15 @@ $(document).ready(function () {
                         var apcol = vl.dVal.toLowerCase(); 
 			if(p_color !== undefined){
 			      if(p_color == vl.id){
-				    $('#clr').text(vl.dNm);
-				    $('#clr').attr('clr_id', vl.id);
+//				    $('#clr').text(vl.dNm);
+//				    $('#clr').attr('clr_id', vl.id);
 				    colrval=vl.dVal;
 			      }
 			}
 			else{
 			    if (j == 0) {
-				$('#clr').text(vl.dNm);
-				$('#clr').attr('clr_id', vl.id);
+//				$('#clr').text(vl.dNm);
+//				$('#clr').attr('clr_id', vl.id);
 			    }
 			}
                         clrstr += '<div class="rad_wrap">';
@@ -807,10 +810,12 @@ function getcatsize(s, m) {
                 if (dat['error']['err_code'] == '0')
                 {
                      strd+= '<div class="attTitle">Size</div>';
-		     if(psize !== undefined)
-			  strd+= '<div class="actBtn font12 bolder" id="size" >Size  ' + psize + '</div>';
-		     else
-			  strd+= '<div class="actBtn font12 bolder" id="size" >Size  ' + sizdefaulval + '</div>';
+                       strd+=  '<div class="actBtn font12 regular">select</div>';
+                     
+//		     if(psize !== undefined)
+//			  strd+= '<div class="actBtn font12 bolder" id="size" >Size  ' + psize + '</div>';
+//		     else
+//			  strd+= '<div class="actBtn font12 bolder" id="size" >Size  ' + sizdefaulval + '</div>';
                    // strd += '<div class="actBtn font12 bolder"  data-size="' + sizdefault + '">Size ' + sizdefaulval + '</div>';
 
                     $(dat.result).each(function (x, y) {
@@ -821,7 +826,8 @@ function getcatsize(s, m) {
 
                     });
 
-                    $('#sizes').html(strd);
+//                    $('#sizes').html(strd);
+                     
                    
 
                     bindDrop();
