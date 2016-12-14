@@ -154,10 +154,15 @@ function generatelist(obj) {
     proStr += '</div>';
     proStr += '<div class="hovTr">';
     proStr += '<div class="hovTrans">';
-    proStr += '<div class="plusCont">';
+    proStr += '<div class="gridBtns fLeft">';
+    proStr += '<div class="custBtn fLeft">customise</div>';
+    proStr += '<div class="custBtn fRight">add to wishlist</div>';
+    proStr += '</div>';
+//    proStr += '<div class="plusCont">';
+//    proStr += '</div>';
     proStr += '</div>';
     proStr += '</div>';
-    proStr += '</div>';
+   
     proStr += '<div class="grid_dets">';
     proStr += '<div class="grid_name txtOver transition300">' + obj['prdNm'] + '</div>';
     //proStr += '<div class="col100 color666">';
@@ -235,9 +240,8 @@ function generatelist(obj) {
             break;
         }
     } 
-    proStr += ' ' + Nstr + '</div>';
-     
-    proStr += '<div class="grid_price txtOver transition300">&#8377 ' + grandtotal + '</div>';
+    proStr += ' ' + Nstr + '</div>';   
+    proStr += '<div class="grid_price txtOver transition300"><span class="cartRup15b">' + grandtotal + '</span> <span class="toTxt">to</span> <span  class="cartRup15b">60000</span></div>';
     proStr += '<div class="fmSansB smBtnDiv fLeft transition300">';
 //    proStr += '<span class="u_line point lettSpace fLeft"  onclick=\"getProId(\''+ obj['prdId'] + '\')\">View Product</span>';
     proStr += '<div class="v360Btn" onclick=\"imgLoad(' + obj['prdId'] + ', event)\"></div>';
@@ -523,7 +527,7 @@ var count=0;
                           $(str).appendTo('#gridDetail');
                           setTimeout(function(){
                           $('#gridDetail').find('.grid3').addClass('fadeInup');
-                              bindhover();
+//                              bindhover();
                             },100);
                           }
                     }
@@ -900,10 +904,10 @@ function getprodbyid()
                                           $(str).appendTo('#gridDetail');
                                           setTimeout(function(){
                                           $('#gridDetail').find('.grid3').addClass('fadeInup');
-                                              bindhover();
+//                                              bindhover();
                                             },100);
 
-                                            bindhover();
+//                                            bindhover();
 
 
                     }
@@ -952,10 +956,10 @@ function displayproduct(){
                                           $(str).appendTo('#gridDetail');
                                           setTimeout(function(){
                                           $('#gridDetail').find('.grid3').addClass('fadeInup');
-                                              bindhover();
+//                                              bindhover();
                                             },100);
 
-                                            bindhover();
+//                                            bindhover();
 
 
                     } 
