@@ -389,7 +389,7 @@
                             pqty,
                             price,
                             order_date,
-                            delivery_date,
+                            updatedon,
                             order_status,
                             active_flag,
                             product_price,
@@ -440,7 +440,7 @@
                      $reslt['cartid'] = ($row['cartid']!=NULL) ? $row['cartid'] : '';
                       
                      $reslt['order_date'] = ($row['order_date']);
-                     $reslt['delivery_date'] = ($row['delivery_date']);
+                     $reslt['updatedon'] = ($row['updatedon']);
                      $reslt['order_status'] = ($row['order_status']!=NULL) ? $row['order_status'] : '';
                      $reslt['active_flag'] = ($row['active_flag']!=NULL) ? $row['active_flag'] : '';
                      $reslt['product_price'] = ($row['product_price']!=NULL) ? $row['product_price'] : '';

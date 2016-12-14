@@ -60,7 +60,7 @@ function displayorders()
                 // var totalprice = $('#ordPrice').html(indianMoney(parseInt(obj.totalprice)));
                 var totalprice = indianMoney(parseInt(obj.totalprice));
                 $(obj['result']).each(function (r, e) {
-
+                  
                     var ordrdate = "";
                     ordrdate += e[0].order_date;
                     ordrdate = ordrdate.split(' ');
@@ -69,13 +69,13 @@ function displayorders()
                     var cc = ordDate.toString().split("-")[2];
                     var cd = cc.split(0).join('');
                     
-                    var delvrdate ="";
-                     delvrdate += e[0].delivery_date;
-                    delvrdate = delvrdate.split(' ');
-                    var delvDate= delvrdate[0];
+                    var updatedt ="";
+                     updatedt += e[0].updatedon;
+                    updatedt = updatedt.split(' ');
+                    var upDate= updatedt[0];
 
-                    var dd= delvDate.toString().split("-")[2];
-                    var ds = cc.split(0).join('');
+                    var dd= upDate.toString().split("-")[2];
+                    var ds = dd.split(0).join('');
                     
                     Date.prototype.getMonthName = function () {
                         var monthNames = ["Jan", "Feb", "March", "April", "May", "June",
@@ -85,7 +85,7 @@ function displayorders()
                     var month_Name = new Date().getMonthName();
                     var cnfDate = '' + cd + ' ' + month_Name + '';
                     var statusDate = '' + ds + ' ' + month_Name + '';
-                    console.log(statusDate);
+                   
 //                   if($('#oId').html()){
 //                   order += ' <div class="fLeft tabHead headLine borBtm " id="od">my orders</div>';
 //               }else
@@ -108,7 +108,7 @@ function displayorders()
                     orderstr += '</div>';
                     orderstr += '</div>';
                     $(e).each(function (s, v) {
-
+                       
                         if (v.default_image !== null) {
                             var image = IMGDOMAIN + v.default_image;
                         } else {
@@ -162,7 +162,7 @@ function displayorders()
 
                         orderstr += '<div class="filterSec fLeft" id="'+v.order_status+'">';
                         orderstr += '<center>';
-                        orderstr += '<div class="button actBtn transition300 fRight mar0 trackCommon" id="' + v.pid + '_' + s + '_'+v.order_status+'" onclick="trackslide(this)">track</div>';
+                        orderstr += '<div class="button actBtn transition300 fRight mar0 trackCommon" id="' + v.pid + '_' + s + '_'+v.order_status+'_'+v.oid+'" onclick="trackslide(this)">track</div>';
                         orderstr += '</center>';
                         orderstr += '</div>';
                         orderstr += '</div>';
@@ -180,20 +180,22 @@ function displayorders()
                         orderstr += '</div>';
                         orderstr += '<div class="trackDivs">';
                         orderstr += '<div class="fLeft placedTxt"> Shipped </div>';
+                        if(v.order_status ==5 || v.order_status == 7)
                         orderstr += '<div class="fLeft dateTxt shp dn" id="'+statusDate+'ship" >'+statusDate+'</div>';
                         orderstr += '<div class="fLeft proStep" id="3rdstp"></div>';
                         orderstr += '</div>';
                         orderstr += '<div class="trackDivs ">';
                         orderstr += '<div class="fLeft placedTxt" id="delv">Delivered</div>';
-                        orderstr += '<div class="fLeft dateTxt delv dn" id="'+statusDate+'delv">'+statusDate+'</div>';
+                        if(v.order_status ==6)
+                        orderstr += '<div class="fLeft dateTxt del dn" id="'+statusDate+'delv">'+statusDate+'</div>';
                         orderstr += '<div class="fLeft proStep" id="4thstp"></div>';
                         orderstr += '</div>';
 
 
                         orderstr += '</center>';
-                        orderstr += '<div class="fLeft tOuter poR">';
-                        orderstr += '<div class="fLeft date semibold font15">07 oct</div>';
-                        orderstr += '<div class="fLeft shipTo">shipped to third party</div>';
+//                        orderstr += '<div class="fLeft tOuter poR">';
+//                        orderstr += '<div class="fLeft date semibold font15">07 oct</div>';
+//                        orderstr += '<div class="fLeft shipTo">shipped to third party</div>';
                         orderstr += '</div>';
                         orderstr += '</div>';
                         orderstr += '</div>';
@@ -816,10 +818,12 @@ function trackslide(ths)
 
         if(trackid == 0 || trackid == 1 || trackid== 2){
             $(ths).closest('.detailsOuter').find('.trackDivs').eq(0).find('.proStep').addClass('tickIcon');
+           
         }
         if(trackid == 3 || trackid == 4){
               $(ths).closest('.detailsOuter').find('.trackDivs').eq(0).find('.proStep').addClass('tickIcon');
                $(ths).closest('.detailsOuter').find('.trackDivs').eq(1).find('.proStep').addClass('tickIcon');
+              
         }
         if(trackid == 5){
               $(ths).closest('.detailsOuter').find('.trackDivs').eq(0).find('.proStep').addClass('tickIcon');
@@ -827,15 +831,15 @@ function trackslide(ths)
               $(ths).closest('.detailsOuter').find('.trackDivs').eq(2).find('.proStep').addClass('tickIcon');
              
                $('.shp').removeClass('dn');
-                 $('.shp').html();
+             $('.shp').html();
         }
         if(trackid == 6){
               $(ths).closest('.detailsOuter').find('.trackDivs').eq(0).find('.proStep').addClass('tickIcon');
                $(ths).closest('.detailsOuter').find('.trackDivs').eq(1).find('.proStep').addClass('tickIcon');
                 $(ths).closest('.detailsOuter').find('.trackDivs').eq(2).find('.proStep').addClass('tickIcon');
                $(ths).closest('.detailsOuter').find('.trackDivs').eq(3).find('.proStep').addClass('tickIcon');
-               $('.delv').removeClass('dn');
-               $('.delv').html();
+               $('.del').removeClass('dn');
+              $('.del').html();
         }
          if(trackid == 7){
              $('#delv').html('Not DELIVERED');
@@ -843,6 +847,8 @@ function trackslide(ths)
                $(ths).closest('.detailsOuter').find('.trackDivs').eq(1).find('.proStep').addClass('tickIcon');
                 $(ths).closest('.detailsOuter').find('.trackDivs').eq(2).find('.proStep').addClass('tickIcon');
                $(ths).closest('.detailsOuter').find('.trackDivs').eq(3).find('.proStep').addClass('notDeliver');
+                 $('.shp').removeClass('dn');
+             $('.shp').html();
         }
     var trkID = $(ths).attr('id');
 
