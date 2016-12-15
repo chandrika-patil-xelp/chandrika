@@ -47,13 +47,21 @@
                     }
                     var userid = common.readFromStorage('jzeva_uid');
                     var cartid = common.readFromStorage('jzeva_cartid');
-                    var data = [], ordobj = {};
+                    var data = [], ordobj = {}, totprz=0, wht;
                     if (cartid !== null || userid !== null) {
                         var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id=" + cartid + "&userid=" + userid + "";
                         $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results) {
                                 var obj = JSON.parse(results);
                                 console.log(obj);
                                 $(obj.result).each(function (r, v) {
+				  
+				    if (v.ccatname !== null) {
+					wht = getweight(v.size, v.ccatname, v.metal_weight);
+				    } else {
+					wht = v.metal_weight;
+				    }
+
+				    totprz=totprz+parseInt(v.price);
                                     var ordrdata = {};
                                     if (userid !== null || userid !== 0) {
                                         ordrdata['userid'] = userid;
@@ -71,9 +79,14 @@
                                     ordrdata['payment_type'] = "";
                                     ordrdata['shipping_id'] = shipng_id;
                                     ordrdata['size'] = v.size;
-                                    data[r] = ordrdata;
+				    ordrdata['weight'] = wht;
+				    ordrdata['dmdcarat'] = v.dmdcarat;
+				    data[r] = ordrdata;
                                     r++;
                                 });
+				  var totwrd=convert_number(totprz); 
+				  ordobj['totprz'] =totprz;
+				  ordobj['totprzwrd'] =totwrd;
                                 ordobj['data'] = data;
 
                                 setordrdata(ordobj);
@@ -112,7 +125,7 @@
 
 
                                 setTimeout(function () {
-                                    window.location.href = DOMAIN + "index.php?action=checkoutAfter&ordid=" + cartid;
+                                     window.location.href = DOMAIN + "index.php?action=checkoutAfter&ordid=" + cartid;
                                 }, 2000);
 
                                 common.removeFromStorage('jzeva_cartid');
@@ -122,6 +135,112 @@
                     }
                 });
             }
+	    
+	    
+	    function getweight(currentSize, catName, storedWt)
+	    {
+		var mtlWgDav = 0;
+		var bseSize = 0;
+
+		if (catName.toLowerCase() == 'rings') {
+		    bseSize = parseFloat(14);
+		    mtlWgDav = 0.05;
+		} else if (catName.toLowerCase() == 'bangles') {
+		    bseSize = parseFloat(2.4);
+		    mtlWgDav = 7;
+		}
+
+	       if (isNaN(currentSize))
+		{
+
+		    if (catName == 'Rings')
+			currentSize = parseFloat(14);
+		    else if (catName == 'Bangles')
+			currentSize = parseFloat(2.4);
+		    else if (catName !== 'Rings' && catName !== 'Bangles') {
+			currentSize = 0;
+		    }
+		}
+
+
+		var changeInWeight = (currentSize - bseSize) * mtlWgDav;
+		var newWeight = parseFloat(storedWt) + parseFloat(changeInWeight);
+		newWeight=newWeight.toFixed(3);
+
+		return newWeight;
+
+	    }
+
+	    function convert_number(number)
+	    {
+		if ((number < 0) || (number > 999999999))
+		{
+		    return "NUMBER OUT OF RANGE!";
+		}
+		var Gn = Math.floor(number / 10000000);  /* Crore */
+		number -= Gn * 10000000;
+		var kn = Math.floor(number / 100000);     /* lakhs */
+		number -= kn * 100000;
+		var Hn = Math.floor(number / 1000);      /* thousand */
+		number -= Hn * 1000;
+		var Dn = Math.floor(number / 100);       /* Tens (deca) */
+		number = number % 100;               /* Ones */
+		var tn= Math.floor(number / 10);
+		var one=Math.floor(number % 10);
+		var res = "";
+
+		if (Gn>0)
+		{
+		    res += (convert_number(Gn) + " Crore");
+		}
+		if (kn>0)
+		{
+			res += (((res=="") ? "" : " ") +
+			convert_number(kn) + " Lakhs");
+		}
+		if (Hn>0)
+		{
+		    res += (((res=="") ? "" : " ") +
+			convert_number(Hn) + " Thousand");
+		}
+
+		if (Dn)
+		{
+		    res += (((res=="") ? "" : " ") +
+			convert_number(Dn) + " Hundred");
+		}
+
+
+		var ones = Array("", "One", "Two", "Three", "Four", "Five", "Six","Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen","Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen","Nineteen");
+		var tens = Array("", "", "Twenty", "Thirty", "Fourty", "Fifty", "Sixty","Seventy", "Eighty", "Ninety");
+
+		if (tn>0 || one>0)
+		{
+		    if (!(res==""))
+		    {
+			res += " And ";
+		    }
+		    if (tn < 2)
+		    {
+			res += ones[tn * 10 + one];
+		    }
+		    else
+		    {
+
+			res += tens[tn];
+			if (one>0)
+			{
+			    res += ("-" + ones[one]);
+			}
+		    }
+		}
+
+		if (res=="")
+		{
+		    res = "zero";
+		}
+		return res;
+	    }
         </script>
     </body>
 </html>
