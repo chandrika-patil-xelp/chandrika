@@ -30,17 +30,15 @@
                                 </div>
                                 <div class="morewritefaggery fLeft" id="desc">
                                     <div class="para fLeft">The <span class="semibold">Sophie Ring</span> is casted in <span class="semibold">3.9</span> grams of gold set with brilliant cut <span class="semibold">36</span> Round Diamonds (Approx. 0.33 Carat) and <span class="semibold">2</span> Carats of Ruby. </div>
-                                 
-<!--                                    <div class="para  fLeft"><span class="actBtn fRight pointNone">MORE INFO</span></div>-->
+
+                                    <!--                                    <div class="para  fLeft"><span class="actBtn fRight pointNone">MORE INFO</span></div>-->
                                     <!--<div class="closewritefaggery"></div>-->
                                 </div>
                             </div>
-                                <div class="wishBtm fRight">
-                                    <div class="actBtn  fRight bolder pad10" id="addwishlist">add to WISHLIST</div>
-                                </div>
-                            
+                            <div class="wishBtm fRight">
+                                <div class="actBtn  fRight bolder pad10" id="addwishlist">add to WISHLIST</div>
+                            </div>
                         </div>
-
                     </div>
                     <div class="rota_wrap transition300">
                         <div class="rota_buffer">
@@ -65,23 +63,23 @@
                                 <div class="cust_cont poR fLeft">
                                     <div class="drop_dn fLeft dn" id="clar">
                                         <div class="attTitle">Quality</div>
-                                        <div class="actBtn font12 regular" id="qual">select</div>
+                                        <div class="actBtn font12 regular" id="qual"></div>
                                     </div>
                                     <div class="drop_dn fLeft  " id="color">
                                         <div class="attTitle">Color</div>
-                                        <div class="actBtn font12 regular" id="clr">select</div>
+                                        <div class="actBtn font12 regular" id="clr"></div>
                                     </div>
                                     <div class="drop_dn fLeft " id="purity">
                                         <div class="attTitle">Purity</div>
-                                        <div class="actBtn font12 regular" id="carat">select</div>
+                                        <div class="actBtn font12 regular" id="carat"></div>
                                     </div>
                                     <div class="drop_dn fLeft dn" id="sizes">
-                                        
-                                                                                <div class="attTitle">Size</div>
-                                                                                <div class="actBtn font12 regular">select</div>
-<!--                                                                                <div class="actBtn font12 bolder" id="size" >Size </div>-->
+
+                                        <div class="attTitle">Size</div>
+                                        <div class="actBtn font12 regular"></div>
+                                        <!--                                                                                <div class="actBtn font12 bolder" id="size" >Size </div>-->
                                         <!--                                        <div class="selectDefault"></div>-->
-                                         
+
                                     </div>
                                 </div>
                                 <!-- <div class="pr_change fLeft">
@@ -91,7 +89,9 @@
                                   </div>
                                 </div> -->
 
-                                <div class="price_light fLeft cartRupeeB"><span id="price"> 26,000</span><span id="price"> to  26,000</span>
+                                <div class="price_light fLeft">
+                                    <div class="col100 font14 padBtm"><span class="cartRup15b" id="price"> 26,000</span><span class="toTxt">to</span>  <span  class="cartRup15b" id="price">26,000</span></div>
+                                    <div class="col100 fLeft cartRupeeB">60,000</div>
                                     <div class="ch_cont fLeft" id="ch_price">
                                         <div class="drNoob">
                                             <div class="labBuffer">Previous Price: VV-SGH: ₹34,0987</div>
@@ -102,7 +102,7 @@
                                     <div class="col50 fLeft  padXr5">
                                         <div class="actBtn  fLeft bolder pad10 " id="add_to_cart">ADD TO CART</div>
                                     </div>
-                                    
+
                                     <div class="col50 fLeft  padX15">
                                         <div class="actBtn  fRight bolder pad10 " id="buynow">buy now</div>
                                     </div>
@@ -121,9 +121,9 @@
                                     <div class="selector_cont diQ" id="diQ">
                                         <div class="options_back"></div>
                                         <div class="button_label">Select Diamond Clarity</div>
-                                      
+
                                     </div>
-                                    
+
                                 </center>
                                 <center>
                                     <div class="selector_cont" id="colr">
@@ -221,10 +221,10 @@
 
     <script>
 
-	var tmp;
-	setTimeout(function(){
-          tmp = $('.ringCircle').html();
-	},1000); 
+                var tmp;
+        setTimeout(function () {
+            tmp = $('.ringCircle').html();
+        }, 1000);
         var val1, val2, val3;
         var w, h, lh;
         val1 = $('.ringCircle').width();
@@ -232,7 +232,7 @@
         val3 = $('.ringCircle').css('line-height');
         $('#inc').click(function () {
             var incVal = parseInt(tmp) + 1;
-          
+
             if (incVal > 25) {
                 return false;
             }
@@ -268,10 +268,10 @@
         });
 
         //bangles size code
-	var tmp_b;
-	setTimeout(function(){
-          tmp_b = $('.ringCircleB').html(); 
-	},1000);
+        var tmp_b;
+        setTimeout(function () {
+            tmp_b = $('.ringCircleB').html();
+        }, 1000);
         var addval_b = 20;
         var valb1, valb2, valb3;
         var w, h, lh;
@@ -280,8 +280,8 @@
         valb3 = $('#bangCircle').css('line-height');
 
         $('#incB').click(function () {
-             var inc = Math.round(tmp_b * 10) / 10;
-            var incVal_b = parseFloat(inc+0.1).toFixed(1);
+            var inc = Math.round(tmp_b * 10) / 10;
+            var incVal_b = parseFloat(inc + 0.1).toFixed(1);
             if (incVal_b >= 3.0) {
                 return false;
             }
@@ -646,15 +646,15 @@
         });
 
 
-function setHeight(){
-  var tot = ($('#proname').outerHeight(true) + $('#htCh').outerHeight(true))/0.9;
-  var win_tot = ($(window).outerHeight(true));
-  var acHt = ($('#proname').outerHeight(true) + $('#htCh').outerHeight(true))/0.9 ;
- 
-    if(tot> win_tot){
-       $('#wrapper').height(acHt);
-    }
-}
+        function setHeight() {
+            var tot = ($('#proname').outerHeight(true) + $('#htCh').outerHeight(true)) / 0.9;
+            var win_tot = ($(window).outerHeight(true));
+            var acHt = ($('#proname').outerHeight(true) + $('#htCh').outerHeight(true)) / 0.9;
+
+            if (tot > win_tot) {
+                $('#wrapper').height(acHt);
+            }
+        }
 
 
     </script>
