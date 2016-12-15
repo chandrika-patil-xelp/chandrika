@@ -8,8 +8,7 @@ class product extends DB {
         parent::DB($db);
     }
 
-    private function generateId()
-    {
+    private function generateId() {
         $curdate = date('YmdHis');
         $rNo = mt_rand(11, 99);
 
@@ -17,65 +16,56 @@ class product extends DB {
         return $genId;
     }
 
-    private function generateProductCode()
-    {
+    private function generateProductCode() {
         $rNo = mt_rand(1000000000, 9999999999);
-        $pcode = "JZEVA".$rNo;
+        $pcode = "JZEVA" . $rNo;
         return $pcode;
     }
 
-    public function checkVproductCode($params)
-    {
-        if($params['case'] == '1')
-        {
+    public function checkVproductCode($params) {
+        if ($params['case'] == '1') {
             $sql = "SELECT
                                 productid
                       FROM
                                 tbl_product_master
                       WHERE
-                                vendor_prd_code = \"". $params['code'] ."\"
+                                vendor_prd_code = \"" . $params['code'] . "\"
                       AND
-                                productid NOT IN (".$params['pid'].")
+                                productid NOT IN (" . $params['pid'] . ")
                       AND
                                 active_flag=1";
         }
-        if($params['case'] == '2')
-        {
+        if ($params['case'] == '2') {
             $sql = "SELECT
                                 productid
                       FROM
                                 tbl_product_master
                       WHERE
-                                vendor_prd_code = \"". $params['code'] ."\"
+                                vendor_prd_code = \"" . $params['code'] . "\"
                       AND
                                 active_flag=1";
         }
         $res = $this->query($sql);
         $cnt = $this->numRows($res);
-        if($cnt > 0)
-        {
+        if ($cnt > 0) {
             $arr = array();
-            $err = array('code'=>1,'msg'=>'Vendor Code is already used');
-        }
-        else
-        {
+            $err = array('code' => 1, 'msg' => 'Vendor Code is already used');
+        } else {
             $arr = array();
-            $err = array('code'=>0,'msg'=>'Vendor Code is not yet used');
+            $err = array('code' => 0, 'msg' => 'Vendor Code is not yet used');
         }
 
-        $result = array('result'=>$arr,'error'=>$err);
+        $result = array('result' => $arr, 'error' => $err);
         return $result;
     }
 
-    public function addProduct($params) 
-    { 
-        $params = json_decode($params[0],1);
-        if(!$params['productid'])
-        {
+    public function addProduct($params) {
+        $params = json_decode($params[0], 1);
+        if (!$params['productid']) {
             $pid = $this->generateId();
-            $params['productid']=$pid;
+            $params['productid'] = $pid;
             $pcode = $this->generateProductCode();
-            $params['product_code']=$pcode;
+            $params['product_code'] = $pcode;
         }
 
         $userid = $params['userid'];
@@ -83,328 +73,301 @@ class product extends DB {
         #ADDING CATEGORY MAPPING FOR CURRENT PRODUCT
 
         $tmpattrparams = array
-                            (
-                                'attrvalues' => $params['filterAttrs'],
-                                'userid' => $userid,
-                                'pid' => $params['productid']
-                            );
+            (
+            'attrvalues' => $params['filterAttrs'],
+            'userid' => $userid,
+            'pid' => $params['productid']
+        );
 
         $attrres = $this->addPrdAtributeValuesMapping($tmpattrparams);
 
         $catids = explode(",", $params['catid']);
         $tmpcatparams = array
-                            (
-                                'catid' => $params['catid'],
-                                'userid' => $userid,
-                                'pid' => $params['productid']
-                            );
+            (
+            'catid' => $params['catid'],
+            'userid' => $userid,
+            'pid' => $params['productid']
+        );
         $catres = $this->addCatProductMapping($tmpcatparams);
-        if ($catres['error']['err_code'] == 0)
-        {
+        if ($catres['error']['err_code'] == 0) {
 
             $sizeparams = array
-                            (
-                                'productid' => $params['productid'],
-                                'updatedby' => $userid,
-                                'sizes' => $params['sizes']
-                            );
+                (
+                'productid' => $params['productid'],
+                'updatedby' => $userid,
+                'sizes' => $params['sizes']
+            );
 
-            if(sizeof($params['sizes']))
+            if (sizeof($params['sizes']))
                 $sizeres = $this->addProductSizeMApping($sizeparams);
 
-                #Product Metal Purity Mapping
-                $mprLen = sizeof($params['mpurity']);
+            #Product Metal Purity Mapping
+            $mprLen = sizeof($params['mpurity']);
 
-                if ($mprLen > 1)
-                {
-                    $customise_purity = 0;
+            if ($mprLen > 1) {
+                $customise_purity = 0;
+            } else {
+                $customise_purity = 1;
+            }
+
+            $metalPurityparams = array
+                (
+                'productid' => $params['productid'],
+                'updatedby' => $userid,
+                'metalpurity' => $params['mpurity']
+            );
+
+            $mpurityres = $this->addProductMetalPurityMapping($metalPurityparams);
+
+            if ($mpurityres['error']['err_code'] == 0) {
+                #Product Metal Color Mapping
+                $mclrLen = sizeof($params['metalcolor']);
+
+                if ($mclrLen > 1) {
+                    $customise_color = 0;
+                } else {
+                    $customise_color = 1;
                 }
-                else
-                {
-                    $customise_purity = 1;
-                }
 
-                $metalPurityparams = array
-                                        (
-                                            'productid' => $params['productid'],
-                                            'updatedby' => $userid,
-                                            'metalpurity' => $params['mpurity']
-                                        );
+                $metalColorparams = array
+                    (
+                    'productid' => $params['productid'],
+                    'updatedby' => $userid,
+                    'metalcolors' => $params['metalcolor']
+                );
 
-                $mpurityres = $this->addProductMetalPurityMapping($metalPurityparams);
+                $mcolorres = $this->addProductMetalColorMapping($metalColorparams);
 
-                if ($mpurityres['error']['err_code'] == 0)
-                {
-                    #Product Metal Color Mapping
-                    $mclrLen = sizeof($params['metalcolor']);
+                if ($mcolorres['error']['err_code'] == 0) {
 
-                    if ($mclrLen > 1)
-                    {
-                        $customise_color = 0;
-                    }
-                    else
-                    {
-                        $customise_color = 1;
-                    }
+                    #Adding Solitaire To Product
+                    if ($params['has_solitaire']) {
 
-                    $metalColorparams = array
-                                            (
-                                                'productid' => $params['productid'],
-                                                'updatedby' => $userid,
-                                                'metalcolors' => $params['metalcolor']
-                                            );
+                        $solitairesparams = array
+                            (
+                            'productid' => $params['productid'],
+                            'updatedby' => $userid,
+                            'solitaires' => $params['solitaires']
+                        );
+                        $solres = $this->addSolitaire($solitairesparams);
 
-                    $mcolorres = $this->addProductMetalColorMapping($metalColorparams);
-
-                    if ($mcolorres['error']['err_code'] == 0)
-                    {
-
-                        #Adding Solitaire To Product
-                        if ($params['has_solitaire'])
-                        {
-
-                            $solitairesparams = array
-                                                    (
-                                                        'productid' => $params['productid'],
-                                                        'updatedby' => $userid,
-                                                        'solitaires' => $params['solitaires']
-                                                    );
-                            $solres = $this->addSolitaire($solitairesparams);
-
-                            if ($solres['error']['err_code'] == "1")
-                            {
-                                $result = array();
-                                $err = array
-                                            (
-                                                'err_code' => 1,
-                                                'err_msg' => 'Error in adding solitaire'
-                                            );
-                                $results = array
-                                                (
-                                                    'result' => $result,
-                                                    'error' => $err
-                                                );
-                                return $results;
-                            }
-                        }
-
-
-                        #Adding Diamond To Product
-                        if ($params['has_diamond'])
-                        {
-
-                            $diamondresparams = array
-                                                    (
-                                                        'productid' => $params['productid'],
-                                                        'updatedby' => $userid,
-                                                        'diamonds' => $params['diamonds']
-                                                    );
-
-                            $diamondres = $this->addDiamond($diamondresparams);
-
-                            if ($diamondres['error']['err_code'] == "1")
-                            {
-                                $result = array();
-                                $err = array
-                                            (
-                                                'err_code' => 1,
-                                                'err_msg' => 'Error in adding diamond'
-                                            );
-
-                                $results = array
-                                                (
-                                                    'result' => $result,
-                                                    'error' => $err
-                                                );
-                                return $results;
-                            }
-                        }
-
-
-                        #Adding Uncut Diamond To Product
-                        if ($params['has_uncut'])
-                        {
-
-                            $uncutparams = array
-                                                (
-                                                    'productid' => $params['productid'],
-                                                    'updatedby' => $userid,
-                                                    'uncut' => $params['uncut']
-                                                );
-
-                            $uncutdmdres = $this->addUncutDiamond($uncutparams);
-
-                            if ($uncutdmdres['error']['err_code'] == "1")
-                            {
-                                $result = array();
-                                $err = array
-                                            (
-                                                'err_code' => 1,
-                                                'err_msg' => 'Error in adding uncut diamond'
-                                            );
-
-                                $results = array
-                                                (
-                                                    'result' => $result,
-                                                    'error' => $err
-                                                );
-                                return $results;
-                            }
-                        }
-
-
-                        #Adding Gemstone To Product
-                        if ($params['has_gemstone'])
-                        {
-
-                            $gemstoneparams = array
-                                                (
-                                                    'productid' => $params['productid'],
-                                                    'updatedby' => $userid,
-                                                    'gemstone' => $params['gemstone']
-                                                );
-
-                            $gemres = $this->addGemstone($gemstoneparams);
-
-
-                            if ($gemres['error']['err_code'] == "1")
-                            {
-                                $result = array();
-                                $err = array
-                                            (
-                                                'err_code' => 1,
-                                                'err_msg' => 'Error in adding gemstone to product'
-                                            );
-                                $results = array
-                                                (
-                                                    'result' => $result,
-                                                    'error' => $err
-                                                );
-                                return $results;
-                            }
-                        }
-
-
-                        #Adding General Product Details
-
-                        $genDetails = array
-                                        (
-                                            'productid' => $params['productid'],
-                                            'product_code' => $params['product_code'],
-                                            'productDescription' => addSlashes(stripslashes(urldecode($params['details']['productDescription']))),
-                                            'vPCode' => $params['details']['vPCode'],
-                                            'jewelleryType' => $params['details']['jewelleryType'],
-                                            'leadTime' => $params['details']['leadTime'],
-                                            'returneligible' => $params['details']['eligible'],
-                                            'customise_purity' => $customise_purity,
-                                            'customise_color' => $customise_color,
-                                            'has_diamond' => $params['has_diamond'],
-                                            'has_solitaire' => $params['has_solitaire'],
-                                            'has_uncut' => $params['has_uncut'],
-                                            'has_gemstone' => $params['has_gemstone'],
-                                            'updatedby' => $userid,
-                                            'details' => $params['details']
-                                        );
-
-                        $renres = $this->addProductGeneralDetails($genDetails);
-
-                        if ($renres['error']['err_code'] == "1")
-                        {
+                        if ($solres['error']['err_code'] == "1") {
                             $result = array();
                             $err = array
-                                        (
-                                            'err_code' => 1,
-                                            'err_msg' => 'Error in adding general details of product'
-                                        );
+                                (
+                                'err_code' => 1,
+                                'err_msg' => 'Error in adding solitaire'
+                            );
                             $results = array
-                                        (
-                                            'result' => $result,
-                                            'error' => $err
-                                        );
+                                (
+                                'result' => $result,
+                                'error' => $err
+                            );
                             return $results;
                         }
                     }
-                    else
-                    {
+
+
+                    #Adding Diamond To Product
+                    if ($params['has_diamond']) {
+
+                        $diamondresparams = array
+                            (
+                            'productid' => $params['productid'],
+                            'updatedby' => $userid,
+                            'diamonds' => $params['diamonds']
+                        );
+
+                        $diamondres = $this->addDiamond($diamondresparams);
+
+                        if ($diamondres['error']['err_code'] == "1") {
+                            $result = array();
+                            $err = array
+                                (
+                                'err_code' => 1,
+                                'err_msg' => 'Error in adding diamond'
+                            );
+
+                            $results = array
+                                (
+                                'result' => $result,
+                                'error' => $err
+                            );
+                            return $results;
+                        }
+                    }
+
+
+                    #Adding Uncut Diamond To Product
+                    if ($params['has_uncut']) {
+
+                        $uncutparams = array
+                            (
+                            'productid' => $params['productid'],
+                            'updatedby' => $userid,
+                            'uncut' => $params['uncut']
+                        );
+
+                        $uncutdmdres = $this->addUncutDiamond($uncutparams);
+
+                        if ($uncutdmdres['error']['err_code'] == "1") {
+                            $result = array();
+                            $err = array
+                                (
+                                'err_code' => 1,
+                                'err_msg' => 'Error in adding uncut diamond'
+                            );
+
+                            $results = array
+                                (
+                                'result' => $result,
+                                'error' => $err
+                            );
+                            return $results;
+                        }
+                    }
+
+
+                    #Adding Gemstone To Product
+                    if ($params['has_gemstone']) {
+
+                        $gemstoneparams = array
+                            (
+                            'productid' => $params['productid'],
+                            'updatedby' => $userid,
+                            'gemstone' => $params['gemstone']
+                        );
+
+                        $gemres = $this->addGemstone($gemstoneparams);
+
+
+                        if ($gemres['error']['err_code'] == "1") {
+                            $result = array();
+                            $err = array
+                                (
+                                'err_code' => 1,
+                                'err_msg' => 'Error in adding gemstone to product'
+                            );
+                            $results = array
+                                (
+                                'result' => $result,
+                                'error' => $err
+                            );
+                            return $results;
+                        }
+                    }
+
+
+                    #Adding General Product Details
+
+                    $genDetails = array
+                        (
+                        'productid' => $params['productid'],
+                        'product_code' => $params['product_code'],
+                        'productDescription' => addSlashes(stripslashes(urldecode($params['details']['productDescription']))),
+                        'vPCode' => $params['details']['vPCode'],
+                        'jewelleryType' => $params['details']['jewelleryType'],
+                        'leadTime' => $params['details']['leadTime'],
+                        'returneligible' => $params['details']['eligible'],
+                        'customise_purity' => $customise_purity,
+                        'customise_color' => $customise_color,
+                        'has_diamond' => $params['has_diamond'],
+                        'has_solitaire' => $params['has_solitaire'],
+                        'has_uncut' => $params['has_uncut'],
+                        'has_gemstone' => $params['has_gemstone'],
+                        'updatedby' => $userid,
+                        'details' => $params['details']
+                    );
+
+                    $renres = $this->addProductGeneralDetails($genDetails);
+
+                    if ($renres['error']['err_code'] == "1") {
                         $result = array();
                         $err = array
-                                    (
-                                        'err_code' => 1,
-                                        'err_msg' => 'Error in adding product metal color'
-                                    );
-                        $results = array
-                                    (
-                                        'result' => $result,
-                                        'error' => $err
-                                    );
-                        return $results;
-                    }
-                }
-                else
-                {
-                    $result = array();
-                    $err = array
-                                (
-                                    'err_code' => 1,
-                                    'err_msg' => 'Error in adding product metal purity'
-                                );
-                    $results = array
-                                (
-                                    'result' => $result,
-                                    'error' => $err
-                                );
-                    return $results;
-                }
-        }
-        else
-        {
-            $result = array();
-            $err = array
-                        (
+                            (
                             'err_code' => 1,
-                            'err_msg' => 'Error in adding category'
+                            'err_msg' => 'Error in adding general details of product'
                         );
-            $results = array
-                        (
+                        $results = array
+                            (
                             'result' => $result,
                             'error' => $err
                         );
+                        return $results;
+                    }
+                } else {
+                    $result = array();
+                    $err = array
+                        (
+                        'err_code' => 1,
+                        'err_msg' => 'Error in adding product metal color'
+                    );
+                    $results = array
+                        (
+                        'result' => $result,
+                        'error' => $err
+                    );
+                    return $results;
+                }
+            } else {
+                $result = array();
+                $err = array
+                    (
+                    'err_code' => 1,
+                    'err_msg' => 'Error in adding product metal purity'
+                );
+                $results = array
+                    (
+                    'result' => $result,
+                    'error' => $err
+                );
+                return $results;
+            }
+        } else {
+            $result = array();
+            $err = array
+                (
+                'err_code' => 1,
+                'err_msg' => 'Error in adding category'
+            );
+            $results = array
+                (
+                'result' => $result,
+                'error' => $err
+            );
             return $results;
         }
 
 
         $result = array
-                        (
-                            'product id' =>$params['productid']
-                        );
+            (
+            'product id' => $params['productid']
+        );
         $err = array
-                        (
-                            'err_code' => 0,
-                            'err_msg' => 'Product Added Successfully'
-                        );
+            (
+            'err_code' => 0,
+            'err_msg' => 'Product Added Successfully'
+        );
         $results = array
-                        (
-                            'result' => $result,
-                            'error' => $err
-                        );
+            (
+            'result' => $result,
+            'error' => $err
+        );
         return $results;
-
     }
 
-
-    public function addPrdAtributeValuesMapping($params)
-    {
-        $delsql="
+    public function addPrdAtributeValuesMapping($params) {
+        $delsql = "
                     DELETE
                     FROM
                             tbl_product_attributes_mapping
                     WHERE
-                            productid='".$params['pid']."'
+                            productid='" . $params['pid'] . "'
                 ";
 
         $res = $this->query($delsql);
 
-        $sql="
+        $sql = "
                 INSERT
                 INTO
                         tbl_product_attributes_mapping
@@ -418,101 +381,89 @@ class product extends DB {
                 VALUES
             ";
 
-            foreach ($params['attrvalues'] as $key=>$val)
-            {
-                $val=  urldecode($val);
-                $tmpparams = array
-                                (
-                                    'attributeid' => $key,
-                                    'userid' => $params['userid'],
-                                    'pid' => $params['pid']
-                                );
-                $sql.="(
+        foreach ($params['attrvalues'] as $key => $val) {
+            $val = urldecode($val);
+            $tmpparams = array
+                (
+                'attributeid' => $key,
+                'userid' => $params['userid'],
+                'pid' => $params['pid']
+            );
+            $sql.="(
                             '" . $params['pid'] . "',
-                            "  . $tmpparams['attributeid'] . ",
+                            " . $tmpparams['attributeid'] . ",
                             '" . $val . "',
                                  now(),
-                            "  . $tmpparams['userid'] . "
+                            " . $tmpparams['userid'] . "
                         ),";
-            }
+        }
         $sql = trim($sql, ",");
 
         $res = $this->query($sql);
         $result = array();
 
-        if ($res)
-        {
+        if ($res) {
             $err = array
-                        (
-                            'err_code' => 0,
-                            'err_msg' => 'Data inserted successfully'
-                        );
-        }
-
-        else
-        {
+                (
+                'err_code' => 0,
+                'err_msg' => 'Data inserted successfully'
+            );
+        } else {
             $err = array
-                        (
-                            'err_code' => 1,
-                            'err_msg' => 'Error in inserting'
-                        );
+                (
+                'err_code' => 1,
+                'err_msg' => 'Error in inserting'
+            );
         }
 
         $results = array
-                        (
-                            'result' => $result,
-                            'error' => $err
-                        );
+            (
+            'result' => $result,
+            'error' => $err
+        );
         return $results;
     }
 
-    public function getPrdAtributeValues($pid)
-    {
-        $sql="
+    public function getPrdAtributeValues($pid) {
+        $sql = "
                 SELECT
                         attributeid as attid,
                         value
                 FROM
                         tbl_product_attributes_mapping
                 WHERE
-                        productid = '".$pid."'
+                        productid = '" . $pid . "'
             ";
 
-        $res=$this->query($sql);
+        $res = $this->query($sql);
 
-        if($res)
-        {
-            while($row=$this->fetchData($res))
-            {
-                $reslt[]=$row;
+        if ($res) {
+            while ($row = $this->fetchData($res)) {
+                $reslt[] = $row;
             }
 
             $err = array
-                        (
-                            'err_code' => 0,
-                            'err_msg' => 'Data fetched successfully'
-                        );
-        }
-
-        else
-        {
+                (
+                'err_code' => 0,
+                'err_msg' => 'Data fetched successfully'
+            );
+        } else {
             $err = array
-                        (
-                            'err_code' => 1,
-                            'err_msg' => 'Error in fetching'
-                        );
+                (
+                'err_code' => 1,
+                'err_msg' => 'Error in fetching'
+            );
         }
 
         $results = array
-                        (
-                            'result' => $reslt,
-                            'error' => $err
-                        );
+            (
+            'result' => $reslt,
+            'error' => $err
+        );
         return $results;
     }
 
-    public function addCatProductMapping($params)
-    {
+    public function addCatProductMapping($params) {
         $catids = explode(",", $params['catid']);
 
         $sql = "INSERT
@@ -524,15 +475,14 @@ class product extends DB {
                             createdon,
                             updatedby)
                 VALUES ";
-        foreach ($catids as $val)
-        {
+        foreach ($catids as $val) {
             $tmpparams = array
-                            (
-                                'catid' => $val,
-                                'userid' => $params['userid'],
-                                'pid' => $params['pid']
-                            );
-            $sql.=  "(
+                (
+                'catid' => $val,
+                'userid' => $params['userid'],
+                'pid' => $params['pid']
+            );
+            $sql.= "(
                             " . $tmpparams['catid'] . ",
                             " . $tmpparams['pid'] . ",
                                 now(),
@@ -548,154 +498,146 @@ class product extends DB {
 
         $res = $this->query($sql);
         $result = array();
-        if ($res)
-        {
+        if ($res) {
             $err = array
-                        (
-                            'err_code' => 0,
-                            'err_msg' => 'Data inserted successfully'
-                        );
-        }
-        else
-        {
+                (
+                'err_code' => 0,
+                'err_msg' => 'Data inserted successfully'
+            );
+        } else {
             $err = array
-                        (
-                            'err_code' => 1,
-                            'err_msg' => 'Error in inserting'
-                        );
+                (
+                'err_code' => 1,
+                'err_msg' => 'Error in inserting'
+            );
         }
         $results = array
-                        (
-                            'result' => $result,
-                            'error' => $err
-                        );
+            (
+            'result' => $result,
+            'error' => $err
+        );
         return $results;
     }
 
-    public function addProductGeneralDetails($params)
-    {
+    public function addProductGeneralDetails($params) {
         $sql = "INSERT
                 INTO "
-                        . "tbl_product_master "
-                        . "(productid,"
-                        . "product_code,"
-                        . "productDescription,"
-                        . "vendorid,"
-                        . "vendor_prd_code,"
-                        . "jewelleryType,"
-                        . "leadTime,"
-                        . "returneligible,"
-                        . "product_name"
-                        . ",product_seo_name"
-                        . ",gender"
-                        . ",product_weight"
-                        . ",diamond_setting"
-                        . ",metal_weight"
-                        . ",making_charges"
-                        . ",procurement_cost"
-                        . ",margin"
-                        . ",measurement"
-                        . ",customise_purity"
-                        . ",customise_color"
-                        . ",certificate"
-                        . ",has_diamond"
-                        . ",has_solitaire"
-                        . ",has_uncut"
-                        . ",has_gemstone"
-                        . ",createdon"
-                        . ",updatedby)"
-                        . " VALUES "
-                        . "(\"" . $params['productid'] . "\","
-                        . "\"" . $params['product_code'] . "\""
-                        . ",\"" . $params['productDescription'] . "\""
-                        . ",\"" . $params['details']['vendorid'] . "\""
-                        . ",\"" . $params['vPCode'] . "\""
-                        . ",\"" . $params['jewelleryType'] . "\""
-                        . ",\"" . $params['leadTime'] . "\""
-                        . ",\"" . $params['returneligible'] . "\""
-                        . ",\"" . urldecode($params['details']['product_name']) . "\""
-                        . ",\"" . urldecode($params['details']['product_seo_name']) . "\""
-                        . ",\"" . $params['details']['gender'] . "\""
-                        . ",\"" . $params['details']['product_weight'] . "\""
-                        . ",\"" . urldecode($params['details']['dmdSetting']) . "\""
-                        . ",\"" . $params['details']['metal_weight'] . "\""
-                        . ",\"" . $params['details']['making_charges'] . "\""
-                        . ",\"" . $params['details']['procurement_cost'] . "\""
-                        . ",\"" . $params['details']['margin'] . "\""
-                        . ",\"" . $params['details']['measurement'] . "\""
-                        . ",\"" . $params['customise_purity'] . "\""
-                        . ",\"" . $params['customise_color'] . "\""
-                        . ",\"" . $params['details']['certificate'] . "\""
-                        . ",\"" . $params['has_diamond'] . "\""
-                        . ",\"" . $params['has_solitaire'] . "\""
-                        . ",\"" . $params['has_uncut'] . "\""
-                        . ",\"" . $params['has_gemstone'] . "\""
-                        . ",now()"
-                        . ",\"" . $params['updatedby'] . "\")";
+                . "tbl_product_master "
+                . "(productid,"
+                . "product_code,"
+                . "productDescription,"
+                . "vendorid,"
+                . "vendor_prd_code,"
+                . "jewelleryType,"
+                . "leadTime,"
+                . "returneligible,"
+                . "product_name"
+                . ",product_seo_name"
+                . ",gender"
+                . ",product_weight"
+                . ",diamond_setting"
+                . ",metal_weight"
+                . ",making_charges"
+                . ",procurement_cost"
+                . ",margin"
+                . ",measurement"
+                . ",customise_purity"
+                . ",customise_color"
+                . ",certificate"
+                . ",has_diamond"
+                . ",has_solitaire"
+                . ",has_uncut"
+                . ",has_gemstone"
+                . ",createdon"
+                . ",updatedby)"
+                . " VALUES "
+                . "(\"" . $params['productid'] . "\","
+                . "\"" . $params['product_code'] . "\""
+                . ",\"" . $params['productDescription'] . "\""
+                . ",\"" . $params['details']['vendorid'] . "\""
+                . ",\"" . $params['vPCode'] . "\""
+                . ",\"" . $params['jewelleryType'] . "\""
+                . ",\"" . $params['leadTime'] . "\""
+                . ",\"" . $params['returneligible'] . "\""
+                . ",\"" . urldecode($params['details']['product_name']) . "\""
+                . ",\"" . urldecode($params['details']['product_seo_name']) . "\""
+                . ",\"" . $params['details']['gender'] . "\""
+                . ",\"" . $params['details']['product_weight'] . "\""
+                . ",\"" . urldecode($params['details']['dmdSetting']) . "\""
+                . ",\"" . $params['details']['metal_weight'] . "\""
+                . ",\"" . $params['details']['making_charges'] . "\""
+                . ",\"" . $params['details']['procurement_cost'] . "\""
+                . ",\"" . $params['details']['margin'] . "\""
+                . ",\"" . $params['details']['measurement'] . "\""
+                . ",\"" . $params['customise_purity'] . "\""
+                . ",\"" . $params['customise_color'] . "\""
+                . ",\"" . $params['details']['certificate'] . "\""
+                . ",\"" . $params['has_diamond'] . "\""
+                . ",\"" . $params['has_solitaire'] . "\""
+                . ",\"" . $params['has_uncut'] . "\""
+                . ",\"" . $params['has_gemstone'] . "\""
+                . ",now()"
+                . ",\"" . $params['updatedby'] . "\")";
 
 
         $sql.="
                 ON DUPLICATE KEY UPDATE "
-                        . "vendorid = VALUES(vendorid),"
-                        . "vendor_prd_code = VALUES(vendor_prd_code),"
-                        . "productDescription = VALUES(productDescription),"
-                        . "jewelleryType = VALUES(jewelleryType),"
-                        . "leadTime = VALUES(leadTime),"
-                        . "returneligible = VALUES(returneligible),"
-                        . "product_name = VALUES(product_name),"
-                        . "product_seo_name = VALUES(product_seo_name),"
-                        . "gender = VALUES(gender),"
-                        . "product_weight = VALUES(product_weight),"
-                        . "diamond_setting = VALUES(diamond_setting),"
-                        . "metal_weight = VALUES(metal_weight),"
-                        . "making_charges = VALUES(making_charges),"
-                        . "procurement_cost = VALUES(procurement_cost),"
-                        . "margin = VALUES(margin),"
-                        . "measurement = VALUES(measurement),"
-                        . "customise_purity = VALUES(customise_purity),"
-                        . "customise_color = VALUES(customise_color),"
-                        . "certificate = VALUES(certificate),"
-                        . "has_diamond = VALUES(has_diamond),"
-                        . "has_solitaire = VALUES(has_solitaire),"
-                        . "has_uncut = VALUES(has_uncut),"
-                        . "has_gemstone = VALUES(has_gemstone),"
-                        . " updatedby=VALUES(updatedby)
+                . "vendorid = VALUES(vendorid),"
+                . "vendor_prd_code = VALUES(vendor_prd_code),"
+                . "productDescription = VALUES(productDescription),"
+                . "jewelleryType = VALUES(jewelleryType),"
+                . "leadTime = VALUES(leadTime),"
+                . "returneligible = VALUES(returneligible),"
+                . "product_name = VALUES(product_name),"
+                . "product_seo_name = VALUES(product_seo_name),"
+                . "gender = VALUES(gender),"
+                . "product_weight = VALUES(product_weight),"
+                . "diamond_setting = VALUES(diamond_setting),"
+                . "metal_weight = VALUES(metal_weight),"
+                . "making_charges = VALUES(making_charges),"
+                . "procurement_cost = VALUES(procurement_cost),"
+                . "margin = VALUES(margin),"
+                . "measurement = VALUES(measurement),"
+                . "customise_purity = VALUES(customise_purity),"
+                . "customise_color = VALUES(customise_color),"
+                . "certificate = VALUES(certificate),"
+                . "has_diamond = VALUES(has_diamond),"
+                . "has_solitaire = VALUES(has_solitaire),"
+                . "has_uncut = VALUES(has_uncut),"
+                . "has_gemstone = VALUES(has_gemstone),"
+                . " updatedby=VALUES(updatedby)
                 ";
         $res = $this->query($sql);
         $result = array();
-        if ($res)
-        {
+        if ($res) {
             $err = array
-                        (
-                            'err_code' => 0,
-                            'err_msg' => 'Data inserted successfully'
-                        );
-        }
-        else
-        {
+                (
+                'err_code' => 0,
+                'err_msg' => 'Data inserted successfully'
+            );
+        } else {
             $err = array
-                        (
-                            'err_code' => 1,
-                            'err_msg' => 'Error in inserting'
-                        );
+                (
+                'err_code' => 1,
+                'err_msg' => 'Error in inserting'
+            );
         }
         $results = array
-                        (
-                            'result' => $result,
-                            'error' => $err
-                        );
+            (
+            'result' => $result,
+            'error' => $err
+        );
         return $results;
     }
 
-    public function addProductSizeMApping($params)
-    {
-        $dactivesql="
+    public function addProductSizeMApping($params) {
+        $dactivesql = "
                         DELETE
                         FROM
                                 tbl_product_size_mapping
                         WHERE
-                                productid=".$params['productid'];
-        $dares=  $this->query($dactivesql);
+                                productid=" . $params['productid'];
+        $dares = $this->query($dactivesql);
 
         $sql = "
                     INSERT
@@ -709,17 +651,15 @@ class product extends DB {
                                 updatedby
                             )
                     VALUES ";
-        foreach ($params['sizes'] as $key => $val)
-        {
-            foreach ($val as $key1 => $val1)
-            {
+        foreach ($params['sizes'] as $key => $val) {
+            foreach ($val as $key1 => $val1) {
                 $tmpparams = array
-                                (
-                                    'size_id'  => $key1,
-                                    'updatedby' => $params['updatedby'],
-                                    'productid' => $params['productid'],
-                                    'quantity' => $val1
-                                );
+                    (
+                    'size_id' => $key1,
+                    'updatedby' => $params['updatedby'],
+                    'productid' => $params['productid'],
+                    'quantity' => $val1
+                );
                 $sql.="
                             (
                                 " . $tmpparams['productid'] . ",
@@ -728,11 +668,10 @@ class product extends DB {
                                     now(),
                                 " . $tmpparams['updatedby'] . "
                             ),";
-
             }
         }
         $sql = trim($sql, ",");
-        $sql.=  "
+        $sql.= "
                     ON DUPLICATE KEY UPDATE
                                     quantity = VALUES(quantity),
                                     updatedby=VALUES(updatedby)
@@ -741,32 +680,28 @@ class product extends DB {
 
         $res = $this->query($sql);
         $result = array();
-        if ($res)
-        {
+        if ($res) {
             $err = array
-                        (
-                            'err_code' => 0,
-                            'err_msg' => 'Data inserted successfully'
-                        );
-        }
-        else
-        {
+                (
+                'err_code' => 0,
+                'err_msg' => 'Data inserted successfully'
+            );
+        } else {
             $err = array
-                        (
-                            'err_code' => 1,
-                            'err_msg' => 'Error in inserting'
-                        );
+                (
+                'err_code' => 1,
+                'err_msg' => 'Error in inserting'
+            );
         }
         $results = array
-                        (
-                            'result' => $result,
-                            'error' => $err
-                        );
+            (
+            'result' => $result,
+            'error' => $err
+        );
         return $results;
     }
 
-    public function getSizeIdByValue($size)
-    {
+    public function getSizeIdByValue($size) {
         $sql = "
                     SELECT
                             id
@@ -777,24 +712,22 @@ class product extends DB {
         $res = $this->query($sql);
         $result = array();
 
-        if ($res)
-        {
+        if ($res) {
             $row = $this->fetchData($res);
             $sid = $row['id'];
             return $sid;
         }
     }
 
-    public function addProductMetalPurityMapping($params)
-    {
-        $dactivesql="
+    public function addProductMetalPurityMapping($params) {
+        $dactivesql = "
                         DELETE
                         FROM
                                 tbl_product_metal_purity_mapping
                         WHERE
-                                productid=".$params['productid'];
+                                productid=" . $params['productid'];
 
-        $dares=  $this->query($dactivesql);
+        $dares = $this->query($dactivesql);
 
         $sql = "
                     INSERT
@@ -808,17 +741,16 @@ class product extends DB {
                             )
                     VALUES";
 
-        foreach ($params['metalpurity'] as $key => $val)
-        {
+        foreach ($params['metalpurity'] as $key => $val) {
 
             #$purityid = $this->getMetalPurityIdByValue($val);
-            $purityid =$val;
+            $purityid = $val;
             $tmpparams = array
-                            (
-                                'id' => $purityid,
-                                'updatedby' => $params['updatedby'],
-                                'productid' => $params['productid']
-                            );
+                (
+                'id' => $purityid,
+                'updatedby' => $params['updatedby'],
+                'productid' => $params['productid']
+            );
 
             $sql.="
                         (
@@ -830,38 +762,34 @@ class product extends DB {
         }
 
         $sql = trim($sql, ",");
-        $sql.=  "
+        $sql.= "
                     ON DUPLICATE KEY UPDATE
                                     updatedby=VALUES(updatedby)
                 ";
         $res = $this->query($sql);
         $result = array();
-        if ($res)
-        {
+        if ($res) {
             $err = array
-                        (
-                            'err_code' => 0,
-                            'err_msg' => 'Data inserted successfully'
-                        );
-        }
-        else
-        {
+                (
+                'err_code' => 0,
+                'err_msg' => 'Data inserted successfully'
+            );
+        } else {
             $err = array
-                        (
-                            'err_code' => 1,
-                            'err_msg' => 'Error in inserting'
-                        );
+                (
+                'err_code' => 1,
+                'err_msg' => 'Error in inserting'
+            );
         }
         $results = array
-                        (
-                            'result' => $result,
-                            'error' => $err
-                        );
+            (
+            'result' => $result,
+            'error' => $err
+        );
         return $results;
     }
 
-    public function getMetalPurityIdByValue($value)
-    {
+    public function getMetalPurityIdByValue($value) {
         $sql = "
                     SELECT
                             id
@@ -873,23 +801,21 @@ class product extends DB {
         $res = $this->query($sql);
         $result = array();
 
-        if ($res)
-        {
+        if ($res) {
             $row = $this->fetchData($res);
             $purityid = $row['id'];
             return $purityid;
         }
     }
 
-    public function addProductMetalColorMapping($params)
-    {
-        $dactivesql="
+    public function addProductMetalColorMapping($params) {
+        $dactivesql = "
                         DELETE
                         FROM
                                 tbl_product_metal_color_mapping
                         WHERE
-                                productid=".$params['productid'];
-        $dares=  $this->query($dactivesql);
+                                productid=" . $params['productid'];
+        $dares = $this->query($dactivesql);
 
         $sql = "
                     INSERT
@@ -903,17 +829,16 @@ class product extends DB {
                             )
                     VALUES";
 
-        foreach ($params['metalcolors']as $key => $val)
-        {
+        foreach ($params['metalcolors']as $key => $val) {
 
             #$colorid = $this->getMetalColorIdByValue($val);
             $colorid = $val;
             $tmpparams = array
-                            (
-                                'id' => $colorid,
-                                'updatedby' => $params['updatedby'],
-                                'productid' => $params['productid']
-                            );
+                (
+                'id' => $colorid,
+                'updatedby' => $params['updatedby'],
+                'productid' => $params['productid']
+            );
 
             $sql.="
                         (
@@ -926,7 +851,7 @@ class product extends DB {
 
 
         $sql = trim($sql, ",");
-        $sql.=  "
+        $sql.= "
                     ON DUPLICATE KEY UPDATE
                                     id = VALUES(id),
                                     updatedby=VALUES(updatedby)
@@ -934,32 +859,28 @@ class product extends DB {
 
         $res = $this->query($sql);
         $result = array();
-        if ($res)
-        {
+        if ($res) {
             $err = array
-                        (
-                            'err_code' => 0,
-                            'err_msg' => 'Data inserted successfully'
-                        );
-        }
-        else
-        {
+                (
+                'err_code' => 0,
+                'err_msg' => 'Data inserted successfully'
+            );
+        } else {
             $err = array
-                        (
-                            'err_code' => 1,
-                            'err_msg' => 'Error in inserting'
-                        );
+                (
+                'err_code' => 1,
+                'err_msg' => 'Error in inserting'
+            );
         }
         $results = array
-                        (
-                            'result' => $result,
-                            'error' => $err
-                        );
+            (
+            'result' => $result,
+            'error' => $err
+        );
         return $results;
     }
 
-    public function getMetalColorIdByValue($value)
-    {
+    public function getMetalColorIdByValue($value) {
         $sql = "
                     SELECT
                             id
@@ -970,16 +891,14 @@ class product extends DB {
         $res = $this->query($sql);
         $result = array();
 
-        if ($res)
-        {
+        if ($res) {
             $row = $this->fetchData($res);
             $colorid = $row['id'];
             return $colorid;
         }
     }
 
-    public function getMetalColorList($params)
-    {
+    public function getMetalColorList($params) {
         $sql = "
                     SELECT
                             id,
@@ -993,12 +912,10 @@ class product extends DB {
         $page = ($params['page'] ? $params['page'] : 1);
         $limit = ($params['limit'] ? $params['limit'] : 1000);
 
-        if ($limit >1000 )
-        {
+        if ($limit > 1000) {
             $limit = 1000;
         }
-        if (!empty($page))
-        {
+        if (!empty($page)) {
             $start = ($page * $limit) - $limit;
             $sql.=" LIMIT " . $start . ",$limit";
         }
@@ -1006,40 +923,34 @@ class product extends DB {
         $res = $this->query($sql);
         $result = array();
 
-        if($res)
-        {
-            while($row = $this->fetchData($res))
-            {
-                $reslt['id'] =$row['id'];
+        if ($res) {
+            while ($row = $this->fetchData($res)) {
+                $reslt['id'] = $row['id'];
                 $reslt['name'] = $row['dname'];
                 $reslt['value'] = $row['dvalue'];
-                $result[]=$reslt;
-
+                $result[] = $reslt;
             }
             $err = array
-                        (
-                            'err_code' => 0,
-                            'err_msg' => 'Data fetched successfully'
-                        );
-        }
-        else
-        {
+                (
+                'err_code' => 0,
+                'err_msg' => 'Data fetched successfully'
+            );
+        } else {
             $err = array
-                        (
-                            'err_code' => 1,
-                            'err_msg' => 'Error in inserting'
-                        );
+                (
+                'err_code' => 1,
+                'err_msg' => 'Error in inserting'
+            );
         }
         $results = array
-                        (
-                            'result' => $result,
-                            'error' => $err
-                        );
+            (
+            'result' => $result,
+            'error' => $err
+        );
         return $results;
     }
 
-    public function getVendorList($params)
-    {
+    public function getVendorList($params) {
         $sql = "SELECT
                         vendorid,
                         name,
@@ -1056,22 +967,18 @@ class product extends DB {
         $page = ($params['page'] ? $params['page'] : 1);
         $limit = ($params['limit'] ? $params['limit'] : 1000);
 
-        if ($limit >1000 )
-        {
+        if ($limit > 1000) {
             $limit = 1000;
         }
-        if (!empty($page))
-        {
+        if (!empty($page)) {
             $start = ($page * $limit) - $limit;
             $sql.=" LIMIT " . $start . ",$limit";
         }
         $res = $this->query($sql);
         $result = array();
 
-        if ($this->numRows($res)>0)
-        {
-            while ($row = $this->fetchData($res))
-            {
+        if ($this->numRows($res) > 0) {
+            while ($row = $this->fetchData($res)) {
                 $reslt['vid'] = $row['vendorid'];
                 $reslt['name'] = $row['name'];
                 $reslt['city'] = $row['city'];
@@ -1084,29 +991,26 @@ class product extends DB {
             }
 
             $err = array
-                        (
-                            'err_code' => 0,
-                            'err_msg' => 'Data fetched successfully'
-                        );
-        }
-        else
-        {
+                (
+                'err_code' => 0,
+                'err_msg' => 'Data fetched successfully'
+            );
+        } else {
             $err = array
-                        (
-                            'err_code' => 1,
-                            'err_msg' => 'Error in inserting'
-                        );
+                (
+                'err_code' => 1,
+                'err_msg' => 'Error in inserting'
+            );
         }
         $results = array
-                        (
-                            'result' => $result,
-                            'error' => $err
-                        );
+            (
+            'result' => $result,
+            'error' => $err
+        );
         return $results;
     }
 
-    public function getVendorDetailsById($vid)
-    {
+    public function getVendorDetailsById($vid) {
         $sql = "SELECT
                         vendorid,
                         name,
@@ -1123,8 +1027,7 @@ class product extends DB {
         $res = $this->query($sql);
         $result = array();
 
-        if ($res)
-        {
+        if ($res) {
             $row = $this->fetchData($res);
             $reslt['vid'] = $row['vendorid'];
             $reslt['name'] = $row['name'];
@@ -1136,30 +1039,27 @@ class product extends DB {
             $reslt['lat'] = $row['lat'];
             $result[] = $reslt;
             $err = array
-                        (
-                            'err_code' => 0,
-                            'err_msg' => 'Data fetched successfully'
-                        );
-        }
-        else
-        {
+                (
+                'err_code' => 0,
+                'err_msg' => 'Data fetched successfully'
+            );
+        } else {
             $err = array
-                        (
-                            'err_code' => 1,
-                            'err_msg' => 'Error in inserting'
-                        );
+                (
+                'err_code' => 1,
+                'err_msg' => 'Error in inserting'
+            );
         }
 
         $results = array
-                        (
-                            'result' => $result,
-                            'error' => $err
-                        );
+            (
+            'result' => $result,
+            'error' => $err
+        );
         return $results;
     }
 
-    public function getVendorDetailsByName($name)
-    {
+    public function getVendorDetailsByName($name) {
         $sql = "
                     SELECT
                                 vendorid,
@@ -1188,29 +1088,26 @@ class product extends DB {
             $reslt['lat'] = $row['lat'];
             $result[] = $reslt;
             $err = array
-                        (
-                            'err_code' => 0,
-                            'err_msg' => 'Data fetched successfully'
-                        );
-        }
-        else
-        {
+                (
+                'err_code' => 0,
+                'err_msg' => 'Data fetched successfully'
+            );
+        } else {
             $err = array
-                        (
-                            'err_code' => 1,
-                            'err_msg' => 'Error in inserting'
-                        );
+                (
+                'err_code' => 1,
+                'err_msg' => 'Error in inserting'
+            );
         }
         $results = array
-                        (
-                            'result' => $result,
-                            'error' => $err
-                        );
+            (
+            'result' => $result,
+            'error' => $err
+        );
         return $results;
     }
 
-    public function addSolitaire($params)
-    {
+    public function addSolitaire($params) {
 
         $sql = "INSERT
                 INTO
@@ -1237,36 +1134,32 @@ class product extends DB {
                 VALUES
                 ";
 
-        foreach ($params['solitaires'] as $solt)
-        {
-            if(!$solt['solitaire_id'])
-            {
+        foreach ($params['solitaires'] as $solt) {
+            if (!$solt['solitaire_id']) {
                 $solid = $this->generateId();
-            }
-            else
-            {
+            } else {
                 $solid = $solt['solitaire_id'];
             }
 
             $tmpparams = array
-                            (
-                                'shape' => $solt['shape'],
-                                'color' => $solt['color'],
-                                'clarity' => $solt['clarity'],
-                                'cut' => urldecode($solt['cut']),
-                                'symmetry' => urldecode($solt['symmetry']),
-                                'polish' => urldecode($solt['polish']),
-                                'fluorescence' => urldecode($solt['fluorescence']),
-                                'carat' => $solt['carat'],
-                                'price_per_carat' => $solt['price_per_carat'],
-                                'table' => $solt['table'],
-                                'crown_angle' => $solt['crown_angle'],
-                                'girdle' => $solt['girdle'],
-                                'no_of_solitaire' => $solt['nofs'],
-                                'solitaire_id' => $solid,
-                                'updatedby' => $params['updatedby'],
-                                'productid' => $params['productid']
-                            );
+                (
+                'shape' => $solt['shape'],
+                'color' => $solt['color'],
+                'clarity' => $solt['clarity'],
+                'cut' => urldecode($solt['cut']),
+                'symmetry' => urldecode($solt['symmetry']),
+                'polish' => urldecode($solt['polish']),
+                'fluorescence' => urldecode($solt['fluorescence']),
+                'carat' => $solt['carat'],
+                'price_per_carat' => $solt['price_per_carat'],
+                'table' => $solt['table'],
+                'crown_angle' => $solt['crown_angle'],
+                'girdle' => $solt['girdle'],
+                'no_of_solitaire' => $solt['nofs'],
+                'solitaire_id' => $solid,
+                'updatedby' => $params['updatedby'],
+                'productid' => $params['productid']
+            );
 
             $sql.="
                         (
@@ -1279,14 +1172,14 @@ class product extends DB {
                             '" . $tmpparams['symmetry'] . "',
                             '" . $tmpparams['polish'] . "',
                             '" . $tmpparams['fluorescence'] . "',
-                            "  . $tmpparams['carat'] . ",
-                            "  . $tmpparams['price_per_carat'] . ",
+                            " . $tmpparams['carat'] . ",
+                            " . $tmpparams['price_per_carat'] . ",
                             '" . $tmpparams['table'] . "',
                             '" . $tmpparams['crown_angle'] . "',
                             '" . $tmpparams['girdle'] . "',
                             '" . $tmpparams['no_of_solitaire'] . "',
                                  now(),
-                            "  . $params['updatedby'] . "
+                            " . $params['updatedby'] . "
                         ),";
         }
 
@@ -1311,117 +1204,101 @@ class product extends DB {
 
         $res = $this->query($sql);
         $result = array();
-        if ($res)
-        {
+        if ($res) {
             $err = array
-                        (
-                            'err_code' => 0,
-                            'err_msg' => 'Data inserted successfully'
-                        );
-        }
-        else
-        {
+                (
+                'err_code' => 0,
+                'err_msg' => 'Data inserted successfully'
+            );
+        } else {
             $err = array
-                        (
-                            'err_code' => 1,
-                            'err_msg' => 'Error in inserting'
-                        );
+                (
+                'err_code' => 1,
+                'err_msg' => 'Error in inserting'
+            );
         }
 
         $results = array
-                        (
-                            'result' => $result,
-                            'error' => $err
-                        );
+            (
+            'result' => $result,
+            'error' => $err
+        );
         return $results;
     }
 
-
-    public function changeSolitaireStatus($params)
-    {
-        $params= json_decode($params[0],1);
+    public function changeSolitaireStatus($params) {
+        $params = json_decode($params[0], 1);
         $sql = "
                     UPDATE
                             tbl_product_solitaire_mapping
                     SET
-                            active_flag=".$params['active_flag'].",
-                            updatedby = '".$params['updatedby']."'
+                            active_flag=" . $params['active_flag'] . ",
+                            updatedby = '" . $params['updatedby'] . "'
                     WHERE
-                            productid = '".$params['productid']."'
+                            productid = '" . $params['productid'] . "'
                     AND
-                            solitaire_id = '".$params['solitaire_id']."'
+                            solitaire_id = '" . $params['solitaire_id'] . "'
                 ";
         $res = $this->query($sql);
         $result = array();
-        if ($res)
-        {
+        if ($res) {
             $err = array
-                        (
-                            'err_code' => 0,
-                            'err_msg' => 'Data updated successfully'
-                        );
-        }
-        else
-        {
+                (
+                'err_code' => 0,
+                'err_msg' => 'Data updated successfully'
+            );
+        } else {
             $err = array
-                        (
-                            'err_code' => 1,
-                            'err_msg' => 'Error in updating'
-                        );
+                (
+                'err_code' => 1,
+                'err_msg' => 'Error in updating'
+            );
         }
         $results = array
-                        (
-                            'result' => $result,
-                            'error' => $err
-                        );
+            (
+            'result' => $result,
+            'error' => $err
+        );
         return $results;
-
     }
 
-    public function changeDiamondStatus($params)
-    {
-        $params= json_decode($params[0],1);
+    public function changeDiamondStatus($params) {
+        $params = json_decode($params[0], 1);
         $sql = "
                     UPDATE
                                 tbl_product_diamond_mapping
                     SET
-                                active_flag=".$params['active_flag'].",
-                                updatedby = '".$params['updatedby']."'
+                                active_flag=" . $params['active_flag'] . ",
+                                updatedby = '" . $params['updatedby'] . "'
                     WHERE
-                                productid = '".$params['productid']."'
+                                productid = '" . $params['productid'] . "'
                     AND
-                                diamond_id = '".$params['diamond_id']."'
+                                diamond_id = '" . $params['diamond_id'] . "'
                 ";
         $res = $this->query($sql);
         $result = array();
-        if ($res)
-        {
+        if ($res) {
             $err = array
-                        (
-                            'err_code' => 0,
-                            'err_msg' => 'Data updated successfully'
-                        );
-        }
-        else
-        {
+                (
+                'err_code' => 0,
+                'err_msg' => 'Data updated successfully'
+            );
+        } else {
             $err = array
-                        (
-                            'err_code' => 1,
-                            'err_msg' => 'Error in updating'
-                        );
+                (
+                'err_code' => 1,
+                'err_msg' => 'Error in updating'
+            );
         }
         $results = array
-                        (
-                            'result' => $result,
-                            'error' => $err
-                        );
+            (
+            'result' => $result,
+            'error' => $err
+        );
         return $results;
-
     }
 
-
-    public function addDiamond($params)
-    {
+    public function addDiamond($params) {
 
         $sql = "
                     INSERT
@@ -1438,7 +1315,7 @@ class product extends DB {
                             )
                     VALUES";
 
-        $qulsql =   "
+        $qulsql = "
                         INSERT
                         INTO
                                 tbl_diamond_quality_mapping
@@ -1451,51 +1328,46 @@ class product extends DB {
                         VALUES
                     ";
 
-        foreach ($params['diamonds'] as $dmd)
-        {
+        foreach ($params['diamonds'] as $dmd) {
 
-            if(!$dmd['diamond_id'])
-            {
+            if (!$dmd['diamond_id']) {
                 $dmdid = $this->generateId();
-            }
-            else
-            {
+            } else {
                 $dmdid = $dmd['diamond_id'];
             }
 
             $tmpparams = array
-                            (
-                                'quality' => $dmd['quality'],
-                                'shape' => $dmd['shape'],
-                                'carat' => $dmd['carat'],
-                                'total_no' => $dmd['total_no'],
-                                'diamond_id' => $dmdid,
-                                'updatedby' => $params['updatedby'],
-                                'productid' => $params['productid']
-                            );
+                (
+                'quality' => $dmd['quality'],
+                'shape' => $dmd['shape'],
+                'carat' => $dmd['carat'],
+                'total_no' => $dmd['total_no'],
+                'diamond_id' => $dmdid,
+                'updatedby' => $params['updatedby'],
+                'productid' => $params['productid']
+            );
 
             $sql.="
                     (
                         '" . $tmpparams['productid'] . "',
                         '" . $tmpparams['diamond_id'] . "',
                         '" . $tmpparams['shape'] . "',
-                        "  . $tmpparams['carat'] . ",
-                        "  . $tmpparams['total_no'] . ",
+                        " . $tmpparams['carat'] . ",
+                        " . $tmpparams['total_no'] . ",
                              now(),
                         " . $tmpparams['updatedby'] . "
                     ),
                 ";
 
 
-            foreach ($dmd['quality'] as $dqul)
-            {
+            foreach ($dmd['quality'] as $dqul) {
 
                 $qltmpparams = array
-                                (
-                                    'diamond_id' => $dmdid,
-                                    'updatedby' => $params['updatedby'],
-                                    'id' => $dqul
-                                );
+                    (
+                    'diamond_id' => $dmdid,
+                    'updatedby' => $params['updatedby'],
+                    'id' => $dqul
+                );
 
                 $qulsql.="
                             (
@@ -1509,7 +1381,7 @@ class product extends DB {
         }
 
         $sql = trim(trim($sql), ",");
-        $sql.=  "
+        $sql.= "
                     ON DUPLICATE KEY UPDATE
                             shape = VALUES(shape),
                             carat = VALUES(carat),
@@ -1524,113 +1396,97 @@ class product extends DB {
                             updatedby=VALUES(updatedby)
                 ";
 
-        $dsql=  "
+        $dsql = "
                     DELETE
                     FROM
                             tbl_diamond_quality_mapping
                     WHERE
-                            diamond_id ='".$dmdid."'
+                            diamond_id ='" . $dmdid . "'
                 ";
         $dres = $this->query($dsql);
         $dmdprdRes = $this->addPrdDiamondMapping($sql);
         $dmdQltRes = $this->addDiamondQualityMapping($qulsql);
 
 
-        if ($dmdprdRes['error']['err_code'] == 0 && $dmdQltRes['error']['err_code'] == 0)
-        {
+        if ($dmdprdRes['error']['err_code'] == 0 && $dmdQltRes['error']['err_code'] == 0) {
             $err = array
-                        (
-                            'err_code' => 0,
-                            'err_msg' => 'Data inserted successfully'
-                        );
-        }
-        else
-        {
-            if ($dmdprdRes['error']['err_code'] == 1)
-            {
+                (
+                'err_code' => 0,
+                'err_msg' => 'Data inserted successfully'
+            );
+        } else {
+            if ($dmdprdRes['error']['err_code'] == 1) {
                 $err = array
-                            (
-                                'err_code' => 1,
-                                'err_msg' => 'Error in adding diamond to product'
-                            );
-            }
-            else if ($dmdQltRes['error']['err_code'] == 1)
-            {
+                    (
+                    'err_code' => 1,
+                    'err_msg' => 'Error in adding diamond to product'
+                );
+            } else if ($dmdQltRes['error']['err_code'] == 1) {
                 $err = array
-                            (
-                                'err_code' => 1,
-                                'err_msg' => 'Error in adding diamond quality to product'
-                            );
+                    (
+                    'err_code' => 1,
+                    'err_msg' => 'Error in adding diamond quality to product'
+                );
             }
         }
-            $result = array();
-            $results = array
-                            (
-                                'result' => $result,
-                                'error' => $err
-                            );
+        $result = array();
+        $results = array
+            (
+            'result' => $result,
+            'error' => $err
+        );
         return $results;
     }
 
-    public function addPrdDiamondMapping($sql)
-    {
+    public function addPrdDiamondMapping($sql) {
         $res = $this->query($sql);
         $result = array();
-        if ($res)
-        {
+        if ($res) {
             $err = array
-                        (
-                            'err_code' => 0,
-                            'err_msg' => 'Data inserted successfully'
-                        );
-        }
-        else
-        {
+                (
+                'err_code' => 0,
+                'err_msg' => 'Data inserted successfully'
+            );
+        } else {
             $err = array
-                        (
-                            'err_code' => 1,
-                            'err_msg' => 'Error in inserting'
-                        );
+                (
+                'err_code' => 1,
+                'err_msg' => 'Error in inserting'
+            );
         }
         $results = array
-                        (
-                            'result' => $result,
-                            'error' => $err
-                        );
+            (
+            'result' => $result,
+            'error' => $err
+        );
         return $results;
     }
 
-    public function addDiamondQualityMapping($sql)
-    {
+    public function addDiamondQualityMapping($sql) {
         $res = $this->query($sql);
         $result = array();
-        if ($res)
-        {
+        if ($res) {
             $err = array
-                        (
-                            'err_code' => 0,
-                            'err_msg' => 'Data inserted successfully'
-                        );
-        }
-        else
-        {
+                (
+                'err_code' => 0,
+                'err_msg' => 'Data inserted successfully'
+            );
+        } else {
             $err = array
-                        (
-                            'err_code' => 1,
-                            'err_msg' => 'Error in inserting'
-                        );
+                (
+                'err_code' => 1,
+                'err_msg' => 'Error in inserting'
+            );
         }
         $results = array
-                        (
-                            'result' => $result,
-                            'error' => $err
-                        );
+            (
+            'result' => $result,
+            'error' => $err
+        );
         return $results;
     }
 
-    public function getDiamondQualityIdByValue($value)
-           
-    {
+    public function getDiamondQualityIdByValue($value) {
         $sql = "
                     SELECT
                             id
@@ -1642,17 +1498,15 @@ class product extends DB {
         $res = $this->query($sql);
         $result = array();
 
-        if ($res)
-        {
+        if ($res) {
             $row = $this->fetchData($res);
             $qid = $row['id'];
             return $qid;
         }
     }
 
-    public function getDiamondQualityList($params)
-    {
-        $sql= "SELECT
+    public function getDiamondQualityList($params) {
+        $sql = "SELECT
                         id,
                         dname,
                         dvalue,
@@ -1666,55 +1520,45 @@ class product extends DB {
         $page = ($params['page'] ? $params['page'] : 1);
         $limit = ($params['limit'] ? $params['limit'] : 1000);
 
-        if ($limit >1000 )
-        {
+        if ($limit > 1000) {
             $limit = 1000;
         }
 
-        if (!empty($page))
-        {
+        if (!empty($page)) {
             $start = ($page * $limit) - $limit;
             $sql.=" LIMIT " . $start . ",$limit";
         }
-        $res=$this->query($sql);
+        $res = $this->query($sql);
 
-        if($this->numRows($res)>0)
-        {
-            while($row = $this->fetchData($res))
-            {
-                $reslt['id'] =$row['id'];
+        if ($this->numRows($res) > 0) {
+            while ($row = $this->fetchData($res)) {
+                $reslt['id'] = $row['id'];
                 $reslt['name'] = $row['dname'];
                 $reslt['value'] = $row['dvalue'];
-                $reslt['price'] =  intval($row['price_per_carat']);
-                $result[]=$reslt;
-
+                $reslt['price'] = intval($row['price_per_carat']);
+                $result[] = $reslt;
             }
             $err = array
-                        (
-                            'err_code' => 0,
-                            'err_msg' => 'Data fetched successfully'
-                        );
-        }
-        else
-        {
+                (
+                'err_code' => 0,
+                'err_msg' => 'Data fetched successfully'
+            );
+        } else {
             $err = array
-                        (
-                            'err_code' => 1,
-                            'err_msg' => 'Error in inserting'
-                        );
+                (
+                'err_code' => 1,
+                'err_msg' => 'Error in inserting'
+            );
         }
         $results = array
-                        (
-                            'result' => $result,
-                            'error' => $err
-                        );
+            (
+            'result' => $result,
+            'error' => $err
+        );
         return $results;
-
     }
 
-
-    public function addUncutDiamond($params)
-    {
+    public function addUncutDiamond($params) {
         $sql = "
                     INSERT
                     INTO
@@ -1733,45 +1577,41 @@ class product extends DB {
                     VALUES
                 ";
 
-        foreach ($params['uncut'] as $arr)
-        {
-            if(!$arr['uncut_id'])
-            {
+        foreach ($params['uncut'] as $arr) {
+            if (!$arr['uncut_id']) {
                 $uncutid = $this->generateId();
-            }
-            else
-            {
+            } else {
                 $uncutid = $arr['uncut_id'];
             }
 
             $tmpparams = array
-                            (
-                                'productid' => $params['productid'],
-                                'uncut_id' => $uncutid,
-                                'color' => $arr['color'],
-                                'quality' => $arr['quality'],
-                                'carat' => $arr['carat'],
-                                'price_per_carat' => $arr['price_per_carat'],
-                                'total_no' => $arr['total_no'],
-                                'updatedby' => $params['updatedby']
-                            );
+                (
+                'productid' => $params['productid'],
+                'uncut_id' => $uncutid,
+                'color' => $arr['color'],
+                'quality' => $arr['quality'],
+                'carat' => $arr['carat'],
+                'price_per_carat' => $arr['price_per_carat'],
+                'total_no' => $arr['total_no'],
+                'updatedby' => $params['updatedby']
+            );
 
-            $sql.=  "
+            $sql.= "
                         (
-                            "  . $tmpparams['productid'] . ",
-                            "  . $uncutid . ",
+                            " . $tmpparams['productid'] . ",
+                            " . $uncutid . ",
                             '" . $tmpparams['color'] . "',
                             '" . $tmpparams['quality'] . "',
-                            "  . $tmpparams['total_no'] . ",
-                            "  . $tmpparams['carat'] . ",
-                            "  . $tmpparams['price_per_carat'] . ",
+                            " . $tmpparams['total_no'] . ",
+                            " . $tmpparams['carat'] . ",
+                            " . $tmpparams['price_per_carat'] . ",
                                  now(),
-                            "  . $tmpparams['updatedby'] . "
+                            " . $tmpparams['updatedby'] . "
                         ),";
         }
 
         $sql = trim($sql, ",");
-        $sql.=  "
+        $sql.= "
                     ON DUPLICATE KEY UPDATE
                                     color = VALUES(color),
                                     quality = VALUES(quality),
@@ -1783,122 +1623,107 @@ class product extends DB {
 
         $res = $this->query($sql);
         $result = array();
-        if ($res)
-        {
+        if ($res) {
             $err = array
-                        (
-                            'err_code' => 0,
-                            'err_msg' => 'Data inserted successfully'
-                        );
-        }
-        else
-        {
+                (
+                'err_code' => 0,
+                'err_msg' => 'Data inserted successfully'
+            );
+        } else {
             $err = array
-                        (
-                            'err_code' => 1,
-                            'err_msg' => 'Error in inserting'
-                        );
+                (
+                'err_code' => 1,
+                'err_msg' => 'Error in inserting'
+            );
         }
         $results = array
-                        (
-                            'result' => $result,
-                            'error' => $err
-                        );
+            (
+            'result' => $result,
+            'error' => $err
+        );
         return $results;
     }
 
-    public function changeUncutStatus($params)
-    {
-        $params= json_decode($params[0],1);
+    public function changeUncutStatus($params) {
+        $params = json_decode($params[0], 1);
         $sql = "
                     UPDATE
                             tbl_product_uncut_mapping
                     SET
-                            active_flag=".$params['active_flag'].",
-                            updatedby = '".$params['updatedby']."'
+                            active_flag=" . $params['active_flag'] . ",
+                            updatedby = '" . $params['updatedby'] . "'
                     WHERE
-                            productid = '".$params['productid']."'
+                            productid = '" . $params['productid'] . "'
                     AND
-                            uncut_id = '".$params['uncut_id']."'
+                            uncut_id = '" . $params['uncut_id'] . "'
                 ";
         $res = $this->query($sql);
         $result = array();
-        if ($res)
-        {
+        if ($res) {
             $err = array
-                        (
-                            'err_code' => 0,
-                            'err_msg' => 'Data updated successfully'
-                        );
-        }
-        else
-        {
+                (
+                'err_code' => 0,
+                'err_msg' => 'Data updated successfully'
+            );
+        } else {
             $err = array
-                        (
-                            'err_code' => 1,
-                            'err_msg' => 'Error in updating'
-                        );
+                (
+                'err_code' => 1,
+                'err_msg' => 'Error in updating'
+            );
         }
         $results = array
-                        (
-                            'result' => $result,
-                            'error' => $err
-                        );
+            (
+            'result' => $result,
+            'error' => $err
+        );
         return $results;
-
     }
 
-    public function changeGemstoneStatus($params)
-    {
-        $params= json_decode($params[0],1);
+    public function changeGemstoneStatus($params) {
+        $params = json_decode($params[0], 1);
         $sql = "
                     UPDATE
                                 tbl_product_gemstone_mapping
                     SET
-                                active_flag=".$params['active_flag'].",
-                                updatedby = '".$params['updatedby']."'
+                                active_flag=" . $params['active_flag'] . ",
+                                updatedby = '" . $params['updatedby'] . "'
                     WHERE
-                                productid = '".$params['productid']."'
+                                productid = '" . $params['productid'] . "'
                     AND
-                                gemstone_id = '".$params['gemstone_id']."'
+                                gemstone_id = '" . $params['gemstone_id'] . "'
                 ";
         $res = $this->query($sql);
         $result = array();
-        if ($res)
-        {
+        if ($res) {
             $err = array
-                        (
-                            'err_code' => 0,
-                            'err_msg' => 'Data updated successfully'
-                        );
-        }
-        else
-        {
+                (
+                'err_code' => 0,
+                'err_msg' => 'Data updated successfully'
+            );
+        } else {
             $err = array
-                        (
-                            'err_code' => 1,
-                            'err_msg' => 'Error in updating'
-                        );
+                (
+                'err_code' => 1,
+                'err_msg' => 'Error in updating'
+            );
         }
         $results = array
-                        (
-                            'result' => $result,
-                            'error' => $err
-                        );
+            (
+            'result' => $result,
+            'error' => $err
+        );
         return $results;
-
     }
 
-
-    public function addGemstone($params)
-    {
-        $dsql=  "
+    public function addGemstone($params) {
+        $dsql = "
                     UPDATE
                             tbl_product_gemstone_mapping
                     SET
                             active_flag = 0
                     WHERE
-                            productid ='".$params['productid']."'
+                            productid ='" . $params['productid'] . "'
                 ";
         $dres = $this->query($dsql);
 
@@ -1918,21 +1743,20 @@ class product extends DB {
                         )
                 VALUES";
 
-        foreach ($params['gemstone'] as $arr)
-        {
+        foreach ($params['gemstone'] as $arr) {
             $garr = $this->getGemstoneDetailsById($arr['gvalue']);
             $gname = $garr['result']['name'];
-            $gemstoneid =$arr['gvalue'];
+            $gemstoneid = $arr['gvalue'];
 
             $tmpparams = array
-                            (
-                                'productid' => $params['productid'],
-                                'total_no' => $arr['total_no'],
-                                'carat' => $arr['carat'],
-                                'price_per_carat' => $arr['price_per_carat'],
-                                'updatedby' => $params['updatedby']
-                            );
-            $sql.=  "
+                (
+                'productid' => $params['productid'],
+                'total_no' => $arr['total_no'],
+                'carat' => $arr['carat'],
+                'price_per_carat' => $arr['price_per_carat'],
+                'updatedby' => $params['updatedby']
+            );
+            $sql.= "
                         (
                             '" . $tmpparams['productid'] . "',
                             " . $gemstoneid . ",
@@ -1947,7 +1771,7 @@ class product extends DB {
         }
         $sql = trim(trim($sql), ",");
 
-        $sql.=  "
+        $sql.= "
                     ON DUPLICATE KEY UPDATE
                                         total_no = VALUES(total_no),
                                         carat = VALUES(carat),
@@ -1958,32 +1782,28 @@ class product extends DB {
 
         $res = $this->query($sql);
         $result = array();
-        if ($res)
-        {
+        if ($res) {
             $err = array
-                        (
-                            'err_code' => 0,
-                            'err_msg' => 'Data inserted successfully'
-                        );
-        }
-        else
-        {
+                (
+                'err_code' => 0,
+                'err_msg' => 'Data inserted successfully'
+            );
+        } else {
             $err = array
-                        (
-                            'err_code' => 1,
-                            'err_msg' => 'Error in inserting'
-                        );
+                (
+                'err_code' => 1,
+                'err_msg' => 'Error in inserting'
+            );
         }
         $results = array
-                        (
-                            'result' => $result,
-                            'error' => $err
-                        );
+            (
+            'result' => $result,
+            'error' => $err
+        );
         return $results;
     }
 
-    public function getGemstoneDetailsById($gid)
-    {
+    public function getGemstoneDetailsById($gid) {
 
         $sql = "
                     SELECT
@@ -1999,36 +1819,32 @@ class product extends DB {
 
         $result = array();
 
-        if ($res)
-        {
+        if ($res) {
             $reslt['id'] = $row['id'];
             $reslt['name'] = $row['gemstone_name'];
             $reslt['desc'] = $row['description'];
             $result = $reslt;
             $err = array
-                        (
-                            'err_code' => 0,
-                            'err_msg' => 'Data fetched successfully'
-                        );
-        }
-        else
-        {
+                (
+                'err_code' => 0,
+                'err_msg' => 'Data fetched successfully'
+            );
+        } else {
             $err = array
-                        (
-                            'err_code' => 1,
-                            'err_msg' => 'Error in inserting'
-                        );
+                (
+                'err_code' => 1,
+                'err_msg' => 'Error in inserting'
+            );
         }
         $results = array
-                        (
-                            'result' => $result,
-                            'error' => $err
-                        );
+            (
+            'result' => $result,
+            'error' => $err
+        );
         return $results;
     }
 
-    public function getGemstoneList($params)
-    {
+    public function getGemstoneList($params) {
 
         $sql = "SELECT
                         id,
@@ -2043,21 +1859,17 @@ class product extends DB {
         $page = ($params['page'] ? $params['page'] : 1);
         $limit = ($params['limit'] ? $params['limit'] : 1000);
 
-        if ($limit >1000 )
-        {
+        if ($limit > 1000) {
             $limit = 1000;
         }
-        if (!empty($page))
-        {
+        if (!empty($page)) {
             $start = ($page * $limit) - $limit;
             $sql.=" LIMIT " . $start . ",$limit";
         }
-        $res=  $this->query($sql);
+        $res = $this->query($sql);
 
-        if ($this->numRows($res)>0)
-        {
-            while($row = $this->fetchData($res))
-            {
+        if ($this->numRows($res) > 0) {
+            while ($row = $this->fetchData($res)) {
                 $reslt['id'] = $row['id'];
                 $reslt['name'] = $row['gemstone_name'];
                 $reslt['desc'] = $row['description'];
@@ -2065,32 +1877,28 @@ class product extends DB {
             }
 
             $err = array
-                        (
-                            'err_code' => 0,
-                            'err_msg' => 'Data fetched successfully'
-                        );
-        }
-
-        else
-        {
+                (
+                'err_code' => 0,
+                'err_msg' => 'Data fetched successfully'
+            );
+        } else {
             $err = array
-                        (
-                            'err_code' => 1,
-                            'err_msg' => 'Error in fetching data'
-                        );
+                (
+                'err_code' => 1,
+                'err_msg' => 'Error in fetching data'
+            );
         }
         $results = array
-                        (
-                            'result' => $result,
-                            'error' => $err
-                        );
+            (
+            'result' => $result,
+            'error' => $err
+        );
         return $results;
     }
 
-    public function getSizeListByCat($params)
-    {
+    public function getSizeListByCat($params) {
 
-        $sql="  SELECT
+        $sql = "  SELECT
                         id,
                         name,
                         size_value,
@@ -2100,13 +1908,11 @@ class product extends DB {
                 WHERE
                         active_flag = 1
                 AND
-                        catid = ".$params['catid'];
-        $res =$this->query($sql);
+                        catid = " . $params['catid'];
+        $res = $this->query($sql);
 
-        if($res)
-        {
-            while($row = $this->fetchData($res))
-            {
+        if ($res) {
+            while ($row = $this->fetchData($res)) {
                 $reslt['id'] = $row['id'];
                 $reslt['name'] = $row['name'];
                 $reslt['sval'] = $row['size_value'];
@@ -2114,33 +1920,28 @@ class product extends DB {
             }
 
             $err = array
-                        (
-                            'err_code' => 0,
-                            'err_msg' => 'Data fetched successfully'
-                        );
-        }
-
-        else
-        {
+                (
+                'err_code' => 0,
+                'err_msg' => 'Data fetched successfully'
+            );
+        } else {
             $err = array
-                        (
-                            'err_code' => 1,
-                            'err_msg' => 'Error in fetching data'
-                        );
+                (
+                'err_code' => 1,
+                'err_msg' => 'Error in fetching data'
+            );
         }
         $results = array
-                        (
-                            'result' => $result,
-                            'error' => $err
-                        );
+            (
+            'result' => $result,
+            'error' => $err
+        );
         return $results;
-
     }
 
-    public function getSizeList()
-    {
+    public function getSizeList() {
 
-        $sql=   "   SELECT
+        $sql = "   SELECT
                             id,
                             name,
                             size_value,
@@ -2149,12 +1950,10 @@ class product extends DB {
                             tbl_size_master
                     WHERE
                             active_flag";
-        $res =$this->query($sql);
+        $res = $this->query($sql);
 
-        if($res)
-        {
-            while($row = $this->fetchData($res))
-            {
+        if ($res) {
+            while ($row = $this->fetchData($res)) {
                 $reslt['id'] = $row['id'];
                 $reslt['name'] = $row['name'];
                 $reslt['sval'] = $row['size_value'];
@@ -2163,38 +1962,30 @@ class product extends DB {
             }
 
             $err = array
-                        (
-                            'err_code' => 0,
-                            'err_msg' => 'Data fetched successfully'
-                        );
-        }
-
-        else
-        {
+                (
+                'err_code' => 0,
+                'err_msg' => 'Data fetched successfully'
+            );
+        } else {
             $err = array
-                        (
-                            'err_code' => 1,
-                            'err_msg' => 'Error in fetching data'
-                        );
+                (
+                'err_code' => 1,
+                'err_msg' => 'Error in fetching data'
+            );
         }
         $results = array
-                        (
-                            'result' => $result,
-                            'error' => $err
-                        );
+            (
+            'result' => $result,
+            'error' => $err
+        );
         return $results;
-
     }
-    
-    
 
-    public function getProductById($params)
-    {
-       
-        try
-        {
+    public function getProductById($params) {
+
+        try {
             $productSql = " SELECT
-                                   productid ,
+                                   productid,
 				   productid AS prdid,
 				   product_code,
 				   productDescription,
@@ -2208,17 +1999,22 @@ class product extends DB {
 				   making_charges,procurement_cost,margin,measurement,customise_purity,
 				   customise_color,certificate,has_diamond,has_solitaire,has_uncut,
 				   has_gemstone,createdon,updatedon,updatedby,active_flag,
-				   (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = prdid AND active_flag != 2 AND  default_img_flag=1) 
-  AS default_image
+                                   (SELECT GROUP_CONCAT(diamond_id) FROM tbl_product_diamond_mapping WHERE productid = prdid AND active_flag = 1 ) AS allDimonds,
+                                   (SELECT GROUP_CONCAT(id) FROM tbl_diamond_quality_mapping WHERE diamond_id = allDimonds AND active_flag = 1 ) AS DimondQuality,
+                                   (SELECT min(price_per_carat) FROM tbl_diamond_quality_master WHERE FIND_IN_SET(id,DimondQuality)) AS dmdlowp,
+                                   (SELECT max(price_per_carat) FROM tbl_diamond_quality_master WHERE FIND_IN_SET(id,DimondQuality)) AS dmdhighp,
+                                   (SELECT GROUP_CONCAT(id) FROM tbl_product_metal_purity_mapping WHERE productid = prdid AND active_flag = 1 ) AS allmetalpurity,
+                                   (SELECT min(price) FROM tbl_metal_purity_master WHERE FIND_IN_SET(id,allmetalpurity)) AS caratlowp,
+                                    (SELECT max(price) FROM tbl_metal_purity_master WHERE FIND_IN_SET(id,allmetalpurity)) AS carathighp,
+
+				   (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = prdid AND active_flag != 2 AND  default_img_flag=1) AS default_image
                             FROM
                                     tbl_product_master
                             WHERE
                                    productid = " . $params['pid'] . " AND active_flag != 2";
             $res = $this->query($productSql);
-            if ($res)
-            {
-                if($row = $this->fetchData($res))
-                {
+            if ($res) {
+                if ($row = $this->fetchData($res)) {
                     $arr['prdId'] = $row['productid'];
                     $arr['prdCod'] = $row['product_code'];
                     $arr['productDescription'] = stripslashes(addslashes($row['productDescription']));
@@ -2248,7 +2044,11 @@ class product extends DB {
                     $arr['updtOn'] = $row['updatedon'];
                     $arr['updtBy'] = $row['updatedby'];
                     $arr['active_flag'] = $row['active_flag'];
-		    $arr['default_image'] = $row['default_image'];
+                    $arr['default_image'] = $row['default_image'];
+                    $arr['caratlowp'] = $row['caratlowp'];
+                    $arr['carathighp'] = $row['carathighp'];
+                    $arr['dmdlowp'] = $row['dmdlowp'];
+                    $arr['dmdhighp'] = $row['dmdhighp'];
                 }
 
                 $gemstone = $this->getProductGemstone($params);
@@ -2267,56 +2067,47 @@ class product extends DB {
                 // $sizeMaster = $this->getProductSizeMaster($params);
 
                 $result = array
-                            (
-                                'basicDetails' => $arr,
-                                'gamestone' => $gemstone,
-                                'solitaire' => $solitaire,
-                                'uncut' => $uncut,
-                                'size' => $size,
-                                'vendor' => $vendor,
-                                'metalColor' => $metalColor,
-                                'metalPurity' => $metalPurity,
-                                'discount' => $discount,
-                                'dimond' => $dimond,
-                                'catAttr' => $catAttr,
-                                'attrVals' => $attrVals,
-                                'images' =>$imageDtl
-
-                            );
+                    (
+                    'basicDetails' => $arr,
+                    'gamestone' => $gemstone,
+                    'solitaire' => $solitaire,
+                    'uncut' => $uncut,
+                    'size' => $size,
+                    'vendor' => $vendor,
+                    'metalColor' => $metalColor,
+                    'metalPurity' => $metalPurity,
+                    'discount' => $discount,
+                    'dimond' => $dimond,
+                    'catAttr' => $catAttr,
+                    'attrVals' => $attrVals,
+                    'images' => $imageDtl
+                );
                 $err = array
-                            (
-                                'err_code' => 0,
-                                'err_msg' => 'Data fetched successfully'
-                            );
-            }
-            else
-            {
+                    (
+                    'err_code' => 0,
+                    'err_msg' => 'Data fetched successfully'
+                );
+            } else {
                 $err = array
-                            (
-                                'err_code' => 1,
-                                'err_msg' => 'Error in fetching data'
-                            );
+                    (
+                    'err_code' => 1,
+                    'err_msg' => 'Error in fetching data'
+                );
             }
             $results = array
-                            (
-                                'results' => $result,
-                                'error' => $err
-                            );
-        }
-        catch (Exception $e)
-        {
+                (
+                'results' => $result,
+                'error' => $err
+            );
+        } catch (Exception $e) {
             echo 'Exection in API getProductById message : ' . $e->getMessage();
         }
         return $results;
     }
-    
-  
-    
-    public function getProductGemstone($params)
-    {
-     $pid = (!empty($params['pid'])) ? trim($params['pid']) : '';
-        try
-        {
+
+    public function getProductGemstone($params) {
+        $pid = (!empty($params['pid'])) ? trim($params['pid']) : '';
+        try {
             $count = 0;
             $sql = "    SELECT
                                 *
@@ -2327,11 +2118,9 @@ class product extends DB {
                         AND
                                 active_flag=1";
             $res = $this->query($sql);
-            
-            if ($res)
-            {
-                while ($row = $this->fetchData($res))
-                {
+
+            if ($res) {
+                while ($row = $this->fetchData($res)) {
                     $arr['prdId'] = $row['productid'];
                     $arr['gemId'] = $row['gemstone_id'];
                     $arr['gemNm'] = $row['gemstone_name'];
@@ -2348,19 +2137,17 @@ class product extends DB {
             }
 
             return array
-                        (
-                            'count' => $count,
-                            'results' => $resArr
-                        );
+                (
+                'count' => $count,
+                'results' => $resArr
+            );
         } catch (Exception $e) {
             echo 'Exection  in function getProductGemstone message : ' . $e->getMessage();
         }
     }
 
-    public function getProductDiscount($params)
-    {
-        try
-        {
+    public function getProductDiscount($params) {
+        try {
             $count = 0;
             $sql = "    SELECT
                                 *
@@ -2370,10 +2157,8 @@ class product extends DB {
                                 productid = " . $params['pid'] . " ";
             // WHERE active_flag=1 ";
             $res = $this->query($sql);
-            if ($res)
-            {
-                while ($row = $this->fetchData($res))
-                {
+            if ($res) {
+                while ($row = $this->fetchData($res)) {
                     $arr['prdId'] = $row['productid'];
                     $arr['disType'] = $row['discount_type'];
                     $arr['disAmt'] = $row['discount_amount'];
@@ -2388,18 +2173,14 @@ class product extends DB {
                 }
             }
             return array('count' => $count, 'results' => $resArr);
-        }
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
             echo 'Exection in function getProductDiscount message : ' . $e->getMessage();
         }
     }
 
-    public function getProductSolitaire($params)
-    {
-        
-        try
-        {
+    public function getProductSolitaire($params) {
+
+        try {
             $count = 0;
             $sql = "    SELECT
                                 *
@@ -2412,10 +2193,8 @@ class product extends DB {
                                 productid = " . $params['pid'] . " ";
             // WHERE active_flag=1 ";
             $res = $this->query($sql);
-            if ($res)
-            {
-                while ($row = $this->fetchData($res))
-                {
+            if ($res) {
+                while ($row = $this->fetchData($res)) {
                     $arr['prdId'] = $row['productid'];
                     $arr['soliId'] = $row['solitaire_id'];
                     $arr['shape'] = $row['shape'];
@@ -2435,24 +2214,20 @@ class product extends DB {
                     $arr['crtdOn'] = $row['createdon'];
                     $arr['updtOn'] = $row['updatedon'];
                     $arr['updtBy'] = $row['updatedby'];
-                    
-                   
-                    $resArr[]=$arr;
+
+
+                    $resArr[] = $arr;
                     $count++;
                 }
             }
             return array('count' => $count, 'results' => $resArr);
-        }
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
             echo 'Exection in function getProductSolitaire message : ' . $e->getMessage();
         }
     }
 
-    public function getProductUncut($params)
-    {
-        try
-        {
+    public function getProductUncut($params) {
+        try {
             $count = 0;
             $sql = "    SELECT
                                 *
@@ -2463,10 +2238,8 @@ class product extends DB {
                         AND
                                 productid = " . $params['pid'] . " ";
             $res = $this->query($sql);
-            if ($res)
-            {
-                while ($row = $this->fetchData($res))
-                {
+            if ($res) {
+                while ($row = $this->fetchData($res)) {
                     $arr['prdId'] = $row['productid'];
                     $arr['unctId'] = $row['uncut_id'];
                     $arr['clor'] = $row['color'];
@@ -2483,17 +2256,13 @@ class product extends DB {
                 }
             }
             return array('count' => $count, 'results' => $resArr);
-        }
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
             echo 'Exection in function getProductUncut message : ' . $e->getMessage();
         }
     }
 
-    public function getProductSize($params)
-    {
-        try
-        {
+    public function getProductSize($params) {
+        try {
             $count = 0;
             $sql = "
                         SELECT
@@ -2504,10 +2273,8 @@ class product extends DB {
                                 productid = " . $params['pid'] . " ";
 
             $res = $this->query($sql);
-            if ($res)
-            {
-                while ($row = $this->fetchData($res))
-                {
+            if ($res) {
+                while ($row = $this->fetchData($res)) {
                     $arr['prdId'] = $row['productid'];
                     $arr['sizId'] = $row['size_id'];
                     $arr['qnty'] = $row['quantity'];
@@ -2520,17 +2287,13 @@ class product extends DB {
                 }
             }
             return array('count' => $count, 'results' => $resArr);
-        }
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
             echo 'Exection in function getProductSize message : ' . $e->getMessage();
         }
     }
 
-    public function getProductDiamond($params)
-    {
-        try
-        {
+    public function getProductDiamond($params) {
+        try {
             $count = 0;
             $sql = "
                         SELECT
@@ -2544,10 +2307,8 @@ class product extends DB {
 
                     ";
             $res = $this->query($sql);
-            if ($res)
-            {
-                while ($row = $this->fetchData($res))
-                {
+            if ($res) {
+                while ($row = $this->fetchData($res)) {
                     $arr['prdId'] = $row['productid'];
                     $arr['dmdId'] = $row['diamond_id'];
                     $arr['shape'] = $row['shape'];
@@ -2557,22 +2318,18 @@ class product extends DB {
                     $arr['updtOn'] = $row['updatedon'];
                     $arr['updtBy'] = $row['updatedby'];
                     $arr['QMast'] = $this->getQualityMap(array('diamond_id' => $row['diamond_id']));
-                    $result[]=$arr;
+                    $result[] = $arr;
                     $count++;
                 }
             }
             return array('count' => $count, 'results' => $result);
-        }
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
             echo 'Exection in function getProductDiamond message : ' . $e->getMessage();
         }
     }
 
-    public function getCatMap($params)
-    {
-        try
-        {
+    public function getCatMap($params) {
+        try {
 
             $count = 0;
             $sql = "
@@ -2601,10 +2358,8 @@ class product extends DB {
                                 parentcnt DESC
                     ";
             $res = $this->query($sql);
-            if ($res)
-            {
-                while ($row = $this->fetchData($res))
-                {
+            if ($res) {
+                while ($row = $this->fetchData($res)) {
                     $arr['cid'] = $row['catid'];
                     $arr['pid'] = $row['pcatid'];
                     $arr['name'] = $row['cat_name'];
@@ -2620,17 +2375,13 @@ class product extends DB {
                 }
             }
             return array('count' => $count, 'results' => $resArr);
-        }
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
             echo 'Exection in function getCatMap message : ' . $e->getMessage();
         }
     }
 
-    public function getCatAttr($params)
-    {
-        try
-        {
+    public function getCatAttr($params) {
+        try {
             $count = 0;
             $sql = "
                     SELECT
@@ -2678,11 +2429,11 @@ class product extends DB {
         }
     }
 
-    public function getQualityMap($params)
-    {
+    public function getQualityMap($params) {
         try {
 
             $count = 0;
+
             $sql = "
                 SELECT
                         *
@@ -2691,19 +2442,22 @@ class product extends DB {
                     WHERE
                             active_flag =1
                         AND
-                            id IN(
-                                        SELECT
-                                                id
+                          id IN(
+                                   SELECT
+                                           id 
                                         FROM
                                                 tbl_diamond_quality_mapping
                                         WHERE
                                                 diamond_id =" . $params['diamond_id'] . "
                                         AND
                                                 active_flag =1
-                                    )
+                                    ) 
                         order by price_per_carat DESC";
-            // WHERE active_flag=1 ";
+
+
             $res = $this->query($sql);
+
+
             if ($res) {
                 while ($row = $this->fetchData($res)) {
                     $arr['id'] = $row['id'];
@@ -2757,8 +2511,7 @@ class product extends DB {
         }
     }
 
-    public function getProductSizeMaster($params)
-    {
+    public function getProductSizeMaster($params) {
         try {
             $count = 0;
             $sql = "       SELECT
@@ -2801,8 +2554,7 @@ class product extends DB {
         }
     }
 
-    public function getProductVendor($params)
-    {
+    public function getProductVendor($params) {
         try {
             $count = 0;
             $sql = "       SELECT
@@ -2837,7 +2589,7 @@ class product extends DB {
                     $arr['crtdOn'] = $row['createdon'];
                     $arr['updtOn'] = $row['updatedon'];
                     $arr['updtBy'] = $row['updatedby'];
-                     $resArr[] = $arr;
+                    $resArr[] = $arr;
                     $count++;
                 }
             }
@@ -2910,6 +2662,7 @@ class product extends DB {
                                                 active_flag=1 
 
                                     )order by price DESC";
+
             // WHERE active_flag=1 ";
             $res = $this->query($sql);
             if ($res) {
@@ -2969,7 +2722,7 @@ class product extends DB {
             $limit = ($params['limit'] ? $params['limit'] : 1000);
 
             //Making sure that query has limited rows
-            if ($limit >1000 ) {
+            if ($limit > 1000) {
                 $limit = 1000;
             }
 
@@ -2982,8 +2735,7 @@ class product extends DB {
 
 
 
-            if ($this->numRows($res)>0)
-            {
+            if ($this->numRows($res) > 0) {
                 while ($row = $this->fetchData($res)) {
 
                     //Date format is not specified so it matches with default mysql
@@ -3010,8 +2762,7 @@ class product extends DB {
                     $result[] = $arr;
                 }
                 $err = array('err_code' => 0, 'err_msg' => 'Data fetched successfully');
-            }
-            else {
+            } else {
                 $err = array('err_code' => 1, 'err_msg' => 'Error in fetching data');
             }
             $results = array('results' => $result, 'error' => $err);
@@ -3021,20 +2772,16 @@ class product extends DB {
         return $results;
     }
 
-    public function test()
-    {
+    public function test() {
         #$data=array('dt' =>'{"mpurity":["1"],"metalcolor":["1","2","3"],"sizes":[{"id":"1","qty":"10"},{"id":"3","qty":"20"},{"id":"5","qty":"30"}],"solitaires":[{"shape":"Emerald","color":"D","clarity":"VVS1","cut":"Very%20Good","symmetry":"Very%20Good","polish":"Very%20Good","fluorescence":"Medium","carat":"100","price_per_carat":"10000","table":"522","crown_angle":"100","girdle":"100"}],"has_solitaire":1,"has_diamond":0,"has_gemstone":0,"details":{"vendorid":"1","product_name":"18K%20Gold%20Ring","product_seo_name":"18K%20White%20Gold%20Ring","gender":"0","product_weight":"10","certificate":"IGI","metal_weight":"10","making_charges":"15000","procurement_cost":"150","margin":"10","measurement":"10X20","dmdSetting":"Prong,Bezel,Pave,Test%20Diamond%20Setting"},"userid":"1","catid":"1,11,2,3,4,10"}');
-        $data=array('dt' =>'{"mpurity":["1"],"metalcolor":["1","2","3"],"sizes":[{"1":"10"},{"3":"12"},{"5":"15"}],"solitaires":[{"shape":"Emerald","color":"D","clarity":"VVS1","cut":"Very%20Good","symmetry":"Very%20Good","polish":"Very%20Good","fluorescence":"Medium","carat":"100","price_per_carat":"10000","table":"522","crown_angle":"100","girdle":"100"}],"has_solitaire":1,"has_diamond":0,"has_gemstone":0,"details":{"vendorid":"1","product_name":"18K%20Gold%20Ring","product_seo_name":"18K%20White%20Gold%20Ring","gender":"0","product_weight":"10","certificate":"IGI","metal_weight":"10","making_charges":"15000","procurement_cost":"150","margin":"10","measurement":"10X20","dmdSetting":"Prong,Bezel,Pave,Test%20Diamond%20Setting"},"userid":"1","catid":"1,11,2,3,4,10"}');
+        $data = array('dt' => '{"mpurity":["1"],"metalcolor":["1","2","3"],"sizes":[{"1":"10"},{"3":"12"},{"5":"15"}],"solitaires":[{"shape":"Emerald","color":"D","clarity":"VVS1","cut":"Very%20Good","symmetry":"Very%20Good","polish":"Very%20Good","fluorescence":"Medium","carat":"100","price_per_carat":"10000","table":"522","crown_angle":"100","girdle":"100"}],"has_solitaire":1,"has_diamond":0,"has_gemstone":0,"details":{"vendorid":"1","product_name":"18K%20Gold%20Ring","product_seo_name":"18K%20White%20Gold%20Ring","gender":"0","product_weight":"10","certificate":"IGI","metal_weight":"10","making_charges":"15000","procurement_cost":"150","margin":"10","measurement":"10X20","dmdSetting":"Prong,Bezel,Pave,Test%20Diamond%20Setting"},"userid":"1","catid":"1,11,2,3,4,10"}');
 
         echo "<pre>";
-        print_r(json_decode($data['dt'],1));
+        print_r(json_decode($data['dt'], 1));
         echo "</pre>";
-
     }
 
-
-    public function imageUpdate($params)
-    {
+    public function imageUpdate($params) {
         $err = array('errCode' => 0, 'errMsg' => 'Details updated successfully');
         $pid = $params['pid'];
         $img = $params['imgpath'];
@@ -3054,12 +2801,9 @@ class product extends DB {
         $res = $this->query($sql);
         $cnt = $this->numRows($res);
         $flag = true;
-        if ($cnt)
-        {
-            while ($row = $this->fetchData($res))
-            {
-                if (strtolower($row['product_image']) == strtolower($img))
-                {
+        if ($cnt) {
+            while ($row = $this->fetchData($res)) {
+                if (strtolower($row['product_image']) == strtolower($img)) {
                     $err = array('errCode' => 1, 'errMsg' => 'No results updated');
                     $flag = false;
                 }
@@ -3098,8 +2842,7 @@ class product extends DB {
         return $result;
     }
 
-    public function imageRemove($params)
-    {
+    public function imageRemove($params) {
         $pid = $params['pid'];
 
         $sql = "SELECT
@@ -3107,33 +2850,28 @@ class product extends DB {
                 FROM
                         tbl_product_image_mapping
                 WHERE
-                        product_id = ".$pid."
+                        product_id = " . $pid . "
                 AND
                         active_flag in (0, 1)";
         $res = $this->query($sql);
         $cnt = $this->numRows($res);
 
-        if($res)
-        {
-            while($row = $this->fetchData($res))
-            {
-                    if(stristr($row['product_image'], $params['file']) !== FALSE)
-                    {
-                        $sql = "UPDATE
+        if ($res) {
+            while ($row = $this->fetchData($res)) {
+                if (stristr($row['product_image'], $params['file']) !== FALSE) {
+                    $sql = "UPDATE
                                                 tbl_product_image_mapping
                                         SET
                                                 active_flag = 2
                                         WHERE
-                                                product_id = ".$pid."
+                                                product_id = " . $pid . "
                                         AND
-                                                product_image = \"".$row['product_image']."\"";
-                        $res = $this->query($sql);
-                        $err = array('errCode' => 0, 'errMsg' => 'Details updated successfully');
-                    }
-                    else
-                    {
-                            $err = array('errCode' => 1, 'errMsg' => 'No results updated');
-                    }
+                                                product_image = \"" . $row['product_image'] . "\"";
+                    $res = $this->query($sql);
+                    $err = array('errCode' => 0, 'errMsg' => 'Details updated successfully');
+                } else {
+                    $err = array('errCode' => 1, 'errMsg' => 'No results updated');
+                }
             }
             $arr = array();
             $result = array('results' => $arr, 'error' => $err);
@@ -3141,8 +2879,7 @@ class product extends DB {
         }
     }
 
-    public function imageDisplay($params)
-    {
+    public function imageDisplay($params) {
         $af = (!empty($params['af'])) ? trim(urldecode($params['af'])) : 1;
 
         $arr = array();
@@ -3152,48 +2889,41 @@ class product extends DB {
                     FROM
                             tbl_vendor_product_mapping
                     WHERE
-                            product_id = ".$pid."";
+                            product_id = " . $pid . "";
         $prdRes = $this->query($prdSql);
         $Vcnt = $this->numRows($prdRes);
 
-        if($Vcnt)
-        {
+        if ($Vcnt) {
             $row = $this->fetchData($prdRes);
-            if($row['vendor_id'] == $params['vid'])
-            {
+            if ($row['vendor_id'] == $params['vid']) {
                 $extn = " AND active_flag not in (2) ";
             }
         }
-               $extn = " AND active_flag not in (2) ";
+        $extn = " AND active_flag not in (2) ";
         $sql = "SELECT
                         product_image
                 FROM
                         tbl_product_image_mapping
                 WHERE
-                        product_id = ".$pid." ".$extn."
+                        product_id = " . $pid . " " . $extn . "
                 ORDER BY
                         image_sequence ASC";
         $res = $this->query($sql);
-        if($res)
-        {
-                while($row = $this->fetchData($res))
-                {
-                        $arr[] = $row['product_image'];
-                }
-
+        if ($res) {
+            while ($row = $this->fetchData($res)) {
+                $arr[] = $row['product_image'];
+            }
         }
 
-        if(!empty($arr))
-        {
-                $err = array('errCode' => 0, 'errMsg' => 'Details fetched successfully');
-        }
-        else
-        {
-                $err = array('errCode' => 1, 'errMsg' => 'No results found');
+        if (!empty($arr)) {
+            $err = array('errCode' => 0, 'errMsg' => 'Details fetched successfully');
+        } else {
+            $err = array('errCode' => 1, 'errMsg' => 'No results found');
         }
         $result = array('results' => $arr, 'error' => $err);
         return $result;
     }
+
     public function getImagesByPid($params) {
         try {
             $count = 0;
@@ -3208,21 +2938,18 @@ class product extends DB {
 
             $res = $this->query($sql);
             if ($res) {
-                while ($row = $this->fetchData($res)) 
-                {
-                    if(!empty($row['product_image']))
-                    {
-                        $image = trim( IMGDOMAIN . $row['product_image'],',');
+                while ($row = $this->fetchData($res)) {
+                    if (!empty($row['product_image'])) {
+                        $image = trim(IMGDOMAIN . $row['product_image'], ',');
                         $images[] = $image;
                         $count++;
                     }
                 }
-                if(count($images) == 0)
-                {
-                    $image= (IMGDOMAIN.'uploads/noimg2.svg');
-                }       
+                if (count($images) == 0) {
+                    $image = (IMGDOMAIN . 'uploads/noimg2.svg');
+                }
             }
-           
+
             $result = array('count' => $count, 'images' => $images);
             return $result;
         } catch (Exception $e) {
@@ -3230,12 +2957,10 @@ class product extends DB {
         }
     }
 
+    public function changeProductStatus($params) {
+        $params = (json_decode($params[0], 1));
 
-    public function changeProductStatus($params)
-    {
-        $params= (json_decode($params[0],1));
-
-        $sql="UPDATE tbl_product_master set active_flag='".$params['active_flag']."'   WHERE productid = '".$params['pid']."'";
+        $sql = "UPDATE tbl_product_master set active_flag='" . $params['active_flag'] . "'   WHERE productid = '" . $params['pid'] . "'";
         $res = $this->query($sql);
         $result = array();
         if ($res) {
@@ -3245,33 +2970,30 @@ class product extends DB {
         }
         $results = array('result' => $result, 'error' => $err);
         return $results;
-
     }
 
+    public function changePrdPropertyStatus($params) {
+        $params = (json_decode($params[0], 1));
 
-    public function changePrdPropertyStatus($params)
-    {
-        $params= (json_decode($params[0],1));
+        $sql1 = "UPDATE tbl_product_master set has_solitaire='0' AND updatedby='" . $params['updatedby'] . "'  WHERE productid = '" . $params['pid'] . "'";
 
-        $sql1="UPDATE tbl_product_master set has_solitaire='0' AND updatedby='".$params['updatedby']."'  WHERE productid = '".$params['pid']."'";
+        $sql2 = "UPDATE tbl_product_master set has_diamond='0' AND updatedby='" . $params['updatedby'] . "'  WHERE productid = '" . $params['pid'] . "'";
 
-        $sql2="UPDATE tbl_product_master set has_diamond='0' AND updatedby='".$params['updatedby']."'  WHERE productid = '".$params['pid']."'";
+        $sql3 = "UPDATE tbl_product_master set has_uncut='0' AND updatedby='" . $params['updatedby'] . "' WHERE productid = '" . $params['pid'] . "'";
 
-        $sql3="UPDATE tbl_product_master set has_uncut='0' AND updatedby='".$params['updatedby']."' WHERE productid = '".$params['pid']."'";
+        $sql4 = "UPDATE tbl_product_master set has_gemstone='0' AND updatedby='" . $params['updatedby'] . "'  WHERE productid = '" . $params['pid'] . "'";
 
-        $sql4="UPDATE tbl_product_master set has_gemstone='0' AND updatedby='".$params['updatedby']."'  WHERE productid = '".$params['pid']."'";
+        if ($params['type'] == 1)
+            $sql = $sql1;
 
-        if($params['type']==1)
-            $sql=$sql1;
+        if ($params['type'] == 2)
+            $sql = $sql2;
 
-        if($params['type']==2)
-            $sql=$sql2;
+        if ($params['type'] == 3)
+            $sql = $sql3;
 
-        if($params['type']==3)
-            $sql=$sql3;
-
-        if($params['type']==4)
-            $sql=$sql4;
+        if ($params['type'] == 4)
+            $sql = $sql4;
 
 
         $res = $this->query($sql);
@@ -3283,16 +3005,14 @@ class product extends DB {
         }
         $results = array('result' => $result, 'error' => $err);
         return $results;
-
     }
 
- 
-       public function getProDetailsById($params){
-            
-            $pid = (!empty($params['pid'])) ? trim($params['pid']) : '';
-           
-                     
-             $sql = "SELECT   
+    public function getProDetailsById($params) {
+
+        $pid = (!empty($params['pid'])) ? trim($params['pid']) : '';
+
+
+        $sql = "SELECT   
                             productid,
                             productid AS pid,
                             product_code,
@@ -3339,76 +3059,76 @@ class product extends DB {
                         FROM 
                             tbl_product_master  
                         WHERE  
-                            productid=".$pid." AND active_flag =1 
+                            productid=" . $pid . " AND active_flag =1 
                         ORDER BY
-                            createdon desc";   
-            $res = $this->query($sql);
-            
-            if($res){
-                while ($row = $this->fetchData($res)){
-                    
-                    $arr['prdId'] = $row['productid'];
-                    $arr['prdCod'] = $row['product_code'];
-                    $arr['productDescription'] = stripslashes(addslashes($row['productDescription']));
-                    $arr['vndId'] = $row['vendorid'];
-                    $arr['vPCode'] = $row['vendor_prd_code'];
-                    $arr['leadTime'] = $row['leadTime'];
-                    $arr['returneligible'] = $row['returneligible'];
-                    $arr['jewelleryType'] = $row['jewelleryType'];
-                    $arr['prdNm'] = $row['product_name'];
-                    $arr['prdSeo'] = $row['product_seo_name'];
-                    $arr['gender'] = $row['gender'];
-                    $arr['prdWgt'] = $row['product_weight'];
-                    $arr['dmdStng'] = $row['diamond_setting'];
-                    $arr['mtlWgt'] = $row['metal_weight'];
-                    $arr['mkngCrg'] = $row['making_charges'];
-                    $arr['procmtCst'] = $row['procurement_cost'];
-                    $arr['mrgn'] = $row['margin'];
-                    $arr['mesmnt'] = $row['measurement'];
-                    $arr['custPurty'] = $row['customise_purity'];
-                    $arr['custClor'] = $row['customise_color'];
-                    $arr['crtficte'] = $row['certificate'];
-                    $arr['hasDmd'] = $row['has_diamond'];
-                    $arr['hasSol'] = $row['has_solitaire'];
-                    $arr['hasUnct'] = $row['has_uncut'];
-                    $arr['hasGem'] = $row['has_gemstone'];
-                    $arr['crtdOn'] = $row['createdon'];
-                    $arr['updtOn'] = $row['updatedon'];
-                    $arr['updtBy'] = $row['updatedby'];
-                    $arr['allDimonds'] = $row['allDimonds'];
-                    $arr['allGemstone'] = $row['allGemstone'];
-                    $arr['allSolitaire'] = $row['allSolitaire'];
-                    $arr['allUncut'] = $row['allUncut'];
-                    $arr['allmetalpurity'] = $row['allmetalpurity'];
-                    $arr['allmetalcolor'] = $row['allmetalcolor'];
-                    $arr['catAttr'] = $row['catAttr'];
-                    $arr['catpro'] = $row['catpro'];
-                    $arr['attrpro'] = $row['attrpro'];
-                    $arr['attrVals'] = $row['attrVals'];
-                    $arr['images'] = $row['images'];
-                    $arr['active_flag'] = $row['active_flag'];
-                    
-                    $basic_details = array();
-                    $dimondDetails = array();
-                    $gemstoneDetails = array();
-                    $solitaireDetails = array();
-                    $uncutDetails = array();
-                    $catpro =array();
-                    $attrVals =array();
-                    $images = array();
-                   // $attrpro =array();
-                    
-                    if($row['jewelleryType'] === '1'){
-                             $arr['jwelType'] ='Gold';
-                        }else  if($row['jewelleryType'] === '2'){
-                             $arr['jwelType'] ='Plain Gold';
-                        }else  if($row['jewelleryType'] === '3'){
-                             $arr['jwelType'] ='Platinum';
-                        }  
-                   
-                    if($row['has_diamond'] === '1'){
-                             $arr['diam'] ='Diamond';
-                             $sqlQ = " SELECT 
+                            createdon desc";
+        $res = $this->query($sql);
+
+        if ($res) {
+            while ($row = $this->fetchData($res)) {
+
+                $arr['prdId'] = $row['productid'];
+                $arr['prdCod'] = $row['product_code'];
+                $arr['productDescription'] = stripslashes(addslashes($row['productDescription']));
+                $arr['vndId'] = $row['vendorid'];
+                $arr['vPCode'] = $row['vendor_prd_code'];
+                $arr['leadTime'] = $row['leadTime'];
+                $arr['returneligible'] = $row['returneligible'];
+                $arr['jewelleryType'] = $row['jewelleryType'];
+                $arr['prdNm'] = $row['product_name'];
+                $arr['prdSeo'] = $row['product_seo_name'];
+                $arr['gender'] = $row['gender'];
+                $arr['prdWgt'] = $row['product_weight'];
+                $arr['dmdStng'] = $row['diamond_setting'];
+                $arr['mtlWgt'] = $row['metal_weight'];
+                $arr['mkngCrg'] = $row['making_charges'];
+                $arr['procmtCst'] = $row['procurement_cost'];
+                $arr['mrgn'] = $row['margin'];
+                $arr['mesmnt'] = $row['measurement'];
+                $arr['custPurty'] = $row['customise_purity'];
+                $arr['custClor'] = $row['customise_color'];
+                $arr['crtficte'] = $row['certificate'];
+                $arr['hasDmd'] = $row['has_diamond'];
+                $arr['hasSol'] = $row['has_solitaire'];
+                $arr['hasUnct'] = $row['has_uncut'];
+                $arr['hasGem'] = $row['has_gemstone'];
+                $arr['crtdOn'] = $row['createdon'];
+                $arr['updtOn'] = $row['updatedon'];
+                $arr['updtBy'] = $row['updatedby'];
+                $arr['allDimonds'] = $row['allDimonds'];
+                $arr['allGemstone'] = $row['allGemstone'];
+                $arr['allSolitaire'] = $row['allSolitaire'];
+                $arr['allUncut'] = $row['allUncut'];
+                $arr['allmetalpurity'] = $row['allmetalpurity'];
+                $arr['allmetalcolor'] = $row['allmetalcolor'];
+                $arr['catAttr'] = $row['catAttr'];
+                $arr['catpro'] = $row['catpro'];
+                $arr['attrpro'] = $row['attrpro'];
+                $arr['attrVals'] = $row['attrVals'];
+                $arr['images'] = $row['images'];
+                $arr['active_flag'] = $row['active_flag'];
+
+                $basic_details = array();
+                $dimondDetails = array();
+                $gemstoneDetails = array();
+                $solitaireDetails = array();
+                $uncutDetails = array();
+                $catpro = array();
+                $attrVals = array();
+                $images = array();
+                // $attrpro =array();
+
+                if ($row['jewelleryType'] === '1') {
+                    $arr['jwelType'] = 'Gold';
+                } else if ($row['jewelleryType'] === '2') {
+                    $arr['jwelType'] = 'Plain Gold';
+                } else if ($row['jewelleryType'] === '3') {
+                    $arr['jwelType'] = 'Platinum';
+                }
+
+                if ($row['has_diamond'] === '1') {
+                    $arr['diam'] = 'Diamond';
+                    $sqlQ = " SELECT 
                                                         diamond_id,
                                                         shape,
                                                         total_no,
@@ -3417,76 +3137,74 @@ class product extends DB {
                                                 FROM 
                                                         tbl_product_diamond_mapping
                                                 WHERE 
-                                                        productid=".$pid."
+                                                        productid=" . $pid . "
                                                              AND
                                                         active_flag = 1
                                       ";
-                              $resdiamQuality = $this->query($sqlQ);
-                              while ($rowdiamQ = $this->fetchData($resdiamQuality)){
-                                  $arrdiaQDetails[]= $rowdiamQ;
-                                  
-                              }
-                              
-                              $diamQ = $arrdiaQDetails;
-                        }
-                        $arr['diamQuality'] =$diamQ;
-                        
-                        
-                
-                    if($row['has_solitaire'] === '1'){
-                             $arr['soli'] ='Solitaire';
-                        }
-                      if($row['has_uncut'] === '1'){
-                             $arr['uncut'] ='Uncut-Diamond';
-                        }
-                       if($row['has_gemstone'] === '1'){
-                             $arr['gems'] ='Gemstones';
-                        }
-                        
-                      /*if($row['has_solitaire'] === '1' && $row['has_uncut'] === '1' && $row['has_gemstone'] === '1' &&  $row['has_diamond'] === '1'){
-                             $arr['hasSol'] ='Solitaire';
-                             $arr['uncut-diamond'] ='Uncut-Diamond';
-                             $arr['gemstone'] ='Gemstones';
-                             $arr['diamond'] ='diamond';
-                        }
-                        */
-                     if($row['attrVals']){
-                            $sqlattrVals = "  SELECT
+                    $resdiamQuality = $this->query($sqlQ);
+                    while ($rowdiamQ = $this->fetchData($resdiamQuality)) {
+                        $arrdiaQDetails[] = $rowdiamQ;
+                    }
+
+                    $diamQ = $arrdiaQDetails;
+                }
+                $arr['diamQuality'] = $diamQ;
+
+
+
+                if ($row['has_solitaire'] === '1') {
+                    $arr['soli'] = 'Solitaire';
+                }
+                if ($row['has_uncut'] === '1') {
+                    $arr['uncut'] = 'Uncut-Diamond';
+                }
+                if ($row['has_gemstone'] === '1') {
+                    $arr['gems'] = 'Gemstones';
+                }
+
+                /* if($row['has_solitaire'] === '1' && $row['has_uncut'] === '1' && $row['has_gemstone'] === '1' &&  $row['has_diamond'] === '1'){
+                  $arr['hasSol'] ='Solitaire';
+                  $arr['uncut-diamond'] ='Uncut-Diamond';
+                  $arr['gemstone'] ='Gemstones';
+                  $arr['diamond'] ='diamond';
+                  }
+                 */
+                if ($row['attrVals']) {
+                    $sqlattrVals = "  SELECT
                                             attributeid as attid,
                                         value
                                                 FROM
                                               tbl_product_attributes_mapping
                                         WHERE
-                                           productid = ".$pid." AND active_flag=1 ";  
-                             $resattrVals= $this->query($sqlattrVals);
-                              while ($rowattrVals = $this->fetchData($resattrVals)){
-                                  $arrattrValsDetails[]= $rowattrVals;
-                                  
-                              }
-                              $attrVals = $arrattrValsDetails;
-                        }
-                        $arr['attrVals'] =$attrVals;
-                        
-                     
-                        
-                            $sqlimages = "  SELECT
+                                           productid = " . $pid . " AND active_flag=1 ";
+                    $resattrVals = $this->query($sqlattrVals);
+                    while ($rowattrVals = $this->fetchData($resattrVals)) {
+                        $arrattrValsDetails[] = $rowattrVals;
+                    }
+                    $attrVals = $arrattrValsDetails;
+                }
+                $arr['attrVals'] = $attrVals;
+
+
+
+                $sqlimages = "  SELECT
                                              product_image
                                             FROM
                                      tbl_product_image_mapping
                                          WHERE
                                       active_flag NOT IN(2) AND
-                        product_id = " .$pid. " ORDER BY image_sequence ";  
-                             $resimages= $this->query($sqlimages);
-                              while ($rowimages = $this->fetchData($resimages)){
-                                  $arrimgDetails[]= $rowimages;
-                              }
-                              $images = $arrimgDetails;
-                       
-                        $arr['images'] =$images;
-                        
-                        
-                      if($row['catpro']){
-                            $sqlcatpro = "   SELECT
+                        product_id = " . $pid . " ORDER BY image_sequence ";
+                $resimages = $this->query($sqlimages);
+                while ($rowimages = $this->fetchData($resimages)) {
+                    $arrimgDetails[] = $rowimages;
+                }
+                $images = $arrimgDetails;
+
+                $arr['images'] = $images;
+
+
+                if ($row['catpro']) {
+                    $sqlcatpro = "   SELECT
                                                       *
                                                      FROM
                                             tbl_category_master
@@ -3500,22 +3218,21 @@ class product extends DB {
                                             FROM
                                                     tbl_category_product_mapping
                                             WHERE
-                                                    productid =".$pid."
+                                                    productid =" . $pid . "
                                             AND
                                                     active_flag =1
-                                        ) ";  
-                             $rescatPro= $this->query($sqlcatpro);
-                              while ($rowcatpro = $this->fetchData($rescatPro)){
-                                  $arrcatproDetails[]= $rowcatpro;
-                                  
-                              }
-                              $catpro = $arrcatproDetails;
-                        }
-                        $arr['catpro'] =$catpro;
-                        
-                        
-                         if($row['attrpro']){
-                            $sqlattrpro = "   SELECT
+                                        ) ";
+                    $rescatPro = $this->query($sqlcatpro);
+                    while ($rowcatpro = $this->fetchData($rescatPro)) {
+                        $arrcatproDetails[] = $rowcatpro;
+                    }
+                    $catpro = $arrcatproDetails;
+                }
+                $arr['catpro'] = $catpro;
+
+
+                if ($row['attrpro']) {
+                    $sqlattrpro = "   SELECT
                                                       *
                                                      FROM
                                             tbl_attribute_master
@@ -3529,33 +3246,32 @@ class product extends DB {
                                             FROM
                                                     tbl_product_attributes_mapping
                                             WHERE
-                                                    productid =".$pid."
+                                                    productid =" . $pid . "
                                             AND
                                                     active_flag =1
-                                        ) ";  
-                             $resattrPro= $this->query($sqlattrpro);
-                              while ($rowattrpro = $this->fetchData($resattrPro)){
-                                  $arrattrproDetails[]= $rowattrpro;
-                                  
-                              }
-                              $attrpro = $arrattrproDetails;
-                        }
-                        $arr['attrpro'] =$attrpro;
-                        
-                        
-                        
-                        
-                
-                
-                    if( $arr['hasDmd'] === '1'){
-                        if($row['allDimonds']){
-                            $sqlDimondMapping = "SELECT *,
+                                        ) ";
+                    $resattrPro = $this->query($sqlattrpro);
+                    while ($rowattrpro = $this->fetchData($resattrPro)) {
+                        $arrattrproDetails[] = $rowattrpro;
+                    }
+                    $attrpro = $arrattrproDetails;
+                }
+                $arr['attrpro'] = $attrpro;
+
+
+
+
+
+
+                if ($arr['hasDmd'] === '1') {
+                    if ($row['allDimonds']) {
+                        $sqlDimondMapping = "SELECT *,
                                                         (SELECT 
                                                         GROUP_CONCAT(diamond_id)
                                                 FROM 
                                                         tbl_product_diamond_mapping
                                                 WHERE 
-                                                        productid=".$pid."
+                                                        productid=" . $pid . "
                                                              AND
                                                         active_flag = 1) AS DiamIDS,
                                                         
@@ -3563,24 +3279,21 @@ class product extends DB {
 FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 
 
-";  
-                             $resDimondMapping = $this->query($sqlDimondMapping);
-                              while ($rowDimondMapping = $this->fetchData($resDimondMapping)){
-                                  $arrdimondDetails[]= $rowDimondMapping;
-                                  
-                              }
-                              $dimondDetails = $arrdimondDetails;
+";
+                        $resDimondMapping = $this->query($sqlDimondMapping);
+                        while ($rowDimondMapping = $this->fetchData($resDimondMapping)) {
+                            $arrdimondDetails[] = $rowDimondMapping;
                         }
-                        $arr['DimondDetails'] =$dimondDetails;
-                        
-                        
+                        $dimondDetails = $arrdimondDetails;
                     }
-                   
-                 
-                    if( $arr['hasGem'] === '1'){
-                        if($row['allGemstone']){
-                            $count=0;
-                            $sqlGemstoneMapping = "SELECT 
+                    $arr['DimondDetails'] = $dimondDetails;
+                }
+
+
+                if ($arr['hasGem'] === '1') {
+                    if ($row['allGemstone']) {
+                        $count = 0;
+                        $sqlGemstoneMapping = "SELECT 
                                                         gemstone_id,
                                                         gemstone_name,
                                                         total_no,
@@ -3589,26 +3302,24 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                                                 FROM 
                                                         tbl_product_gemstone_mapping
                                                 WHERE 
-                                                        productid=".$pid."
+                                                        productid=" . $pid . "
                                                              AND
-                                                        active_flag = 1";  
-                             $resGemstoneMapping = $this->query($sqlGemstoneMapping);
-                              while ($rowGemstoneMapping = $this->fetchData($resGemstoneMapping)){
-                                  $arrgemstoneDetails[]= $rowGemstoneMapping;
-                                   $count++;
-                              }
-                              $gemstoneDetails = $arrgemstoneDetails;
+                                                        active_flag = 1";
+                        $resGemstoneMapping = $this->query($sqlGemstoneMapping);
+                        while ($rowGemstoneMapping = $this->fetchData($resGemstoneMapping)) {
+                            $arrgemstoneDetails[] = $rowGemstoneMapping;
+                            $count++;
                         }
-                        $arr['GemstoneDetails'] =$gemstoneDetails;
-                        
-                        
+                        $gemstoneDetails = $arrgemstoneDetails;
                     }
-                    
-                   
-                    if( $arr['hasSol'] === '1'){
-                          
-                        if($row['allSolitaire']){
-                            $sqlSolitaireMapping = "SELECT 
+                    $arr['GemstoneDetails'] = $gemstoneDetails;
+                }
+
+
+                if ($arr['hasSol'] === '1') {
+
+                    if ($row['allSolitaire']) {
+                        $sqlSolitaireMapping = "SELECT 
                                                         solitaire_id,
                                                         shape,
                                                         color,
@@ -3626,26 +3337,23 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                                                 FROM 
                                                         tbl_product_solitaire_mapping
                                                 WHERE 
-                                                        productid=".$pid."
+                                                        productid=" . $pid . "
                                                              AND
-                                                        active_flag = 1";  
-                             $resSolitaireMapping = $this->query($sqlSolitaireMapping);
-                              while ($rowSolitaireMapping = $this->fetchData($resSolitaireMapping)){
-                                  $arrSolitaireDetails[]= $rowSolitaireMapping;
-                                  
-                              }
-                              $solitaireDetails = $arrSolitaireDetails;
+                                                        active_flag = 1";
+                        $resSolitaireMapping = $this->query($sqlSolitaireMapping);
+                        while ($rowSolitaireMapping = $this->fetchData($resSolitaireMapping)) {
+                            $arrSolitaireDetails[] = $rowSolitaireMapping;
                         }
-                        $arr['SolitaireDetails'] =$solitaireDetails;
-                        
-                        
+                        $solitaireDetails = $arrSolitaireDetails;
                     }
-                    
-                   
-                    if( $arr['hasUnct'] === '1'){
-                        if($row['allUncut']){
-                            $count =0;
-                            $sqlUncutMapping = "SELECT 
+                    $arr['SolitaireDetails'] = $solitaireDetails;
+                }
+
+
+                if ($arr['hasUnct'] === '1') {
+                    if ($row['allUncut']) {
+                        $count = 0;
+                        $sqlUncutMapping = "SELECT 
                                                         uncut_id,
                                                         color,
                                                         quality,
@@ -3656,25 +3364,23 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                                                 FROM 
                                                         tbl_product_uncut_mapping
                                                 WHERE 
-                                                        productid=".$pid."
+                                                        productid=" . $pid . "
                                                              AND
-                                                        active_flag = 1";  
-                             $resUncutMapping = $this->query($sqlUncutMapping);
-                              while ($rowUncutMapping = $this->fetchData($resUncutMapping)){
-                                  $arrUncutDetails[]= $rowUncutMapping;
-                                   $count++;
-                              }
-                              $UncutDetails = $arrUncutDetails;
+                                                        active_flag = 1";
+                        $resUncutMapping = $this->query($sqlUncutMapping);
+                        while ($rowUncutMapping = $this->fetchData($resUncutMapping)) {
+                            $arrUncutDetails[] = $rowUncutMapping;
+                            $count++;
                         }
-                        $arr['UncutDetails'] =$UncutDetails;
-                        
-                        
+                        $UncutDetails = $arrUncutDetails;
                     }
-                    
-                    $metalpurityDetails = array();
-                    if( $arr['custPurty'] === '1'){
-                        if($row['allmetalpurity']){
-                            $sqlMetalpurMapping = "SELECT
+                    $arr['UncutDetails'] = $UncutDetails;
+                }
+
+                $metalpurityDetails = array();
+                if ($arr['custPurty'] === '1') {
+                    if ($row['allmetalpurity']) {
+                        $sqlMetalpurMapping = "SELECT
                                                         *
                                                      FROM
                                                 tbl_metal_purity_master
@@ -3687,27 +3393,24 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                                                      FROM
                                                 tbl_product_metal_purity_mapping
                                                  WHERE
-                                                     productid = " .$pid. "
+                                                     productid = " . $pid . "
                                                      AND
                                                      active_flag=1)
-                                                    ";  
-                          
-                             $resMetalpurMapping = $this->query($sqlMetalpurMapping);
-                              while ($rowMetalpurMapping = $this->fetchData($resMetalpurMapping)){
-                                  $arrmetalpurDetails[]= $rowMetalpurMapping;
-                                  
-                              }
-                              $metalpurityDetails = $arrmetalpurDetails;
+                                                    ";
+
+                        $resMetalpurMapping = $this->query($sqlMetalpurMapping);
+                        while ($rowMetalpurMapping = $this->fetchData($resMetalpurMapping)) {
+                            $arrmetalpurDetails[] = $rowMetalpurMapping;
                         }
-                        $arr['metalpurityDetails'] =$metalpurityDetails;
-                        
-                        
+                        $metalpurityDetails = $arrmetalpurDetails;
                     }
-                    
-                      $metalClrDetails = array();
-                    if( $arr['custClor'] === '1'){
-                        if($row['allmetalcolor']){
-                            $sqlMetalclrMapping = " SELECT
+                    $arr['metalpurityDetails'] = $metalpurityDetails;
+                }
+
+                $metalClrDetails = array();
+                if ($arr['custClor'] === '1') {
+                    if ($row['allmetalcolor']) {
+                        $sqlMetalclrMapping = " SELECT
                                 *
                         FROM
                                 tbl_metal_color_master
@@ -3720,56 +3423,54 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                                         FROM
                                                 tbl_product_metal_color_mapping
                                         WHERE
-                                                productid = " .$pid. "
+                                                productid = " . $pid . "
                                             AND
-                                                active_flag=1)";  
-                             $resMetalclrMapping = $this->query($sqlMetalclrMapping);
-                              while ($rowMetalclrMapping = $this->fetchData($resMetalclrMapping)){
-                                  $arrmetalclrDetails[]= $rowMetalclrMapping;
-                                  
-                              }
-                              $metalclrDetails = $arrmetalclrDetails;
+                                                active_flag=1)";
+                        $resMetalclrMapping = $this->query($sqlMetalclrMapping);
+                        while ($rowMetalclrMapping = $this->fetchData($resMetalclrMapping)) {
+                            $arrmetalclrDetails[] = $rowMetalclrMapping;
                         }
-                        $arr['metalcolorDetails'] =$metalclrDetails;
-                        
-                        
+                        $metalclrDetails = $arrmetalclrDetails;
                     }
-                    
-                  
-                    
-                    $resp[] = $arr;
+                    $arr['metalcolorDetails'] = $metalclrDetails;
                 }
-               
-                
-                
-                $error = array('err_code'=>0, 'err_msg'=>'details fetched successfully');
-            }else{
-                $error = array('err_code'=>1, 'err_msg'=>'error in fetching details');
+
+
+
+                $resp[] = $arr;
             }
-            
-            $result = array('result'=>$resp, 'error'=>$error);
-            return $result;
-            
+
+
+
+            $error = array('err_code' => 0, 'err_msg' => 'details fetched successfully');
+        } else {
+            $error = array('err_code' => 1, 'err_msg' => 'error in fetching details');
         }
-        
-        public function getProGrid($params){
-            
-            global $comm;
-           
-            $sqlcount = "  SELECT
+
+        $result = array('result' => $resp, 'error' => $error);
+        return $result;
+    }
+
+    public function getProGrid($params) {
+
+        global $comm;
+
+        $sqlcount = "  SELECT
                                     count(productid) AS  cnt
                                             FROM
                                      tbl_product_master
                                          WHERE
-                                      active_flag NOT IN(2)";  
-            $rescnt= $this->query($sqlcount);
-            $row = $this->fetchData($rescnt);
-            $total= $row['cnt'];
-            
-	    $sql='SET GLOBAL group_concat_max_len = 1000000';
-           
-            $res = $this->query($sql);
-            $sql = " SELECT   
+                                      active_flag NOT IN(2)";
+        $rescnt = $this->query($sqlcount);
+        $row = $this->fetchData($rescnt);
+        $total = $row['cnt'];
+
+
+
+        $sql = 'SET GLOBAL group_concat_max_len = 1000000';
+
+        $res = $this->query($sql);
+        $sql = " SELECT   
                              productid,
                              productid AS pid,
                              product_code,
@@ -3793,7 +3494,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                              createdon,
                              updatedon,
                              updatedby,
-                           
+                             
                             (SELECT GROUP_CONCAT(diamond_id) FROM tbl_product_diamond_mapping WHERE productid = pid AND active_flag = 1 ) AS allDimonds,
                             (SELECT GROUP_CONCAT(carat) FROM tbl_product_diamond_mapping WHERE FIND_IN_SET(diamond_id,allDimonds)) AS dmdcarat ,
                             (SELECT GROUP_CONCAT(total_no) FROM tbl_product_diamond_mapping WHERE FIND_IN_SET(diamond_id,allDimonds)) AS totaldmd,
@@ -3802,6 +3503,8 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                             (SELECT GROUP_CONCAT(id) FROM tbl_diamond_quality_mapping WHERE diamond_id = allDimonds AND active_flag = 1 ) AS DimondQuality,
                             (SELECT GROUP_CONCAT(dname) FROM tbl_diamond_quality_master WHERE FIND_IN_SET(id,DimondQuality)) AS dmdQ,
                             (SELECT GROUP_CONCAT(price_per_carat order by price_per_carat ASC) FROM tbl_diamond_quality_master WHERE FIND_IN_SET(id,DimondQuality)) AS dmdQPricepercarat,
+                            (SELECT min(price_per_carat) FROM tbl_diamond_quality_master WHERE FIND_IN_SET(id,DimondQuality)) AS dmdlowp,
+                            (SELECT max(price_per_carat) FROM tbl_diamond_quality_master WHERE FIND_IN_SET(id,DimondQuality)) AS dmdhighp,
 
 
                             (SELECT GROUP_CONCAT(gemstone_id) FROM tbl_product_gemstone_mapping WHERE productid = pid AND active_flag = 1 ) AS allGemstone,
@@ -3824,7 +3527,10 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                             (SELECT GROUP_CONCAT(id) FROM tbl_product_metal_purity_mapping WHERE productid = pid AND active_flag = 1 ) AS allmetalpurity,
                             (SELECT GROUP_CONCAT(dvalue) FROM tbl_metal_purity_master WHERE FIND_IN_SET(id,allmetalpurity)) AS purity,
                             (SELECT GROUP_CONCAT(price order by price DESC) FROM tbl_metal_purity_master WHERE FIND_IN_SET(id,allmetalpurity)) AS purprice,
-                            
+                            (SELECT min(price) FROM tbl_metal_purity_master WHERE FIND_IN_SET(id,allmetalpurity)) AS caratlowp,
+                            (SELECT max(price) FROM tbl_metal_purity_master WHERE FIND_IN_SET(id,allmetalpurity)) AS carathighp,
+
+
                             (SELECT GROUP_CONCAT(id) FROM tbl_product_metal_color_mapping WHERE productid = pid AND active_flag = 1 ) AS allmetalcolor,
                             (SELECT GROUP_CONCAT(attributeid) FROM tbl_product_attributes_mapping WHERE productid = pid AND active_flag = 1 ) AS attrVals,
                             (SELECT GROUP_CONCAT(catid) FROM tbl_category_product_mapping WHERE productid = pid AND active_flag = 1 ) AS catpro,
@@ -3842,96 +3548,97 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                             active_flag != 2
                         ORDER BY
                             createdon DESC ";
-            // $price = $comm->IND_money_format(priceDigit);
-          $price = $comm->IND_money_format(price);
-       
-            
+        // $price = $comm->IND_money_format(priceDigit);
+        $price = $comm->IND_money_format(price);
+
+
         $page = ($params['page'] ? $params['page'] : 1);
         $limit = ($params['limit'] ? $params['limit'] : 12);
 
-        if ($limit > 12)
-        {
+        if ($limit > 12) {
             $limit = 12;
         }
         //$limit = 100;
-        if (!empty($page))
-        {
+        if (!empty($page)) {
             $start = ($page * $limit) - $limit;
             $sql.=" LIMIT " . $start . ",$limit";
         }
-            
-            $res = $this->query($sql);
-            
-            if($res){
-                while ($row = $this->fetchData($res)){
-                    
-                    $arr['prdId'] = $row['productid'];
-                    $arr['prdCod'] = $row['product_code'];
-                   
-                    $arr['jewelleryType'] = $row['jewelleryType'];
-                    $arr['prdNm'] = $row['product_name'];
-                    
-                    $arr['metal_weight'] = $row['metal_weight'];
-                    $arr['custPurty'] = $row['customise_purity'];
-                   
-                    $arr['custClor'] = $row['customise_color'];
-                    
-                    $arr['hasDmd'] = $row['has_diamond'];
-                    
-                     
-                    $arr['hasSol'] = $row['has_solitaire'];
-                    $arr['hasUnct'] = $row['has_uncut'];
-                    $arr['hasGem'] = $row['has_gemstone'];
-                    $arr['making_charges'] = $row['making_charges'];
-                    $arr['active_flag'] = $row['active_flag'];
-                    $arr['allDimonds'] = $row['allDimonds'];
-                    $arr['dmdcarat'] = $row['dmdcarat'];
-                     $arr['totaldmd'] = $row['totaldmd'];
-                       $arr['shape'] = $row['shape'];
-                       
-                     $arr['DimondQuality'] = $row['DimondQuality'];
-                     $arr['dmdQ'] = $row['dmdQ'];
-                     $arr['dmdQPricepercarat'] = $row['dmdQPricepercarat'];
-                        
-                    $arr['allGemstone'] = $row['allGemstone'];
-                    $arr['gemstoneName'] = $row['gemstoneName'];
-                   
-                    $arr['totalgems'] = $row['totalgems'];
-                    $arr['gemscarat'] = $row['gemscarat'];
-                    $arr['gemsPricepercarat'] = $row['gemsPricepercarat'];
-                      
-                    $arr['allSolitaire'] = $row['allSolitaire'];
-                    $arr['totalSolitaire'] = $row['totalSolitaire'];
-                    $arr['Solicarat'] = $row['Solicarat'];
-                    $arr['SoliPricepercarat'] = $row['SoliPricepercarat'];
-                    
-                    $arr['allUncut'] = $row['allUncut'];
-                    $arr['totalUncut'] = $row['totalUncut'];
-                    $arr['Uncutcarat'] = $row['Uncutcarat'];
-                    $arr['UncutPricepercarat'] = $row['UncutPricepercarat'];
-                    
-                    $arr['allmetalpurity'] = $row['allmetalpurity'];
-                     $arr['purity'] = $row['purity'];
-                     $arr['purprice'] = $row['purprice'];
-                    $arr['allmetalcolor'] = $row['allmetalcolor'];
-                     $arr['gender'] = $row['gender'];
-		     $arr['default_image'] = $row['default_image'];
-                    //$arr['images']= $row['images'];
-                   $arr['images'] = trim($row['images'],',');
-                   
-                    
-                        if($row['jewelleryType'] === '1'){
-                             $arr['jwelType'] ='Gold';
-                        }else  if($row['jewelleryType'] === '2'){
-                             $arr['jwelType'] ='Plain Gold';
-                        }else  if($row['jewelleryType'] === '3'){
-                             $arr['jwelType'] ='Platinum';
-                        }  
-                       
-                          if( $arr['hasGem'] === '1'){
-                        if($row['allGemstone']){
-                            $count=0;
-                            $sqlGemstoneMapping = " SELECT 
+
+        $res = $this->query($sql);
+
+        if ($res) {
+            while ($row = $this->fetchData($res)) {
+
+                $arr['prdId'] = $row['productid'];
+                $arr['prdCod'] = $row['product_code'];
+
+                $arr['jewelleryType'] = $row['jewelleryType'];
+                $arr['prdNm'] = $row['product_name'];
+
+                $arr['metal_weight'] = $row['metal_weight'];
+                $arr['custPurty'] = $row['customise_purity'];
+
+                $arr['custClor'] = $row['customise_color'];
+
+                $arr['hasDmd'] = $row['has_diamond'];
+                $arr['caratlowp'] = $row['caratlowp'];
+                $arr['carathighp'] = $row['carathighp'];
+                $arr['dmdlowp'] = $row['dmdlowp'];
+                $arr['dmdhighp'] = $row['dmdhighp'];
+
+                $arr['hasSol'] = $row['has_solitaire'];
+                $arr['hasUnct'] = $row['has_uncut'];
+                $arr['hasGem'] = $row['has_gemstone'];
+                $arr['making_charges'] = $row['making_charges'];
+                $arr['active_flag'] = $row['active_flag'];
+                $arr['allDimonds'] = $row['allDimonds'];
+                $arr['dmdcarat'] = $row['dmdcarat'];
+                $arr['totaldmd'] = $row['totaldmd'];
+                $arr['shape'] = $row['shape'];
+
+                $arr['DimondQuality'] = $row['DimondQuality'];
+                $arr['dmdQ'] = $row['dmdQ'];
+                $arr['dmdQPricepercarat'] = $row['dmdQPricepercarat'];
+
+                $arr['allGemstone'] = $row['allGemstone'];
+                $arr['gemstoneName'] = $row['gemstoneName'];
+
+                $arr['totalgems'] = $row['totalgems'];
+                $arr['gemscarat'] = $row['gemscarat'];
+                $arr['gemsPricepercarat'] = $row['gemsPricepercarat'];
+
+                $arr['allSolitaire'] = $row['allSolitaire'];
+                $arr['totalSolitaire'] = $row['totalSolitaire'];
+                $arr['Solicarat'] = $row['Solicarat'];
+                $arr['SoliPricepercarat'] = $row['SoliPricepercarat'];
+
+                $arr['allUncut'] = $row['allUncut'];
+                $arr['totalUncut'] = $row['totalUncut'];
+                $arr['Uncutcarat'] = $row['Uncutcarat'];
+                $arr['UncutPricepercarat'] = $row['UncutPricepercarat'];
+
+                $arr['allmetalpurity'] = $row['allmetalpurity'];
+                $arr['purity'] = $row['purity'];
+                $arr['purprice'] = $row['purprice'];
+                $arr['allmetalcolor'] = $row['allmetalcolor'];
+                $arr['gender'] = $row['gender'];
+                $arr['default_image'] = $row['default_image'];
+                //$arr['images']= $row['images'];
+                $arr['images'] = trim($row['images'], ',');
+
+
+                if ($row['jewelleryType'] === '1') {
+                    $arr['jwelType'] = 'Gold';
+                } else if ($row['jewelleryType'] === '2') {
+                    $arr['jwelType'] = 'Plain Gold';
+                } else if ($row['jewelleryType'] === '3') {
+                    $arr['jwelType'] = 'Platinum';
+                }
+
+                if ($arr['hasGem'] === '1') {
+                    if ($row['allGemstone']) {
+                        $count = 0;
+                        $sqlGemstoneMapping = " SELECT 
                                                             productid,
                                                             gemstone_name,
                                                             total_no,
@@ -3941,37 +3648,32 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                                                             tbl_product_gemstone_mapping 
                                                     WHERE 
                                                             productid IN(SELECT productid FROM tbl_product_master WHERE productid=pid ORDER BY createdon ASC  
-                                                       ";  
-                             $resGemstoneMapping = $this->query($sqlGemstoneMapping);
-                              while ($rowGemstoneMapping = $this->fetchData($resGemstoneMapping)){
-                                  $arrgemstoneDetails[]= $rowGemstoneMapping;
-                                   $count++;
-                              }
-                              $gemstoneDetails = $arrgemstoneDetails;
+                                                       ";
+                        $resGemstoneMapping = $this->query($sqlGemstoneMapping);
+                        while ($rowGemstoneMapping = $this->fetchData($resGemstoneMapping)) {
+                            $arrgemstoneDetails[] = $rowGemstoneMapping;
+                            $count++;
                         }
-                        $arr['GemstoneDetails'] =$gemstoneDetails;
-                        
-                        
+                        $gemstoneDetails = $arrgemstoneDetails;
                     }
-                    
-                   
-                        $resp[] = $arr;
-                         
-                }    
-                $error = array('err_code'=>0, 'err_msg'=>'details fetched successfully' );
-            }else{
-                $error = array('err_code'=>1, 'err_msg'=>'error in fetching details' );
+                    $arr['GemstoneDetails'] = $gemstoneDetails;
+                }
+
+
+                $resp[] = $arr;
             }
-            
-            $result = array('result'=>$resp, 'error'=>$error,'total'=>$total);
-            return $result;
-            
+            $error = array('err_code' => 0, 'err_msg' => 'details fetched successfully');
+        } else {
+            $error = array('err_code' => 1, 'err_msg' => 'error in fetching details');
         }
 
-        
-       public function getImages() {
-       
-            $sql = "SELECT 
+        $result = array('result' => $resp, 'error' => $error, 'total' => $total);
+        return $result;
+    }
+
+    public function getImages() {
+
+        $sql = "SELECT 
                         productid AS pid,
                        (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND active_flag =1 ) AS images
                         FROM 
@@ -3980,54 +3682,50 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                             active_flag != 2
                         ORDER BY
                             createdon ASC ";
-               $page = ($params['page'] ? $params['page'] : 1);
+        $page = ($params['page'] ? $params['page'] : 1);
         $limit = ($params['limit'] ? $params['limit'] : 5);
 
-        if ($limit > 5 )
-        {
+        if ($limit > 5) {
             $limit = 5;
         }
 
-        if (!empty($page))
-        {
+        if (!empty($page)) {
             $start = ($page * $limit) - $limit;
             $sql.=" LIMIT " . $start . ",$limit";
         }
 
-            $res = $this->query($sql);
-            if ($res) {
-                while ($row = $this->fetchData($res)) {
-                    $arr['images'] = $row['images'];
-                    
-                        $resp[] = $arr;
-                         
-               }    
-                $error = array('err_code'=>0, 'err_msg'=>'details fetched successfully' );
-            }else{
-                $error = array('err_code'=>1, 'err_msg'=>'error in fetching details' );
+        $res = $this->query($sql);
+        if ($res) {
+            while ($row = $this->fetchData($res)) {
+                $arr['images'] = $row['images'];
+
+                $resp[] = $arr;
             }
-            
-            $result = array('result'=>$resp, 'error'=>$error);
-            return $result;
-            
+            $error = array('err_code' => 0, 'err_msg' => 'details fetched successfully');
+        } else {
+            $error = array('err_code' => 1, 'err_msg' => 'error in fetching details');
         }
 
+        $result = array('result' => $resp, 'error' => $error);
+        return $result;
+    }
+
     public function getProductdetailbycatid($params) {
-      
-       global $comm;
-           $cid=  urldecode($params['id']); 
-	 
-      $sqlcount = "SELECT productid,
-	      (SELECT GROUP_CONCAT(productid) FROM tbl_category_product_mapping WHERE catid= ".$cid." AND active_flag =1 ) AS prdids
+
+        global $comm;
+        $cid = urldecode($params['id']);
+
+        $sqlcount = "SELECT productid,
+	      (SELECT GROUP_CONCAT(productid) FROM tbl_category_product_mapping WHERE catid= " . $cid . " AND active_flag =1 ) AS prdids
 	      FROM tbl_product_master WHERE active_flag =1 HAVING 
 	      FIND_IN_SET(productid,prdids)   ";
-            $rescnt= $this->query($sqlcount );
-	    $total = $this->numRows($rescnt);
-	 
-	    $sqlglb='SET GLOBAL group_concat_max_len = 1000000';
-           
-            $res = $this->query($sqlglb);
-      $sql="SELECT 
+        $rescnt = $this->query($sqlcount);
+        $total = $this->numRows($rescnt);
+
+        $sqlglb = 'SET GLOBAL group_concat_max_len = 1000000';
+
+        $res = $this->query($sqlglb);
+        $sql = "SELECT 
 		    productid,
                              productid AS pid,
                              product_code,
@@ -4096,111 +3794,109 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                             (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND active_flag !=2 ORDER BY
                             image_sequence DESC) AS images,
 			    
-			    (SELECT pcatid FROM tbl_category_master WHERE catid =".$cid.") AS cpcatid,
+			    (SELECT pcatid FROM tbl_category_master WHERE catid =" . $cid . ") AS cpcatid,
 			    (SELECT cat_name FROM tbl_category_master WHERE catid = cpcatid ) AS parntcatname,
-			    (SELECT cat_name FROM tbl_category_master WHERE catid =".$cid." ) AS chldcatname,
+			    (SELECT cat_name FROM tbl_category_master WHERE catid =" . $cid . " ) AS chldcatname,
 			    (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND active_flag != 2 AND  default_img_flag=1) AS default_image
 			    
 	  FROM tbl_product_master WHERE active_flag =1 AND productid  IN (SELECT
-	    productid FROM tbl_category_product_mapping WHERE catid=".$cid." AND active_flag =1)" ;
-      
-      $price = $comm->IND_money_format(price);
-      
-      $page = ($params['page'] ? $params['page'] : 1);
-      $limit = ($params['limit'] ? $params['limit'] : 12);
+	    productid FROM tbl_category_product_mapping WHERE catid=" . $cid . " AND active_flag =1)";
 
-        if ($limit > 12)
-        {
+        $price = $comm->IND_money_format(price);
+
+        $page = ($params['page'] ? $params['page'] : 1);
+        $limit = ($params['limit'] ? $params['limit'] : 12);
+
+        if ($limit > 12) {
             $limit = 12;
         }
-        if (!empty($page))
-        {
+        if (!empty($page)) {
             $start = ($page * $limit) - $limit;
             $sql.=" LIMIT " . $start . ",$limit";
         }
-      
-      $res=  $this->query($sql);
-      if($res){
-	 while ($row = $this->fetchData($res)){
-                    
-                    $arr['prdId'] = $row['productid'];
-                    $arr['prdCod'] = $row['product_code']; 
-                    $arr['vendorid'] = $row['vendorid'];
-                    $arr['vendor_prd_code'] = $row['vendor_prd_code']; 
-                    $arr['leadTime'] = $row['leadTime'];
-                    $arr['returneligible'] = $row['returneligible']; 
-                    $arr['productDescription'] = $row['productDescription']; 
-                    $arr['jewelleryType'] = $row['jewelleryType']; 
-                    $arr['prdNm'] = $row['product_name'];
-                    $arr['product_seo_name'] = $row['product_seo_name'];
-		    $arr['gender'] = $row['gender']; 
-                    $arr['product_weight'] = $row['product_weight'];
-		    $arr['diamond_setting'] = $row['diamond_setting'];
-		    $arr['metal_weight'] = $row['metal_weight']; 
-                    $arr['making_charges'] = $row['making_charges'];
-                    $arr['procurement_cost'] = $row['procurement_cost'];
-                    $arr['margin'] = $row['margin'];
-                    $arr['measurement'] = $row['measurement']; 
-                    $arr['custPurty'] = $row['customise_purity']; 
-                    $arr['custClor'] = $row['customise_color'];
-                    $arr['certificate'] = $row['certificate']; 
-                    $arr['hasDmd'] = $row['has_diamond'];
-                    $arr['hasSol'] = $row['has_solitaire']; 
-                    $arr['hasUnct'] = $row['has_uncut'];
-                    $arr['hasGem'] = $row['has_gemstone'];
-                    $arr['active_flag'] = $row['active_flag']; 
-                    $arr['createdon'] = $row['createdon'];
-                    $arr['updatedon'] = $row['updatedon'];
-                    $arr['updatedby'] = $row['updatedby'];  
-		    
-		    $arr['allDimonds'] = $row['allDimonds'];
-                    $arr['dmdcarat'] = $row['dmdcarat'];
-                    $arr['totaldmd'] = $row['totaldmd'];
-		    $arr['shape'] = $row['shape'];
-		    
-		     $arr['DimondQuality'] = $row['DimondQuality'];
-                     $arr['dmdQ'] = $row['dmdQ'];
-                     $arr['dmdQPricepercarat'] = $row['dmdQPricepercarat'];
-                        
-                    $arr['allGemstone'] = $row['allGemstone'];
-                    $arr['gemstoneName'] = $row['gemstoneName'];
-                   
-                    $arr['totalgems'] = $row['totalgems'];
-                    $arr['gemscarat'] = $row['gemscarat'];
-                    $arr['gemsPricepercarat'] = $row['gemsPricepercarat'];
-                      
-                    $arr['allSolitaire'] = $row['allSolitaire'];
-                    $arr['totalSolitaire'] = $row['totalSolitaire'];
-                    $arr['Solicarat'] = $row['Solicarat'];
-                    $arr['SoliPricepercarat'] = $row['SoliPricepercarat'];
-                    
-                    $arr['allUncut'] = $row['allUncut'];
-                    $arr['totalUncut'] = $row['totalUncut'];
-                    $arr['Uncutcarat'] = $row['Uncutcarat'];
-                    $arr['UncutPricepercarat'] = $row['UncutPricepercarat'];
-                    
-		     $arr['default_image'] = $row['default_image'];
-                    $arr['allmetalpurity'] = $row['allmetalpurity'];
-                     $arr['purity'] = $row['purity'];
-                     $arr['purprice'] = $row['purprice'];
-                    $arr['allmetalcolor'] = $row['allmetalcolor']; 
-		     $arr['default_image'] = $row['default_image']; 
-                   $arr['images'] = trim($row['images'],',');
-                   $arr['parntcatname'] = $row['parntcatname'];
-		   $arr['chldcatname'] = $row['chldcatname'];
-		   
-		     if($row['jewelleryType'] === '1'){
-                             $arr['jwelType'] ='Gold';
-                        }else  if($row['jewelleryType'] === '2'){
-                             $arr['jwelType'] ='Plain Gold';
-                        }else  if($row['jewelleryType'] === '3'){
-                             $arr['jwelType'] ='Platinum';
-                        }  
-                       
-                          if( $arr['hasGem'] === '1'){
-                        if($row['allGemstone']){
-                            $count=0;
-                            $sqlGemstoneMapping = " SELECT 
+
+        $res = $this->query($sql);
+        if ($res) {
+            while ($row = $this->fetchData($res)) {
+
+                $arr['prdId'] = $row['productid'];
+                $arr['prdCod'] = $row['product_code'];
+                $arr['vendorid'] = $row['vendorid'];
+                $arr['vendor_prd_code'] = $row['vendor_prd_code'];
+                $arr['leadTime'] = $row['leadTime'];
+                $arr['returneligible'] = $row['returneligible'];
+                $arr['productDescription'] = $row['productDescription'];
+                $arr['jewelleryType'] = $row['jewelleryType'];
+                $arr['prdNm'] = $row['product_name'];
+                $arr['product_seo_name'] = $row['product_seo_name'];
+                $arr['gender'] = $row['gender'];
+                $arr['product_weight'] = $row['product_weight'];
+                $arr['diamond_setting'] = $row['diamond_setting'];
+                $arr['metal_weight'] = $row['metal_weight'];
+                $arr['making_charges'] = $row['making_charges'];
+                $arr['procurement_cost'] = $row['procurement_cost'];
+                $arr['margin'] = $row['margin'];
+                $arr['measurement'] = $row['measurement'];
+                $arr['custPurty'] = $row['customise_purity'];
+                $arr['custClor'] = $row['customise_color'];
+                $arr['certificate'] = $row['certificate'];
+                $arr['hasDmd'] = $row['has_diamond'];
+                $arr['hasSol'] = $row['has_solitaire'];
+                $arr['hasUnct'] = $row['has_uncut'];
+                $arr['hasGem'] = $row['has_gemstone'];
+                $arr['active_flag'] = $row['active_flag'];
+                $arr['createdon'] = $row['createdon'];
+                $arr['updatedon'] = $row['updatedon'];
+                $arr['updatedby'] = $row['updatedby'];
+
+                $arr['allDimonds'] = $row['allDimonds'];
+                $arr['dmdcarat'] = $row['dmdcarat'];
+                $arr['totaldmd'] = $row['totaldmd'];
+                $arr['shape'] = $row['shape'];
+
+                $arr['DimondQuality'] = $row['DimondQuality'];
+                $arr['dmdQ'] = $row['dmdQ'];
+                $arr['dmdQPricepercarat'] = $row['dmdQPricepercarat'];
+
+                $arr['allGemstone'] = $row['allGemstone'];
+                $arr['gemstoneName'] = $row['gemstoneName'];
+
+                $arr['totalgems'] = $row['totalgems'];
+                $arr['gemscarat'] = $row['gemscarat'];
+                $arr['gemsPricepercarat'] = $row['gemsPricepercarat'];
+
+                $arr['allSolitaire'] = $row['allSolitaire'];
+                $arr['totalSolitaire'] = $row['totalSolitaire'];
+                $arr['Solicarat'] = $row['Solicarat'];
+                $arr['SoliPricepercarat'] = $row['SoliPricepercarat'];
+
+                $arr['allUncut'] = $row['allUncut'];
+                $arr['totalUncut'] = $row['totalUncut'];
+                $arr['Uncutcarat'] = $row['Uncutcarat'];
+                $arr['UncutPricepercarat'] = $row['UncutPricepercarat'];
+
+                $arr['default_image'] = $row['default_image'];
+                $arr['allmetalpurity'] = $row['allmetalpurity'];
+                $arr['purity'] = $row['purity'];
+                $arr['purprice'] = $row['purprice'];
+                $arr['allmetalcolor'] = $row['allmetalcolor'];
+                $arr['default_image'] = $row['default_image'];
+                $arr['images'] = trim($row['images'], ',');
+                $arr['parntcatname'] = $row['parntcatname'];
+                $arr['chldcatname'] = $row['chldcatname'];
+
+                if ($row['jewelleryType'] === '1') {
+                    $arr['jwelType'] = 'Gold';
+                } else if ($row['jewelleryType'] === '2') {
+                    $arr['jwelType'] = 'Plain Gold';
+                } else if ($row['jewelleryType'] === '3') {
+                    $arr['jwelType'] = 'Platinum';
+                }
+
+                if ($arr['hasGem'] === '1') {
+                    if ($row['allGemstone']) {
+                        $count = 0;
+                        $sqlGemstoneMapping = " SELECT 
                                                             productid,
                                                             gemstone_name,
                                                             total_no,
@@ -4210,210 +3906,199 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                                                             tbl_product_gemstone_mapping 
                                                     WHERE 
                                                             productid IN(SELECT productid FROM tbl_product_master WHERE productid=pid ORDER BY createdon ASC  
-                                                       ";  
-                             $resGemstoneMapping = $this->query($sqlGemstoneMapping);
-                              while ($rowGemstoneMapping = $this->fetchData($resGemstoneMapping)){
-                                  $arrgemstoneDetails[]= $rowGemstoneMapping;
-                                   $count++;
-                              }
-                              $gemstoneDetails = $arrgemstoneDetails;
+                                                       ";
+                        $resGemstoneMapping = $this->query($sqlGemstoneMapping);
+                        while ($rowGemstoneMapping = $this->fetchData($resGemstoneMapping)) {
+                            $arrgemstoneDetails[] = $rowGemstoneMapping;
+                            $count++;
                         }
-                        $arr['GemstoneDetails'] =$gemstoneDetails;
-                         
+                        $gemstoneDetails = $arrgemstoneDetails;
                     }
-                     
-                        $reslt[] = $arr;
-                    } 
-	 
-	 $error = array('err_code'=>0, 'err_msg'=>'details fetched successfully' );
-      }
-      else{
-	  $error = array('err_code'=>1, 'err_msg'=>'error in fetching details' );
-      }
-     
-    $result = array('result'=>$reslt, 'error'=>$error, 'total'=>$total);
-      return $result;
+                    $arr['GemstoneDetails'] = $gemstoneDetails;
+                }
+
+                $reslt[] = $arr;
+            }
+
+            $error = array('err_code' => 0, 'err_msg' => 'details fetched successfully');
+        } else {
+            $error = array('err_code' => 1, 'err_msg' => 'error in fetching details');
+        }
+
+        $result = array('result' => $reslt, 'error' => $error, 'total' => $total);
+        return $result;
     }
-      
-     public function getprodDescrp($params) { 
-       
-       $jweltype = (!empty($params['jweltype'])) ? trim($params['jweltype']) : '';
+
+    public function getprodDescrp($params) {
+
+        $jweltype = (!empty($params['jweltype'])) ? trim($params['jweltype']) : '';
         $dmdsoli = (!empty($params['dmdsoli'])) ? trim($params['dmdsoli']) : '';
-       $sql = "SELECT 
+        $sql = "SELECT 
                         id,
                        name,
                        description
                         
                       FROM
                         tbl_productdetails_master WHERE  active_flag=1 
-                      AND  LOWER(REPLACE(NAME,' ','')) =LOWER(REPLACE('".$jweltype."',' ','')) OR 
-                            LOWER(REPLACE(NAME,' ','')) =LOWER(REPLACE('".$dmdsoli."',' ',''))";
-            
-            $res = $this->query($sql);
-             if($res){
-                while ($row = $this->fetchData($res)){
-                    $arr['name'] = $row['name'];
-                    $arr['desc'] = $row['description'];
-                    
-                    $resp[] = $arr;
-                }
-                 $error = array('err_code'=>0, 'err_msg'=>'details fetched successfully');
-             }
-             else{
-                $error = array('err_code'=>1, 'err_msg'=>'error in fetching details');
+                      AND  LOWER(REPLACE(NAME,' ','')) =LOWER(REPLACE('" . $jweltype . "',' ','')) OR 
+                            LOWER(REPLACE(NAME,' ','')) =LOWER(REPLACE('" . $dmdsoli . "',' ',''))";
+
+        $res = $this->query($sql);
+        if ($res) {
+            while ($row = $this->fetchData($res)) {
+                $arr['name'] = $row['name'];
+                $arr['desc'] = $row['description'];
+
+                $resp[] = $arr;
             }
-             $result = array('result'=>$resp, 'error'=>$error);
-            return $result;
-       
-   }
-   
-    function getfiltrmenus($params){
-       
-       $sql =" SELECT catid ccatid,pcatid,cat_name,
+            $error = array('err_code' => 0, 'err_msg' => 'details fetched successfully');
+        } else {
+            $error = array('err_code' => 1, 'err_msg' => 'error in fetching details');
+        }
+        $result = array('result' => $resp, 'error' => $error);
+        return $result;
+    }
+
+    function getfiltrmenus($params) {
+
+        $sql = " SELECT catid ccatid,pcatid,cat_name,
 	   
 	    (SELECT GROUP_CONCAT(attributeid) FROM tbl_category_attribute_mapping WHERE catid =ccatid AND active_flag = 1) AS attributeids,
 	    (SELECT GROUP_CONCAT(attr_name) FROM tbl_attribute_master WHERE FIND_IN_SET(attributeid,attributeids) AND active_flag = 1 ) AS atr_name,
 	    (SELECT GROUP_CONCAT(attributeid) FROM tbl_attribute_master WHERE FIND_IN_SET(attributeid,attributeids) AND active_flag = 1 ) AS atrids,
 	    (SELECT GROUP_CONCAT(attr_values) FROM tbl_attribute_master WHERE FIND_IN_SET(attributeid,attributeids) AND active_flag = 1 ) AS atr_val
-	    FROM tbl_category_master WHERE catid= ".$params['catid'];
-       
-            $res = $this->query($sql);
-            if ($res) {
-                while ($row = $this->fetchData($res)) {
-                    $arr['catid'] = $row['ccatid']; 
-		    $arr['cat_name'] = $row['cat_name']; 
-                    $attributeid = $row['atrids'];  
-		    $arr['atr_val'] =$this->getsubmenufltr($attributeid);;
-                    $resp = $arr; 
-               }    
-                $error = array('err_code'=>0, 'err_msg'=>'details fetched successfully' );
-            }else{
-                $error = array('err_code'=>1, 'err_msg'=>'error in fetching details' );
-            }
-            
-            $result = array('result'=>$resp, 'error'=>$error);
-            return $result;
-             
-     }
-    
-    function getsubmenufltr($attrs)
-    { 
-       $attr=  explode(',',$attrs);
-     
-       foreach($attr as $val){  
-	 $arr=[];
-	  $sql="SELECT attr_values,attr_name,attributeid  FROM tbl_attribute_master WHERE attributeid=".$val; 
-	  $res = $this->query($sql);
-	   
-	  $row=$this->fetchData($res);
-	  $arr['attr_name']=$row['attr_name'];
-	  $arr['attributeid']=$row['attributeid'];
- 	  $attrval = $row['attr_values'];
-	  $arr['attr_values']=explode(',',$attrval); 
- 	  $atrval[]=$arr;  
-       }  
-       if ($res) { 
-              $error = array('err_code'=>0, 'err_msg'=>'details fetched successfully' );  
-            }
-             else{
-	  $error = array('err_code'=>1, 'err_msg'=>'error in fetching details' );
-      }
-     
-      $result = array('result'=>$atrval, 'error'=>$error);
-      return $result; 
-    }
-     
-     function getprodByfiltr($params)
-    { 
-      $params= json_decode($params[0], 1);
-        
-      $sql=" select DISTINCT(productid) ,   ";
-      foreach ($params as $menuname => $value) {
-	
-	       
-	       if($menuname == 'catid'){
-			 $catflag=1;  
-			$catvalval=$value; 
-		      }
+	    FROM tbl_category_master WHERE catid= " . $params['catid'];
 
-		  foreach ($value as $menuid => $values) {
-			    $vals=[];
-			       
-			   
-			    foreach ($values as $val) { 
-			      $vals[]=$val;
- 
-			    }
-			      $vals=  implode(",",$vals);
-			     
-		      
-		      if($menuname == 'stone'){
-			$stoneflag=1;
-			$stoneval=$vals; 
-		      }
-		      if($menuname == 'diamondcut'){
-			$dnmndcutflag=1;
-			$dnmndcutval=$vals; 
-		      }
-		      if($menuname == 'bangletype' || $menuname == 'ringtype' || $menuname == 'pendanttype' || $menuname == 'earringtype' || $menuname == 'necklacetype')
-		      {
-			$cattypeflag=1;
-			$cattypeval=$vals; 
-		      }
-		  }
-	  
-      }
-     
-    if( $catflag == 1){
-       $sql.="(select GROUP_CONCAT(productid) from tbl_category_product_mapping where catid=".$catvalval.") AS prdid from tbl_product_master where";
-    }  
-      
-    if($stoneflag == 1){ 
-	$sql.=" productid IN (SELECT productid FROM tbl_product_gemstone_mapping WHERE MATCH(gemstone_name) AGAINST('".$stoneval."') HAVING FIND_IN_SET(productid,prdid)) AND";
+        $res = $this->query($sql);
+        if ($res) {
+            while ($row = $this->fetchData($res)) {
+                $arr['catid'] = $row['ccatid'];
+                $arr['cat_name'] = $row['cat_name'];
+                $attributeid = $row['atrids'];
+                $arr['atr_val'] = $this->getsubmenufltr($attributeid);
+                ;
+                $resp = $arr;
+            }
+            $error = array('err_code' => 0, 'err_msg' => 'details fetched successfully');
+        } else {
+            $error = array('err_code' => 1, 'err_msg' => 'error in fetching details');
+        }
+
+        $result = array('result' => $resp, 'error' => $error);
+        return $result;
     }
-    
-    if($dnmndcutflag == 1){ 
-      $sql.=" productid IN (SELECT productid FROM tbl_product_diamond_mapping WHERE MATCH(shape) AGAINST('".$dnmndcutval."') AND active_flag=1 HAVING FIND_IN_SET(productid,prdid)) AND";
-    } 
- 	
-    if($cattypeflag == 1){ 
-      $sql.=" productid IN (SELECT productid FROM tbl_product_attributes_mapping WHERE MATCH(value) AGAINST('".$cattypeval."') AND active_flag=1 HAVING FIND_IN_SET(productid,prdid)) AND";
+
+    function getsubmenufltr($attrs) {
+        $attr = explode(',', $attrs);
+
+        foreach ($attr as $val) {
+            $arr = [];
+            $sql = "SELECT attr_values,attr_name,attributeid  FROM tbl_attribute_master WHERE attributeid=" . $val;
+            $res = $this->query($sql);
+
+            $row = $this->fetchData($res);
+            $arr['attr_name'] = $row['attr_name'];
+            $arr['attributeid'] = $row['attributeid'];
+            $attrval = $row['attr_values'];
+            $arr['attr_values'] = explode(',', $attrval);
+            $atrval[] = $arr;
+        }
+        if ($res) {
+            $error = array('err_code' => 0, 'err_msg' => 'details fetched successfully');
+        } else {
+            $error = array('err_code' => 1, 'err_msg' => 'error in fetching details');
+        }
+
+        $result = array('result' => $atrval, 'error' => $error);
+        return $result;
     }
- 	
-      $sql.="   active_flag=1";
-      $res=  $this->query($sql);
-      
-      while ($row = $this->fetchData($res)) {
-         $prdids[] = $row['productid'];
-      } 
-      
-      foreach($prdids as $val){  
-	    $prdid = array ( 'pid' => $val );
-	    $rsst = $this->getProductdetailbypid($prdid);
-	    if(!empty($rsst)){
-	      $rst[]=$rsst;
-	      $cnt++;
-	    } 
-	}
-      if ($res) { 
-          $error = array('err_code'=>0, 'err_msg'=>'details fetched successfully' );  
-      }
-      else{
-	  $error = array('err_code'=>1, 'err_msg'=>'error in fetching details' );
-      }
-     
-      $result = array('result'=>$rst, 'error'=>$error,'total'=>$cnt);
-      return $result; 
+
+    function getprodByfiltr($params) {
+        $params = json_decode($params[0], 1);
+
+        $sql = " select DISTINCT(productid) ,   ";
+        foreach ($params as $menuname => $value) {
+
+
+            if ($menuname == 'catid') {
+                $catflag = 1;
+                $catvalval = $value;
+            }
+
+            foreach ($value as $menuid => $values) {
+                $vals = [];
+
+
+                foreach ($values as $val) {
+                    $vals[] = $val;
+                }
+                $vals = implode(",", $vals);
+
+
+                if ($menuname == 'stone') {
+                    $stoneflag = 1;
+                    $stoneval = $vals;
+                }
+                if ($menuname == 'diamondcut') {
+                    $dnmndcutflag = 1;
+                    $dnmndcutval = $vals;
+                }
+                if ($menuname == 'bangletype' || $menuname == 'ringtype' || $menuname == 'pendanttype' || $menuname == 'earringtype' || $menuname == 'necklacetype') {
+                    $cattypeflag = 1;
+                    $cattypeval = $vals;
+                }
+            }
+        }
+
+        if ($catflag == 1) {
+            $sql.="(select GROUP_CONCAT(productid) from tbl_category_product_mapping where catid=" . $catvalval . ") AS prdid from tbl_product_master where";
+        }
+
+        if ($stoneflag == 1) {
+            $sql.=" productid IN (SELECT productid FROM tbl_product_gemstone_mapping WHERE MATCH(gemstone_name) AGAINST('" . $stoneval . "') HAVING FIND_IN_SET(productid,prdid)) AND";
+        }
+
+        if ($dnmndcutflag == 1) {
+            $sql.=" productid IN (SELECT productid FROM tbl_product_diamond_mapping WHERE MATCH(shape) AGAINST('" . $dnmndcutval . "') AND active_flag=1 HAVING FIND_IN_SET(productid,prdid)) AND";
+        }
+
+        if ($cattypeflag == 1) {
+            $sql.=" productid IN (SELECT productid FROM tbl_product_attributes_mapping WHERE MATCH(value) AGAINST('" . $cattypeval . "') AND active_flag=1 HAVING FIND_IN_SET(productid,prdid)) AND";
+        }
+
+        $sql.="   active_flag=1";
+        $res = $this->query($sql);
+
+        while ($row = $this->fetchData($res)) {
+            $prdids[] = $row['productid'];
+        }
+
+        foreach ($prdids as $val) {
+            $prdid = array('pid' => $val);
+            $rsst = $this->getProductdetailbypid($prdid);
+            if (!empty($rsst)) {
+                $rst[] = $rsst;
+                $cnt++;
+            }
+        }
+        if ($res) {
+            $error = array('err_code' => 0, 'err_msg' => 'details fetched successfully');
+        } else {
+            $error = array('err_code' => 1, 'err_msg' => 'error in fetching details');
+        }
+
+        $result = array('result' => $rst, 'error' => $error, 'total' => $cnt);
+        return $result;
     }
-    
-     public function getProductdetailbypid($params) {
-      
-       global $comm;
-            
-	    $sqlglb='SET GLOBAL group_concat_max_len = 1000000';
-           
-            $res = $this->query($sqlglb);
-      $sql="SELECT 
+
+    public function getProductdetailbypid($params) {
+
+        global $comm;
+
+        $sqlglb = 'SET GLOBAL group_concat_max_len = 1000000';
+
+        $res = $this->query($sqlglb);
+        $sql = "SELECT 
 		    productid,
                              productid AS pid,
                              product_code,
@@ -4482,89 +4167,89 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                             (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND active_flag !=2 ORDER BY
                             image_sequence DESC) AS images
 			    
-	  FROM tbl_product_master WHERE active_flag = 1 AND productid =".$params['pid']."" ;
-      
-      $price = $comm->IND_money_format(price);
-       
-      
-      $res=  $this->query($sql);
-      if($res){
-	 while ($row = $this->fetchData($res)){
-                    
-                    $arr['prdId'] = $row['productid'];
-                    $arr['prdCod'] = $row['product_code']; 
-                    $arr['vendorid'] = $row['vendorid'];
-                    $arr['vendor_prd_code'] = $row['vendor_prd_code']; 
-                    $arr['leadTime'] = $row['leadTime'];
-                    $arr['returneligible'] = $row['returneligible']; 
-                    $arr['productDescription'] = $row['productDescription']; 
-                    $arr['jewelleryType'] = $row['jewelleryType']; 
-                    $arr['prdNm'] = $row['product_name'];
-                    $arr['product_seo_name'] = $row['product_seo_name'];
-		    $arr['gender'] = $row['gender']; 
-                    $arr['product_weight'] = $row['product_weight'];
-		    $arr['diamond_setting'] = $row['diamond_setting'];
-		    $arr['metal_weight'] = $row['metal_weight']; 
-                    $arr['making_charges'] = $row['making_charges'];
-                    $arr['procurement_cost'] = $row['procurement_cost'];
-                    $arr['margin'] = $row['margin'];
-                    $arr['measurement'] = $row['measurement']; 
-                    $arr['custPurty'] = $row['customise_purity']; 
-                    $arr['custClor'] = $row['customise_color'];
-                    $arr['certificate'] = $row['certificate']; 
-                    $arr['hasDmd'] = $row['has_diamond'];
-                    $arr['hasSol'] = $row['has_solitaire']; 
-                    $arr['hasUnct'] = $row['has_uncut'];
-                    $arr['hasGem'] = $row['has_gemstone'];
-                    $arr['active_flag'] = $row['active_flag']; 
-                    $arr['createdon'] = $row['createdon'];
-                    $arr['updatedon'] = $row['updatedon'];
-                    $arr['updatedby'] = $row['updatedby'];  
-		    
-		    $arr['allDimonds'] = $row['allDimonds'];
-                    $arr['dmdcarat'] = $row['dmdcarat'];
-                    $arr['totaldmd'] = $row['totaldmd'];
-		    $arr['shape'] = $row['shape'];
-		    
-		     $arr['DimondQuality'] = $row['DimondQuality'];
-                     $arr['dmdQ'] = $row['dmdQ'];
-                     $arr['dmdQPricepercarat'] = $row['dmdQPricepercarat'];
-                        
-                    $arr['allGemstone'] = $row['allGemstone'];
-                    $arr['gemstoneName'] = $row['gemstoneName'];
-                   
-                    $arr['totalgems'] = $row['totalgems'];
-                    $arr['gemscarat'] = $row['gemscarat'];
-                    $arr['gemsPricepercarat'] = $row['gemsPricepercarat'];
-                      
-                    $arr['allSolitaire'] = $row['allSolitaire'];
-                    $arr['totalSolitaire'] = $row['totalSolitaire'];
-                    $arr['Solicarat'] = $row['Solicarat'];
-                    $arr['SoliPricepercarat'] = $row['SoliPricepercarat'];
-                    
-                    $arr['allUncut'] = $row['allUncut'];
-                    $arr['totalUncut'] = $row['totalUncut'];
-                    $arr['Uncutcarat'] = $row['Uncutcarat'];
-                    $arr['UncutPricepercarat'] = $row['UncutPricepercarat'];
-                    
-                    $arr['allmetalpurity'] = $row['allmetalpurity'];
-                     $arr['purity'] = $row['purity'];
-                     $arr['purprice'] = $row['purprice'];
-                    $arr['allmetalcolor'] = $row['allmetalcolor']; 
-		      $arr['images'] = $row['images'];
-		   
-		     if($row['jewelleryType'] === '1'){
-                             $arr['jwelType'] ='Gold';
-                        }else  if($row['jewelleryType'] === '2'){
-                             $arr['jwelType'] ='Plain Gold';
-                        }else  if($row['jewelleryType'] === '3'){
-                             $arr['jwelType'] ='Platinum';
-                        }  
-                       
-                          if( $arr['hasGem'] === '1'){
-                        if($row['allGemstone']){
-                            $count=0;
-                            $sqlGemstoneMapping = " SELECT 
+	  FROM tbl_product_master WHERE active_flag = 1 AND productid =" . $params['pid'] . "";
+
+        $price = $comm->IND_money_format(price);
+
+
+        $res = $this->query($sql);
+        if ($res) {
+            while ($row = $this->fetchData($res)) {
+
+                $arr['prdId'] = $row['productid'];
+                $arr['prdCod'] = $row['product_code'];
+                $arr['vendorid'] = $row['vendorid'];
+                $arr['vendor_prd_code'] = $row['vendor_prd_code'];
+                $arr['leadTime'] = $row['leadTime'];
+                $arr['returneligible'] = $row['returneligible'];
+                $arr['productDescription'] = $row['productDescription'];
+                $arr['jewelleryType'] = $row['jewelleryType'];
+                $arr['prdNm'] = $row['product_name'];
+                $arr['product_seo_name'] = $row['product_seo_name'];
+                $arr['gender'] = $row['gender'];
+                $arr['product_weight'] = $row['product_weight'];
+                $arr['diamond_setting'] = $row['diamond_setting'];
+                $arr['metal_weight'] = $row['metal_weight'];
+                $arr['making_charges'] = $row['making_charges'];
+                $arr['procurement_cost'] = $row['procurement_cost'];
+                $arr['margin'] = $row['margin'];
+                $arr['measurement'] = $row['measurement'];
+                $arr['custPurty'] = $row['customise_purity'];
+                $arr['custClor'] = $row['customise_color'];
+                $arr['certificate'] = $row['certificate'];
+                $arr['hasDmd'] = $row['has_diamond'];
+                $arr['hasSol'] = $row['has_solitaire'];
+                $arr['hasUnct'] = $row['has_uncut'];
+                $arr['hasGem'] = $row['has_gemstone'];
+                $arr['active_flag'] = $row['active_flag'];
+                $arr['createdon'] = $row['createdon'];
+                $arr['updatedon'] = $row['updatedon'];
+                $arr['updatedby'] = $row['updatedby'];
+
+                $arr['allDimonds'] = $row['allDimonds'];
+                $arr['dmdcarat'] = $row['dmdcarat'];
+                $arr['totaldmd'] = $row['totaldmd'];
+                $arr['shape'] = $row['shape'];
+
+                $arr['DimondQuality'] = $row['DimondQuality'];
+                $arr['dmdQ'] = $row['dmdQ'];
+                $arr['dmdQPricepercarat'] = $row['dmdQPricepercarat'];
+
+                $arr['allGemstone'] = $row['allGemstone'];
+                $arr['gemstoneName'] = $row['gemstoneName'];
+
+                $arr['totalgems'] = $row['totalgems'];
+                $arr['gemscarat'] = $row['gemscarat'];
+                $arr['gemsPricepercarat'] = $row['gemsPricepercarat'];
+
+                $arr['allSolitaire'] = $row['allSolitaire'];
+                $arr['totalSolitaire'] = $row['totalSolitaire'];
+                $arr['Solicarat'] = $row['Solicarat'];
+                $arr['SoliPricepercarat'] = $row['SoliPricepercarat'];
+
+                $arr['allUncut'] = $row['allUncut'];
+                $arr['totalUncut'] = $row['totalUncut'];
+                $arr['Uncutcarat'] = $row['Uncutcarat'];
+                $arr['UncutPricepercarat'] = $row['UncutPricepercarat'];
+
+                $arr['allmetalpurity'] = $row['allmetalpurity'];
+                $arr['purity'] = $row['purity'];
+                $arr['purprice'] = $row['purprice'];
+                $arr['allmetalcolor'] = $row['allmetalcolor'];
+                $arr['images'] = $row['images'];
+
+                if ($row['jewelleryType'] === '1') {
+                    $arr['jwelType'] = 'Gold';
+                } else if ($row['jewelleryType'] === '2') {
+                    $arr['jwelType'] = 'Plain Gold';
+                } else if ($row['jewelleryType'] === '3') {
+                    $arr['jwelType'] = 'Platinum';
+                }
+
+                if ($arr['hasGem'] === '1') {
+                    if ($row['allGemstone']) {
+                        $count = 0;
+                        $sqlGemstoneMapping = " SELECT 
                                                             productid,
                                                             gemstone_name,
                                                             total_no,
@@ -4574,27 +4259,24 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                                                             tbl_product_gemstone_mapping 
                                                     WHERE 
                                                             productid IN(SELECT productid FROM tbl_product_master WHERE productid=pid ORDER BY createdon ASC  
-                                                       ";  
-                             $resGemstoneMapping = $this->query($sqlGemstoneMapping);
-                              while ($rowGemstoneMapping = $this->fetchData($resGemstoneMapping)){
-                                  $arrgemstoneDetails[]= $rowGemstoneMapping;
-                                   $count++;
-                              }
-                              $gemstoneDetails = $arrgemstoneDetails;
+                                                       ";
+                        $resGemstoneMapping = $this->query($sqlGemstoneMapping);
+                        while ($rowGemstoneMapping = $this->fetchData($resGemstoneMapping)) {
+                            $arrgemstoneDetails[] = $rowGemstoneMapping;
+                            $count++;
                         }
-                        $arr['GemstoneDetails'] =$gemstoneDetails;
-                         
+                        $gemstoneDetails = $arrgemstoneDetails;
                     }
-                      
-                    } 
-	
-      }
-      else{
-	
-      }
-   
-      return $arr;
+                    $arr['GemstoneDetails'] = $gemstoneDetails;
+                }
+            }
+        } else {
+            
+        }
+
+        return $arr;
     }
-  
+
 }
+
 ?>
