@@ -13,8 +13,8 @@ $(document).ready(function () {
       getmenu();
    // var URL = APIDOMAIN + "index.php/?action=getProGrid";
       getprodbyid();
-   
-  
+
+
 });
 
 function generatelist(obj) {
@@ -132,7 +132,7 @@ function generatelist(obj) {
    grandtotal = common.IND_money_format(grandtot,0);
  // grandtotal = Number(grandtot).toLocaleString('en');
 
-    proStr += '<a  target="_blank" href="'+DOMAIN+'index.php?action=product_page&pid='+ obj['prdId']+'">'; 
+
     proStr += '<div class="grid3 transition400" id="'+ obj['prdId'] +'"  >';
   // proStr += '<div class="noimgDiv"></div>';
     proStr += '<div class="facet_front">';
@@ -148,27 +148,20 @@ function generatelist(obj) {
         proStr += '<div style="background:url(\'' + IMGDOMAIN + images[0] + '\')no-repeat ; background-size: auto 50% ; background-position: center"  class=""></div>';
     else
         proStr += '<div style="background:url(\'' + IMGDOMAIN + images[0] + '\')no-repeat ; background-size: contain ; background-position: center"  class=""></div>';
-
-
-
     proStr += '</div>';
     proStr += '<div class="hovTr">';
     proStr += '<div class="hovTrans">';
-    proStr += '<div class="gridBtns fLeft">';
-    proStr += '<div class="custBtn fLeft">customise</div>';
-    proStr += '<div class="custBtn fRight">add to wishlist</div>';
-    proStr += '</div>';
 //    proStr += '<div class="plusCont">';
 //    proStr += '</div>';
     proStr += '</div>';
     proStr += '</div>';
-   
+    proStr += '<a  target="_blank" href="'+DOMAIN+'index.php?action=product_page&pid='+ obj['prdId']+'"></a>';
     proStr += '<div class="grid_dets">';
     proStr += '<div class="grid_name txtOver transition300">' + obj['prdNm'] + '</div>';
     //proStr += '<div class="col100 color666">';
     //proStr += '<div class="col100  font11 transition300 txtOver">' + obj['jwelType'] + ' ' + obj['metal_weight'] + ' gms, Diamond ' + obj['dmdcarat'] + ' Carats</div>';
-     
-     proStr += '<div class="col100  font11 transition300 txtOver" id="prdstonename">' + obj['jwelType'] + ''; 
+
+     proStr += '<div class="col100  font11 transition300 txtOver" id="prdstonename">' + obj['jwelType'] + '';
     var type = 0;
     if (obj.hasSol == 1)
         type = 1;
@@ -177,24 +170,24 @@ function generatelist(obj) {
     if (obj.hasSol == 1 && obj.hasDmd == 1)
         type = 3;
     if (obj.hasDmd == 1 && obj.hasUnct == 1)
-        type = 4; 
-    
-    var gemcnt=obj.gemstoneName+"";    
-    gemcnt=gemcnt.split(',');   
+        type = 4;
+
+    var gemcnt=obj.gemstoneName+"";
+    gemcnt=gemcnt.split(',');
     if(obj.hasGem == 1){
-        if (gemcnt.length == 1) { 
+        if (gemcnt.length == 1) {
             type = 5;
         if (gemcnt.length > 1)
             type = 6;
     }
-    } 
+    }
     if (obj.hasDmd == 1 && obj.hasGem == 1) {
         if (gemcnt.length == 1)
             type = 7;
         if (gemcnt.length > 1)
             type = 8;
     }
-    
+
     var Nstr = "";
     switch (type) {
         case 1:
@@ -239,8 +232,8 @@ function generatelist(obj) {
             Nstr += '<span> Φ Diamond</span><span> Φ Gemstones</span>';
             break;
         }
-    } 
-    proStr += ' ' + Nstr + '</div>';   
+    }
+    proStr += ' ' + Nstr + '</div>';
     proStr += '<div class="grid_price txtOver transition300"><span class="cartRup15b">' + grandtotal + '</span> <span class="toTxt">to</span> <span  class="cartRup15b">60000</span></div>';
     proStr += '<div class="fmSansB smBtnDiv fLeft transition300">';
 //    proStr += '<span class="u_line point lettSpace fLeft"  onclick=\"getProId(\''+ obj['prdId'] + '\')\">View Product</span>';
@@ -249,11 +242,11 @@ function generatelist(obj) {
     //proStr += '</div>';
     proStr += '</div>';
     proStr += '</div>';
-    proStr += '<div class="soc_icons dn">';
-    proStr += '<div class="soc_elem soc_wish2 transition300"></div>';
+  //proStr += '<div class="soc_icons dn">';
+    proStr += '<div class="soc_abs soc_wish2 transition300 fRight" onclick="makeAwish(this, event)"></div>';
     // proStr += '<div class="soc_elem soc_comment transition300"></div>';
-    proStr += '<div class="soc_elem soc_share transition300"></div>';
-    proStr += '</div>';
+    //proStr += '<div class="soc_elem soc_share transition300"></div>';
+    //proStr += '</div>';
     proStr += '</div>';
     proStr += '</div>';
     proStr += '<div class="facet_back" >';
@@ -374,7 +367,7 @@ function generatelist(obj) {
   //   proStr += '<div class="grid_back" onclick="flipBack(this)"></div>';
   //   proStr += '</div>';
   //   proStr += '</div>';
-    proStr += '</div> </a>';
+    proStr += '</div> ';
     return proStr;
 
 }
@@ -492,7 +485,7 @@ var count=0;
       var limit=12;
       var limitend = limit*page3;
      //$('#gr_foot').addClass('transdown');
-      
+
 
     var URL1 = APIDOMAIN + "index.php/?action=getProductdetailbycatid&id="+id+"&page="+page3+"&limit="+limit+"";
   var tot_len = 0;
@@ -533,7 +526,7 @@ var count=0;
                     }
                   //  $('#gridDetail').append(str);
               //  var $we= str;
-	    } 
+	    }
                if(limitend >= total){
 
                         $('#gr_foot').remove();
@@ -553,17 +546,17 @@ function getmenu()
      $.ajax({  type: 'POST', url: menuURL, success: function(res) {
 	  var data=JSON.parse(res);
 	  var mainmenustr="";
-          var submenulist="",stoncnt=1; 
-	 
+          var submenulist="",stoncnt=1;
+
 	  if(data['result'] !== null){
-	     
-	      var reslt=data['result']['atr_val'];   
+
+	      var reslt=data['result']['atr_val'];
 	      $(reslt['result']).each(function(r,n){
-	 
+
 		  mainmenustr+="<div class='ftabB ' >";
 		  mainmenustr+="  <div class='ftab fLeft taba' >";
-		  mainmenustr+=" "+n['attr_name'].toUpperCase()+" </div> </div>"; 
-		 
+		  mainmenustr+=" "+n['attr_name'].toUpperCase()+" </div> </div>";
+
 		  submenulist+="<div class='fmenu_elm fLeft' id='"+n.attributeid+"'>";
 		$(n['attr_values']).each(function(q,p){
 		   var v=parseInt(p);	var iconstr="";
@@ -573,24 +566,24 @@ function getmenu()
 		      if(v == 3)	 iconstr="three";
 		      if(v == 4)	 iconstr="four";
 		      var sr="";	 sr=p.toLowerCase();
-		      sr=sr.split(' ');	iconstr+=sr[1]; 
-		   } 
+		      sr=sr.split(' ');	iconstr+=sr[1];
+		   }
 		   else{
 		      iconstr=p.toLowerCase();
-		      iconstr=iconstr.replace(' ',''); 
+		      iconstr=iconstr.replace(' ','');
 		   }
 		  submenulist+="<div class='filterCommon "+iconstr+"Ic' onclick='submenu(this)' ";
 		  submenulist+=" id='"+p+"_"+n.attr_name+"' >";
 		  submenulist+=" <div class='filterLabel' >";
 		  submenulist+=" <div class='labBuffer'  >"+p+"</div>";
-		  submenulist+=" </div> </div>";   
+		  submenulist+=" </div> </div>";
 		});
-		submenulist+="</div>"; 
+		submenulist+="</div>";
 	      });
               submenulist+="<div class='fmenu_elm fLeft'>";
              submenulist+='<div class="rangeParent fLeft">';
              submenulist+='<div class="rngDv">';
-             submenulist+='<input type="text" value="" id="range" onchange="subfltrng(this)">';   
+             submenulist+='<input type="text" value="" id="range" onchange="subfltrng(this)">';
               submenulist+='</div>';
               submenulist+='</div>';
               submenulist+='</div>';
@@ -603,42 +596,42 @@ function getmenu()
               submenulist+='</div>';
 	      mainmenustr+=" ";
 	  }
-           
-          
+
+
 	  setTimeout(function(){
                   $('.ftab_buffer').prepend(mainmenustr);
                   $('.fmenuB').html(submenulist);
 		bindFilterUi();
-		getHeight(); 
-		chk(); 
-	 },1000); 
+		getHeight();
+		chk();
+	 },1000);
 	}
      });
-     
+
 }
- 
+
 
 
 var fltrarray ={};
-  
+
 function submenu(ths)
-{ 
-    var tid=$(ths).attr('id'); 
-    tid=tid.split('_'); 
-    var pid="";	  pid=tid[1];  pid= pid.toString();   tid=tid[0];   pid=pid.replace(' ',''); pid=pid.toLowerCase(); 
+{
+    var tid=$(ths).attr('id');
+    tid=tid.split('_');
+    var pid="";	  pid=tid[1];  pid= pid.toString();   tid=tid[0];   pid=pid.replace(' ',''); pid=pid.toLowerCase();
     var menuid=$(ths).parent().attr('id');
-     
+
       switch(pid)
       {
 	case 'stone':
 	    if(fltrarray[pid] == undefined){
-		  fltrarray[pid]={}; 
-		  fltrarray[pid][menuid]=new Array(); 
-		  fltrarray[pid][menuid].push(tid); 
+		  fltrarray[pid]={};
+		  fltrarray[pid][menuid]=new Array();
+		  fltrarray[pid][menuid].push(tid);
 	    }
 	    else
 	    {
-		var tmval=fltrarray[pid][menuid], tmpflag=0;; 
+		var tmval=fltrarray[pid][menuid], tmpflag=0;;
 		for(var l=0;l<Object.keys(tmval).length;l++)
 		{
 		    if(fltrarray[pid][menuid][l] == tid){
@@ -647,22 +640,22 @@ function submenu(ths)
 			  delete fltrarray[pid];
 			else
 			fltrarray[pid][menuid].splice(l,1);
-		    } 
+		    }
 		}
-		if(tmpflag == 0) 
-		    fltrarray[pid][menuid].push(tid);   
+		if(tmpflag == 0)
+		    fltrarray[pid][menuid].push(tid);
 	    }
 	break;
-	
+
 	case 'diamondcut':
 	    if(fltrarray[pid] == undefined){
-		  fltrarray[pid]={}; 
-		  fltrarray[pid][menuid]=new Array(); 
-		  fltrarray[pid][menuid].push(tid); 
+		  fltrarray[pid]={};
+		  fltrarray[pid][menuid]=new Array();
+		  fltrarray[pid][menuid].push(tid);
 	    }
 	    else
 	    {
-		var tmval=fltrarray[pid][menuid], tmpflag=0;; 
+		var tmval=fltrarray[pid][menuid], tmpflag=0;;
 		for(var l=0;l<Object.keys(tmval).length;l++)
 		{
 		    if(fltrarray[pid][menuid][l] == tid){
@@ -671,22 +664,22 @@ function submenu(ths)
 			  delete fltrarray[pid];
 			else
 			fltrarray[pid][menuid].splice(l,1);
-		    } 
+		    }
 		}
-		if(tmpflag == 0) 
-		    fltrarray[pid][menuid].push(tid); 
+		if(tmpflag == 0)
+		    fltrarray[pid][menuid].push(tid);
 	    }
 	break;
-	
+
 	case 'ringtype':
 	     if(fltrarray[pid] == undefined){
-		  fltrarray[pid]={}; 
-		  fltrarray[pid][menuid]=new Array(); 
-		  fltrarray[pid][menuid].push(tid); 
+		  fltrarray[pid]={};
+		  fltrarray[pid][menuid]=new Array();
+		  fltrarray[pid][menuid].push(tid);
 	    }
 	    else
 	    {
-		var tmval=fltrarray[pid][menuid], tmpflag=0;; 
+		var tmval=fltrarray[pid][menuid], tmpflag=0;;
 		for(var l=0;l<Object.keys(tmval).length;l++)
 		{
 		  if(fltrarray[pid][menuid][l] == tid){
@@ -695,22 +688,22 @@ function submenu(ths)
 			delete fltrarray[pid];
 		      else
 		      fltrarray[pid][menuid].splice(l,1);
-		  } 
+		  }
 		}
-		if(tmpflag == 0) 
-		    fltrarray[pid][menuid].push(tid);   
+		if(tmpflag == 0)
+		    fltrarray[pid][menuid].push(tid);
 	    }
 	break;
-	
+
 	case 'for':
 	     if(fltrarray[pid] == undefined){
-		  fltrarray[pid]={}; 
-		  fltrarray[pid][menuid]=new Array(); 
-		  fltrarray[pid][menuid].push(tid); 
+		  fltrarray[pid]={};
+		  fltrarray[pid][menuid]=new Array();
+		  fltrarray[pid][menuid].push(tid);
 	    }
 	    else
 	    {
-		var tmval=fltrarray[pid][menuid], tmpflag=0;; 
+		var tmval=fltrarray[pid][menuid], tmpflag=0;;
 		for(var l=0;l<Object.keys(tmval).length;l++)
 		{
 		  if(fltrarray[pid][menuid][l] == tid){
@@ -719,22 +712,22 @@ function submenu(ths)
 			delete fltrarray[pid];
 		      else
 		      fltrarray[pid][menuid].splice(l,1);
-		  } 
+		  }
 		}
-		if(tmpflag == 0) 
-		    fltrarray[pid][menuid].push(tid);   
+		if(tmpflag == 0)
+		    fltrarray[pid][menuid].push(tid);
 	    }
 	break;
-	
+
 	case 'pendanttype':
 	    if(fltrarray[pid] == undefined){
-		  fltrarray[pid]={}; 
-		  fltrarray[pid][menuid]=new Array(); 
-		  fltrarray[pid][menuid].push(tid); 
+		  fltrarray[pid]={};
+		  fltrarray[pid][menuid]=new Array();
+		  fltrarray[pid][menuid].push(tid);
 	    }
 	    else
 	    {
-		var tmval=fltrarray[pid][menuid], tmpflag=0;; 
+		var tmval=fltrarray[pid][menuid], tmpflag=0;;
 		for(var l=0;l<Object.keys(tmval).length;l++)
 		{
 		  if(fltrarray[pid][menuid][l] == tid){
@@ -743,22 +736,22 @@ function submenu(ths)
 			delete fltrarray[pid];
 		      else
 		      fltrarray[pid][menuid].splice(l,1);
-		  } 
+		  }
 		}
-		if(tmpflag == 0) 
-		    fltrarray[pid][menuid].push(tid);   
+		if(tmpflag == 0)
+		    fltrarray[pid][menuid].push(tid);
 	    }
 	break;
-	
+
 	case 'bangletype':
 	     if(fltrarray[pid] == undefined){
-		  fltrarray[pid]={}; 
-		  fltrarray[pid][menuid]=new Array(); 
-		  fltrarray[pid][menuid].push(tid); 
+		  fltrarray[pid]={};
+		  fltrarray[pid][menuid]=new Array();
+		  fltrarray[pid][menuid].push(tid);
 	    }
 	    else
 	    {
-		var tmval=fltrarray[pid][menuid], tmpflag=0;; 
+		var tmval=fltrarray[pid][menuid], tmpflag=0;;
 		for(var l=0;l<Object.keys(tmval).length;l++)
 		{
 		  if(fltrarray[pid][menuid][l] == tid){
@@ -767,22 +760,22 @@ function submenu(ths)
 			delete fltrarray[pid];
 		      else
 		      fltrarray[pid][menuid].splice(l,1);
-		  } 
+		  }
 		}
-		if(tmpflag == 0) 
-		    fltrarray[pid][menuid].push(tid);   
+		if(tmpflag == 0)
+		    fltrarray[pid][menuid].push(tid);
 	    }
 	break;
-	
+
 	case 'earringtype':
 	     if(fltrarray[pid] == undefined){
-		  fltrarray[pid]={}; 
-		  fltrarray[pid][menuid]=new Array(); 
-		  fltrarray[pid][menuid].push(tid); 
+		  fltrarray[pid]={};
+		  fltrarray[pid][menuid]=new Array();
+		  fltrarray[pid][menuid].push(tid);
 	    }
 	    else
 	    {
-		var tmval=fltrarray[pid][menuid], tmpflag=0;; 
+		var tmval=fltrarray[pid][menuid], tmpflag=0;;
 		for(var l=0;l<Object.keys(tmval).length;l++)
 		{
 		  if(fltrarray[pid][menuid][l] == tid){
@@ -791,22 +784,22 @@ function submenu(ths)
 			delete fltrarray[pid];
 		      else
 		      fltrarray[pid][menuid].splice(l,1);
-		  } 
+		  }
 		}
-		if(tmpflag == 0) 
-		    fltrarray[pid][menuid].push(tid);   
+		if(tmpflag == 0)
+		    fltrarray[pid][menuid].push(tid);
 	    }
 	break;
-	
+
 	case 'necklacetype':
 	     if(fltrarray[pid] == undefined){
-		  fltrarray[pid]={}; 
-		  fltrarray[pid][menuid]=new Array(); 
-		  fltrarray[pid][menuid].push(tid); 
+		  fltrarray[pid]={};
+		  fltrarray[pid][menuid]=new Array();
+		  fltrarray[pid][menuid].push(tid);
 	    }
 	    else
 	    {
-		var tmval=fltrarray[pid][menuid], tmpflag=0;; 
+		var tmval=fltrarray[pid][menuid], tmpflag=0;;
 		for(var l=0;l<Object.keys(tmval).length;l++)
 		{
 		  if(fltrarray[pid][menuid][l] == tid){
@@ -815,42 +808,42 @@ function submenu(ths)
 			delete fltrarray[pid];
 		      else
 		      fltrarray[pid][menuid].splice(l,1);
-		  } 
+		  }
 		}
-		if(tmpflag == 0) 
-		    fltrarray[pid][menuid].push(tid);   
+		if(tmpflag == 0)
+		    fltrarray[pid][menuid].push(tid);
 	    }
 	break;
-	  
+
       }
-        
+
      setTimeout(function(){
-      
-        if(Object.keys(fltrarray).length == 0){ 
-	   getprodbyid();    
+
+        if(Object.keys(fltrarray).length == 0){
+	   getprodbyid();
 	}
 	else
 	    displayproduct();
-	  
+
      },500);
-      
-} 
+
+}
 
  function subfltrng(ths)
  {
-    var rangval=$(ths).val(); 
+    var rangval=$(ths).val();
     var type=$(ths).attr('id');
-     
+
      switch(type){
-       
+
        case 'range':
 	 fltrarray.range=rangval;
        break;
-     
+
        case 'carat':
 	 fltrarray.carat=rangval;
        break;
-     } 
+     }
      setTimeout(function(){
 	  displayproduct();
      },500);
@@ -864,14 +857,14 @@ function getprodbyid()
         url: URL,
         success: function (res) {
 
-	  
-            res = JSON.parse(res); 
+
+            res = JSON.parse(res);
             if (res['error']['err_code'] == 0) {
                 getProdDtl = res["result"];
                    var total = res["total"];
 		if(total == 1)
 		    $('#total_Product').html("<strong>" + total + "</strong> Product");
-		else   
+		else
 		    $('#total_Product').html("<strong>" + total + "</strong> Products");
                 var obj = res["result"];
 		if(total<12)
@@ -924,35 +917,35 @@ function getprodbyid()
 
 
 function displayproduct(){
-  
+
   fltrarray.catid=id;
-  var dt = JSON.stringify(fltrarray);  
+  var dt = JSON.stringify(fltrarray);
    var URL = APIDOMAIN + "index.php/?action=getprodByfiltr";
   $.ajax({ type:'POST', url:URL,data:{dt:dt}, success:function(result){
-	        	 
-            var res = JSON.parse(result); 
+
+            var res = JSON.parse(result);
             if (res['error']['err_code'] == 0) {
 		$('#gr_foot').remove();
                 getProdDtl = res["result"];
-                var total = res["total"]; 
+                var total = res["total"];
                 $('#total_Product').html( total + " Products");
-                var obj = res["result"];  
-		   
+                var obj = res["result"];
+
 	       if(obj !== null){
-		var len = obj.length; 
+		var len = obj.length;
 		$('#gridDetail').html('');
                 var i = 0;
                 if (len > 0)
                 {
-		  
+
                     var str = '';
                     while (i < len)
                     {
                         str = generatelist(obj[i]);
-                      
+
                         stSearch.push(obj[i]);
                         i++;
-                          var k = i * 200; 
+                          var k = i * 200;
                                           $(str).appendTo('#gridDetail');
                                           setTimeout(function(){
                                           $('#gridDetail').find('.grid3').addClass('fadeInup');
@@ -962,14 +955,29 @@ function displayproduct(){
 //                                            bindhover();
 
 
-                    } 
+                    }
 		}
 	       }
-	       else{ 
-	  
+	       else{
+
  		    $('#gridDetail').html('');
 	       }
 	  }
     }
     });
+}
+
+function makeAwish(th,e){
+  e.stopPropagation();
+  //e.preventDefault();
+  if($(th).hasClass('beat')){
+    $(th).removeClass('beat');
+    //Remove from wishlist
+  }
+  else{
+      $(th).addClass('beat');
+      //Add to wishlist
+  }
+
+
 }
