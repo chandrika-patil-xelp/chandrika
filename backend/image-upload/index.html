@@ -21,6 +21,7 @@
                   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
     <body>
+      <div class="detaCmngcnt"></div>
         <div class="header uploadHeader">
             <div class="wrapperMax">
                 <div class="logoDiv fLeft"></div>
@@ -41,7 +42,10 @@
         </div>        
         <div class="overlay dn"></div>
         <div class="loader dn"></div>
+	<script type="text/javascript" src="<?php echo $jvs['common']; ?>"></script>
         <script type="text/javascript">
+	  var APIDOMAIN ='<?php echo APIDOMAIN?>';
+	   var FDOMAIN ='<?php echo DOMAIN?>';
             function showLoader()
             {
                 $('.overlay,.loader').removeClass('dn');
@@ -51,6 +55,26 @@
             {
                 $('.overlay,.loader').addClass('dn');
             }
+	    $(document).ready(function(){
+		setTimeout(function(){
+		   $('.detaCmngcnt').addClass('dn');
+		},800);
+		var juserid=common.readFromStorage('jzeva_uid');
+		if(juserid == null || juserid == undefined){
+		       window.location.href = FDOMAIN + "index.php?action=landing_page";
+		}
+		else
+		{
+		      var URL = APIDOMAIN + "index.php?action=checkusertype&userid="+juserid;
+		      $.ajax({ url: URL, type: "GET", success: function(res) {
+			  res = JSON.parse(res); 
+			  if(res['result']['is_vendor'] == 0){ 
+				window.location.href = FDOMAIN + "index.php?action=landing_page";
+			  }
+		      }
+		      });
+		}
+	   });  
         </script>
     </body>
 

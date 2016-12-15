@@ -136,4 +136,41 @@ function Common() {
         $('.overlay,.loader').addClass('dn');
     };
     
+      this.readFromStorage = function (id)
+    {
+        if (typeof (Storage) !== "undefined")
+            return localStorage.getItem(id);
+        else
+            return _this.getCookie(id);
+    }
+
+      this.getCookie = function (cn) {
+        if (document.cookie.length > 0) {
+            var c_start = document.cookie.indexOf(cn + "=");
+            if (c_start != -1) {
+                c_start = c_start + cn.length + 1;
+                var c_end = document.cookie.indexOf(";", c_start);
+                if (c_end == -1)
+                    c_end = document.cookie.length;
+                var cvalue = _this.cookie_unescape(document.cookie.substring(c_start, c_end));
+                return unescape(cvalue);
+            }
+        }
+        return "";
+    }
+
+    this.cookie_unescape = function (str)
+    {
+        str = "" + str;
+        while (true)
+        {
+            var i = str.indexOf('+');
+            if (i < 0)
+                break;
+            str = str.substring(0, i) + '%20' +
+                    str.substring(i + 1, str.length);
+        }
+        return unescape(str);
+    }
+    
 }

@@ -1,5 +1,5 @@
  
-var glbcartdeatil, inptval, newuserid, otpflg=0, userdata=[], entrflg=0;;
+var glbcartdeatil, inptval, newuserid, otpflg=0, userdata=[], entrflg=0, mailmob;
 
 $('#rsubId').on('click',function(){
   dosignup();
@@ -403,7 +403,7 @@ function sugnupsubmt()
       common.msg(0,'please enter same password');
     }
     else{
-       var URL= APIDOMAIN + "index.php/?action=updateuserpass&user_id="+newuserid+"&pass="+pass+"&mobile="+inptval; 
+       var URL= APIDOMAIN + "index.php/?action=updateuserpass&user_id="+newuserid+"&pass="+pass+"&mobile="+inptval+"&email="+inptval; 
       $.ajax({  type:'POST',  
                 url:URL, 
                 success:function(res){
@@ -419,7 +419,10 @@ function sugnupsubmt()
   
    function checkotp(otpval)
   {
-    var URL= APIDOMAIN + "index.php/?action=checkopt&mobile="+inptval+"&otpval="+otpval; 
+    if($.isNumeric(inptval))
+	var URL= APIDOMAIN + "index.php/?action=checkopt&mobile="+inptval+"&otpval="+otpval; 
+    else
+	var URL= APIDOMAIN + "index.php/?action=checkopt&mobile="+mailmob+"&otpval="+otpval; 
       $.ajax({  url: URL, type: "GET",  datatype: "JSON", success: function(results) {
 		      var obj=JSON.parse(results); 
 		      var data=obj.result;
@@ -577,7 +580,9 @@ function sugnupsubmt()
   {
     var URL=APIDOMAIN + "index.php?action=newforgotPass&email="+inptval;
     $.ajax({type:"POST", url: URL, success:function(res){
-	 common.msg(0,'OTP had sent to your email id');
+	 common.msg(1,'OTP had sent to your email id');
+	 var data=JSON.parse(res);
+	 mailmob=data['mob'];
     }
     });
   }

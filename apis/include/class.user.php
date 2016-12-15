@@ -124,17 +124,17 @@ class user extends DB {
 
 
 
-        $sql = "SELECT 
+        $sql = "SELECT
                     user_name,
-                   
+
                     user_id AS uid,
                     email,
                     logmobile,
                     password,
-                    (SELECT GROUP_CONCAT(cart_id) FROM tbl_cart_master WHERE userid = uid  AND active_flag =1) 
+                    (SELECT GROUP_CONCAT(cart_id) FROM tbl_cart_master WHERE userid = uid  AND active_flag =1)
                             AS cartid
                   FROM
-                    tbl_user_master 
+                    tbl_user_master
                   WHERE  email = '" . $email . "' or logmobile='" . $mobile . "'
                     ";
 
@@ -383,21 +383,21 @@ class user extends DB {
 
 //  public function getUserDetailsById($params)
 //        {
-//            
+//
 //            if($params['userid'])
 //            {
 //                $sql="SELECT user_name as name,logmobile as mb,gender as gn,email as em,city,address,is_active as aflag,is_vendor as vendor from tbl_user_master WHERE user_id='".$params['userid']."'";
 //                $res=$this->query($sql);
-//                
+//
 //                $result = array();
-//                if ($res) 
+//                if ($res)
 //                {
 //                    $result=$this->fetchData($res);
 //                    $result['address']=  mb_convert_encoding($result['address'], "UTF-8");
-//                    
+//
 //                    $err = array('err_code' => 0, 'err_msg' => 'Data fetched successfully');
-//                } 
-//                else 
+//                }
+//                else
 //                {
 //                    $err = array('err_code' => 1, 'err_msg' => 'Error in fetching data');
 //                }
@@ -407,17 +407,17 @@ class user extends DB {
 //            }
 //            else
 //            {
-//                
+//
 //                $resp = array();
 //                $error = array('errCode' => 1, 'errMsg' => 'Parameter Missing');
 //                $result = array('results' => $resp, 'error' => $error);
 //                return $result;
-//                
+//
 //            }
-//            
+//
 //        }
 //        */
-//        
+//
 
 
     public function addOrder() {
@@ -529,7 +529,7 @@ class user extends DB {
     }
 
     public function changeOrderStatus($params) {
-      
+
         $params = json_decode($params[0], 1);
         $orderid = (!empty($params['orderid'])) ? trim($params['orderid']) : '';
         $orderst = (!empty($params['ostatus'])) ? trim($params['ostatus']) : '';
@@ -558,12 +558,12 @@ class user extends DB {
 
     public function geOrderList($params) {
 
-        $sql = "  SELECT 
-                        order_id as oid 
-                    FROM 
-                        tbl_order_master 
-                    WHERE 
-                        active_flag=1 
+        $sql = "  SELECT
+                        order_id as oid
+                    FROM
+                        tbl_order_master
+                    WHERE
+                        active_flag=1
                     ORDER BY updatedon DESC ";
 
         $page = ($params['page'] ? $params['page'] : 1);
@@ -599,15 +599,15 @@ class user extends DB {
 
     public function getUserList($params) {
 
-        $sql = "SELECT 
+        $sql = "SELECT
                         user_id as uid,
                         user_name as name,
                         logmobile as mb,
                         email as em,
                         address as address ,
                         (SELECT count(order_id)  FROM tbl_order_master WHERE  user_id= uid  AND order_status < 6) AS openOrd ,
-                        (SELECT count(order_id)  FROM tbl_order_master WHERE  user_id= uid  AND order_status = 6) AS pastOrd  
-                FROM 
+                        (SELECT count(order_id)  FROM tbl_order_master WHERE  user_id= uid  AND order_status = 6) AS pastOrd
+                FROM
                         tbl_user_master
                 WHERE
                         is_active = 1
@@ -655,7 +655,7 @@ class user extends DB {
         $lrow = $this->fetchData($lres);
         $cnt1 = $this->numRows($lres);
         if ($cnt1 > 0) {
-            //   $err = array('err_code' => 0, 'err_msg' => 'mobile number exist'); 
+            //   $err = array('err_code' => 0, 'err_msg' => 'mobile number exist');
 
             global $comm;
             $isValidate = true;
@@ -690,7 +690,7 @@ class user extends DB {
             if ($rno) {
                 $txt = 'Your OTP is ' . $rno;
                 $url = str_replace('_MOBILE', $params['mobile'], SMSAPI);
-                $url = str_replace('_MESSAGE', urlencode($txt), $url);  // print_r($url);  
+                $url = str_replace('_MESSAGE', urlencode($txt), $url);  // print_r($url);
                 $res = $comm->executeCurl($url, true);
                 if (!empty($res)) {
                     $err = array('err_code' => 0, 'err_msg' => 'OTP is sent to your mobile number');
@@ -775,11 +775,11 @@ class user extends DB {
             return $result;
         }
 
-        $sql = "UPDATE 
-                            tbl_order_shipping_details 
+        $sql = "UPDATE
+                            tbl_order_shipping_details
                           SET
-                            active_flag = 2 
-                          WHERE shipping_id = '" . $params['shipping_id'] . "' 
+                            active_flag = 2
+                          WHERE shipping_id = '" . $params['shipping_id'] . "'
                             AND user_id = '" . $params['user_id'] . "' ";
 
         $res = $this->query($sql);
@@ -796,32 +796,32 @@ class user extends DB {
 
     public function newforgotPass($params)
     {
-             
+
             $email = (!empty($params['email'])) ? trim($params['email']) : '';
-         
+
             if (empty($email)) {
-                
+
                 $resp = array();
                 $error = array('Code' => 1, 'Msg' => 'Invalid parameters');
                 $res = array('results' => $resp, 'error' => $error);
                 return $res;
             }
-            $vsql = "   SELECT 
+            $vsql = "   SELECT
                                 logmobile,
                                 user_name
                         FROM
                                 tbl_user_master
                         WHERE
-                                email=\"" . $params['email'] . "\"
+                                email=\"" . $email . "\"
                         AND
                                 is_active = 1";
             $vres = $this->query($vsql);
-            
-            $row = $this->fetchData($vres); 
-             
-            $mobile = $row['logmobile'];  
+
+            $row = $this->fetchData($vres);
+
+            $mobile = $row['logmobile'];
             $uname = urlencode($row['user_name']);
-	     
+
 	    global $comm;
                 $isValidate = true;
                 $msql = "SELECT
@@ -837,11 +837,11 @@ class user extends DB {
                 $mres = $this->query($msql);
                   if ($mres)
                     {
-                        $mrow = $this->fetchData($mres); 
+                        $mrow = $this->fetchData($mres);
                         if ($mrow['vcode'])
                         {
                             $rno = $mrow['vcode'];
-                             $isValidate = false; 
+                             $isValidate = false;
                         }
                     }
                     if ($isValidate)
@@ -853,26 +853,28 @@ class user extends DB {
                                 VALUES
                                             (" . $mobile . ",
                                              " . $rno . ")";
-                        $msres = $this->query($mssql); 
+                        $msres = $this->query($mssql);
                     }
-	     
-	   
-	    $subject  = "JZEVA password assistance";
+
+
+	          $subject  = "JZEVA password assistance";
             $message=$this->frgotpassotpTemplate($uname,$rno);
             $headers  = "Content-type:text/html;charset=UTF-8" . "<br/><br/>";
             $headers .= 'From: care@jzeva.com' . "<br/><br/>";
-	 
-            if (!empty($params['email']))
+
+            if (!empty($email))
             {
-                     mail($params['email'], $subject, $message, $headers);
-	    } 
+
+                     mail($email, $subject, $message, $headers);
+                     $err=array('code'=>0,'msg'=>'OTP mail sent to Your email id');
+	    }
 	    else
             {
                 $arr = array();
                 $err = array('code'=>1,'msg'=>'Error in sending mail');
             }
-            $result = array('result'=>$arr,'error'=>$err);
-            return $result; 
+            $result = array('result'=>$arr,'error'=>$err,'mob'=>$mobile);
+            return $result;
         }
 
     public function checkopt($params) {
@@ -1006,7 +1008,7 @@ class user extends DB {
             $txt = 'Dear Customer, Your OTP is ' . $rno . ' and it is Valid till next 10 mins. Please do not share this OTP with anyone. Thank You JZEVA.com';
 
             $url = str_replace('_MOBILE', $params['mobile'], SMSAPI);
-            $url = str_replace('_MESSAGE', urlencode($txt), $url);  // print_r($url);  
+            $url = str_replace('_MESSAGE', urlencode($txt), $url);  // print_r($url);
             $res = $comm->executeCurl($url, true);
             if (!empty($res)) {
                 $err = array('err_code' => 0, 'err_msg' => 'OTP is sent to your mobile number');
@@ -1122,7 +1124,7 @@ class user extends DB {
             return $res;
         }
 
-        $sql = "SELECT 
+        $sql = "SELECT
                 user_id as uid,
                  product_id as pid,
                  shipping_id as sid,
@@ -1157,7 +1159,7 @@ class user extends DB {
         $result = array('results' => $reslt, 'error' => $err);
         return $result;
     }
- 
+
     public function createemailUrl($params) {
 
         $email = (!empty($params['email'])) ? trim(urldecode($params['email'])) : '';
@@ -1185,7 +1187,7 @@ class user extends DB {
                                     created_date)
                             VALUES
                                     (\"" . $urlmaker . "\",
-                                    \"" . $params['uid'] . "\",    
+                                    \"" . $params['uid'] . "\",
                                     \"" . $params['mobile'] . "\",
                                     \"" . $params['email'] . "\",
                                     \"" . $params['url'] . "\",
@@ -1199,9 +1201,9 @@ class user extends DB {
             if ($res) {
                 $sql = "    SELECT
                                        *
-                                FROM 
+                                FROM
                                         tbl_url_master
-                                WHERE 
+                                WHERE
                                         urlkey =\"" . $urlmaker . "\"
                                 AND
                                         active_flag=1";
@@ -1214,7 +1216,7 @@ class user extends DB {
                 }
 
                 $key = $arr[0]['urlkey'];
-                //   print_r($arr[0]['urlkey']); 
+                //   print_r($arr[0]['urlkey']);
                 /* while($urlgetRow = $this->fetchData($urlgetRes))
                   {
 
@@ -1256,7 +1258,7 @@ class user extends DB {
                                 tbl_url_master
                         WHERE
                                 urlkey = \"" . $string . "\"
-                        AND 
+                        AND
                                 active_flag=1";
         $chkRes = $this->query($chkSql);
         $cntRes = $this->numRows($chkRes);
@@ -1328,13 +1330,13 @@ class user extends DB {
                                             FROM
                                      tbl_order_master
                                          WHERE
-                                      active_flag NOT IN(2)";  
+                                      active_flag NOT IN(2)";
             $rescnt= $this->query($sqlcount);
             $row = $this->fetchData($rescnt);
            $total = $row['cnt'];
-       
-            
-        $sql = "SELECT 
+
+
+        $sql = "SELECT
                         order_id as oid,
                         product_id as pid,
                         (Select product_seo_name from tbl_product_master where productid=pid) as pname,
@@ -1366,7 +1368,7 @@ class user extends DB {
 
         $res = $this->query($sql);
 
-        
+
         if ($res) {
             while ($row = $this->fetchData($res)) {
                 $arr['oid'] = $row['oid'];
@@ -1402,7 +1404,7 @@ class user extends DB {
         $combn = (!empty($params['combn'])) ? trim($params['combn']) : '';
         $size = (!empty($params['sz'])) ? trim($params['sz']) : '';
 
-        $sql = "SELECT  
+        $sql = "SELECT
                         order_id as oid,
                         product_id as pid,
                         col_car_qty as combine,
@@ -1415,10 +1417,10 @@ class user extends DB {
                         order_date as odate,
                         delivery_date as ddate,
                         order_status as ostatus,
-                        active_flag as aflag, 
+                        active_flag as aflag,
                         price as price,
                         payment as pm,
-  
+
 (SELECT  GROUP_CONCAT(product_name) FROM tbl_product_master WHERE productid = pid AND active_flag !=2 ) AS prdname,
 (SELECT  GROUP_CONCAT(procurement_cost) FROM tbl_product_master WHERE productid = pid AND active_flag !=2 ) AS procurementcost,
 (SELECT  GROUP_CONCAT(diamond_setting) FROM tbl_product_master WHERE productid = pid AND active_flag !=2 ) AS dmdsetting,
@@ -1434,9 +1436,9 @@ class user extends DB {
 (SELECT  GROUP_CONCAT(product_code) FROM tbl_product_master WHERE productid = pid AND active_flag !=2 ) AS product_code,
 (SELECT  GROUP_CONCAT(dname) FROM tbl_metal_color_master WHERE id = SUBSTRING_INDEX(combine, '|@|',1) AND active_flag !=2 ) AS color,
 (SELECT  GROUP_CONCAT(dname) FROM tbl_metal_purity_master WHERE id = SUBSTRING_INDEX(SUBSTRING_INDEX(combine,'|@|',2),'|@|',-1) AND active_flag !=2 ) AS Metalcarat,
-(SELECT  GROUP_CONCAT(dname) FROM tbl_diamond_quality_master WHERE id = SUBSTRING_INDEX(combine,'|@|',-1)  AND active_flag !=2 ) AS quality,          
+(SELECT  GROUP_CONCAT(dname) FROM tbl_diamond_quality_master WHERE id = SUBSTRING_INDEX(combine,'|@|',-1)  AND active_flag !=2 ) AS quality,
 (SELECT  GROUP_CONCAT(jewelleryType) FROM tbl_product_master WHERE productid = pid  AND active_flag !=2)  AS jewelleryType,
-            
+
 (SELECT  GROUP_CONCAT(metal_weight) FROM tbl_product_master WHERE productid = pid  AND active_flag !=2)  AS metal_weight,
 (SELECT GROUP_CONCAT(diamond_id) FROM tbl_product_diamond_mapping WHERE productid = pid AND active_flag = 1 ) AS allDimonds,
 (SELECT GROUP_CONCAT(carat) FROM tbl_product_diamond_mapping WHERE FIND_IN_SET(diamond_id,allDimonds)) AS dmdcarat,
@@ -1478,7 +1480,7 @@ class user extends DB {
                         (SELECT GROUP_CONCAT(address) FROM tbl_order_shipping_details WHERE shipping_id = shpid )AS shpadd,
                         (SELECT GROUP_CONCAT(city) FROM tbl_order_shipping_details WHERE shipping_id = shpid )AS shpcity,
                         (SELECT GROUP_CONCAT(state) FROM tbl_order_shipping_details WHERE shipping_id = shpid )AS shpstate,
-                        
+
                         (SELECT GROUP_CONCAT(pincode) FROM tbl_order_shipping_details WHERE shipping_id = shpid )AS shppin,
                         (SELECT  GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid  AND active_flag !=2) AS prdimage,
                         (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND active_flag = 1 AND  default_img_flag=1) AS default_img
@@ -1517,9 +1519,9 @@ class user extends DB {
                 $arr['prdcode'] = $row['product_code'];
                 $arr['defimg'] = $row['default_img'];
                   $arr['catgryname'] = $row['catgryname'];
-               
-               
-                 
+
+
+
                 $arr['prdimg'] = $row['prdimage'];
                     $arr['color'] = $row['color'];
                 $arr['Metalcarat'] = $row['Metalcarat'];
@@ -1531,13 +1533,13 @@ class user extends DB {
                           $arr['totdmd'] = $row['totaldmd'];
                             $arr['dmdshape'] = $row['shape'];
                               $arr['allgems'] = $row['allGemstone'];
-               
+
                     $arr['gemstoneName'] = $row['gemstoneName'];
-                   
+
                     $arr['totalgems'] = $row['totalgems'];
                     $arr['gemscarat'] = $row['gemscarat'];
                     $arr['gemsPricepercarat'] = $row['gemsPricepercarat'];
-                      
+
                     $arr['allSolit'] = $row['allSolitaire'];
                     $arr['totalSolit'] = $row['totalSolitaire'];
                     $arr['Solicarat'] = $row['Solicarat'];
@@ -1552,23 +1554,23 @@ class user extends DB {
                 $arr['solitblno'] = $row['solitblno'];
                 $arr['solicrwnangle'] = $row['solicrwnangle'];
                 $arr['soligirdle'] = $row['soligirdle'];
-                    
+
                     $arr['allUncut'] = $row['allUncut'];
                     $arr['totalUncut'] = $row['totalUncut'];
                     $arr['Uncutcarat'] = $row['Uncutcarat'];
                     $arr['UncutPricepercarat'] = $row['UncutPricepercarat'];
                     $arr['uncutqual'] = $row['uncutqual'];
                     $arr['Uncutclr'] = $row['Uncutclr'];
-                    
+
                  $arr['ccatid'] = $row['ccatid'];
                   $arr['ccatname'] = $row['ccatname'];
-              
+
                 $arr['email'] = $row['usremail'];
                 $arr['address'] = $row['shpadd'];
                 $arr['city'] = $row['shpcity'];
                 $arr['state'] = $row['shpstate'];
                 $arr['pincode'] = $row['shppin'];
-              
+
                 $result[] = $arr;
             }
 
@@ -1581,11 +1583,11 @@ class user extends DB {
         $results = array('result' => $result, 'error' => $err);
         return $results;
     }
-    
+
     	public function frgotpassotpTemplate($uname,$otp)
         {
-              
-	    $message='	<html>	
+
+	    $message='	<html>
 			<head>
 			<title>otp email</title>
 			<meta charset="UTF-8">
@@ -1621,12 +1623,12 @@ class user extends DB {
 			    </div>
 			    <div style="width:100%;height:auto;padding:0px 25px 25px 25px;background-color:#15181b;min-height:200px">
 				<div style="width:100%;height:auto;padding:0px 25px 25px 25px;background-color:#222529">
-				<div style="width:100%;height:auto;font-size:14px;color:#fff;text-align:center;line-height:29px;">We look forward to serving you in the future. Happy Shopping!!!</div> 
-				 <div style="width:100%;height:auto;font-size:14px;color:#fff;text-align:center;line-height:25px;margin-top: 50px;">Yours Truly</div> 
-				  <div style="width:100%;height:auto;font-size:14px;color:#fff;text-align:center;line-height:20px; margin-bottom: 15px;">JZEVA</div> 
+				<div style="width:100%;height:auto;font-size:14px;color:#fff;text-align:center;line-height:29px;">We look forward to serving you in the future. Happy Shopping!!!</div>
+				 <div style="width:100%;height:auto;font-size:14px;color:#fff;text-align:center;line-height:25px;margin-top: 50px;">Yours Truly</div>
+				  <div style="width:100%;height:auto;font-size:14px;color:#fff;text-align:center;line-height:20px; margin-bottom: 15px;">JZEVA</div>
 			    </div>
 			    <div style="width:100%;height:auto;margin-top:55px;margin-bottom:15px">
-				<center> 
+				<center>
 				    <div style="width:auto;padding:0px 10px;color:#0CCDB8;display:inline-block;vertical-align:top;font-size:12px;line-height:16px;height:16px">FOLLOW US</div>
 				    <div style="width:auto;padding:0px 10px;color:#fff;display:inline-block;vertical-align:top;font-size:12px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">FACEBOOK</div>
 				    <div style="width:auto;padding:0px 10px;color:#fff;display:inline-block;vertical-align:top;font-size:12px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">TWITTER</div>
@@ -1640,11 +1642,40 @@ class user extends DB {
 			    </div>
 			    </div>
 			</body>
-			</html>'; 
- 
-            return $message;  
-	} 
+			</html>';
 
+            return $message;
+	}
+
+
+	public function checkusertype($params)
+	{
+	  $userid=(!empty($params['userid'])) ? trim($params['userid']): '';
+
+	  if (($userid == "" || $userid == null)) {
+
+                $resp = array();
+                $error = array('Code' => 1, 'Msg' => 'Invalid parameter ');
+                $res = array('results' => $resp, 'error' => $error);
+                return $res;
+          }
+
+	    $sql="select is_vendor "
+		    . " from tbl_user_master where user_id=".$params['userid']."";
+
+	    $res=  $this->query($sql);
+	    if($res){
+
+	      $row=  $this->fetchData($res);
+	      $result['is_vendor']=$row['is_vendor'];
+	    }
+            else
+            {
+               $err = array('err_code' => 1, 'err_msg' => 'Error in fetching data');
+            }
+            $results = array('result' => $result, 'error' => $err);
+            return $results;
+	}
 
 }
 

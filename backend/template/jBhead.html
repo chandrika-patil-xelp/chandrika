@@ -20,5 +20,26 @@
             var page='<?php echo $page?>';
             var tab='<?php echo $tab?>';
             common.applyTabClass();
+	     
+	   $(document).ready(function(){ 
+		setTimeout(function(){
+		   $('.detaCmngcnt').addClass('dn');
+		},800);
+		var juserid=common.readFromStorage('jzeva_uid');
+		if(juserid == null || juserid == undefined){
+		       window.location.href = DOMAIN + "index.php?action=landing_page";
+		}
+		else
+		{
+		      var URL = APIDOMAIN + "index.php?action=checkusertype&userid="+juserid;
+		      $.ajax({ url: URL, type: "GET", success: function(res) {
+			  res = JSON.parse(res); 
+			  if(res['result']['is_vendor'] == 0){ 
+			        	 window.location.href = DOMAIN + "index.php?action=landing_page";
+			  }
+		      }
+		      });
+		}
+	   });  
         </script>
     </head>
