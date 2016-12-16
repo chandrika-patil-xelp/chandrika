@@ -244,7 +244,17 @@
             include APICLUDE.'class.emailtemplate.php';
             $obj	= new emailtemplate($db['jzeva']);
             $message	=$obj->genordrtemplate($params);
-
+	    
+	    $subject  = "JZEVA Order Detail"; 
+            $headers  = "Content-type:text/html;charset=UTF-8" . "<br/><br/>";
+            $headers .= 'From: care@jzeva.com' . "<br/><br/>";
+	    $usrsql = "SELECT email FROM tbl_user_master WHERE user_id=".$params['data'][0]['userid'];
+	    $usrres =  $this->query($usrsql);
+	    $usrrow = $this->fetchData($usrres);
+	    $email = $usrrow['email'];
+	    
+	    mail($email, $subject, $message, $headers);
+	    
             $resp = array();
             if($res){
 

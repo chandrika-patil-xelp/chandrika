@@ -245,7 +245,7 @@
             $('.ringCircle').css('line-height', val3 + 'px');
             $('.ringCircle').html(incVal);
             tmp++;
-            calculatePrice();
+             calweight();
         });
 //
 
@@ -264,7 +264,7 @@
             $('.ringCircle').css("line-height", val3 + 'px');
             $('.ringCircle').html(dTxt);
             tmp--;
-            calculatePrice();
+	     calweight();
         });
 
         //bangles size code
@@ -296,7 +296,7 @@
             $('#bangCircle').css('line-height', valb3 + 'px');
             $('#bangCircle').html(incVal_b);
             tmp_b = parseFloat(tmp_b) + 0.1;
-            calculatePrice();
+	    calweight();
         });
 
         $('#decB').click(function () {
@@ -317,7 +317,7 @@
             var decValb = Math.round(dTxt_b * 10) / 10;
             $('#size').text("Size " + decValb);
             tmp_b = tmp_b - 0.1;
-            calculatePrice();
+            calweight();
         });
 
         $('#ringGuide').click(function (s, l) {

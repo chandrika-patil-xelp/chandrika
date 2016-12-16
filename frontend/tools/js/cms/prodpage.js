@@ -838,7 +838,8 @@ function getcatsize(s, m) {
 
                     $('#sizes').html(strd);
                      
-                   
+                    if(psize !== undefined)
+ 			 $('#size').html('SIZE '+psize); 
 
                     bindDrop();
                     getarraydata();
@@ -1101,4 +1102,41 @@ function getDesc(dmdsol, jwlty) {
     });
 
 } 
+
+function calweight()
+{
+   var currentSize; 
+   if (catname == 'Rings'){
+      currentSize=$('.ringCircle').text();
+      bseSize = parseFloat(14);
+    }  
+    else if (catname == 'Bangles'){
+      bseSize = parseFloat(2.4);
+      currentSize=$('.ringCircleB').text();
+    } 
+ 
+    if (catname == 'Rings') {
+        mtlWgDav = 0.05;
+    } else if (catname == 'Bangles') {
+        mtlWgDav = 7;
+    }
+
+    if (isNaN(currentSize))
+    { 
+        if (catname == 'Rings')
+            currentSize = parseFloat(14);
+
+        else if (catname == 'Bangles')
+            currentSize = parseFloat(2.4);
+
+        else if (catname !== 'Rings' && catname !== 'Bangles') {
+            currentSize = 0;
+        } 
+    } 
+    var changeInWeight = (currentSize - bseSize) * mtlWgDav; 
+    newWeight = parseFloat(storedWt + (changeInWeight));
+    newWeight = newWeight.toFixed(3);
+
+    $('#newWt').html(newWeight + " gms");
+}
 

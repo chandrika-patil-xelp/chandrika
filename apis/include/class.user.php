@@ -97,7 +97,17 @@ class user extends DB {
 
         $res = $this->query($sql);
 
-
+	global $db;
+	include 'class.emailtemplate.php';
+	$obj=  new emailtemplate($db['jzeva']);
+	$message=$obj->genwelcumtemplate($params);
+	
+	$subject  = "Welcome to JZEVA";
+        $headers  = "Content-type:text/html;charset=UTF-8" . "<br/><br/>";
+        $headers .= 'From: care@jzeva.com' . "<br/><br/>";
+  
+	mail($email, $subject, $message, $headers);
+	
         $result = array();
         if ($res) {
             $err = array('err_code' => 0, 'err_msg' => 'Data inserted successfully');
