@@ -352,7 +352,7 @@ a{color:#666;}
 .scala{}
 .drop_dn{}
 .drop_dets{width:100%;height:150px;float:left;display:none;background:#e6e6e6;position:absolute;top:40px;left:0;z-index:10}
-.price_light{font-size:36px; color:#15181b;width: 100%;height:75px;font-family:regular;position:relative}
+.price_light{font-size:36px; color:#15181b;width: 100%;height:85px;font-family:regular;position:relative}
 .rota{width:100%;height:100%;position:relative;max-width:100%;margin:auto}
 .rota_buffer{width:100%; height:100%;position:absolute;left:0;right:0;background:#fff ;margin: auto;padding:20px;top: 0;}
 
