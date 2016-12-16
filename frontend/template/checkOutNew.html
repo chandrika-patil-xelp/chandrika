@@ -144,6 +144,14 @@
                                     </div>
                                     <div class="frmDtls fLeft semibold">
                                         <div class="neadHide">
+                                            <div class="dropBox fLeft">
+                                                <label  id="dlabel">Title</label>
+                                                <ul class="ulDiv dn">
+                                                    <li class="opt1">Ms</li>
+                                                    <li class="opt1">Mr</li>
+                                                    <li class="opt1">Mrs</li>
+                                                </ul>
+                                            </div>
                                             <div class="txtB fLeft w49">
                                                 <input type="text" class="inp_box " autocomplete="off" id="shpdname" maxlength="30">
                                                 <div class="inp_label ">Name*</div>
@@ -453,18 +461,18 @@
                          </div>
                          </div>-->
                         </div>
-                     </div>
-                       <div class="checkFoo fLeft">
-                            <center>
-                                <div class="col50">
-                                    <div class="logoComm masterImg"></div>
-                                    <div class="logoComm visaLogo"></div>
-                                    <div class="logoComm safeLogo"></div>
-                                    <div class="logoComm rupayLogo"></div>
-                                    <div class="logoComm jcbLogo"></div>
-                                </div>
-                            </center>
-                       </div>
+                    </div>
+                    <div class="checkFoo fLeft">
+                        <center>
+                            <div class="col50">
+                                <div class="logoComm masterImg"></div>
+                                <div class="logoComm visaLogo"></div>
+                                <div class="logoComm safeLogo"></div>
+                                <div class="logoComm rupayLogo"></div>
+                                <div class="logoComm jcbLogo"></div>
+                            </div>
+                        </center>
+                    </div>
                 </div>
             </div>
         </div>
@@ -701,7 +709,22 @@
     <script type="text/javascript" src="<?php echo $fjvs['Common']; ?>"></script>
     <script type="text/javascript">
 
-                                                $(document).ready(function () {
+                                        $("#dlabel").click(function () {
+                                            $('.dropBox label').addClass("act");
+                                            $(this).parent().addClass("drop");
+                                            $(this).next().slideDown("slow");
+                                        });
+
+                                        $(".dropBox ul li").click(function () {
+                                            $('.dropBox label').removeClass("act");
+                                            $(this).parent().parent().removeClass("drop");
+                                            var liTxt = $(this).html();
+                                            $(".dropBox label").text(liTxt);
+                                            $(this).parent().slideUp("slow");
+                                        });
+
+
+                                        $(document).ready(function () {
                                             $('#scroll').niceScroll({cursorcolor: "#000000", touchbehavior: true, cursorwidth: "4px", autohidemode: false, cursorborder: "0px solid #fff", cursoropacitymin: "0.3", cursoropacitymax: "0.3", railpadding: {top: 2, right: 2, left: 2, bottom: 2}});
                                         });
 
