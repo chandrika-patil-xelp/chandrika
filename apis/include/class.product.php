@@ -3764,6 +3764,8 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 			    (SELECT GROUP_CONCAT(id) FROM tbl_diamond_quality_mapping WHERE diamond_id = allDimonds AND active_flag = 1 ) AS DimondQuality,
                             (SELECT GROUP_CONCAT(dname) FROM tbl_diamond_quality_master WHERE FIND_IN_SET(id,DimondQuality)) AS dmdQ,
                             (SELECT GROUP_CONCAT(price_per_carat order by price_per_carat ASC) FROM tbl_diamond_quality_master WHERE FIND_IN_SET(id,DimondQuality)) AS dmdQPricepercarat,
+                             (SELECT min(price_per_carat) FROM tbl_diamond_quality_master WHERE FIND_IN_SET(id,DimondQuality)) AS dmdlowp,
+                             (SELECT max(price_per_carat) FROM tbl_diamond_quality_master WHERE FIND_IN_SET(id,DimondQuality)) AS dmdhighp,
 
 
                             (SELECT GROUP_CONCAT(gemstone_id) FROM tbl_product_gemstone_mapping WHERE productid = pid AND active_flag = 1 ) AS allGemstone,
@@ -3786,6 +3788,8 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                             (SELECT GROUP_CONCAT(id) FROM tbl_product_metal_purity_mapping WHERE productid = pid ) AS allmetalpurity,
                             (SELECT GROUP_CONCAT(dvalue) FROM tbl_metal_purity_master WHERE FIND_IN_SET(id,allmetalpurity)) AS purity,
                             (SELECT GROUP_CONCAT(price order by price DESC) FROM tbl_metal_purity_master WHERE FIND_IN_SET(id,allmetalpurity) and active_flag=1) AS purprice,
+                            (SELECT min(price) FROM tbl_metal_purity_master WHERE FIND_IN_SET(id,allmetalpurity)) AS caratlowp,
+                            (SELECT max(price) FROM tbl_metal_purity_master WHERE FIND_IN_SET(id,allmetalpurity)) AS carathighp,
                             
                             (SELECT GROUP_CONCAT(id) FROM tbl_product_metal_color_mapping WHERE productid = pid AND active_flag = 1 ) AS allmetalcolor,
                             (SELECT GROUP_CONCAT(attributeid) FROM tbl_product_attributes_mapping WHERE productid = pid AND active_flag = 1 ) AS attrVals,
@@ -3848,6 +3852,11 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                 $arr['createdon'] = $row['createdon'];
                 $arr['updatedon'] = $row['updatedon'];
                 $arr['updatedby'] = $row['updatedby'];
+                $arr['hasDmd'] = $row['has_diamond'];
+                $arr['caratlowp'] = $row['caratlowp'];
+                $arr['carathighp'] = $row['carathighp'];
+                $arr['dmdlowp'] = $row['dmdlowp'];
+                $arr['dmdhighp'] = $row['dmdhighp'];
 
                 $arr['allDimonds'] = $row['allDimonds'];
                 $arr['dmdcarat'] = $row['dmdcarat'];
