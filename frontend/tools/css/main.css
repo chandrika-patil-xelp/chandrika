@@ -410,7 +410,7 @@ img{width:100%;height:100%;border:0}
 .has360 .grid_img{pointer-events:auto}
 .grid_img img{width:100%;height:100%;position:absolute;}
 .grid_img div{width:100%;height:100%;position:absolute;}
-.grid_dets{height:auto;width:100%;float:left;padding:5px 20px 30px 20px;position:relative;pointer-events:none}
+.grid_dets{height:auto;width:100%;float:left;padding:5px 20px 30px 20px;position:relative;}
 .grid_dets:before{content:"";position:absolute;width:40px;height:2px;left:0;right:0;margin:auto;top:-10px;background:#15181b;transition:300ms;-webkit-transition:300ms;-moz-transition:300ms;-o-transition:300ms;-ms-transition:300ms;}
 .grid3:hover .grid_dets:before{background:#fff}
 .grid_name{width:100%;height:20px;text-align:center;line-height:20px;font-size:12px;color:#15181b;font-family:bolder;text-transform:uppercase;letter-spacing:0.15em}
@@ -810,8 +810,8 @@ img{width:100%;height:100%;border:0}
 
 .CHECKOUT_PAGE{}
 .vMax{width:100%;height:auto;max-width:1200px !important;display:inline-block;position:fixed;left:0;right:0;top:125px;margin:auto;}
-.CHECKOUT_PAGE.wrapper_main{min-height:100vh}
-.CHECKOUT_PAGE .wrapper{padding:0;min-height:calc(100vh  - 120px);padding-top:0px;height:auto}
+/*.CHECKOUT_PAGE.wrapper_main{min-height:100vh}*/
+.CHECKOUT_PAGE .wrapper{padding:0;min-height:calc(100vh  - 60px);padding-top:0px;height:auto}
 .progress{width:100%;height:5px;position:absolute;top:0px;left:0;z-index: 99;}
 .progress_bar{height:100%;float:left;background:#ccc;width:50%}
 .co_tabholder{width:200px;height:auto;position:absolute;z-index:20;padding-top: 50px;}
@@ -2053,7 +2053,7 @@ input[type=radio]:checked ~ .matchIcn{
 .myaccount .grid_item{width:100%;background:#fff;position: relative;height:auto;float:left}
 .myaccount .grid_item:after{content:"";width:100%;height:100%;position:absolute;left:0;top:0;background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.05) 100%);pointer-events: none;}
 .myaccount .grid3{width:33.33%;display:block;float:left;position:static !important;height:auto;text-transform:uppercase;opacity:0;transform:translateY(40px);-webkit-transform:translateY(40px);-moz-transform:translateY(40px);-ms-transform:translateY(40px);-o-transform:translateY(40px)}
-.myaccount .grid3:hover div{color:#15181b;}
+.myaccount .grid3:hover .hovTrans{color:#15181b;opacity: 1;cursor: pointer;}
 .grid3:hover .grid_dets:before{background:#15181b;}
 .myaccount .soc_icons{display: none;}
 .myaccount .fadeInup{opacity:1;}
@@ -2365,6 +2365,7 @@ input[type=radio]:checked ~ .matchIcn{
 .dropBox ul li:last-child{border:none;}
 .dropBox ul li:hover{background-color:#53C9C7;transition: 300ms;color: #fff;}
 
+.tryB{position: fixed;}
 
 @media only screen and (min-width:320px) and (max-width:767px){
 
