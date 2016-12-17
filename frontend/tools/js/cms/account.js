@@ -250,11 +250,11 @@ function wishlist()
                     wishStr += '<div class="grid3 transition400 fadeInup" > ';
                     wishStr += ' <div class="facet_front" id="'+j.product_id+'_'+j.col_car_qty+'_'+j.size+'_'+s+'">';
                     wishStr += ' <div class="grid_item"> ';
-                    wishStr += '    <div class="grid_img">';
+                    wishStr += ' <div class="grid_img">';
                     wishStr += ' <div style="background:url(\'' + xyz + '\')no-repeat ; background-size: contain ; background-position: center"></div></div>';
-                    wishStr += '   <div class="hovTr"  onclick="prdopen(this)"> ';
-                    wishStr += '  <div class="hovTrans" style="display: none; transform: translateX(101%);">';
-                    wishStr += '  <div class="plusCont" style="transform: scale(0);"></div></div></div>';
+                    wishStr += ' <div class="hovTr"  onclick="prdopen(this)"> ';
+                    wishStr += ' <div class="hovTrans">';
+                    wishStr += ' </div></div>';
                     wishStr += '   <div class="grid_dets">';
                     wishStr += '  <div class="grid_name txtOver transition300" onclick="prdopen(this)">' + j.prdname + '</div>';
 
