@@ -36,10 +36,10 @@ function Common() {
 
     $(input_selector).on('focus', function () {
         var id = $(this).attr('id');
-        setTimeout(function () {
-            var scr = $('#' + id).offset().top - 100;
-            $('body').animate({scrollTop: scr}, 500, 'swing');
-        }, 200);
+//        setTimeout(function () {
+//            var scr = $('#' + id).offset().top - 100;
+////            $('body').animate({scrollTop: scr}, 500, 'swing');
+//        }, 200);
     });
 
     this.addToStorage = function (id, val)
