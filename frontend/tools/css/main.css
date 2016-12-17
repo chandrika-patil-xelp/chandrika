@@ -364,7 +364,7 @@ a{color:#666;}
 .mTop5{margin-top:5px;}
 .padR15{padding-right: 10px;}
 .padLR25{padding: 0px 25px;}
-
+.padR0{padding-right: 0px;}
 .PRODUCT_GRID2.wrapper_main{padding-top:60vh;background-color: #f3f3f3;}
 
 .imgHolder{width:100%;height:100%;position:absolute;background-size:115%;background-position:center;cursor: w-resize;}
@@ -2359,7 +2359,8 @@ input[type=radio]:checked ~ .matchIcn{
 .dropBox label:after{content:"";width:0;height:0;border-top:2px solid #4d4d4d; position:absolute;bottom:-1px;left:0;transition:300ms}
 .dropBox label.act:after{width:100%}
 .drop{}
-.dropBox ul{width: 100%;margin: 0;list-style: none;position: absolute;z-index: 99;padding: 0;background-color: #fff;left:0;top:42px;}
+.dropBox ul{width: 100%;margin: 0;list-style: none;position: absolute;z-index: 99;padding: 0;background-color: #fff;left:0;top:40px;
+    box-shadow: 2px 2px 8px 2px rgba(0,0,0,0.3);}
 .dropBox label{width: 100%;height: 100%;}
 .dropBox ul li{width: 100%;height: 35px;line-height: 35px;border-bottom:1px solid #ccc; padding-left: 8px;}
 .dropBox ul li:last-child{border:none;}
