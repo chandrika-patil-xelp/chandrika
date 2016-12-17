@@ -294,5 +294,24 @@
                 window.location.href = url;
             }
         });
-
+	
+	$(document).ready(function(){
+	  var actnp=GetURLParameter('actn'); 
+	  if(actnp == "lognpopup"){
+	    openPopUp();
+	  }
+	});
+	
+	function GetURLParameter(Param)
+	{ 
+	    var PageURL = window.location.search;
+	    var URLVariables = PageURL.split('&');
+	    for (var i = 0; i < URLVariables.length; i++)
+	    {
+		var ParameterName = URLVariables[i].split('=');
+		if (ParameterName[0] == Param) {
+		    return ParameterName[1];
+		} 
+	    }
+	}
 </script>

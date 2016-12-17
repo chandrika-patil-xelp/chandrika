@@ -10,15 +10,21 @@ $(document).ready(function () {
         {
 
             var obj = JSON.parse(results);
-            var cartStr = "";
-
+            var cartStr = "", gndr;
+	    
             var dt = obj['result'];
 
             $(dt).each(function (i, v) {
 
                 var uname = v.uname;
                 uname = uname.toLowerCase();
-                $('#uname').html('Hi ' + uname);
+		if(v.gender == 1)
+		  gndr="Ms";
+		else if(v.gender == 2)
+		  gndr="Mr";
+		else if(v.gender == 3)
+		  gndr="Mrs";
+                $('#uname').html(gndr +' '+ uname);
                 $('#ordrID').html(v.oid);
                 var orddate = v.orddt;
                 var ordd = orddate.split(',').join(' ');

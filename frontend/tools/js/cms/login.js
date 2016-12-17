@@ -1,10 +1,10 @@
  
-var glbcartdeatil, inptval, newuserid, otpflg=0, userdata=[], entrflg=0, mailmob;
+var glbcartdeatil, inptval, newuserid, otpflg=0, userdata=[], entrflg=0, mailmob, gndrflg;
 
 $('#rsubId').on('click',function(){
   dosignup();
 });
-  
+ 
  function dosignup()
  {
     var name = $("#name").val();
@@ -12,12 +12,17 @@ $('#rsubId').on('click',function(){
    var  mobile = $("#mobile").val();
    var pass = $("#signuppass").val(); 
    var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
+   var letters = /^[A-Za-z]+$/;
     var validationFlag=1;
-    if(name ===''|| name === null){
+    if(gndrflg == undefined || gndrflg == null){
+      validationFlag=0;  
+     common.msg(0,'Please Select Title');  
+    }
+    else if(name ===''|| name === null){
       validationFlag=0;  
      common.msg(0,'Please enter your Name'); 
     }  
-    else if(!isNaN(name)){
+    else if(!letters.test(name) ){
        validationFlag=0;  
         common.msg(0,'Name should be alphanumeric'); 
     }
@@ -43,7 +48,7 @@ $('#rsubId').on('click',function(){
     }
     if (validationFlag == 1)
     {
-      
+       
       var URL= APIDOMAIN + "index.php/?action=getUserDetailsbyinpt&email="+email+"&mobile="+mobile; 
       $.ajax({  url: URL, type: "GET", datatype: "JSON",  success: function(res)  {
 		       var data=JSON.parse(res); 
@@ -64,7 +69,7 @@ $('#rsubId').on('click',function(){
 	  $('#signupemail').val('');	  $('#signupemail').blur();
 	  $('#signuppass').val('');	  $('#signuppass').blur();
 	  $('#mobile').val('');		  $('#mobile').blur();
-	  $('#signup_otp').val('');	  $('#signup_otp').blur();
+	  $('#signup_otp').val('');	  $('#signup_otp').blur(); 
           otpflg=1; 
 	  sendotp(); 
 	  userdata[0]=name;
@@ -433,7 +438,7 @@ function sugnupsubmt()
 		      if(otpval==data.otp){
 		if(otpflg == 1)	 
 		{ 
-   var URLreg= APIDOMAIN + "index.php/?action=addUser&name="+userdata[0]+"&email="+userdata[1]+"&mobile="+userdata[2]+"&pass="+userdata[3]; 
+   var URLreg= APIDOMAIN + "index.php/?action=addUser&name="+userdata[0]+"&email="+userdata[1]+"&mobile="+userdata[2]+"&pass="+userdata[3]+"&gender="+gndrflg; 
    $.ajax({  type:'POST', 
              url:URLreg,  
              success:function(res){
@@ -568,6 +573,8 @@ function sugnupsubmt()
       $('.outerContr').css("z-index", "203", "opacity", "0");
       $('.outerContr').velocity({translateY: ['150%', 0]}, {duration: 150, delay: 100, easing: ''});
       $('.fade').fadeIn();
+      $('#dlabel').text('Title');
+      gndrflg=undefined;
  }
  
   $(document).on('click', '#userProfId', function () {
@@ -592,4 +599,10 @@ function sugnupsubmt()
       sendotp();
     else
       sendemailotp();
+  });
+  
+  $('.opt1').click(function(){
+    var id=$(this).attr('id');
+    id=id.split('_');
+    gndrflg=id[1]; 
   });

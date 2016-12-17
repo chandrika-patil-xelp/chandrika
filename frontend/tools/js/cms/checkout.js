@@ -1,9 +1,9 @@
 
 var gblcheckodata, bakflag = 0, totalprice = 0, shipngdata = {}, validationFlag = 1, logotpflag = 0, contnu_enble = 0;
-var inp_data, shipng_id = 0, chkouttentrflag = 0, shipngzpcodflg = 1, shpngusrflg;
+var inp_data, shipng_id = 0, chkouttentrflag = 0, shipngzpcodflg = 1, shpngusrflg, gndrflg;
 
 $(document).ready(function () {
-
+ 
   var userid = common.readFromStorage('jzeva_uid');
   if (userid !== null) {
     openfst();
@@ -293,12 +293,16 @@ function shpngsubmt()
     email = $('#shpdemail').val();
     mobile = $('#shpdmobile').val();
     var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
-
-    if (name === '' || name === null) {
+    var letters = /^[A-Za-z]+$/;
+    if(gndrflg == undefined || gndrflg == null){
+      validationFlag=0;  
+     common.msg(0,'Please Select Title');  
+    }
+    else if (name === '' || name === null) {
       validationFlag = 0;
       common.msg(0, 'Please enter your Name');
     } 
-    else if (!isNaN(name)) {
+    else if (!letters.test(name)) {
       validationFlag = 0;
       common.msg(0, 'Name should be alphanumeric');
     } 
@@ -769,11 +773,15 @@ function getuserdetail(inpt)
 $('#shpd_bak').click(function () {
   if (bakflag == 1) {
     contnu_enble=0;
+    $('#dlabel').text('Title');
+    gndrflg=undefined;
     $('#paswrd1id').addClass('dn');      $('#paswrd2id').addClass('dn');
     $('#otp_countn').addClass('dn');  $('.matchIcn1').addClass('dn');
     openThrd();
   } else if (bakflag == 2) {
     var userid = common.readFromStorage('jzeva_uid');
+    $('#dlabel').text('Title');
+    gndrflg=undefined;
     openfst();
     displayaddrs(userid);
   }
@@ -844,12 +852,12 @@ function createuser(name, email, city, addrs)
 {
   if ($.isNumeric(inp_data)) {
 
-    var URLreg = APIDOMAIN + "index.php/?action=addnewUser&name=" + name + "&mobile=" + inp_data + "&pass=" + passwrd + "&email=" + email + "&city=" + city + "&address=" + addrs;
+    var URLreg = APIDOMAIN + "index.php/?action=addnewUser&name=" + name + "&mobile=" + inp_data + "&pass=" + passwrd + "&email=" + email + "&city=" + city + "&gender="+gndrflg+"&address=" + addrs ;
   } 
   else {
 
     shipngdata['email'] = mail;
-    var URLreg = APIDOMAIN + "index.php/?action=addnewUser&name=" + name + "&email=" + email + "&pass=" + passwrd + "&mobile=" + mobile + "&city=" + city + "&address=" + addrs;
+    var URLreg = APIDOMAIN + "index.php/?action=addnewUser&name=" + name + "&email=" + email + "&pass=" + passwrd + "&mobile=" + mobile + "&city=" + city + "&gender="+gndrflg+"&address=" + addrs;
   }
 
   $.ajax({type: 'POST', url: URLreg, success: function (res) {
@@ -924,7 +932,7 @@ function checkshpdpincode(zipcode)
 	  $('#shpdcity').val(obj.results[0].city);
 	  shipngzpcodflg = 1;
 	  $('#shpdcity').focus();
-	  $('#shpdstate').focus();
+	  $('#shpdstate').focus(); 
 	} 
 	else if(obj['error']['code'] == 1){
 	  shipngzpcodflg = 0;
@@ -940,3 +948,9 @@ function checkshpdpincode(zipcode)
     common.msg(0, 'Please Enter correct Zip Code');
   }
 }
+
+$('.opt1').click(function(){
+    var id=$(this).attr('id');
+    id=id.split('_');
+    gndrflg=id[1];  
+  });

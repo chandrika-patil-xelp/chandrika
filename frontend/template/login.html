@@ -45,9 +45,9 @@
                 <div class="dropBox fLeft">
                     <label  id="dlabel">Title</label>
                     <ul class="ulDiv dn">
-                        <li class="opt1">Ms</li>
-                        <li class="opt1">Mr</li>
-                        <li class="opt1">Mrs</li>
+                        <li class="opt1" id="gnd_1">Ms</li>
+                        <li class="opt1" id="gnd_2">Mr</li>
+                        <li class="opt1" id="gnd_3">Mrs</li>
                     </ul>
                 </div>
 
@@ -167,7 +167,7 @@
 
         $('#hTxt,#loginId,#lgnId,#loginId1,#otpCont,#otpCont2,#inresetId,#signCont').velocity({opacity: [0]}, {duration: 0, easing: 'ease-in-out'});
         $(document).ready(function () {
-
+	 
             $('#hTxt,#loginId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
             $('#lgnId').velocity({opacity: [1, 0], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
             $(document).keypress(function (e) {

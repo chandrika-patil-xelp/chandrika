@@ -10,12 +10,12 @@
 
         public function genordrtemplate($params)
         {
-
+ 
           $sql="   SELECT
-                          user_name,
-                          (SELECT address FROM tbl_order_shipping_details WHERE shipping_id=".$params['data'][0]['shipping_id']." AND active_flag=1 ) AS addr,
-                          (SELECT city FROM tbl_order_shipping_details WHERE shipping_id=".$params['data'][0]['shipping_id']." AND active_flag=1 ) AS city,
-                          (SELECT pincode FROM tbl_order_shipping_details WHERE shipping_id=".$params['data'][0]['shipping_id']." AND active_flag=1 ) AS pincode
+                          user_name,gender,
+                           (SELECT address FROM tbl_order_shipping_details WHERE shipping_id=".$params['data'][0]['shipping_id']." AND active_flag=1 ) AS addr,
+                           (SELECT city FROM tbl_order_shipping_details WHERE shipping_id=".$params['data'][0]['shipping_id']." AND active_flag=1 ) AS city,
+                           (SELECT pincode FROM tbl_order_shipping_details WHERE shipping_id=".$params['data'][0]['shipping_id']." AND active_flag=1 ) AS pincode
 
                     FROM
                           tbl_user_master
@@ -28,7 +28,8 @@
           $addrs=$row['addr'];
           $city=$row['city'];
           $pincode=$row['pincode'];
-
+	  $gndr=  $this->getgender($row['gender']);
+	  
           $itms=COUNT($params['data']);
 
           if($itms > 1)
@@ -59,7 +60,7 @@
                           <img src="'.DOMAIN.'frontend/emailer/confirm.png" alt="" width="70" height="70">
                             </div>
                         </div>
-                        <div style="width:100%;height:auto;font-size:22px;color:#0CCDB8;text-align:center;line-height:28px">Dear Mr. '.$name.'</div>
+                        <div style="width:100%;height:auto;font-size:22px;color:#0CCDB8;text-align:center;line-height:28px">Dear '.$gndr.'. '.$name.'</div>
                         <div style="width:100%;height:auto;font-size:13px;color:#333;text-align:center;line-height:30px;margin-top:10px;">CONGRATULATIONS ON YOUR PURCHASE FROM JZEVA!!!</div>
                         <div style="width:100%;height:auto;font-size:14px;color:#333;text-align:center;line-height:0px"><span style="display:inline-block;line-height:normal;vertical-align:middle"><b>We are glad to inform you that your order is now confirmed and will reach on the promised date</b></span></div>
                         <div style="width:100%;height:auto;padding:15px;margin-top: 20px;">
@@ -114,7 +115,7 @@
                         </div>
                                   <div style="width:100%;height:auto;padding-top:15px">
                                       <div style="width:100%;height:auto;font-size:13px;color:#333;text-align:center;line-height:25px;text-align:left;">THE PRODUCT WILL BE DELIVERED TO</div>
-                                      <div style="width:100%;height:auto;text-align:left;font-size:11px;line-height:20px;margin-top:6px;color:#333"><b>Mr. '.$name.'</b></div>
+                                      <div style="width:100%;height:auto;text-align:left;font-size:11px;line-height:20px;margin-top:6px;color:#333"><b>'.$gndr.'. '.$name.'</b></div>
                                       <div style="width:100%;height:auto;text-align:left;font-size:13px;color:#333;line-height:20px;margin-top:10px">'.$addrs.'</div>
                                       <div style="width:100%;height:auto;text-align:left;font-size:13px;color:#333;line-height:20px;">'.$city.'-'.$pincode.'</div>
                                       <div style="width:100%;height:auto;font-size:12px;color:#666;line-height:20px;text-align:left;margin-top:10px">Please login to your My jzeva account to view the status of your order</div>
@@ -145,7 +146,7 @@
                       </div>
                    </body>
                    </html> ';
-	    
+	 
           return $message;
         }
 
@@ -153,6 +154,7 @@
 	public function genwelcumtemplate($params)
 	{
 	 
+	 $gndr= $this->getgender($params['gender']); 
 	  $message='<html>
 		    <head>
 			<title>login</title>
@@ -176,7 +178,7 @@
 					    <img src="'.DOMAIN.'frontend/emailer/signup.png" alt="" width="70" height="60">
 					</div>
 				    </div>
-				    <div style="width:100%;height:auto;font-size:22px;color:#0CCDB8;text-align:center;line-height:28px">Dear Mr. '.$params['name'].'</div>
+				    <div style="width:100%;height:auto;font-size:22px;color:#0CCDB8;text-align:center;line-height:28px">Dear '.$gndr.'. '.$params['name'].'</div>
 				    <div style="width:100%;height:auto;font-size:15px;text-align:center;color:#333;line-height:30px;margin-top:15px"><span style="display:inline-block;line-height:normal;vertical-align:middle">WELCOME TO THE WORLD OF LUXURIOUS JEWELLERY</span></div>
 				    <div style="width:100%;height:auto;font-size:12px;color:#333;line-height:20px;text-align:center;margin-top:10px">We at jzeva extremely pleased to have you express interest in your collection</div>
 				    <div style="width:100%;height:auto;font-size:12px;color:#333;line-height:20px;text-align:center">Your profile has been created and can now be accessed by clicking on my account link at <a href="" style="text-decoration:none;color:#333">www.jzeva.com</a></div>
@@ -265,6 +267,18 @@
 		';
 	 
 	  return $message;
+	}
+	
+	public function getgender($params)
+	{
+	  if($params == 1)
+	    $gndr="Ms";
+	  else if($params == 2)
+	    $gndr="Mr";
+	  else if($params == 3)
+	    $gndr="Mrs";
+	 
+	  return $gndr;
 	}
     }
 

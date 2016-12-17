@@ -239,8 +239,8 @@
 	 	           . "order_date = VALUES(order_date),delivery_date = VALUES(delivery_date),order_status = VALUES(order_status),"
 	 	            . "createdon = VALUES(createdon),updatedon = VALUES(updatedon),updatedby = VALUES(updatedby),payment = VALUES(payment),payment_type = VALUES(payment_type)";
 
-	      $res = $this->query($sql);
-
+	        $res = $this->query($sql);
+ 
             include APICLUDE.'class.emailtemplate.php';
             $obj	= new emailtemplate($db['jzeva']);
             $message	=$obj->genordrtemplate($params);
@@ -310,6 +310,7 @@
 (SELECT  GROUP_CONCAT(dname) FROM tbl_diamond_quality_master WHERE id = SUBSTRING_INDEX(combine,'|@|',-1)  AND active_flag !=2 ) AS quality,
 (SELECT  GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid  AND active_flag !=2) AS prdimage,
 (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND active_flag = 1 AND  default_img_flag=1) AS default_image,
+(SELECT gender FROM tbl_user_master WHERE user_id = uid AND is_active = 1) AS usrgender,
 
                             order_date AS orddt,
                             delivery_date AS deldt,
@@ -354,6 +355,7 @@
                      $reslt['mkngchrg'] = ($row['mkngchrg']!=NULL) ? $row['mkngchrg'] : '';
                      $reslt['allDimonds'] = ($row['allDimonds']!=NULL) ? $row['allDimonds'] : '';
                      $reslt['dmdcarat'] = ($row['dmdcarat']!=NULL) ? $row['dmdcarat'] : '';
+		     $reslt['gender'] = ($row['usrgender']!=NULL) ? $row['usrgender'] : '';
                     $resp[] = $reslt;
                  }
                     $error = array('err_code'=>0, 'err_msg'=>' getOrderDetailsByOrdId fetched successfully ' );
