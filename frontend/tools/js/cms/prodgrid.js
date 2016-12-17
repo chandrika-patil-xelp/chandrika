@@ -305,7 +305,7 @@ var goldPricehighp =0;
         }
     }
     proStr += ' ' + Nstr + '</div>';
-    proStr += '<div class="grid_price txtOver transition300"><span class="cartRup15b">' + grandtotallow + '</span><span class="toTxt"> to  </span> <span  class="cartRup15b"> '+grandtotalhigh+'</span></div>';
+    proStr += '<div class="grid_price txtOver transition300" onclick=\" custmz('+obj['prdId']+')\"><span class="cartRup15b">' + grandtotallow + '</span><span class="toTxt"> to  </span> <span  class="cartRup15b"> '+grandtotalhigh+'</span></div>';
     proStr += '<div class="fmSansB smBtnDiv fLeft transition300">';
 //    proStr += '<span class="u_line point lettSpace fLeft"  onclick=\"getProId(\''+ obj['prdId'] + '\')\">View Product</span>';
     proStr += '<div class="v360Btn" onclick=\"imgLoad(' + obj['prdId'] + ', event)\"></div>';
@@ -443,6 +443,11 @@ var goldPricehighp =0;
 
 }
 
+
+function custmz(i){
+ var pid =i;
+   window.open(DOMAIN + 'index.php?action=product_page&pid=' +pid);
+}
 
 function imgLoad(p, event) {
     event.stopPropagation();
@@ -686,7 +691,6 @@ function getmenu()
     });
 
 }
-
 
 
 var fltrarray = {};
