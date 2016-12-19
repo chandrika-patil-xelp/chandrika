@@ -20,14 +20,19 @@ echo "<script>var edit=$edit; var pid = '$pid';</script>";
                         </div>
 
                         <div class="divCon2 fRight">
-                            <div class="col50 fLeft">
+                            <div class="width33 fLeft">
                                 <div class="titleDiv txtCap fLeft">Product code</div>
                                 <div class="fLeft pCode">jzeva1234567890</div>
                             </div>
-                            <div class="col50 fLeft">
+                            <div class="width33 fLeft">
                                 <div class="titleDiv txtCap fLeft">Price</div>
                                 <div class="fLeft pCode">50000</div>
                             </div>
+                            <div class="width33 fLeft">
+                                <div class="titleDiv txtCap fLeft">size</div>
+                                <div class="fLeft pCode">2.4</div>
+                            </div>
+
 
                             <!--<input name="" type="text" id="product_seo_name" autocomplete="false"  placeholder="Enter product code" class="txtInput fLeft fmOpenR font14 c666">-->
                             <!--                            <textarea id="productDescription"  class="txtarea fLeft fmOpenR font14 c666" placeholder="Brief description about product"></textarea>-->
@@ -56,24 +61,24 @@ echo "<script>var edit=$edit; var pid = '$pid';</script>";
                         <div class="divCon2 fRight">
                             <div class="titleDiv txtCap fLeft">Payment mode</div>
                             <div class="checkDiv fLeft">
-                                <input type="radio" name="jType" class="filled-in" value="1" id="jType1" checked="">
-                                <label  class="comP" for="jType1">cash</label>
+                                <input type="radio" name="cash" class="filled-in" value="1" id="cash" checked="">
+                                <label  class="comP" for="cash">Cash</label>
                             </div>
                             <div class="checkDiv fLeft">
-                                <input type="radio" name="jType" class="filled-in" value="2" id="jType2">
-                                <label class="comP" id="c2" for="jType2">cheque</label>
+                                <input type="radio" name="cash" class="filled-in" value="2" id="cheque">
+                                <label class="comP" id="c2" for="cheque">Cheque</label>
                             </div>
                             <div class="checkDiv fLeft">
-                                <input type="radio" name="jType" class="filled-in" value="3" id="jType3">
-                                <label class="comP" id="c4" for="jType3">NEFT</label>
+                                <input type="radio" name="cash" class="filled-in" value="3" id="neft">
+                                <label class="comP" id="c4" for="neft">NEFT</label>
                             </div>
                             <div class="checkDiv fLeft">
-                                <input type="radio" name="jType" class="filled-in" value="4" id="jType4">
-                                <label class="comP" id="c4" for="jType4">RTGS</label>
+                                <input type="radio" name="cash" class="filled-in" value="4" id="rtgs">
+                                <label class="comP" id="c4" for="rtgs">RTGS</label>
                             </div>
                             <div class="checkDiv fLeft">
-                                <input type="radio" name="jType" class="filled-in" value="5" id="jType5">
-                                <label class="comP" id="c5" for="jType5">DD</label>
+                                <input type="radio" name="cash" class="filled-in" value="5" id="dd">
+                                <label class="comP" id="c5" for="dd">DD</label>
                             </div>
                         </div>
 
@@ -88,21 +93,39 @@ echo "<script>var edit=$edit; var pid = '$pid';</script>";
                             <div class="titleDiv txtCap fLeft">Customer Address</div>
                             <textarea id="productDescription"  class="txtInput h70   txtarea fLeft fmOpenR font14 c666" placeholder="Enter the address"></textarea>
                         </div>
-
                         <div class="divCon2 fRight c4_cls dn mTop0">
                             <div class="titleDiv txtCap fRight">Enter transaction ID</div>
-                            <input name="" type="text" id="product_seo_name" autocomplete="false"  placeholder="Enter product code" class="txtInput fLeft fmOpenR font14 c666">
-                            <!--                            <textarea id="productDescription"  class="txtarea fLeft fmOpenR font14 c666" placeholder="Brief description about product"></textarea>-->
+                            <input name="" type="text" autocomplete="false"  placeholder="Enter transaction Id" class="txtInput fLeft fmOpenR font14 c666">
                         </div>
                         <div class="divCon2 fRight c2_cls dn mTop0">
                             <div class="titleDiv txtCap fRight">Enter Cheque number</div>
-                            <input name="" type="text" id="product_seo_name" autocomplete="false"  placeholder="Enter product code" class="txtInput fLeft fmOpenR font14 c666">
-                            <!--                            <textarea id="productDescription"  class="txtarea fLeft fmOpenR font14 c666" placeholder="Brief description about product"></textarea>-->
+                            <input name="" type="text"  autocomplete="false"  placeholder="Enter cheque number" class="txtInput fLeft fmOpenR font14 c666">
+                            <div class="col100 fLeft">
+                            <div class="titleDiv txtCap fRight">Enter Cheque date</div>
+                            <input name="" type="text"  autocomplete="false"  placeholder="Enter cheque date" class="txtInput fLeft fmOpenR font14 c666">
+                            </div>
                         </div>
                         <div class="divCon2 fRight c5_cls dn mTop0">
                             <div class="titleDiv txtCap fRight">Enter DD number</div>
-                            <input name="" type="text" id="product_seo_name" autocomplete="false"  placeholder="Enter product code" class="txtInput fLeft fmOpenR font14 c666">
-                            <!--                            <textarea id="productDescription"  class="txtarea fLeft fmOpenR font14 c666" placeholder="Brief description about product"></textarea>-->
+                            <input name="" type="text"  autocomplete="false"  placeholder="Enter DD number" class="txtInput fLeft fmOpenR font14 c666">
+                        </div>
+                    </div>
+                    <div class="divCon fLeft">
+                        <div class="divCon2 fLeft mTop0">
+                            <div class="titleDiv txtCap fRight">Pincode</div>
+                            <input name="" type="text" autocomplete="false"  placeholder="Enter pincode" class="txtInput fLeft fmOpenR font14 c666">
+                        </div>
+                    </div>
+                    <div class="divCon fLeft">
+                        <div class="divCon2 fLeft mTop0">
+                            <div class="col50 fLeft">
+                                <div class="titleDiv txtCap fRight">city</div>
+                                <input name="" type="text" autocomplete="false"  placeholder="Enter city" class="txtInput fLeft fmOpenR font14 c666">
+                            </div>
+                            <div class="col50 fRight">
+                                <div class="titleDiv txtCap fRight">state</div>
+                                <input name="" type="text" autocomplete="false"  placeholder="Enter state" class="txtInput fLeft fmOpenR font14 c666">
+                            </div>
                         </div>
                     </div>
                     <div class="divCon fLeft">
@@ -110,7 +133,6 @@ echo "<script>var edit=$edit; var pid = '$pid';</script>";
                             <div class="titleDiv txtCap fLeft">Notes</div>
                             <textarea id="productDescription"  class="txtInput h70  txtarea fLeft fmOpenR font14 c666" placeholder="Enter the remarks"></textarea>
                         </div>
-
                     </div>
                 </section>
                 <div class="btnCont fLeft dn">
