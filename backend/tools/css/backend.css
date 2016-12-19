@@ -667,6 +667,9 @@ li .prdViewImgBtn{}
 .c4d{color: #4d4d4d;}
 .fieldTitle{padding: 10px 0px 10px 0px;font-size: 13px;width:100%;height: auto;border-bottom: 1px dotted #ccc;color:#4d4d4d;}
 .fieldTitle.w50{width: 50%!important;}
+.col100{width: 100%;height: auto;margin-top:10px;}
+
+
 
 .textcenter{text-align: center;}
 .padR15{padding-right:15%;}
@@ -983,3 +986,4 @@ a{cursor:pointer;}
 .detaCmngcnt{width:100%;height:100%;background-color:#fff;position:fixed;left:0;top:0;z-index:999;}
 
 .h70{height: 70px;    padding: 7px 6px 7px 6px;}
+.width33{width: 33.33%}
