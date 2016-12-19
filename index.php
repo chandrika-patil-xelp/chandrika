@@ -253,7 +253,16 @@ switch ($action) {
         $page = 'checkoutAfter';
         include TEMPLATE . 'checkoutAfter.html';
         break;
-    
+      
+       case 'paymentg':
+        $page = 'paymentg';
+        include   WEBROOT.'transaction/paymentg.html';
+        break;
+      
+      case 'paymentdetail':
+        $page = 'paymntdetail';
+        include WEBROOT.'transaction/paymntdetail.html';
+        break;
     
 }
 ?>

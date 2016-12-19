@@ -1,0 +1,90 @@
+<!DOCTYPE html>  
+<html>
+  <head>  
+  </head> 
+  <body>
+     <script>
+      var APIDOMAIN = '<?php echo APIDOMAIN?>';  
+      var   ordid = " <?php echo $_GET['ordid'];  ?>";
+    </script>
+  
+    
+    <form method="post" name="customerData" action="transaction/payment.php">
+    <table width="40%" height="100" border='1' align="center"><caption><font size="4" color="blue"><b>Integration Kit</b></font></caption></table>
+			<table width="40%" height="100" border='1' align="center">
+				<tr>
+					<td>Parameter Name:</td><td>Parameter Value:</td>
+				</tr>
+				<tr>
+					<td colspan="2"> Compulsory information</td>
+				</tr>
+				<tr>
+					<td>TID	:</td><td><input type="text" name="tid" id="tid" readonly /></td>
+				</tr>
+				<tr>
+					<td>Merchant Id	:</td><td><input type="text" name="merchant_id" value="87218"/></td>
+				</tr> 
+				<tr>
+					<td>Order Id	:</td><td><input type="text" name="order_id" value="2120161213142552"/></td>
+				</tr>
+				<tr>
+					<td>Amount	:</td><td><input type="text" name="amount" value="1.00"/></td>
+				</tr>
+				<tr>
+					<td>Currency	:</td><td><input type="text" name="currency" value="INR"/></td>
+				</tr>
+				<tr>
+					<td>Redirect URL	:</td><td><input type="text" name="redirect_url" value="http://localhost:8000/jzeva/index.php?action=checkoutAfter&ordid=2820161212110809"/></td>
+				</tr>
+			 	<tr>
+			 		<td>Cancel URL	:</td><td><input type="text" name="cancel_url" value="http://localhost:8000/jzeva/index.php?action=landing_page"/></td>
+			 	</tr>
+			 	<tr>
+					<td>Language	:</td><td><input type="text" name="language" value="EN"/></td>
+				</tr>
+		     	<tr>
+		     		<td colspan="2">Billing information(optional):</td>
+		     	</tr>
+		        <tr>
+		        	<td>Billing Name	:</td><td><input type="text" name="billing_name" value=""/></td>
+		        </tr>
+		        <tr>
+		        	<td>Billing Address	:</td><td><input type="text" name="billing_address" value=""/></td>
+		        </tr>
+		        <tr>
+		        	<td>Billing City	:</td><td><input type="text" name="billing_city" value=""/></td>
+		        </tr>
+		        <tr>
+		        	<td>Billing State	:</td><td><input type="text" name="billing_state" value=""/></td>
+		        </tr>
+		        <tr>
+		        	<td>Billing Zip	:</td><td><input type="text" name="billing_zip" value=""/></td>
+		        </tr> 
+		        <tr>
+		        	<td>Billing Tel	:</td><td><input type="text" name="billing_tel" value=""/></td>
+		        </tr>
+		        <tr>
+		        	<td>Billing Email	:</td><td><input type="text" name="billing_email" value=""/></td>
+		        </tr>
+		        
+		        <tr>
+		        	<td></td><td><INPUT TYPE="submit" value="CheckOut"></td>
+		        </tr>
+	      	</table>
+      
+      </form>  
+ <script type="text/javascript" src="<?php echo $fjvs['jquery']; ?>"></script>    
+    <script>
+      
+      window.onload = function() {
+		var d = new Date().getTime();
+		document.getElementById("tid").value = d;
+	};
+	
+      $(document).ready(function(){
+	$('input[name="order_id"]').val(ordid); 
+	 
+      });
+      </script>
+  </body>
+</html>

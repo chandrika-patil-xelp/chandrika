@@ -1,0 +1,20 @@
+<html> 
+<head> 
+</head>
+<body>
+  <script> 
+    var DOMAIN = '<?php echo DOMAIN?>';  
+</script>
+		  Click for payment  
+		  <br><input type="submit" onclick="callfun()"  value="Submit">
+		  <script>
+		    function callfun()
+		    {
+		      window.location.href=DOMAIN + "index.php?action=paymentdetail&ordid="+2120161213142552;
+		    }
+		    </script>
+</body>
+	 
+</html>
+
+
