@@ -733,6 +733,7 @@
                                         });
 
                                         $('.inp_box').blur(function () {
+                                            $('body').removeClass("tryB");
                                             var k = $(this).val();
                                             if (k === "") {
                                                 $(this).closest('.txtB').removeClass('focul');
