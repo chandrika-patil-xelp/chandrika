@@ -18,6 +18,11 @@ $(document).ready(function () {
 
                 var uname = v.uname;
                 uname = uname.toLowerCase();
+<<<<<<< .mine
+//                $('#uname').html('Hi ' + uname);
+||||||| .r1135
+                $('#uname').html('Hi ' + uname);
+=======
 		if(v.gender == 1)
 		  gndr="Ms";
 		else if(v.gender == 2)
@@ -25,6 +30,7 @@ $(document).ready(function () {
 		else if(v.gender == 3)
 		  gndr="Mrs";
                 $('#uname').html(gndr +' '+ uname);
+>>>>>>> .r1138
                 $('#ordrID').html(v.oid);
                 var orddate = v.orddt;
                 var ordd = orddate.split(',').join(' ');
