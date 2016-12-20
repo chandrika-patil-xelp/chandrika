@@ -407,9 +407,21 @@ $(document).ready(function () {
                                 dQstr += '<span class="semibold">VVS (Very, Very Slightly Included):</span> diamonds have minute inclusions that are difficult for a skilled grader to see under 10x magnification. Pinpoints and needles set the grade at VVS<br>';
                                 dQstr += '<span class="semibold">GH:</span> G, H colour is the border line that segregates diamonds in colours. A GH colour diamond is considered a white diamond. Beyond the GH colour the diamonds start showing a glint of yellow fluorescence';
                                 dQstr += '</div>';
+                                dQstr += '<div class="clarityInfo c4">';
+                                dQstr += '<span class="semibold">VS (Very Slightly Included):</span> Diamonds have minor inclusions that are difficult to somewhat easy for a trained grader to see when viewed under 10x magnification<br>';
+                                dQstr += '<span class="semibold">EF :</span> E, F Colour is an Absolutely Great Colour to have! E and F is considered ‘Pure White’ and Looks Exceptional! Very Bright, Very White, Very Sparkly!';
+                                dQstr += '</div>';
+                                dQstr += '<div class="clarityInfo c7">';
+                                dQstr += '<span class="semibold">SI (Very Slightly Included): </span>Diamonds have noticeable inclusions that are easy to very easy for a trained grader to see when viewed under 10x magnification<br>';
+                                dQstr += '<span class="semibold">EF :</span> E, F Colour is an Absolutely Great Colour to have! E and F is considered ‘Pure White’ and Looks Exceptional! Very Bright, Very White, Very Sparkly!';
+                                dQstr += '</div>';
                                 dQstr += '<div class="clarityInfo c8">';
                                 dQstr += '<span class="semibold">SI (Very Slightly Included): </span>Diamonds have noticeable inclusions that are easy to very easy for a trained grader to see when viewed under 10x magnification<br>';
                                 dQstr += '<span class="semibold">GH:</span> G, H colour is the border line that segregates diamonds in colours. A GH colour diamond is considered a white diamond. Beyond the GH colour the diamonds start showing a glint of yellow fluorescence';
+                                dQstr += '</div>';
+                                 dQstr += '<div class="clarityInfo c6">';
+                                dQstr += '<span class="semibold">VS (Very Slightly Included):</span> Diamonds have minor inclusions that are difficult to somewhat easy for a trained grader to see when viewed under 10x magnification<br>';
+                                dQstr += '<span class="semibold">IJ:</span> I, J colour is the diamonds under careful and trained observation reveal a glint of yellow radiance, they are considered nearly colourless and are the most frequently bought colour of diamonds.';
                                 dQstr += '</div>';
                                 dQstr += '<div class="clarityInfo c5">';
                                 dQstr += '<span class="semibold">VS (Very Slightly Included):</span> Diamonds have minor inclusions that are difficult to somewhat easy for a trained grader to see when viewed under 10x magnification<br>';
@@ -1025,6 +1037,7 @@ function calculatePrice()
 $('#addwishlist').click(function () {
     var userid = localStorage.getItem('jzeva_uid');
     if (userid == undefined || userid == null) {
+        
         openPopUp();
         common.msg(0, 'Please Do login for adding to Your wishlist');
     } else {
