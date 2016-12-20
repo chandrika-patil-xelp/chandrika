@@ -263,6 +263,15 @@ switch ($action) {
         $page = 'paymntdetail';
         include WEBROOT.'transaction/paymntdetail.html';
         break;
-    
+      
+      case 'confirmpymnt':
+        $page = 'confirmpmnt';
+        include WEBROOT.'transaction/confirmpmnt.html';
+        break;
+      
+      case 'checkoutBefore':
+        $page = 'checkoutBefore';
+        include TEMPLATE . 'checkoutBefore.html';
+        break;
 }
 ?>

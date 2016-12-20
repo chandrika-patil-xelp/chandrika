@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+ 
+<html>
+  <head>
+    <title>Confirm</title>
+    
+  </head>
+  <body>
+    <script>
+     var DOMAIN = '<?php echo DOMAIN?>';
+    </script> 
+    <div> 
+      
+	Click to submit 
+	<INPUT TYPE="button" onclick="placeord()" value="CheckOut">
+     
+    </div>
+    <script>
+      function placeord()
+      {
+	window.location.href=DOMAIN+"transaction/payment.php?ordid=2520161207123611";
+      }
+      </script>
+  </body>
+</html>

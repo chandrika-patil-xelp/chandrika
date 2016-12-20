@@ -275,7 +275,7 @@
         public function getOrderDetailsByOrdIds($params){
             global $comm;
             if($params['orderid']){
-
+	      
                 $sql = "SELECT
                             order_id AS oid,
                             product_id AS pid,
@@ -323,9 +323,9 @@
                 $res = $this->query($sql);
 
                 if($res){
-
+		  $totalprice=0;
                  while ($row = $this->fetchData($res)){
-
+		   
                     $reslt['oid'] = ($row['oid']!=NULL) ? $row['oid'] : '';
                     $reslt['pid'] = ($row['pid']!=NULL) ? $row['pid'] : '';
                     $reslt['uid'] = ($row['uid']!=NULL) ? $row['uid'] : '';
@@ -357,6 +357,7 @@
                      $reslt['dmdcarat'] = ($row['dmdcarat']!=NULL) ? $row['dmdcarat'] : '';
 		     $reslt['gender'] = ($row['usrgender']!=NULL) ? $row['usrgender'] : '';
                     $resp[] = $reslt;
+		    $totalprice+=($row['price'] != NULL) ?$row['price']:'';
                  }
                     $error = array('err_code'=>0, 'err_msg'=>' getOrderDetailsByOrdId fetched successfully ' );
 
@@ -368,7 +369,7 @@
                $error = array('err_code'=>1, 'err_msg'=>' Error In Fecthing Data ' );
             }
 
-            $result = array('result'=>$resp, 'error'=>$error );
+            $result = array('result'=>$resp, 'error'=>$error,'totalprice'=>$totalprice );
             return $result;
 
         }
