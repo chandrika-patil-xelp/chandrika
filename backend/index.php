@@ -195,5 +195,10 @@ switch ($action) {
         $tab = 'placeorder';
         include BTEMPLATE.'placeorder.html';
         break;
+      case 'placeorder2':
+        $page = 'placeorder2';
+        $tab = 'placeorder2';
+        include BTEMPLATE.'placeorder2.html';
+        break;
 }
 ?>
