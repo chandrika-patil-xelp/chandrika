@@ -37,7 +37,7 @@ define('TEMPLATE',WEBROOT.'frontend/template/');
 define('INCLUDES',WEBROOT.'include/');
 define('APICLUDE',WEBROOT.'apis/include/'); 
 
-define('VERSION',1.08);
+define('VERSION',1.09);
 
 
 
@@ -139,7 +139,7 @@ $jvs = array();
             $jvs['resetpass']                 = DOMAIN.'frontend/tools/js/cms/resetpass.js?v='.VERSION;
 	    $jvs['header']		      = DOMAIN.'frontend/tools/js/cms/header.js?v='.VERSION;
 	    $jvs['account']		      = DOMAIN.'frontend/tools/js/cms/account.js?v='.VERSION;
-	   
+	     
 include APICLUDE.'common/class.common.php';
 $comm = new Common();
 $comm->clearParam($_GET);
