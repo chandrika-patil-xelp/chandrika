@@ -28,11 +28,11 @@ $('#rsubId').on('click',function(){
     }
     else if(email===''|| email=== null){
        validationFlag=0;  
-         common.msg(0,'Please enter your Email.id'); 
+         common.msg(0,'Please enter your Email-id'); 
     }
    else if (!reg.test(email)){
       validationFlag=0;  
-       common.msg(0,'Invalid Email.id'); 
+       common.msg(0,'Invalid Email-id'); 
     }
     else if(mobile===''|| mobile=== null){
        validationFlag=0;  
@@ -40,7 +40,7 @@ $('#rsubId').on('click',function(){
     }
     else if(isNaN(mobile) || (mobile.length < 10) ){
        validationFlag=0;  
-        common.msg(0,'Mobile no. Invalid'); 
+        common.msg(0,'Mobile number is Invalid'); 
     }
     else if(pass ===''|| pass === null){
        validationFlag=0;  
@@ -55,10 +55,10 @@ $('#rsubId').on('click',function(){
                        
 		       $(data['results']).each(function(r,v){ 
 		       if(v.logmobile == mobile ){
-			 common.msg(0,'You Entered mobile number is already registered');
+			 common.msg(0,'You entered mobile number is already registered');
 		       }
 		       else if( v.email == email){
-			 common.msg(0,'You Entered email id is already registered');
+			 common.msg(0,'You entered email id is already registered');
 		       } 
 	  });
 	 if(data['results'] == null)  {
@@ -153,7 +153,7 @@ function chklogin()
 		      else{
 			   hasitem(oldcartid,olduserid);
 		      }
-		    common.msg(1,'signed in successfully'); 
+		    common.msg(1,'Signed in successfully'); 
 		        var URLactn = window.location.search; 
 		      var url=DOMAIN + '/index.php' +URLactn;
 		      setTimeout(function(){
