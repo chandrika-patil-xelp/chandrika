@@ -899,12 +899,7 @@ switch($action)
         $res	=$obj->updateuserpass($params);
     break;
 
-    case 'sendotp':
-        include APICLUDE.'class.user.php';
-        $obj	= new user($db['jzeva']);
-        $res	=$obj->sendotp($params);
-    break;
-
+     
     case 'addshippingdetail':
         include APICLUDE.'class.user.php';
         $obj	= new user($db['jzeva']);
@@ -1084,7 +1079,9 @@ case 'removeItmFrmWishlist':
    case 'getprodByfiltr':
         include APICLUDE.'class.product.php';
         $obj	= NEW product($db['jzeva']);
-        $result	=$obj->getprodByfiltr($params);
+	$tmpaparams = array($params['dt']);
+	//$tmpaparams[]=$params['catid'];
+         $result=$obj->getprodByfiltr($tmpaparams);
         $res = $result;
     break;
 
@@ -1122,7 +1119,7 @@ case 'orderTrack':
         $obj = new us($db['jzeva']);
         $res = $obj->getAllOrderDetails($params);
         break;
-
+    
   }
 echo json_encode($res);
 exit;

@@ -16,8 +16,8 @@
                 <div class="actBtn button padLR25" id="cNo">NO</div>
             </center>
         </div>
-    </div>
-</div>
+    </div> 
+</div>  
 
 <div class="cart">
     <!-- <div class="cart_head ">
@@ -110,8 +110,8 @@
              </div>-->
         </div>
         <div class="twoBtn">
-            <div class="actBtn fRight colorfff margL20">continue shopping</div>
-            <div class="actBtn fRight colorfff">checkout</div>
+            <div class="actBtn fRight colorfff margL20" onclick="closeCart()">continue shopping</div>
+            <div class="actBtn fRight colorfff" id="chkout">checkout</div>
         </div>
         <div class="cart_gen2 fRight">
             <div class="cartBox fLeft">
@@ -179,6 +179,9 @@
                     $('#check_out').click(function () {
                         load_checkout();
                     });
+		    $('#chkout').click(function(){
+		      load_checkout();
+		    });
                     function load_checkout() {
                         window.location.assign(DOMAIN + 'index.php?action=checkOutNew');
                         $('body').addClass('over_hide');
@@ -207,10 +210,9 @@
 //
 //
 //    });
-
-
+ 
                     $(document).ready(function () {
 
                         $('#niceCart').niceScroll({cursorcolor: "#000000", touchbehavior: true, cursorwidth: "4px", autohidemode: false, cursorborder: "0px solid #fff", cursoropacitymin: "0.3", cursoropacitymax: "0.3", railpadding: {top: 2, right: 2, left: 2, bottom: 2}});
                     });
-</script>
+ </script>

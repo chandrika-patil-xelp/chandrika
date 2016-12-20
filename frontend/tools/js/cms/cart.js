@@ -13,7 +13,7 @@ function newaddToCart(paramtr)
 
     cartdata['col_car_qty'] = chr;
     cartdata['RBsize'] = paramtr[5];
-  
+
     var userid = common.readFromStorage('jzeva_uid');
     var cartid = common.readFromStorage('jzeva_cartid');
 
@@ -38,7 +38,7 @@ function newaddToCart(paramtr)
         $(gblcartdata).each(function (r, v) {
 
             if ((cartdata.col_car_qty == v.col_car_qty && cartdata.pid == v.product_id) && parseFloat(cartdata.RBsize) == parseFloat(v.size)) {
-
+ 
                 cartdata['qty'] = parseInt(v.pqty) + 1;
                 //    cartdata.price=(cartdata.price).replace(/,/g,"");
                 cartdata['price'] = parseInt(cartdata['price']) * cartdata.qty;
@@ -103,7 +103,7 @@ function displaycartdata()
 		displaycartempty();
                 if (obj.result !== null)
                 {
-                    
+
 
                     $(obj.result).each(function (r, v) {
                         if (v.default_img !== null) {
@@ -114,7 +114,7 @@ function displaycartdata()
                             abc = IMGDOMAIN + abc[0];
                         }
                         var bprize = parseInt(v.price / v.pqty);
-                        var wht; 
+                        var wht;
                         if (v.ccatname !== null) {
                             wht = getweight(v.size, v.ccatname, v.metal_weight);
                         } else {
@@ -168,10 +168,10 @@ function prdopen(ths)
 }
 
 function getweight(currentSize, catName, storedWt)
-{  
+{
     var mtlWgDav = 0;
     var bseSize = 0;
-   
+
     if (catName.toLowerCase() == 'rings') {
         bseSize = parseFloat(14);
         mtlWgDav = 0.05;
@@ -179,10 +179,10 @@ function getweight(currentSize, catName, storedWt)
         bseSize = parseFloat(2.4);
         mtlWgDav = 7;
     }
- 
+
    if (isNaN(currentSize))
     {
-        
+
         if (catName == 'Rings')
             currentSize = parseFloat(14);
         else if (catName == 'Bangles')
@@ -229,12 +229,12 @@ function cremove(el) {
         var URL = APIDOMAIN + "index.php?action=removeItemFromCart&col_car_qty=" + col_car_qty + "&pid=" + product_id + "&cartid=" + cartid + "&size=" + size + "";
 
         $.ajax({type: 'POST', url: URL, success: function (res) {
-		displaycartdata(); 
+		displaycartdata();
 		setTimeout(function(){
-		   displaycartempty(); 
-		    gettotal(); 
-		},500); 
-		cartpopUpClose();   
+		   displaycartempty();
+		    gettotal();
+		},500);
+		cartpopUpClose();
             }
         });
     });
@@ -357,10 +357,10 @@ function getglobaldata()
         });
     }
 }
- 
+
 
 $(document).ready(function () {
-     displaycartdata(); 
+     displaycartdata();
      setTimeout(function(){
 	 displaycartempty();
      },1000);
@@ -369,10 +369,12 @@ $(document).ready(function () {
 function displaycartempty()
 {
 	if(gblcartdata == null)
-	{ 
-	    $('.totalItem').addClass('dn'); 
+	{
+	    $('.totalItem').addClass('dn');
 	    $("#nocart").removeClass("dn");
 	    $('.cart_gen').addClass('dn');
+	    $('.cartBox').addClass('dn');
+	    $('.twoBtn').addClass('dn');
 	    setTimeout(function(){
 		closeCart();
 	    },500);
@@ -382,5 +384,7 @@ function displaycartempty()
 	    $('.cart_gen').removeClass('dn');
 	    $("#nocart").addClass("dn");
 	    $('.totalItem').removeClass('dn');
+	    $('.cartBox').removeClass('dn');
+	    $('.twoBtn').removeClass('dn');
 	}
 }

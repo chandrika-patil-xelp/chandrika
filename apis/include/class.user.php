@@ -95,7 +95,7 @@ class user extends DB {
                 . "city                  = \"" . urldecode($params['city']) . "\","
                 . "updated_by            = \"" . $params['userid'] . "\"";
 
-        $res = $this->query($sql);
+         $res = $this->query($sql);
 
 	global $db;
 	include 'class.emailtemplate.php';
@@ -553,8 +553,25 @@ class user extends DB {
             $result = array('results' => $resp, 'error' => $error);
             return $result;
         } else {
+	    if($params['ostatus'] == 5)
+	    {
+		global $db;
+		include APICLUDE.'class.emailtemplate.php';
+		$obj	= new emailtemplate($db['jzeva']);
+		$message=$obj->genshippingtemplate(array('userid'=>$userid,'ordid'=>$orderid));
+		$subject  = "JZEVA Order Shipped Detail"; 
+		$headers  = "Content-type:text/html;charset=UTF-8" . "<br/><br/>";
+		$headers .= 'From: care@jzeva.com' . "<br/><br/>";
+		$usrsql = "SELECT email FROM tbl_user_master WHERE user_id=".$userid;
+		$usrres =  $this->query($usrsql);
+		$usrrow = $this->fetchData($usrres);
+		$email = $usrrow['email'];
+
+		mail($email, $subject, $message, $headers);
+	      
+	    }
             $sql = "UPDATE tbl_order_master SET  order_status =  \"" . $params['ostatus'] . "\" WHERE order_id=" . $params['orderid'] . " AND user_id=" . $params['userid'] . " AND product_id= ".$params['pid']." AND col_car_qty= '".$params['combn']."' AND size=".$params['sz']."";
-            $res = $this->query($sql);
+              $res = $this->query($sql);
             $result = array();
             if ($res) {
                 $err = array('err_code' => 0, 'err_msg' => 'Data updatetd successfully');
@@ -818,7 +835,8 @@ class user extends DB {
             }
             $vsql = "   SELECT
                                 logmobile,
-                                user_name
+                                user_name,
+				gender
                         FROM
                                 tbl_user_master
                         WHERE
@@ -831,6 +849,7 @@ class user extends DB {
 
             $mobile = $row['logmobile'];
             $uname = urlencode($row['user_name']);
+	    $gndr=$row['gender'];
 
 	    global $comm;
                 $isValidate = true;
@@ -868,7 +887,7 @@ class user extends DB {
 
 
 	          $subject  = "JZEVA password assistance";
-            $message=$this->frgotpassotpTemplate($uname,$rno);
+            $message=$this->frgotpassotpTemplate($uname,$rno,$gndr);
             $headers  = "Content-type:text/html;charset=UTF-8" . "<br/><br/>";
             $headers .= 'From: care@jzeva.com' . "<br/><br/>";
 
@@ -1594,9 +1613,15 @@ class user extends DB {
         return $results;
     }
 
-    	public function frgotpassotpTemplate($uname,$otp)
+    	public function frgotpassotpTemplate($uname,$otp,$gnd)
         {
-
+	  if($gnd == 1)
+	    $gndr="Ms";
+	  else if($gnd == 2)
+	    $gndr="Mr";
+	  else if($gnd == 3)
+	    $gndr="Mrs";
+	   
 	    $message='	<html>
 			<head>
 			<title>otp email</title>
@@ -1620,7 +1645,7 @@ class user extends DB {
 				    <img src="'.DOMAIN.'frontend/emailer/otp.png" alt="" width="70" height="60">
 				</div>
 			    </div>
-			    <div style="width:100%;height:auto;font-size:22px;color:#0CCDB8;text-align:center;line-height:28px">Dear Mr. '.$uname.'</div>
+			    <div style="width:100%;height:auto;font-size:22px;color:#0CCDB8;text-align:center;line-height:28px">Dear '.$gndr.'. '.$uname.'</div>
 			    <div style="width:100%;height:auto;font-size:15px;text-align:center;color:#333;line-height:30px;margin-top:15px"><span style="display:inline-block;line-height:normal;vertical-align:middle">THANK YOU FOR YOUR INTEREST IN JZEVA</span></div>
 			    <div style="width:100%;height:auto;font-size:12px;color:#333;text-align:center;line-height:17px;margin-top: 5px">We are glad to assist you in changing the password of your jzeva account</div>
 			    <div style="width:100%;height:auto;font-size:14px;color:#333;text-align:center;line-height:28px;margin-top:12px"><span style="display:inline-block;line-height:normal;vertical-align:middle">Please use the OTP sent in this email to proceed with changing your password</span></div>
@@ -1653,7 +1678,7 @@ class user extends DB {
 			    </div>
 			</body>
 			</html>';
-
+	 
             return $message;
 	}
 
