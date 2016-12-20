@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW X7 -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="50px" height="50px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 284776 284776"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str0 {stroke:white;stroke-width:2789.6}
+    .fil0 {fill:none}
+    .fil1 {fill:white}
+   ]]>
+  </style>
+ </defs>
+ <g id="Layer_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <rect class="fil0" x="3" y="3" width="284770" height="284770"/>
+  <g id="_2299336987440">
+   <path id="Shape" class="fil1 str0" d="M216085 74679l-191724 0c-8810,0 -15979,7169 -15979,15980l0 127820c0,8811 7169,15979 15979,15979l191724 0c8811,0 15979,-7168 15979,-15979l0 -127820c0,-8811 -7168,-15980 -15979,-15980l0 0zm-199710 39945l207703 0 0 23966 -207703 0 0 -23966 0 0zm7986 -31958l191724 0c4405,0 7993,3587 7993,7993l0 15972 -207703 0 0 -15972c0,-4406 3581,-7993 7986,-7993l0 0zm191724 143799l-191724 0c-4405,0 -7986,-3581 -7986,-7986l0 -71903 207703 0 0 71903c0,4405 -3588,7986 -7993,7986l0 0z"/>
+   <path id="Shape_0" class="fil1 str0" d="M156171 186521l-59913 0c-2210,0 -3997,1787 -3997,3996 0,2209 1787,3990 3997,3990l59913 0c2210,0 3997,-1781 3997,-3990 0,-2209 -1787,-3996 -3997,-3996l0 0z"/>
+   <path id="Shape_1" class="fil1 str0" d="M204102 186521l-23965 0c-2210,0 -3990,1787 -3990,3996 0,2209 1780,3990 3990,3990l23965 0c2209,0 3997,-1781 3997,-3990 0,-2209 -1788,-3996 -3997,-3996l0 0z"/>
+   <path id="Shape_2" class="fil1 str0" d="M260422 50318l-191724 0c-8817,0 -15979,7169 -15979,15979l0 8785 7986 0 0 -8785c0,-4405 3588,-7986 7993,-7986l0 0 191724 0c4405,0 7986,3581 7986,7986l0 55120 7986 0 0 -55120c0,-8810 -7162,-15979 -15972,-15979l0 0z"/>
+   <path id="Shape_3" class="fil1 str0" d="M260422 207505l-33950 0 0 -7993 0 0 33950 0c4405,0 7986,-3581 7986,-7986l0 -77489 7986 0 0 77489c0,8811 -7162,15979 -15972,15979l0 0z"/>
+  </g>
+ </g>
+</svg>
