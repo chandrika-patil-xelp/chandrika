@@ -19,46 +19,51 @@
     </div>
 </div>
 
-    <div class="cart">
-     
+<div class="cart">
+    <!-- <div class="cart_head ">
+      YOUR CART
 
-        <!-- <div class="cart_head ">
-          YOUR CART
-    
-        </div> -->
-        <div class="cartHeader fLeft">
+    </div> -->
+
+    <div class="cartHeader fLeft">
+        <div class="wrapper_max">
             <div class="transition300 mar0 fLeft closeCart" id="closeCart"></div>
         </div>
-        <div class="fLeft totalItem dn">
+    </div>
+    <div class="fLeft totalItem dn">
+        <div class="wrapper_max">
             <div class="fLeft col100 cart_name light">Total Price</div>
             <div class="fLeft cart_price font35"><span class="total_price_gen  cartRupee font35">126,000</span>
                 <div class="button actBtn col50 transition300 mTop17 fRight" id="check_out">CHECKOUT</div>
             </div>
-            <!--<div class="closeCart"></div>-->
         </div>
+        <!--<div class="closeCart"></div>-->
+    </div>
 
-        <div class="col100 fLeft " id="nocart">
-            <center>
-                <div class="cartEmptyImg"></div>
-                <div class="noOrdTxt">
-                    <div class="fooH mar0 color666">No Items</div>
-                    <div class="font13">Sorry,you have not added anything in your shopping bag</div>
-                </div>
-                <div class="col100">
-                    <div class="actBtn button colorfff"  onclick="closeCart()">continue shopping</div>
-                </div>
-            </center>
-        </div>
-
-        <!--    <div class="fLeft totalItem">
-            <div class="closeCart"></div>
-            <div class="fLeft col100 pBtm5">Total Items</div>
-            <div class="col100 fLeft">
-                <div class="fLeft cart_price font20">&#8377<span class="total_price_gen ">126,000</span></div>
-                <div class="button actBtn transition300 mar0 fRight">CHECKOUT</div>
+    <div class="col100 fLeft " id="nocart">
+        <center>
+            <div class="cartEmptyImg"></div>
+            <div class="noOrdTxt">
+                <div class="fooH mar0 color666">No Items</div>
+                <div class="font13">Sorry,you have not added anything in your shopping bag</div>
             </div>
-            </div>-->
+            <div class="col100">
+                <div class="actBtn button colorfff"  onclick="closeCart()">continue shopping</div>
+            </div>
+        </center>
+    </div>
+
+    <!--    <div class="fLeft totalItem">
+        <div class="closeCart"></div>
+        <div class="fLeft col100 pBtm5">Total Items</div>
+        <div class="col100 fLeft">
+            <div class="fLeft cart_price font20">&#8377<span class="total_price_gen ">126,000</span></div>
+            <div class="button actBtn transition300 mar0 fRight">CHECKOUT</div>
+        </div>
+        </div>-->
+    <div class="wrapper_max">
         <div class="cart_gen fLeft" id="niceCart">
+
             <!-- <div class="cart_item" id="cartItems">
                 <div class="cart_image"></div>
                 <div class="cart_name ">Étourdissant Cartier</div>
@@ -104,8 +109,32 @@
                  <div class="cart_remove">Remove</div>
              </div>-->
         </div>
-        <!-- <div class="cart_foot ">Checkout</div> -->
-    
+        <div class="twoBtn">
+            <div class="actBtn fRight colorfff margL20">continue shopping</div>
+            <div class="actBtn fRight colorfff">checkout</div>
+        </div>
+        <div class="cart_gen2 fRight">
+            <div class="cartBox fLeft">
+                <div class="cartTxt helpIc">Need help ?</div>
+                <div class="cartTxt font20">9988556622</div>
+                <div class="cartTxt">email the concierge</div>
+                <div class="cartTxt pad0">Monday - friday 10am to 10pm Ist</div>
+                <div class="cartTxt pad0">saturday 10am-6:30pm ist</div>
+            </div>
+            <div class="cartBox fLeft">
+                <div class="cartTxt paymentIc">payment methods</div>
+                <div class="cartTxt">choose a convenient option to pay for your jewellery</div>
+                <div class="optionPay"></div>
+            </div>
+            <div class="cartBox fLeft">
+                <div class="cartTxt shipIc">free shipping and warranty</div>
+                <div class="cartTxt">free rapid and secure delivery</div>
+                <div class="cartTxt">2 years warranty on all products</div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="cart_foot ">Checkout</div> -->
+
 </div>
 <script type="text/javascript" src="<?php echo $jvs['cart']; ?>"></script>
 <script type="text/javascript" src="<?php echo $fjvs['Common']; ?>"></script>
@@ -180,7 +209,8 @@
 //    });
 
 
+                    $(document).ready(function () {
 
-
-                    $('#niceCart').niceScroll({cursorcolor: "#000000", touchbehavior: true, cursorwidth: "4px", autohidemode: false, cursorborder: "0px solid #fff", cursoropacitymin: "0.3", cursoropacitymax: "0.3", railpadding: {top: 2, right: 2, left: 2, bottom: 2}});
+                        $('#niceCart').niceScroll({cursorcolor: "#000000", touchbehavior: true, cursorwidth: "4px", autohidemode: false, cursorborder: "0px solid #fff", cursoropacitymin: "0.3", cursoropacitymax: "0.3", railpadding: {top: 2, right: 2, left: 2, bottom: 2}});
+                    });
 </script>
