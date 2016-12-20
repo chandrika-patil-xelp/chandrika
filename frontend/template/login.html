@@ -316,7 +316,8 @@
             entrflg = 4;
             $('#signInId').removeClass("dn");
             $('#loginId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-            $('.overlay').velocity({opacity: [1, 0], display: "block"});
+            $('.overlay').velocity({opacity: [1, 0]});
+//          $('.overlay').velocity({display: "block"});
             $('.menu_wrap').css("height", "0");
             $('.tabWrap').addClass("addPointer");
             $('.wrapper_max').addClass("addPointer");
