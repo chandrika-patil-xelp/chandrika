@@ -400,8 +400,7 @@
                                         <input type="text" class="inp_box " id="zipcode" maxlength="6">
                                         <div class="inp_label">Pincode</div>
                                     </div>
-                         
-                             
+                        
                                     <div class="txtB fLeft w49">
                                         <input readonly type="text" class="inp_box " id="city" maxlength="30">
                                         <div class="inp_label">City</div>
@@ -428,7 +427,7 @@
                                     </div>
                                 </center>
                             </div>
-                            <div id="myaddrs">
+                            <div class="adp col100 fLeft" id="myaddrs">
                                 <!--<div class="fLeft defaulDiv">
                                     <div class="fLeft col100">
                                         <div class="font13">#657 6th block 17th main,</div>
@@ -673,7 +672,7 @@
     });
      
 
-            $('#inDlt').velocity({opacity: 0});
+    $('#inDlt').velocity({opacity: 0});
     function deletePopUp() {
         openPopUp();
         $('#signInId').addClass("dn");
