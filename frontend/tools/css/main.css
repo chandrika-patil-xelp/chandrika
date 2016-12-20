@@ -136,7 +136,7 @@ a{color:#666;}
 .add_sign{padding-right:40px;background: #fff url(../img/icons/87.svg) no-repeat; background-size: 70%; background-position: center;}
 .menu_wrap{position:absolute;top:60px;left:0;width:100%;height:0px;background:transparent;display:none;overflow:hidden}
 .menuB{width:100%;height:100%;position:relative;background:#f0f0f0;}
-.overlay{width:100%;height:100vh;position:fixed;background:rgba(0,0,0,0.55);z-index:13;display:none;opacity:0;pointer-events:none;}
+.overlay{width:100%;height:100vh;position:fixed;background:rgba(0,0,0,0.55);z-index:13;opacity:0;pointer-events:none;}
 .overlay2{width:100%;height:100vh;position:fixed;background:rgba(0,0,0,0.2);z-index:13;opacity:0;cursor:pointer;display:none}
 .overlay3{width:100%;height:100%;position:fixed; background:rgba(255,255,255,0.8);z-index: 30;opacity:0;}
 .overlayF{width:100%;height:100vh;position:fixed;background:rgba(0,0,0,0.0);z-index:13;display:none;top:0; left:0;opacity:0;pointer-events:none;}
@@ -178,13 +178,14 @@ a{color:#666;}
     height: 143px;
     background: #222529;
     margin-bottom: 10px;padding: 10px;}
+.pTop30{padding-top: 30px!important;}
 .padBtm{padding-bottom: 6px;}
 .helpIc{background:url(../img/icons/537.svg) no-repeat; background-size:auto 70%;background-position:left 125px center;}
 .paymentIc{background:url(../img/icons/542.svg) no-repeat; background-size:auto 70%;background-position:left 100px center;}
 .shipIc{background:url(../img/icons/541.svg) no-repeat; background-size:auto 80%;background-position:left 50px center;}
 .cartWrapper{width:100%;max-width: 900px;display: table;margin: auto;}
 .optionPay{background:url(../img/icons/536.png) no-repeat; background-size:auto 100%;background-position: center;height: 30px;margin-top:22px;}
-.cartTxt{width: 100%;height: auto;padding: 7px 0px;text-align: center;text-transform: uppercase;font-size: 12px;font-family: regular;color:#fff;letter-spacing: 0.15em;}
+.cartTxt{width: 100%;height: auto;padding:7px 0px;text-align: center;text-transform: uppercase;font-size: 11px;font-family: regular;color:#fff;letter-spacing: 0.15em;}
 .cart_head{width:100%;height:50px;background:#5f00b8;line-height:50px; padding:0px 60px 0px 20px;color:#fff;cursor:pointer;font-size:12px;position:relative;}
 .cart_item{padding:18px 25px 25px 120px; height:110px;width:100%;position:relative;}
 .cart_image{width:70px; height:70px;position:absolute;left:35px;top:20px;background:url("../img/jzeva1.png")no-repeat;background-size:140%;background-position:center -20px;}
@@ -1280,7 +1281,7 @@ input[type=radio]:checked ~ .selector_label:after {
 .totProduct{height:50px;line-height:50px;font-size:11px;font-family:bolder;text-transform: uppercase;}
 .banner_over{width:100%;height:100%;position:absolute;top:0;left:0;background:#000;opacity:0}
 .coverImgsli{position:absolute; height:40vh; width:40%; left:20%; top:0; bottom:0; margin:auto;background-size:contain; background-position:left center;overflow:hidden;background:url('../img/icons/lorn.svg') no-repeat;background-size:contain; background-position:left center;}
-.coverImg{width:100%;height:100vh;background:url('../img/home1/b1.jpg') no-repeat;background-size:cover;background-position:center;position:relative;    background-attachment: fixed;}
+.coverImg{width:100%;height:100vh;background:url('../img/23.jpg') no-repeat;background-size:cover;background-position:center;position:relative;    background-attachment: fixed;}
 .cloadIn.coverImg:after{opacity:0.7;transform:translateY(0px);-webkit-transform:translateY(0px);-moz-transform:translateY(0px);-o-transform:translateY(0px);-ms-transform:translateY(0px)}
 .header.black_bg{background:#15181b}
 
@@ -2351,12 +2352,17 @@ input[type=radio]:checked ~ .matchIcn{
     top: 89px;
     left: 0;transition: 450ms;}*/
 /*.psdoClass{width:100%;height:100%;position:absolute;left:0;top:0;}*/
-.c1{display: none;}
+.c7{opacity:0;transform: translateY(20px);}
 .c2{opacity:0;transform: translateY(20px);}
 .c3{opacity:0;transform: translateY(20px);}
+.c4{opacity:0;transform: translateY(20px);}
 .c8{opacity:0;transform: translateY(20px);}
+.c6{opacity:0;transform: translateY(20px);}
 .c5{opacity:0;transform: translateY(20px);}
 .c9{opacity:0;transform: translateY(20px);}
+#r4:hover.rad_wrap .c4{opacity:1;transform: translateY(0px);transition: 300ms;}
+#r6:hover.rad_wrap .c6{opacity:1;transform: translateY(0px);transition: 300ms;}
+#r7:hover.rad_wrap .c7{opacity:1;transform: translateY(0px);transition: 300ms;}
 #r2:hover.rad_wrap .c2{opacity:1;transform: translateY(0px);transition: 300ms;}
 #r3:hover.rad_wrap .c3{opacity:1;transform: translateY(0px);transition: 300ms;}
 #r8:hover.rad_wrap .c8{opacity:1;transform: translateY(0px);transition: 300ms;}
