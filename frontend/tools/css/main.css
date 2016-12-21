@@ -2398,6 +2398,10 @@ input[type=radio]:checked ~ .matchIcn{
 .dropBox ul li{width: 100%;height: 35px;line-height: 35px;border-bottom:1px solid #ccc; padding-left: 8px;}
 .dropBox ul li:last-child{border:none;}
 .dropBox ul li:hover{background-color:#53C9C7;transition: 300ms;color: #fff;}
+.checkoutBefore{}
+.checkoutBefore .dAdrsshdr{  position: absolute;
+    top: 10px;
+    left: 0px;}
 
 .tryB{position: fixed;}
 
