@@ -138,6 +138,7 @@
 </div>
 <script type="text/javascript" src="<?php echo $jvs['cart']; ?>"></script>
 <script type="text/javascript" src="<?php echo $fjvs['Common']; ?>"></script>
+<script type="text/javascript" src="<?php echo $fjvs['cookie']; ?>"></script>
 <script>
                             /* Add commas in numbers */
                             $.fn.digits = function () {
@@ -177,7 +178,13 @@
                      $(e).html(j);
                      });*/
                     $('#check_out').click(function () {
-                        load_checkout();
+		      var cururl=window.location.search;
+		      var date = new Date();
+		      var minutes = 20;
+		      date.setTime(date.getTime() + (minutes * 60 * 1000));
+		      $.cookie("jzeva_currurl", null);
+		      $.cookie("jzeva_currurl",cururl , { expires: date }); 
+                           load_checkout();
                     });
 		    $('#chkout').click(function(){
 		      load_checkout();

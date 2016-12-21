@@ -1119,7 +1119,13 @@ case 'orderTrack':
         $obj = new us($db['jzeva']);
         $res = $obj->getAllOrderDetails($params);
         break;
-    
+   
+    case 'getshipdatabyshipid': 
+        include APICLUDE.'class.user.php';
+        $obj	= new user($db['jzeva']);
+        $result	= $obj->getshipdatabyshipid($params);
+        $res = $result;
+  break;
   }
 echo json_encode($res);
 exit;

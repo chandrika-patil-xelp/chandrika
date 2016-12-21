@@ -1712,6 +1712,47 @@ class user extends DB {
             return $results;
 	}
 
+	 public function getshipdatabyshipid($params) {
+
+        $shpid = (!empty($params['shpid'])) ? trim($params['shpid']) : ''; 
+
+        if ($shpid == "" || $shpid == null ) {
+            $resp = array();
+            $error = array('Code' => 1, 'Msg' => 'Invalid parameter');
+            $res = array('results' => $resp, 'error' => $error);
+            return $res;
+        }
+
+        $sql = "SELECT
+                user_id , 
+                 shipping_id ,
+		 name,
+		 city,
+		 address,
+		 state,
+		 pincode 
+                    FROM tbl_order_shipping_details WHERE shipping_id='" . $shpid . "' AND active_flag=1";
+        $res = $this->query($sql);
+        if ($res) {
+            while ($row = $this->fetchData($res)) {
+                $arr['user_id'] = $row['user_id'];
+                $arr['shipping_id'] = $row['shipping_id'];
+                $arr['name'] = $row['name'];
+                $arr['city'] = $row['city'];
+                $arr['address'] = $row['address'];
+                $arr['state'] = $row['state'];
+                $arr['pincode'] = $row['pincode']; 
+
+                $reslt[] = $arr;
+            }
+            $err = array('Code' => 0, 'Msg' => 'Data fetched successfully');
+        } else {
+            $err = array('Code' => 1, 'Msg' => 'error in fetching detail');
+        }
+        $result = array('results' => $reslt, 'error' => $err);
+        return $result;
+    }
+	
 }
 
 ?>

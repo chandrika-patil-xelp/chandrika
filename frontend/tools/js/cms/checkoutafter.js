@@ -17,20 +17,15 @@ $(document).ready(function () {
             $(dt).each(function (i, v) {
 
                 var uname = v.uname;
-                uname = uname.toLowerCase();
-<<<<<<< .mine
-//                $('#uname').html('Hi ' + uname);
-||||||| .r1135
-                $('#uname').html('Hi ' + uname);
-=======
+                uname = uname.toLowerCase(); 
+//                $('#uname').html('Hi ' + uname);  
 		if(v.gender == 1)
 		  gndr="Ms";
 		else if(v.gender == 2)
 		  gndr="Mr";
 		else if(v.gender == 3)
 		  gndr="Mrs";
-                $('#uname').html(gndr +' '+ uname);
->>>>>>> .r1138
+                $('#uname').html(gndr +' '+ uname); 
                 $('#ordrID').html(v.oid);
                 var orddate = v.orddt;
                 var ordd = orddate.split(',').join(' ');

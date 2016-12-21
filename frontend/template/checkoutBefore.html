@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php include 'jhead.html' ?>
- <script>  var orderid = "<?php echo $_GET['ordid'];  ?>"; </script>
+ <script>  var shpid = "<?php echo $_GET['shpid'];  ?>"; </script>
 <body class="greyBg"  >
     <?php include 'Cart.html' ?>
 
@@ -32,11 +32,11 @@
                                     <div class="cbrdr"></div>
                                 </div>
                                 <div class="scrollCont">
-                                    <div class="col100 fLeft"><div class="checkTitle" id="uname"><span class="">Mr </span> Kshitij</div></div>
+                                    <div class="col100 fLeft"><div class="checkTitle" id="uname"><span class=""> </span></div></div>
                                     <div class="thankYou fLeft"></div>
                                     <center>                                       
                                         <div class="fLeft cart_price">
-                                            <center>
+                                            <!--<center>
                                                 <div class="invoice">
                                                     <div class="col100">Invoice No</div>
                                                     <div class="col100 semibold PTop5">JZ12345</div>
@@ -49,19 +49,19 @@
                                                     <div class="col100">Date</div>
                                                     <div class="col100 semibold PTop5" id="ordate">01 jan 2017</div>
                                                 </div>
-                                            </center>
+                                            </center>-->
                                         </div>
                                         <!--<div class="">Your Order number is : <span>122334456566</span></div>-->
                                         <div class="thankTxt fLeft" >
                                         <div class="fLeft  col100 fooH mar0 txt_center" >Billing Address</div>
-                                            <div class="fLeft col100" id="addr">#657 6th block 17th main Kormanagala</div>
+                                            <div class="fLeft col100" id="addr"></div>
                                             <div class="fLeft col100"  id="adcity">Bangalore 560095</div>
                                         </div>
                                         <div class="thankTxt fLeft">
                                         
                                         </div>
                                         <div class="col100 fLeft">
-                                            <div class="actBtn button">SUBMIT</div>
+                                            <div class="actBtn button" id="submt">SUBMIT</div>
                                         </div>
                                     </center>
                                 </div>
@@ -69,14 +69,38 @@
                         </div>
             <!--//black side cont-->
                         <div class="colleCont v2 black">
-                            <div class="dAdrsshdr fLeft semibold">Your Orders
+			  
+                            <div class="dAdrsshdr fLeft semibold" id="urords">Your Orders
                                 <div class="cbrdr"></div>
+                            </div>
+			  
+			    <div class="fLeft totalItem txt_center">
+                                <div class="fLeft col100 cart_name light">Grand Total
+                                </div>
+                                <div class="fLeft cart_price font35"><span class="total_price_gen  cartRupee font35">0</span>
+
+                                </div>
+
                             </div>
                             <!--                            <div class="fLeft totalItem txt_center">
                                                             <div class="fLeft col100 cart_name light">Your Orders</div>
                                                         </div>-->
-                            <div class="jwlCnt fLeft regular" id="scroll">
+			     <div class="col100 fLeft " id="noprdinchkot">
+			    <center>
+				<div class="cartEmptyImg"></div>
+				<div class="noOrdTxt">
+				    <div class="fooH mar0 color666">No Items</div>
+				    <div class="font13">Sorry,you have not added anything in your shopping bag</div>
+				</div>
+				<div class="col100">
+				    <div class="actBtn button colorfff"  id="cntshpng">continue shopping</div>
+				</div>
+			    </center>
+			</div>
+                            <div class="jwlCnt fLeft regular" id="scroll"> 
+			      
                                 <div id="cartdet">
+				  
 <!--                                <div class='cart_item' id="cartdet">-->
 <!--                                <div class='cart_image'><img src=""></div>
                                     <div class="cart_name">chained bangle</div>
@@ -102,7 +126,7 @@
                 </div>
             </div>
 
-             <script type="text/javascript" src="<?php echo $jvs['checkoutafter']; ?>"></script> 
+             <script type="text/javascript" src="<?php echo $jvs['checkoutbefore']; ?>"></script> 
             <script type="text/javascript" src="<?php echo $fjvs['Common']; ?>"></script>
             <script type="text/javascript">
 

@@ -41,6 +41,16 @@ function displaycartdetail()
   $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results) {
       var obj = JSON.parse(results);
       gblcheckodata = obj.result;
+       if(gblcheckodata == null){
+	$('#all_submt').addClass('dn'); 
+	$("#noprdcrd").removeClass("dn");
+	$('.totalItem').addClass('dn');
+      }
+      else{ 
+	$('#all_submt').removeClass('dn'); 
+	$("#noprdcrd").addClass("dn");   
+	$('.totalItem').removeClass('dn');
+	
       $(obj.result).each(function (r, v) {
 	if (v.default_img !== null) {
 	  abc = IMGDOMAIN + v.default_img;
@@ -83,7 +93,8 @@ function displaycartdetail()
 
       });
       $('.total_price_gen').html(indianMoney(totalprice));
-    }
+      }
+      }
   });
 }
 
@@ -575,8 +586,8 @@ $('#shpdpincode').on('keyup',function () {
 
 function  storeorderdata()
 {
-   window.location.href = DOMAIN + "index.php?action=orderPlacing&shpid="+shipng_id;
-      
+//   window.location.href = DOMAIN + "index.php?action=orderPlacing&shpid="+shipng_id;
+      window.location.href = DOMAIN + "index.php?action=checkoutBefore&shpid="+shipng_id;
 }
 
 $('#all_submt').click(function () {
@@ -953,4 +964,9 @@ $('.opt1').click(function(){
     var id=$(this).attr('id');
     id=id.split('_');
     gndrflg=id[1];  
+  });
+  
+  $('#cntshpngchkout').click(function(){
+      var lasturl=$.cookie('jzeva_currurl'); 
+      window.location.href=DOMAIN +"index.php"+lasturl; 
   });
