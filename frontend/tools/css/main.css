@@ -56,6 +56,7 @@ a{color:#666;}
 .pLeft10{padding-left:10px;}
 .PTop5{padding-top:5px;}
 .pTop15{padding-top:15px;}
+.pTop0{padding-top:0px;}
 .pBtm15{padding-bottom:15px;}
 .pBtm5{padding-bottom:5px;}
 .col100{width:100%;height:auto}
@@ -2399,9 +2400,7 @@ input[type=radio]:checked ~ .matchIcn{
 .dropBox ul li:last-child{border:none;}
 .dropBox ul li:hover{background-color:#53C9C7;transition: 300ms;color: #fff;}
 .checkoutBefore{}
-.checkoutBefore .dAdrsshdr{  position: absolute;
-    top: 10px;
-    left: 0px;}
+.checkoutBefore .dAdrsshdr{position:absolute;top:10px;left:0px;}
 
 .tryB{position: fixed;}
 
