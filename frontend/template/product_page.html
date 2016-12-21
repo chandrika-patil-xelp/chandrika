@@ -1,9 +1,10 @@
 <?php include 'jhead.html'?>
 
 <body class="greyBg blackHead">
+    
     <div class=""></div>
     <?php include 'Cart.html' ?>
-    
+
     <?php include 'header.html' ?>
     <?php include 'login.html' ?>
     <!-- <div class="fLeft gemBanner"></div> -->
@@ -76,7 +77,6 @@
                                         <div class="actBtn font12 regular" id="carat"></div>
                                     </div>
                                     <div class="drop_dn fLeft dn" id="sizes">
-
                                         <!--                                        <div class="attTitle">Size</div>
                                                                                 <div class="actBtn font12 regular"></div>-->
                                         <!--                                                                                <div class="actBtn font12 bolder" id="size" >Size </div>-->
@@ -120,13 +120,18 @@
                             <div class="cust_cont2 dn">
                                 <div class="fLeft selectClose"></div>
                                 <center>
-                                    <div class="selector_cont diQ" id="diQ">
+                                <div class="selector_cont diQ" id="diQ">
+                                    <center>
                                         <div class="options_back"></div>
                                         <div class="button_label">Select Diamond Clarity</div>
-
-                                    </div>
-
-                                </center>
+                                    </center>   
+                                    <!--                    <div class="clarityInfo">
+                                                            <span class="semibold">VVS (Very, Very Slightly Included) :</span> diamonds have minute inclusions that are difficult for a skilled grader to see under 10x magnification.
+                                                            Pinpoints and needles set the grade at VVS.<br>
+                                                            <span class="semibold">EF :</span> E, F Colour is an Absolutely Great Colour to have! E and F is considered ‘Pure White’ and Looks Exceptional! Very Bright, Very White, Very Sparkly!
+                                                            </div>-->
+                                </div>
+                            </center>
                                 <center>
                                     <div class="selector_cont" id="colr">
                                         <div class="options_back"></div>
@@ -135,7 +140,6 @@
                                 </center>
                                 <center>
                                     <div class="selector_cont pur" id="pur">
-
                                         <div class="options_back"></div>
                                         <div class="button_label">Select Metal purity</div>
                                     </div>
@@ -220,6 +224,8 @@
     <script type="text/javascript" src="<?php echo $jvs['prodpage']; ?>"></script>
 
     <script>
+        
+        
 
                 var tmp;
         setTimeout(function () {
@@ -245,7 +251,7 @@
             $('.ringCircle').css('line-height', val3 + 'px');
             $('.ringCircle').html(incVal);
             tmp++;
-             calweight();
+            calweight();
         });
 //
 
@@ -264,7 +270,7 @@
             $('.ringCircle').css("line-height", val3 + 'px');
             $('.ringCircle').html(dTxt);
             tmp--;
-	     calweight();
+            calweight();
         });
 
         //bangles size code
@@ -296,7 +302,7 @@
             $('#bangCircle').css('line-height', valb3 + 'px');
             $('#bangCircle').html(incVal_b);
             tmp_b = parseFloat(tmp_b) + 0.1;
-	    calweight();
+            calweight();
         });
 
         $('#decB').click(function () {
