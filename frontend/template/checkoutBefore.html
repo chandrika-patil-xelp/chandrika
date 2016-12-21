@@ -68,11 +68,11 @@
                             </div>
                         </div>
             <!--//black side cont-->
-                        <div class="colleCont v2 black">
+                        <div class="colleCont v2 black checkoutBefore">
 			  
-                            <div class="dAdrsshdr fLeft semibold" id="urords">Your Orders
+<!--                            <div class="dAdrsshdr fLeft semibold" id="urords">Your Orders
                                 <div class="cbrdr"></div>
-                            </div>
+                            </div>-->
 			  
 			    <div class="fLeft totalItem txt_center">
                                 <div class="fLeft col100 cart_name light">Grand Total
@@ -125,13 +125,16 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    
 
              <script type="text/javascript" src="<?php echo $jvs['checkoutbefore']; ?>"></script> 
             <script type="text/javascript" src="<?php echo $fjvs['Common']; ?>"></script>
             <script type="text/javascript">
 
          
-    $('#nice').niceScroll({cursorcolor: "#000000", touchbehavior: true, cursorwidth: "4px", autohidemode: false, cursorborder: "0px solid #fff", cursoropacitymin: "0.3", cursoropacitymax: "0.3", railpadding: {top: 2, right: 2, left: 2, bottom: 2}});
+    $('#scroll').niceScroll({cursorcolor: "#000000", touchbehavior: true, cursorwidth: "4px", autohidemode: false, cursorborder: "0px solid #fff", cursoropacitymin: "0.3", cursoropacitymax: "0.3", railpadding: {top: 2, right: 2, left: 2, bottom: 2}});
 
                 $('.inp_box').focus(function () {
                     $(this).closest('.txtB').addClass('focul');
