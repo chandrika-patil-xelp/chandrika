@@ -204,98 +204,17 @@ function getshippingdata()
       var obj = JSON.parse(results);
       var data=obj['results'][0];
       $('#addr').html(data.address);
-      $('#adcity').html(data.city+" "+data.pincode);
-      $('#uname').html("Mr "+data.name); 
+      $('#adcity').html(data.city+" "+data.pincode); 
     }
     });
 }
 
 $('#submt').click(function(){
-  getorders();
- // window.location.href=DOMAIN+"transaction/payment.php?ordid=2520161207123611";
+ 
+ var cartid = common.readFromStorage('jzeva_cartid');
+ window.location.href=DOMAIN+"transaction/payment.php?ordid="+cartid;
 });
-
-function getorders()
-{
-   var userid = common.readFromStorage('jzeva_uid');
-                    var cartid = common.readFromStorage('jzeva_cartid');
-                    var data = [], ordobj = {}, totprz=0, wht;
-                    if (cartid !== null || userid !== null) {
-                    var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id=" + cartid + "&userid=" + userid + "";
-                        $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results) {
-                                var obj = JSON.parse(results); 
-                                $(obj.result).each(function (r, v) {
-				  
-				    if (v.ccatname !== null) {
-					wht = getweight(v.size, v.ccatname, v.metal_weight);
-				    } else {
-					wht = v.metal_weight;
-				    }
-
-				    totprz=totprz+parseInt(v.price);
-                                    var ordrdata = {};
-                                    if (userid !== null || userid !== 0) {
-                                        ordrdata['userid'] = userid;
-                                    } else {
-                                        ordrdata['userid'] = v.userid;
-                                    }
-                                    ordrdata['orderid'] = v.cart_id;
-                                    ordrdata['pid'] = v.product_id;
-                                    ordrdata['col_car_qty'] = v.col_car_qty;
-                                    ordrdata['pqty'] = v.pqty;
-                                    ordrdata['prodpri'] = v.price;
-                                    ordrdata['order_status'] = "";
-                                    ordrdata['updatedby'] = "";
-                                    ordrdata['payment'] = "";
-                                    ordrdata['payment_type'] = "";
-                                    ordrdata['shipping_id'] = shpid;
-                                    ordrdata['size'] = v.size;
-				    ordrdata['weight'] = wht;
-				    ordrdata['dmdcarat'] = v.dmdcarat;
-				    data[r] = ordrdata;
-                                    r++;
-                                });
-				  var totwrd=convert_number(totprz); 
-				  ordobj['totprz'] =totprz;
-				  ordobj['totprzwrd'] =totwrd;
-                                ordobj['data'] = data;
-
-                                setordrdata(ordobj);
-
-                            }
-                        });
-                    }
-}
-
- function setordrdata(ordobj)
-  {
-     var cartid = common.readFromStorage('jzeva_cartid');
-      var URL = APIDOMAIN + "index.php?action=addOrdersdetail";
-      var dt = JSON.stringify(ordobj);
-      $.ajax({
-	  type: "post",
-	  url: URL,
-	  data: {dt: dt},
-	  success: function (data) {
-
-	      var cartid = common.readFromStorage('jzeva_cartid');
-	   //   common.msg(1, 'Your Order Placed successfully');
-	      var URL = APIDOMAIN + "index.php?action=removCrtItemaftrcheckot&cartid=" + cartid;
-	      $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results) {
-
-
-		      setTimeout(function () {
-			    window.location.href=DOMAIN+"transaction/payment.php?ordid="+cartid;
-		      }, 500);
-
-		      common.removeFromStorage('jzeva_cartid');
-		  }
-	      });
-
-	  }
-      });
-  }
-
+ 
 	    
   function getweight(currentSize, catName, storedWt)
   {

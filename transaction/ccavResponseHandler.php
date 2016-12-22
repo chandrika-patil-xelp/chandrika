@@ -16,7 +16,7 @@
 		$information=explode('=',$decryptValues[$i]);
 		if($i==3)	$order_status=$information[1];
 	}
-print_r($information);
+print_r($information); 
 	if($order_status==="Success")
 	{
 		echo "<br>Thank you for shopping with us. Your credit card has been charged and your transaction is successful. We will be shipping your order to you soon.";
@@ -38,7 +38,7 @@ print_r($information);
 	}
 
 	echo "<br><br>";
-
+die;
 	echo "<table cellspacing=4 cellpadding=4>";
 	for($i = 0; $i < $dataSize; $i++) 
 	{
