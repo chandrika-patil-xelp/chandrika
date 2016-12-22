@@ -90,7 +90,7 @@
 
 
 
-.roughImg1{background: url('../img/rough1.png')no-repeat;background-size: initial;background-position: center;}
+/*.roughImg1{background: url('../img/rough1.png')no-repeat;background-size: initial;background-position: center;}
 .roughImg2{background: url('../img/rough2.png')no-repeat;background-size: initial;background-position: center;}
 .roughImg3{background: url('../img/rough3.png')no-repeat;background-size: initial;background-position: center;}
 .roughImg4{background: url('../img/rough4.png')no-repeat;background-size: initial;background-position: center;}
@@ -118,9 +118,9 @@
 .roughImg26{background: url('../img/rough26.png')no-repeat;background-size: initial;background-position: center;}
 .roughImg27{background: url('../img/rough27.png')no-repeat;background-size: initial;background-position: center;}
 .roughImg28{background: url('../img/rough28.png')no-repeat;background-size: initial;background-position: center;}
-.roughImg29{background: url('../img/rough29.png')no-repeat;background-size: initial;background-position: center;}
+.roughImg29{background: url('../img/rough29.png')no-repeat;background-size: initial;background-position: center;}*/
 
-.largeRough1{width:42%;height: 100%;float:left;background: url('../img/rough1L.png')no-repeat center;}
+/*.largeRough1{width:42%;height: 100%;float:left;background: url('../img/rough1L.png')no-repeat center;}
 .largeRough2{width:42%;height: 100%;float:left;background: url('../img/rough2L.png')no-repeat center;}
 .largeRough3{width:42%;height: 100%;float:left;background: url('../img/rough3L.png')no-repeat center;}
 .largeRough4{width:42%;height: 100%;float:left;background: url('../img/rough4L.png')no-repeat center;}
@@ -148,7 +148,7 @@
 .largeRough26{width:42%;height: 100%;float:left;background: url('../img/rough26L.png')no-repeat center;}
 .largeRough27{width:42%;height: 100%;float:left;background: url('../img/rough27L.png')no-repeat center;}
 .largeRough28{width:42%;height: 100%;float:left;background: url('../img/rough28L.png')no-repeat center;}
-.largeRough29{width:42%;height: 100%;float:left;background: url('../img/rough29L.png')no-repeat center;}
+.largeRough29{width:42%;height: 100%;float:left;background: url('../img/rough29L.png')no-repeat center;}*/
 
 
 
@@ -162,7 +162,7 @@
 
 
 
-.closeButton{width:100px;height:50px;background: url('../img/close.svg')no-repeat;cursor: pointer;}*/
+.closeButton{width:100px;height:50px;background: url('../img/close.svg')no-repeat;cursor: pointer;}
 
 
 /*gem_desc page*/
