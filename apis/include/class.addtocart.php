@@ -579,6 +579,7 @@
 	       //  print_r($sql);
       $res = $this->query($sql);
             if ($res) {
+		$totalprc=0;
                 while ($row = $this->fetchData($res)) {
 		    
                     $arr['cart_id'] = $row['cart_id'];
@@ -629,7 +630,7 @@
                         }else  if($row['jewelleryType'] === '3'){
                              $arr['jewelleryType'] ='Platinum';
                         }  
-                       
+                    $totalprc+= $row['price'];  
                     $resArr[] = $arr;
                    
                 } 
@@ -639,7 +640,7 @@
 	    {
 	      $err=array('err_code'=>1,'err_msg'=>'Error in fetching data');
 	    }
-            $results=array('result'=>$resArr,'error'=>$err);   
+            $results=array('result'=>$resArr,'error'=>$err,'totalprice'=>$totalprc);   
 		    return $results; 
 	}
 	 
