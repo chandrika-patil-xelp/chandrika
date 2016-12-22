@@ -301,7 +301,10 @@
 	$(document).ready(function(){
 	  var actnp=GetURLParameter('actn'); 
 	  if(actnp == "lognpopup"){
-	    openPopUp();
+              setTimeout(function(){
+                  openPopUp();
+              },3000);
+	    
 	  }
 	});
 	
