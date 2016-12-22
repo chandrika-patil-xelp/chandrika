@@ -37,7 +37,7 @@ define('TEMPLATE',WEBROOT.'frontend/template/');
 define('INCLUDES',WEBROOT.'include/');
 define('APICLUDE',WEBROOT.'apis/include/'); 
 
-define('VERSION',1.09);
+define('VERSION',1.10);
 
 
 
@@ -83,6 +83,7 @@ $jvs = array();
             $jvs['attribute']               = BACKDOMAIN.'tools/js/cms/attribute.js?v='.VERSION;
             $jvs['coupon']               = BACKDOMAIN.'tools/js/cms/coupon.js?v='.VERSION;
             $jvs['search']               = BACKDOMAIN.'tools/js/cms/searchJs.js?v='.VERSION;
+            
 
 #JS End
 
