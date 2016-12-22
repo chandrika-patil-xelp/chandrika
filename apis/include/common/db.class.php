@@ -29,14 +29,21 @@ class DB {
     ## @return The result of the query, to use with fetchData().
 
     function query($query, $debug = -1) {
-        //echo $query; 
+        //echo $query;
         //print_r($this->db);
         //echo "<hr>";
         @mysql_select_db($this->db[3],$this->links);
-        $this->nbQueries++;	
+        $this->nbQueries++;
+        $this->traceLogs($query);
         $this->lastResult = mysql_query($query,$this->links) or $this->debugAndDie($query);
         $this->debug($debug, $query, $this->lastResult);
         return $this->lastResult;
+    }
+    function traceLogs($query)
+    {
+      $query = preg_replace('!\s+!', ' ', $query);
+      $squery = "INSERT INTO tbl_errorlog_master(querydata,querytext,createdon,active_flag) VALUES ('".$query."','".$query."',now(),1)";
+      return mysql_query($squery,$this->links);
     }
 
     ## Do the same as query() but do not return nor store result.\n
@@ -47,13 +54,11 @@ class DB {
     function execute($query, $debug = -1) {
         $this->nbQueries++;
         mysql_query($query) or $this->debugAndDie($query);
-		
-
         $this->debug($debug, $query);
     }
 
     ## Convenient method for mysql_fetch_object().
-    ## @param $result The ressource returned by query(). 
+    ## @param $result The ressource returned by query().
     ## If NULL, then last result returned by query() will be used.
     ## @return An object representing a data row.
 
@@ -69,9 +74,9 @@ class DB {
 
     /*
      * @ Function Name	: mysqlFetchArr
-     * @ Purpose			: To fetch associative array of selected mysql query 
-     * @ Input			: Resource Id 
-     * @ Return Value	: Array - Associative array of selected mysql query 
+     * @ Purpose			: To fetch associative array of selected mysql query
+     * @ Input			: Resource Id
+     * @ Return Value	: Array - Associative array of selected mysql query
      */
 
     public function mysqlFetchArr($resourceId) {
@@ -88,7 +93,7 @@ class DB {
     }
 
     ## Get the number of rows of a query.
-    ## @param $result The ressource returned by query(). 
+    ## @param $result The ressource returned by query().
     ## If NULL, the last result returned by query() will be used.
     ## @return The number of rows of the query (0 or more).
 
@@ -322,7 +327,6 @@ class DB {
         list($msec, $sec) = explode(' ', microtime());
         return floor($sec / 1000) + $msec;
     }
-
 }
 
 ## END OF CLASS DB
