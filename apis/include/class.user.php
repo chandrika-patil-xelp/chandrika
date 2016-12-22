@@ -1733,6 +1733,8 @@ class user extends DB {
                 user_id , 
                  shipping_id ,
 		 name,
+		 mobile,
+		 email,
 		 city,
 		 address,
 		 state,
@@ -1744,12 +1746,14 @@ class user extends DB {
                 $arr['user_id'] = $row['user_id'];
                 $arr['shipping_id'] = $row['shipping_id'];
                 $arr['name'] = $row['name'];
+		$arr['mobile'] = $row['mobile'];
+		$arr['email'] = $row['email'];
                 $arr['city'] = $row['city'];
                 $arr['address'] = $row['address'];
                 $arr['state'] = $row['state'];
                 $arr['pincode'] = $row['pincode']; 
-
-                $reslt[] = $arr;
+		 
+                $reslt = $arr;
             }
             $err = array('Code' => 0, 'Msg' => 'Data fetched successfully');
         } else {

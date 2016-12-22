@@ -2,7 +2,8 @@
 include '../config.php';
 
     $ordid=$_GET['ordid'];
-
+    $shipid=$_GET['shipid'];
+    
     global $comm;
     $url = APIDOMAIN . "index.php?action=getcartdetail&cart_id=" . $ordid; 
     $res = $comm->executeCurl($url);
@@ -11,6 +12,12 @@ include '../config.php';
     { 
       $price=$res['totalprice'];
     }
+    
+    $billngurl=APIDOMAIN . "index.php?action=getshipdatabyshipid&shpid=".$shipid;
+    $shpres=$comm->executeCurl($billngurl);
+    
+    $biltel=$shpres['results']['mobile'];
+    $bilmail=$shpres['results']['email'];
 ?>
 <html>
   <body>
@@ -22,6 +29,9 @@ include '../config.php';
       <input type="hidden" name="redirect_url" value="<?php echo DOMAIN ?>transaction/ccavResponseHandler.php" />
       <input type="hidden" name="cancel_url" value="<?php echo DOMAIN ?>index.php?action=landing_page"/>
       <input type="hidden" name="language" value="EN"/>
+      <input type="hidden" name="billing_country" value="India"/>
+      <input type="hidden" name="billing_tel" value="<?php echo $biltel ?>"/>
+      <input type="hidden" name="billing_email" value="<?php echo $bilmail ?>"/>
        
     </form>
     <script language='javascript'>document.redirect.submit();</script>

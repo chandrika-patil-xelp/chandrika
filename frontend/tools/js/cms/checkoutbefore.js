@@ -212,7 +212,7 @@ function getshippingdata()
 $('#submt').click(function(){
  
  var cartid = common.readFromStorage('jzeva_cartid');
- window.location.href=DOMAIN+"transaction/payment.php?ordid="+cartid;
+ window.location.href=DOMAIN+"transaction/payment.php?ordid="+cartid+"&shipid="+shpid;
 });
  
 	    
