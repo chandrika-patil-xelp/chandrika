@@ -305,7 +305,7 @@ var goldPricehighp =0;
         }
     }
     proStr += ' ' + Nstr + '</div>';
-    proStr += '<div class="grid_price txtOver transition300" onclick=\" custmz('+obj['prdId']+')\"><span class="cartRup15b">' + grandtotallow + '</span><span class="toTxt"> to  </span> <span  class="cartRup15b"> '+grandtotalhigh+'</span></div>';
+    proStr += '<div class="grid_price txtOver transition300" onclick=\" custmz('+obj['prdId']+')\"><span class="cartRup15b padR0">' + grandtotallow + '</span><span class="toTxt"> to  </span> <span  class="cartRup15b"> '+grandtotalhigh+'</span></div>';
     proStr += '<div class="fmSansB smBtnDiv fLeft transition300">';
 //    proStr += '<span class="u_line point lettSpace fLeft"  onclick=\"getProId(\''+ obj['prdId'] + '\')\">View Product</span>';
     proStr += '<div class="v360Btn" onclick=\"imgLoad(' + obj['prdId'] + ', event)\"></div>';
@@ -318,6 +318,7 @@ var goldPricehighp =0;
     // proStr += '<div class="soc_elem soc_comment transition300"></div>';
     //proStr += '<div class="soc_elem soc_share transition300"></div>';
     //proStr += '</div>';
+   proStr += '<div class="custBtn1" onclick="custmz(' + obj['prdId'] + ')">customise</div>';
     proStr += '</div>';
     proStr += '</div>';
     proStr += '<div class="facet_back" >';
@@ -691,7 +692,6 @@ function getmenu()
     });
 
 }
-
 
 var fltrarray = {};
 

@@ -367,6 +367,7 @@ a{color:#666;}
 .padR15{padding-right: 10px;}
 .padLR25{padding: 0px 25px;}
 .padR0{padding-right: 0px;}
+.padR0{padding-right:  0px;}
 .PRODUCT_GRID2.wrapper_main{padding-top:60vh;background-color: #f3f3f3;}
 
 .imgHolder{width:100%;height:100%;position:absolute;background-size:115%;background-position:center;cursor: w-resize;}
@@ -417,8 +418,8 @@ img{width:100%;height:100%;border:0}
 .grid3:hover .grid_dets:before{background:#fff}
 .grid_name{width:100%;height:20px;text-align:center;line-height:20px;font-size:12px;color:#15181b;font-family:bolder;text-transform:uppercase;letter-spacing:0.15em}
 .grid_price{width:80%;color: #15181b; padding: 7px 15px; font-size: 13px;  text-align: center; right: 0; z-index: 100;left:0;margin:auto;margin-top:5px;font-family:bolder;position:relative;cursor:pointer;pointer-events:auto;}
-.facet_front:after{content:"CUSTOMISE";width:80%;height:auto;position:absolute;left:0;right: 0;bottom: 28%;margin: auto;background:#15181b;color:#fff;font-family:semibold;font-size:11px;line-height:29px;text-align:center;opacity:0;transition:300ms;-webkit-transition:300ms;-moz-transition:300ms;-o-transition:300ms;-ms-transition:300ms;}
-.grid3:hover .facet_front:after{opacity:1;}
+.custBtn1{width:80%;height:auto;position:absolute;left:0;right: 0;bottom: 28%;margin: auto;background:#15181b;color:#fff;font-family:semibold;font-size:11px;line-height:29px;text-align:center;opacity:0;transition:300ms;-webkit-transition:300ms;-moz-transition:300ms;-o-transition:300ms;-ms-transition:300ms;}
+.grid3:hover .custBtn1{opacity:1;}
 .toTxt{text-transform:lowercase;}
 .padR3{padding-right:3px;}
 
