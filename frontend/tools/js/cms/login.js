@@ -12,39 +12,48 @@ $('#rsubId').on('click',function(){
    var  mobile = $("#mobile").val();
    var pass = $("#signuppass").val(); 
    var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
-   var letters = /^[A-Za-z]+$/;
+   var letters = /^[a-zA-Z\s]+$/;
+   
     var validationFlag=1;
     if(gndrflg == undefined || gndrflg == null){
       validationFlag=0;  
      common.msg(0,'Please Select Title');  
+     return false;
     }
     else if(name ===''|| name === null){
       validationFlag=0;  
      common.msg(0,'Please enter your Name'); 
+      return false;
     }  
-    else if(!letters.test(name) ){
+    else if(!letters.test(name)){
        validationFlag=0;  
         common.msg(0,'Name should be alphanumeric'); 
+        return false;
     }
     else if(email===''|| email=== null){
        validationFlag=0;  
          common.msg(0,'Please enter your Email-id'); 
+          return false;
     }
    else if (!reg.test(email)){
       validationFlag=0;  
        common.msg(0,'Invalid Email-id'); 
+        return false;
     }
     else if(mobile===''|| mobile=== null){
        validationFlag=0;  
         common.msg(0,'Please enter your Mobile no.'); 
+         return false;
     }
     else if(isNaN(mobile) || (mobile.length < 10) ){
        validationFlag=0;  
         common.msg(0,'Mobile number is Invalid'); 
+         return false;
     }
     else if(pass ===''|| pass === null){
        validationFlag=0;  
          common.msg(0,'Please enter your Password'); 
+          return false;
     }
     if (validationFlag == 1)
     {
@@ -55,10 +64,10 @@ $('#rsubId').on('click',function(){
                        
 		       $(data['results']).each(function(r,v){ 
 		       if(v.logmobile == mobile ){
-			 common.msg(0,'You entered mobile number is already registered');
+			 common.msg(0,'Your entered mobile number is already registered');
 		       }
 		       else if( v.email == email){
-			 common.msg(0,'You entered email id is already registered');
+			 common.msg(0,'Your entered email id is already registered');
 		       } 
 	  });
 	 if(data['results'] == null)  {
@@ -92,28 +101,44 @@ function chklogin()
 {
   var email = $("#email").val();
   var pass = $("#pass").val();
-  var validationFlag=1;
+  var validationFlag=1,URL;
   var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
- if(email===''|| email=== null){ 
-	  validationFlag=0;
-	  $('#email ').focus();
-	  common.msg(0,'Please enter your Email.id');
-    }
-   else if (!reg.test(email)){ 
-	  validationFlag=0; 
-	  $('#email').focus();
-	  common.msg(0,'Invalid Email.id');
-    }
-  else if(pass===''|| pass=== null){
+  if($.isNumeric(email)){
+      if(email===''|| email=== null){ 
+                 validationFlag=0;
+                  $('#email').focus();
+                 common.msg(0,'Please enter your Email.id or Mobile No');
+           }
+      else if(isNaN(email) || (email.length < 10) || (email.length > 11) ){
+	 validationFlag=0;  
+          $('#email ').focus();
+	  common.msg(0,'Invalid Mobile no.'); 
+        } 
+         URL = APIDOMAIN + "index.php/?action=login&mobile="+email+"&pass="+pass;
+  }
+  else{
+        if(email===''|| email=== null){ 
+                 validationFlag=0;
+                 $('#email ').focus();
+                 common.msg(0,'Please enter your Email.id or Mobile No');
+           }
+          else if (!reg.test(email)){ 
+                 validationFlag=0; 
+                 $('#email').focus();
+                 common.msg(0,'Invalid Email.id');
+           }
+            URL = APIDOMAIN + "index.php/?action=login&email="+email+"&pass="+pass;
+  } 
+  if(validationFlag == 1){
+  if(pass===''|| pass=== null){
 	  validationFlag=0; 
 	  $('#pass').focus();
 	  common.msg(0,'Please enter Password'); 
     }
-    
+  }
     
     if (validationFlag == 1){
-    var URL = APIDOMAIN + "index.php/?action=login&email="+email+"&pass="+pass;
-   
+     
     var data;
     $.ajax({
             type:'POST',
@@ -275,10 +300,12 @@ $('#fsubId').on('click',function(){
       if(inptval===''|| inptval=== null){
 	 validationflg=0;  
         common.msg(0,'Please enter your Mobile no.'); 
+         return false;
       }
       else if(isNaN(inptval) || (inptval.length < 10) || (inptval.length > 11) ){
 	 validationflg=0;  
 	  common.msg(0,'Invalid Mobile no.'); 
+           return false;
       } 
     }
     else{
@@ -291,6 +318,7 @@ $('#fsubId').on('click',function(){
 	   else if (!reg.test(inptval)){
 	     validationflg=0; 
 	    common.msg(0,'Invalid Email.id'); 
+             return false;
 	   } 
     }
     
@@ -342,7 +370,7 @@ function sugnupsubmt()
 			  common.msg(0,'Please Enter OTP');
 		      }
      else{
-       common.msg(0,'you entered otp is wrong');
+       common.msg(0,'your entered otp is wrong');
      }
    }
    else{
@@ -377,7 +405,7 @@ function sugnupsubmt()
 		       }
 		       else{
 			 if($.isNumeric(inptval))  
-                             common.msg(0,'Mob No not exist');
+                             common.msg(0,'Mobile No not exist');
 			 else		
                              common.msg(0,'email id not exist');
 		       } 
@@ -398,10 +426,12 @@ function sugnupsubmt()
    if(pass ===''|| pass === null){ 
        common.msg(0,'Please enter your Password');
         validationFlag=0; 
+         return false;
     }
     else if(cpass===''|| cpass=== null){ 
         common.msg(0,'Please enter the confirm password');
         validationFlag=0; 
+        return false; 
     }
     if(validationFlag == 1){ 
     if(pass !== cpass){
@@ -444,7 +474,7 @@ function sugnupsubmt()
              success:function(res){
 	    var data1 = JSON.parse(res); 
             if(data1['error']['err_code']==0)  {
-                common.msg(1,'Registered Successfullllly'); 
+                common.msg(1,'Registered Successfully'); 
 		var URL = APIDOMAIN + "index.php/?action=login&email="+userdata[1]+"&pass="+userdata[3]; 
 		$.ajax({ type:'POST',  url:URL, success:function(res){ 
 		    var data = JSON.parse(res); 

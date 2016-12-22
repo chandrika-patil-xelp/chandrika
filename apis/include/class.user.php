@@ -161,9 +161,7 @@ class user extends DB {
                     $arr['mobile'] = $row['logmobile'];
                     $arr['email'] = $row['email'];
                     $arr['password'] = $row['password'];
-                }
-//            echo md5($params['pass'])."<br>";
-//            echo $arr['password'];
+                } 
                 if (md5($params['pass']) != $arr['password']) {
                     $error = array('err_code' => 1, 'err_msg' => 'Password incorrect');
                     $result = array('result' => $resp, 'error' => $error);
@@ -173,9 +171,12 @@ class user extends DB {
             }
 
             $error = array('err_code' => 0, 'err_msg' => 'signed in successfully');
-        } else {
-
-            $error = array('err_code' => 1, 'err_msg' => 'Email.id does not exist');
+        }
+        else {
+            if(!empty($email)){
+                $error = array('err_code' => 1, 'err_msg' => 'Email.id does not exist');}
+            if(!empty($mobile)){
+                $error = array('err_code' => 1, 'err_msg' => 'Mobile No does not exist');}
             $result = array('result' => $resp, 'error' => $error);
             return $result;
         }
