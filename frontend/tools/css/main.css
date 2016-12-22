@@ -2376,8 +2376,8 @@ input[type=radio]:checked ~ .matchIcn{
 .clarityInfo:after{content:"";
     width: 10px;
     height: 10px;
-    border-left: 2px solid #15181b;
-    border-top: 2px solid #15181b;
+    border-left: 7px solid #ffffff;
+    border-top: 7px solid #ffffff;
     position: absolute;
     /* background-color: #15181b; */
     transform: rotate(45deg);
