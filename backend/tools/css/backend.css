@@ -883,7 +883,7 @@ section .dtl_cont{width: 48%;height:auto;padding: 15px;margin-right: 20px;paddin
 .uploadPrdBtn{display: inline-block;width:auto;height: 40px;line-height: 40px;margin:0 0px;cursor: pointer;padding: 0 30px 0 30px;color:#fff;font-family: openR;font-size: 13px;background: #0B4040 url(../img/uploadWhite.svg)no-repeat;background-position: 150% center;background-size: auto 80%;border-radius: 2px;}
 .uploadPrdBtn:hover{background-position: 98% center;background-size: auto 80%;padding: 0 40px 0 20px;}
 
-.placeOrderBtn{display: inline-block;width:auto;height: 40px;line-height: 40px;margin:0 0px;cursor: pointer;padding: 0 30px 0 30px;color:#fff;font-family: openR;font-size: 13px;background: #0B4040 url(../img/.svg)no-repeat;background-position: 150% center;background-size: auto 80%;border-radius: 2px;}
+.placeOrderBtn{display: inline-block;width:auto;height: 40px;line-height: 40px;margin:0 0px;cursor: pointer;padding: 0 30px 0 30px;color:#fff;font-family: openR;font-size: 13px;background: #0B4040 url(../img/placeorder.svg)no-repeat;background-position: 150% center;background-size: auto 80%;border-radius: 2px;}
 .placeOrderBtn:hover{background-position: 98% center;background-size: auto 80%;padding: 0 40px 0 20px;}
 
 
