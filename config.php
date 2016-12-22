@@ -83,7 +83,7 @@ $jvs = array();
             $jvs['attribute']               = BACKDOMAIN.'tools/js/cms/attribute.js?v='.VERSION;
             $jvs['coupon']               = BACKDOMAIN.'tools/js/cms/coupon.js?v='.VERSION;
             $jvs['search']               = BACKDOMAIN.'tools/js/cms/searchJs.js?v='.VERSION;
-            
+            $jvs['placeOrder']               = BACKDOMAIN.'tools/js/cms/placeOrder.js?v='.VERSION;
 
 #JS End
 

@@ -205,11 +205,11 @@
                             order_id,
                             product_id,
                             user_id,
-                  			    shipping_id,
-                  			    col_car_qty,
-                  			    size,
-                  			    pqty,
-                  			    price,
+                  	    shipping_id,
+                            col_car_qty,
+                            size,
+                             pqty,
+                             price,
                             order_date,
                             delivery_date,
                             order_status,
@@ -270,7 +270,65 @@
         }
 
         /** add orders ends **/
+        
+        public function addOrderbackend($params)
+	{
+            global $comm; 
+             $params= (json_decode($params[0],1));
+              $orderid = (!empty($params['orderid'])) ? trim($params['orderid']) : '';
+	   if(empty($params['orderid'])){
+	      $orderid=  $this->generateId();
+	    }
+            $ordstatus="";
+	    $updby="user"; 
+	    
+            $sql = "INSERT INTO tbl_order_master (
+                            order_id,
+                            product_id,
+                            user_id,
+			    shipping_id,
+			    col_car_qty,
+			    size,
+			    pqty,
+			    price,
+                            order_date,
+                            delivery_date,
+                            order_status, 
+                            createdon,
+                            updatedon,
+                            updatedby,
+                            payment,
+                            payment_type
+                          ) 
+                          VALUES ";
 
+	    $sql .= " (".$orderid.", '".$params['pid']."','".$params['userid']."','".$params['shipping_id']."','".$params['col_car_qty'].""
+			    . "','".$params['size']."','".$params['pqty']."','".$params['prodpri']."',NOW(), NOW(),";
+               $sql.= " '".$ordstatus."', NOW(), NOW(), '".$updby."',"
+                    . "'".$params['payment']."', '".$params['payment_type']."' ),";                     
+       $sql = trim($sql, ","); 
+	 	 
+                   $sql.="ON DUPLICATE KEY UPDATE user_id = VALUES(user_id),pqty = VALUES(pqty),price = VALUES(price),"
+	 	    . "order_date = VALUES(order_date),delivery_date = VALUES(delivery_date),order_status = VALUES(order_status),"
+	 	    . "createdon = VALUES(createdon),updatedon = VALUES(updatedon),updatedby = VALUES(updatedby),payment = VALUES(payment),payment_type = VALUES(payment_type)";
+                      
+	     
+	    $res = $this->query($sql);
+            $resp = array();
+            if($res){
+                
+                $error = array('err_code'=>0, 'err_msg'=>' Adding Order Details Inserted Successfully ' );
+                
+            }else{
+                $error = array('err_code'=>1, 'err_msg'=>' Error IN Adding Order Details ' );
+            }
+            
+            $result = array('result'=>$resp, 'error'=>$error);
+            return $result;
+            
+        }
+        
+      
         /** GET ORDER DETAILS BY ORDER ID START **/
         public function getOrderDetailsByOrdIds($params){
             global $comm;
@@ -824,10 +882,10 @@
                                       active_flag =1";
 
            $page = ($params['page'] ? $params['page'] : 1);
-        $limit = ($params['limit'] ? $params['limit'] : 20);
+        $limit = ($params['limit'] ? $params['limit'] : 10000);
 
         if ($limit > 1) {
-            $limit = 20;
+            $limit = 10000;
         }
         //$limit = 100;
         if (!empty($page)) {

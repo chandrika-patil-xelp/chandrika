@@ -786,7 +786,7 @@ class user extends DB {
         } else {
             $err = array('err_code' => 1, 'err_msg' => 'Error in inserting');
         }
-        $results = array('result' => $result, 'error' => $err);
+        $results = array('result' => $result, 'error' => $err,'shipid'=>$ship_id);
         return $results;
     }
 
@@ -1368,10 +1368,13 @@ class user extends DB {
         $sql = "SELECT
                         order_id as oid,
                         product_id as pid,
-                        (Select product_seo_name from tbl_product_master where productid=pid) as pname,
+                        shipping_id as shpid,
+                        (Select product_name from tbl_product_master where productid=pid) as pname,
                         user_id as uid,
                         (SELECT user_name from tbl_user_master WHERE user_id=uid) AS uname,
                         (SELECT logmobile from tbl_user_master WHERE user_id=uid) AS umobile,
+                        (SELECT name from tbl_order_shipping_details WHERE user_id=uid and shipping_id=shpid) AS custname,
+                        (SELECT mobile from tbl_order_shipping_details WHERE user_id=uid and shipping_id=shpid) AS custmob,
                         order_date as odate,
                         delivery_date as ddate,
                         order_status as ostatus,
@@ -1380,14 +1383,14 @@ class user extends DB {
                         payment as pm,
                         col_car_qty,
                         size
-                        FROM tbl_order_master WHERE  active_flag=1";
+                        FROM tbl_order_master WHERE  active_flag=1 order by createdon DESC";
 
 
         $page = ($params['page'] ? $params['page'] : 1);
-        $limit = ($params['limit'] ? $params['limit'] : 1000);
+        $limit = ($params['limit'] ? $params['limit'] : 10000);
 
         if ($limit > 1) {
-            $limit = 1000;
+            $limit = 10000;
         }
         //$limit = 100;
         if (!empty($page)) {
@@ -1404,11 +1407,14 @@ class user extends DB {
                 $arr['pid'] = $row['pid'];
                 $arr['pname'] = $row['pname'];
                 $arr['uid'] = $row['uid'];
+                $arr['shpid'] = $row['shpid'];
                 $arr['uname'] = $row['uname'];
                 $arr['umobile'] = $row['umobile'];
                 $arr['ostatus'] = $row['ostatus'];
                 $arr['aflag'] = $row['aflag'];
                 $arr['price'] = $row['price'];
+                $arr['custname'] = $row['custname'];
+                $arr['custmob'] = $row['custmob'];
                 $arr['pm'] = $row['pm'];
                 $arr['col_car_qty'] = $row['col_car_qty'];
                 $arr['size'] = $row['size'];

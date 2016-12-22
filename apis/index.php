@@ -919,6 +919,14 @@ switch($action)
 	$tmpaparams = array($params['dt']);
          $res = $obj->addOrdersdetail($tmpaparams);
     break;
+    
+
+     case 'addOrderbackend':
+        include APICLUDE.'class.us.php';
+        $obj = new us($db['jzeva']);
+	$tmpaparams = array($params['dt']);
+         $res = $obj->addOrderbackend($tmpaparams);
+    break;
 
    case 'checkopt':
         include APICLUDE.'class.user.php';

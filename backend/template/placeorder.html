@@ -1,8 +1,9 @@
 
 <?php include 'jBhead.html' ?>
-<?php
-echo "<script>var edit=$edit; var pid = '$pid';</script>";
-?>
+
+<script>  var pid = "<?php echo $_GET['pid'];  ?>";var sz = "<?php echo $_GET['sz'];  ?>"; var col_car_qty = "<?php echo $_GET['col_car_qty'];  ?>"; var price = "<?php echo $_GET['price'];  ?>"; var chgwt = "<?php echo $_GET['chgwt'];  ?>";</script>
+
+
 <body>
     <div class="container addProduct">
         <?php include 'jBheader.html' ?>
@@ -16,21 +17,21 @@ echo "<script>var edit=$edit; var pid = '$pid';</script>";
                     <div class="divCon fLeft">
                         <div class="divCon2 fLeft mTop0">
                             <div class="titleDiv txtCap fLeft">Customer Name</div>
-                            <input name="" type="text"  maxlength="40" autocomplete="false"  placeholder="Enter customer name" class="txtInput fLeft fmOpenR font14 c666">
+                            <input name="" type="text" id="name" maxlength="40" autocomplete="false"  placeholder="Enter customer name" class="txtInput fLeft fmOpenR font14 c666">
                         </div>
 
                         <div class="divCon2 fRight">
                             <div class="width33 fLeft">
                                 <div class="titleDiv txtCap fLeft">Product code</div>
-                                <div class="fLeft pCode">jzeva1234567890</div>
+                                <div class="fLeft pCode" id="pcode">jzeva1234567890</div>
                             </div>
                             <div class="width33 fLeft">
                                 <div class="titleDiv txtCap fLeft">Price</div>
-                                <div class="fLeft pCode">50000</div>
+                                <div class="fLeft pCode" id="prc">50000</div>
                             </div>
-                            <div class="width33 fLeft">
-                                <div class="titleDiv txtCap fLeft">size</div>
-                                <div class="fLeft pCode">2.4</div>
+                            <div class="width33 fLeft dn" id="szdv">
+                                <div class="titleDiv txtCap fLeft" >size</div>
+                                <div class="fLeft pCode" id="sz">2.4</div>
                             </div>
 
 
@@ -42,19 +43,19 @@ echo "<script>var edit=$edit; var pid = '$pid';</script>";
                     <div class="divCon fLeft">
                         <div class="divCon2 fLeft mTop0">
                             <div class="titleDiv txtCap fLeft">Customer Telephone No</div>
-                            <input name="" type="text" autocomplete="false"  placeholder="Enter telephone no" class="txtInput fLeft fmOpenR font14 c666">
+                            <input name="" type="text" id="mobile" autocomplete="false"  placeholder="Enter telephone no" class="txtInput fLeft fmOpenR font14 c666">
                             <input type="hidden" id="prdCode">
                         </div>
                         <div class="divCon2 fRight mTop0">
                             <div class="titleDiv txtCap fLeft">Product Overview</div>
-                            <div class="font14 fmOpenR">The Cinta Tanmaniya is casted in 5.640 gms grams of gold set with brilliant cut 169 Round Diamonds (Approx. 1.17 Ct)</div>
+                            <div id="shortdesc"><div class="font14 fmOpenR">The Cinta Tanmaniya is casted in 5.640 gms grams of gold set with brilliant cut 169 Round Diamonds (Approx. 1.17 Ct)</div></div>
                             <!--<input name="" type="text"  autocomplete="false"  placeholder="Enter product overview" class="txtInput fLeft fmOpenR font14 c666" onkeypress="return common.isDecimalKey(event, this.value);">-->
                         </div>
                     </div>
                     <div class="divCon fLeft">
                         <div class="divCon2 fLeft mTop0">
                             <div class="titleDiv txtCap fLeft">Customer Email</div>
-                            <input name="" type="text" maxlength="40" autocomplete="false"  placeholder="Enter customer email" class="txtInput fLeft fmOpenR font14 c666">
+                            <input name="" type="text"  id="email" maxlength="40" autocomplete="false"  placeholder="Enter customer email" class="txtInput fLeft fmOpenR font14 c666">
                         </div>
 
 
@@ -91,7 +92,7 @@ echo "<script>var edit=$edit; var pid = '$pid';</script>";
                     <div class="divCon fLeft">
                         <div class="divCon2 fLeft mTop0">
                             <div class="titleDiv txtCap fLeft">Customer Address</div>
-                            <textarea id="productDescription"  class="txtInput h70   txtarea fLeft fmOpenR font14 c666" placeholder="Enter the address"></textarea>
+                            <textarea id="address"   class="txtInput h70   txtarea fLeft fmOpenR font14 c666" placeholder="Enter the address"></textarea>
                         </div>
                         <div class="divCon2 fRight c4_cls dn mTop0">
                             <div class="titleDiv txtCap fRight">Enter transaction ID</div>
@@ -113,18 +114,18 @@ echo "<script>var edit=$edit; var pid = '$pid';</script>";
                     <div class="divCon fLeft">
                         <div class="divCon2 fLeft mTop0">
                             <div class="titleDiv txtCap fRight">Pincode</div>
-                            <input name="" type="text" autocomplete="false"  placeholder="Enter pincode" class="txtInput fLeft fmOpenR font14 c666">
+                            <input name="" type="text" id="pincode" autocomplete="false"  placeholder="Enter pincode" class="txtInput fLeft fmOpenR font14 c666">
                         </div>
                     </div>
                     <div class="divCon fLeft">
                         <div class="divCon2 fLeft mTop0">
                             <div class="col50 fLeft">
                                 <div class="titleDiv txtCap fRight">city</div>
-                                <input name="" type="text" autocomplete="false"  placeholder="Enter city" class="txtInput fLeft fmOpenR font14 c666">
+                                <input name="" type="text" id="city" autocomplete="false"  placeholder="Enter city" class="txtInput fLeft fmOpenR font14 c666">
                             </div>
                             <div class="col50 fRight">
                                 <div class="titleDiv txtCap fRight">state</div>
-                                <input name="" type="text" autocomplete="false"  placeholder="Enter state" class="txtInput fLeft fmOpenR font14 c666">
+                                <input name="" type="text" id="state" autocomplete="false"  placeholder="Enter state" class="txtInput fLeft fmOpenR font14 c666">
                             </div>
                         </div>
                     </div>
@@ -138,7 +139,9 @@ echo "<script>var edit=$edit; var pid = '$pid';</script>";
                 <div class="btnCont fLeft">
                     <center>
                         <div class="cancelBtn transition300 fmOpenR poR" onclick="">CANCEL</div>
-                        <div class="submitBtn transition300 fmOpenR poR" onclick="">SUBMIT</div>
+
+                        <div class="submitBtn transition300 fmOpenR poR" onclick="" id="submit">SUBMIT</div>
+
                     </center>
                 </div>
             </div>
@@ -149,24 +152,184 @@ echo "<script>var edit=$edit; var pid = '$pid';</script>";
     <!--Category Value Map-->
 
 
+   <script type="text/javascript" src="<?php echo $jvs['placeOrder']; ?>"></script>
 
-    <!--<script type="text/javascript" src="<?php echo $jvs['rangeJS']; ?>"></script>-->
-    <!--<script type="text/javascript" src="<?php echo $jvs['addProduct']; ?>"></script>-->
-    <script type="text/javascript" src="<?php echo $jvs['nicescroll']; ?>"></script>
+
+   
     <script>
 
-                var lId = "";
+        var lId = "";
         $('.comP').click(function () {
             var g = $(this).attr("id");
-            console.log(g);
+       
+                    
+            
+          
+                $('.' + g + "_cls").removeClass("dn");
+                if (lId !== g)
+                {
+                    $('.' + lId + "_cls").addClass("dn");
+                }
+                lId = g;
+            });
 
-            $('.' + g + "_cls").removeClass("dn");
-            if (lId !== g)
-            {
-                $('.' + lId + "_cls").addClass("dn");
+          
+        $('#prc').html(price);
+
+        if (sz !== '') {
+            $('#szdv').removeClass('dn');
+            $('#sz').html(sz);
+        }
+
+        var URL = APIDOMAIN + "index.php/?action=getProductById&pid=" + pid;
+        $.ajax({
+            type: 'POST',
+            url: URL,
+            success: function (res) {
+
+                data = JSON.parse(res);
+
+                var dt = data['results'];
+                var basic = dt['basicDetails'];
+                var catAttr = dt['catAttr'];
+                var vendor = dt['vendor'];
+                var metalPurity = dt['metalPurity'];
+                var metalColor = dt['metalColor'];
+                var solitaire = dt['solitaire'];
+                var diamonds = dt['dimond'];
+                var uncut = dt['uncut'];
+                var gemstone = dt['gamestone'];
+
+                $(basic).each(function (i, vl) {
+
+                    var proname = vl.prdNm;
+                    $('#pcode').text(vl.prdCod);
+                    $('#proname').text(vl.prdNm);
+
+                    var type = 0;
+                    if (basic.hasSol == 1) {
+
+                        type = 1;
+                    }
+                    if (basic.hasDmd == 1) {
+                        type = 2;
+                    }
+                    if (basic.hasSol == 1 && basic.hasDmd == 1) {
+                        type = 3;
+                    }
+                    if (basic.hasDmd == 1 && basic.hasUnct == 1) {
+                        type = 4;
+                    }
+                    if (basic.hasGem == 1) {
+
+                        if (gemstone.count == 1) {
+
+                            type = 5
+                        }
+                        if (gemstone.count > 1) {
+
+                            type = 6;
+                        }
+                    }
+                    if (basic.hasDmd == 1 && basic.hasGem == 1) {
+                        if (gemstone.count == 1) {
+                            // var gemstn = gemstone.results[0].gemNm;
+                            type = 7;
+                        }
+                        if (gemstone.count > 1) {
+
+                            type = 8;
+                        }
+
+                    }
+
+                    var bstr = "";
+                    switch (type) {
+
+                        case 1:
+                        {
+
+                            bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span> is casted in <span class="semibold" id="newWt">' + chgwt + '</span> grams of gold set with brilliant cut <span class="semibold">' + dt['solitaire']['results'][0].nofs + '</span> ' + dt['solitaire']['results'][0].shape + ' Solitaire (Approx. ' + dt['solitaire']['results'][0].carat + ' Ct) </div>';
+                            break;
+                        }
+                        case 2:
+                        {
+
+                            bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span> is casted in <span class="semibold" id="newWt">' + chgwt + '</span> grams of gold set with brilliant cut <span class="semibold">' + dt['dimond']['results'][0].totNo + '</span> ' + dt['dimond']['results'][0].shape + ' Diamonds (Approx. ' + dt['dimond']['results'][0].crat + ' Ct) </div>';
+                            break;
+                        }
+                        case 3:
+                        {
+
+                            bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span> is casted in <span class="semibold" id="newWt">' + chgwt + '</span> grams of gold set with brilliant cut <span class="semibold">' + dt['dimond']['results'][0].totNo + '</span> ' + dt['dimond']['results'][0].shape + ' Diamonds (Approx. ' + dt['dimond']['results'][0].crat + ' Ct) and a <span class="semibold">' + dt['solitaire']['results'][0].carat + ' Ct</span> ' + dt['solitaire']['results'][0].shape + ' Solitaire of ' + dt['solitaire']['results'][0].colr + ' color </div>';
+                            break;
+                        }
+                        case 4:
+                        {
+                            Nstr += '<span>Diamond</span>';
+                            dmdsoli = "Diamond";
+                            break;
+                        }
+                        case 5:
+                        {
+                            var gemstn = gemstone.results[0].gemNm;
+
+
+                            break;
+                        }
+                        case 6:
+                        {
+
+                            break;
+                        }
+                        case 7:
+                        {
+                            gemstn = gemstone.results[0].gemNm;
+
+                            bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span> is casted in <span class="semibold" id="newWt">' + chgwt + '</span> grams of gold set with brilliant cut <span class="semibold">' + dt['dimond']['results'][0].totNo + '</span> ' + dt['dimond']['results'][0].shape + ' Diamonds (Approx. ' + dt['dimond']['results'][0].crat + ' Ct) and a <span class="semibold">' + dt['gamestone']['results'][0].crat + ' Ct</span> ' + dt['gamestone']['results'][0].gemNm + ' </div>';
+
+                            break;
+                        }
+
+                        case 8:
+                        {
+
+                            bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span> is casted in <span class="semibold" id="newWt" >' + chgwt + '</span> grams of gold set with brilliant cut <span class="semibold">' + dt['dimond']['results'][0].totNo + '</span> ' + dt['dimond']['results'][0].shape + ' Diamonds (Approx. ' + dt['dimond']['results'][0].crat + ' Ct), <span class="semibold">' + dt['gamestone']['results'][0].crat + ' Ct</span> ' + dt['gamestone']['results'][0].gemNm + ' and a <span class="semibold">' + dt['gamestone']['results'][1].crat + ' Ct</span> ' + dt['gamestone']['results'][1].gemNm + '  </div>';
+
+                            break;
+                        }
+
+                    }
+
+                    $('#shortdesc').html(bstr);
+
+
+                });
             }
-            lId = g;
+
         });
+
+
+
+
+     
+        
+
+
+        
+            
+
+
+    
+    
+
+      
+
+       
+        
+
+
+
     </script>
 </body>
 </html>

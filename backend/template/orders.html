@@ -65,7 +65,7 @@
             else
                 $('#noresults').addClass('dn');
              $(data['result']).each(function(i,vl){
-                
+               
                 str+="<li class='transition300 searchRow'>";
                 str+="<div class='date fLeft fmOpenB'>"+vl.oid+"</div>";
                 str+="<div class='dmdWt fLeft'>";
@@ -73,8 +73,8 @@
                 str += "<span class='lwSpan'><a href='" + DOMAIN + "backend/index.php?action=productDetails&pid=" + vl.pid + "'>View Details</a></span>";
                 str+="</div>";
                 str+="<div class='stockCode fLeft'>";
-                str+="<span class='upSpan fmOpenR'>"+vl.uname+"</span>";
-                str+="<span class='lwSpan'>"+vl.umobile+"</span>";
+                str+="<span class='upSpan fmOpenR'>"+vl.custname+"</span>";
+                str+="<span class='lwSpan'>"+vl.custmob+"</span>";
                 str+="</div>";
                 str+="<div class='dmdWt fLeft'>";
                 

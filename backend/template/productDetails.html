@@ -76,7 +76,7 @@
                                     <div class='editPrdBtn transition300'>Edit Product</div>
                                     <div class='deletePrdBtn transition300'>Delete Product</div>
                                     <div class='uploadPrdBtn transition300'>Upload Images</div>
-                                      <div class='placeOrderBtn transition300'>Place Order</div>
+                                      <div class='placeOrderBtn transition300' >Place Order</div>
                                     <div class='managePrdBtn transition300 dn'>Manage Images</div>
                                 </center>
 
@@ -210,6 +210,7 @@
     <script>
         var data = new Array();
         var mpurity = [];
+        var metalid=[];
         var allrates = new Array();
         $(document).ready(function () {
 
@@ -235,7 +236,7 @@
                         var gemstone = dt['gamestone'];
                         var images = dt['images'];
 
-
+                      
                         if (images.count > 0)
                         {
 
@@ -351,6 +352,8 @@
 
                         var mcolor = [];
                         $.each(metalPurity.results, function (i, vl) {
+                          
+                           metalid.push(vl);
                             mpurity.push(vl.dVal);
 
                         });
@@ -544,8 +547,7 @@
 
 
             });
-
-
+            
             $('.managePrdBtn').bind('click', function () {
                 window.open(DOMAIN + 'backend/?action=thumbnail&pid=' + pid, '_blank');
             });
@@ -562,9 +564,7 @@
                 setClick(pid);
                 showConfirmBox();
             });
-
-
-
+      
         });
 
 
@@ -742,28 +742,29 @@
             var str = "<li class='headLi' id='forDiamond'><div class='forComponent fLeft'>Diamond(s)</div></li>";
 //            $('[id*=diamondComm_]').each(function() {
             $(data['results']['dimond']['results']).each(function (i, vl) {
-
-
+             
                 var ids = vl.dmdId;
                 var shape = vl.shape;
                 var carat = vl.crat;
-
+            
                 var prc;
                 var price;
                 //var customiz=data['results']['dimond']['results'][i]['QMast'].count;
                 var customiz = vl['QMast'].count;
                 var dquality = vl['QMast']['results'];
+                  
                 if (customiz > 1)
                 {
-                    var typstr = "<select id='diamondPs" + ids + "'  onchange=\"setDmdPrice(this);\">";
+                   
+                    var typstr = "<select name='dmndclarity' id='diamondPs" + ids + "'  onchange=\"setDmdPrice(this);\">";
                     var flag = true;
                     $(dquality).each(function (j, qv) {
 
                         prc = parseFloat(qv.prcPrCrat);
                         price = prc * parseFloat(carat);
                         var opt = qv.dVal + "  " + vl.shape;
-                        var val = getDqualityVal(qv.dVal);
-                        typstr += "<option value='" + val + "'>" + opt + "</option>";
+                        var val = getDqualityVal(qv.dVal); 
+                        typstr += "<option value='" + val + "' id='"+qv.id+"'>" + opt + "</option>";
                     });
                     typstr += "</select>";
                 } else
@@ -844,13 +845,43 @@
             return str;
 
         }
+        
+        function color()
+        {
+            var str = "<li class='headLi' id='forColor'><div class='forComponent fLeft'>Gold Color</div></li>";
+            var mcolor = data['results']['metalColor']; 
+            var mclr =mcolor.length;
+             var sstr = "<select name='colr' id='clr'  >";
+           $.each(mcolor.results, function (j, vl) {
+       
+               
+                 sstr += "<option value='" + vl.dVal + "' id='"+vl.id+"'>" +vl.dVal+ "</option>";
+                
+                 
+                 
+             });
+             sstr += "</select>";
+
+
+            str += "<li id='clr" +2.0+ "'>";
+                str += "<div class='forComponent fLeft pl15'>" + sstr + "</div>";
+                  str += "<div class='forRate fLeft' ></div>";
+               //  str += "<div class='forWeight fLeft' id='colr'>" +22+ " Ct</div>";
+          //     str += "<div class='forPrice calc fLeft' id='diamondTotal_" + p + "'>&#8377;" + p + "</div>";
+                str += "</li>";
+
+
+ 
+            return str;
+            
+        }
 
         function goldPrice()
         {
 
             var str = "<li class='headLi' id='forGold'><div class='forComponent fLeft'>Gold</div></li>";
             var mpval = mpurity.length;
-
+         
             var carat = data['results']['basicDetails'].mtlWgt
             var crPrice;
 
@@ -859,13 +890,14 @@
             {
                 //mult
 
+              
+                var sstr = "<select name='goldval' id='goldPrice1'  onchange=\"setGoldPrice();\">";
 
-                var sstr = "<select id='goldPrice1'  onchange=\"setGoldPrice();\">";
-
-                $(mpurity).each(function (i, vg) {
-                    var txt = "Gold -" + vg;
-                    var val = getGoldRates(vg);
-                    sstr += "<option value='" + val + "'>" + txt + "</option>";
+                $(metalid).each(function (i, vg) {
+                   
+                    var txt = "Gold -" + vg.dVal;
+                    var val = getGoldRates(vg.dVal);
+                    sstr += "<option value='" + val + "' id='"+vg.id+"' >" + txt + "</option>";
                     crPrice = val;
                     total = parseFloat(crPrice) * parseFloat(carat);
                 });
@@ -894,27 +926,44 @@
 
         }
 
-        function gensizePrice()
+        function gensizePrice(c)
         {
+	    var catg=c;
             var sizes = data['results']['basicDetails'].sizes;
-            var str = "<li class='headLi' id='forSize'><div class='forComponent fLeft'>Size(s)</div></li>";
-             var typstr = "<select id='sizePs" + 2.0+ "'  onchange=\"setsizePrice(this);\">";
+            if(catg == 'Rings'){
+            var str = "<li class='headLi' id='forSize'><div class='forComponent fLeft'> Ring Size(s)</div></li>";
+        }else if(catg == 'Bangles'){
+             var str = "<li class='headLi' id='forSize'><div class='forComponent fLeft'> Bangle Size(s)</div></li>";
+        }
+            var wth=calweight(data['results']['basicDetails'].mtlWgt);
              
+            if(catg == 'Bangles')
+             var defsize=sizes['2'];
+            else if(catg == 'Rings')
+             defsize=sizes['9']; 
+         
+//    $('select option[value="14.0"]').attr("selected",true);
+    // $('select option:contains("'+14.0+'")').prop('selected',true);
+       
+         var typstr = "<select id='sizePs' name='sizval'  onchange=\"setsizePrice(this);\">";
+         
+	     typstr += "<option value='"+defsize+"'>" +defsize+ "</option>";
             $(sizes).each(function (t, p) {
                 
-                typstr += "<option value='" + p + "'>" + p + "</option>";
-                
+                 
+                typstr += "<option value='" + p + "' id='defsize'>"  + p + "</option>";
+              
                   });
+                   
                 typstr += "</select>";
-
+               
               str += "<li id='SizePrice_" + 2.0 + "'>";
                 str += "<div class='forComponent fLeft pl15'>" + typstr + "</div>";
-             //   str += "<div class='forRate fLeft' id='diamondRate_" + p + "'  data-weight='" + p + "'>" + p + "/ct</div>";
-             //   str += "<div class='forWeight fLeft'>" + p + " ct</div>";
-          //      str += "<div class='forPrice calc fLeft' id='diamondTotal_" + p + "'>&#8377;" + p + "</div>";
+                  str += "<div class='forRate fLeft' ></div>";
+                // str += "<div class='forWeight fLeft' id='sizeWeight'>" + wth + " Ct</div>";
+          //     str += "<div class='forPrice calc fLeft' id='diamondTotal_" + p + "'>&#8377;" + p + "</div>";
                 str += "</li>";
 
-          
             return str;
         }
 
@@ -972,50 +1021,50 @@
 
             var catname = data['results']['catAttr']['results'][1].name;
             var str = "";
-            if (basic.hasSol)
+            if (basic.hasSol == 1)
             {
                 str += solitairePrice();
             }
 
-            if (basic.hasDmd)
+            if (basic.hasDmd == 1)
             {
                 str += diamondPrice();
             }
 
-            if (basic.hasUnct)
+            if (basic.hasUnct == 1)
             {
                 str += uncutPrice();
             }
 
-            if (basic.hasGem)
+            if (basic.hasGem == 1)
             {
                 str += gemstonePrice();
             }
 
             if (catname == "Bangles" || catname == "Rings")
             {
-                str += gensizePrice();
+                str += gensizePrice(catname);
             }
             var gldstr = goldPrice();
-
-
+            
             var mkch = basic.mkngCrg;
+             var colrstr = color();
             var totalwt = basic.mtlWgt;
             var total = parseFloat(mkch) * parseFloat(totalwt);
             total = total.toFixed();
+   
             var mstr = "<li id='makingCharge'>";
             mstr += "<div class='forComponent fLeft pl15'>Making Charge</div>";
             mstr += "<div class='forRate fLeft'>" + mkch + "/grm</div>";
             mstr += "<div class='forWeight fLeft'></div>";
-            mstr += "<div class='forPrice calc fLeft'>&#8377;" + total + "</div>";
+            mstr += "<div class='forPrice calc fLeft' id='mkc'>&#8377; " + total + " </div>";
             mstr += "</li>";
 
 
             $('.pricingul').html('');
-            $('.pricingul').html(str + gldstr + mstr);
+            $('.pricingul').html(str + gldstr + mstr +colrstr);
 
             calcGrandTotal(1);
-
         }
 
 
@@ -1023,7 +1072,7 @@
         {
             var id = $(obj).attr('id');
             id = id.split('diamondPs');
-
+            
             var val = parseFloat($(obj).val());
             var tot = val * parseFloat($('#diamondRate_' + id[1]).attr('data-weight'));
             var total = tot.toFixed();
@@ -1038,40 +1087,69 @@
 
         function setGoldPrice()
         {
-
+            
             var val = parseFloat($('#goldPrice1').val());
+	    var catname = data['results']['catAttr']['results'][1].name;
+           
+	     if (catname == "Bangles" || catname == "Rings")
+            {
+               var wrate=$('#goldWeight1').text().split(' ');
+	       var tot = val * parseFloat(wrate); 
+               
+            } 
+	    else
             var tot = val * parseFloat($('#goldWeight1').attr('data-weight'));
             var total = tot.toFixed();
             var rt = "&#8377; " + val + "/ct";
             $('#goldRate1').html(rt);
             $('#totalgoldRate1').html("&#8377;" + total);
-
+            
             setTimeout(function () {
                 calcGrandTotal(2);
             }, 50);
 
         }
 
-
+ var aa=new Array();
+  $('.placeOrderBtn').bind('click', function () {
+      
+         var dmndval=$('select[name="dmndclarity"] option:selected').attr('id');
+         var siz=$('select[name="sizval"] option:selected').text();
+          var catname = data['results']['catAttr']['results'][1].name;
+         if(catname == 'Rings' || catname == 'Bangles')
+         var chgwt = parseFloat($('#goldWeight1').text());
+     else 
+           chgwt=data['results']['basicDetails'].mtlWgt; 
+      
+      var gldval=$('select[name="goldval"] option:selected').attr('id'); 
+      var clrval=$('select[name="colr"] option:selected').attr('id');  
+   
+var col_car_qty= ""+clrval+"|@|"+gldval+"|@|"+dmndval;
+        var price =parseInt($('#grandTotal').text().replace(/[^0-9.]/g, ""));
+     
+          window.open(DOMAIN+"backend/?action=placeorder&pid="+pid+"&col_car_qty="+col_car_qty+"&sz="+siz+"&chgwt="+chgwt+"&price="+price);
+        
+        
+   });
         function calcGrandTotal(type)
         {
             var total = 0;
             var vat = 0;
             $('li .calc').each(function () {
                 var val = $(this).text();
-                val = parseFloat(val.slice(1));
+              val = parseFloat(val.slice(1));
                 total += val;
 
             });
-
+       
+ 
             vat = (1 / 100) * total;
-
             var vat1 = vat.toFixed();
             if (!isNaN(vat)) {
                 var vat1 = vat.toFixed();
             }
 
-            var gtotal = total + vat;
+            var gtotal = total + vat; 
             var gtotal1 = gtotal;
             if (!isNaN(gtotal)) {
                 var gtotal1 = gtotal.toFixed();
@@ -1098,11 +1176,68 @@
             {
                 $('#tvat').html("&#8377;" + vat1);
                 $('#grandTotal').html("&#8377;" + gtotal1);
-
             }
 
-
+             
         }
+	
+       
+	function setsizePrice(ths)
+	{
+	  var wth=data['results']['basicDetails'].mtlWgt; 
+           var strmkc= data['results']['basicDetails'].mkngCrg; 
+	  var cursz=$('#sizePs').val();  
+	   var newwt=calweight(wth,cursz); 
+           var total = parseFloat(strmkc) * parseFloat(newwt);
+            total = total.toFixed();
+             
+	  $('#sizeWeight').html(newwt+" Ct");
+	   $('#goldWeight1').html(newwt+" Ct");
+           $('#mkc').html('&#8377;'+total); 
+	   setGoldPrice(); 
+         setTimeout(function () {
+                calcGrandTotal(2);
+            }, 50);
+            
+	}
+	
+	function calweight(storedWt,currentSize)
+	{
+	   var catname = data['results']['catAttr']['results'][1].name;
+	   var  bseSize, mtlWgDav, newWeight; 
+	   if (catname == 'Rings'){
+	     //   currentSize=$('#sizeWeight').text();
+	      bseSize = parseFloat(14);
+	    }  
+	    else if (catname == 'Bangles'){
+	      bseSize = parseFloat(2.4);
+	   //   currentSize=$('#sizeWeight').text();
+	    } 
+
+	    if (catname == 'Rings') {
+		mtlWgDav = 0.05;
+	    } else if (catname == 'Bangles') {
+		mtlWgDav = 7;
+	    }
+
+	    if (isNaN(currentSize))
+	    { 
+		if (catname == 'Rings')
+		    currentSize = parseFloat(14);
+
+		else if (catname == 'Bangles')
+		    currentSize = parseFloat(2.4);
+
+		else if (catname !== 'Rings' && catname !== 'Bangles') {
+		    currentSize = 0;
+		} 
+	    }
+	    var changeInWeight = (currentSize - bseSize) * mtlWgDav; 
+	    newWeight = parseFloat(storedWt) + parseFloat(changeInWeight);
+	    newWeight = newWeight.toFixed(2);
+	    return newWeight;
+	   // $('#newWt').html(newWeight + " gms");
+	}
 
     </script>
 

@@ -185,11 +185,6 @@ switch ($action) {
         $tab = 'customer';
         include BTEMPLATE.'customer.html';
         break;
-     case 'customerList':
-        $page = 'customerList';
-        $tab = 'customer';
-        include BTEMPLATE.'customer.html';
-        break;
     case 'placeorder':
         $page = 'placeorder';
         $tab = 'placeorder';

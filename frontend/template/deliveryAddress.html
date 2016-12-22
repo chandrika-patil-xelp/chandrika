@@ -52,7 +52,7 @@
                         var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id=" + cartid + "&userid=" + userid + "";
                         $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results) {
                                 var obj = JSON.parse(results);
-                                console.log(obj);
+                               
                                 $(obj.result).each(function (r, v) {
 				  
 				    if (v.ccatname !== null) {

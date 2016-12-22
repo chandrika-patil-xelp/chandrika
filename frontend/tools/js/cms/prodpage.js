@@ -222,9 +222,8 @@ $(document).ready(function () {
                     lstr += '<span class="semibold">' + vl.leadTime + ' Days or less</span>';
                     $('#leadtime').append(lstr);
 
-
                     var bstr = "";
-                    console.log(dt);
+                  
 //                    bstr+= '<div class="para fLeft">The <span class="semibold">'+vl.prdNm+'</span> is casted in <span class="semibold">'+vl.mtlWgt+'</span> grams of gold set with brilliant cut <span class="semibold">36</span> Round Diamonds (Approx. 0.33 Carat) and <span class="semibold">2</span> Carats of Ruby. </div>';
 
 //                    bstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span> Gold </span></span><span class="fRight" id="newWt"><span> ' + metalwght + '  <span class="fRight">gms</span></span></span></div>';
@@ -867,7 +866,7 @@ function getcatsize(s, m) {
                     });
 
                     $('#sizes').html(strd);
-
+             
                     if (psize !== undefined)
                         $('#size').html('SIZE ' + psize);
 
@@ -945,14 +944,13 @@ function defaultPrice(a, b, c, d)
 
     var ttllowp = parseFloat(goldPricelowp + dmdPricelow + mkChargeslowp + uncPrice + soliprc + gemsPrice);
     var ttlhighp = parseFloat(goldPricehighp + dmdPricehigh + mkChargeshighp + uncPrice + soliprc + gemsPrice);
-    var totalNewPricelow = Math.round(ttllowp + (ttllowp * vatRate));
-    var totalNewPricehigh = Math.round(ttlhighp + (ttlhighp * vatRate));
-    $('#pricel').html(totalNewPricelow);
-    $('#priceh').html(totalNewPricehigh);
+    var totalNewPricelow = Math.round(ttllowp + (ttllowp * vatRate)); 
+    var totalNewPricehigh = Math.round(ttlhighp + (ttlhighp * vatRate)); 
+  $('#pricel').html(totalNewPricelow); 
+  $('#priceh').html(totalNewPricehigh);
 }
 function calculatePrice()
 {
-
     var vatRate = (1 / 100);
     var selDiamond = parseFloat($('input[name="selectM"]:checked').attr('data-value'));
     var selPurity = parseFloat($('input[name="purity"]:checked').attr('data-price'));
@@ -972,7 +970,6 @@ function calculatePrice()
         bseSize = parseFloat(2.4);
         currentSize = $('.ringCircleB').text();
     }
-
 
     if (catname == 'Rings') {
         mtlWgDav = 0.05;
@@ -1003,18 +1000,18 @@ function calculatePrice()
 
 
     var changeInWeight = (currentSize - bseSize) * mtlWgDav;
-    newWeight = parseFloat(storedWt + (changeInWeight));
+    newWeight = parseFloat(storedWt + (changeInWeight)); 
     newWeight = newWeight.toFixed(3);
 
     $('#newWt').html(newWeight + " gms");
 
-    goldPrice = parseFloat(selPurity * newWeight);
-    var mkCharges = parseFloat(storedMkCharge * newWeight);
+    goldPrice = parseFloat(selPurity * newWeight); 
+    var mkCharges = parseFloat(storedMkCharge * newWeight); 
     var ttl = parseFloat(goldPrice + dmdPrice + mkCharges + uncPrice + soliprc + gemsPrice);
 
     var totalNewPrice = Math.round(ttl + (ttl * vatRate));
 
-    var abc = $('#price').html();
+    var abc = $('#price').html();  
     $('#price').text(totalNewPrice);
     $('#price').numerator({
         toValue: totalNewPrice,
