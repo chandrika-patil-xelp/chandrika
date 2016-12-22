@@ -937,17 +937,10 @@
         }
             var wth=calweight(data['results']['basicDetails'].mtlWgt);
              
-            if(catg == 'Bangles')
-             var defsize=sizes['2'];
-            else if(catg == 'Rings')
-             defsize=sizes['9']; 
          
-//    $('select option[value="14.0"]').attr("selected",true);
-    // $('select option:contains("'+14.0+'")').prop('selected',true);
-       
          var typstr = "<select id='sizePs' name='sizval'  onchange=\"setsizePrice(this);\">";
          
-	     typstr += "<option value='"+defsize+"'>" +defsize+ "</option>";
+	  
             $(sizes).each(function (t, p) {
                 
                  
@@ -966,7 +959,7 @@
 
             return str;
         }
-
+ 
         function GetRates() {
             var URL = APIDOMAIN + "index.php?action=getAllRates";
 
@@ -1041,10 +1034,21 @@
                 str += gemstonePrice();
             }
 
-            if (catname == "Bangles" || catname == "Rings")
+            if (catname == "Bangles")
             {
                 str += gensizePrice(catname);
+		setTimeout(function(){ 
+		  $('select option[value="2.4"]').attr("selected",true); 
+		},1000);
             }
+	    
+	    if(catname == "Rings")
+	    {
+	      str += gensizePrice(catname);
+	      setTimeout(function(){
+		  $('select option[value="14.0"]').attr("selected",true); 
+		},1000);
+	    }
             var gldstr = goldPrice();
             
             var mkch = basic.mkngCrg;
@@ -1085,7 +1089,7 @@
         }
 
 
-        function setGoldPrice()
+            function setGoldPrice()
         {
             
             var val = parseFloat($('#goldPrice1').val());
@@ -1109,7 +1113,6 @@
             }, 50);
 
         }
-
  var aa=new Array();
   $('.placeOrderBtn').bind('click', function () {
       
@@ -1180,9 +1183,9 @@ var col_car_qty= ""+clrval+"|@|"+gldval+"|@|"+dmndval;
 
              
         }
+ 
 	
-       
-	function setsizePrice(ths)
+ 	function setsizePrice(ths)
 	{
 	  var wth=data['results']['basicDetails'].mtlWgt; 
            var strmkc= data['results']['basicDetails'].mkngCrg; 
@@ -1238,7 +1241,6 @@ var col_car_qty= ""+clrval+"|@|"+gldval+"|@|"+dmndval;
 	    return newWeight;
 	   // $('#newWt').html(newWeight + " gms");
 	}
-
     </script>
 
     <!--<script type="text/javascript" src="<?php echo $jvs['addProduct']; ?>"></script>-->
