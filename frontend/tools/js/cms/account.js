@@ -248,8 +248,8 @@ function wishlist()
                     }
 
                     wishStr += '<div class="grid3 transition400 fadeInup" > ';
-                    wishStr += ' <div class="facet_front" id="'+j.product_id+'_'+j.col_car_qty+'_'+j.size+'_'+s+'">';
-                    wishStr += ' <div class="grid_item"> ';
+                    wishStr += ' <div class="facet_front wishClass" id="'+j.product_id+'_'+j.col_car_qty+'_'+j.size+'_'+s+'">';
+                    wishStr += ' <div class="grid_item "> ';
                     wishStr += ' <div class="grid_img">';
                     wishStr += ' <div style="background:url(\'' + xyz + '\')no-repeat ; background-size: contain ; background-position: center"></div></div>';
                     wishStr += ' <div class="hovTr"  onclick="prdopen(this)"> ';
@@ -330,7 +330,6 @@ function wishlist()
                         }
                     }
                     wishStr += ' ' + Nstr + '</div>';
-
                     wishStr += '   <div class="grid_price txtOver transition300" onclick="prdopen(this)"><span class="cartRup15b"><span>  ' + indianMoney(parseInt(j.price)) + '</div>';
                     wishStr += '  <div class="action_btns">';
                     wishStr += '  <div class="col50 fLeft  pad0">';
@@ -347,7 +346,7 @@ function wishlist()
                     wishStr += '   <div class="soc_elem soc_share transition300"></div>';
                     wishStr += '   </div>';
                     wishStr += '   </div>';
-                   wishStr += ' <div class="custBtn1" onclick="custmz(' + obj['prdId'] + ')">customise</div></div>  </div>';
+                    wishStr += ' <div class="custBtn1" onclick="custmz(' + obj['prdId'] + ')">customise</div></div>  </div>';
 
                 });
                 $('#wishid').html(wishStr);
