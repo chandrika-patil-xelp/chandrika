@@ -1898,7 +1898,7 @@ input[type=radio]:checked ~ .selector_label:after {
 .dlvrBtn:after{content:"";width: 50px;border-top: 1px solid #ccc;position: absolute;right: 45%;}
 
 .radTor{position:relative}
-.radTor label{position:absolute;left:0;top:0;width:100%;height:100%;z-index: 999;}
+.radTor label{position:absolute;left:0;top:0;width:100%;height:100%}
 
 
 input[type=radio]:checked ~ .btncnt {
@@ -2048,6 +2048,8 @@ input[type=radio]:checked ~ .matchIcn{
 .tOuter{width:100%;height:auto;padding:8px 0px;border-top: 1px solid #ccc;}
 .tOuter:before{content:"";position:absolute;border-left:1px solid #ccc;width:10px;top:-6px;height:10px;left:10%;border-bottom:1px solid #ccc;transform:rotate(135deg);background-color:#fff;}
 .wishBox{width:32%;height:40vh;border:1px solid #ccc;padding:10px;margin-right:9px;}
+.wishClass{}
+.wishClass .custBtn1{bottom: 34%;}
 .wishImg{height: 70%;background: url("")no-repeat;}
 .wCart{width: 50%;}
 .btwLine:before{content: "";position: absolute;border-right: 1px solid #ccc;height: 15px;top: 5px;right: 38%;}
