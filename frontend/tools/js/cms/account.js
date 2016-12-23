@@ -346,7 +346,7 @@ function wishlist()
                     wishStr += '   <div class="soc_elem soc_share transition300"></div>';
                     wishStr += '   </div>';
                     wishStr += '   </div>';
-                    wishStr += ' <div class="custBtn1" onclick="custmz(' + obj['prdId'] + ')">customise</div></div>  </div>';
+                    wishStr += ' <div class="custBtn1" onclick="custmz(' + j.product_id + ')">customise</div></div>  </div>';
 
                 });
                 $('#wishid').html(wishStr);
@@ -358,9 +358,14 @@ function wishlist()
 
 }
 
+function custmz(i){
+ var pid =i;
+   window.open(DOMAIN + 'index.php?action=product_page&pid=' +pid);
+}
 
 function prdopen(ths)
 {
+    
   var ids=$(ths).closest('.grid3').find('.facet_front').attr('id');
   ids=ids.split('_');
   var pid=ids[0];
