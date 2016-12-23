@@ -202,7 +202,7 @@ function getshippingdata()
   var URL = APIDOMAIN + "index.php?action=getshipdatabyshipid&shpid=" + shpid+"";
   $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results) {
       var obj = JSON.parse(results);
-      var data=obj['results'][0];
+      var data=obj['results'];
       $('#addr').html(data.address);
       $('#adcity').html(data.city+" "+data.pincode); 
     }
