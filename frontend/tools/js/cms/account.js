@@ -180,14 +180,14 @@ function displayorders()
                         orderstr += '</div>';
                         orderstr += '<div class="trackDivs">';
                         orderstr += '<div class="fLeft placedTxt"> Shipped </div>';
-                        if(v.order_status ==5 || v.order_status == 7)
-                        orderstr += '<div class="fLeft dateTxt shp dn" id="'+statusDate+'ship" >'+statusDate+'</div>';
+                        if(v.order_status ==5 || v.order_status == 7 ){
+                        orderstr += '<div class="fLeft dateTxt shp dn" id="'+statusDate+'ship" >'+statusDate+'</div>';}
                         orderstr += '<div class="fLeft proStep" id="3rdstp"></div>';
                         orderstr += '</div>';
                         orderstr += '<div class="trackDivs ">';
                         orderstr += '<div class="fLeft placedTxt" id="delv">Delivered</div>';
-                        if(v.order_status ==6)
-                        orderstr += '<div class="fLeft dateTxt del dn" id="'+statusDate+'delv">'+statusDate+'</div>';
+                        if(v.order_status ==6){
+                        orderstr += '<div class="fLeft dateTxt del dn" id="'+statusDate+'delv">'+statusDate+'</div>';}
                         orderstr += '<div class="fLeft proStep" id="4thstp"></div>';
                         orderstr += '</div>';
 
@@ -346,7 +346,8 @@ function wishlist()
                     wishStr += '  <div class="soc_elem soc_wish2 transition300"></div>';
                     wishStr += '   <div class="soc_elem soc_share transition300"></div>';
                     wishStr += '   </div>';
-                    wishStr += '   </div> </div>  </div>';
+                    wishStr += '   </div>';
+                   wishStr += ' <div class="custBtn1" onclick="custmz(' + obj['prdId'] + ')">customise</div></div>  </div>';
 
                 });
                 $('#wishid').html(wishStr);
@@ -834,6 +835,7 @@ function trackslide(ths)
              $('.shp').html();
         }
         if(trackid == 6){
+          
               $(ths).closest('.detailsOuter').find('.trackDivs').eq(0).find('.proStep').addClass('tickIcon');
                $(ths).closest('.detailsOuter').find('.trackDivs').eq(1).find('.proStep').addClass('tickIcon');
                 $(ths).closest('.detailsOuter').find('.trackDivs').eq(2).find('.proStep').addClass('tickIcon');
@@ -847,7 +849,7 @@ function trackslide(ths)
                $(ths).closest('.detailsOuter').find('.trackDivs').eq(1).find('.proStep').addClass('tickIcon');
                 $(ths).closest('.detailsOuter').find('.trackDivs').eq(2).find('.proStep').addClass('tickIcon');
                $(ths).closest('.detailsOuter').find('.trackDivs').eq(3).find('.proStep').addClass('notDeliver');
-                 $('.shp').removeClass('dn');
+                $('.shp').removeClass('dn');
              $('.shp').html();
         }
     var trkID = $(ths).attr('id');
