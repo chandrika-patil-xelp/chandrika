@@ -131,10 +131,10 @@ function displaycartdata()
                         cartstr += "<div class='cart_desc  fLeft' id='nwwt'>";
                         cartstr += "Purity : " + v.carat + " &nbsp|&nbsp ";
                         if (v.ccatname !== null)
-                            cartstr += "Size : " + v.size + " &nbsp|&nbsp ";
+                        cartstr += "Size : " + v.size + " &nbsp|&nbsp ";
                         cartstr += "Color : " + v.color + "";
                         cartstr += "</div>";
-                        cartstr += "<div class='cart_price cartRup15 fLeft'><span class='price_gen'> " + indianMoney(bprize) + "</span></div>";
+                        cartstr += "<div class='cart_price cartRup15b fLeft'><span class='price_gen'> " + indianMoney(bprize) + "</span></div>";
 			cartstr += "</div>";
 			cartstr += "</div>";
                         cartstr += "<div class='amt_selector' id='" + v.cart_id + "'>";

@@ -318,7 +318,7 @@ var goldPricehighp =0;
     // proStr += '<div class="soc_elem soc_comment transition300"></div>';
     //proStr += '<div class="soc_elem soc_share transition300"></div>';
     //proStr += '</div>';
-   proStr += '<div class="custBtn1" onclick="custmz(' + obj['prdId'] + ')">customise</div>';
+    proStr += '<div class="custBtn1" onclick="custmz(' + obj['prdId'] + ')">customise</div>';
     proStr += '</div>';
     proStr += '</div>';
     proStr += '<div class="facet_back" >';

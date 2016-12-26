@@ -82,11 +82,11 @@ function displaycartdetail()
 	chckoutstr += "</div>";
 	chckoutstr += "<div class='cart_price cartRup15 fLeft'><span class='price_gen'> " + indianMoney(bprize) + "</span></div>";
 	chckoutstr += "<div class='amt_selector' id='" + v.cart_id + "'>";
-	chckoutstr += "<a href='#' onclick='subqnty(this)'  id='sub_" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "'><div class='cart_btn fLeft sub_no'></div></a>";
-	chckoutstr += "<div class='item_amt fLeft '>" + v.pqty + "</div>";
-	chckoutstr += " <a href='#' id='add_" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "' onclick='addqnty(this)'><div class='cart_btn fLeft add_no' ></div></a>";
+	chckoutstr += "<a href='#' onclick='subqnty(this)'  id='sub_" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "'><div class='cart_btn fLeft sub_noW'></div></a>";
+	chckoutstr += "<div class='item_amt fLeft'>" + v.pqty + "</div>";
+	chckoutstr += " <a href='#' id='add_" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "' onclick='addqnty(this)'><div class='cart_btn fLeft add_noW' ></div></a>";
 	chckoutstr += "</div>";
-	chckoutstr += "<div class='cart_remove addrCommon' id='" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "_" + v.size + "' onclick='remove(this)' >";
+	chckoutstr += "<div class='cart_removew addrCommon' id='" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "_" + v.size + "' onclick='remove(this)' >";
 	chckoutstr += "</div>";
 	chckoutstr += "</div>";
 	$('#scroll').append(chckoutstr);
@@ -541,17 +541,19 @@ function displayaddrs(userid)
 	  addstr += ' <div class="col100 fLeft radTor poR">';
 
 	  addstr += ' <div class="w50r fLeft">';
-	  addstr += ' <div class="text fLeft" id="spnd_name">' + v.name + '</div>';
-	  addstr += ' <div class="text fLeft" id="spnd_email">' + v.email + '</div>';
-	  addstr += ' <div class="text fLeft" id="spnd_city_pin">' + v.city + "-" + v.pincode + '</div>';
-	  addstr += ' </div>   <div class="w50l fRight"> ';
-	  addstr += ' <div class="text fLeft"><span>' + v.address + '</span></div>';
+	  addstr += ' <div class="text fLeft txtOver" title='+  v.name +'  id="spnd_name">' + v.name + '</div>';
+	  addstr += ' <div class="text fLeft txtOver" title='+ v.email +'  id="spnd_email">' + v.email + '</div>';
+	  addstr += ' <div class="text fLeft txtOver" title='+ v.city +'  id="spnd_city_pin">' + v.city + "-" + v.pincode + '</div>';
+           
+	  addstr += ' </div>   <div class="w50l fRight">';
+	 addstr += ' <div class="text fLeft"><span>' + v.address + '</span></div>';
+         
 	  addstr += ' </div>';
 	  addstr += '  <input type="radio" name="selectM"  class="filled-in dn" id="' + v.shipping_id + '">';
 	  addstr += ' <label for="' + v.shipping_id + '" id="' + v.shipping_id + '" onclick="addrsel(this)"></label> ';
 	  addstr += ' <div class="matchIcn defaultIcn transition300" id="' + v.shipping_id + '">';
 	  addstr += ' </div>';
-          addstr += '<div class="tabDaddrss semibold">DELIVERY ADDRESS</div>';
+//          addstr += '<div class="tabDaddrss semibold">DELIVERY ADDRESS</div>';
 //	  addstr += ' <div class="btncnt fLeft bolder">';
 //	  addstr += '  <center> ';
 //	  addstr += ' <div class="dlvrBtn transition300">DELIVER TO THIS ADDRESS</div> ';
