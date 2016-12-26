@@ -19,7 +19,7 @@
     </div> 
 </div>  
 
-<div class="cart">
+<div class="cart" id="cartMain">
     <!-- <div class="cart_head ">
       YOUR CART
 
@@ -27,14 +27,20 @@
 
     <div class="cartHeader fLeft">
         <div class="wrapper_max">
-            <div class="transition300 mar0 fLeft closeCart" id="closeCart"></div>
+            <div class="transition300 mar0 fLeft closeCartW" id="closeCart"></div>
+
+            <div class="payOption fRight pad0">
+                <div class="col50 pay certiIc fRight mar0">certified jewellery</div>
+                <div class="col50 pay lifeIc fRight">Life time exchange</div>
+                <div class="col50 pay secureIc fRight">secure payements</div>
+            </div>
         </div>
     </div>
-    <div class="fLeft totalItem dn">
+    <div class="fLeft totalItem dn checBtnIndx">
         <div class="wrapper_max">
-            <div class="fLeft col100 cart_name light">Total Price</div>
-            <div class="fLeft cart_price font35"><span class="total_price_gen  cartRupee font35">126,000</span>
-                <div class="button actBtn col50 transition300 mTop17 fRight" id="check_out">CHECKOUT</div>
+            <div class="fLeft col100 cart_name light colorfff">Total Price</div>
+            <div class="fLeft cart_price font35"><span class="total_price_gen  colorfff cartRupee font35">126,000</span>
+                <div class="actBtn  fLeft bolder pad10  colorfff fRight" id="check_out">CHECKOUT</div>
             </div>
         </div>
         <!--<div class="closeCart"></div>-->
@@ -109,28 +115,44 @@
                  <div class="cart_remove">Remove</div>
              </div>-->
         </div>
-        <div class="twoBtn">
-            <div class="actBtn fRight colorfff margL20" onclick="closeCart()">continue shopping</div>
-            <div class="actBtn fRight colorfff" id="chkout">checkout</div>
-        </div>
+
         <div class="cart_gen2 fRight">
             <div class="cartBox fLeft">
-                <div class="cartTxt helpIc font12">Need help ?</div>
-                <div class="cartTxt font20">9988556622</div>
-                <div class="cartTxt">email the concierge</div>
-                <div class="cartTxt pad0">Monday - friday 10am to 10pm Ist</div>
-                <div class="cartTxt pad0">saturday 10am-6:30pm ist</div>
+                <div class="cartHd helpIc fLeft"></div>
+                <div class="cartTxt font12 fLeft">Need help ?</div>
+
+                <div class="infoTxt jzevaColor fLeft font18 pad0">9988556622</div>
+                <div class="infoTxt font11 fLeft">(Monday - friday 10AM to 10PM IST | saturday 10AM-6:30PM IST)</div>
+                <div class="fLeft cartTxt pBtm0 font11">OR email the concierge</div>
+                <div class="font11 infoTxt jzevaColor fLeft txtLower">care@jzeva.com</div>
+
             </div>
-            <div class="cartBox fLeft">
-                <div class="cartTxt paymentIc font12">payment methods</div>
-                <div class="cartTxt">choose a convenient option to pay for your jewellery</div>
-                <div class="optionPay"></div>
+            <div class="cartBox fLeft pad25 pBtm0">
+                <div class="cartHd paymentIc fLeft"></div>
+                <div class="cartTxt font12 fLeft">payment methods</div>
+                <div class="infoTxt font11 fLeft pad0">choose a convenient option to pay for your jewellery</div>
+                <div class="optionPay fLeft">
+                    <center>
+                                <img src="frontend/tools/img/icons/c1.jpg" alt="no-image">
+                                <img src="frontend/tools/img/icons/c2.jpg" alt="no-image">
+                                <img src="frontend/tools/img/icons/c3.jpg" alt="no-image">
+                                <img src="frontend/tools/img/icons/c5.jpg" alt="no-image">
+                                <img src="frontend/tools/img/icons/c6.jpg" alt="no-image">
+                    </center>
+                </div>
             </div>
-            <div class="cartBox fLeft">
-                <div class="cartTxt shipIc font12">free shipping and warranty</div>
-                <div class="cartTxt pTop30">free rapid and secure delivery</div>
-                <div class="cartTxt pad0">2 years warranty on all products</div>
+            <div class="cartBox fLeft pad25 pBtm0">
+                <div class="cartHd shipIc fLeft"></div>
+                <div class="cartTxt font12 fLeft">free shipping and warranty</div>
+                <div class="pad0  infoTxt font11 fLeft">free rapid and secure delivery</div>
+                <div class="infoTxt font11 jzevaColor fLeft">2 YEARS WARRANTY ON ALL PRODUCTS</div>
             </div>
+        </div>
+        <div class="twoBtn fLeft">
+            <center>
+                <div class="actBtn  colorfff " style="display: inline-block" onclick="closeCart()">continue shopping</div>
+                <div class="actBtn  bolder pad10  colorfff  margL20" style="display: inline-block" id="chkout">checkout</div>
+            </center>
         </div>
     </div>
     <!-- <div class="cart_foot ">Checkout</div> -->
@@ -178,17 +200,17 @@
                      $(e).html(j);
                      });*/
                     $('#check_out').click(function () {
-		      var cururl=window.location.search;
-		      var date = new Date();
-		      var minutes = 20;
-		      date.setTime(date.getTime() + (minutes * 60 * 1000));
-		      $.cookie("jzeva_currurl", null);
-		      $.cookie("jzeva_currurl",cururl , { expires: date }); 
-                           load_checkout();
+                        var cururl = window.location.search;
+                        var date = new Date();
+                        var minutes = 20;
+                        date.setTime(date.getTime() + (minutes * 60 * 1000));
+                        $.cookie("jzeva_currurl", null);
+                        $.cookie("jzeva_currurl", cururl, {expires: date});
+                        load_checkout();
                     });
-		    $('#chkout').click(function(){
-		      load_checkout();
-		    });
+                    $('#chkout').click(function () {
+                        load_checkout();
+                    });
                     function load_checkout() {
                         window.location.assign(DOMAIN + 'index.php?action=checkOutNew');
                         $('body').addClass('over_hide');
@@ -217,9 +239,10 @@
 //
 //
 //    });
- 
+
                     $(document).ready(function () {
 
                         $('#niceCart').niceScroll({cursorcolor: "#000000", touchbehavior: true, cursorwidth: "4px", autohidemode: false, cursorborder: "0px solid #fff", cursoropacitymin: "0.3", cursoropacitymax: "0.3", railpadding: {top: 2, right: 2, left: 2, bottom: 2}});
+                    $('#cartMain').niceScroll({cursorcolor: "#000000", touchbehavior: true, cursorwidth: "4px", autohidemode: false, cursorborder: "0px solid #fff", cursoropacitymin: "0.3", cursoropacitymax: "0.3", railpadding: {top: 2, right: 2, left: 2, bottom: 2}});
                     });
- </script>
+</script>

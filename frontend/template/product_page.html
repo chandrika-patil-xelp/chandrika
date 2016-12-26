@@ -45,6 +45,7 @@
                     </div>
                     <div class="rota_wrap transition300">
                         <div class="rota_buffer">
+                            <div class="div360"></div>
                             <div class="userInfo dwnArrow fLeft"></div>
                             <div class="rota" id="img-view">
                             </div>
@@ -342,6 +343,7 @@
         var s = 0;
         function function1() {
             i = (i + 1) % 30;
+            console.log(i);
             $('.imgHolder').addClass('dn');
             $('.imgHolder').eq(i).removeClass('dn');
         }
@@ -380,14 +382,14 @@
             var k = (left - offK + offL) / o;
             k = Math.floor(k);
             k = k % imgNo;
-
+         
             $('.imgHolder').addClass('dn');
             $('.imgHolder').eq(k).removeClass('dn');
             s = k;
         });
         $('.rota').mouseenter(function (e) {
             offK = e.pageX - offset.left;
-        });
+              });
         // $('.rota').mouseenter(function(e){
         //
         //
@@ -405,6 +407,7 @@
             //runner();
 
             wid = $('.rota').width();
+            console.log(wid);
 
 
         });
