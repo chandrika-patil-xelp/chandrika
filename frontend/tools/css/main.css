@@ -2472,7 +2472,10 @@ input[type=radio]:checked ~ .matchIcn{
 .checkoutBefore{}
 .checkoutBefore .dAdrsshdr{position:absolute;top:10px;left:0px;}
 .checkoutBefore .totalItem{background-color: #15181b!important;}
+.checkoutBefore .cart_item{color:#fff}
+.checkoutBefore .cart_name{color:#fff}
 .checkoutafter .totalItem{background-color: #15181b!important;}
+
 .chekparent{}
 
 
