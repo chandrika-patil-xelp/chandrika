@@ -110,6 +110,48 @@ $('#add_to_cart').on('click', function () {
 
 });
 
+$('#buynow').on('click',function(){
+    
+    getarraydata(); 
+   var userid, buydata = {};
+    buydata['pid'] = arrdata[0];
+    buydata['price'] = arrdata[1];
+    buydata['qty'] = 1;
+    var chr = "" + arrdata[2] + "|@|" + arrdata[4] + "|@|" + arrdata[3];
+
+    buydata['col_car_qty'] = chr;
+    buydata['RBsize'] = arrdata[5];
+    buydata['buyid'] = '';
+    buydata['cartid'] = '';
+    var userid = common.readFromStorage('jzeva_uid'); 
+    if (userid == "" || userid == null) {   
+          buydata['userid'] = ''; 
+	
+    } else {
+        buydata['userid'] = userid;   
+    }
+     
+    var URL = APIDOMAIN + "index.php?action=addTocart";
+
+    var data = buydata;
+    var dt = JSON.stringify(data); 
+    $.ajax({
+        type: "post",
+        url: URL,
+        data: {dt: dt}, 
+        success: function (results) {
+	  var data=JSON.parse(results);
+	  common.addToStorage('jzeva_buyid', data.cartid);
+
+              window.location.assign(DOMAIN + 'index.php?action=checkOutNew&actn=buy');
+               
+        }
+    });
+    
+
+});
+
+
 $(document).ready(function () {
     showwishbtn();
     pid = GetURLParameter('pid');

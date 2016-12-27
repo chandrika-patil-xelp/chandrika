@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php include 'jhead.html' ?>
 <script>  var shpid = "<?php echo $_GET['shpid'];  ?>";</script>
+<script>  var actn = "<?php echo $_GET['actn'];  ?>";</script>
 <body class="greyBg"  >
     <?php include 'Cart.html' ?>
 
@@ -85,15 +86,15 @@
                                                                                     </div>-->
                                             <div class="thankTxt fLeft">
                                                 <div class="fLeft col100 regular invoice">Name</div>
-                                                <div class="fLeft col100 semibold invoice lsNone">Chandrika</div>
+                                                <div class="fLeft col100 semibold invoice lsNone" id="cust_name"></div>
                                             </div>
                                             <div class="thankTxt fLeft pad0">
                                                 <div class="fLeft col100 regular invoice ">Mobile</div>
-                                                <div class="fLeft col100 semibold invoice lsNone">8123128747</div>
+                                                <div class="fLeft col100 semibold invoice lsNone" id="cust_mobl"></div>
                                             </div>
                                             <div class="thankTxt fLeft">
                                                 <div class="fLeft col100 regular invoice">Address</div>
-                                                <div class="fLeft col100 semibold invoice txt_Lower lsNone" style="padding: 0px 85px;">#4 shashank residence 17th B main 6th block kormangala landmark kormangala club</div>
+                                                <div class="fLeft col100 semibold invoice txt_Lower lsNone" style="padding: 0px 85px;" id="addr"></div>
                                             </div>
                                         </div>
                                         <div class="col100 fLeft">
@@ -117,7 +118,7 @@
                             <!--                            <div class="fLeft totalItem txt_center">
                                                             <div class="fLeft col100 cart_name light">Your Orders</div>
                                                         </div>-->
-                            <div class="col100 fLeft " id="noprdinchkot">
+                            <div class="col100 fLeft dn" id="noprdinchkot">
                                 <center>
                                     <div class="cartEmptyImg"></div>
                                     <div class="noOrdTxt">

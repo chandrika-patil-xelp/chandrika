@@ -1,5 +1,5 @@
  $(document).ready(function () {
- 
+   common.addToStorage('jzeva_shpid',shpid);
    displaycartdetail();
    getshippingdata();
  });
@@ -11,7 +11,14 @@
   var cartid = common.readFromStorage('jzeva_cartid');
   $('#scroll').html("");
   totalprice = 0;
-  var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id=" + cartid + "&userid=" + userid + "";
+  $('.total_price_gen').html("");
+  if(actn == 'buy'){
+  var buyid=common.readFromStorage('jzeva_buyid');
+      cartid=buyid;
+      var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id=" + cartid ;
+  }
+  else  
+      var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id=" + cartid + "&userid=" + userid + "";
   $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results) {
       var obj = JSON.parse(results);
       gblcheckodata = obj.result;
@@ -203,6 +210,8 @@ function getshippingdata()
   $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results) {
       var obj = JSON.parse(results);
       var data=obj['results'];
+      $('#cust_name').html(data.name);
+      $('#cust_mobl').html(data.mobile);
       $('#addr').html(data.address);
       $('#adcity').html(data.city+" "+data.pincode); 
     }
@@ -210,8 +219,14 @@ function getshippingdata()
 }
 
 $('#submt').click(function(){
- 
- var cartid = common.readFromStorage('jzeva_cartid');
+  
+  if(actn == 'buy'){
+  var buyid=common.readFromStorage('jzeva_buyid');
+      var cartid=buyid; 
+  } 
+  else{
+      var cartid = common.readFromStorage('jzeva_cartid');
+  }
  window.location.href=DOMAIN+"transaction/payment.php?ordid="+cartid+"&shipid="+shpid;
 });
  

@@ -1,9 +1,9 @@
 
 var gblcheckodata, bakflag = 0, totalprice = 0, shipngdata = {}, validationFlag = 1, logotpflag = 0, contnu_enble = 0;
-var inp_data, shipng_id = 0, chkouttentrflag = 0, shipngzpcodflg = 1, shpngusrflg, gndrflg;
+var inp_data, shipng_id = 0, chkouttentrflag = 0, shipngzpcodflg = 1, shpngusrflg, gndrflg, actn;
 
 $(document).ready(function () {
- 
+  actn= GetURLParameter('actn');
   var userid = common.readFromStorage('jzeva_uid');
   if (userid !== null) {
     openfst();
@@ -11,8 +11,8 @@ $(document).ready(function () {
   } else {
     closeThrd();
   }
-
-  displaycartdetail();
+   
+   displaycartdetail();
 
   $(document).keypress(function (e) {
     if (e.which == 13) {
@@ -31,13 +31,36 @@ $(document).ready(function () {
   });
 });
 
+function GetURLParameter(Param)
+{
+
+    var PageURL = window.location.search;
+    var URLVariables = PageURL.split('&');
+    for (var i = 0; i < URLVariables.length; i++)
+    {
+        var ParameterName = URLVariables[i].split('=');
+        if (ParameterName[0] == Param) {
+            return ParameterName[1];
+        }
+
+    }
+}
+
 function displaycartdetail()
 {
   var userid = common.readFromStorage('jzeva_uid');
   var cartid = common.readFromStorage('jzeva_cartid');
-  $('#scroll').html("");
+  $('#scroll').html(""); 
   totalprice = 0;
-  var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id=" + cartid + "&userid=" + userid + "";
+  $('.total_price_gen').html("");
+  if(actn == 'buy'){
+  var buyid=common.readFromStorage('jzeva_buyid');
+      cartid=buyid;
+      var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id=" + cartid ;
+  }
+  else 
+      var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id=" + cartid + "&userid=" + userid + "";
+    
   $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results) {
       var obj = JSON.parse(results);
       gblcheckodata = obj.result;
@@ -588,7 +611,12 @@ $('#shpdpincode').on('keyup',function () {
 
 function  storeorderdata()
 {
-//   window.location.href = DOMAIN + "index.php?action=orderPlacing&shpid="+shipng_id;
+     if(actn == 'buy'){
+  var buyid=common.readFromStorage('jzeva_buyid');
+      cartid=buyid;
+      window.location.href = DOMAIN + "index.php?action=checkoutBefore&shpid="+shipng_id+"&actn=buy";
+  }
+  else  
       window.location.href = DOMAIN + "index.php?action=checkoutBefore&shpid="+shipng_id;
 }
 
