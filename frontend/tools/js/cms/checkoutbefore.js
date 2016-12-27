@@ -11,7 +11,7 @@
   var cartid = common.readFromStorage('jzeva_cartid');
   $('#scroll').html("");
   totalprice = 0;
-  $('.total_price_gen').html("");
+  $('.total_prc').html("");
   if(actn == 'buy'){
   var buyid=common.readFromStorage('jzeva_buyid');
       cartid=buyid;
@@ -75,7 +75,7 @@
 	$('#scroll').append(chckoutstr);
 
       });
-       $('.total_price_gen').html(indianMoney(totalprice));
+       $('.total_prc').html(indianMoney(totalprice));
      }
     }
   });
@@ -160,7 +160,7 @@ function addqnty(ths)
       dat['price'] = totprice;
       dat['RBsize'] = v.size;
       storecartdata(dat);
-      $('.total_price_gen').html(indianMoney(totalprice));
+      $('.total_prc').html(indianMoney(totalprice));
     }
   });
 }
@@ -198,7 +198,7 @@ function subqnty(evnt)
 	dat['price'] = totprice;
 	dat['RBsize'] = v.size;
 	storecartdata(dat);
-	$('.total_price_gen').html(indianMoney(totalprice));
+	$('.total_prc').html(indianMoney(totalprice));
       }
     });
   }
