@@ -10,17 +10,7 @@ else
 		$httpReq = 'http://';
 }
 
-if(stristr($_SERVER['HTTP_HOST'], 'jzeva.com'))
-{
-	define('DOMAIN',$httpReq.$_SERVER['HTTP_HOST'].'/');
-	define('APIDOMAIN',$httpReq.$_SERVER['HTTP_HOST'].'/apis/');
-	define('BACKDOMAIN',$httpReq.$_SERVER['HTTP_HOST'].'/backend/');
-	define('WEBROOT',$_SERVER['DOCUMENT_ROOT'].'/');
-	define('BACKWEBROOT',$_SERVER['DOCUMENT_ROOT'].'/backend/');
-	define('IMGDOMAIN',$httpReq.$_SERVER['HTTP_HOST'].'/backend/image-upload/');
-	$db['jzeva'] = array('localhost','root','developer@jzeva','db_jzeva');
-}
-else if(stristr($_SERVER['HTTP_HOST'],'jzeva.com') && stristr(REQURI, 'beta'))
+if(stristr($_SERVER['HTTP_HOST'],'jzeva.com') && stristr(REQURI, 'beta'))
 {
 	define('WEBROOT', $_SERVER['DOCUMENT_ROOT'].'/beta/');
 	define('DOMAIN', $httpReq.$_SERVER['HTTP_HOST'].'/beta/');
@@ -29,6 +19,17 @@ else if(stristr($_SERVER['HTTP_HOST'],'jzeva.com') && stristr(REQURI, 'beta'))
 	define('BACKDOMAIN',$httpReq.$_SERVER['HTTP_HOST'].'/beta/backend/');
 	define('BACKWEBROOT',$_SERVER['DOCUMENT_ROOT'].'/beta/backend/');
 	$db['jzeva'] = array('localhost','root','developer@jzeva','db_jzeva_beta');
+}
+
+else if(stristr($_SERVER['HTTP_HOST'], 'jzeva.com'))
+{
+	define('DOMAIN',$httpReq.$_SERVER['HTTP_HOST'].'/');
+	define('APIDOMAIN',$httpReq.$_SERVER['HTTP_HOST'].'/apis/');
+	define('BACKDOMAIN',$httpReq.$_SERVER['HTTP_HOST'].'/backend/');
+	define('WEBROOT',$_SERVER['DOCUMENT_ROOT'].'/');
+	define('BACKWEBROOT',$_SERVER['DOCUMENT_ROOT'].'/backend/');
+	define('IMGDOMAIN',$httpReq.$_SERVER['HTTP_HOST'].'/backend/image-upload/');
+	$db['jzeva'] = array('localhost','root','developer@jzeva','db_jzeva');
 }
 else
 {
