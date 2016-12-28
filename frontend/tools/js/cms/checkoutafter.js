@@ -8,11 +8,15 @@ $(document).ready(function () {
    var data = [], ordobj = {}, totprz=0, wht;
    var userid = common.readFromStorage('jzeva_uid');
    var shipng_id=common.readFromStorage('jzeva_shpid');
-   var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id=" + orderid+"";
+   var cartid = common.readFromStorage('jzeva_cartid');
+   var buyid=common.readFromStorage('jzeva_buyid');
+   if(cartid == orderid || buyid == orderid)
+   {
+      var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id=" + orderid+"";
       $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results) {
-	      var obj = JSON.parse(results);
-
-	      $(obj.result).each(function (r, v) {
+	    var obj = JSON.parse(results);
+	      
+		$(obj.result).each(function (r, v) {
 
 		  if (v.ccatname !== null) {
 		      wht = getweight(v.size, v.ccatname, v.metal_weight);
@@ -49,13 +53,21 @@ $(document).ready(function () {
 		ordobj['data'] = data;
 
 		setordrdata(ordobj); 
+	   
 	  }
       });  
+   }
+   else
+   {
+     getorderdata();
+   }
   }
 
 
   function setordrdata(ordobj)
   {
+      var userid = common.readFromStorage('jzeva_uid');
+      var buyid=common.readFromStorage('jzeva_buyid');
       var URL = APIDOMAIN + "index.php?action=addOrdersdetail";
       var dt = JSON.stringify(ordobj);
       $.ajax({
@@ -63,13 +75,21 @@ $(document).ready(function () {
 	  url: URL,
 	  data: {dt: dt},
 	  success: function (data) {
-
+	    
 	      common.msg(1, 'Your Order Placed successfully');
-	      var URL = APIDOMAIN + "index.php?action=removCrtItemaftrcheckot&cartid=" + orderid;
+	      if(buyid == orderid)
+	      {
+		var URL = APIDOMAIN + "index.php?action=removCrtItemaftrcheckot&cartid=" + buyid +"&userid=NULL";
+		 common.removeFromStorage('jzeva_buyid');
+	      }
+	      else
+	      {
+		var URL = APIDOMAIN + "index.php?action=removCrtItemaftrcheckot&cartid=" + orderid +"&userid="+userid;
+		common.removeFromStorage('jzeva_cartid');
+	      } 
 	      $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results) {
-		       common.removeFromStorage('jzeva_cartid');
-		       common.removeFromStorage('jzeva_shpid');
 		       common.removeFromStorage('jzeva_buyid');
+		       common.removeFromStorage('jzeva_shpid'); 
 		       getorderdata();
 		  }
 	      });
@@ -195,7 +215,9 @@ $(document).ready(function () {
             var dt = obj['result'];
 
             $(dt).each(function (i, v) {
-
+		setTimeout(function(){
+		  $('.totalItem').removeClass('dn');
+		},1000);
                 var uname = v.uname;
                 uname = uname.toLowerCase();  
 		if(v.gender == 1)

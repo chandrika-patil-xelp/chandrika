@@ -689,7 +689,10 @@
                             tbl_cart_master 
                           SET
                             active_flag = 2 
-                          WHERE cart_id = '".$params['cartid']."'"; 
+                          WHERE cart_id = ".$params['cartid']."
+			    OR
+				userid=".$params['userid']."";
+			    
 	     
             $res = $this->query($sql);
             

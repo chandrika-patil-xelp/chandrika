@@ -17,7 +17,7 @@ include '../config.php';
     $shpres=$comm->executeCurl($billngurl);
     
     $biltel=$shpres['results']['mobile'];
-    $bilmail=$shpres['results']['email'];
+    $bilmail=$shpres['results']['email']; 
 ?>
 <html>
   <body>
@@ -27,12 +27,12 @@ include '../config.php';
       <input type="hidden" name="amount" value="1" />
       <input type="hidden" name="currency" value="INR" />
       <input type="hidden" name="redirect_url" value="<?php echo DOMAIN ?>transaction/ccavResponseHandler.php" />
-      <input type="hidden" name="cancel_url" value="<?php echo DOMAIN ?>index.php?action=landing_page"/>
+      <input type="hidden" name="cancel_url" value="<?php echo DOMAIN ?>transaction/landngpage.php?ordid=<?php echo $ordid ?>&shipid=<?php echo $shipid ?>"/>
       <input type="hidden" name="language" value="EN"/>
       <input type="hidden" name="billing_country" value="India"/>
       <input type="hidden" name="billing_tel" value="<?php echo $biltel ?>"/>
       <input type="hidden" name="billing_email" value="<?php echo $bilmail ?>"/>
-       
+      
     </form>
     <script language='javascript'>document.redirect.submit();</script>
   </body> 

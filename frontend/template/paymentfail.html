@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+ <?php include 'jhead.html' ?>
+<html>
+  <head>
+    <title>Payment Fail</title>
+     
+  </head>
+  <body>
+    <br><br><br><br><br><br><br>
+  <center>
+    <div>Your Payment has Cancel</div>
+    <br><br>
+    <div id="retrybtn"><b>Retry</b></div>
+  </center> 
+  <script>
+    var ordid,shipid;
+    
+    $(document).ready(function(){
+        ordid=GetURLParameter('ordid');
+	shipid=GetURLParameter('shipid');
+    
+    });
+    
+    $('#retrybtn').click(function(){
+       
+          window.location.href=DOMAIN+"transaction/payment.php?ordid="+ordid+"&shipid="+shipid;
+    });
+    
+    function GetURLParameter(Param)
+    { 
+	var PageURL = window.location.search;
+	var URLVariables = PageURL.split('&');
+	for (var i = 0; i < URLVariables.length; i++)
+	{
+	    var ParameterName = URLVariables[i].split('=');
+	    if (ParameterName[0] == Param) {
+		return ParameterName[1];
+	    } 
+	}
+    }
+ 
+    
+  </script>
+  </body>
+</html>

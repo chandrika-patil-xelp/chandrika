@@ -273,5 +273,10 @@ switch ($action) {
         $page = 'checkoutBefore';
         include TEMPLATE . 'checkoutBefore.html';
         break;
+      
+       case 'paymentfail':
+        $page = 'paymentfail';
+        include TEMPLATE . 'paymentfail.html';
+        break;
 }
 ?>

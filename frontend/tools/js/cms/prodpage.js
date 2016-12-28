@@ -122,15 +122,8 @@ $('#buynow').on('click',function(){
     buydata['col_car_qty'] = chr;
     buydata['RBsize'] = arrdata[5];
     buydata['buyid'] = '';
-    buydata['cartid'] = '';
-    var userid = common.readFromStorage('jzeva_uid'); 
-    if (userid == "" || userid == null) {   
-          buydata['userid'] = ''; 
-	
-    } else {
-        buydata['userid'] = userid;   
-    }
-     
+    buydata['cartid'] = ''; 
+    buydata['userid'] = '';  
     var URL = APIDOMAIN + "index.php?action=addTocart";
 
     var data = buydata;
@@ -1205,3 +1198,10 @@ function calweight()
     $('#newWt').html(newWeight + " gms");
 }
 
+$('.dwnArrow').click(function(){
+   var hight=$(document).height();
+   hight=hight/3;
+   $('html, body, dwnArrow').animate({ scrollTop: hight }, 800); 
+});
+
+ 

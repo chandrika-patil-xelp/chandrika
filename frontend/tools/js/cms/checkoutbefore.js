@@ -226,8 +226,13 @@ $('#submt').click(function(){
   } 
   else{
       var cartid = common.readFromStorage('jzeva_cartid');
+      var buyid=common.readFromStorage('jzeva_buyid');
+      if(buyid !== null)
+	removebuyitem(buyid);
   }
- window.location.href=DOMAIN+"transaction/payment.php?ordid="+cartid+"&shipid="+shpid;
+  setTimeout(function(){
+       window.location.href=DOMAIN+"transaction/payment.php?ordid="+cartid+"&shipid="+shpid;
+  },400);	
 });
  
 	    
@@ -340,5 +345,14 @@ $('#submt').click(function(){
       var lasturl=$.cookie('jzeva_currurl'); 
       window.location.href=DOMAIN +"index.php"+lasturl; 
   });
+  
+  function removebuyitem(buyid)
+  {
+    var URL = APIDOMAIN + "index.php?action=removCrtItemaftrcheckot&cartid=" + buyid +"&userid=NULL";
+     $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results) {
+	// console.log(results);
+     }
+     });
+  }
   
  
