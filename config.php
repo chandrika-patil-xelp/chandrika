@@ -1,43 +1,59 @@
 <?php
 error_reporting(0);
-
-if(stristr($_SERVER['HTTP_HOST'], 'jzeva.com'))
+define('REQURI', $_SERVER['REQUEST_URI']);
+if($_SERVER['HTTPS'])
 {
-	define('DOMAIN','http://'.$_SERVER['HTTP_HOST'].'/');
-	define('APIDOMAIN','http://'.$_SERVER['HTTP_HOST'].'/apis/');
-	define('BACKDOMAIN','http://'.$_SERVER['HTTP_HOST'].'/backend/');
-	define('WEBROOT',$_SERVER['DOCUMENT_ROOT'].'/');
-	define('BACKWEBROOT',$_SERVER['DOCUMENT_ROOT'].'/backend/');
-	define('IMGDOMAIN','http://'.$_SERVER['HTTP_HOST'].'/backend/image-upload/');
-
-	$db['jzeva'] = array('localhost','root','developer@jzeva','db_jzeva');
+		$httpReq = 'https://';
 }
 else
 {
-	define('DOMAIN','http://'.$_SERVER['HTTP_HOST'].'/jzeva/');
-	define('APIDOMAIN','http://'.$_SERVER['HTTP_HOST'].'/jzeva/apis/');
-	define('BACKDOMAIN','http://'.$_SERVER['HTTP_HOST'].'/jzeva/backend/');
+		$httpReq = 'http://';
+}
+
+if(stristr($_SERVER['HTTP_HOST'], 'jzeva.com'))
+{
+	define('DOMAIN',$httpReq.$_SERVER['HTTP_HOST'].'/');
+	define('APIDOMAIN',$httpReq.$_SERVER['HTTP_HOST'].'/apis/');
+	define('BACKDOMAIN',$httpReq.$_SERVER['HTTP_HOST'].'/backend/');
+	define('WEBROOT',$_SERVER['DOCUMENT_ROOT'].'/');
+	define('BACKWEBROOT',$_SERVER['DOCUMENT_ROOT'].'/backend/');
+	define('IMGDOMAIN',$httpReq.$_SERVER['HTTP_HOST'].'/backend/image-upload/');
+	$db['jzeva'] = array('localhost','root','developer@jzeva','db_jzeva');
+}
+else if(stristr($_SERVER['HTTP_HOST'],'jzeva.com') && stristr(REQURI, 'beta'))
+{
+	define('WEBROOT', $_SERVER['DOCUMENT_ROOT'].'/beta/');
+	define('DOMAIN', $httpReq.$_SERVER['HTTP_HOST'].'/beta/');
+	define('APIDOMAIN',$httpReq.$_SERVER['HTTP_HOST'].'/beta/apis/');
+	define('IMGDOMAIN',$httpReq.$_SERVER['HTTP_HOST'].'/beta/backend/image-upload/');
+	define('BACKDOMAIN',$httpReq.$_SERVER['HTTP_HOST'].'/beta/backend/');
+	define('BACKWEBROOT',$_SERVER['DOCUMENT_ROOT'].'/beta/backend/');
+	$db['jzeva'] = array('localhost','root','developer@jzeva','db_jzeva_beta');
+}
+else
+{
+	define('DOMAIN',$httpReq.$_SERVER['HTTP_HOST'].'/jzeva/');
+	define('APIDOMAIN',$httpReq.$_SERVER['HTTP_HOST'].'/jzeva/apis/');
+	define('BACKDOMAIN',$httpReq.$_SERVER['HTTP_HOST'].'/jzeva/backend/');
 	define('WEBROOT',$_SERVER['DOCUMENT_ROOT'].'/jzeva/');
 	define('BACKWEBROOT',$_SERVER['DOCUMENT_ROOT'].'/jzeva/backend/');
-	define('IMGDOMAIN','http://'.$_SERVER['HTTP_HOST'].'/jzeva/backend/image-upload/');
-
+	define('IMGDOMAIN',$httpReq.$_SERVER['HTTP_HOST'].'/jzeva/backend/image-upload/');
 	$db['jzeva'] = array('localhost','root','','db_jzeva');
-
 }
- 
+
 //define('SMSAPI','http://alerts.sinfini.com/api/web2sms.php?workingkey=A31cf85c3cc3b65100bf9bd7fbe30cd90&to=+91_MOBILE&sender=SIDEMO&message=_MESSAGE');
  define('SMSAPI','http://alerts.sinfini.com/api/web2sms.php?workingkey=A31cf85c3cc3b65100bf9bd7fbe30cd90&to=+91_MOBILE&sender=SIDEMO&message=_MESSAGE');
 //define('SMSAPI','http://alerts.sinfini.com/api/web2sms.php?workingkey=Ae24f0c241588043b00e0449d6e2a5664&to=+91_MOBILE&sender=jzeva&message=_MESSAGE');
- 
+
 define('BTEMPLATE',BACKWEBROOT.'template/');
 define('BINCLUDES',BACKWEBROOT.'include/');
 define('BAPICLUDE',BACKWEBROOT.'apis/include/');
 
 define('TEMPLATE',WEBROOT.'frontend/template/');
 define('INCLUDES',WEBROOT.'include/');
-define('APICLUDE',WEBROOT.'apis/include/'); 
+define('APICLUDE',WEBROOT.'apis/include/');
 
-define('VERSION',1.10);
+define('VERSION',1.20);
 
 
 
@@ -130,19 +146,19 @@ $jvs = array();
             $jvs['prodGrid']                 = DOMAIN.'frontend/tools/js/cms/prodgrid.js?v='.VERSION;
             $jvs['protry']                 = DOMAIN.'frontend/tools/js/cms/protry.js?v='.VERSION;
             $jvs['login']                 = DOMAIN.'frontend/tools/js/cms/login.js?v='.VERSION;
-            $jvs['cart']                 = DOMAIN.'frontend/tools/js/cms/cart.js?v='.VERSION; 
-            $jvs['filter']                 = DOMAIN.'frontend/tools/js/cms/filter.js?v='.VERSION;  
+            $jvs['cart']                 = DOMAIN.'frontend/tools/js/cms/cart.js?v='.VERSION;
+            $jvs['filter']                 = DOMAIN.'frontend/tools/js/cms/filter.js?v='.VERSION;
             $jvs['checkout']                 = DOMAIN.'frontend/tools/js/cms/checkout.js?v='.VERSION;
              $jvs['checkoutafter']          = DOMAIN.'frontend/tools/js/cms/checkoutafter.js?v='.VERSION;
             $jvs['filter']                 = DOMAIN.'frontend/tools/js/cms/filter.js?v='.VERSION;
-           
+
             $jvs['otp']                 = DOMAIN.'frontend/tools/js/cms/otp.js?v='.VERSION;
             $jvs['resetpass']                 = DOMAIN.'frontend/tools/js/cms/resetpass.js?v='.VERSION;
 	    $jvs['header']		      = DOMAIN.'frontend/tools/js/cms/header.js?v='.VERSION;
 	    $jvs['account']		      = DOMAIN.'frontend/tools/js/cms/account.js?v='.VERSION;
-	    $jvs['checkoutbefore']          = DOMAIN.'frontend/tools/js/cms/checkoutbefore.js?v='.VERSION; 
+	    $jvs['checkoutbefore']          = DOMAIN.'frontend/tools/js/cms/checkoutbefore.js?v='.VERSION;
 	    $fjvs['cookie']              = DOMAIN.'frontend/tools/js/jquery.cookie.js?v='.VERSION;
-	    
+
 include APICLUDE.'common/class.common.php';
 $comm = new Common();
 $comm->clearParam($_GET);
