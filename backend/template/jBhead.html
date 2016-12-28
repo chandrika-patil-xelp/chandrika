@@ -35,8 +35,9 @@
 		      $.ajax({ url: URL, type: "GET", success: function(res) {
 			  res = JSON.parse(res); 
 			  if(res['result']['is_vendor'] == 0){ 
-			        	 window.location.href = DOMAIN + "index.php?action=landing_page&actn=lognpopup";
+			      window.location.href = DOMAIN + "index.php?action=landing_page&actn=lognpopup";
 			  }
+                         
 		      }
 		      });
 		}

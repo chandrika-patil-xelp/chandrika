@@ -126,24 +126,30 @@ function displaycartdata()
                         cartstr += "<div class='cart_image'><img src='"+ abc +"'";
                         cartstr += " alt='Image not found'></div>";
                         cartstr += "<div class='cart_name'>" + v.prdname + "</div>";
-                        cartstr += "<div class='cart_desc  fLeft' id='nwwt'>" + v.jewelleryType + " : " + wht + " gms &nbsp|&nbsp Diamond : " + v.dmdcarat + " &nbsp|&nbsp ";
-                        cartstr += "Quality : " + v.quality + "  ";
-                        cartstr += "<div class='cart_desc  fLeft' id='nwwt'>";
-                        cartstr += "Purity : " + v.carat + " &nbsp|&nbsp ";
-                        if (v.ccatname !== null)
-                        cartstr += "Size : " + v.size + " &nbsp|&nbsp ";
-                        cartstr += "Color : " + v.color + "";
+                       cartstr += "<div class='cart_desc  fLeft' id='nwwt'>" + v.color + " " + v.jewelleryType + " | "+ v.carat + " | " + wht + "  grams";
+//                      cartstr += "Quality : " + v.quality + "  ";
+                       cartstr += "<div class='cart_desc  fLeft' id='nwwt'>";
+                       cartstr += "Diamonds " + v.dmdcarat + " Ct | " + v.quality + " | Size " + v.size + "";
+//                        cartstr += "<div class='cart_desc  fLeft' id='nwwt'>" + v.jewelleryType + " : " + wht + " gms &nbsp|&nbsp Diamond : " + v.dmdcarat + " &nbsp|&nbsp ";
+//                        cartstr += "Quality : " + v.quality + "  ";
+//                        cartstr += "<div class='cart_desc  fLeft' id='nwwt'>";
+//                        cartstr += "Purity : " + v.carat + " &nbsp|&nbsp ";
+//                        if (v.ccatname !== null)
+//                        cartstr += "Size : " + v.size + " &nbsp|&nbsp ";
+//                        cartstr += "Color : " + v.color + "";
+//                        cartstr += "</div>";
                         cartstr += "</div>";
                         cartstr += "<div class='cart_price cartRup15b fLeft'><span class='price_gen'> " + indianMoney(bprize) + "</span></div>";
-			cartstr += "</div>";
+			
 			cartstr += "</div>";
                         cartstr += "<div class='amt_selector' id='" + v.cart_id + "'>";
                         cartstr += "<a href='#' onclick='subqnty(this)'  id='sub_" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "_" + v.size + "'><div class='cart_btn fLeft sub_no'></div></a>";
                         cartstr += "<div class='item_amt fLeft '>" + v.pqty + "</div>";
                         cartstr += " <a href='#' onclick='addqnty(this)'  id='add_" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "_" + v.size + "'><div class='cart_btn fLeft add_no' ></div></a>";
                         cartstr += "</div>";
-                        cartstr += "<div class='cart_remove addrCommon' id='" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "_" + v.size + "'onclick='cremove(this)'>";
+                        
                         cartstr += "</div>";
+                        cartstr += "<div class='cart_remove addrCommon' id='" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "_" + v.size + "'onclick='cremove(this)'>";
 
 
                         $(".cart_gen").append(cartstr);
