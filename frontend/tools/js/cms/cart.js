@@ -1,4 +1,4 @@
-
+        
 
 var gblcartdata;
 
@@ -85,7 +85,7 @@ function storecartdata(cartdata, chk)
 
 function displaycartdata()
 {
-    $(".cart_gen").html("");
+    $("#niceCart").html("");
     var cartstr = "";
     var userid = common.readFromStorage('jzeva_uid');
     var cartid = common.readFromStorage('jzeva_cartid');
@@ -152,7 +152,7 @@ function displaycartdata()
                         cartstr += "<div class='cart_remove addrCommon' id='" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "_" + v.size + "'onclick='cremove(this)'>";
 
 
-                        $(".cart_gen").append(cartstr);
+                        $("#niceCart").append(cartstr);
 
                         r++;
                     });
