@@ -76,7 +76,7 @@ function storecartdata(cartdata, chk)
 
              getglobaldata();
             if (chk == 1) {
-                $(".cart_gen").html("");
+                $("#niceCart").html("");
                 displaycartdata();
             }
         }
@@ -142,15 +142,15 @@ function displaycartdata()
                         cartstr += "<div class='cart_price cartRup15b fLeft'><span class='price_gen'> " + indianMoney(bprize) + "</span></div>";
 			
 			cartstr += "</div>";
+			 cartstr += "</div>";
                         cartstr += "<div class='amt_selector' id='" + v.cart_id + "'>";
                         cartstr += "<a href='#' onclick='subqnty(this)'  id='sub_" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "_" + v.size + "'><div class='cart_btn fLeft sub_no'></div></a>";
                         cartstr += "<div class='item_amt fLeft '>" + v.pqty + "</div>";
                         cartstr += " <a href='#' onclick='addqnty(this)'  id='add_" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "_" + v.size + "'><div class='cart_btn fLeft add_no' ></div></a>";
-                        cartstr += "</div>";
-                        
+                       
                         cartstr += "</div>";
                         cartstr += "<div class='cart_remove addrCommon' id='" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "_" + v.size + "'onclick='cremove(this)'>";
-
+			cartstr += "</div>";
 
                         $("#niceCart").append(cartstr);
 
@@ -377,6 +377,7 @@ function displaycartempty()
 	if(gblcartdata == null)
 	{
 	    $('.totalItem').addClass('dn');
+	    $('.cart_gen2').addClass('dn');
 	    $("#nocart").removeClass("dn");
 	    $('.cart_gen').addClass('dn');
 	    $('.cartBox').addClass('dn');
@@ -388,6 +389,7 @@ function displaycartempty()
 	else
 	{
 	    $('.cart_gen').removeClass('dn');
+	    $('.cart_gen2').removeClass('dn');
 	    $("#nocart").addClass("dn");
 	    $('.totalItem').removeClass('dn');
 	    $('.cartBox').removeClass('dn');
