@@ -87,7 +87,7 @@ button.toast-close-button {
     top:3px;
     left:0;
     right: 0;
-    margin: auto;
+    height:80px;
 
 }
 #toast-container * {
@@ -114,7 +114,7 @@ button.toast-close-button {
     opacity: 0.95;
     height: 40px;
     filter: alpha(opacity=95)
-    
+
 }
 
 #toast-container>:hover {
@@ -127,7 +127,7 @@ button.toast-close-button {
     background:  #0CCDB8 url('../img/icons/525tickW.svg')no-repeat;
     background-position: left 10px center;
     background-size: auto 60%;
-    
+
 }
 #toast-container>.toast-error{
     background:  #FF5A5F url(../img/icons/527w.svg)no-repeat;
@@ -182,7 +182,7 @@ button.toast-close-button {
     left: 0;
     bottom: 0;
     height: 3px;
-  
+
     /*opacity: .4;*/
     filter: alpha(opacity=40)
 }
