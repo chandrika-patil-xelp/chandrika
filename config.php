@@ -15,7 +15,7 @@ if(stristr($_SERVER['HTTP_HOST'],'jzeva.com') && stristr(REQURI, 'beta'))
 	define('WEBROOT', $_SERVER['DOCUMENT_ROOT'].'/beta/');
 	define('DOMAIN', $httpReq.$_SERVER['HTTP_HOST'].'/beta/');
 	define('APIDOMAIN',$httpReq.$_SERVER['HTTP_HOST'].'/beta/apis/');
-	define('IMGDOMAIN',$httpReq.$_SERVER['HTTP_HOST'].'/beta/backend/image-upload/');
+	define('IMGDOMAIN',$httpReq.$_SERVER['HTTP_HOST'].'/backend/image-upload/');
 	define('BACKDOMAIN',$httpReq.$_SERVER['HTTP_HOST'].'/beta/backend/');
 	define('BACKWEBROOT',$_SERVER['DOCUMENT_ROOT'].'/beta/backend/');
 	$db['jzeva'] = array('localhost','root','developer@jzeva','db_jzeva_beta');
