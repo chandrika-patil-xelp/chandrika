@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <?php include 'jhead.html' ?>
-<script>  var shpid = "<?php echo $_GET['shpid'];  ?>";</script>
-<script>  var actn = "<?php echo $_GET['actn'];  ?>";</script>
-<body class="greyBg"  >
-    <?php include 'Cart.html' ?>
+<script>  var orderid = "<?php echo $_GET['ordid'];  ?>";</script>
+<body class="greyBg">
+    <?php include 'Cart.html'?>
 
     <div class="cartPopup dn" id="cartpID">
         <div class="inCartPop" id="inCartID">
@@ -25,115 +24,55 @@
             <div class="col50 pay secureIc fRight">secure payements</div>
         </div>
     </div>
-    <div class="wrapper_main fLeft CHECKOUT_PAGE checkoutBefore">
+    <div class="wrapper_main fLeft CHECKOUT_PAGE checkoutafter">
         <div class="wrapper chkout">
             <div class="darkCont fadeInup runslider" id="darkCont">
                 <div class="wrapper_max">
                     <div class="homeCollect">
+
                         <!--                        /*take code from here*/-->
 
                         <div class="colleCont dTab ePadding" id="addOpt">
                             <div class="col100 fLeft">
-                                <div class="dAdrsshdr fLeft semibold">confirm DETAILS
+                                <div class="dAdrsshdr fLeft semibold">TRANSACTION Failure
                                     <div class="cbrdr"></div>
                                 </div>
-                                <div class="scrollCont">
-                                    <!--<div class="col100 fLeft"><div class="checkTitle" id="uname"><span class=""> </span></div></div>-->
-                                    <!--<div class="thankYou fLeft"></div>-->
-                                    <center>                                       
-                                        <div class="fLeft cart_price">
-                                            <!--<center>
-                                                <div class="invoice">
-                                                    <div class="col100">Invoice No</div>
-                                                    <div class="col100 semibold PTop5">JZ12345</div>
-                                                </div>
-                                                <div class="invoice">
-                                                    <div class="col100">Order No</div>
-                                                    <div class="col100 semibold PTop5" id="ordrID">12345678923338</div>
-                                                </div>
-                                                <div class="invoice">
-                                                    <div class="col100">Date</div>
-                                                    <div class="col100 semibold PTop5" id="ordate">01 jan 2017</div>
-                                                </div>
-                                            </center>-->
-                                        </div>
-                                        <!--<div class="">Your Order number is : <span>122334456566</span></div>-->
-                                        <div class="chkParent fLeft">
-                                            <!--                                            <div class="col50 fLeft chekFinal">Name</div>
-                                                                                        <div class="col50 fRight chekFinal2">chandrika</div>
-                                                                                        
-                                                                                        <div class="col50 fLeft chekFinal">Mobile</div>
-                                                                                        <div class="col50 fRight chekFinal2">2222222222</div>
-                                                                                        
-                                                                                        <div class="col50 fLeft chekFinal">Address</div>
-                                                                                        <div class="col50 fRight chekFinal2">#4 shashank residence 17th B main 6th block kormangala landmark opposite to kormanagala club</div>-->
-                                            <!--                                        <div class="w50r fLeft">
-                                                                                        <div class="fLeft col100 regular invoice">Name</div>
-                                                                                        <div class="fLeft col100"></div>
-                                                                                        <div class="fLeft col100 semibold invoice">Chandrika</div>
-                                                                                    </div>
-                                                                                        <div class="w50l"></div>
-                                                                                    <div class="thankTxt fLeft pad0">
-                                                                                        <div class="fLeft col100 regular invoice">Mobile</div>
-                                                                                        <div class="fLeft col100"></div>
-                                                                                        <div class="fLeft col100 semibold invoice">9966332255</div>
-                                                                                    </div>
-                                                                                    <div class="thankTxt fLeft">
-                                                                                        <div class="fLeft col100 regular invoice">Delivery Address</div>
-                                                                                        <div class="fLeft col100 semibold" id="addr"></div>
-                                                                                        <div class="fLeft col100 semibold"  id="adcity">Bangalore 560095</div>
-                                                                                    </div>
-                                                                                    </div>-->
-                                            <div class="thankTxt fLeft">
-                                                <div class="fLeft col100 regular invoice">Name</div>
-                                                <div class="fLeft col100 semibold invoice lsNone" id="cust_name"></div>
-                                            </div>
-                                            <div class="thankTxt fLeft pad0">
-                                                <div class="fLeft col100 regular invoice ">Mobile</div>
-                                                <div class="fLeft col100 semibold invoice lsNone" id="cust_mobl"></div>
-                                            </div>
-                                            <div class="thankTxt fLeft">
-                                                <div class="fLeft col100 regular invoice">Address</div>
-                                                <div class="fLeft col100 semibold invoice txt_Lower lsNone" style="padding: 0px 85px;" id="addr"></div>
-                                            </div>
-                                        </div>
-                                        <div class="transBtns fLeft">
-                                            <div class="actBtn button" id="submt">PROCEED TO PAYMENT</div>
-                                        </div>
-                                    </center>
-                                </div>
+                                <div class="aborted fLeft"></div>
+                                <div class="col100 fLeft"><div class="checkTitle" id="uname"><span class="">Mr </span> Kshitij</div></div>
+                                <center>
+                                    <div class="thankTxt fLeft pTop0">
+                                        <div class="fLeft col100">Thank you for shopping with us.</div>
+                                        <div class="fLeft col100">However,the transaction has been declined.</div>
+                                    </div>
+
+                                    <!--<div class="">Your Order number is : <span>122334456566</span></div>-->
+                                    <div class="transBtns">
+                                        <center>
+                                            <div class="col50 fLeft txt_right"><div class="actBtn button">continue shopping</div></div>
+                                            <div class="col50 fRight txt_left btnFill"><div class="actBtn button margL20">try again</div></div>
+                                        </center>
+                                    </div>
+                                </center>
                             </div>
                         </div>
                         <!--//black side cont-->
                         <div class="colleCont v2 black">
-
                             <div class="fLeft totalItem txt_center colorfff">
                                 <div class="fLeft col100 cart_name light colorfff">Grand Total
                                 </div>
-                                <div class="fLeft cart_price font35 colorfff"><span class="total_prc  cartRupee font35">0</span>
+                                <div class="fLeft cart_price font35 colorfff"><span class="total_price_gen  cartRupee font35">0</span>
 
                                 </div>
 
                             </div>
+                            <!--                            <div class="dAdrsshdr fLeft semibold">Your Orders
+                                                            <div class="cbrdr"></div>
+                                                        </div>-->
                             <!--                            <div class="fLeft totalItem txt_center">
                                                             <div class="fLeft col100 cart_name light">Your Orders</div>
                                                         </div>-->
-                            <div class="col100 fLeft dn" id="noprdinchkot">
-                                <center>
-                                    <div class="cartEmptyImg"></div>
-                                    <div class="noOrdTxt">
-                                        <div class="fooH mar0 color666">No Items</div>
-                                        <div class="font13">Sorry,you have not added anything in your shopping bag</div>
-                                    </div>
-                                    <div class="col100">
-                                        <div class="actBtn button colorfff"  id="cntshpng">continue shopping</div>
-                                    </div>
-                                </center>
-                            </div>
-                            <div class="jwlCnt fLeft regular" id="scroll"> 
-
+                            <div class="jwlCnt fLeft regular" id="scroll">
                                 <div id="cartdet">
-
                                     <!--                                <div class='cart_item' id="cartdet">-->
                                     <!--                                <div class='cart_image'><img src=""></div>
                                                                         <div class="cart_name">chained bangle</div>
@@ -152,15 +91,14 @@
                                     
                                                                     </div>-->
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> 
         </div>
     </div>
-     <div class="checkFoo fLeft">
+    <div class="checkFoo fLeft">
         <center>
             <div class="col100">
                 <img src="frontend/tools/img/icons/10.jpg" alt="no-image">
@@ -172,13 +110,12 @@
         </center>
     </div>
 
-
-    <script type="text/javascript" src="<?php echo $jvs['checkoutbefore']; ?>"></script> 
+    <script type="text/javascript" src="<?php echo $jvs['checkoutafter']; ?>"></script> 
     <script type="text/javascript" src="<?php echo $fjvs['Common']; ?>"></script>
     <script type="text/javascript">
 
 
-            $('#scroll').niceScroll({cursorcolor: "#000000", touchbehavior: true, cursorwidth: "4px", autohidemode: false, cursorborder: "0px solid #fff", cursoropacitymin: "0.3", cursoropacitymax: "0.3", railpadding: {top: 2, right: 2, left: 2, bottom: 2}});
+            $('#nice').niceScroll({cursorcolor: "#000000", touchbehavior: true, cursorwidth: "4px", autohidemode: false, cursorborder: "0px solid #fff", cursoropacitymin: "0.3", cursoropacitymax: "0.3", railpadding: {top: 2, right: 2, left: 2, bottom: 2}});
 
     $('.inp_box').focus(function () {
         $(this).closest('.txtB').addClass('focul');
@@ -219,16 +156,16 @@
     });
 
 
-    //        $('.inp_box').focus(function () {
-    //            $(this).closest('.txtB').addClass('focul');
-    //        });
-    //        $('.inp_box').blur(function () {
-    //            var k = $(this).val();
-    //            if (k == "") {
-    //                $(this).closest('.txtB').removeClass('focul');
-    //            }
-    //
-    //        });
+//        $('.inp_box').focus(function () {
+//            $(this).closest('.txtB').addClass('focul');
+//        });
+//        $('.inp_box').blur(function () {
+//            var k = $(this).val();
+//            if (k == "") {
+//                $(this).closest('.txtB').removeClass('focul');
+//            }
+//
+//        });
 
 
     $('.inp_box').focus(function () {
@@ -241,8 +178,8 @@
         }
 
     });
-    //          $('#fstup').velocity({opacity: 1,translateY:'0px'}, {delay: 0, duration: 0,display:'block'});
-    //            $('#scndup').velocity({opacity:0,translateY:'20px'}, {delay: 0, duration: 0,display:'none'});
+//          $('#fstup').velocity({opacity: 1,translateY:'0px'}, {delay: 0, duration: 0,display:'block'});
+//            $('#scndup').velocity({opacity:0,translateY:'20px'}, {delay: 0, duration: 0,display:'none'});
     function openfst() {
         $('#fstup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
         $('#scndup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
