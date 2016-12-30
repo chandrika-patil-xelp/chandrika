@@ -159,7 +159,9 @@ $jvs = array();
 	    $jvs['account']		      = DOMAIN.'frontend/tools/js/cms/account.js?v='.VERSION;
 	    $jvs['checkoutbefore']          = DOMAIN.'frontend/tools/js/cms/checkoutbefore.js?v='.VERSION;
 	    $fjvs['cookie']              = DOMAIN.'frontend/tools/js/jquery.cookie.js?v='.VERSION;
-
+	    $fjvs['tranfail']              = DOMAIN.'frontend/tools/js/cms/transactionfail.js?v='.VERSION;
+	    $jvs['chkoutguest']		  = DOMAIN.'frontend/tools/js/cms/checkoutguest.js?v='.VERSION;
+	    
 include APICLUDE.'common/class.common.php';
 $comm = new Common();
 $comm->clearParam($_GET);

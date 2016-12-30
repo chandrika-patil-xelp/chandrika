@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php include 'jhead.html' ?>
-<script>  var orderid = "<?php echo $_GET['ordid'];  ?>";</script>
+ 
 <body class="greyBg">
     <?php include 'Cart.html'?>
 
@@ -34,7 +34,7 @@
 
                         <div class="colleCont dTab ePadding" id="addOpt">
                             <div class="col100 fLeft">
-                                <div class="dAdrsshdr fLeft semibold">TRANSACTION Failure
+                                <div class="dAdrsshdr fLeft semibold" id="trn_msg">TRANSACTION Failure
                                     <div class="cbrdr"></div>
                                 </div>
                                 <div class="aborted fLeft"></div>
@@ -42,14 +42,14 @@
                                 <center>
                                     <div class="thankTxt fLeft pTop0">
                                         <div class="fLeft col100">Thank you for shopping with us.</div>
-                                        <div class="fLeft col100">However,the transaction has been declined.</div>
+                                        <div class="fLeft col100" id="msg_detail">However,the transaction has been declined.</div>
                                     </div>
 
                                     <!--<div class="">Your Order number is : <span>122334456566</span></div>-->
                                     <div class="transBtns">
                                         <center>
-                                            <div class="col50 fLeft txt_right"><div class="actBtn button">continue shopping</div></div>
-                                            <div class="col50 fRight txt_left btnFill"><div class="actBtn button margL20">try again</div></div>
+                                            <div class="col50 fLeft txt_right"><div class="actBtn button" id="cntshptrnfail">continue shopping</div></div>
+                                            <div class="col50 fRight txt_left btnFill"><div class="actBtn button margL20" id="tryagn">try again</div></div>
                                         </center>
                                     </div>
                                 </center>
@@ -109,8 +109,9 @@
             </div>
         </center>
     </div>
-
-    <script type="text/javascript" src="<?php echo $jvs['checkoutafter']; ?>"></script> 
+    <script> var ordid= " <?php echo $_GET['ordid']; ?> "</script>
+    <script> var status= " <?php echo $_GET['status']; ?> "</script>
+    <script type="text/javascript" src="<?php echo $fjvs['tranfail']; ?>"></script>
     <script type="text/javascript" src="<?php echo $fjvs['Common']; ?>"></script>
     <script type="text/javascript">
 
@@ -320,7 +321,7 @@
         }
     });
 
-
+    
 
 
     </script>

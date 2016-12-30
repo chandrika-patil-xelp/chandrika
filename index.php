@@ -187,15 +187,15 @@ switch ($action) {
         $page = 'responsiblef';
         include TEMPLATE . 'responsiblef.html';
         break;
-    case 'gemstoneguide':
-        $page = 'gemstoneguide';
-        include TEMPLATE . 'gemstoneguide.html';
-        break;
+//    case 'gemstoneguide':
+//        $page = 'gemstoneguide';
+//        include TEMPLATE . 'gemstoneguide.html';
+//        break;
     case 'faq':
         $page = 'faq';
         include TEMPLATE . 'faq.html';
         break;
-    case 'sizeguide':
+    case 'sizingguide':
         $page = 'sizeguide';
         include TEMPLATE . 'sizeguide.html';
         break;
@@ -238,9 +238,9 @@ switch ($action) {
     case 'craftsmanship':
         $page = 'craftsmanship';
         include TEMPLATE . 'craftsmanship.html';
-        break;
-
-    case 'gemstoneGuideNew':
+        break; 
+    
+    case 'gemstoneguide': 
         $page = 'gemstoneGuideNew';
         include TEMPLATE . 'gemstoneGuideNew.html';
         break;
@@ -283,13 +283,18 @@ switch ($action) {
     case 'checkoutBefore':
         $page = 'checkoutBefore';
         include TEMPLATE . 'checkoutBefore.html';
-        break;
-
+        break; 
+      
+       case 'paymentfail':
+        $page = 'transactionFail';
+        include TEMPLATE . 'transactionFail.html'; 
+	break;
+      
      case 'trygem':
         $page = 'trygem';
-        include TEMPLATE . 'trygem.html';
-        break;
-    
+        include TEMPLATE . 'trygem.html'; 
+        break; 
+      
      case 'transactionAbort':
         $page = 'transactionAbort';
         include TEMPLATE . 'transactionAbort.html';
@@ -300,16 +305,12 @@ switch ($action) {
         include TEMPLATE . 'transactionSuccess.html';
         break;
     
-    case 'transactionFail':
-        $page = 'transactionFail';
-        include TEMPLATE . 'transactionFail.html';
-        break;
-    
+        
     case 'checkoutGuest':
         $page = 'checkoutGuest';
         include TEMPLATE . 'checkoutGuest.html';
         break;
        
-
+    
 }
 ?>
