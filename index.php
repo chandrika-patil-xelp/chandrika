@@ -195,7 +195,7 @@ switch ($action) {
         $page = 'faq';
         include TEMPLATE . 'faq.html';
         break;
-    case 'sizingguide':
+    case 'sizeguide':
         $page = 'sizeguide';
         include TEMPLATE . 'sizeguide.html';
         break;
@@ -240,7 +240,7 @@ switch ($action) {
         include TEMPLATE . 'craftsmanship.html';
         break; 
     
-    case 'gemstoneguide': 
+    case 'gemstoneGuideNew': 
         $page = 'gemstoneGuideNew';
         include TEMPLATE . 'gemstoneGuideNew.html';
         break;
