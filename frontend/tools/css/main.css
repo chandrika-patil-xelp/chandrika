@@ -171,7 +171,7 @@ a{color:#666;}
 
 
 .cart{overflow-y:scroll;width:500px;height:100%;position:fixed;top:0;right:0;background:#15181b;z-index:200;display:none;transform:translateX(400px);-webkit-transform:translateX(400px);-moz-transform:translateX(400px);box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.2);}
-.twoBtn{width:100%;height:50px;position:absolute;left:0;bottom:0;padding-top:10px}
+.twoBtn{width:100%;height:50px;position:absolute;left:0;bottom:50px;padding-top:10px}
 .cart_gen{width:100%;height:auto;padding:0 35px;overflow:auto;}
 .incart_gen{width:100%;height:auto;max-height:calc(100% - 120px);overflow:auto}
 .cart_gen2{width:40%;height:auto;background: #222529;    padding: 18px 35px 18px 35px;}
@@ -1417,12 +1417,15 @@ input[type=radio]:checked ~ .selector_label:after {
 .clrfff{color:#fff !important;}
 
 
-.payOption{width:auto;padding: 15px 0px 30px 0px;letter-spacing: 0.15em;}
+.payOption{width:auto;padding: 15px 0px 15px 0px;letter-spacing: 0.15em;}
 .pay{width: 22%;height: 30px;line-height: 16px;padding-left: 35px;color: #fff;font-size: 10px;text-transform: uppercase;font-family: regular;text-align: left;}
 .callUs{padding: 23px 0px;color: #fff;font-size: 12px;font-family: regular;letter-spacing: 0.15em;}
 
 .checkFoo{width:100%;height:auto;background: #ffffff;}
 .cart .pay{width:30%}
+.cart .cart_gen2{width:100%;height:50px;padding:0;position:absolute;bottom:0;left:0;}
+.cart .cartBox {width:50%;height:100%;position:relative}
+.cart .cartHd {height:100%;position:relative;background-size: auto 50%;}
 .checkFoo img{width: auto;height: 30px;margin: 14px 0px 14px 0px;}
 .chkParent{width:100%;height:auto;display: inline-block;padding: 20px 0px;margin: 30px 0px 90px 0px;border: 1px solid #e6e6e6;background-color: #f3f3f3;}
 .logoComm{width:auto;height:60px;display: inline-block;}
@@ -1435,7 +1438,15 @@ input[type=radio]:checked ~ .selector_label:after {
 .actBtn:hover:after{transform:translateX(120%);-moz-transform:translateX(120%);-webkit-transform:translateX(120%);-o-transform:translateX(120%);-ms-transform:translateX(120%);transition:450ms !important}
 .custBtn:after{content:"";width:120%;height:100%;position:absolute;left:0;top:0;background:#53C9C7;transform:translateX(-120%);-moz-transform:translateX(-120%);-webkit-transform:translateX(-120%);-o-transform:translateX(-120%);-ms-transform:translateX(-120%);transition:0ms ease-in;pointer-events:none}
 .custBtn:hover:after{transform:translateX(120%);-moz-transform:translateX(120%);-webkit-transform:translateX(120%);-o-transform:translateX(120%);-ms-transform:translateX(120%);transition:450ms !important}
+.cartTool{position: absolute; z-index: 9999;width: 360px;height:120px; left:0 ;margin:auto; right:0;bottom: 100%;text-align: left;box-shadow: -5px -5px 15px rgba(48,54,61,0.2);background: #2a3035;opacity: 0;cursor: default;pointer-events: none;-webkit-transform: translate3d(0,-10px,0);transform: translate3d(0,-10px,0);-webkit-transition: opacity 0.3s, -webkit-transform 0.3s;transition: opacity 0.3s, transform 0.3s;}
+.cartTool::after {content: '';top: 100%;left: 50%;border: solid transparent;height: 0;width: 0;position: absolute; pointer-events: none;border-color: transparent;border-top-color: #2a3035;border-width: 10px;}
+.cartTool::after ~ .helpIc {margin-left: -67px;}
+.cartBox:hover .cartTool {pointer-events: auto;opacity: 1;-webkit-transform: translate3d(0,0,0) rotate3d(0,0,0,0); transform: translate3d(0,0,0) rotate3d(0,0,0,0);}
 
+.sty1.cartTool::after{left:115px;}
+.sty1.cartTool{height:130px;}
+.sty2.cartTool{left: -110px;height:110px}
+.sty2.cartTool
 #add_to_cart:after{content:"";width:120%;height:100%;position:absolute;left:0;top:0;background:#53C9C7;transform:translateX(-120%);-moz-transform:translateX(-120%);-webkit-transform:translateX(-120%);-o-transform:translateX(-120%);-ms-transform:translateX(-120%);transition:250ms ease-in;pointer-events:none}
 #add_to_cart:hover:after{transform:translateX(0%);-moz-transform:translateX(0%);-webkit-transform:translateX(0%);-o-transform:translateX(0%);-ms-transform:translateX(0%);z-index:-1;transition:200ms !important}
 #buynow:after{content:"";width:120%;height:100%;position:absolute;left:0;top:0;background:#53C9C7;transform:translateX(-120%);-moz-transform:translateX(-120%);-webkit-transform:translateX(-120%);-o-transform:translateX(-120%);-ms-transform:translateX(-120%);transition:250ms ease-in;pointer-events:none}
