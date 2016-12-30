@@ -850,7 +850,7 @@ img{width:100%;height:100%;border:0}
 .CHECKOUT_PAGE{}
 .vMax{width:100%;height:auto;max-width:1200px !important;display:inline-block;position:fixed;left:0;right:0;top:125px;margin:auto;}
 /*.CHECKOUT_PAGE.wrapper_main{min-height:100vh}*/
-.CHECKOUT_PAGE .wrapper{padding:0;min-height:calc(100vh  - 60px);padding-top:0px;height:auto}
+.CHECKOUT_PAGE .wrapper{padding:0;padding-top:0px;height:auto}
 .progress{width:100%;height:5px;position:absolute;top:0px;left:0;z-index: 99;}
 .progress_bar{height:100%;float:left;background:#ccc;width:50%}
 .co_tabholder{width:200px;height:auto;position:absolute;z-index:20;padding-top: 50px;}
@@ -1416,9 +1416,7 @@ input[type=radio]:checked ~ .selector_label:after {
 .wishBtn:hover.wishBtn{color: #fff;}
 .pad10{padding:0px 10px;}
 .clrfff{color:#fff !important;}
-.payOption{    width:auto;
-        padding: 15px 30px 15px 30px;
-    letter-spacing: 0.15em;}
+.payOption{width:auto;padding: 15px 0px 15px 0px;letter-spacing: 0.15em;}
 .pay{width: 22%;
     height: 30px;
     line-height: 16px;
@@ -1428,7 +1426,7 @@ input[type=radio]:checked ~ .selector_label:after {
     text-transform: uppercase;
     font-family: regular;
     text-align: left;
-    margin-right: 15px;}
+    }
 .callUs{padding: 23px 0px;
     color: #fff;
     font-size: 12px;
@@ -1439,13 +1437,13 @@ input[type=radio]:checked ~ .selector_label:after {
         margin: 20px 0px 90px 0px;border: 1px solid #e6e6e6;background-color: #f3f3f3;}
 .logoComm{width:auto;height:60px;display: inline-block;}
 .margL20{margin-left:40px}
-.aborted{background: url(../img/icons/failed.svg)no-repeat;
+.aborted{background: url(../img/icons/546.svg)no-repeat;
     background-size: auto 100%;
     background-position: center;
     width: 100%;
     height: 100px;
     margin-top: 20px;}
-.tsuccess{background: url(../img/icons/successful.svg)no-repeat;
+.tsuccess{background: url(../img/icons/547.svg)no-repeat;
     background-size: auto 100%;
     background-position: center;
     width: 100%;
@@ -1962,7 +1960,7 @@ input[type=radio]:checked ~ .selector_label:after {
 .chkout .colleCont{padding: 50px 40px; overflow:initial;}
 .chkout .darkCont{padding:0px 0 60px 0}
 .chkoutHeader{width:100%;height:60px;background-color:#15181b;top:0;left:0;z-index:50;}
-.chkoutHeader .logo {cursor: pointer;width: 200px;height: 100%;background: url(../img/jzevalogo.svg)no-repeat;background-size:auto 20px;background-position: 30px center;}
+.chkoutHeader .logo {cursor: pointer;width: 200px;height:60px;background: url(../img/jzevalogo.svg)no-repeat;background-size:auto 20px;background-position:left;}
 .dAdrsshdr{width:100%;height:28px;font-size:12px;color:#15181b;text-align:center;text-transform:uppercase;position:relative;line-height:24px;letter-spacing:0.35em;}
 .cbrdr{width: 50px;height: 0px;border-top: 1px solid #15181b;position: absolute;bottom: 0;left: 0;right: 0;margin: auto;top: 30px;}
 .checkTitle{width:auto;height:30px;margin-bottom:20px;color:#222529;letter-spacing:0.35em; font-family:bolder; line-height: 30px; font-size: 12px; text-transform: uppercase;text-align: center;margin: 0;}
@@ -2083,8 +2081,37 @@ input[type=radio]:checked ~ .matchIcn{
     padding: 0px 10px;}
 .checkGuest{}
 .checkGuest .inp_box{background: #222529;color: #fff!important;}
-.checkGuest .txtB:after{border-top-color:#fff; }
+.checkGuest .txtB:after{border-top-color:#fff;}
 .checkGuest .intTxt{color: #fff;}
+.checkGuest .ulDiv {background: #15181b;}
+.guestSignup{position: absolute;
+    width: 100%;
+    height: auto;
+    bottom: 0;
+    text-align: center;
+    font-size: 14px;
+    font-family: regular;}
+.guestSignup span{color: #53C9C7;cursor: pointer;}
+.halfCircle{
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 1px solid #15181b;
+    background: #15181b;
+    background: #15181b;right: -114px;
+    z-index: 999;
+    top: 40%;
+    color: #fff;text-align: center;font-family: regular;line-height: 90px;}
+.checkFoo .cartBox{width: 33.33%;height: 100%;}
+.checkFoo{    width: 100%;
+    height: 200px;
+    background: #222529;}
+.checkGuest{}
+.checkGuest .dropBox{border-bottom-color: #ffffff;}
+.checkGuest .dropBox label:after{border-top-color: #fff;}
+.checkGuest .dropBox ul li:hover{background:#ffffff;color:#15181b;}
+.checkGuest .dropBox.drop:after{background:url("../img/icons/543w.svg")no-repeat;background-size: auto 100%;background-position:center;}
 .checkGuest .dropBox:after{background:url("../img/icons/543w.svg")no-repeat;background-size: auto 100%;background-position:center;}
 .unmatchIcn{width:30px;height:30px;position:absolute;top:10px;right:-40px;background:url(../img/01.svg)no-repeat;background-size:auto 40px;background-position:center;}
 .matchIcn1{width:30px;height:30px;position:absolute;top:10px;right:-40px;background:url(../img/02g.svg)no-repeat;background-size:auto 40px;background-position:center;}
@@ -2560,7 +2587,7 @@ input[type=radio]:checked ~ .matchIcn{
 .dropBox:after{transition: 300ms;background:url("../img/icons/543.svg")no-repeat;background-size: auto 100%;background-position:center;transform: rotate(90deg);cursor: pointer;content:"";width: 30px;height: 30px;position: absolute;right:5px;top: 5px;}
 .dropBox.drop:after{transition: 300ms; background:url("../img/icons/543.svg")no-repeat;background-size: auto 100%;background-position:center;transform: rotate(-90deg);cursor: pointer;content:"";width: 30px;height: 30px;position: absolute;right:5px;top: 5px;}
 .arrowBox{background:url("../img/icons/543.svg")no-repeat;background-size: auto 100%;background-position:center;transform: rotate(90deg);cursor: pointer;content:"";width: 30px;height: 30px;position: absolute;right:5px;top: 5px;}
-.dropBox label:after{content:"";width:0;height:0;border-top:2px solid #4d4d4d; position:absolute;bottom:-1px;left:0;transition:300ms}
+.dropBox label:after{content:"";width:0;height:0;border-top:1px solid #4d4d4d; position:absolute;bottom:-1px;left:0;transition:300ms}
 .dropBox label.act:after{width:100%}
 .drop{}
 .dropBox ul{width: 100%;margin: 0;list-style: none;position: absolute;z-index: 99;padding: 0;background-color: #fff;left:0;top:40px;
