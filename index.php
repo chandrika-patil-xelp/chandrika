@@ -1,4 +1,5 @@
 <?php
+
 header("Content-Length");
 include './config.php';
 
@@ -15,7 +16,7 @@ if ($params['debug']) {
 }
 
 switch ($action) {
-    
+
     case 'icons':
         $page = 'Icons';
         include 'icons.html';
@@ -214,15 +215,15 @@ switch ($action) {
         $page = 'conciergeServices';
         include TEMPLATE . 'conciergeServices.html';
         break;
-      case 'gemstonenew':
+    case 'gemstonenew':
         $page = 'gemstonenew';
         include TEMPLATE . 'gemstonenew.html';
         break;
-     case 'logintest':
+    case 'logintest':
         $page = 'logintest';
         include TEMPLATE . 'logintest.html';
         break;
-     case 'ourPromise':
+    case 'ourPromise':
         $page = 'ourPromise';
         include TEMPLATE . 'ourPromise.html';
         break;
@@ -230,7 +231,7 @@ switch ($action) {
         $page = 'ourStory';
         include TEMPLATE . 'ourStory.html';
         break;
-     case 'craftsmanship':
+    case 'craftsmanship':
         $page = 'craftsmanship';
         include TEMPLATE . 'craftsmanship.html';
         break;
@@ -238,45 +239,77 @@ switch ($action) {
         $page = 'craftsmanship';
         include TEMPLATE . 'craftsmanship.html';
         break;
-    
-     case 'gemstoneGuideNew':
+
+    case 'gemstoneGuideNew':
         $page = 'gemstoneGuideNew';
         include TEMPLATE . 'gemstoneGuideNew.html';
         break;
-      case 'orderPlacing':
+    case 'orderPlacing':
         $page = 'orderplace';
-       
-        include TEMPLATE.'deliveryAddress.html';
+        include TEMPLATE . 'deliveryAddress.html';
         break;
-    
-       case 'checkoutAfter':
+
+    case 'checkoutAfter':
         $page = 'checkoutAfter';
         include TEMPLATE . 'checkoutAfter.html';
         break;
-      
-       case 'paymentg':
-        $page = 'paymentg';
-        include   WEBROOT.'transaction/paymentg.html';
-        break;
-      
-      case 'paymentdetail':
-        $page = 'paymntdetail';
-        include WEBROOT.'transaction/paymntdetail.html';
-        break;
-      
-      case 'confirmpymnt':
-        $page = 'confirmpmnt';
-        include WEBROOT.'transaction/confirmpmnt.html';
-        break;
-      
-      case 'checkoutBefore':
+    case 'checkoutBefore':
         $page = 'checkoutBefore';
         include TEMPLATE . 'checkoutBefore.html';
         break;
-      
-       case 'paymentfail':
-        $page = 'paymentfail';
-        include TEMPLATE . 'paymentfail.html';
+    case 'product_page1':
+        $page = 'product_page1';
+        include TEMPLATE . 'product_page1.html';
         break;
+    case 'beforePayment':
+        $page = 'beforePayment';
+        include TEMPLATE . 'beforePayment.html';
+        break;
+    case 'paymentg':
+        $page = 'paymentg';
+        include WEBROOT . 'transaction/paymentg.html';
+        break;
+
+    case 'paymentdetail':
+        $page = 'paymntdetail';
+        include WEBROOT . 'transaction/paymntdetail.html';
+        break;
+
+    case 'confirmpymnt':
+        $page = 'confirmpmnt';
+        include WEBROOT . 'transaction/confirmpmnt.html';
+        break;
+
+    case 'checkoutBefore':
+        $page = 'checkoutBefore';
+        include TEMPLATE . 'checkoutBefore.html';
+        break;
+
+     case 'trygem':
+        $page = 'trygem';
+        include TEMPLATE . 'trygem.html';
+        break;
+    
+     case 'transactionAbort':
+        $page = 'transactionAbort';
+        include TEMPLATE . 'transactionAbort.html';
+        break;
+    
+    case 'transactionSuccess':
+        $page = 'transactionSuccess';
+        include TEMPLATE . 'transactionSuccess.html';
+        break;
+    
+    case 'transactionFail':
+        $page = 'transactionFail';
+        include TEMPLATE . 'transactionFail.html';
+        break;
+    
+    case 'checkoutGuest':
+        $page = 'checkoutGuest';
+        include TEMPLATE . 'checkoutGuest.html';
+        break;
+       
+
 }
 ?>
