@@ -1,0 +1,880 @@
+<?php include 'jhead.html' ?>
+<body class="greyBg"  >
+    <?php include 'Cart.html' ?>
+    <div class="entrotppopup">
+        <div class="enterotpCnt regular">
+            <div class="w100 fLeft">
+                <div class="w70 fLeft">
+                    <div class="txtB fLeft">
+                        <input type="text" class="inp_box " id="mailotp" maxlength="30">
+                        <div class="inp_label">Enter OTP*</div>
+                    </div> 
+                </div>
+                <div class="subTxt fLeft"><span>Resend otp</span></div>
+                <!--<div class="w30 fLeft semibold">Resend</div>-->
+            </div>
+            <div class="btnhldr">
+                <center>
+                    <div class="sbmt semibold" onclick="closeotppop()">Back</div>
+                    <div class="actBtn button mar0">Submit</div>
+                </center>
+            </div>
+        </div>
+    </div>
+    <div class="cartPopup dn" id="cartpID">
+        <div class="inCartPop" id="inCartID">
+            <div class="txtTitle mar0" id="rmvpoptxt">Do you want to delete this addresses</div>
+            <div class="col100 fLeft bolder">
+                <center>
+                    <div class="col50 fLeft"><div class="actBtn button" id="cYes">YES</div></div>
+                    <div class="col50 fRight"><div class="actBtn button" id="cNo">NO</div></div>
+                </center>
+            </div>
+        </div>
+    </div>
+    <div class="chkoutHeader poR">
+        <div class="wrapper_max">
+            <div class="logo fLeft"></div>
+            <div class="fLeft callUs">Got Question? call us on 8989898989</div>
+            <div class="payOption fRight">
+                <div class="col50 pay certiIc fRight">certified jewellery</div>
+                <div class="col50 pay lifeIc fRight">Life time exchange</div>
+                <div class="col50 pay secureIc fRight">secure payements</div>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper_main fLeft CHECKOUT_PAGE">
+        <div class="wrapper chkout">
+
+            <div class="darkCont fadeInup runslider" id="darkCont">
+                <div class="wrapper_max">
+                    <div class="homeCollect">
+                        <div class="colleCont dTab ePadding" id="addOpt">
+                            <div class="tabDaddrss1 semibold dn">DELIVERY OPTION</div>
+                            <!--<div class="tabDaddrss semibold">DELIVERY ADDRESS</div>-->
+                            <div class="yetanotherbuffer">
+                                <div class="fadeCnt fLeft" id="scndup">
+                                    <div class="dAdrsshdr fLeft semibold">CONFIRM ADDRESS
+                                        <div class="cbrdr"></div>
+                                    </div>
+                                    <div class="delvrAdress fLeft regular">
+                                        <!--<div class="col100 fLeft radTor">
+                                          <div class="w50r fLeft">
+                                              <div class="text fLeft" id="spnd_name">Janardan prasanna ghosh</div>
+                                               <div class="text fLeft" id="spnd_email">janardan@xelpmoc.in</div>
+                                                <div class="text fLeft" id="spnd_city_pin">bangalore-560095</div>
+                                          </div>
+                                          <div class="w50l fRight"> 
+                                              <div class="text fLeft"><span>#657 5th A cross,17th E main road,Koromangala club,Bangalore,Karanataka,560095</span></div>
+                                           </div>
+                                          <input type="radio" name="selectM" class="filled-in dn" id="random1">
+                                            <label for="random1"></label>
+              
+                                              <div class="btncnt fLeft bolder">
+                                                  <center>
+                                                      <div class="dlvrBtn transition300">DELIVER TO THIS ADDRESS</div>				   
+                                                  </center>
+                                              </div>
+                                             
+                                        </div>                        
+                                        <div class="col100 fLeft radTor">
+                                        <div class="w50r fLeft">
+                                            <div class="text fLeft" id="spnd_name">Janardan prasanna ghosh</div>
+                                             <div class="text fLeft" id="spnd_email">janardan@xelpmoc.in</div>
+                                              <div class="text fLeft" id="spnd_city_pin">bangalore-560095</div>
+                                        </div>
+                                        <div class="w50l fRight"> 
+                                            <div class="text fLeft"><span>#657 5th A cross,17th E main road,Koromangala club,Bangalore,Karanataka,560095</span></div>
+                                         </div>
+                                        <input type="radio" name="selectM" class="filled-in dn" id="random2">
+                                            <label for="random2"></label>
+                                          <div class="btncnt fLeft bolder">
+                                                  <center>
+                                                      <div class="dlvrBtn transition300">DELIVER TO THIS ADDRESS</div>				   
+                                                  </center>
+                                              </div>
+                                             
+                                        </div>
+                                        <div class="col100 fLeft radTor">
+                                        <div class="w50r fLeft">
+                                            <div class="text fLeft" id="spnd_name">Janardan prasanna ghosh</div>
+                                             <div class="text fLeft" id="spnd_email">janardan@xelpmoc.in</div>
+                                              <div class="text fLeft" id="spnd_city_pin">bangalore-560095</div>
+                                        </div>
+                                        <div class="w50l fRight"> 
+                                            <div class="text fLeft"><span>#657 5th A cross,17th E main road,Koromangala club,Bangalore,Karanataka,560095</span></div>
+                                         </div>
+                                           <input type="radio" name="selectM" class="filled-in dn" id="random3">
+                                            <label for="random3"></label>
+                                            <div class="btncnt fLeft bolder">
+                                                <center>
+                                                    <div class="dlvrBtn transition300">DELIVER TO THIS ADDRESS</div>
+                                                </center>
+                                            </div>
+                                         
+                                        </div>
+                                           <div class="col100 fLeft radTor">
+                                        <div class="w50r fLeft">
+                                            <div class="text fLeft" id="spnd_name">Janardan prasanna ghosh</div>
+                                             <div class="text fLeft" id="spnd_email">janardan@xelpmoc.in</div>
+                                              <div class="text fLeft" id="spnd_city_pin">bangalore-560095</div>
+                                        </div>
+                                        <div class="w50l fRight"> 
+                                            <div class="text fLeft"><span>#657 5th A cross,17th E main road,Koromangala club,Bangalore,Karanataka,560095</span></div>
+                                         </div>
+                                            <div class="btncnt fLeft bolder">
+                                                <center>
+                                                    <div class="dlvrBtn transition300">DELIVER TO THIS ADDRESS</div>
+                                                </center>
+                                            </div>
+                                        </div>-->
+                                    </div>
+
+                                </div>
+
+                                <div class="fadeCnt fLeft">
+                                    <div class="halfCircle">OR
+                                        <div class=""></div>
+                                        <div class=""></div>
+                                    </div>
+                                    <div class="hdrcrsTxt fLeft regular">
+                                        <div class="intTxt fLeft">Please enter your jzeva login credentials below</div>
+                                    </div>
+                                    <div class="frmDtls fLeft semibold">
+                                        <div class="sgnUptxt fLeft semibold">
+                                            <div class="txtB fLeft">
+                                                <input type="password" class="inp_box " maxlength="30">
+                                                <div class="inp_label ">Email/Mobile</div>
+                                            </div> 
+                                        </div>
+                                        <div class="sgnUptxt fLeft semibold">
+                                            <div class="txtB fLeft">
+                                                <input type="password" class="inp_box"  maxlength="30">
+                                                <div class="inp_label">Password</div>
+                                            </div>
+                                        </div>
+                                        <div class="subTxt fLeft pad0"><span>Forgot password?</span></div>
+                                    </div>
+                                    <div class="transBtns">
+                                        <center>
+                                            <div class="actBtn button">sign in</div>
+                                        </center>
+                                    </div>
+                                    <div class="guestSignup">Dont have account?<span class="semibold">Signup</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--              <div class="colleCont ePadding" id="txtAdd">
+                                          <div class="tabDaddrss semibold">DELIVERY ADDRESS</div>
+                                          <div class="dAdrsshdr fLeft semibold">CONFIRM ORDER
+                                              <div class="cbrdr"></div>
+                                          </div>
+                                          <div class="hdrcrsTxt fLeft regular">
+                                              <div class="intTxt fLeft">Please fill in the details below to proceed</div>
+                                              <div class="intTxt fLeft">To purchase this amazing product</div>
+                                          </div>
+                                          <div class="frmDtls fLeft semibold">
+                                                    <div class="txtB fLeft">
+                                                        <input type="text" class="inp_box " id="shpdname" maxlength="30">
+                                                        <div class="inp_label ">Name*</div>
+                                                    </div>
+                                                    <div class="txtB fLeft">
+                                                        <input type="text" class="inp_box "  id="shpdmobile" maxlength="10">
+                                                        <div class="inp_label ">Mobile*</div>
+                                                    </div>
+                                                    <div class="txtB fLeft">
+                                                        <input type="text" class="inp_box " id="shpdemail" maxlength="30">
+                                                        <div class="inp_label ">Email*</div>
+                                                    </div>
+                        
+                        
+                                                    <div class="txtB fLeft">
+                                                        <input type="text" class="inp_box " id="shpdstreet" maxlength="15">
+                                                        <div class="inp_label ">Address*</div>
+                                                    </div>
+                                                    <div class="txtB fLeft">
+                                                        <input type="text" class="inp_box "  id="shpdpincode">
+                                                        <div class="inp_label ">Zip code*</div>
+                                                    </div>
+                                                    <div class="txtB fLeft">
+                                                        <input type="text" class="inp_box " id="shpdstate" maxlength="20">
+                                                        <div class="inp_label ">State*</div>
+                                                    </div>
+                                                    <div class="txtB fLeft">
+                                                        <input type="text" class="inp_box " id="shpdcity" maxlength="15">
+                                                        <div class="inp_label ">City*</div>
+                                                    </div>
+                                          </div>
+                                          <div class="cnclSbmt fLeft bolder">
+                                              <div class="w50 fLeft">BACK</div>
+                                              <div class="w51 fRight" id="nxt">SUBMIT</div>
+                                          </div>
+                                      </div>-->
+                        <!--                <div class="colleCont ePadding dn">
+                                         <div class="dAdrsshdr fLeft semibold">Have an account?
+                                              <div class="cbrdr"></div>
+                                          </div>
+                                            <div class="sgnUptxt fLeft regular"><span>Sign Up</span></div>
+                                            <div class="dvdr fLeft"></div>
+                                            <div class="sgnUptxt fLeft regular"><span>Continue as a guest</span> </div>
+                                        </div>-->
+                        <div class="colleCont v2 black colorfff">
+                            <div class="col100 fLeft checkGuest">
+                                <!--                                <div class="dAdrsshdr fLeft semibold">CONFIRM ORDER
+                                                                    <div class="cbrdr"></div>
+                                                                </div>-->
+                                <div class="hdrcrsTxt fLeft regular">
+                                    <div class="intTxt fLeft">Please fill in the details below to proceed</div>
+                                    <div class="intTxt fLeft">To purchase this amazing product</div>
+                                </div>
+                                <div class="frmDtls fLeft semibold">
+                                    <div class="neadHide">
+                                        <div class="dropBox fLeft">
+                                            <label  id="dlabel">Title</label>
+                                            <ul class="ulDiv dn">
+                                                <li class="opt1" id="gnd_1">Ms</li>
+                                                <li class="opt1" id="gnd_2">Mr</li>
+                                                <li class="opt1" id="gnd_3">Mrs</li>
+                                            </ul>
+                                        </div>
+                                        <div class="txtB fLeft w49">
+                                            <input type="text" class="inp_box " autocomplete="off" id="shpdname" maxlength="30">
+                                            <div class="inp_label ">Name*</div>
+                                        </div>
+                                        <div class="txtB  fRight w49">
+                                            <input type="text" class="inp_box " autocomplete="off"  id="shpdmobile" maxlength="10">
+                                            <div class="inp_label ">Mobile*</div>
+                                        </div>
+                                        <div class="txtB fLeft">
+                                            <input type="text" class="inp_box " autocomplete="off" id="shpdemail" maxlength="30">
+                                            <div class="inp_label ">Email*</div>
+                                        </div>
+                                    </div>
+                                    <div class="txtB fLeft">
+                                        <input type="text" class="inp_box " autocomplete="off" id="shpdaddrs" maxlength="120">
+                                        <div class="inp_label ">Address*</div>
+                                    </div>
+                                    <div class="txtB fLeft">
+                                        <input type="text" class="inp_box " autocomplete="off"  id="shpdpincode" maxlength="6">
+                                        <div class="inp_label ">Zip code*</div>
+                                    </div> 
+                                    <div class="txtB fLeft  w49">
+                                        <input readonly type="text" class="inp_box " autocomplete="off" id="shpdcity" maxlength="15">
+                                        <div class="inp_label ">City*</div>
+                                    </div>
+                                    <div class="txtB fRight w49">
+                                        <input readonly type="text" class="inp_box " autocomplete="off" id="shpdstate" maxlength="20">
+                                        <div class="inp_label ">State*</div>
+                                    </div>
+                                </div>
+
+                                <div class="transBtns colorfff">
+                                    <center>
+
+                                        <div class="actBtn button">continue as guest</div>
+                                    </center>
+                                </div>
+
+                                <!--                                <div class="cnclSbmt fLeft bolder">
+                                                                    <center>
+                                                                        <div class="col50 fLeft"><div class="actBtn button mar0" >BACK</div></div>
+                                                                        <div class="col50 fRight"><div class="actBtn button mar0" >SUBMIT</div></div>
+                                                                    </center>
+                                                                </div>-->
+                            </div>
+
+
+                            <!--                            <div class="dAdrsshdr fLeft semibold">GRAND TOTAL
+                                                            <div class="cbrdr"></div>
+                                                        </div>
+                                                        <div class="prcTxt fLeft regular">3,56,000</div>-->
+
+
+
+
+
+
+                            <!--<div class="jwlCntdtls fLeft regular">
+                                <div class="clsePrdct"></div>
+                            <div class="ordrJwl"></div>
+                            <div class="jwlryDtls fLeft">
+                                <div class="w60 fLeft">
+                                    <div class="text fLeft bolder">CAROLE WEDDING RING</div>
+                                    <div class="text fLeft">White gold 18 carats,Diamond 22 carats</div>
+                           <div class="text fLeft"><span class="spanl">Quality : VVS - EF</span><span class="spanl">Purity - 9CARAT</span></div>
+                                     <div class="text fLeft"><span class="spanl">Color :YELLOW</span><span class="spanl">Size - 28</span></div>
+                                </div>
+                                <div class="w40 fLeft">
+                                    <div class="text fLeft">Rs. 830909000</div>
+                                    <div class="pCount fLeft">
+                                        <center>
+                                            <div class="incr icnMns"></div> 
+                                        <div class="pNumber light">1</div>
+                                         <div class="incr icnPls"></div> 
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                               <div class="jwlCntdtls fLeft regular">
+                                   <div class="clsePrdct"></div>
+                            <div class="ordrJwl"></div>
+                            <div class="jwlryDtls fLeft">
+                                <div class="w60 fLeft">
+                                    <div class="text fLeft bolder">CAROLE WEDDING RING</div>
+                                    <div class="text fLeft">White gold 18 carats,Diamond 22 carats</div>
+                                    <div class="text fLeft"><span class="spanl">Quality : VVS - EF</span><span class="spanl">Purity - 9CARAT</span></div>
+                                     <div class="text fLeft"><span class="spanl">Color :YELLOW</span><span class="spanl">Size - 28</span></div>
+                                </div>
+                                <div class="w40 fLeft">
+                                    <div class="text fLeft">Rs. 830909000</div>
+                                    <div class="pCount fLeft">
+                                        <center>
+                                        <div class="incr icnPls"></div> 
+                                        <div class="pNumber light">1</div>
+                                        <div class="incr icnMns"></div> 
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>-->
+
+                            <!--<div class="jwlCntdtls fLeft regular">
+                                <div class="clsePrdct"></div>
+                         <div class="ordrJwl"></div>
+                         <div class="jwlryDtls fLeft">
+                             <div class="w60 fLeft">
+                                 <div class="text fLeft bolder">CAROLE WEDDING RING</div>
+                                 <div class="text fLeft">White gold 18 carats,Diamond 22 carats</div>
+                                 <div class="text fLeft"><span class="spanl">Quality : VVS - EF</span><span class="spanl">Purity - 9CARAT</span></div>
+                                  <div class="text fLeft"><span class="spanl">Color :YELLOW</span><span class="spanl">Size - 28</span></div>
+                             </div>
+                             <div class="w40 fLeft">
+                                 <div class="text fLeft">Rs. 830909000</div>
+                                 <div class="pCount fLeft">
+                                     <center>
+                                     <div class="incr icnPls"></div> 
+                                     <div class="pNumber light">1</div>
+                                     <div class="incr icnMns"></div> 
+                                     </center>
+                                 </div>
+                             </div>
+                         </div>
+                         </div>-->
+                            <!--<div class="jwlCntdtls fLeft regular">
+                                <div class="clsePrdct"></div>
+                         <div class="ordrJwl"></div>
+                         <div class="jwlryDtls fLeft">
+                             <div class="w60 fLeft">
+                                 <div class="text fLeft bolder">CAROLE WEDDING RING</div>
+                                 <div class="text fLeft">White gold 18 carats,Diamond 22 carats</div>
+                                 <div class="text fLeft"><span class="spanl">Quality : VVS - EF</span><span class="spanl">Purity - 9CARAT</span></div>
+                                  <div class="text fLeft"><span class="spanl">Color :YELLOW</span><span class="spanl">Size - 28</span></div>
+                             </div>
+                             <div class="w40 fLeft">
+                                 <div class="text fLeft">Rs. 830909000</div>
+                                 <div class="pCount fLeft">
+                                     <center>
+                                     <div class="incr icnPls"></div> 
+                                     <div class="pNumber light">1</div>
+                                     <div class="incr icnMns"></div> 
+                                     </center>
+                                 </div>
+                             </div>
+                         </div>
+                         </div>-->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+   <div class="checkFoo fLeft">
+         <div class="cartBox fLeft pad25">
+                <div class="cartHd helpIc fLeft"></div>
+                <div class="cartTxt font12 fLeft">Need help ?</div>
+
+                <div class="infoTxt jzevaColor fLeft font18 pad0">9988556622</div>
+                <div class="infoTxt font11 fLeft">(Monday - friday 10AM to 10PM IST | saturday 10AM-6:30PM IST)</div>
+                <div class="fLeft cartTxt pBtm0 font11">OR email the concierge</div>
+                <div class="font11 infoTxt jzevaColor fLeft txtLower">care@jzeva.com</div>
+
+            </div>
+            <div class="cartBox fLeft pad25">
+                <div class="cartHd paymentIc fLeft"></div>
+                <div class="cartTxt font12 fLeft">payment methods</div>
+                <div class="infoTxt font11 fLeft pad0">choose a convenient option to pay for your jewellery</div>
+                <div class="optionPay fLeft">
+                    <center>
+                        <img src="frontend/tools/img/icons/c1.jpg" alt="no-image">
+                        <img src="frontend/tools/img/icons/c2.jpg" alt="no-image">
+                        <img src="frontend/tools/img/icons/c3.jpg" alt="no-image">
+                        <img src="frontend/tools/img/icons/c5.jpg" alt="no-image">
+                        <img src="frontend/tools/img/icons/c6.jpg" alt="no-image">
+                    </center>
+                </div>
+            </div>
+            <div class="cartBox fLeft pad25">
+                <div class="cartHd shipIc fLeft"></div>
+                <div class="cartTxt font12 fLeft">free shipping and warranty</div>
+                <div class="pad0  infoTxt font11 fLeft">free rapid and secure delivery</div>
+                <div class="infoTxt font11 jzevaColor fLeft">2 YEARS WARRANTY ON ALL PRODUCTS</div>
+            </div>
+<!--        <center>
+            <div class="col100">
+                <img src="frontend/tools/img/icons/10.jpg" alt="no-image">
+                <img src="frontend/tools/img/icons/02.jpg" alt="no-image">
+                <img src="frontend/tools/img/icons/03.jpg" alt="no-image">
+                <img src="frontend/tools/img/icons/04.jpg" alt="no-image">
+                <img src="frontend/tools/img/icons/05.jpg" alt="no-image">
+            </div>
+        </center>-->
+    </div>
+
+    <!--        <div class="maxContr" >
+                <div class="ckMainCont">
+                    <div class="addDiv borderN">
+                        <div class=" txtTitle tUline">Shipping Details</div>
+                        <div class="newAddDiv" id="txtAdd">
+                            <div class="txtOutCont fLeft">
+                                <div class="txtB  fLeft">
+                                    <input type="text" class="inp_box " id="shpdname" maxlength="30">
+                                    <div class="inp_label ">Name*</div>
+                                </div>
+                            </div>
+                            <div class="txtOutCont fLeft">
+                                <div class="txtB  fLeft">
+                                    <input type="tel" class="inp_box " id="shpdmobile" maxlength="10">
+                                    <div class="inp_label ">Mobile*</div>
+                                </div>
+                            </div>
+                            <div class="txtOutCont fLeft">
+                                <div class="txtB  fLeft">
+                                    <input type="text" class="inp_box " id="shpdemail" maxlength="30">
+                                    <div class="inp_label ">Email*</div>
+                                </div>
+                            </div>
+                            <div class="txtOutCont fLeft">
+                                <div class="txtB  fLeft">
+                                    <input type="text" class="inp_box " id="shpdcity" maxlength="15">
+                                    <div class="inp_label ">City*</div>
+                                </div>
+                            </div>
+                            <div class="txtOutcont1 fLeft">
+                                <div class="txtB  fLeft">
+                                    <input type="text" class="inp_box" id="shpdaddrs">
+                                    <div class="inp_label " >Address*</div>
+                                </div>
+                            </div>
+                            <div class="txtOutCont fLeft">
+                                <div class="txtB  fLeft">
+                                    <input type="text" class="inp_box " id="shpdstate" maxlength="20">
+                                    <div class="inp_label ">State*</div>
+                                </div>
+                            </div>
+    
+                            <div class="txtOutCont fLeft">
+                                <div class="txtB  fLeft">
+                                    <input type="text" class="inp_box" id="shpdpincode">
+                                    <div class="inp_label ">Pin code*</div>
+                                </div>
+                            </div>
+                            <div class="buttonPos fLeft">
+                                <center>
+                                    <div class="btnContainr  fmOsR padXr5" >
+                                        <div class="button button2 btnc1 transition300 fLeft">BACK</div>
+                                    </div>
+                                    <div class="btnContainr  fmOsR padXl5" id="nxt">
+                                        <div class="button button2 btnc1 transition300 fLeft">NEXT</div>
+                                    </div>
+                                </center>
+                            </div>
+                        </div>
+                        <div class="newAddDiv dn" id="addOpt">
+                            <div class="contAdd fLeft ">
+                                <div class="dlHead fLeft  ">Deliver to:</div>
+                                <div class="dlevryTxt fLeft "><span id="spdnamedispl"></span>Ganesh Belle </div>
+                                <div class="dlevryTxt fLeft"><span id="spdaddrdspl"></span>#32 17th B Main ,5th Cross Bannerughatta Hulimangala Road, Bengaluru, Karnataka 560105, India</div>
+                            </div>
+                            <div class="breakLine fLeft"></div>
+                            <div class="contAdd fRight">
+                                <div class="dlHead fLeft  ">Delivery Option:</div>
+                                <div class="gnrlWrp fLeft mtop10">
+                                    <div class="checkDiv fLeft ">
+                                        <input type="checkbox" name="select" id="date" class="filled-in" value="1">
+                                        <label for="date">Between 9-12 Jan- Free delivery on eligible orders</label>
+                                    </div>
+                                    <div class="checkDiv fLeft ">
+                                        <input type="checkbox" name="select" id="time" class="filled-in" value="2">
+                                        <label for="time">Saturday - two-day delivery at Rs.50</label>
+                                    </div>
+                                    <div class="checkDiv fLeft ">
+                                        <input type="checkbox" name="select" id="price" class="filled-in" value="3">
+                                        <label for="price">Same day at Rs.120</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="buttonPos fLeft">
+                                <center> 
+                                    <div class="btnContainr  fmOsR " id="bck">
+                                        <div class="button button2 btnc1 transition300 fLeft">BACK</div>
+                                    </div>
+                                    <div class="btnContainr  fmOsR " >
+                                        <div class="button button2 btnc1 transition300 fLeft" id="paymentbtn">PAYMENT</div>
+                                    </div>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="addDiv1 dn">
+                        <div class=" txtTitle tUline">Your Orders</div>
+                        <div class="prfinalCont fLeft">
+                            <div class="prdFinalCont">
+                                <div class="ckPrCont fLeft">
+                                    <div class="ckPrImg fLeft"></div>
+                                    <div class="incCont fLeft">
+                                        <div class="cCont fLeft ">
+                                            <div class="cart_btn fLeft sub_no" id="drcmnt"></div>
+                                            <div class="item_amt fLeft ">1</div>
+                                            <div class="cart_btn fLeft add_no" id="incrmnt"></div>
+                                        </div>
+                                    </div>
+                                    <div class="namCont fLeft ">
+                                        <div class="ckPrNam ">Diamants LÉ Gers</div>
+                                        <div class="col100 colorLg font11 ">White gold 18 Carats, Diamond 22 Carats</div>
+                                        <div class="rsContr fLeft">
+                                            <div class="col50 fLeft">
+                                                <div class="prTxt1  fLeft ">₹ 26,000</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clBtn transition200  noselect">REMOVE</div>
+                                </div>
+                                <div class="ckPrCont fLeft">
+                                    <div class="ckPrImg fLeft"></div>
+                                    <div class="incCont fLeft">
+                                        <div class="cCont fLeft ">
+                                            <div class="cart_btn fLeft sub_no" id="drcmnt"></div>
+                                            <div class="item_amt fLeft ">1</div>
+                                            <div class="cart_btn fLeft add_no" id="incrmnt"></div>
+                                        </div>
+                                    </div>
+                                    <div class="namCont fLeft ">
+                                        <div class="ckPrNam ">Diamants LÉ Gers</div>
+                                        <div class="col100 colorLg font11 ">White gold 18 Carats, Diamond 22 Carats</div>
+                                        <div class="rsContr fLeft">
+                                            <div class="col50 fLeft">
+                                                <div class="prTxt1  fLeft ">₹ 26,000</div>
+                                            </div>
+    
+                                        </div>
+                                    </div>
+                                    <div class="clBtn transition200  noselect">REMOVE</div>
+                                </div>
+                                <div class="ckPrCont fLeft">
+                                    <div class="ckPrImg fLeft"></div>
+                                    <div class="incCont fLeft">
+                                        <div class="cCont fLeft ">
+                                            <div class="cart_btn fLeft sub_no" id="drcmnt"></div>
+                                            <div class="item_amt fLeft ">1</div>
+                                            <div class="cart_btn fLeft add_no" id="incrmnt"></div>
+                                        </div>
+                                    </div>
+                                    <div class="namCont fLeft ">
+                                        <div class="ckPrNam ">Diamants LÉ Gers</div>
+                                        <div class="col100 colorLg font11  ">White gold 18 Carats, Diamond 22 Carats</div>
+                                        <div class="rsContr fLeft">
+                                            <div class="col50 fLeft">
+                                                <div class="prTxt1  fLeft">₹ 26,000</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clBtn transition200  noselect">REMOVE</div>
+                                </div>
+                                <div class="ckPrCont fLeft">
+                                    <div class="ckPrImg fLeft"></div>
+                                    <div class="incCont fLeft">
+                                        <div class="cCont fLeft ">
+                                            <div class="cart_btn fLeft sub_no" id="drcmnt"></div>
+                                            <div class="item_amt fLeft ">1</div>
+                                            <div class="cart_btn fLeft add_no" id="incrmnt"></div>
+                                        </div>
+                                    </div>
+                                    <div class="namCont fLeft ">
+                                        <div class="ckPrNam ">Diamants LÉ Gers</div>
+                                        <div class="col100 colorLg font11  ">White gold 18 Carats, Diamond 22 Carats</div>
+                                        <div class="rsContr fLeft">
+                                            <div class="col50 fLeft">
+                                                <div class="prTxt1  fLeft ">₹ 26,000</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clBtn transition200  noselect">REMOVE</div>
+                                </div>
+                            </div>
+    
+    
+    
+                            <div class="productContr">
+                                <div class=" font14 subTCont">
+                                    <span class="fLeft  font12">SUBTOTAL</span>
+                                    <span class="fRight" id="shpntotalprdprc">&#8377 52,000</span>
+                                </div>
+                                <div class=" font14 subTCont brdBottom">
+                                    <span class="fLeft  font12">SHIPPING</span>
+                                    <span class="fRight">&#8377 100</span>
+                                </div>
+                                <div class="  subTCont">
+                                    <span class="fLeft  font16">TOTAL</span>
+                                    <span class="fRight font20" id="shpntotalprc">&#8377 52,100</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+    
+        </div>-->
+
+    <!--<script type="text/javascript" src="<?php echo $jvs['checkout']; ?>"></script>-->
+    <script type="text/javascript" src="<?php echo $fjvs['Common']; ?>"></script>
+    <script type="text/javascript">
+
+                                $("#dlabel").click(function () {
+                            $('.dropBox label').addClass("act");
+                            $(this).parent().addClass("drop");
+                            $(this).next().slideDown("slow");
+                        });
+
+                        $(".dropBox ul li").click(function () {
+                            $('.dropBox label').removeClass("act");
+                            $(this).parent().parent().removeClass("drop");
+                            var liTxt = $(this).html();
+                            $(".dropBox label").text(liTxt);
+                            $(this).parent().slideUp("slow");
+                        });
+
+
+                        $(document).ready(function () {
+                            $('#scroll').niceScroll({cursorcolor: "#000000", touchbehavior: true, cursorwidth: "4px", autohidemode: false, cursorborder: "0px solid #fff", cursoropacitymin: "0.3", cursoropacitymax: "0.3", railpadding: {top: 2, right: 2, left: 2, bottom: 2}});
+                        });
+
+                        $('.inp_box').focus(function () {
+                            $(this).closest('.txtB').addClass('focul');
+                        });
+
+                        $('.inp_box').blur(function () {
+                            $('body').removeClass("tryB");
+                            var k = $(this).val();
+                            if (k === "") {
+                                $(this).closest('.txtB').removeClass('focul');
+                            }
+                        });
+//                                        $(window).load(function () {
+//
+//                                            setTimeout(function () {
+//                                                load_page();
+//                                            }, 2000);
+//                                        });
+                        function load_page() {
+                            $('body').addClass('over_hide');
+                            $('.page_loader2').velocity({translateY: ['100%', 0]}, {duration: 600, easing: 'easeInQuart', display: 'none', complete: function () {
+                                    $('body').removeClass('over_hide');
+                                }});
+
+                        }
+
+                        $('#nxt').click(function () {
+                            if (validationFlag == 2) {
+                                // sendotp();
+                                $('.txt').html('We have sent an OTP via sms to ' + mobileno)
+
+                            }
+                            $('#addOpt').removeClass("dn");
+                            $('#txtAdd').addClass("dn");
+                        });
+                        $('#bck').click(function () {
+                            $('#txtAdd').removeClass("dn");
+                            $('#addOpt').addClass("dn");
+                        });
+
+
+
+
+//                                        $('.inp_box').focus(function () {
+//                                            $(this).closest('.inp_cont').addClass('focul');
+//                                        });
+//                                        $('.inp_box').blur(function () {
+//                                            var k = $(this).val();
+//                                            if (k == "") {
+//                                                $(this).closest('.inp_cont').removeClass('focul');
+//                                            }
+//
+//                                        });
+//          $('#fstup').velocity({opacity: 1,translateY:'0px'}, {delay: 0, duration: 0,display:'block'});
+//            $('#scndup').velocity({opacity:0,translateY:'20px'}, {delay: 0, duration: 0,display:'none'});
+                        function openfst() {
+                            chkouttentrflag = 6;
+                            $('#fstup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
+                            $('#scndup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
+                            $('#intscrl').niceScroll({cursorcolor: "#000000", touchbehavior: true, cursorwidth: "4px", autohidemode: false, cursorborder: "0px solid #fff", cursoropacitymin: "0.3", cursoropacitymax: "0.3", railpadding: {top: 2, right: 2, left: 2, bottom: 2}});
+                        }
+                        function openfst1() {
+                            chkouttentrflag = 5;
+                            $('#fourthup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
+                            $('#fstup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
+                            setTimeout(function () {
+                                $('#shpdmobile').focus();
+                            }, 500);
+                        }
+                        function opnscnd() {
+                            bakflag = 2;
+                            chkouttentrflag = 5;
+                            shipng_id = 0;
+                            $('#shpdaddrs').val('');
+                            $('#shpdcity').val('');
+                            $('#shpdstate').val('');
+                            $('#shpdpincode').val('');
+                            $('.txtB ').removeClass('focul');
+                            $('#fstup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
+                            $('#scndup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
+                            $('.neadHide').addClass('dn');
+                        }
+                        function openThrd() {
+                            chkouttentrflag = 3;
+                            $('#otp1').val('');
+                            $('#otp1').blur();
+                            $('#unmatchIcn').addClass('dn');
+                            $('#unmatchIcn1').addClass('dn');
+                            $('#pswrd1').val('');
+                            $('#pswrd1').blur();
+                            $('#pswrd2').val('');
+                            $('#pswrd2').blur();
+                            $('#fourthup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
+                            $('#thrdup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
+                        }
+                        function openFifth() {
+                            chkouttentrflag = 2;
+                            $('#pswrd8').val('');
+                            $('#pswrd8').blur();
+                            $('#fifthup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
+                            $('#fstup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
+                        }
+                        function openSixth() {
+                            chkouttentrflag = 4;
+                            $('#shpdemail3').val('');
+                            $('#shpdemail3').blur();
+                            $('#sixthup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
+                            $('#fifthup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
+                        }
+                        function closeThrd() {
+                            chkouttentrflag = 1;
+                            $('#fstup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
+                            $('#thrdup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
+                        }
+                        function opnfrth() {
+                            $('#scndup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
+                            $('#fourthup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
+                            $('#intscrl').niceScroll({cursorcolor: "#000000", touchbehavior: true, cursorwidth: "4px", autohidemode: false, cursorborder: "0px solid #fff", cursoropacitymin: "0.3", cursoropacitymax: "0.3", railpadding: {top: 2, right: 2, left: 2, bottom: 2}});
+                        }
+                        function mtrmklm() {
+                            $('#fifthup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
+                            $('#scndup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
+                            $('#thrdup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
+                        }
+                        function lmtmkm() {
+                            $('#sixthup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
+                            $('#scndup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
+                            $('#thrdup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
+                        }
+                        $('.entrotppopup').velocity({opacity: 0}, {delay: 0, duration: 0});
+                        $('.enterotpCnt').velocity({scale: 0, borderRadius: "50%", opacity: 0}, {delay: 0, duration: 0});
+                        function openotppop() {
+                            $(".entrotppopup").css("display", "block");
+                            $('.entrotppopup').velocity({opacity: 1}, {delay: 0, duration: 300, ease: 'swing'});
+                            $(".enterotpCnt").velocity({scale: 1, borderRadius: "0", opacity: 1}, {delay: 180, duration: 300, ease: 'swing'});
+                        }
+                        function closeotppop() {
+                            $(".entrotppopup").velocity({opacity: 0}, {delay: 0, duration: 200, ease: 'swing'});
+                            $(".enterotpCnt").velocity({scale: 0, borderRadius: "50%", opacity: 0}, {duration: 200, delay: 0, ease: 'swing'});
+                            setTimeout(function () {
+                                $('.entrotppopup').css("display", "none");
+                            }, 400);
+
+                        }
+                        function dfltscndopn() {
+                            $('#scndup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
+                            $('#thrdup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
+                        }
+                        function dfltscndopn1() {
+                            $('#scndup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
+                            $('#fstup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
+                            $('#intscrl').niceScroll({cursorcolor: "#000000", touchbehavior: true, cursorwidth: "4px", autohidemode: false, cursorborder: "0px solid #fff", cursoropacitymin: "0.3", cursoropacitymax: "0.3", railpadding: {top: 2, right: 2, left: 2, bottom: 2}});
+                        }
+
+
+                        function bmtm() {
+                            chkouttentrflag = 1;
+                            $('#entereml').val('');
+                            $('#entereml').blur();
+                            $('#thrdup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
+                            $('#fifthup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
+                        }
+                        function bmtm1() {
+                            chkouttentrflag = 1;
+                            $('#entereml').val('');
+                            $('#entereml').blur();
+                            $('#thrdup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
+                            $('#fourthup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
+                        }
+                        function bmtm2() {
+                            $('#pswrd8').val('');
+                            $('#pswrd8').blur();
+                            $('#fifthup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
+                            $('#sixthup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
+                        }
+
+
+                        $('#pswrd2').keyup(function () {
+                            var val1 = $('#pswrd1').val();
+                            var val2 = $('#pswrd2').val();
+                            var th = $(this);
+                            if (val1 != "" && val2 != "") {
+                                if (val1 == val2) {
+                                    contnu_enble = 1;
+                                    passwrd = val1;
+                                    $('.matchIcn1').removeClass('dn');
+                                    $('.unmatchIcn1').addClass('dn');
+                                }
+//
+                                else {
+                                    contnu_enble = 0;
+                                    $('.matchIcn1').addClass('dn');
+                                    $('.unmatchIcn1').removeClass('dn');
+                                }
+                            } else {
+                                $('.matchIcn1').addClass('dn');
+                                $('.unmatchIcn1').addClass('dn');
+                            }
+                        });
+                        $('#pswrd1').keyup(function () {
+                            var th1 = $(this);
+                            var th2 = $('#pswrd2');
+                            if (th1.val() != "" && th2.val() != "") {
+                                if (th1.val() == "" || th1.val() == 0) {
+                                    $('.matchIcn1').addClass('dn');
+                                } else {
+                                    contnu_enble = 0;
+                                    $('.matchIcn1').addClass('dn');
+                                }
+                            } else {
+                                $('.matchIcn1').addClass('dn');
+                            }
+                        });
+
+
+
+
+    </script>
+</body>
