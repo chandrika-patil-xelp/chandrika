@@ -215,14 +215,12 @@
             if (ht > sc) {
                 var op = 1 - (ht - sc) / ht;
                 $('#banner_over').css({'opacity': op});
-
             }
             if (ht - sc <= 5) {
                 $('.header').addClass('black_bg');
-
-            } else {
+            }
+            else {
                 $('.header').removeClass('black_bg');
-
             }
 
         });
@@ -247,15 +245,16 @@
         function gallerChange() {
             iv = (iv + 1) % 4;
                 $('.galleryImg').addClass('dn');
-                $('.galleryImg').eq(iv).removeClass('dn');              
+                $('.galleryImg').eq(iv).removeClass('dn');
         }
-        var kkk= 0;
+        var kkk= -1;
         function runslider() {
           kkk++;
-          if(kkk==12){
+          if(kkk==4){
             clearTimeout(stop);
             runslider();
             kkk=0;
+            console.log('clear');
           }
 
           clearTimeout(stop);
