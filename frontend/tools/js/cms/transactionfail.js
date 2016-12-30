@@ -3,7 +3,7 @@
  
   $(document).ready(function(){
    
-     
+ 
       shipid=common.readFromStorage('jzeva_shpid');
       displaycartdetail();
        getname();  
@@ -38,7 +38,7 @@
   totalprice = 0;
   $('.total_prc').html(""); 
  
-    var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id=" + cartid + "&userid=NULL";  
+    var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id=" + cartid + "&userid=";  
       
     $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results) {
       var obj = JSON.parse(results);
