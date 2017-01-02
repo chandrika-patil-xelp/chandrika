@@ -146,10 +146,9 @@ function displaycartdata()
                         cartstr += "<div class='amt_selector' id='" + v.cart_id + "'>";
                         cartstr += "<a href='#' onclick='subqnty(this)'  id='sub_" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "_" + v.size + "'><div class='cart_btn fLeft sub_no'></div></a>";
                         cartstr += "<div class='item_amt fLeft '>" + v.pqty + "</div>";
-                        cartstr += " <a href='#' onclick='addqnty(this)'  id='add_" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "_" + v.size + "'><div class='cart_btn fLeft add_no' ></div></a>";
-                       
+                        cartstr += " <a href='#' onclick='addqnty(this)'  id='add_" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "_" + v.size + "'><div class='cart_btn fLeft add_no' ></div></a>"
                         cartstr += "</div>";
-                        cartstr += "<div class='cart_removew addrCommon' id='" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "_" + v.size + "'onclick='cremove(this)'>";
+         cartstr += "<div class='cart_removew addrCommon' id='" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "_" + v.size + "'onclick='cremove(this)'>";
 			cartstr += "</div>";
 
                         $("#niceCart").append(cartstr);
@@ -228,7 +227,7 @@ function cremove(el) {
     $('#cYes').unbind();
     $('#cYes').click(function () {
 
-        var id = $(el).closest('div.cart_remove').attr('id');
+        var id = $(el).closest('div.cart_removew').attr('id');
         var a = id.split('_');
         var col_car_qty = a[2], product_id = a[0], cartid = a[3];
         var size = a[4];
