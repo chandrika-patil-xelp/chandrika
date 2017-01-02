@@ -215,7 +215,7 @@
         $(document).ready(function () {
 
             GetRates();
-            var URL = APIDOMAIN + "?action=getProductById&pid=" + pid;
+            var URL = APIDOMAIN + "index.php?action=getProductById&pid=" + pid;
             $.ajax({
                 url: URL,
                 type: 'POST',
@@ -549,15 +549,15 @@
             });
             
             $('.managePrdBtn').bind('click', function () {
-                window.open(DOMAIN + 'backend/?action=thumbnail&pid=' + pid, '_blank');
+                window.open(DOMAIN + 'backend/index.php?action=thumbnail&pid=' + pid, '_blank');
             });
 
             $('.uploadPrdBtn').bind('click', function () {
-                window.open(DOMAIN + 'backend/?action=upload&pid=' + pid, '_blank');
+                window.open(DOMAIN + 'backend/index.php?action=upload&pid=' + pid, '_blank');
             });
 
             $('.editPrdBtn').bind('click', function () {
-                window.open(DOMAIN + 'backend/?action=editProduct&pid=' + pid, '_blank');
+                window.open(DOMAIN + 'backend/index.php?action=editProduct&pid=' + pid, '_blank');
             });
 
             $('.deletePrdBtn').bind('click', function () {
@@ -648,7 +648,7 @@
             var data = values;
             var dt = JSON.stringify(data);
 
-            var URL = APIDOMAIN + "?action=changeProductStatus";
+            var URL = APIDOMAIN + "index.php?action=changeProductStatus";
             $.ajax({
                 url: URL,
                 type: 'POST',
@@ -659,7 +659,7 @@
                     changeStatusCallBack(res);
                     if (val == 2 && res['error']['err_code'] == '0')
                     {
-                        window.location.href = DOMAIN + 'backend/?action=products';
+                        window.location.href = DOMAIN + 'backend/index.php?action=products';
                     }
 
                 }
@@ -1130,7 +1130,7 @@
 var col_car_qty= ""+clrval+"|@|"+gldval+"|@|"+dmndval;
         var price =parseInt($('#grandTotal').text().replace(/[^0-9.]/g, ""));
      
-          window.open(DOMAIN+"backend/?action=placeorder&pid="+pid+"&col_car_qty="+col_car_qty+"&sz="+siz+"&chgwt="+chgwt+"&price="+price);
+          window.open(DOMAIN+"backend/index.php?action=placeorder&pid="+pid+"&col_car_qty="+col_car_qty+"&sz="+siz+"&chgwt="+chgwt+"&price="+price);
         
         
    });

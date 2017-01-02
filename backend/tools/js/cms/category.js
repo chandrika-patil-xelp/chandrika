@@ -53,7 +53,7 @@ function categoryCallBack(data)
             str += "<div class='dPos fLeft op0'>0</div>";
             str += "<div class='cactt fLeft'>";
             str += "<div class='deltBtn fRight transition300'  onclick=\"setClick('" + categories[i]['cid'] + "',2);showConfirmBox();\"></div>";
-            str += "<a href='"+DOMAIN+"backend/?action=editCategory&cid=" + categories[i]['cid'] + "'><div class='editBtn fRight transition300'></div></a>";
+            str += "<a href='"+DOMAIN+"backend/index.php?action=editCategory&cid=" + categories[i]['cid'] + "'><div class='editBtn fRight transition300'></div></a>";
 
             if (categories[i]['active'] == "1")
             {

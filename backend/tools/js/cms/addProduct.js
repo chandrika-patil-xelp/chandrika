@@ -872,7 +872,7 @@ function deleteThis(id)
 
 function changePrdPropertyStatus(type)
 {
-        var URL= APIDOMAIN+"?action=changePrdPropertyStatus";
+        var URL= APIDOMAIN+"index.php?action=changePrdPropertyStatus";
         values= {};
         values['type'] = type;
         values['pid'] = prdid;
@@ -1318,6 +1318,13 @@ function bindDmdQuaity()
 
 function addProduct()
 {
+    var productDescription = encodeURIComponent($('#productDescription').val().replace(/<(?:.|\n)*?>/gm,''));
+    var charcont=productDescription.length;
+    if(charcont > 350){
+      common.toast(1, 'Product Description Character length must be less than 350');
+    }
+    else{
+     
     previewData=new Array();
     showLoader();
     $('.forScrollBtn').removeClass('op0');
@@ -1771,6 +1778,7 @@ function addProduct()
 */
 
     }
+  }
 }
 
 
@@ -2728,7 +2736,7 @@ function calcGrandTotal(type)
 function oneditmode()
 {
     showLoader();
-    var URL=APIDOMAIN+"?action=getProductById&pid="+pid;
+    var URL=APIDOMAIN+"index.php?action=getProductById&pid="+pid;
    
     $.ajax({
         url:URL,
@@ -3109,7 +3117,7 @@ function deleteSolitaire(obj)
 
     if(sid!=="")
     {
-        var URL= APIDOMAIN+"?action=changeSolitaireStatus";
+        var URL= APIDOMAIN+"index.php?action=changeSolitaireStatus";
 
         values= {};
         values['solitaire_id'] = sid;
@@ -3139,7 +3147,7 @@ function deleteDiamond(obj)
 
     if(did!=="")
     {
-        var URL= APIDOMAIN+"?action=changeDiamondStatus";
+        var URL= APIDOMAIN+"index.php?action=changeDiamondStatus";
 
         values= {};
         values['diamond_id'] = did;
@@ -3169,7 +3177,7 @@ function deleteUncut(obj)
 
     if(uid!=="")
     {
-        var URL= APIDOMAIN+"?action=changeUncutStatus";
+        var URL= APIDOMAIN+"index.php?action=changeUncutStatus";
 
         values= {};
         values['uncut_id'] = uid;
@@ -3198,7 +3206,7 @@ function deleteGemstone(obj)
     var gid=$(obj).parent().parent().attr('db-id');
     if(gid!=="")
     {
-        var URL= APIDOMAIN+"?action=changeGemstoneStatus";
+        var URL= APIDOMAIN+"index.php?action=changeGemstoneStatus";
 
         values= {};
         values['gemstone_id'] = gid;

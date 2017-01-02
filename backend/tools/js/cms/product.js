@@ -26,7 +26,7 @@ hideConfirmBox()
     var data = values;
     var dt = JSON.stringify(data);
 
-    var URL = APIDOMAIN + "?action=changeProductStatus";
+    var URL = APIDOMAIN + "index.php?action=changeProductStatus";
     $.ajax({
         url: URL,
         type: 'POST',
@@ -64,7 +64,7 @@ function getProducs()
 {
     showLoader();
     prdCnt = 0;
-    var URL = APIDOMAIN + "?action=pageList&page1&limit=1000";
+    var URL = APIDOMAIN + "index.php?action=pageList&page1&limit=1000";
     $.ajax({
         url: URL,
         type: 'POST',
@@ -97,12 +97,12 @@ function getProducsCallback(data)
                 str += "</div>";
                 str += "<div class='stockCode fLeft'>";
                 str += "<span class='upSpan fmOpenB'>" + v.prdCode + "</span>";
-                str += "<span class='lwSpan'><a href='" + DOMAIN + "backend/?action=productDetails&pid=" + v.pid + "'>View Details</a></span>";
+                str += "<span class='lwSpan'><a href='" + DOMAIN + "backend/index.php?action=productDetails&pid=" + v.pid + "'>View Details</a></span>";
                 str += "</div>";
                 str += "<div class='prdName fLeft'>" + v.prdName + "</div>";
 
                 if(v.imgDtl.count>0)
-                    str += "<div class='prdImg fLeft fmOpenB'>" + v.imgDtl.count + "<div class='addCouponBtn manageBtn  fmOpenR fRight transition300'><a href='" + DOMAIN + "backend/?action=thumbnail&pid=" + v.pid + "' target='_blank'>Manage</a></div></div>";
+                    str += "<div class='prdImg fLeft fmOpenB'>" + v.imgDtl.count + "<div class='addCouponBtn manageBtn  fmOpenR fRight transition300'><a href='" + DOMAIN + "backend/index.php?action=thumbnail&pid=" + v.pid + "' target='_blank'>Manage</a></div></div>";
                 else
                     str += "<div class='prdImg fLeft fmOpenB'>NA</div>";
                 //str += "<div class='dmdWt fLeft'>" + v.diaWgt + " ct</div>";
@@ -113,7 +113,7 @@ function getProducsCallback(data)
                 //str += "<div class='deltBtn fRight transition300'  onclick=\"changePrdStatus(2,'" + v.pid + "')\"></div>";
                 str += "<div class='deltBtn fRight transition300'  onclick=\"setClick('" + v.pid + "');showConfirmBox();\" title='Delete Product'></div>";
                 str += "<div class='editBtn fRight transition300' onclick=\"editProduct('"+v.pid+"')\" title='Edit Product'></div>";
-                str += "<a href='" + DOMAIN + "backend/?action=upload&pid=" + v.pid + "' target='_blank'><div class='uploadBtn fRight transition300' title='Upload Images'></div></a>";
+                str += "<a href='" + DOMAIN + "backend/index.php?action=upload&pid=" + v.pid + "' target='_blank'><div class='uploadBtn fRight transition300' title='Upload Images'></div></a>";
                 if (v.isActive == 1)
                 {
                     str += "<select class='backtxtSelect fmOpenR fRight inStockPrd' onchange=\"inStock(this,'" + v.pid + "')\" title='Product Status'>";
@@ -165,7 +165,7 @@ function hideLoader()
 }
 function editProduct(pid)
 {
-    window.location.href=DOMAIN+"backend/?action=editProduct&pid="+pid;
+    window.location.href=DOMAIN+"backend/index.php?action=editProduct&pid="+pid;
 }
 
 

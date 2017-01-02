@@ -59,7 +59,7 @@ function addAttrCallBack(data)
             common.toast(1, 'Attribute added successfully');
            setTimeout(function() 
            {
-                location.href=DOMAIN+"backend/?action=attributes";
+                location.href=DOMAIN+"backend/index.php?action=attributes";
             }, 300);
         }
         else

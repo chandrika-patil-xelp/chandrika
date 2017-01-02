@@ -230,7 +230,7 @@ function addCouponCallBack(data)
         common.toast(1, 'Coupon added successfully');
         setTimeout(function()
         {
-            location.href = DOMAIN + "backend/?action=coupon";
+            location.href = DOMAIN + "backend/index.php?action=coupon";
         }, 300);
     }
     else

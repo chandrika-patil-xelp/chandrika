@@ -72,7 +72,7 @@ function attributeListCallBack()
                 str += "<div class='cattrAct fLeft'>";
                 //str += "<div class='deltBtn fRight transition300'  onclick=\"changeStatus('" + v.id + "',this,3)\"></div>";
                 str += "<div class='deltBtn fRight transition300'  onclick=\"setClick('" + v.id + "',2);showConfirmBox();\"></div>";
-                str += "<a href='" + DOMAIN + "backend/?action=editAttribute&aid=" + v.id + "'><div class='editBtn fRight transition300'></div></a>";
+                str += "<a href='" + DOMAIN + "backend/index.php?action=editAttribute&aid=" + v.id + "'><div class='editBtn fRight transition300'></div></a>";
                 if (v.active == "1")
                 {
                     str += "<div class='toggle-button toggle-button-selected  fLeft' onclick=\"changeStatus('" + v.id + "')\">";

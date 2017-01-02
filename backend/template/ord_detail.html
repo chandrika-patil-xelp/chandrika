@@ -197,18 +197,17 @@
       
         $(document).ready(function(){ 
               getOrderDetails();
-           
-          
+	 
             $("input[name='status']").bind('click', function(event) {
                  stopPropGate(event);
                  var st=$(this).val();
-                 showLoader();
+                     showLoader();
                    
                   if($(this). prop("checked") == true){
                     changeOrderStatus(st);  
                   }
                   else if($(this). prop("checked") == false){ 
-                    changeOrderStatus(st-1);  
+			changeOrderStatus(st-1);   
                   } 
                  
                 if((st !== '7') && (st !== '8')){
@@ -598,7 +597,7 @@
         
         function getProductDetails(pid)
         {
-            var URL = APIDOMAIN + "?action=getProductById&pid=" + pid;
+            var URL = APIDOMAIN + "index.php?action=getProductById&pid=" + pid;
             $.ajax({
                 url: URL,
                 type: 'POST',
@@ -892,7 +891,7 @@
         function changeOrderStatus(st)
         {
             
-            var URL=APIDOMAIN+"?action=changeOrderStatus";
+            var URL=APIDOMAIN+"index.php?action=changeOrderStatus";
             values={};
             values['orderid']=orderid.toString();
             values['userid']=userid.toString();
