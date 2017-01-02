@@ -86,6 +86,7 @@ $jvs = array();
     $jvs['common']              = BACKDOMAIN.'tools/js/Common.js?v='.VERSION;
     $jvs['nicescroll']          = BACKDOMAIN.'tools/js/lib/jquery.nicescroll.min.js?v='.VERSION;
     $jvs['rangeJS']          = BACKDOMAIN.'tools/js/lib/ion.rangeSlider.js?v='.VERSION;
+    
 
 
 
@@ -134,7 +135,7 @@ $jvs = array();
             $fjvs['nicescroll']                   = DOMAIN.'frontend/tools/js/jquery.nicescroll.min.js?v='.VERSION;
             $fjvs['menu']                   = DOMAIN.'frontend/tools/js/menu.js?v='.VERSION;
             $fjvs['home']                   = DOMAIN.'frontend/tools/js/home.js?v='.VERSION;
-            $fjvs['range_slider']                   = DOMAIN.'frontend/tools/js/ion.rangeSlider.js?v='.VERSION;
+            $fjvs['range_slider']                   = DOMAIN.'frontend/tools/js/ion.rangeSlider1.js?v='.VERSION;
             $fjvs['hammer']                   = DOMAIN.'frontend/tools/js/hammer.js?v='.VERSION;
             $fjvs['malihu']                   = DOMAIN.'frontend/tools/js/jquery.mCustomScrollbar.concat.min.js?v='.VERSION;
             $fjvs['ripple']                   = DOMAIN.'frontend/tools/js/ripple.js?v='.VERSION;
@@ -159,6 +160,8 @@ $jvs = array();
 	    $jvs['account']		      = DOMAIN.'frontend/tools/js/cms/account.js?v='.VERSION;
 	    $jvs['checkoutbefore']          = DOMAIN.'frontend/tools/js/cms/checkoutbefore.js?v='.VERSION;
 	    $fjvs['cookie']              = DOMAIN.'frontend/tools/js/jquery.cookie.js?v='.VERSION;
+             $fjvs['rangeNewJS']              = DOMAIN.'frontend/tools/js/ion.rangeSlider2.js?v='.VERSION;
+
 	    $fjvs['tranfail']              = DOMAIN.'frontend/tools/js/cms/transactionfail.js?v='.VERSION;
 	    $jvs['chkoutguest']		  = DOMAIN.'frontend/tools/js/cms/checkoutguest.js?v='.VERSION;
 	    
