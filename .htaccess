@@ -12,6 +12,9 @@ Options +FollowSymlinks
 
 RewriteEngine On
 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
 RewriteRule ^((?i)FP-[^/.]*)$ index.php?action=resetpsw&id=$1 [QSA,L]
 RewriteRule ^((?i)CU_[^/.]*)$ index.php?action=paymentfail&ordid=$1 [QSA,L]
 RewriteRule ^([^/.]*)/([^/.]*)/([^/.]*)$ index.php?action=paymentfail&status=$2&ordid=$3 [QSA,L]
