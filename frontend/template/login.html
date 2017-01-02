@@ -97,7 +97,7 @@
             <div class="loginCont fLeft" id="otpCont2">
                 <div class="txtTitle" id="hTxt">Please enter the OTP you received on your email/phone number.</div>
                 <div class="txtB fLeft">
-                    <input type="tel" class="inp_box" autocomplete="off" id="signup_otp">
+		  <input type="tel" class="inp_box" autocomplete="off" id="signup_otp" maxlength="6">
                     <div class="inp_label">Please enter the otp</div>
                 </div>
                 <div class="fLeft col100">
@@ -270,14 +270,7 @@
             $('#signUpId').addClass("dn");
             $('#signCont').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
             $('#loginId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-            $('#name').val('');
-            $('#name').blur();
-            $('#signupemail').val('');
-            $('#signupemail').blur();
-            $('#signuppass').val('');
-            $('#signuppass').blur();
-            $('#mobile').val('');
-            $('#mobile').blur();
+ 
         }
 
         /*sign up otp Back button*/

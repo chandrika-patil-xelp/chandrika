@@ -74,10 +74,7 @@ $('#rsubId').on('click',function(){
 	    inptval=mobile;
 	    signupSubmit(); 
             $('#otpCont').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-	  $('#name').val('');		  $('#name').blur();
-	  $('#signupemail').val('');	  $('#signupemail').blur();
-	  $('#signuppass').val('');	  $('#signuppass').blur();
-	  $('#mobile').val('');		  $('#mobile').blur();
+
 	  $('#signup_otp').val('');	  $('#signup_otp').blur(); 
           otpflg=1; 
 	  sendotp(); 
@@ -114,7 +111,7 @@ function chklogin()
           $('#email ').focus();
 	  common.msg(0,'Invalid Mobile no.'); 
         } 
-         URL = APIDOMAIN + "index.php/?action=login&mobile="+email+"&pass="+pass;
+         URL = APIDOMAIN + "index.php?action=login&mobile="+email+"&pass="+pass;
   }
   else{
         if(email===''|| email=== null){ 
@@ -127,7 +124,7 @@ function chklogin()
                  $('#email').focus();
                  common.msg(0,'Invalid Email.id');
            }
-            URL = APIDOMAIN + "index.php/?action=login&email="+email+"&pass="+pass;
+            URL = APIDOMAIN + "index.php?action=login&email="+email+"&pass="+pass;
   } 
   if(validationFlag == 1){
   if(pass===''|| pass=== null){
@@ -164,7 +161,7 @@ function chklogin()
 	 	    success: function(results)
 	 	    {
 		      var obj=JSON.parse(results); 
-		      glbcartdeatil=obj.result; 
+		      glbcartdeatil=obj.result;
 		      if(oldcartid=="" || oldcartid==null){
 			  if(glbcartdeatil!= null){
 			       var cartid=glbcartdeatil[0].cart_id;  
@@ -176,7 +173,7 @@ function chklogin()
 			      }
 		      }
 		      else{
-			   hasitem(oldcartid,olduserid);
+			    hasitem(oldcartid,olduserid);
 		      }
 		    common.msg(1,'Signed in successfully'); 
 		        var URLactn = window.location.search; 
@@ -199,7 +196,7 @@ function chklogin()
 
 function hasitem(oldcartid,olduserid)
 {
-  
+
    var newcartid,hasusrid=[],ccnt=0,hasoldcartid=[],ocnt=0; 
    
   $(glbcartdeatil).each(function(r,v){
@@ -217,12 +214,12 @@ function hasitem(oldcartid,olduserid)
     else{
        
    var start=1,last=hasusrid.length;
-   $(hasusrid).each(function(r,v){
+   $(hasusrid).each(function(r,v){  
       var prdid=v.product_id; 
       var col_car_qty=v.col_car_qty;   
-      
+      var size=v.size;
 	$(hasoldcartid).each(function(m,n){
-	      if(prdid==n.product_id && col_car_qty==n.col_car_qty){
+	      if(prdid==n.product_id && col_car_qty==n.col_car_qty && size==n.size){
 		  var price=parseInt(v.price);  
 		  var j=parseInt(v.pqty); var l=parseInt(n.pqty);
 		  price=price/j;
@@ -233,6 +230,7 @@ function hasitem(oldcartid,olduserid)
 		  dat['cartid']=v.cart_id;    dat['pid']=v.product_id;
 		  dat['userid']=v.userid;     dat['col_car_qty']=v.col_car_qty;
 		  dat['qty']=j;		  dat['price']=price; 
+		  dat['RBsize']=size;
 		   var URL= APIDOMAIN + "index.php?action=addTocart";
 		  var data=dat; 
 		  var  dt = JSON.stringify(data); 
@@ -245,7 +243,7 @@ function hasitem(oldcartid,olduserid)
 			}
 		  });
 
-	var URL = APIDOMAIN+"index.php?action=removeItemFromCart&col_car_qty="+col_car_qty+"&pid="+prdid+"&cartid="+n.cart_id;
+	var URL = APIDOMAIN+"index.php?action=removeItemFromCart&col_car_qty="+col_car_qty+"&pid="+prdid+"&cartid="+n.cart_id+"&size="+size;
 		    $.ajax({
 			    type:'POST',
 			    url:URL,

@@ -191,11 +191,20 @@
                     $('#check_out').click(function () {
                         var cururl = window.location.search;
                         var date = new Date();
-                        var minutes = 20;
+                        var minutes = 40;
                         date.setTime(date.getTime() + (minutes * 60 * 1000));
                         $.cookie("jzeva_currurl", null);
                         $.cookie("jzeva_currurl", cururl, {expires: date});
-                        load_checkout();
+			var userid=common.readFromStorage('jzeva_uid');
+			if(userid == null || userid == undefined)
+			{
+			  window.location.href=DOMAIN + 'index.php?action=checkoutGuest';
+			}
+			else
+			{
+			  load_checkout();
+			}
+                        
                     });
                     $('#chkout').click(function () {
                         load_checkout();

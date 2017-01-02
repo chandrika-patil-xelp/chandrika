@@ -1,6 +1,14 @@
 <?php include 'jhead.html' ?>
+<script>
+    var BWEBROOT = '<?php echo BACKWEBROOT?>';
+    var DOMAIN = '<?php echo DOMAIN?>';
+    var APIDOMAIN = '<?php echo APIDOMAIN?>';
+    var IMGDOMAIN = '<?php echo IMGDOMAIN ?>';
+    var page = '<?php echo $page?>';
+
+</script>
 <body class="greyBg"  >
-    <?php include 'Cart.html' ?>
+  
     <div class="entrotppopup">
         <div class="enterotpCnt regular">
             <div class="w100 fLeft">
@@ -61,13 +69,13 @@
                                     <div class="frmDtls fLeft semibold">
                                         <div class="sgnUptxt fLeft semibold">
                                             <div class="txtB fLeft">
-                                                <input type="password" class="inp_box " maxlength="30">
+                                                <input type="text" class="inp_box " maxlength="30" id="inp_mob_mail">
                                                 <div class="inp_label">Email/Mobile</div>
                                             </div> 
                                         </div>
                                         <div class="sgnUptxt fLeft semibold">
                                             <div class="txtB fLeft">
-                                                <input type="password" class="inp_box"  maxlength="30">
+                                                <input type="password" class="inp_box"  maxlength="30" id="paswrd">
                                                 <div class="inp_label">Password</div>
                                             </div>
                                         </div>
@@ -75,7 +83,7 @@
                                     </div>
                                     <div class="transBtns">
                                         <center>
-                                            <div class="actBtn button">sign in</div>
+                                            <div class="actBtn button" id="sign_in">sign in</div>
                                         </center>
                                     </div>
                                     <div class="guestSignup">Dont have account?<span class="semibold" id="gSignup">Signup</span></div>
@@ -108,7 +116,7 @@
                                         </div>
                                         <div class="sgnUptxt fLeft semibold">
                                             <div class="txtB fLeft">
-                                                <input type="password" class="inp_box"  maxlength="30">
+                                                <input type="password" class="inp_box"  maxlength="30" id="shpdpaswrd">
                                                 <div class="inp_label">Password</div>
                                             </div>
                                         </div>
@@ -128,7 +136,7 @@
                                     </div>
                                     <div class="frmDtls fLeft semibold">
                                         <div class="txtB fLeft">
-                                            <input type="text" class="inp_box " autocomplete="off" id="shpdemail" maxlength="30">
+                                            <input type="text" class="inp_box " autocomplete="off" id="shpdemailid" maxlength="30">
                                             <div class="inp_label ">Enter your email/mobile</div>
                                         </div>
                                         <div class="cnclSbmt fLeft bolder">
@@ -146,7 +154,7 @@
                                     </div>
                                     <div class="frmDtls fLeft semibold">
                                         <div class="txtB fLeft">
-                                            <input type="text" class="inp_box " autocomplete="off" id="shpdemail" maxlength="30">
+                                            <input type="text" class="inp_box " autocomplete="off" id="otptxt" maxlength="6">
                                             <div class="inp_label ">Please enter the otp</div>
                                         </div>
                                     </div>
@@ -164,14 +172,14 @@
                                     </div>
                                     <div class="frmDtls fLeft semibold">
                                         <div class="txtB fLeft">
-                                            <input type="text" class="inp_box " autocomplete="off" id="shpdemail" maxlength="30">
+                                            <input type="text" class="inp_box " autocomplete="off" id="signupotp" maxlength="6">
                                             <div class="inp_label ">Please enter the otp</div>
                                         </div>
                                     </div>
                                     <div class="cnclSbmt fLeft bolder">
                                         <center>
                                             <div class="col50 fLeft"><div class="actBtn button mar0" id="gotpBack2">back</div></div>
-                                            <div class="col50 fRight"><div class="actBtn button mar0" id="gOtpSubmit">submit</div></div>
+                                            <div class="col50 fRight"><div class="actBtn button mar0" id="signupOtpSubmit">submit</div></div>
                                         </center>
                                     </div>
                                 </div>
@@ -182,13 +190,13 @@
                                     <div class="frmDtls fLeft semibold">
                                         <div class="sgnUptxt fLeft semibold">
                                             <div class="txtB fLeft">
-                                                <input type="password" class="inp_box"  maxlength="30">
+                                                <input type="password" class="inp_box"  maxlength="30" id="res_paswrd1">
                                                 <div class="inp_label">Please enter new password</div>
                                             </div>
                                         </div>
                                         <div class="sgnUptxt fLeft semibold">
                                             <div class="txtB fLeft">
-                                                <input type="password" class="inp_box"  maxlength="30">
+                                                <input type="password" class="inp_box"  maxlength="30" id="res_paswrd2">
                                                 <div class="inp_label">confirm password</div>
                                             </div>
                                         </div>
@@ -273,20 +281,20 @@
                                             </ul>
                                         </div>
                                         <div class="txtB fLeft w49">
-                                            <input type="text" class="inp_box " autocomplete="off" id="shpdname" maxlength="30">
+                                            <input type="text" class="inp_box " autocomplete="off" id="g_name" maxlength="30">
                                             <div class="inp_label ">Name*</div>
                                         </div>
                                         <div class="txtB  fRight w49">
-                                            <input type="text" class="inp_box " autocomplete="off"  id="shpdmobile" maxlength="10">
+                                            <input type="text" class="inp_box " autocomplete="off"  id="g_mobl" maxlength="10">
                                             <div class="inp_label ">Mobile*</div>
                                         </div>
                                         <div class="txtB fLeft">
-                                            <input type="text" class="inp_box " autocomplete="off" id="shpdemail" maxlength="30">
+                                            <input type="text" class="inp_box " autocomplete="off" id="g_mail" maxlength="30">
                                             <div class="inp_label ">Email*</div>
                                         </div>
                                     </div>
                                     <div class="txtB fLeft">
-                                        <input type="text" class="inp_box " autocomplete="off" id="shpdaddrs" maxlength="120">
+                                        <input type="text" class="inp_box " autocomplete="off" id="g_addr" maxlength="120">
                                         <div class="inp_label ">Address*</div>
                                     </div>
                                     <div class="txtB fLeft">
@@ -304,7 +312,7 @@
                                 </div>
                                 <div class="transBtns colorfff">
                                     <center>
-                                        <div class="actBtn button">continue as guest</div>
+                                        <div class="actBtn button" id="cnt_guest">continue as guest</div>
                                     </center>
                                 </div>
                             </div>
@@ -648,17 +656,19 @@
                 </div>
             </div>
     
-        </div>-->
+        </div>--> 
+   
+    <script type="text/javascript" src="<?php echo $jvs['chkoutguest']; ?>"></script>  
 
-
-
-    <!--<script type="text/javascript" src="<?php echo $jvs['checkout']; ?>"></script>-->
+    <!--<script type="text/javascript" src="<?php echo $jvs['checkout']; ?>"></script>--> 
+ 
+    <!--<script type="text/javascript" src="<?php echo $jvs['checkout']; ?>"></script>--> 
     <script type="text/javascript" src="<?php echo $fjvs['Common']; ?>"></script>
     <script type="text/javascript">
 
                         $('#guestReset,#guestOtp,#guestOtp2,#guestforgot,#guestSignup').velocity({opacity: [0]}, {duration: 0, easing: 'ease-in-out'});
                         $("#gSignup").click(function () {
-                            console.log("jhds");
+                           
                             guestsUp();
                         });
 
@@ -666,19 +676,7 @@
                             gforgot();
                         });
 
-                        $('#gfSubmit').click(function () {
-                            gfSubmit();
-                        });
-                        $('#gOtpSubmit').click(function () {
-                            gOtpSubmit();
-                        });
-                        $('#gResetSubmit').click(function () {
-                            gResetSubmit();
-                        });
-                        $('#gSgnUpsbmt').click(function () {
-                            gSgnUpsbmt();
-                        });
-
+                           
                         $('#g_sBack').click(function () {
                             $('#guestSignup').addClass("dn");
                             $('#guestSignin').removeClass("dn");

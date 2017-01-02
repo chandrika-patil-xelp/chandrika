@@ -1061,7 +1061,7 @@ class user extends DB {
         $email = (!empty($params['email'])) ? trim($params['email']) : '';
         $city = (!empty($params['city'])) ? trim($params['city']) : '';
 
-        if ((empty($mobile)) && (empty($email)) && (empty($pass))) {
+        if ((empty($mobile)) && (empty($email))) {
             $resp = array();
             $error = array('errCode' => 1, 'errMsg' => 'Parameter Missing');
             $result = array('results' => $resp, 'error' => $error);

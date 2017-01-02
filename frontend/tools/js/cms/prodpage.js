@@ -134,9 +134,22 @@ $('#buynow').on('click',function(){
         data: {dt: dt}, 
         success: function (results) {
 	  var data=JSON.parse(results);
+	  var cururl = window.location.search;
+	  var date = new Date();
+	  var minutes = 40;
+	  date.setTime(date.getTime() + (minutes * 60 * 1000));
+	  $.cookie("jzeva_currurl", null);
+	  $.cookie("jzeva_currurl", cururl, {expires: date});
 	  common.addToStorage('jzeva_buyid', data.cartid);
-
-              window.location.assign(DOMAIN + 'index.php?action=checkOutNew&actn=buy');
+	  userid=common.readFromStorage('jzeva_uid');  
+	  if(userid == null || userid == undefined)
+	  {
+	    window.location.href=DOMAIN + 'index.php?action=checkoutGuest&actn=buy';
+	  }
+	  else
+	  {
+	     window.location.assign(DOMAIN + 'index.php?action=checkOutNew&actn=buy');
+	  }
                
         }
     });
@@ -1071,7 +1084,7 @@ $('#addwishlist').click(function () {
     if (userid == undefined || userid == null) {
         
         openPopUp();
-        common.msg(0, 'Please Do login for adding to Your wishlist');
+       
     } else {
         if (wshlstflag == 0)
         {
