@@ -2067,14 +2067,14 @@ input[type=radio]:checked ~ .matchIcn{
     margin: auto;
     /* right: 0; */}
 .btnFill{}
-.btnFill .actBtn{background: #52C7C9;
-    color: #fff;
-    padding: 0px 10px;}
+.btnFill .actBtn{background: #52C7C9;color: #fff;padding: 0px 10px;}
 .checkGuest{}
 .checkGuest .inp_box{background: #222529;color: #fff!important;}
 .checkGuest .txtB:after{border-top-color:#fff;}
 .checkGuest .intTxt{color: #fff;}
 .checkGuest .ulDiv {background: #15181b;}
+.checkGuest .colleCont{padding:50px 70px;}
+
 .guestSignup{position: absolute;
     width: 100%;
     height: auto;
