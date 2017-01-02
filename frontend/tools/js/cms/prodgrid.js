@@ -218,7 +218,7 @@ var goldPricehighp =0;
     } else if (images[0] == "uploads/noimg2.svg")
         proStr += '<div style="background:url(\'' + IMGDOMAIN + images[0] + '\')no-repeat ; background-size: auto 50% ; background-position: center"  class=""></div>';
     else
-        proStr += '<div style="background:url(\'' + IMGDOMAIN + images[0] + '\')no-repeat ; background-size: contain ; background-position: center"  class=""></div>';
+    proStr += '<div style="background:url(\'' + IMGDOMAIN + images[0] + '\')no-repeat ; background-size: contain ; background-position: center"  class=""></div>';
     proStr += '</div>';
     proStr += '<div class="hovTr">';
     proStr += '<div class="hovTrans">';
@@ -316,7 +316,7 @@ var goldPricehighp =0;
     //proStr += '<div class="soc_icons dn">';
    
     proStr += '<div class="soc_abs soc_wish2 transition300 fRight" onclick="makeAwish(this, event)"><div class="wishTip">add to wishlist</div></div>';
-    // proStr += '<div class="soc_elem soc_comment transition300"></div>';
+    //proStr += '<div class="soc_elem soc_comment transition300"></div>';
     //proStr += '<div class="soc_elem soc_share transition300"></div>';
     //proStr += '</div>';
     proStr += '<div class="custBtn1" onclick="custmz(' + obj['prdId'] + ')">customise</div>';

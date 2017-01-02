@@ -437,8 +437,8 @@
             if (this.options.type === "single") {
                 this.$cache.cont.append(single_html);
                 this.$cache.s_single = this.$cache.cont.find(".single");
-                this.$cache.from[0].style.visibility = "hidden";
-                this.$cache.to[0].style.visibility = "hidden";
+//                this.$cache.from[0].style.visibility = "hidden";
+//                this.$cache.to[0].style.visibility = "hidden";
                 this.$cache.shad_single = this.$cache.cont.find(".shadow-single");
             } else {
                 this.$cache.cont.append(double_html);
@@ -518,7 +518,7 @@
             if (this.options.type === "single") {
                 this.$cache.s_single.on("touchstart.irs_" + this.plugin_count, this.pointerDown.bind(this, "single"));
                 this.$cache.shad_single.on("touchstart.irs_" + this.plugin_count, this.pointerClick.bind(this, "click"));
-
+                
                 this.$cache.s_single.on("mousedown.irs_" + this.plugin_count, this.pointerDown.bind(this, "single"));
                 this.$cache.shad_single.on("mousedown.irs_" + this.plugin_count, this.pointerClick.bind(this, "click"));
             } else {
@@ -547,10 +547,8 @@
             if (!this.dragging) {
                 return;
             }
-
-            var x = e.pageX || e.originalEvent.touches && e.originalEvent.touches[0].pageX;
+            var x = e.pageY || e.originalEvent.touches && e.originalEvent.touches[0].pageY;
             this.coords.x_pointer = x - this.coords.x_gap;
-
             this.calc();
         },
 
@@ -583,8 +581,9 @@
         },
 
         pointerDown: function (target, e) {
+            console.log("gdsh");
             e.preventDefault();
-            var x = e.pageX || e.originalEvent.touches && e.originalEvent.touches[0].pageX;
+            var x = e.pageY || e.originalEvent.touches && e.originalEvent.touches[0].pageY;
             if (e.button === 2) {
                 return;
             }
@@ -595,7 +594,7 @@
             this.is_active = true;
             this.dragging = true;
 
-            this.coords.x_gap = this.$cache.rs.offset().left;
+            this.coords.x_gap = this.$cache.rs.offset().top;
             this.coords.x_pointer = x - this.coords.x_gap;
 
             this.calcPointer();
@@ -1085,13 +1084,13 @@
                 this.calcLabels();
 
                 if (this.labels.p_single_left < this.labels.p_min + 1) {
-                    this.$cache.min[0].style.visibility = "hidden";
+//                    this.$cache.min[0].style.visibility = "hidden";
                 } else {
                     this.$cache.min[0].style.visibility = "visible";
                 }
 
                 if (this.labels.p_single_left + this.labels.p_single > 100 - this.labels.p_max - 1) {
-                    this.$cache.max[0].style.visibility = "hidden";
+//                    this.$cache.max[0].style.visibility = "hidden";
                 } else {
                     this.$cache.max[0].style.visibility = "visible";
                 }
@@ -1197,7 +1196,7 @@
                     from_min = from_min + (this.coords.p_handle / 2);
 
                     c.shad_single[0].style.display = "block";
-                    c.shad_single[0].style.left = from_min + "%";
+                    c.shad_single[0].style.top = from_min + "%";
                     c.shad_single[0].style.width = from_max + "%";
                 } else {
                     c.shad_single[0].style.display = "none";
