@@ -2,18 +2,16 @@
 Options +FollowSymlinks
 
 # Prevent Directoy listing
-# Options -Indexes
+Options -Indexes
 
 # Prevent Direct Access to files
-# <FilesMatch "(?i)((\.tpl|\.ini|\.log|(?<!robots)\.txt))">
-#  Order deny,allow
-#  Deny from all
-# </FilesMatch>
+<FilesMatch "(?i)((\.tpl|\.ini|\.log|(?<!robots)\.txt))">
+ Order deny,allow
+ Deny from all
+</FilesMatch>
 
 RewriteEngine On
 
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
 
 RewriteRule ^((?i)FP-[^/.]*)$ index.php?action=resetpsw&id=$1 [QSA,L]
 RewriteRule ^((?i)CU_[^/.]*)$ index.php?action=paymentfail&ordid=$1 [QSA,L]
