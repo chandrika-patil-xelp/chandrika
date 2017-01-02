@@ -6,6 +6,8 @@
 /* =====================================================================================================================
 // Skin details */
 
+
+
 .irs-line-mid,
 .irs-line-left,
 .irs-line-right,
@@ -94,6 +96,23 @@
     border-top-color: #15181b;
 }
 
+.ringSlider .irs-from:after, .irs-to:after, .irs-single:after{
+      position: absolute;
+    /* display: block; */
+    content: "";
+    bottom: 5px;
+    left: 0;
+    width: 0;
+    height: 0;
+    margin-left: -3px;
+    overflow: hidden;
+    /* border: 3px solid transparent; */
+    /* border-top-color: #15181b; */
+    transform: rotate(-45deg);
+    border-left: 3px solid #15181b;
+    border-top: 3px solid #15181b;
+}
+
 .irs-grid {
     height: 34px;
 }
@@ -101,6 +120,7 @@
     background: #c0c0c0;
 }
 .irs-grid-text {
+    visibility: visible!important;
     bottom: 12px;
     color: #c0c0c0;
 }

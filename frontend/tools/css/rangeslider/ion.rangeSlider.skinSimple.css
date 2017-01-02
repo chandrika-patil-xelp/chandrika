@@ -21,6 +21,17 @@
 .irs-with-grid {
     height: 60px;
 }
+.ringSlider .irs-with-grid{
+    height:60px;
+    transform: rotate(90deg);
+    width: 260px;
+    position: absolute;
+    right: -93px;
+    top: 110px;
+} 
+.ringSlider .irs-from{display: none;}
+.ringSlider .irs-to{display: none;}
+    
 .irs-line {
     height: 6px; top: 25px;
 }
@@ -87,6 +98,18 @@
     -moz-border-radius: 3px;
     border-radius: 3px;
 }
+.rangeSlider .irs-from, .irs-to, .irs-single {
+       color: #000;
+    font-size: 10px;
+    line-height: 1.333;
+    text-shadow: none;
+    padding: 1px 5px;
+    background: rgba(255,255,255,0.8);
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    /*transform: rotate(-90deg);*/
+}
+
 .lt-ie9 .irs-from, .lt-ie9 .irs-to, .lt-ie9 .irs-single {
     background: #d8dff3;
 }
