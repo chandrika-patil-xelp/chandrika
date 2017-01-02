@@ -210,14 +210,14 @@ a{color:#666;}
 .amt_selector{width:70px;height:20px;position:absolute;right:0px;bottom:40px;font-size:13px}
 .cart_remove{width:40px;height:40px;position:absolute;left:-10px; top: 0;bottom:0;margin:auto;cursor:pointer;background: url(../img/icons/remove.svg) no-repeat; background-size: 20px; background-position: center;}
 .cart_removew{width:40px;height:40px;position:absolute;left:-10px; top: 0;bottom:0;margin:auto;cursor:pointer;background: url(../img/icons/removeW.svg) no-repeat; background-size: 20px; background-position: center;}
-.cart_desc{line-height: 16px;font-family: regular;width:100%;height:20px;font-size:11px;color:#fff}
+.cart_desc{line-height: 16px;font-family: regular;width:100%;height:20px;font-size:11px;color:#999;text-transform: capitalize;}
 .cart_sub{width:100%;height:90px;padding:10px 55% 10px 10px;border-bottom:1px solid #e6e6e6; position:relative;color:#fff}
 .chk_out{width:30%;position:absolute; right:90px; top:0 ;bottom:0 ; margin:auto;height:40px}
 .add_no{background:url(../img/icons/add.svg) no-repeat; background-size: 15px; background-position: center;}
 .sub_no{background:url(../img/icons/delete.svg) no-repeat; background-size:15px; background-position: center;}
 .add_noW{background:url(../img/icons/add.svg) no-repeat; background-size: 15px; background-position: center;}
 .sub_noW{background:url(../img/icons/delete.svg) no-repeat; background-size:15px; background-position: center;}
-.item_amt{width: 30px;text-align: center;    font-size: 16px;color: #fff;font-family: regular;    padding: 3px 0px;}
+.item_amt{width: 30px;text-align: center;    font-size: 16px;color: #999;font-family: regular;    padding: 3px 0px;}
 .cart_btn{width:20px;height:20px;cursor:pointer;border-radius:50%;}
 .wrapper{width:100%;height:100vh;padding:60px 20px 0px 20px;float:left;position: relative; z-index: 7; background: #fff;min-height: 650px;}
 .PRODUCT_GRID .wrapper{padding:120px 0px 0px 0px}
