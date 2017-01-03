@@ -1,15 +1,81 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="44px" height="44px" viewBox="0 0 44 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 40.1 (33804) - http://www.bohemiancoding.com/sketch -->
-    <title>ui-cross-2</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="44px-Line" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <g id="ui-cross-2" stroke="#FFFFFF" stroke-width="2">
-            <g id="Group-26" transform="translate(22.000000, 22.000000) rotate(45.000000) translate(-22.000000, -22.000000) translate(13.000000, 13.000000)">
-                <path d="M-3.55271368e-15,18 L18,-3.55271368e-15" id="Stroke-109"></path>
-            </g>
-            <path d="M43,22 C43,10.402 33.598,1 22,1 C10.402,1 1,10.402 1,22 C1,33.598 10.402,43 22,43 C33.598,43 43,33.598 43,22 L43,22 Z" id="Stroke-113"></path>
-        </g>
-    </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW X7 -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="50px" height="50px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 5000000 5000000"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .fil0 {fill:none}
+    .fil1 {fill:#999999}
+   ]]>
+  </style>
+ </defs>
+ <g id="Layer_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <path class="fil0" d="M2443684 3091145c34710,34711 79929,35183 112632,0l1140496 -1140614c36836,-36836 -19244,-93388 -56198,-56316l-1140614 1140614 -1140614 -1140614c-37308,-37308 -93034,19598 -56198,56316 383943,372964 761511,761512 1140496,1140614"/>
+  <g id="_2219931585184">
+  </g>
+  <g id="_2219931585376">
+  </g>
+  <g id="_2219931585600">
+  </g>
+  <g id="_2219931586688">
+  </g>
+  <g id="_2219931587936">
+  </g>
+  <g id="_2219931587168">
+  </g>
+  <g id="_2219931588320">
+  </g>
+  <g id="_2219931588768">
+  </g>
+  <g id="_2219931590304">
+  </g>
+  <g id="_2219931589600">
+  </g>
+  <g id="_2219931588960">
+  </g>
+  <g id="_2219931589344">
+  </g>
+  <g id="_2219931592256">
+  </g>
+  <g id="_2219931590816">
+  </g>
+  <g id="_2219931592416">
+  </g>
+  <g id="_2219931591136">
+  </g>
+  <g id="_2219931590720">
+  </g>
+  <g id="_2219931592832">
+  </g>
+  <g id="_2219931594016">
+  </g>
+  <g id="_2219931592896">
+  </g>
+  <g id="_2219931593984">
+  </g>
+  <g id="_2219931594464">
+  </g>
+  <g id="_2219931593696">
+  </g>
+  <g id="_2219931528000">
+  </g>
+  <g id="_2219931527040">
+  </g>
+  <g id="_2219931527936">
+  </g>
+  <g id="_2219931528192">
+  </g>
+  <g id="_2219931528864">
+  </g>
+  <g id="_2219931530496">
+  </g>
+  <g id="_2219931530688">
+  </g>
+  <path class="fil1" d="M3669658 2500000c0,59504 -48288,107910 -107911,107910 -1793034,0 -330460,0 -2123494,0 -59504,0 -107911,-48170 -107911,-107910 0,-59740 48288,-107910 107911,-107910 1793034,0 330460,0 2123494,0 59504,0 107911,48170 107911,107910z"/>
+  <path class="fil1" d="M5000000 2500000c0,1378512 -1121488,2500000 -2500000,2500000 -1378512,0 -2500000,-1121488 -2500000,-2500000 0,-1378512 1121488,-2500000 2500000,-2500000 1378512,0 2500000,1121488 2500000,2500000zm-215702 0c0,-1259622 -1024676,-2284298 -2284298,-2284298 -1259622,0 -2284298,1024676 -2284298,2284298 0,1259622 1024676,2284298 2284298,2284298 1259622,0 2284298,-1024676 2284298,-2284298z"/>
+ </g>
 </svg>
