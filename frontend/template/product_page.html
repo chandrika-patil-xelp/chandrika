@@ -122,31 +122,23 @@
                                 <div class="fLeft selectClose"></div>
                                 <center>
                                     <div class="selector_cont diQ" id="diQ">
-                                        <center>
-                                            <div class="options_back"></div>
-                                            <div class="button_label">Select Diamond Clarity</div>
-                                        </center>   
-                                        <!--                    <div class="clarityInfo">
-                                                                <span class="semibold">VVS (Very, Very Slightly Included) :</span> diamonds have minute inclusions that are difficult for a skilled grader to see under 10x magnification.
-                                                                Pinpoints and needles set the grade at VVS.<br>
-                                                                <span class="semibold">EF :</span> E, F Colour is an Absolutely Great Colour to have! E and F is considered ‘Pure White’ and Looks Exceptional! Very Bright, Very White, Very Sparkly!
-                                                                </div>-->
+                                        <div class="button_label">Select Diamond Clarity</div>
                                     </div>
                                 </center>
                                 <center>
                                     <div class="selector_cont" id="colr">
-                                        <div class="options_back"></div>
+                                        <!--<div class="options_back"></div>-->
                                         <div class="button_label">Select Metal Color</div>
                                     </div>
                                 </center>
                                 <center>
                                     <div class="selector_cont pur" id="pur">
-                                        <div class="options_back"></div>
+                                        <!--<div class="options_back"></div>-->
                                         <div class="button_label">Select Metal purity</div>
                                     </div>
                                 </center>
                                 <div class="selector_cont">
-                                    <div class="options_back" id="sizeback"></div>
+                                    <!--<div class="options_back" id="sizeback"></div>-->
                                     <div class="button_label">Select Your Size</div>
                                     <!-- ring size inc dec code-->
 
@@ -175,35 +167,48 @@
                                                                                 </center>
                                                                             </div>
                                                                         </div>-->
-                                    <div class="ringSlider fRight">                                                                       
-                                        <input type="text" id="slideRing">
-                                    </div>
-                                    <div class="szCir fLeft">
-                                        <div class="fLeft col100">
-                                            <div class="col100 sizeOuter fLeft ringclass dn">
-                                                <!--<div class="incrCont incrIcon " id="inc"></div>-->
-                                                <!--<div class="incrCont decrIcon left40" id="dec"></div>-->
-                                                <div class="circleOuter fLeft">
-                                                    <div class="ringCircle transition600 poR"> 14</div>
+                                    <div class="col100 fLeft" id="RingGuide">
+                                        <div class="ringSlider fRight">                                                                       
+                                            <input type="text" id="slideRing">
+                                        </div>
+                                        <div class="szCir fLeft">
+                                            <div class="fLeft col100">
+                                                <div class="col100 sizeOuter fLeft ringclass">
+                                                    <div class="circleOuter fLeft">
+                                                        <div class="ringCircle transition600 poR"> 14</div>
+                                                    </div>
+                                                    <center>
+                                                        <div class="col100 fLeft"><div class="col50"><div class="actBtn" id="ringGuide">size guide</div></div></div>
+                                                        <div class="para fLeft mar0">Know your ring size</div>
+                                                    </center>
                                                 </div>
-                                                <center>
-                                                    <div class="col100 fLeft"><div class="col50"><div class="actBtn" id="ringGuide">size guide</div></div></div>
-                                                    <div class="para fLeft mar0">Know your ring size</div>
-                                                </center>
-                                            </div>
-                                            <div class="col100 sizeOuter fLeft bangclass">
-                                                <!--<div class="incrCont incrIcon r0" id="incB"></div>-->
-                                                <!--<div class="incrCont decrIcon l0" id="decB"></div>-->
-                                                <div class="circleOuter fLeft">
-                                                    <div class="ringCircleB transition600 poR" id="bangCircle">2.4</div>
-                                                </div>
-                                                <center>
-                                                    <div class="col100 fLeft"><div class="col50"><div class="actBtn" id="ringGuide">size guide</div></div></div>
-                                                    <div class="para fLeft mar0">Know your bangle size</div>
-                                                </center>
                                             </div>
                                         </div>
+                                         <div class="options_back fLeft"></div>
                                     </div>
+                                   
+                                    <div class="col100 fLeft" id="BangleGuide">
+                                        <div class="ringSlider fRight">                                                                       
+                                            <input type="text" id="slideBangle">
+                                        </div>
+                                        <div class="szCir fLeft">
+                                            <div class="fLeft col100">
+                                                <div class="col100 sizeOuter fLeft bangclass">
+                                                    <!--<div class="incrCont incrIcon r0" id="incB"></div>-->
+                                                    <!--<div class="incrCont decrIcon l0" id="decB"></div>-->
+                                                    <div class="circleOuter fLeft">
+                                                        <div class="ringCircleB transition600 poR" id="bangCircle">2.4</div>
+                                                    </div>
+                                                    <center>
+                                                        <div class="col100 fLeft"><div class="col50"><div class="actBtn" id="ringGuide">size guide</div></div></div>
+                                                        <div class="para fLeft mar0">Know your bangle size</div>
+                                                    </center>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="options_back fLeft"></div>
+                                    </div>
+                                    
                                 </div>                                       
                             </div>
                         </div>
@@ -261,20 +266,6 @@
             grid: true,
             onChange: function (data) {
                 var sVal = $('.irs-single').text();
-                console.log(sVal);
-//                inc();
-//                var pVal = $('.irs-grid-text').text();
-//                console.log(pVal);
-                var cVal = 25;
-                if (t < sVal) {
-                    inc();
-                } else {
-                    dec();
-                }
-                t = sVal;
-            },
-            onFinish: function (data) {
-                 var cVal = 25;
                 if (t < sVal) {
                     inc();
                 } else {
@@ -283,6 +274,28 @@
                 t = sVal;
             },
         });
+
+
+        var t = 0;
+        $('#slideBangle').ionRangeSlider({
+            type: "single",
+            from: 2,
+            values: [
+                "2.2", "2.3", "2.4", "2.5", "2.6", "2.7", "2.8", "2.9"],
+            grid: true,
+            onChange: function (data) {
+                var sVal = $('.irs-single').text();
+                if (t < sVal) {
+                    incB();
+                } else {
+                    decB();
+                }
+                t = sVal;
+            },
+        });
+
+
+
 
         var tmp;
         setTimeout(function () {
@@ -342,7 +355,7 @@
         valb2 = $('#bangCircle').height();
         valb3 = $('#bangCircle').css('line-height');
 
-        $('#incB').click(function () {
+        function incB() {
             var inc = Math.round(tmp_b * 10) / 10;
             var incVal_b = parseFloat(inc + 0.1).toFixed(1);
             if (incVal_b >= 3.0) {
@@ -360,9 +373,9 @@
             $('#bangCircle').html(incVal_b);
             tmp_b = parseFloat(tmp_b) + 0.1;
             calweight();
-        });
+        }
 
-        $('#decB').click(function () {
+        function decB() {
             var rtxt = $(this).parent().next();
             var dTxt_b = tmp_b - 0.1;
             if (dTxt_b <= 0.0) {
@@ -381,7 +394,7 @@
             $('#size').text("Size " + decValb);
             tmp_b = tmp_b - 0.1;
             calweight();
-        });
+        }
 
         $('#ringGuide').click(function (s, l) {
             window.location.href = DOMAIN + "index.php?action=sizeguide";
@@ -484,11 +497,9 @@
                 $('.selector_cont').eq(j).velocity({scale: [1, 0.5], opacity: [1, 0]}, {delay: '50', duration: '150', display: 'block'});
             }
         });
-        $('.options_back').click(function () {
-
+       $(document).on("click",".options_back",function(){
             $('.cust_cont2').velocity({scale: [3, 1], opacity: [0, 1]}, {delay: 100, duration: 400, easing: 'swing', display: 'none'});
-            $('#cust').velocity({scale: [1, 3], opacity: [1, 0]}, {duration: 200, easing: 'swing', display: 'block'});
-
+            $('#cust').velocity({scale: [1, 3], opacity: [1, 0]}, {duration: 200, easing: 'swing', display: 'block'});            
 
             //$('body').addClass('over_hide');
             //            $('#cust').velocity({scale: [1, 3], opacity: [1, 0]}, {duration: 200, easing: 'swing', display: 'block',
@@ -500,7 +511,7 @@
             $('.selector_cont').eq(j).velocity({scale: [0.5, 1], opacity: [0, 1]}, {delay: '50', duration: '150', display: 'none'});
         });
 
-        $('#showDetails').click(function () {
+        $('#showDetails').click(function (){
             //$('body').addClass('over_hide');
             $('.writefaggery').velocity({scale: [3, 1], opacity: [0, 1]}, {duration: 200, easing: 'swing', display: 'none', complete: function () {
                     //$('body').removeClass('over_hide')
@@ -672,7 +683,7 @@
                 //calculatePrice();
                 $(this).closest('.selectOptionC').fadeOut('150ms').siblings('.selectDefault').removeClass('pointNone');
                 setTimeout(function () {
-                    $(e).closest('.selector_cont ').find('.options_back').click();
+                    $(e).closest('.selector_cont').find('.options_back').click();
                     $('#ch_price').find('.labBuffer').empty();
                     $('#ch_price').find('.labBuffer').append('Previous Price:');
                     $('#ch_price').velocity({opacity: [1, 0]});
@@ -692,11 +703,11 @@
         $(document).click(function (event) {
 
             if (catname == 'Bangles') {
-                $('.ringclass').addClass('dn');
-                $('.bangclass').removeClass('dn');
+                $("#BangleGuide").removeClass("dn");
+                $('#RingGuide').addClass('dn');
             } else if (catname == 'Rings') {
-                $('.ringclass').removeClass('dn');
-                $('.bangclass').addClass('dn');
+                $('#BangleGuide').addClass('dn');
+                $("#RingGuide").removeClass("dn");
             }
 
             if (!$(event.target).closest('.selectDefault').length)
