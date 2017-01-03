@@ -38,10 +38,13 @@
         position: absolute; display: block;
         left: 0; width: 0;
     }
+    /*.ringSlider .irs-bar{width: 105%!important;}*/
         .irs-bar-edge {
             position: absolute; display: block;
             top: 0; left: 0;
         }
+        .ringSlider  .irs-bar-edge{height: 6px!important;
+width: 13px!important;}
 
     .irs-shadow {
         position: absolute; display: none;
@@ -53,6 +56,8 @@
         cursor: default;
         z-index: 1;
     }
+    .ringSlider .irs-slider single{left:105%!important;}
+    
         .irs-slider.single {
 
         }
@@ -71,6 +76,9 @@
         left: 0;
         cursor: default;
     }
+    
+    .ringSlider .irs-min{transform: rotate(-90deg)!important;}
+    .ringSlider .irs-max{transform: rotate(-90deg)!important;}
     .irs-max {
         position: absolute; display: block;
         right: 0;

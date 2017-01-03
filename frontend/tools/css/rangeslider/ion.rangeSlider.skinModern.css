@@ -96,7 +96,7 @@
     border-top-color: #15181b;
 }
 
-.ringSlider .irs-from:after, .irs-to:after, .irs-single:after{
+.ringSlider .irs-single:after{
       position: absolute;
     /* display: block; */
     content: "";
@@ -116,6 +116,7 @@
 .irs-grid {
     height: 34px;
 }
+.ringSlider .irs-grid{width:105%!important;}
 .irs-grid-pol {
     background: #c0c0c0;
 }
@@ -123,7 +124,10 @@
     visibility: visible!important;
     bottom: 12px;
     color: #c0c0c0;
+   
 }
+
+.ringSlider .irs-grid-text{ transform: rotate(-90deg);line-height: 0px;}
 
 .irs-disable-mask {
 

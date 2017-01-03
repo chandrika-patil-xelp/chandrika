@@ -104,10 +104,10 @@ textarea:focus, input:focus{outline: none;}
 
 /* Button Style  Vertical */
 .button3{}
-.button3:after { content: '';width: 100%;height: 0;top: 0;left: 0px;right: 0px;bottom: 0;margin: auto;opacity: 0; position: absolute;transition: 200ms ease-in-out;-ms-transition: 200ms ease-in-out; -moz-transition: 200ms ease-in-out; -webkit-transition: 200ms ease-in-out; -o-transition: 200ms ease-in-out;z-index: -1;}
+.button3:after{content: '';width: 100%;height: 0;top: 0;left: 0px;right: 0px;bottom: 0;margin: auto;opacity: 0; position: absolute;transition: 200ms ease-in-out;-ms-transition: 200ms ease-in-out; -moz-transition: 200ms ease-in-out; -webkit-transition: 200ms ease-in-out; -o-transition: 200ms ease-in-out;z-index: -1;}
 .button3:hover:after{height:28px;opacity: 1;}
 .button3:hover{color:#fff;}
-.button3:active:after{height: 40px;}
+.button3:active:after{height:40px;}
 
 /*Loader Animations */
 
@@ -202,7 +202,7 @@ textarea:focus, input:focus{outline: none;}
   -webkit-animation: lol 3s 500ms infinite ease-in-out;
   animation: lol 3s 500ms infinite ease-in-out;
 }
-.button_label{width:100% ; font-size:12px; padding:5px;font-family:bolder;display:table;text-align: center;    font-size: 12px;
+.button_label{width:100% ; font-size:12px;font-family:bolder;display:table;text-align: center;    font-size: 12px;
     font-family: semibold;
     letter-spacing: 0.35em;text-transform: uppercase;}
 .page_loader2 .cs-loader-inner , .page_loader .cs-loader-inner {
