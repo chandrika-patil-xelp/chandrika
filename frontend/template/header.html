@@ -169,6 +169,7 @@
                 $('.tab').removeClass('selec');
                 $('.menu_wrap').velocity('stop').velocity({height: [180]}, {duration: 200,  delay:150 ,easing: 'ease-in-out', display: 'block'});
             }
+            $('.header').addClass('black_bg');
         });
         $('.tabWrap').mouseleave(function () {
             $('.overlay').stop(true, true).fadeTo(200, 0);
@@ -178,6 +179,7 @@
                 }
             });
             $('.tab').removeClass('selec');
+              $('.header').removeClass('black_bg');
         });
         /*Sub menu slidedown/slideup , Menu tab colour change*/
         $('.tab').mouseenter(function () {
@@ -196,7 +198,7 @@
             $('.tab').removeClass('selec');
             $('.tabB').find('.tab').eq(k).addClass('selec');
         });
-  
+
         /* Search Bar Open / Close*/
         $('.search_btn').click(function () {
             $('.search_bar').toggleClass('search_open');
@@ -297,21 +299,21 @@
                 window.location.href = url;
             }
         });
-	
+
 	$(document).ready(function(){
-	  var actnp=GetURLParameter('actn'); 
+	  var actnp=GetURLParameter('actn');
 	  var usid=common.readFromStorage('jzeva_uid');
 	  if(actnp == "lognpopup"){
               setTimeout(function(){
 		if(usid == null || usid == undefined)
                   openPopUp();
               },3000);
-	    
+
 	  }
 	});
-	
+
 	function GetURLParameter(Param)
-	{ 
+	{
 	    var PageURL = window.location.search;
 	    var URLVariables = PageURL.split('&');
 	    for (var i = 0; i < URLVariables.length; i++)
@@ -319,7 +321,7 @@
 		var ParameterName = URLVariables[i].split('=');
 		if (ParameterName[0] == Param) {
 		    return ParameterName[1];
-		} 
+		}
 	    }
 	}
 </script>
