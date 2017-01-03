@@ -1,4 +1,4 @@
-        
+
 
 var gblcartdata;
 
@@ -38,7 +38,7 @@ function newaddToCart(paramtr)
         $(gblcartdata).each(function (r, v) {
 
             if ((cartdata.col_car_qty == v.col_car_qty && cartdata.pid == v.product_id) && parseFloat(cartdata.RBsize) == parseFloat(v.size)) {
- 
+
                 cartdata['qty'] = parseInt(v.pqty) + 1;
                 //    cartdata.price=(cartdata.price).replace(/,/g,"");
                 cartdata['price'] = parseInt(cartdata['price']) * cartdata.qty;
@@ -139,8 +139,8 @@ function displaycartdata()
 //                        cartstr += "Color : " + v.color + "";
 //                        cartstr += "</div>";
                         cartstr += "</div>";
-                        cartstr += "<div class='cart_price cartRup15b fLeft'><span class='price_gen'> " + indianMoney(bprize) + "</span></div>";
-			
+                        cartstr += "<div class='cart_price cartRup15 fLeft'><span class='price_gen'> " + indianMoney(bprize) + "</span></div>";
+
 			cartstr += "</div>";
 			 cartstr += "</div>";
                         cartstr += "<div class='amt_selector' id='" + v.cart_id + "'>";
