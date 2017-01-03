@@ -418,7 +418,7 @@ $(document).ready(function () {
                             var dcarat = vl.crat;
                             storedDmdCarat = parseFloat(vl.crat);
 
-
+                             dQstr += '<div class="radParent fLeft">';
                             var dval;
                             $.each(vl.QMast.results, function (x, y) {
                                 if (p_qlty !== undefined) {
@@ -490,7 +490,9 @@ $(document).ready(function () {
                                 getdmdprice(dvprc, dcarat);
 
                             });
-
+                            
+                             dQstr += '</div>';
+                              dQstr += '<div class="options_back fLeft"></div>';
                             $('#diQ').append(dQstr);
 
                             if (p_qlty !== undefined) {
@@ -550,6 +552,7 @@ $(document).ready(function () {
 
 
                     var purstr = "", pval;
+                     purstr += '<div class="radParent fLeft">';
                     $.each(metalPurity.results, function (k, val) {
 
                         if (p_purity !== undefined) {
@@ -590,6 +593,9 @@ $(document).ready(function () {
                         getPurPrice(metalprc, metalwght);
                         //  something(metalprc);
                     });
+                  
+                    purstr += '</div>';
+                      purstr += '<div class="options_back fLeft"></div>';
                     $('#pur').append(purstr);
                     if (p_qlty !== undefined) {
                         $("input[name='purity']").each(function () {
@@ -603,7 +609,7 @@ $(document).ready(function () {
 
 
                     var clrstr = "", colrval;
-
+                        clrstr += '<div class="radParent fLeft">';
                     $.each(metalColor.results, function (j, vl) {
                         var apcol = vl.dVal.toLowerCase();
                         if (p_color !== undefined) {
@@ -627,6 +633,10 @@ $(document).ready(function () {
                         clrstr += '</div>';
                         clrstr += '</div>';
                     });
+                      
+                  clrstr += '</div>';
+                   clrstr +='<div class="options_back fLeft"></div>';
+                    
                     $('#colr').append(clrstr);
                     if (p_color !== undefined) {
                         $("input[name='metal']").each(function () {
@@ -1158,13 +1168,13 @@ function getDesc(dmdsol, jwlty) {
                 if (r == 0) {
                     descStr += ' <div class="colleCont ">';
                     descStr += '<div class="smUlineb">' + descname + '</div>';
-                    descStr += '<div class="collCenterb ">';
+                    descStr += '<div class="collCenterb">';
                     descStr += '' + v.desc + '';
                     descStr += ' </div> </div>';
                 } else {
                     descStr += ' <div class="colleCont v2">';
                     descStr += ' <div class="smUline">' + descname + '</div>';
-                    descStr += '<div class="collCenter ">';
+                    descStr += '<div class="collCenterb colorfff">';
                     descStr += '' + v.desc + '';
                     descStr += ' </div> </div>';
                 }
@@ -1181,9 +1191,11 @@ function calweight()
     if (catname == 'Rings') {
         currentSize = $('.ringCircle').text();
         bseSize = parseFloat(14);
+       
     } else if (catname == 'Bangles') {
         bseSize = parseFloat(2.4);
         currentSize = $('.ringCircleB').text();
+      
     }
 
     if (catname == 'Rings') {
@@ -1217,4 +1229,21 @@ $('.dwnArrow').click(function(){
    $('html, body, dwnArrow').animate({ scrollTop: hight }, 800); 
 });
 
- 
+//    $(document).on("click",".options_back",function(){
+////       console.log("hcikhd");alert("jhvgducgb");
+//       
+//
+////            $('.cust_cont2').velocity({scale: [3, 1], opacity: [0, 1]}, {delay: 100, duration: 400, easing: 'swing', display: 'none'});
+////            $('#cust').velocity({scale: [1, 3], opacity: [1, 0]}, {duration: 200, easing: 'swing', display: 'block'});
+//
+//
+//            //$('body').addClass('over_hide');
+//            //            $('#cust').velocity({scale: [1, 3], opacity: [1, 0]}, {duration: 200, easing: 'swing', display: 'block',
+//            //                complete: function () {
+//            //                    //  $('body').removeClass('over_hide');
+//            //                    $('.cust_cont2').addClass('dn');
+//            //                }
+//            //            });
+//            $('.selector_cont').eq(j).velocity({scale: [0.5, 1], opacity: [0, 1]}, {delay: '50', duration: '150', display: 'none'});
+//        });
+

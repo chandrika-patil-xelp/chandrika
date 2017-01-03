@@ -562,14 +562,16 @@ function displayaddrs(userid)
 	$(res).each(function (r, v) {
 
 	  addstr += ' <div class="col100 fLeft radTor poR">';
-
 	  addstr += ' <div class="w50r fLeft">';
 	  addstr += ' <div class="text fLeft txtOver" title='+  v.name +'  id="spnd_name">' + v.name + '</div>';
-	  addstr += ' <div class="text fLeft txtOver" title='+ v.email +'  id="spnd_email">' + v.email + '</div>';
-	  addstr += ' <div class="text fLeft txtOver" title='+ v.city +'  id="spnd_city_pin">' + v.city + "-" + v.pincode + '</div>';
-           
+	   addstr += ' <div class="text fLeft txtOver">8123128747</div>';
+            addstr += ' <div class="text fLeft txtOver" title='+ v.email +'  id="spnd_email">' + v.email + '</div>';
+         
+	  
+          
 	  addstr += ' </div>   <div class="w50l fRight">';
-	 addstr += ' <div class="text fLeft"><span>' + v.address + '</span></div>';
+          addstr += ' <div class="text fLeft"><span>' + v.address + '</span></div>';
+          addstr += ' <div class="text fLeft txtOver" title='+ v.city +'  id="spnd_city_pin">' + v.city + "-" + v.pincode + '</div>';
          
 	  addstr += ' </div>';
 	  addstr += '  <input type="radio" name="selectM"  class="filled-in dn" id="' + v.shipping_id + '">';
@@ -583,8 +585,6 @@ function displayaddrs(userid)
 //	  addstr += ' </center> ';
 //	  addstr += ' </div>';
 	  addstr += ' </div>';
-
-
 	});
 	$('#intscrl').append(addstr);
 	$('#diff_adr').html('Add New Address');

@@ -582,6 +582,8 @@ function displayaddrs() {
 
                 addrStr += '<div class="fLeft defaulDiv">';
                 addrStr += '<div class="fLeft col100">';
+                addrStr += '<div class="font13">chandrikapatil</div>';
+                addrStr += '<div class="font13">8123128747</div>';
                 addrStr += '<div class="font13">' + n.address + '</div>';
                 //addrStr+='<div class="font13">Kormanagala</div>';
                 addrStr += '<div class="font13">' + n.city + '-' + n.pincode + '</div>';

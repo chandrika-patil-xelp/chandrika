@@ -140,6 +140,7 @@ function displaycartdata()
 //                        cartstr += "</div>";
                         cartstr += "</div>";
                         cartstr += "<div class='cart_price cartRup15 fLeft'><span class='price_gen'> " + indianMoney(bprize) + "</span></div>";
+			
 
 			cartstr += "</div>";
 			 cartstr += "</div>";
