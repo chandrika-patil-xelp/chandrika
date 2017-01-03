@@ -2585,13 +2585,13 @@ input[type=radio]:checked ~ .matchIcn{
 
 .tryB{position: fixed;}
 .index .ftabWrap{z-index: 21;}
-.helpFooterW{width:100%;height:170px;color: #15181b;border-top:1px solid #ccc;border-bottom:1px solid #ccc}
+.helpFooterW{width:100%;height:170px;color: #15181b;border-top:1px solid #e6e6e6;border-bottom:1px solid #e6e6e6}
 .fhelpSection{width:33.33%;height:170px;padding:40px 30px 30px 90px}
-.fPhone{background:url(../img/icons/537b.svg)no-repeat;background-position:30px 40px;background-size:auto 30px;}
-.fPayment{background:url(../img/icons/542b.svg)no-repeat;background-position:30px 35px;background-size:auto 30px;border-left:1px solid #ccc;border-right:1px solid #ccc}
-.fShipping{background:url(../img/icons/541b.svg)no-repeat;background-position:30px 35px;background-size:auto 30px;}
+.fPhone{background:url(../img/icons/537b.svg)no-repeat;background-position:30px 40px;background-size:auto 40px;}
+.fPayment{background:url(../img/icons/542b.svg)no-repeat;background-position:30px 35px;background-size:auto 40px;border-left:1px solid #e6e6e6;border-right:1px solid #e6e6e6}
+.fShipping{background:url(../img/icons/541b.svg)no-repeat;background-position:30px 35px;background-size:auto 40px;}
 .fhelpHead{width:100%;font-size:13px;font-family:semibold;letter-spacing:0.15em}
-.fhelpPara{width:100%;font-size:13px;font-family:regular;line-height:20px;}
+.fhelpPara{width:100%;font-size:12px;font-family:regular;line-height:18px;margin-top:5px}
 @media only screen and (min-width:320px) and (max-width:767px){
 
     .tHead{width: 100%;text-align: left;}
