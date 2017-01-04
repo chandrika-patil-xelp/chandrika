@@ -849,9 +849,9 @@ class user extends DB {
             $row = $this->fetchData($vres);
 
             $mobile = $row['logmobile'];
-            $uname = urlencode($row['user_name']);
+            $uname = urldecode($row['user_name']);
 	    $gndr=$row['gender'];
-
+	   
 	    global $comm;
                 $isValidate = true;
                 $msql = "SELECT

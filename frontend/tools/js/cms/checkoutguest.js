@@ -37,6 +37,7 @@
     
     var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
     var letters = /^[A-Za-z]+$/;
+    var filter = /^[0-9-+]+$/;
     if(gndrflg == undefined || gndrflg == null){
       validationFlag=0;  
       common.msg(0,'Please Select Title');  
@@ -57,6 +58,10 @@
       validationFlag = 0;
       common.msg(0, 'Mobile no. Invalid');
     } 
+    else if(!filter.test(mobile)){ 
+	    validationFlag=0;  
+	    common.msg(0,'Mobile number is Invalid');  
+    }
     else if (email === '' || email === null) {
       validationFlag = 0;
       common.msg(0, 'Please enter your Email id');
@@ -186,7 +191,7 @@ function checkshpdpincode(zipcode)
     $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results)
       {
 	var obj = JSON.parse(results);
-
+ 
 	if(obj['error']['code'] == 0)
 	{
 	  $('#shpdstate').val(obj.results[0].state);
@@ -264,6 +269,7 @@ $('#sign_in').click(function(){
   var email = $("#inp_mob_mail").val();
   var pass = $("#paswrd").val();
   var validationFlag=1,URL;
+  var filter = /^[0-9-+]+$/;
   var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
   if($.isNumeric(email)){
       if(email===''|| email=== null){ 
@@ -276,6 +282,11 @@ $('#sign_in').click(function(){
           $('#email ').focus();
 	  common.msg(0,'Invalid Mobile no.'); 
         } 
+      else if(!filter.test(email)){ 
+	    validationFlag=0;  
+	    common.msg(0,'Mobile number is Invalid'); 
+	    return false;
+	}
          URL = APIDOMAIN + "index.php?action=login&mobile="+email+"&pass="+pass;
   }
   else{
@@ -458,7 +469,7 @@ $('#gSgnUpsbmt').click(function(){
    var pass = $("#shpdpaswrd").val(); 
    var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
    var letters = /^[a-zA-Z\s]+$/;
-   
+   var filter = /^[0-9-+]+$/;
     var validationFlag=1;
     if(gndrflg == undefined || gndrflg == null){
       validationFlag=0;  
@@ -494,6 +505,11 @@ $('#gSgnUpsbmt').click(function(){
        validationFlag=0;  
         common.msg(0,'Mobile number is Invalid'); 
          return false;
+    }
+    else if(!filter.test(mobile)){ 
+	    validationFlag=0;  
+	    common.msg(0,'Mobile number is Invalid'); 
+	    return false;
     }
     else if(pass ===''|| pass === null){
        validationFlag=0;  
@@ -660,7 +676,7 @@ $('#gfSubmit').click(function(){
     
     var validationflg=1;
     if($.isNumeric(mobile)){
-      
+      var filter = /^[0-9-+]+$/;
       if(mobile===''|| mobile=== null){
 	 validationflg=0;  
         common.msg(0,'Please enter your Mobile no.'); 
@@ -671,6 +687,11 @@ $('#gfSubmit').click(function(){
 	  common.msg(0,'Invalid Mobile no.'); 
            return false;
       } 
+      else if(!filter.test(mobile)){ 
+	    validationflg=0;  
+	    common.msg(0,'Mobile number is Invalid'); 
+	    return false;
+      }
     }
     else{
       

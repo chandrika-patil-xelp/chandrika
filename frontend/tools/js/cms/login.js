@@ -1,5 +1,5 @@
  
-var glbcartdeatil, inptval, newuserid, otpflg=0, userdata=[], entrflg=0, mailmob, gndrflg;
+var glbcartdeatil, inptval, newuserid, otpflg=0, userdata=[], entrflg=0, mailmob, gndrflg, mailflag=1, mobflag=1;
 
 $('#rsubId').on('click',function(){
   dosignup();
@@ -55,10 +55,22 @@ $('#rsubId').on('click',function(){
          common.msg(0,'Please enter your Password'); 
           return false;
     }
+    if(mailflag == 0)
+    {
+        validationFlag=0;  
+        common.msg(0,'Please enter New Email Id'); 
+        return false;
+    }
+    if(mobflag == 0)
+    {
+        validationFlag=0;  
+        common.msg(0,'Please enter New Mobile No'); 
+        return false;
+    }
     if (validationFlag == 1)
     {
        
-      var URL= APIDOMAIN + "index.php/?action=getUserDetailsbyinpt&email="+email+"&mobile="+mobile; 
+      var URL= APIDOMAIN + "index.php?action=getUserDetailsbyinpt&email="+email+"&mobile="+mobile; 
       $.ajax({  url: URL, type: "GET", datatype: "JSON",  success: function(res)  {
 		       var data=JSON.parse(res); 
                        
@@ -99,6 +111,7 @@ function chklogin()
   var email = $("#email").val();
   var pass = $("#pass").val();
   var validationFlag=1,URL;
+  var filter = /^[0-9-+]+$/;
   var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
   if($.isNumeric(email)){
       if(email===''|| email=== null){ 
@@ -111,6 +124,11 @@ function chklogin()
           $('#email ').focus();
 	  common.msg(0,'Invalid Mobile no.'); 
         } 
+      else if(!filter.test(email)){ 
+	    validationFlag=0;  
+	    common.msg(0,'Mobile number is Invalid'); 
+	    return false;
+	}
          URL = APIDOMAIN + "index.php?action=login&mobile="+email+"&pass="+pass;
   }
   else{
@@ -293,6 +311,7 @@ $('#fsubId').on('click',function(){
     
     inptval=$('#femail').val();
     var validationflg=1;
+    var filter = /^[0-9-+]+$/;
     if($.isNumeric(inptval)){
       
       if(inptval===''|| inptval=== null){
@@ -305,6 +324,11 @@ $('#fsubId').on('click',function(){
 	  common.msg(0,'Invalid Mobile no.'); 
            return false;
       } 
+      else if(!filter.test(inptval)){ 
+	    validationflg=0;  
+	    common.msg(0,'Mobile number is Invalid'); 
+	    return false;
+	}
     }
     else{
       
@@ -380,9 +404,9 @@ function sugnupsubmt()
  function checkuser()
  {
     if($.isNumeric(inptval))
-    var URL= APIDOMAIN + "index.php/?action=getUserdetailbymob&mob="+inptval; 
+    var URL= APIDOMAIN + "index.php?action=getUserdetailbymob&mob="+inptval; 
      else
-      var URL= APIDOMAIN + "index.php/?action=getUserdetailbymob&email="+inptval; 
+      var URL= APIDOMAIN + "index.php?action=getUserdetailbymob&email="+inptval; 
    
       $.ajax({  url: URL, 
                 type: "GET",
@@ -543,6 +567,10 @@ function sugnupsubmt()
     
     $('#sig_pgbak').click(function(){ 
 	signupBack();
+	$('#name').val('');	    $('#name').blur();
+	$('#signupemail').val('');  $('#signupemail').blur();
+	$('#mobile').val('');	    $('#mobile').blur();
+	$('#signuppass').val('');   $('#signuppass').blur();
     });
     
     $('#otp2pg_bak').click(function(){ 
@@ -602,6 +630,10 @@ function sugnupsubmt()
       $('.outerContr').velocity({translateY: ['150%', 0]}, {duration: 150, delay: 100, easing: ''});
       $('.fade').fadeIn();
       $('#dlabel').text('Title');
+      $('#name').val('');	  $('#name').blur();
+      $('#signupemail').val('');  $('#signupemail').blur();
+      $('#mobile').val('');	  $('#mobile').blur();
+      $('#signuppass').val('');	  $('#signuppass').blur();
       gndrflg=undefined;
  }
  
@@ -633,4 +665,95 @@ function sugnupsubmt()
     var id=$(this).attr('id');
     id=id.split('_');
     gndrflg=id[1]; 
+  });
+  
+  $('#signupemail').blur(function(){
+    
+    var email=$('#signupemail').val();
+    if(email.length > 0)
+    {
+	var validationFlag=1;
+	var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
+
+	if(email===''|| email=== null){
+	    mailflag=0;
+	    validationFlag=0;  
+	    common.msg(0,'Please enter your Email-id'); 
+	    return false;
+	}
+	else if (!reg.test(email)){
+	    mailflag=0;
+	    validationFlag=0;  
+	    common.msg(0,'Invalid Email-id'); 
+	    return false;
+	}
+	if(validationFlag == 1)
+	{
+	    var URL= APIDOMAIN + "index.php?action=getUserDetailsbyinpt&email="+email+"&mobile="; 
+	    var vlflag=1;
+	    $.ajax({  url: URL, type: "GET", datatype: "JSON",  success: function(res)  {
+		       var data=JSON.parse(res); 
+                       
+		       $(data['results']).each(function(r,v){ 
+		       if( v.email == email){
+			 mailflag=0;
+			 vlflag=0;
+			 common.msg(0,'Your entered email id is already registered');
+		       } 
+		       });
+		       if(vlflag == 1)
+			 mailflag=1;
+	    }
+	    });
+	}
+    }
+  });
+  
+  
+  $('#mobile').blur(function(){
+    
+    var mobile=$('#mobile').val();
+    if(mobile.length > 0)
+    {
+	var validationFlag=1; 
+	var filter = /^[0-9-+]+$/;
+	if(mobile===''|| mobile=== null){
+	    mobflag=0;
+	    validationFlag=0;  
+	    common.msg(0,'Please enter your Mobile no.'); 
+	    return false;
+	}
+	else if(isNaN(mobile) || (mobile.length < 10) ){
+	    mobflag=0;
+	    validationFlag=0;  
+	    common.msg(0,'Mobile number is Invalid'); 
+	    return false;
+	}
+	else if(!filter.test(mobile)){
+	    mobflag=0;
+	    validationFlag=0;  
+	    common.msg(0,'Mobile number is Invalid'); 
+	    return false;
+	}
+	   
+	if(validationFlag == 1)
+	{
+	    var URL= APIDOMAIN + "index.php?action=getUserDetailsbyinpt&email=&mobile="+mobile; 
+	    var valflag=1;
+	    $.ajax({  url: URL, type: "GET", datatype: "JSON",  success: function(res)  {
+		       var data=JSON.parse(res); 
+                       
+		       $(data['results']).each(function(r,v){ 
+		       if(v.logmobile == mobile ){
+			 mobflag=0;
+			 valflag=0;
+			 common.msg(0,'Your entered mobile number is already registered');
+		       } 
+		       });
+		       if(valflag == 1)
+			  mobflag=1;
+	    }
+	    });
+	}
+    }
   });
