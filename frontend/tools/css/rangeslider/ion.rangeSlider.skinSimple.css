@@ -21,7 +21,7 @@
 .irs-with-grid {
     height: 60px;
 }
-#RingGuide .irs-with-grid{
+.ringSlider .irs-with-grid{
     height:60px;
     transform: rotate(90deg);
     width: 260px;
@@ -29,13 +29,13 @@
     right: -93px;
     top: 110px;
 } 
-#RingGuide .irs-from{display: none;}
-#RingGuide .irs-to{display: none;}
+.ringSlider .irs-from{display: none;}
+.ringSlider .irs-to{display: none;}
     
 .irs-line {
     height: 6px; top: 25px;
 }
-#RingGuide .irs-line{width:300px!important;}
+ #ringGuide .irs-line{width:300px!important;}
     .irs-line-left {
         height: 6px;
         background-position: 0 -30px;
@@ -54,9 +54,9 @@
     background-position: 0 -60px;
 }
     .irs-bar-edge {
-        top: 25px;
-        height: 6px; width: 7px;
-        background-position: 0 -90px;
+    top: 25px;
+    height: 6px; width: 7px;
+    background-position: 0 -90px;
     }
 
 .irs-shadow {

@@ -1931,6 +1931,7 @@ input[type=radio]:checked ~ .selector_label:after {
 /*new checkout*/
 .chkout{}
 .chkout .colleCont{padding: 50px 40px; overflow:initial;}
+.checkoutafter .colleCont{width:100%!important;}
 .chkout .darkCont{padding:0px 0 60px 0}
 .chkoutHeader{width:100%;height:60px;background-color:#15181b;top:0;left:0;z-index:50;}
 .chkoutHeader .logo {cursor: pointer;width: 200px;height:60px;background: url(../img/jzevalogo.svg)no-repeat;background-size:auto 20px;background-position:left;}
@@ -2177,9 +2178,9 @@ input[type=radio]:checked ~ .matchIcn{
 .trackDivs:after{content:"";position:absolute;border-bottom:1px solid #ccc;width: 100%;right:0;top:50%;left:50%;}
 #track .proStep{border:none;}
 .placedTxt{width: 100%;text-transform: uppercase;font-size: 11px;font-family: semibold;    line-height: 16px;}
-.completed{background:#ffffff url(../img/clarity/checkJzeva.svg)no-repeat;background-size: auto 20px;background-position: center;}
-.tickIcon{background:#53C9C7 url(../img/icons/checkW.svg)no-repeat;background-size: auto 20px;background-position: center;}
-.notDeliver{background: #FF5A5F url(../img/close_blackw.svg)no-repeat;background-size: auto 20px;background-position: center;}
+.completed{border:1px solid #e6e6e6;background:#ffffff url(../img/icons/checkJzeva.svg)no-repeat;background-size: auto 15px;background-position: center;}
+.tickIcon{background:#53C9C7 url(../img/icons/checkW.svg)no-repeat;background-size: auto 15px;background-position: center;}
+.notDeliver{background: #FF5A5F url(../img/close_blackw.svg)no-repeat;background-size: auto 15px;background-position: center;}
 .trackDivs:last-child:after{display: none;}
 .myaccount .tHead{padding-right:35px;}
 .myaccount .pCont{padding-left: 35px;}
@@ -2622,7 +2623,7 @@ input[type=radio]:checked ~ .matchIcn{
     .rota_bufferm {padding:0px;width: 100%;height: 100%;position: absolute;left: 0;right: 0; background: #fff;margin: auto;}
     .options_buffer { width: 100%;height:auto;position: relative;top:initial;bottom:initial;margin: initial;}
     .PRODUCT_PAGE .wrapper_max {max-width:initial;height: auto;float: left;}
-    .colleCont { width: 100%; height: auto; float: left; padding:0px;position: relative;left:initial;top:initial;overflow:initial; background-color: #fff;}
+    .colleCont{width: 100%; height: auto; float: left; padding:0px;position: relative;left:initial;top:initial;overflow:initial; background-color: #fff;}
     .smUlineb {position:relative;top:0;}
     .homeCollect {float:left;padding-top:0px;}
     .PRODUCT_PAGE .collCenterb {width:100%;height:auto;position:relative;left:initial;top:initial;bottom:initial;margin:initial;padding: 20px;}
