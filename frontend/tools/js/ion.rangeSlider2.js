@@ -632,7 +632,7 @@
 
         pointerClick: function (target, e) {
             e.preventDefault();
-            var x = e.pageX || e.originalEvent.touches && e.originalEvent.touches[0].pageX;
+            var x = e.pageY || e.originalEvent.touches && e.originalEvent.touches[0].pageY;
             if (e.button === 2) {
                 return;
             }
