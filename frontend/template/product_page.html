@@ -217,7 +217,7 @@
             </div>
         </div>
     </div>
-    <div class="darkCont">
+    <div class="darkCont fLeft">
         <div class="wrapper_max">
             <div class="homeCollect">
                 <!-- <div class="colleCont ">
@@ -265,7 +265,10 @@
                 "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25"],
             grid: true,
             onChange: function (data) {
-                var sVal = $('.irs-single').text();
+                console.log(data);
+                var sVal = data.from_value;
+            $('.ringCircle').html(sVal);
+                console.log(sVal);
                 if (t < sVal) {
                     inc();
                 } else {
@@ -284,9 +287,15 @@
                 "2.2", "2.3", "2.4", "2.5", "2.6", "2.7", "2.8", "2.9"],
             grid: true,
             onChange: function (data) {
-                var sVal = $('.irs-single').text();
+                var sVal = data.from_value;
+                
+            $('.ringCircleB').html(sVal);
+                console.log(sVal);
+                    
                 if (t < sVal) {
+                    
                     incB();
+                    
                 } else {
                     decB();
                 }
@@ -319,7 +328,7 @@
             $('.ringCircle').css('width', val1 + 'px');
             $('.ringCircle').css('height', val2 + 'px');
             $('.ringCircle').css('line-height', val3 + 'px');
-            $('.ringCircle').html(incVal);
+//            $('.ringCircle').html(incVal);
             tmp++;
             calweight();
         }
@@ -338,7 +347,7 @@
             $('.ringCircle').css('width', val1 + 'px');
             $('.ringCircle').css('height', val2 + 'px');
             $('.ringCircle').css("line-height", val3 + 'px');
-            $('.ringCircle').html(dTxt);
+//            $('.ringCircle').html(dTxt);
             tmp--;
             calweight();
         }
@@ -370,7 +379,7 @@
             $('#bangCircle').css("width", valb1 + 'px');
             $('#bangCircle').css("height", valb2 + 'px');
             $('#bangCircle').css('line-height', valb3 + 'px');
-            $('#bangCircle').html(incVal_b);
+//            $('#bangCircle').html(incVal_b);
             tmp_b = parseFloat(tmp_b) + 0.1;
             calweight();
         }
@@ -389,7 +398,7 @@
             $('#bangCircle').css("width", valb1);
             $('#bangCircle').css("height", valb2);
             $('#bangCircle').css("line-height", valb3 + 'px');
-            $('#bangCircle').html(Math.round(dTxt_b * 10) / 10);
+//            $('#bangCircle').html(Math.round(dTxt_b * 10) / 10);
             var decValb = Math.round(dTxt_b * 10) / 10;
             $('#size').text("Size " + decValb);
             tmp_b = tmp_b - 0.1;
