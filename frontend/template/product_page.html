@@ -418,7 +418,7 @@
         var s = 0;
         function function1() {
             i = (i + 1) % 30;
-            console.log(i);
+           
             $('.imgHolder').addClass('dn');
             $('.imgHolder').eq(i).removeClass('dn');
         }
@@ -482,7 +482,7 @@
             //runner();
 
             wid = $('.rota').width();
-            console.log(wid);
+          
 
 
         });
@@ -548,6 +548,10 @@
 
         /* Fly to cart effect */
         $('#add_to_cart').on('click', function () {
+	    
+	  var size=$('#size').text(); 
+	  if(size !== 'Select') 
+	  {
             var wd = $('.rota').outerWidth();
             var ht = $('.rota').outerHeight();
             var cart = $('.cartIcon');
@@ -588,6 +592,7 @@
                 //
                 // });
             }
+	  }
         });
         // Show close reviews page
         // $('.review_btn').click(function () {

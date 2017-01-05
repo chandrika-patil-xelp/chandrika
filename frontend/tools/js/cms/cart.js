@@ -122,10 +122,10 @@ function displaycartdata()
                         }
 
                         cartstr = "<div class='cart_item'>";
-			cartstr += "<div onclick='prdopen(this)' id='" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "_" + v.size + "'>";
-                        cartstr += "<div class='cart_image'><img src='"+ abc +"'";
+			cartstr += "<div class='opn_prdcart' id='" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "_" + v.size + "'>";
+                        cartstr += "<div class='cart_image' onclick='prdopen(this)'><img src='"+ abc +"'";
                         cartstr += " alt='Image not found'></div>";
-                        cartstr += "<div class='cart_name'>" + v.prdname + "</div>";
+                        cartstr += "<div class='cart_name' onclick='prdopen(this)'>" + v.prdname + "</div>";
                        cartstr += "<div class='cart_desc  fLeft' id='nwwt'>" + v.color + " " + v.jewelleryType + " | "+ v.carat + " | " + wht + "  grams";
 //                      cartstr += "Quality : " + v.quality + "  ";
                        cartstr += "<div class='cart_desc  fLeft' id='nwwt'>";
@@ -166,11 +166,11 @@ function displaycartdata()
 
 function prdopen(ths)
 {
-  var ids=$(ths).attr('id');
+  var ids=$(ths).closest('.cart_item').find('.opn_prdcart').attr('id'); 
   ids=ids.split('_');
   var pid=ids[0];   var combn=ids[2];
   var size=ids[4];
-  window.open(DOMAIN +"index.php?action=product_page&pid="+pid+"&comb="+combn+"&sz="+size+"");
+   window.open(DOMAIN +"index.php?action=product_page&pid="+pid+"&comb="+combn+"&sz="+size+"");
 }
 
 function getweight(currentSize, catName, storedWt)

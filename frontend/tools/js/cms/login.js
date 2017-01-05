@@ -195,7 +195,7 @@ function chklogin()
 		      }
 		    common.msg(1,'Signed in successfully'); 
 		        var URLactn = window.location.search; 
-		      var url=DOMAIN + '/index.php' +URLactn;
+		      var url=DOMAIN + 'index.php' +URLactn;
 		      setTimeout(function(){
 			window.location.href = url; 
 		      },3000)

@@ -252,13 +252,13 @@ function wishlist()
                     wishStr += ' <div class="grid_item "> ';
                     wishStr += ' <div class="grid_img">';
                     wishStr += ' <div style="background:url(\'' + xyz + '\')no-repeat ; background-size: contain ; background-position: center"></div></div>';
-                    wishStr += ' <div class="hovTr"  onclick="prdopen(this)"> ';
+                    wishStr += ' <div class="hovTr"  onclick="wshprdopen(this)"> ';
                     wishStr += ' <div class="hovTrans">';
                     wishStr += ' </div></div>';
                     wishStr += '   <div class="grid_dets">';
-                    wishStr += '  <div class="grid_name txtOver transition300" onclick="prdopen(this)">' + j.prdname + '</div>';
+                    wishStr += '  <div class="grid_name txtOver transition300" onclick="wshprdopen(this)">' + j.prdname + '</div>';
 
-                    wishStr += ' <div class="col100  font11 transition300 txtOver" onclick="prdopen(this)"> ' + j.jweltype + '';
+                    wishStr += ' <div class="col100  font11 transition300 txtOver" onclick="wshprdopen(this)"> ' + j.jweltype + '';
                     var type = 0;
                     if (j.hasSoli == 'Solitaire')
                         type = 1;
@@ -330,7 +330,7 @@ function wishlist()
                         }
                     }
                     wishStr += ' ' + Nstr + '</div>';
-                    wishStr += '   <div class="grid_price txtOver transition300" onclick="prdopen(this)"><span class="cartRup15b"><span>  ' + indianMoney(parseInt(j.price)) + '</div>';
+                    wishStr += '   <div class="grid_price txtOver transition300" onclick="wshprdopen(this)"><span class="cartRup15b"><span>  ' + indianMoney(parseInt(j.price)) + '</div>';
                     wishStr += '  <div class="action_btns">';
                     wishStr += '  <div class="col50 fLeft  pad0">';
                     wishStr += '  <div class="actBtn fLeft bolder addcrt" id="' + j.wish_id + '_' + j.col_car_qty + '_' + j.product_id + '_' + j.size + '" ';
@@ -363,7 +363,7 @@ function custmz(i){
    window.open(DOMAIN + 'index.php?action=product_page&pid=' +pid);
 }
 
-function prdopen(ths)
+function wshprdopen(ths)
 {
     
   var ids=$(ths).closest('.grid3').find('.facet_front').attr('id');
@@ -497,9 +497,33 @@ function savemyaddress() {
     var state = $('#state').val();
     var zipcode = $('#zipcode').val();
     var city = $('#city').val();
+    var name= $('#shp_name').val();
+    var moblno=$('#shp_mob').val();
+    var letters = /^[A-Za-z]+$/;
+    var filter = /^[0-9-+]+$/;
     var validationFlag = 1;
-
-    if (address === '' || address === null) {
+    
+    if (name === '' || name === null) {
+      validationFlag = 0;
+      common.msg(0, 'Please enter your Name');
+    }
+    else if (!letters.test(name)) {
+      validationFlag = 0;
+      common.msg(0, 'Name should be alphanumeric');
+    }
+    else if (moblno === '' || moblno === null) {
+      validationFlag = 0;
+      common.msg(0, 'Please enter your Mobile no');
+    }
+    else if (isNaN(moblno) || (moblno.length < 10)) {
+      validationFlag = 0;
+      common.msg(0, 'Mobile no. Invalid');
+    }
+    else if(!filter.test(moblno)){ 
+	    validationFlag=0;  
+	    common.msg(0,'Mobile number is Invalid');  
+    }
+    else if (address === '' || address === null) {
         $('#addr').focus();
         validationFlag = 0;
         common.msg(0, 'Please Enter Your Address');
@@ -511,9 +535,9 @@ function savemyaddress() {
 
 
     }
-    var name = common.readFromStorage('jzeva_name');
+    
     var email = common.readFromStorage('jzeva_email');
-    var moblno = common.readFromStorage('jzeva_mob');
+     
 
     shipngdata['name'] = name;
     shipngdata['email'] = email;
@@ -550,6 +574,8 @@ function savemyaddress() {
                 $('#zipcode').blur();
                 $('#city').val('');
                 $('#city').blur();
+		$('#shp_name').val('');  $('#shp_name').blur();
+		$('#shp_mob').val('');   $('#shp_mob').blur();
             }
         });
 
@@ -579,11 +605,11 @@ function displayaddrs() {
             }
             var addrStr = "";
             $(data['results']).each(function (m, n) {
-
+ 
                 addrStr += '<div class="fLeft defaulDiv">';
                 addrStr += '<div class="fLeft col100">';
-                addrStr += '<div class="font13">chandrikapatil</div>';
-                addrStr += '<div class="font13">8123128747</div>';
+                addrStr += '<div class="font13">'+n.name+'</div>';
+                addrStr += '<div class="font13">'+n.mobile+'</div>';
                 addrStr += '<div class="font13">' + n.address + '</div>';
                 //addrStr+='<div class="font13">Kormanagala</div>';
                 addrStr += '<div class="font13">' + n.city + '-' + n.pincode + '</div>';

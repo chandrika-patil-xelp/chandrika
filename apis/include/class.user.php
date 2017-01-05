@@ -1763,6 +1763,82 @@ class user extends DB {
         $result = array('results' => $reslt, 'error' => $err);
         return $result;
     }
+    
+     public function OrderDetailsbyordid($params){
+            global $comm;
+            if(empty($params['orderid'])){
+	       $reslt=array();
+	       $error = array('err_code'=>1, 'err_msg'=>' Parameter missing' );
+	       $result=array('result' =>$reslt,'error'=>$error,'');
+	       return $result;
+	    }
+	        
+            
+                $sql = "SELECT
+                            order_id AS oid,
+                            product_id AS pid,
+                            user_id AS uid,
+                            shipping_id AS shpId,
+                            col_car_qty AS combine,
+                            size,
+                            pqty,
+                            price,
+  
+                            (SELECT name FROM tbl_order_shipping_details WHERE shipping_id=shpId) AS uname,
+                            (SELECT mobile FROM tbl_order_shipping_details WHERE shipping_id=shpId) AS mobile,
+                            (SELECT email FROM tbl_order_shipping_details WHERE shipping_id=shpId) AS email,
+                            (SELECT city FROM tbl_order_shipping_details WHERE shipping_id=shpId) AS customerCity,
+			    (SELECT state FROM tbl_order_shipping_details WHERE shipping_id=shpId) AS customerState,
+			    (SELECT pincode FROM tbl_order_shipping_details WHERE shipping_id=shpId) AS customerPincode,
+			    (SELECT address FROM tbl_order_shipping_details WHERE shipping_id=shpId) AS customerAddrs, 
+			    (SELECT bank_ref_no FROM tbl_transaction_master WHERE order_id=oid) AS transactionid, 
+			    
+			    order_date AS orddt,
+                            delivery_date AS deldt,
+                            order_status AS ordsta,
+                            active_flag AS actflg, 
+                            payment AS pay
+                            FROM tbl_order_master WHERE order_id = ".$params['orderid']." ";
+
+                $res = $this->query($sql);
+
+                if($res){
+		  $totalprice=0;
+                 while ($row = $this->fetchData($res)){
+		   
+                    $reslt['oid'] = ($row['oid']!=NULL) ? $row['oid'] : '';
+                    $reslt['pid'] = ($row['pid']!=NULL) ? $row['pid'] : '';
+                    $reslt['uid'] = ($row['uid']!=NULL) ? $row['uid'] : ''; 
+                    $reslt['uname'] = ($row['uname']!=NULL) ? $row['uname'] : '';
+                    $reslt['mobile'] = ($row['mobile']!=NULL) ? $row['mobile'] : '';
+                    $reslt['email'] = ($row['email']!=NULL) ? $row['email'] : '';
+                    $reslt['orddt'] = $comm->makeDate($row['orddt']);
+                    $reslt['deldt'] = $comm->makeDate($row['deldt']);
+                    $reslt['actflg'] = ($row['actflg']!=NULL) ? $row['actflg'] : '';
+                    $reslt['ppri'] = ($row['price']!=NULL) ? $row['price'] : '';
+                    $reslt['size'] = ($row['size']!=NULL) ? $row['size'] : '';
+                    $reslt['pqty'] = ($row['pqty']!=NULL) ? $row['pqty'] : '';
+                    $reslt['pay'] = ($row['pay']!=NULL) ? $row['pay'] : '';
+                    $reslt['ucity'] = ($row['customerCity']!=NULL) ? $row['customerCity'] : '';
+                    $reslt['ustate'] = ($row['customerState']!=NULL) ? $row['customerState'] : '';
+                    $reslt['upin'] = ($row['customerPincode']!=NULL) ? $row['customerPincode'] : '';
+                    $reslt['uaddres'] = ($row['customerAddrs']!=NULL) ? $row['customerAddrs'] : '';
+                     $reslt['transactionid'] = ($row['transactionid']!=NULL) ? $row['transactionid'] : ''; 
+                    $resp[] = $reslt;
+		    $totalprice+=($row['price'] != NULL) ?$row['price']:'';
+                 }
+                    $error = array('err_code'=>0, 'err_msg'=>' Data fetched successfully ' );
+
+                }else{
+                    $error = array('err_code'=>1, 'err_msg'=>' Error In Fetching Data ' );
+                }
+
+            
+
+            $result = array('result'=>$resp, 'error'=>$error,'totalprice'=>$totalprice );
+            return $result;
+
+        }
 	
 }
 

@@ -318,21 +318,17 @@ function shpngsubmt()
   validationFlag = 1;
   var name, email, mobile;
   var usrid = common.readFromStorage('jzeva_uid');
-  if ($('.neadHide').hasClass('dn')) {
-    // common.msg(0,'hi');
-  } 
-  else
-  {
-    name = $('#shpdname').val();
-    email = $('#shpdemail').val();
+  
+    name = $('#shpdname').val(); 
     mobile = $('#shpdmobile').val();
+    var addrs = $('#shpdaddrs').val();
+    var city = $('#shpdcity').val();
+    var state = $('#shpdstate').val();
+    var pincode = $('#shpdpincode').val();
     var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
     var letters = /^[A-Za-z]+$/;
-    if(gndrflg == undefined || gndrflg == null){
-      validationFlag=0;  
-     common.msg(0,'Please Select Title');  
-    }
-    else if (name === '' || name === null) {
+    var filter = /^[0-9-+]+$/;
+    if (name === '' || name === null) {
       validationFlag = 0;
       common.msg(0, 'Please enter your Name');
     } 
@@ -347,34 +343,12 @@ function shpngsubmt()
     else if (isNaN(mobile) || (mobile.length < 10)) {
       validationFlag = 0;
       common.msg(0, 'Mobile no. Invalid');
-    } 
-    else if (email === '' || email === null) {
-      validationFlag = 0;
-      common.msg(0, 'Please enter your Email id');
-    } 
-    else if (!reg.test(email)) {
-      validationFlag = 0;
-      common.msg(0, 'Invalid Email.id');
     }
-
-    if( shpngusrflg !== 1 && validationFlag ==1 ){
-      validationFlag = 0;
-      common.msg(0, 'Please Enter New Email id');
-    }
-
-    shipngdata['name'] = name;
-    shipngdata['email'] = email;
-    shipngdata['mobile'] = mobile;
-  }
-
-  if(usrid !== null || validationFlag == 1)
-  {
-    var addrs = $('#shpdaddrs').val();
-    var city = $('#shpdcity').val();
-    var state = $('#shpdstate').val();
-    var pincode = $('#shpdpincode').val();
-
-    if (addrs === '' || addrs === null) {
+    else if(!filter.test(mobile)){ 
+      validationFlag=0;  
+      common.msg(0,'Mobile number is Invalid');  
+    } 
+    else if (addrs === '' || addrs === null) {
       validationFlag = 0;
       common.msg(0, 'Please enter your address');
     } 
@@ -394,47 +368,30 @@ function shpngsubmt()
       validationFlag = 0;
       common.msg(0, 'Please enter your city name');
     }
-
     if(shipngzpcodflg !== 1 && validationFlag == 1){
       validationFlag = 0;
       common.msg(0, 'Please enter Valid Zip code');
     }
-  }
-
-
+    
+    
+    
   if (validationFlag == 1)
   {
-    if (inp_data !== undefined && usrid == null)
-    {
-      createuser(name, email, city, addrs);
-    } else
-    {
-      var uname = common.readFromStorage('jzeva_name');
-      email = common.readFromStorage('jzeva_email');
-      var moblno = common.readFromStorage('jzeva_mob');
-      shipngdata['name'] = uname;
-      shipngdata['email'] = email;
-      shipngdata['mobile'] = moblno;
-    }
-
-
-    openfst();
+   
+    shipngdata['name'] = name;
+    shipngdata['email'] = email;
+    shipngdata['mobile'] = mobile;  
     shipngdata['address'] = addrs;
     shipngdata['pincode'] = pincode;
     shipngdata['state'] = state;
     shipngdata['city'] = city;
+    shipngdata['user_id'] = usrid;
+    
+    openfst();
 
-
-
-    setTimeout(function () {
-      var usrid = common.readFromStorage('jzeva_uid');
-      if (usrid == null || usrid == "") {
-	shipngdata['user_id'] = 1111;
-      } else {
-	shipngdata['user_id'] = usrid;
-      }
+    setTimeout(function () { 
       storeshippingdata();
-    }, 1000);
+    }, 300);
 
   }
 
@@ -564,7 +521,7 @@ function displayaddrs(userid)
 	  addstr += ' <div class="col100 fLeft radTor poR">';
 	  addstr += ' <div class="w50r fLeft">';
 	  addstr += ' <div class="text fLeft txtOver" title='+  v.name +'  id="spnd_name">' + v.name + '</div>';
-	   addstr += ' <div class="text fLeft txtOver">8123128747</div>';
+	   addstr += ' <div class="text fLeft txtOver">'+v.mobile+'</div>';
             addstr += ' <div class="text fLeft txtOver" title='+ v.email +'  id="spnd_email">' + v.email + '</div>';
          
 	  
@@ -597,9 +554,20 @@ function displayaddrs(userid)
 
 $('#shpdpincode').on('keyup',function () {
   var zipcode = $(this).val();
+  var filter = /^[0-9-+]+$/;
+  if(zipcode.length > 0){
+    if(!filter.test(zipcode)){
+	common.msg(0,'Invalid Zip Code'); 
+	return false;
+    }
+  }
   if($.isNumeric(zipcode)){
     if (zipcode.length == 6)
       checkshpdpincode(zipcode);
+    else {
+      $('#shpdcity').val('');   $('#shpdcity').blur();
+      $('#shpdstate').val('');  $('#shpdstate').blur();
+    }
   }
   else{
     if(zipcode.length == 6 || zipcode.length == 1)
@@ -884,9 +852,7 @@ function indianMoney(x) {
   return res;
 }
 
-$('#shpdemail').blur(function () {
-  checkuserdetail();
-});
+ 
 
 
 function createuser(name, email, city, addrs)
@@ -921,42 +887,7 @@ function createuser(name, email, city, addrs)
   });
 }
 
-function checkuserdetail()
-{
-
-  var validnflg = 1, setvalflg=0;
-  var email = $('#shpdemail').val();
-  var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
-  if (email === '' || email === null) {
-    validnflg = 0;
-  } else if (!reg.test(email)) {
-    validnflg = 0;
-  }
-
-  if (validnflg == 1) {
-
-    var URL = APIDOMAIN + "index.php/?action=getUserDetailsbyinpt&email=" + email + "&mobile=" + inp_data;
-    $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (res)
-      {
-	var data = JSON.parse(res);
-	$(data['results']).each(function (r, v) {
-	  if (v.logmobile == inp_data) {
-	    setvalflg=1;
-	    shpngusrflg = 0;
-	    common.msg(0, 'Your Entered mobile number is already registered');
-	  } 
-	  else if (v.email == email) {
-	    setvalflg=1;
-	    shpngusrflg =0;
-	    common.msg(0, 'Your Entered email id is already registered');
-	  }
-	});
-	if( setvalflg !== 1)
-	  shpngusrflg=1;
-      }
-    });
-  }
-}
+ 
 
 function checkshpdpincode(zipcode)
 {

@@ -912,15 +912,7 @@ switch($action)
         $obj = new user($db['jzeva']);
         $res = $obj->removeShipngdetail($params);
         break;
-
-    case 'addOrdersdetail':
-        include APICLUDE.'class.us.php';
-        $obj = new us($db['jzeva']);
-	$tmpaparams = array($params['dt']);
-         $res = $obj->addOrdersdetail($tmpaparams);
-    break;
     
-
      case 'addOrderbackend':
         include APICLUDE.'class.us.php';
         $obj = new us($db['jzeva']);
@@ -1134,7 +1126,29 @@ case 'orderTrack':
         $result	= $obj->getshipdatabyshipid($params);
         $res = $result;
   break;
-  }
+
+  case 'gettransactiondata': 
+        include APICLUDE.'class.rate.php';
+        $obj	= new rate($db['jzeva']);
+        $result	= $obj->gettransactiondata($params);
+        $res = $result;
+  break;
+
+  case 'addtransactiondata': 
+        include APICLUDE.'class.rate.php';
+        $obj	= new rate($db['jzeva']);
+        $result	= $obj->addtransactiondata($params);
+        $res = $result;
+  break;
+    
+  case 'OrderDetailsbyordid':
+        include APICLUDE.'class.user.php';
+        $obj	= new user($db['jzeva']);
+        $tmpparams=array('orderid'=>$params['orderid']);
+        $res	=$obj->OrderDetailsbyordid($tmpparams);
+    break;
+  
+  } 
 echo json_encode($res);
 exit;
 ?>

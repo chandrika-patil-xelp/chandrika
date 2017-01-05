@@ -78,9 +78,7 @@ function getarraydata() {
         var metal = zz[zz.length - 1];
     }
 
-    var sz;
-    if (sz == " ")
-        sz = parseFloat("0.00");
+    var sz = parseFloat("0.00");
     if (catname == 'Rings') {
         if (sz == " None")
             sz = parseFloat(14);
@@ -97,17 +95,21 @@ function getarraydata() {
 }
 
 $('#add_to_cart').on('click', function () {
-
-    if (clickdesbl) {
-        return;
-    }
-    getarraydata();
-    newaddToCart(arrdata);
-    clickdesbl = true;
-    setTimeout(function () {
-        clickdesbl = false;
-    }, 500);
-
+    var size=$('#size').text(); 
+    if(size == 'Select')
+       common.msg(0,'Please select size');
+    else
+    {
+      if (clickdesbl) {
+	  return;
+      }
+      getarraydata();
+      newaddToCart(arrdata);
+      clickdesbl = true;
+      setTimeout(function () {
+	  clickdesbl = false;
+      }, 500);
+  }
 });
 
 $('#buynow').on('click',function(){
