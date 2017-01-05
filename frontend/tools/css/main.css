@@ -966,11 +966,11 @@ input[type=radio]:checked ~ .check::before{background: #22B9C7;transform: scale(
 
 .check2{width:100%;height: 100%;display: inline-block; position: relative;background-size: auto 65px;background-position: center top;}
 .pur .check2{width:50px;height:50px;display:inline-block;position:absolute;background-size: auto 65px; background-position:top center;border: 1px solid #15181b;border-radius:3px;top: 0;left: 0;right: 0;bottom: 20px;margin: auto;    text-align: center;line-height: 50px; font-size: 12px;font-family: semibold;}
-.check2.vvsef{background-image:url(../img/icons/VVSEF.svg);background-repeat: no-repeat;}
-.check2.vvsgh{background-image:url(../img/icons/VVSGH.svg);background-repeat: no-repeat;}
-.check2.vsgh{background-image:url(../img/icons/VSGH.svg);background-repeat: no-repeat;}
-.check2.sigh{background-image:url(../img/icons/SIGH.svg);background-repeat: no-repeat;}
-.check2.siij{background-image:url(../img/icons/SIIJ.svg);background-repeat: no-repeat;}
+.check2.vvsef{background-image:url(../img/icons/VvsEf.svg);background-repeat: no-repeat;}
+.check2.vvsgh{background-image:url(../img/icons/VvsGh.svg);background-repeat: no-repeat;}
+.check2.vsgh{background-image:url(../img/icons/vsgh.svg);background-repeat: no-repeat;}
+.check2.sigh{background-image:url(../img/icons/SiGh.svg);background-repeat: no-repeat;}
+.check2.siij{background-image:url(../img/icons/SiIj.svg);background-repeat: no-repeat;}
 .check2.carat_9{background-image:url(../img/icons/337.svg);background-repeat: no-repeat;background-size: auto 45px;}
 .check2.carat_14{background-image:url(../img/icons/338.svg);background-repeat: no-repeat;background-size: auto 45px;}
 .check2.carat_18{background-image:url(../img/icons/339.svg);background-repeat: no-repeat;background-size: auto 45px;}
@@ -1408,7 +1408,10 @@ input[type=radio]:checked ~ .selector_label:after {
 .cart .pay{width:30%;}
 .cart .cart_gen2{width:100%;height:60px;padding:0;position:absolute;bottom:0;left:0;}
 .cart .cartBox {width:50%;height:100%;position:relative}
-.cart .cartHd {height:100%;position:relative;background-size:20px;}
+/*.cart .cartHd {height:100%;position:relative;background-size:20px;}*/
+.cart .helpIc{height: 100%;position:relative;background-size: auto 40%;}
+.cart .shipIc{height:100%;position:relative;background-size: auto 50%;}
+
 .checkFoo img{width: auto;height: 30px;margin: 14px 0px 14px 0px;}
 .chkParent{width:100%;height:auto;display: inline-block;padding: 20px 0px;margin: 30px 0px 90px 0px;border: 1px solid #e6e6e6;background-color: #f3f3f3;}
 .logoComm{width:auto;height:60px;display: inline-block;}
@@ -1429,7 +1432,7 @@ input[type=radio]:checked ~ .selector_label:after {
 .sty1.cartTool::after{left:105px;}
 .sty1.cartTool{padding:25px 0}
 .sty2.cartTool{left: -250px;padding:50px 0}
-.sty2.cartTool::after{    left: 353px;}
+.sty2.cartTool::after{left: 353px;}
 #add_to_cart:after{content:"";width:120%;height:100%;position:absolute;left:0;top:0;background:#53C9C7;transform:translateX(-120%);-moz-transform:translateX(-120%);-webkit-transform:translateX(-120%);-o-transform:translateX(-120%);-ms-transform:translateX(-120%);transition:250ms ease-in;pointer-events:none}
 #add_to_cart:hover:after{transform:translateX(0%);-moz-transform:translateX(0%);-webkit-transform:translateX(0%);-o-transform:translateX(0%);-ms-transform:translateX(0%);z-index:-1;transition:200ms !important}
 #buynow:after{content:"";width:120%;height:100%;position:absolute;left:0;top:0;background:#53C9C7;transform:translateX(-120%);-moz-transform:translateX(-120%);-webkit-transform:translateX(-120%);-o-transform:translateX(-120%);-ms-transform:translateX(-120%);transition:250ms ease-in;pointer-events:none}
@@ -1988,7 +1991,7 @@ input[type=radio]:checked ~ .btncnt {
 input[type=radio]:checked ~ .matchIcn{
   display:block;
   background:#53C9C7 url(../img/icons/checkW.svg)no-repeat;
-  background-size: auto 60%;
+  background-size: auto 15px;
   background-position: center;
   border: none;
 }
@@ -2581,6 +2584,10 @@ input[type=radio]:checked ~ .matchIcn{
 .checkoutafter .totalItem{background-color: #15181b!important;}
 .ringSlider{width: 25%;height:300px;position: relative;}
 .szCir{width:75%;height:195px;}
+/*input[type=number]{.number-wrapper:after{diplay:none;}}*/
+input[type="number"].number-wrapper:hover:after{display: none;}
+/*.number-wrapper:hover:after{display:none;}*/
+
 
 
 .chekparent{}
