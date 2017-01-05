@@ -357,7 +357,7 @@ function shpngsubmt()
       common.msg(0, 'Invalid Email.id');
     }
 
-    if( shpngusrflg !== 1 && validationFlag ==1){
+    if( shpngusrflg !== 1 && validationFlag ==1 ){
       validationFlag = 0;
       common.msg(0, 'Please Enter New Email id');
     }
@@ -367,7 +367,7 @@ function shpngsubmt()
     shipngdata['mobile'] = mobile;
   }
 
-  if (usrid !== null || validationFlag == 1)
+  if(usrid !== null || validationFlag == 1)
   {
     var addrs = $('#shpdaddrs').val();
     var city = $('#shpdcity').val();
