@@ -35,7 +35,7 @@
 .irs-line {
     height: 6px; top: 25px;
 }
-#RingGuide .irs-line {width:300px!important;}
+/*#RingGuide .irs-line {width:300px!important;}*/
  /*#ringGuide .irs-line{width:300px!important;}*/
     .irs-line-left {
         height: 6px;
@@ -109,8 +109,9 @@
     background: rgba(255,255,255,0.8);
     -moz-border-radius: 3px;
     border-radius: 3px;
-    transform: rotate(-90deg);
+    transform: rotate(-90deg);opacity: 0;
 }
+#BangleGuide .irs-single{opacity: 0;}
 
 .lt-ie9 .irs-from, .lt-ie9 .irs-to, .lt-ie9 .irs-single {
     background: #d8dff3;
@@ -119,6 +120,8 @@
 .irs-grid-pol {
     background: #777;
 }
+#RingGuide .irs-grid-pol{display : none!important;}
+#BangleGuide .irs-grid-pol{display : none!important;}
 .irs-grid-text {
     color: #e0e0e0;
 }
