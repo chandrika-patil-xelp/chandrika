@@ -63,12 +63,12 @@ function displaycartdetail()
                     chckoutstr += "</div>";
                     chckoutstr += "<div class='cart_price cartRup15 fLeft'><span class='price_gen'> " + indianMoney(bprize) + "</span></div>";
                     chckoutstr += "<div class='amt_selector' id='" + v.cart_id + "'>";
-                    chckoutstr += "<a href='#' onclick='subqnty(this)'  id='sub_" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "'><div class='cart_btn fLeft sub_noW'></div></a>";
+//                    chckoutstr += "<a href='#' onclick='subqnty(this)'  id='sub_" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "'><div class='cart_btn fLeft sub_noW'></div></a>";
                     chckoutstr += "<div class='item_amt fLeft '>" + v.pqty + "</div>";
-                    chckoutstr += " <a href='#' id='add_" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "' onclick='addqnty(this)'><div class='cart_btn fLeft add_noW' ></div></a>";
+//                    chckoutstr += " <a href='#' id='add_" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "' onclick='addqnty(this)'><div class='cart_btn fLeft add_noW' ></div></a>";
                     chckoutstr += "</div>";
-                    chckoutstr += "<div class='cart_removew addrCommon' id='" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "_" + v.size + "' onclick='remove(this)' >";
-                    chckoutstr += "</div>";
+//                    chckoutstr += "<div class='cart_removew addrCommon' id='" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "_" + v.size + "' onclick='remove(this)' >";
+//                    chckoutstr += "</div>";
                     chckoutstr += "</div>";
                     $('#scroll').append(chckoutstr);
                 });
