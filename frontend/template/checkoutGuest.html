@@ -8,7 +8,7 @@
 
 </script>
 <body class="greyBg"  >
-  
+
     <div class="entrotppopup">
         <div class="enterotpCnt regular">
             <div class="w100 fLeft">
@@ -86,10 +86,9 @@
                                             <div class="actBtn button" id="sign_in">sign in</div>
                                         </center>
                                     </div>
-                                    <div class="guestSignup">Dont have account?<span class="semibold" id="gSignup">Signup</span></div>
+                                    <div class="guestSignup">Dont have account?<span class="semibold" id="gSignup"> Signup</span></div>
                                 </div>
                                 <div class="fadeCnt fLeft dn" id="guestSignup">
-
                                     <div class="hdrcrsTxt fLeft regular">
                                         <div class="intTxt fLeft">Please enter relevant information</div>
                                     </div>
@@ -102,19 +101,20 @@
                                                 <li class="opt1" id="gnd_3">Mrs</li>
                                             </ul>
                                         </div>
-                                        <div class="txtB fLeft col100">
-                                            <input type="text" class="inp_box " autocomplete="off" id="shpdname" maxlength="30">
+                                        <div class="txtB fRight w78">
+                                            <input type="text" class="inp_box " autocomplete="off" id="shpdname" maxlength="50">
                                             <div class="inp_label ">Name*</div>
                                         </div>
-                                        <div class="txtB fLeft">
-                                            <input type="text" class="inp_box " autocomplete="off" id="shpdemail" maxlength="30">
-                                            <div class="inp_label ">Email*</div>
-                                        </div>
-                                        <div class="txtB  fLeft col100">
+                                        <div class="txtB  fLeft w20">
                                             <input type="text" class="inp_box " autocomplete="off"  id="shpdmobile" maxlength="10">
                                             <div class="inp_label ">Mobile*</div>
                                         </div>
-                                        <div class="sgnUptxt fLeft semibold">
+                                        <div class="txtB fRight  w78">
+                                            <input type="text" class="inp_box " autocomplete="off" id="shpdemail" maxlength="50">
+                                            <div class="inp_label ">Email*</div>
+                                        </div>
+                                       
+                                        <div class="sgnUptxt fLeft semibold w49">
                                             <div class="txtB fLeft">
                                                 <input type="password" class="inp_box"  maxlength="30" id="shpdpaswrd">
                                                 <div class="inp_label">Password</div>
@@ -280,16 +280,16 @@
                                                 <li class="opt1" id="gnd_3">Mrs</li>
                                             </ul>
                                         </div>
-                                        <div class="txtB fLeft w49">
-                                            <input type="text" class="inp_box " autocomplete="off" id="g_name" maxlength="30">
+                                        <div class="txtB fRight w78">
+                                            <input type="text" class="inp_box " autocomplete="off" id="g_name" maxlength="50">
                                             <div class="inp_label ">Name*</div>
                                         </div>
-                                        <div class="txtB  fRight w49">
+                                        <div class="txtB  fLeft w20">
                                             <input type="text" class="inp_box " autocomplete="off"  id="g_mobl" maxlength="10">
                                             <div class="inp_label ">Mobile*</div>
                                         </div>
-                                        <div class="txtB fLeft">
-                                            <input type="text" class="inp_box " autocomplete="off" id="g_mail" maxlength="30">
+                                        <div class="txtB fRight w78">
+                                            <input type="text" class="inp_box " autocomplete="off" id="g_mail" maxlength="50">
                                             <div class="inp_label ">Email*</div>
                                         </div>
                                     </div>
@@ -297,15 +297,15 @@
                                         <input type="text" class="inp_box " autocomplete="off" id="g_addr" maxlength="120">
                                         <div class="inp_label ">Address*</div>
                                     </div>
-                                    <div class="txtB fLeft">
+                                    <div class="txtB fLeft w49">
                                         <input type="text" class="inp_box " autocomplete="off"  id="shpdpincode" maxlength="6">
                                         <div class="inp_label ">Zip code*</div>
                                     </div> 
-                                    <div class="txtB fLeft  w49">
+                                    <div class="txtB fRight  w49">
                                         <input readonly type="text" class="inp_box " autocomplete="off" id="shpdcity" maxlength="15">
                                         <div class="inp_label ">City*</div>
                                     </div>
-                                    <div class="txtB fRight w49">
+                                    <div class="txtB fLeft w49">
                                         <input readonly type="text" class="inp_box " autocomplete="off" id="shpdstate" maxlength="20">
                                         <div class="inp_label ">State*</div>
                                     </div>
@@ -412,7 +412,8 @@
             </div>
         </div>
     </div>
-    <div class="checkFoo fLeft">
+    <?php include 'footer.html'?>
+<!--    <div class="checkFoo fLeft">
         <div class="cartBox fLeft pad25">
             <div class="cartHd helpIc fLeft"></div>
             <div class="cartTxt font12 fLeft">Need help ?</div>
@@ -441,7 +442,7 @@
             <div class="pad0  infoTxt font11 fLeft">free rapid and secure delivery</div>
             <div class="infoTxt font11 jzevaColor fLeft">2 YEARS WARRANTY ON ALL PRODUCTS</div>
         </div>
-        <!--        <center>
+                <center>
                     <div class="col100">
                         <img src="frontend/tools/img/icons/10.jpg" alt="no-image">
                         <img src="frontend/tools/img/icons/02.jpg" alt="no-image">
@@ -449,8 +450,8 @@
                         <img src="frontend/tools/img/icons/04.jpg" alt="no-image">
                         <img src="frontend/tools/img/icons/05.jpg" alt="no-image">
                     </div>
-                </center>-->
-    </div>
+                </center>
+    </div>-->
 
     <!--        <div class="maxContr" >
                 <div class="ckMainCont">
@@ -657,18 +658,18 @@
             </div>
     
         </div>--> 
-   
+
     <script type="text/javascript" src="<?php echo $jvs['chkoutguest']; ?>"></script>  
 
     <!--<script type="text/javascript" src="<?php echo $jvs['checkout']; ?>"></script>--> 
- 
+
     <!--<script type="text/javascript" src="<?php echo $jvs['checkout']; ?>"></script>--> 
     <script type="text/javascript" src="<?php echo $fjvs['Common']; ?>"></script>
     <script type="text/javascript">
 
-                        $('#guestReset,#guestOtp,#guestOtp2,#guestforgot,#guestSignup').velocity({opacity: [0]}, {duration: 0, easing: 'ease-in-out'});
+                                $('#guestReset,#guestOtp,#guestOtp2,#guestforgot,#guestSignup').velocity({opacity: [0]}, {duration: 0, easing: 'ease-in-out'});
                         $("#gSignup").click(function () {
-                           
+
                             guestsUp();
                         });
 
@@ -676,7 +677,19 @@
                             gforgot();
                         });
 
-                           
+                        $(document).click(function (event) {
+                            if (!$(event.target).closest('.dropBox').length)
+                            {
+                                if ($('.dropBox').find('ul').is(":visible"))
+                                {
+                                    
+                                    $('.dropBox').find('ul').slideUp('swing');
+                                    $('.dropBox').removeClass("drop");
+                                }
+                            }
+                        });
+
+
                         $('#g_sBack').click(function () {
                             $('#guestSignup').addClass("dn");
                             $('#guestSignin').removeClass("dn");
@@ -761,13 +774,13 @@
                             $('#guestSignup').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
                         }
 
-                         $(document).on("click","#dlabel",function () {
-                   
+                        $(document).on("click", "#dlabel", function () {
+
                             $('.dropBox label').addClass("act");
                             $(this).parent().addClass("drop");
                             $(this).next().slideDown("slow");
                         });
-                        
+
 //                        $("#dlabel").click(function () {
 //                            alert("vdvd");
 //                            $('.dropBox label').addClass("act");

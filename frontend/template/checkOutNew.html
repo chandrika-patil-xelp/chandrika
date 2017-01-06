@@ -46,7 +46,6 @@
     </div>
     <div class="wrapper_main fLeft CHECKOUT_PAGE">
         <div class="wrapper chkout">
-
             <div class="darkCont fadeInup runslider" id="darkCont">
                 <div class="wrapper_max">
                     <div class="homeCollect">
@@ -147,14 +146,14 @@
                                     </div>
                                     <div class="frmDtls fLeft semibold">
                                         <div class="neadHide">
-<!--                                            <div class="dropBox fLeft">
-                                                <label  id="dlabel">Title</label>
-                                                <ul class="ulDiv dn">
-                                                    <li class="opt1" id="gnd_1">Ms</li>
-                                                    <li class="opt1" id="gnd_2">Mr</li>
-                                                    <li class="opt1" id="gnd_3">Mrs</li>
-                                                </ul>
-                                            </div>-->
+                                            <!--                                            <div class="dropBox fLeft">
+                                                                                            <label  id="dlabel">Title</label>
+                                                                                            <ul class="ulDiv dn">
+                                                                                                <li class="opt1" id="gnd_1">Ms</li>
+                                                                                                <li class="opt1" id="gnd_2">Mr</li>
+                                                                                                <li class="opt1" id="gnd_3">Mrs</li>
+                                                                                            </ul>
+                                                                                        </div>-->
                                             <div class="txtB fLeft w49">
                                                 <input type="text" class="inp_box " autocomplete="off" id="shpdname" maxlength="30">
                                                 <div class="inp_label ">Name*</div>
@@ -163,10 +162,10 @@
                                                 <input type="text" class="inp_box " autocomplete="off"  id="shpdmobile" maxlength="10">
                                                 <div class="inp_label ">Mobile*</div>
                                             </div>
-<!--                                            <div class="txtB fLeft">
-                                                <input type="text" class="inp_box " autocomplete="off" id="shpdemail" maxlength="30">
-                                                <div class="inp_label ">Email*</div>
-                                            </div>-->
+                                            <!--                                            <div class="txtB fLeft">
+                                                                                            <input type="text" class="inp_box " autocomplete="off" id="shpdemail" maxlength="30">
+                                                                                            <div class="inp_label ">Email*</div>
+                                                                                        </div>-->
                                         </div>
                                         <div class="txtB fLeft">
                                             <input type="text" class="inp_box " autocomplete="off" id="shpdaddrs" maxlength="120">
@@ -481,7 +480,8 @@
             </div>
         </div>
     </div>
-    <div class="checkFoo fLeft">
+    
+<!--    <div class="checkFoo fLeft">
         <div class="cartBox fLeft pad25">
             <div class="cartHd helpIc fLeft"></div>
             <div class="cartTxt font12 fLeft">Need help ?</div>
@@ -512,7 +512,7 @@
             <div class="pad0  infoTxt font11 fLeft">free rapid and secure delivery</div>
             <div class="infoTxt font11 jzevaColor fLeft">2 YEARS WARRANTY ON ALL PRODUCTS</div>
         </div>
-        <!--        <center>
+                <center>
                     <div class="col100">
                         <img src="frontend/tools/img/icons/10.jpg" alt="no-image">
                         <img src="frontend/tools/img/icons/02.jpg" alt="no-image">
@@ -520,8 +520,8 @@
                         <img src="frontend/tools/img/icons/04.jpg" alt="no-image">
                         <img src="frontend/tools/img/icons/05.jpg" alt="no-image">
                     </div>
-                </center>-->
-    </div>
+                </center>
+    </div>-->
 
     <!--        <div class="maxContr" >
                 <div class="ckMainCont">
@@ -750,13 +750,13 @@
             </div>
             <div class="loader_quote  fmSansL">The meek may inherit the earth but not its mineral rights</div>
         </div>-->
-
+   <?php include 'footer.html'?>
     <script type="text/javascript" src="<?php echo $jvs['checkout']; ?>"></script>
     <script type="text/javascript" src="<?php echo $fjvs['Common']; ?>"></script>
     <script type="text/javascript">
 
 
-                                        $('.payHelp').click(function () {
+                                                $('.payHelp').click(function () {
                                             $('body').animate({scrollTop: 1000}, 'slow');
                                         });
 
@@ -772,6 +772,16 @@
                                             var liTxt = $(this).html();
                                             $(".dropBox label").text(liTxt);
                                             $(this).parent().slideUp("slow");
+                                        });
+                                        $(document).click(function (event) {
+                                            if (!$(event.target).closest('.dropBox').length)
+                                            {
+                                                if ($('.dropBox').find('ul').is(":visible"))
+                                                {
+                                                    $('.dropBox').find('ul').slideUp('swing');
+                                                    $('.dropBox').removeClass("drop");
+                                                }
+                                            }
                                         });
 
 

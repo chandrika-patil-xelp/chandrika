@@ -50,7 +50,7 @@
                         <li class="opt1" id="gnd_3">Mrs</li>
                     </ul>
                 </div>
-                <div class="txtB fLeft">
+                <div class="txtB fRight w78">
                     <input type="text" class="inp_box " maxlength="30" id="name" autocomplete="off">
                     <div class="inp_label">Name*</div>
                 </div>
@@ -59,11 +59,11 @@
                     <div class="inp_label">Email-Id*</div>
                 </div>
                 <div class="txtB fLeft">
-                    <input type="tel" class="inp_box " maxlength="11" id="mobile" autocomplete="off">
+                    <input type="number" class="inp_box " maxlength="11" id="mobile" autocomplete="off">
                     <div class="inp_label">Mobile*</div>
                 </div>
                 <div class="txtB fLeft">
-                    <input type="password" class="inp_box " maxlength="30" id="signuppass" autocomplete="off">
+                    <input type="password" class="inp_box" maxlength="30" id="signuppass" autocomplete="off">
                     <div class="inp_label">Password*</div>
                 </div>
                 <div class="col100 fLeft">
@@ -97,7 +97,7 @@
             <div class="loginCont fLeft" id="otpCont2">
                 <div class="txtTitle" id="hTxt">Please enter the OTP you received on your email/phone number.</div>
                 <div class="txtB fLeft">
-		  <input type="tel" class="inp_box" autocomplete="off" id="signup_otp" maxlength="6">
+                    <input type="tel" class="inp_box" autocomplete="off" id="signup_otp" maxlength="6">
                     <div class="inp_label">Please enter the otp</div>
                 </div>
                 <div class="fLeft col100">
@@ -139,6 +139,7 @@
 
     <script type="text/javascript">
 
+
         $('.inp_box').focus(function () {
             $(this).closest('.txtB').addClass('focul');
         });
@@ -151,6 +152,7 @@
         });
 
         $("#dlabel").click(function () {
+            
             $('.dropBox label').addClass("act");
             $(this).parent().addClass("drop");
             $(this).next().slideDown("slow");
@@ -163,9 +165,22 @@
             $(".dropBox label").text(liTxt);
             $(this).parent().slideUp("slow");
         });
-
+         
+       $(document).click(function (event) {
+       if (!$(event.target).closest('.dropBox').length)
+       {
+           if ($('.dropBox').find('ul').is(":visible"))
+           {
+               $('.dropBox').find('ul').slideUp('swing');
+           }
+       }
+   });
+         
+         
         $('#hTxt,#loginId,#lgnId,#loginId1,#otpCont,#otpCont2,#inresetId,#signCont').velocity({opacity: [0]}, {duration: 0, easing: 'ease-in-out'});
         $(document).ready(function () {
+    
+
 
             $('#hTxt,#loginId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
             $('#lgnId').velocity({opacity: [1, 0], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
@@ -270,7 +285,7 @@
             $('#signUpId').addClass("dn");
             $('#signCont').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
             $('#loginId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
- 
+
         }
 
         /*sign up otp Back button*/

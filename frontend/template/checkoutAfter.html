@@ -87,7 +87,8 @@
             </div> 
         </div>
     </div>
-    <div class="checkFoo fLeft">
+    <?php include 'footer.html'?>
+<!--    <div class="checkFoo fLeft">
         <div class="cartBox fLeft pad25">
             <div class="cartHd helpIc fLeft"></div>
             <div class="cartTxt font12 fLeft">Need help ?</div>
@@ -118,7 +119,7 @@
             <div class="pad0  infoTxt font11 fLeft">free rapid and secure delivery</div>
             <div class="infoTxt font11 jzevaColor fLeft">2 YEARS WARRANTY ON ALL PRODUCTS</div>
         </div>
-        <!--        <center>
+                <center>
                     <div class="col100">
                         <img src="frontend/tools/img/icons/10.jpg" alt="no-image">
                         <img src="frontend/tools/img/icons/02.jpg" alt="no-image">
@@ -126,8 +127,8 @@
                         <img src="frontend/tools/img/icons/04.jpg" alt="no-image">
                         <img src="frontend/tools/img/icons/05.jpg" alt="no-image">
                     </div>
-                </center>-->
-    </div>
+                </center>
+    </div>-->
 
     <script type="text/javascript" src="<?php echo $jvs['checkoutafter']; ?>"></script> 
     <script type="text/javascript" src="<?php echo $fjvs['Common']; ?>"></script>
@@ -176,7 +177,16 @@
         $('#txtAdd').removeClass("dn");
         $('#addOpt').addClass("dn");
     });
-
+ $(document).click(function (event) {
+       if (!$(event.target).closest('.dropBox').length)
+       {
+           if ($('.dropBox').find('ul').is(":visible"))
+           {
+               $('.dropBox').find('ul').slideUp('swing');
+               $('.dropBox').removeClass("drop");
+           }
+       }
+   });
 
 //        $('.inp_box').focus(function () {
 //            $(this).closest('.txtB').addClass('focul');

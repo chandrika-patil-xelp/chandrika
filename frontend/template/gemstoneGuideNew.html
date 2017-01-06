@@ -20,11 +20,11 @@
                                         POLISH
                                     </div>
                                 </div>
-                                <div class="ftabB">
+<!--                                <div class="ftabB">
                                     <div class="ftab fLeft taba" id="rId">
                                         ROUGH 
                                     </div>
-                                </div>
+                                </div>-->
                             </div>
                         </div>
                         <div class="hideDiv alextrial ruby_st" id="ruby1">
@@ -697,7 +697,6 @@
         $('.closeGem').click(function () {
             var imgId = $('.imageOutr').index();
             console.log(imgId);
-
             $('.imageOutr').removeClass("title_eff");
             fchild = $('.imageOutr').children(':first-child').attr("id");
             $(fchild).removeClass("title_eff");
@@ -749,22 +748,22 @@
         });
 
 
-        $('#pId').click(function () {
-            $(this).addClass("activer");
-            //$('#pId:before').css("display","block");
-            $('#rId').removeClass("bcolofff");
-            $(this).addClass("bcolofff");
-            $('#gemOuter').removeClass("dn");
-            $('#rough').addClass("dn");
-        });
-        $('#rId').click(function () {
-             $('#pId').removeClass("activer");
-            $(this).addClass("activer2");
-            $('#pId').removeClass("bcolofff");
-            $(this).addClass("bcolofff");
-            $('#rough').removeClass("dn");
-            $('#gemOuter').addClass("dn");
-        });
+//        $('#pId').click(function () {
+//            $(this).addClass("activer");
+//            //$('#pId:before').css("display","block");
+//            $('#rId').removeClass("bcolofff");
+//            $(this).addClass("bcolofff");
+//            $('#gemOuter').removeClass("dn");
+//            $('#rough').addClass("dn");
+//        });
+//        $('#rId').click(function () {
+//             $('#pId').removeClass("activer");
+//            $(this).addClass("activer2");
+//            $('#pId').removeClass("bcolofff");
+//            $(this).addClass("bcolofff");
+//            $('#rough').removeClass("dn");
+//            $('#gemOuter').addClass("dn");
+//        });
     </script>
 
 
