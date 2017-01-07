@@ -330,12 +330,13 @@ function wishlist()
                         }
                     }
                     wishStr += ' ' + Nstr + '</div>';
-                    wishStr += '   <div class="grid_price txtOver transition300" onclick="wshprdopen(this)"><span class="cartRup15b"><span>  ' + indianMoney(parseInt(j.price)) + '</div>';
+//                    wishStr += '   <div class="grid_price txtOver transition300" onclick="wshprdopen(this)"><span class="cartRup15b"><span>  ' + indianMoney(parseInt(j.price)) + '</div>';
+                    wishStr += '<div class="grid_price txtOver transition300" onclick=\" custmz('+obj['prdId']+')\"><span class="cartRup15b padR0">' + grandtotallow + '</span><span class="toTxt"> to  </span> <span  class="cartRup15b"> '+grandtotalhigh+'</span></div>';
                     wishStr += '  <div class="action_btns">';
                     wishStr += '  <div class="col50 fLeft  pad0">';
-                    wishStr += '  <div class="actBtn fLeft bolder addcrt" id="' + j.wish_id + '_' + j.col_car_qty + '_' + j.product_id + '_' + j.size + '" ';
-                    wishStr += '   onclick="addtocart(this)">Add To Cart</div> </div>';
-                    wishStr += '  <div class="col50 fLeft  pad0">';
+                    wishStr += '  <div class="actBtn fRight bolder addcrt" id="' + j.wish_id + '_' + j.col_car_qty + '_' + j.product_id + '_' + j.size + '" ';
+                    wishStr += '   onclick="addtocart(this)">View product</div> </div>';
+                    wishStr += '  <div class="w35 fLeft  pad0">';
                     wishStr += '  <div class="actBtn fRight bolder" onclick="removeitm(this)">delete</div>';
                     wishStr += '   </div>';
                     wishStr += '  </div>';
