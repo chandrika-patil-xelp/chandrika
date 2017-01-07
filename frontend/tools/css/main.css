@@ -2052,8 +2052,14 @@ input[type=radio]:checked ~ .matchIcn{
 .summary{width:100%;height: auto;padding: 20px 0px 20px 0px;font-family: regular;}
 .summary .col100{width:100%;height:auto;min-height:100px;position:relative;margin-bottom: 10px;border:1px solid #e6e6e6;background: #f3f3f3;}
 .summary .col100 .btncnt{width:100%;height:auto;margin-top: 5px;display: none;}
-.summary .w50r{width:100%;height:auto;    padding: 20px 15px 20px 60px;}
-.summary .w50r .text{width:100%;height:auto;text-align:left;font-size:13px;line-height:26px;color:#333;}
+.summary .w50r{width:100%;height:auto;   padding: 35px 15px 35px 85px;}
+.summary .w50r .text{width: 100%;
+    height: auto;
+    text-align: left;
+    font-size: 12px;
+    line-height: 18px;
+    color: #15181b;
+    padding-bottom: 5px;}
 
 .delvrAdress .w50l{width:50%;height:auto;    padding: 20px 50px 20px 0px;}
 .delvrAdress .w50l .text{width:100%;height:auto;text-align:left;font-size:13px;line-height:26px;color:#333;}
