@@ -34,14 +34,14 @@
                 <div class="wrapper_max">
                     <div class="homeCollect">
                         <!--                        /*take code from here*/-->
-
+                        
                         <div class="colleCont dTab ePadding" id="addOpt">
                             <div class="col100 fLeft">
                                 <div class="dAdrsshdr fLeft semibold">confirm DETAILS
                                     <div class="cbrdr"></div>
                                 </div>
                             </div>
-                            <div class="yetanotherbuffer">
+                            <div class="yetanotherbuffer" id="smry">
                                 <div class="summary fLeft">
                                     <div class="col100 fLeft radTor poR">
                                         <div class="w50r fLeft">
@@ -55,12 +55,20 @@
                                 </div>
                                 <div class="cnclSbmt fLeft bolder">
                                     <center>
+<!--
+                                        <div class="col50 fLeft"><div class="actBtn button mar0" id="smryBack">Back</div></div>
+
+                                        <div class="col50 fLeft"><div class="actBtn button mar0">Back</div></div>-->
+
                                         <div class="col50 fLeft"><div class="actBtn button mar0" id="chck_bak">Back</div></div>
                                         <div class="col50 fRight"><div class="actBtn button mar0" id="submt">PROCEED TO PAYMENT</div></div>
                                     </center>
                                 </div>
                             </div>
                         </div>
+                        
+                        
+                        
                         <!--//black side cont-->
                         <div class="colleCont v2 black">
 
@@ -165,8 +173,14 @@
     <script type="text/javascript" src="<?php echo $jvs['checkoutbefore']; ?>"></script> 
     <script type="text/javascript" src="<?php echo $fjvs['Common']; ?>"></script>
     <script type="text/javascript">
+        
+    $('#smryBack').click(function(){
+       $('#smry').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
+        $('#scndup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
+    });
+        
 
-            $('.payHelp').click(function () {
+    $('.payHelp').click(function () {
         $('body').animate({scrollTop: 1000}, 'slow');
     });
     $('#scroll').niceScroll({cursorcolor: "#000000", touchbehavior: true, cursorwidth: "4px", autohidemode: false, cursorborder: "0px solid #fff", cursoropacitymin: "0.3", cursoropacitymax: "0.3", railpadding: {top: 2, right: 2, left: 2, bottom: 2}});

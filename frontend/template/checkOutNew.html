@@ -58,6 +58,7 @@
                                         <div class="cbrdr"></div>
                                     </div>
                                     <div class="delvrAdress fLeft regular" id="intscrl">
+                                         <!--<div class="entrOtp fLeft semibold" onclick="opnscnd()">Want to add different address?</div>-->
                                         <!--<div class="col100 fLeft radTor">
                                           <div class="w50r fLeft">
                                               <div class="text fLeft" id="spnd_name">Janardan prasanna ghosh</div>
@@ -75,8 +76,7 @@
                                                       <div class="dlvrBtn transition300">DELIVER TO THIS ADDRESS</div>				   
                                                   </center>
                                               </div>
-                                             
-                                        </div>                        
+                                                                                     </div>                        
                                         <div class="col100 fLeft radTor">
                                         <div class="w50r fLeft">
                                             <div class="text fLeft" id="spnd_name">Janardan prasanna ghosh</div>
@@ -128,14 +128,20 @@
                                                 </center>
                                             </div>
                                         </div>-->
+                                       
                                     </div>
-                                    <div class="entrOtp fLeft semibold" onclick="opnscnd()">Different Address?</div>
+                                    <!--<div class="col100" id="diff"></div>-->
+                                    
                                     <div class="cnclSbmt fLeft bolder">
                                         <center>
                                             <div class="button actBtn mar0" id="all_submt">SUBMIT</div>
                                         </center>
                                     </div>
                                 </div>
+
+
+
+
                                 <div class="fadeCnt fLeft" id="fstup">
                                     <div class="dAdrsshdr fLeft semibold">CONFIRM ORDER
                                         <div class="cbrdr"></div>
@@ -171,15 +177,15 @@
                                             <input type="text" class="inp_box " autocomplete="off" id="shpdaddrs" maxlength="120">
                                             <div class="inp_label ">Address*</div>
                                         </div>
-                                        <div class="txtB fLeft">
+                                        <div class="txtB fLeft w49">
                                             <input type="text" class="inp_box " autocomplete="off"  id="shpdpincode" maxlength="6">
                                             <div class="inp_label ">Zip code*</div>
                                         </div> 
-                                        <div class="txtB fLeft  w49">
+                                        <div class="txtB fRight w49">
                                             <input readonly type="text" class="inp_box " autocomplete="off" id="shpdcity" maxlength="15">
                                             <div class="inp_label ">City*</div>
                                         </div>
-                                        <div class="txtB fRight w49">
+                                        <div class="txtB fLeft w49">
                                             <input readonly type="text" class="inp_box " autocomplete="off" id="shpdstate" maxlength="20">
                                             <div class="inp_label ">State*</div>
                                         </div>
@@ -480,48 +486,48 @@
             </div>
         </div>
     </div>
+
+    <!--    <div class="checkFoo fLeft">
+            <div class="cartBox fLeft pad25">
+                <div class="cartHd helpIc fLeft"></div>
+                <div class="cartTxt font12 fLeft">Need help ?</div>
     
-<!--    <div class="checkFoo fLeft">
-        <div class="cartBox fLeft pad25">
-            <div class="cartHd helpIc fLeft"></div>
-            <div class="cartTxt font12 fLeft">Need help ?</div>
-
-            <div class="infoTxt jzevaColor fLeft font18 pad0">9988556622</div>
-            <div class="infoTxt font11 fLeft">(Monday - friday 10AM to 10PM IST | saturday 10AM-6:30PM IST)</div>
-            <div class="fLeft cartTxt pBtm0 font11">OR email the concierge</div>
-            <div class="font11 infoTxt jzevaColor fLeft txtLower">care@jzeva.com</div>
-
-        </div>
-        <div class="cartBox fLeft pad25">
-            <div class="cartHd paymentIc fLeft"></div>
-            <div class="cartTxt font12 fLeft">payment methods</div>
-            <div class="infoTxt font11 fLeft pad0">choose a convenient option to pay for your jewellery</div>
-            <div class="optionPay fLeft">
-                <center>
-                    <img src="frontend/tools/img/icons/c1.jpg" alt="no-image">
-                    <img src="frontend/tools/img/icons/c2.jpg" alt="no-image">
-                    <img src="frontend/tools/img/icons/c3.jpg" alt="no-image">
-                    <img src="frontend/tools/img/icons/c5.jpg" alt="no-image">
-                    <img src="frontend/tools/img/icons/c6.jpg" alt="no-image">
-                </center>
+                <div class="infoTxt jzevaColor fLeft font18 pad0">9988556622</div>
+                <div class="infoTxt font11 fLeft">(Monday - friday 10AM to 10PM IST | saturday 10AM-6:30PM IST)</div>
+                <div class="fLeft cartTxt pBtm0 font11">OR email the concierge</div>
+                <div class="font11 infoTxt jzevaColor fLeft txtLower">care@jzeva.com</div>
+    
             </div>
-        </div>
-        <div class="cartBox fLeft pad25">
-            <div class="cartHd shipIc fLeft"></div>
-            <div class="cartTxt font12 fLeft">free shipping and warranty</div>
-            <div class="pad0  infoTxt font11 fLeft">free rapid and secure delivery</div>
-            <div class="infoTxt font11 jzevaColor fLeft">2 YEARS WARRANTY ON ALL PRODUCTS</div>
-        </div>
-                <center>
-                    <div class="col100">
-                        <img src="frontend/tools/img/icons/10.jpg" alt="no-image">
-                        <img src="frontend/tools/img/icons/02.jpg" alt="no-image">
-                        <img src="frontend/tools/img/icons/03.jpg" alt="no-image">
-                        <img src="frontend/tools/img/icons/04.jpg" alt="no-image">
-                        <img src="frontend/tools/img/icons/05.jpg" alt="no-image">
-                    </div>
-                </center>
-    </div>-->
+            <div class="cartBox fLeft pad25">
+                <div class="cartHd paymentIc fLeft"></div>
+                <div class="cartTxt font12 fLeft">payment methods</div>
+                <div class="infoTxt font11 fLeft pad0">choose a convenient option to pay for your jewellery</div>
+                <div class="optionPay fLeft">
+                    <center>
+                        <img src="frontend/tools/img/icons/c1.jpg" alt="no-image">
+                        <img src="frontend/tools/img/icons/c2.jpg" alt="no-image">
+                        <img src="frontend/tools/img/icons/c3.jpg" alt="no-image">
+                        <img src="frontend/tools/img/icons/c5.jpg" alt="no-image">
+                        <img src="frontend/tools/img/icons/c6.jpg" alt="no-image">
+                    </center>
+                </div>
+            </div>
+            <div class="cartBox fLeft pad25">
+                <div class="cartHd shipIc fLeft"></div>
+                <div class="cartTxt font12 fLeft">free shipping and warranty</div>
+                <div class="pad0  infoTxt font11 fLeft">free rapid and secure delivery</div>
+                <div class="infoTxt font11 jzevaColor fLeft">2 YEARS WARRANTY ON ALL PRODUCTS</div>
+            </div>
+                    <center>
+                        <div class="col100">
+                            <img src="frontend/tools/img/icons/10.jpg" alt="no-image">
+                            <img src="frontend/tools/img/icons/02.jpg" alt="no-image">
+                            <img src="frontend/tools/img/icons/03.jpg" alt="no-image">
+                            <img src="frontend/tools/img/icons/04.jpg" alt="no-image">
+                            <img src="frontend/tools/img/icons/05.jpg" alt="no-image">
+                        </div>
+                    </center>
+        </div>-->
 
     <!--        <div class="maxContr" >
                 <div class="ckMainCont">
@@ -750,7 +756,7 @@
             </div>
             <div class="loader_quote  fmSansL">The meek may inherit the earth but not its mineral rights</div>
         </div>-->
-   <?php include 'footer.html'?>
+    <?php include 'footer.html'?>
     <script type="text/javascript" src="<?php echo $jvs['checkout']; ?>"></script>
     <script type="text/javascript" src="<?php echo $fjvs['Common']; ?>"></script>
     <script type="text/javascript">
