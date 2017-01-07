@@ -180,7 +180,8 @@ a{color:#666;}
 .cartBox img{width: auto;height: 28px;}
 .cartHd{width:100%;height:35px;}
 #check_out{background: #53C9C7;color:#fff;}
-.payHelp{width:25%;padding-left:35px;height:30px;background: url("../img/icons/Helpw.svg")no-repeat;background-size: auto 75%;background-position: left;cursor: pointer;font-size:9px;font-family: regular;color: #999;line-height: 30px;}
+.payHelp{width:25%;padding-left:35px;height:30px;background: url("../img/icons/548.svg")no-repeat;background-size: auto 75%;background-position: left;cursor: pointer;font-size:9px;font-family: regular;color: #999;line-height: 30px;}
+.payHelp:hover{color:#fff;background: url("../img/icons/548W.svg")no-repeat;background-size: auto 75%;background-position: left;}
 .activer.ftab:before{display:block;}
 .activer2.ftab:before{display:block;}
 
@@ -966,11 +967,11 @@ input[type=radio]:checked ~ .check::before{background: #22B9C7;transform: scale(
 
 .check2{width:100%;height: 100%;display: inline-block; position: relative;background-size: auto 65px;background-position: center top;}
 .pur .check2{width:50px;height:50px;display:inline-block;position:absolute;background-size: auto 65px; background-position:top center;border: 1px solid #15181b;border-radius:3px;top: 0;left: 0;right: 0;bottom: 20px;margin: auto;    text-align: center;line-height: 50px; font-size: 12px;font-family: semibold;}
-.check2.vvsef{background-image:url(../img/icons/VvsEf.svg);background-repeat: no-repeat;}
-.check2.vvsgh{background-image:url(../img/icons/VvsGh.svg);background-repeat: no-repeat;}
-.check2.vsgh{background-image:url(../img/icons/vsgh.svg);background-repeat: no-repeat;}
-.check2.sigh{background-image:url(../img/icons/SiGh.svg);background-repeat: no-repeat;}
-.check2.siij{background-image:url(../img/icons/SiIj.svg);background-repeat: no-repeat;}
+.check2.vvsef{background-image:url(../img/icons/VVSEF.svg);background-repeat: no-repeat;}
+.check2.vvsgh{background-image:url(../img/icons/VVSGH.svg);background-repeat: no-repeat;}
+.check2.vsgh{background-image:url(../img/icons/VSGH.svg);background-repeat: no-repeat;}
+.check2.sigh{background-image:url(../img/icons/SIGH.svg);background-repeat: no-repeat;}
+.check2.siij{background-image:url(../img/icons/SIIJ.svg);background-repeat: no-repeat;}
 .check2.carat_9{background-image:url(../img/icons/337.svg);background-repeat: no-repeat;background-size: auto 45px;}
 .check2.carat_14{background-image:url(../img/icons/338.svg);background-repeat: no-repeat;background-size: auto 45px;}
 .check2.carat_18{background-image:url(../img/icons/339.svg);background-repeat: no-repeat;background-size: auto 45px;}
