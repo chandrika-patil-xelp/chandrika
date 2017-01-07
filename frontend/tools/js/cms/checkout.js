@@ -515,15 +515,14 @@ function displayaddrs(userid)
                     addstr += ' <div class="col100 fLeft radTor poR">';
                     addstr += ' <div class="w50r fLeft">';
 
-                    addstr += '<div class="">';
-                    addstr += ' <div class="checkName fLeft txtOver semibold txt_Upper" title=' + v.name + '  id="spnd_name">' + v.name + '</div>';
+                    addstr += ' <div class="checkName fLeft semibold" title=' + v.name + '  id="spnd_name">' + v.name + '</div>';
 //	  addstr += ' <div class="text fLeft txtOver">8123128747</div>';
-                    addstr += ' <div class="text fLeft txtOver semibold" title=' + v.email + '  id="spnd_email">8123128747 | ' + v.email + '</div>';
-                    addstr += '</div>';
+                    addstr += ' <div class="text fLeft  semibold" title=' + v.email + '  id="spnd_email">8123128747 | ' + v.email + '</div>';
+                
 
 
                     addstr += ' <div class="text fLeft pad0"><span>' + v.address + '</span></div>';
-                    addstr += ' <div class="text fLeft txtOver pad0" title=' + v.city + '  id="spnd_city_pin">' + v.city + "-" + v.pincode + '</div>';
+                    addstr += ' <div class="text fLeft  pad0" title=' + v.city + '  id="spnd_city_pin">' + v.city + "-" + v.pincode + '</div>';
 
                     addstr += ' </div>';
                     addstr += '  <input type="radio" name="selectM"  class="filled-in dn" id="' + v.shipping_id + '">';
