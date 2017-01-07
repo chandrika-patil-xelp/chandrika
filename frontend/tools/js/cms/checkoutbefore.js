@@ -209,6 +209,7 @@ function getshippingdata()
             var data = obj['results'];
             $('#cust_name').html(data.name);
             $('#cust_mobl').html(data.mobile);
+	    $('#cust_email').html(data.email);
             $('#addr').html(data.address);
             $('#adcity').html(data.city + " " + data.pincode);
         }
@@ -349,5 +350,16 @@ function removebuyitem(buyid)
         }
     });
 }
+
+$('#chck_bak').click(function(){
+  
+   if (actn == 'buy') { 
+        window.location.href=DOMAIN +"index.php?action=checkOutNew&actn="+actn;
+    } 
+    else {
+      window.location.href=DOMAIN +"index.php?action=checkOutNew";
+    }
+   
+});
 
  

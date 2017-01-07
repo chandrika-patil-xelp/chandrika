@@ -1,6 +1,6 @@
 
 <?php
-
+  
     include_once APICLUDE . 'common/db.class.php';
 
     class us extends DB{
@@ -323,7 +323,7 @@
                 $error = array('err_code'=>1, 'err_msg'=>' Error IN Adding Order Details ' );
             }
             
-            $result = array('result'=>$resp, 'error'=>$error);
+            $result = array('result'=>$resp, 'error'=>$error,'ordid'=>$orderid);
             return $result;
             
         }
@@ -822,7 +822,7 @@
 
         /** code for sign up start **/
     public function signUp($params){
-
+	 
         //print_r($params);
         $userId = (!empty($params['uid'])) ? trim($params['uid']) : '';
         $name = (!empty($params['name'])) ? trim($params['name']) : '';
@@ -879,7 +879,7 @@
                                      tbl_order_master
                                          WHERE
                                          user_id=".$params['userid']." AND
-                                      active_flag =1";
+                                      active_flag =1 ORDER BY createdon DESC";
 
            $page = ($params['page'] ? $params['page'] : 1);
         $limit = ($params['limit'] ? $params['limit'] : 10000);
@@ -914,17 +914,17 @@
 
     }
 
-        /** code for sign up ends **/
+             /** code for sign up ends **/
 
-        private function generateId(){
-
+    private function generateId(){
+	 
             $dt = date("YmdHis");
             $rd = mt_rand(11, 99);
             $genrd = $rd.$dt;
-            return $genrd;
+	return $genrd; 
 
         }
-
+ 
 
 
   }

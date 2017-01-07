@@ -318,7 +318,7 @@ function shpngsubmt()
   validationFlag = 1;
   var name, email, mobile;
   var usrid = common.readFromStorage('jzeva_uid');
-  
+    email=common.readFromStorage('jzeva_email');
     name = $('#shpdname').val(); 
     mobile = $('#shpdmobile').val();
     var addrs = $('#shpdaddrs').val();

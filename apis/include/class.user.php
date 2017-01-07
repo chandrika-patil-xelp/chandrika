@@ -141,6 +141,7 @@ class user extends DB {
                     email,
                     logmobile,
                     password,
+		    is_vendor,
                     (SELECT GROUP_CONCAT(cart_id) FROM tbl_cart_master WHERE userid = uid  AND active_flag =1)
                             AS cartid
                   FROM
@@ -161,6 +162,7 @@ class user extends DB {
                     $arr['mobile'] = $row['logmobile'];
                     $arr['email'] = $row['email'];
                     $arr['password'] = $row['password'];
+		    $arr['is_vendor'] = $row['is_vendor'];
                 } 
                 if (md5($params['pass']) != $arr['password']) {
                     $error = array('err_code' => 1, 'err_msg' => 'Password incorrect');

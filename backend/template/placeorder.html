@@ -43,7 +43,7 @@
                     <div class="divCon fLeft">
                         <div class="divCon2 fLeft mTop0">
                             <div class="titleDiv txtCap fLeft">Customer Telephone No</div>
-                            <input name="" type="text" id="mobile" autocomplete="false"  placeholder="Enter telephone no" class="txtInput fLeft fmOpenR font14 c666">
+                            <input name="" type="text" id="mobile" autocomplete="false" maxlength="11"  placeholder="Enter telephone no" class="txtInput fLeft fmOpenR font14 c666"/>
                             <input type="hidden" id="prdCode">
                         </div>
                         <div class="divCon2 fRight mTop0">
@@ -78,7 +78,7 @@
                                 <label class="comP" id="c4" for="rtgs">RTGS</label>
                             </div>
                             <div class="checkDiv fLeft">
-                                <input type="radio" name="cash" class="filled-in" value="5" id="dd">
+                                <input type="radio" name="cash" class="filled-in" value="5" id="dd" >
                                 <label class="comP" id="c5" for="dd">DD</label>
                             </div>
                         </div>
@@ -96,45 +96,45 @@
                         </div>
                         <div class="divCon2 fRight c4_cls dn mTop0">
                             <div class="titleDiv txtCap fRight">Enter transaction ID</div>
-                            <input name="" type="text" autocomplete="false"  placeholder="Enter transaction Id" class="txtInput fLeft fmOpenR font14 c666">
+                            <input name="" type="text" autocomplete="false"  placeholder="Enter transaction Id" class="txtInput fLeft fmOpenR font14 c666" id="trans_id">
                         </div>
                         <div class="divCon2 fRight c2_cls dn mTop0">
                             <div class="titleDiv txtCap fRight">Enter Cheque number</div>
-                            <input name="" type="text"  autocomplete="false"  placeholder="Enter cheque number" class="txtInput fLeft fmOpenR font14 c666">
+                            <input name="" type="text"  autocomplete="false"  placeholder="Enter cheque number" class="txtInput fLeft fmOpenR font14 c666" id="check_no">
                             <div class="col100 fLeft">
                                 <div class="titleDiv txtCap fRight">Enter Cheque date</div>
-                                <input name="" type="text"  autocomplete="false"  placeholder="Enter cheque date" class="txtInput fLeft fmOpenR font14 c666">
+                                <input name="" type="text"  autocomplete="false"  placeholder="Enter cheque date" class="txtInput fLeft fmOpenR font14 c666" id="check_date">
                             </div>
                         </div>
                         <div class="divCon2 fRight c5_cls dn mTop0">
                             <div class="titleDiv txtCap fRight">Enter DD number</div>
-                            <input name="" type="text"  autocomplete="false"  placeholder="Enter DD number" class="txtInput fLeft fmOpenR font14 c666">
+                            <input   type="text"  autocomplete="false"  placeholder="Enter DD number" class="txtInput fLeft fmOpenR font14 c666" id="dd_trnsid">
                         </div>
                     </div>
                     <div class="divCon fLeft">
                         <div class="divCon2 fLeft mTop0">
                             <div class="titleDiv txtCap fRight">Pincode</div>
-                            <input name="" type="text" id="pincode" autocomplete="false"  placeholder="Enter pincode" class="txtInput fLeft fmOpenR font14 c666">
+                            <input type="text" id="pincode" autocomplete="false"  placeholder="Enter pincode" maxlength="6" class="txtInput fLeft fmOpenR font14 c666">
                         </div>
                     </div>
                     <div class="divCon fLeft">
                         <div class="divCon2 fLeft mTop0">
                             <div class="col50 fLeft">
                                 <div class="titleDiv txtCap fRight">city</div>
-                                <input name="" type="text" id="city" autocomplete="false"  placeholder="Enter city" class="txtInput fLeft fmOpenR font14 c666">
+                                <input   type="text" id="city" autocomplete="false"  placeholder="Enter city" class="txtInput fLeft fmOpenR font14 c666">
                             </div>
                             <div class="col50 fRight">
                                 <div class="titleDiv txtCap fRight">state</div>
-                                <input name="" type="text" id="state" autocomplete="false"  placeholder="Enter state" class="txtInput fLeft fmOpenR font14 c666">
+                                <input   type="text" id="state" autocomplete="false"  placeholder="Enter state" class="txtInput fLeft fmOpenR font14 c666">
                             </div>
                         </div>
                     </div>
-                    <div class="divCon fLeft">
+                    <!--<div class="divCon fLeft">
                         <div class="divCon2 fLeft mTop0">
                             <div class="titleDiv txtCap fLeft">Notes</div>
                             <textarea id="productDescription"  class="txtInput h70  txtarea fLeft fmOpenR font14 c666" placeholder="Enter the remarks"></textarea>
                         </div>
-                    </div>
+                    </div>-->
                 </section>
                 <div class="btnCont fLeft">
                     <center>
@@ -188,7 +188,7 @@
             success: function (res) {
 
                 data = JSON.parse(res);
-
+	 
                 var dt = data['results'];
                 var basic = dt['basicDetails'];
                 var catAttr = dt['catAttr'];
@@ -310,8 +310,11 @@
         });
 
 
-
-
+	
+	 
+	
+	
+	
      
         
 
@@ -326,10 +329,7 @@
       
 
        
-        
-
-
-
+      
     </script>
 </body>
 </html>

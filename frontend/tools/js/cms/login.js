@@ -170,7 +170,7 @@ function chklogin()
 	       common.addToStorage("jzeva_mob", logDetails['0']['mobile']);
 	      var oldcartid=common.readFromStorage('jzeva_cartid'); 
 	      var olduserid=common.readFromStorage('jzeva_uid');
-	     
+	      
 	       var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id="+oldcartid+"&userid="+olduserid+"";   
 	       $.ajax({
 	 	    url: URL,
@@ -178,6 +178,10 @@ function chklogin()
 	 	    datatype: "JSON",
 	 	    success: function(results)
 	 	    {
+		      if(logDetails['0']['is_vendor'] == 1)
+		      {
+			window.location.href=DOMAIN +"backend/index.php?action=products";
+		      }
 		      var obj=JSON.parse(results); 
 		      glbcartdeatil=obj.result;
 		      if(oldcartid=="" || oldcartid==null){

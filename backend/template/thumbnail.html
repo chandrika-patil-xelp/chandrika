@@ -73,19 +73,35 @@
         </div> 
         <script> 
 	    $('document').ready(function()
-            {   
+            {    
                 $('.saveProduct').bind('click',function()
                 { 		 
-		  var imgval= $("input[name='forImg']:checked"). val(); 
+		  var imgval= $("input[name='forImg']:checked"). val();
+		  if(imgval !== undefined)
+		  {
 		   var URL= APIDOMAIN + "index.php?action=setImagedeflt&id="+imgval;  
 		    $.ajax({  type:"post",  
                                url:URL,  
                                data: '',  
                                success:function(data){
-			 common.toast(1,'Default Image Updated Successfully')
+			// common.toast(1,'Default Image Updated Successfully');
 		    }
 		    });	
+		  }
+		    var validationflag=1;
+		    $('.seqTxt').each(function() {
+			var positn=$(this).val();
+			 var filter = /^[0-9-+]+$/;
+			 if(!filter.test(positn)){
+			   common.toast(0,'Please Enter Numeric value in Position');
+			   validationflag=0;
+			 }
+		    });
+		    setTimeout(function(){
+		      if(validationflag == 1)
                        updateData($(this).attr('id'));
+		    },300);
+		    
                 }); 
 
 	    
