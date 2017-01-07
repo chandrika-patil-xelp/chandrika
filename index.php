@@ -311,6 +311,10 @@ switch ($action) {
         include TEMPLATE . 'checkoutGuest.html';
         break;
        
+     case 'guestaccount':
+        $page = 'guestaccount';
+        include TEMPLATE . 'guestaccount.html';
+        break;
     
 }
 ?>
