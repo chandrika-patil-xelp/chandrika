@@ -208,8 +208,8 @@ function getshippingdata()
             var obj = JSON.parse(results);
             var data = obj['results'];
             $('#cust_name').html(data.name);
-            $('#cust_mobl').html(data.mobile);
-	    $('#cust_email').html(data.email);
+            $('#cust_mobl').html(data.mobile+" | "+data.email);
+	 
             $('#addr').html(data.address);
             $('#adcity').html(data.city + " " + data.pincode);
         }

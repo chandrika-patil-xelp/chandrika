@@ -517,7 +517,7 @@ function displayaddrs(userid)
 
                     addstr += ' <div class="checkName fLeft semibold" title=' + v.name + '  id="spnd_name">' + v.name + '</div>';
 //	  addstr += ' <div class="text fLeft txtOver">8123128747</div>';
-                    addstr += ' <div class="text fLeft  semibold" title=' + v.email + '  id="spnd_email">8123128747 | ' + v.email + '</div>';
+                    addstr += ' <div class="text fLeft  semibold" title=' + v.email + '  id="spnd_email">'+v.mobile+' | ' + v.email + '</div>';
                 
 
 
