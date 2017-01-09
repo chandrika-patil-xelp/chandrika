@@ -315,7 +315,7 @@ var goldPricehighp =0;
     proStr += '</div>';
     //proStr += '<div class="soc_icons dn">';
    
-    proStr += '<div class="soc_abs soc_wish2 transition300 fRight" onclick="makeAwish(this, event)"><div class="wishTip">add to wishlist</div></div>';
+    proStr += '<div class="soc_abs soc_wish2 transition300 fRight" onclick="makeAwish(this, event)"></div>';
     //proStr += '<div class="soc_elem soc_comment transition300"></div>';
     //proStr += '<div class="soc_elem soc_share transition300"></div>';
     //proStr += '</div>';
@@ -558,6 +558,12 @@ var count = 0;
 var page2 = 2;
 var limcount = 12;
 $('#gr_foot').on('click', function () {
+//     $('#gr_foot').addClass("dn");
+//     setTimeout(function (){
+//        
+//     $('.gridLoad').removeClass("dn");
+//     },500);
+    
     var page3 = page2 + count++;
 
     var limit = 12;

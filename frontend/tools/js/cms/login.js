@@ -7,7 +7,7 @@ $('#rsubId').on('click',function(){
  
  function dosignup()
  {
-    var name = $("#name").val();
+   var name = $("#name").val();
    var email = $("#signupemail").val();
    var  mobile = $("#mobile").val();
    var pass = $("#signuppass").val(); 
@@ -108,7 +108,7 @@ $('#log').click(function(){
 
 function chklogin()
 {
-  var email = $("#email").val();
+  var email = $("#email").val();console.log(email);
   var pass = $("#pass").val();
   var validationFlag=1,URL;
   var filter = /^[0-9-+]+$/;
