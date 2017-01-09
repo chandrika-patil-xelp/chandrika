@@ -153,13 +153,13 @@
 
         $("#dlabel").click(function () {
             
-            $('.dropBox label').addClass("act");
+            $('.dropBox label').removeClass("act");
             $(this).parent().addClass("drop");
             $(this).next().slideDown("slow");
         });
 
         $(".dropBox ul li").click(function () {
-            $('.dropBox label').removeClass("act");
+            $('.dropBox label').addClass("act");
             $(this).parent().parent().removeClass("drop");
             var liTxt = $(this).html();
             $(".dropBox label").text(liTxt);
@@ -233,6 +233,8 @@
         function signup() {
             $('#email').val('');
             $('#pass').val('');
+             $('#dlabel').val('');
+            
             $('#pass').blur();
             $('#email').blur();
             entrflg = 2;

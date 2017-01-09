@@ -12,21 +12,28 @@
         <div class="container2 fLeft">
             <div class="col100">
                 <div class="wrapper_max offsetTop offsetEffects transition600">
-                    <div class="tCommon fLeft index">
+                     <div class="filterH fLeft">
+                            <div class="breadCont fLeft" id="parnttyp">
+                                <div class="breadP fLeft">Gemstone</div>
+                                <div class="breadP fLeft">Polish</div>
+                            </div>                                
+                        </div>
                         <div class="ftabWrap fLeft">
                             <div class="ftab_buffer fRight">
-                                <div class="ftabB">
-                                    <div class="ftab fLeft taba" id="pId">
-                                        POLISH
-                                    </div>
-                                </div>
 <!--                                <div class="ftabB">
-                                    <div class="ftab fLeft taba" id="rId">
-                                        ROUGH 
-                                    </div>
-                                </div>-->
+                                      POLISH
+                                    </ <div class="ftab fLeft taba" id="pId">
+                                     div>
+                                </div>
+                                                                                                <div class="ftabB">
+                                                                                                    <div class="ftab fLeft taba" id="rId">
+                                                                                                        ROUGH 
+                                                                                                    </div>
+                                                                                                </div>-->
                             </div>
                         </div>
+                    <div class="tCommon fLeft index">
+                       
                         <div class="hideDiv alextrial ruby_st" id="ruby1">
                             <div class="closeGem"></div>
                             <div class="fLeft define" id="def">
@@ -558,55 +565,49 @@
                                     <div class="beforeTry">
                                     </div>
                                     <div class="satellite21 imageCont"></div>
-                                    <div class="imgHead fLeft">RUBY</div>
+                                    <center><div class="col100"><div class="imgHead actBtn">RUBY</div></div></center>
                                 </div>
                                 <div class="fLeft imageOutr" id="pearl">
-
                                     <div class="satellite18  imageCont"></div>
-                                    <div class="imgHead fLeft">PEARL</div>
+                                    <center><div class="col100"><div class="imgHead actBtn">PEARL</div></div></center>
                                     <!--<div class="try" id="tryId"></div>-->
                                 </div>
                                 <div class="fLeft imageOutr" id="emerald">
                                     <div class="satellite9  imageCont"></div>
-                                    <div class="imgHead fLeft">EMERALD</div>
+                                    <center><div class="col100"><div class="imgHead actBtn">EMERALD</div></div></center>
                                 </div>
-                            </div>
-                            <div class="col100 fLeft">
                                 <div class="fLeft imageOutr" id="sapphires">
                                     <div class="satellite22  imageCont"></div>
-                                    <div class="imgHead fLeft">SAPPHIREES</div>
+                                    <center><div class="col100"><div class="imgHead actBtn">SAPPHIREES</div></div></center>
                                 </div>
                                 <div class="fLeft imageOutr" id="coral">
                                     <div class="satellite30 imageCont"></div>
-                                    <div class="imgHead fLeft">RED CORAL</div>
+                                    <center><div class="col100"><div class="imgHead actBtn">RED CORAL</div></div></center>
                                 </div>
+
                                 <div class="fLeft imageOutr" id="amethyst">
                                     <div class="satellite3  imageCont"></div>
-                                    <div class="imgHead fLeft">AMETHYST</div>
+                                    <center><div class="col100"><div class="imgHead actBtn">AMETHYST</div></div></center>
                                 </div>
-                            </div>
-                            <div class="col100 fLeft">
                                 <div class="fLeft imageOutr" id="aquamarine">
                                     <div class="satellite5  imageCont"></div>
-                                    <div class="imgHead fLeft">AQUAMARINE</div>
+                                    <center><div class="col100"><div class="imgHead actBtn">AQUAMARINE</div></div></center>
                                 </div>
                                 <div class="fLeft imageOutr" id="jade">
                                     <div class="satellite12  imageCont"></div>
-                                    <div class="imgHead fLeft">JADE</div>
+                                    <center><div class="col100"><div class="imgHead actBtn">JADE</div></div></center>
                                 </div>
                                 <div class="fLeft imageOutr" id="moonstone">
                                     <div class="satellite15   imageCont"></div>
-                                    <div class="imgHead fLeft">MOONSTONE</div>
+                                    <center><div class="col50"> <div class="imgHead actBtn">MOONSTONE</div></div></center>
                                 </div>
-                            </div>
-                            <div class="col100 fLeft">
                                 <div class="fLeft imageOutr" id="tanzanite">
                                     <div class="satellite25   imageCont"></div>
-                                    <div class="imgHead fLeft">TANZANITE</div>
+                                    <center><div class="col50"><div class="imgHead actBtn">TANZANITE</div></div></center>
                                 </div>
                                 <div class="fLeft imageOutr" id="topaz">
                                     <div class="satellite26   imageCont"></div>
-                                    <div class="imgHead fLeft">TOPAZ</div>
+                                    <center><div class="col50"><div class="imgHead actBtn">TOPAZ</div></div></center>
                                 </div>
                             </div>
                         </div>
@@ -689,7 +690,7 @@
             $('#' + imgId).addClass("title_eff");
             $('.' + imgId + '_st').addClass("hideDivafter");
             //$('.hideDiv').addClass("hideDivafter");
-            $(this).parent().parent().addClass("transGem");
+//            $(this).parent().parent().addClass("transGem");
             //            $('.define').velocity({translatY: [0, 20]}, {duration: 400}, {delay: 1500});
 //            $('.define').velocity({opacity: [1, 0]}, {duration: 400}, {delay: 1500});
         });
@@ -701,7 +702,7 @@
             fchild = $('.imageOutr').children(':first-child').attr("id");
             $(fchild).removeClass("title_eff");
             $('#' + imgId).removeClass("title_eff");
-            $(this).parent().siblings().removeClass("transGem");
+//            $(this).parent().siblings().removeClass("transGem");
 //            $('#gemOuter').removeClass("transGem");
             $('.hideDiv').removeClass("hideDivafter");
 //             $('.' + imgId + "trial").velocity({opacity: [0, 1]}, {duration: 400, delay: [600]});
