@@ -325,7 +325,7 @@ var goldPricehighp =0;
     proStr += '<div class="facet_back" >';
     proStr += '<div class="facet_cont">';
     proStr += '<div class="light_header fLeft fmSansL"><span class="u_lineW">' + obj['prdNm'] + '</span></div>';
-    proStr += '<div class="desc_row fLeft font12 fmSansB "><span class="txt_left fLeft">' + obj['jwelType'] + '</span><span class="fRight fmSansR"> ' + obj['metal_weight'] + ' gms</span> </div>';
+    proStr += '<div class="desc_row fLeft font12 fmSansB "><span class="txt_left fLeft">' + obj['jwelType']+ '</span><span class="fRight fmSansR"> ' + obj['metal_weight'] + ' gms</span> </div>';
     if (diamond == '1' && diamond !== 'null') {
         for (var d = 0; d < (p.length); d++) {
 
