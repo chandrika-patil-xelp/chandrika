@@ -340,7 +340,7 @@ function wishlist()
                     wishStr += '  <div class="action_btns">';
                     wishStr += '  <div class="col50 fLeft  pad0">';
                     wishStr += '  <div class="actBtn fRight bolder addcrt" id="' + j.wish_id + '_' + j.col_car_qty + '_' + j.product_id + '_' + j.size + '" ';
-                    wishStr += '   onclick="wshprdopen(this)">View product</div> </div>';
+                     wishStr += '   onclick="addtocart(this)">Add To Cart</div> </div>';
                     wishStr += '  <div class="w35 fLeft  pad0">';
                     wishStr += '  <div class="actBtn fRight bolder" onclick="removeitm(this)">delete</div>';
                     wishStr += '   </div>';
