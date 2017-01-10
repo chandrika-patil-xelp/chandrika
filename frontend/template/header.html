@@ -114,10 +114,10 @@
                 <div class="menu_elm ">
                     <div class="col33 fLeft">
                         <div class="col100 fLeft">
-                            <a  target="" href='<?php echo DOMAIN?>index.php?action=gemstoneGuideNew'><div class="menu_list fLeft">GEMSTONE GUIDE</div></a>
+                            <a   href='<?php echo DOMAIN?>index.php?action=gemstoneGuideNew'><div class="menu_list fLeft">GEMSTONE GUIDE</div></a>
                         </div>
                         <div class="col100 fLeft">
-                            <a  target="" href='<?php echo DOMAIN?>index.php?action=diamondguide'><div class="menu_list fLeft">DIAMOND GUIDE</div></a>
+                            <a   href='<?php echo DOMAIN?>index.php?action=diamondguide'><div class="menu_list fLeft">DIAMOND GUIDE</div></a>
                         </div>
 
                     </div>
@@ -432,7 +432,7 @@
 		  
 		      if(data['error']['err_code'] == 0){
 			var ordid=data['result']['order_id'];
-		 	window.location.href=DOMAIN + "index.php?action=myaccount&actn=ordtrk&trkid="+ordid;
+		 	window.location.href=DOMAIN + "index.php?action=guestaccount&trkid="+ordid;
 		      }
 			else if(data['error']['err_code'] == 1)
 			  common.msg(0, data['error']['err_msg']);
