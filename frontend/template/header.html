@@ -13,17 +13,17 @@
         <div class="inGuest" id="guestChild">
             <div class="closeLogin" id="closeGuest"></div>
             <div class="txtTitle">Please enter the relevant information</div>
-            <div class="txtB fLeft">
-                <input type="password" class="inp_box " maxlength="30" id="hpass" autocomplete="off">
+            <div class="txtB fLeft"> 
+                <input type="text" class="inp_box " maxlength="30" id="ord_no" autocomplete="off"> 
                 <div class="inp_label">Enter order number</div>
             </div>
-            <div class="txtB fLeft">
-                <input type="text" class="inp_box " maxlength="30" id="jemail" autocomplete="off">
+            <div class="txtB fLeft"> 
+                <input type="text" class="inp_box " maxlength="30" id="ord_email" autocomplete="off"> 
                 <div class="inp_label">Email-Id/Mobile*</div>
             </div>
             <div class="col100 fLeft bolder">
                 <center>
-                    <div class="actBtn button padLR25">GET ORDER DETAILS</div>
+                    <div class="actBtn button padLR25" id="Track_ord">GET ORDER DETAILS</div>
                 </center>
             </div>
         </div>
@@ -123,41 +123,41 @@
                     </div>
                     <div class="col33 fLeft">
                         <div class="col100 fLeft">
-                            <a  target="_blank" href='<?php echo DOMAIN?>index.php?action=jewellerycare'><div class="menu_list fLeft">JEWELLERY CARE</div></a>
+                            <a href='<?php echo DOMAIN?>index.php?action=jewellerycare'><div class="menu_list fLeft">JEWELLERY CARE</div></a>
                         </div>
                         <div class="col100 fLeft">
-                            <a  target="_blank" href='<?php echo DOMAIN?>index.php?action=sizeguide'><div class="menu_list fLeft">SIZING GUIDE</div></a>
+                            <a href='<?php echo DOMAIN?>index.php?action=sizeguide'><div class="menu_list fLeft">SIZING GUIDE</div></a>
                         </div>
                     </div>
                     <div class="col33 fLeft">
                         <div class="col100 fLeft">
-                            <a  target="_blank" href='<?php echo DOMAIN?>index.php?action=preciousmetalguide'><div class="menu_list fLeft">PRECIOUS METAL GUIDE</div></a>
+                            <a href='<?php echo DOMAIN?>index.php?action=preciousmetalguide'><div class="menu_list fLeft">PRECIOUS METAL GUIDE</div></a>
                         </div>
                         <div class="col100 fLeft">
-                            <a  target="_blank" href='<?php echo DOMAIN?>index.php?action=bangleguide'><div class="menu_list fLeft">BANGLE GUIDE</div></a>
+                            <a href='<?php echo DOMAIN?>index.php?action=bangleguide'><div class="menu_list fLeft">BANGLE GUIDE</div></a>
                         </div>
                     </div>
                 </div>
                 <div class="menu_elm">
                     <div class="col33 fLeft">
                         <div class="col100 fLeft">
-                            <a  target="_blank" href='<?php echo DOMAIN?>index.php?action=myaccount&actn=oId'><div class="menu_list fLeft">my orders</div></a>
+                            <a href='<?php echo DOMAIN?>index.php?action=myaccount&actn=oId'><div class="menu_list fLeft">my orders</div></a>
                         </div>
                         <div class="col100 fLeft">
-                            <a  target="_blank" href='<?php echo DOMAIN?>index.php?action=myaccount&actn=wId'><div class="menu_list fLeft">wishlist</div></a>
-                        </div>
-                    </div>
-                    <div class="col33 fLeft">
-                        <div class="col100 fLeft">
-                            <a  target="_blank" href='<?php echo DOMAIN?>index.php?action=myaccount&actn=pId'><div class="menu_list fLeft">personal info</div></a>
-                        </div>
-                        <div class="col100 fLeft">
-                            <a  target="_blank" href='<?php echo DOMAIN?>index.php?action=myaccount&actn=cId'><div class="menu_list fLeft">change password</div></a>
+                            <a href='<?php echo DOMAIN?>index.php?action=myaccount&actn=wId'><div class="menu_list fLeft">wishlist</div></a>
                         </div>
                     </div>
                     <div class="col33 fLeft">
                         <div class="col100 fLeft">
-                            <a  target="_blank" href='<?php echo DOMAIN?>index.php?action=myaccount&actn=sId'><div class="menu_list fLeft">saved addresses</div></a>
+                            <a href='<?php echo DOMAIN?>index.php?action=myaccount&actn=pId'><div class="menu_list fLeft">personal info</div></a>
+                        </div>
+                        <div class="col100 fLeft">
+                            <a href='<?php echo DOMAIN?>index.php?action=myaccount&actn=cId'><div class="menu_list fLeft">change password</div></a>
+                        </div>
+                    </div>
+                    <div class="col33 fLeft">
+                        <div class="col100 fLeft">
+                            <a href='<?php echo DOMAIN?>index.php?action=myaccount&actn=sId'><div class="menu_list fLeft">saved addresses</div></a>
                         </div>
                         <div class="col100 fLeft">
                             <div class="menu_list fLeft" id="usrlogout">Logout</div>
@@ -168,7 +168,7 @@
         </div>
     </div>
 </div>
-<!--<script type="text/javascript" src="<?php echo $jvs['header']; ?>"></script>-->
+ <!--<script type="text/javascript" src="<?php echo $jvs['header']; ?>"></script>--> 
 <script>
 
     $(document).on("click",'#guestId',function () {
@@ -375,4 +375,71 @@
             }
         }
     }
+    
+    $('#Track_ord').click(function(){
+      var ordno=$('#ord_no').val();
+      var inptdata=$('#ord_email').val();
+      var validationFlag=1;
+      var filter = /^[0-9-+]+$/;
+      if (!filter.test(ordno)) {
+        validationFlag = 0;
+        common.msg(0, 'Order number is Invalid');
+      }
+      else
+      {
+	if($.isNumeric(inptdata))
+	{
+	  var filter = /^[0-9-+]+$/;
+	  if (inptdata === '' || inptdata === null) {
+	    validationFlag = 0;
+	    common.msg(0, 'Please enter your Mobile no');
+	  } 
+	  else if (isNaN(inptdata) || (inptdata.length < 10)) {
+	    validationFlag = 0;
+	    common.msg(0, 'Mobile no. Invalid');
+	  } 
+	  else if(!filter.test(inptdata)){ 
+		  validationFlag=0;  
+		  common.msg(0,'Mobile number is Invalid');  
+	  }
+	  if(validationFlag == 1)
+	  {
+	    var URL=APIDOMAIN +"index.php?action=checktrackord&orderid="+ordno+"&mobile="+inptdata;
+	    
+	  }
+	}
+	else
+	{
+	   var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
+	   if (inptdata === '' || inptdata === null) {
+	      validationFlag = 0;
+	      common.msg(0, 'Please enter your Email id');
+	    }
+	    else if (!reg.test(inptdata)) {
+	      validationFlag = 0;
+	      common.msg(0, 'Invalid Email.id');
+	    }
+	    if(validationFlag == 1)
+	    {
+	      var URL=APIDOMAIN +"index.php?action=checktrackord&orderid="+ordno+"&email="+inptdata; 
+	    }
+	}
+      }
+	  if(validationFlag == 1)
+	  {
+	    $.ajax({url: URL, type: 'POST', success: function (res){
+		    var data=JSON.parse(res);
+		  
+		      if(data['error']['err_code'] == 0){
+			var ordid=data['result']['order_id'];
+		 	window.location.href=DOMAIN + "index.php?action=myaccount&actn=ordtrk&trkid="+ordid;
+		      }
+			else if(data['error']['err_code'] == 1)
+			  common.msg(0, data['error']['err_msg']);
+		    }
+	    });
+	   }
+      
+    });
+    
 </script>

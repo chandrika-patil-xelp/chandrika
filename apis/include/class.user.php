@@ -1842,6 +1842,183 @@ class user extends DB {
 
         }
 	
+	public function checktrackord($params) {
+       
+	    if (empty($params['orderid'])) {
+	      $res=array();
+	      $err=array('error_code'=>1,'err_msg'=>'Parameter Missing');
+	      $result=array('relust'=>$res,'error'=>$err);
+	      return $result; 
+	    }
+	  
+            $sql = "SELECT 
+			  DISTINCT(order_id)
+		    FROM 
+			  tbl_order_master 
+		    WHERE 
+			  order_id=".$params['orderid'] ."
+		    AND
+			  active_flag=1
+		    AND
+			  shipping_id IN (SELECT 
+						shipping_id 
+					  FROM 
+						  tbl_order_shipping_details 
+					  WHERE  
+						  active_flag=1 ";
+	
+	    if(!empty($params['mobile'])){
+		  $sql.="AND mobile=".$params['mobile'].") ";
+	    }
+	    else if(!empty($params['email'])){
+		  $sql.="AND email='".$params['email']."' )";
+	    }
+
+	    $res = $this->query($sql);
+	    $row = $this->fetchData($res);
+            
+            if ($res) 
+	    { 
+                if($this->numRows($res)>0)
+		{
+		  $reslt['order_id'] = $row['order_id']; 
+		  $err = array('err_code' => 0, 'err_msg' => 'Data fetched successfully');
+		}
+		else
+		  $err = array('err_code' => 1, 'err_msg' => 'Please Enter Correct Data');
+            }
+	    else 
+	    {
+                $err = array('err_code' => 2, 'err_msg' => 'Error in fetching data');
+            }
+	    $result = array();
+            $results = array('result' => $reslt, 'error' => $err);
+            return $results; 
+    }
+	  
+    public function gettrackordrdetail($params) 
+    {
+      
+	if (empty($params['orderid'])) {
+	      $res=array();
+	      $err=array('error_code'=>1,'err_msg'=>'Parameter Missing');
+	      $result=array('relust'=>$res,'error'=>$err);
+	      return $result; 
+	}
+	  
+        $sql = " SELECT
+                            order_id AS oid,
+                            product_id AS pid,
+                            user_id AS uid,
+                            shipping_id AS shpId,
+                            col_car_qty AS combine,
+                            size,
+                            pqty,
+                            price,
+                            order_date,
+                            updatedon,
+                            order_status,
+                            active_flag,
+                            product_price,
+                            payment,
+                            payment_type,
+
+                            (SELECT product_seo_name FROM tbl_product_master WHERE productid=pid) AS prdSeoname,
+			    (SELECT  GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid  AND active_flag !=2) AS prdimage,
+			    (SELECT  GROUP_CONCAT(product_name) FROM tbl_product_master WHERE productid = pid AND active_flag !=2 ) AS prdname,
+			    (SELECT  GROUP_CONCAT(product_code) FROM tbl_product_master WHERE productid = pid AND active_flag !=2 ) AS product_code,
+
+
+			    (SELECT  GROUP_CONCAT(dname) FROM tbl_metal_color_master WHERE id = SUBSTRING_INDEX(combine, '|@|',1) AND active_flag !=2 ) AS color,
+			    (SELECT  GROUP_CONCAT(dname) FROM tbl_metal_purity_master WHERE id = SUBSTRING_INDEX(SUBSTRING_INDEX(combine,'|@|',2),'|@|',-1) AND active_flag !=2 ) AS Metalcarat,
+			    (SELECT  GROUP_CONCAT(dname) FROM tbl_diamond_quality_master WHERE id = SUBSTRING_INDEX(combine,'|@|',-1)  AND active_flag !=2 ) AS quality,
+
+
+			     (SELECT GROUP_CONCAT(shipping_id) FROM tbl_order_shipping_details WHERE shipping_id = shpId) AS shipngDet,
+			     (SELECT GROUP_CONCAT(name) FROM tbl_order_shipping_details WHERE FIND_IN_SET(shipping_id,shipngDet)) AS customername,
+			     (SELECT GROUP_CONCAT(mobile) FROM tbl_order_shipping_details WHERE FIND_IN_SET(shipping_id,shipngDet)) AS customerMob,
+			     (SELECT GROUP_CONCAT(city) FROM tbl_order_shipping_details WHERE FIND_IN_SET(shipping_id,shipngDet)) AS customerCity,
+			     (SELECT GROUP_CONCAT(state) FROM tbl_order_shipping_details WHERE FIND_IN_SET(shipping_id,shipngDet)) AS customerState,
+			     (SELECT GROUP_CONCAT(pincode) FROM tbl_order_shipping_details WHERE FIND_IN_SET(shipping_id,shipngDet)) AS customerPincode,
+			     (SELECT GROUP_CONCAT(address) FROM tbl_order_shipping_details WHERE FIND_IN_SET(shipping_id,shipngDet)) AS customerAddrs,
+			     (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND active_flag = 1 AND  default_img_flag=1) AS default_image
+
+	      FROM tbl_order_master WHERE order_id= ".$params['orderid']." AND active_flag = 1 ";
+
+	      $res = $this->query($sql);
+
+         
+	      if($res)
+		{
+		     $prztotal=0;
+                     while ($row = $this->fetchData($res)){
+
+                     $reslt['oid'] = ($row['oid']!=null) ? $row['oid'] : '';
+                     $reslt['pid'] = ($row['pid']!=NULL) ? $row['pid'] : '';
+                     $reslt['uid'] = ($row['uid']!=NULL) ? $row['uid'] : '';
+                     $reslt['prdSeoname'] = ($row['prdSeoname']!=NULL) ? $row['prdSeoname'] : '';
+                     $reslt['shipping_id'] = ($row['shipping_id']!=NULL) ? $row['shipping_id'] : '';
+                     $reslt['col_car_qty'] = ($row['col_car_qty']!=NULL) ? $row['col_car_qty'] : '';
+                     $reslt['size'] = ($row['size']!=NULL) ? $row['size'] : '';
+                     $reslt['color'] = ($row['color']!=NULL) ? $row['color'] : '';
+                     $reslt['Metalcarat'] = ($row['Metalcarat']!=NULL) ? $row['Metalcarat'] : '';
+                      $reslt['quality'] = ($row['quality']!=NULL) ? $row['quality'] : '';
+                     $reslt['pqty'] = ($row['pqty']!=NULL) ? $row['pqty'] : '';
+                     $reslt['price'] = ($row['price']!=NULL) ? $row['price'] : '';
+                     $reslt['cartid'] = ($row['cartid']!=NULL) ? $row['cartid'] : '';
+
+                     $reslt['order_date'] = ($row['order_date']);
+                     $reslt['updatedon'] = ($row['updatedon']);
+                     $reslt['order_status'] = ($row['order_status']!=NULL) ? $row['order_status'] : '';
+                     $reslt['active_flag'] = ($row['active_flag']!=NULL) ? $row['active_flag'] : '';
+                     $reslt['product_price'] = ($row['product_price']!=NULL) ? $row['product_price'] : '';
+                     $reslt['payment'] = ($row['payment']!=NULL) ? $row['payment'] : '';
+                     $reslt['payment_type'] = ($row['payment_type']!=NULL) ? $row['payment_type'] : '';
+                     $reslt['prdimage'] = ($row['prdimage']!=NULL) ? $row['prdimage'] : '';
+                     $reslt['prdname'] = ($row['prdname']!=NULL) ? $row['prdname'] : '';
+                     $reslt['product_code'] = ($row['product_code']!=NULL) ? $row['product_code'] : '';
+
+                     $reslt['shipngDet'] = ($row['shipngDet']!=NULL) ? $row['shipngDet'] : '';
+                     $reslt['customername'] = ($row['prdimage']!=NULL) ? $row['customername'] : '';
+                     $reslt['customerMob'] = ($row['prdname']!=NULL) ? $row['customerMob'] : '';
+                     $reslt['customerCity'] = ($row['product_code']!=NULL) ? $row['customerCity'] : '';
+                     $reslt['customerState'] = ($row['shipngDet']!=NULL) ? $row['customerState'] : '';
+                     $reslt['customerPincode'] = ($row['prdimage']!=NULL) ? $row['customerPincode'] : '';
+                     $reslt['customerAddrs'] = ($row['prdname']!=NULL) ? $row['customerAddrs'] : '';
+                     $reslt['default_image'] = $row['default_image'];
+                     $reslt['prc'] = $row['prc'];
+                     $reslt['cnt'] = $row['cnt'];
+
+
+
+		     if($row['payment_type']== '0'){
+			 $reslt['payment_type'] ='Credit Card';
+		     }else if($row['payment_type']== '1'){
+			 $reslt['payment_type'] ='Debit Card';
+		     }else if($row['payment_type']== '2'){
+			 $reslt['payment_type'] ='Net Banking';
+		     }else if($row['payment_type']== '3'){
+			 $reslt['payment_type'] ='EMI';
+		     }
+		     else if($row['payment_type']== '4'){
+			 $reslt['payment_type'] ='COD';
+		     }
+                       
+                     $resp[] = $reslt;
+		     $prztotal+=$reslt['price'] ;
+                     }
+                  
+            }
+	    else
+	    {
+                $err = array('err_code' => 1, 'err_msg' => 'Error in fetching data');
+            }
+            $results = array('result' => $resp, 'error' => $err,'total'=>$prztotal);
+            return $results;
+            
+    }
+
+    
 }
 
 ?>

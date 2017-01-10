@@ -324,14 +324,14 @@ function shpngsubmt()
     var state = $('#shpdstate').val();
     var pincode = $('#shpdpincode').val();
     var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
-    var letters = /^[A-Za-z]+$/;
+    var letters = /^[a-zA-Z\s]+$/;
     var filter = /^[0-9-+]+$/;
     if (name === '' || name === null) {
         validationFlag = 0;
         common.msg(0, 'Please enter your Name');
     } else if (!letters.test(name)) {
         validationFlag = 0;
-        common.msg(0, 'Name should be alphanumeric');
+        common.msg(0, 'Name should be Characters');
     } else if (mobile === '' || mobile === null) {
         validationFlag = 0;
         common.msg(0, 'Please enter your Mobile no');

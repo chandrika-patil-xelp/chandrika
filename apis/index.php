@@ -837,11 +837,11 @@ switch($action)
 
     //code for login start
     //http://localhost/jzeva/apis/index.php/?action=login&name=skrahul0605@gmail.com&pass=khan0605
-    case 'login':
-        include APICLUDE.'class.addtocart.php';
-        $obj = new addtocart($db['jzeva']);
-        $res = $obj->login($params);
-        break;
+//    case 'login':
+//        include APICLUDE.'class.addtocart.php';
+//        $obj = new addtocart($db['jzeva']);
+//        $res = $obj->login($params);
+//        break;
     //code for login ends
 
     case 'forgotPass':
@@ -1148,6 +1148,18 @@ case 'orderTrack':
         $res	=$obj->OrderDetailsbyordid($tmpparams);
     break;
   
+  case 'checktrackord':
+        include APICLUDE.'class.user.php';
+        $obj	= new user($db['jzeva']); 
+        $res	=$obj->checktrackord($params);
+  break;
+  
+  case 'gettrackordrdetail':
+        include APICLUDE.'class.user.php';
+        $obj	= new user($db['jzeva']); 
+        $res	=$obj->gettrackordrdetail($params);
+  break;
+
   } 
 echo json_encode($res);
 exit;

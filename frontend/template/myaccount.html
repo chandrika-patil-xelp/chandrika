@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php include 'jhead.html' ?>
 <script>
-    var actn = "<?php echo $_GET['actn'];  ?>";
+    var actn = "<?php echo $_GET['actn'];  ?>"; var ordtrid = "<?php echo $_GET['trkid'];  ?>"; 
 </script>
 <body class="Terms myaccount">
     <?php include 'Cart.html'?>
@@ -30,7 +30,7 @@
         <div class="container2 fLeft">
             <div class="col100">
                 <div class="wrapper_max offsetTop offsetEffects transition600">
-                    <div class="fLeft tHead">
+                    <div class="fLeft tHead" id="side_menus">
                         <div class="fRight fooH mar0">orders</div>
                         <div class="fLeft col100"><div class="fRight fooTxt fCommon" id="oId">My orders</div></div>
                         <div class="fLeft col100"><div class="fRight fooTxt fCommon"  id="wId">Wishlist</div></div>
