@@ -558,6 +558,7 @@ var count = 0;
 var page2 = 2;
 var limcount = 12;
 $('#gr_foot').on('click', function () {
+    
 //     $('#gr_foot').addClass("dn");
 //     setTimeout(function (){
 //        
