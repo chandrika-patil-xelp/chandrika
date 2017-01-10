@@ -2961,17 +2961,29 @@ class product extends DB {
         }
     }
 
-    public function changeProductStatus($params) {
+   public function changeProductStatus($params) {
         $params = (json_decode($params[0], 1));
-
-        $sql = "UPDATE tbl_product_master set active_flag='" . $params['active_flag'] . "'   WHERE productid = '" . $params['pid'] . "'";
-        $res = $this->query($sql);
-        $result = array();
-        if ($res) {
-            $err = array('err_code' => 0, 'err_msg' => 'Data updated successfully');
-        } else {
-            $err = array('err_code' => 1, 'err_msg' => 'Error in updating');
-        }
+	
+	 $sql = "UPDATE tbl_product_master SET active_flag='" . $params['active_flag'] . "' WHERE productid='" . $params['pid'] . "'";
+	 $res = $this->query($sql); 
+	 
+	 if($res)
+	 {
+	   $asql = "UPDATE tbl_category_product_mapping set active_flag='" . $params['active_flag'] . "'   WHERE productid = '" . $params['pid'] . "'";
+	   $ares = $this->query($asql);
+	   if($ares)
+	   {
+	       $err = array('err_code' => 0, 'err_msg' => 'Data updated successfully'); 
+	   }
+	   else
+	     $err = array('err_code' => 1, 'err_msg' => 'Error in updating tbl_category_product_mapping table');
+	 }
+	 else
+	 {
+	    $err = array('err_code' => 1, 'err_msg' => 'Error in updating tbl_product_master table');
+	 }
+	  
+        $result = array(); 
         $results = array('result' => $result, 'error' => $err);
         return $results;
     }
@@ -3718,7 +3730,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 
         global $comm;
         $cid = urldecode($params['id']);
-
+        $allprzs=  $this->getallprzbycatid(array('id'=>$params['id']));		 	
         $sqlcount = "SELECT productid,
 	      (SELECT GROUP_CONCAT(productid) FROM tbl_category_product_mapping WHERE catid= " . $cid . " AND active_flag =1 ) AS prdids
 	      FROM tbl_product_master WHERE active_flag =1 HAVING 
@@ -3905,43 +3917,99 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                 } else if ($row['jewelleryType'] === '3') {
                     $arr['jwelType'] = 'Platinum';
                 }
+              
+		
+		
+		 $price = 0;
+                $vatRate = (1 / 100);
+                if ($arr['hasSol'] === '1') {
+                    $Solicarat = $row['Solicarat'];
+                    $Soliprc = $row['SoliPricepercarat'];
 
-                if ($arr['hasGem'] === '1') {
-                    if ($row['allGemstone']) {
-                        $count = 0;
-                        $sqlGemstoneMapping = " SELECT 
-                                                            productid,
-                                                            gemstone_name,
-                                                            total_no,
-                                                            carat,
-                                                            price_per_carat  
-                                                    FROM 
-                                                            tbl_product_gemstone_mapping 
-                                                    WHERE 
-                                                            productid IN(SELECT productid FROM tbl_product_master WHERE productid=pid ORDER BY createdon ASC  
-                                                       ";
-                        $resGemstoneMapping = $this->query($sqlGemstoneMapping);
-                        while ($rowGemstoneMapping = $this->fetchData($resGemstoneMapping)) {
-                            $arrgemstoneDetails[] = $rowGemstoneMapping;
-                            $count++;
-                        }
-                        $gemstoneDetails = $arrgemstoneDetails;
-                    }
-                    $arr['GemstoneDetails'] = $gemstoneDetails;
+                    $price = $price + ($Solicarat * $Soliprc);
+                }
+                if ($arr['hasDmd'] === '1') {
+
+                    $dmdPricelow = ($row['dmdcarat']) * ($row['dmdlowp']);
+                    $dmdPricehigh = ($row['dmdcarat']) * ($row['dmdhighp']);
                 }
 
-                $reslt[] = $arr;
-            }
+                if ($arr['hasUnct'] === '1') {
+                    $Uncutcarat = $row['Uncutcarat'];
+                    $Uncutprc = $row['UncutPricepercarat'];
 
+                    $price = $price + ($Uncutcarat * $Uncutprc);
+                }
+                if ($arr['hasGem'] === '1') {
+                    $Gemscarat = $row['gemscarat'];
+                    $Gemsprc = $row['gemsPricepercarat'];
+                    $price = $price + ($Gemscarat * $Gemsprc);
+                }
+
+                if ($row['chldcatname'] == 'Rings') {
+
+                    $changeInWeightsizelow = (5 - 14) * 0.05;
+                    $changeInWeightsizehigh = (25 - 14) * 0.05;
+                    $newWeightlow = $row['metal_weight'] + $changeInWeightsizelow;
+                    $newWeighthigh = $row['metal_weight'] + $changeInWeightsizehigh;
+                } else if ($row['chldcatname'] === 'Bangles') {
+                    $changeInWeightsizelow = (2.2 - 2.4) * 7;
+                    $changeInWeightsizehigh = (2.9 - 2.4) * 7;
+                    $newWeightlow = $row['metal_weight'] + $changeInWeightsizelow;
+                    $newWeighthigh = $row['metal_weight'] + $changeInWeightsizehigh;
+                } else if ($row['chldcatname'] !== 'Rings' || $row['chldcatname'] !== 'Bangles') {
+                    $changeInWeightsizelow = (0 - 0) * mtlWgDav;
+                    $changeInWeightsizehigh = (0 - 0) * mtlWgDav;
+                    $newWeightlow = $row['metal_weight'] + $changeInWeightsizelow;
+                    $newWeighthigh = $row['metal_weight'] + $changeInWeightsizehigh;
+                }
+
+                $newWeightlow = $newWeightlow;
+                $newWeighthigh = $newWeighthigh;
+                
+                $goldPricelowp = $newWeightlow * $row['caratlowp'];
+                $goldPricehighp = $newWeighthigh * $row['carathighp'];
+
+                $mkChargeslowp = $row['making_charges'] * $newWeightlow;
+                $mkChargeshighp = $row['making_charges'] * $newWeighthigh;
+
+                $ttllowp = ($goldPricelowp + $dmdPricelow + $mkChargeslowp + $price);
+                $ttlhighp = ($goldPricehighp + $dmdPricehigh + $mkChargeshighp + $price);
+
+                $totalNewPricelow = round($ttllowp + ($ttllowp * $vatRate));
+                $totalNewPricehigh = round($ttlhighp + ($ttlhighp * $vatRate));
+
+                $arr['totalprclow'] = $totalNewPricelow;
+                $arr['totalprchigh'] = $totalNewPricehigh;
+                $reslt[] = $arr;
+		$totalNewPricelowArr[]=array($row['productid']=>$totalNewPricelow);
+		 
+		$totalpric[] = $totalNewPricelowArr;
+               
+                $totalNewPricehighArr[] = $totalNewPricehigh;
+		 
+		
+            }
+	    
+	     foreach ($totalNewPricelowArr as $key => $row) {
+	      foreach($row as $key1=>$val1){
+		$mid[$key1]  = $val1;
+	      } 
+	    } 
+	    array_multisort($mid, SORT_ASC, $totalNewPricelowArr);
+             
+	    sort($totalNewPricehighArr);
+	    
+	    
             $error = array('err_code' => 0, 'err_msg' => 'details fetched successfully');
         } else {
             $error = array('err_code' => 1, 'err_msg' => 'error in fetching details');
         }
 
-        $result = array('result' => $reslt, 'error' => $error, 'total' => $total);
+        $result = array('result' => $reslt, 'error' => $error, 'total' => $total,'prclarr' => $totalNewPricelowArr, 'prcharr' => $totalNewPricehighArr,'allprdpz'=>$allprzs);
         return $result;
     }
-
+    
     public function getprodDescrp($params) {
 
         $jweltype = (!empty($params['jweltype'])) ? trim($params['jweltype']) : '';
@@ -3954,90 +4022,142 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                       FROM
                         tbl_productdetails_master WHERE  active_flag=1 
                       AND  LOWER(REPLACE(NAME,' ','')) =LOWER(REPLACE('" . $jweltype . "',' ','')) OR 
-                            LOWER(REPLACE(NAME,' ','')) =LOWER(REPLACE('" . $dmdsoli . "',' ',''))";
+                           LOWER(REPLACE(NAME,' ','')) =LOWER(REPLACE('" . $dmdsoli . "',' ',''))";
 
         $res = $this->query($sql);
-        if ($res) {
+        if ($res){
             while ($row = $this->fetchData($res)) {
                 $arr['name'] = $row['name'];
                 $arr['desc'] = $row['description'];
-
+              
                 $resp[] = $arr;
             }
             $error = array('err_code' => 0, 'err_msg' => 'details fetched successfully');
         } else {
             $error = array('err_code' => 1, 'err_msg' => 'error in fetching details');
-        }
+        }   
         $result = array('result' => $resp, 'error' => $error);
-        return $result;
+        return $result;       
     }
+    
+    
 
-    function getfiltrmenus($params) {
+   function getfiltrmenus($params) 
+    {
 
-        $sql = " SELECT catid ccatid,pcatid,cat_name,
+      $sql="SELECT
+		  attributeid , attr_name, attr_values,
+		  (SELECT GROUP_CONCAT(productid) FROM tbl_category_product_mapping WHERE catid=".$params['catid']." AND active_flag=1) AS catprds
+                  
+	    FROM  
+		  tbl_attribute_master
+	    WHERE
+		  active_flag=1 AND attributeid IN
+		  (SELECT attributeid FROM tbl_category_attribute_mapping WHERE catid=".$params['catid']." AND active_flag=1)
+                     
+              ";
+       $res = $this->query($sql);
+         if ($res) 
+	 {
+            while ($row = $this->fetchData($res)) 
+	    { 
+                $arr['attr_name'] = $row['attr_name'];
+		$arr['attributeid'] = $row['attributeid']; 
+		$arr['attr_values'] = $row['attr_values']; 
+		$arr['catprds'] = $row['catprds'];
+                $arr['hassol'] = $row['hassol'];
+                
+              
+		 $arr['val'] =$this->getsubmenufltr(array('attrid'=>$arr['attributeid'],'attr_values'=> $arr['attr_values'],'prds'=>$arr['catprds'] ));
+		  
+		$resp[]=$arr;
+	    } 
+	   $error = array('err_code' => 0, 'err_msg' => 'details fetched successfully');
+        }
+	else {
+            $error = array('err_code' => 1, 'err_msg' => 'error in fetching details');
+        }
+	
+	 $result = array('result' => $resp, 'error' => $error);
+        return $result;
+}
+
+
+  function getsubmenufltr($params) 
+    {
+      $attrid = (!empty($params['attrid'])) ? trim($params['attrid']) : '';
+      $attrVals= (!empty($params['attr_values'])) ? trim($params['attr_values']) : '';
+      $catprd= (!empty($params['prds'])) ? trim($params['prds']) : '';
+        $hassol= (!empty($params['hassol'])) ? trim($params['hassol']) : ''; 
+      $sql="SELECT
+		  DISTINCT(value)
+	    FROM
+		  tbl_product_attributes_mapping
+	    WHERE
+		  attributeid=".$attrid."
+	    AND
+		  active_flag=1
 	   
-	    (SELECT GROUP_CONCAT(attributeid) FROM tbl_category_attribute_mapping WHERE catid =ccatid AND active_flag = 1) AS attributeids,
-	    (SELECT GROUP_CONCAT(attr_name) FROM tbl_attribute_master WHERE FIND_IN_SET(attributeid,attributeids) AND active_flag = 1 ) AS atr_name,
-	    (SELECT GROUP_CONCAT(attributeid) FROM tbl_attribute_master WHERE FIND_IN_SET(attributeid,attributeids) AND active_flag = 1 ) AS atrids,
-	    (SELECT GROUP_CONCAT(attr_values) FROM tbl_attribute_master WHERE FIND_IN_SET(attributeid,attributeids) AND active_flag = 1 ) AS atr_val
-	    FROM tbl_category_master WHERE catid= " . $params['catid'];
-
-        $res = $this->query($sql);
-        if ($res) {
-            while ($row = $this->fetchData($res)) {
-                $arr['catid'] = $row['ccatid'];
-                $arr['cat_name'] = $row['cat_name'];
-                $attributeid = $row['atrids'];
-                $arr['atr_val'] = $this->getsubmenufltr($attributeid);
-                ;
-                $resp = $arr;
-            }
-            $error = array('err_code' => 0, 'err_msg' => 'details fetched successfully');
-        } else {
-            $error = array('err_code' => 1, 'err_msg' => 'error in fetching details');
-        }
-
-        $result = array('result' => $resp, 'error' => $error);
-        return $result;
-    }
-
-    function getsubmenufltr($attrs) {
-        $attr = explode(',', $attrs);
-
-        foreach ($attr as $val) {
-            $arr = [];
-            $sql = "SELECT attr_values,attr_name,attributeid  FROM tbl_attribute_master WHERE attributeid=" . $val;
-            $res = $this->query($sql);
-
-            $row = $this->fetchData($res);
-            $arr['attr_name'] = $row['attr_name'];
-            $arr['attributeid'] = $row['attributeid'];
-            $attrval = $row['attr_values'];
-            $arr['attr_values'] = explode(',', $attrval);
-            $atrval[] = $arr;
-        }
-        if ($res) {
-            $error = array('err_code' => 0, 'err_msg' => 'details fetched successfully');
-        } else {
-            $error = array('err_code' => 1, 'err_msg' => 'error in fetching details');
-        }
-
-        $result = array('result' => $atrval, 'error' => $error);
-        return $result;
+	    AND
+		 productid IN (".$catprd.")
+                     
+              " ;
+      
+//      $sql.= "SELECT
+//		 value
+//	    FROM tbl_product_solitaire_mapping
+//            WHERE productid =".$hassol."
+//	    AND
+//		  active_flag=1
+//	   ";
+	    
+      $res = $this->query($sql);
+      $resl=array();
+        if ($res) 
+	{  
+	  while($row=  $this->fetchData($res))
+	  {
+	      $arr['value']=$row['value'];
+	      $atrval=  explode(',', $arr['value']);
+	      foreach($atrval as $val)
+	      {
+		if(!in_array($val, $resl))
+		{
+		  $resl[]=$val; 
+		}
+	      }
+	     
+	  } 
+	  $counts = sizeof($resl);
+	      if($counts > 1)
+	       $result[]=$resl;
+	 
+	}
+	return $result;
     }
 
     function getprodByfiltr($params) {
         $params = json_decode($params[0], 1);
-
+	$fltrflag=0;
         $sql = " select DISTINCT(productid) ,   ";
         foreach ($params as $menuname => $value) {
 
 
             if ($menuname == 'catid') {
-                $catflag = 1;
+                $catflag = 1; 
                 $catvalval = $value;
             }
-
+	    
+	    if($menuname == 'range')
+	    {
+	      $rngflag=1; 
+	      $rngval=$value;
+	    }
+	    if($menuname == 'carat')
+	    {
+	      $caratflag=1;
+	      $caratval=$value; 
+	    }
             foreach ($value as $menuid => $values) {
                 $vals = [];
 
@@ -4045,19 +4165,32 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                 foreach ($values as $val) {
                     $vals[] = $val;
                 }
+		
+		if($menuname == 'for'){
+			    $forflag=1; 
+			    foreach($vals as $fval){
+			      if($fval == 'Women')
+				$forvl[]=0;
+			      if($fval == 'Men')
+				$forvl[]=1;
+			      $forval=  implode(',', $forvl); 
+			      $fltrflag=1;
+			    }  
+			}  
+			
                 $vals = implode(",", $vals);
 
 
                 if ($menuname == 'stone') {
-                    $stoneflag = 1;
+                    $stoneflag = 1; $fltrflag=1;
                     $stoneval = $vals;
                 }
                 if ($menuname == 'diamondcut') {
-                    $dnmndcutflag = 1;
+                    $dnmndcutflag = 1; $fltrflag=1;
                     $dnmndcutval = $vals;
                 }
                 if ($menuname == 'bangletype' || $menuname == 'ringtype' || $menuname == 'pendanttype' || $menuname == 'earringtype' || $menuname == 'necklacetype') {
-                    $cattypeflag = 1;
+                    $cattypeflag = 1; $fltrflag=1;
                     $cattypeval = $vals;
                 }
             }
@@ -4079,21 +4212,68 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
             $sql.=" productid IN (SELECT productid FROM tbl_product_attributes_mapping WHERE MATCH(value) AGAINST('" . $cattypeval . "') AND active_flag=1 HAVING FIND_IN_SET(productid,prdid)) AND";
         }
 
+	 if($forflag == 1){ 
+	    $sql.=" gender IN (SELECT gender FROM tbl_product_master WHERE gender IN (".$forval.") AND active_flag=1 HAVING FIND_IN_SET(productid,prdid)) AND";
+	}
+	
+	
         $sql.="   active_flag=1";
+        
+        
         $res = $this->query($sql);
 
         while ($row = $this->fetchData($res)) {
             $prdids[] = $row['productid'];
         }
-
-        foreach ($prdids as $val) {
-            $prdid = array('pid' => $val);
+	 if ($rngflag == 1) {
+	   $lowprz=  explode(';', $rngval); 
+        }
+	if ($caratflag == 1) {
+	   $lowcarat=  explode(';', $caratval); 
+        }
+	
+	if($fltrflag == 0)
+	{
+	  if($caratflag  == 1 && $rngflag == 1){
+		$prdid = array('caratlow'=>$lowcarat[0],'carathigh'=>$lowcarat[1],'id'=>$params['catid'],'lowprz'=>$lowprz[0],'highprz'=>$lowprz[1],'selctn'=>1);
+		$rst = $this->getfltrProdsbycatid($prdid);
+		$cnt=count($rst); 
+	  }
+	  else if($caratflag == 1){
+		$prdid = array('caratlow'=>$lowcarat[0],'carathigh'=>$lowcarat[1],'id'=>$params['catid'],'selctn'=>2);
+		$rst = $this->getfltrProdsbycatid($prdid);
+		$cnt=count($rst); 
+	  }
+	  else if ($rngflag == 1) {
+		 $prdid = array('lowprz'=>$lowprz[0],'highprz'=>$lowprz[1],'id'=>$params['catid'],'selctn'=>3);
+		 $rst = $this->getfltrProdsbycatid($prdid);
+		 $cnt=count($rst); 
+	  }
+	}
+	else
+	{
+	  foreach ($prdids as $val) {
+	     if($caratflag  == 1 && $rngflag == 1){
+		$prdid = array('pid' => $val,'caratlow'=>$lowcarat[0],'carathigh'=>$lowcarat[1],'lowprz'=>$lowprz[0],'highprz'=>$lowprz[1],'selflg'=>1);
+	     }
+	     else if($caratflag == 1)
+	     {
+	        $prdid = array('pid' => $val,'caratlow'=>$lowcarat[0],'carathigh'=>$lowcarat[1],'selflg'=>2);
+	     }
+	     else if ($rngflag == 1) {
+		 $prdid = array('pid' => $val,'lowprz'=>$lowprz[0],'highprz'=>$lowprz[1],'selflg'=>3);
+	     }
+	     else{
+	         $prdid = array('pid' => $val,'selflg'=>4); 
+	     }
+		
             $rsst = $this->getProductdetailbypid($prdid);
-            if (!empty($rsst)) {
+            if (!empty($rsst)) { 
                 $rst[] = $rsst;
                 $cnt++;
             }
-        }
+	  }
+	}
         if ($res) {
             $error = array('err_code' => 0, 'err_msg' => 'details fetched successfully');
         } else {
@@ -4107,6 +4287,283 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
     public function getProductdetailbypid($params) {
 
         global $comm;
+
+        $sqlglb = 'SET GLOBAL group_concat_max_len = 1000000';
+
+        $res = $this->query($sqlglb); 
+        $sql = "SELECT 
+		    productid,
+                             productid AS pid,
+                             product_code,
+                             vendorid,
+                             vendor_prd_code,
+                             leadTime,
+			     returneligible,
+			     productDescription,
+                             jewelleryType,
+                             product_name,
+                             product_seo_name,
+			     gender,
+                             product_weight,
+                             diamond_setting,
+                             metal_weight,
+                             making_charges,
+			     procurement_cost,
+			     margin,
+			     measurement,
+			     customise_purity,
+			     customise_color,
+			     certificate,
+                             has_diamond,
+                             has_solitaire,
+                             has_uncut,
+                             has_gemstone,
+                             active_flag, 
+                             createdon,
+                             updatedon,
+                             updatedby,
+			      (SELECT GROUP_CONCAT(diamond_id) FROM tbl_product_diamond_mapping WHERE productid = pid AND active_flag = 1 ) AS allDimonds,
+                            (SELECT GROUP_CONCAT(carat) FROM tbl_product_diamond_mapping WHERE FIND_IN_SET(diamond_id,allDimonds)) AS dmdcarat,
+                            (SELECT GROUP_CONCAT(total_no) FROM tbl_product_diamond_mapping WHERE FIND_IN_SET(diamond_id,allDimonds)) AS totaldmd,
+                            (SELECT GROUP_CONCAT(shape) FROM tbl_product_diamond_mapping WHERE FIND_IN_SET(diamond_id,allDimonds)) AS shape,
+                           
+			    (SELECT GROUP_CONCAT(id) FROM tbl_diamond_quality_mapping WHERE diamond_id = allDimonds AND active_flag = 1 ) AS DimondQuality,
+                            (SELECT GROUP_CONCAT(dname) FROM tbl_diamond_quality_master WHERE FIND_IN_SET(id,DimondQuality)) AS dmdQ,
+                            (SELECT GROUP_CONCAT(price_per_carat order by price_per_carat ASC) FROM tbl_diamond_quality_master WHERE FIND_IN_SET(id,DimondQuality)) AS dmdQPricepercarat,
+                             (SELECT min(price_per_carat) FROM tbl_diamond_quality_master WHERE FIND_IN_SET(id,DimondQuality)) AS dmdlowp,
+                             (SELECT max(price_per_carat) FROM tbl_diamond_quality_master WHERE FIND_IN_SET(id,DimondQuality)) AS dmdhighp,
+
+
+                            (SELECT GROUP_CONCAT(gemstone_id) FROM tbl_product_gemstone_mapping WHERE productid = pid AND active_flag = 1 ) AS allGemstone,
+                            (SELECT GROUP_CONCAT(gemstone_name) FROM tbl_gemstone_master WHERE FIND_IN_SET(id,allGemstone)) AS gemstoneName,
+                            (SELECT GROUP_CONCAT(carat) FROM tbl_product_gemstone_mapping WHERE FIND_IN_SET(gemstone_id,allGemstone) AND productid =pid) AS gemscarat ,
+                            (SELECT GROUP_CONCAT(total_no) FROM tbl_product_gemstone_mapping WHERE FIND_IN_SET(gemstone_id,allGemstone) AND productid =pid) AS totalgems,
+                            (SELECT GROUP_CONCAT(price_per_carat) FROM tbl_product_gemstone_mapping WHERE FIND_IN_SET(gemstone_id,allGemstone) AND productid =pid) AS gemsPricepercarat,
+
+
+                            (SELECT GROUP_CONCAT(solitaire_id) FROM tbl_product_solitaire_mapping WHERE productid = pid AND active_flag = 1 ) AS allSolitaire,
+                            (SELECT GROUP_CONCAT(no_of_solitaire) FROM tbl_product_solitaire_mapping WHERE FIND_IN_SET(solitaire_id,allSolitaire) AND productid =pid) AS totalSolitaire,
+                            (SELECT GROUP_CONCAT(carat) FROM tbl_product_solitaire_mapping WHERE FIND_IN_SET(solitaire_id,allSolitaire) AND productid =pid) AS Solicarat,
+                            (SELECT GROUP_CONCAT(price_per_carat) FROM tbl_product_solitaire_mapping WHERE FIND_IN_SET(solitaire_id,allSolitaire) AND productid =pid) AS SoliPricepercarat,
+                            
+                            (SELECT GROUP_CONCAT(uncut_id) FROM tbl_product_uncut_mapping WHERE productid = pid AND active_flag = 1 ) AS allUncut,
+                            (SELECT GROUP_CONCAT(total_no) FROM tbl_product_uncut_mapping WHERE FIND_IN_SET(uncut_id,allUncut) AND productid =pid) AS totalUncut,
+                            (SELECT GROUP_CONCAT(carat) FROM tbl_product_uncut_mapping WHERE FIND_IN_SET(uncut_id,allUncut) AND productid =pid) AS Uncutcarat,
+                            (SELECT GROUP_CONCAT(price_per_carat) FROM tbl_product_uncut_mapping WHERE FIND_IN_SET(uncut_id,allUncut) AND productid =pid) AS UncutPricepercarat,
+                            
+                            (SELECT GROUP_CONCAT(id) FROM tbl_product_metal_purity_mapping WHERE productid = pid ) AS allmetalpurity,
+                            (SELECT GROUP_CONCAT(dvalue) FROM tbl_metal_purity_master WHERE FIND_IN_SET(id,allmetalpurity)) AS purity,
+                            (SELECT GROUP_CONCAT(price order by price DESC) FROM tbl_metal_purity_master WHERE FIND_IN_SET(id,allmetalpurity) and active_flag=1) AS purprice,
+                            (SELECT min(price) FROM tbl_metal_purity_master WHERE FIND_IN_SET(id,allmetalpurity)) AS caratlowp,
+                            (SELECT max(price) FROM tbl_metal_purity_master WHERE FIND_IN_SET(id,allmetalpurity)) AS carathighp,
+                            
+                            (SELECT GROUP_CONCAT(id) FROM tbl_product_metal_color_mapping WHERE productid = pid AND active_flag = 1 ) AS allmetalcolor,
+                            (SELECT GROUP_CONCAT(attributeid) FROM tbl_product_attributes_mapping WHERE productid = pid AND active_flag = 1 ) AS attrVals,
+                            (SELECT GROUP_CONCAT(catid) FROM tbl_category_product_mapping WHERE productid = pid AND active_flag = 1 ) AS catpro,
+                            (SELECT GROUP_CONCAT(attributeid) FROM tbl_product_attributes_mapping WHERE productid = pid AND active_flag = 1 ) AS attrpro,
+                            (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND active_flag !=2 ORDER BY
+                            image_sequence DESC) AS images
+			    
+	  FROM tbl_product_master WHERE active_flag = 1 AND productid =" . $params['pid'] . "";
+
+        $price = $comm->IND_money_format(price);
+
+         
+        $res = $this->query($sql);
+        if ($res) {
+            while ($row = $this->fetchData($res)) {
+ 
+	       $arr['prdId'] = $row['productid'];
+                $arr['prdCod'] = $row['product_code'];
+                $arr['vendorid'] = $row['vendorid'];
+                $arr['vendor_prd_code'] = $row['vendor_prd_code'];
+                $arr['leadTime'] = $row['leadTime'];
+                $arr['returneligible'] = $row['returneligible'];
+                $arr['productDescription'] = $row['productDescription'];
+                $arr['jewelleryType'] = $row['jewelleryType'];
+                $arr['prdNm'] = $row['product_name'];
+                $arr['product_seo_name'] = $row['product_seo_name'];
+                $arr['gender'] = $row['gender'];
+                $arr['product_weight'] = $row['product_weight'];
+                $arr['diamond_setting'] = $row['diamond_setting'];
+                $arr['metal_weight'] = $row['metal_weight'];
+                $arr['making_charges'] = $row['making_charges'];
+                $arr['procurement_cost'] = $row['procurement_cost'];
+                $arr['margin'] = $row['margin'];
+                $arr['measurement'] = $row['measurement'];
+                $arr['custPurty'] = $row['customise_purity'];
+                $arr['custClor'] = $row['customise_color'];
+                $arr['certificate'] = $row['certificate'];
+                $arr['hasDmd'] = $row['has_diamond'];
+                $arr['hasSol'] = $row['has_solitaire'];
+                $arr['hasUnct'] = $row['has_uncut'];
+                $arr['hasGem'] = $row['has_gemstone'];
+                $arr['active_flag'] = $row['active_flag'];
+                $arr['createdon'] = $row['createdon'];
+                $arr['updatedon'] = $row['updatedon'];
+                $arr['updatedby'] = $row['updatedby'];
+                $arr['hasDmd'] = $row['has_diamond'];
+                $arr['caratlowp'] = $row['caratlowp'];
+                $arr['carathighp'] = $row['carathighp'];
+                $arr['dmdlowp'] = $row['dmdlowp'];
+                $arr['dmdhighp'] = $row['dmdhighp'];
+
+                $arr['allDimonds'] = $row['allDimonds'];
+                $arr['dmdcarat'] = $row['dmdcarat'];
+                $arr['totaldmd'] = $row['totaldmd'];
+                $arr['shape'] = $row['shape'];
+
+                $arr['DimondQuality'] = $row['DimondQuality'];
+                $arr['dmdQ'] = $row['dmdQ'];
+                $arr['dmdQPricepercarat'] = $row['dmdQPricepercarat'];
+
+                $arr['allGemstone'] = $row['allGemstone'];
+                $arr['gemstoneName'] = $row['gemstoneName'];
+
+                $arr['totalgems'] = $row['totalgems'];
+                $arr['gemscarat'] = $row['gemscarat'];
+                $arr['gemsPricepercarat'] = $row['gemsPricepercarat'];
+
+                $arr['allSolitaire'] = $row['allSolitaire'];
+                $arr['totalSolitaire'] = $row['totalSolitaire'];
+                $arr['Solicarat'] = $row['Solicarat'];
+                $arr['SoliPricepercarat'] = $row['SoliPricepercarat'];
+
+                $arr['allUncut'] = $row['allUncut'];
+                $arr['totalUncut'] = $row['totalUncut'];
+                $arr['Uncutcarat'] = $row['Uncutcarat'];
+                $arr['UncutPricepercarat'] = $row['UncutPricepercarat'];
+
+                $arr['allmetalpurity'] = $row['allmetalpurity'];
+                $arr['purity'] = $row['purity'];
+                $arr['purprice'] = $row['purprice'];
+                $arr['allmetalcolor'] = $row['allmetalcolor'];
+                $arr['default_image'] = $row['default_image'];
+                $arr['images'] = trim($row['images'], ',');
+                $arr['parntcatname'] = $row['parntcatname'];
+                $arr['chldcatname'] = $row['chldcatname'];
+
+                if ($row['jewelleryType'] === '1') {
+                    $arr['jwelType'] = 'Gold';
+                } else if ($row['jewelleryType'] === '2') {
+                    $arr['jwelType'] = 'Plain Gold';
+                } else if ($row['jewelleryType'] === '3') {
+                    $arr['jwelType'] = 'Platinum';
+                }
+                 $price = 0;
+                $vatRate = (1 / 100);
+                if ($arr['hasSol'] === '1') {
+                    $Solicarat = $row['Solicarat'];
+                    $Soliprc = $row['SoliPricepercarat'];
+
+                    $price = $price + ($Solicarat * $Soliprc);
+                }
+                if ($arr['hasDmd'] === '1') {
+
+                    $dmdPricelow = ($row['dmdcarat']) * ($row['dmdlowp']);
+                    $dmdPricehigh = ($row['dmdcarat']) * ($row['dmdhighp']);
+                }
+
+                if ($arr['hasUnct'] === '1') {
+                    $Uncutcarat = $row['Uncutcarat'];
+                    $Uncutprc = $row['UncutPricepercarat'];
+
+                    $price = $price + ($Uncutcarat * $Uncutprc);
+                }
+                if ($arr['hasGem'] === '1') {
+                    $Gemscarat = $row['gemscarat'];
+                    $Gemsprc = $row['gemsPricepercarat'];
+
+
+                    $price = $price + ($Gemscarat * $Gemsprc);
+                }
+
+                if ($row['chldcatname'] == 'Rings') {
+
+                    $changeInWeightsizelow = (5 - 14) * 0.05;
+                    $changeInWeightsizehigh = (25 - 14) * 0.05;
+                    $newWeightlow = $row['metal_weight'] + $changeInWeightsizelow;
+                    $newWeighthigh = $row['metal_weight'] + $changeInWeightsizehigh;
+                } else if ($row['chldcatname'] === 'Bangles') {
+                    $changeInWeightsizelow = (2.2 - 2.4) * 7;
+                    $changeInWeightsizehigh = (2.9 - 2.4) * 7;
+                    $newWeightlow = $row['metal_weight'] + $changeInWeightsizelow;
+                    $newWeighthigh = $row['metal_weight'] + $changeInWeightsizehigh;
+                } else if ($row['chldcatname'] !== 'Rings' || $row['chldcatname'] !== 'Bangles') {
+                    $changeInWeightsizelow = (0 - 0) * mtlWgDav;
+                    $changeInWeightsizehigh = (0 - 0) * mtlWgDav;
+                    $newWeightlow = $row['metal_weight'] + $changeInWeightsizelow;
+                    $newWeighthigh = $row['metal_weight'] + $changeInWeightsizehigh;
+                }
+
+                $newWeightlow = $newWeightlow;
+                $newWeighthigh = $newWeighthigh;
+
+                $goldPricelowp = $newWeightlow * $row['caratlowp'];
+                $goldPricehighp = $newWeighthigh * $row['carathighp'];
+
+                $mkChargeslowp = $row['making_charges'] * $newWeightlow;
+                $mkChargeshighp = $row['making_charges'] * $newWeighthigh;
+
+                $ttllowp = ($goldPricelowp + $dmdPricelow + $mkChargeslowp + $price);
+                $ttlhighp = ($goldPricehighp + $dmdPricehigh + $mkChargeshighp + $price);
+
+                $totalNewPricelow = round($ttllowp + ($ttllowp * $vatRate));
+                $totalNewPricehigh = round($ttlhighp + ($ttlhighp * $vatRate));
+
+                $arr['totalprclow'] = $totalNewPricelow;
+                $arr['totalprchigh'] = $totalNewPricehigh;
+               
+ 
+		$totalNewPricelowArr[]=array($row['productid']=>$totalNewPricelow);
+                $carat[]=array($row['productid']=> $arr['dmdcarat']);
+		 $totalNewPricehighArr[]=array($row['productid']=>$totalNewPricehigh);
+		
+                
+            }
+	 
+	    if($params['selflg']== 1)
+	    { 
+	       if( (($arr['dmdcarat'] >= $params['caratlow']) && ($arr['dmdcarat'] <= $params['carathigh'])) && (($arr['totalprclow'] >= $params['lowprz']) && ($arr['totalprclow'] <= $params['highprz'])))
+	       {
+		 return $arr;
+	       }
+	    }
+	    else if($params['selflg']== 2)
+	    { 
+	      if( ( $arr['dmdcarat'] >= $params['caratlow']) && ( $arr['dmdcarat'] <= $params['carathigh']))
+	      { 
+		  return $arr;  
+	      }
+	    }
+	    else if($params['selflg'] == 3)
+	    {
+	      if($arr['totalprclow'] >= $params['lowprz'] && $arr['totalprclow'] <= $params['highprz'])
+	      {
+		   return $arr;
+	      }
+	    }
+	    else{
+	       return $arr;
+	    }
+        } 
+	
+	 
+       
+    }
+    
+    public function getfltrProdsbycatid($params)
+    {
+      
+        global $comm;
+        $cid = urldecode($params['id']);
+
+        $sqlcount = "SELECT productid,
+	      (SELECT GROUP_CONCAT(productid) FROM tbl_category_product_mapping WHERE catid= " . $cid . " AND active_flag =1 ) AS prdids
+	      FROM tbl_product_master WHERE active_flag =1 HAVING 
+	      FIND_IN_SET(productid,prdids)   ";
+        $rescnt = $this->query($sqlcount);
+        $prdtotal = $this->numRows($rescnt); 
 
         $sqlglb = 'SET GLOBAL group_concat_max_len = 1000000';
 
@@ -4149,7 +4606,9 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 			    
 			    (SELECT GROUP_CONCAT(id) FROM tbl_diamond_quality_mapping WHERE diamond_id = allDimonds AND active_flag = 1 ) AS DimondQuality,
                             (SELECT GROUP_CONCAT(dname) FROM tbl_diamond_quality_master WHERE FIND_IN_SET(id,DimondQuality)) AS dmdQ,
-                            (SELECT GROUP_CONCAT(price_per_carat) FROM tbl_diamond_quality_master WHERE FIND_IN_SET(id,DimondQuality)) AS dmdQPricepercarat,
+                            (SELECT GROUP_CONCAT(price_per_carat order by price_per_carat ASC) FROM tbl_diamond_quality_master WHERE FIND_IN_SET(id,DimondQuality)) AS dmdQPricepercarat,
+                             (SELECT min(price_per_carat) FROM tbl_diamond_quality_master WHERE FIND_IN_SET(id,DimondQuality)) AS dmdlowp,
+                             (SELECT max(price_per_carat) FROM tbl_diamond_quality_master WHERE FIND_IN_SET(id,DimondQuality)) AS dmdhighp,
 
 
                             (SELECT GROUP_CONCAT(gemstone_id) FROM tbl_product_gemstone_mapping WHERE productid = pid AND active_flag = 1 ) AS allGemstone,
@@ -4171,24 +4630,42 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                             
                             (SELECT GROUP_CONCAT(id) FROM tbl_product_metal_purity_mapping WHERE productid = pid ) AS allmetalpurity,
                             (SELECT GROUP_CONCAT(dvalue) FROM tbl_metal_purity_master WHERE FIND_IN_SET(id,allmetalpurity)) AS purity,
-                            (SELECT GROUP_CONCAT(price) FROM tbl_metal_purity_master WHERE FIND_IN_SET(id,allmetalpurity)) AS purprice,
+                            (SELECT GROUP_CONCAT(price order by price DESC) FROM tbl_metal_purity_master WHERE FIND_IN_SET(id,allmetalpurity) and active_flag=1) AS purprice,
+                            (SELECT min(price) FROM tbl_metal_purity_master WHERE FIND_IN_SET(id,allmetalpurity)) AS caratlowp,
+                            (SELECT max(price) FROM tbl_metal_purity_master WHERE FIND_IN_SET(id,allmetalpurity)) AS carathighp,
                             
                             (SELECT GROUP_CONCAT(id) FROM tbl_product_metal_color_mapping WHERE productid = pid AND active_flag = 1 ) AS allmetalcolor,
                             (SELECT GROUP_CONCAT(attributeid) FROM tbl_product_attributes_mapping WHERE productid = pid AND active_flag = 1 ) AS attrVals,
                             (SELECT GROUP_CONCAT(catid) FROM tbl_category_product_mapping WHERE productid = pid AND active_flag = 1 ) AS catpro,
                             (SELECT GROUP_CONCAT(attributeid) FROM tbl_product_attributes_mapping WHERE productid = pid AND active_flag = 1 ) AS attrpro,
                             (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND active_flag !=2 ORDER BY
-                            image_sequence DESC) AS images
+                            image_sequence DESC) AS images,
 			    
-	  FROM tbl_product_master WHERE active_flag = 1 AND productid =" . $params['pid'] . "";
-
+			    (SELECT pcatid FROM tbl_category_master WHERE catid =" . $cid . ") AS cpcatid,
+			    (SELECT cat_name FROM tbl_category_master WHERE catid = cpcatid ) AS parntcatname,
+			    (SELECT cat_name FROM tbl_category_master WHERE catid =" . $cid . " ) AS chldcatname,
+			    (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND active_flag != 2 AND  default_img_flag=1) AS default_image
+			    
+	  FROM tbl_product_master WHERE active_flag =1 AND productid  IN (SELECT
+	    productid FROM tbl_category_product_mapping WHERE catid=" . $cid . " AND active_flag =1)";
+//         $page = ($params['page'] ? $params['page'] : 1);
+//        $limit = ($params['limit'] ? $params['limit'] : 12);
+//
+//        if ($limit > 12) {
+//            $limit = 12;
+//        }
+//
+//        if (!empty($page)) {
+//            $start = ($page * $limit) - $limit;
+//            $sql.=" LIMIT " . $start . ",$limit";
+//        }
         $price = $comm->IND_money_format(price);
-
-
+        
         $res = $this->query($sql);
+        
         if ($res) {
             while ($row = $this->fetchData($res)) {
-
+		$arr=array();
                 $arr['prdId'] = $row['productid'];
                 $arr['prdCod'] = $row['product_code'];
                 $arr['vendorid'] = $row['vendorid'];
@@ -4217,7 +4694,11 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                 $arr['active_flag'] = $row['active_flag'];
                 $arr['createdon'] = $row['createdon'];
                 $arr['updatedon'] = $row['updatedon'];
-                $arr['updatedby'] = $row['updatedby'];
+                $arr['updatedby'] = $row['updatedby']; 
+                $arr['caratlowp'] = $row['caratlowp'];
+                $arr['carathighp'] = $row['carathighp'];
+                $arr['dmdlowp'] = $row['dmdlowp'];
+                $arr['dmdhighp'] = $row['dmdhighp'];
 
                 $arr['allDimonds'] = $row['allDimonds'];
                 $arr['dmdcarat'] = $row['dmdcarat'];
@@ -4245,11 +4726,15 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                 $arr['Uncutcarat'] = $row['Uncutcarat'];
                 $arr['UncutPricepercarat'] = $row['UncutPricepercarat'];
 
+                $arr['default_image'] = $row['default_image'];
                 $arr['allmetalpurity'] = $row['allmetalpurity'];
                 $arr['purity'] = $row['purity'];
                 $arr['purprice'] = $row['purprice'];
                 $arr['allmetalcolor'] = $row['allmetalcolor'];
-                $arr['images'] = $row['images'];
+                $arr['default_image'] = $row['default_image'];
+                $arr['images'] = trim($row['images'], ',');
+                $arr['parntcatname'] = $row['parntcatname'];
+                $arr['chldcatname'] = $row['chldcatname'];
 
                 if ($row['jewelleryType'] === '1') {
                     $arr['jwelType'] = 'Gold';
@@ -4259,36 +4744,327 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                     $arr['jwelType'] = 'Platinum';
                 }
 
-                if ($arr['hasGem'] === '1') {
-                    if ($row['allGemstone']) {
-                        $count = 0;
-                        $sqlGemstoneMapping = " SELECT 
-                                                            productid,
-                                                            gemstone_name,
-                                                            total_no,
-                                                            carat,
-                                                            price_per_carat  
-                                                    FROM 
-                                                            tbl_product_gemstone_mapping 
-                                                    WHERE 
-                                                            productid IN(SELECT productid FROM tbl_product_master WHERE productid=pid ORDER BY createdon ASC  
-                                                       ";
-                        $resGemstoneMapping = $this->query($sqlGemstoneMapping);
-                        while ($rowGemstoneMapping = $this->fetchData($resGemstoneMapping)) {
-                            $arrgemstoneDetails[] = $rowGemstoneMapping;
-                            $count++;
-                        }
-                        $gemstoneDetails = $arrgemstoneDetails;
-                    }
-                    $arr['GemstoneDetails'] = $gemstoneDetails;
+    
+		 $price = 0;
+                $vatRate = (1 / 100);
+                if ($arr['hasSol'] === '1') {
+                    $Solicarat = $row['Solicarat'];
+                    $Soliprc = $row['SoliPricepercarat'];
+
+                    $price = $price + ($Solicarat * $Soliprc);
                 }
+                if ($arr['hasDmd'] === '1') {
+
+                    $dmdPricelow = ($row['dmdcarat']) * ($row['dmdlowp']);
+                    $dmdPricehigh = ($row['dmdcarat']) * ($row['dmdhighp']);
+                }
+
+                if ($arr['hasUnct'] === '1') {
+                    $Uncutcarat = $row['Uncutcarat'];
+                    $Uncutprc = $row['UncutPricepercarat'];
+
+                    $price = $price + ($Uncutcarat * $Uncutprc);
+                }
+                if ($arr['hasGem'] === '1') {
+                    $Gemscarat = $row['gemscarat'];
+                    $Gemsprc = $row['gemsPricepercarat'];
+
+
+                    $price = $price + ($Gemscarat * $Gemsprc);
+                }
+
+                if ($row['chldcatname'] == 'Rings') {
+
+                    $changeInWeightsizelow = (5 - 14) * 0.05;
+                    $changeInWeightsizehigh = (25 - 14) * 0.05;
+                    $newWeightlow = $row['metal_weight'] + $changeInWeightsizelow;
+                    $newWeighthigh = $row['metal_weight'] + $changeInWeightsizehigh;
+                } else if ($row['chldcatname'] === 'Bangles') {
+                    $changeInWeightsizelow = (2.2 - 2.4) * 7;
+                    $changeInWeightsizehigh = (2.9 - 2.4) * 7;
+                    $newWeightlow = $row['metal_weight'] + $changeInWeightsizelow;
+                    $newWeighthigh = $row['metal_weight'] + $changeInWeightsizehigh;
+                } else if ($row['chldcatname'] !== 'Rings' || $row['chldcatname'] !== 'Bangles') {
+                    $changeInWeightsizelow = (0 - 0) * mtlWgDav;
+                    $changeInWeightsizehigh = (0 - 0) * mtlWgDav;
+                    $newWeightlow = $row['metal_weight'] + $changeInWeightsizelow;
+                    $newWeighthigh = $row['metal_weight'] + $changeInWeightsizehigh;
+                }
+
+                $newWeightlow = $newWeightlow;
+                $newWeighthigh = $newWeighthigh;
+
+                $goldPricelowp = $newWeightlow * $row['caratlowp'];
+                $goldPricehighp = $newWeighthigh * $row['carathighp'];
+
+                $mkChargeslowp = $row['making_charges'] * $newWeightlow;
+                $mkChargeshighp = $row['making_charges'] * $newWeighthigh;
+
+                $ttllowp = ($goldPricelowp + $dmdPricelow + $mkChargeslowp + $price);
+                $ttlhighp = ($goldPricehighp + $dmdPricehigh + $mkChargeshighp + $price);
+
+                $totalNewPricelow = round($ttllowp + ($ttllowp * $vatRate));
+                $totalNewPricehigh = round($ttlhighp + ($ttlhighp * $vatRate));
+
+                $arr['totalprclow'] = $totalNewPricelow;
+                $arr['totalprchigh'] = $totalNewPricehigh;
+		 
+		$totalNewPricelowArr[]=array($row['productid']=>$totalNewPricelow);
+		 
+		$totalpric[] = $totalNewPricelowArr;
+               
+                $totalNewPricehighArr[] = $totalNewPricehigh;
+		
+		  
+		if($params['selctn'] == 1)
+		{
+		  if( (($arr['dmdcarat'] >= $params['caratlow']) && ($arr['dmdcarat'] <= $params['carathigh'])) && (($arr['totalprclow'] >= $params['lowprz']) && ($arr['totalprclow'] <= $params['highprz'])))
+		  {
+		     $reslt[] = $arr;  
+		  }
+
+                  }
+		else if($params['selctn'] == 2)
+		{
+		  if( ( $arr['dmdcarat'] >= $params['caratlow']) && ( $arr['dmdcarat'] <= $params['carathigh']))
+		  { 
+		      $reslt[] = $arr;  
+		  }
+		}
+		else if($params['selctn'] == 3)
+		{
+		  if( ($arr['totalprclow'] >= $params['lowprz']) && ($arr['totalprclow'] <= $params['highprz']))
+		  { 
+		      $reslt[] = $arr;  
+		  }
+		}
+		 
+		   
             }
+	    
+	     foreach ($totalNewPricelowArr as $key => $row) {
+	      foreach($row as $key1=>$val1){
+		$mid[$key1]  = $val1;
+	      } 
+	    } 
+	    array_multisort($mid, SORT_ASC, $totalNewPricelowArr);
+             
+	    sort($totalNewPricehighArr);
+	    
+	    
+            
         } else {
             
         }
-
-        return $arr;
+	
+        $result = array('result' => $reslt, 'error' => $error, 'total' => $prdtotal,'prclarr' => $totalNewPricelowArr, 'prcharr' => $totalNewPricehighArr, 'carat' => $carat);
+        return $reslt;
     }
+       
+    public function getallprzbycatid($params)
+    {
+	
+        global $comm;
+        $cid = urldecode($params['id']);
+ 
+        $sqlglb = 'SET GLOBAL group_concat_max_len = 1000000';
+
+        $res = $this->query($sqlglb);
+        $sql = "SELECT 
+		    productid,
+                             productid AS pid, 
+                             jewelleryType, 
+                             product_weight, 
+                             metal_weight,
+                             making_charges,
+			     procurement_cost,  
+                             has_diamond,
+                             has_solitaire,
+                             has_uncut,
+                             has_gemstone, 
+			     
+			     (SELECT GROUP_CONCAT(diamond_id) FROM tbl_product_diamond_mapping WHERE productid = pid AND active_flag = 1 ) AS allDimonds,
+                            (SELECT GROUP_CONCAT(carat) FROM tbl_product_diamond_mapping WHERE FIND_IN_SET(diamond_id,allDimonds)) AS dmdcarat,
+                            (SELECT GROUP_CONCAT(total_no) FROM tbl_product_diamond_mapping WHERE FIND_IN_SET(diamond_id,allDimonds)) AS totaldmd, 
+			    
+			    (SELECT GROUP_CONCAT(id) FROM tbl_diamond_quality_mapping WHERE diamond_id = allDimonds AND active_flag = 1 ) AS DimondQuality, 
+                            (SELECT GROUP_CONCAT(price_per_carat order by price_per_carat ASC) FROM tbl_diamond_quality_master WHERE FIND_IN_SET(id,DimondQuality)) AS dmdQPricepercarat,
+                             (SELECT min(price_per_carat) FROM tbl_diamond_quality_master WHERE FIND_IN_SET(id,DimondQuality)) AS dmdlowp,
+                             (SELECT max(price_per_carat) FROM tbl_diamond_quality_master WHERE FIND_IN_SET(id,DimondQuality)) AS dmdhighp,
+ 
+                            (SELECT GROUP_CONCAT(gemstone_id) FROM tbl_product_gemstone_mapping WHERE productid = pid AND active_flag = 1 ) AS allGemstone,
+                            (SELECT GROUP_CONCAT(gemstone_name) FROM tbl_gemstone_master WHERE FIND_IN_SET(id,allGemstone)) AS gemstoneName,
+                            (SELECT GROUP_CONCAT(carat) FROM tbl_product_gemstone_mapping WHERE FIND_IN_SET(gemstone_id,allGemstone) AND productid =pid) AS gemscarat ,
+                            (SELECT GROUP_CONCAT(total_no) FROM tbl_product_gemstone_mapping WHERE FIND_IN_SET(gemstone_id,allGemstone) AND productid =pid) AS totalgems,
+                            (SELECT GROUP_CONCAT(price_per_carat) FROM tbl_product_gemstone_mapping WHERE FIND_IN_SET(gemstone_id,allGemstone) AND productid =pid) AS gemsPricepercarat,
+ 
+                            (SELECT GROUP_CONCAT(solitaire_id) FROM tbl_product_solitaire_mapping WHERE productid = pid AND active_flag = 1 ) AS allSolitaire,
+                            (SELECT GROUP_CONCAT(no_of_solitaire) FROM tbl_product_solitaire_mapping WHERE FIND_IN_SET(solitaire_id,allSolitaire) AND productid =pid) AS totalSolitaire,
+                            (SELECT GROUP_CONCAT(carat) FROM tbl_product_solitaire_mapping WHERE FIND_IN_SET(solitaire_id,allSolitaire) AND productid =pid) AS Solicarat,
+                            (SELECT GROUP_CONCAT(price_per_carat) FROM tbl_product_solitaire_mapping WHERE FIND_IN_SET(solitaire_id,allSolitaire) AND productid =pid) AS SoliPricepercarat,
+                            
+                            (SELECT GROUP_CONCAT(uncut_id) FROM tbl_product_uncut_mapping WHERE productid = pid AND active_flag = 1 ) AS allUncut,
+                            (SELECT GROUP_CONCAT(total_no) FROM tbl_product_uncut_mapping WHERE FIND_IN_SET(uncut_id,allUncut) AND productid =pid) AS totalUncut,
+                            (SELECT GROUP_CONCAT(carat) FROM tbl_product_uncut_mapping WHERE FIND_IN_SET(uncut_id,allUncut) AND productid =pid) AS Uncutcarat,
+                            (SELECT GROUP_CONCAT(price_per_carat) FROM tbl_product_uncut_mapping WHERE FIND_IN_SET(uncut_id,allUncut) AND productid =pid) AS UncutPricepercarat,
+                            
+                            (SELECT GROUP_CONCAT(id) FROM tbl_product_metal_purity_mapping WHERE productid = pid ) AS allmetalpurity,
+                            (SELECT GROUP_CONCAT(dvalue) FROM tbl_metal_purity_master WHERE FIND_IN_SET(id,allmetalpurity)) AS purity,
+                            (SELECT GROUP_CONCAT(price order by price DESC) FROM tbl_metal_purity_master WHERE FIND_IN_SET(id,allmetalpurity) and active_flag=1) AS purprice,
+                            (SELECT min(price) FROM tbl_metal_purity_master WHERE FIND_IN_SET(id,allmetalpurity)) AS caratlowp,
+                            (SELECT max(price) FROM tbl_metal_purity_master WHERE FIND_IN_SET(id,allmetalpurity)) AS carathighp
+                             
+			    
+	  FROM tbl_product_master WHERE active_flag =1 AND productid  IN (SELECT
+	    productid FROM tbl_category_product_mapping WHERE catid=" . $cid . " AND active_flag =1)";
+
+        $price = $comm->IND_money_format(price);
+ 
+        $res = $this->query($sql);
+        if ($res) {
+            while ($row = $this->fetchData($res)) {
+
+                $arr['prdId'] = $row['productid'];  
+                $arr['jewelleryType'] = $row['jewelleryType']; 
+                $arr['product_weight'] = $row['product_weight']; 
+                $arr['metal_weight'] = $row['metal_weight'];
+                $arr['making_charges'] = $row['making_charges'];
+                $arr['procurement_cost'] = $row['procurement_cost']; 
+                $arr['hasDmd'] = $row['has_diamond'];
+                $arr['hasSol'] = $row['has_solitaire'];
+                $arr['hasUnct'] = $row['has_uncut'];
+                $arr['hasGem'] = $row['has_gemstone']; 
+                $arr['hasDmd'] = $row['has_diamond'];
+                $arr['caratlowp'] = $row['caratlowp'];
+                $arr['carathighp'] = $row['carathighp'];
+                $arr['dmdlowp'] = $row['dmdlowp'];
+                $arr['dmdhighp'] = $row['dmdhighp']; 
+                $arr['allDimonds'] = $row['allDimonds'];
+                $arr['dmdcarat'] = $row['dmdcarat'];
+                $arr['totaldmd'] = $row['totaldmd']; 
+                $arr['dmdQPricepercarat'] = $row['dmdQPricepercarat']; 
+                $arr['allGemstone'] = $row['allGemstone'];
+                $arr['gemstoneName'] = $row['gemstoneName']; 
+                $arr['totalgems'] = $row['totalgems'];
+                $arr['gemscarat'] = $row['gemscarat'];
+                $arr['gemsPricepercarat'] = $row['gemsPricepercarat']; 
+                $arr['allSolitaire'] = $row['allSolitaire'];
+                $arr['totalSolitaire'] = $row['totalSolitaire'];
+                $arr['Solicarat'] = $row['Solicarat'];
+                $arr['SoliPricepercarat'] = $row['SoliPricepercarat']; 
+                $arr['allUncut'] = $row['allUncut'];
+                $arr['totalUncut'] = $row['totalUncut'];
+                $arr['Uncutcarat'] = $row['Uncutcarat']; 
+
+                if ($row['jewelleryType'] === '1') {
+                    $arr['jwelType'] = 'Gold';
+                } else if ($row['jewelleryType'] === '2') {
+                    $arr['jwelType'] = 'Plain Gold';
+                } else if ($row['jewelleryType'] === '3') {
+                    $arr['jwelType'] = 'Platinum';
+                }
+ 
+		 $price = 0;
+                $vatRate = (1 / 100);
+                if ($arr['hasSol'] === '1') {
+                    $Solicarat = $row['Solicarat'];
+                    $Soliprc = $row['SoliPricepercarat'];
+
+                    $price = $price + ($Solicarat * $Soliprc);
+                }
+                if ($arr['hasDmd'] === '1') {
+
+                    $dmdPricelow = ($row['dmdcarat']) * ($row['dmdlowp']);
+                    $dmdPricehigh = ($row['dmdcarat']) * ($row['dmdhighp']);
+                }
+
+                if ($arr['hasUnct'] === '1') {
+                    $Uncutcarat = $row['Uncutcarat'];
+                    $Uncutprc = $row['UncutPricepercarat'];
+
+                    $price = $price + ($Uncutcarat * $Uncutprc);
+                }
+                if ($arr['hasGem'] === '1') {
+                    $Gemscarat = $row['gemscarat'];
+                    $Gemsprc = $row['gemsPricepercarat'];
+
+
+                    $price = $price + ($Gemscarat * $Gemsprc);
+                }
+
+                if ($row['chldcatname'] == 'Rings') {
+
+                    $changeInWeightsizelow = (5 - 14) * 0.05;
+                    $changeInWeightsizehigh = (25 - 14) * 0.05;
+                    $newWeightlow = $row['metal_weight'] + $changeInWeightsizelow;
+                    $newWeighthigh = $row['metal_weight'] + $changeInWeightsizehigh;
+                } else if ($row['chldcatname'] === 'Bangles') {
+                    $changeInWeightsizelow = (2.2 - 2.4) * 7;
+                    $changeInWeightsizehigh = (2.9 - 2.4) * 7;
+                    $newWeightlow = $row['metal_weight'] + $changeInWeightsizelow;
+                    $newWeighthigh = $row['metal_weight'] + $changeInWeightsizehigh;
+                } else if ($row['chldcatname'] !== 'Rings' || $row['chldcatname'] !== 'Bangles') {
+                    $changeInWeightsizelow = (0 - 0) * mtlWgDav;
+                    $changeInWeightsizehigh = (0 - 0) * mtlWgDav;
+                    $newWeightlow = $row['metal_weight'] + $changeInWeightsizelow;
+                    $newWeighthigh = $row['metal_weight'] + $changeInWeightsizehigh;
+                }
+
+                $newWeightlow = $newWeightlow;
+                $newWeighthigh = $newWeighthigh;
+
+                $goldPricelowp = $newWeightlow * $row['caratlowp'];
+                $goldPricehighp = $newWeighthigh * $row['carathighp'];
+
+                $mkChargeslowp = $row['making_charges'] * $newWeightlow;
+                $mkChargeshighp = $row['making_charges'] * $newWeighthigh;
+
+                $ttllowp = ($goldPricelowp + $dmdPricelow + $mkChargeslowp + $price);
+                $ttlhighp = ($goldPricehighp + $dmdPricehigh + $mkChargeshighp + $price);
+
+                $totalNewPricelow = round($ttllowp + ($ttllowp * $vatRate));
+                $totalNewPricehigh = round($ttlhighp + ($ttlhighp * $vatRate));
+
+                $arr['totalprclow'] = $totalNewPricelow;
+                $arr['totalprchigh'] = $totalNewPricehigh;
+ 
+		$totalNewPricelowArr[]=array($row['productid']=>$totalNewPricelow);
+		 
+		$totalpric[] = $totalNewPricelow;
+               
+                $totalNewPricehighArr[] = $totalNewPricehigh;
+		
+		$dmdcarat= $arr['dmdcarat'];
+                 if($dmdcarat){
+                     $carat[]=$dmdcarat;
+                 }
+		
+		  $reslt[] = $arr;
+		
+            }
+	    
+	     foreach ($totalNewPricelowArr as $key => $row) {
+	      foreach($row as $key1=>$val1){
+		$mid[$key1]  = $val1;
+	      } 
+	    } 
+	    array_multisort($mid, SORT_ASC, $totalNewPricelowArr);
+             
+	    sort($totalNewPricehighArr);
+	     sort($totalpric);
+	     sort($carat);
+	     
+            $error = array('err_code' => 0, 'err_msg' => 'details fetched successfully');
+        } else {
+            $error = array('err_code' => 1, 'err_msg' => 'error in fetching details');
+        }
+
+        $result = array( 'przperprdlow' => $totalpric, 'przperprdhigh' => $totalNewPricehighArr,'allcarat'=>$carat);
+        return $result;
+    }
+    
+    
+    
 
 }
 

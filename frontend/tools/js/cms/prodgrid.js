@@ -1,6 +1,9 @@
 var dmdValue = metalValue = soliValue = gemsValue = uncutValue = basicValue = 0;
-
-
+var carat=0;
+var lowp =0;
+var highp=0;
+var frstcar=0;
+var lastcar=0;
 var grandtotal = 0;
 var grandtot = 0;
 var grandtotallow = 0;
@@ -17,8 +20,9 @@ $(document).ready(function () {
     getmenu();
     // var URL = APIDOMAIN + "index.php/?action=getProGrid";
     getprodbyid();
-
-
+    setTimeout(function(){
+    showwishbtn();
+    },1000);
 });
 var Metalwgt;
 function generatelist(obj) {
@@ -140,7 +144,8 @@ function generatelist(obj) {
       var DiaprcH = obj['dmdhighp'];
      dmdPricelow  = (Diacarat * Diaprcl); 
      dmdPricehigh  = (Diacarat * DiaprcH); 
-          
+           var Diaprc = obj['dmdQPricepercarat'];
+       
     }
     
      if (obj['chldcatname'] == 'Rings')
@@ -204,6 +209,13 @@ var goldPricehighp =0;
     grandtotalhigh = common.IND_money_format(grandtothigh, 0); 
     // grandtotal = Number(grandtot).toLocaleString('en');
 
+   var defprice = price + getPurPrice(Mprc, Metalwgt); 
+   defprice = defprice + getbasicprice(Makchrg, Metalwgt);
+   defprice =  defprice + getdmdprice(Diacarat, Diaprc);
+   
+var vat = (1 / 100) * defprice;
+    gtotal = defprice + vat; 
+   grandtotal = gtotal.toFixed();
    
     proStr += '<div class="grid3 transition400" id="' + obj['prdId'] + '"  >';
     // proStr += '<div class="noimgDiv"></div>';
@@ -314,8 +326,8 @@ var goldPricehighp =0;
     proStr += '</div>';
     proStr += '</div>';
     //proStr += '<div class="soc_icons dn">';
-   
-    proStr += '<div class="soc_abs soc_wish2 transition300 fRight" onclick="makeAwish(this, event)"></div>';
+    proStr += '<div class="soc_abs soc_wish2 transition300 fRight" onclick="makeAwish(this, event)" id="prd_'+obj['prdId']+'"  data-size="'+bseSize+'" data-price="'+grandtotal+'"></div>';
+
     //proStr += '<div class="soc_elem soc_comment transition300"></div>';
     //proStr += '<div class="soc_elem soc_share transition300"></div>';
     //proStr += '</div>';
@@ -560,13 +572,13 @@ var limcount = 12;
 $('#gr_foot').on('click', function () {
     
 //     $('#gr_foot').addClass("dn");
-//     setTimeout(function (){
-//        
-//     $('.gridLoad').removeClass("dn");
-//     },500);
+     setTimeout(function (){
+        
+     $('.gridLoad').removeClass("dn");
+     },500);
     
     var page3 = page2 + count++;
-
+    
     var limit = 12;
     var limitend = limit * page3;
     //$('#gr_foot').addClass('transdown');
@@ -581,7 +593,12 @@ $('#gr_foot').on('click', function () {
 
             res = JSON.parse(res);
 
-            if (res['error']['err_code'] == 0) {
+            if (res['error']['err_code'] === 0) {
+	       getProdDtl = res["result"]; 
+                lowp=res["allprdpz"]["przperprdlow"][0];
+               highp=res["allprdpz"]["przperprdhigh"][0];
+               bindFilterUi();
+	       showwishbtn();
                 var total = res['total'];
                 if (total == 1)
                     $('#total_Product').html("<strong>" + total + "</strong> Product");
@@ -617,33 +634,35 @@ $('#gr_foot').on('click', function () {
                     $('#gr_foot').remove();
                 }
             }
-
+             $('.gridLoad').addClass("dn");
         }
 
     });
 
 });
 
-
 function getmenu()
 {
     var menuURL = APIDOMAIN + "index.php/?action=getfiltrmenus&catid=" + id;
     $.ajax({type: 'POST', url: menuURL, success: function (res) {
             var data = JSON.parse(res);
+	   
             var mainmenustr = "";
-            var submenulist = "", stoncnt = 1;
+            var submenulist = "";
 
             if (data['result'] !== null) {
-
-                var reslt = data['result']['atr_val'];
-                $(reslt['result']).each(function (r, n) {
-
+ 
+                var reslt=data['result'];   
+                $(reslt).each(function (r, n) {
+ 
+		  if(n.val !== null)
+		  {
                     mainmenustr += "<div class='ftabB ' >";
                     mainmenustr += "  <div class='ftab fLeft taba' >";
-                    mainmenustr += " " + n['attr_name'].toUpperCase() + " </div> </div>";
+                    mainmenustr += " " + (n.attr_name).toUpperCase() + " </div> </div>";
 
                     submenulist += "<div class='fmenu_elm fLeft' id='" + n.attributeid + "'>";
-                    $(n['attr_values']).each(function (q, p) {
+                    $(n['val'][0]).each(function (q, p) {   
                         var v = parseInt(p);
                         var iconstr = "";
                         if ($.isNumeric(v)) {
@@ -670,18 +689,20 @@ function getmenu()
                         submenulist += " </div> </div>";
                     });
                     submenulist += "</div>";
+		  }
                 });
                 submenulist += "<div class='fmenu_elm fLeft'>";
                 submenulist += '<div class="rangeParent fLeft">';
                 submenulist += '<div class="rngDv">';
-                submenulist += '<input type="text" value="" id="range" onchange="subfltrng(this)">';
+                submenulist += '<input type="text" value="" id="range" >';
+		
                 submenulist += '</div>';
                 submenulist += '</div>';
                 submenulist += '</div>';
                 submenulist += "<div class='fmenu_elm fLeft'>";
                 submenulist += '<div class="rangeParent fLeft">';
                 submenulist += '<div class="rngDv">';
-                submenulist += '<input type="text" id="carat" value="" onchange="subfltrng(this)">';
+                submenulist += '<input type="text" id="carat" value="">';
                 submenulist += '</div>';
                 submenulist += '</div>';
                 submenulist += '</div>';
@@ -700,7 +721,6 @@ function getmenu()
     });
 
 }
-
 var fltrarray = {};
 
 function submenu(ths)
@@ -725,7 +745,7 @@ function submenu(ths)
             } else
             {
                 var tmval = fltrarray[pid][menuid], tmpflag = 0;
-                ;
+                
                 for (var l = 0; l < Object.keys(tmval).length; l++)
                 {
                     if (fltrarray[pid][menuid][l] == tid) {
@@ -749,7 +769,7 @@ function submenu(ths)
             } else
             {
                 var tmval = fltrarray[pid][menuid], tmpflag = 0;
-                ;
+                
                 for (var l = 0; l < Object.keys(tmval).length; l++)
                 {
                     if (fltrarray[pid][menuid][l] == tid) {
@@ -773,7 +793,7 @@ function submenu(ths)
             } else
             {
                 var tmval = fltrarray[pid][menuid], tmpflag = 0;
-                ;
+                
                 for (var l = 0; l < Object.keys(tmval).length; l++)
                 {
                     if (fltrarray[pid][menuid][l] == tid) {
@@ -797,7 +817,7 @@ function submenu(ths)
             } else
             {
                 var tmval = fltrarray[pid][menuid], tmpflag = 0;
-                ;
+                
                 for (var l = 0; l < Object.keys(tmval).length; l++)
                 {
                     if (fltrarray[pid][menuid][l] == tid) {
@@ -821,7 +841,7 @@ function submenu(ths)
             } else
             {
                 var tmval = fltrarray[pid][menuid], tmpflag = 0;
-                ;
+                
                 for (var l = 0; l < Object.keys(tmval).length; l++)
                 {
                     if (fltrarray[pid][menuid][l] == tid) {
@@ -845,7 +865,7 @@ function submenu(ths)
             } else
             {
                 var tmval = fltrarray[pid][menuid], tmpflag = 0;
-                ;
+                
                 for (var l = 0; l < Object.keys(tmval).length; l++)
                 {
                     if (fltrarray[pid][menuid][l] == tid) {
@@ -869,7 +889,7 @@ function submenu(ths)
             } else
             {
                 var tmval = fltrarray[pid][menuid], tmpflag = 0;
-                ;
+                
                 for (var l = 0; l < Object.keys(tmval).length; l++)
                 {
                     if (fltrarray[pid][menuid][l] == tid) {
@@ -893,7 +913,7 @@ function submenu(ths)
             } else
             {
                 var tmval = fltrarray[pid][menuid], tmpflag = 0;
-                ;
+                
                 for (var l = 0; l < Object.keys(tmval).length; l++)
                 {
                     if (fltrarray[pid][menuid][l] == tid) {
@@ -911,22 +931,23 @@ function submenu(ths)
 
     }
 
-    setTimeout(function () {
-
-        if (Object.keys(fltrarray).length == 0) {
-            getprodbyid();
-        } else
-            displayproduct();
-
-    }, 500);
-
+   setTimeout(function () {
+       
+       if (fltrarray[pid] === undefined) {
+           
+           getprodbyid();
+       } else
+           displayproduct();
+      
+  }, 500);
+ 
 }
 
 function subfltrng(ths)
 {
     var rangval = $(ths).val();
     var type = $(ths).attr('id');
-
+    
     switch (type) {
 
         case 'range':
@@ -951,17 +972,38 @@ function getprodbyid()
         success: function (res) {
 
 
-            res = JSON.parse(res);
+            res = JSON.parse(res); 
             if (res['error']['err_code'] == 0) {
-                getProdDtl = res["result"];
+                getProdDtl = res["result"]; 
                 var total = res["total"];
-                if (total == 1)
+		lowp=res["allprdpz"]["przperprdlow"][0];
+		var przarr=new Array();
+		$(res["allprdpz"]["przperprdlow"]).each(function(l,m){
+		   przarr.push(m);
+		});
+		highp =przarr[przarr.length-1];
+		 
+		var carat=res["allprdpz"]["allcarat"];
+		var carr=new Array();
+		$.each(carat,function(i,v){
+		    var car=v;
+		    carr.push(v);
+		});
+               
+                frstcar=carr[0];
+                lastcar=carr[carr.length-1];
+               // lastcar =Math.round(lastcar)+1;
+               
+		bindFilterUi();
+ 	     
+                if (total === 1)
                     $('#total_Product').html("<strong>" + total + "</strong> Product");
                 else
                     $('#total_Product').html("<strong>" + total + "</strong> Products");
                 var obj = res["result"];
                 if (total < 12)
                     $('#gr_foot').remove();
+                    $('.gridLoad').addClass("dn");
                 $('#parnttyp').html('');
                 var parnt = obj[0]['parntcatname'];
                 if (parnt == 'High Jewellery') {
@@ -1005,23 +1047,26 @@ function getprodbyid()
             }
         }
     });
+    
 }
-
-
 
 function displayproduct() {
 
     fltrarray.catid = id;
     var dt = JSON.stringify(fltrarray);
-    var URL = APIDOMAIN + "index.php/?action=getprodByfiltr";
+    var URL = APIDOMAIN + "index.php?action=getprodByfiltr";
     $.ajax({type: 'POST', url: URL, data: {dt: dt}, success: function (result) {
 
             var res = JSON.parse(result);
             if (res['error']['err_code'] == 0) {
                 $('#gr_foot').remove();
+                $('.gridLoad').addClass("dn");
                 getProdDtl = res["result"];
+                showwishbtn();
                 var total = res["total"];
                 $('#total_Product').html(total + " Products");
+                if(total == null || total == undefined){
+                 $('#total_Product').html("0 Products");}
                 var obj = res["result"];
 
                 if (obj !== null) {
@@ -1057,18 +1102,74 @@ function displayproduct() {
             }
         }
     });
+    
 }
 
-function makeAwish(th, e) {
-    e.stopPropagation();
+  
+function makeAwish(th, e) 
+{
+  var pid=$(th).attr('id').split('_'); 
+  var prz=$(th).attr('data-price')
+  
+  var size=$(th).attr('data-size');
+  e.stopPropagation();
     //e.preventDefault();
-    if ($(th).hasClass('beat')) {
-        $(th).removeClass('beat');
-        //Remove from wishlist
-    } else {
-        $(th).addClass('beat');
-        //Add to wishlist
-    }
+  if ($(th).hasClass('beat')) {
+      // $(th).removeClass('beat');
+      //Remove from wishlist
+      common.msg(0,'This product is already in your wishlist');
+  }
+  else 
+  { 
+      var userid = common.readFromStorage('jzeva_uid');
+      if (userid == undefined || userid == null) 
+      { 
+	  openPopUp(); 
+      } 
+      else 
+      {
+	   $(th).addClass('beat');
+	   var userid, wishdata = {};
+	   wishdata['pid'] = pid[1]; 
+	   wishdata['col_car_qty'] = '1|@|3|@|9';
+	   wishdata['price'] = prz;
+	   wishdata['user_id'] = userid; 
+	   wishdata['wish_id'] = '';
+	   wishdata['size'] = size;
+	   var URL = APIDOMAIN + "index.php?action=addtowishlist";
+	   var data = wishdata;
+	   var dt = JSON.stringify(data);
+	   $.ajax({type: "post", url: URL, data: {dt: dt}, success: function (results) { 
 
+		   common.msg(1, 'This Product Added To Your Wishlist Successfully'); 
+	       }
+	   });
+      }
+    } 
+ }
 
+function showwishbtn()
+{
+  var prdarr=new Array();
+  $(getProdDtl).each(function(p,q){ 
+    prdarr.push(q.prdId);
+  });
+  
+  var userid = common.readFromStorage('jzeva_uid'); 
+  if(userid != null || userid != undefined) 
+  {
+      var URL = APIDOMAIN + "index.php?action=getwishdetail&userid=" + userid;
+      $.ajax({type: 'POST', url: URL, success: function (res) {
+
+	      var data = JSON.parse(res); 
+	      $(data['result']).each(function (r, v) {
+
+		  if($.inArray(v.product_id,prdarr) !== -1)
+		  { 
+		     $('#prd_'+v.product_id).addClass('beat'); 
+		  } 
+	      }); 
+      }
+      });
+  }
 }

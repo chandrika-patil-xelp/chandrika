@@ -508,7 +508,7 @@
                         <div class="grid_cont fLeft">
                             <div class="col100 fLeft poR" id="gridDetail"></div>
                             <div class="grid_footer fLeft transition300">
-                                <div class="gridLoad dn">
+                                <div class="gridLoad dn" id="gridl">
                                     <div class="diamondL">
                                         <div class="dCircle2"></div>
                                         <div class="dCircle2"></div>
@@ -538,7 +538,7 @@
                                         <div class="dCircle"></div>
                                     </div>
                                 </div>
-                                <div class="actBtn " id="gr_foot">View More</div>
+                                <div class="actBtn" id="gr_foot">View More</div>
                             </div>
                         </div>
                     </div>
@@ -566,8 +566,7 @@
 
     <script>
 
-    
-        
+
         
         function load_page() {
 
@@ -943,32 +942,36 @@
                 $(this).attr('initHeight', $(this).outerHeight(true));
             });
         } 
-        function bindFilterUi() {
+	 function bindFilterUi(){
+           
+    $("#range").ionRangeSlider({
+                type:"double",
+                 min:lowp,
+                 max:highp,
+                 grid:true,
+                 step:200,
+		 onFinish:   function (data) { 
+		  var rangval="";
+		  rangval=data.from+';'+data.to;
+		     fltrarray.range = rangval;
+		     displayproduct();
+		}
+              });
+            
               $("#range").ionRangeSlider({
                 type: "double",
-                min: 5000,
-                max: 1500000,
+                min:frstcar,
+                max:lastcar,
                 grid: true,
-                step: 200
-              }); 
-	  
-            $('#carat').ionRangeSlider({
-                type: "double", 
-                min: 2,
-                max: 10,
-//                from:1,
-//                values: [
-//       "9","14","18", "22"],
-                grid: true
-            });
-//$('#carat').data("ionRangeSlider").update({
-//    min: 9,
-//    max: 22,
-//    from: 9,
-//    to: 22,
-//    step: 1
-//});
-
+		step:0.05,
+		onFinish:   function (data) { 
+		  var rangval="";
+		  rangval=data.from+';'+data.to;
+		     fltrarray.carat = rangval;
+		     displayproduct();
+                     }
+   
+   });
 
             var vheight = 0;
             /*Overlay fade in/out  on menu hover*/
