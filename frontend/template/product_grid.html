@@ -3,7 +3,7 @@
 <body class="greyBg">
     <?php include 'Cart.html'?>
     <script>
-        var id = " <?php echo $_GET['id'];  ?>";
+      var   id = " <?php echo $_GET['id'];  ?>";
     </script>
     <?php include 'header.html'?>
     <?php include 'login.html'?>
@@ -566,7 +566,7 @@
 
     <script>
 
-        function 
+    
         
         
         function load_page() {
@@ -942,18 +942,18 @@
             $('.fmenu_elm').each(function () {
                 $(this).attr('initHeight', $(this).outerHeight(true));
             });
-        }
+        } 
         function bindFilterUi() {
-            $("#range").ionRangeSlider({
+              $("#range").ionRangeSlider({
                 type: "double",
                 min: 5000,
                 max: 1500000,
                 grid: true,
                 step: 200
-            });
-
+              }); 
+	  
             $('#carat').ionRangeSlider({
-                type: "double",
+                type: "double", 
                 min: 2,
                 max: 10,
 //                from:1,
