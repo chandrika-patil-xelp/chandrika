@@ -626,7 +626,8 @@ function sugnupsubmt()
    {
       entrflg = 11; 
       $('.overlay').stop(true, true).fadeTo(200, 0);
-      $('.tabWrap').removeClass("addPointer");
+     
+       $('.head_wrap').removeClass("addPointer");
       $('.ftabB').removeClass("addPointer");
       $('.wrapper_max').removeClass("addPointer");
       $('.fade').fadeOut("slow");
@@ -642,6 +643,11 @@ function sugnupsubmt()
  }
  
   $(document).on('click', '#userProfId', function () {
+      
+
+         $('.head_wrap').addClass("addPointer");
+         
+         
 	  var uid=common.readFromStorage('jzeva_uid');
 	  if(uid == null || uid == "")
             openPopUp(); 

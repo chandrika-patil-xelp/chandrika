@@ -105,11 +105,11 @@
                                             <input type="text" class="inp_box " autocomplete="off" id="shpdname" maxlength="50">
                                             <div class="inp_label ">Name*</div>
                                         </div>
-                                        <div class="txtB  fLeft w20">
+                                        <div class="txtB  fLeft w49">
                                             <input type="text" class="inp_box " autocomplete="off"  id="shpdmobile" maxlength="10">
                                             <div class="inp_label ">Mobile*</div>
                                         </div>
-                                        <div class="txtB fRight  w78">
+                                        <div class="txtB fRight  w49">
                                             <input type="text" class="inp_box " autocomplete="off" id="shpdemail" maxlength="50">
                                             <div class="inp_label ">Email*</div>
                                         </div>
@@ -284,11 +284,11 @@
                                             <input type="text" class="inp_box " autocomplete="off" id="g_name" maxlength="50">
                                             <div class="inp_label ">Name*</div>
                                         </div>
-                                        <div class="txtB  fLeft w20">
+                                        <div class="txtB  fLeft w49">
                                             <input type="text" class="inp_box " autocomplete="off"  id="g_mobl" maxlength="10">
                                             <div class="inp_label ">Mobile*</div>
                                         </div>
-                                        <div class="txtB fRight w78">
+                                        <div class="txtB fRight w49">
                                             <input type="text" class="inp_box " autocomplete="off" id="g_mail" maxlength="50">
                                             <div class="inp_label ">Email*</div>
                                         </div>
@@ -776,7 +776,7 @@
 
                         $(document).on("click", "#dlabel", function () {
 
-                            $('.dropBox label').addClass("act");
+                            $('.dropBox label').removeClass("act");
                             $(this).parent().addClass("drop");
                             $(this).next().slideDown("slow");
                         });
@@ -789,7 +789,7 @@
 //                        });
 
                         $(".dropBox ul li").click(function () {
-                            $('.dropBox label').removeClass("act");
+                            $('.dropBox label').addClass("act");
                             $(this).parent().parent().removeClass("drop");
                             var liTxt = $(this).html();
                             $(".dropBox label").text(liTxt);

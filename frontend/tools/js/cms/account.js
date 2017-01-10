@@ -247,16 +247,16 @@ function wishlist()
                         xyz = IMGDOMAIN + xyz[0];
                     }
 
-                    wishStr += '<div class="grid3 transition400 fadeInup" > ';
+                    wishStr += ' <div class="grid3 transition400 fadeInup">';
                     wishStr += ' <div class="facet_front wishClass" id="'+j.product_id+'_'+j.col_car_qty+'_'+j.size+'_'+s+'">';
-                    wishStr += ' <div class="grid_item "> ';
+                    wishStr += ' <div class="grid_item ">';
                     wishStr += ' <div class="grid_img">';
                     wishStr += ' <div style="background:url(\'' + xyz + '\')no-repeat ; background-size: contain ; background-position: center"></div></div>';
                     wishStr += ' <div class="hovTr"  onclick="wshprdopen(this)"> ';
                     wishStr += ' <div class="hovTrans">';
                     wishStr += ' </div></div>';
-                    wishStr += '   <div class="grid_dets">';
-                    wishStr += '  <div class="grid_name txtOver transition300" onclick="wshprdopen(this)">' + j.prdname + '</div>';
+                    wishStr += ' <div class="grid_dets wish_div">';
+                    wishStr += ' <div class="grid_name txtOver transition300" onclick="wshprdopen(this)">' + j.prdname + '</div>';
 
                     wishStr += ' <div class="col100  font11 transition300 txtOver" onclick="wshprdopen(this)"> ' + j.jweltype + '';
                     var type = 0;
@@ -330,24 +330,23 @@ function wishlist()
                         }
                     }
                     wishStr += ' ' + Nstr + '</div>';
-//                    wishStr += '   <div class="grid_price txtOver transition300" onclick="wshprdopen(this)"><span class="cartRup15b"><span>  ' + indianMoney(parseInt(j.price)) + '</div>';
+//                  wishStr += '   <div class="grid_price txtOver transition300" onclick="wshprdopen(this)"><span class="cartRup15b"><span>  ' + indianMoney(parseInt(j.price)) + '</div>';
                     wishStr += '<div class="grid_price txtOver transition300" onclick=\" custmz('+obj['prdId']+')\"><span class="cartRup15b padR0">'+j.price+'</span></div>';
                     wishStr += '  <div class="action_btns">';
-                    wishStr += '  <div class="col50 fLeft  pad0">';
-                    wishStr += '  <div class="actBtn fRight bolder addcrt" id="' + j.wish_id + '_' + j.col_car_qty + '_' + j.product_id + '_' + j.size + '" ';
-                     wishStr += '   onclick="addtocart(this)">Add To Cart</div> </div>';
+                    wishStr += '  <div class="col100 fLeft  pad0">';
+                    wishStr += '  <div class="actBtn  bolder addcrt" id="' + j.wish_id + '_' + j.col_car_qty + '_' + j.product_id + '_' + j.size + '" ';
+                    wishStr += '  onclick="addtocart(this)">Add To Cart</div> </div>';
                     wishStr += '  <div class="w35 fLeft  pad0">';
-                    wishStr += '  <div class="actBtn fRight bolder" onclick="removeitm(this)">delete</div>';
-                    wishStr += '   </div>';
+//                  wishStr += '  <div class="actBtn fRight bolder" onclick="removeitm(this)">delete</div>';
                     wishStr += '  </div>';
-                    wishStr += ' <div class="fmSansB smBtnDiv fLeft transition300">';
+                    wishStr += '  </div>';
+                    wishStr += '  <div class="fmSansB smBtnDiv fLeft transition300">';
                     wishStr += '  <div class="v360Btn" onclick="imgLoad(1320160808054906, event)"></div></div></div>';
-                    wishStr += '   <div class="soc_icons">';
-                    wishStr += '  <div class="soc_elem soc_wish2 transition300"></div>';
-                    wishStr += '   <div class="soc_elem soc_share transition300"></div>';
-                    wishStr += '   </div>';
-                    wishStr += '   </div>';
-                    wishStr += ' <div class="custBtn1" onclick="custmz(' + j.product_id + ')">customise</div></div>  </div>';
+                    wishStr += '  <div class="soc_abs wish_del transition300 fRight">';
+//                  wishStr += '  <div class="soc_elem soc_share transition300"></div>';
+                    wishStr += '  </div>';
+                    wishStr += '  </div>';
+                    wishStr += '  <div class="custBtn1" onclick="custmz(' + j.product_id + ')">customise</div></div>  </div>';
 
                 });
                 $('#wishid').html(wishStr);

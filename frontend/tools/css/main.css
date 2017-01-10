@@ -500,7 +500,7 @@ img{width:100%;height:100%;border:0}
     display: block!important;
     transform: translateX(0%)!important;}
 .gridLoad{width: 100%;height: 100%;position: absolute;    background: #ffffff;
-    transform: scale(0.5);}
+    transform: scale(0.5);z-index: 999;}
 
 .grid_footer.transdown{transform:translateY(100%)}
 .grid_footer .actBtn{display:inline-block;padding:0 10px}
@@ -556,7 +556,6 @@ img{width:100%;height:100%;border:0}
 .rose_gold.sel_box:after{background:#b76e79}
 .diamond.sel_box:after , .ruby.sel_box:after , .emerald.sel_box:after , .zirconium.sel_box:after{background:#666}
 
-
 .selected.sel_box:after{transform:scale(0.8);}
 .soc_icons{width:40px;height:120px; position:absolute; z-index:1; right:0px;top:0px; bottom:0;cursor:pointer}
 .soc_elem{width:40px;height:40px;opacity:0;transform:translate(10px);}
@@ -579,6 +578,8 @@ img{width:100%;height:100%;border:0}
 .soc_wish2.beat:before{opacity:1;}
 .soc_wish2.beat{transform:scale(1);-webkit-transform:scale(1);-moz-transform:scale(1);-o-transform:scale(1);-ms-transform:scale(1);}
 
+.wish_del:after{content:"";width:100%;height:100%;position:absolute;top:0;left:0;background:url(../img/icons/551.svg)no-repeat;background-size:auto 100%;background-position: center;opacity:1;transition:200ms;-webkit-transition:200ms;-moz-transition:200ms;-o-transition:200ms;-ms-transition:200ms;}
+.wish_div .actBtn{display: inline-block;}
 .soc_wish2.soc_wishfill{background:url(../img/icons/like_fill.svg)no-repeat;background-size:auto 100%;background-position:center;}
 .soc_comment{background:url(../img/icons/comment.svg)no-repeat;background-size:auto 100%;background-position: center;}
 .soc_comment:hover{opacity:1 !important}
@@ -867,7 +868,7 @@ img{width:100%;height:100%;border:0}
 .inp_cont{width:49%;height:40px;position:relative}
 .inp_cont:after{content:"";width:0;height:0;border-top:2px solid #4d4d4d; position:absolute;bottom:-1px;left:0;transition:300ms}
 .focul.inp_cont:after{width:100%}
-.inp_box{width:100%;height:100%;border:none;border-bottom:1px solid #ccc;padding:13px 0px;font-size:14px;font-family:semibold;}
+.inp_box{width:100%;height:100%;border:none;border-bottom:1px solid #ccc;padding:8px 0px;font-size:14px;font-family:semibold;}
 .inp_label{height:20px;width:auto;position:absolute;left:0;bottom:8px;font-size:12px;pointer-events: none;}
 .focul .inp_label{ -webkit-animation: anim-2 0.3s forwards; animation: anim-2 0.3s forwards;}
 .co_header{width:100%;font-size:30px;}
@@ -2277,11 +2278,17 @@ input[type=radio]:checked ~ .matchIcn{
 .myaccount .grid3{width:33.33%;display:block;float:left;position:static !important;height:auto;text-transform:uppercase;opacity:0;transform:translateY(40px);-webkit-transform:translateY(40px);-moz-transform:translateY(40px);-ms-transform:translateY(40px);-o-transform:translateY(40px)}
 .myaccount .grid3:hover .hovTrans{color:#15181b;opacity: 1;cursor: pointer;}
 .grid3:hover .grid_dets:before{background:#15181b;}
-.myaccount .soc_icons{display: none;}
+.myaccount .soc_icons{}
 .myaccount .fadeInup{opacity:1;}
 .myaccount .grid3{width:50%;}
 /*.myaccount .col50{padding-right: 40px;}*/
 .myaccount .txtB{margin-bottom: 20px;}
+.myaccount .soc_wish2:after{background:url(../img/icons/551.svg)no-repeat;    background-position: center;}
+.myaccount .soc_wish2:before{display: none;}
+.myaccount .soc_wish2:hover:before{opacity: 1;}
+                            
+                                
+
 .ordersCard{width: 50%;height: auto;border-right: 1px solid #ccc;}
 .shipAddr{padding-bottom: 5px;line-height: 16px;}
 

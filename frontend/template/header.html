@@ -8,26 +8,26 @@
 
 </script>
 
- <div class="guestPopup dn" id="guestPar">
+<div class="guestPopup dn" id="guestPar">
 
-        <div class="inGuest" id="guestChild">
-            <div class="closeLogin" id="closeGuest"></div>
-            <div class="txtTitle">Please enter the relevant information</div>
-            <div class="txtB fLeft"> 
-                <input type="text" class="inp_box " maxlength="30" id="ord_no" autocomplete="off"> 
-                <div class="inp_label">Enter order number</div>
-            </div>
-            <div class="txtB fLeft"> 
-                <input type="text" class="inp_box " maxlength="30" id="ord_email" autocomplete="off"> 
-                <div class="inp_label">Email-Id/Mobile*</div>
-            </div>
-            <div class="col100 fLeft bolder">
-                <center>
-                    <div class="actBtn button padLR25" id="Track_ord">GET ORDER DETAILS</div>
-                </center>
-            </div>
+    <div class="inGuest" id="guestChild">
+        <div class="closeLogin" id="closeGuest"></div>
+        <div class="txtTitle">Please enter the relevant information</div>
+        <div class="txtB fLeft"> 
+            <input type="text" class="inp_box " maxlength="30" id="ord_no" autocomplete="off"> 
+            <div class="inp_label">Enter order number</div>
+        </div>
+        <div class="txtB fLeft"> 
+            <input type="text" class="inp_box " maxlength="30" id="ord_email" autocomplete="off"> 
+            <div class="inp_label">Email-Id/Mobile*</div>
+        </div>
+        <div class="col100 fLeft bolder">
+            <center>
+                <div class="actBtn button padLR25" id="Track_ord">GET ORDER DETAILS</div>
+            </center>
         </div>
     </div>
+</div>
 
 <div class="head_wrap">
     <div class="shadow_head"></div>
@@ -168,15 +168,15 @@
         </div>
     </div>
 </div>
- <!--<script type="text/javascript" src="<?php echo $jvs['header']; ?>"></script>--> 
+<!--<script type="text/javascript" src="<?php echo $jvs['header']; ?>"></script>--> 
 <script>
 
-    $(document).on("click",'#guestId',function () {
+    $(document).on("click", '#guestId', function () {
         $('.head_wrap').addClass("pointNone");
         guestpopUp();
     });
 
-    $(document).on("click",'#closeGuest',function () {
+    $(document).on("click", '#closeGuest', function () {
         $('.head_wrap').removeClass("pointNone");
         guestpopUpClose();
     });
@@ -196,32 +196,46 @@
 
     /*Overlay fade in/out  on menu hover*/
     $('.tabWrap').mouseover(function () {
-        $('.overlay').stop(true, true).delay(150).fadeTo(200, 1);
+        $('.header').addClass('blackPseudo');
+//        $('.overlay').stop(true, true).delay(150).fadeTo(200, 1);
     });
 
     /*Main menu slidedown/slideup , Menu tab colour change*/
     $('.tabB').mouseover(function () {
         var userid = common.readFromStorage('jzeva_uid');
-        if ($(this).attr('id') == 'userProfId')
+        if ($(this).attr('id') === 'userProfId')
         {
+
             if (userid == null)
             {
-                $('.overlay').stop(true, true).delay(150).fadeTo(200, 1);
+                $('.overlay').stop(true, true).fadeTo(200, 0);
                 $('.tab').removeClass('selec');
                 $('.menu_wrap').velocity('stop').velocity({height: [0]}, {duration: 200, easing: 'ease-in-out', display: 'block'});
             } else {
+
+//                $('#userProfId').click(function () {
+//                    $('.head_wrap').removeClass("addPointer");
+//                    $('.tabWrap').removeClass("addPointer");
+//                });
+
+                $('.header').addClass('blackPseudo');
                 $('.overlay').stop(true, true).delay(150).fadeTo(200, 1);
                 $('.tab').removeClass('selec');
                 $('.menu_wrap').velocity('stop').velocity({height: [180]}, {duration: 200, delay: 150, easing: 'ease-in-out', display: 'block'});
+
             }
         } else
         {
+            $('.header').addClass('blackPseudo');
             $('.overlay').stop(true, true).delay(150).fadeTo(200, 1);
             $('.tab').removeClass('selec');
             $('.menu_wrap').velocity('stop').velocity({height: [180]}, {duration: 200, delay: 150, easing: 'ease-in-out', display: 'block'});
         }
-        $('.header').addClass('blackPseudo');
+
     });
+
+
+
     $('.tabWrap').mouseleave(function () {
         $('.overlay').stop(true, true).fadeTo(200, 0);
         $('.menu_wrap').velocity('stop').velocity({height: [0]}, {duration: 200, easing: 'ease-in-out', display: 'none',
@@ -230,7 +244,7 @@
             }
         });
         $('.tab').removeClass('selec');
-      $('.header').removeClass('blackPseudo');
+        $('.header').removeClass('blackPseudo');
     });
     /*Sub menu slidedown/slideup , Menu tab colour change*/
     $('.tab').mouseenter(function () {
@@ -375,71 +389,65 @@
             }
         }
     }
-    
-    $('#Track_ord').click(function(){
-      var ordno=$('#ord_no').val();
-      var inptdata=$('#ord_email').val();
-      var validationFlag=1;
-      var filter = /^[0-9-+]+$/;
-      if (!filter.test(ordno)) {
-        validationFlag = 0;
-        common.msg(0, 'Order number is Invalid');
-      }
-      else
-      {
-	if($.isNumeric(inptdata))
-	{
-	  var filter = /^[0-9-+]+$/;
-	  if (inptdata === '' || inptdata === null) {
-	    validationFlag = 0;
-	    common.msg(0, 'Please enter your Mobile no');
-	  } 
-	  else if (isNaN(inptdata) || (inptdata.length < 10)) {
-	    validationFlag = 0;
-	    common.msg(0, 'Mobile no. Invalid');
-	  } 
-	  else if(!filter.test(inptdata)){ 
-		  validationFlag=0;  
-		  common.msg(0,'Mobile number is Invalid');  
-	  }
-	  if(validationFlag == 1)
-	  {
-	    var URL=APIDOMAIN +"index.php?action=checktrackord&orderid="+ordno+"&mobile="+inptdata;
-	    
-	  }
-	}
-	else
-	{
-	   var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
-	   if (inptdata === '' || inptdata === null) {
-	      validationFlag = 0;
-	      common.msg(0, 'Please enter your Email id');
-	    }
-	    else if (!reg.test(inptdata)) {
-	      validationFlag = 0;
-	      common.msg(0, 'Invalid Email.id');
-	    }
-	    if(validationFlag == 1)
-	    {
-	      var URL=APIDOMAIN +"index.php?action=checktrackord&orderid="+ordno+"&email="+inptdata; 
-	    }
-	}
-      }
-	  if(validationFlag == 1)
-	  {
-	    $.ajax({url: URL, type: 'POST', success: function (res){
-		    var data=JSON.parse(res);
-		  
-		      if(data['error']['err_code'] == 0){
-			var ordid=data['result']['order_id'];
-		 	window.location.href=DOMAIN + "index.php?action=guestaccount&trkid="+ordid;
-		      }
-			else if(data['error']['err_code'] == 1)
-			  common.msg(0, data['error']['err_msg']);
-		    }
-	    });
-	   }
-      
+
+    $('#Track_ord').click(function () {
+        var ordno = $('#ord_no').val();
+        var inptdata = $('#ord_email').val();
+        var validationFlag = 1;
+        var filter = /^[0-9-+]+$/;
+        if (!filter.test(ordno)) {
+            validationFlag = 0;
+            common.msg(0, 'Order number is Invalid');
+        } else
+        {
+            if ($.isNumeric(inptdata))
+            {
+                var filter = /^[0-9-+]+$/;
+                if (inptdata === '' || inptdata === null) {
+                    validationFlag = 0;
+                    common.msg(0, 'Please enter your Mobile no');
+                } else if (isNaN(inptdata) || (inptdata.length < 10)) {
+                    validationFlag = 0;
+                    common.msg(0, 'Mobile no. Invalid');
+                } else if (!filter.test(inptdata)) {
+                    validationFlag = 0;
+                    common.msg(0, 'Mobile number is Invalid');
+                }
+                if (validationFlag == 1)
+                {
+                    var URL = APIDOMAIN + "index.php?action=checktrackord&orderid=" + ordno + "&mobile=" + inptdata;
+
+                }
+            } else
+            {
+                var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
+                if (inptdata === '' || inptdata === null) {
+                    validationFlag = 0;
+                    common.msg(0, 'Please enter your Email id');
+                } else if (!reg.test(inptdata)) {
+                    validationFlag = 0;
+                    common.msg(0, 'Invalid Email.id');
+                }
+                if (validationFlag == 1)
+                {
+                    var URL = APIDOMAIN + "index.php?action=checktrackord&orderid=" + ordno + "&email=" + inptdata;
+                }
+            }
+        }
+        if (validationFlag == 1)
+        {
+            $.ajax({url: URL, type: 'POST', success: function (res) {
+                    var data = JSON.parse(res);
+
+                    if (data['error']['err_code'] == 0) {
+                        var ordid = data['result']['order_id'];
+                        window.location.href = DOMAIN + "index.php?action=guestaccount&trkid=" + ordid;
+                    } else if (data['error']['err_code'] == 1)
+                        common.msg(0, data['error']['err_msg']);
+                }
+            });
+        }
+
     });
-    
+
 </script>
