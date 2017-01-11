@@ -337,7 +337,7 @@ var vat = (1 / 100) * defprice;
     proStr += '<div class="facet_back" >';
     proStr += '<div class="facet_cont">';
     proStr += '<div class="light_header fLeft fmSansL"><span class="u_lineW">' + obj['prdNm'] + '</span></div>';
-    proStr += '<div class="desc_row fLeft font12 fmSansB "><span class="txt_left fLeft">' + obj['jwelType']+ '</span><span class="fRight fmSansR"> ' + obj['metal_weight'] + ' gms</span> </div>';
+    proStr += '<div class="desc_row fLeft font12 fmSansB "><span class="txt_left fLeft">' + obj['jwelType'] + '</span><span class="fRight fmSansR"> ' + obj['metal_weight'] + ' gms</span> </div>';
     if (diamond == '1' && diamond !== 'null') {
         for (var d = 0; d < (p.length); d++) {
 
@@ -745,7 +745,7 @@ function submenu(ths)
             } else
             {
                 var tmval = fltrarray[pid][menuid], tmpflag = 0;
-                
+                ;
                 for (var l = 0; l < Object.keys(tmval).length; l++)
                 {
                     if (fltrarray[pid][menuid][l] == tid) {
@@ -769,7 +769,7 @@ function submenu(ths)
             } else
             {
                 var tmval = fltrarray[pid][menuid], tmpflag = 0;
-                
+                ;
                 for (var l = 0; l < Object.keys(tmval).length; l++)
                 {
                     if (fltrarray[pid][menuid][l] == tid) {
@@ -841,7 +841,7 @@ function submenu(ths)
             } else
             {
                 var tmval = fltrarray[pid][menuid], tmpflag = 0;
-                
+                ;
                 for (var l = 0; l < Object.keys(tmval).length; l++)
                 {
                     if (fltrarray[pid][menuid][l] == tid) {
@@ -889,7 +889,7 @@ function submenu(ths)
             } else
             {
                 var tmval = fltrarray[pid][menuid], tmpflag = 0;
-                
+                ;
                 for (var l = 0; l < Object.keys(tmval).length; l++)
                 {
                     if (fltrarray[pid][menuid][l] == tid) {
@@ -913,7 +913,7 @@ function submenu(ths)
             } else
             {
                 var tmval = fltrarray[pid][menuid], tmpflag = 0;
-                
+                ;
                 for (var l = 0; l < Object.keys(tmval).length; l++)
                 {
                     if (fltrarray[pid][menuid][l] == tid) {
@@ -933,12 +933,30 @@ function submenu(ths)
 
    setTimeout(function () {
        
-       if (fltrarray[pid] === undefined) {
+       if (fltrarray[pid] == undefined) {
            
+ if(fltrarray['range'] !== undefined)
+   displayproduct(1);
+ else if(fltrarray['carat'] !== undefined)
+   displayproduct(1);
+ else if(fltrarray['for']!== undefined)
+     displayproduct(1);
+ else if(fltrarray['ringtype']!== undefined)
+     displayproduct(1);
+ else if(fltrarray['pendanttype']!== undefined)
+     displayproduct(1);
+ else if(fltrarray['necklacetype']!== undefined)
+     displayproduct(1);
+ else if(fltrarray['earringtype']!== undefined)
+     displayproduct(1);
+ else if(fltrarray['bangletype']!== undefined)
+     displayproduct(1);
+ else
            getprodbyid();
-       } else
-           displayproduct();
+       } else{
+           displayproduct(1);}
       
+
   }, 500);
  
 }
@@ -1068,9 +1086,10 @@ function displayproduct() {
                 if(total == null || total == undefined){
                  $('#total_Product').html("0 Products");}
                 var obj = res["result"];
-
+              
                 if (obj !== null) {
                     var len = obj.length;
+                  
                     $('#gridDetail').html('');
                     var i = 0;
                     if (len > 0)
