@@ -3943,6 +3943,8 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                 if ($arr['hasGem'] === '1') {
                     $Gemscarat = $row['gemscarat'];
                     $Gemsprc = $row['gemsPricepercarat'];
+
+
                     $price = $price + ($Gemscarat * $Gemsprc);
                 }
 
