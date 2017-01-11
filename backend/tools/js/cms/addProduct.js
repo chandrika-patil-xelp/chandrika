@@ -25,7 +25,7 @@ var sflag = true;
 var dflag = true;
 var uflag = true;
 var gflag = true;
-var msgLabel = 500;
+var msgLabel = 350;
 
 
 
@@ -562,7 +562,7 @@ $(document).ready(function() {
     {
             var KeyID = event.keyCode;
             var textLen = parseInt($(this).val().length);
-            var total = 500;
+            var total = 350;
             if(KeyID == 8)
             {
                 msgLabel  = msgLabel+1;
@@ -1318,7 +1318,7 @@ function bindDmdQuaity()
 
 function addProduct()
 {
-    var productDescription = encodeURIComponent($('#productDescription').val().replace(/<(?:.|\n)*?>/gm,''));
+    var productDescription = $('#productDescription').val().replace(/<(?:.|\n)*?>/gm,'');
     var charcont=productDescription.length;
     if(charcont > 350){
       common.toast(1, 'Product Description Character length must be less than 350');
@@ -1695,7 +1695,7 @@ function addProduct()
         general['margin'] = margin;
         general['measurement'] = measurement;
         general['dmdSetting'] = dmdSetting.toString();
-
+	
         var prd = {};
         prd['mpurity'] = mpurity;
         prd['metalcolor'] = mcolor;
