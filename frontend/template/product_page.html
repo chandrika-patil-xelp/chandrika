@@ -175,7 +175,7 @@
                                             <div class="fLeft col100">
                                                 <div class="col100 sizeOuter fLeft ringclass">
                                                     <div class="circleOuter fLeft">
-                                                        <div class="ringCircle transition600 poR">14</div>
+                                                        <div class="ringCircle transition600 poR"> 14</div>
                                                     </div>
                                                     <center>
                                                         <div class="col100 fLeft"><div class="col50"><div class="actBtn" id="ringGuide">size guide</div></div></div>
@@ -269,7 +269,7 @@
                 var sVal = data.from_value;
 //                console.log(sVal);
               
-                $('#size').text("Size" + data.from_value);
+                $('#size').text("Size " + data.from_value);
                 $('.ringCircle').html(sVal);
 
                 if (t < sVal) {
@@ -293,7 +293,7 @@
             grid: true,
             onChange: function (data) {
                 var sVal = data.from_value;
-                $('#size').text("Size" + data.from_value);
+                $('#size').text("Size " + data.from_value);
                 $('.ringCircleB').html(sVal);
 //                console.log(sVal);
                 if (t < sVal) {
@@ -369,7 +369,7 @@
                 return false;
             }
             var incValb = Math.round(incVal_b * 10) / 10;
-            $('#size').text("Size" + incVal_b);
+            $('#size').text("Size " + incVal_b);
             valb1 = valb1 + 5;
             valb2 = valb2 + 5;
             valb3 = parseInt(valb3) + 5;
