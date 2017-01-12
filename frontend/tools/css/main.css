@@ -53,7 +53,7 @@ a{color:#666;}
 .txt_Upper{text-transform: uppercase!important;}
 .txt_Lower{text-transform: lowercase!important;}
 .txtOver{ overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
-.dn{display:none;}
+.dn{display:none!important;}
 .mTop30{margin-top:30px;}
 .pTop10{padding-top:10px;}
 .pLeft35{padding-left:35px;}
