@@ -33,16 +33,19 @@ class DB {
         //print_r($this->db);
         //echo "<hr>";
         @mysql_select_db($this->db[3],$this->links);
-        $this->nbQueries++;
-        $this->traceLogs($query);
+        $this->nbQueries++; 
+	if(!stristr($query,'SELECT'))
+	{
+	  $this->traceLogs($query);
+	}	 
         $this->lastResult = mysql_query($query,$this->links) or $this->debugAndDie($query);
         $this->debug($debug, $query, $this->lastResult);
         return $this->lastResult;
     }
     function traceLogs($query)
     {
-      $query = preg_replace('!\s+!', ' ', $query);
-      $squery = "INSERT INTO tbl_errorlog_master(querydata,querytext,createdon,active_flag) VALUES ('".$query."','".$query."',now(),1)";
+      $query = preg_replace('!\s+!', ' ', $query);  
+      $squery = "INSERT INTO tbl_errorlog_master(querydata,querytext,createdon,active_flag) VALUES (\"".$query."\",\"".$query."\",now(),1)";
       return mysql_query($squery,$this->links);
     }
 
