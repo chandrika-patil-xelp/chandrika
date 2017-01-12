@@ -642,12 +642,7 @@ function sugnupsubmt()
       gndrflg=undefined;
  }
  
-  $(document).on('click', '#userProfId', function () {
-      
-
-         $('.head_wrap').addClass("addPointer");
-         
-         
+  $(document).on('click', '#userProfId', function () {    
 	  var uid=common.readFromStorage('jzeva_uid');
 	  if(uid == null || uid == "")
             openPopUp(); 
