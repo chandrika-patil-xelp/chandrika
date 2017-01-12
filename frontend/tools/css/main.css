@@ -53,7 +53,8 @@ a{color:#666;}
 .txt_Upper{text-transform: uppercase!important;}
 .txt_Lower{text-transform: lowercase!important;}
 .txtOver{ overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
-.dn{display:none!important;}
+.dn{display:none;}
+.dpn{display: none!important;}
 .mTop30{margin-top:30px;}
 .pTop10{padding-top:10px;}
 .pLeft35{padding-left:35px;}
@@ -1208,14 +1209,15 @@ input[type=radio]:checked ~ .selector_label:after {
 .filSelec .labBuffer{color:#fff}
 .filterLabel:after{content:"";width:100%;height:100%;background:#15181b;position:absolute;top:0;left:0;transform:translateX(-100%);-webkit-transform:translateX(-100%);-moz-transform:translateX(-100%);-o-transform:translateX(-100%);-ms-transform:translateX(-100%);transition:200ms;-webkit-transition:200ms;-moz-transition:200ms;-o-transition:200ms;-ms-transition:200ms;}
 .filSelec .filterLabel:after{transform:translateX(-100%);-webkit-transform:translateX(0%);-moz-transform:translateX(0%);-o-transform:translateX(0%);-ms-transform:translateX(0%);background:#53C9C7;}
-.twofingerIc{background-image: url('../img/filterIcons/300.svg');background-repeat:no-repeat;}
+.ring_twofingerIc{background-image: url('../img/filterIcons/300.svg');background-repeat:no-repeat;}
 .braceletIc{background-image: url('../img/filterIcons/301.svg');background-repeat:no-repeat;}
 .bridalIc{background-image: url('../img/filterIcons/302.svg');background-repeat:no-repeat;}
 .broadIc{background-image: url('../img/filterIcons/303.svg');background-repeat:no-repeat;}
 .casualIc{background-image: url('../img/filterIcons/304.svg');background-repeat:no-repeat;}
 .chandbaliIc{background-image: url('../img/filterIcons/305.svg');background-repeat:no-repeat;}
 .chandeliersIc{background-image: url('../img/filterIcons/306.svg');background-repeat:no-repeat;}
-.designerIc{background-image: url('../img/filterIcons/307.svg');background-repeat:no-repeat;}
+
+.Pendant_designerIc{background-image: url('../img/filterIcons/307.svg');background-repeat:no-repeat;}
 .dropsIc{background-image: url('../img/filterIcons/308.svg');background-repeat:no-repeat;}
 .earcuffsIc{background-image: url('../img/filterIcons/309.svg');background-repeat:no-repeat;}
 .fusionIc{background-image: url('../img/filterIcons/310.svg');background-repeat:no-repeat;}
@@ -1254,22 +1256,30 @@ input[type=radio]:checked ~ .selector_label:after {
 
 /*Ring Style Filter Icons*/
 
-.solitaireIc{background-image: url('../img/filterIcons/322.svg');background-repeat:no-repeat;}
-.pavéIc{background-image: url('../img/filterIcons/323.svg');background-repeat:no-repeat;}
-.channelIc{background-image: url('../img/filterIcons/324.svg');background-repeat:no-repeat;}
-.sidestonesIc{background-image: url('../img/filterIcons/325.svg');background-repeat:no-repeat;}
-.threestonesIc{background-image: url('../img/filterIcons/326.svg');background-repeat:no-repeat;}
-.tensionIc{background-image: url('../img/filterIcons/327.svg');background-repeat:no-repeat;}
-.haloIc{background-image: url('../img/filterIcons/328.svg');background-repeat:no-repeat;}
-.vintageIc{background-image: url('../img/filterIcons/328.svg');background-repeat:no-repeat;}
-.weddingIc{background-image: url('../img/filterIcons/329.svg');background-repeat:no-repeat;}
+.RingType_solitaireIc{background-image: url('../img/filterIcons/322.svg');background-repeat:no-repeat;}
+.RingType_pavéIc{background-image: url('../img/filterIcons/323.svg');background-repeat:no-repeat;}
+.RingType_channelIc{background-image: url('../img/filterIcons/324.svg');background-repeat:no-repeat;}
+.RingType_sidestonesIc{background-image: url('../img/filterIcons/325.svg');background-repeat:no-repeat;}
+.RingType_threestonesIc{background-image: url('../img/filterIcons/326.svg');background-repeat:no-repeat;}
+.RingType_tensionIc{background-image: url('../img/filterIcons/327.svg');background-repeat:no-repeat;}
+.RingType_haloIc{background-image: url('../img/filterIcons/328.svg');background-repeat:no-repeat;}
+.RingType_vintageIc{background-image: url('../img/filterIcons/328.svg');background-repeat:no-repeat;}
+.RingType_weddingIc{background-image: url('../img/filterIcons/329.svg');background-repeat:no-repeat;}
 
-.prongIc{background-image: url('../img/filterIcons/330.svg');background-repeat:no-repeat;}
-.flushIc{background-image: url('../img/filterIcons/332.svg');background-repeat:no-repeat;}
-.bezelIc{background-image: url('../img/filterIcons/333.svg');background-repeat:no-repeat;}
-.clusterIc{background-image: url('../img/filterIcons/334.svg');background-repeat:no-repeat;}
-.invisibleIc{background-image: url('../img/filterIcons/335.svg');background-repeat:no-repeat;}
-.illusionIc{background-image: url('../img/filterIcons/336.svg');background-repeat:no-repeat;}
+.RingType_prongIc{background-image: url('../img/filterIcons/330.svg');background-repeat:no-repeat;}
+.RingType_flushIc{background-image: url('../img/filterIcons/332.svg');background-repeat:no-repeat;}
+.RingType_bezelIc{background-image: url('../img/filterIcons/333.svg');background-repeat:no-repeat;}
+.RingType_clusterIc{background-image: url('../img/filterIcons/334.svg');background-repeat:no-repeat;}
+.RingType_invisibleIc{background-image: url('../img/filterIcons/335.svg');background-repeat:no-repeat;}
+.RingType_illusionIc{background-image: url('../img/filterIcons/336.svg');background-repeat:no-repeat;}
+.RingType_cocktailIc{background-image: url('../img/filterIcons/337.svg');background-repeat:no-repeat;}
+.RingType_closedIc{background-image: url('../img/filterIcons/338.svg');background-repeat:no-repeat;}
+.RingType_designerIc{background-image: url('../img/filterIcons/339.svg');background-repeat:no-repeat;}
+.RingType_twofingerIc{background-image: url('../img/filterIcons/336.svg');background-repeat:no-repeat;}
+
+
+
+
 
 
 
