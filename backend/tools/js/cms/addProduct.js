@@ -387,6 +387,7 @@ function getMetalColors()
         success: function(res) {
             res = JSON.parse(res);
             metalcolorCalllBack(res);
+	    defaultcolorcallback(res);
         }
     });
 
@@ -419,6 +420,23 @@ function metalcolorCalllBack(data)
         bindElementChange();
     }
 
+}
+
+function defaultcolorcallback(data)
+{
+   if (data['error']['err_code'] == '0')
+    { 
+        var str2 = ""; 
+        $.each(data.result, function(i, v) { 
+            str2 += "<div class='checkDiv fLeft'>";
+            str2 += "<input type='radio' name='defaultcolor' class='filled-in' value='" + v.id + "' id='default_" + v.id + "'>";
+            str2 += "<label for='default_" + v.id + "'>" + v.value + "</label>";
+            str2 += "</div>"; 
+        });
+ 
+        $('#colordeflt').html(str2);
+        bindElementChange();
+    }
 }
 
 function removeSizes(id){
@@ -501,6 +519,7 @@ function bindShapes()
 
 var metalPurityCust = true;
 var metalColorCust = true;
+var metalColorDeflt = true;
 
 var txt_selector = ['input[type=text],textarea'];
 var radioCh_selector = ['input[type=radio],input[type=checkbox],label'];
@@ -1383,6 +1402,7 @@ function addProduct()
         var eligible = $('input[name="eligible"]:checked').val();
         var measurement = mt1 + "X" + mt2;
         var productDescription = encodeURIComponent($('#productDescription').val().replace(/<(?:.|\n)*?>/gm,''));
+	var defaultcolor = $('input[name="defaultcolor"]:checked').val();
         $('[name=diamond_setting]').each(function()
         {
             if ($(this).is(':CHECKED'))
@@ -1695,6 +1715,7 @@ function addProduct()
         general['margin'] = margin;
         general['measurement'] = measurement;
         general['dmdSetting'] = dmdSetting.toString();
+	general['defaultcolor'] = defaultcolor;
 	
         var prd = {};
         prd['mpurity'] = mpurity;
@@ -2284,6 +2305,15 @@ function validateForm()
             isValid=false;
             return false;
         }
+    }
+    
+     if ($('[name=defaultcolor]:checked').length == 0)
+    {
+	common.toast(0, "Select Default Color");
+	var id=$('[name=defaultcolor]').eq(0).attr('id');
+	highlight(id,1);
+	isValid=false;
+	return false;
     }
 
     /*if ($('[name=size]:checked').length > 0)

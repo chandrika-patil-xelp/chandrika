@@ -342,7 +342,7 @@ function wishlist()
                     wishStr += '  </div>';
                     wishStr += '  <div class="fmSansB smBtnDiv fLeft transition300">';
                     wishStr += '  <div class="v360Btn" onclick="imgLoad(1320160808054906, event)"></div></div></div>';
-                    wishStr += '  <div class="soc_abs wish_del transition300 fRight">';
+                    wishStr += '  <div class="soc_abs wish_del transition300 fRight" onclick="removeitm(this)">';
 //                  wishStr += '  <div class="soc_elem soc_share transition300"></div>';
                     wishStr += '  </div>';
                     wishStr += '  </div>';
@@ -404,7 +404,7 @@ function removeitm(ths)
     cartpopUp();
     $('#cYes').unbind();
     $('#cYes').click(function () {
-        var ids = $(ths).closest('.action_btns').find('.addcrt').attr('id');
+        var ids = $(ths).closest('.grid3').find('.addcrt').attr('id');
         ids = ids.split('_');
         var URL = APIDOMAIN + "index.php?action=removeItmFrmWishlist&wish_id=" + ids[0] + "&col_car_qty=" + ids[1] + "&pid=" + ids[2] + "&size=" + ids[3];
         $.ajax({type: 'POST', url: URL, success: function (res) {

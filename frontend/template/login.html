@@ -44,14 +44,14 @@
                 <div class="txtTitle" id="hTxt">Please enter the relevant information</div>
                 <div class="dropBox fLeft">
                     <label  id="dlabel">Title</label>
-                    <ul class="ulDiv dn">
+                    <ul class="ulDiv">
                         <li class="opt1" id="gnd_1">Ms</li>
                         <li class="opt1" id="gnd_2">Mr</li>
                         <li class="opt1" id="gnd_3">Mrs</li>
                     </ul>
                 </div>
                 <div class="txtB fRight w78">
-                    <input type="text" class="inp_box " maxlength="30" id="name" autocomplete="off">
+                    <input type="text" class="inp_box " maxlength="30" id="name" autocomplete="off" onkeypress="return common.isCharacterKey(event, this.value);">
                     <div class="inp_label">Name*</div>
                 </div>
                 <div class="txtB fLeft">
@@ -59,7 +59,7 @@
                     <div class="inp_label">Email-Id*</div>
                 </div>
                 <div class="txtB fLeft">
-                    <input type="number" class="inp_box " maxlength="11" id="mobile" autocomplete="off">
+                    <input type="number" class="inp_box " maxlength="11" id="mobile" autocomplete="off" onkeypress="return common.isNumberKey(event, this.value);">
                     <div class="inp_label">Mobile*</div>
                 </div>
                 <div class="txtB fLeft">

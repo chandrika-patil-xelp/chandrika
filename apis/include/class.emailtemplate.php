@@ -51,13 +51,13 @@
                         <div style="width:100%;height:auto;margin:auto;max-width:750px">
                             <div style="width:100%;height:auto;margin-bottom: 30px;">
                           <div style="width:150px;height:auto;margin:auto">
-                              <img src="'.DOMAIN.'frontend/emailer/jzeva_logo.png" alt="" width="150" height="50">
+                              <img src="'.DOMAIN.'frontend/emailer/jzeva_logo.png" alt="JZEVA" width="150" height="50">
                           </div>
                             </div>
                             <div style="width:100%;height:auto;background-color:#fff;padding:25px;min-height:300px;padding-bottom:0px">
                         <div style="width:100%;height:auto;margin-bottom:15px;">
                             <div style="width:70px;height:70px;margin:auto">
-                          <img src="'.DOMAIN.'frontend/emailer/confirm.png" alt="" width="70" height="70">
+                          <img src="'.DOMAIN.'frontend/emailer/confirm.png" alt="img" width="70" height="70">
                             </div>
                         </div>
                         <div style="width:100%;height:auto;font-size:22px;color:#0CCDB8;text-align:center;line-height:28px">Dear '.$gndr.'. '.$name.'</div>
@@ -104,7 +104,7 @@
 
 
                               $message.='<div style="width:48%;height:auto;min-height:150px;padding:10px;border:1px solid #ccc;border-radius:2px;display:inline-block;vertical-align:top;">
-                                      <div style="width:35%;height:auto;display:inline-block;vertical-align:top;"><img src="'.IMGDOMAIN.''.$prdimgs[0].'" alt="" width="100" height="100"></div><div style="width:65%;height:auto;display:inline-block;vertical-align:top;padding-left: 10px;"><div style="width:100%;height:auto;font-size:12px;color:#333;line-height:20px">'.$prdname.'</div><div style="width:100%;height:auto;font-size:11px;color:#333;line-height:20px;text-align:left">Product Code : <span style="padding-left:5px">'.$prdcode.'</span></div><div style="width:100%;height:auto;font-size:11px;color:#333;line-height:20px;text-align:left;margin-top: 10px;">Gold : '.$val['weight'].' gms | Diamond: '.$val['dmdcarat'].' Ct</div><div style="width:100%;height:auto;font-size:11px;color:#333;line-height:20px;text-align:left;">Quality : '.$prdqlty.' | Purity: '.$prdcarat.'</div><div style="width:100%;height:auto;font-size:11px;color:#333;line-height:20px;text-align:left;">Size : '.$val['size'].' | Color: '.$prdcolr.'</div><div style="width:100%;height:auto;font-size:11px;color:#0CCDB8;line-height:20px;text-align:left;margin-top: 5px;">Delivery Date: '.$prddeldt.'</div></div>
+                                      <div style="width:35%;height:auto;display:inline-block;vertical-align:top;"><img src="'.IMGDOMAIN.''.$prdimgs[0].'" alt="img" width="100" height="100"></div><div style="width:65%;height:auto;display:inline-block;vertical-align:top;padding-left: 10px;"><div style="width:100%;height:auto;font-size:12px;color:#333;line-height:20px">'.$prdname.'</div><div style="width:100%;height:auto;font-size:11px;color:#333;line-height:20px;text-align:left">Product Code : <span style="padding-left:5px">'.$prdcode.'</span></div><div style="width:100%;height:auto;font-size:11px;color:#333;line-height:20px;text-align:left;margin-top: 10px;">Gold : '.$val['weight'].' gms | Diamond: '.$val['dmdcarat'].' Ct</div><div style="width:100%;height:auto;font-size:11px;color:#333;line-height:20px;text-align:left;">Quality : '.$prdqlty.' | Purity: '.$prdcarat.'</div><div style="width:100%;height:auto;font-size:11px;color:#333;line-height:20px;text-align:left;">Size : '.$val['size'].' | Color: '.$prdcolr.'</div><div style="width:100%;height:auto;font-size:11px;color:#0CCDB8;line-height:20px;text-align:left;margin-top: 5px;">Delivery Date: '.$prddeldt.'</div></div>
                                       </div>
                                       </div>';
 
@@ -139,8 +139,8 @@
                             <div style="width:auto;padding:0px 10px;color:#0CCDB8;display:inline-block;vertical-align:top;font-size:12px;line-height:16px;height:16px">FOLLOW US</div><div style="width:auto;padding:0px 10px;color:#fff;display:inline-block;vertical-align:top;font-size:12px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">FACEBOOK</div><div style="width:auto;padding:0px 10px;color:#fff;display:inline-block;vertical-align:top;font-size:12px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">TWITTER</div><div style="width:auto;padding:0px 10px;color:#fff;display:inline-block;vertical-align:top;font-size:12px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">INSTAGRAM</div><div style="width:auto;padding:0px 10px;color:#fff;display:inline-block;vertical-align:top;font-size:12px;line-height:16px;letter-spacing:0.02em;height:16px">PINTEREST</div>
                       </center>
                       </div>
-                      <div style="width:100%;height:auto;font-size:14px;color:#666;line-height:25px;text-align:center;margin-top:40px">You are receiving this email in response to an order or request you submitted to  <a href="" style="color:#666;text-decoration:none !important">www.jzeva.com</a></div>
-                      <div style="width:100%;height:auto;font-size:14px;color:#666;line-height:25px;text-align:center;margin-bottom: 30px;">Please visit <a href="" style="color:#666;text-decoration:none !important">www.jzeva.com</a> to consult our privacy policy and condition of sail</div>
+                      <div style="width:100%;height:auto;font-size:14px;color:#666;line-height:25px;text-align:center;margin-top:40px">You are receiving this email in response to an order or request you submitted to  <a href="'.DOMAIN.'index.php?action=landing_page" style="color:#666;text-decoration:none !important">www.jzeva.com</a></div>
+                      <div style="width:100%;height:auto;font-size:14px;color:#666;line-height:25px;text-align:center;margin-bottom: 30px;">Please visit <a href="'.DOMAIN.'index.php?action=landing_page" style="color:#666;text-decoration:none !important">www.jzeva.com</a> to consult our privacy policy and condition of sail</div>
                       </div>
                       </div>
                       </div>
@@ -169,19 +169,19 @@
 			    <div style="width:100%;height:auto;margin:auto;max-width:750px">
 				<div style="width:100%;height:auto;margin-bottom: 30px;">
 				    <div style="width:150px;height:auto;margin:auto">
-					<img src="'.DOMAIN.'frontend/emailer/jzeva_logo.png" alt="" width="150" height="50">
+					<img src="'.DOMAIN.'frontend/emailer/jzeva_logo.png" alt="JZEVA" width="150" height="50">
 				    </div>
 				</div>
 				<div style="width:100%;height:auto;background-color:#fff;padding:25px;min-height:300px;padding-bottom:0px">
 				    <div style="width:100%;height:auto;margin-bottom:15px;">
 					<div style="width:70px;height:60px;margin:auto">
-					    <img src="'.DOMAIN.'frontend/emailer/signup.png" alt="" width="70" height="60">
+					    <img src="'.DOMAIN.'frontend/emailer/signup.png" alt="img" width="70" height="60">
 					</div>
 				    </div>
 				    <div style="width:100%;height:auto;font-size:22px;color:#0CCDB8;text-align:center;line-height:28px">Dear '.$gndr.'. '.$params['name'].'</div>
 				    <div style="width:100%;height:auto;font-size:15px;text-align:center;color:#333;line-height:30px;margin-top:15px"><span style="display:inline-block;line-height:normal;vertical-align:middle">WELCOME TO THE WORLD OF LUXURIOUS JEWELLERY</span></div>
 				    <div style="width:100%;height:auto;font-size:12px;color:#333;line-height:20px;text-align:center;margin-top:10px">We at jzeva extremely pleased to have you express interest in your collection</div>
-				    <div style="width:100%;height:auto;font-size:12px;color:#333;line-height:20px;text-align:center">Your profile has been created and can now be accessed by clicking on my account link at <a href="" style="text-decoration:none;color:#333">www.jzeva.com</a></div>
+				    <div style="width:100%;height:auto;font-size:12px;color:#333;line-height:20px;text-align:center">Your profile has been created and can now be accessed by clicking on my account link at <a href="'.DOMAIN.'index.php?action=landing_page" style="text-decoration:none;color:#333">www.jzeva.com</a></div>
 				    <div style="width:100%;height:auto;font-size:12px;color:#333;line-height:20px;text-align:center">You can log on to your account at any time ,using this email address and your secure password</div>
 				    <div style="width:100%;height:auto;padding:50px 0px 50px 0px">
 					<div style="width:100%;height:auto">
@@ -203,37 +203,37 @@
 					<div style="width:49%;height:auto;display:inline-block;vertical-align:top;padding-left:10px;">
 					    <div style="width:100%;height:30px;font-size:12px;color:#333;line-height:30px">
 						<span style="width:20px;height:30px;display:inline-block;vertical-align:top">
-						    <img src="'.DOMAIN.'frontend/emailer/iconn.png" alt="" width="15" height="15" style="margin-top:7.5px">
+						    <img src="'.DOMAIN.'frontend/emailer/iconn.png" alt="img" width="15" height="15" style="margin-top:7.5px">
 						</span>
 						<span style="display:inline-block;vertical-align:top;">Manage your personal information</span>
 					    </div>
 					     <div style="width:100%;height:30px;font-size:12px;color:#333;line-height:30px">
 						<span style="width:20px;height:30px;display:inline-block;vertical-align:top">
-						    <img src="'.DOMAIN.'frontend/emailer/iconn.png" alt="" width="15" height="15" style="margin-top:7.5px">
+						    <img src="'.DOMAIN.'frontend/emailer/iconn.png" alt="img" width="15" height="15" style="margin-top:7.5px">
 						</span>
 						<span style="display:inline-block;vertical-align:top;">Exclusive access to limited edition jewellery</span>
 					    </div>
 					     <div style="width:100%;height:30px;font-size:12px;color:#333;line-height:30px">
 						<span style="width:20px;height:30px;display:inline-block;vertical-align:top">
-						    <img src="'.DOMAIN.'frontend/emailer/iconn.png" alt="" width="15" height="15" style="margin-top:7.5px">
+						    <img src="'.DOMAIN.'frontend/emailer/iconn.png" alt="img" width="15" height="15" style="margin-top:7.5px">
 						</span>
 						<span style="display:inline-block;vertical-align:top;">Create , save and share wishlist</span>
 					    </div>
 					     <div style="width:100%;height:30px;font-size:12px;color:#333;line-height:30px">
 						<span style="width:20px;height:30px;display:inline-block;vertical-align:top">
-						    <img src="'.DOMAIN.'frontend/emailer/iconn.png" alt="" width="15" height="15" style="margin-top:7.5px">
+						    <img src="'.DOMAIN.'frontend/emailer/iconn.png" alt="img" width="15" height="15" style="margin-top:7.5px">
 						</span>
 						<span style="display:inline-block;vertical-align:top;">Early access to collection</span>
 					    </div>
 					     <div style="width:100%;height:30px;font-size:12px;color:#333;line-height:30px">
 						<span style="width:20px;height:30px;display:inline-block;vertical-align:top">
-						    <img src="'.DOMAIN.'frontend/emailer/iconn.png" alt="" width="15" height="15" style="margin-top:7.5px">
+						    <img src="'.DOMAIN.'frontend/emailer/iconn.png" alt="img" width="15" height="15" style="margin-top:7.5px">
 						</span>
 						<span style="display:inline-block;vertical-align:top;">Follow up on your order status</span>
 					    </div>
 					     <div style="width:100%;height:30px;font-size:12px;color:#333;line-height:30px">
 						<span style="width:20px;height:30px;display:inline-block;vertical-align:top">
-						    <img src="'.DOMAIN.'frontend/emailer/iconn.png" alt="" width="15" height="15" style="margin-top:7.5px">
+						    <img src="'.DOMAIN.'frontend/emailer/iconn.png" alt="img" width="15" height="15" style="margin-top:7.5px">
 						</span>
 						<span style="display:inline-block;vertical-align:top;">Save your valuable time when ordering at our e shop</span>
 					    </div>
@@ -256,8 +256,8 @@
 					    <div style="width:auto;padding:0px 10px;color:#0CCDB8;display:inline-block;vertical-align:top;font-size:12px;line-height:16px;height:16px">FOLLOW US</div><div style="width:auto;padding:0px 10px;color:#fff;display:inline-block;vertical-align:top;font-size:12px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">FACEBOOK</div><div style="width:auto;padding:0px 10px;color:#fff;display:inline-block;vertical-align:top;font-size:12px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">TWITTER</div><div style="width:auto;padding:0px 10px;color:#fff;display:inline-block;vertical-align:top;font-size:12px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">INSTAGRAM</div><div style="width:auto;padding:0px 10px;color:#fff;display:inline-block;vertical-align:top;font-size:12px;line-height:16px;letter-spacing:0.02em;height:16px">PINTEREST</div>
 					</center>
 				    </div>
-				    <div style="width:100%;height:auto;font-size:14px;color:#666;line-height:25px;text-align:center;margin-top:40px">You are receiving this email in response to an order or request you submitted to  <a href="" style="color:#666;text-decoration:none !important">www.jzeva.com</a></div>
-				    <div style="width:100%;height:auto;font-size:14px;color:#666;line-height:25px;text-align:center;margin-bottom: 30px;">Please visit <a href="" style="color:#666;text-decoration:none !important">www.jzeva.com</a> to consult our privacy policy and condition of sail</div>
+				    <div style="width:100%;height:auto;font-size:14px;color:#666;line-height:25px;text-align:center;margin-top:40px">You are receiving this email in response to an order or request you submitted to  <a href="'.DOMAIN.'index.php?action=landing_page" style="color:#666;text-decoration:none !important">www.jzeva.com</a></div>
+				    <div style="width:100%;height:auto;font-size:14px;color:#666;line-height:25px;text-align:center;margin-bottom: 30px;">Please visit <a href="'.DOMAIN.'index.php?action=landing_page" style="color:#666;text-decoration:none !important">www.jzeva.com</a> to consult our privacy policy and condition of sail</div>
 				</div>
 			    </div>
 			</div>
@@ -297,13 +297,13 @@
 			    <div style="width:100%;height:auto;margin:auto;max-width:750px">
 				<div style="width:100%;height:auto;margin-bottom: 30px;">
 				    <div style="width:150px;height:auto;margin:auto">
-					<img src="'.DOMAIN.'frontend/emailer/jzeva_logo.png" alt="" width="150" height="50">
+					<img src="'.DOMAIN.'frontend/emailer/jzeva_logo.png" alt="JZEVA" width="150" height="50">
 				    </div>
 				</div>
 				<div style="width:100%;height:auto;background-color:#fff;padding:25px;min-height:300px;padding-bottom:0px">
 				    <div style="width:100%;height:auto;margin-bottom:15px;">
 					<div style="width:60px;height:60px;margin:auto">
-					    <img src="'.DOMAIN.'frontend/emailer/shipping.png" alt="" width="60" height="60">
+					    <img src="'.DOMAIN.'frontend/emailer/shipping.png" alt="img" width="60" height="60">
 					</div>
 				    </div>
 				    <div style="width:100%;height:auto;font-size:22px;color:#0CCDB8;text-align:center;line-height:28px">Dear '.$gndr.'. '.$row['user_name'].'</div>
@@ -328,8 +328,8 @@
 					    <div style="width:auto;padding:0px 10px;color:#0CCDB8;display:inline-block;vertical-align:top;font-size:12px;line-height:16px;height:16px">FOLLOW US</div><div style="width:auto;padding:0px 10px;color:#fff;display:inline-block;vertical-align:top;font-size:12px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">FACEBOOK</div><div style="width:auto;padding:0px 10px;color:#fff;display:inline-block;vertical-align:top;font-size:12px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">TWITTER</div><div style="width:auto;padding:0px 10px;color:#fff;display:inline-block;vertical-align:top;font-size:12px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">INSTAGRAM</div><div style="width:auto;padding:0px 10px;color:#fff;display:inline-block;vertical-align:top;font-size:12px;line-height:16px;letter-spacing:0.02em;height:16px">PINTEREST</div>
 					</center>
 				    </div>
-				    <div style="width:100%;height:auto;font-size:14px;color:#666;line-height:25px;text-align:center;margin-top:40px">You are receiving this email in response to an order or request you submitted to  <a href="" style="color:#666;text-decoration:none !important">www.jzeva.com</a></div>
-				    <div style="width:100%;height:auto;font-size:14px;color:#666;line-height:25px;text-align:center;margin-bottom: 30px;">Please visit <a href="" style="color:#666;text-decoration:none !important">www.jzeva.com</a> to consult our privacy policy and Terms and condition</div>
+				    <div style="width:100%;height:auto;font-size:14px;color:#666;line-height:25px;text-align:center;margin-top:40px">You are receiving this email in response to an order or request you submitted to  <a href="'.DOMAIN.'index.php?action=landing_page" style="color:#666;text-decoration:none !important">www.jzeva.com</a></div>
+				    <div style="width:100%;height:auto;font-size:14px;color:#666;line-height:25px;text-align:center;margin-bottom: 30px;">Please visit <a href="'.DOMAIN.'index.php?action=landing_page" style="color:#666;text-decoration:none !important">www.jzeva.com</a> to consult our privacy policy and Terms and condition</div>
 				</div>
 			    </div>
 			</div>

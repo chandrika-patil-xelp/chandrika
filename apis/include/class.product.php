@@ -548,6 +548,7 @@ class product extends DB {
                 . ",has_solitaire"
                 . ",has_uncut"
                 . ",has_gemstone"
+		. ",default_color"
                 . ",createdon"
                 . ",updatedby)"
                 . " VALUES "
@@ -576,6 +577,7 @@ class product extends DB {
                 . ",\"" . $params['has_solitaire'] . "\""
                 . ",\"" . $params['has_uncut'] . "\""
                 . ",\"" . $params['has_gemstone'] . "\""
+		. ",\"" . $params['details']['defaultcolor'] . "\""
                 . ",now()"
                 . ",\"" . $params['updatedby'] . "\")";
 
@@ -605,6 +607,7 @@ class product extends DB {
                 . "has_solitaire = VALUES(has_solitaire),"
                 . "has_uncut = VALUES(has_uncut),"
                 . "has_gemstone = VALUES(has_gemstone),"
+		. "default_color = VALUES(default_color),"
                 . " updatedby=VALUES(updatedby)
                 ";
         $res = $this->query($sql);
@@ -1998,7 +2001,7 @@ class product extends DB {
 				   product_seo_name,gender,product_weight,diamond_setting,metal_weight,
 				   making_charges,procurement_cost,margin,measurement,customise_purity,
 				   customise_color,certificate,has_diamond,has_solitaire,has_uncut,
-				   has_gemstone,createdon,updatedon,updatedby,active_flag,
+				   has_gemstone,default_color,createdon,updatedon,updatedby,active_flag,
                                    (SELECT GROUP_CONCAT(diamond_id) FROM tbl_product_diamond_mapping WHERE productid = prdid AND active_flag = 1 ) AS allDimonds,
                                    (SELECT GROUP_CONCAT(id) FROM tbl_diamond_quality_mapping WHERE diamond_id = allDimonds AND active_flag = 1 ) AS DimondQuality,
                                    (SELECT min(price_per_carat) FROM tbl_diamond_quality_master WHERE FIND_IN_SET(id,DimondQuality)) AS dmdlowp,
@@ -2043,6 +2046,7 @@ class product extends DB {
                     $arr['hasSol'] = $row['has_solitaire'];
                     $arr['hasUnct'] = $row['has_uncut'];
                     $arr['hasGem'] = $row['has_gemstone'];
+		    $arr['defaultcolor'] = $row['default_color'];
                     $arr['crtdOn'] = $row['createdon'];
                     $arr['updtOn'] = $row['updatedon'];
                     $arr['updtBy'] = $row['updatedby'];
@@ -3968,7 +3972,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 
                 $newWeightlow = $newWeightlow;
                 $newWeighthigh = $newWeighthigh;
-                
+
                 $goldPricelowp = $newWeightlow * $row['caratlowp'];
                 $goldPricehighp = $newWeighthigh * $row['carathighp'];
 
@@ -3983,7 +3987,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 
                 $arr['totalprclow'] = $totalNewPricelow;
                 $arr['totalprchigh'] = $totalNewPricehigh;
-                $reslt[] = $arr;
+		 $reslt[] = $arr;
 		$totalNewPricelowArr[]=array($row['productid']=>$totalNewPricelow);
 		 
 		$totalpric[] = $totalNewPricelowArr;
@@ -4011,7 +4015,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
         $result = array('result' => $reslt, 'error' => $error, 'total' => $total,'prclarr' => $totalNewPricelowArr, 'prcharr' => $totalNewPricehighArr,'allprdpz'=>$allprzs);
         return $result;
     }
-    
+
     public function getprodDescrp($params) {
 
         $jweltype = (!empty($params['jweltype'])) ? trim($params['jweltype']) : '';
@@ -4083,7 +4087,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 	 $result = array('result' => $resp, 'error' => $error);
         return $result;
 }
-
+   
 
   function getsubmenufltr($params) 
     {
@@ -4216,12 +4220,12 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 
 	 if($forflag == 1){ 
 	    $sql.=" gender IN (SELECT gender FROM tbl_product_master WHERE gender IN (".$forval.") AND active_flag=1 HAVING FIND_IN_SET(productid,prdid)) AND";
-	}
-	
+	} 
+	   
 	
         $sql.="   active_flag=1";
         
-        
+ 
         $res = $this->query($sql);
 
         while ($row = $this->fetchData($res)) {
@@ -4233,7 +4237,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 	if ($caratflag == 1) {
 	   $lowcarat=  explode(';', $caratval); 
         }
-	
+ 
 	if($fltrflag == 0)
 	{
 	  if($caratflag  == 1 && $rngflag == 1){
@@ -4251,31 +4255,31 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 		 $rst = $this->getfltrProdsbycatid($prdid);
 		 $cnt=count($rst); 
 	  }
-	}
+                }
 	else
 	{
 	  foreach ($prdids as $val) {
 	     if($caratflag  == 1 && $rngflag == 1){
 		$prdid = array('pid' => $val,'caratlow'=>$lowcarat[0],'carathigh'=>$lowcarat[1],'lowprz'=>$lowprz[0],'highprz'=>$lowprz[1],'selflg'=>1);
-	     }
+                }
 	     else if($caratflag == 1)
 	     {
 	        $prdid = array('pid' => $val,'caratlow'=>$lowcarat[0],'carathigh'=>$lowcarat[1],'selflg'=>2);
-	     }
+                }
 	     else if ($rngflag == 1) {
 		 $prdid = array('pid' => $val,'lowprz'=>$lowprz[0],'highprz'=>$lowprz[1],'selflg'=>3);
-	     }
+                }
 	     else{
 	         $prdid = array('pid' => $val,'selflg'=>4); 
-	     }
-		
+                }
+
             $rsst = $this->getProductdetailbypid($prdid);
             if (!empty($rsst)) { 
                 $rst[] = $rsst;
                 $cnt++;
-            }
-	  }
-	}
+                }
+            } 
+        }
         if ($res) {
             $error = array('err_code' => 0, 'err_msg' => 'details fetched successfully');
         } else {
@@ -4842,7 +4846,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 		}
 		 
 		   
-            }
+	    } 
 	    
 	     foreach ($totalNewPricelowArr as $key => $row) {
 	      foreach($row as $key1=>$val1){
@@ -5064,7 +5068,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
         $result = array( 'przperprdlow' => $totalpric, 'przperprdhigh' => $totalNewPricehighArr,'allcarat'=>$carat);
         return $result;
     }
-    
+
     
     
 

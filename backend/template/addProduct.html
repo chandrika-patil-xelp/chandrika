@@ -44,7 +44,7 @@ echo "<script>var edit=$edit; var pid = '$pid';</script>";
                     </div>
                     <div class="divCon fLeft">
                         <div class="divCon fLeft mTop0">
-                            <div class="titleDiv txtCap fLeft">Product Description*<span class="fRight font12 msgLabel">500 character max</span></div>
+                            <div class="titleDiv txtCap fLeft">Product Description*<span class="fRight font12 msgLabel">350 character max</span></div>
                             <textarea id="productDescription"  class="txtarea fLeft fmOpenR font14 c666" placeholder="Brief description about product"></textarea>
                         </div>
                     </div>
@@ -289,6 +289,13 @@ echo "<script>var edit=$edit; var pid = '$pid';</script>";
                               <div class="innerCont dn fLeft" id='ifcolorNotCustomiz'></div>
                           </div>
                       </div>
+		      <div class="DefaultmetalPurityDiv">
+                          <div class="divCon fLeft DefaultmetalPurityDiv">
+                              <div class="titleDiv txtCap fLeft wAuto">Default Color*</div>
+                          </div>  
+			<div class="innerCont fLeft" id='colordeflt'></div>
+                      </div>
+		      
 
                     <div class="divCon fLeft noBorder dn" id='cat_sizes'>
                         <div class="titleDiv txtCap fLeft">Select Size</div>
@@ -400,6 +407,10 @@ echo "<script>var edit=$edit; var pid = '$pid';</script>";
                             <div class="w50 fLeft c4d padR15 fmOpenR">Metal color</div>
                             <div class="w50 fRight txtCap fmOpenB txtRight" id='prmetalcolor'></div>
                         </div>
+			<div class="fieldTitle fLeft ">
+                            <div class="w50 fLeft c4d padR15 fmOpenR">Default color</div>
+                            <div class="w50 fRight txtCap fmOpenB txtRight" id='prmetaldefaultcol'></div>
+                        </div>
                         <div class="fieldTitle fLeft dn" id='forSelectedSize'>
                             <div class="w50 fLeft c4d padR15 fmOpenR">Selected Size</div>
                             <div class="w50 fRight txtCap fmOpenB txtRight" id='prsize'></div>
@@ -506,10 +517,11 @@ echo "<script>var edit=$edit; var pid = '$pid';</script>";
                             $('#prmargin').html(details["margin"]);
                             $('#prmeasurement').html(details["measurement"]);
                             $('#prdmdSetting').html(details["dmdSetting"]);
-
+			    
 
                             var mpurity = [];
                             var mcolor = [];
+			    var mcolordflt=[];
                             if (metalColorCust)
                             {
 
@@ -549,10 +561,31 @@ echo "<script>var edit=$edit; var pid = '$pid';</script>";
                             {
                                 mpurity.push($('[name=gpurityNotCustomize]:CHECKED').next('label').text());
                             }
+			    
+			    
+			    if(metalColorDeflt)
+			    {
+			      $('[name=defaultcolor]').each(function () {
+                                    if ($(this).is(':CHECKED'))
+                                        mcolordflt.push($(this).next('label').text());
 
+                                    else if (!$(this).is(':CHECKED')) {
+                                        var removeItem = $(this).next('label').text();
+                                        mcolordflt = jQuery.grep(mcolordflt, function (value) {
+                                            return value !== removeItem;
+                                        });
+                                    }
+
+                                });
+			    }
+			    else if(!metalColorDeflt)
+			    {
+			       mcolor.push($('[name=defaultcolor]:CHECKED').next('label').text());
+			    }
+			    
                             $('#prmetalpurity').text(mpurity.toString());
                             $('#prmetalcolor').text(mcolor.toString());
-
+			    $('#prmetaldefaultcol').html(mcolordflt.toString());
 
                             if($('[name=size]').length>0)
                             {

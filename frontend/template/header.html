@@ -14,7 +14,7 @@
         <div class="closeLogin" id="closeGuest"></div>
         <div class="txtTitle">Please enter the relevant information</div>
         <div class="txtB fLeft"> 
-            <input type="text" class="inp_box " maxlength="30" id="ord_no" autocomplete="off"> 
+            <input type="text" class="inp_box " maxlength="30" id="ord_no" autocomplete="off" onkeypress="return common.isNumberKey(event, this.value);"> 
             <div class="inp_label">Enter order number</div>
         </div>
         <div class="txtB fLeft"> 
