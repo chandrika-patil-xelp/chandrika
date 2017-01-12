@@ -170,7 +170,7 @@ input[type=radio]:checked ~ #tr1 {
 .addProduct .ctgForm{width:600px;}
 .txtArea{width: 100%;height: auto;min-height: 40px;padding: 15px;outline-style: none;border: 1px solid #ccc;border-radius: 2px;background: #fff;resize: none;}
 
-
+textarea{width:100%!important;}
 
 /*Shapes Cont*/
 .shapesContComm{width:100%;height:auto;margin:10px 0 }
