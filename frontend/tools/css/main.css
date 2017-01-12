@@ -245,7 +245,7 @@ a{color:#666;}
 .para{width:100%;height:auto; font-family:regular;margin:5px 0px ;line-height:20px;font-size:12px;word-wrap: break-word; white-space: normal;color:#222529}
 .dwnArrow{background:url("../img/icons/545.svg")no-repeat;background-size:auto 100% ;background-position:center ;}
 .userInfo{text-align: center;width:95%;height:50px; font-family:regular;margin:5px 0px ;line-height:20px;font-size:12px;word-wrap: break-word; white-space: normal;color:#222529;position: absolute;z-index: 99;bottom:25px;}
-.rota_wrap{width:50%;height:100%;opacity:0;position:absolute; left:25%;height:700px;}
+.rota_wrap{width:50%;height:100%;opacity:0;position:absolute; left:25%;}
 .rota_exstate{height:100vh ; width:100vh; background:#fff;max-height:100vh; transform:translateY(-130px)!important }
 .options{width:25%;height:100%;position:relative;opacity:0}
 .options_buffer{width:100%;height:85%;position:absolute;top:0;bottom:0;margin:auto;}
@@ -1163,35 +1163,36 @@ input[type=radio]:checked ~ .selector_label:after {
 
 .gemstone{display:inline-block;cursor:pointer;width:120px;background-size: auto 60px; background-position: top center ; height: auto;padding:65px 10px 0px 10px;font-size:10px;text-align:center;font-family:semibold;letter-spacing:0.1em;vertical-align:top;position:relative;overflow:hidden;color: #15181b;}
 .gemstone:after{content:"";width:100%;height:100%;position:absolute;left:0;top:0;background:#15181b;transform:translateX(-100%);-webkit-transform:translateX(-100%);-moz-transform:translateX(-100%);-o-transform:translateX(-100%);-ms-transform:translateX(-100%);transition:200ms ease-out;-webkit-transition:200ms ease-out;-moz-transition:200ms ease-out;-o-transition:200ms ease-out;-ms-transition:200ms ease-out}
-.alexandriteIc{background-image: url('../img/Satellite1.png');background-repeat:no-repeat;}
-.amberIc{background-image: url('../img/Satellite2.png');background-repeat:no-repeat;}
-.amethystIc{background-image: url('../img/Satellite3.png');background-repeat:no-repeat;}
-.ametrineIc{background-image: url('../img/Satellite4.png');background-repeat:no-repeat;}
-.aquamarineIc{background-image: url('../img/Satellite5.png');background-repeat:no-repeat;}
-.citrineIc{background-image: url('../img/Satellite6.png');background-repeat:no-repeat;}
-.diamondIc{background-image: url('../img/Satellite7.png');background-repeat:no-repeat;}
-.colourdiamondIc{background-image: url('../img/Satellite8.png');background-repeat:no-repeat;}
-.emeraldkIc{background-image: url('../img/Satellite9.png');background-repeat:no-repeat;}
-.granetIc{background-image: url('../img/Satellite10.png');background-repeat:no-repeat;}
-.ioliteIc{background-image: url('../img/Satellite11.png');background-repeat:no-repeat;}
-.jadeIc{background-image: url('../img/Satellite12.png');background-repeat:no-repeat;}
-.kunziteIc{background-image: url('../img/Satellite13.png');background-repeat:no-repeat;}
-.lapislazuliIc{background-image: url('../img/Satellite14.png');background-repeat:no-repeat;}
-.moonstoneIc{background-image: url('../img/Satellite15.png');background-repeat:no-repeat;}
-.morganiteIc{background-image: url('../img/Satellite16.png');background-repeat:no-repeat;}
-.opalIc{background-image: url('../img/Satellite17.png');background-repeat:no-repeat;}
-.pearlIc{background-image: url('../img/Satellite18.png');background-repeat:no-repeat;}
-.peridotIc{background-image: url('../img/Satellite19.png');background-repeat:no-repeat;}
-.quartzIc{background-image: url('../img/Satellite20.png');background-repeat:no-repeat;}
-.rubyIc{background-image: url('../img/Satellite21.png');background-repeat:no-repeat;}
-.sapphireIc{background-image: url('../img/Satellite22.png');background-repeat:no-repeat;}
-.spinelIc{background-image: url('../img/Satellite23.png');background-repeat:no-repeat;}
-.sunstoneIc{background-image: url('../img/Satellite24.png');background-repeat:no-repeat;}
-.tanzaniteIc{background-image: url('../img/Satellite25.png');background-repeat:no-repeat;}
-.topazIc{background-image: url('../img/Satellite26.png');background-repeat:no-repeat;}
-.tourmalineIc{background-image: url('../img/Satellite27.png');background-repeat:no-repeat;}
-.turquioseIc{background-image: url('../img/Satellite28.png');background-repeat:no-repeat;}
-.zirconIc{background-image: url('../img/Satellite29.png');background-repeat:no-repeat;}
+
+.Stone_alexandriteIc{background-image: url('../img/Satellite1.png');background-repeat:no-repeat;}
+.Stone_amberIc{background-image: url('../img/Satellite2.png');background-repeat:no-repeat;}
+.Stone_amethystIc{background-image: url('../img/Satellite3.png');background-repeat:no-repeat;}
+.Stone_ametrineIc{background-image: url('../img/Satellite4.png');background-repeat:no-repeat;}
+.Stone_aquamarineIc{background-image: url('../img/Satellite5.png');background-repeat:no-repeat;}
+.Stone_citrineIc{background-image: url('../img/Satellite6.png');background-repeat:no-repeat;}
+.Stone_diamondIc{background-image: url('../img/Satellite7.png');background-repeat:no-repeat;}
+.Stone_colourdiamondIc{background-image: url('../img/Satellite8.png');background-repeat:no-repeat;}
+.Stone_emeraldkIc{background-image: url('../img/Satellite9.png');background-repeat:no-repeat;}
+.Stone_granetIc{background-image: url('../img/Satellite10.png');background-repeat:no-repeat;}
+.Stone_ioliteIc{background-image: url('../img/Satellite11.png');background-repeat:no-repeat;}
+.Stone_jadeIc{background-image: url('../img/Satellite12.png');background-repeat:no-repeat;}
+.Stone_kunziteIc{background-image: url('../img/Satellite13.png');background-repeat:no-repeat;}
+.Stone_lapislazuliIc{background-image: url('../img/Satellite14.png');background-repeat:no-repeat;}
+.Stone_moonstoneIc{background-image: url('../img/Satellite15.png');background-repeat:no-repeat;}
+.Stone_morganiteIc{background-image: url('../img/Satellite16.png');background-repeat:no-repeat;}
+.Stone_opalIc{background-image: url('../img/Satellite17.png');background-repeat:no-repeat;}
+.Stone_pearlIc{background-image: url('../img/Satellite18.png');background-repeat:no-repeat;}
+.Stone_peridotIc{background-image: url('../img/Satellite19.png');background-repeat:no-repeat;}
+.Stone_quartzIc{background-image: url('../img/Satellite20.png');background-repeat:no-repeat;}
+.Stone_rubyIc{background-image: url('../img/Satellite21.png');background-repeat:no-repeat;}
+.Stone_sapphireIc{background-image: url('../img/Satellite22.png');background-repeat:no-repeat;}
+.Stone_spinelIc{background-image: url('../img/Satellite23.png');background-repeat:no-repeat;}
+.Stone_sunstoneIc{background-image: url('../img/Satellite24.png');background-repeat:no-repeat;}
+.Stone_tanzaniteIc{background-image: url('../img/Satellite25.png');background-repeat:no-repeat;}
+.Stone_topazIc{background-image: url('../img/Satellite26.png');background-repeat:no-repeat;}
+.Stone_tourmalineIc{background-image: url('../img/Satellite27.png');background-repeat:no-repeat;}
+.Stone_turquioseIc{background-image: url('../img/Satellite28.png');background-repeat:no-repeat;}
+.Stone_zirconIc{background-image: url('../img/Satellite29.png');background-repeat:no-repeat;}
 
 .colbox1{width:100%;height:200px;background:#111}
 .colbox2{width:100%;height:200px;background:#222}
@@ -1210,49 +1211,58 @@ input[type=radio]:checked ~ .selector_label:after {
 .filterLabel:after{content:"";width:100%;height:100%;background:#15181b;position:absolute;top:0;left:0;transform:translateX(-100%);-webkit-transform:translateX(-100%);-moz-transform:translateX(-100%);-o-transform:translateX(-100%);-ms-transform:translateX(-100%);transition:200ms;-webkit-transition:200ms;-moz-transition:200ms;-o-transition:200ms;-ms-transition:200ms;}
 .filSelec .filterLabel:after{transform:translateX(-100%);-webkit-transform:translateX(0%);-moz-transform:translateX(0%);-o-transform:translateX(0%);-ms-transform:translateX(0%);background:#53C9C7;}
 .ring_twofingerIc{background-image: url('../img/filterIcons/300.svg');background-repeat:no-repeat;}
-.braceletIc{background-image: url('../img/filterIcons/301.svg');background-repeat:no-repeat;}
-.bridalIc{background-image: url('../img/filterIcons/302.svg');background-repeat:no-repeat;}
-.broadIc{background-image: url('../img/filterIcons/303.svg');background-repeat:no-repeat;}
-.casualIc{background-image: url('../img/filterIcons/304.svg');background-repeat:no-repeat;}
-.chandbaliIc{background-image: url('../img/filterIcons/305.svg');background-repeat:no-repeat;}
-.chandeliersIc{background-image: url('../img/filterIcons/306.svg');background-repeat:no-repeat;}
 
-.Pendant_designerIc{background-image: url('../img/filterIcons/307.svg');background-repeat:no-repeat;}
-.dropsIc{background-image: url('../img/filterIcons/308.svg');background-repeat:no-repeat;}
-.earcuffsIc{background-image: url('../img/filterIcons/309.svg');background-repeat:no-repeat;}
-.fusionIc{background-image: url('../img/filterIcons/310.svg');background-repeat:no-repeat;}
-.hoopsIc{background-image: url('../img/filterIcons/311.svg');background-repeat:no-repeat;}
-.jhumkasIc{background-image: url('../img/filterIcons/312.svg');background-repeat:no-repeat;}
-.lightweightIc{background-image: url('../img/filterIcons/313.svg');background-repeat:no-repeat;}
-.singlelineIc{background-image: url('../img/filterIcons/314.svg');background-repeat:no-repeat;}
-.studsIc{background-image: url('../img/filterIcons/315.svg');background-repeat:no-repeat;}
-.tanmaniyaIc{background-image: url('../img/filterIcons/316.svg');background-repeat:no-repeat;}
-.tennisbraceletIc{background-image: url('../img/filterIcons/317.svg');background-repeat:no-repeat;}
-.tennisIc{background-image: url('../img/filterIcons/318.svg');background-repeat:no-repeat;}
-.thinIc{background-image: url('../img/filterIcons/319.svg');background-repeat:no-repeat;}
-.traditionalIc{background-image: url('../img/filterIcons/320.svg');background-repeat:no-repeat;}
-.sglineneckIc{background-image: url('../img/filterIcons/321.svg');background-repeat:no-repeat;}
+/* Necklace type icons*/
+
+.NecklaceType_bridalIc{background-image: url('../img/filterIcons/302.svg');background-repeat:no-repeat;}
+.NecklaceType_traditionalIc{background-image: url('../img/filterIcons/320.svg');background-repeat:no-repeat;}
+.NecklaceType_tennisIc{background-image: url('../img/filterIcons/318.svg');background-repeat:no-repeat;}
+.NecklaceType_singlelineIc{background-image: url('../img/filterIcons/321.svg');background-repeat:no-repeat;}
+.NecklaceType_lightweightIc{background-image: url('../img/filterIcons/313.svg');background-repeat:no-repeat;}
+.NecklaceType_tennisbraceletIc{background-image: url('../img/filterIcons/317.svg');background-repeat:no-repeat;}
+
+/* earring style icons*/
+
+.EarringType_dropsIc{background-image: url('../img/filterIcons/308.svg');background-repeat:no-repeat;}
+.EarringType_earcuffsIc{background-image: url('../img/filterIcons/309.svg');background-repeat:no-repeat;}
+.EarringType_hoopsIc{background-image: url('../img/filterIcons/311.svg');background-repeat:no-repeat;}
+.EarringType_jhumkasIc{background-image: url('../img/filterIcons/312.svg');background-repeat:no-repeat;}
+.EarringType_studsIc{background-image: url('../img/filterIcons/315.svg');background-repeat:no-repeat;}
+.EarringType_chandbaliIc{background-image: url('../img/filterIcons/305.svg');background-repeat:no-repeat;}
+.EarringType_chandeliersIc{background-image: url('../img/filterIcons/306.svg');background-repeat:no-repeat;}
+
+/* Bangle type  icons */
+.BangleType_singlelineIc{background-image: url('../img/filterIcons/314.svg');background-repeat:no-repeat;}
+.BangleType_thinIc{background-image: url('../img/filterIcons/319.svg');background-repeat:no-repeat;}
+.BangleType_broadIc{background-image: url('../img/filterIcons/303.svg');background-repeat:no-repeat;}
+.BangleType_braceletsIc{background-image: url('../img/filterIcons/301.svg');background-repeat:no-repeat;}
+
+/* pendant type  icons */
+.PendantType_fusionIc{background-image: url('../img/filterIcons/310.svg');background-repeat:no-repeat;}
+.PendantType_designerIc{background-image: url('../img/filterIcons/307.svg');background-repeat:no-repeat;}
+.PendantType_tanmaniyaIc{background-image: url('../img/filterIcons/316.svg');background-repeat:no-repeat;}
+.PendantType_casualIc{background-image: url('../img/filterIcons/304.svg');background-repeat:no-repeat;}
+
+
+
+
+
+
+
+DiamondCut_roundIc
 
 /*diamonds*/
 
-.roundIc   {background-image: url('../img/round.svg');background-repeat:no-repeat;}
-.pearIc    {background-image: url('../img/pear.svg');background-repeat:no-repeat;}
-.heartIc   {background-image: url('../img/heart.svg');background-repeat:no-repeat;}
-.princessIc{background-image: url('../img/princess.svg');background-repeat:no-repeat;}
-.asscherIc {background-image: url('../img/asscher.svg');background-repeat:no-repeat;}
-.marquiseIc{background-image: url('../img/marquise.svg');background-repeat:no-repeat;}
-.ovalIc    {background-image: url('../img/oval.svg');background-repeat:no-repeat;}
-.emeraldIc {background-image: url('../img/emerald.svg');background-repeat:no-repeat;}
-.radiantIc {background-image: url('../img/radiant.svg');background-repeat:no-repeat;}
-.cushionIc {background-image: url('../img/cushion.svg');background-repeat:no-repeat;}
-
-
-
-
-
-
-
-
+.DiamondCut_roundIc{background-image: url('../img/round.svg');background-repeat:no-repeat;}
+.DiamondCut_pearIc {background-image: url('../img/pear.svg');background-repeat:no-repeat;}
+.DiamondCut_heartIc{background-image: url('../img/heart.svg');background-repeat:no-repeat;}
+.DiamondCut_princessIc{background-image: url('../img/princess.svg');background-repeat:no-repeat;}
+.DiamondCut_asscherIc {background-image: url('../img/asscher.svg');background-repeat:no-repeat;}
+.DiamondCut_marquiseIc{background-image: url('../img/marquise.svg');background-repeat:no-repeat;}
+.DiamondCut_ovalIc    {background-image: url('../img/oval.svg');background-repeat:no-repeat;}
+.DiamondCut_emeraldIc {background-image: url('../img/emerald.svg');background-repeat:no-repeat;}
+.DiamondCut_radiantIc {background-image: url('../img/radiant.svg');background-repeat:no-repeat;}
+.DiamondCut_cushionIc {background-image: url('../img/cushion.svg');background-repeat:no-repeat;}
 
 /*Ring Style Filter Icons*/
 
@@ -1276,9 +1286,6 @@ input[type=radio]:checked ~ .selector_label:after {
 .RingType_closedIc{background-image: url('../img/filterIcons/338.svg');background-repeat:no-repeat;}
 .RingType_designerIc{background-image: url('../img/filterIcons/339.svg');background-repeat:no-repeat;}
 .RingType_twofingerIc{background-image: url('../img/filterIcons/336.svg');background-repeat:no-repeat;}
-
-
-
 
 
 
