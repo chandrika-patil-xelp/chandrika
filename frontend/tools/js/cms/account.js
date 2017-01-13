@@ -788,6 +788,7 @@ function ordrinfo()
     $('#saveAddrId').addClass("dn");
     $('#pChange').addClass("dn");
     $('#wishlistId').addClass("dn");
+    $('#oId').addClass('jzevaColor');
     $('#cntshp_ordr').click(function () {
         window.location.href = DOMAIN + "index.php?action=landing_page"
     });
@@ -802,6 +803,7 @@ function perninfo() {
     $('#saveAddrId').addClass("dn");
     $('#pChange').addClass("dn");
     $('#wishlistId').addClass("dn");
+    $('#pId').addClass('jzevaColor');
 }
 
 function saveadrinfo()
@@ -814,6 +816,7 @@ function saveadrinfo()
     $('#editpId').addClass("dn");
     $('#pChange').addClass("dn");
     $('#wishlistId').addClass("dn");
+    $('#sId').addClass('jzevaColor');
 }
 
 function chngpasrd()
@@ -826,6 +829,7 @@ function chngpasrd()
     $('#editpId').addClass("dn");
     $('#saveAddrId').addClass("dn");
     $('#wishlistId').addClass("dn");
+    $('#cId').addClass('jzevaColor');
 }
 
 function whlist()
@@ -838,6 +842,7 @@ function whlist()
     $('#editpId').addClass("dn");
     $('#saveAddrId').addClass("dn");
     $('#pChange').addClass("dn");
+    $('#wId').addClass('jzevaColor');
     $('#cunshpng_wish').click(function () {
         window.location.href = DOMAIN + "index.php?action=landing_page";
     });

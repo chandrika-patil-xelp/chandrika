@@ -354,7 +354,7 @@ return m.split("").reverse().join("");
    };
    
    this.isCharacterKey = function (event) {
-        var key = window.event ? event.keyCode : event.which;console.log(key);
+        var key = window.event ? event.keyCode : event.which;
          if (key < 48 || key > 57) {
             return true;
         } else

@@ -326,6 +326,7 @@ function shpngsubmt()
     var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
     var letters = /^[a-zA-Z\s]+$/;
     var filter = /^[0-9-+]+$/;
+    var addchk=/^[a-zA-Z0-9-#-' ]*$/;
     if (name === '' || name === null) {
         validationFlag = 0;
         common.msg(0, 'Please enter your Name');
@@ -344,7 +345,11 @@ function shpngsubmt()
     } else if (addrs === '' || addrs === null) {
         validationFlag = 0;
         common.msg(0, 'Please enter your address');
-    } else if (pincode === '' || pincode.length === 0) {
+    } else if (!addchk.test(addrs)) {
+        validationFlag = 0;
+        common.msg(0, 'Please remove special characters from address');
+    } 
+    else if (pincode === '' || pincode.length === 0) {
         validationFlag = 0;
         common.msg(0, 'Please enter your Zip code');
     } else if (pincode.length > 6 || pincode.length < 6) {

@@ -173,7 +173,7 @@ $(document).ready(function () {
     }
 
     clickdesbl = false;
-    var URL = APIDOMAIN + "index.php/?action=getProductById&pid=" + pid;
+    var URL = APIDOMAIN + "index.php?action=getProductById&pid=" + pid;
 
 
     $.ajax({
