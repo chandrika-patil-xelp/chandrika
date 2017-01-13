@@ -1865,13 +1865,13 @@ class user extends DB {
 					  FROM 
 						  tbl_order_shipping_details 
 					  WHERE  
-						  active_flag=1 ";
+						   ";
 	
 	    if(!empty($params['mobile'])){
-		  $sql.="AND mobile=".$params['mobile'].") ";
+		  $sql.=" mobile=".$params['mobile'].") ";
 	    }
 	    else if(!empty($params['email'])){
-		  $sql.="AND email='".$params['email']."' )";
+		  $sql.=" email='".$params['email']."' )";
 	    }
 
 	    $res = $this->query($sql);

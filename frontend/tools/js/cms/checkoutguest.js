@@ -27,7 +27,7 @@
  
   var usrid = common.readFromStorage('jzeva_uid');
  
-    var name = $('#g_name').val();console.log(name);
+    var name = $('#g_name').val();
     var email = $('#g_mail').val();
     mobile = $('#g_mobl').val(); 
     var addrs = $('#g_addr').val();
@@ -36,7 +36,7 @@
     var pincode = $('#shpdpincode').val();
     
     var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
-    var letters = /^[A-Za-z]+$/;
+    
     var filter = /^[0-9-+]+$/;
     if(gndrflg == undefined || gndrflg == null){
       validationFlag=0;  
@@ -45,11 +45,7 @@
     else if (name === '' || name === null) {
       validationFlag = 0;
       common.msg(0, 'Please enter your Name');
-    } 
-    else if (!letters.test(name)) {
-      validationFlag = 0;
-      common.msg(0, 'Name should be alphanumeric');
-    } 
+    }  
     else if (mobile === '' || mobile === null) {
       validationFlag = 0;
       common.msg(0, 'Please enter your Mobile no');
@@ -401,7 +397,7 @@ $('#gSgnUpsbmt').click(function(){
      mobile = $("#shpdmobile").val();
    var pass = $("#shpdpaswrd").val(); 
    var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
-   var letters = /^[a-zA-Z\s]+$/;
+    
    var filter = /^[0-9-+]+$/;
     var validationFlag=1;
     if(gndrflg == undefined || gndrflg == null){
@@ -413,12 +409,7 @@ $('#gSgnUpsbmt').click(function(){
       validationFlag=0;  
      common.msg(0,'Please enter your Name'); 
       return false;
-    }  
-    else if(!letters.test(name)){
-       validationFlag=0;  
-        common.msg(0,'Name should be alphanumeric'); 
-        return false;
-    }
+    }   
     else if(email===''|| email=== null){
        validationFlag=0;  
          common.msg(0,'Please enter your Email-id'); 

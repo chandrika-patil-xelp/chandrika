@@ -324,14 +324,24 @@ $(document).ready(function () {
                         {
                             Nstr += '<span>Solitaire</span>';
                             dmdsoli = "Solitaire";
-                            bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span> is casted in <span class="semibold" id="newWt">' + vl.mtlWgt + '</span> grams of gold set with brilliant cut <span class="semibold">' + dt['solitaire']['results'][0].nofs + '</span> ' + dt['solitaire']['results'][0].shape + ' Solitaire (Approx. ' + dt['solitaire']['results'][0].carat + ' Ct) </div>';
+                            bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span>';
+			    if(catname == 'Earrings')
+			      bstr += ' are ';
+			    else
+			      bstr += ' is ';
+			    bstr += 'cast in <span class="semibold" id="newWt">' + vl.mtlWgt + '</span> <span class="semibold">grams </span>of gold set with <span class="semibold">' + dt['solitaire']['results'][0].nofs + '</span> brilliant cut  <span class="semibold">' + dt['solitaire']['results'][0].shape + '</span> Solitaire (Approx. <span class="semibold">' + dt['solitaire']['results'][0].carat + ' Carat</span>) certified by <span class="semibold">' + dt['basicDetails'].crtficte + '</span> </div>';
                             break;
                         }
                         case 2:
                         {
                             Nstr += '<span>Diamond</span>';
                             dmdsoli = "Diamond";
-                            bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span> is casted in <span class="semibold" id="newWt">' + vl.mtlWgt + '</span> grams of gold set with brilliant cut <span class="semibold">' + dt['dimond']['results'][0].totNo + '</span> ' + dt['dimond']['results'][0].shape + ' Diamonds (Approx. ' + dt['dimond']['results'][0].crat + ' Ct) </div>';
+                            bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span>';
+			    if(catname == 'Earrings')
+			      bstr += ' are ';
+			    else
+			      bstr += ' is ';
+			    bstr += ' cast in <span class="semibold" id="newWt">' + vl.mtlWgt + '</span> <span class="semibold">grams</span> of gold set with <span class="semibold">' + dt['dimond']['results'][0].totNo + '</span> brilliant cut <span class="semibold">' + dt['dimond']['results'][0].shape + '</span> Diamonds (Approx. <span class="semibold">' + dt['dimond']['results'][0].crat + ' Carat</span>) certified by <span class="semibold">' + dt['basicDetails'].crtficte + '</span></div>';
                             break;
                         }
                         case 3:
@@ -339,7 +349,17 @@ $(document).ready(function () {
                             Nstr += '<span>Solitaire</span>';
                             dmdsoli = "Solitaire";
 
-                            bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span> is casted in <span class="semibold" id="newWt">' + vl.mtlWgt + '</span> grams of gold set with brilliant cut <span class="semibold">' + dt['dimond']['results'][0].totNo + '</span> ' + dt['dimond']['results'][0].shape + ' Diamonds (Approx. ' + dt['dimond']['results'][0].crat + ' Ct) and a <span class="semibold">' + dt['solitaire']['results'][0].carat + ' Ct</span> ' + dt['solitaire']['results'][0].shape + ' Solitaire of ' + dt['solitaire']['results'][0].colr + ' color </div>';
+                            bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span>';
+			    if(catname == 'Earrings')
+			      bstr += ' are ';
+			    else
+			      bstr += ' is ';
+			    bstr += 'cast in <span class="semibold" id="newWt">' + vl.mtlWgt + '</span> <span class="semibold">grams</span> of gold set with <span class="semibold">' + dt['dimond']['results'][0].totNo + '</span> brilliant cut <span class="semibold">' + dt['dimond']['results'][0].shape + '</span> Diamonds (Approx. <span class="semibold">' + dt['dimond']['results'][0].crat + ' Carat</span>)  and <span class="semibold">'+ dt['solitaire'].count +'</span>';
+			  if(dt['solitaire'].count > 1)
+			    bstr += ' Solitaires of <span class="semibold">' + dt['solitaire']['results'][0].carat + ' Carats</span> ';
+			  else
+			    bstr += ' Solitaire of <span class="semibold">' + dt['solitaire']['results'][0].carat + ' Carat</span> ';
+			  bstr += ' and <span class="semibold">'+ dt['solitaire']['results'][0].clrty +'</span> quality and <span class="semibold">' + dt['solitaire']['results'][0].colr + '</span> color certified by <span class="semibold">' + dt['basicDetails'].crtficte + '</span></div>';
                             break;
                         }
                         case 4:
@@ -367,7 +387,12 @@ $(document).ready(function () {
                             gemstn = gemstone.results[0].gemNm;
                             Nstr += '<span>Diamond</span><span>' + gemstn + '</span>';
                             dmdsoli = "Diamond";
-                            bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span> is casted in <span class="semibold" id="newWt">' + vl.mtlWgt + '</span> grams of gold set with brilliant cut <span class="semibold">' + dt['dimond']['results'][0].totNo + '</span> ' + dt['dimond']['results'][0].shape + ' Diamonds (Approx. ' + dt['dimond']['results'][0].crat + ' Ct) and a <span class="semibold">' + dt['gamestone']['results'][0].crat + ' Ct</span> ' + dt['gamestone']['results'][0].gemNm + ' </div>';
+                            bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span>';
+			    if(catname == 'Earrings')
+			      bstr += ' are ';
+			    else
+			      bstr += ' is ';
+			    bstr += 'cast in <span class="semibold" id="newWt">' + vl.mtlWgt + '</span> <span class="semibold">grams</span> of gold set with <span class="semibold">' + dt['dimond']['results'][0].totNo + '</span> brilliant cut <span class="semibold">' + dt['dimond']['results'][0].shape + '</span> Diamonds (Approx. <span class="semibold">' + dt['dimond']['results'][0].crat + ' Carat</span>) certified by <span class="semibold">' + dt['basicDetails'].crtficte + '</span> and  <span class="semibold">' + dt['gamestone']['results'][0].crat + ' Carat</span> ' + dt['gamestone']['results'][0].gemNm + ' </div>';
 
                             break;
                         }
@@ -376,7 +401,12 @@ $(document).ready(function () {
                         {
                             Nstr += '<span>Diamond</span><span>Gemstones</span>';
                             dmdsoli = "Diamond";
-                            bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span> is casted in <span class="semibold" id="newWt" >' + vl.mtlWgt + '</span> grams of gold set with brilliant cut <span class="semibold">' + dt['dimond']['results'][0].totNo + '</span> ' + dt['dimond']['results'][0].shape + ' Diamonds (Approx. ' + dt['dimond']['results'][0].crat + ' Ct), <span class="semibold">' + dt['gamestone']['results'][0].crat + ' Ct</span> ' + dt['gamestone']['results'][0].gemNm + ' and a <span class="semibold">' + dt['gamestone']['results'][1].crat + ' Ct</span> ' + dt['gamestone']['results'][1].gemNm + '  </div>';
+                            bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span> ';
+			    if(catname == 'Earrings')
+			      bstr += ' are ';
+			    else
+			      bstr += ' is ';
+			    bstr += 'cast in <span class="semibold" id="newWt" >' + vl.mtlWgt + ' </span><span class="semibold">grams</span> of gold set with <span class="semibold">' + dt['dimond']['results'][0].totNo + '</span> brilliant cut <span class="semibold">' + dt['dimond']['results'][0].shape + '</span> Diamonds (Approx. <span class="semibold">' + dt['dimond']['results'][0].crat + ' Carat</span>) certified by <span class="semibold">' + dt['basicDetails'].crtficte + '</span>, <span class="semibold">' + dt['gamestone']['results'][0].crat + ' Carat</span> ' + dt['gamestone']['results'][0].gemNm + ' and  <span class="semibold">' + dt['gamestone']['results'][1].crat + ' Carat</span> ' + dt['gamestone']['results'][1].gemNm + '  </div>';
 
                             break;
                         }
@@ -1063,7 +1093,7 @@ function calculatePrice()
     newWeight = parseFloat(storedWt + (changeInWeight)); 
     newWeight = newWeight.toFixed(3);
 
-    $('#newWt').html(newWeight + " gms");
+    $('#newWt').html(newWeight + "");
 
     goldPrice = parseFloat(selPurity * newWeight); 
     var mkCharges = parseFloat(storedMkCharge * newWeight); 
@@ -1222,7 +1252,7 @@ function calweight()
     newWeight = parseFloat(storedWt + (changeInWeight));
     newWeight = newWeight.toFixed(3);
 
-    $('#newWt').html(newWeight + " gms");
+    $('#newWt').html(newWeight + "");
 }
 
 $('.dwnArrow').click(function(){

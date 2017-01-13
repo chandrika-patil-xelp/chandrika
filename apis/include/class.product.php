@@ -1986,7 +1986,7 @@ class product extends DB {
 
     public function getProductById($params) {
 
-        try {
+      try {
             $productSql = " SELECT
                                    productid,
 				   productid AS prdid,
@@ -2940,7 +2940,7 @@ class product extends DB {
                 FROM
                         tbl_product_image_mapping
                 WHERE
-                        active_flag !=2 AND
+                        active_flag =1 AND
                         product_id = " . $params['pid'] . " ORDER BY image_sequence DESC";
 
 
@@ -4225,19 +4225,18 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 	
         $sql.="   active_flag=1";
         
- 
-        $res = $this->query($sql);
 
+        $res = $this->query($sql);
         while ($row = $this->fetchData($res)) {
             $prdids[] = $row['productid'];
-        }
+	} 
 	 if ($rngflag == 1) {
 	   $lowprz=  explode(';', $rngval); 
         }
 	if ($caratflag == 1) {
 	   $lowcarat=  explode(';', $caratval); 
-        }
- 
+	}
+        
 	if($fltrflag == 0)
 	{
 	  if($caratflag  == 1 && $rngflag == 1){
@@ -4254,8 +4253,8 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 		 $prdid = array('lowprz'=>$lowprz[0],'highprz'=>$lowprz[1],'id'=>$params['catid'],'selctn'=>3);
 		 $rst = $this->getfltrProdsbycatid($prdid);
 		 $cnt=count($rst); 
-	  }
-                }
+        }
+        }
 	else
 	{
 	  foreach ($prdids as $val) {
