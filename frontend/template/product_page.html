@@ -13,6 +13,22 @@
         <div class="wrapper" id="wrapper">
             <div class="wrapper_max">
                 <div class="container poR">
+                    <div class="fLeft prodCarousel">
+                            <div class="prevArrow" onclick="movePrImg(true)"></div>
+                            <div class="nextArrow" onclick="movePrImg(false)"></div>
+                            <div class="inCarousel transition300">
+                            <div class="carouselBox"></div>
+                            <div class="carouselBox"></div>
+                            <div class="carouselBox"></div>
+                            <div class="carouselBox"></div>
+                            <div class="carouselBox"></div>
+                            <div class="carouselBox"></div>
+                            <div class="carouselBox"></div>
+                            <div class="carouselBox"></div>
+                            <div class="carouselBox"></div>
+                            <div class="carouselBox"></div>
+                            </div>
+                        </div>
                     <div class="details_cont fLeft">
                         <div class="details_buffer">
                             <div class="details_head fLeft" id="proname">
@@ -44,9 +60,10 @@
                         </div>
                     </div>
                     <div class="rota_wrap transition300">
+                        
                         <div class="rota_buffer">
                             <div class="div360"></div>
-                            <div class="userInfo dwnArrow fLeft"></div>
+                            <div class="userInfo dn dwnArrow fLeft"></div>
                             <div class="rota" id="img-view">
                             </div>
                             <div class="rota_btn fLeft dn">
@@ -56,6 +73,7 @@
                                 </center>
                             </div>
                         </div>
+
                     </div>
                     <div class="options fRight">
                         <div class= "options_buffer">
@@ -208,7 +226,6 @@
                                         </div>
                                         <div class="options_back fLeft"></div>
                                     </div>
-
                                 </div>                                       
                             </div>
                         </div>
@@ -216,34 +233,34 @@
                 </div>
             </div>
         </div>
+
+
+        <div class="darkCont fLeft">
+            <div class="wrapper_max">
+                <div class="homeCollect">
+                    <!-- <div class="colleCont ">
+                       <div class="smUlineb">White Gold</div>
+                       <div class="collCenterb ">
+                         White gold is an alloy of gold and at least one white metal, usually nickel, manganese or palladium. In order to make the gold white, it is combined with metal alloys that are white in nature and plated with an extremely hard element called rhodium. Although strong, rhodium may wear away over time. Replating is a simple process that can be done to restore whiteness to rhodium-plated jewelry.
+                       </div>
     
     
-    <div class="darkCont fLeft">
-        <div class="wrapper_max">
-            <div class="homeCollect">
-                <!-- <div class="colleCont ">
-                   <div class="smUlineb">White Gold</div>
-                   <div class="collCenterb ">
-                     White gold is an alloy of gold and at least one white metal, usually nickel, manganese or palladium. In order to make the gold white, it is combined with metal alloys that are white in nature and plated with an extremely hard element called rhodium. Although strong, rhodium may wear away over time. Replating is a simple process that can be done to restore whiteness to rhodium-plated jewelry.
-                   </div>
-
-
-
-                 </div>
-                 <div class="colleCont v2">
-                   <div class="smUline ">White Gold</div>
-                   <div class="collCenter ">
-                     White gold is an alloy of gold and at least one white metal, usually nickel, manganese or palladium. In order to make the gold white, it is combined with metal alloys that are white in nature and plated with an extremely hard element called rhodium. Although strong, rhodium may wear away over time. Replating is a simple process that can be done to restore whiteness to rhodium-plated jewelry.
-                   </div>
-
-                 </div>-->
+    
+                     </div>
+                     <div class="colleCont v2">
+                       <div class="smUline ">White Gold</div>
+                       <div class="collCenter ">
+                         White gold is an alloy of gold and at least one white metal, usually nickel, manganese or palladium. In order to make the gold white, it is combined with metal alloys that are white in nature and plated with an extremely hard element called rhodium. Although strong, rhodium may wear away over time. Replating is a simple process that can be done to restore whiteness to rhodium-plated jewelry.
+                       </div>
+    
+                     </div>-->
+                </div>
             </div>
         </div>
+
+
+        <?php include 'footer.html'?>
     </div>
-
-
-    <?php include 'footer.html'?>
-</div>
 
     <?php include 'loader.html'?>
 
@@ -268,7 +285,7 @@
             onChange: function (data) {
                 var sVal = data.from_value;
 //                console.log(sVal);
-              
+
                 $('#size').text("Size " + data.from_value);
                 $('.ringCircle').html(sVal);
 
@@ -278,9 +295,8 @@
                     dec();
                 }
                 t = sVal;
-                 calculatePrice();
+                calculatePrice();
             },
-           
         });
 
 
@@ -302,13 +318,38 @@
                     decB();
                 }
                 t = sVal;
-                 calculatePrice();
+                calculatePrice();
             },
         });
+        
 
-
-
-
+                var val = 0;
+		var moveCount = 0;
+		function movePrImg(flag)
+		{
+//                    alert("jhdkfj");
+				var totalThumbs = $(".carouselBox").length;
+				var liWidth = ($(".carouselBox").outerWidth());
+				if (!flag)
+				{
+						if (moveCount < (totalThumbs - 5))
+						{
+								val = val - liWidth;
+								$(".inCarousel").css({transform: 'translateX(' + val + 'px)'});
+								moveCount++;
+						}
+				}
+				else if (flag)
+				{
+						if (moveCount > 0) {
+								val = val + liWidth;
+								$(".inCarousel").css({transform: 'translateX(' + val + 'px)'});
+								moveCount--;
+						}
+				}
+		}
+        
+        
         var tmp;
         setTimeout(function () {
             tmp = $('.ringCircle').html();
@@ -419,7 +460,7 @@
         var s = 0;
         function function1() {
             i = (i + 1) % 30;
-           
+
             $('.imgHolder').addClass('dn');
             $('.imgHolder').eq(i).removeClass('dn');
         }
@@ -483,7 +524,7 @@
             //runner();
 
             wid = $('.rota').width();
-          
+
 
 
         });
@@ -549,51 +590,51 @@
 
         /* Fly to cart effect */
         $('#add_to_cart').on('click', function () {
-	    
-	  var size=$('#size').text(); 
-	  if(size !== 'Select') 
-	  {
-            var wd = $('.rota').outerWidth();
-            var ht = $('.rota').outerHeight();
-            var cart = $('.cartIcon');
-            var imgtodrag;
-            $('.rota .imgHolder').each(function (i) {
-                if (!$(this).hasClass("dn")) {
-                    imgtodrag = $(this);
-                }
-            });
-            if (imgtodrag) {
-                var imgclone = imgtodrag.clone()
-                        .offset({
-                            top: imgtodrag.offset().top,
-                            left: imgtodrag.offset().left
-                        })
-                        .css({
-                            'opacity': '0.7',
-                            'position': 'absolute',
-                            'height': ht,
-                            'width': wd,
-                            'z-index': '900',
-                            'display': 'block'
-                        })
-                        .appendTo($('body'))
-                        .velocity({top: cart.offset().top + 20, left: cart.offset().left + 30, width: 0, height: 0, opacity: [0.1]}, {duration: 1000, easing: 'easeInOutExpo',
-                            complete: function () {
-                                $(this).detach();
-                            }});
-                //
-                // setTimeout(function () {
-                //     cart.velocity('stop').velocity({translateX: [-15, 15]}, {duration: 50, easing: 'swing', loop: 3}).velocity({translateX: [0]}, {duration: 25, easing: 'swing'});
-                // }, 900);
 
-                // imgclone.animate({
-                //     'width': 0,
-                //         'height': 0
-                // }, function () {
-                //
-                // });
+            var size = $('#size').text();
+            if (size !== 'Select')
+            {
+                var wd = $('.rota').outerWidth();
+                var ht = $('.rota').outerHeight();
+                var cart = $('.cartIcon');
+                var imgtodrag;
+                $('.rota .imgHolder').each(function (i) {
+                    if (!$(this).hasClass("dn")) {
+                        imgtodrag = $(this);
+                    }
+                });
+                if (imgtodrag) {
+                    var imgclone = imgtodrag.clone()
+                            .offset({
+                                top: imgtodrag.offset().top,
+                                left: imgtodrag.offset().left
+                            })
+                            .css({
+                                'opacity': '0.7',
+                                'position': 'absolute',
+                                'height': ht,
+                                'width': wd,
+                                'z-index': '900',
+                                'display': 'block'
+                            })
+                            .appendTo($('body'))
+                            .velocity({top: cart.offset().top + 20, left: cart.offset().left + 30, width: 0, height: 0, opacity: [0.1]}, {duration: 1000, easing: 'easeInOutExpo',
+                                complete: function () {
+                                    $(this).detach();
+                                }});
+                    //
+                    // setTimeout(function () {
+                    //     cart.velocity('stop').velocity({translateX: [-15, 15]}, {duration: 50, easing: 'swing', loop: 3}).velocity({translateX: [0]}, {duration: 25, easing: 'swing'});
+                    // }, 900);
+
+                    // imgclone.animate({
+                    //     'width': 0,
+                    //         'height': 0
+                    // }, function () {
+                    //
+                    // });
+                }
             }
-	  }
         });
         // Show close reviews page
         // $('.review_btn').click(function () {
@@ -648,29 +689,30 @@
 
 
 
+//        var val = 0;
+//        var moveCount = 0;
+//        function movePrImg(flag) {
+//            alert("ndjuhsndf");
+//            var totalThumbs = $(".productCont").length;
+//            var liWidth = ($(".productCont").outerWidth());
+//
+//
+//            if (!flag) {
+//                if (moveCount < (totalThumbs - 1)) {
+//                    val = val - liWidth;
+//                    $(".productCont").css({transform: 'translateX(' + val + 'px)'});
+//                    moveCount++;
+//                }
+//            } else if (flag) {
+//                if (moveCount > 0) {
+//                    val = val + liWidth;
+//                    $(".productCont").css({transform: 'translateX(' + val + 'px)'});
+//                    moveCount--;
+//                }
+//            }
+//        }
 
 
-        var val = 0;
-        var moveCount = 0;
-        function movePrImg(flag) {
-            var totalThumbs = $(".productCont").length;
-            var liWidth = ($(".productCont").outerWidth());
-
-
-            if (!flag) {
-                if (moveCount < (totalThumbs - 1)) {
-                    val = val - liWidth;
-                    $(".productCont").css({transform: 'translateX(' + val + 'px)'});
-                    moveCount++;
-                }
-            } else if (flag) {
-                if (moveCount > 0) {
-                    val = val + liWidth;
-                    $(".productCont").css({transform: 'translateX(' + val + 'px)'});
-                    moveCount--;
-                }
-            }
-        }
 
         //        if(catname == 'Rings')
         //        {;

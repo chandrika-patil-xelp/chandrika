@@ -2303,13 +2303,44 @@ input[type=radio]:checked ~ .matchIcn{
 .myaccount .soc_wish2:after{background:url(../img/icons/551.svg)no-repeat;    background-position: center;}
 .myaccount .soc_wish2:before{display: none;}
 .myaccount .soc_wish2:hover:before{opacity: 1;}
+.prodCarousel{width: 40%;
+    height: 100px;
+    position: absolute;
+    z-index: 100;
+    white-space: nowrap;
+    overflow: hidden;
+    /* padding: 0px 31px; */
+    bottom: 0px;
+       padding: 10px 35px 10px 35px;
+    background: #ffffff;
+    left: 0;
+    right: 0;
+    /* top: 0; */
+    margin: auto;}
+.carouselBox{width: 100px;
+    height: 100%;
+    border: 1px solid #e6e6e6;
+    display: inline-block;}
+.prevArrow{ position: absolute;
+    width: 30px;
+    height: 80%;
+    left: 0;
+    background: #15181b url(../img/icons/543w.svg)no-repeat;
+    background-position: center;
+    transform: rotate(180deg);
+    cursor: pointer;    background-size: auto 50%;
+    /* margin-left: 29px; */
+    top: 10px;    z-index: 99999;}
+.nextArrow{position: absolute;
+width:30px;
+height:80%;right:0;background: #15181b url(../img/icons/543w.svg)no-repeat;    background-size: auto 50%;
+background-position: center;
+cursor: pointer;top: 10px;    z-index: 99999;}
                             
                                 
 
 .ordersCard{width: 50%;height: auto;border-right: 1px solid #ccc;}
 .shipAddr{padding-bottom: 5px;line-height: 16px;}
-
-
 
 
 .cServices{}
@@ -2690,6 +2721,16 @@ input[type=number]::-webkit-outer-spin-button {
 .fShipping{background:url(../img/icons/541b.svg)no-repeat;background-position:30px 35px;background-size:auto 40px;}
 .fhelpHead{width:100%;font-size:13px;font-family:semibold;letter-spacing:0.15em}
 .fhelpPara{width:100%;font-size:12px;font-family:regular;line-height:18px;margin-top:5px}
+
+.inCarousel{    width: 95%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    white-space: nowrap;
+    background: #fff;}
+
+
 @media only screen and (min-width:320px) and (max-width:767px){
 
     .tHead{width: 100%;text-align: left;}
