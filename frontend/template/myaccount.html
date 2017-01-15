@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php include 'jhead.html' ?>
 <script>
-    var actn = "<?php echo $_GET['actn'];  ?>"; var ordtrid = "<?php echo $_GET['trkid'];  ?>"; 
+    var actn = "<?php echo $_GET['actn'];  ?>"; var ordtrid = "<?php echo $_GET['trkid'];  ?>";
 </script>
 <body class="Terms myaccount">
     <?php include 'Cart.html'?>
@@ -43,7 +43,7 @@
                     <div class="fLeft pCont">
                         <div class="fLeft orderCommon" >
                             <div class="fLeft tabHead headLine borBtm dn" id="myord" >my orders</div>
-                            
+
                             <div class="col100 fLeft dn" id="myordId">
 <!--                            <div class="fLeft orderOuter">
                                 <div class="fLeft inShip" id="ordTitle">
@@ -61,13 +61,13 @@
                                     </div>
                                 </div>
                             </div>-->
-                           
+
                             <div class="col100 fLeft " id="noordrs">
                                 <center>
                                     <div class="ordEmpty" ></div>
                                     <div class="noOrdTxt">
-                                        <div class="fooH mar0">No Orders</div>
-                                        <div class="font13">Sorry,You have no order history</div>
+                                        <div class="fooH mar0">No orders placed currently</div>
+                                        <!-- <div class="font13">Sorry,You have no order history</div> -->
                                     </div>
                                     <div class="col100" id="cntshp_ordr">
                                         <div class="actBtn button">continue shopping</div>
@@ -78,7 +78,7 @@
                                 <!--                                <div class="fLeft orderImg bgCommon"></div>
                                                                 <div class="fLeft orderName">
                                                                     <div class="fLeft col100 semibold">Dual eternity ring</div>
-                                
+
                                                                     <div class="fLeft  col10">
                                                                         <span class="fLeft">Diamond Qty:</span>
                                                                         <span class="fLeft"></span>
@@ -361,7 +361,7 @@
                             <div class="fLeft tabHead headLine">Profile</div>
                             <div class="fLeft col50">
                                 <div class="fLeft col50">
-                                    <div class="proFields">First Name</div>
+                                    <div class="proFields">Name</div>
                                     <!--<div class="proFields">Last Name</div>-->
                                     <!--<div class="proFields">Gender</div>-->
                                     <!--<div class="proFields">Date of birth</div>-->
@@ -391,7 +391,7 @@
                                 <div class="plusBlack fRight addrEditCnt" id="plusCont"></div>
                             </div>
                             <div class="fLeft EditAddr dn" id="openAddrId">
-                            
+
                                      <div class="txtB fLeft w49">
                                         <input type="text"  class="inp_box" id="shp_name">
                                         <div class="inp_label">Name</div>
@@ -408,7 +408,7 @@
                                         <input type="text" class="inp_box " id="zipcode" maxlength="6" onkeypress="return common.isNumberKey(event, this.value);">
                                         <div class="inp_label">Pincode</div>
                                     </div>
-                        
+
                                     <div class="txtB fLeft w49">
                                         <input readonly type="text" class="inp_box " id="city" maxlength="30">
                                         <div class="inp_label">City</div>
@@ -417,7 +417,7 @@
                                         <input readonly type="text" class="inp_box " id="state" maxlength="30">
                                         <div class="inp_label">State</div>
                                     </div>
-                        
+
                                 <div class="filterSec fLeft">
                                     <center>
                                         <div class="button actBtn marR transition300" id="shpaddr">save</div>
@@ -430,8 +430,8 @@
                                 <center>
                                     <div class="addEmpty"></div>
                                     <div class="noOrdTxt">
-                                        <div class="fooH mar0">No Address</div>
-                                        <div class="font13">Sorry,You have no saved address</div>
+                                        <div class="fooH mar0">No Saved Address</div>
+                                        <!-- <div class="font13">Sorry,You have no saved address</div> -->
                                     </div>
                                 </center>
                             </div>
@@ -459,7 +459,7 @@
                                     <div class="filterSec fLeft">
                                         <center>
                                             <div class="button actBtn marR transition300">remove</div>
-                                             <div class="button actBtn marR transition300">edit</div> 
+                                             <div class="button actBtn marR transition300">edit</div>
                                         </center>
                                     </div>
                                 </div>-->
@@ -472,7 +472,7 @@
                                     <div class="filterSec fLeft">
                                         <center>
                                             <div class="button actBtn marR transition300">remove</div>
-                                            <div class="button actBtn marR transition300">edit</div> 
+                                            <div class="button actBtn marR transition300">edit</div>
                                         </center>
                                     </div>
                                 </div>-->
@@ -484,7 +484,7 @@
                                 <div class="txtB fLeft">
                                     <input type="password" class="inp_box " id="oldpass" maxlength="30">
                                     <div class="inp_label">Old Password</div>
-                                </div> 
+                                </div>
                                 <div class="txtB fLeft">
                                     <input type="password" class="inp_box " id="newpass" maxlength="30">
                                     <div class="inp_label">New Password</div>
@@ -506,8 +506,8 @@
                                 <center>
                                     <div class="wishEmptyImg"></div>
                                     <div class="noOrdTxt">
-                                        <div class="fooH mar0">No Wishlist</div>
-                                        <div class="font13">Sorry,you have not added anything to your wishlist</div>
+                                        <div class="fooH mar0">Your Wishlist is Empty</div>
+                                        <!-- <div class="font13">Sorry,you have not added anything to your wishlist</div> -->
                                     </div>
                                     <div class="col100" id="cunshpng_wish">
                                         <div class="actBtn button">continue shopping</div>
@@ -672,13 +672,13 @@
     <?php include 'footer.html'?>
     <?php include 'loader.html'?>
     <script type="text/javascript" src="<?php echo $jvs['account']; ?>"></script>
- 
+
     <script>
 
       $('#fooPOP').click(function(){
-       openPopUp(); 
+       openPopUp();
     });
-     
+
 
     $('#inDlt').velocity({opacity: 0});
     function deletePopUp() {
@@ -698,7 +698,7 @@
 //    $('#dltNo').click(function () {
 //        closelogpg();
 //    });
-//    
+//
 //    $('#dltYes').click(function () {
 //        closelogpg();
 //    });
@@ -787,7 +787,7 @@
         //       else{
         //            $('.gemBanner').removeClass('fixer');
         //       }
-    }); 
+    });
     </script>
 
 
