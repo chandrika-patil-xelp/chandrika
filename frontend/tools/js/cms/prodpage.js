@@ -238,15 +238,21 @@ $(document).ready(function () {
 
 
                 });
-
-
+		
+		if(othrimgs['images'] !== null)
+		{
+		var  othrimgstr = "";
+		othrimgstr +='<div class="prevArrow" onclick="movePrImg(true)"></div>';
+                othrimgstr +=' <div class="nextArrow" onclick="movePrImg(false)"></div>';
 		$(othrimgs['images']).each(function (i, v) {
   
-                    othrimgstr = '<div class="carouselBox" style="background:  url(\'' + v + '\')" id="'+v+'"></div>';
-                    $('#othrimgs').append(othrimgstr);
+                    othrimgstr += '<div class="carouselBox" style="background:  url(\'' + v + '\')" id="'+v+'"></div>'; 
  
                 });
-
+		 othrimgstr +=' </div>';
+		 $('.prodCarousel').append(othrimgstr);
+		}
+		
                 $(basic).each(function (i, vl) {
 
                     var proname = vl.prdNm;
@@ -1313,8 +1319,19 @@ $('.dwnArrow').click(function(){
 //        });
 
 
-$('.carouselBox').click(function() {
- //  var img=$(this).attr('id');
-  console.log('img');
+$('.sizbak').click(function() {
+    var size=$('#size').text(); 
+    if (catname == 'Rings') {
+	 if(size == 'Select'){
+	  var rngval=$('.ringCircle').text();
+	   $('#size').append(rngval); 
+	 }  
+    }
+    else if (catname == 'Bangles') {
+	if(size == 'Select'){
+	   var bngval=$('#bangCircle').text();
+	   $('#size').append(bngval);
+	}   
+    } 
 });
 

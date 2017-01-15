@@ -34,7 +34,7 @@
     var city = $('#shpdcity').val();
     var state = $('#shpdstate').val();
     var pincode = $('#shpdpincode').val();
-    
+    var addchk=/^[a-zA-Z0-9-#-' ]*$/;
     var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
     
     var filter = /^[0-9-+]+$/;
@@ -50,9 +50,9 @@
       validationFlag = 0;
       common.msg(0, 'Please enter your Mobile no');
     } 
-    else if (isNaN(mobile) || (mobile.length < 10)) {
+    else if (isNaN(mobile) || (mobile.length !== 10)) {
       validationFlag = 0;
-      common.msg(0, 'Mobile no. Invalid');
+      common.msg(0, 'Please Enter 10 Digit Mobile No.');
     } 
     else if(!filter.test(mobile)){ 
 	    validationFlag=0;  
@@ -69,6 +69,10 @@
     else if (addrs === '' || addrs === null) {
       validationFlag = 0;
       common.msg(0, 'Please enter your address');
+    } 
+    else if (!addchk.test(addrs)) {
+        validationFlag = 0;
+        common.msg(0, 'Please remove special characters from address');
     } 
     else if (pincode === '' || pincode.length === 0) {
       validationFlag = 0;
@@ -206,10 +210,10 @@ $('#sign_in').click(function(){
                   $('#email').focus();
                  common.msg(0,'Please enter your Email.id or Mobile No');
            }
-      else if(isNaN(email) || (email.length < 10) || (email.length > 11) ){
+      else if(isNaN(email) || (email.length !== 10) ){
 	 validationFlag=0;  
           $('#email ').focus();
-	  common.msg(0,'Invalid Mobile no.'); 
+	  common.msg(0,'Please Enter 10 Digit Mobile No.'); 
         } 
       else if(!filter.test(email)){ 
 	    validationFlag=0;  
@@ -427,9 +431,9 @@ $('#gSgnUpsbmt').click(function(){
         common.msg(0,'Please enter your Mobile no.'); 
          return false;
     }
-    else if(isNaN(mobile) || (mobile.length < 10) ){
+    else if(isNaN(mobile) || (mobile.length !== 10) ){
        validationFlag=0;  
-        common.msg(0,'Mobile number is Invalid'); 
+        common.msg(0,'Please Enter 10 Digit Mobile No.'); 
          return false;
     }
     else if(!filter.test(mobile)){ 
@@ -621,7 +625,7 @@ $('#gfSubmit').click(function(){
         common.msg(0,'Please enter your Mobile no.'); 
          return false;
       }
-      else if(isNaN(mobile) || (mobile.length < 10) || (mobile.length > 11) ){
+      else if(isNaN(mobile) || (mobile.length !== 10)  ){
 	 validationflg=0;  
 	  common.msg(0,'Invalid Mobile no.'); 
            return false;
@@ -797,10 +801,10 @@ $('#gfSubmit').click(function(){
 		common.msg(0,'Please enter your Mobile no.'); 
 		return false;
 	    }
-	    else if(isNaN(mobile) || (mobile.length < 10) ){
+	    else if(isNaN(mobile) || (mobile.length !== 10) ){
 		mobflag=0;
 		validationFlag=0;  
-		common.msg(0,'Mobile number is Invalid'); 
+		common.msg(0,'Please Enter 10 Digit Mobile No.'); 
 		return false;
 	    }
 	    else if(!filter.test(mobile)){

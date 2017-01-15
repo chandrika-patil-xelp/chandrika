@@ -352,14 +352,24 @@ function removebuyitem(buyid)
 }
 
 $('#chck_bak').click(function(){
-  
-   if (actn == 'buy') { 
-        window.location.href=DOMAIN +"index.php?action=checkOutNew&actn="+actn;
-    } 
-    else {
-      window.location.href=DOMAIN +"index.php?action=checkOutNew";
-    }
-   
+   var userid=common.readFromStorage('jzeva_uid');
+   if(userid == undefined || userid == null)
+   {
+      if (actn == 'buy') {
+	    window.location.href=DOMAIN + 'index.php?action=checkoutGuest&actn='+actn;
+       } 
+       else {
+	    window.location.href=DOMAIN + 'index.php?action=checkoutGuest';
+       }
+   }
+   else{ 
+       if (actn == 'buy') { 
+	    window.location.href=DOMAIN +"index.php?action=checkOutNew&actn="+actn;
+       } 
+       else {
+	  window.location.href=DOMAIN +"index.php?action=checkOutNew";
+       }
+   }
 });
 
 $('#jzeva_log').click(function () {

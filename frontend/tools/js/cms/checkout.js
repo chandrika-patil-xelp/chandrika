@@ -326,7 +326,7 @@ function shpngsubmt()
     var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
     var letters = /^[a-zA-Z\s]+$/;
     var filter = /^[0-9-+]+$/;
-    var addchk=/^[a-zA-Z0-9-#-' ]*$/;
+    var addchk=/^[a-zA-Z0-9-#-'-, ]*$/;
     if (name === '' || name === null) {
         validationFlag = 0;
         common.msg(0, 'Please enter your Name');
@@ -336,9 +336,9 @@ function shpngsubmt()
     } else if (mobile === '' || mobile === null) {
         validationFlag = 0;
         common.msg(0, 'Please enter your Mobile no');
-    } else if (isNaN(mobile) || (mobile.length < 10)) {
+    } else if (isNaN(mobile) || (mobile.length !== 10)) {
         validationFlag = 0;
-        common.msg(0, 'Mobile no. Invalid');
+        common.msg(0, 'Please enter 10 Digit Mobile No');
     } else if (!filter.test(mobile)) {
         validationFlag = 0;
         common.msg(0, 'Mobile number is Invalid');

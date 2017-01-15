@@ -13,7 +13,7 @@ $('#rsubId').on('click',function(){
    var pass = $("#signuppass").val();
    var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
    var letters = /^[a-zA-Z\s]+$/;
-
+   var filter = /^[0-9-+]+$/;
     var validationFlag=1;
     if(gndrflg == undefined || gndrflg == null){
       validationFlag=0;
@@ -45,10 +45,15 @@ $('#rsubId').on('click',function(){
         common.msg(0,'Please enter your Mobile No.');
          return false;
     }
-    else if(isNaN(mobile) || (mobile.length < 10) ){
+    else if(isNaN(mobile) || (mobile.length !== 10) ){
        validationFlag=0;
-        common.msg(0,'Invalid Mobile No.');
+        common.msg(0,'Please Enter 10 Digit Mobile No.');
          return false;
+    }
+    else if(!filter.test(mobile)){ 
+	validationFlag=0;  
+	common.msg(0,'Mobile number is Invalid');  
+	return false;
     }
     else if(pass ===''|| pass === null){
        validationFlag=0;
@@ -119,10 +124,10 @@ function chklogin()
                   $('#email').focus();
                  common.msg(0,'Please enter your Email-id or Mobile No.');
            }
-      else if(isNaN(email) || (email.length < 10) || (email.length > 11) ){
+      else if(isNaN(email) || (email.length !== 10) ){
 	 validationFlag=0;
           $('#email ').focus();
-	  common.msg(0,'Invalid Mobile No.');
+	  common.msg(0,'Please Enter 10 Digit Mobile No.');
         }
       else if(!filter.test(email)){
 	    validationFlag=0;

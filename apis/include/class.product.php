@@ -4103,7 +4103,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
       $catprd= (!empty($params['prds'])) ? trim($params['prds']) : '';
         $hassol= (!empty($params['hassol'])) ? trim($params['hassol']) : ''; 
       $sql="SELECT
-		  DISTINCT(value)
+		  DISTINCT(value) 
 	    FROM
 		  tbl_product_attributes_mapping
 	    WHERE
@@ -4113,17 +4113,10 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 	   
 	    AND
 		 productid IN (".$catprd.")
-                     
+	    AND
+		 productid IN (SELECT productid FROM tbl_product_master WHERE active_flag=1 )
               " ;
-      
-//      $sql.= "SELECT
-//		 value
-//	    FROM tbl_product_solitaire_mapping
-//            WHERE productid =".$hassol."
-//	    AND
-//		  active_flag=1
-//	   ";
-	    
+ 
       $res = $this->query($sql);
       $resl=array();
         if ($res) 
@@ -4539,6 +4532,11 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                 $arr['totalprclow'] = $totalNewPricelow;
                 $arr['totalprchigh'] = $totalNewPricehigh;
                 
+		$totalNewPricelowArr[]=$totalNewPricelow;
+                $carat[]=$arr['dmdcarat'];
+		$totalNewPricehighArr[]=$totalNewPricehigh;
+		
+		
 		$rst[]=$arr;
                 
             } 
@@ -4550,7 +4548,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
             $error = array('err_code' => 1, 'err_msg' => 'error in fetching details');
         }
 
-        $result = array('result' => $rst, 'error' => $error, 'total' => $totalprdcnt);
+        $result = array('result' => $rst, 'error' => $error, 'total' => $totalprdcnt,'prdlowprize'=>$totalNewPricelowArr,'prdhighprize'=>$totalNewPricehighArr,'caratrange'=>$carat);
         return $result;
     }
 
