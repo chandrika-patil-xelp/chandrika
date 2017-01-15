@@ -16,8 +16,8 @@ $(document).ready(function () {
         chngpasrd();
     else if (actn == 'wId')
         whlist();
-   
-	
+
+
     $(document).keypress(function (e) {
         if (e.which == 13)
         {
@@ -60,7 +60,7 @@ function displayorders()
                 // var totalprice = $('#ordPrice').html(indianMoney(parseInt(obj.totalprice)));
                 var totalprice = indianMoney(parseInt(obj.totalprice));
                 $(obj['result']).each(function (r, e) {
-                  
+
                     var ordrdate = "";
                     ordrdate += e[0].order_date;
                     ordrdate = ordrdate.split(' ');
@@ -68,7 +68,7 @@ function displayorders()
 
                     var cc = ordDate.toString().split("-")[2];
                     var cd = cc.split(0).join('');
-                    
+
                     var updatedt ="";
                      updatedt += e[0].updatedon;
                     updatedt = updatedt.split(' ');
@@ -76,7 +76,7 @@ function displayorders()
 
                     var dd= upDate.toString().split("-")[2];
                     var ds = dd.split(0).join('');
-                    
+
                     Date.prototype.getMonthName = function () {
                         var monthNames = ["Jan", "Feb", "March", "April", "May", "June",
                             "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -85,7 +85,7 @@ function displayorders()
                     var month_Name = new Date().getMonthName();
                     var cnfDate = '' + cd + ' ' + month_Name + '';
                     var statusDate = '' + ds + ' ' + month_Name + '';
-                   
+
 //                   if($('#oId').html()){
 //                   order += ' <div class="fLeft tabHead headLine borBtm " id="od">my orders</div>';
 //               }else
@@ -108,7 +108,7 @@ function displayorders()
                     orderstr += '</div>';
                     orderstr += '</div>';
                     $(e).each(function (s, v) {
-                       
+
                         if (v.default_image !== null) {
                             var image = IMGDOMAIN + v.default_image;
                         } else {
@@ -365,13 +365,13 @@ function custmz(i){
 
 function wshprdopen(ths)
 {
-    
+
   var ids=$(ths).closest('.grid3').find('.facet_front').attr('id');
   ids=ids.split('_');
   var pid=ids[0];
   var combn=ids[1];
   var size=ids[2];
-  window.open(DOMAIN+"index.php?action=product_page&pid="+pid+"&comb="+combn+"&sz="+size+""); 
+  window.open(DOMAIN+"index.php?action=product_page&pid="+pid+"&comb="+combn+"&sz="+size+"");
 }
 
 function addtocart(ths) {
@@ -502,7 +502,7 @@ function savemyaddress() {
     var letters = /^[A-Za-z]+$/;
     var filter = /^[0-9-+]+$/;
     var validationFlag = 1;
-    
+
     if (name === '' || name === null) {
       validationFlag = 0;
       common.msg(0, 'Please enter your Name');
@@ -519,9 +519,9 @@ function savemyaddress() {
       validationFlag = 0;
       common.msg(0, 'Mobile no. Invalid');
     }
-    else if(!filter.test(moblno)){ 
-	    validationFlag=0;  
-	    common.msg(0,'Mobile number is Invalid');  
+    else if(!filter.test(moblno)){
+	    validationFlag=0;
+	    common.msg(0,'Mobile number is Invalid');
     }
     else if (address === '' || address === null) {
         $('#addr').focus();
@@ -535,9 +535,9 @@ function savemyaddress() {
 
 
     }
-    
+
     var email = common.readFromStorage('jzeva_email');
-     
+
 
     shipngdata['name'] = name;
     shipngdata['email'] = email;
@@ -605,7 +605,7 @@ function displayaddrs() {
             }
             var addrStr = "";
             $(data['results']).each(function (m, n) {
- 
+
                 addrStr += '<div class="fLeft defaulDiv">';
                 addrStr += '<div class="fLeft col100">';
                 addrStr += '<div class="font13">'+n.name+'</div>';
@@ -725,13 +725,13 @@ function resetpasswrd()
                     validationFlag = 0;
                     common.msg(0, 'Please Enter the Confirm password');
                 } else if (newpass !== cpass) {
-                    common.msg(0, 'Password Does Not Match');
+                    common.msg(0, 'Passwords Do Not Match');
                 } else {
                     if (validationFlag == 1)
                         storenewpass(newpass);
                 }
             } else if (obj['error']['err_code'] == 1) {
-                common.msg(0, 'Please Enter Correct password');
+                common.msg(0, 'Please Enter The Correct password');
             } else if (obj['error']['err_code'] == 2) {
                 common.msg(0, obj['error']['err_msg']);
             }
@@ -820,8 +820,8 @@ function saveadrinfo()
     $('#editpId').addClass("dn");
     $('#pChange').addClass("dn");
     $('#wishlistId').addClass("dn");
-    $('#sId').addClass('jzevaColor'); 
-    $('#oId').removeClass('jzevaColor');    $('#pId').removeClass('jzevaColor'); 
+    $('#sId').addClass('jzevaColor');
+    $('#oId').removeClass('jzevaColor');    $('#pId').removeClass('jzevaColor');
     $('#cId').removeClass('jzevaColor');    $('#wId').removeClass('jzevaColor');
 }
 
@@ -836,7 +836,7 @@ function chngpasrd()
     $('#saveAddrId').addClass("dn");
     $('#wishlistId').addClass("dn");
     $('#cId').addClass('jzevaColor');
-    $('#oId').removeClass('jzevaColor');    $('#pId').removeClass('jzevaColor'); 
+    $('#oId').removeClass('jzevaColor');    $('#pId').removeClass('jzevaColor');
     $('#sId').removeClass('jzevaColor');     $('#wId').removeClass('jzevaColor');
 }
 
@@ -851,7 +851,7 @@ function whlist()
     $('#saveAddrId').addClass("dn");
     $('#pChange').addClass("dn");
     $('#wId').addClass('jzevaColor');
-    $('#oId').removeClass('jzevaColor');    $('#pId').removeClass('jzevaColor'); 
+    $('#oId').removeClass('jzevaColor');    $('#pId').removeClass('jzevaColor');
     $('#sId').removeClass('jzevaColor');	    $('#cId').removeClass('jzevaColor');
     $('#cunshpng_wish').click(function () {
         window.location.href = DOMAIN + "index.php?action=landing_page";
@@ -866,23 +866,23 @@ function trackslide(ths)
 
         if(trackid == 0 || trackid == 1 || trackid== 2){
             $(ths).closest('.detailsOuter').find('.trackDivs').eq(0).find('.proStep').addClass('tickIcon');
-           
+
         }
         if(trackid == 3 || trackid == 4){
               $(ths).closest('.detailsOuter').find('.trackDivs').eq(0).find('.proStep').addClass('tickIcon');
                $(ths).closest('.detailsOuter').find('.trackDivs').eq(1).find('.proStep').addClass('tickIcon');
-              
+
         }
         if(trackid == 5){
               $(ths).closest('.detailsOuter').find('.trackDivs').eq(0).find('.proStep').addClass('tickIcon');
               $(ths).closest('.detailsOuter').find('.trackDivs').eq(1).find('.proStep').addClass('tickIcon');
               $(ths).closest('.detailsOuter').find('.trackDivs').eq(2).find('.proStep').addClass('tickIcon');
-             
+
                $('.shp').removeClass('dn');
              $('.shp').html();
         }
         if(trackid == 6){
-          
+
               $(ths).closest('.detailsOuter').find('.trackDivs').eq(0).find('.proStep').addClass('tickIcon');
                $(ths).closest('.detailsOuter').find('.trackDivs').eq(1).find('.proStep').addClass('tickIcon');
                 $(ths).closest('.detailsOuter').find('.trackDivs').eq(2).find('.proStep').addClass('tickIcon');

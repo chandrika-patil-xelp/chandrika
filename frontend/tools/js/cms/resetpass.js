@@ -1,22 +1,22 @@
  var key;
- 
+
  $(document).ready(function(){
    GetURLParameter();
    $('#respsssub').click(function(){
      storenewpass();
-   }); 
+   });
  });
- 
+
  function GetURLParameter()
  {
-        
+
 	  var PageURL = window.location.pathname;
-	 
- 	  var URLVariables = PageURL.split('-');  
-	  key=URLVariables[1]; 
+
+ 	  var URLVariables = PageURL.split('-');
+	  key=URLVariables[1];
 }
-	 
-	 
+
+
  function storenewpass()
  {
    var pass = $("#pass").val();
@@ -42,19 +42,19 @@
       alert('correct passw');
       getuserdetail(pass);
     }
-    
+
  }
- 
+
  function getuserdetail(pass)
  {
-    
-    var URL= APIDOMAIN + "index.php/?action=getuserdatabyurl&key="+key; 
+
+    var URL= APIDOMAIN + "index.php/?action=getuserdatabyurl&key="+key;
     $.ajax({
 	 	    url: URL,
 	 	    type: "GET",
 	 	    datatype: "JSON",
 	 	    success: function(res)
-	 	    { 
+	 	    {
 		     var data=JSON.parse(res);  console.log(data);
 		     var email=data.result['email'];
 		     var mobile=data.result['mobile'];
@@ -65,14 +65,12 @@
 			     url:URLreg,
 			     success:function(res){
 			    console.log(res);
-                            alert('password reset successfully');
+                            alert('Password updated successfully');
 			  }
 			});
 
 		   }
     });
-    
-    
- }
- 
 
+
+ }
