@@ -114,48 +114,53 @@ $('#add_to_cart').on('click', function () {
 
 $('#buynow').on('click',function(){
     
-    getarraydata(); 
-   var userid, buydata = {};
-    buydata['pid'] = arrdata[0];
-    buydata['price'] = arrdata[1];
-    buydata['qty'] = 1;
-    var chr = "" + arrdata[2] + "|@|" + arrdata[4] + "|@|" + arrdata[3];
+    var size=$('#size').text(); 
+    if(size == 'Select')
+       common.msg(0,'Please select size');
+    else
+    {
+      getarraydata(); 
+      var userid, buydata = {};
+      buydata['pid'] = arrdata[0];
+      buydata['price'] = arrdata[1];
+      buydata['qty'] = 1;
+      var chr = "" + arrdata[2] + "|@|" + arrdata[4] + "|@|" + arrdata[3];
 
-    buydata['col_car_qty'] = chr;
-    buydata['RBsize'] = arrdata[5];
-    buydata['buyid'] = '';
-    buydata['cartid'] = ''; 
-    buydata['userid'] = '';  
-    var URL = APIDOMAIN + "index.php?action=addTocart";
+      buydata['col_car_qty'] = chr;
+      buydata['RBsize'] = arrdata[5];
+      buydata['buyid'] = '';
+      buydata['cartid'] = ''; 
+      buydata['userid'] = '';  
+      var URL = APIDOMAIN + "index.php?action=addTocart";
 
-    var data = buydata;
-    var dt = JSON.stringify(data); 
-    $.ajax({
-        type: "post",
-        url: URL,
-        data: {dt: dt}, 
-        success: function (results) {
-	  var data=JSON.parse(results);
-	  var cururl = window.location.search;
-	  var date = new Date();
-	  var minutes = 40;
-	  date.setTime(date.getTime() + (minutes * 60 * 1000));
-	  $.cookie("jzeva_currurl", null);
-	  $.cookie("jzeva_currurl", cururl, {expires: date});
-	  common.addToStorage('jzeva_buyid', data.cartid);
-	  userid=common.readFromStorage('jzeva_uid');  
-	  if(userid == null || userid == undefined)
-	  {
-	    window.location.href=DOMAIN + 'index.php?action=checkoutGuest&actn=buy';
+      var data = buydata;
+      var dt = JSON.stringify(data); 
+      $.ajax({
+	  type: "post",
+	  url: URL,
+	  data: {dt: dt}, 
+	  success: function (results) {
+	    var data=JSON.parse(results);
+	    var cururl = window.location.search;
+	    var date = new Date();
+	    var minutes = 40;
+	    date.setTime(date.getTime() + (minutes * 60 * 1000));
+	    $.cookie("jzeva_currurl", null);
+	    $.cookie("jzeva_currurl", cururl, {expires: date});
+	    common.addToStorage('jzeva_buyid', data.cartid);
+	    userid=common.readFromStorage('jzeva_uid');  
+	    if(userid == null || userid == undefined)
+	    {
+	      window.location.href=DOMAIN + 'index.php?action=checkoutGuest&actn=buy';
+	    }
+	    else
+	    {
+	       window.location.assign(DOMAIN + 'index.php?action=checkOutNew&actn=buy');
+	    }
+
 	  }
-	  else
-	  {
-	     window.location.assign(DOMAIN + 'index.php?action=checkOutNew&actn=buy');
-	  }
-               
-        }
-    });
-    
+      });
+    }
 
 });
 
@@ -207,14 +212,14 @@ $(document).ready(function () {
             //  metalprcprgm =  dt['metalPurity']['results']['prc'];  
             var gemstone = dt['gamestone'];
             var images = dt['images'];
-
+	    var othrimgs=dt['othimgs'];
 
             catsize = dt['catAttr']['results'][1]['cid'];
 
             getcatsize(catAttr, metalwgt);
             if (data['error']['err_code'] == '0')
             {
-                var imgstr = "";
+                var othrimgstr = "";
                 var dn = '';
 
                 $(images['images']).each(function (i, v) {
@@ -235,6 +240,12 @@ $(document).ready(function () {
                 });
 
 
+		$(othrimgs['images']).each(function (i, v) {
+  
+                    othrimgstr = '<div class="carouselBox" style="background:  url(\'' + v + '\')" id="'+v+'"></div>';
+                    $('#othrimgs').append(othrimgstr);
+ 
+                });
 
                 $(basic).each(function (i, vl) {
 
@@ -252,10 +263,10 @@ $(document).ready(function () {
                     getbasicprice(makingchrg, metalwght);
 
                     if (basic.jewelleryType == 1) {
-                        jweltype = "Gold";
+                    //    jweltype = "Gold";
                         $('#stn').html('Gold');
                     } else if (basic.jewelleryType == 2) {
-                        jweltype = "Plain Gold";
+                     //   jweltype = "Plain Gold";
                         $('#stn').html('Plain-Gold');
                     } else if (basic.jewelleryType == 3) {
                         jweltype = "Platinum";
@@ -323,7 +334,7 @@ $(document).ready(function () {
                         case 1:
                         {
                             Nstr += '<span>Solitaire</span>';
-                            dmdsoli = "Solitaire";
+                             jweltype = "Diamond";
                             bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span>';
 			    if(catname == 'Earrings')
 			      bstr += ' are ';
@@ -335,7 +346,7 @@ $(document).ready(function () {
                         case 2:
                         {
                             Nstr += '<span>Diamond</span>';
-                            dmdsoli = "Diamond";
+                            jweltype = "Diamond";
                             bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span>';
 			    if(catname == 'Earrings')
 			      bstr += ' are ';
@@ -347,7 +358,7 @@ $(document).ready(function () {
                         case 3:
                         {
                             Nstr += '<span>Solitaire</span>';
-                            dmdsoli = "Solitaire";
+                            jweltype = "Diamond";
 
                             bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span>';
 			    if(catname == 'Earrings')
@@ -365,28 +376,28 @@ $(document).ready(function () {
                         case 4:
                         {
                             Nstr += '<span>Diamond</span>';
-                            dmdsoli = "Diamond";
+                            jweltype = "Diamond";
                             break;
                         }
                         case 5:
                         {
                             var gemstn = gemstone.results[0].gemNm;
                             Nstr += '<span> ' + gemstn + ' /span>';
-                            dmdsoli = "Diamond";
+                            jweltype = "Diamond";
 
                             break;
                         }
                         case 6:
                         {
                             Nstr += '<span> Gemstones </span>';
-                            dmdsoli = "Diamond";
+                            jweltype = "Diamond";
                             break;
                         }
                         case 7:
                         {
                             gemstn = gemstone.results[0].gemNm;
                             Nstr += '<span>Diamond</span><span>' + gemstn + '</span>';
-                            dmdsoli = "Diamond";
+                            jweltype = "Diamond";
                             bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span>';
 			    if(catname == 'Earrings')
 			      bstr += ' are ';
@@ -400,7 +411,7 @@ $(document).ready(function () {
                         case 8:
                         {
                             Nstr += '<span>Diamond</span><span>Gemstones</span>';
-                            dmdsoli = "Diamond";
+                            jweltype = "Diamond";
                             bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span> ';
 			    if(catname == 'Earrings')
 			      bstr += ' are ';
@@ -414,7 +425,7 @@ $(document).ready(function () {
                     }
                     $('#stn').append(Nstr);
                     $('#shortdesc').html(bstr);
-                    getDesc(dmdsoli, jweltype);
+                   
 
                     if (basic.hasSol == 1)
                     {
@@ -672,17 +683,25 @@ $(document).ready(function () {
                     $('#colr').append(clrstr);
                     if (p_color !== undefined) {
                         $("input[name='metal']").each(function () {
-                            var val = $(this).val();
-                            if (colrval == val)
-                                $(this).attr('checked', true);
+                            var val = $(this).val(); 
+                            if (colrval == val){
+			       dmdsoli=val;
+			       $(this).attr('checked', true);
+			    }
+                                
                         });
-                    } else
-                        $('input[name="metal"]').eq(0).attr('checked', true);
+                    } 
+		    else{
+		        $('input[name="metal"]').eq(0).attr('checked', true);
+			var val=$('input[name="metal"]').eq(0).val();
+			dmdsoli=val;
+		    }
+                      
 
 
                     defaultPrice(dmdlowp, dmdhighp, caratlowp, carathighp);
 
-
+		     getDesc(dmdsoli, jweltype);
 
                 });
 
@@ -817,8 +836,7 @@ function setdmd(e) {
         $('#ch_price').removeClass('showCh');
         $('#ch_price').velocity({opacity: [0, 1]});
     }, 8000);
-    dmdsoli = va;
-    getDesc(va, jweltype);
+    
     $("input[name='selectM']").each(function () {
         $(this).attr('disabled', true);
     });
@@ -887,7 +905,8 @@ function setclr(c) {
             $(this).attr('disabled', false);
         });
     }, 800);
-
+   
+    getDesc(cr, jweltype);
 }
 
 //making grandtot as global
@@ -1130,8 +1149,20 @@ $('#addwishlist').click(function () {
     } else {
         if (wshlstflag == 0)
         {
-            getarraydata();
-
+	  getarraydata();
+	  var valflag=1; 
+	  var size=$('#size').text(); 
+   
+	  if (catname == 'Rings') {
+	       if(size == 'Select')
+		  valflag=0;
+	  }
+	  else if (catname == 'Bangles') {
+	      if(size == 'Select')
+		  valflag=0;
+	  }
+	  if(valflag == 1) 
+	  {
             var userid, wishdata = {};
             wishdata['pid'] = arrdata[0];
             var chr = "" + arrdata[2] + "|@|" + arrdata[4] + "|@|" + arrdata[3];
@@ -1151,6 +1182,10 @@ $('#addwishlist').click(function () {
 //                    $('.addWish').addClass("moveWish");
                 }
             });
+	  }
+	  else{
+	      common.msg(0, 'Please Select Size');
+	  }
         } else
             common.msg(0, 'This Product Already In Your Wishlist');
     }
@@ -1182,11 +1217,9 @@ function showwishbtn()
 }
 
 function getDesc(dmdsol, jwlty) {
-    var stone = dmdsol;
-
-    var metal = jwlty;
+     
     var descStr = "";
-    var URL = APIDOMAIN + "index.php?action=getprodDescrp&jweltype=" + metal + "&dmdsoli=" + stone;
+    var URL = APIDOMAIN + "index.php?action=getprodDescrp&jweltype=" + jwlty + "&dmdsoli=" + dmdsol;
     $.ajax({type: 'POST',
         url: URL,
         success: function (res) {
@@ -1278,4 +1311,10 @@ $('.dwnArrow').click(function(){
 //            //            });
 //            $('.selector_cont').eq(j).velocity({scale: [0.5, 1], opacity: [0, 1]}, {delay: '50', duration: '150', display: 'none'});
 //        });
+
+
+$('.carouselBox').click(function() {
+ //  var img=$(this).attr('id');
+  console.log('img');
+});
 

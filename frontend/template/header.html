@@ -38,7 +38,7 @@
     </div>
     <div class="tabWrap fRight">
         <div class="tab_buffer">
-            <div class="tabB fLeft">
+<!--            <div class="tabB fLeft">
                 <div class="tab fLeft taba">
                     SIGNATURE
                 </div>
@@ -57,7 +57,7 @@
                 <div class="tab fLeft tabd">
                     PERSONALISED
                 </div>
-            </div>
+            </div>-->
             <div class="tabB fLeft">
                 <div class="tab fLeft tabe">
                     EDUCATION
@@ -79,7 +79,7 @@
         </div>
         <div class="menu_wrap">
             <div class="menuB">
-                <div class="menu_elm ">
+<!--                <div class="menu_elm ">
                     <div class="menu_banner"></div>
                 </div>
                 <div class="menu_elm ">
@@ -110,7 +110,7 @@
                 </div>
                 <div class="menu_elm ">
                     <div class="menu_banner"></div>
-                </div>
+                </div>-->
                 <div class="menu_elm ">
                     <div class="col33 fLeft">
                         <div class="col100 fLeft">
@@ -168,9 +168,10 @@
         </div>
     </div>
 </div>
-<!--<script type="text/javascript" src="<?php echo $jvs['header']; ?>"></script>--> 
+<script type="text/javascript" src="<?php echo $jvs['header']; ?>"></script> 
 <script>
-
+    function bindHeader()
+    {
     $(document).on("click", '#guestId', function () {
         $('.head_wrap').addClass("pointNone");
         guestpopUp();
@@ -263,7 +264,7 @@
         $('.tab').removeClass('selec');
         $('.tabB').find('.tab').eq(k).addClass('selec');
     });
-
+    }
     /* Search Bar Open / Close*/
     $('.search_btn').click(function () {
         $('.search_bar').toggleClass('search_open');
@@ -316,138 +317,5 @@
         //  $('body').css({'overflow': 'visible'});
         $('.wrapper').removeClass('pointNone');
     }
-
-    $('#2920160603124607').click(function () {
-        var catidv = $(this).attr('id');
-        window.location.href = DOMAIN + "index.php?action=product_grid&id=" + catidv + "";
-    });
-    $('#2020160603124631').click(function () {
-        var catid = $(this).attr('id');
-        window.location.href = DOMAIN + "index.php?action=product_grid&id=" + catid + "";
-    });
-    $('#9820160603124850').click(function () {
-        var catid = $(this).attr('id');
-        window.location.href = DOMAIN + "index.php?action=product_grid&id=" + catid + "";
-    });
-    $('#8120160603125512').click(function () {
-        var catid = $(this).attr('id');
-        window.location.href = DOMAIN + "index.php?action=product_grid&id=" + catid + "";
-    });
-
-    $('#3420160603124716').click(function () {
-        var catid = $(this).attr('id');
-        window.location.href = DOMAIN + "index.php?action=product_grid&id=" + catid + "";
-    });
-
-    $('#jzeva_log').click(function () {
-        window.location.href = DOMAIN + "index.php?action=landing_page";
-    });
-
-    $('#usrlogout').click(function () {
-        common.removeFromStorage('jzeva_email');
-        common.removeFromStorage('jzeva_name');
-        common.removeFromStorage('jzeva_uid');
-        common.removeFromStorage('jzeva_mob');
-        common.removeFromStorage('jzeva_cartid');
-        var URLactn = window.location.search;
-
-
-        var accnvar = '';
-        accnvar = URLactn;
-        accnvar = accnvar.split('=');
-        accnvar = accnvar[1].split('&');
-
-        if (accnvar[0] == 'myaccount') {
-            window.location.href = DOMAIN + "index.php?action=landing_page";
-        } else {
-            var url = DOMAIN + '/index.php' + URLactn;
-            window.location.href = url;
-        }
-    });
-
-    $(document).ready(function () {
-        var actnp = GetURLParameter('actn');
-        var usid = common.readFromStorage('jzeva_uid');
-        if (actnp == "lognpopup") {
-            setTimeout(function () {
-                if (usid == null || usid == undefined)
-                    openPopUp();
-            }, 3000);
-
-        }
-    });
-
-    function GetURLParameter(Param)
-    {
-        var PageURL = window.location.search;
-        var URLVariables = PageURL.split('&');
-        for (var i = 0; i < URLVariables.length; i++)
-        {
-            var ParameterName = URLVariables[i].split('=');
-            if (ParameterName[0] == Param) {
-                return ParameterName[1];
-            }
-        }
-    }
-
-    $('#Track_ord').click(function () {
-        var ordno = $('#ord_no').val();
-        var inptdata = $('#ord_email').val();
-        var validationFlag = 1;
-        var filter = /^[0-9-+]+$/;
-        if (!filter.test(ordno)) {
-            validationFlag = 0;
-            common.msg(0, 'Order number is Invalid');
-        } else
-        {
-            if ($.isNumeric(inptdata))
-            {
-                var filter = /^[0-9-+]+$/;
-                if (inptdata === '' || inptdata === null) {
-                    validationFlag = 0;
-                    common.msg(0, 'Please enter your Mobile no');
-                } else if (isNaN(inptdata) || (inptdata.length < 10)) {
-                    validationFlag = 0;
-                    common.msg(0, 'Mobile no. Invalid');
-                } else if (!filter.test(inptdata)) {
-                    validationFlag = 0;
-                    common.msg(0, 'Mobile number is Invalid');
-                }
-                if (validationFlag == 1)
-                {
-                    var URL = APIDOMAIN + "index.php?action=checktrackord&orderid=" + ordno + "&mobile=" + inptdata;
-
-                }
-            } else
-            {
-                var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
-                if (inptdata === '' || inptdata === null) {
-                    validationFlag = 0;
-                    common.msg(0, 'Please enter your Email id');
-                } else if (!reg.test(inptdata)) {
-                    validationFlag = 0;
-                    common.msg(0, 'Invalid Email.id');
-                }
-                if (validationFlag == 1)
-                {
-                    var URL = APIDOMAIN + "index.php?action=checktrackord&orderid=" + ordno + "&email=" + inptdata;
-                }
-            }
-        }
-        if (validationFlag == 1)
-        {
-            $.ajax({url: URL, type: 'POST', success: function (res) {
-                    var data = JSON.parse(res);
-
-                    if (data['error']['err_code'] == 0) {
-                        var ordid = data['result']['order_id'];
-                        window.location.href = DOMAIN + "index.php?action=guestaccount&trkid=" + ordid;
-                    } else if (data['error']['err_code'] == 1)
-                        common.msg(0, data['error']['err_msg']);
-                }
-            });
-        }
-
-    });
-
+  
 </script>

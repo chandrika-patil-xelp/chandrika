@@ -39,9 +39,15 @@
             <input type="file" name="files[]" id="filer_input2" multiple="multiple" accept="image/png,image/jpeg">
             <input type="hidden" name="pid" id="pid" value="<?php echo $pid; ?>">
 
-        </div>        
+        </div>  
         <div class="overlay dn"></div>
         <div class="loader dn"></div>
+	
+	 <div id="moreimgs">
+             <input type="file" name="files[]" id="filer_input_othimg" multiple="multiple" accept="image/png,image/jpeg">
+            <input type="hidden" name="pidoimg" id="pidothrimg" value="othr_<?php echo $pid; ?>">
+
+        </div> 
 	<script type="text/javascript" src="<?php echo $jvs['common']; ?>"></script>
         <script type="text/javascript">
 	  var APIDOMAIN ='<?php echo APIDOMAIN?>';

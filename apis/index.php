@@ -1078,10 +1078,8 @@ case 'removeItmFrmWishlist':
 
    case 'getprodByfiltr':
         include APICLUDE.'class.product.php';
-        $obj	= NEW product($db['jzeva']);
-	$tmpaparams = array($params['dt']);
-	//$tmpaparams[]=$params['catid'];
-         $result=$obj->getprodByfiltr($tmpaparams);
+        $obj	= NEW product($db['jzeva']);  
+         $result=$obj->getprodByfiltr($params);
         $res = $result;
     break;
 

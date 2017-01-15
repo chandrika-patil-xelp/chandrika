@@ -569,21 +569,76 @@ function getPurPrice(Mprc, mwght) {
 var count = 0;
 var page2 = 2;
 var limcount = 12;
+var fltrpage=2, fltrcnt=0;
 $('#gr_foot').on('click', function () {
+   
+  if(Object.keys(fltrarray).length > 1)
+  { 
+    var fltpage = fltrpage + fltrcnt++;  
+    var limit = 12;  
+    var fltrlimit = limit * fltpage;
     
-//     $('#gr_foot').addClass("dn");
-     setTimeout(function (){
-        
-     $('.gridLoad').removeClass("dn");
-     },500);
+    var dt = JSON.stringify(fltrarray);
+    var URL = APIDOMAIN + "index.php?action=getprodByfiltr&page=" + fltpage + "&limit=" + limit + "&catid="+id;
     
+ 
+    $.ajax({type: 'POST', url: URL, data: {dt: dt}, success: function (result) {
+
+            var res = JSON.parse(result);
+
+            if (res['error']['err_code'] === 0) {
+	       getProdDtl = res["result"]; 
+              
+	        showwishbtn();
+		 
+                var total = res['total'];
+		
+                if (total == 1)
+                    $('#total_Product').html("<strong>" + total + "</strong> Product");
+                else
+                    $('#total_Product').html("<strong>" + total + "</strong> Products");
+                var obj1 = res["result"];
+                if (obj1 !== null) {
+                    var len = obj1.length;
+
+                    var i = 0;
+                    if (len > 0)
+                    {
+                        var str = '';
+                        while (i < len)
+                        {
+                            
+                            str = generatelist(obj1[i]);
+                            i++;
+                            var k = i * 200;
+                            //$(str).velocity({opacity:[1,0] , translateY:[0,40]} , {duration:600 , easing:'ease-out' , delay:k }).appendTo('#gridDetail');
+                            $(str).appendTo('#gridDetail');
+                            setTimeout(function () {
+                                $('#gridDetail').find('.grid3').addClass('fadeInup');
+//                              bindhover();
+                            }, 100);
+                        }
+                    }
+                    //  $('#gridDetail').append(str);
+                    //  var $we= str;
+                }
+                if (fltrlimit >= total) {
+
+                    $('#gr_foot').addClass("dpn");
+                }
+            }
+             $('.gridLoad').addClass("dn");
+        }
+
+    });
+  }
+  else
+  {
     var page3 = page2 + count++;
     
     var limit = 12;
     var limitend = limit * page3;
-    //$('#gr_foot').addClass('transdown');
-
-
+    
     var URL1 = APIDOMAIN + "index.php/?action=getProductdetailbycatid&id=" + id + "&page=" + page3 + "&limit=" + limit + "";
     var tot_len = 0;
     $.ajax({
@@ -631,14 +686,14 @@ $('#gr_foot').on('click', function () {
                 }
                 if (limitend >= total) {
 
-                    $('#gr_foot').remove();
+                    $('#gr_foot').addClass("dpn");
                 }
             }
              $('.gridLoad').addClass("dn");
         }
 
     });
-
+  }
 });
 
 function getmenu()
@@ -660,7 +715,7 @@ function getmenu()
                     mainmenustr += "<div class='ftabB ' >";
                     mainmenustr += "  <div class='ftab fLeft taba' >";
                     mainmenustr += " " + (n.attr_name).toUpperCase() + " </div> </div>";
-
+		
                     submenulist += "<div class='fmenu_elm fLeft' id='" + n.attributeid + "'>";
                     $(n['val'][0]).each(function (q, p) {   
                         var v = parseInt(p);
@@ -682,7 +737,9 @@ function getmenu()
                             iconstr = p.toLowerCase();
                             iconstr = iconstr.replace(' ', '');
                         }
-                        submenulist += "<div class='filterCommon " + iconstr + "Ic' onclick='submenu(this)' ";
+			var submn="";	    submn=n.attr_name;
+			submn=submn.replace(' ','');
+                        submenulist += "<div class='filterCommon "+submn+"_" + iconstr + "Ic' onclick='submenu(this)' ";
                         submenulist += " id='" + p + "_" + n.attr_name + "' >";
                         submenulist += " <div class='filterLabel' >";
                         submenulist += " <div class='labBuffer'  >" + p + "</div>";
@@ -932,54 +989,32 @@ function submenu(ths)
     }
 
    setTimeout(function () {
-       
-       if (fltrarray[pid] == undefined) {
-           
- if(fltrarray['range'] !== undefined)
-   displayproduct(1);
- else if(fltrarray['carat'] !== undefined)
-   displayproduct(1);
- else if(fltrarray['for']!== undefined)
-     displayproduct(1);
- else if(fltrarray['ringtype']!== undefined)
-     displayproduct(1);
- else if(fltrarray['pendanttype']!== undefined)
-     displayproduct(1);
- else if(fltrarray['necklacetype']!== undefined)
-     displayproduct(1);
- else if(fltrarray['earringtype']!== undefined)
-     displayproduct(1);
- else if(fltrarray['bangletype']!== undefined)
-     displayproduct(1);
- else
-           getprodbyid();
-       } else{
-           displayproduct(1);}
-      
-
+      var arrcnt=0;
+      var arrobj=[];
+      $.map(fltrarray, function(v, k)
+      {
+	arrobj.push(k);
+	arrcnt++; 
+      });
+    
+      if(arrcnt == 1)
+      {
+	if (arrobj[0] == "catid")  
+	 getprodbyid(); 
+	else{
+	  fltrpage=2; fltrcnt=0;
+	  displayproduct(1);
+	}
+	  
+      } 
+      else{
+	  fltrpage=2; fltrcnt=0;
+	  displayproduct(1);
+	}
   }, 500);
  
 }
-
-function subfltrng(ths)
-{
-    var rangval = $(ths).val();
-    var type = $(ths).attr('id');
-    
-    switch (type) {
-
-        case 'range':
-            fltrarray.range = rangval;
-            break;
-
-        case 'carat':
-            fltrarray.carat = rangval;
-            break;
-    }
-    setTimeout(function () {
-        displayproduct();
-    }, 500);
-}
+ 
 
 function getprodbyid()
 {
@@ -1020,7 +1055,7 @@ function getprodbyid()
                     $('#total_Product').html("<strong>" + total + "</strong> Products");
                 var obj = res["result"];
                 if (total < 12)
-                    $('#gr_foot').remove();
+                    $('#gr_foot').removeClass("dpn");
                     $('.gridLoad').addClass("dn");
                 $('#parnttyp').html('');
                 var parnt = obj[0]['parntcatname'];
@@ -1068,23 +1103,32 @@ function getprodbyid()
     
 }
 
-function displayproduct() {
-
+function displayproduct(fltpage) 
+{
+    var limit = 12;
     fltrarray.catid = id;
     var dt = JSON.stringify(fltrarray);
-    var URL = APIDOMAIN + "index.php?action=getprodByfiltr";
+    var URL = APIDOMAIN + "index.php?action=getprodByfiltr&page=" + fltpage + "&limit=" + limit + "&catid="+id;
     $.ajax({type: 'POST', url: URL, data: {dt: dt}, success: function (result) {
 
-            var res = JSON.parse(result);
+            var res = JSON.parse(result); 
             if (res['error']['err_code'] == 0) {
-                $('#gr_foot').remove();
+           
                 $('.gridLoad').addClass("dn");
                 getProdDtl = res["result"];
                 showwishbtn();
                 var total = res["total"];
-                $('#total_Product').html(total + " Products");
-                if(total == null || total == undefined){
-                 $('#total_Product').html("0 Products");}
+                if(total < 12){
+		  $('#gr_foot').addClass('dpn');
+		}
+		else
+		   $('#gr_foot').removeClass('dpn');
+		if (total == 1)
+                    $('#total_Product').html("<strong>" + total + "</strong> Product");
+                else if(total > 1)
+                    $('#total_Product').html("<strong>" + total + "</strong> Products"); 
+                else{
+                 $('#total_Product').html("<strong>" + total + "</strong> Products");}
                 var obj = res["result"];
               
                 if (obj !== null) {

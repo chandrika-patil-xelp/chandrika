@@ -250,7 +250,9 @@ $('#sign_in').click(function(){
 	      data = JSON.parse(res);
 	      var logDetails = data['result'];
             if(data['error']['err_code']==0)
-            {   
+            {  
+	      $("#inp_mob_mail").val('');
+	      $("#paswrd").val('');
               common.addToStorage("jzeva_email", logDetails['0']['email']);
               common.addToStorage("jzeva_name", logDetails['0']['name']);
               common.addToStorage("jzeva_uid", logDetails['0']['uid']);

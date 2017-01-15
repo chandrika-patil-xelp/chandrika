@@ -237,7 +237,15 @@ class Uploader {
 					$expd = explode('/',trim($this->options['uploadDir'],'/'));
 					$pid = $expd[count($expd)-1];
 					
-					$url = APIDOMAIN.'index.php?action=imageupdate&pid='.$pid.'&oldName='.$metas['old_name'].'&imgpath='.str_replace('../','',$metas['file']);
+					if (strpos($pid, 'othr') !== false) {
+					    $pidstrarr = explode('_', $pid);
+					    $pid=$pidstrarr[1];
+					     $othrimgflg=1;
+					}
+					else{
+					    $othrimgflg=0; 
+					}
+					$url = APIDOMAIN.'index.php?action=imageupdate&pid='.$pid.'&oldName='.$metas['old_name'].'&imgpath='.str_replace('../','',$metas['file']).'&othrimgflag='.$othrimgflg;
 					$res = $comm->executeCurl($url);
 					
                 }

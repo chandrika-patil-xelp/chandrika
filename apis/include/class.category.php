@@ -347,6 +347,32 @@ class category extends DB
         return $results;
 
     }
+    
+    public function getSubCat($catid,$arr=array())
+    {
+      if($catid)
+      {
+	$sql="SELECT catid,pcatid,cat_name FROM tbl_category_master WHERE pcatid=".$catid."  AND active_flag=1";
+      }
+      else
+      {
+	$sql="SELECT catid,pcatid,cat_name FROM tbl_category_master WHERE pcatid=99999  AND active_flag=1";
+      }
+          
+      $res=$this->query($sql);
+      if($res)
+      {
+	while($row=$this->fetchData($res))
+	{
+	  if(!empty($arr) && $row['pcatid'] != 99999)
+	    $arr['subcat'][]=  $this->getSubCat($row['catid'],$row);
+	  else
+	  $arr['root'][]=  $this->getSubCat($row['catid'],$row); 
+	}
+	
+      } 
+      return $arr;
+    }
 
 }
 ?>

@@ -691,11 +691,16 @@
                         $('#g_sBack').click(function () {
                             $('#guestSignup').addClass("dn");
                             $('#guestSignin').removeClass("dn");
+			    $('#shpdname').val('');	$('#shpdname').blur();
+			    $('#shpdmobile').val('');	$('#shpdmobile').blur();
+			    $('#shpdemail').val('');	$('#shpdemail').blur();
+			    $('#shpdpaswrd').val('');	$('#shpdpaswrd').blur();
                             $('#guestSignup').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
                             $('#guestSignin').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
                         });
 
                         $('#g_fBack').click(function () {
+			    $('#shpdemailid').val('');	  $('#shpdemailid').blur();
                             $('#guestforgot').addClass("dn");
                             $('#guestSignin').removeClass("dn");
                             $('#guestforgot').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});

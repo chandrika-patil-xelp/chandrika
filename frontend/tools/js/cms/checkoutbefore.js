@@ -362,4 +362,6 @@ $('#chck_bak').click(function(){
    
 });
 
- 
+$('#jzeva_log').click(function () {
+        window.location.href = DOMAIN + "index.php?action=landing_page";
+});

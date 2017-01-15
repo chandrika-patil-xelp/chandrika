@@ -789,6 +789,8 @@ function ordrinfo()
     $('#pChange').addClass("dn");
     $('#wishlistId').addClass("dn");
     $('#oId').addClass('jzevaColor');
+    $('#sId').removeClass('jzevaColor');    $('#pId').removeClass('jzevaColor');
+    $('#cId').removeClass('jzevaColor');    $('#wId').removeClass('jzevaColor');
     $('#cntshp_ordr').click(function () {
         window.location.href = DOMAIN + "index.php?action=landing_page"
     });
@@ -804,6 +806,8 @@ function perninfo() {
     $('#pChange').addClass("dn");
     $('#wishlistId').addClass("dn");
     $('#pId').addClass('jzevaColor');
+    $('#oId').removeClass('jzevaColor');    $('#sId').removeClass('jzevaColor');
+    $('#cId').removeClass('jzevaColor');    $('#wId').removeClass('jzevaColor');
 }
 
 function saveadrinfo()
@@ -816,7 +820,9 @@ function saveadrinfo()
     $('#editpId').addClass("dn");
     $('#pChange').addClass("dn");
     $('#wishlistId').addClass("dn");
-    $('#sId').addClass('jzevaColor');
+    $('#sId').addClass('jzevaColor'); 
+    $('#oId').removeClass('jzevaColor');    $('#pId').removeClass('jzevaColor'); 
+    $('#cId').removeClass('jzevaColor');    $('#wId').removeClass('jzevaColor');
 }
 
 function chngpasrd()
@@ -830,6 +836,8 @@ function chngpasrd()
     $('#saveAddrId').addClass("dn");
     $('#wishlistId').addClass("dn");
     $('#cId').addClass('jzevaColor');
+    $('#oId').removeClass('jzevaColor');    $('#pId').removeClass('jzevaColor'); 
+    $('#sId').removeClass('jzevaColor');     $('#wId').removeClass('jzevaColor');
 }
 
 function whlist()
@@ -843,6 +851,8 @@ function whlist()
     $('#saveAddrId').addClass("dn");
     $('#pChange').addClass("dn");
     $('#wId').addClass('jzevaColor');
+    $('#oId').removeClass('jzevaColor');    $('#pId').removeClass('jzevaColor'); 
+    $('#sId').removeClass('jzevaColor');	    $('#cId').removeClass('jzevaColor');
     $('#cunshpng_wish').click(function () {
         window.location.href = DOMAIN + "index.php?action=landing_page";
     });
