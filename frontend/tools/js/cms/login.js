@@ -95,6 +95,7 @@ $('#rsubId').on('click',function(){
 	  $('#signup_otp').val('');	  $('#signup_otp').blur();
           otpflg=1;
 	  sendotp();
+	  sendemailotp(email)
 	  userdata[0]=name;
 	  userdata[1]=email;
 	  userdata[2]=mobile;
@@ -653,7 +654,7 @@ function sugnupsubmt()
             openPopUp();
   });
 
-  function sendemailotp()
+  function sendemailotp(inptval)
   {
     var URL=APIDOMAIN + "index.php?action=newforgotPass&email="+inptval;
     $.ajax({type:"POST", url: URL, success:function(res){
@@ -668,7 +669,7 @@ function sugnupsubmt()
     if($.isNumeric(inptval))
       sendotp();
     else
-      sendemailotp();
+      sendemailotp(inptval);
   });
 
   $('.opt1').click(function(){

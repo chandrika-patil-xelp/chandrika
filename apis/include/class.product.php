@@ -4351,7 +4351,14 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
         }
 
         if ($cattypeflag == 1) {
-            $sql.=" productid IN (SELECT productid FROM tbl_product_attributes_mapping WHERE MATCH(value) AGAINST('" . $cattypeval . "') AND active_flag=1 HAVING FIND_IN_SET(productid,prdid)) AND";
+	  $subfltmn=explode(',',$cattypeval); $subfltcnt=count($subfltmn); 
+	  $sql.=" productid IN (SELECT productid FROM tbl_product_attributes_mapping WHERE  active_flag=1 AND ";
+	  foreach($subfltmn as $subflkey=>$subfltval){
+	     $sqlarr[] = "value LIKE '%".$subfltval."%'";
+	      
+	  }
+	 $sql.="".  implode(' OR ', $sqlarr);
+	   $sql.="HAVING FIND_IN_SET(productid,prdid) ) AND    ";
         }
 
 	 if($forflag == 1){ 

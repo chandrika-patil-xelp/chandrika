@@ -222,12 +222,12 @@ function getshippingdata()
 }
 
 $('#submt').click(function () {
-
+    var cartid ;
     if (actn == 'buy') {
         var buyid = common.readFromStorage('jzeva_buyid');
-        var cartid = buyid;
+          cartid = buyid;
     } else {
-        var cartid = common.readFromStorage('jzeva_cartid');
+          cartid = common.readFromStorage('jzeva_cartid');
         var buyid = common.readFromStorage('jzeva_buyid');
         if (buyid !== null)
             removebuyitem(buyid);
