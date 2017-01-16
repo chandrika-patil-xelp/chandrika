@@ -104,7 +104,7 @@ function displaycartdata()
                 if (obj.result !== null)
                 {
 
-
+		
                     $(obj.result).each(function (r, v) {
                         if (v.default_img !== null) {
                             abc = IMGDOMAIN + v.default_img;
@@ -129,7 +129,9 @@ function displaycartdata()
                        cartstr += "<div class='cart_desc  fLeft' id='nwwt'>" + v.color + " " + v.jewelleryType + " | "+ v.carat + " | " + wht + "  grams";
 //                      cartstr += "Quality : " + v.quality + "  ";
                        cartstr += "<div class='cart_desc  fLeft' id='nwwt'>";
-                       cartstr += "Diamonds " + v.dmdcarat + " Ct | " + v.quality + " | Size " + v.size + "";
+                       cartstr += "Diamonds " + v.dmdcarat + " Ct | " + v.quality ;
+		       if(parseInt(v.size) !== 0 )
+		       cartstr += " | Size " + v.size + "";
 //                        cartstr += "<div class='cart_desc  fLeft' id='nwwt'>" + v.jewelleryType + " : " + wht + " gms &nbsp|&nbsp Diamond : " + v.dmdcarat + " &nbsp|&nbsp ";
 //                        cartstr += "Quality : " + v.quality + "  ";
 //                        cartstr += "<div class='cart_desc  fLeft' id='nwwt'>";

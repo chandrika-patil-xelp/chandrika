@@ -501,8 +501,9 @@ function savemyaddress() {
     var moblno=$('#shp_mob').val();
     var letters = /^[A-Za-z]+$/;
     var filter = /^[0-9-+]+$/;
+    var addchk=/^[a-zA-Z0-9-#-'-, ]*$/;
     var validationFlag = 1;
-
+    
     if (name === '' || name === null) {
       validationFlag = 0;
       common.msg(0, 'Please enter your Name');
@@ -515,9 +516,9 @@ function savemyaddress() {
       validationFlag = 0;
       common.msg(0, 'Please enter your Mobile no');
     }
-    else if (isNaN(moblno) || (moblno.length < 10)) {
+    else if (isNaN(moblno) || (moblno.length !== 10)) {
       validationFlag = 0;
-      common.msg(0, 'Mobile no. Invalid');
+      common.msg(0, 'Please Enter 10 Digit Mob No.');
     }
     else if(!filter.test(moblno)){
 	    validationFlag=0;
@@ -526,9 +527,13 @@ function savemyaddress() {
     else if (address === '' || address === null) {
         $('#addr').focus();
         validationFlag = 0;
-        common.msg(0, 'Please Enter Your Address');
-
-    } else if (zipcode === '' || zipcode === null) {
+        common.msg(0, 'Please Enter Your Address'); 
+    }
+    else if (!addchk.test(address)) {
+        validationFlag = 0;
+        common.msg(0, 'Please remove special characters from address');
+    } 
+    else if (zipcode === '' || zipcode === null) {
         $('#zipcode').focus();
         validationFlag = 0;
         common.msg(0, 'Please Enter The Zipcode');

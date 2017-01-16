@@ -215,7 +215,7 @@ $(document).ready(function () {
             var dt = obj['result'];
 
             $(dt).each(function (i, v) {
-		 
+	
                 var uname = v.uname;
                 uname = uname.toLowerCase();  
 		
@@ -228,7 +228,7 @@ $(document).ready(function () {
                 $('#ordate').html(ordrdt[0]);
                 $('#addr').html(v.uaddres);
                 $('#adcity').html('' + v.ucity + ' ' + v.upin + '');
-                
+                $('#trnsctnid').html(v.transactionid);
             }); 
             $('#cartdet').html(cartStr); 
         }

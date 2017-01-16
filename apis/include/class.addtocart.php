@@ -537,7 +537,7 @@
 	    ."(SELECT  GROUP_CONCAT(dname) FROM tbl_metal_purity_master WHERE id = SUBSTRING_INDEX(SUBSTRING_INDEX(combine,'|@|',2),'|@|',-1) AND active_flag = 1 ) AS carat,"
              ."(SELECT  GROUP_CONCAT(dname) FROM tbl_diamond_quality_master WHERE id = SUBSTRING_INDEX(combine,'|@|',-1)  AND active_flag = 1 ) AS quality,"
             . "(SELECT  GROUP_CONCAT(product_name) FROM tbl_product_master WHERE productid = pid ) AS prdname,"
-	    . "(SELECT  GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid  AND active_flag !=2 ORDER BY
+	    . "(SELECT  GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid  AND active_flag =1 ORDER BY
                             image_sequence DESC) AS prdimage,"
             . "(SELECT  GROUP_CONCAT(jewelleryType) FROM tbl_product_master WHERE productid = pid  AND active_flag !=2) 
                             AS jewelleryType,"
@@ -736,7 +736,7 @@
                       $sql .= " (".$wishid.", '".$params['user_id']."','".$params['pid']."','".$params['col_car_qty']."','".$params['price'].""
 			    . "','".$params['size']."',1,NOW(), NOW())";
                                    
-     
+   
 	 	      $sql.="
                     ON DUPLICATE KEY UPDATE
                                 user_id = VALUES(user_id),product_id = VALUES(product_id),col_car_qty=VALUES(col_car_qty),

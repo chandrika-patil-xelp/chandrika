@@ -1793,14 +1793,14 @@ class user extends DB {
 			    (SELECT state FROM tbl_order_shipping_details WHERE shipping_id=shpId) AS customerState,
 			    (SELECT pincode FROM tbl_order_shipping_details WHERE shipping_id=shpId) AS customerPincode,
 			    (SELECT address FROM tbl_order_shipping_details WHERE shipping_id=shpId) AS customerAddrs, 
-			    (SELECT bank_ref_no FROM tbl_transaction_master WHERE order_id=oid) AS transactionid, 
+			    (SELECT transaction_id FROM tbl_transaction_master WHERE order_id=oid) AS transactionid, 
 			    
 			    order_date AS orddt,
                             delivery_date AS deldt,
                             order_status AS ordsta,
                             active_flag AS actflg, 
                             payment AS pay
-                            FROM tbl_order_master WHERE order_id = ".$params['orderid']." ";
+                            FROM tbl_order_master WHERE order_id = ".$params['orderid']." AND active_flag=1";
 
                 $res = $this->query($sql);
 
