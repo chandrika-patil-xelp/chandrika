@@ -2845,7 +2845,7 @@ class product extends DB {
                                 NOW(),
 				" . $othrimgflag . "
                         )";
-            $res2 = $this->query($sql);
+            $res2 = $this->query($sql,1);
         }
 
         $arr = array();
@@ -4535,8 +4535,9 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 		$totalNewPricelowArr[]=$totalNewPricelow;
                 $carat[]=$arr['dmdcarat'];
 		$totalNewPricehighArr[]=$totalNewPricehigh;
-		
-		
+		sort($totalNewPricelowArr);
+		sort($carat);
+		sort($totalNewPricehighArr);
 		$rst[]=$arr;
                 
             } 
