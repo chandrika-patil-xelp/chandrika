@@ -2838,14 +2838,14 @@ class product extends DB {
                         (
                                 " . $pid . ",
                                 \"" . $img . "\",
-                                1,
+                                 1 ,
                                 " . $sequence . ",
                                 \"" . $imgName . "\",
                                 NOW(),
                                 NOW(),
 				" . $othrimgflag . "
                         )";
-            $res2 = $this->query($sql,1);
+            $res2 = $this->query($sql);
         }
 
         $arr = array();
