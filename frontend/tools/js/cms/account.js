@@ -503,7 +503,7 @@ function savemyaddress() {
     var filter = /^[0-9-+]+$/;
     var addchk=/^[a-zA-Z0-9-#-'-, ]*$/;
     var validationFlag = 1;
-    
+
     if (name === '' || name === null) {
       validationFlag = 0;
       common.msg(0, 'Please enter your Name');
@@ -527,12 +527,12 @@ function savemyaddress() {
     else if (address === '' || address === null) {
         $('#addr').focus();
         validationFlag = 0;
-        common.msg(0, 'Please Enter Your Address'); 
+        common.msg(0, 'Please Enter Your Address');
     }
     else if (!addchk.test(address)) {
         validationFlag = 0;
         common.msg(0, 'Please remove special characters from address');
-    } 
+    }
     else if (zipcode === '' || zipcode === null) {
         $('#zipcode').focus();
         validationFlag = 0;
@@ -610,7 +610,7 @@ function displayaddrs() {
             }
             var addrStr = "";
             $(data['results']).each(function (m, n) {
-
+              addrStr = "";
                 addrStr += '<div class="fLeft defaulDiv">';
                 addrStr += '<div class="fLeft col100">';
                 addrStr += '<div class="font13">'+n.name+'</div>';
@@ -627,8 +627,15 @@ function displayaddrs() {
                 addrStr += '</center>';
                 addrStr += '</div>';
                 addrStr += '</div>';
+                console.log(m);
+                if(m%2==0){
+                    $('#myaddrs').find('.col50').eq(0).append(addrStr);
+                }
+                else{
+                    $('#myaddrs').find('.col50').eq(1).append(addrStr);
+                }
             });
-            $('#myaddrs').html(addrStr);
+            //$('#myaddrs').html(addrStr);
         }
     });
 }

@@ -113,7 +113,7 @@ a{color:#666;}
 .tabWrap.deactive , .tabWrap2.deactive {z-index:12;pointer-events:none;}
 .tab_buffer{width:auto;height:60px;position:relative;z-index:20;}
 .tabB{width:auto;height:60px;cursor:pointer;font-family:bolder;}
-.tabWrap2{width: 180px;height: 60px;position: absolute;z-index: 101;   top: 0;    right: 0;}
+.tabWrap2{width: 180px;height: 60px;position: absolute;z-index: 101;top: 0;right: 0;}
 .tabS{width: 60px;    height: 60px;    cursor: pointer;    position: relative;}
 .tab2{width:60px; height:60px;cursor:pointer;}
 .tab2 .tab{}
@@ -1010,8 +1010,7 @@ input[type=radio]:checked ~ .check::before{background: #22B9C7;transform: scale(
 /*.rad_wrap:hover .clarityInfo{display: block;}*/
 .rad_wrap:hover .selector_label:after{transform:translateX(0%);-webkit-transform:translateX(0%);-moz-transform:translateX(0%);-o-transform:translateX(0%);-ms-transform:translateX(0%);}
 input[type=radio]:checked ~ .selector_label .labBuffer{color:#fff}
-input[type=radio]:checked ~ .selector_label:after {
-  transform:translateX(0%);-webkit-transform:translateX(0%);-moz-transform:translateX(0%);-o-transform:translateX(0%);-ms-transform:translateX(0%);background: #22B9C7;}
+input[type=radio]:checked ~ .selector_label:after {transform:translateX(0%);-webkit-transform:translateX(0%);-moz-transform:translateX(0%);-o-transform:translateX(0%);-ms-transform:translateX(0%);background: #22B9C7;}
 .PRODUCT_PAGE .check{left: 18px;top:5px;}
 .PRODUCT_GRID2 input[type=radio]:checked ~ label{font-family:bolder;}
 .PRODUCT_PAGE .darkCont{opacity:1;float:left;transform: translateY(0px);-webkit-transform: translateY(0px);-moz-transform: translateY(0px);-o-transform: translateY(0px);-ms-transform: translateY(0px);    padding: 100px 0 100px 0;}
@@ -1249,7 +1248,7 @@ input[type=radio]:checked ~ .selector_label:after {
 
 
 
- 
+
 
 /*diamonds*/
 
@@ -2275,7 +2274,7 @@ input[type=radio]:checked ~ .matchIcn{
 .addrName{width:100%;height: 40px;line-height: 40px;padding: 10px 0px;}
 .defaultHead{width:100%;height: 50px;line-height: 50px;text-transform: uppercase;font-family: semibold;}
 .EditAddr{width:100%;height: auto;border: 1px solid #ccc;padding: 10px;margin-bottom: 15px;}
-.defaulDiv{width:49%;height: auto;border: 1px solid #ccc;padding: 10px;margin-bottom: 15px;line-height: 19px;word-wrap: break-word;}
+.defaulDiv{width:100%;height: auto;border: 1px solid #ccc;padding: 10px;margin-bottom: 15px;line-height: 19px;word-wrap: break-word;}
 .orderParent{width: 100%;height: auto;padding: 10px 0px;border-bottom: 1px solid #ccc;margin-bottom: 10px;}
 .orderParent:last-child{border: none;}
 .tArea{width:100%;height:100px;border:1px solid #ccc;padding:5px;}
@@ -2338,8 +2337,8 @@ width:30px;
 height:80%;right:0;background: #15181b url(../img/icons/543w.svg)no-repeat;    background-size: auto 50%;
 background-position: center;
 cursor: pointer;top: 10px;    z-index: 99999;}
-                            
-                                
+
+
 
 .ordersCard{width: 50%;height: auto;border-right: 1px solid #ccc;}
 .shipAddr{padding-bottom: 5px;line-height: 16px;}
@@ -2575,7 +2574,7 @@ cursor: pointer;top: 10px;    z-index: 99999;}
 .For_menIc{background: url("../img/icons/529.svg")no-repeat;    background-size: auto 40px;    background-position: center 15px;}
 .For_womenIc{background: url("../img/icons/528.svg")no-repeat;    background-size: auto 40px;    background-position: center 15px;}
 .noimgDiv{width: 100%;height: 100%;background: url("../img/jzevaempty.svg")no-repeat;    background-size: auto 40%;background-position: center 47px;position: absolute;z-index: 1;}
-.defaulDiv:nth-of-type(even){float:right!important;}
+.adp .col50{padding:10px}
 
 /*.imgHead:after{content: "";width:20px;position: absolute;}*/
 .cartPopup{width:100%;height: 100%;position:fixed;z-index: 20;opacity: 0;background: rgba(0,0,0,0.55);    z-index:999;}
@@ -2697,10 +2696,10 @@ cursor: pointer;top: 10px;    z-index: 99999;}
 .szCir{width:75%;height:195px;}
 /*input[type=number]{.number-wrapper:after{diplay:none;}}*/
 /*input[type="number"].number-wrapper:hover:after{display: none;}*/
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 /*.number-wrapper:hover:after{display:none;}*/
 .guestPopup{   width: 100%;
