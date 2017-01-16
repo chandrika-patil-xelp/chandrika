@@ -145,11 +145,11 @@ class Uploader {
             
             if($options['required'] && $field['length'] == 0) $errors[] = $this->error_messages['required_and_no_file'];
             if(($options['limit'] && $field['length'] > $options['limit']) || ($field['length']) > $ini[3]) $errors[] = $this->error_messages['max_number_of_files'];
-            if(!file_exists($options['uploadDir']) && !is_dir($options['uploadDir']) && mkdir($options['uploadDir'], 0755, true)){
+            if(!file_exists($options['uploadDir']) && !is_dir($options['uploadDir']) && mkdir($options['uploadDir'], 0777, true)){
                 $this->data['hasWarnings'] = true;
                 $this->data['warnings'] = "A new directory was created in " . realpath($options['uploadDir']);
             }
-            if(!is_writable($options['uploadDir'])) @chmod($options['uploadDir'], 0755);
+            if(!is_writable($options['uploadDir'])) @chmod($options['uploadDir'], 0777);
             
             if($field['Field_Type'] == "input"){
                 $total_size = 0; foreach($this->field['size'] as $key=>$value){ $total_size += $value; } $total_size = $total_size/1048576;
@@ -248,7 +248,7 @@ class Uploader {
 					$url = APIDOMAIN.'index.php?action=imageupdate&pid='.$pid.'&oldName='.$metas['old_name'].'&imgpath='.str_replace('../','',$metas['file']).'&othrimgflag='.$othrimgflg;
 					$res = $comm->executeCurl($url);
 					
-                }
+                }			
             }
             
             $this->data['isSuccess'] = count($field['name']) - count($removed_files) == count($files);
