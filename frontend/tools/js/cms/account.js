@@ -332,7 +332,7 @@ function wishlist()
                     wishStr += ' ' + Nstr + '</div>';
 //                  wishStr += '   <div class="grid_price txtOver transition300" onclick="wshprdopen(this)"><span class="cartRup15b"><span>  ' + indianMoney(parseInt(j.price)) + '</div>';
                     wishStr += '<div class="grid_price txtOver transition300" onclick=\" custmz('+obj['prdId']+')\"><span class="cartRup15b padR0">'+j.price+'</span></div>';
-                    wishStr += '  <div class="action_btns">';
+                    wishStr += '  <div class="action_btns dn">';
                     wishStr += '  <div class="col100 fLeft  pad0">';
                     wishStr += '  <div class="actBtn  bolder addcrt" id="' + j.wish_id + '_' + j.col_car_qty + '_' + j.product_id + '_' + j.size + '" ';
                     wishStr += '  onclick="addtocart(this)">Add To Cart</div> </div>';
