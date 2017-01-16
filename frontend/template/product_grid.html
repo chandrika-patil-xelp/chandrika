@@ -506,6 +506,12 @@
                             </div>
                         </div>
                         <div class="grid_cont fLeft">
+                            <div class="emptyGrid dn">
+                                <center>
+                                <div class="emptyLogo"></div>
+                                <div class="fooH mar0 color666">no products found</div>
+                                </center>
+                            </div>
                             <div class="col100 fLeft poR" id="gridDetail"></div>
                             <div class="grid_footer fLeft transition300">
                                 <div class="gridLoad dn" id="gridl">
@@ -566,8 +572,7 @@
 
     <script>
 
-
-        
+ 
         function load_page() {
 
             $('.black_slider').velocity({translateX: [0, '-100%']}, {duration: 400, delay: 2000, easing: 'easeInOutExp', complete: function () {
