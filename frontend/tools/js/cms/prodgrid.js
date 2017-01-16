@@ -571,7 +571,11 @@ var page2 = 2;
 var limcount = 12;
 var fltrpage=2, fltrcnt=0;
 $('#gr_foot').on('click', function () {
-   
+   setTimeout(function (){
+        
+     $('.gridLoad').removeClass("dn");
+     },500);
+     
   if(Object.keys(fltrarray).length > 1)
   { 
     var fltpage = fltrpage + fltrcnt++;  
@@ -1024,7 +1028,7 @@ function getprodbyid()
         url: URL,
         success: function (res) {
 
-
+       
             res = JSON.parse(res); 
             if (res['error']['err_code'] == 0) {
                 getProdDtl = res["result"]; 
