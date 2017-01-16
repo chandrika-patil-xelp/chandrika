@@ -97,10 +97,10 @@
                                         <div class="actBtn font12 regular" id="carat"></div>
                                     </div>
                                     <div class="drop_dn fLeft dn" id="sizes">
-                                        <!--                                        <div class="attTitle">Size</div>
-                                                                                <div class="actBtn font12 regular"></div>-->
-                                        <!--                                                                                <div class="actBtn font12 bolder" id="size" >Size </div>-->
-                                        <!--                                        <div class="selectDefault"></div>-->
+<!--                                                                             <div class="attTitle">Size</div>
+                                                                                <div class="actBtn font12 regular"></div>
+                                                                                                                       <div class="actBtn font12 bolder" id="size" > </div>
+                                                                              <div class="selectDefault"></div>-->
 
                                     </div>
                                 </div>
@@ -218,7 +218,7 @@
                                                         <div class="ringCircleB transition600 poR" id="bangCircle">2.4</div>
                                                     </div>
                                                     <center>
-                                                        <div class="col100 fLeft"><div class="col50"><div class="actBtn" id="ringGuide">size guide</div></div></div>
+                                                        <div class="col100 fLeft"><div class="col50"><div class="actBtn" id="bangleGuide">size guide</div></div></div>
                                                         <div class="para fLeft mar0">Know your bangle size</div>
                                                     </center>
                                                 </div>
@@ -276,6 +276,7 @@
     <script>
 
                 var t = 0;
+              
         $('#slideRing').ionRangeSlider({
             type: "single",
             from: 9,
@@ -297,6 +298,7 @@
                 t = sVal;
                 calculatePrice();
             },
+          
         });
 
 
@@ -309,6 +311,7 @@
             grid: true,
             onChange: function (data) {
                 var sVal = data.from_value;
+               
                 $('#size').text("Size " + data.from_value);
                 $('.ringCircleB').html(sVal);
 //                console.log(sVal);
@@ -444,11 +447,11 @@
             calweight();
         }
 
-        $('#ringGuide').click(function (s, l) {
-            window.location.href = DOMAIN + "index.php?action=sizeguide";
+        $('#ringGuide').click(function () {
+            window.open(DOMAIN + "index.php?action=sizeguide");
         });
-        $('#bangleGuide').click(function (s, l) {
-            window.location.href = DOMAIN + "index.php?action=bangleguide";
+        $('#bangleGuide').click(function () {
+            window.open(DOMAIN + "index.php?action=bangleguide");
         });
 
 
