@@ -35,10 +35,15 @@ function displaycartdetail()
                 $(obj.result).each(function (r, v) {
                     if (v.default_img !== null) {
                         abc = IMGDOMAIN + v.default_img;
-                    } else {
+                    } 
+		    else {
+		      if(v.prdimage !== null){
                         var abc = v.prdimage;
                         abc = abc.split(',');
                         abc = IMGDOMAIN + abc[0];
+		      }
+		      else
+			abc=BACKDOMAIN +'tools/img/noimage.svg'
                     }
                     totalprice += parseInt(v.price);
                     var bprize = parseInt(v.price / v.pqty);
@@ -50,8 +55,8 @@ function displaycartdetail()
                     }
 
                 var chckoutstr = "<div class='cart_item'>";
-                    chckoutstr += "<div class='cart_image'><img src='" + abc + "'";
-                    chckoutstr += " alt='Image not found'></div>";
+                    chckoutstr += "<div class='cart_image'><img src='" + abc + "' onerror='this.style.display=\"none\"'>";
+                    chckoutstr += " </div>";
                     chckoutstr += "<div class='cart_name'>" + (v.prdname).toUpperCase() + "</div>";
                     chckoutstr += "<div class='cart_desc  fLeft' id='nwwt'>" + v.jewelleryType + " : " + wht + " gms &nbsp|&nbsp Diamond : " + v.dmdcarat + " Ct &nbsp|&nbsp ";
                     chckoutstr += "Quality : " + v.quality + "  ";

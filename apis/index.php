@@ -659,7 +659,7 @@ switch($action)
     case 'addOrders':
         include APICLUDE.'class.us.php';
         $obj = new us($db['jzeva']);
-	$tmpaparams = array($params['dt']);print_r($tmpaparams);
+	$tmpaparams = array($params['dt']);
         $res = $obj->addOrders($tmpaparams);
         break;
 
@@ -952,13 +952,7 @@ switch($action)
         $obj = new addtocart($db['jzeva']);
         $res = $obj->removCrtItemaftrcheckot($params);
   break;
-
-   case 'setImagedeflt':
-       include APICLUDE.'class.admin.php';
-       $obj=new admin($db['jzeva']);
-       $res=$obj->setImagedeflt($params);
-   break;
-
+    
   case 'viewbyPincode':
       include APICLUDE . 'class.location.php';
       $obj = new location($db['jzeva']);

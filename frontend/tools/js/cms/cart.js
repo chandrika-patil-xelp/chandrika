@@ -106,12 +106,18 @@ function displaycartdata()
 
 		
                     $(obj.result).each(function (r, v) {
+			
                         if (v.default_img !== null) {
                             abc = IMGDOMAIN + v.default_img;
-                        } else {
-                            var abc = v.prdimage;
+                        }
+			else {
+			  if(v.prdimage !== null){
+			    var abc =""; abc = v.prdimage;
                             abc = abc.split(',');
                             abc = IMGDOMAIN + abc[0];
+			  }
+			  else
+			    abc=BACKDOMAIN +'tools/img/noimage.svg'
                         }
                         var bprize = parseInt(v.price / v.pqty);
                         var wht;
@@ -123,8 +129,8 @@ function displaycartdata()
 
                         cartstr = "<div class='cart_item'>";
 			cartstr += "<div class='opn_prdcart' id='" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "_" + v.size + "'>";
-                        cartstr += "<div class='cart_image' onclick='prdopen(this)'><img src='"+ abc +"'";
-                        cartstr += " alt='Image not found'></div>";
+                        cartstr += "<div class='cart_image' onclick='prdopen(this)'><img src='"+ abc +"' onerror='this.style.display=\"none\"'>";
+                        cartstr += "</div>";
                         cartstr += "<div class='cart_name' onclick='prdopen(this)'>" + v.prdname + "</div>";
                        cartstr += "<div class='cart_desc  fLeft' id='nwwt'>" + v.color + " " + v.jewelleryType + " | "+ v.carat + " | " + wht + "  grams";
 //                      cartstr += "Quality : " + v.quality + "  ";
@@ -333,7 +339,7 @@ function subqnty(evnt)
 function gettotal()
 {
 
-    var itemcnt = 0, total = 0;
+    var itemcnt = 0, total = 0; 
     $(gblcartdata).each(function (r, v) {
 
         total = parseInt(v.price) + total;

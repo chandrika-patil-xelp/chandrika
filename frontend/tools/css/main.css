@@ -206,7 +206,7 @@ a{color:#666;}
 .cartTxt{width: 100%;height: auto;text-align: center;text-transform: uppercase;font-size: 11px;font-family: regular;color:#fff;letter-spacing: 0.15em;padding: 12px 0px 10px 0px;}
 .cart_head{width:100%;height:50px;background:#5f00b8;line-height:50px; padding:0px 60px 0px 20px;color:#fff;cursor:pointer;font-size:12px;position:relative;}
 .cart_item{padding: 10px 75px 10px 130px; height:90px;width:100%;position:relative;}
-.cart_image{width:70px; height:70px;position:absolute;left:45px;top:10px;background:url("../img/jzeva1.png")no-repeat;background-size:140%;background-position:center -20px;}
+.cart_image{width:70px; height:70px;position:absolute;left:45px;top:10px;background:#fff url("../img/noimage.svg")no-repeat;background-size:90%;background-position:center;}
 .cart_name{width:100%;line-height:16px;color: #fff;font-size: 10px;  font-family: bolder;  text-transform: uppercase;letter-spacing: 0.15em;}
 .totalItem .cart_name{color:#999}
 .totalItem .actBtn {font-size:10px}

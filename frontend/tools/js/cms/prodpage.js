@@ -66,8 +66,9 @@ function getarraydata() {
     arrdata.push(pprice);
 
     if (data['results']['dimond']['results'] !== null) {
-        var xx = $('#qual').attr('qual_id').split('_');
-        var quality = xx[xx.length - 1];
+      var quality =$('#qual').attr('qual_id');
+       // var xx = $('#qual').attr('qual_id').split('_'); 
+       // var quality = xx[xx.length - 1]; 
     }
     if (data['results']['metalColor']['results'] !== null) {
         var yy = $('#clr').attr('clr_id').split('_');
@@ -1324,13 +1325,13 @@ $('.sizbak').click(function() {
     if (catname == 'Rings') {
 	 if(size == 'Select'){
 	  var rngval=$('.ringCircle').text();
-	   $('#size').append(rngval); 
+	   $('#size').html('SIZE ' + rngval);
 	 }  
     }
     else if (catname == 'Bangles') {
 	if(size == 'Select'){
 	   var bngval=$('#bangCircle').text();
-	   $('#size').append(bngval);
+	   $('#size').html('SIZE ' + bngval);
 	}   
     } 
 });
