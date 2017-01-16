@@ -1794,6 +1794,7 @@ class user extends DB {
 			    (SELECT pincode FROM tbl_order_shipping_details WHERE shipping_id=shpId) AS customerPincode,
 			    (SELECT address FROM tbl_order_shipping_details WHERE shipping_id=shpId) AS customerAddrs, 
 			    (SELECT transaction_id FROM tbl_transaction_master WHERE order_id=oid) AS transactionid, 
+			    (SELECT payment_mode FROM tbl_transaction_master WHERE order_id=oid) AS transactiontype, 
 			    
 			    order_date AS orddt,
                             delivery_date AS deldt,
@@ -1825,7 +1826,8 @@ class user extends DB {
                     $reslt['ustate'] = ($row['customerState']!=NULL) ? $row['customerState'] : '';
                     $reslt['upin'] = ($row['customerPincode']!=NULL) ? $row['customerPincode'] : '';
                     $reslt['uaddres'] = ($row['customerAddrs']!=NULL) ? $row['customerAddrs'] : '';
-                     $reslt['transactionid'] = ($row['transactionid']!=NULL) ? $row['transactionid'] : ''; 
+                    $reslt['transactionid'] = ($row['transactionid']!=NULL) ? $row['transactionid'] : ''; 
+		    $reslt['transactiontype'] = ($row['transactiontype']!=NULL) ? $row['transactiontype'] : '';  
                     $resp[] = $reslt;
 		    $totalprice+=($row['price'] != NULL) ?$row['price']:'';
                  }

@@ -210,27 +210,31 @@ $(document).ready(function () {
     $.ajax({ url: URL, type: "GET", datatype: "JSON", success: function (results) {
 
             var obj = JSON.parse(results);
-            var cartStr = "";
-	    
+             
+	    var totprdcnt=0;
             var dt = obj['result'];
-
+ 
+	    var orddate = obj['result'][0].orddt;
+	    var ordd = orddate.split(',').join(' ');
+	    var ordrdt = ordd.split('|'); 
             $(dt).each(function (i, v) {
-	
+		
                 var uname = v.uname;
                 uname = uname.toLowerCase();  
-		
+		totprdcnt+=parseInt(v.pqty);
                 $('#uname').html('Dear '+ uname); 
                 $('#ordrID').html(v.oid);
-                var orddate = v.orddt;
-                var ordd = orddate.split(',').join(' ');
-                var ordrdt = ordd.split('|'); 
+                
 
-                $('#ordate').html(ordrdt[0]);
+                $('#ordate').html(ordrdt[0]+"-"+ordrdt[1]);
                 $('#addr').html(v.uaddres);
                 $('#adcity').html('' + v.ucity + ' ' + v.upin + '');
                 $('#trnsctnid').html(v.transactionid);
+		$('#ordamnt').html(obj.totalprice);
+		$('#trnstype').html(v.transactiontype);
             }); 
-            $('#cartdet').html(cartStr); 
+	    $('#ordtotprds').html(totprdcnt);
+           
         }
     });
  }
