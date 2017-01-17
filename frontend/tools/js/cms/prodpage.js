@@ -1157,19 +1157,7 @@ $('#addwishlist').click(function () {
         if (wshlstflag == 0)
         {
 	  getarraydata();
-	  var valflag=1; 
-	  var size=$('#size').text(); 
-   
-	  if (catname == 'Rings') {
-	       if(size == 'Select')
-		  valflag=0;
-	  }
-	  else if (catname == 'Bangles') {
-	      if(size == 'Select')
-		  valflag=0;
-	  }
-	  if(valflag == 1) 
-	  {
+	 
             var userid, wishdata = {};
             wishdata['pid'] = arrdata[0];
             var chr = "" + arrdata[2] + "|@|" + arrdata[4] + "|@|" + arrdata[3];
@@ -1189,10 +1177,7 @@ $('#addwishlist').click(function () {
 //                    $('.addWish').addClass("moveWish");
                 }
             });
-	  }
-	  else{
-	      common.msg(0, 'Please Select Size');
-	  }
+	 
         } else
             common.msg(0, 'This Product Already In Your Wishlist');
     }
