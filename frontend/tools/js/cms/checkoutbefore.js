@@ -30,7 +30,7 @@ function displaycartdetail()
             } else {
                 $('#submt').removeClass('dn');
                 $("#noprdinchkot").addClass("dn");
-
+		$('.totalItem').removeClass('dn');
                 $('#urords').removeClass('dn');
                 $(obj.result).each(function (r, v) {
                     if (v.default_img !== null) {
