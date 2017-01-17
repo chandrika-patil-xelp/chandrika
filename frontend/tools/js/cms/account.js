@@ -330,8 +330,7 @@ function wishlist()
                         }
                     }
                     wishStr += ' ' + Nstr + '</div>';
-//                  wishStr += '   <div class="grid_price txtOver transition300" onclick="wshprdopen(this)"><span class="cartRup15b"><span>  ' + indianMoney(parseInt(j.price)) + '</div>';
-                    wishStr += '<div class="grid_price txtOver transition300" onclick=\" custmz('+obj['prdId']+')\"><span class="cartRup15b padR0">'+j.price+'</span></div>';
+                    wishStr += '   <div class="grid_price txtOver transition300" onclick="wshprdopen(this)"><span class="cartRup15b"><span>  ' + indianMoney(parseInt(j.price)) + '</div>';
                     wishStr += '  <div class="action_btns dn">';
                     wishStr += '  <div class="col100 fLeft  pad0">';
                     wishStr += '  <div class="actBtn  bolder addcrt" id="' + j.wish_id + '_' + j.col_car_qty + '_' + j.product_id + '_' + j.size + '" ';
@@ -499,7 +498,7 @@ function savemyaddress() {
     var city = $('#city').val();
     var name= $('#shp_name').val();
     var moblno=$('#shp_mob').val();
-    var letters = /^[A-Za-z]+$/;
+    var letters = /^[A-Za-z\s]+$/;
     var filter = /^[0-9-+]+$/;
     var addchk=/^[a-zA-Z0-9-#-'-, ]*$/;
     var validationFlag = 1;
@@ -627,7 +626,7 @@ function displayaddrs() {
                 addrStr += '</center>';
                 addrStr += '</div>';
                 addrStr += '</div>';
-                console.log(m);
+                
                 if(m%2==0){
                     $('#myaddrs').find('.col50').eq(0).append(addrStr);
                 }
@@ -881,13 +880,13 @@ function trackslide(ths)
 
         }
         if(trackid == 3 || trackid == 4){
-              $(ths).closest('.detailsOuter').find('.trackDivs').eq(0).find('.proStep').addClass('tickIcon');
+              $(ths).closest('.detailsOuter').find('.trackDivs').eq(0).find('.proStep').addClass('completed');
                $(ths).closest('.detailsOuter').find('.trackDivs').eq(1).find('.proStep').addClass('tickIcon');
 
         }
         if(trackid == 5){
-              $(ths).closest('.detailsOuter').find('.trackDivs').eq(0).find('.proStep').addClass('tickIcon');
-              $(ths).closest('.detailsOuter').find('.trackDivs').eq(1).find('.proStep').addClass('tickIcon');
+              $(ths).closest('.detailsOuter').find('.trackDivs').eq(0).find('.proStep').addClass('completed');
+              $(ths).closest('.detailsOuter').find('.trackDivs').eq(1).find('.proStep').addClass('completed');
               $(ths).closest('.detailsOuter').find('.trackDivs').eq(2).find('.proStep').addClass('tickIcon');
 
                $('.shp').removeClass('dn');
@@ -895,18 +894,18 @@ function trackslide(ths)
         }
         if(trackid == 6){
 
-              $(ths).closest('.detailsOuter').find('.trackDivs').eq(0).find('.proStep').addClass('tickIcon');
-               $(ths).closest('.detailsOuter').find('.trackDivs').eq(1).find('.proStep').addClass('tickIcon');
-                $(ths).closest('.detailsOuter').find('.trackDivs').eq(2).find('.proStep').addClass('tickIcon');
+              $(ths).closest('.detailsOuter').find('.trackDivs').eq(0).find('.proStep').addClass('completed');
+               $(ths).closest('.detailsOuter').find('.trackDivs').eq(1).find('.proStep').addClass('completed');
+                $(ths).closest('.detailsOuter').find('.trackDivs').eq(2).find('.proStep').addClass('completed');
                $(ths).closest('.detailsOuter').find('.trackDivs').eq(3).find('.proStep').addClass('tickIcon');
                $('.del').removeClass('dn');
               $('.del').html();
         }
          if(trackid == 7){
              $('#delv').html('Not DELIVERED');
-              $(ths).closest('.detailsOuter').find('.trackDivs').eq(0).find('.proStep').addClass('tickIcon');
-               $(ths).closest('.detailsOuter').find('.trackDivs').eq(1).find('.proStep').addClass('tickIcon');
-                $(ths).closest('.detailsOuter').find('.trackDivs').eq(2).find('.proStep').addClass('tickIcon');
+              $(ths).closest('.detailsOuter').find('.trackDivs').eq(0).find('.proStep').addClass('completed');
+               $(ths).closest('.detailsOuter').find('.trackDivs').eq(1).find('.proStep').addClass('completed');
+                $(ths).closest('.detailsOuter').find('.trackDivs').eq(2).find('.proStep').addClass('completed');
                $(ths).closest('.detailsOuter').find('.trackDivs').eq(3).find('.proStep').addClass('notDeliver');
                 $('.shp').removeClass('dn');
              $('.shp').html();
