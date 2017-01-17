@@ -2,11 +2,12 @@
 <body>
     <div class="fLeft"></div>
     <div class="col100 fade">
+        <div class="loginOverlay"></div>
         <div class="outerContr dn" id="signInId">
             <div class="loginCont fLeft" id="loginId">
                 <div class="txtTitle" id="hTxt">Please enter your Jzeva login credentials.</div>
                 <div class="txtB fLeft" id="subusreml">
-                    <input type="text" class="inp_box " maxlength="30" id="email" autocomplete="off">
+                    <input type="text" class="inp_box " maxlength="10" id="email" autocomplete="off">
                     <div class="inp_label" >Email-Id/Mobile*</div>
                 </div>
                 <div class="txtB fLeft" id="subusrpass">
@@ -171,17 +172,15 @@
                 if ($('.dropBox').find('ul').is(":visible"))
                 {
                     $('.dropBox').find('ul').slideUp('swing');
-                      $('.dropBox').removeClass("drop");
+                    $('.dropBox').removeClass("drop");
                 }
             }
         });
 
 
+
         $('#hTxt,#loginId,#lgnId,#loginId1,#otpCont,#otpCont2,#inresetId,#signCont').velocity({opacity: [0]}, {duration: 0, easing: 'ease-in-out'});
         $(document).ready(function () {
-
-
-
             $('#hTxt,#loginId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
             $('#lgnId').velocity({opacity: [1, 0], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
             $(document).keypress(function (e) {
@@ -249,7 +248,6 @@
             $('#otpCont2').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
             $('#signUpId').addClass("dn");
             $('#signCont').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-
         }
 
         function signupOtpSubmit() {
@@ -257,7 +255,6 @@
             $('#inresetId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
             $('#otpOuter2').addClass("dn");
             $('#otpCont2').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-
         }
 
         function resetSubmit() {
@@ -319,13 +316,17 @@
             $('#femail').blur();
         }
 
-
+        var flag;
 
         function openPopUp() {
+            
+          
             entrflg = 4;
+//             $('.overlay').stop(true, true).fadeTo(200, 1);
+                     
             $('#signInId').removeClass("dn");
             $('#loginId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-            $('.overlay').velocity({opacity: [1, 0]});
+            $('.loginOverlay').velocity({opacity: [1, 0]});
 //          $('.overlay').velocity({display: "block"});
             $('.menu_wrap').css("height", "0");
             $('.head_wrap').addClass("addPointer");

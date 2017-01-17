@@ -99,10 +99,23 @@
     background: rgba(255,255,255,0.8);
     -moz-border-radius: 3px;
     border-radius: 3px;
-    background: url(../../img/icons/519s15w.svg) no-repeat;
+   
+}
+#rg .irs-to, .irs-single  {
+     background: url(../../img/icons/519s15w.svg) no-repeat;
     background-size: auto 8px;
     background-position: left 3px center;
 }
+
+#rg .irs-from, .irs-single  {
+     background: url(../../img/icons/519s15w.svg) no-repeat;
+    background-size: auto 8px;
+    background-position: left 3px center;
+}
+
+#ct .irs-from, .irs-to, .irs-single {}
+#ct .irs-to, .irs-single{}
+
 .ringSlider .irs-single {
     color: #000;
     font-size: 10px;

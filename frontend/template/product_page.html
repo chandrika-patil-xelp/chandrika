@@ -14,21 +14,21 @@
             <div class="wrapper_max">
                 <div class="container poR">
                     <div class="fLeft prodCarousel">
-                         <!--    <div class="prevArrow" onclick="movePrImg(true)"></div>
-                            <div class="nextArrow" onclick="movePrImg(false)"></div>
-                            <div class="inCarousel transition300" id="othrimgs">
+<!--                            <div class="prevArrow" onclick="movePrImg(true)"></div>
+                           <div class="nextArrow" onclick="movePrImg(false)"></div>
+                           <div class="inCarousel transition300" id="othrimgs">
+                          <div class="carouselBox"></div>
                            <div class="carouselBox"></div>
-                            <div class="carouselBox"></div>
-                            <div class="carouselBox"></div>
-                            <div class="carouselBox"></div>
-                            <div class="carouselBox"></div>
-                            <div class="carouselBox"></div>
-                            <div class="carouselBox"></div>
-                            <div class="carouselBox"></div>
-                            <div class="carouselBox"></div>
-                            <div class="carouselBox"></div>
-                            </div>-->
-                        </div>
+                           <div class="carouselBox"></div>
+                           <div class="carouselBox"></div>
+                           <div class="carouselBox"></div>
+                           <div class="carouselBox"></div>
+                           <div class="carouselBox"></div>
+                           <div class="carouselBox"></div>
+                           <div class="carouselBox"></div>
+                           <div class="carouselBox"></div>
+                           </div>-->
+                    </div>
                     <div class="details_cont fLeft">
                         <div class="details_buffer">
                             <div class="details_head fLeft" id="proname">
@@ -60,7 +60,7 @@
                         </div>
                     </div>
                     <div class="rota_wrap transition300">
-                        
+
                         <div class="rota_buffer">
                             <div class="div360"></div>
                             <div class="userInfo dn dwnArrow fLeft"></div>
@@ -97,10 +97,10 @@
                                         <div class="actBtn font12 regular" id="carat"></div>
                                     </div>
                                     <div class="drop_dn fLeft dn" id="sizes">
-<!--                                                                             <div class="attTitle">Size</div>
-                                                                                <div class="actBtn font12 regular"></div>
-                                                                                                                       <div class="actBtn font12 bolder" id="size" > </div>
-                                                                              <div class="selectDefault"></div>-->
+                                        <!--                                                                             <div class="attTitle">Size</div>
+                                                                                                                        <div class="actBtn font12 regular"></div>
+                                                                                                                                                               <div class="actBtn font12 bolder" id="size" > </div>
+                                                                                                                      <div class="selectDefault"></div>-->
 
                                     </div>
                                 </div>
@@ -186,9 +186,6 @@
                                                                             </div>
                                                                         </div>-->
                                     <div class="col100 fLeft" id="RingGuide">
-                                        <div class="ringSlider fRight">                                                                       
-                                            <input type="text" id="slideRing">
-                                        </div>
                                         <div class="szCir fLeft">
                                             <div class="fLeft col100">
                                                 <div class="col100 sizeOuter fLeft ringclass">
@@ -202,13 +199,13 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="ringSlider fRight">                                                                       
+                                            <input type="text" id="slideRing">
+                                        </div>
                                         <div class="options_back fLeft sizbak"></div>
                                     </div>
 
                                     <div class="col100 fLeft" id="BangleGuide">
-                                        <div class="ringSlider fRight">                                                                       
-                                            <input type="text" id="slideBangle">
-                                        </div>
                                         <div class="szCir fLeft">
                                             <div class="fLeft col100">
                                                 <div class="col100 sizeOuter fLeft bangclass">
@@ -223,6 +220,9 @@
                                                     </center>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="ringSlider fRight">                                                                       
+                                            <input type="text" id="slideBangle">
                                         </div>
                                         <div class="options_back fLeft sizbak"></div>
                                     </div>
@@ -276,7 +276,7 @@
     <script>
 
                 var t = 0;
-              
+
         $('#slideRing').ionRangeSlider({
             type: "single",
             from: 9,
@@ -298,7 +298,6 @@
                 t = sVal;
                 calculatePrice();
             },
-          
         });
 
 
@@ -311,7 +310,7 @@
             grid: true,
             onChange: function (data) {
                 var sVal = data.from_value;
-               
+
                 $('#size').text("Size " + data.from_value);
                 $('.ringCircleB').html(sVal);
 //                console.log(sVal);
@@ -324,35 +323,34 @@
                 calculatePrice();
             },
         });
-        
-	      
-                var val = 0;
-		var moveCount = 0;
-		function movePrImg(flag)
-		{
+
+
+        var val = 0;
+        var moveCount = 0;
+        function movePrImg(flag)
+        {
 //                    alert("jhdkfj");
-				var totalThumbs = $(".carouselBox").length;
-				var liWidth = ($(".carouselBox").outerWidth());
-				if (!flag)
-				{
-						if (moveCount < (totalThumbs - 5))
-						{
-								val = val - liWidth;
-								$(".inCarousel").css({transform: 'translateX(' + val + 'px)'});
-								moveCount++;
-						}
-				}
-				else if (flag)
-				{
-						if (moveCount > 0) {
-								val = val + liWidth;
-								$(".inCarousel").css({transform: 'translateX(' + val + 'px)'});
-								moveCount--;
-						}
-				}
-		}
-		
-        
+            var totalThumbs = $(".carouselBox").length;
+            var liWidth = ($(".carouselBox").outerWidth());
+            if (!flag)
+            {
+                if (moveCount < (totalThumbs - 5))
+                {
+                    val = val - liWidth;
+                    $(".inCarousel").css({transform: 'translateX(' + val + 'px)'});
+                    moveCount++;
+                }
+            } else if (flag)
+            {
+                if (moveCount > 0) {
+                    val = val + liWidth;
+                    $(".inCarousel").css({transform: 'translateX(' + val + 'px)'});
+                    moveCount--;
+                }
+            }
+        }
+
+
         var tmp;
         setTimeout(function () {
             tmp = $('.ringCircle').html();

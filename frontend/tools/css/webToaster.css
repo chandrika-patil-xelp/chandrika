@@ -132,15 +132,14 @@ button.toast-close-button {
 }
 
 #toast-container>.toast-info {
-    background:  #0CCDB8 url('../img/icons/525tickW.svg')no-repeat;
-    background-position: left 10px center;
-    background-size: auto 60%;
-
+    background:#0CCDB8 url('../img/icons/525tickW.svg')no-repeat;
+    background-position:left 10px center;
+    background-size: 25px!important;
 }
 #toast-container>.toast-error{
     background:  #FF5A5F url(../img/icons/527w.svg)no-repeat;
     background-position: left center;
-    background-size: auto 100%;
+    background-size:40px!important;
 }
 #toast-container .toast-message{
     background:  url(../img/close_blackw.svg)no-repeat;

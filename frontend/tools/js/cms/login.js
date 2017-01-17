@@ -631,7 +631,7 @@ function sugnupsubmt()
     function closelogpg()
    {
       entrflg = 11;
-      $('.overlay').stop(true, true).fadeTo(200, 0);
+      $('.loginOverlay').stop(true, true).fadeTo(200, 0);
 
        $('.head_wrap').removeClass("addPointer");
       $('.ftabB').removeClass("addPointer");

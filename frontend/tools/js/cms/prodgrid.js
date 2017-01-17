@@ -777,7 +777,7 @@ function getmenu()
 		  }
                 });
                 submenulist += "<div class='fmenu_elm fLeft'>";
-                submenulist += '<div class="rangeParent fLeft">';
+                submenulist += '<div class="rangeParent fLeft" id="rg">';
                 submenulist += '<div class="rngDv">';
                 submenulist += '<input type="text" value="" id="range" >';
 		
@@ -785,7 +785,7 @@ function getmenu()
                 submenulist += '</div>';
                 submenulist += '</div>';
                 submenulist += "<div class='fmenu_elm fLeft'>";
-                submenulist += '<div class="rangeParent fLeft">';
+                submenulist += '<div class="rangeParent fLeft" id="ct">';
                 submenulist += '<div class="rngDv">';
                 submenulist += '<input type="text" id="carat" value="">';
                 submenulist += '</div>';
