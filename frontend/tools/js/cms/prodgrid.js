@@ -1241,7 +1241,7 @@ function makeAwish(th, e)
 	  openPopUp(); 
       } 
       else 
-      { 
+      {
 	   $(th).addClass('beat');
 	   var userid, wishdata = {};
 	   wishdata['pid'] = pid[1]; 
@@ -1254,8 +1254,18 @@ function makeAwish(th, e)
 	   var data = wishdata;
 	   var dt = JSON.stringify(data);
 	   $.ajax({type: "post", url: URL, data: {dt: dt}, success: function (results) { 
-
-		   common.msg(1, 'This Product Added To Your Wishlist Successfully'); 
+		  var res=JSON.parse(results); 
+		  if(res['error']['err_code'] == 0){
+		    wshlstflag = 1;
+                    common.msg(1, 'This Product Added To Your Wishlist Successfully');
+                    $('#addwishlist').addClass("colorff5");  
+		  }
+		  else if(res['error']['err_code'] == 2){
+		     common.msg(0,res['error']['err_msg']);
+		  }
+                  else{
+		    common.msg(0,res['error']['err_msg']);
+		  }  
 	       }
 	   });
       }

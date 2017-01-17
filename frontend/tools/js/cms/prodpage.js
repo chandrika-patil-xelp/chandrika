@@ -1199,10 +1199,18 @@ $('#addwishlist').click(function () {
             var data = wishdata;
             var dt = JSON.stringify(data);
             $.ajax({type: "post", url: URL, data: {dt: dt}, success: function (results) {
-                    wshlstflag = 1;
+		  var res=JSON.parse(results); 
+		  if(res['error']['err_code'] == 0){
+		    wshlstflag = 1;
                     common.msg(1, 'This Product Added To Your Wishlist Successfully');
-                    $('#addwishlist').addClass("colorff5");
-//                    $('.addWish').addClass("moveWish");
+                    $('#addwishlist').addClass("colorff5");  
+		  }
+		  else if(res['error']['err_code'] == 2){
+		     common.msg(0,res['error']['err_msg']);
+		  }
+                  else{
+		    common.msg(0,res['error']['err_msg']);
+		  } 
                 }
             });
 	 
@@ -1315,25 +1323,7 @@ $('.dwnArrow').click(function(){
    $('html, body, dwnArrow').animate({ scrollTop: hight }, 800); 
 });
 
-//    $(document).on("click",".options_back",function(){
-////       console.log("hcikhd");alert("jhvgducgb");
-//       
-//
-////            $('.cust_cont2').velocity({scale: [3, 1], opacity: [0, 1]}, {delay: 100, duration: 400, easing: 'swing', display: 'none'});
-////            $('#cust').velocity({scale: [1, 3], opacity: [1, 0]}, {duration: 200, easing: 'swing', display: 'block'});
-//
-//
-//            //$('body').addClass('over_hide');
-//            //            $('#cust').velocity({scale: [1, 3], opacity: [1, 0]}, {duration: 200, easing: 'swing', display: 'block',
-//            //                complete: function () {
-//            //                    //  $('body').removeClass('over_hide');
-//            //                    $('.cust_cont2').addClass('dn');
-//            //                }
-//            //            });
-//            $('.selector_cont').eq(j).velocity({scale: [0.5, 1], opacity: [0, 1]}, {delay: '50', duration: '150', display: 'none'});
-//        });
-
-
+ 
 $('.sizbak').click(function() {
     var size=$('#size').text(); 
     if (catname == 'Rings') {

@@ -714,13 +714,55 @@
 	     if(empty($params['wish_id'])){
 	       $wishid=  $this->generateId();
 	     } 
-	    if(empty($params['user_id']) ||  empty($params['col_car_qty'])){
+	    if(empty($params['user_id']) ||  empty($params['pid'])){
                 $resp = array();
                 $error = array('err_code'=>1, 'err_msg'=>'Parameters Missing');
                 $result = array('result'=>$resp, 'error'=>$error);
                 return $result;
             }
-            $sql = "INSERT INTO tbl_wishlist_master (
+	    
+	    $wishchk="SELECT 
+			     wish_id,
+			     active_flag
+		      FROM
+			     tbl_wishlist_master
+		      WHERE
+			     user_id=".$params['user_id']."
+		      AND
+			     product_id=".$params['pid']."";
+	    $wishckres=  $this->query($wishchk);
+	    $wishcnt=  $this->numRows($wishckres);
+	    
+	    if($wishcnt > 0)
+	    {
+	      $wishchkrow=  $this->fetchData($wishckres); 
+	      $existngid=$wishchkrow['wish_id']; 
+	      $active=$wishchkrow['active_flag']; 
+	      if($active == 0)
+	      {
+		  $updsql="UPDATE 
+				 tbl_wishlist_master
+			   SET
+				col_car_qty='".$params['col_car_qty']."',
+				price=".$params['price'].",
+				size='".$params['size']."',
+				active_flag=1,  
+				updatedon=NOW()
+			   WHERE
+				wish_id=".$existngid."";
+		  $res=  $this->query($updsql); 
+	      }
+	      else
+	      {
+		$resp = array();
+		$error = array('err_code'=>2, 'err_msg'=>'This Product is Already in your wishlist');
+		$result = array('result'=>$resp, 'error'=>$error);
+		return $result;
+	      }
+	    }
+	    else
+	    {  
+	      $sql = "INSERT INTO tbl_wishlist_master (
                                     wish_id,
                                     user_id,
                                     product_id, 
@@ -743,12 +785,13 @@
 				updatedon=VALUES(updatedon)";
 		       
 	      $res = $this->query($sql); 
+	    }
             $resp = array();
              
             if($res){
-                $error = array('err_msg'=>0, 'err_code'=>'Add To Wishlist Successfully');
+                $error = array('err_code'=>0, 'err_msg'=>'Add To Wishlist Successfully');
             }else{
-                $error = array('err_msg'=>1, 'err_code'=>'Error Inserting Wishlist Data');
+                $error = array('err_code'=>1, 'err_msg'=>'Error Inserting Wishlist Data');
             }
             
             $result = array('result'=>$resp, 'error'=>$error);
