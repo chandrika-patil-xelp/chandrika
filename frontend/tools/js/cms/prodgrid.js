@@ -65,27 +65,35 @@ function generatelist(obj) {
     var dmdQid=obj['DimondQuality'];
     var pricelow=0;
     var pricehigh=0;
-   var dmq=[];
     
-    dmq.push(dmdQid);
-   var dmf =dmq[0].split(',');
-   dmf=dmf[dmf.length-1];
-   
+    var dmq="",dmf; 
+    if(dmdQid !== null)
+    { 
+      dmq=dmdQid;  
+      dmf=dmq.split(','); 
+      dmf=dmf[dmf.length-1];
+    }
+    else 
+      dmf=0;
 
-    var metalpur =obj['allmetalpurity'];
-    var mpur=[];
-    mpur.push(metalpur);
-   var mpr =mpur[0].split(',');
-   mpr= mpr[mpr.length-1];
+
+    var metalpur =obj['allmetalpurity'];   
+    
+    var mpur="",mpr;
+    if(metalpur !== null){
+      mpur=metalpur;
+      mpr =mpur.split(',');
+      mpr= mpr[mpr.length-1];
+    }
+    
   
     var mcr =obj['default_color']; 
     if(mcr === null){
         var mcl =obj['allmetalcolor'];
-    var mclr=[];
-    mclr.push(mcl);
-    mcr =mclr[0].split(',');
-   mcr= mcr[0];
-  
+	var mclr="";
+	mclr=mcl;
+	mcr =mclr.split(',');
+        mcr= mcr[0]; 
     }
    var chr = "" + mcr + "|@|" + mpr + "|@|" + dmf;
 
