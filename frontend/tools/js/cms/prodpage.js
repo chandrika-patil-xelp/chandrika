@@ -66,9 +66,9 @@ function getarraydata() {
     arrdata.push(pprice);
 
     if (data['results']['dimond']['results'] !== null) {
-      var quality =$('#qual').attr('qual_id');
-       // var xx = $('#qual').attr('qual_id').split('_'); 
-       // var quality = xx[xx.length - 1]; 
+      //var quality =$('#qual').attr('qual_id');
+        var xx = $('#qual').attr('qual_id').split('_'); 
+        var quality = xx[xx.length - 1]; 
     }
     if (data['results']['metalColor']['results'] !== null) {
         var yy = $('#clr').attr('clr_id').split('_');
@@ -463,14 +463,14 @@ $(document).ready(function () {
 
                         $('#clar').removeClass('dn');
                         $(diamonds['results']).each(function (i, vl) {
-
-
+                         
                             var dcarat = vl.crat;
                             storedDmdCarat = parseFloat(vl.crat);
 
                              dQstr += '<div class="radParent fLeft">';
                             var dval;
                             $.each(vl.QMast.results, function (x, y) {
+                              
                                 if (p_qlty !== undefined) {
                                     if (p_qlty == y.id) {
                                         dval = y.dVal;
@@ -482,6 +482,7 @@ $(document).ready(function () {
                                     $('#qual').attr('qual_id', y.id);
                                 } else {
                                     $('#qual').text(y.dVal);
+                                    $('#qual').attr('qual_id', y.id);
                                 }
 
 
@@ -948,7 +949,7 @@ function getcatsize(s, m) {
                 if (catname == 'Rings') {
                     sizdefault = dat.result[9]['id'];
                     sizdefaulval = dat.result[9]['sval'];
-                    ;
+                    
                     sizdefaulval = parseInt(sizdefaulval);
                     if (psize !== undefined) {
                         psize = parseInt(psize);
@@ -982,7 +983,20 @@ function getcatsize(s, m) {
                     });
 
                     $('#sizes').html(strd);
-             
+                   
+//                   $('.options_back').click(function(){
+//                        if (catname == 'Rings') {
+//                             $('#size').text("Size"+"Select");
+//                    $('#size').text("Size " +14);
+//               
+//                       } else if(catname == 'Bangles'){
+//                            $('#size').html("Select");
+//                    
+//                       $('#size').text("Size " +2.4);
+//                   }
+//                
+//                });
+
                     if (psize !== undefined)
                         $('#size').html('SIZE ' + psize);
 
@@ -1218,17 +1232,18 @@ function getDesc(dmdsol, jwlty) {
 
             var data = JSON.parse(res);
 
-            $(data['result']).each(function (r, v) {
+            $(data['result']).each(function (r, v) {            
                 var descname = "";
                 descname = v.name;
                 descname = descname.replace(' ', '-');
-                if (r == 0) {
+                if (r === 0) {
                     descStr += ' <div class="colleCont ">';
                     descStr += '<div class="smUlineb">' + descname + '</div>';
                     descStr += '<div class="collCenterb">';
                     descStr += '' + v.desc + '';
                     descStr += ' </div> </div>';
-                } else {
+                } 
+                else {
                     descStr += ' <div class="colleCont v2">';
                     descStr += ' <div class="smUline">' + descname + '</div>';
                     descStr += '<div class="collCenterb colorfff">';
