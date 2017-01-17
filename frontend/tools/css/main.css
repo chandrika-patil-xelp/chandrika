@@ -146,6 +146,7 @@ a{color:#666;}
 .menu_wrap{position:absolute;top:60px;left:0;width:100%;height:0px;background:transparent;display:none;overflow:hidden}
 .menuB{width:100%;height:100%;position:relative;background:#f0f0f0;}
 .overlay{width:100%;height:100vh;position:fixed;background:rgba(0,0,0,0.55);z-index:13;opacity:0;pointer-events:none;}
+.loginOverlay{width:100%;height:100vh;position:fixed;background:rgba(0,0,0,0.55);z-index:13;opacity:0;pointer-events:none;}
 .overlay2{width:100%;height:100vh;position:fixed;background:rgba(0,0,0,0.2);z-index:13;opacity:0;cursor:pointer;display:none}
 .overlay3{width:100%;height:100%;position:fixed; background:rgba(255,255,255,0.8);z-index: 30;opacity:0;}
 .overlayF{width:100%;height:100vh;position:fixed;background:rgba(0,0,0,0.0);z-index:13;display:none;top:0; left:0;opacity:0;pointer-events:none;}
@@ -869,8 +870,8 @@ img{width:100%;height:100%;border:0}
 .inp_cont{width:49%;height:40px;position:relative}
 .inp_cont:after{content:"";width:0;height:0;border-top:2px solid #4d4d4d; position:absolute;bottom:-1px;left:0;transition:300ms}
 .focul.inp_cont:after{width:100%}
-.inp_box{width:100%;height:100%;border:none;border-bottom:1px solid #ccc;padding:8px 0px;font-size:14px;font-family:semibold;}
-.inp_label{height:20px;width:auto;position:absolute;left:0;bottom:8px;font-size:12px;pointer-events: none;}
+.inp_box{width:100%;height:100%;border:none;border-bottom:1px solid #ccc;padding:9px 0px;font-size:14px;font-family:semibold;}
+.inp_label{height:20px;width:auto;position:absolute;left:0;bottom:10px;font-size:12px;pointer-events: none;}
 .focul .inp_label{ -webkit-animation: anim-2 0.3s forwards; animation: anim-2 0.3s forwards;}
 .co_header{width:100%;font-size:30px;}
 
@@ -1344,7 +1345,7 @@ input[type=radio]:checked ~ .selector_label:after {transform:translateX(0%);-web
 .cloadIn.coverImg:after{opacity:0.7;transform:translateY(0px);-webkit-transform:translateY(0px);-moz-transform:translateY(0px);-o-transform:translateY(0px);-ms-transform:translateY(0px)}
 .header.black_bg{background:#15181b}
 
-.ftabWrap{width: 100%;height: 40px; z-index: 101;position:relative;background:#15181b;color:#fff;}
+.ftabWrap{width: 100%;height: 40px; z-index:6;position:relative;background:#15181b;color:#fff;}
 .ftab_buffer{width:100%;height:auto;position:relative;z-index:20;text-align:center;transition:200ms;-webkit-transition:200ms;-moz-transition:200ms;-o-transition:200ms;-ms-transition:200ms;}
 /*.ftab_buffer:hover{background:#15181b}*/
 .ftabB{width:auto;height:40px;cursor:pointer;font-family:semibold;display:inline-block;letter-spacing:0.1em}
@@ -2097,7 +2098,7 @@ input[type=radio]:checked ~ .matchIcn{
     font-size: 12px;
     line-height: 18px;
     color: #15181b;
-    padding-bottom: 5px;}
+    padding-bottom: 5px;word-wrap: break-word;}
 
 .delvrAdress .w50l{width:50%;height:auto;    padding: 20px 50px 20px 0px;}
 .delvrAdress .w50l .text{width:100%;height:auto;text-align:left;font-size:13px;line-height:26px;color:#333;}
@@ -2730,7 +2731,15 @@ input[type=number]::-webkit-outer-spin-button {
     list-style-type: none;
     white-space: nowrap;
     background: #fff;}
-.emptyGrid{width:100%;position: absolute;height: 200px;top: 0;z-index:999;}
+.emptyGrid{    width: 100%;
+    position: absolute;
+    height: 200px;
+    top: 0;
+    /* z-index: 999; */
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;}
 .emptyLogo{    background: url(../img/jzevalogo2.svg)no-repeat;
     background-position: center;
     background-size: auto 40px;
