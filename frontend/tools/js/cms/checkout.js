@@ -331,7 +331,7 @@ function shpngsubmt()
     var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
     var letters = /^[a-zA-Z\s]+$/;
     var filter = /^[0-9-+]+$/;
-    var addchk=/^[a-zA-Z0-9-#-'-, ]*$/;
+    var addchk=/^[a-zA-Z0-9-#-'-,/ ]*$/;
     if (name === '' || name === null) {
         validationFlag = 0;
         common.msg(0, 'Please enter your Name');

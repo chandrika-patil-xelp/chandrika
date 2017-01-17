@@ -1055,6 +1055,15 @@ function getprodbyid()
        
             res = JSON.parse(res);
             if (res['error']['err_code'] == 0) {
+	      
+	      if(res['result'] == null){
+		  $('.emptyGrid').removeClass('dpn');
+		  $('#gridDetail').html('');
+		  $('#gr_foot').addClass('dpn');
+		  $('#total_Product').html("<strong> 0 </strong> Product");
+	      }
+	      else
+	      {
                 getProdDtl = res["result"]; 
                 var total = res["total"];
 		lowp=res["allprdpz"]["przperprdlow"][0];
@@ -1126,6 +1135,7 @@ function getprodbyid()
 
 
                 }
+	      }
             }
         }
     });
@@ -1141,15 +1151,19 @@ function displayproduct(fltpage)
     $.ajax({type: 'POST', url: URL, data: {dt: dt}, success: function (result) {
 
             var res = JSON.parse(result); 
-	    if(res['result'] == null){
-	       $('.emptyGrid').removeClass('dn');
-	       $('#gridDetail').html('');
-	       $('#gr_foot').addClass('dpn');
-	       $('#total_Product').html("<strong> 0 </strong> Product");
-	    }
+	    
             if (res['error']['err_code'] == 0) {
-           
+		
+	      if(res['result'] == null){
+		  $('.emptyGrid').removeClass('dpn');
+		  $('#gridDetail').html('');
+		  $('#gr_foot').addClass('dpn');
+		  $('#total_Product').html("<strong> 0 </strong> Product");
+	      }
+	      else
+	      {
                 $('.gridLoad').addClass("dn");
+		$('.emptyGrid').addClass('dpn');
                 getProdDtl = res["result"];
                 showwishbtn();
                 var total = res["total"];
@@ -1197,6 +1211,7 @@ function displayproduct(fltpage)
 
                     $('#gridDetail').html('');
                 }
+	      }
             }
         }
     });
