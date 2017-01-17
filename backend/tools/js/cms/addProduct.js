@@ -576,7 +576,7 @@ $(document).ready(function() {
     getGemstoneList();
     //getSizeList();
     GetRates();
-
+    
     $('#productDescription').bind('keyup',function()
     {
             var KeyID = event.keyCode;
@@ -1363,26 +1363,13 @@ function addProduct()
         var gemstone = new Array();
 
 
-        $('[name=prtcateg]').each(function() {
-            if ($(this).is(':CHECKED'))
-            {
+	 
+	  $.each($("input[name='prtcateg']:checked"), function(){
                 pcatArray.push($(this).val());
                 catArray.push($(this).val());
-            }
-
-//            else if (!$(this).is(':CHECKED'))
-//            {
-//
-//                var removeItem = $(this).val();
-//                catArray = jQuery.grep(catArray, function(value)
-//                {
-//                    return value !== removeItem;
-//                });
-//            }
-        });
-
-
-
+          });
+	   
+          
         var vid = $('#vendorList').val();
         var vname = $('#vendorList option:selected').text();
         var vPCode = $('#vendorPrdCode').val();
@@ -1815,12 +1802,12 @@ function hidePreview()
 
 function submitData()
 {
-    showLoader();
+     showLoader();
     previewData['filterAttrs']=setPrdMapping();
     
     var dt = JSON.stringify(previewData);
  
-     var URL = APIDOMAIN + "index.php?action=addProduct";
+      var URL = APIDOMAIN + "index.php?action=addProduct";
  
     $.ajax({
         url: URL,
@@ -1834,8 +1821,8 @@ function submitData()
     {
         common.toast(1, 'Product added successfully');
            
-            window.location.href=DOMAIN+"backend/index.php?action=products";
-           hideLoader();
+             window.location.href=DOMAIN+"backend/index.php?action=products";
+            hideLoader();
         //redirect
     }
     else
@@ -2782,13 +2769,12 @@ var attrVals=new Array();
 function oneditmodeCallBack(data)
 {
     if (data['error']['err_code'] == '0')
-    {
+    { 
         var dt=data['results'];
         var basic=dt['basicDetails'];
         var catAttr = dt['catAttr'];
         attrVals = dt['attrVals'];
-        prdid =basic.prdId;
-
+        prdid =basic.prdId; 
         $('#vendorList option').each(function(){
             var id=$(this).val();
             if(basic.vndId==id){
@@ -2910,8 +2896,14 @@ function oneditmodeCallBack(data)
                 $(this).click();
             }
         });
-
-
+ 
+       $('[name=defaultcolor]').each(function(){
+	 var val=$(this).val();
+	 if(basic.defaultcolor==val){
+                $(this).click();
+            }
+       });
+       
        var murity=dt['metalColor'];
 
         if(basic.custClor==1)

@@ -95,7 +95,7 @@ $('#rsubId').on('click',function(){
 	  $('#signup_otp').val('');	  $('#signup_otp').blur();
           otpflg=1;
 	  sendotp();
-	  sendemailotp(email)
+	//  sendemailotp(email);
 	  userdata[0]=name;
 	  userdata[1]=email;
 	  userdata[2]=mobile;

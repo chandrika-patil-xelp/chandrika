@@ -465,13 +465,20 @@ class product extends DB {
 
     public function addCatProductMapping($params) {
         $catids = explode(",", $params['catid']);
-
+	$setsql=" DELETE
+                        FROM
+                                tbl_category_product_mapping
+                        WHERE
+                                productid=" . $params['pid']; 
+	$setres=  $this->query($setsql);
+	
         $sql = "INSERT
                 INTO
                         tbl_category_product_mapping
                         (
                             catid,
                             productid,
+			    active_flag,
                             createdon,
                             updatedby)
                 VALUES ";
@@ -485,6 +492,7 @@ class product extends DB {
             $sql.= "(
                             " . $tmpparams['catid'] . ",
                             " . $tmpparams['pid'] . ",
+				1,
                                 now(),
                             " . $tmpparams['userid'] . "
                     ),";
