@@ -659,7 +659,7 @@ $(document).ready(function () {
 
 
 
-                    var clrstr = "", colrval;
+                    var clrstr = "", colrval,defltcolor=vl.defaultcolor, defltcolval;
                         clrstr += '<div class="radParent fLeft">';
                     $.each(metalColor.results, function (j, vl) {
                         var apcol = vl.dVal.toLowerCase();
@@ -669,7 +669,12 @@ $(document).ready(function () {
                                 $('#clr').attr('clr_id', vl.id);
                                 colrval = vl.dVal;
                             }
-                        } else {
+                        }
+			else if(defltcolor == vl.id){
+			      $('#clr').text(vl.dNm);
+			      $('#clr').attr('clr_id', vl.id);
+			      defltcolval = vl.dVal; 
+			} else {
                             if (j == 0) {
                                 $('#clr').text(vl.dNm);
                                 $('#clr').attr('clr_id', vl.id);
@@ -699,6 +704,15 @@ $(document).ready(function () {
                                 
                         });
                     } 
+		    else if(defltcolval !== undefined){
+		      $("input[name='metal']").each(function () {
+                            var val = $(this).val(); 
+                            if (defltcolval == val){
+			       dmdsoli=val;
+			       $(this).attr('checked', true);
+			    } 
+                        });
+		    }
 		    else{
 		        $('input[name="metal"]').eq(0).attr('checked', true);
 			var val=$('input[name="metal"]').eq(0).val();

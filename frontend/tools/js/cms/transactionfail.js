@@ -59,9 +59,13 @@
 	if (v.default_img !== null) {
 	  abc = IMGDOMAIN + v.default_img;
 	} else {
-	  var abc = v.prdimage;
-	  abc = abc.split(',');
-	  abc = IMGDOMAIN + abc[0];
+	   if(v.prdimage !== null){
+	    var abc = v.prdimage;
+	    abc = abc.split(',');
+	    abc = IMGDOMAIN + abc[0];
+	  }
+	  else
+	    abc=BACKDOMAIN +'tools/img/noimage.svg'
 	}
 	totalprice += parseInt(v.price);
 	var bprize = parseInt(v.price / v.pqty);
@@ -73,8 +77,8 @@
 	}
 
 	var chckoutstr = "<div class='cart_item'>";
-	chckoutstr += "<div class='cart_image'><img src='" + abc + "'";
-	chckoutstr += " alt='Image not found'></div>";
+	chckoutstr += "<div class='cart_image'><img src='" + abc + "' onerror='this.style.display=\"none\"'>";
+	chckoutstr += " </div>";
 	chckoutstr += "<div class='cart_name'>" + (v.prdname).toUpperCase() + "</div>";
 	chckoutstr += "<div class='cart_desc  fLeft' id='nwwt'>" + v.jewelleryType + " : " + wht + " gms &nbsp|&nbsp Diamond : " + v.dmdcarat + " Ct &nbsp|&nbsp ";
 	chckoutstr += "Quality : " + v.quality + "  ";
@@ -228,25 +232,35 @@ function subqnty(evnt)
 function getname()
 {  
   var userid=common.readFromStorage('jzeva_uid');
-  var URL=APIDOMAIN + "index.php?action=getUserDetailsById&userid="+userid;
+  if(userid !== null)
+  {
+    var URL=APIDOMAIN + "index.php?action=getUserDetailsById&userid="+userid; 
+    $.ajax({url:URL,type:"GET",datatype:"JSON",success:function(result){
+	var data=JSON.parse(result);
 
-  
-  $.ajax({url:URL,type:"GET",datatype:"JSON",success:function(result){
-      var data=JSON.parse(result);
-     
-      var name=data['result'][0]['uname'];
-      var gendr=data['result'][0]['gender'];
-      var gndr;
-      if(gendr == 1)
-	gndr="Ms";
-      else if(gendr == 2)
-	gndr="Mr";
-      else if(gendr == 3)
-	gndr="Mrs";
-      $('#uname').html(gndr +' '+ name); 
-     
+	var name=data['result'][0]['uname'];
+	var gendr=data['result'][0]['gender'];
+	var gndr;
+	if(gendr == 1)
+	  gndr="Ms";
+	else if(gendr == 2)
+	  gndr="Mr";
+	else if(gendr == 3)
+	  gndr="Mrs";
+	$('#uname').html(gndr +' '+ name);  
+    }
+    });
   }
-  });
+  else{
+    var URL=APIDOMAIN + "index.php?action=getshipdatabyshipid&shpid="+shipid; 
+    $.ajax({url:URL,type:"GET",datatype:"JSON",success:function(result){
+	var data=JSON.parse(result);
+	 
+	var name=data['results'].name;
+	$('#uname').html('Dear '+name);
+      }
+    });
+  }
 }
 
 $('#cntshptrnfail').click(function(){

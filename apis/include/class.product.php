@@ -3780,6 +3780,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                              has_uncut,
                              has_gemstone,
                              active_flag, 
+			     default_color,
                              createdon,
                              updatedon,
                              updatedby,
@@ -3884,6 +3885,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                 $arr['carathighp'] = $row['carathighp'];
                 $arr['dmdlowp'] = $row['dmdlowp'];
                 $arr['dmdhighp'] = $row['dmdhighp'];
+		$arr['default_color'] = $row['default_color'];
 
                 $arr['allDimonds'] = $row['allDimonds'];
                 $arr['dmdcarat'] = $row['dmdcarat'];
@@ -4175,6 +4177,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 		       has_solitaire,
 		       has_uncut,
 		       has_gemstone,
+		       default_color,
 		       active_flag, 
 		       createdon,
 		       updatedon,
@@ -4431,6 +4434,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                 $arr['carathighp'] = $row['carathighp'];
                 $arr['dmdlowp'] = $row['dmdlowp'];
                 $arr['dmdhighp'] = $row['dmdhighp'];
+		$arr['default_color'] = $row['default_color'];
 
                 $arr['allDimonds'] = $row['allDimonds'];
                 $arr['dmdcarat'] = $row['dmdcarat'];

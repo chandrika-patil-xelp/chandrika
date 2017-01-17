@@ -500,7 +500,7 @@ function savemyaddress() {
     var moblno=$('#shp_mob').val();
     var letters = /^[A-Za-z\s]+$/;
     var filter = /^[0-9-+]+$/;
-    var addchk=/^[a-zA-Z0-9-#-'-, ]*$/;
+    var addchk=/^[a-zA-Z0-9-#-'-,-/ ]*$/;
     var validationFlag = 1;
 
     if (name === '' || name === null) {

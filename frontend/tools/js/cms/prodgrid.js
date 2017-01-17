@@ -571,9 +571,9 @@ var page2 = 2;
 var limcount = 12;
 var fltrpage=2, fltrcnt=0;
 $('#gr_foot').on('click', function () {
-   setTimeout(function (){
-        
-     $('.gridLoad').removeClass("dn");
+  $('.gridLoad').removeClass("dpn");
+   setTimeout(function (){ 
+     $('.gridLoad').addClass("dpn");
      },500);
      
   if(Object.keys(fltrarray).length > 1)
@@ -631,7 +631,7 @@ $('#gr_foot').on('click', function () {
                     $('#gr_foot').addClass("dpn");
                 }
             }
-             $('.gridLoad').addClass("dn");
+             $('.gridLoad').addClass("dpn");
         }
 
     });
@@ -693,7 +693,7 @@ $('#gr_foot').on('click', function () {
                     $('#gr_foot').addClass("dpn");
                 }
             }
-             $('.gridLoad').addClass("dn");
+             $('.gridLoad').addClass("dpn");
         }
 
     });
@@ -1029,12 +1029,12 @@ function getprodbyid()
         success: function (res) {
 
        
-            res = JSON.parse(res); 
+            res = JSON.parse(res);
             if (res['error']['err_code'] == 0) {
                 getProdDtl = res["result"]; 
                 var total = res["total"];
 		lowp=res["allprdpz"]["przperprdlow"][0];
-		var przarr=new Array();
+		var przarr=new Array(); 
 		$(res["allprdpz"]["przperprdlow"]).each(function(l,m){
 		   przarr.push(m);
 		});
@@ -1058,9 +1058,10 @@ function getprodbyid()
                 else
                     $('#total_Product').html("<strong>" + total + "</strong> Products");
                 var obj = res["result"];
-                if (total < 12)
-                    $('#gr_foot').removeClass("dpn");
-                    $('.gridLoad').addClass("dn");
+                if (total < 12){
+                    $('#gr_foot').addClass("dpn");
+                    $('.gridLoad').addClass("dpn");
+		  }
                 $('#parnttyp').html('');
                 var parnt = obj[0]['parntcatname'];
                 if (parnt == 'High Jewellery') {
@@ -1116,6 +1117,12 @@ function displayproduct(fltpage)
     $.ajax({type: 'POST', url: URL, data: {dt: dt}, success: function (result) {
 
             var res = JSON.parse(result); 
+	    if(res['result'] == null){
+	       $('.emptyGrid').removeClass('dn');
+	       $('#gridDetail').html('');
+	       $('#gr_foot').addClass('dpn');
+	       $('#total_Product').html("<strong> 0 </strong> Product");
+	    }
             if (res['error']['err_code'] == 0) {
            
                 $('.gridLoad').addClass("dn");
@@ -1194,7 +1201,7 @@ function makeAwish(th, e)
 	  openPopUp(); 
       } 
       else 
-      {
+      { 
 	   $(th).addClass('beat');
 	   var userid, wishdata = {};
 	   wishdata['pid'] = pid[1]; 
