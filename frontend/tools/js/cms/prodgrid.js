@@ -62,8 +62,32 @@ function generatelist(obj) {
     var dmdhighp = obj['dmdhighp'];
     var caratlowp = obj['caratlowp'];
     var carathighp = obj['carathighp'];
+    var dmdQid=obj['DimondQuality'];
     var pricelow=0;
     var pricehigh=0;
+   var dmq=[];
+    
+    dmq.push(dmdQid);
+   var dmf =dmq[0].split(',');
+   dmf=dmf[dmf.length-1];
+   
+
+    var metalpur =obj['allmetalpurity'];
+    var mpur=[];
+    mpur.push(metalpur);
+   var mpr =mpur[0].split(',');
+   mpr= mpr[mpr.length-1];
+  
+    var mcr =obj['default_color']; 
+    if(mcr === null){
+        var mcl =obj['allmetalcolor'];
+    var mclr=[];
+    mclr.push(mcl);
+    mcr =mclr[0].split(',');
+   mcr= mcr[0];
+  
+    }
+   var chr = "" + mcr + "|@|" + mpr + "|@|" + dmf;
 
     if (obj['totalgems'] !== null && obj['totalgems'] !== undefined && obj['gemstoneName'] !== null && obj['gemstoneName'] !== undefined && obj['gemscarat'] !== null && obj['gemscarat'] !== undefined) {
 
@@ -216,7 +240,7 @@ var goldPricehighp =0;
 var vat = (1 / 100) * defprice;
     gtotal = defprice + vat; 
    grandtotal = gtotal.toFixed();
-   
+     
     proStr += '<div class="grid3 transition400" id="' + obj['prdId'] + '"  >';
     // proStr += '<div class="noimgDiv"></div>';
     proStr += '<div class="facet_front">';
@@ -326,7 +350,7 @@ var vat = (1 / 100) * defprice;
     proStr += '</div>';
     proStr += '</div>';
     //proStr += '<div class="soc_icons dn">';
-    proStr += '<div class="soc_abs soc_wish2 transition300 fRight" onclick="makeAwish(this, event)" id="prd_'+obj['prdId']+'"  data-size="'+bseSize+'" data-price="'+grandtotal+'"></div>';
+    proStr += '<div class="soc_abs soc_wish2 transition300 fRight" onclick="makeAwish(this, event)" id="prd_'+obj['prdId']+'"  data-size="'+bseSize+'" data-price="'+grandtotal+'" data-comb ="'+chr+'"></div>';
 
     //proStr += '<div class="soc_elem soc_comment transition300"></div>';
     //proStr += '<div class="soc_elem soc_share transition300"></div>';
@@ -1183,9 +1207,10 @@ function displayproduct(fltpage)
 function makeAwish(th, e) 
 {
   var pid=$(th).attr('id').split('_'); 
-  var prz=$(th).attr('data-price')
-  
+  var prz=$(th).attr('data-price');
+  var comb= $(th).attr('data-comb');
   var size=$(th).attr('data-size');
+  
   e.stopPropagation();
     //e.preventDefault();
   if ($(th).hasClass('beat')) {
@@ -1205,7 +1230,7 @@ function makeAwish(th, e)
 	   $(th).addClass('beat');
 	   var userid, wishdata = {};
 	   wishdata['pid'] = pid[1]; 
-	   wishdata['col_car_qty'] = '1|@|3|@|9';
+	   wishdata['col_car_qty'] = comb;
 	   wishdata['price'] = prz;
 	   wishdata['user_id'] = userid; 
 	   wishdata['wish_id'] = '';
