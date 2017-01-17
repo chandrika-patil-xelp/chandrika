@@ -592,6 +592,7 @@ function savemyaddress() {
 
 function displayaddrs() {
 
+
     var userid = localStorage.getItem('jzeva_uid');
     var URL = APIDOMAIN + "index.php/?action=getshippingdatabyid&userid=" + userid;
 
@@ -607,7 +608,10 @@ function displayaddrs() {
             {
                 $('#noaddrs').addClass('dn');
             }
+            $('#myaddrs').find('.col50').empty();
+            console.log('empty');
             var addrStr = "";
+
             $(data['results']).each(function (m, n) {
               addrStr = "";
                 addrStr += '<div class="fLeft defaulDiv">';
@@ -654,6 +658,7 @@ function removeaddr(ths)
                 common.msg(1, 'Your Address Removed Successfully')
                 displayaddrs();
                 cartpopUpClose();
+              //  $(ths).closest('.defaulDiv').remove();
             }
         });
     });
