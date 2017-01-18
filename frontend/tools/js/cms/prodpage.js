@@ -199,6 +199,7 @@ $(document).ready(function () {
             var solitaire = dt['solitaire'];
             var diamonds = dt['dimond'];
             var uncut = dt['uncut'];
+         
             if (dt['catAttr']['results'][1]['name'] == 'Pendants') {
                 $('#Ifpendant').html('Chain Is Not Available With This Pendant');
             }
@@ -301,13 +302,14 @@ $(document).ready(function () {
 
                     var type = 0;
                     if (basic.hasSol == 1) {
-
+                      
                         type = 1;
                     }
                     if (basic.hasDmd == 1) {
                         type = 2;
                     }
                     if (basic.hasSol == 1 && basic.hasDmd == 1) {
+                        
                         type = 3;
                     }
                     if (basic.hasDmd == 1 && basic.hasUnct == 1) {
@@ -341,6 +343,7 @@ $(document).ready(function () {
 
                         case 1:
                         {
+                            
                             Nstr += '<span>Solitaire</span>';
                              jweltype = "Diamond";
                             bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span>';
@@ -348,7 +351,8 @@ $(document).ready(function () {
 			      bstr += ' are ';
 			    else
 			      bstr += ' is ';
-			    bstr += 'cast in <span class="semibold" id="newWt">' + vl.mtlWgt + '</span> <span class="semibold">grams </span>of gold set with <span class="semibold">' + dt['solitaire']['results'][0].nofs + '</span> brilliant cut  <span class="semibold">' + dt['solitaire']['results'][0].shape + '</span> Solitaire (Approx. <span class="semibold">' + dt['solitaire']['results'][0].carat + ' Carat</span>) certified by <span class="semibold">' + dt['basicDetails'].crtficte + '</span> </div>';
+                           bstr += ' cast in <span class="semibold" >' + vl.mtlWgt + '</span> <span class="semibold">grams</span> of gold set with <span class="semibold">' + dt['solitaire']['results'][0].nofs + '</span> brilliant cut <span class="semibold">' + dt['solitaire']['results'][0].shape + '</span> Solitaire (Approx. <span class="semibold">' + dt['solitaire']['results'][0].carat + ' Carat</span>) certified by <span class="semibold">' + dt['basicDetails'].crtficte + '</span></div>';
+			  //  bstr += 'cast in <span class="semibold" id="newWt">' + vl.mtlWgt + '</span> <span class="semibold">grams </span>of gold set with <span class="semibold">' + data['results']['solitaire']['results'][0].nofs + '</span> brilliant cut  <span class="semibold">' + dt['solitaire']['results'][0].shape + '</span> Solitaire (Approx. <span class="semibold">' + dt['solitaire']['results'][0].carat + ' Carat</span>) certified by <span class="semibold">' + dt['basicDetails'].crtficte + '</span> </div>';
                             break;
                         }
                         case 2:
@@ -367,13 +371,13 @@ $(document).ready(function () {
                         {
                             Nstr += '<span>Solitaire</span>';
                             jweltype = "Diamond";
-
+                            
                             bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span>';
 			    if(catname == 'Earrings')
 			      bstr += ' are ';
 			    else
 			      bstr += ' is ';
-			    bstr += 'cast in <span class="semibold" id="newWt">' + vl.mtlWgt + '</span> <span class="semibold">grams</span> of gold set with <span class="semibold">' + dt['dimond']['results'][0].totNo + '</span> brilliant cut <span class="semibold">' + dt['dimond']['results'][0].shape + '</span> Diamonds (Approx. <span class="semibold">' + dt['dimond']['results'][0].crat + ' Carat</span>)  and <span class="semibold">'+ dt['solitaire'].count +'</span>';
+			    bstr += 'cast in <span class="semibold" id="newWt">' + vl.mtlWgt + '</span> <span class="semibold">grams</span> of gold set with <span class="semibold">' + dt['dimond']['results'][0].totNo + '</span> brilliant cut <span class="semibold">' + dt['dimond']['results'][0].shape + '</span> Diamonds (Approx. <span class="semibold">' + dt['dimond']['results'][0].crat + ' Carat</span>)  and <span class="semibold">'+dt['solitaire']['results'][0].nofs +'</span>';
 			  if(dt['solitaire'].count > 1)
 			    bstr += ' Solitaires of <span class="semibold">' + dt['solitaire']['results'][0].carat + ' Carats</span> ';
 			  else

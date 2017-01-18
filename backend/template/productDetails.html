@@ -276,11 +276,28 @@
                             $('.managePrdBtn').addClass('dn');
                         }
 
-
-                        $('#dmdCnt').text(diamonds['count']);
-                        $('#gemCnt').text(gemstone['count']);
-                        $('#uncutCnt').text(uncut['count']);
-                        $('#solCnt').text(solitaire['count']);
+                      
+                        if(basic.hasDmd == 1)
+                        $('#dmdCnt').text(diamonds['results'][0].totNo);
+                    else
+                        $('#dmdCnt').text("0");
+                       
+                    if(basic.hasGem == 1)
+                        $('#gemCnt').text(gemstone['results'][0].totNo);
+                    else 
+                         $('#gemCnt').text("0");
+                        
+            if(basic.hasUnct == 1)
+                        $('#uncutCnt').text(uncut['results'][0].totNo);
+                        else
+                             $('#uncutCnt').text("0");
+                            
+                            
+                            if(basic.hasSol == 1)
+                        $('#solCnt').text(solitaire['results'][0].nofs);
+                    else 
+                         $('#solCnt').text("0");
+                        
                         $('#imgCnt').text(images['count']);
 
 
@@ -293,7 +310,7 @@
                         $(basic).each(function (i, vl) {
                             $('#prdCod').text(vl.prdCod);
                             $('#prdseoname').text(vl.prdSeo);
-                            $('#prdName').text(vl.prdSeo);
+                            $('#prdName').text(vl.prdNm);
                             $('#prdWt').text(vl.prdWgt);
 
                             var gen = "Female";

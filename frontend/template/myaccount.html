@@ -762,6 +762,13 @@
             $("#" + boxId).siblings('.vatTxt').addClass("dn");
         }
     });
+      function loadComplete(){
+      $('.wrapper_max').removeClass('offsetEffects');
+    }
+        $(document).ready(function () {
+          load_page();
+
+        });
 
     $(document).ready(function () {
       $('html, body').animate({scrollTop: '0px'}, 300); 
