@@ -217,6 +217,9 @@ $(document).ready(function () {
 	    var orddate = obj['result'][0].orddt;
 	    var ordd = orddate.split(',').join(' ');
 	    var ordrdt = ordd.split('|'); 
+	    var today = new Date(Date.now());
+	    var curtime=today.getHours()+':'+today.getMinutes();
+	    
             $(dt).each(function (i, v) {
 		
                 var uname = v.uname;
@@ -226,7 +229,7 @@ $(document).ready(function () {
                 $('#ordrID').html(v.oid);
                 
 
-                $('#ordate').html(ordrdt[0]+"-"+ordrdt[1]);
+                $('#ordate').html(ordrdt[0]+"/"+curtime);
                 $('#addr').html(v.uaddres);
                 $('#adcity').html('' + v.ucity + ' ' + v.upin + '');
                 $('#trnsctnid').html(v.transactionid);
