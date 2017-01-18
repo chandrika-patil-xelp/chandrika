@@ -166,7 +166,8 @@ $('#buynow').on('click',function(){
 });
 
 
-$(document).ready(function () {
+$(document).ready(function () { 
+    $('html, body').animate({scrollTop: '0px'}, 300); 
     showwishbtn();
     pid = GetURLParameter('pid');
     var comb = GetURLParameter('comb');

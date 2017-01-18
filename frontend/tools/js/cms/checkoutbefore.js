@@ -23,15 +23,19 @@ function displaycartdetail()
             gblcheckodata = obj.result;
 
             if (gblcheckodata == null) {
-                $('#submt').addClass('dn');
-                $('#urords').addClass('dn');
-                $("#noprdinchkot").removeClass("dn");
-                $('.totalItem').addClass('dn');
+	      setTimeout(function(){
+		  $('#submt').addClass('dn');
+		  $('#urords').addClass('dn');
+		  $("#noprdinchkot").removeClass("dn");
+		  $('.totalItem').addClass('dn');
+	      },1000);
             } else {
-                $('#submt').removeClass('dn');
-                $("#noprdinchkot").addClass("dn");
-		$('.totalItem').removeClass('dn');
-                $('#urords').removeClass('dn');
+	        setTimeout(function(){
+		  $('#submt').removeClass('dn');
+		  $("#noprdinchkot").addClass("dn");
+		  $('.totalItem').removeClass('dn');
+		  $('#urords').removeClass('dn');
+		},1000);
                 $(obj.result).each(function (r, v) {
                     if (v.default_img !== null) {
                         abc = IMGDOMAIN + v.default_img;

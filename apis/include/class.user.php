@@ -758,7 +758,7 @@ class user extends DB {
         }
 
         $sql = "INSERT INTO tbl_order_shipping_details "
-                . "(user_id,shipping_id,name,mobile,email,city,address,state,pincode,active_flag,createdon) VALUES ("
+                . "(user_id,shipping_id,name,mobile,email,city,address,state,pincode,gender,active_flag,createdon) VALUES ("
                 . "\"" . $userid . "\""
                 . ",\"" . $ship_id . "\""
                 . ",\"" . $name . "\""
@@ -768,6 +768,7 @@ class user extends DB {
                 . ",\"" . urldecode($params['address']) . "\""
                 . ",\"" . urldecode(($params['state'])) . "\""
                 . ",\"" . urldecode(($params['pincode'])) . "\""
+		. ",\"" . urldecode(($params['gender'])) . "\""
                 . ",1"
                 . ",now())"
                 . " ON DUPLICATE KEY UPDATE "
@@ -777,7 +778,8 @@ class user extends DB {
                 . "city    = \"" . $city . "\","
                 . "address  = \"" . $params['address'] . "\","
                 . "state    = \"" . urldecode($params['state']) . "\","
-                . "pincode  = \"" . urldecode($params['pincode']) . "\"";
+                . "pincode  = \"" . urldecode($params['pincode']) . "\","
+		. "gender  = \"" . urldecode($params['gender']) . "\"";
 
 
 

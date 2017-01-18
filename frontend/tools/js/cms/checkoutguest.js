@@ -26,7 +26,7 @@
   var validationFlag = 1, shipngdata = {};
  
   var usrid = common.readFromStorage('jzeva_uid');
- 
+    
     var name = $('#g_name').val();
     var email = $('#g_mail').val();
     mobile = $('#g_mobl').val(); 
@@ -96,6 +96,7 @@
       common.msg(0, 'Please enter Valid Zip code');
     }
     
+    shipngdata['gender'] =gndrflg;
     shipngdata['name'] = name;
     shipngdata['email'] = email;
     shipngdata['mobile'] = mobile;

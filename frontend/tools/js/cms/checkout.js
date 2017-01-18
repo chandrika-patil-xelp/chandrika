@@ -64,14 +64,17 @@ function displaycartdetail()
             var obj = JSON.parse(results);
             gblcheckodata = obj.result;
             if (gblcheckodata == null) {
+	      setTimeout(function(){
                 $('#all_submt').addClass('dn');
                 $("#noprdcrd").removeClass("dn");
                 $('.totalItem').addClass('dn');
+	      },1000);
             } else {
-                $('#all_submt').removeClass('dn');
-                $("#noprdcrd").addClass("dn");
-                $('.totalItem').removeClass('dn');
-
+		setTimeout(function(){
+		  $('#all_submt').removeClass('dn');
+		  $("#noprdcrd").addClass("dn");
+		  $('.totalItem').removeClass('dn');
+		},1000);
                 $(obj.result).each(function (r, v) {
                     if (v.default_img !== null) {
                         abc = IMGDOMAIN + v.default_img;
@@ -115,8 +118,9 @@ function displaycartdetail()
                     chckoutstr += "<div class='cart_removew addrCommon' id='" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "_" + v.size + "' onclick='remove(this)' >";
                     chckoutstr += "</div>";
                     chckoutstr += "</div>";
-                    $('#scroll').append(chckoutstr);
-
+		    setTimeout(function(){
+		      $('#scroll').append(chckoutstr);
+		    },1000);
                 });
                 $('.total_price').html(indianMoney(totalprice));
             }

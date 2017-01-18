@@ -33,8 +33,8 @@ function getheader()
 			    {   
 			       cnt++;
 			       subheader+='<div class="col100 fLeft">';
-			       subheader+='<div class="menu_list fLeft"  onclick="prdctlist(this)"';
-			       subheader+='id="'+v.cat_name+'_'+t.catid+'">'+t.cat_name+'</div>';
+			       subheader+='<a href="'+DOMAIN+'index.php?action=product_grid&id='+t.catid+'"><div class="menu_list fLeft"  ';
+			       subheader+='id="'+v.cat_name+'_'+t.catid+'">'+t.cat_name+'</div></a>';
 			       subheader+='</div>';
 			       if(cnt % 2 == 0)
 			       {
@@ -55,17 +55,7 @@ function getheader()
 		    }
 	       }); 
 }
-
-function prdctlist(ths)
-{ 
-  var ids=$(ths).attr('id').split('_'); 
-  var catid; 
-  if(ids[0] == "Fine Jewellery"){
-    catid=ids[1];
-    window.location.href = DOMAIN + "index.php?action=product_grid&id=" + catid + "";
-  } 
-  
-}
+ 
 
 $('#jzeva_log').click(function () {
         window.location.href = DOMAIN + "index.php?action=landing_page";
@@ -77,6 +67,8 @@ $('#usrlogout').click(function () {
         common.removeFromStorage('jzeva_uid');
         common.removeFromStorage('jzeva_mob');
         common.removeFromStorage('jzeva_cartid');
+	common.removeFromStorage('jzeva_buyid');
+	common.removeFromStorage('jzeva_shpid');
         var URLactn = window.location.search;
 
 

@@ -17,6 +17,7 @@ var stSearch = new Array();
 var hlist = "";
 
 $(document).ready(function () {
+    $('html, body').animate({scrollTop: '0px'}, 300); 
     getmenu();
     // var URL = APIDOMAIN + "index.php/?action=getProGrid";
     getprodbyid();
