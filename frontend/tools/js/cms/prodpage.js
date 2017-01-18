@@ -1322,21 +1322,39 @@ $('.dwnArrow').click(function(){
    hight=hight/3;
    $('html, body, dwnArrow').animate({ scrollTop: hight }, 800); 
 });
+var e;
 
- 
-$('.sizbak').click(function() {
-    var size=$('#size').text(); 
+$('.sizbak').click(function () {
+
+    var size = $('#size').text();
+//     calculatePrice();
+    setTimeout(function () {
+        $(e).closest('.selector_cont ').find('.options_back').click();
+        $('#ch_price').find('.labBuffer').empty();
+        $('#ch_price').find('.labBuffer').append('Previous Price:');
+        $('#ch_price').velocity({opacity: [1, 0]});
+
+        calculatePrice();
+
+    }, 400);
+    setTimeout(function () {
+        $('#ch_price').addClass('showCh');
+    }, 800);
+    setTimeout(function () {
+        $('#ch_price').removeClass('showCh');
+        $('#ch_price').velocity({opacity: [0, 1]});
+    }, 8000);
+
     if (catname == 'Rings') {
-	 if(size == 'Select'){
-	  var rngval=$('.ringCircle').text();
-	   $('#size').html('SIZE ' + rngval);
-	 }  
+        if (size == 'Select') {
+            var rngval = $('.ringCircle').text();
+            $('#size').html('SIZE ' + rngval);
+        }
+    } else if (catname == 'Bangles') {
+        if (size == 'Select') {
+            var bngval = $('#bangCircle').text();
+            $('#size').html('SIZE ' + bngval);
+        }
     }
-    else if (catname == 'Bangles') {
-	if(size == 'Select'){
-	   var bngval=$('#bangCircle').text();
-	   $('#size').html('SIZE ' + bngval);
-	}   
-    } 
 });
 
