@@ -205,6 +205,12 @@
             });
 
             /*Main menu slidedown/slideup , Menu tab colour change*/
+	     $('#guestId').mouseover(function () { 
+			$('.overlay').stop(true, true).fadeTo(200, 0);
+                        $('.tab').removeClass('selec');
+                        $('.menu_wrap').velocity('stop').velocity({height: [0]}, {duration: 200, easing: 'ease-in-out', display: 'block'});
+                
+	     });
             $('.tabB').mouseover(function () {
                 var userid = common.readFromStorage('jzeva_uid');
                 if ($(this).attr('id') === 'userProfId')
@@ -229,7 +235,7 @@
                     $('.menu_wrap').velocity('stop').velocity({height: [180]}, {duration: 200, delay: 150, easing: 'ease-in-out', display: 'block'});
                 }
             });
-            //console.log("mouseout", flag);
+           
             $('.tabWrap').mouseleave(function () {
                 $('.overlay').stop(true, true).fadeTo(200, 0);
                 $('.menu_wrap').velocity('stop').velocity({height: [0]}, {duration: 200, easing: 'ease-in-out', display: 'none',

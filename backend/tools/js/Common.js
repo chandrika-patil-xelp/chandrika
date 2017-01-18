@@ -173,4 +173,11 @@ function Common() {
         return unescape(str);
     }
     
+    this.removeFromStorage = function (id)
+    {
+        if (typeof (Storage) !== "undefined")
+            localStorage.removeItem(id);
+        else
+            document.cookie = id + '=;' + date + ';path=/;'
+    }
 }

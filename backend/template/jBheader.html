@@ -3,7 +3,7 @@
         <div class="logoDiv fLeft"></div>
         <div class="loggedUser fmOpenR fRight">
             <div class="fRight logoutBtn fmOpenB">Logout</div>
-            <div class="fRight">Hi, Karan Mehta</div>
+            <div class="fRight" id="usrname"></div>
         </div>
         <div class="tabsCont fLeft">
             <div class="tabsComm transition100 fLeft"><a href='<?php echo BACKDOMAIN;?>index.php?action=products'>products</a></div>
@@ -17,3 +17,22 @@
         </div>
     </div>
 </div>
+<script>
+  $(document).ready(function(){
+    var username=common.readFromStorage('jzeva_name'); 
+    $('#usrname').html("Hi, "+username);
+  });
+  
+  $('.logoutBtn').click(function(){
+      common.removeFromStorage('jzeva_email');
+      common.removeFromStorage('jzeva_name');
+      common.removeFromStorage('jzeva_uid');
+      common.removeFromStorage('jzeva_mob');
+      common.removeFromStorage('jzeva_cartid');
+      common.removeFromStorage('jzeva_buyid');
+      common.removeFromStorage('jzeva_shpid');
+    
+	var url = DOMAIN + 'index.php?action=landing_page';
+	window.location.href = url;
+  });
+</script>
