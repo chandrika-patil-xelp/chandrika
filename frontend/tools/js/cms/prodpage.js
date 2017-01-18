@@ -1203,7 +1203,7 @@ $('#addwishlist').click(function () {
 		  if(res['error']['err_code'] == 0){
 		    wshlstflag = 1;
                     common.msg(1, 'This Product Added To Your Wishlist Successfully');
-                    $('#addwishlist').addClass("colorff5");  
+                    $('#addwishlist').html("In Wishlist").addClass("colorff5");  
 		  }
 		  else if(res['error']['err_code'] == 2){
 		     common.msg(0,res['error']['err_msg']);
@@ -1234,7 +1234,7 @@ function showwishbtn()
 
             setTimeout(function () {
                 if (wshlstflag == 1) {
-                    $('#addwishlist').addClass("colorff5");
+                    $('#addwishlist').html("In wishlist").addClass("colorff5");
 //                    $('.addWish').addClass("moveWish");
                 } else {
                     //   console.log('not in wishlist');
