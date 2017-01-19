@@ -16,6 +16,7 @@ var aid;
 var stSearch = new Array();
 var hlist = "";
 
+
 $(document).ready(function () {
     $('html, body').animate({scrollTop: '0px'}, 300); 
     getmenu();
@@ -138,15 +139,14 @@ function generatelist(obj) {
      var bseSize = 0;
      var vatRate = (1 / 100);
    
-    
-
     var price = 0;
     if (solitaire == '1' && solitaire !== 'null') {
         var Solicarat = obj['Solicarat'];
         var Soliprc = obj['SoliPricepercarat'];
         var Solitot = obj['totalSolitaire'];
 
-        price = price + getSoliPrice(Solicarat, Soliprc); 
+         var wgtcarat =parseFloat(Solicarat)*parseFloat(Solitot);
+        price = price + getSoliPrice(wgtcarat, Soliprc); 
 
     }
     if (uncut == '1' && uncut !== 'null' && uncut !== '1')
@@ -1164,7 +1164,7 @@ function displayproduct(fltpage)
 {
     var limit = 12;
     fltrarray.catid = id;
-    var dt = JSON.stringify(fltrarray);
+    var dt = JSON.stringify(fltrarray); 
     var URL = APIDOMAIN + "index.php?action=getprodByfiltr&page=" + fltpage + "&limit=" + limit + "&catid="+id;
     $.ajax({type: 'POST', url: URL, data: {dt: dt}, success: function (result) {
 
