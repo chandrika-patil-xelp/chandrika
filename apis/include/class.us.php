@@ -450,7 +450,7 @@
                                      tbl_order_master
                                          WHERE
                                       order_id=".$params['order_id']." AND
-                                      active_flag =1";
+                                      active_flag =1 ";
             $rescnt= $this->query($sqlcount);
             $row = $this->fetchData($rescnt);
             $total= $row['cnt'];
@@ -482,10 +482,16 @@
 (SELECT  GROUP_CONCAT(product_name) FROM tbl_product_master WHERE productid = pid AND active_flag !=2 ) AS prdname,
 (SELECT  GROUP_CONCAT(product_code) FROM tbl_product_master WHERE productid = pid AND active_flag !=2 ) AS product_code,
 
+(SELECT  GROUP_CONCAT(carat) FROM tbl_product_diamond_mapping WHERE productid = pid AND active_flag !=2 ) AS dmdcarat,
 
 (SELECT  GROUP_CONCAT(dname) FROM tbl_metal_color_master WHERE id = SUBSTRING_INDEX(combine, '|@|',1) AND active_flag !=2 ) AS color,
 (SELECT  GROUP_CONCAT(dname) FROM tbl_metal_purity_master WHERE id = SUBSTRING_INDEX(SUBSTRING_INDEX(combine,'|@|',2),'|@|',-1) AND active_flag !=2 ) AS Metalcarat,
 (SELECT  GROUP_CONCAT(dname) FROM tbl_diamond_quality_master WHERE id = SUBSTRING_INDEX(combine,'|@|',-1)  AND active_flag !=2 ) AS quality,
+
+(SELECT  GROUP_CONCAT(metal_weight) FROM tbl_product_master WHERE productid = pid  AND active_flag !=2) 
+                            AS metal_weight,
+(SELECT GROUP_CONCAT(catid) FROM tbl_category_product_mapping WHERE  productid =pid ) AS ccatid,
+                (SELECT DISTINCT(NAME) FROM tbl_size_master WHERE  FIND_IN_SET(catid,ccatid) )AS ccatname,                       
 
 
  (SELECT GROUP_CONCAT(shipping_id) FROM tbl_order_shipping_details WHERE shipping_id = shpId) AS shipngDet,
@@ -539,6 +545,10 @@
                       $reslt['customerPincode'] = ($row['prdimage']!=NULL) ? $row['customerPincode'] : '';
                        $reslt['customerAddrs'] = ($row['prdname']!=NULL) ? $row['customerAddrs'] : '';
                       $reslt['default_image'] = $row['default_image'];
+                       $reslt['dmdcarat'] = $row['dmdcarat'];
+                       $reslt['metal_weight'] = $row['metal_weight'];
+                       $reslt['ccatid'] = $row['ccatid'];
+                       $reslt['ccatname'] = $row['ccatname'];
                         $reslt['prc'] = $row['prc'];
                          $reslt['cnt'] = $row['cnt'];
 
@@ -645,7 +655,7 @@
             }else{
 
                 $sql = "UPDATE tbl_order_master SET order_status = ".$params['ostatus']." WHERE order_id = ".$params['orderid']." AND user_id = ".$params['userid']." ";
-                $res = $this->query($sql, 1);
+                $res = $this->query($sql);
                 $resp = array();
                 if($res){
                     $error = array('err_code'=>0, 'err_msg'=>' Order Status Updated Successfully ');

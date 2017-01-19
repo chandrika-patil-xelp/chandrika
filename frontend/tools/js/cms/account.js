@@ -46,7 +46,7 @@ function displayorders()
         datatype: "JSON",
         success: function (results)
         {
-          console.log(results);
+        
             var obj = JSON.parse(results);
 
             if (obj["result"] == null) {
@@ -91,6 +91,8 @@ function displayorders()
                     var cnfDate = '' + cd + ' ' + month_Name + '';
                     var statusDate = '' + ds + ' ' + month_Name + '';
                     var cnDate = '' + cd + '|' + dt + '|'+yr+'';
+                  
+                   
 
 //                   if($('#oId').html()){
 //                   order += ' <div class="fLeft tabHead headLine borBtm " id="od">my orders</div>';
@@ -119,7 +121,15 @@ function displayorders()
                     orderstr += '</div>';
                     orderstr += '</div>';
                     $(e).each(function (s, v) {
-
+                        var wht;
+                        if (v.ccatname !== null) {
+                            wht = getweight(v.size, v.ccatname, v.metal_weight);
+                        } else {
+                            wht = v.metal_weight;
+                        }
+                        var dmdcarat= v.dmdcarat;
+                  
+                     
                         if (v.default_image !== null) {
                             var image = IMGDOMAIN + v.default_image;
                         } else {
@@ -225,6 +235,40 @@ function displayorders()
 
 }
 
+
+function getweight(currentSize, catName, storedWt)
+{
+    var mtlWgDav = 0;
+    var bseSize = 0;
+
+    if (catName.toLowerCase() == 'rings') {
+        bseSize = parseFloat(14);
+        mtlWgDav = 0.05;
+    } else if (catName.toLowerCase() == 'bangles') {
+        bseSize = parseFloat(2.4);
+        mtlWgDav = 7;
+    }
+
+   if (isNaN(currentSize))
+    {
+
+        if (catName == 'Rings')
+            currentSize = parseFloat(14);
+        else if (catName == 'Bangles')
+            currentSize = parseFloat(2.4);
+        else if (catName !== 'Rings' && catName !== 'Bangles') {
+            currentSize = 0;
+        }
+    }
+
+
+    var changeInWeight = (currentSize - bseSize) * mtlWgDav;
+    var newWeight = parseFloat(storedWt) + parseFloat(changeInWeight);
+    newWeight=newWeight.toFixed(3);
+
+    return newWeight;
+
+}
 function wishlist()
 {
     var userid = localStorage.getItem('jzeva_uid');
@@ -632,7 +676,7 @@ function displayaddrs() {
                 $('#noaddrs').addClass('dn');
             }
             $('#myaddrs').find('.col50').empty();
-            console.log('empty');
+          
             var addrStr = "";
 
             $(data['results']).each(function (m, n) {
