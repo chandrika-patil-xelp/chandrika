@@ -102,13 +102,13 @@
 							   JZ21132
 							   </span>
 							</div>
-							<div style="width:32%;height:auto;line-height:15px;font-size:11px;color:#333;display:inline-block;vertical-align:top;text-align:center;padding-left: 5px;">
+							<div style="width:32%;height:auto;line-height:15px;font-size:11px;color:#333;display:inline-block;vertical-align:top;text-align:center;">
 							   ORDER NO 
 							<span style="padding-left:1px;font-weight: bold;display: inline-block;width:100%;">
 							  '.$params['data'][0]['orderid'].'
 							   </span>
 							</div>
-							<div style="width:32%;height:auto;line-height:15px;font-size:11px;color:#333;display:inline-block;vertical-align:top;text-align:center;padding-left: 5px;"> 
+							<div style="width:32%;height:auto;line-height:15px;font-size:11px;color:#333;display:inline-block;vertical-align:top;text-align:center;"> 
 							   DATE 
 							<span style="padding-left:1px;font-weight: bold;display: inline-block;width:100%;">
 							 '.date("jS M Y").'
@@ -123,7 +123,7 @@
                         {
                               $combn=$val['col_car_qty'];
                               list($col,$car,$qty)=explode('|@|',$combn);
-
+ 
                               $psql=" SELECT
                                             product_name,
                                             product_code,
@@ -157,7 +157,7 @@
 			    if($val['size'] !== 0.0){
 						     $message.=' Size : 14.0 | ';
 						  }
-			      $message.='Color: '.$prdcolr.'</div><div style="width:auto;height:auto;font-size:11px;line-height:20px;text-align:left;margin-top: 5px;display:inline-block;">Quantity : <span style="color:#0CCDB8;">'.$val['pqty'].'</span></div> </div>
+			      $message.='Color: '.$prdcolr.'</div><div style="width:auto;height:auto;font-size:11px;line-height:20px;text-align:left;margin-top:5px;display:inline-block;"> Quantity : <span style="color:#0CCDB8;">'.$val['pqty'].'</span></div> </div>
                             </div>';
 			       
 			      }
@@ -166,12 +166,12 @@
                           $message.='  </div>
 					      <div style="width:100%;height:auto;padding:10px;background-color:#f3f3f3;box-sizing:border-box;">
 						  <div style="width:100%;height:auto;display:inline-block;vertical-align:top">
-						      <div style="width: 49%;text-align: right;height: auto;line-height: 15px;font-size: 13px;color: #333;display: inline-block;vertical-align: top;">
+						      <div style="width:55%;text-align:right;height: auto;line-height:15px;font-size:13px;color:#333;display:inline-block;vertical-align:top;">
 							<div style="width: 100%;text-align:left;height: auto;line-height: 15px;font-size: 13px;color: #333;display: inline-block;vertical-align: top;">GRAND TOTAL</div>
 							<div style="width:100%;height:auto;color:#333;font-size:11px;line-height:15px;text-align:left;display: inline-block;">*Inclusive of all taxes</div>
 						      </div>
 
-						      <div style="width: 49%;text-align: right;height: auto;line-height: 15px;font-size: 13px;color: #333;display: inline-block;vertical-align: top;">
+						      <div style="width: 43%;text-align: right;height: auto;line-height: 15px;font-size: 13px;color: #333;display: inline-block;vertical-align: top;">
 							  <div style="width:100%;padding-left: 0px;height: auto;line-height: 15px;font-size: 13px;color: #333;display: inline-block;vertical-align: top;">&#8377; '.$params['totprz'].'</div>
 						      </div>
 						     </div>
