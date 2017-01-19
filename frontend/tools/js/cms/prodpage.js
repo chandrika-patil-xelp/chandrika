@@ -447,13 +447,15 @@ $(document).ready(function () {
 
                             var carat = vl.carat;
                             var price_per_carat = vl.prcPrCrat;
+                            var tot_soli=vl.nofs;
+                             var wgtcarat =parseFloat(carat)*parseFloat(tot_soli);
                             //solistr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>' + vl.nofs + '</span><span> Solitaire</span></span><span class="fRight fmSansR"><span> ' + vl.carat + '</span> Carat</span></div>';
 
 //                            solistr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>Solitaire</span></span><span class="fRight fmSansR"><span>' + vl.nofs + '</span></span></div>';
 //                            solistr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>Solitaire Carat</span></span><span class="fRight fmSansR"><span>' + vl.carat + '</span></span></div>';
 //                            solistr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>Solitaire Clarity</span></span><span class="fRight fmSansR"><span>' + vl.clrty + '</span></span></div>';
 //                            solistr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>Solitaire Color</span></span><span class="fRight fmSansR"><span>' + vl.colr + '</span></span></div>';
-                            getSoliPrice(carat, price_per_carat);
+                            getSoliPrice(wgtcarat, price_per_carat);
                         });
 //                        $('#desc').append(solistr);
                     }
