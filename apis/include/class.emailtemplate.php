@@ -82,7 +82,7 @@
 					<img src="'.DOMAIN.'frontend/emailer/jzeva_logo.png" alt="JZEVA" width="150" height="50">
 				    </div>
 				</div>
-				<div style="width:100%;height:auto;background-color:#fff;padding:25px;min-height:300px;padding-bottom:0px">
+				<div style="width:100%;height:auto;background-color:#fff;padding:25px;min-height:300px;padding-bottom:0px;box-sizing: border-box;">
 				    <div style="width:100%;height:auto;margin-bottom:30px;">
 					<div style="width:70px;height:70px;margin:auto">
 					    <img src="'.DOMAIN.'frontend/emailer/confirm.png" alt="JZEVA" width="70" height="70">
@@ -238,7 +238,7 @@
 				    <img src="'.DOMAIN.'frontend/emailer/jzeva_logo.png" alt="JZEVA" width="150" height="50">
 				</div>
 			    </div>
-			      <div style="width:100%;height:auto;background-color:#fff;padding:25px;min-height:300px;padding-bottom:0px;box-sizing:border-box;">
+			      <div style="width:100%;height:auto;background-color:#fff;padding:25px;min-height:300px;padding-bottom:0px;box-sizing: border-box;">
 				  <div style="width:100%;height:auto;margin-bottom:30px;">
 				      <div style="width:70px;height:60px;margin:auto">
 					  <img src="'.DOMAIN.'frontend/emailer/signup.png" alt="img" width="70" height="60">
@@ -378,7 +378,7 @@
 					  <img src="'.DOMAIN.'frontend/emailer/jzeva_logo.png" alt="JZEVA" width="150" height="50">
 				      </div>
 				  </div>
-				  <div style="width:100%;height:auto;background-color:#fff;padding:25px;min-height:300px;padding-bottom:0px">
+				  <div style="width:100%;height:auto;background-color:#fff;padding:25px;min-height:300px;padding-bottom:0px;box-sizing: border-box;">
 				      <div style="width:100%;height:auto;margin-bottom:25px;">
 					  <div style="width:60px;height:60px;margin:auto">
 					      <img src="'.DOMAIN.'frontend/emailer/shipping.png" alt="img" width="60" height="60">
