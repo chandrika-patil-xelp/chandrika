@@ -1673,9 +1673,9 @@ input[type=radio]:checked ~ .selector_label:after {transform:translateX(0%);-web
 .wCont  .col30{display:inline-block;vertical-align:top;width:28%;height:57%;transition-delay:400ms;-webkit-transition-delay:400ms;-moz-transition-delay:400ms;-ms-transition-delay:400ms;-o-transition-delay:400ms}
 .hovTr{width:100%;height:100%;position:absolute;left:0;top:0;overflow:hidden}
 /*.hovTrans{width:100%;height:100%;position:absolute;left:0;top:0;background:rgba(0,0,0,0.50);    border: 5px solid #222529;transform:translateX(-100%);-webkit-transform:translateX(-100%);-moz-transform:translateX(-100%);-ms-transform:translateX(-100%);-o-transform:translateX(-100%);display:none}*/
-.HOME_PAGE .hovTrans{opacity: 1;width:100%;height:100%;position:absolute;left:0;top:0;background:rgba(0,0,0,0.5); transition:300ms;-webkit-transition:300ms;-o-transition:300ms;-moz-transition:300ms;-ms-transition:300ms}
-.hovTrans{opacity: 0;width:100%;height:100%;position:absolute;left:0;top:0;background:rgba(0,0,0,0.5);transition:300ms;-webkit-transition:300ms;-o-transition:300ms;-moz-transition:300ms;-ms-transition:300ms}
-.PRODUCT_GRID2 .hovTrans{background:rgba(0,0,0,0.05);border: 5px solid #222529;opacity: 0;}
+.HOME_PAGE .hovTrans{opacity: 1;width:100%;height:100%;position:absolute;left:0;top:0;background:rgba(0,0,0,0.5); }
+.hovTrans{opacity: 0;width:100%;height:100%;position:absolute;left:0;top:0;background:rgba(0,0,0,0.5);}
+.PRODUCT_GRID2 .hovTrans{background:rgba(0,0,0,0.05);border: 5px solid #222529;opacity: 0;transition:300ms;-webkit-transition:300ms;-o-transition:300ms;-moz-transition:300ms;-ms-transition:300ms}
 .myaccount .hovTrans{border: 5px solid #222529;opacity: 0;background: rgba(0,0,0,0.05);}
 .myaccount .hovTrans:hover{opacity: 1;}
 .extra{position: absolute;
@@ -1738,13 +1738,14 @@ input[type=radio]:checked ~ .selector_label:after {transform:translateX(0%);-web
 .points{padding-left: 20px;background: url("../img/icons/505.svg")no-repeat;background-size: auto 10px;background-position: 0 10px;}
 
 /*contact*/
-.contactH{font-size:40px;font-family:semibold;width:100%;padding: 10px 0px;}
+.contactH{font-size:28px;font-family:light;width:100%;padding: 10px 0px;color:#22b9c7}
 .contactH2{font-size:28px;font-family: regular;padding-bottom: 40px;}
 .incnt{width:50%;height:auto;font-size:14px;font-family:regular;padding:0px 15px;line-height:22px;}
 .contOuter{width:100%;height: auto; font-size: 14px;font-family: regular;padding: 5px 0px;}
 .contOuter:last-child{border: none!important;}
-.contactDiv{width: 100%;padding-top: 25px;}
+.contactDiv{width: 100%;padding-top: 15px;}
 .pad20{padding:20px 0px;}
+.pad10{padding:10px 0px;}
 .pad25{padding: 25px 0px;}
 .bNone{border:none!important;}
 .subCont{width:70%;padding-left:20px;font-size:12px;font-family:regular;line-height:22px;color: #15181b;}
@@ -1773,6 +1774,7 @@ input[type=radio]:checked ~ .selector_label:after {transform:translateX(0%);-web
 .mainH{}
 .subH{margin: 30px 0px 10px 0px;letter-spacing: 0.15em;font-size:12px;font-family: bolder;line-height:30px;color: #15181b;text-transform: uppercase;width:100%;height:auto;text-align: left;}
 .subHm{margin: 10px 0px 10px 0px;letter-spacing: 0.15em;font-size:12px;font-family: bolder;line-height:30px;color: #15181b;text-transform: uppercase;width:100%;height:auto;text-align: left;}
+.foohighlite{letter-spacing: 0.15em;font-size: 12px;font-family: bolder;line-height:20px;color: #15181b;width: 100%;height: auto;}
 .sizeDiv{width: 100px;height: 100px;}
 .ringRow{width: 100%;
     height: 80px;
