@@ -52,6 +52,7 @@ a{color:#666;}
 
 .txt_Upper{text-transform: uppercase!important;}
 .txt_Lower{text-transform: lowercase!important;}
+.txt_Capital{text-transform: capitalize;}
 .txtOver{ overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
 .dn{display:none;}
 .dpn{display: none!important;}
@@ -81,7 +82,7 @@ a{color:#666;}
 .pFixed{position:fixed !important;}
 .bcolour1{background-color:#f0f0f0 }
 .color666{color:#666 !important;}
-.color666{color:#999}
+.color999{color:#999}
 .color_black{color:#2d2d2d;}
 .colorb3b3b3{color: #b3b3b3;}
 .colorV{color:#673B6D;}
@@ -207,7 +208,7 @@ a{color:#666;}
 .optionPay{height: 35px;width: 100%;    margin-top: 10px;}
 .cartTxt{width: 100%;height: auto;text-align: center;text-transform: uppercase;font-size: 11px;font-family: regular;color:#fff;letter-spacing: 0.15em;padding: 12px 0px 10px 0px;}
 .cart_head{width:100%;height:50px;background:#5f00b8;line-height:50px; padding:0px 60px 0px 20px;color:#fff;cursor:pointer;font-size:12px;position:relative;}
-.cart_item{padding: 10px 75px 10px 130px;    height: 20%;width:100%;position:relative;}
+.cart_item{padding: 10px 75px 10px 130px; height: 100px;width:100%;position:relative;}
 .cart_image{width:70px; height:70px;position:absolute;left:45px;top:10px;background:#fff url("../img/noimage.svg")no-repeat;background-size:90%;background-position:center;}
 .cart_name{width:100%;line-height:16px;color: #fff;font-size: 10px;  font-family: bolder;  text-transform: uppercase;letter-spacing: 0.15em;}
 .totalItem .cart_name{color:#999}

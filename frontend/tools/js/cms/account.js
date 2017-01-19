@@ -46,7 +46,7 @@ function displayorders()
         datatype: "JSON",
         success: function (results)
         {
-        
+
             var obj = JSON.parse(results);
 
             if (obj["result"] == null) {
@@ -91,8 +91,8 @@ function displayorders()
                     var cnfDate = '' + cd + ' ' + month_Name + '';
                     var statusDate = '' + ds + ' ' + month_Name + '';
                     var cnDate = '' + cd + '|' + dt + '|'+yr+'';
-                  
-                   
+
+
 
 //                   if($('#oId').html()){
 //                   order += ' <div class="fLeft tabHead headLine borBtm " id="od">my orders</div>';
@@ -127,9 +127,12 @@ function displayorders()
                         } else {
                             wht = v.metal_weight;
                         }
+                        console.log(v);
                         var dmdcarat= v.dmdcarat;
+
                         var jweltype=v.jewelType;
-                     
+
+
                         if (v.default_image !== null) {
                             var image = IMGDOMAIN + v.default_image;
                         } else {
@@ -141,31 +144,27 @@ function displayorders()
                         orderstr += '<div class="orderParent fLeft transition300">';
                         orderstr += '<div class="fLeft orderImg bgCommon" style="background: #fff url(\''+ image +'\')no-repeat;background-size: contain;background-position:center; background-color:#FFF;"></div>';
                         orderstr += '<div class="fLeft orderName">';
-                        orderstr += '<div class="fLeft col100 semibold">' + v.prdname + '</div>';
-
+                        orderstr += '<div class="fLeft col100 semibold txt_Upper">' + v.prdname + '</div>';
+                        orderstr += '<div class="fLeft  col100">';
+                        orderstr += '<span class="fLeft color999 txt_Capital">'+ jweltype +' | ' + v.Metalcarat + ' | '+ v.color +' | '+ wht +'</span>';
+                        orderstr += '<span class="fLeft"></span>';
+                        orderstr += '</div>';                      ;
                         orderstr += '<div class="fLeft  col10">';
-                        orderstr += '<span class="fLeft">Diamond Clarity : ' + v.quality + '</span>';
-                        orderstr += '<span class="fLeft"></span>';
-                        orderstr += '</div>';
-                        orderstr += '<div class="fLeft  col100">';
-                        orderstr += '<span class="fLeft">Metal purity : ' + v.Metalcarat + '</span>';
-                        orderstr += '<span class="fLeft"></span>';
-                        orderstr += '</div>';
-                        orderstr += '<div class="fLeft  col100">';
-                        orderstr += '<span class="fLeft">Metal colour : ' + v.color + '</span>';
-                        orderstr += '<span class="fLeft"></span>';
-                        orderstr += '</div>';
-                        orderstr += '<div class="fLeft  shipTo">';
-                        orderstr += '<span class="fLeft">Qty :</span>';
-                        orderstr += '<span class="fLeft">' + v.pqty + '</span>';
-                        orderstr += '</div>';
 
-                        orderstr += '<div class="fLeft  shipTo">';
-                        if (v.size != 0.0) {
-                            orderstr += '<span class="fLeft">Size :</span>';
-                            orderstr += '<span class="fLeft">' + v.size + '</span>';
-                        }
+                        orderstr += '<span class="fLeft color999 txt_Capital">Diamonds '+ dmdcarat +' | '+ v.quality + (v.size != 0.0 ? ' | Size: '+v.size  : '') +'</span>';
+                        orderstr += '<span class="fLeft"></span>';
                         orderstr += '</div>';
+                        // orderstr += '<div class="fLeft  shipTo">';
+                        // orderstr += '<span class="fLeft">Qty :</span>';
+                        // orderstr += '<span class="fLeft">' + v.pqty + '</span>';
+                        // orderstr += '</div>';
+
+                        // orderstr += '<div class="fLeft  shipTo">';
+                        // if (v.size != 0.0) {
+                        //     orderstr += '<span class="fLeft">Size :</span>';
+                        //     orderstr += '<span class="fLeft">' + v.size + '</span>';
+                        // }
+                        // orderstr += '</div>';
                         orderstr += '</div>';
                         orderstr += '<div class="fLeft rsCont">';
 
@@ -676,7 +675,7 @@ function displayaddrs() {
                 $('#noaddrs').addClass('dn');
             }
             $('#myaddrs').find('.col50').empty();
-          
+
             var addrStr = "";
 
             $(data['results']).each(function (m, n) {
