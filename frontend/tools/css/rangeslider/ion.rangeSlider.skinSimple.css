@@ -101,17 +101,24 @@
     border-radius: 3px;
    
 }
-#rg .irs-to, .irs-single  {
+#rg .irs-to{
      background: url(../../img/icons/519s15w.svg) no-repeat;
     background-size: auto 8px;
     background-position: left 3px center;
 }
 
-#rg .irs-from, .irs-single  {
+#rg .irs-from{
      background: url(../../img/icons/519s15w.svg) no-repeat;
     background-size: auto 8px;
     background-position: left 3px center;
 }
+
+#rg .irs-single{
+       background: url(../../img/icons/519s15w.svg) no-repeat;
+    background-size: auto 8px;
+    background-position: left 3px center;
+}
+
 
 #ct .irs-from, .irs-to, .irs-single {}
 #ct .irs-to, .irs-single{}
