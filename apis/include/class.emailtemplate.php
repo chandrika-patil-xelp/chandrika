@@ -151,13 +151,14 @@
                               $prddeldt=date('Y-m-d', strtotime("+".$prow['leadTime']." days"));
                               $prdimgs=explode(',',$prdimgs);
 			      $quantity=(int)$val['pqty'];
+			      $qntystr=" Quantity : <span style='color:#0CCDB8;'>".$quantity."</span>";
 			    $message.='     
 			      <div style="width:100%;height:auto;padding:10px;border:1px solid #ccc;margin-bottom: 10px;border-radius:2px;display:inline-block;box-sizing:border-box;">
                                 <div style="width:auto;height:auto;display:inline-block;vertical-align:top;"><img src="'.IMGDOMAIN.''.$prdimgs[0].'" alt="img" width="70" height="70"></div><div style="width:69%;height:auto;display:inline-block;vertical-align:top;padding-left: 10px;"><div style="width:100%;height:auto;font-size:12px;color:#333;line-height:20px">'.$prdname.'</div><div style="width:100%;height:auto;font-size:11px;color:#333;line-height:20px;text-align:left">Product Code : <span style="padding-left:0px">'.$prdcode.'</span></div><div style="width:auto;display:inline-block;height:auto;font-size:11px;color:#333;line-height:20px;text-align:left;margin-top: 5px;">Gold : '.$val['weight'].' gms | Diamond: '.$val['dmdcarat'].' Ct | Quality : '.$prdqlty.' | Purity: '.$prdcarat[0].' Ct | ';
 			    if($val['size'] !== 0.0){
 						     $message.=' Size : 14.0 | ';
 						  }
-			      $message.='Color: '.$prdcolr.'</div><div style="width:auto;height:auto;font-size:11px;line-height:20px;text-align:left;margin-top:5px;display:inline-block;"> Quantity : <span style="color:#0CCDB8;">'.$quantity.'</span></div> </div>
+			      $message.='Color: '.$prdcolr.'</div><div style="width:auto;height:auto;font-size:11px;line-height:20px;text-align:left;margin-top:5px;display:inline-block;"> '.$qntystr.'</div> </div>
                             </div>';
 			       
 			      }
