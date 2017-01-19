@@ -151,7 +151,7 @@
                               $prddeldt=date('Y-m-d', strtotime("+".$prow['leadTime']." days"));
                               $prdimgs=explode(',',$prdimgs);
 			      $quantity=(int)$val['pqty'];
-			      $qntystr=" Quantity:<span style='color:#0CCDB8;'>".$quantity."</span>";
+			      $qntystr=" Quantity &colon; -<span style='color:#0CCDB8;'>".$quantity."</span>";
 			    $message.='     
 			      <div style="width:100%;height:auto;padding:10px;border:1px solid #ccc;margin-bottom: 10px;border-radius:2px;display:inline-block;box-sizing:border-box;">
                                 <div style="width:auto;height:auto;display:inline-block;vertical-align:top;"><img src="'.IMGDOMAIN.''.$prdimgs[0].'" alt="img" width="70" height="70"></div><div style="width:69%;height:auto;display:inline-block;vertical-align:top;padding-left: 10px;"><div style="width:100%;height:auto;font-size:12px;color:#333;line-height:20px">'.$prdname.'</div><div style="width:100%;height:auto;font-size:11px;color:#333;line-height:20px;text-align:left">Product Code : <span style="padding-left:0px">'.$prdcode.'</span></div><div style="width:auto;display:inline-block;height:auto;font-size:11px;color:#333;line-height:20px;text-align:left;margin-top: 5px;">Gold : '.$val['weight'].' gms | Diamond: '.$val['dmdcarat'].' Ct | Quality : '.$prdqlty.' | Purity: '.$prdcarat[0].' Ct | ';
@@ -167,13 +167,13 @@
                           $message.='  </div>
 					      <div style="width:100%;height:auto;padding:10px;background-color:#f3f3f3;box-sizing:border-box;">
 						  <div style="width:100%;height:auto;display:inline-block;vertical-align:top">
-						      <div style="width:45%;text-align:right;height: auto;line-height:15px;font-size:11px!important;color:#333;display:inline-block;vertical-align:top;">
-							<div style="width: 100%;text-align:left;height: auto;line-height: 15px;font-size:11px!important;color: #333;display: inline-block;vertical-align: top;">GRAND TOTAL</div>
+						      <div style="width:45%;text-align:left;height: auto;line-height:15px;font-size:10px!important;color:#333;display:inline-block;vertical-align:top;">
+							<div style="width: 100%;text-align:left;height: auto;line-height: 15px;font-size:10px!important;color: #333;display: inline-block;vertical-align: top;">GRAND TOTAL</div>
 							<div style="width:100%;height:auto;color:#333;font-size:11px;line-height:15px;text-align:left;display: inline-block;">*Inclusive of all taxes</div>
 						      </div>
 
-						      <div style="width:52%;text-align: right;height: auto;line-height: 15px;font-size:11px!important;color: #333;display: inline-block;vertical-align: top;">
-							  <div style="width:100%;padding-left: 0px;height: auto;line-height: 15px;font-size:11px!important;color: #333;display: inline-block;vertical-align: top;">&#8377; '.$params['totprz'].'</div>
+						      <div style="width:52%;text-align: right;height: auto;line-height: 15px;font-size:10px!important;color: #333;display: inline-block;vertical-align: top;">
+							  <div style="width:100%;padding-left:0px;height: auto;line-height:15px;font-size:10px!important;color: #333;display: inline-block;vertical-align: top;text-align:right;">&#8377; '.$params['totprz'].'</div>
 						      </div>
 						     </div>
 					      </div>

@@ -102,7 +102,9 @@
 	$('#scroll').append(chckoutstr);
 
       });
-       $('.total_prc').html(indianMoney(totalprice));
+      setTimeout(function(){
+	  $('.total_price_gen').html(indianMoney(totalprice));
+      },1000);
      }
     }
   });

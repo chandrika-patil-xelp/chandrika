@@ -38,24 +38,35 @@ function newaddToCart(paramtr)
         $(gblcartdata).each(function (r, v) {
 
             if ((cartdata.col_car_qty == v.col_car_qty && cartdata.pid == v.product_id) && parseFloat(cartdata.RBsize) == parseFloat(v.size)) {
-
-                cartdata['qty'] = parseInt(v.pqty) + 1;
-                //    cartdata.price=(cartdata.price).replace(/,/g,"");
-                cartdata['price'] = parseInt(cartdata['price']) * cartdata.qty;
-                flag = 2;
-            } else if ((cartdata.col_car_qty == v.col_car_qty && cartdata.pid == v.product_id) && (parseFloat(cartdata.RBsize) == parseFloat(v.size))) {
-	      cartdata['qty'] = parseInt(v.pqty) + 1;
-	      cartdata['price'] = parseInt(cartdata['price']) * cartdata.qty;
-                flag = 2;
+	       
+		  cartdata['qty'] = parseInt(v.pqty) + 1; 
+		  cartdata['price'] = parseInt(cartdata['price']) * cartdata.qty;
+		  flag = 2; 
+            } else if ((cartdata.col_car_qty == v.col_car_qty && cartdata.pid == v.product_id) && (parseFloat(cartdata.RBsize) == parseFloat(v.size))) { 
+		  cartdata['qty'] = parseInt(v.pqty) + 1;
+		  cartdata['price'] = parseInt(cartdata['price']) * cartdata.qty;
+		    flag = 2; 
             }
         });
     }
 
-    if (flag == 1 || flag == 0) {
-          storecartdata(cartdata, 1);
-    } else {
-          storecartdata(cartdata, 1);
-    }
+	    $('#rmvpoptxt').html('This Product is already in your cart do you want to add one more');
+	    cartpopUp();
+	    $('#cYes').unbind();
+	    $('#cYes').click(function () {console.log('l');
+		if (flag == 1 || flag == 0) {
+		        storecartdata(cartdata, 1);
+			cartpopUpClose();     
+		 } else {
+		        storecartdata(cartdata, 1);
+			cartpopUpClose();
+		 }
+	    });
+	    $('#cNo').click(function () {
+		cartpopUpClose();
+		$('#cNo').unbind();
+	    }); 
+		  
 }
 
 
