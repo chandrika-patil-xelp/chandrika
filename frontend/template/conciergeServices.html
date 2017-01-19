@@ -64,6 +64,12 @@
     </div>
     <?php include 'footer.html'?>
     <script>
+        function loadComplete(){
+      $('.wrapper_max').removeClass('offsetEffects');
+    }
+    $(document).ready(function () {
+          load_page();
+        });
         $(document).ready(function () {
             $('.wrapper_max').removeClass('offsetEffects');
         });
