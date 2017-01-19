@@ -65,9 +65,14 @@ function displayorders()
                     ordrdate += e[0].order_date;
                     ordrdate = ordrdate.split(' ');
                     var ordDate = ordrdate[0];
-
+                    
+                    var od=[];
+                    od.push(ordDate.split('-'));
+            
+                  var yr=ordDate.toString().split("-")[0];
+                  var dt =ordDate.toString().split("-")[1];
                     var cc = ordDate.toString().split("-")[2];
-                    var cd = cc.split(0).join('');
+                    var cd = cc.split(0).join(''); 
 
                     var updatedt ="";
                      updatedt += e[0].updatedon;
@@ -76,16 +81,16 @@ function displayorders()
 
                     var dd= upDate.toString().split("-")[2];
                     var ds = dd.split(0).join('');
-
+                    
                     Date.prototype.getMonthName = function () {
                         var monthNames = ["Jan", "Feb", "March", "April", "May", "June",
                             "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
                         return monthNames[this.getMonth()];
                     }
                     var month_Name = new Date().getMonthName();
-                    var cnfDate = '' + cd + ' ' + month_Name + '';
+                    var cnfDate = '' + cd + ' ' + month_Name + ''; 
                     var statusDate = '' + ds + ' ' + month_Name + '';
-
+                    var cnDate = '' + cd + '|' + dt + '|'+yr+'';                 
 //                   if($('#oId').html()){
 //                   order += ' <div class="fLeft tabHead headLine borBtm " id="od">my orders</div>';
 //               }else
@@ -99,7 +104,7 @@ function displayorders()
                     orderstr += '</div>';
                     orderstr += '<div class="fLeft Morder">';
                     orderstr += '<div class="fLeft col100">Date of order</div>';
-                    orderstr += '<div class="fLeft col100 bolder" id="ordDate">' + ordDate + '</div>';
+                    orderstr += '<div class="fLeft col100 bolder" id="ordDate">' + cnDate + '</div>';
                     orderstr += ' </div>';
                     orderstr += '<div class="fLeft Morder">';
                     orderstr += '<div class="fLeft col100">Total price</div>';

@@ -1,6 +1,6 @@
 <?php include 'jBhead.html' ?>
  <?php echo "<script>var orderid=$orderid;</script>"; ?> 
- <script>  var pid = "<?php echo $_GET['pid'];  ?>";var combn = "<?php echo $_GET['combn'];  ?>";var sz = "<?php echo $_GET['sz'];  ?>"; </script>
+ <script>  var pid = "<?php echo $_GET['pid'];  ?>";var combn = "<?php echo $_GET['combn'];  ?>";var sz = "<?php echo $_GET['sz']; ?>"; var oid="<?php echo $_GET['orderid']; ?>";</script>
 <body>
   <div class="detaCmngcnt"></div>
     <div class="container cust_detail">
@@ -15,7 +15,7 @@
                             <div class="ttl_txt fmOpenB" id='prdName'></div>
                             <div class="divCon1 fLeft">
                                 <div class="fieldTitle1 fLeft">Order Id</div>
-                                <div class="fieldTitle2 fmOpenB fRight">123456789</div>
+                                <div class="fieldTitle2 fmOpenB fRight" id="ordId">123456789</div>
                             </div>
                             <div class="divCon1 fLeft">
                                 <div class="fieldTitle1 fLeft">Product Code</div>
@@ -267,7 +267,8 @@
                 var pid=l.pid; 
                 var ostatus=l.ostatus;
                 var price=l.price;
-             
+                var oid=l.oid;
+                $('#ordId').text(oid);
                 $('#prdprice').text(price);
               // getProductDetails(pid,l);
                // getorderdetails(l);
