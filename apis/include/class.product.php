@@ -3899,7 +3899,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                 $arr['dmdcarat'] = $row['dmdcarat'];
                 $arr['totaldmd'] = $row['totaldmd'];
                 $arr['shape'] = $row['shape'];
-
+		$arr['parntcatid'] = $row['cpcatid'];
                 $arr['DimondQuality'] = $row['DimondQuality'];
                 $arr['dmdQ'] = $row['dmdQ'];
                 $arr['dmdQPricepercarat'] = $row['dmdQPricepercarat'];

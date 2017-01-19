@@ -38,7 +38,7 @@
     <div class="overlay"></div>
     <div class="overlay2 " onclick="closeCart()"></div>
     <div class="header">
-        <div class="logo fLeft" id="jzeva_log"></div>
+      <a href="<?php echo DOMAIN ?>index.php?action=landing_page"><div class="logo fLeft"></div></a>
     </div>
     <div class="tabWrap fRight">
 
@@ -211,8 +211,9 @@
 
             /*Main menu slidedown/slideup , Menu tab colour change*/
             $('.tabB').mouseover(function () {
-                var userid = common.readFromStorage('jzeva_uid');
-                console.log(userid);
+                var userid = common.readFromStorage('jzeva_uid'); 
+		var idx = $(this).index();
+		if( $('.menu_elm').eq(idx).find('.menu_list').length!=0){
                 if ($(this).attr('id') === 'userProfId')
                 {
                     if (userid === null)
@@ -234,6 +235,13 @@
                     $('.tab').removeClass('selec');
                     $('.menu_wrap').velocity('stop').velocity({height: [180]}, {duration: 200, delay: 150, easing: 'ease-in-out', display: 'block'});
                 }
+	      }
+	      else{
+		 $('.overlay').stop(true, true).fadeTo(200, 0);
+                        $('.tab').removeClass('selec');
+                        $('.menu_wrap').velocity('stop').velocity({height: [0]}, {duration: 200, easing: 'ease-in-out', display: 'block'});
+		
+	      }
             });
             //console.log("mouseout", flag);
             $('.tabWrap').mouseleave(function () {
@@ -250,12 +258,26 @@
             /*Sub menu slidedown/slideup , Menu tab colour change*/
             $('.tab').mouseenter(function () {
                 var k = $(this).closest('.tabB').index();
+		
+		if( $('.menu_elm').eq(k).find('.menu_list').length!=0)
+		{
 
                 $('.menu_elm').css({'z-index': '50'}).removeClass('tab_select').addClass('remo');
                 $('.menu_elm').eq(k).css({'z-index': '9999'}).addClass('tab_select').removeClass('remo');
                 $('.menu_elm').eq(k).stop(true, true).slideDown(200, function () {
                     $('.remo').css({'display': 'none'});
                 });
+	      }
+	      else{
+		 $('.overlay').stop(true, true).fadeTo(200, 0);
+                $('.menu_wrap').velocity('stop').velocity({height: [0]}, {duration: 200, easing: 'ease-in-out', display: 'none',
+                    complete: function () {
+                        $('.menu_elm').stop(true, true).css({'display': 'block'});
+                    }
+                });
+                $('.tab').removeClass('selec');
+                $('.header').removeClass('blackPseudo');
+	      }
             });
             /* Maintain colour of tab while hovering on corresponding submenu*/
             $('.menu_elm').mouseenter(function () {

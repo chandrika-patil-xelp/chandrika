@@ -17,7 +17,8 @@ function getheader()
 		      {  
 			cnt=0;
 			var mainmn="";
-			var mainmn=v.cat_name;	mainmn=mainmn.toLowerCase().replace(' ','-'); 
+			var mainmn=v.cat_name; mainmn=mainmn.trim(' ');
+			mainmn=mainmn.toLowerCase().replace(' ','-'); 
 			mainheader+=" <div class='tabB fLeft'> <a href='"+DOMAIN+""+mainmn+"/pid-"+v.catid+"'> <div class='tab fLeft taba' >"+(v.cat_name).toUpperCase()+"  </div> </a> </div>"; 
 			 
 			 if(v['subcat'] == undefined)
@@ -34,7 +35,8 @@ function getheader()
 			    $(v['subcat']).each(function(p,t)
 			    {
 			       var submn="";
-			       submn=t.cat_name;    submn=submn.toLowerCase().replace(' ','-'); 
+			       submn=t.cat_name;   submn=submn.trim(' ');
+			       submn=submn.toLowerCase().replace(' ','-'); 
 			       cnt++;
 			       subheader+='<div class="col100 fLeft">';
 			       subheader+='<a href="'+DOMAIN+''+submn+'/pid-'+t.catid+'"><div class="menu_list fLeft"  ';
@@ -60,10 +62,7 @@ function getheader()
 	       }); 
 }
  
-
-$('#jzeva_log').click(function () {
-        window.location.href = DOMAIN + "index.php?action=landing_page";
-});
+ 
 
 $('#usrlogout').click(function () {
         common.removeFromStorage('jzeva_email');
@@ -73,19 +72,26 @@ $('#usrlogout').click(function () {
         common.removeFromStorage('jzeva_cartid');
 	common.removeFromStorage('jzeva_buyid');
 	common.removeFromStorage('jzeva_shpid');
-        var URLactn = window.location.search;
-
+        var URLactn = window.location.href;
 
         var accnvar = '';
         accnvar = URLactn;
-        accnvar = accnvar.split('=');
-        accnvar = accnvar[1].split('&');
-
-        if (accnvar[0] == 'myaccount') {
-            window.location.href = DOMAIN + "index.php?action=landing_page";
-        } else {
-            var url = DOMAIN + 'index.php' + URLactn;
-            window.location.href = url;
+        accnvar = accnvar.split('jzeva');
+	var lsaccnvar=accnvar[1].substring(1); 
+	var linkarr = accnvar[1].split('&');
+        var laccnvar = linkarr[0].split('=');
+	 
+	if(laccnvar[1] !== undefined){
+	  if (laccnvar[1] == 'myaccount') {
+	     var url= DOMAIN + lsaccnvar; 
+             window.location.href = DOMAIN + "index.php?action=landing_page";
+	  }
+	  else
+	     window.location.href =DOMAIN + lsaccnvar; 
+	}
+         else {
+             var url = DOMAIN + lsaccnvar; 
+             window.location.href = url;
         }
     });
 

@@ -1104,15 +1104,24 @@ function getprodbyid()
                     $('#gr_foot').addClass("dpn");
                     $('.gridLoad').addClass("dpn");
 		  }
-                $('#parnttyp').html('');
-                var parnt = obj[0]['parntcatname'];
-                if (parnt == 'High Jewellery') {
-                    parnt = parnt.split(' ');
-                    parnt = parnt[1];
-                }
-                var chld = obj[0]['chldcatname'];
-                var dplstr = '<div class="breadP fLeft">' + parnt + '</div>';
-                dplstr += '<div class="breadP fLeft">' + chld + '</div>';
+                $('#parnttyp').html(''); 
+		var dplstr ='<a href="'+DOMAIN+'index.php?action=landing_page"><div class="breadH fLeft">Home</div></a>';
+		
+		if(obj[0]['parntcatname'] !== null){
+		    var parnt = obj[0]['parntcatname'];
+		    var mainmn="";    mainmn=parnt;
+		    mainmn=mainmn.trim(' ');
+		    mainmn=mainmn.toLowerCase().replace(' ','-'); 
+		    var chld = obj[0]['chldcatname'];  
+		    dplstr += '<a href="'+DOMAIN+''+mainmn+'/pid-'+obj[0]['parntcatid']+'">';
+		    dplstr += '<div class="breadP fLeft">' + parnt + '</div></a>';
+		    dplstr += '<div class="breadP fLeft">' + chld + '</div>';
+		}
+                else{
+		    var parnt = obj[0]['chldcatname']; 
+		    dplstr += '<div class="breadP fLeft">' + parnt + '</div>'; 
+		}
+                  
                 $('#parnttyp').append(dplstr);
                 var len = obj.length;
 
