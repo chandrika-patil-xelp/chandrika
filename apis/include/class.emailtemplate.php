@@ -59,9 +59,9 @@
 	      $itms=COUNT($params['data']);
 
 	      if($itms > 1)
-		$itm=$itms."Items";
+		$itm=$itms." Items";
 	      else
-		$itm=$itms."Item";
+		$itm=$itms." Item";
 	  }
 	  
 	  
@@ -76,7 +76,7 @@
 		    </head>
 		    <body>
 		       <div style="width:100%;height:100%;background-color:#f3f3f3;padding-top:30px;padding-bottom:30px;font-family:sans-serif">
-			    <div style="width:100%;height:auto;margin:auto;max-width:750px">
+			    <div style="width:100%;height:auto;margin:auto;max-width:750px;box-sizing:border-box;">
 				<div style="width:100%;height:auto;margin-bottom: 30px;">
 				    <div style="width:150px;height:auto;margin:auto">
 					<img src="'.DOMAIN.'frontend/emailer/jzeva_logo.png" alt="JZEVA" width="150" height="50">
@@ -88,8 +88,8 @@
 					    <img src="'.DOMAIN.'frontend/emailer/confirm.png" alt="JZEVA" width="70" height="70">
 					</div>
 				    </div>
-				    <div style="width:100%;height:auto;font-size:20px;color:#0CCDB8;text-align:center;line-height:28px">Dear '.$gndr.' '.$name.'</div>
-				    <div style="width:100%;height:auto;font-size:13px;color:#333;text-align:center;line-height:25px;margin-top:10px;letter-spacing:0.2em;">CONGRATULATIONS ON YOUR PURCHASE FROM JZEVA!!!</div>
+				    <div style="width:100%;height:auto;font-size:20px;color:#0CCDB8;text-align:center;line-height:28px"> '.$gndr.' '.$name.'</div>
+				    <div style="width:100%;height:auto;font-size:13px;color:#333;text-align:center;line-height:25px;margin-top:10px;letter-spacing:0.1em;">CONGRATULATIONS ON YOUR PURCHASE FROM JZEVA!!!</div>
 				    <div style="width:100%;height:auto;font-size:14px;color:#333;text-align:center;line-height:0px"><span style="display:inline-block;line-height:25px;padding-top:10px;vertical-align:middle">We are glad to inform you that your order is now confirmed and will reach on the</span></div>
 				     <div style="width:100%;height:auto;font-size:14px;color:#333;text-align:center;line-height:0px"><span style="display:inline-block;line-height:normal;vertical-align:middle">promised date.</span></div>
 				    <div style="width:100%;height:auto;padding:0px;margin-top: 35px;">
@@ -115,7 +115,7 @@
 							   </span>
                             </div>
                         </div>
-                        <div style="width:100%;height:auto;padding:10px;background-color:#f3f3f3;text-align:left;color:#333;font-size:12px;line-height:15px;">'.$itm.'</div>
+                        <div style="width:100%;height:auto;padding:10px;background-color:#f3f3f3;text-align:left;color:#333;font-size:12px;line-height:15px;box-sizing:border-box;">'.$itm.'</div>
                         <div style="width:100%;height:auto;padding-top:15px;">
                             <div style="width:100%;height:auto;margin-bottom:20px"> '; 
 	  
@@ -157,7 +157,7 @@
 			    if($val['size'] !== 0.0){
 						     $message.=' Size : 14.0 | ';
 						  }
-			      $message.='Color: '.$prdcolr.'</div><div style="width:auto;height:auto;font-size:11px;line-height:20px;text-align:left;margin-top: 5px;display:inline-block;">Quantity : <span style="color:#0CCDB8;">1</span></div> </div>
+			      $message.='Color: '.$prdcolr.'</div><div style="width:auto;height:auto;font-size:11px;line-height:20px;text-align:left;margin-top: 5px;display:inline-block;">Quantity : <span style="color:#0CCDB8;">'.$val['pqty'].'</span></div> </div>
                             </div>';
 			       
 			      }
@@ -191,7 +191,7 @@
 					<div style="width:100%;height:auto;font-size:12px;line-height:25px;color:#999;text-align:center;margin-top: 4px;margin-bottom: 1px;text-decoration:none;"><span style="display:inline-block;line-height:25px;vertical-align:middle">( Monday to Saturday 10AM - 9PM IST )</span></div>
 				    </div>
 				</div>
-				<div style="width:100%;height:auto;padding:0px 25px 25px 25px;background-color:#15181b;min-height:200px">
+				<div style="width:100%;height:auto;padding:0px 25px 25px 25px;background-color:#15181b;min-height:200px;box-sizing:border-box;">
 				    <div style="width:100%;height:auto;padding:0px 25px 20px 25px;background-color:#222529;box-sizing:border-box;">
 					<div style="width:100%;height:auto;font-size:12px;color:#fff;text-align:center;line-height:25px;">We look forward to serving you in the future. Happy Shopping!!!</div>
 					 <div style="width:100%;height:auto;font-size:13px;color:#fff;text-align:center;line-height:25px;margin-top: 25px;">Yours Truly</div>
@@ -232,7 +232,7 @@
 		  </head>
 		  <body>
 		      <div style="width:100%;height:100%;background-color:#f3f3f3;padding-top:30px;padding-bottom:30px;font-family:sans-serif">
-			  <div style="width:100%;height:auto;margin:auto;max-width:750px">
+			  <div style="width:100%;height:auto;margin:auto;max-width:750px;box-sizing:border-box;">
 			    <div style="width:100%;height:auto;margin-bottom: 30px;">
 				<div style="width:150px;height:auto;margin:auto">
 				    <img src="'.DOMAIN.'frontend/emailer/jzeva_logo.png" alt="JZEVA" width="150" height="50">
@@ -244,7 +244,7 @@
 					  <img src="'.DOMAIN.'frontend/emailer/signup.png" alt="img" width="70" height="60">
 				      </div>
 				  </div>
-				  <div style="width:100%;height:auto;font-size:20px;color:#0CCDB8;text-align:center;line-height:25px">Dear '.$gndr.'. '.$params['name'].'</div>
+				  <div style="width:100%;height:auto;font-size:20px;color:#0CCDB8;text-align:center;line-height:25px"> '.$gndr.'. '.$params['name'].'</div>
 				  <div style="width:100%;height:auto;font-size:13px;text-align:center;color:#333;line-height:25px;margin-top:10px;letter-spacing:0.2em;"><span style="display:inline-block;line-height:25px;;vertical-align:middle">WELCOME TO THE WORLD OF LUXURIOUS JEWELLERY</span></div>
 				  <div style="width:100%;height:auto;font-size:14px;color:#333;line-height:25px;text-align:center;padding-top:10px;">We at jzeva extremely pleased to have you express interest in your collection</div>
 				  <div style="width:100%;height:auto;font-size:14px;color:#333;line-height:25px;text-align:center">Your profile has been created and can now be accessed by clicking on my account link at <a href="'.DOMAIN.'index.php?action=landing_page" style="text-decoration:none;color:#333">www.jzeva.com</a></div>
@@ -372,7 +372,7 @@
 		      </head>
 		      <body>
 			  <div style="width:100%;height:100%;background-color:#f3f3f3;padding-top:30px;padding-bottom:30px;font-family:sans-serif">
-			      <div style="width:100%;height:auto;margin:auto;max-width:750px">
+			      <div style="width:100%;height:auto;margin:auto;max-width:750px;box-sizing:border-box;">
 				  <div style="width:100%;height:auto;margin-bottom: 30px;">
 				      <div style="width:150px;height:auto;margin:auto">
 					  <img src="'.DOMAIN.'frontend/emailer/jzeva_logo.png" alt="JZEVA" width="150" height="50">
@@ -395,7 +395,7 @@
 					<div style="width:100%;height:auto;font-size:12px;line-height:25px;color:#999;text-align:center;margin-top: 4px;margin-bottom: 1px;text-decoration:none;"><span style="display:inline-block;line-height:25px;vertical-align:middle">( Monday to Saturday 10AM - 9PM IST )</span></div>
 				      </div>
 				  </div>
-				  <div style="width:100%;height:auto;padding:0px 25px 25px 25px;background-color:#15181b;min-height:200px">
+				  <div style="width:100%;height:auto;padding:0px 25px 25px 25px;background-color:#15181b;min-height:200px;box-sizing:border-box;">
 				    <div style="width:100%;height:auto;padding:0px 25px 20px 25px;background-color:#222529">
 					<div style="width:100%;height:auto;font-size:12px;color:#fff;text-align:center;line-height:25px;">We look forward to serving you in the future. Happy Shopping!!!</div>
 					 <div style="width:100%;height:auto;font-size:13px;color:#fff;text-align:center;line-height:25px;margin-top: 25px;">Yours Truly</div>
