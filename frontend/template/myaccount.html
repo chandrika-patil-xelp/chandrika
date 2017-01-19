@@ -34,18 +34,17 @@
             <div class="col100">
                 <div class="wrapper_max offsetTop offsetEffects transition600">
                     <div class="fLeft tHead" id="side_menus">
-                        <div class="fRight fooH mar0">orders</div>
-                        <div class="fLeft col100"><div class="fRight fooTxt fCommon" id="oId">My orders</div></div>
-                        <div class="fLeft col100"><div class="fRight fooTxt fCommon"  id="wId">Wishlist</div></div>
+                          <div class="fRight fooH ">My account</div>
+                        <div class="fLeft col100"><div class="fRight fooTxt fCommon " id="oId"><span>My orders</span></div></div>
+                        <div class="fLeft col100"><div class="fRight fooTxt fCommon"  id="wId"><span>Wishlist</span></div></div>
                         <!--<div class="fLeft col100"><div class="fRight fooTxt pad0" id="rId">Reviews</div></div>-->
-                        <div class="fRight fooH mar0">My account</div>
-                        <div class="fLeft col100"><div class="fRight fooTxt  txtRight fCommon" id="pId">Personal info</div></div>
-                        <div class="fLeft col100"><div class="fRight fooTxt  txtRight fCommon" id="cId">Change password</div></div>
-                        <div class="fLeft col100"><div class="fRight fooTxt  txtRight fCommon"  id="sId">Saved address</div></div>
+                        <div class="fLeft col100"><div class="fRight fooTxt  txtRight fCommon" id="pId"><span>Personal info</span></div></div>
+                        <div class="fLeft col100"><div class="fRight fooTxt  txtRight fCommon" id="cId"><span>Change password</span></div></div>
+                        <div class="fLeft col100"><div class="fRight fooTxt  txtRight fCommon"  id="sId"><span>Saved address</span></div></div>
                     </div>
                     <div class="fLeft pCont">
                         <div class="fLeft orderCommon" >
-                            <div class="fLeft tabHead headLine borBtm dn" id="myord" >my orders</div>
+                            <!-- <div class="fLeft tabHead headLine borBtm dn" id="myord" >my orders</div> -->
 
                             <div class="col100 fLeft dn" id="myordId">
 <!--                            <div class="fLeft orderOuter">
@@ -258,16 +257,16 @@
                                 <div class="fLeft ordersCard">
                                     <div class="inCourier fLeft">
                                         <div class="fLeft inShip">
-                                            <span class="font13 regular">Order No:</span>
+                                            <span class="font10 regular">Order No:</span>
                                             <span class="font13 semibold"  >123456789</span>
                                         </div>
                                         <div class="fLeft inShip">
-                                            <span class="font13 regular">Order Placed:</span>
+                                            <span class="font10 regular">Order Placed:</span>
                                             <span class="font13 semibold">0123456788</span>
                                         </div>
                                     </div>
                                     <div class="inCourier fLeft">
-                                        <div class="fLeft inShip font13 regular">Total Amount</div>
+                                        <div class="fLeft inShip font10 regular">Total Amount</div>
                                         <div class="fLeft inShip font13 semibold">&#8377 45,000</div>
                                     </div>
                                     <div class="actBtn">download invoice</div>
@@ -287,16 +286,16 @@
                                 <div class="fLeft ordersCard bNone">
                                     <div class="inCourier fLeft">
                                         <div class="fLeft inShip">
-                                            <span class="font13 regular">Order No:</span>
+                                            <span class="font10 regular">Order No:</span>
                                             <span class="font13 semibold">123456789</span>
                                         </div>
                                         <div class="fLeft inShip">
-                                            <span class="font13 regular">Order Placed:</span>
+                                            <span class="font10 regular">Order Placed:</span>
                                             <span class="font13 semibold">0123456788</span>
                                         </div>
                                     </div>
                                     <div class="inCourier fLeft">
-                                        <div class="fLeft inShip font13 regular">Total Amount</div>
+                                        <div class="fLeft inShip font10 regular">Total Amount</div>
                                         <div class="fLeft inShip font13 semibold">&#8377 45,000</div>
                                     </div>
                                     <div class="inCourier fLeft">
@@ -315,7 +314,7 @@
                             </div>
                         </div>
                         <div class="orderCommon fLeft dn" id="editpId">
-                            <div class="fLeft tabHead headLine">Profile</div>
+                            <!-- <div class="fLeft tabHead headLine">Profile</div> -->
                             <div class="fLeft col100">
                                 <div class="col50 fLeft">
                                     <div class="txtB fLeft">
@@ -362,7 +361,7 @@
                             </div>
                         </div>
                         <div class="fLeft orderCommon dn" id="profileId">
-                            <div class="fLeft tabHead headLine">Profile</div>
+                            <!-- <div class="fLeft tabHead headLine">Profile</div> -->
                             <div class="fLeft col50">
                                 <div class="fLeft col50">
                                     <div class="proFields">Name</div>
@@ -390,7 +389,7 @@
                             </div>
                         </div>
                         <div class="orderCommon fLeft dn" id='saveAddrId'>
-                            <div class="fLeft tabHead headLine borBtm">my addresses</div>
+                            <!-- <div class="fLeft tabHead headLine borBtm">my addresses</div> -->
                             <div class="fLeft addrBar" id="addNewId">Add New Address
                                 <div class="plusBlack fRight addrEditCnt" id="plusCont"></div>
                             </div>
@@ -401,7 +400,7 @@
                                         <div class="inp_label">Name</div>
                                     </div>
                                     <div class="txtB w49 fRight">
-				      <input type="text" class="inp_box" id="shp_mob" maxlength="10" onkeypress="return common.isNumberKey(event, this.value);">
+				                                  <input type="text" class="inp_box" id="shp_mob" maxlength="10" onkeypress="return common.isNumberKey(event, this.value);">
                                         <div class="inp_label">Mobile</div>
                                     </div>
                                     <div class="txtB fLeft w49">
@@ -676,7 +675,7 @@
         </div>
     </div>
     <?php include 'footer.html'?>
-   
+
     <script type="text/javascript" src="<?php echo $jvs['account']; ?>"></script>
 
     <script>
