@@ -490,6 +490,9 @@
 
 (SELECT  GROUP_CONCAT(metal_weight) FROM tbl_product_master WHERE productid = pid  AND active_flag !=2) 
                             AS metal_weight,
+(SELECT  GROUP_CONCAT(jewelleryType) FROM tbl_product_master WHERE productid = pid  AND active_flag !=2) 
+                            AS jewelleryType,                           
+                         
 (SELECT GROUP_CONCAT(catid) FROM tbl_category_product_mapping WHERE  productid =pid ) AS ccatid,
                 (SELECT DISTINCT(NAME) FROM tbl_size_master WHERE  FIND_IN_SET(catid,ccatid) )AS ccatname,                       
 
@@ -549,10 +552,17 @@
                        $reslt['metal_weight'] = $row['metal_weight'];
                        $reslt['ccatid'] = $row['ccatid'];
                        $reslt['ccatname'] = $row['ccatname'];
+                        $reslt['jewelleryType'] = $row['jewelleryType'];
                         $reslt['prc'] = $row['prc'];
                          $reslt['cnt'] = $row['cnt'];
-
-
+                         
+                          if($row['jewelleryType'] === '1'){
+                             $arr['jewelleryType'] ='Gold';
+                        }else  if($row['jewelleryType'] === '2'){
+                             $arr['jewelleryType'] ='Plain Gold';
+                        }else  if($row['jewelleryType'] === '3'){
+                             $arr['jewelleryType'] ='Platinum';
+                        }  
 
                        if($row['payment_type']== '0'){
                            $reslt['payment_type'] ='Credit Card';
