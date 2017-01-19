@@ -2,6 +2,7 @@
 <?php include 'jhead.html' ?>
 <body class="Terms">
     <?php include 'Cart.html'?>
+     <?php include 'loader.html'?>
     <?php include 'header.html'?>
     <?php include 'login.html'?>
     <div class="fLeft gemBanner">
@@ -166,7 +167,7 @@
                             <div class="closeGem"></div>
                             <div class="fLeft define">
                                 <div class="fLeft subHm">Facts</div>
-                                <div class="fLeft tCont">Amethyst is a violet variety of Quartz. The name is derived from ancient greek ἀ a- ("not") and μέθυστοςméthystos ("intoxicated") a reference to the belief that the stone guarded its wearer from drunkenness. Amethyst is a semi precious stone, its brilliant colour makes it highly sough after for use in jewellery. Unlike other stones the value of an Amethyst is not attributed majorly to its carat weight but to the colour displayed.</div>
+                                <div class="fLeft tCont">Amethyst is a violet variety of Quartz. The name is derived from ancient greek ἀ a- ("not") and  ("intoxicated") a reference to the belief that the stone guarded its wearer from drunkenness. Amethyst is a semi precious stone, its brilliant colour makes it highly sough after for use in jewellery. Unlike other stones the value of an Amethyst is not attributed majorly to its carat weight but to the colour displayed.</div>
                                 <div class="fLeft subHm">Mined From</div>
                                 <div class="fLeft tCont points">Zambia</div>
                                 <div class="fLeft tCont points">Brazil</div>
@@ -676,7 +677,7 @@
     </div>
 
     <?php include 'footer.html'?>
-    <?php include 'loader.html'?>
+   
     <script>
 //        $('.hideDiv').velocity({opacity: [0]});
 //        $('.imgHead').velocity({opacity: [1]});
@@ -730,7 +731,6 @@
             $('.wrapper_max').removeClass('offsetEffects');
         }
         $(document).ready(function () {
-	  $('html, body').animate({scrollTop: '0px'}, 300); 
             load_page();
         });
         $(window).scroll(function () {

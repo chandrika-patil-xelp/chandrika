@@ -1,19 +1,20 @@
 
-    <script>
+<script>
     var BWEBROOT = '<?php echo BACKWEBROOT?>';
     var DOMAIN = '<?php echo DOMAIN?>';
     var APIDOMAIN = '<?php echo APIDOMAIN?>';
     var IMGDOMAIN = '<?php echo IMGDOMAIN ?>';
     var page = '<?php echo $page?>';
-    
+
 </script>
 
 
-
+<div class="loginOverlay"></div>
 <div class="guestPopup dn" id="guestPar">
 
-    <div class="inGuest" id="guestChild">
-        <div class="closeLogin" id="closeGuest"></div>
+    <div class="inGuest fLeft" id="guestChild">
+
+        <div class="closeLogin1" id="closeGuest"></div>
         <div class="txtTitle">Please enter the relevant information</div>
         <div class="txtB fLeft"> 
             <input type="text" class="inp_box " maxlength="30" id="ord_no" autocomplete="off" onkeypress="return common.isNumberKey(event, this.value);"> 
@@ -28,6 +29,7 @@
                 <div class="actBtn button padLR25" id="Track_ord">GET ORDER DETAILS</div>
             </center>
         </div>
+
     </div>
 </div>
 
@@ -41,26 +43,26 @@
     <div class="tabWrap fRight">
 
         <div class="tab_buffer">
-<!--            <div class="tabB fLeft">
-                <div class="tab fLeft taba">
-                    SIGNATURE
-                </div>
-            </div>
-            <div class="tabB fLeft">
-                <div class="tab fLeft tabb">
-                    FINE JEWELLERY
-                </div>
-            </div>
-            <div class="tabB fLeft">
-                <div class="tab fLeft tabc">
-                    EXCLUSIVE
-                </div>
-            </div>
-            <div class="tabB fLeft">
-                <div class="tab fLeft tabd">
-                    PERSONALISED
-                </div>
-            </div>-->
+            <!--            <div class="tabB fLeft">
+                            <div class="tab fLeft taba">
+                                SIGNATURE
+                            </div>
+                        </div>
+                        <div class="tabB fLeft">
+                            <div class="tab fLeft tabb">
+                                FINE JEWELLERY
+                            </div>
+                        </div>
+                        <div class="tabB fLeft">
+                            <div class="tab fLeft tabc">
+                                EXCLUSIVE
+                            </div>
+                        </div>
+                        <div class="tabB fLeft">
+                            <div class="tab fLeft tabd">
+                                PERSONALISED
+                            </div>
+                        </div>-->
             <div class="tabB fLeft">
                 <div class="tab fLeft tabe">
                     EDUCATION
@@ -187,13 +189,16 @@
 
 
             function guestpopUp() {
+                $('.loginOverlay').velocity({opacity: [1, 0]});
                 $('#guestPar').removeClass("dn");
-                $('#guestPar').velocity({opacity: [1, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+                $('#guestPar').velocity({translateY: [0, '150%']}, {duration: 150, delay: 100, easing: ''});
                 $('#guestChild').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
             }
             function guestpopUpClose() {
+                $('.loginOverlay').velocity({opacity: [0, 1]});
                 $('#guestPar').addClass("dn");
-                $('#guestPar').velocity({opacity: [0, 1]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+                $('#guestPar').velocity({translateY: ['150%', 0]}, {duration: 150, delay: 100, easing: ''});
+//                $('#guestPar').velocity({opacity: [0, 1]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
                 $('#guestChild').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
             }
 
@@ -205,14 +210,9 @@
             });
 
             /*Main menu slidedown/slideup , Menu tab colour change*/
-	     $('#guestId').mouseover(function () { 
-			$('.overlay').stop(true, true).fadeTo(200, 0);
-                        $('.tab').removeClass('selec');
-                        $('.menu_wrap').velocity('stop').velocity({height: [0]}, {duration: 200, easing: 'ease-in-out', display: 'block'});
-                
-	     });
             $('.tabB').mouseover(function () {
                 var userid = common.readFromStorage('jzeva_uid');
+                console.log(userid);
                 if ($(this).attr('id') === 'userProfId')
                 {
                     if (userid === null)
@@ -235,7 +235,7 @@
                     $('.menu_wrap').velocity('stop').velocity({height: [180]}, {duration: 200, delay: 150, easing: 'ease-in-out', display: 'block'});
                 }
             });
-           
+            //console.log("mouseout", flag);
             $('.tabWrap').mouseleave(function () {
                 $('.overlay').stop(true, true).fadeTo(200, 0);
                 $('.menu_wrap').velocity('stop').velocity({height: [0]}, {duration: 200, easing: 'ease-in-out', display: 'none',
@@ -276,7 +276,7 @@
         var fr = 0;
         var cartF = 0;
         $('.openC').click(function () {
-
+            
             if (cartF == 0) {
                 openCart();
                 cartF = 1;
@@ -307,6 +307,7 @@
             });
         }
         function closeCart() {
+                cartF = 0;
             $('.cart').velocity({translateX: ['100%', 0]}, {duration: 300, easing: 'easeInOutExp', complete: function () {
                     $('.wrapper').removeClass('pointNone');
                     $('.overlay2').velocity({opacity: [0, 1]}, {duration: 300, easing: 'swing', display: 'none'})

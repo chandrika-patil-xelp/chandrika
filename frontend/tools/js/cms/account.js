@@ -105,6 +105,7 @@ function displayorders()
                     orderstr += '<div class="fLeft col100">Total price</div>';
                     orderstr += '<div class="fLeft col100 bolder cartRup15b" id="ordPrice">' + e[0].total + '</div>';
                     orderstr += '</div>';
+                    orderstr += '<div class="actBtn">download invoice</div>';
                     orderstr += '</div>';
                     orderstr += '</div>';
                     $(e).each(function (s, v) {

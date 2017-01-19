@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <?php include 'jhead.html' ?>
 <script>
+
     var actn = "<?php echo $_GET['actn'];  ?>"; var ordtrid = "<?php echo $_GET['trkid'];  ?>";
+
 </script>
 <body class="Terms myaccount">
     <?php include 'Cart.html'?>
+     <?php include 'loader.html'?>
     <?php include 'header.html'?>
     <?php include 'login.html'?>
     <!--    <div class="col100 fade">
@@ -267,6 +270,7 @@
                                         <div class="fLeft inShip font13 regular">Total Amount</div>
                                         <div class="fLeft inShip font13 semibold">&#8377 45,000</div>
                                     </div>
+                                    <div class="actBtn">download invoice</div>
                                     <div class="inCourier fLeft">
                                         <div class="fLeft inShip font13 regular ">Shipping Address </div>
                                         <div class="fLeft inShipfont13 semibold">
@@ -672,7 +676,7 @@
         </div>
     </div>
     <?php include 'footer.html'?>
-    <?php include 'loader.html'?>
+   
     <script type="text/javascript" src="<?php echo $jvs['account']; ?>"></script>
 
     <script>
@@ -762,16 +766,8 @@
             $("#" + boxId).siblings('.vatTxt').addClass("dn");
         }
     });
-      function loadComplete(){
-      $('.wrapper_max').removeClass('offsetEffects');
-    }
-        $(document).ready(function () {
-          load_page();
-
-        });
 
     $(document).ready(function () {
-      $('html, body').animate({scrollTop: '0px'}, 300); 
         $('.wrapper_max').removeClass('offsetEffects');
         load_page();
     });

@@ -5,6 +5,7 @@
 </script>
 <body class="Terms myaccount">
     <?php include 'Cart.html'?>
+     <?php include 'loader.html'?>
     <?php include 'header.html'?>
     <?php include 'login.html'?>
     <!--    <div class="col100 fade">
@@ -31,186 +32,183 @@
             <div class="col100">
                 <div class="wrapper_max offsetTop offsetEffects transition600">
                     <div class="fLeft tHead">
-                        <div class="fRight fooH mar0">orders</div>
-                        
+                        <div class="fRight fooH mar0">my orders</div>
                     </div>
                     <div class="fLeft pCont">
                         <div class="fLeft orderCommon">
-                            <div class="fLeft tabHead headLine borBtm" id="myord" >my orders</div>
-
                             <div class="col100 fLeft" id="myordId">
-<!--                                <div class="fLeft orderOuter">
-                                    <div class="fLeft inShip" id="ordTitle">
-                                        <div class="fLeft Morder">
-                                            <div class="fLeft col100">Order No</div>
-                                            <div class="fLeft col100 bolder" id="ordId">123456789</div>
-                                        </div>
-                                        <div class="fLeft Morder">
-                                            <div class="fLeft col100">Date of order</div>
-                                            <div class="fLeft col100 bolder" id="ordDate">26 jan 2016</div>
-                                        </div>
-                                        <div class="fLeft Morder">
-                                            <div class="fLeft col100">Total price</div>
-                                            <div class="fLeft col100 bolder cartRup15b" id="ordPrice"> 23,000</div>
-                                        </div>
-                                    </div>
-                                </div>--> 
-<!--                                <div class="fLeft detailsOuter bNone" id="ordDetail">
-                                    <div class="fLeft orderParent">
-                                    <div class="fLeft orderImg bgCommon"></div>
-                                    <div class="fLeft orderName">
-                                        <div class="fLeft col100 semibold">Dual eternity ring</div>
-
-                                        <div class="fLeft  col10">
-                                            <span class="fLeft">Diamond Qty:</span>
-                                            <span class="fLeft"></span>
-                                        </div>
-                                        <div class="fLeft  col100">
-                                            <span class="fLeft">Metal purity:</span>
-                                            <span class="fLeft"></span>
-                                        </div>
-                                        <div class="fLeft  col100">
-                                            <span class="fLeft">Metal colour:</span>
-                                            <span class="fLeft"></span>
-                                        </div>
-                                        <div class="fLeft  shipTo">
-                                            <span class="fLeft">Qty:</span>
-                                            <span class="fLeft">2</span>
-                                        </div>
-                                        <div class="fLeft  shipTo">
-                                            <span class="fLeft">Size:</span>
-                                            <span class="fLeft">4</span>
-                                        </div>
-                                    </div>
-                                    <div class="fLeft rsCont">
-                                        <span class="fLeft">&#8377 45,000</span>
-                                                                                <span class="plusBox plusHolder fLeft" id="p1"></span>
-                                                                                <div class="fLeft vatTxt dn">
-                                                                                    <div class="fLeft col100">MRP<span>&#8377 50,000</span></div>
-                                                                                    <div class="fLeft col100">VAT:<span>7487384</span></div>
-                                                                                    <div class="fLeft col100">tax:<span>675675</span></div>
-                                                                                </div>
-                                    </div>
-                                    <div class="fLeft note">
-                                        <div class="fLeft col100 semibold pBtm5">Code:<span class="regular">JZEVA1404996868</span></div>
-                                        <div class="fLeft col100 semibold">Shipping address</div>
-                                        <div class="fLeft col100 ">Chandrika Patil</div>
-                                        <div class="fLeft col100 shipAddr">m b nagar new extension area near shiv mandir gulbarga</div>
-                                        <div class="filterSec fLeft">
-                                            <center>
-                                                <div class="button actBtn transition300 fRight mar0" id="trackId1">track</div>
-                                            </center>
-                                        </div>
-                                    </div>
-                                    <div class="fLeft trackOuter poR dn">
-                                        <center>
-                                            <div class="trackDivs">
-                                                <div class="fLeft placedTxt">Confirmed</div>
-                                                <div class="fLeft dateTxt">07 Oct</div>
-                                                <div class="fLeft proStep tickIcon"></div>
-                                            </div>
-                                            <div class="trackDivs">
-                                                <div class="fLeft placedTxt">quality check and certification</div>
-                                                <div class="fLeft dateTxt">10 Oct</div>
-                                                <div class="fLeft proStep tickIcon"></div>
-                                            </div>
-                                            <div class="trackDivs">
-                                                <div class="fLeft placedTxt">out for delivery</div>
-                                                <div class="fLeft dateTxt">14 Oct</div>
-                                                <div class="fLeft proStep tickIcon"></div>
-                                            </div>
-                                            <div class="trackDivs">
-                                                <div class="fLeft placedTxt">Delivered</div>
-                                                <div class="fLeft dateTxt">16 Oct</div>
-                                                <div class="fLeft proStep tickIcon"></div>
-                                            </div>
-                                        </center>
-                                        <div class="fLeft tOuter poR">
-                                            <div class="fLeft date semibold font15">07 oct
-                                                <div class="inDate">07</div>
-                                                <div class="month">oct</div>
-                                            </div>
-                                            <div class="fLeft shipTo">shipped to third party</div>
-                                        </div>
-                                    </div>
-                                    
-                                    </div>
-                                </div>--> 
-<!--                                <div class="fLeft orderImg bgCommon"></div>
-                                <div class="fLeft orderName">
-                                    <div class="fLeft col100 semibold">Dual eternity ring</div>
-                                    <div class="fLeft  col10">
-                                        <span class="fLeft">Diamond Qty:</span>
-                                        <span class="fLeft"></span>
-                                    </div>
-                                    <div class="fLeft  col100">
-                                        <span class="fLeft">Metal purity:</span>
-                                        <span class="fLeft"></span>
-                                    </div>
-                                    <div class="fLeft  col100">
-                                        <span class="fLeft">Metal colour:</span>
-                                        <span class="fLeft"></span>
-                                    </div>
-                                    <div class="fLeft  shipTo">
-                                        <span class="fLeft">Qty:</span>
-                                        <span class="fLeft">2</span>
-                                    </div>
-                                    <div class="fLeft  shipTo">
-                                        <span class="fLeft">Size:</span>
-                                        <span class="fLeft">4</span>
-                                    </div>
-                                </div>
-                                <div class="fLeft rsCont">
-                                    <span class="fLeft">&#8377 45,000</span>
-                                                                        <span class="plusBox plusHolder fLeft" id="p1"></span>
-                                                                        <div class="fLeft vatTxt dn">
-                                                                            <div class="fLeft col100">MRP<span>&#8377 50,000</span></div>
-                                                                            <div class="fLeft col100">VAT:<span>7487384</span></div>
-                                                                            <div class="fLeft col100">tax:<span>675675</span></div>
+                                <!--                                <div class="fLeft orderOuter">
+                                                                    <div class="fLeft inShip" id="ordTitle">
+                                                                        <div class="fLeft Morder">
+                                                                            <div class="fLeft col100">Order No</div>
+                                                                            <div class="fLeft col100 bolder" id="ordId">123456789</div>
                                                                         </div>
-                                </div>
-                                <div class="fLeft note">
-                                    <div class="fLeft col100 semibold pBtm5">Code:<span class="regular">JZEVA1404996868</span></div>
-                                    <div class="fLeft col100 semibold">Shipping address</div>
-                                    <div class="fLeft col100 ">Chandrika Patil</div>
-                                    <div class="fLeft col100 shipAddr">m b nagar new extension area near shiv mandir gulbarga</div>
-                                    <div class="filterSec fLeft">
-                                        <center>
-                                            <div class="button actBtn transition300 fRight mar0" id="trackId2">track</div>
-                                        </center>
-                                    </div>
-                                </div>-->
-<!--                                <div class="fLeft trackOuter poR dn">
-                                    <center>
-                                        <div class="trackDivs">
-                                            <div class="fLeft placedTxt">Confirmed</div>
-                                            <div class="fLeft dateTxt">07 Oct</div>
-                                            <div class="fLeft proStep tickIcon"></div>
-                                        </div>
-                                        <div class="trackDivs">
-                                            <div class="fLeft placedTxt">quality check and certification</div>
-                                            <div class="fLeft dateTxt">10 Oct</div>
-                                            <div class="fLeft proStep tickIcon"></div>
-                                        </div>
-                                        <div class="trackDivs">
-                                            <div class="fLeft placedTxt">out for delivery</div>
-                                            <div class="fLeft dateTxt">14 Oct</div>
-                                            <div class="fLeft proStep tickIcon"></div>
-                                        </div>
-                                        <div class="trackDivs">
-                                            <div class="fLeft placedTxt">Delivered</div>
-                                            <div class="fLeft dateTxt">16 Oct</div>
-                                            <div class="fLeft proStep tickIcon"></div>
-                                        </div>
-                                    </center>
-                                    <div class="fLeft tOuter poR">
-                                        <div class="fLeft date semibold font15">07 oct
-                                            <div class="inDate">07</div>
-                                            <div class="month">oct</div>
-                                        </div>
-                                        <div class="fLeft shipTo">shipped to third party</div>
-                                    </div>
-                                </div>-->
+                                                                        <div class="fLeft Morder">
+                                                                            <div class="fLeft col100">Date of order</div>
+                                                                            <div class="fLeft col100 bolder" id="ordDate">26 jan 2016</div>
+                                                                        </div>
+                                                                        <div class="fLeft Morder">
+                                                                            <div class="fLeft col100">Total price</div>
+                                                                            <div class="fLeft col100 bolder cartRup15b" id="ordPrice"> 23,000</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>--> 
+                                <!--                                <div class="fLeft detailsOuter bNone" id="ordDetail">
+                                                                    <div class="fLeft orderParent">
+                                                                    <div class="fLeft orderImg bgCommon"></div>
+                                                                    <div class="fLeft orderName">
+                                                                        <div class="fLeft col100 semibold">Dual eternity ring</div>
+                                
+                                                                        <div class="fLeft  col10">
+                                                                            <span class="fLeft">Diamond Qty:</span>
+                                                                            <span class="fLeft"></span>
+                                                                        </div>
+                                                                        <div class="fLeft  col100">
+                                                                            <span class="fLeft">Metal purity:</span>
+                                                                            <span class="fLeft"></span>
+                                                                        </div>
+                                                                        <div class="fLeft  col100">
+                                                                            <span class="fLeft">Metal colour:</span>
+                                                                            <span class="fLeft"></span>
+                                                                        </div>
+                                                                        <div class="fLeft  shipTo">
+                                                                            <span class="fLeft">Qty:</span>
+                                                                            <span class="fLeft">2</span>
+                                                                        </div>
+                                                                        <div class="fLeft  shipTo">
+                                                                            <span class="fLeft">Size:</span>
+                                                                            <span class="fLeft">4</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="fLeft rsCont">
+                                                                        <span class="fLeft">&#8377 45,000</span>
+                                                                                                                <span class="plusBox plusHolder fLeft" id="p1"></span>
+                                                                                                                <div class="fLeft vatTxt dn">
+                                                                                                                    <div class="fLeft col100">MRP<span>&#8377 50,000</span></div>
+                                                                                                                    <div class="fLeft col100">VAT:<span>7487384</span></div>
+                                                                                                                    <div class="fLeft col100">tax:<span>675675</span></div>
+                                                                                                                </div>
+                                                                    </div>
+                                                                    <div class="fLeft note">
+                                                                        <div class="fLeft col100 semibold pBtm5">Code:<span class="regular">JZEVA1404996868</span></div>
+                                                                        <div class="fLeft col100 semibold">Shipping address</div>
+                                                                        <div class="fLeft col100 ">Chandrika Patil</div>
+                                                                        <div class="fLeft col100 shipAddr">m b nagar new extension area near shiv mandir gulbarga</div>
+                                                                        <div class="filterSec fLeft">
+                                                                            <center>
+                                                                                <div class="button actBtn transition300 fRight mar0" id="trackId1">track</div>
+                                                                            </center>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="fLeft trackOuter poR dn">
+                                                                        <center>
+                                                                            <div class="trackDivs">
+                                                                                <div class="fLeft placedTxt">Confirmed</div>
+                                                                                <div class="fLeft dateTxt">07 Oct</div>
+                                                                                <div class="fLeft proStep tickIcon"></div>
+                                                                            </div>
+                                                                            <div class="trackDivs">
+                                                                                <div class="fLeft placedTxt">quality check and certification</div>
+                                                                                <div class="fLeft dateTxt">10 Oct</div>
+                                                                                <div class="fLeft proStep tickIcon"></div>
+                                                                            </div>
+                                                                            <div class="trackDivs">
+                                                                                <div class="fLeft placedTxt">out for delivery</div>
+                                                                                <div class="fLeft dateTxt">14 Oct</div>
+                                                                                <div class="fLeft proStep tickIcon"></div>
+                                                                            </div>
+                                                                            <div class="trackDivs">
+                                                                                <div class="fLeft placedTxt">Delivered</div>
+                                                                                <div class="fLeft dateTxt">16 Oct</div>
+                                                                                <div class="fLeft proStep tickIcon"></div>
+                                                                            </div>
+                                                                        </center>
+                                                                        <div class="fLeft tOuter poR">
+                                                                            <div class="fLeft date semibold font15">07 oct
+                                                                                <div class="inDate">07</div>
+                                                                                <div class="month">oct</div>
+                                                                            </div>
+                                                                            <div class="fLeft shipTo">shipped to third party</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                    </div>
+                                                                </div>--> 
+                                <!--                                <div class="fLeft orderImg bgCommon"></div>
+                                                                <div class="fLeft orderName">
+                                                                    <div class="fLeft col100 semibold">Dual eternity ring</div>
+                                                                    <div class="fLeft  col10">
+                                                                        <span class="fLeft">Diamond Qty:</span>
+                                                                        <span class="fLeft"></span>
+                                                                    </div>
+                                                                    <div class="fLeft  col100">
+                                                                        <span class="fLeft">Metal purity:</span>
+                                                                        <span class="fLeft"></span>
+                                                                    </div>
+                                                                    <div class="fLeft  col100">
+                                                                        <span class="fLeft">Metal colour:</span>
+                                                                        <span class="fLeft"></span>
+                                                                    </div>
+                                                                    <div class="fLeft  shipTo">
+                                                                        <span class="fLeft">Qty:</span>
+                                                                        <span class="fLeft">2</span>
+                                                                    </div>
+                                                                    <div class="fLeft  shipTo">
+                                                                        <span class="fLeft">Size:</span>
+                                                                        <span class="fLeft">4</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="fLeft rsCont">
+                                                                    <span class="fLeft">&#8377 45,000</span>
+                                                                                                        <span class="plusBox plusHolder fLeft" id="p1"></span>
+                                                                                                        <div class="fLeft vatTxt dn">
+                                                                                                            <div class="fLeft col100">MRP<span>&#8377 50,000</span></div>
+                                                                                                            <div class="fLeft col100">VAT:<span>7487384</span></div>
+                                                                                                            <div class="fLeft col100">tax:<span>675675</span></div>
+                                                                                                        </div>
+                                                                </div>
+                                                                <div class="fLeft note">
+                                                                    <div class="fLeft col100 semibold pBtm5">Code:<span class="regular">JZEVA1404996868</span></div>
+                                                                    <div class="fLeft col100 semibold">Shipping address</div>
+                                                                    <div class="fLeft col100 ">Chandrika Patil</div>
+                                                                    <div class="fLeft col100 shipAddr">m b nagar new extension area near shiv mandir gulbarga</div>
+                                                                    <div class="filterSec fLeft">
+                                                                        <center>
+                                                                            <div class="button actBtn transition300 fRight mar0" id="trackId2">track</div>
+                                                                        </center>
+                                                                    </div>
+                                                                </div>-->
+                                <!--                                <div class="fLeft trackOuter poR dn">
+                                                                    <center>
+                                                                        <div class="trackDivs">
+                                                                            <div class="fLeft placedTxt">Confirmed</div>
+                                                                            <div class="fLeft dateTxt">07 Oct</div>
+                                                                            <div class="fLeft proStep tickIcon"></div>
+                                                                        </div>
+                                                                        <div class="trackDivs">
+                                                                            <div class="fLeft placedTxt">quality check and certification</div>
+                                                                            <div class="fLeft dateTxt">10 Oct</div>
+                                                                            <div class="fLeft proStep tickIcon"></div>
+                                                                        </div>
+                                                                        <div class="trackDivs">
+                                                                            <div class="fLeft placedTxt">out for delivery</div>
+                                                                            <div class="fLeft dateTxt">14 Oct</div>
+                                                                            <div class="fLeft proStep tickIcon"></div>
+                                                                        </div>
+                                                                        <div class="trackDivs">
+                                                                            <div class="fLeft placedTxt">Delivered</div>
+                                                                            <div class="fLeft dateTxt">16 Oct</div>
+                                                                            <div class="fLeft proStep tickIcon"></div>
+                                                                        </div>
+                                                                    </center>
+                                                                    <div class="fLeft tOuter poR">
+                                                                        <div class="fLeft date semibold font15">07 oct
+                                                                            <div class="inDate">07</div>
+                                                                            <div class="month">oct</div>
+                                                                        </div>
+                                                                        <div class="fLeft shipTo">shipped to third party</div>
+                                                                    </div>
+                                                                </div>-->
                             </div>
                         </div>
                     </div>
@@ -218,321 +216,323 @@
             </div>
         </div>
     </div>
-            <?php include 'footer.html'?>
-            <?php include 'loader.html'?>
-            <!--<script type="text/javascript" src="<?php echo $jvs['account']; ?>"></script>-->
+    <?php include 'footer.html'?>
+   
+    <!--<script type="text/javascript" src="<?php echo $jvs['account']; ?>"></script>-->
 
-            <script>
+    <script>
 
-                $('#fooPOP').click(function () {
-                    openPopUp();
-                });
+        $('#fooPOP').click(function () {
+            openPopUp();
+        });
 
 
-                $('#inDlt').velocity({opacity: 0});
-                function deletePopUp() {
-                    openPopUp();
-                    $('#signInId').addClass("dn");
-                    $('#loginId').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-                    $('.deleteContr').removeClass("dn");
-                    $('.deleteContr').velocity({translateY: [0, '500%']}, {duration: 150, delay: 100, easing: ''});
-                    $('#inDlt').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+        $('#inDlt').velocity({opacity: 0});
+        function deletePopUp() {
+            openPopUp();
+            $('#signInId').addClass("dn");
+            $('#loginId').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+            $('.deleteContr').removeClass("dn");
+            $('.deleteContr').velocity({translateY: [0, '500%']}, {duration: 150, delay: 100, easing: ''});
+            $('#inDlt').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+        }
+
+
+        var lastfID = "";
+        $('.fCommon').click(function () {
+            var fooID = $(this).attr("id");
+
+            $('#' + fooID).addClass('jzevaColor');
+
+            if (lastfID !== fooID) {
+                $('#' + lastfID).removeClass("jzevaColor");
+            }
+            lastfID = fooID;
+        });
+
+        $('#edId').click(function () {
+            $('#profileId').addClass("dn");
+            $('#editpId').removeClass("dn");
+            $('#saveAddrId').addClass("dn");
+            $('#pChange').addClass("dn");
+            $('#wishlistId').addClass("dn");
+        });
+
+
+
+
+        $('.inp_box').focus(function () {
+            $(this).closest('.txtB').addClass('focul');
+        });
+        $('.inp_box').blur(function () {
+            var k = $(this).val();
+            if (k === "") {
+                $(this).closest('.txtB').removeClass('focul');
+            }
+        });
+
+
+        $('.plusHolder').click(function () {
+            var boxId = $(this).attr("id");
+            if ($("#" + boxId).hasClass("plusBox")) {
+
+                $("#" + boxId).removeClass("plusBox");
+                $("#" + boxId).addClass("minusBox");
+                $("#" + boxId).siblings('.vatTxt').removeClass("dn");
+
+            } else {
+                $("#" + boxId).removeClass("minusBox");
+                $("#" + boxId).addClass("plusBox");
+                $("#" + boxId).siblings('.vatTxt').addClass("dn");
+            }
+        });
+
+        $(document).ready(function () {
+            $('.wrapper_max').removeClass('offsetEffects');
+            load_page();
+            trackordr();
+        });
+        $(window).scroll(function () {
+            var sc = $('body').scrollTop();
+            var ht = $('.gemBanner').outerHeight(true) - 130;
+            if (ht > sc) {
+                var op = 1 - (ht - sc) / ht;
+                $('#banner_over').css({'opacity': op});
+
+            }
+            if (ht - sc <= 5) {
+                $('.header').addClass('black_bg');
+
+            } else {
+                $('.header').removeClass('black_bg');
+
+            }
+
+        });
+
+        function trackordr()
+        {
+
+
+            var URL = APIDOMAIN + "index.php?action=gettrackordrdetail&orderid=" + ordid;
+
+            $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results)
+                {
+                    var obj = JSON.parse(results);
+
+                    if (obj["result"] !== null)
+                    {
+
+                        var ordrdate = "";
+                        ordrdate += obj['result'][0].order_date;
+                        ordrdate = ordrdate.split(' ');
+                        var ordDate = ordrdate[0];
+
+                        var cc = ordDate.toString().split("-")[2];
+                        var cd = cc.split(0).join('');
+
+                        var updatedt = "";
+                        updatedt += obj['result'][0].updatedon;
+                        updatedt = updatedt.split(' ');
+                        var upDate = updatedt[0];
+
+                        var dd = upDate.toString().split("-")[2];
+                        var ds = dd.split(0).join('');
+
+                        Date.prototype.getMonthName = function () {
+                            var monthNames = ["Jan", "Feb", "March", "April", "May", "June",
+                                "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                            return monthNames[this.getMonth()];
+                        }
+                        var month_Name = new Date().getMonthName();
+                        var cnfDate = '' + cd + ' ' + month_Name + '';
+                        var statusDate = '' + ds + ' ' + month_Name + '';
+
+                        var ordrdate = "", orderstr = "";
+                        var totalprice = indianMoney(parseInt(obj['total']));
+                        ordrdate += obj['result'][0].order_date;
+                        ordrdate = ordrdate.split(' ');
+                        var ordDate = ordrdate[0];
+
+                        orderstr += '<div class="fLeft orderOuter">';
+                        orderstr += '<div class="fLeft inShip" id="ordTitle">';
+                        orderstr += '<div class="fLeft Morder">';
+                        orderstr += '<div class="fLeft col100">Order No</div>';
+                        orderstr += '<div class="fLeft col100 bolder" id="ordId">' + obj['result'][0].oid + '</div>';
+                        orderstr += '</div>';
+                        orderstr += '<div class="fLeft Morder">';
+                        orderstr += '<div class="fLeft col100">Date of order</div>';
+                        orderstr += '<div class="fLeft col100 bolder" id="ordDate">' + ordDate + '</div>';
+                        orderstr += ' </div>';
+                        orderstr += '<div class="fLeft Morder">';
+                        orderstr += '<div class="fLeft col100">Total price</div>';
+                        orderstr += '<div class="fLeft col100 bolder cartRup15b" id="ordPrice">' + totalprice + '</div>';
+                        orderstr += '</div>';
+                        orderstr += '</div>';
+                        orderstr += '</div>';
+
+                        $(obj['result']).each(function (s, v) {
+
+                            if (v.default_image !== null) {
+                                var image = IMGDOMAIN + v.default_image;
+                            } else {
+                                var image = v.prdimage;
+                                image = image.split(',');
+                                image = IMGDOMAIN + image[0];
+                            }
+                            orderstr += ' <div class="fLeft detailsOuter bNone" id="ordDetail">';
+                            orderstr += '<div class="orderParent fLeft">';
+                            orderstr += '<div class="fLeft orderImg bgCommon" style="background: #fff url(\'' + image + '\')no-repeat;background-size: contain;background-position:center; background-color:#FFF;"></div>';
+                            orderstr += '<div class="fLeft orderName">';
+                            orderstr += '<div class="fLeft col100 semibold">' + v.prdname + '</div>';
+
+                            orderstr += '<div class="fLeft  col10">';
+                            orderstr += '<span class="fLeft">Diamond Clarity : ' + v.quality + '</span>';
+                            orderstr += '<span class="fLeft"></span>';
+                            orderstr += '</div>';
+                            orderstr += '<div class="fLeft  col100">';
+                            orderstr += '<span class="fLeft">Metal purity : ' + v.Metalcarat + '</span>';
+                            orderstr += '<span class="fLeft"></span>';
+                            orderstr += '</div>';
+                            orderstr += '<div class="fLeft  col100">';
+                            orderstr += '<span class="fLeft">Metal colour : ' + v.color + '</span>';
+                            orderstr += '<span class="fLeft"></span>';
+                            orderstr += '</div>';
+                            orderstr += '<div class="fLeft  shipTo">';
+                            orderstr += '<span class="fLeft">Qty :</span>';
+                            orderstr += '<span class="fLeft">' + v.pqty + '</span>';
+                            orderstr += '</div>';
+
+                            orderstr += '<div class="fLeft  shipTo">';
+                            if (v.size != 0.0) {
+                                orderstr += '<span class="fLeft">Size :</span>';
+                                orderstr += '<span class="fLeft">' + v.size + '</span>';
+                            }
+                            orderstr += '</div>';
+                            orderstr += '</div>';
+                            orderstr += '<div class="fLeft rsCont">';
+                            orderstr += '<span class="fLeft cartRup15b"> ' + indianMoney(parseInt(v.price)) + '</span>';
+                            orderstr += '<div class="fLeft vatTxt dn">';
+                            orderstr += '<div class="fLeft col100">MRP<span>&#8377 50,000</span></div>';
+                            orderstr += '<div class="fLeft col100">VAT:<span>7487384</span></div>';
+                            orderstr += '<div class="fLeft col100">tax:<span>675675</span></div>';
+                            orderstr += '</div>';
+                            orderstr += '</div>';
+                            orderstr += '<div class="fLeft note">';
+                            orderstr += '<div class="fLeft col100 semibold pBtm5">Code:<span class="regular">' + v.product_code + '</span></div>';
+                            orderstr += '<div class="fLeft col100 semibold">Shipping address</div>';
+                            orderstr += '<div class="fLeft col100 ">' + v.customername + '</div>';
+                            orderstr += '<div class="fLeft col100 shipAddr">' + v.customerAddrs + ' ' + v.customerCity + ' ' + v.customerState + ' ' + v.customerPincode + '</div>';
+
+                            orderstr += '<div class="filterSec fLeft" id="' + v.order_status + '">';
+                            orderstr += '<center>';
+                            orderstr += '<div class="button actBtn transition300 fRight mar0 trackCommon" id="' + v.pid + '_' + s + '_' + v.order_status + '_' + v.oid + '" onclick="trackslide(this)">track</div>';
+                            orderstr += '</center>';
+                            orderstr += '</div>';
+                            orderstr += '</div>';
+                            orderstr += '<div class="fLeft trackOuter poR dn">';
+                            orderstr += '<center>';
+                            orderstr += '<div class="trackDivs">';
+                            orderstr += '<div class="fLeft placedTxt">Order Placed</div>';
+                            orderstr += '<div class="fLeft dateTxt"></div>';
+                            orderstr += '<div class="fLeft proStep" id="1ststp"></div>';
+                            orderstr += '</div>';
+                            orderstr += '<div class="trackDivs">';
+                            orderstr += '<div class="fLeft placedTxt">Quality Check And Certification</div>';
+                            orderstr += '<div class="fLeft dateTxt"></div>';
+                            orderstr += '<div class="fLeft proStep" id="2ndstp"></div>';
+                            orderstr += '</div>';
+                            orderstr += '<div class="trackDivs">';
+                            orderstr += '<div class="fLeft placedTxt"> Shipped </div>';
+                            if (v.order_status == 5 || v.order_status == 7) {
+                                orderstr += '<div class="fLeft dateTxt shp dn" id="' + statusDate + 'ship" >' + statusDate + '</div>';
+                            }
+                            orderstr += '<div class="fLeft proStep" id="3rdstp"></div>';
+                            orderstr += '</div>';
+                            orderstr += '<div class="trackDivs ">';
+                            orderstr += '<div class="fLeft placedTxt" id="delv">Delivered</div>';
+                            if (v.order_status == 6) {
+                                orderstr += '<div class="fLeft dateTxt del dn" id="' + statusDate + 'delv">' + statusDate + '</div>';
+                            }
+                            orderstr += '<div class="fLeft proStep" id="4thstp"></div>';
+
+                            orderstr += '</div>';
+
+
+                            orderstr += '</center>';
+                            orderstr += '</div>';
+                            orderstr += '</div>';
+                            orderstr += '</div>';
+                            orderstr += '</div>';
+
+                        });
+
+
+                        $('#myordId').append(orderstr);
+                    }
                 }
- 
-
-                var lastfID = "";
-                $('.fCommon').click(function () {
-                    var fooID = $(this).attr("id");
-
-                    $('#' + fooID).addClass('jzevaColor');
-
-                    if (lastfID !== fooID) {
-                        $('#' + lastfID).removeClass("jzevaColor");
-                    }
-                    lastfID = fooID;
-                });
-
-                $('#edId').click(function () {
-                    $('#profileId').addClass("dn");
-                    $('#editpId').removeClass("dn");
-                    $('#saveAddrId').addClass("dn");
-                    $('#pChange').addClass("dn");
-                    $('#wishlistId').addClass("dn");
-                });
+            });
+        }
 
 
+        function trackslide(ths)
+        {
+
+            var trackid = $(ths).parent().parent().attr('id');
+
+            if (trackid == 0 || trackid == 1 || trackid == 2) {
+                $(ths).closest('.detailsOuter').find('.trackDivs').eq(0).find('.proStep').addClass('tickIcon');
+
+            }
+            if (trackid == 3 || trackid == 4) {
+                $(ths).closest('.detailsOuter').find('.trackDivs').eq(0).find('.proStep').addClass('tickIcon');
+                $(ths).closest('.detailsOuter').find('.trackDivs').eq(1).find('.proStep').addClass('tickIcon');
+
+            }
+            if (trackid == 5) {
+                $(ths).closest('.detailsOuter').find('.trackDivs').eq(0).find('.proStep').addClass('tickIcon');
+                $(ths).closest('.detailsOuter').find('.trackDivs').eq(1).find('.proStep').addClass('tickIcon');
+                $(ths).closest('.detailsOuter').find('.trackDivs').eq(2).find('.proStep').addClass('tickIcon');
+
+                $('.shp').removeClass('dn');
+                $('.shp').html();
+            }
+            if (trackid == 6) {
+
+                $(ths).closest('.detailsOuter').find('.trackDivs').eq(0).find('.proStep').addClass('tickIcon');
+                $(ths).closest('.detailsOuter').find('.trackDivs').eq(1).find('.proStep').addClass('tickIcon');
+                $(ths).closest('.detailsOuter').find('.trackDivs').eq(2).find('.proStep').addClass('tickIcon');
+                $(ths).closest('.detailsOuter').find('.trackDivs').eq(3).find('.proStep').addClass('tickIcon');
+                $('.del').removeClass('dn');
+                $('.del').html();
+            }
+            if (trackid == 7) {
+                $('#delv').html('Not DELIVERED');
+                $(ths).closest('.detailsOuter').find('.trackDivs').eq(0).find('.proStep').addClass('tickIcon');
+                $(ths).closest('.detailsOuter').find('.trackDivs').eq(1).find('.proStep').addClass('tickIcon');
+                $(ths).closest('.detailsOuter').find('.trackDivs').eq(2).find('.proStep').addClass('tickIcon');
+                $(ths).closest('.detailsOuter').find('.trackDivs').eq(3).find('.proStep').addClass('notDeliver');
+                $('.shp').removeClass('dn');
+                $('.shp').html();
+            }
+            var trkID = $(ths).attr('id');
+
+            var trackTxt = $(ths).text();
+
+            var cls = "see less";
+            var trk = "track";
+            if (($('#' + trkID).html()) === "track") {
+                $('#' + trkID).html(cls);
+                $('#' + trkID).parent().parent().parent().next().slideDown(400);
+            } else {
+
+                $('#' + trkID).html(trk);
+                $('#' + trkID).parent().parent().parent().next().slideUp(400);
+            }
+        }
 
 
-                $('.inp_box').focus(function () {
-                    $(this).closest('.txtB').addClass('focul');
-                });
-                $('.inp_box').blur(function () {
-                    var k = $(this).val();
-                    if (k === "") {
-                        $(this).closest('.txtB').removeClass('focul');
-                    }
-                });
-               
-
-                $('.plusHolder').click(function () {
-                    var boxId = $(this).attr("id");
-                    if ($("#" + boxId).hasClass("plusBox")) {
-
-                        $("#" + boxId).removeClass("plusBox");
-                        $("#" + boxId).addClass("minusBox");
-                        $("#" + boxId).siblings('.vatTxt').removeClass("dn");
-
-                    } else {
-                        $("#" + boxId).removeClass("minusBox");
-                        $("#" + boxId).addClass("plusBox");
-                        $("#" + boxId).siblings('.vatTxt').addClass("dn");
-                    }
-                });
-
-                $(document).ready(function () {
-                    $('.wrapper_max').removeClass('offsetEffects');
-                    load_page();
-		    trackordr();
-                });
-                $(window).scroll(function () {
-                    var sc = $('body').scrollTop();
-                    var ht = $('.gemBanner').outerHeight(true) - 130;
-                    if (ht > sc) {
-                        var op = 1 - (ht - sc) / ht;
-                        $('#banner_over').css({'opacity': op});
-
-                    }
-                    if (ht - sc <= 5) {
-                        $('.header').addClass('black_bg');
-
-                    } else {
-                        $('.header').removeClass('black_bg');
-
-                    }
-                  
-                });
-		
-	      function trackordr()
-	      {
-		
-	 
-		  var URL = APIDOMAIN + "index.php?action=gettrackordrdetail&orderid=" + ordid;
-
-		  $.ajax({ url: URL,type: "GET", datatype: "JSON", success: function (results)
-		  {
-		    var obj = JSON.parse(results);
-
-		    if (obj["result"] !== null) 
-		    {
-			 
-		      var ordrdate = "";
-		      ordrdate += obj['result'][0].order_date;
-		      ordrdate = ordrdate.split(' ');
-		      var ordDate = ordrdate[0];
-
-		      var cc = ordDate.toString().split("-")[2];
-		      var cd = cc.split(0).join('');
-
-		      var updatedt ="";
-		       updatedt += obj['result'][0].updatedon;
-		      updatedt = updatedt.split(' ');
-		      var upDate= updatedt[0];
-
-		      var dd= upDate.toString().split("-")[2];
-		      var ds = dd.split(0).join('');
-
-		      Date.prototype.getMonthName = function () {
-			  var monthNames = ["Jan", "Feb", "March", "April", "May", "June",
-			      "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
-			  return monthNames[this.getMonth()];
-		      }
-		      var month_Name = new Date().getMonthName();
-		      var cnfDate = '' + cd + ' ' + month_Name + '';
-		      var statusDate = '' + ds + ' ' + month_Name + '';
-
-		      var ordrdate = "",orderstr="";
-		      var totalprice = indianMoney(parseInt(obj['total']));  
-		      ordrdate +=obj['result'][0].order_date; 
-			  ordrdate = ordrdate.split(' ');       
-			  var ordDate = ordrdate[0];
-
-		      orderstr += '<div class="fLeft orderOuter">';
-		      orderstr += '<div class="fLeft inShip" id="ordTitle">';
-		      orderstr += '<div class="fLeft Morder">';
-		      orderstr += '<div class="fLeft col100">Order No</div>';
-		      orderstr += '<div class="fLeft col100 bolder" id="ordId">' + obj['result'][0].oid + '</div>';
-		      orderstr += '</div>';
-		      orderstr += '<div class="fLeft Morder">';
-		      orderstr += '<div class="fLeft col100">Date of order</div>';
-		      orderstr += '<div class="fLeft col100 bolder" id="ordDate">' + ordDate + '</div>';
-		      orderstr += ' </div>';
-		      orderstr += '<div class="fLeft Morder">';
-		      orderstr += '<div class="fLeft col100">Total price</div>';
-		      orderstr += '<div class="fLeft col100 bolder cartRup15b" id="ordPrice">' + totalprice + '</div>';
-		      orderstr += '</div>';
-		      orderstr += '</div>';
-		      orderstr += '</div>'; 
-
-		      $(obj['result']).each(function (s,v) {
-
-			  if (v.default_image !== null) {
-			      var image = IMGDOMAIN + v.default_image;
-			  } else {
-			      var image = v.prdimage;
-			      image = image.split(',');
-			      image = IMGDOMAIN + image[0];
-			  }
-			  orderstr += ' <div class="fLeft detailsOuter bNone" id="ordDetail">';
-			  orderstr += '<div class="orderParent fLeft">';
-			  orderstr += '<div class="fLeft orderImg bgCommon" style="background: #fff url(\''+ image +'\')no-repeat;background-size: contain;background-position:center; background-color:#FFF;"></div>';
-			  orderstr += '<div class="fLeft orderName">';
-			  orderstr += '<div class="fLeft col100 semibold">' + v.prdname + '</div>';
-
-			  orderstr += '<div class="fLeft  col10">';
-			  orderstr += '<span class="fLeft">Diamond Clarity : ' + v.quality + '</span>';
-			  orderstr += '<span class="fLeft"></span>';
-			  orderstr += '</div>';
-			  orderstr += '<div class="fLeft  col100">';
-			  orderstr += '<span class="fLeft">Metal purity : ' + v.Metalcarat + '</span>';
-			  orderstr += '<span class="fLeft"></span>';
-			  orderstr += '</div>';
-			  orderstr += '<div class="fLeft  col100">';
-			  orderstr += '<span class="fLeft">Metal colour : ' + v.color + '</span>';
-			  orderstr += '<span class="fLeft"></span>';
-			  orderstr += '</div>';
-			  orderstr += '<div class="fLeft  shipTo">';
-			  orderstr += '<span class="fLeft">Qty :</span>';
-			  orderstr += '<span class="fLeft">' + v.pqty + '</span>';
-			  orderstr += '</div>';
-
-			  orderstr += '<div class="fLeft  shipTo">';
-			  if (v.size != 0.0) {
-			      orderstr += '<span class="fLeft">Size :</span>';
-			      orderstr += '<span class="fLeft">' + v.size + '</span>';
-			  }
-			  orderstr += '</div>';
-			  orderstr += '</div>';
-			  orderstr += '<div class="fLeft rsCont">';
-			  orderstr += '<span class="fLeft cartRup15b"> ' + indianMoney(parseInt(v.price)) + '</span>';
-			  orderstr += '<div class="fLeft vatTxt dn">';
-			  orderstr += '<div class="fLeft col100">MRP<span>&#8377 50,000</span></div>';
-			  orderstr += '<div class="fLeft col100">VAT:<span>7487384</span></div>';
-			  orderstr += '<div class="fLeft col100">tax:<span>675675</span></div>';
-			  orderstr += '</div>';
-			  orderstr += '</div>';
-			  orderstr += '<div class="fLeft note">';
-			  orderstr += '<div class="fLeft col100 semibold pBtm5">Code:<span class="regular">' + v.product_code + '</span></div>';
-			  orderstr += '<div class="fLeft col100 semibold">Shipping address</div>';
-			  orderstr += '<div class="fLeft col100 ">' + v.customername + '</div>';
-			  orderstr += '<div class="fLeft col100 shipAddr">' + v.customerAddrs + ' ' + v.customerCity + ' ' + v.customerState + ' ' + v.customerPincode + '</div>';
-
-			  orderstr += '<div class="filterSec fLeft" id="'+v.order_status+'">';
-			  orderstr += '<center>';
-			  orderstr += '<div class="button actBtn transition300 fRight mar0 trackCommon" id="' + v.pid + '_' + s + '_'+v.order_status+'_'+v.oid+'" onclick="trackslide(this)">track</div>';
-			  orderstr += '</center>';
-			  orderstr += '</div>';
-			  orderstr += '</div>';
-			  orderstr += '<div class="fLeft trackOuter poR dn">';
-			  orderstr += '<center>';
-			  orderstr += '<div class="trackDivs">';
-			  orderstr += '<div class="fLeft placedTxt">Order Placed</div>';
-			  orderstr += '<div class="fLeft dateTxt"></div>';
-			  orderstr += '<div class="fLeft proStep" id="1ststp"></div>';
-			  orderstr += '</div>';
-			  orderstr += '<div class="trackDivs">';
-			  orderstr += '<div class="fLeft placedTxt">Quality Check And Certification</div>';
-			  orderstr += '<div class="fLeft dateTxt"></div>';
-			  orderstr += '<div class="fLeft proStep" id="2ndstp"></div>';
-			  orderstr += '</div>';
-			  orderstr += '<div class="trackDivs">';
-			  orderstr += '<div class="fLeft placedTxt"> Shipped </div>';
-			  if(v.order_status ==5 || v.order_status == 7 ){
-			   orderstr += '<div class="fLeft dateTxt shp dn" id="'+statusDate+'ship" >'+statusDate+'</div>';}
-			  orderstr += '<div class="fLeft proStep" id="3rdstp"></div>';
-			  orderstr += '</div>';
-			  orderstr += '<div class="trackDivs ">';
-			  orderstr += '<div class="fLeft placedTxt" id="delv">Delivered</div>';
-			  if(v.order_status ==6){
-			  orderstr += '<div class="fLeft dateTxt del dn" id="'+statusDate+'delv">'+statusDate+'</div>';}
-			   orderstr += '<div class="fLeft proStep" id="4thstp"></div>';
-
-			  orderstr += '</div>';
+    </script>
 
 
-			  orderstr += '</center>'; 
-			  orderstr += '</div>';
-			  orderstr += '</div>';
-			  orderstr += '</div>';
-			  orderstr += '</div>';
-
-		  });
-
-
-		      $('#myordId').append(orderstr); 
-		}
-		  }
-		  });
-	    }
-	      
-	      
-	    function trackslide(ths)
-	    {
-
-		    var trackid=$(ths).parent().parent().attr('id');
-
-		    if(trackid == 0 || trackid == 1 || trackid== 2){
-			$(ths).closest('.detailsOuter').find('.trackDivs').eq(0).find('.proStep').addClass('tickIcon');
-
-		    }
-		    if(trackid == 3 || trackid == 4){
-			  $(ths).closest('.detailsOuter').find('.trackDivs').eq(0).find('.proStep').addClass('tickIcon');
-			   $(ths).closest('.detailsOuter').find('.trackDivs').eq(1).find('.proStep').addClass('tickIcon');
-
-		    }
-		    if(trackid == 5){
-			  $(ths).closest('.detailsOuter').find('.trackDivs').eq(0).find('.proStep').addClass('tickIcon');
-			  $(ths).closest('.detailsOuter').find('.trackDivs').eq(1).find('.proStep').addClass('tickIcon');
-			  $(ths).closest('.detailsOuter').find('.trackDivs').eq(2).find('.proStep').addClass('tickIcon');
-
-			   $('.shp').removeClass('dn');
-			 $('.shp').html();
-		    }
-		    if(trackid == 6){
-
-			  $(ths).closest('.detailsOuter').find('.trackDivs').eq(0).find('.proStep').addClass('tickIcon');
-			   $(ths).closest('.detailsOuter').find('.trackDivs').eq(1).find('.proStep').addClass('tickIcon');
-			    $(ths).closest('.detailsOuter').find('.trackDivs').eq(2).find('.proStep').addClass('tickIcon');
-			   $(ths).closest('.detailsOuter').find('.trackDivs').eq(3).find('.proStep').addClass('tickIcon');
-			   $('.del').removeClass('dn');
-			  $('.del').html();
-		    }
-		     if(trackid == 7){
-			 $('#delv').html('Not DELIVERED');
-			  $(ths).closest('.detailsOuter').find('.trackDivs').eq(0).find('.proStep').addClass('tickIcon');
-			   $(ths).closest('.detailsOuter').find('.trackDivs').eq(1).find('.proStep').addClass('tickIcon');
-			    $(ths).closest('.detailsOuter').find('.trackDivs').eq(2).find('.proStep').addClass('tickIcon');
-			   $(ths).closest('.detailsOuter').find('.trackDivs').eq(3).find('.proStep').addClass('notDeliver');
-			    $('.shp').removeClass('dn');
-			 $('.shp').html();
-		    }
-		var trkID = $(ths).attr('id');
-
-		var trackTxt = $(ths).text();
-
-		var cls = "see less";
-		var trk = "track";
-		if (($('#' + trkID).html()) === "track") {
-		    $('#' + trkID).html(cls);
-		    $('#' + trkID).parent().parent().parent().next().slideDown(400);
-		} else {
-
-		    $('#' + trkID).html(trk);
-		    $('#' + trkID).parent().parent().parent().next().slideUp(400);
-		}
-	    }
-		
-		
-            </script>
-
-
-            </body>
+</body>
