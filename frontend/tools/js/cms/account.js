@@ -46,7 +46,7 @@ function displayorders()
         datatype: "JSON",
         success: function (results)
         {
-
+          console.log(results);
             var obj = JSON.parse(results);
 
             if (obj["result"] == null) {
@@ -65,14 +65,14 @@ function displayorders()
                     ordrdate += e[0].order_date;
                     ordrdate = ordrdate.split(' ');
                     var ordDate = ordrdate[0];
-                    
+
                     var od=[];
                     od.push(ordDate.split('-'));
-            
+
                   var yr=ordDate.toString().split("-")[0];
                   var dt =ordDate.toString().split("-")[1];
                     var cc = ordDate.toString().split("-")[2];
-                    var cd = cc.split(0).join(''); 
+                    var cd = cc.split(0).join('');
 
                     var updatedt ="";
                      updatedt += e[0].updatedon;
@@ -81,16 +81,17 @@ function displayorders()
 
                     var dd= upDate.toString().split("-")[2];
                     var ds = dd.split(0).join('');
-                    
+
                     Date.prototype.getMonthName = function () {
                         var monthNames = ["Jan", "Feb", "March", "April", "May", "June",
                             "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
                         return monthNames[this.getMonth()];
                     }
                     var month_Name = new Date().getMonthName();
-                    var cnfDate = '' + cd + ' ' + month_Name + ''; 
+                    var cnfDate = '' + cd + ' ' + month_Name + '';
                     var statusDate = '' + ds + ' ' + month_Name + '';
-                    var cnDate = '' + cd + '|' + dt + '|'+yr+'';                 
+                    var cnDate = '' + cd + '|' + dt + '|'+yr+'';
+
 //                   if($('#oId').html()){
 //                   order += ' <div class="fLeft tabHead headLine borBtm " id="od">my orders</div>';
 //               }else
@@ -99,18 +100,22 @@ function displayorders()
                     orderstr += '<div class="fLeft orderOuter">';
                     orderstr += '<div class="fLeft inShip" id="ordTitle">';
                     orderstr += '<div class="fLeft Morder">';
-                    orderstr += '<div class="fLeft col100">Order No</div>';
-                    orderstr += '<div class="fLeft col100 bolder" id="ordId">' + e[0].oid + '</div>';
+                    orderstr += '<div class="fLeft col100 bolder txt_Upper">Shipping address</div>';
+                    orderstr += '<div class="fLeft col100 ">' + e[0].customername + '</div>';
+                    orderstr += '<div class="fLeft col100 shipAddr">' + e[0].customerAddrs + ' ' + e[0].customerCity + ' ' +e[0].customerState + ' ' + e[0].customerPincode + '</div>';
                     orderstr += '</div>';
-                    orderstr += '<div class="fLeft Morder">';
-                    orderstr += '<div class="fLeft col100">Date of order</div>';
-                    orderstr += '<div class="fLeft col100 bolder" id="ordDate">' + cnDate + '</div>';
+
+                    // orderstr += '</div>';
+                    orderstr += '<div class="fLeft Morder txt_right">';
+                    orderstr += '<div class="fLeft col100 bolder">ORDER DETAILS</div>';
+                    orderstr += '<div class="fRight col100 semibold cartRup15b" id="ordPrice">' + e[0].total + '</div>';
+                    orderstr += '<div class="fLeft col100 regular" id="ordDate">' + ordDate + '</div>';
+                    // orderstr += '<div class="fLeft col100">Order No</div>';
+                    orderstr += '<div class="fLeft col100 regular" id="ordId">ID: ' + e[0].oid + '</div>';
+                    // orderstr += '<div class="fLeft col100">Total price</div>';
+                    orderstr += '<div class="actBtn">view invoice</div>';
+
                     orderstr += ' </div>';
-                    orderstr += '<div class="fLeft Morder">';
-                    orderstr += '<div class="fLeft col100">Total price</div>';
-                    orderstr += '<div class="fLeft col100 bolder cartRup15b" id="ordPrice">' + e[0].total + '</div>';
-                    orderstr += '</div>';
-                    orderstr += '<div class="actBtn">download invoice</div>';
                     orderstr += '</div>';
                     orderstr += '</div>';
                     $(e).each(function (s, v) {
@@ -123,7 +128,7 @@ function displayorders()
                             image = IMGDOMAIN + image[0];
                         }
                         orderstr += ' <div class="fLeft detailsOuter bNone" id="ordDetail">';
-                        orderstr += '<div class="orderParent fLeft">';
+                        orderstr += '<div class="orderParent fLeft transition300">';
                         orderstr += '<div class="fLeft orderImg bgCommon" style="background: #fff url(\''+ image +'\')no-repeat;background-size: contain;background-position:center; background-color:#FFF;"></div>';
                         orderstr += '<div class="fLeft orderName">';
                         orderstr += '<div class="fLeft col100 semibold">' + v.prdname + '</div>';
@@ -153,19 +158,17 @@ function displayorders()
                         orderstr += '</div>';
                         orderstr += '</div>';
                         orderstr += '<div class="fLeft rsCont">';
-                        orderstr += '<span class="fLeft cartRup15b"> ' + indianMoney(parseInt(v.price)) + '</span>';
+
+                        orderstr += '<div class="ordPqty">' + v.pqty + '</div>';
                         orderstr += '<div class="fLeft vatTxt dn">';
                         orderstr += '<div class="fLeft col100">MRP<span>&#8377 50,000</span></div>';
                         orderstr += '<div class="fLeft col100">VAT:<span>7487384</span></div>';
                         orderstr += '<div class="fLeft col100">tax:<span>675675</span></div>';
                         orderstr += '</div>';
                         orderstr += '</div>';
-                        orderstr += '<div class="fLeft note">';
+                        orderstr += '<div class="fLeft ordRt txt_right">';
+                        orderstr += '<div class="col100 fLeft"><div class="fRight cartRup15b semibold font12"> ' + indianMoney(parseInt(v.price)) + '</div></div>';
                         orderstr += '<div class="fLeft col100 semibold pBtm5">Code:<span class="regular">' + v.product_code + '</span></div>';
-                        orderstr += '<div class="fLeft col100 semibold">Shipping address</div>';
-                        orderstr += '<div class="fLeft col100 ">' + v.customername + '</div>';
-                        orderstr += '<div class="fLeft col100 shipAddr">' + v.customerAddrs + ' ' + v.customerCity + ' ' + v.customerState + ' ' + v.customerPincode + '</div>';
-
                         orderstr += '<div class="filterSec fLeft" id="'+v.order_status+'">';
                         orderstr += '<center>';
                         orderstr += '<div class="button actBtn transition300 fRight mar0 trackCommon" id="' + v.pid + '_' + s + '_'+v.order_status+'_'+v.oid+'" onclick="trackslide(this)">track</div>';
@@ -202,7 +205,6 @@ function displayorders()
 //                        orderstr += '<div class="fLeft tOuter poR">';
 //                        orderstr += '<div class="fLeft date semibold font15">07 oct</div>';
 //                        orderstr += '<div class="fLeft shipTo">shipped to third party</div>';
-                        orderstr += '</div>';
                         orderstr += '</div>';
                         orderstr += '</div>';
                         orderstr += '</div>';
@@ -245,29 +247,29 @@ function wishlist()
                 $('#nowishlst').addClass('dn');
                 var wishStr = "";
                 $(obj['result']).each(function (s, j) {
-                  
-                   
+
+
                     if (j.default_image !== null) {
                         var xyz = IMGDOMAIN + j.default_image;
                     } else {
-                        
+
                         var xyz = j.prdimage;
-                       
+
                         xyz = xyz.split(',');
-                      xyz = IMGDOMAIN + xyz[1]; 
+                      xyz = IMGDOMAIN + xyz[1];
                       if(xyz === '')
-                       xyz = IMGDOMAIN + xyz[0];     
+                       xyz = IMGDOMAIN + xyz[0];
                     }
-                   
-//              
+
+//
                  //     if (obj['default_image'] != null) {
 
 //        proStr += '<div style="background:url(\'' + IMGDOMAIN + obj['default_image'] + '\')no-repeat ; background-size: contain ; background-position: center"  class=""></div>';
 //    } else if (images[0] == "uploads/noimg2.svg")
 //        proStr += '<div style="background:url(\'' + IMGDOMAIN + images[0] + '\')no-repeat ; background-size: auto 50% ; background-position: center"  class=""></div>';
 //    else
-//    proStr += '<div style="background:url(\'' + IMGDOMAIN + images[0] + '\')no-repeat ; background-size: contain ; background-position: center"  class=""></div>';   
-                 
+//    proStr += '<div style="background:url(\'' + IMGDOMAIN + images[0] + '\')no-repeat ; background-size: contain ; background-position: center"  class=""></div>';
+
                     wishStr += ' <div class="grid3 transition400 fadeInup">';
                     wishStr += ' <div class="facet_front wishClass" id="'+j.product_id+'_'+j.col_car_qty+'_'+j.size+'_'+s+'">';
                     wishStr += ' <div class="grid_item ">';
@@ -651,7 +653,7 @@ function displayaddrs() {
                 addrStr += '</center>';
                 addrStr += '</div>';
                 addrStr += '</div>';
-                
+
                 if(m%2==0){
                     $('#myaddrs').find('.col50').eq(0).append(addrStr);
                 }
@@ -944,10 +946,13 @@ function trackslide(ths)
     var trk = "track";
     if (($('#' + trkID).html()) === "track") {
         $('#' + trkID).html(cls);
-        $('#' + trkID).parent().parent().parent().next().slideDown(400);
+        $('#' + trkID).closest('.orderParent ').find('.trackOuter').slideDown(300);
+        $('#' + trkID).closest('.orderParent ').addClass('trOpen');
+
     } else {
 
         $('#' + trkID).html(trk);
-        $('#' + trkID).parent().parent().parent().next().slideUp(400);
+        $('#' + trkID).closest('.orderParent ').find('.trackOuter').slideUp(300);
+          $('#' + trkID).closest('.orderParent ').removeClass('trOpen');
     }
 }
