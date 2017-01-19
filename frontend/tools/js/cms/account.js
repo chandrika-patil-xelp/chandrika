@@ -128,7 +128,7 @@ function displayorders()
                             wht = v.metal_weight;
                         }
                         var dmdcarat= v.dmdcarat;
-                  
+                        var jweltype=v.jewelType;
                      
                         if (v.default_image !== null) {
                             var image = IMGDOMAIN + v.default_image;

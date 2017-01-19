@@ -557,11 +557,11 @@
                          $reslt['cnt'] = $row['cnt'];
                          
                           if($row['jewelleryType'] === '1'){
-                             $arr['jewelleryType'] ='Gold';
+                             $reslt['jewelType'] ='Gold';
                         }else  if($row['jewelleryType'] === '2'){
-                             $arr['jewelleryType'] ='Plain Gold';
+                             $reslt['jewelType'] ='Plain Gold';
                         }else  if($row['jewelleryType'] === '3'){
-                             $arr['jewelleryType'] ='Platinum';
+                             $reslt['jewelType'] ='Platinum';
                         }  
 
                        if($row['payment_type']== '0'){
