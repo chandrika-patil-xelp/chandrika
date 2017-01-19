@@ -56,6 +56,7 @@
 	    $('#submt').removeClass('dn'); 
 	    $("#noprdinchkot").addClass("dn");  
 	    $('#urords').removeClass('dn');
+	    $('.totalItem').removeClass('dn');
 	},1000);
       $(obj.result).each(function (r, v) {
 	if (v.default_img !== null) {

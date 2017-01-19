@@ -216,10 +216,14 @@ $(document).ready(function () {
  
 	    var orddate = obj['result'][0].orddt;
 	    var ordd = orddate.split(',').join(' ');
-	    var ordrdt = ordd.split('|'); 
-	    var today = new Date(Date.now());
-	    var curtime=today.getHours()+':'+today.getMinutes();
+	    var ordrdt = ordd.split('|');  
 	    
+	    var date = new Date(); 
+	    var am_pm = date.getHours() >= 12 ? "PM" : "AM";
+	    var hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+	    var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes(); 
+	    var curtime = hours + ":" + minutes +" " + am_pm;
+	     
             $(dt).each(function (i, v) {
 		
                 var uname = v.uname;
