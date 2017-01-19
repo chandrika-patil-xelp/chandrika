@@ -102,20 +102,21 @@ function displayorders()
                     orderstr += '<div class="fLeft orderOuter">';
                     orderstr += '<div class="fLeft inShip" id="ordTitle">';
                     orderstr += '<div class="fLeft Morder">';
-                    orderstr += '<div class="fLeft col100 bolder txt_Upper">Shipping address</div>';
-                    orderstr += '<div class="fLeft col100 ">' + e[0].customername + '</div>';
-                    orderstr += '<div class="fLeft col100 shipAddr">' + e[0].customerAddrs + ' ' + e[0].customerCity + ' ' +e[0].customerState + ' ' + e[0].customerPincode + '</div>';
+                    // orderstr += '<div class="fLeft col100 bolder txt_Upper">Shipping address</div>';
+                    orderstr += '<div class="fLeft col100 blStl">' + e[0].customername + '</div>';
+                    orderstr += '<div class="fLeft col100 shipAddr">' + e[0].customerAddrs + ' ' + e[0].customerCity + ' </div>';
+                    orderstr += '<div class="fLeft col100 shipAddr">' +e[0].customerState + ' ' + e[0].customerPincode + '</div>';
+                    orderstr += '<div class="actBtn">view invoice</div>';
                     orderstr += '</div>';
 
                     // orderstr += '</div>';
                     orderstr += '<div class="fLeft Morder txt_right">';
-                    orderstr += '<div class="fLeft col100 bolder">ORDER DETAILS</div>';
-                    orderstr += '<div class="fRight col100 semibold cartRup15b" id="ordPrice">' + e[0].total + '</div>';
-                    orderstr += '<div class="fLeft col100 regular" id="ordDate">' + ordDate + '</div>';
+                    orderstr += '<div class="fRight col100 semibold cartRup15b font18" id="ordPrice">' + e[0].total + '</div>';
                     // orderstr += '<div class="fLeft col100">Order No</div>';
                     orderstr += '<div class="fLeft col100 regular" id="ordId">ID: ' + e[0].oid + '</div>';
+                    orderstr += '<div class="fLeft col100 regular" id="ordDate">' + ordDate + '</div>';
                     // orderstr += '<div class="fLeft col100">Total price</div>';
-                    orderstr += '<div class="actBtn">view invoice</div>';
+
 
                     orderstr += ' </div>';
                     orderstr += '</div>';
@@ -144,15 +145,16 @@ function displayorders()
                         orderstr += '<div class="orderParent fLeft transition300">';
                         orderstr += '<div class="fLeft orderImg bgCommon" style="background: #fff url(\''+ image +'\')no-repeat;background-size: contain;background-position:center; background-color:#FFF;"></div>';
                         orderstr += '<div class="fLeft orderName">';
-                        orderstr += '<div class="fLeft col100 semibold txt_Upper">' + v.prdname + '</div>';
+                        orderstr += '<div class="fLeft col100 blStl  txt_Upper">' + v.prdname + '</div>';
                         orderstr += '<div class="fLeft  col100">';
-                        orderstr += '<span class="fLeft color999 txt_Capital">'+ jweltype +' | ' + v.Metalcarat + ' | '+ v.color +' | '+ wht +'</span>';
+                        orderstr += '<span class="fLeft txt_Capital">'+ jweltype +' | ' + v.color + ' | '+ v.Metalcarat +' | '+ wht +' Grams</span>';
                         orderstr += '<span class="fLeft"></span>';
                         orderstr += '</div>';                      ;
-                        orderstr += '<div class="fLeft  col10">';
-                        orderstr += '<span class="fLeft color999 txt_Capital">Diamonds '+ dmdcarat +' | '+ v.quality + (v.size != 0.0 ? ' | Size: '+v.size  : '') +'</span>';
+                        orderstr += '<div class="fLeft  col100">';
+                        orderstr += '<span class="fLeft txt_Capital">Diamonds '+ dmdcarat +'Ct | '+ v.quality + (v.size != 0.0 ? ' | Size: '+v.size  : '') +'</span>';
                         orderstr += '<span class="fLeft"></span>';
                         orderstr += '</div>';
+                          orderstr += '<div class="fLeft col100 semibold ">Code:<span class="regular">' + v.product_code + '</span></div>';
                         // orderstr += '<div class="fLeft  shipTo">';
                         // orderstr += '<span class="fLeft">Qty :</span>';
                         // orderstr += '<span class="fLeft">' + v.pqty + '</span>';
@@ -174,8 +176,7 @@ function displayorders()
                         orderstr += '</div>';
                         orderstr += '</div>';
                         orderstr += '<div class="fLeft ordRt txt_right">';
-                        orderstr += '<div class="col100 fLeft"><div class="fRight cartRup15b semibold font12"> ' + indianMoney(parseInt(v.price)) + '</div></div>';
-                        orderstr += '<div class="fLeft col100 semibold pBtm5">Code:<span class="regular">' + v.product_code + '</span></div>';
+                        orderstr += '<div class="col100 fLeft"><div class="fRight cartRup15b semibold font16"> ' + indianMoney(parseInt(v.price)) + '</div></div>';
                         orderstr += '<div class="filterSec fLeft" id="'+v.order_status+'">';
                         orderstr += '<center>';
                         orderstr += '<div class="button actBtn transition300 fRight mar0 trackCommon" id="' + v.pid + '_' + s + '_'+v.order_status+'_'+v.oid+'" onclick="trackslide(this)">track</div>';
@@ -518,9 +519,9 @@ function persnlInfo() {
 
             var profileStr = "";
             $(obj['result']).each(function (k, l) {
-                profileStr += '<div class="proFields">' + l.uname + '</div>';
-                profileStr += '<div class="proFields">' + l.mob + '</div>';
-                profileStr += '<div class="proFields">' + l.email + '</div>';
+                profileStr += '<div class="proFields blStl font13">' + l.uname + '</div>';
+                profileStr += '<div class="proFields semibold font13">' + l.mob + '</div>';
+                profileStr += '<div class="proFields font13">' + l.email + '</div>';
             });
             $('#persnlDet').append(profileStr);
         }
@@ -680,27 +681,26 @@ function displayaddrs() {
               addrStr = "";
                 addrStr += '<div class="fLeft defaulDiv">';
                 addrStr += '<div class="fLeft col100">';
-                addrStr += '<div class="font13 semibold txt_Upper">'+n.name+'</div>';
+                addrStr += '<div class="blStl  txt_Upper">'+n.name+'</div>';
                 addrStr += '<div class="font12 semibold">'+n.mobile+'</div>';
                 addrStr += '<div class="font12">' + n.address + '</div>';
                 //addrStr+='<div class="font13">Kormanagala</div>';
                 addrStr += '<div class="font12">' + n.city + '-' + n.pincode + '</div>';
                 addrStr += '<div class="font12">' + n.state + '</div>';
                 addrStr += '</div>';
-                addrStr += '<div class="filterSec fLeft">';
-                addrStr += '<center>';
-                addrStr += '<div class="button actBtn marR transition300" onclick="removeaddr(this)" id=' + n.shipping_id + '>remove</div>';
+                //addrStr += '<div class="filterSec fLeft">';
+                //addrStr += '<center>';
+              //  addrStr += '<div class="button actBtn marR transition300" onclick="removeaddr(this)" id=' + n.shipping_id + '>remove</div>';
+                addrStr +=   '<div class="trashAddr" onclick="removeaddr(this)" id=' + n.shipping_id + '></div>';
                 //  addrStr+='<div class="button actBtn marR  transition300">edit</div>';
-                addrStr += '</center>';
-                addrStr += '</div>';
+              //  addrStr += '</center>';
+              //  addrStr += '</div>';
                 addrStr += '</div>';
 
-                if(m%2==0){
-                    $('#myaddrs').find('.col50').eq(0).append(addrStr);
-                }
-                else{
-                    $('#myaddrs').find('.col50').eq(1).append(addrStr);
-                }
+
+                    $('#myaddrs').find('.col50').append(addrStr);
+
+
             });
             //$('#myaddrs').html(addrStr);
         }
@@ -839,24 +839,25 @@ $('#wId').click(function () {
     whlist();
 });
 
-$('.addrEditCnt').click(function () {
+$('#plusCont').click(function () {
     addAddress();
 });
 
 function addAddress()
 {
-    if ($("#plusCont").hasClass("plusBlack")) {
-        $("#plusCont").removeClass("plusBlack");
-        $("#plusCont").addClass("minusBlack");
-        $("#plusCont").parent().siblings('#openAddrId').removeClass("dn");
-        accntentrflag = 1;
-    } else {
-        accntentrflag = 0;
-        $("#plusCont").removeClass("minusBlack");
-        $("#plusCont").addClass("plusBlack");
-        $("#plusCont").parent().siblings('#openAddrId').addClass("dn");
-    }
-}
+//     if ($("#plusCont").hasClass("plusBlack")) {
+//         $("#plusCont").removeClass("plusBlack");
+//         $("#plusCont").addClass("minusBlack");
+//         $('#openAddrId').removeClass("dn");
+//         accntentrflag = 1;
+//     } else {
+//         accntentrflag = 0;
+//         $("#plusCont").removeClass("minusBlack");
+//         $("#plusCont").addClass("plusBlack");
+//         $('#openAddrId').addClass("dn");
+//     }
+  $('#openAddrId').toggleClass('dn');
+ }
 
 function ordrinfo()
 {

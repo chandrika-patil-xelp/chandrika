@@ -76,7 +76,7 @@ textarea:focus, input:focus{outline: none;}
     cursor: pointer;
     z-index: 10;
     overflow: hidden;
-    margin: 30px 0px;
+    margin: 10px 0px;
     -webkit-touch-callout: none;
     -webkit-user-select: none;}
 .btnc1{border:2px solid #333; color:#333;}
