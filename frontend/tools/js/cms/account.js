@@ -150,7 +150,6 @@ function displayorders()
                         orderstr += '<span class="fLeft"></span>';
                         orderstr += '</div>';                      ;
                         orderstr += '<div class="fLeft  col10">';
-
                         orderstr += '<span class="fLeft color999 txt_Capital">Diamonds '+ dmdcarat +' | '+ v.quality + (v.size != 0.0 ? ' | Size: '+v.size  : '') +'</span>';
                         orderstr += '<span class="fLeft"></span>';
                         orderstr += '</div>';
@@ -158,7 +157,6 @@ function displayorders()
                         // orderstr += '<span class="fLeft">Qty :</span>';
                         // orderstr += '<span class="fLeft">' + v.pqty + '</span>';
                         // orderstr += '</div>';
-
                         // orderstr += '<div class="fLeft  shipTo">';
                         // if (v.size != 0.0) {
                         //     orderstr += '<span class="fLeft">Size :</span>';
@@ -682,12 +680,12 @@ function displayaddrs() {
               addrStr = "";
                 addrStr += '<div class="fLeft defaulDiv">';
                 addrStr += '<div class="fLeft col100">';
-                addrStr += '<div class="font13">'+n.name+'</div>';
-                addrStr += '<div class="font13">'+n.mobile+'</div>';
-                addrStr += '<div class="font13">' + n.address + '</div>';
+                addrStr += '<div class="font13 semibold txt_Upper">'+n.name+'</div>';
+                addrStr += '<div class="font12 semibold">'+n.mobile+'</div>';
+                addrStr += '<div class="font12">' + n.address + '</div>';
                 //addrStr+='<div class="font13">Kormanagala</div>';
-                addrStr += '<div class="font13">' + n.city + '-' + n.pincode + '</div>';
-                addrStr += '<div class="font13">' + n.state + '</div>';
+                addrStr += '<div class="font12">' + n.city + '-' + n.pincode + '</div>';
+                addrStr += '<div class="font12">' + n.state + '</div>';
                 addrStr += '</div>';
                 addrStr += '<div class="filterSec fLeft">';
                 addrStr += '<center>';

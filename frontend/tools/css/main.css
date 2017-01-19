@@ -1673,8 +1673,8 @@ input[type=radio]:checked ~ .selector_label:after {transform:translateX(0%);-web
 .grStyl7 .grCap{right:-4px;bottom:-20px;}
 .wCont  .col30{display:inline-block;vertical-align:top;width:28%;height:57%;transition-delay:400ms;-webkit-transition-delay:400ms;-moz-transition-delay:400ms;-ms-transition-delay:400ms;-o-transition-delay:400ms}
 .hovTr{width:100%;height:100%;position:absolute;left:0;top:0;overflow:hidden}
-/*.hovTrans{width:100%;height:100%;position:absolute;left:0;top:0;background:rgba(0,0,0,0.50);    border: 5px solid #222529;transform:translateX(-100%);-webkit-transform:translateX(-100%);-moz-transform:translateX(-100%);-ms-transform:translateX(-100%);-o-transform:translateX(-100%);display:none}*/
-.HOME_PAGE .hovTrans{opacity: 1;width:100%;height:100%;position:absolute;left:0;top:0;background:rgba(0,0,0,0.5); }
+/*.hovTrans{width:100%;height:100%;position:absolute;left:0;top:0;background:rgba(0,0,0,0.50);    border: 5px solid #222529;}*/
+.HOME_PAGE .hovTrans{opacity: 1;width:100%;height:100%;position:absolute;left:0;top:0;background:rgba(0,0,0,0.5); transform:translateX(-100%);-webkit-transform:translateX(-100%);-moz-transform:translateX(-100%);-ms-transform:translateX(-100%);-o-transform:translateX(-100%);display:none}
 .hovTrans{opacity: 0;width:100%;height:100%;position:absolute;left:0;top:0;background:rgba(0,0,0,0.5);}
 .PRODUCT_GRID2 .hovTrans{background:rgba(0,0,0,0.05);border: 5px solid #222529;opacity: 0;transition:300ms;-webkit-transition:300ms;-o-transition:300ms;-moz-transition:300ms;-ms-transition:300ms}
 .myaccount .hovTrans{border: 5px solid #222529;opacity: 0;background: rgba(0,0,0,0.05);}
@@ -2213,7 +2213,7 @@ input[type=radio]:checked ~ .matchIcn{display:block;background:#53C9C7 url(../im
 .addrName{width:100%;height: 40px;line-height: 40px;padding: 10px 0px;}
 .defaultHead{width:100%;height: 50px;line-height: 50px;text-transform: uppercase;font-family: semibold;}
 .EditAddr{width:100%;height: auto;border: 1px solid #ccc;padding: 10px;margin-bottom: 15px;}
-.defaulDiv{width:100%;height: auto;border: 1px solid #ccc;padding: 10px;margin-bottom: 15px;line-height: 19px;word-wrap: break-word;}
+.defaulDiv{width:100%;height: auto;border: 1px solid #ccc;padding:35px;margin-bottom: 15px;line-height: 19px;word-wrap: break-word;}
 .orderParent{width: 100%;height: auto;padding: 20px 20px 20px 135px;border-bottom: 1px solid #ccc;position:relative;background:#f3f3f3;}
 .orderParent:last-child{border: none;}
 .orderParent.trOpen{padding-bottom:190px}
