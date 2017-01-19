@@ -16,8 +16,10 @@ function getheader()
 		      if(v.cat_name !== "Education")
 		      {  
 			cnt=0;
-			mainheader+=" <div class='tabB fLeft'>  <div class='tab fLeft taba'>"+(v.cat_name).toUpperCase()+"  </div>  </div>"; 
-			
+			var mainmn="";
+			var mainmn=v.cat_name;	mainmn=mainmn.toLowerCase().replace(' ','-'); 
+			mainheader+=" <div class='tabB fLeft'> <a href='"+DOMAIN+""+mainmn+"/pid-"+v.catid+"'> <div class='tab fLeft taba' >"+(v.cat_name).toUpperCase()+"  </div> </a> </div>"; 
+			 
 			 if(v['subcat'] == undefined)
 			 {
 			    subheader+= '<div class="menu_elm ">';
@@ -30,10 +32,12 @@ function getheader()
 			    subheader+='<div class="menu_elm ">';
 			    subheader+='<div class="col33 fLeft">'; 
 			    $(v['subcat']).each(function(p,t)
-			    {   
+			    {
+			       var submn="";
+			       submn=t.cat_name;    submn=submn.toLowerCase().replace(' ','-'); 
 			       cnt++;
 			       subheader+='<div class="col100 fLeft">';
-			       subheader+='<a href="'+DOMAIN+'index.php?action=product_grid&id='+t.catid+'"><div class="menu_list fLeft"  ';
+			       subheader+='<a href="'+DOMAIN+''+submn+'/pid-'+t.catid+'"><div class="menu_list fLeft"  ';
 			       subheader+='id="'+v.cat_name+'_'+t.catid+'">'+t.cat_name+'</div></a>';
 			       subheader+='</div>';
 			       if(cnt % 2 == 0)
@@ -170,4 +174,4 @@ function GetURLParameter(Param)
         }
 
     });
-
+ 
