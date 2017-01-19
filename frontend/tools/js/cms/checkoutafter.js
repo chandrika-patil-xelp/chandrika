@@ -229,7 +229,8 @@ $(document).ready(function () {
                 $('#ordrID').html(v.oid);
                 
 
-                $('#ordate').html(ordrdt[0]+"/"+curtime);
+                $('#ordate').html(ordrdt[0]);
+		$('#ordtime').html(curtime);
                 $('#addr').html(v.uaddres);
                 $('#adcity').html('' + v.ucity + ' ' + v.upin + '');
                 $('#trnsctnid').html(v.transactionid);
