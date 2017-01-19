@@ -58,7 +58,8 @@ define('VERSION',1.25);
 
 
 
-define('FAVICON', BACKDOMAIN . 'tools/img/common/favicon.ico');
+//define('FAVICON', BACKDOMAIN . 'tools/img/common/favicon.ico');
+define('FAVICON', DOMAIN.'frontend/tools/img/icons/fav1.png');
 
 $css = array();
 $jvs = array();
