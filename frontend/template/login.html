@@ -319,6 +319,16 @@
         var flag;
 
         function openPopUp() {
+            $('.wrapper_main').bind('keyup mouseup',
+               
+                        function(e){
+                            $('body a').attr("tabindex","-1");
+                            if (e.which === 9) {
+                                // focus from tab
+                                return false;
+                            }
+                        });
+                
             entrflg = 4;
 //             $('.overlay').stop(true, true).fadeTo(200, 1);        
             $('#signInId').removeClass("dn");
