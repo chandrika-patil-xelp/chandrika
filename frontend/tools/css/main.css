@@ -2597,7 +2597,7 @@ padding: 60px 70px 25px 70px;}
 
 .inCarousel{width: 95%;height: 100%;padding: 0;margin: 0;list-style-type: none;white-space: nowrap;background: #fff;}
 .emptyGrid{width: 100%;position: absolute;height: 200px;top: 0;right: 0;bottom: 0;left: 0;margin: auto;}
-.emptyLogo{background:url(../img/icons/empty1.svg)no-repeat;background-position: center;    background-size: auto 40px;    width: 100%;    height: 100px;}
+.emptyLogo{background:url(../img/icons/552.svg)no-repeat;background-position: center;    background-size: auto 100%;    width: 100%;    height: 100px;}
 
 
 
