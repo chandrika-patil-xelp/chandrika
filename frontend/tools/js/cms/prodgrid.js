@@ -181,33 +181,33 @@ function generatelist(obj) {
            var Diaprc = obj['dmdQPricepercarat'];
        
     }
-    
-     if (obj['chldcatname'] == 'Rings')
-      bseSize = parseFloat(14);
- else if (obj['chldcatname'] == 'Bangles')
-    bseSize = parseFloat(2.4);
-    
-    
-     if (obj['chldcatname'] == 'Rings') 
-        mtlWgDav = 0.05;
-     else if (obj['chldcatname'] == 'Bangles') 
-        mtlWgDav = 7;
+    console.log(obj);
+      if (obj['chldcatname'] == 'Rings' || obj['finejwellrycatname'] == 'Rings')
+	    bseSize = parseFloat(14);
+      else if (obj['chldcatname'] == 'Bangles' || obj['finejwellrycatname'] == 'Bangles')
+	    bseSize = parseFloat(2.4);
     
     
-     if (obj['chldcatname'] === 'Rings'){
+     if (obj['chldcatname'] == 'Rings' || obj['finejwellrycatname'] == 'Rings') 
+	    mtlWgDav = 0.05;
+     else if (obj['chldcatname'] == 'Bangles'|| obj['finejwellrycatname'] == 'Bangles') 
+	    mtlWgDav = 7;
+    
+
+     if (obj['chldcatname'] === 'Rings' || obj['finejwellrycatname'] === 'Rings'){
        
    changeInWeightsizelow = (5 - bseSize) * mtlWgDav;   
    changeInWeightsizehigh = (25- bseSize) * mtlWgDav;
     newWeightlow = parseFloat(Metalwgt) +parseFloat(changeInWeightsizelow); 
     newWeighthigh = parseFloat(Metalwgt) +parseFloat(changeInWeightsizehigh); 
    }                                                                       
-   else if(obj['chldcatname'] === 'Bangles'){
+   else if(obj['chldcatname'] === 'Bangles' || obj['finejwellrycatname'] === 'Bangles'){
      changeInWeightsizelow = (2.2- bseSize) * mtlWgDav; 
     changeInWeightsizehigh = (2.9- bseSize) * mtlWgDav;
     newWeightlow = parseFloat(Metalwgt) + parseFloat(changeInWeightsizelow);
     newWeighthigh = parseFloat(Metalwgt) + parseFloat(changeInWeightsizehigh);
    }
-   else if(obj['chldcatname'] !== 'Rings' || obj['chldcatname'] !== 'Bangles'){
+   else if((obj['chldcatname'] !== 'Rings' || obj['chldcatname'] !== 'Bangles') || (obj['finejwellrycatname'] !== 'Bangles' || obj['finejwellrycatname'] !== 'Rings')){
         changeInWeightsizelow = (0- bseSize) * mtlWgDav;  
    changeInWeightsizehigh = (0- bseSize) * mtlWgDav;
     newWeightlow = parseFloat(Metalwgt) + parseFloat(changeInWeightsizelow);
@@ -237,7 +237,7 @@ var goldPricehighp =0;
    
  
 
-    grandtotlow = totalNewPricelow.toFixed();
+    grandtotlow = totalNewPricelow.toFixed(); 
      grandtothigh = totalNewPricehigh.toFixed();
     grandtotallow = common.IND_money_format(grandtotlow, 0); 
     grandtotalhigh = common.IND_money_format(grandtothigh, 0); 
@@ -608,7 +608,7 @@ $('#gr_foot').on('click', function () {
   $('.gridLoad').removeClass("dpn");
    setTimeout(function (){ 
      $('.gridLoad').addClass("dpn");
-     },500);
+     },1500);
      
   if(Object.keys(fltrarray).length > 1)
   { 

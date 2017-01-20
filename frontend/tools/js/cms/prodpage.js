@@ -200,8 +200,8 @@ $('#add_to_cart').on('click', function () {
 	}
 	else
 	{
-	   storecartdata(cartdata, 1);  
-	     
+	    storecartdata(cartdata, 1);  
+	    $('#add_to_cart').removeClass('pointNone');
 	     var wd = $('.rota').outerWidth();
                 var ht = $('.rota').outerHeight();
                 var cart = $('.cartIcon');

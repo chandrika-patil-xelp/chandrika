@@ -3834,9 +3834,11 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                             (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND active_flag !=2 ORDER BY
                             image_sequence DESC) AS images,
 			    
-			    (SELECT pcatid FROM tbl_category_master WHERE catid =" . $cid . ") AS cpcatid,
-			    (SELECT cat_name FROM tbl_category_master WHERE catid = cpcatid ) AS parntcatname,
-			    (SELECT cat_name FROM tbl_category_master WHERE catid =" . $cid . " ) AS chldcatname,
+			    (SELECT pcatid FROM tbl_category_master WHERE catid =" . $cid . " AND active_flag=1) AS cpcatid,
+			    (SELECT cat_name FROM tbl_category_master WHERE catid = cpcatid AND active_flag=1) AS parntcatname,
+			    (SELECT cat_name FROM tbl_category_master WHERE catid =" . $cid . " AND active_flag=1) AS chldcatname,
+			    (SELECT GROUP_CONCAT(catid)  FROM tbl_category_product_mapping WHERE productid =pid AND active_flag=1 AND catid!= ".$cid.") AS finejwellrycatid,  
+			    (SELECT GROUP_CONCAT(cat_name) FROM tbl_category_master WHERE FIND_IN_SET(catid,finejwellrycatid) AND active_flag=1 ) AS finejwellrycatname,
 			    (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND active_flag != 2 AND  default_img_flag=1) AS default_image
 			    
 	  FROM tbl_product_master WHERE active_flag =1 AND productid  IN (SELECT
@@ -3921,7 +3923,8 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                 $arr['totalUncut'] = $row['totalUncut'];
                 $arr['Uncutcarat'] = $row['Uncutcarat'];
                 $arr['UncutPricepercarat'] = $row['UncutPricepercarat'];
-
+		$arr['finejwellrycatname'] = $row['finejwellrycatname'];
+		
                 $arr['default_image'] = $row['default_image'];
                 $arr['allmetalpurity'] = $row['allmetalpurity'];
                 $arr['purity'] = $row['purity'];
@@ -3931,7 +3934,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                 $arr['images'] = trim($row['images'], ',');
                 $arr['parntcatname'] = $row['parntcatname'];
                 $arr['chldcatname'] = $row['chldcatname'];
-
+		$arr['finfjelycatname'] = $row['finfjelycatname'];
                 if ($row['jewelleryType'] === '1') {
                     $arr['jwelType'] = 'Gold';
                 } else if ($row['jewelleryType'] === '2') {
@@ -3968,25 +3971,25 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                     $Gemswgt = $row['gemswgt'];
                     $price = $price + ($Gemswgt * $Gemsprc);                 
                 }
-
-                if ($row['chldcatname'] == 'Rings') {
-
+	
+                if ($row['chldcatname'] == 'Rings' || $arr['finejwellrycatname'] == 'Rings') {
+	 
                     $changeInWeightsizelow = (5 - 14) * 0.05;
                     $changeInWeightsizehigh = (25 - 14) * 0.05;
                     $newWeightlow = $row['metal_weight'] + $changeInWeightsizelow;
                     $newWeighthigh = $row['metal_weight'] + $changeInWeightsizehigh;
-                } else if ($row['chldcatname'] === 'Bangles') {
-                    $changeInWeightsizelow = (2.2 - 2.4) * 7;
+                } else if ($row['chldcatname'] === 'Bangles' || $arr['finejwellrycatname'] == 'Bangles') { 
+                    $changeInWeightsizelow = (2.2 - 2.4) * 7;  
                     $changeInWeightsizehigh = (2.9 - 2.4) * 7;
                     $newWeightlow = $row['metal_weight'] + $changeInWeightsizelow;
                     $newWeighthigh = $row['metal_weight'] + $changeInWeightsizehigh;
-                } else if ($row['chldcatname'] !== 'Rings' || $row['chldcatname'] !== 'Bangles') {
-                    $changeInWeightsizelow = (0 - 0) * mtlWgDav;
+                } else if (($row['chldcatname'] !== 'Rings' || $row['chldcatname'] !== 'Bangles') ||  ($arr['finejwellrycatname'] !== 'Rings' || $arr['finejwellrycatname'] !== 'Bangles')) {
+                    $changeInWeightsizelow = (0 - 0) * mtlWgDav; 
                     $changeInWeightsizehigh = (0 - 0) * mtlWgDav;
                     $newWeightlow = $row['metal_weight'] + $changeInWeightsizelow;
                     $newWeighthigh = $row['metal_weight'] + $changeInWeightsizehigh;
-                }
-
+                }  
+		
                 $newWeightlow = $newWeightlow;
                 $newWeighthigh = $newWeighthigh;
 
@@ -4002,7 +4005,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                 $totalNewPricelow = round($ttllowp + ($ttllowp * $vatRate));
                 $totalNewPricehigh = round($ttlhighp + ($ttlhighp * $vatRate));
 
-                $arr['totalprclow'] = $totalNewPricelow;
+                $arr['totalprclow'] = $totalNewPricelow; 
                 $arr['totalprchigh'] = $totalNewPricehigh;
 		 $reslt[] = $arr;
 		$totalNewPricelowArr[]=array($row['productid']=>$totalNewPricelow);
