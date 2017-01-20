@@ -76,21 +76,14 @@ width: 13px!important;}
         left: 0;
         cursor: default;
     }
+    #BangleGuide .irs-min{transform: rotate(-90deg)!important;padding: 3px 5px;top: -4px;    border-radius: 3px;width: 25px;}
+    #BangleGuide .irs-max{transform: rotate(-90deg)!important;    padding: 3px 5px;    top: -4px;    border-radius: 3px;    width: 25px;}
     
     .ringSlider .irs-min{transform: rotate(-90deg)!important;}
     .ringSlider .irs-max{transform: rotate(-90deg)!important;}
-    .irs-max {
-        position: absolute; display: block;
-        right: 0;
-        cursor: default;
-    }
+    .irs-max {position: absolute;display: block;right: 0;cursor: default;}
 
-    .irs-from, .irs-to, .irs-single {
-        position: absolute; display: block;
-        top: -4px; left: 0;
-        cursor: default;
-        white-space: nowrap;
-    }
+    .irs-from, .irs-to, .irs-single { position: absolute; display: block;top: -4px; left: 0;        cursor: default;        white-space: nowrap;    }
 
 .irs-grid {
     position: absolute; display: none;

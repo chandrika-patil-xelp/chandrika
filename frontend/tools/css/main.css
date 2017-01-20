@@ -2067,7 +2067,7 @@ input[type=radio]:checked ~ .matchIcn{display:block;background:#53C9C7 url(../im
 .summary{width:100%;height: auto;padding: 20px 0px 20px 0px;font-family: regular;}
 .summary .col100{width:100%;height:auto;min-height:100px;position:relative;margin-bottom: 10px;border:1px solid #e6e6e6;background: #f3f3f3;}
 .summary .col100 .btncnt{width:100%;height:auto;margin-top: 5px;display: none;}
-.summary .w50r{width:100%;height:auto;   padding: 35px 15px 35px 85px;}
+.summary .w50r{width:100%;height:auto;   padding: 35px 15px 35px 85px;word-wrap: break-word;}
 .summary .w50r .text{width: 100%;height: auto;text-align: left;font-size: 12px;line-height: 18px;color: #15181b;padding-bottom: 5px;word-wrap: break-word;}
 .delvrAdress .w50l{width:50%;height:auto;    padding: 20px 50px 20px 0px;}
 .delvrAdress .w50l .text{width:100%;height:auto;text-align:left;font-size:13px;line-height:26px;color:#333;}
@@ -2444,7 +2444,7 @@ input[type=radio]:checked ~ .matchIcn{display:block;background:#53C9C7 url(../im
 .descHead{width:100%;height:30px;text-transform: uppercase;font-size: 14px;font-family: semibold;letter-spacing: 0.35em;line-height: 30px;}
 .hideDiv{transform:translateX(150%);transition: 600ms;width:100%;position:absolute;background-color:#fff;z-index:20;overflow: hidden;height:450px;left: 0;}
 .try{width:0%;border:1px solid;}
-.hideDivafter{padding: 60px;transform:translateX(0%);transition: 600ms;transition-delay:800ms;width: 100%;height: 500px;transition-delay: 300ms;}
+.hideDivafter{padding: 0px 60px 0px 60px;transform:translateX(0%);transition: 600ms;transition-delay:800ms;width: 100%;height: 500px;transition-delay: 300ms;}
 .imageOutr{width:20%;height: auto;position: relative;padding: 14px;cursor: pointer;}
 .transGem{transform: translateX(-150%);transition:300ms;transition-delay:500ms;}
 .subgHead{margin: 10px 0px 10px 0px;letter-spacing: 0.15em;font-size: 12px;font-family: bolder;line-height: 30px;color: #15181b;text-transform: uppercase;width: 100%;height: auto;text-align: center;position: absolute;bottom: 0;}

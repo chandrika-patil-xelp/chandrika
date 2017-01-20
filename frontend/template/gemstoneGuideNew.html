@@ -2,7 +2,7 @@
 <?php include 'jhead.html' ?>
 <body class="Terms">
     <?php include 'Cart.html'?>
-     <?php include 'loader.html'?>
+    <?php include 'loader.html'?>
     <?php include 'header.html'?>
     <?php include 'login.html'?>
     <div class="fLeft gemBanner">
@@ -13,26 +13,26 @@
         <div class="container2 fLeft">
             <div class="col100">
                 <div class="wrapper_max offsetTop offsetEffects transition600">
-                     <div class="filterH fLeft">
-                            <div class="breadCont fLeft" id="parnttyp">
-                                <div class="breadP fLeft">Gemstone</div>
-                                <div class="breadP fLeft">Polish</div>
-                            </div>
+                    <div class="filterH fLeft">
+                        <div class="breadCont fLeft" id="parnttyp">
+                            <div class="breadP fLeft">Gemstone</div>
+                            <div class="breadP fLeft">Polish</div>
                         </div>
-                        <div class="ftabWrap fLeft">
-                            <div class="ftab_buffer fRight">
-<!--                                <div class="ftabB">
-                                      POLISH
-                                    </ <div class="ftab fLeft taba" id="pId">
-                                     div>
-                                </div>
-                                                                                                <div class="ftabB">
-                                                                                                    <div class="ftab fLeft taba" id="rId">
-                                                                                                        ROUGH
-                                                                                                    </div>
-                                                                                                </div>-->
-                            </div>
+                    </div>
+                    <div class="ftabWrap fLeft">
+                        <div class="ftab_buffer fRight">
+                            <!--                                <div class="ftabB">
+                                                                  POLISH
+                                                                </ <div class="ftab fLeft taba" id="pId">
+                                                                 div>
+                                                            </div>
+                                                                                                                            <div class="ftabB">
+                                                                                                                                <div class="ftab fLeft taba" id="rId">
+                                                                                                                                    ROUGH
+                                                                                                                                </div>
+                                                                                                                            </div>-->
                         </div>
+                    </div>
                     <div class="tCommon fLeft index">
 
                         <div class="hideDiv alextrial ruby_st" id="ruby1">
@@ -684,7 +684,11 @@
 //        $('.define').velocity({opacity: 0});
         var fchild;
         $('.imageOutr').click(function () {
-            $("body").animate({scrollTop: 200}, 'slow');
+            var imtxt = $(this).find('.imgHead').text();
+            var gen = '<div class="breadP fLeft" id="tid"></div>';
+            $('#parnttyp').append(gen);
+            $('#tid').text(imtxt);
+            $("body").animate({scrollTop: 300}, 'slow');
             var imgId = $(this).attr("id");
             fchild = $(this).children(':first-child').attr("id");
             $(fchild).addClass("title_eff");
@@ -697,6 +701,7 @@
         });
 
         $('.closeGem').click(function () {
+            $('#tid').text('');
             var imgId = $('.imageOutr').index();
             console.log(imgId);
             $('.imageOutr').removeClass("title_eff");

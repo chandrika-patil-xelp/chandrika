@@ -31,34 +31,34 @@
 } 
 .ringSlider .irs-from{display: none;}
 .ringSlider .irs-to{display: none;}
-    
+
 .irs-line {
     height: 6px; top: 25px;
 }
 /*#RingGuide .irs-line {width:300px!important;}*/
- /*#ringGuide .irs-line{width:300px!important;}*/
-    .irs-line-left {
-        height: 6px;
-        background-position: 0 -30px;
-    }
-    .irs-line-mid {
-        height: 6px;
-        background-position: 0 0;
-    }
-    .irs-line-right {
-        height: 6px;
-        background-position: 100% -30px;
-    }
+/*#ringGuide .irs-line{width:300px!important;}*/
+.irs-line-left {
+    height: 6px;
+    background-position: 0 -30px;
+}
+.irs-line-mid {
+    height: 6px;
+    background-position: 0 0;
+}
+.irs-line-right {
+    height: 6px;
+    background-position: 100% -30px;
+}
 
 .irs-bar {
     height: 6px; top: 25px;
     background-position: 0 -60px;
 }
-    .irs-bar-edge {
+.irs-bar-edge {
     top: 25px;
     height: 6px; width: 7px;
     background-position: 0 -90px;
-    }
+}
 
 .irs-shadow {
     height: 1px; top: 34px;
@@ -79,13 +79,14 @@
 }
 
 .irs-min, .irs-max {
-    color: #c0c0c0;
+    color: #ffffff;
     font-size: 10px; line-height: 1.333;
     text-shadow: none;
-    top: 0; padding: 1px 3px;
-    background: rgba(0,0,0,0.1);
+    top: -5px; padding: 3px 5px;
+    background:#15181b;
     -moz-border-radius: 3px;
-    border-radius: 3px;
+    width: 20px;
+    text-align: center;
 }
 .lt-ie9 .irs-min, .lt-ie9 .irs-max {
     background: #3654b0;
@@ -99,22 +100,22 @@
     background: rgba(255,255,255,0.8);
     -moz-border-radius: 3px;
     border-radius: 3px;
-   
+
 }
 #rg .irs-to{
-     background: url(../../img/icons/519s15w.svg) no-repeat;
+    background: url(../../img/icons/519s15w.svg) no-repeat;
     background-size: auto 8px;
     background-position: left 3px center;
 }
 
 #rg .irs-from{
-     background: url(../../img/icons/519s15w.svg) no-repeat;
+    background: url(../../img/icons/519s15w.svg) no-repeat;
     background-size: auto 8px;
     background-position: left 3px center;
 }
 
 #rg .irs-single{
-       background: url(../../img/icons/519s15w.svg) no-repeat;
+    background: url(../../img/icons/519s15w.svg) no-repeat;
     background-size: auto 8px;
     background-position: left 3px center;
 }
