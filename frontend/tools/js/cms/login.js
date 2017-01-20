@@ -1,8 +1,8 @@
 
 var glbcartdeatil, inptval, newuserid, otpflg=0, userdata=[], entrflg=0, mailmob, gndrflg, mailflag=1, mobflag=1;
-
+  
 $('#rsubId').on('click',function(){
-  dosignup();
+  dosignup(); 
 });
 
  function dosignup()
@@ -65,7 +65,7 @@ $('#rsubId').on('click',function(){
         validationFlag=0;
         common.msg(0,'Please enter New Email Id');
         return false;
-    }
+    } 
     if(mobflag == 0)
     {
         validationFlag=0;
@@ -204,11 +204,11 @@ function chklogin()
 			    hasitem(oldcartid,olduserid);
 		      }
 		    common.msg(1,'Sign in successful');
-		        var URLactn = window.location.search;
-		      var url=DOMAIN + 'index.php' +URLactn;
-		      setTimeout(function(){
-			window.location.href = url;
-		      },3000)
+		    
+		    var URLactn = window.location.href;  
+		    setTimeout(function(){
+			window.location.href = URLactn;
+		    },3000)
 
 		    }
 		});
@@ -487,9 +487,9 @@ function sugnupsubmt()
    function checkotp(otpval)
   {
     if($.isNumeric(inptval))
-	var URL= APIDOMAIN + "index.php/?action=checkopt&mobile="+inptval+"&otpval="+otpval;
+	var URL= APIDOMAIN + "index.php?action=checkopt&mobile="+inptval+"&otpval="+otpval;
     else
-	var URL= APIDOMAIN + "index.php/?action=checkopt&mobile="+mailmob+"&otpval="+otpval;
+	var URL= APIDOMAIN + "index.php?action=checkopt&mobile="+mailmob+"&otpval="+otpval;
       $.ajax({  url: URL, type: "GET",  datatype: "JSON", success: function(results) {
 		      var obj=JSON.parse(results);
 		      var data=obj.result;
@@ -500,14 +500,14 @@ function sugnupsubmt()
 		      if(otpval==data.otp){
 		if(otpflg == 1)
 		{
-   var URLreg= APIDOMAIN + "index.php/?action=addUser&name="+userdata[0]+"&email="+userdata[1]+"&mobile="+userdata[2]+"&pass="+userdata[3]+"&gender="+gndrflg;
+   var URLreg= APIDOMAIN + "index.php?action=addUser&name="+userdata[0]+"&email="+userdata[1]+"&mobile="+userdata[2]+"&pass="+userdata[3]+"&gender="+gndrflg;
    $.ajax({  type:'POST',
              url:URLreg,
              success:function(res){
 	    var data1 = JSON.parse(res);
             if(data1['error']['err_code']==0)  {
                 common.msg(1,'Registered Successfully');
-		var URL = APIDOMAIN + "index.php/?action=login&email="+userdata[1]+"&pass="+userdata[3];
+		var URL = APIDOMAIN + "index.php?action=login&email="+userdata[1]+"&pass="+userdata[3];
 		$.ajax({ type:'POST',  url:URL, success:function(res){
 		    var data = JSON.parse(res);
 		    var logDetails = data['result'];
@@ -680,92 +680,92 @@ function sugnupsubmt()
   });
 
   $('#signupemail').blur(function(){
-
+    
     var email=$('#signupemail').val();
-    if(email.length > 0)
-    {
-	var validationFlag=1;
-	var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
-
-	if(email===''|| email=== null){
-	    mailflag=0;
-	    validationFlag=0;
-	    common.msg(0,'Please enter your Email-id');
-	    return false;
-	}
-	else if (!reg.test(email)){
-	    mailflag=0;
-	    validationFlag=0;
-	    common.msg(0,'Invalid Email-id');
-	    return false;
-	}
-	if(validationFlag == 1)
+	if(email.length > 0)
 	{
-	    var URL= APIDOMAIN + "index.php?action=getUserDetailsbyinpt&email="+email+"&mobile=";
-	    var vlflag=1;
-	    $.ajax({  url: URL, type: "GET", datatype: "JSON",  success: function(res)  {
-		       var data=JSON.parse(res);
+	    var validationFlag=1;
+	    var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
 
-		       $(data['results']).each(function(r,v){
-		       if( v.email == email){
-			 mailflag=0;
-			 vlflag=0;
-			 common.msg(0,'Email-id already registered');
-		       }
-		       });
-		       if(vlflag == 1)
-			 mailflag=1;
+	    if(email===''|| email=== null){
+		mailflag=0;
+		validationFlag=0;
+		common.msg(0,'Please enter your Email-id');
+		return false;
 	    }
-	    });
+	    else if (!reg.test(email)){
+		mailflag=0;
+		validationFlag=0;
+		common.msg(0,'Invalid Email-id');
+		return false;
+	    }
+	    if(validationFlag == 1)
+	    {
+		var URL= APIDOMAIN + "index.php?action=getUserDetailsbyinpt&email="+email+"&mobile=";
+		var vlflag=1;
+		$.ajax({  url: URL, type: "GET", datatype: "JSON",  success: function(res)  {
+			   var data=JSON.parse(res);
+
+			   $(data['results']).each(function(r,v){
+			   if( v.email == email){
+			     mailflag=0;
+			     vlflag=0;
+			     common.msg(0,'Email-id already registered');
+			   }
+			   });
+			   if(vlflag == 1)
+			     mailflag=1;
+		}
+		});
+	    }
 	}
-    }
   });
 
 
   $('#mobile').blur(function(){
-
-    var mobile=$('#mobile').val();
-    if(mobile.length > 0)
-    {
-	var validationFlag=1;
-	var filter = /^[0-9-+]+$/;
-	if(mobile===''|| mobile=== null){
-	    mobflag=0;
-	    validationFlag=0;
-	    common.msg(0,'Please enter your Mobile No.');
-	    return false;
-	}
-	else if(isNaN(mobile) || (mobile.length < 10) ){
-	    mobflag=0;
-	    validationFlag=0;
-	    common.msg(0,'Invalid Mobile No.');
-	    return false;
-	}
-	else if(!filter.test(mobile)){
-	    mobflag=0;
-	    validationFlag=0;
-	    common.msg(0,'Invalid Mobile No.');
-	    return false;
-	}
-
-	if(validationFlag == 1)
+    
+	var mobile=$('#mobile').val();
+	if(mobile.length > 0)
 	{
-	    var URL= APIDOMAIN + "index.php?action=getUserDetailsbyinpt&email=&mobile="+mobile;
-	    var valflag=1;
-	    $.ajax({  url: URL, type: "GET", datatype: "JSON",  success: function(res)  {
-		       var data=JSON.parse(res);
-
-		       $(data['results']).each(function(r,v){
-		       if(v.logmobile == mobile ){
-			 mobflag=0;
-			 valflag=0;
-			 common.msg(0,'Mobile number is already registered');
-		       }
-		       });
-		       if(valflag == 1)
-			  mobflag=1;
+	    var validationFlag=1;
+	    var filter = /^[0-9-+]+$/;
+	    if(mobile===''|| mobile=== null){
+		mobflag=0;
+		validationFlag=0;
+		common.msg(0,'Please enter your Mobile No.');
+		return false;
 	    }
-	    });
-	}
-    }
+	    else if(isNaN(mobile) || (mobile.length < 10) ){
+		mobflag=0;
+		validationFlag=0;
+		common.msg(0,'Invalid Mobile No.');
+		return false;
+	    }
+	    else if(!filter.test(mobile)){
+		mobflag=0;
+		validationFlag=0;
+		common.msg(0,'Invalid Mobile No.');
+		return false;
+	    }
+
+	    if(validationFlag == 1)
+	    {
+		var URL= APIDOMAIN + "index.php?action=getUserDetailsbyinpt&email=&mobile="+mobile;
+		var valflag=1;
+		$.ajax({  url: URL, type: "GET", datatype: "JSON",  success: function(res)  {
+			   var data=JSON.parse(res);
+
+			   $(data['results']).each(function(r,v){
+			   if(v.logmobile == mobile ){
+			     mobflag=0;
+			     valflag=0;
+			     common.msg(0,'Mobile number is already registered');
+			   }
+			   });
+			   if(valflag == 1)
+			      mobflag=1;
+		}
+		});
+	    }
+	} 
   });

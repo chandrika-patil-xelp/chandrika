@@ -72,27 +72,30 @@ $('#usrlogout').click(function () {
         common.removeFromStorage('jzeva_cartid');
 	common.removeFromStorage('jzeva_buyid');
 	common.removeFromStorage('jzeva_shpid');
-        var URLactn = window.location.href;
 
-        var accnvar = '';
-        accnvar = URLactn;
-        accnvar = accnvar.split('jzeva');
-	var lsaccnvar=accnvar[1].substring(1); 
-	var linkarr = accnvar[1].split('&');
-        var laccnvar = linkarr[0].split('=');
+        var URLactn = window.location.href; 
+        var accnvar = ''+URLactn; 
+        accnvar = accnvar.replace(DOMAIN,'');
 	 
-	if(laccnvar[1] !== undefined){
-	  if (laccnvar[1] == 'myaccount') {
-	     var url= DOMAIN + lsaccnvar; 
-             window.location.href = DOMAIN + "index.php?action=landing_page";
+	if (accnvar.indexOf('?') > -1)
+	{ 
+	  var linkarr = accnvar.split('?');  
+	  if(linkarr[1].indexOf('&') > -1){
+	     var tmplinkarr=""+linkarr[1];
+	     tmplinkarr=tmplinkarr.split('&');
+	     var tmpaccnstr=""+tmplinkarr[0];
+	     tmpaccnstr=tmpaccnstr.split('='); 
+	     if (tmpaccnstr[1] == 'myaccount')
+	       window.location.href = DOMAIN + "index.php?action=landing_page";
+	     else 
+		window.location.href =DOMAIN +accnvar;   
 	  }
 	  else
-	     window.location.href =DOMAIN + lsaccnvar; 
+	    window.location.href =DOMAIN +accnvar;    
 	}
-         else {
-             var url = DOMAIN + lsaccnvar; 
-             window.location.href = url;
-        }
+	else
+	   window.location.href =DOMAIN +accnvar;   
+	 
     });
 
 
