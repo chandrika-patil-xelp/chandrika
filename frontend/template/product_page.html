@@ -590,54 +590,7 @@
             $(this).toggleClass('select_active');
         });
 
-        /* Fly to cart effect */
-        $('#add_to_cart').on('click', function () {
-
-            var size = $('#size').text();
-            if (size !== 'Select')
-            {
-                var wd = $('.rota').outerWidth();
-                var ht = $('.rota').outerHeight();
-                var cart = $('.cartIcon');
-                var imgtodrag;
-                $('.rota .imgHolder').each(function (i) {
-                    if (!$(this).hasClass("dn")) {
-                        imgtodrag = $(this);
-                    }
-                });
-                if (imgtodrag) {
-                    var imgclone = imgtodrag.clone()
-                            .offset({
-                                top: imgtodrag.offset().top,
-                                left: imgtodrag.offset().left
-                            })
-                            .css({
-                                'opacity': '0.7',
-                                'position': 'absolute',
-                                'height': ht,
-                                'width': wd,
-                                'z-index': '900',
-                                'display': 'block'
-                            })
-                            .appendTo($('body'))
-                            .velocity({top: cart.offset().top + 20, left: cart.offset().left + 30, width: 0, height: 0, opacity: [0.1]}, {duration: 1000, easing: 'easeInOutExpo',
-                                complete: function () {
-                                    $(this).detach();
-                                }});
-                    //
-                    // setTimeout(function () {
-                    //     cart.velocity('stop').velocity({translateX: [-15, 15]}, {duration: 50, easing: 'swing', loop: 3}).velocity({translateX: [0]}, {duration: 25, easing: 'swing'});
-                    // }, 900);
-
-                    // imgclone.animate({
-                    //     'width': 0,
-                    //         'height': 0
-                    // }, function () {
-                    //
-                    // });
-                }
-            }
-        });
+        
         // Show close reviews page
         // $('.review_btn').click(function () {
         //     $('body').addClass('over_hide');

@@ -1,75 +1,7 @@
 
 
 var gblcartdata;
-
-function newaddToCart(paramtr)
-{
-
-    var userid, cartdata = {};
-    cartdata['pid'] = paramtr[0];
-    cartdata['price'] = paramtr[1];
-    cartdata['qty'] = 1;
-    var chr = "" + paramtr[2] + "|@|" + paramtr[4] + "|@|" + paramtr[3];
-
-    cartdata['col_car_qty'] = chr;
-    cartdata['RBsize'] = paramtr[5];
-
-    var userid = common.readFromStorage('jzeva_uid');
-    var cartid = common.readFromStorage('jzeva_cartid');
-
-    if (userid == "" || userid == null) {
-        // common.addToStorage('jzeva_uid','0');
-        userid = common.readFromStorage('jzeva_uid');
-        if (cartid == "" || cartid == null) {
-	  cartdata['cartid'] = '';
-        }
-	else{
-	   cartdata['cartid'] = cartid;
-	}
-    } else {
-        cartdata['userid'] = userid;
-        cartdata['cartid'] = cartid;
-    }
-    var flag = 0;
-
-    if (gblcartdata == null || gblcartdata == "") {
-        flag = 1;
-    } else {
-        $(gblcartdata).each(function (r, v) {
-
-            if ((cartdata.col_car_qty == v.col_car_qty && cartdata.pid == v.product_id) && parseFloat(cartdata.RBsize) == parseFloat(v.size)) {
-	       
-		  cartdata['qty'] = parseInt(v.pqty) + 1; 
-		  cartdata['price'] = parseInt(cartdata['price']) * cartdata.qty;
-		  flag = 2; 
-            } else if ((cartdata.col_car_qty == v.col_car_qty && cartdata.pid == v.product_id) && (parseFloat(cartdata.RBsize) == parseFloat(v.size))) { 
-		  cartdata['qty'] = parseInt(v.pqty) + 1;
-		  cartdata['price'] = parseInt(cartdata['price']) * cartdata.qty;
-		    flag = 2; 
-            }
-        });
-    }
-
-	    $('#rmvpoptxt').html('This Product is already in your cart do you want to add one more');
-	    cartpopUp();
-	    $('#cYes').unbind();
-	    $('#cYes').click(function () {console.log('l');
-		if (flag == 1 || flag == 0) {
-		        storecartdata(cartdata, 1);
-			cartpopUpClose();     
-		 } else {
-		        storecartdata(cartdata, 1);
-			cartpopUpClose();
-		 }
-	    });
-	    $('#cNo').click(function () {
-		cartpopUpClose();
-		$('#cNo').unbind();
-	    }); 
-		  
-}
-
-
+ 
 function storecartdata(cartdata, chk)
 {
 
