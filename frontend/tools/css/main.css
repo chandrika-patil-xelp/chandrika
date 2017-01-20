@@ -1380,8 +1380,10 @@ input[type=radio]:checked ~ .selector_label:after {transform:translateX(0%);-web
 .bigTxt .fooTxt{font-size:14px;height:25px; line-height:25px;margin-bottom:10px; text-transform:initial;}
 .fooTxt:after{content: "";width: 120%;height: 100%;position: absolute;left: 0;top: 0;background: #53C9C7;transform: translateX(-120%);-moz-transform: translateX(-120%);-webkit-transform: translateX(-120%);-o-transform: translateX(-120%);-ms-transform: translateX(-120%);transition: 0ms ease-in;}
 .fooTxt:hover{color:#53C9C7;}
-.fooTxt:hover:after{transform: translateX(0%);-moz-transform: translateX(0%);-webkit-transform: translateX(0%);-o-transform: translateX(0%);-ms-transform: translateX(0%);transition: 450ms !important; -moz-transition: 450ms !important; -ms-transition: 450ms !important; -o-transition: 450ms !important;}
-.fooTxt:hover span{color:#fff;transition:300ms;-webkit-transition:300ms;-moz-transition:300ms;-o-transition:300ms;-ms-transition:300ms;}
+.fooTxt:hover:after{transform: translateX(120%);-moz-transform: translateX(120%);-webkit-transform: translateX(120%);-o-transform: translateX(120%);-ms-transform: translateX(120%);transition: 450ms !important; -moz-transition: 450ms !important; -ms-transition: 450ms !important; -o-transition: 450ms !important;}
+#side_menus .fooTxt:hover:after{transform: translateX(0%);-moz-transform: translateX(0%);-webkit-transform: translateX(0%);-o-transform: translateX(0%);-ms-transform: translateX(0%);transition: 450ms !important; -moz-transition: 450ms !important; -ms-transition: 450ms !important; -o-transition: 450ms !important;}
+.fooTxt:hover span{color:#53C9C7;transition:300ms;-webkit-transition:300ms;-moz-transition:300ms;-o-transition:300ms;-ms-transition:300ms;}
+#side_menus .fooTxt:hover span{color:#fff;transition:300ms;-webkit-transition:300ms;-moz-transition:300ms;-o-transition:300ms;-ms-transition:300ms;}
 .fooTxt span{z-index:10;position:relative}
 .fooH{width:auto;height:30px;margin-bottom:10px; padding-left:10px; color: #222529; letter-spacing: 0.35em; font-family:bolder; line-height: 30px; font-size: 12px; text-transform: uppercase;}
 .fooLogo{background: url(../img/jzevalogoccc.svg); background-repeat: no-repeat; background-size: auto 35%;background-position: left; height: 100%;}
@@ -2213,7 +2215,7 @@ input[type=radio]:checked ~ .matchIcn{display:block;background:#53C9C7 url(../im
 .addrName{width:100%;height: 40px;line-height: 40px;padding: 10px 0px;}
 .defaultHead{width:100%;height: 50px;line-height: 50px;text-transform: uppercase;font-family: semibold;}
 .EditAddr{width:100%;height: auto;border: 1px solid #ccc;padding: 35px;margin-bottom: 15px;}
-.defaulDiv{width:100%;height: auto;border: 1px solid #ccc;padding:35px;margin-bottom: 15px;line-height: 19px;word-wrap: break-word;position:relative}
+.defaulDiv{width:100%;height: auto;border: 1px solid #ccc;padding: 35px 55px 35px 35px;margin-bottom: 15px;line-height: 19px;word-wrap: break-word;position:relative}
 .orderParent{width: 100%;height: auto;padding: 20px 20px 20px 110px;border-bottom: 1px solid #ccc;position:relative;background:#f3f3f3;}
 .orderParent:last-child{border: none;}
 .orderParent.trOpen{padding-bottom:190px}
@@ -2471,7 +2473,7 @@ input[type=radio]:checked ~ .matchIcn{display:block;background:#53C9C7 url(../im
 
 /*.imgHead:after{content: "";width:20px;position: absolute;}*/
 .cartPopup{width:100%;height: 100%;position:fixed;z-index: 20;opacity: 0;background: rgba(0,0,0,0.55);    z-index:999;}
-.inCartPop{padding: 50px 0px;opacity: 0;width:450px;height:200px;position:absolute;top: 0;left: 0;right: 0;bottom: 0;margin: auto;background-color: #fff;}
+.inCartPop{padding: 40px 30px 40px 30px;opacity: 0;width:450px;height:200px;position:absolute;top: 0;left: 0;right: 0;bottom: 0;margin: auto;background-color: #fff;}
 .cartEmpty{width:100%;height: 80%;top: 21%;background: url(../img/icons/524crt.svg)no-repeat;background-size: auto 20%;background-position: center 125px;    /*position: absolute;*/}
 .ordEmpty{background: url(../img/icons/121.svg)no-repeat;background-size: auto 75%;background-position: center 30px;width: 100%;height: 150px;}
 .addEmpty{background: url(../img/icons/123.svg)no-repeat;background-size: auto 75%;background-position: center 30px;width: 100%;height: 150px;}
