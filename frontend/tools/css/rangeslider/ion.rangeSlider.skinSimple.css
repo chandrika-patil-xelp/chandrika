@@ -119,7 +119,8 @@
     background-size: auto 8px;
     background-position: left 3px center;
 }
-
+#rg .irs-min, .irs-max{display: none;}
+#ct .irs-min, .irs-max{display: none;}
 
 #ct .irs-from, .irs-to, .irs-single {}
 #ct .irs-to, .irs-single{}
