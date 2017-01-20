@@ -162,8 +162,9 @@ function generatelist(obj) {
         var Gemscarat = obj['gemscarat'];
         var Gemsprc = obj['gemsPricepercarat'];
         var Gemstot = obj['totalgems'];
-
-        price = price + getGemsPrice(Gemscarat, Gemsprc);
+        var gemswgt =obj['gemswgt'];
+      
+        price = price + getGemsPrice(gemswgt, Gemsprc);
 
     }
   

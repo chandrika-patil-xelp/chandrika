@@ -239,7 +239,7 @@
                       
                         if (images.count > 0)
                         {
-
+                            
                             var imgstr = "";
                             if (basic['default_image'] !== null) {
                                 imgstr += "<li>";
@@ -283,7 +283,7 @@
                         $('#dmdCnt').text("0");
                        
                     if(basic.hasGem == 1)
-                        $('#gemCnt').text(gemstone['results'][0].totNo);
+                        $('#gemCnt').text(gemstone['count']);
                     else 
                          $('#gemCnt').text("0");
                         
@@ -815,7 +815,7 @@
                 str += "<div class='forPrice calc fLeft' id='diamondTotal_" + ids + "'>&#8377;" + incpfix + "</div>";
                 str += "</li>";
                  
-
+                
             });
             return str;
 
@@ -857,12 +857,15 @@
                 var gvalue = vl.gemNm;
                 var carat = vl.crat;
                 var price = vl.prcPrCrat;
-                var total = parseFloat(price) * parseFloat(carat);
+                var gemstn_no = vl.totNo;
+                
+               var wgtcarat =parseFloat(carat)*parseFloat(gemstn_no);
+                var total = parseFloat(price) * parseFloat(wgtcarat);
                 total = total.toFixed();
                 str += "<li id='gemstonePrice_" + ids + "'>";
                 str += "<div class='forComponent fLeft pl15'>" + gvalue + "</div>";
                 str += "<div class='forRate fLeft'>" + price + "/ct</div>";
-                str += "<div class='forWeight fLeft'>" + carat + " ct</div>";
+                str += "<div class='forWeight fLeft'>" + wgtcarat + " ct</div>";
                 str += "<div class='forPrice calc fLeft'>&#8377;" + total + "</div>";
                 str += "</li>";
 

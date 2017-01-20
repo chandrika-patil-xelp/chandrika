@@ -3809,7 +3809,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                             (SELECT GROUP_CONCAT(carat) FROM tbl_product_gemstone_mapping WHERE FIND_IN_SET(gemstone_id,allGemstone) AND productid =pid) AS gemscarat ,
                             (SELECT GROUP_CONCAT(total_no) FROM tbl_product_gemstone_mapping WHERE FIND_IN_SET(gemstone_id,allGemstone) AND productid =pid) AS totalgems,
                             (SELECT GROUP_CONCAT(price_per_carat) FROM tbl_product_gemstone_mapping WHERE FIND_IN_SET(gemstone_id,allGemstone) AND productid =pid) AS gemsPricepercarat,
-
+                            (SELECT GROUP_CONCAT(carat * total_no) FROM tbl_product_gemstone_mapping WHERE FIND_IN_SET(gemstone_id,allGemstone) AND productid =pid) AS gemswgt,
 
                             (SELECT GROUP_CONCAT(solitaire_id) FROM tbl_product_solitaire_mapping WHERE productid = pid AND active_flag = 1 ) AS allSolitaire,
                             (SELECT GROUP_CONCAT(no_of_solitaire) FROM tbl_product_solitaire_mapping WHERE FIND_IN_SET(solitaire_id,allSolitaire) AND productid =pid) AS totalSolitaire,
@@ -3910,6 +3910,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                 $arr['totalgems'] = $row['totalgems'];
                 $arr['gemscarat'] = $row['gemscarat'];
                 $arr['gemsPricepercarat'] = $row['gemsPricepercarat'];
+                $arr['gemswgt'] = $row['gemswgt'];
 
                 $arr['allSolitaire'] = $row['allSolitaire'];
                 $arr['totalSolitaire'] = $row['totalSolitaire'];
@@ -3964,9 +3965,8 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                 if ($arr['hasGem'] === '1') {
                     $Gemscarat = $row['gemscarat'];
                     $Gemsprc = $row['gemsPricepercarat'];
-
-
-                    $price = $price + ($Gemscarat * $Gemsprc);
+                   
+                    $price = $price + ($Gemscarat * $Gemsprc);                 
                 }
 
                 if ($row['chldcatname'] == 'Rings') {
@@ -4111,7 +4111,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
       $attrid = (!empty($params['attrid'])) ? trim($params['attrid']) : '';
       $attrVals= (!empty($params['attr_values'])) ? trim($params['attr_values']) : '';
       $catprd= (!empty($params['prds'])) ? trim($params['prds']) : '';
-        $hassol= (!empty($params['hassol'])) ? trim($params['hassol']) : ''; 
+      //  $hassol= (!empty($params['hassol'])) ? trim($params['hassol']) : ''; 
       $sql="SELECT
 		  DISTINCT(value) 
 	    FROM
@@ -4348,18 +4348,40 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                 }
             }
         }
-
+        
         if ($catflag == 1) {
             $sql.="(select GROUP_CONCAT(productid) from tbl_category_product_mapping where catid=" . $catvalval . ") AS prdid FROM tbl_product_master WHERE";
         }
-
-        if ($stoneflag == 1) {
+        
+         if ($stoneflag == 1) {
             $sql.=" productid IN (SELECT productid FROM tbl_product_gemstone_mapping WHERE MATCH(gemstone_name) AGAINST('" . $stoneval . "') HAVING FIND_IN_SET(productid,prdid)) AND";
         }
+
+//         if ($stoneflag == 1) {
+//	  $subfltmnStn=explode(',',$stoneval); $subfltcnt=count($subfltmn); 
+//	  $sql.=" productid IN (SELECT productid FROM tbl_product_gemstone_mapping WHERE  active_flag=1 AND ";
+//	  foreach($subfltmnStn as $subflkey=>$subfltvalStn){
+//	     $sqlarrStn[] = "gemstone_name LIKE '%".$subfltvalStn."%'";
+//	      
+//	  }
+//           $sql.="".  implode(' OR ', $sqlarrStn);
+//	   $sql.="HAVING FIND_IN_SET(productid,prdid) ) AND    ";
+//        }
 
         if ($dnmndcutflag == 1) {
             $sql.=" productid IN (SELECT productid FROM tbl_product_diamond_mapping WHERE MATCH(shape) AGAINST('" . $dnmndcutval . "') AND active_flag=1 HAVING FIND_IN_SET(productid,prdid)) AND";
         }
+        
+//        if ($dnmndcutflag == 1) {
+//	  $subfltmn=explode(',',$dnmndcutval); $subfltcnt=count($subfltmn); 
+//	  $sql.=" productid IN (SELECT productid FROM tbl_product_diamond_mapping WHERE  active_flag=1 AND ";
+//	  foreach($subfltmn as $subflkey=>$subfltval){
+//	     $sqlarr[] = "shape LIKE '%".$subfltval."%'";
+//	      
+//	  }
+//	 $sql.="".  implode(' OR ', $sqlarr);
+//	   $sql.="HAVING FIND_IN_SET(productid,prdid) ) AND    ";
+//        }
 
         if ($cattypeflag == 1) {
 	  $subfltmn=explode(',',$cattypeval); $subfltcnt=count($subfltmn); 
@@ -4571,7 +4593,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
         $result = array('result' => $rst, 'error' => $error, 'total' => $totalprdcnt,'prdlowprize'=>$totalNewPricelowArr,'prdhighprize'=>$totalNewPricehighArr,'caratrange'=>$carat);
         return $result;
     }
-
+    
     public function getProductdetailbypid($params) {
 
         global $comm;

@@ -596,12 +596,13 @@ $(document).ready(function () {
                             var gvalue = vl.gemNm;
                             var carat = vl.crat;
                             var price = vl.prcPrCrat;
-
+                             var gemstn_no = vl.totNo;
+                             var wgtcarat =parseFloat(carat)*parseFloat(gemstn_no);
                             // gemstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>' + vl.totNo + '</span><span> ' + vl.gemNm + ' </span></span><span class="fRight fmSansR"><span> ' + vl.crat + '</span> Carat</span></div>';
 
 //                            gemstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>Gemstone</span></span><span class="fRight fmSansR"><span>' + vl.gemNm + '</span></span></div>';
 //                            gemstr += '<div class="desc_row fLeft font12 fmrobor "><span class="txt_left fLeft"><span>Gemstone Carat</span></span><span class="fRight fmSansR"><span>' + vl.crat + '</span></span></div>';
-                            getGemsPrice(carat, price);
+                            getGemsPrice(wgtcarat, price);
 
                         });
                         $('#desc').append(gemstr);
