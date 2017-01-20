@@ -5,7 +5,7 @@
    
  
       shipid=common.readFromStorage('jzeva_shpid');
-      displaycartdetail();
+      displayprddetail();
        getname();  
      
      if(status.trim()== "Failure")
@@ -30,31 +30,32 @@
     window.location.href=DOMAIN+"transaction/payment.php?ordid="+ordid+"&shipid="+shipid;
  });
  
- function displaycartdetail()
+ function displayprddetail()
 {
     
   var cartid =ordid;
   $('#scroll').html("");
   totalprice = 0;
-  $('.total_prc').html(""); 
+  $('.total_price_gen').html(""); 
  
     var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id=" + cartid + "&userid=";  
       
     $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results) {
       var obj = JSON.parse(results);
-      gblcheckodata = obj.result; 
+      gblcheckodata = obj.result;  
       if(gblcheckodata == null){
 	setTimeout(function(){
 	    $('#submt').addClass('dn');
 	    $('#urords').addClass('dn');
-	    $("#noprdinchkot").removeClass("dn");
+	    $("#noprdtrnfail").removeClass("dn");
 	    $('.totalItem').addClass('dn');
+	    $('.total_price_gen').html(""); 
 	},1000);
       }
       else{ 
 	setTimeout(function(){
 	    $('#submt').removeClass('dn'); 
-	    $("#noprdinchkot").addClass("dn");  
+	    $("#noprdtrnfail").addClass("dn");  
 	    $('#urords').removeClass('dn');
 	    $('.totalItem').removeClass('dn');
 	},1000);
@@ -93,11 +94,11 @@
 	chckoutstr += "</div>";
 	chckoutstr += "<div class='cart_price cartRup15 fLeft'><span class='price_gen'> " + indianMoney(bprize) + "</span></div>";
 	chckoutstr += "<div class='amt_selector' id='" + v.cart_id + "'>";
-	chckoutstr += "<a href='#' onclick='subqnty(this)'  id='sub_" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "'><div class='cart_btn fLeft sub_noW'></div></a>";
+	chckoutstr += "<a href='#' onclick='decrqnty(this)'  id='sub_" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "'><div class='cart_btn fLeft sub_noW'></div></a>";
 	chckoutstr += "<div class='item_amt fLeft '>" + v.pqty + "</div>";
-	chckoutstr += " <a href='#' id='add_" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "' onclick='addqnty(this)'><div class='cart_btn fLeft add_noW' ></div></a>";
+	chckoutstr += " <a href='#' id='add_" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "' onclick='incrqnty(this)'><div class='cart_btn fLeft add_noW' ></div></a>";
 	chckoutstr += "</div>";
-	chckoutstr += "<div class='cart_removew addrCommon' id='" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "_" + v.size + "' onclick='remove(this)' >";
+	chckoutstr += "<div class='cart_removew addrCommon' id='" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "_" + v.size + "' onclick='removeprd(this)' >";
 	chckoutstr += "</div>";
 	chckoutstr += "</div>";
 	$('#scroll').append(chckoutstr);
@@ -137,7 +138,7 @@ function getweight(currentSize, catName, storedWt)
 }
 
 
-function remove(el) {
+function removeprd(el) {
   $('#rmvpoptxt').html('Do you want to delete this product');
   cartpopUp();
   $('#cYes').unbind();
@@ -149,7 +150,7 @@ function remove(el) {
     var size = id = a[4];
     var URL = APIDOMAIN + "index.php?action=removeItemFromCart&col_car_qty=" + col_car_qty + "&pid=" + product_id + "&cartid=" + cartid + "&size=" + size;
     $.ajax({type: 'POST', url: URL, success: function (res) {
-	displaycartdetail();
+	displayprddetail();
 	cartpopUpClose();
       }
     });
@@ -160,7 +161,7 @@ function remove(el) {
      });
 }
 
-function addqnty(ths)
+function incrqnty(ths)
 {
   var e = $(ths).siblings('.item_amt');
   var j = $(ths).siblings('.item_amt').text();
@@ -189,13 +190,13 @@ function addqnty(ths)
       dat['qty'] = j;
       dat['price'] = totprice;
       dat['RBsize'] = v.size;
-      storecartdata(dat);
-      $('.total_prc').html(indianMoney(totalprice));
+      storechangdata(dat);
+      $('.total_price_gen').html(indianMoney(totalprice));
     }
   });
 }
 
-function subqnty(evnt)
+function decrqnty(evnt)
 {
   var e = $(evnt).siblings('.item_amt');
   var j = $(evnt).siblings('.item_amt').text();
@@ -227,8 +228,8 @@ function subqnty(evnt)
 	dat['qty'] = j;
 	dat['price'] = totprice;
 	dat['RBsize'] = v.size;
-	storecartdata(dat);
-	$('.total_prc').html(indianMoney(totalprice));
+	storechangdata(dat);
+	$('.total_price_gen').html(indianMoney(totalprice));
       }
     });
   }
@@ -268,7 +269,20 @@ function getname()
   }
 }
 
-$('#cntshptrnfail').click(function(){
-   var lasturl=$.cookie('jzeva_currurl'); 
+$('.cntshptrnfail').click(function(){
+   var lasturl=$.cookie('jzeva_currurl'); console.log(lasturl);
     window.location.href=DOMAIN +"index.php"+lasturl; 
 });
+
+
+function storechangdata(cartdata)
+{
+    var URL = APIDOMAIN + "index.php?action=addTocart";
+    var data = cartdata;
+    var dt = JSON.stringify(data);
+    $.ajax({type: "post", url: URL, data: {dt: dt}, success: function (data) {
+            // console.log(data);
+	    
+        }
+    });
+}

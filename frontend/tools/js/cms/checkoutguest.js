@@ -27,10 +27,10 @@
  
   var usrid = common.readFromStorage('jzeva_uid');
     
-    var name = $('#g_name').val();
+    var name = $.trim($('#g_name').val());
     var email = $('#g_mail').val();
     mobile = $('#g_mobl').val(); 
-    var addrs = $('#g_addr').val();
+    var addrs = $.trim($('#g_addr').val());
     var city = $('#shpdcity').val();
     var state = $('#shpdstate').val();
     var pincode = $('#shpdpincode').val();
@@ -399,7 +399,7 @@ function updatecartiddetail(oldcartid,olduserid,newcartid)
 
 $('#gSgnUpsbmt').click(function(){
    
-    var name = $("#shpdname").val();
+    var name = $.trim($("#shpdname").val());
    var email = $("#shpdemail").val();
      mobile = $("#shpdmobile").val();
    var pass = $("#shpdpaswrd").val(); 

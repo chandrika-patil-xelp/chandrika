@@ -2,6 +2,7 @@
 var accntentrflag = 0, shpngvalidflag = 1;
 
 $(document).ready(function () {
+  $('html, body').animate({scrollTop: '0px'}, 300); 
       displayorders();
     wishlist();
     persnlInfo();
@@ -29,6 +30,12 @@ $(document).ready(function () {
     });
 
 });
+
+ function getMonthNamebyVal(mnt) {
+    var monthNames = ["Jan", "Feb", "March", "April", "May", "June",
+	"July", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    return monthNames[mnt];
+} 
 
 function displayorders()
 {
@@ -60,20 +67,22 @@ function displayorders()
                 // var totalprice = $('#ordPrice').html(indianMoney(parseInt(obj.totalprice)));
                 var totalprice = indianMoney(parseInt(obj.totalprice));
                 $(obj['result']).each(function (r, e) {
-
+		 
+		    
                     var ordrdate = "";
-                    ordrdate += e[0].order_date;
+                    ordrdate = e[0].order_date;
                     ordrdate = ordrdate.split(' ');
                     var ordDate = ordrdate[0];
 
-                    var od=[];
-                    od.push(ordDate.split('-'));
-
-                  var yr=ordDate.toString().split("-")[0];
-                  var dt =ordDate.toString().split("-")[1];
-                    var cc = ordDate.toString().split("-")[2];
-                    var cd = cc.split(0).join('');
-
+                   
+		    var yr=ordDate.toString().split("-")[0]; 
+		    var dt =ordDate.toString().split("-")[1];
+		    var cc = ordDate.toString().split("-")[2];
+		    var cd = cc.split(0).join('');
+		    if(dt <10)
+                       dt = dt.split(0).join(''); 
+		    var month=getMonthNamebyVal(dt-1);  
+ 	    
                     var updatedt ="";
                      updatedt += e[0].updatedon;
                     updatedt = updatedt.split(' ');
@@ -90,10 +99,8 @@ function displayorders()
                     var month_Name = new Date().getMonthName();
                     var cnfDate = '' + cd + ' ' + month_Name + '';
                     var statusDate = '' + ds + ' ' + month_Name + '';
-                    var cnDate = '' + cd + '|' + dt + '|'+yr+'';
-
-
-
+                    var trndate=''+cd+'-'+month+'-'+yr;
+ 
 //                   if($('#oId').html()){
 //                   order += ' <div class="fLeft tabHead headLine borBtm " id="od">my orders</div>';
 //               }else
@@ -106,15 +113,15 @@ function displayorders()
                     orderstr += '<div class="fLeft col100 blStl">' + e[0].customername + '</div>';
                     orderstr += '<div class="fLeft col100 shipAddr">' + e[0].customerAddrs + ' ' + e[0].customerCity + ' </div>';
                     orderstr += '<div class="fLeft col100 shipAddr">' +e[0].customerState + ' ' + e[0].customerPincode + '</div>';
-                    orderstr += '<div class="actBtn">view invoice</div>';
+                    orderstr += '<div class="actBtn" id="dwninvoice">view invoice</div>';
                     orderstr += '</div>';
 
                     // orderstr += '</div>';
                     orderstr += '<div class="fLeft Morder txt_right">';
-                    orderstr += '<div class="fRight col100 semibold cartRup15b font18" id="ordPrice">' + e[0].total + '</div>';
+                    orderstr += '<div class="fRight col100 semibold cartRup15b font18" id="ordPrice">&nbsp' +indianMoney(parseInt(e[0].total)) + '</div>';
                     // orderstr += '<div class="fLeft col100">Order No</div>';
                     orderstr += '<div class="fLeft col100 regular" id="ordId">ID: ' + e[0].oid + '</div>';
-                    orderstr += '<div class="fLeft col100 regular" id="ordDate">' + ordDate + '</div>';
+                    orderstr += '<div class="fLeft col100 regular" id="ordDate">' + trndate + '</div>';
                     // orderstr += '<div class="fLeft col100">Total price</div>';
 
 
@@ -128,7 +135,7 @@ function displayorders()
                         } else {
                             wht = v.metal_weight;
                         }
-                        console.log(v);
+                       
                         var dmdcarat= v.dmdcarat;
 
                         var jweltype=v.jewelType;
@@ -176,7 +183,7 @@ function displayorders()
                         orderstr += '</div>';
                         orderstr += '</div>';
                         orderstr += '<div class="fLeft ordRt txt_right">';
-                        orderstr += '<div class="col100 fLeft"><div class="fRight cartRup15b semibold font16"> ' + indianMoney(parseInt(v.price)) + '</div></div>';
+                        orderstr += '<div class="col100 fLeft"><div class="fRight cartRup15b semibold font16">&nbsp' + indianMoney(parseInt(v.price)) + '</div></div>';
                         orderstr += '<div class="filterSec fLeft" id="'+v.order_status+'">';
                         orderstr += '<center>';
                         orderstr += '<div class="button actBtn transition300 fRight mar0 trackCommon" id="' + v.pid + '_' + s + '_'+v.order_status+'_'+v.oid+'" onclick="trackslide(this)">track</div>';
@@ -232,7 +239,7 @@ function displayorders()
 
 
 }
-
+ 
 
 function getweight(currentSize, catName, storedWt)
 {
@@ -295,12 +302,11 @@ function wishlist()
                         var xyz = IMGDOMAIN + j.default_image;
                     } else {
 
-                        var xyz = j.prdimage;
-
+                        var xyz = j.prdimage; 
                         xyz = xyz.split(',');
-                      xyz = IMGDOMAIN + xyz[1];
-                      if(xyz === '')
-                       xyz = IMGDOMAIN + xyz[0];
+			xyz = IMGDOMAIN + xyz[1];
+			if(xyz === '')
+			xyz = IMGDOMAIN + xyz[0];
                     }
 
 //
@@ -557,11 +563,11 @@ function savemyaddress() {
     var shipngdata = {};
     var userid = common.readFromStorage('jzeva_uid');
 
-    var address = $('#addr').val();
+    var address = $.trim($('#addr').val());
     var state = $('#state').val();
     var zipcode = $('#zipcode').val();
     var city = $('#city').val();
-    var name= $('#shp_name').val();
+    var name= $.trim($('#shp_name').val());
     var moblno=$('#shp_mob').val();
     var letters = /^[A-Za-z\s]+$/;
     var filter = /^[0-9-+]+$/;
@@ -616,7 +622,7 @@ function savemyaddress() {
     shipngdata['state'] = state;
     shipngdata['pincode'] = zipcode;
     shipngdata['user_id'] = userid;
-
+ 
     if (shpngvalidflag == 0 && validationFlag == 1)
         common.msg(0, 'Please Enter Correct Pin code');
 

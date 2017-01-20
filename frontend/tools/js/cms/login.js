@@ -7,7 +7,7 @@ $('#rsubId').on('click',function(){
 
  function dosignup()
  {
-   var name = $("#name").val();
+   var name = $.trim($("#name").val());
    var email = $("#signupemail").val();
    var  mobile = $("#mobile").val();
    var pass = $("#signuppass").val();
