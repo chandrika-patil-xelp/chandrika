@@ -1816,6 +1816,7 @@ function submitData()
         success: function(res) {
            
             res = JSON.parse(res);
+            console.log(res);
           //  addPrdCallBack(res);
              if (res['error']['err_code'] == '0')
     {
@@ -2558,13 +2559,18 @@ function gemstonePrice()
 
         var carat = $('#gemstonecaratweight' + ids + '').val();
         var price = $('#gemstonepricecarat' + ids + '').val();
-        var total = parseFloat(price) * parseFloat(carat);
+        var gemstot =$('#gemstonePieces'+ids+'').val();
+       
+       //  var gemstn_no = vl.totNo;
+                
+               var wgtcarat =parseFloat(carat)*parseFloat(gemstot); console.log(wgtcarat);
+        var total = parseFloat(price) * parseFloat(wgtcarat);
 
 
         str += "<li id='gemstonePrice_" + ids + "'>";
         str += "<div class='forComponent fLeft pl15'>" + gvalue + "</div>";
         str += "<div class='forRate fLeft'>" + price + "/ct</div>";
-        str += "<div class='forWeight fLeft'>" + carat + " ct</div>";
+        str += "<div class='forWeight fLeft'>" + wgtcarat + " ct</div>";
         str += "<div class='forPrice calc fLeft'>&#8377;" + total + "</div>";
         str += "</li>";
 
@@ -3079,7 +3085,7 @@ function oneditmodeCallBack(data)
             has_gemstone=true;
             $('#stone4').attr('checked',true);
             var gemst=dt['gamestone']['results'];
-
+           
             $(gemst).each(function(i){
                 var ids=i+1;
                 var gem=gemst[i];
@@ -3096,7 +3102,7 @@ function oneditmodeCallBack(data)
                 $('#gemstonecaratweight'+ids).val(gem.crat);
                 $('#gemstonepricecarat'+ids).val(gem.prcPrCrat);
                 $('#gemstonePieces'+ids).val(gem.totNo);
-
+                
             });
             $('#gemstone_Section').removeClass('dn');
 
