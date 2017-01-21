@@ -52,7 +52,7 @@ function displaycartdetail()
     var cartid = common.readFromStorage('jzeva_cartid');
     $('#scroll').html("");
     totalprice = 0;
-    $('.total_price').html("");
+    $('#totprz_chkout').html("");
     if (actn == 'buy') {
         var buyid = common.readFromStorage('jzeva_buyid');
         cartid = buyid;
@@ -67,13 +67,13 @@ function displaycartdetail()
 	      setTimeout(function(){
                 $('#all_submt').addClass('dn');
                 $("#noprdcrd").removeClass("dn");
-                $('.totalItem').addClass('dn');
+                $('#totlitem_chkout').addClass('dn');
 	      },1000);
             } else {
 		setTimeout(function(){
 		  $('#all_submt').removeClass('dn');
 		  $("#noprdcrd").addClass("dn");
-		  $('.totalItem').removeClass('dn');
+		  $('#totlitem_chkout').removeClass('dn');
 		},1000);
                 $(obj.result).each(function (r, v) {
                     if (v.default_img !== null) {
@@ -118,11 +118,13 @@ function displaycartdetail()
                     chckoutstr += "<div class='cart_removew addrCommon' id='" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "_" + v.size + "' onclick='remove(this)' >";
                     chckoutstr += "</div>";
                     chckoutstr += "</div>";
-		    setTimeout(function(){
+		    
 		      $('#scroll').append(chckoutstr);
-		    },1000);
+		    
                 });
-                $('.total_price').html(indianMoney(totalprice));
+		setTimeout(function(){
+		    $('#totprz_chkout').html(indianMoney(totalprice));
+		},300);
             }
         }
     });
@@ -207,7 +209,7 @@ function addqnty(ths)
             dat['price'] = totprice;
             dat['RBsize'] = v.size;
             storecartdata(dat);
-            $('.total_price').html(indianMoney(totalprice));
+            $('#totprz_chkout').html(indianMoney(totalprice));
         }
     });
 }
@@ -245,7 +247,7 @@ function subqnty(evnt)
                 dat['price'] = totprice;
                 dat['RBsize'] = v.size;
                 storecartdata(dat);
-                $('.total_price').html(indianMoney(totalprice));
+                $('#totprz_chkout').html(indianMoney(totalprice));
             }
         });
     }

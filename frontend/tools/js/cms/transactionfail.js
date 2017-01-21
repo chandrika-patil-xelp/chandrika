@@ -32,11 +32,11 @@
  
  function displayprddetail()
 {
-    
+  
   var cartid =ordid;
   $('#scroll').html("");
   totalprice = 0;
-  $('.total_price_gen').html(""); 
+  $('#totprz_trnst').html(""); 
  
     var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id=" + cartid + "&userid=";  
       
@@ -48,8 +48,8 @@
 	    $('#submt').addClass('dn');
 	    $('#urords').addClass('dn');
 	    $("#noprdtrnfail").removeClass("dn");
-	    $('.totalItem').addClass('dn');
-	    $('.total_price_gen').html(""); 
+	    $('#totitm_trnstn').addClass('dn');
+	    $('#totprz_trnst').html(""); 
 	},1000);
       }
       else{ 
@@ -57,7 +57,7 @@
 	    $('#submt').removeClass('dn'); 
 	    $("#noprdtrnfail").addClass("dn");  
 	    $('#urords').removeClass('dn');
-	    $('.totalItem').removeClass('dn');
+	    $('#totitm_trnstn').removeClass('dn');
 	},1000);
       $(obj.result).each(function (r, v) {
 	if (v.default_img !== null) {
@@ -79,7 +79,7 @@
 	} else {
 	  wht = parseFloat(v.metal_weight).toFixed(3);
 	}
-
+ 
 	var chckoutstr = "<div class='cart_item'>";
 	chckoutstr += "<div class='cart_image'><img src='" + abc + "' onerror='this.style.display=\"none\"'>";
 	chckoutstr += " </div>";
@@ -105,7 +105,7 @@
 
       });
       setTimeout(function(){
-	  $('.total_price_gen').html(indianMoney(totalprice));
+	  $('#totprz_trnst').html(indianMoney(totalprice));
       },1000);
      }
     }
@@ -191,7 +191,7 @@ function incrqnty(ths)
       dat['price'] = totprice;
       dat['RBsize'] = v.size;
       storechangdata(dat);
-      $('.total_price_gen').html(indianMoney(totalprice));
+      $('#totprz_trnst').html(indianMoney(totalprice));
     }
   });
 }
@@ -229,7 +229,7 @@ function decrqnty(evnt)
 	dat['price'] = totprice;
 	dat['RBsize'] = v.size;
 	storechangdata(dat);
-	$('.total_price_gen').html(indianMoney(totalprice));
+	$('#totprz_trnst').html(indianMoney(totalprice));
       }
     });
   }

@@ -9,7 +9,7 @@ function displaycartdetail()
 {
     var userid = common.readFromStorage('jzeva_uid');
     var cartid = common.readFromStorage('jzeva_cartid');
-    $('#scroll').html("");
+    $('#scrollchckbfr').html("");
     totalprice = 0;
     $('.total_prc').html("");
     if (actn == 'buy') {
@@ -26,14 +26,14 @@ function displaycartdetail()
 	      setTimeout(function(){
 		  $('#submt').addClass('dn');
 		  $('#urords').addClass('dn');
-		  $("#noprdinchkot").removeClass("dn");
-		  $('.totalItem').addClass('dn');
+		  $("#noprdinchkotbefr").removeClass("dn");
+		  $('#totitm_chckbefor').addClass('dn');
 	      },1000);
             } else {
 	        setTimeout(function(){
 		  $('#submt').removeClass('dn');
-		  $("#noprdinchkot").addClass("dn");
-		  $('.totalItem').removeClass('dn');
+		  $("#noprdinchkotbefr").addClass("dn");
+		  $('#totitm_chckbefor').removeClass('dn');
 		  $('#urords').removeClass('dn');
 		},1000);
                 $(obj.result).each(function (r, v) {
@@ -79,9 +79,11 @@ function displaycartdetail()
 //                    chckoutstr += "<div class='cart_removew addrCommon' id='" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "_" + v.size + "' onclick='remove(this)' >";
 //                    chckoutstr += "</div>";
                     chckoutstr += "</div>";
-                    $('#scroll').append(chckoutstr);
+                    $('#scrollchckbfr').append(chckoutstr);
                 });
-                $('.total_prc').html(indianMoney(totalprice));
+		setTimeout(function(){
+		  $('.total_prc').html(indianMoney(totalprice));
+		},300);
             }
         }
     });

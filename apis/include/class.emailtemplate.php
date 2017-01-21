@@ -309,7 +309,7 @@
 				  <div style="width:100%;height:auto;padding:20px 25px;background-color:#222529;margin-top:25px;box-sizing:border-box;">
 				      <div style="width:100%;height:auto;font-size:12px;color:#fff;text-align:center;line-height:20px;margin-top:10px;">Should you have any question or require our assistance, our concierege services desk is available at</div>
 				      <div style="width:100%;height:auto;font-size:12px;line-height:20px;color:#0CCDB8;text-align:center;margin-top:7px"><span style="display:inline-block;line-height:25px;vertical-align:middle">Call +997779990000 | Email <a href="#" style="color:#0CCDB8;text-decoration:none">care@jzeva.com</a></span></div>
-				      <div style="width:100%;height:auto;font-size:12px;line-height:25px;color:#999;text-align:center;margin-top: 4px;margin-bottom: 1px;text-decoration:none;"><span style="display:inline-block;line-height:25px;vertical-align:middle">( Monday to Saturday 10AM - 9PM IST )</span></div>
+				      <div style="width:100%;height:auto;font-size:11px;line-height:25px;color:#999;text-align:center;margin-top: 4px;margin-bottom: 1px;text-decoration:none;"><span style="display:inline-block;line-height:25px;vertical-align:middle">( Monday to Saturday 10AM - 9PM IST )</span></div>
 				  </div>
 			      </div>
 			      <div style="width:100%;height:auto;padding:0px 25px 25px 25px;background-color:#15181b;min-height:200px;box-sizing:border-box;">
@@ -393,7 +393,7 @@
 				      <div style="width:100%;height:auto;padding:20px 25px;background-color:#222529;margin-top:25px;box-sizing:border-box;">
 					  <div style="width:100%;height:auto;font-size:12px;color:#fff;text-align:center;line-height:25px;margin-top:10px;"><span style="display:inline-block;line-height:25px;vertical-align:middle">Should you have any question or require our assistance, our concierege services desk is available at</span></div>
 					<div style="width:100%;height:auto;font-size:12px;line-height:20px;color:#0CCDB8;text-align:center;margin-top:7px"><span style="display:inline-block;line-height:25px;vertical-align:middle">Call +997779990000 | Email <a href="" style="color:#0CCDB8;text-decoration:none">care@jzeva.com</a></span></div>
-					<div style="width:100%;height:auto;font-size:12px;line-height:25px;color:#999;text-align:center;margin-top: 4px;margin-bottom: 1px;text-decoration:none;"><span style="display:inline-block;line-height:25px;vertical-align:middle">( Monday to Saturday 10AM - 9PM IST )</span></div>
+					<div style="width:100%;height:auto;font-size:11px;line-height:25px;color:#999;text-align:center;margin-top: 4px;margin-bottom: 1px;text-decoration:none;"><span style="display:inline-block;line-height:25px;vertical-align:middle">( Monday to Saturday 10AM - 9PM IST )</span></div>
 				      </div>
 				  </div>
 				  <div style="width:100%;height:auto;padding:0px 25px 25px 25px;background-color:#15181b;min-height:200px;box-sizing:border-box;">

@@ -210,31 +210,33 @@ $(document).ready(function () {
     $.ajax({ url: URL, type: "GET", datatype: "JSON", success: function (results) {
 
             var obj = JSON.parse(results);
-             
+     
 	    var totprdcnt=0;
             var dt = obj['result'];
  
 	    var orddate = obj['result'][0].orddt;
 	    var ordd = orddate.split(',').join(' ');
-	    var ordrdt = ordd.split('|');  
+	    var ordrdt = ordd.split('|');   
 	    
-	    var date = new Date(); 
-	    var am_pm = date.getHours() >= 12 ? "PM" : "AM";
-	    var hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
-	    var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes(); 
-	    var curtime = hours + ":" + minutes +" " + am_pm;
-	     
+	   
             $(dt).each(function (i, v) {
 		
                 var uname = v.uname;
                 uname = uname.toLowerCase();  
 		totprdcnt+=parseInt(v.pqty);
-                $('#uname').html('Dear '+ uname); 
+		var gndr=v.gender,gndrstr;
+		if(gndr == 1)
+		  gndrstr="Ms";
+		else if(gndr == 2)
+		  gndrstr="Mr";
+		else if(gndr == 3)
+		  gndrstr="Mrs";
+                $('#uname').html(gndrstr+' '+ uname); 
                 $('#ordrID').html(v.oid);
-                
+           
 
                 $('#ordate').html(ordrdt[0]);
-		$('#ordtime').html(curtime);
+		$('#ordtime').html(ordrdt[1]);
                 $('#addr').html(v.uaddres);
                 $('#adcity').html('' + v.ucity + ' ' + v.upin + '');
                 $('#trnsctnid').html(v.transactionid);

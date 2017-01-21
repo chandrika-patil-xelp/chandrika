@@ -288,7 +288,7 @@ function gettotal()
         total = parseInt(v.price) + total;
         itemcnt = parseInt(v.pqty) + itemcnt;
     });
-    $(".total_price_gen").html(indianMoney(total));
+    $("#totprz_cart").html(indianMoney(total));
     $(".lnHt30").html("Total Items: " + itemcnt);
     $(".cartCount").html(itemcnt);
 }
@@ -327,7 +327,7 @@ function displaycartempty()
 {
 	if(gblcartdata == null)
 	{
-	    $('.totalItem').addClass('dn');
+	    $('#totitm_cart').addClass('dn');
 	    $('.cart_gen2').addClass('dn');
 	    $("#nocart").removeClass("dn");
 	    $('.cart_gen').addClass('dn');
@@ -342,7 +342,7 @@ function displaycartempty()
 	    $('.cart_gen').removeClass('dn');
 	    $('.cart_gen2').removeClass('dn');
 	    $("#nocart").addClass("dn");
-	    $('.totalItem').removeClass('dn');
+	    $('#totitm_cart').removeClass('dn');
 	    $('.cartBox').removeClass('dn');
 	    $('.twoBtn').removeClass('dn');
 	}
