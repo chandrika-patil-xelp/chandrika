@@ -5,7 +5,7 @@
 </script>
 <body class="Terms myaccount">
     <?php include 'Cart.html'?>
-     <?php include 'loader.html'?>
+    <?php include 'loader.html'?>
     <?php include 'header.html'?>
     <?php include 'login.html'?>
     <!--    <div class="col100 fade">
@@ -37,6 +37,54 @@
                     <div class="fLeft pCont">
                         <div class="fLeft orderCommon">
                             <div class="col100 fLeft" id="myordId">
+                                <div class = "fLeft orderOuter" >
+                                    <div class = "fLeft inShip" id="ordTitle">
+                                        <div class = "fLeft Morder" >
+                                            <div class = "fLeft col100 blStl">chandrika </div>
+                                            <div class = "fLeft col100 shipAddr">ghdgfhdsgjfgs bangalore </div>
+                                            <div class = "fLeft col100 shipAddr">bangalore 560095 </div>
+                                            <div class = "actBtn"> view invoice </div>
+                                        </div>
+                                        <div class = "fLeft Morder txt_right">
+                                            <div class = "fRight col100 semibold cartRup15b font18" id = "ordPrice">1000000 </div>
+                                            <div class = "fLeft col100 regular" id = "ordId">ID:484455257745798456 </div>
+                                            <div class = "fLeft col100 regular" id = "ordDate"> 20/12/2017</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="fLeft detailsOuter bNone" id="ordDetail">
+                                    <div class="orderParent fLeft transition300">
+                                        <div class="fLeft orderImg bgCommon"></div>
+                                        <div class="fLeft orderName">
+                                            <div class="fLeft col100 blStl  txt_Upper">Rosette bangle</div>
+                                            <div class="fLeft  col100">
+                                                <span class="fLeft txt_Capital">Gold | yellow | 18 carat | 13.065 Grams</span>
+                                                <span class="fLeft"></span>
+                                            </div>
+                                            <div class="fLeft  col100">
+                                                <span class="fLeft txt_Capital">Diamonds 2.13Ct | SI - IJ | Size: 2.4</span>
+                                                <span class="fLeft"></span>
+                                            </div>
+                                            <div class="fLeft col100 semibold ">Code:<span class="regular">JZEVA2555314956</span></div> 
+                                        </div>
+                                        <div class="fLeft rsCont">
+                                            <div class="ordPqty">2</div>
+                                            <div class="fLeft vatTxt dn">
+                                                <div class="fLeft col100">MRP<span>&#8377 50,000</span></div>
+                                                <div class="fLeft col100">VAT:<span>7487384</span></div>
+                                                <div class="fLeft col100">tax:<span>675675</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="fLeft ordRt txt_right">
+                                            <div class="col100 fLeft"><div class="fRight cartRup15b semibold font16">1000000</div></div>
+                                            <div class="filterSec fLeft">
+                                                <center>
+                                                    <div class="button actBtn transition300 fRight mar0 trackCommon"  onclick="trackslide(this)">track</div>
+                                                </center>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <!--                                <div class="fLeft orderOuter">
                                                                     <div class="fLeft inShip" id="ordTitle">
                                                                         <div class="fLeft Morder">
@@ -354,22 +402,22 @@
                         ordrdate = ordrdate.split(' ');
                         var ordDate = ordrdate[0];
 
-                        orderstr += '<div class="fLeft orderOuter">';
-                        orderstr += '<div class="fLeft inShip" id="ordTitle">';
-                        orderstr += '<div class="fLeft Morder">';
-                        orderstr += '<div class="fLeft col100">Order No</div>';
-                        orderstr += '<div class="fLeft col100 bolder" id="ordId">' + obj['result'][0].oid + '</div>';
-                        orderstr += '</div>';
-                        orderstr += '<div class="fLeft Morder">';
-                        orderstr += '<div class="fLeft col100">Date of order</div>';
-                        orderstr += '<div class="fLeft col100 bolder" id="ordDate">' + ordDate + '</div>';
-                        orderstr += ' </div>';
-                        orderstr += '<div class="fLeft Morder">';
-                        orderstr += '<div class="fLeft col100">Total price</div>';
-                        orderstr += '<div class="fLeft col100 bolder cartRup15b" id="ordPrice">' + totalprice + '</div>';
-                        orderstr += '</div>';
-                        orderstr += '</div>';
-                        orderstr += '</div>';
+//                       orderstr += '<div class="fLeft orderOuter">';
+//                        orderstr += '<div class="fLeft inShip" id="ordTitle">';
+//                        orderstr += '<div class="fLeft Morder">';
+//                        orderstr += '<div class="fLeft col100">Order No</div>';
+//                        orderstr += '<div class="fLeft col100 bolder" id="ordId">' + obj['result'][0].oid + '</div>';
+//                        orderstr += '</div>';
+//                        orderstr += '<div class="fLeft Morder">';
+//                        orderstr += '<div class="fLeft col100">Date of order</div>';
+//                        orderstr += '<div class="fLeft col100 bolder" id="ordDate">' + ordDate + '</div>';
+//                        orderstr += ' </div>';
+//                        orderstr += '<div class="fLeft Morder">';
+//                        orderstr += '<div class="fLeft col100">Total price</div>';
+//                        orderstr += '<div class="fLeft col100 bolder cartRup15b" id="ordPrice">' + totalprice + '</div>';
+//                        orderstr += '</div>';
+//                        orderstr += '</div>';
+//                        orderstr += '</div>';
 
                         $(obj['result']).each(function (s, v) {
 
@@ -380,90 +428,90 @@
                                 image = image.split(',');
                                 image = IMGDOMAIN + image[0];
                             }
-                            orderstr += ' <div class="fLeft detailsOuter bNone" id="ordDetail">';
-                            orderstr += '<div class="orderParent fLeft">';
-                            orderstr += '<div class="fLeft orderImg bgCommon" style="background: #fff url(\'' + image + '\')no-repeat;background-size: contain;background-position:center; background-color:#FFF;"></div>';
-                            orderstr += '<div class="fLeft orderName">';
-                            orderstr += '<div class="fLeft col100 semibold">' + v.prdname + '</div>';
+//                        orderstr += ' <div class="fLeft detailsOuter bNone" id="ordDetail">';
+//                        orderstr += '<div class="orderParent fLeft">';
+//                        orderstr += '<div class="fLeft orderImg bgCommon" style="background: #fff url(\'' + image + '\')no-repeat;background-size: contain;background-position:center; background-color:#FFF;"></div>';
+//                        orderstr += '<div class="fLeft orderName">';
+//                        orderstr += '<div class="fLeft col100 semibold">' + v.prdname + '</div>';
+//
+//                        orderstr += '<div class="fLeft  col10">';
+//                        orderstr += '<span class="fLeft">Diamond Clarity : ' + v.quality + '</span>';
+//                        orderstr += '<span class="fLeft"></span>';
+//                        orderstr += '</div>';
+//                        orderstr += '<div class="fLeft  col100">';
+//                        orderstr += '<span class="fLeft">Metal purity : ' + v.Metalcarat + '</span>';
+//                        orderstr += '<span class="fLeft"></span>';
+//                        orderstr += '</div>';
+//                        orderstr += '<div class="fLeft  col100">';
+//                        orderstr += '<span class="fLeft">Metal colour : ' + v.color + '</span>';
+//                        orderstr += '<span class="fLeft"></span>';
+//                        orderstr += '</div>';
+//                        orderstr += '<div class="fLeft  shipTo">';
+//                        orderstr += '<span class="fLeft">Qty :</span>';
+//                        orderstr += '<span class="fLeft">' + v.pqty + '</span>';
+//                        orderstr += '</div>';
 
-                            orderstr += '<div class="fLeft  col10">';
-                            orderstr += '<span class="fLeft">Diamond Clarity : ' + v.quality + '</span>';
-                            orderstr += '<span class="fLeft"></span>';
-                            orderstr += '</div>';
-                            orderstr += '<div class="fLeft  col100">';
-                            orderstr += '<span class="fLeft">Metal purity : ' + v.Metalcarat + '</span>';
-                            orderstr += '<span class="fLeft"></span>';
-                            orderstr += '</div>';
-                            orderstr += '<div class="fLeft  col100">';
-                            orderstr += '<span class="fLeft">Metal colour : ' + v.color + '</span>';
-                            orderstr += '<span class="fLeft"></span>';
-                            orderstr += '</div>';
-                            orderstr += '<div class="fLeft  shipTo">';
-                            orderstr += '<span class="fLeft">Qty :</span>';
-                            orderstr += '<span class="fLeft">' + v.pqty + '</span>';
-                            orderstr += '</div>';
-
-                            orderstr += '<div class="fLeft  shipTo">';
-                            if (v.size != 0.0) {
-                                orderstr += '<span class="fLeft">Size :</span>';
-                                orderstr += '<span class="fLeft">' + v.size + '</span>';
-                            }
-                            orderstr += '</div>';
-                            orderstr += '</div>';
-                            orderstr += '<div class="fLeft rsCont">';
-                            orderstr += '<span class="fLeft cartRup15b"> ' + indianMoney(parseInt(v.price)) + '</span>';
-                            orderstr += '<div class="fLeft vatTxt dn">';
-                            orderstr += '<div class="fLeft col100">MRP<span>&#8377 50,000</span></div>';
-                            orderstr += '<div class="fLeft col100">VAT:<span>7487384</span></div>';
-                            orderstr += '<div class="fLeft col100">tax:<span>675675</span></div>';
-                            orderstr += '</div>';
-                            orderstr += '</div>';
-                            orderstr += '<div class="fLeft note">';
-                            orderstr += '<div class="fLeft col100 semibold pBtm5">Code:<span class="regular">' + v.product_code + '</span></div>';
-                            orderstr += '<div class="fLeft col100 semibold">Shipping address</div>';
-                            orderstr += '<div class="fLeft col100 ">' + v.customername + '</div>';
-                            orderstr += '<div class="fLeft col100 shipAddr">' + v.customerAddrs + ' ' + v.customerCity + ' ' + v.customerState + ' ' + v.customerPincode + '</div>';
-
-                            orderstr += '<div class="filterSec fLeft" id="' + v.order_status + '">';
-                            orderstr += '<center>';
-                            orderstr += '<div class="button actBtn transition300 fRight mar0 trackCommon" id="' + v.pid + '_' + s + '_' + v.order_status + '_' + v.oid + '" onclick="trackslide(this)">track</div>';
-                            orderstr += '</center>';
-                            orderstr += '</div>';
-                            orderstr += '</div>';
-                            orderstr += '<div class="fLeft trackOuter poR dn">';
-                            orderstr += '<center>';
-                            orderstr += '<div class="trackDivs">';
-                            orderstr += '<div class="fLeft placedTxt">Order Placed</div>';
-                            orderstr += '<div class="fLeft dateTxt"></div>';
-                            orderstr += '<div class="fLeft proStep" id="1ststp"></div>';
-                            orderstr += '</div>';
-                            orderstr += '<div class="trackDivs">';
-                            orderstr += '<div class="fLeft placedTxt">Quality Check And Certification</div>';
-                            orderstr += '<div class="fLeft dateTxt"></div>';
-                            orderstr += '<div class="fLeft proStep" id="2ndstp"></div>';
-                            orderstr += '</div>';
-                            orderstr += '<div class="trackDivs">';
-                            orderstr += '<div class="fLeft placedTxt"> Shipped </div>';
-                            if (v.order_status == 5 || v.order_status == 7) {
-                                orderstr += '<div class="fLeft dateTxt shp dn" id="' + statusDate + 'ship" >' + statusDate + '</div>';
-                            }
-                            orderstr += '<div class="fLeft proStep" id="3rdstp"></div>';
-                            orderstr += '</div>';
-                            orderstr += '<div class="trackDivs ">';
-                            orderstr += '<div class="fLeft placedTxt" id="delv">Delivered</div>';
-                            if (v.order_status == 6) {
-                                orderstr += '<div class="fLeft dateTxt del dn" id="' + statusDate + 'delv">' + statusDate + '</div>';
-                            }
-                            orderstr += '<div class="fLeft proStep" id="4thstp"></div>';
-
-                            orderstr += '</div>';
-
-
-                            orderstr += '</center>';
-                            orderstr += '</div>';
-                            orderstr += '</div>';
-                            orderstr += '</div>';
-                            orderstr += '</div>';
+//                          orderstr += '<div class="fLeft  shipTo">';
+//                          if (v.size != 0.0) {
+//                                orderstr += '<span class="fLeft">Size :</span>';
+//                                orderstr += '<span class="fLeft">' + v.size + '</span>';
+//                            }
+//                            orderstr += '</div>';
+//                            orderstr += '</div>';
+//                            orderstr += '<div class="fLeft rsCont">';
+//                            orderstr += '<span class="fLeft cartRup15b"> ' + indianMoney(parseInt(v.price)) + '</span>';
+//                            orderstr += '<div class="fLeft vatTxt dn">';
+//                            orderstr += '<div class="fLeft col100">MRP<span>&#8377 50,000</span></div>';
+//                            orderstr += '<div class="fLeft col100">VAT:<span>7487384</span></div>';
+//                            orderstr += '<div class="fLeft col100">tax:<span>675675</span></div>';
+//                            orderstr += '</div>';
+//                            orderstr += '</div>';
+//                            orderstr += '<div class="fLeft note">';
+//                            orderstr += '<div class="fLeft col100 semibold pBtm5">Code:<span class="regular">' + v.product_code + '</span></div>';
+//                            orderstr += '<div class="fLeft col100 semibold">Shipping address</div>';
+//                            orderstr += '<div class="fLeft col100 ">' + v.customername + '</div>';
+//                            orderstr += '<div class="fLeft col100 shipAddr">' + v.customerAddrs + ' ' + v.customerCity + ' ' + v.customerState + ' ' + v.customerPincode + '</div>';
+//
+//                            orderstr += '<div class="filterSec fLeft" id="' + v.order_status + '">';
+//                            orderstr += '<center>';
+//                            orderstr += '<div class="button actBtn transition300 fRight mar0 trackCommon" id="' + v.pid + '_' + s + '_' + v.order_status + '_' + v.oid + '" onclick="trackslide(this)">track</div>';
+//                            orderstr += '</center>';
+//                            orderstr += '</div>';
+//                            orderstr += '</div>';
+//                            orderstr += '<div class="fLeft trackOuter poR dn">';
+//                            orderstr += '<center>';
+//                            orderstr += '<div class="trackDivs">';
+//                            orderstr += '<div class="fLeft placedTxt">Order Placed</div>';
+//                            orderstr += '<div class="fLeft dateTxt"></div>';
+//                            orderstr += '<div class="fLeft proStep" id="1ststp"></div>';
+//                            orderstr += '</div>';
+//                            orderstr += '<div class="trackDivs">';
+//                            orderstr += '<div class="fLeft placedTxt">Quality Check And Certification</div>';
+//                            orderstr += '<div class="fLeft dateTxt"></div>';
+//                            orderstr += '<div class="fLeft proStep" id="2ndstp"></div>';
+//                            orderstr += '</div>';
+//                            orderstr += '<div class="trackDivs">';
+//                            orderstr += '<div class="fLeft placedTxt"> Shipped </div>';
+//                            if (v.order_status == 5 || v.order_status == 7) {
+//                                orderstr += '<div class="fLeft dateTxt shp dn" id="' + statusDate + 'ship" >' + statusDate + '</div>';
+//                            }
+//                            orderstr += '<div class="fLeft proStep" id="3rdstp"></div>';
+//                            orderstr += '</div>';
+//                            orderstr += '<div class="trackDivs ">';
+//                            orderstr += '<div class="fLeft placedTxt" id="delv">Delivered</div>';
+//                            if (v.order_status == 6) {
+//                                orderstr += '<div class="fLeft dateTxt del dn" id="' + statusDate + 'delv">' + statusDate + '</div>';
+//                            }
+//                            orderstr += '<div class="fLeft proStep" id="4thstp"></div>';
+//
+//                            orderstr += '</div>';
+//
+//
+//                            orderstr += '</center>';
+//                            orderstr += '</div>';
+//                            orderstr += '</div>';
+//                            orderstr += '</div>';
+//                            orderstr += '</div>';
 
                         });
 
