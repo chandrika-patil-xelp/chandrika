@@ -37,7 +37,7 @@
   $('#scroll').html("");
   totalprice = 0;
   $('#totprz_trnst').html(""); 
- 
+  $('#totprz_trnst').removeClass('cartRupee');
     var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id=" + cartid + "&userid=";  
       
     $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results) {
@@ -50,6 +50,7 @@
 	    $("#noprdtrnfail").removeClass("dn");
 	    $('#totitm_trnstn').addClass('dn');
 	    $('#totprz_trnst').html(""); 
+	    $('#totprz_trnst').removeClass('cartRupee');
 	},1000);
       }
       else{ 
@@ -57,7 +58,7 @@
 	    $('#submt').removeClass('dn'); 
 	    $("#noprdtrnfail").addClass("dn");  
 	    $('#urords').removeClass('dn');
-	    $('#totitm_trnstn').removeClass('dn');
+	    $('#totitm_trnstn').removeClass('dn'); 
 	},1000);
       $(obj.result).each(function (r, v) {
 	if (v.default_img !== null) {
@@ -105,6 +106,7 @@
 
       });
       setTimeout(function(){
+	  $('#totprz_trnst').addClass('cartRupee');
 	  $('#totprz_trnst').html(indianMoney(totalprice));
       },1000);
      }

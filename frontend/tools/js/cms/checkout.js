@@ -52,35 +52,49 @@ function displaycartdetail()
     var cartid = common.readFromStorage('jzeva_cartid');
     $('#scroll').html("");
     totalprice = 0;
-    $('#totprz_chkout').html("");
-    if (actn == 'buy') {
-        var buyid = common.readFromStorage('jzeva_buyid');
-        cartid = buyid;
-        var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id=" + cartid;
-    } else
+    $('#totprz_chkout').html(""); 
+    $('#totprz_chkout').removeClass('cartRupee');
+    if (actn == 'buy') 
+    {
+        var buyid = common.readFromStorage('jzeva_buyid'); 
+        var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id=" + buyid;
+    }
+    else
+    {
         var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id=" + cartid + "&userid=" + userid + "";
-
+    }
+    
     $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results) {
-            var obj = JSON.parse(results);
+            
+	    var obj = JSON.parse(results);
             gblcheckodata = obj.result;
-            if (gblcheckodata == null) {
+            if (gblcheckodata == null) 
+	    {
 	      setTimeout(function(){
                 $('#all_submt').addClass('dn');
                 $("#noprdcrd").removeClass("dn");
                 $('#totlitem_chkout').addClass('dn');
+		$('#totprz_chkout').removeClass('cartRupee');
 	      },1000);
-            } else {
+            }
+	    else
+	    {
 		setTimeout(function(){
 		  $('#all_submt').removeClass('dn');
 		  $("#noprdcrd").addClass("dn");
 		  $('#totlitem_chkout').removeClass('dn');
 		},1000);
+		
                 $(obj.result).each(function (r, v) {
-                    if (v.default_img !== null) {
+                    
+		    if (v.default_img !== null) 
+		    {
                         abc = IMGDOMAIN + v.default_img;
                     } 
-		    else {
-		      if(v.prdimage !== null){
+		    else 
+		    {
+		      if(v.prdimage !== null)
+		      {
                         var abc = v.prdimage;
                         abc = abc.split(',');
                         abc = IMGDOMAIN + abc[0];
@@ -91,11 +105,11 @@ function displaycartdetail()
                     totalprice += parseInt(v.price);
                     var bprize = parseInt(v.price / v.pqty);
                     var wht;
-                    if (v.ccatname !== null) {
+                    if (v.ccatname !== null) 
                         wht = getweight(v.size, v.ccatname, v.metal_weight);
-                    } else {
+		    else 
                         wht = parseFloat(v.metal_weight).toFixed(3);
-                    }
+                    
 
                     var chckoutstr = "<div class='cart_item'>";
                     chckoutstr += "<div class='cart_image'><img src='" + abc + "' onerror='this.style.display=\"none\"'>";
@@ -123,6 +137,7 @@ function displaycartdetail()
 		    
                 });
 		setTimeout(function(){
+		    $('#totprz_chkout').addClass('cartRupee');
 		    $('#totprz_chkout').html(indianMoney(totalprice));
 		},300);
             }

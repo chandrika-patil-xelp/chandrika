@@ -11,37 +11,36 @@ function displaycartdetail()
     var cartid = common.readFromStorage('jzeva_cartid');
     $('#scrollchckbfr').html("");
     totalprice = 0;
-    $('.total_prc').html("");
-    if (actn == 'buy') {
+    $('#totprz_chkbfr').html(""); 
+    if (actn == 'buy') 
+    {
         var buyid = common.readFromStorage('jzeva_buyid');
-        cartid = buyid;
-        var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id=" + cartid;
-    } else
+        var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id=" + buyid;
+    } 
+    else
         var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id=" + cartid + "&userid=" + userid + "";
+      
     $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results) {
+	
             var obj = JSON.parse(results);
             gblcheckodata = obj.result;
-
-            if (gblcheckodata == null) {
-	      setTimeout(function(){
-		  $('#submt').addClass('dn');
-		  $('#urords').addClass('dn');
-		  $("#noprdinchkotbefr").removeClass("dn");
-		  $('#totitm_chckbefor').addClass('dn');
-	      },1000);
-            } else {
+ 
 	        setTimeout(function(){
+		  
 		  $('#submt').removeClass('dn');
 		  $("#noprdinchkotbefr").addClass("dn");
 		  $('#totitm_chckbefor').removeClass('dn');
 		  $('#urords').removeClass('dn');
 		},1000);
+		
                 $(obj.result).each(function (r, v) {
-                    if (v.default_img !== null) {
-                        abc = IMGDOMAIN + v.default_img;
-                    } 
-		    else {
-		      if(v.prdimage !== null){
+		  
+                    if (v.default_img !== null)  
+                        abc = IMGDOMAIN + v.default_img; 
+		    else 
+		    {
+		      if(v.prdimage !== null)
+		      {
                         var abc = v.prdimage;
                         abc = abc.split(',');
                         abc = IMGDOMAIN + abc[0];
@@ -49,14 +48,15 @@ function displaycartdetail()
 		      else
 			abc=BACKDOMAIN +'tools/img/noimage.svg'
                     }
+		    
                     totalprice += parseInt(v.price);
                     var bprize = parseInt(v.price / v.pqty);
                     var wht;
-                    if (v.ccatname !== null) {
+                    if (v.ccatname !== null)  
                         wht = getweight(v.size, v.ccatname, v.metal_weight);
-                    } else {
+                    else 
                         wht = parseFloat(v.metal_weight).toFixed(3);
-                    }
+                  
 
                 var chckoutstr = "<div class='cart_item'>";
                     chckoutstr += "<div class='cart_image'><img src='" + abc + "' onerror='this.style.display=\"none\"'>";
@@ -67,24 +67,23 @@ function displaycartdetail()
                     chckoutstr += "<div class='cart_desc  fLeft' >";
                     chckoutstr += "Purity : " + v.carat + " &nbsp|&nbsp ";
                     if (v.ccatname !== null)
-                    chckoutstr += "Size : " + v.size + " &nbsp|&nbsp ";
+		      chckoutstr += "Size : " + v.size + " &nbsp|&nbsp ";
                     chckoutstr += "Color : " + v.color + "";
                     chckoutstr += "</div>";
                     chckoutstr += "<div class='cart_price cartRup15 fLeft'><span class='price_gen'> " + indianMoney(bprize) + "</span></div>";
-                    chckoutstr += "<div class='amt_selector' id='" + v.cart_id + "'>";
-//                    chckoutstr += "<a href='#' onclick='subqnty(this)'  id='sub_" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "'><div class='cart_btn fLeft sub_noW'></div></a>";
+                    chckoutstr += "<div class='amt_selector' id='" + v.cart_id + "'>"; 
                     chckoutstr += "<div class='item_amt fLeft '>" + v.pqty + "</div>";
-//                    chckoutstr += " <a href='#' id='add_" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "' onclick='addqnty(this)'><div class='cart_btn fLeft add_noW' ></div></a>";
+                    chckoutstr += "</div>"; 
                     chckoutstr += "</div>";
-//                    chckoutstr += "<div class='cart_removew addrCommon' id='" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "_" + v.size + "' onclick='remove(this)' >";
-//                    chckoutstr += "</div>";
-                    chckoutstr += "</div>";
+		    
                     $('#scrollchckbfr').append(chckoutstr);
                 });
+		
 		setTimeout(function(){
-		  $('.total_prc').html(indianMoney(totalprice));
+		  $('#totprz_chkbfr').addClass('cartRupee');
+		  $('#totprz_chkbfr').html(indianMoney(totalprice));
 		},300);
-            }
+          
         }
     });
 }
@@ -168,7 +167,7 @@ function addqnty(ths)
             dat['price'] = totprice;
             dat['RBsize'] = v.size;
             storecartdata(dat);
-            $('.total_prc').html(indianMoney(totalprice));
+            $('#totprz_chkbfr').html(indianMoney(totalprice));
         }
     });
 }
@@ -206,7 +205,7 @@ function subqnty(evnt)
                 dat['price'] = totprice;
                 dat['RBsize'] = v.size;
                 storecartdata(dat);
-                $('.total_prc').html(indianMoney(totalprice));
+                $('#totprz_chkbfr').html(indianMoney(totalprice));
             }
         });
     }
