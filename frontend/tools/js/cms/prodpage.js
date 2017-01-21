@@ -55,16 +55,12 @@ function IND_money_format(money)
 
 
 var pid, psize;
-var arrdata = new Array();
+var arrdata = {};
 function getarraydata() {
 
-    arrdata = [];
-    arrdata.push(pid);
-    var pprice = $('#price').html();
-    pprice = pprice.replace(/\,/g, '');
-    pprice = parseInt(pprice, 10);
-    arrdata.push(pprice);
-
+    
+    arrdata['pid']=pid;
+     
     if (data['results']['dimond']['results'] !== null) {
       //var quality =$('#qual').attr('qual_id');
         var xx = $('#qual').attr('qual_id').split('_'); 
@@ -89,10 +85,10 @@ function getarraydata() {
             sz = parseFloat(2.4);
         sz = $('.ringCircleB').text();
     }
-    arrdata.push(color);
-    arrdata.push(quality);
-    arrdata.push(metal);
-    arrdata.push(sz);
+    arrdata['color']=color;
+    arrdata['quality']=quality;
+    arrdata['metal']=metal;
+    arrdata['sz']=sz;
 }
 
 $('#add_to_cart').on('click', function () {
@@ -105,13 +101,13 @@ $('#add_to_cart').on('click', function () {
     {
       $(this).addClass('pointNone');
       var userid, cartdata = {};
-      cartdata['pid'] = arrdata[0];
-      cartdata['price'] = arrdata[1];
+      cartdata['pid'] = arrdata['pid'];
+      cartdata['price'] =totalNewPrice;
       cartdata['qty'] = 1;
-      var chr = "" + arrdata[2] + "|@|" + arrdata[4] + "|@|" + arrdata[3];
+      var chr = "" + arrdata['color'] + "|@|" + arrdata['metal'] + "|@|" + arrdata['quality'];
 
       cartdata['col_car_qty'] = chr;
-      cartdata['RBsize'] = arrdata[5];
+      cartdata['RBsize'] = arrdata['sz'];
 
       var userid = common.readFromStorage('jzeva_uid');
       var cartid = common.readFromStorage('jzeva_cartid');
@@ -244,15 +240,15 @@ $('#buynow').on('click',function(){
        common.msg(0,'Please select size');
     else
     {
-      getarraydata(); 
+      getarraydata();  
       var userid, buydata = {};
-      buydata['pid'] = arrdata[0];
-      buydata['price'] = arrdata[1];
+      buydata['pid'] = arrdata['pid'];
+      buydata['price'] = totalNewPrice;
       buydata['qty'] = 1;
-      var chr = "" + arrdata[2] + "|@|" + arrdata[4] + "|@|" + arrdata[3];
+      var chr ="" + arrdata['color'] + "|@|" + arrdata['metal'] + "|@|" + arrdata['quality'];
 
       buydata['col_car_qty'] = chr;
-      buydata['RBsize'] = arrdata[5];
+      buydata['RBsize'] =arrdata['sz'];
       buydata['buyid'] = '';
       buydata['cartid'] = ''; 
       buydata['userid'] = '';  
@@ -1068,7 +1064,7 @@ var grandtot = 0;
 var gtotal = 0
 var catname;
 var catid = 0;
-
+var totalNewPrice=0;
 var sizdefault;
 var sizdefaulval;
 function getcatsize(s, m) {
@@ -1285,7 +1281,7 @@ function calculatePrice()
     var mkCharges = parseFloat(storedMkCharge * newWeight); 
     var ttl = parseFloat(goldPrice + dmdPrice + mkCharges + uncPrice + soliprc + gemsPrice);
 
-    var totalNewPrice = Math.round(ttl + (ttl * vatRate));
+    totalNewPrice = Math.round(ttl + (ttl * vatRate));
 
     var abc = $('#price').html();  
     $('#price').text(totalNewPrice);
@@ -1317,16 +1313,16 @@ $('#addwishlist').click(function () {
         if (wshlstflag == 0)
         {
 	  getarraydata();
-	 
+	  
             var userid, wishdata = {};
-            wishdata['pid'] = arrdata[0];
-            var chr = "" + arrdata[2] + "|@|" + arrdata[4] + "|@|" + arrdata[3];
+            wishdata['pid'] = arrdata['pid'];
+            var chr ="" + arrdata['color'] + "|@|" + arrdata['metal'] + "|@|" + arrdata['quality'];
             wishdata['col_car_qty'] = chr;
-            wishdata['price'] = arrdata[1];
+            wishdata['price'] =totalNewPrice;
             wishdata['user_id'] = userid;
             var wishid = '';
             wishdata['wish_id'] = wishid;
-            wishdata['size'] = arrdata[5];
+            wishdata['size'] = arrdata['sz'];
             var URL = APIDOMAIN + "index.php?action=addtowishlist";
             var data = wishdata;
             var dt = JSON.stringify(data);
