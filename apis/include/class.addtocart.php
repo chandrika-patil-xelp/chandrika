@@ -556,6 +556,7 @@
              ."(SELECT GROUP_CONCAT(solitaire_id) FROM tbl_product_solitaire_mapping WHERE productid = pid AND active_flag = 1 ) AS allSolitaire,
                (SELECT GROUP_CONCAT(no_of_solitaire) FROM tbl_product_solitaire_mapping WHERE FIND_IN_SET(solitaire_id,allSolitaire) AND productid =pid) AS totalSolitaire,
                (SELECT GROUP_CONCAT(carat) FROM tbl_product_solitaire_mapping WHERE FIND_IN_SET(solitaire_id,allSolitaire) AND productid =pid) AS Solicarat,
+               (SELECT GROUP_CONCAT(clarity) FROM tbl_product_solitaire_mapping WHERE FIND_IN_SET(solitaire_id,allSolitaire) AND productid =pid) AS Soliclarity,
                (SELECT GROUP_CONCAT(price_per_carat) FROM tbl_product_solitaire_mapping WHERE FIND_IN_SET(solitaire_id,allSolitaire) AND productid =pid) AS SoliPricepercarat,"
                             
              ."(SELECT GROUP_CONCAT(uncut_id) FROM tbl_product_uncut_mapping WHERE productid = pid AND active_flag = 1 ) AS allUncut,
@@ -615,7 +616,7 @@
                     $arr['totalSolitaire'] = $row['totalSolitaire'];
                     $arr['Solicarat'] = $row['Solicarat'];
                     $arr['SoliPricepercarat'] = $row['SoliPricepercarat'];
-                    
+                     $arr['Soliclarity'] = $row['Soliclarity'];
                     $arr['allUncut'] = $row['allUncut'];
                     $arr['totalUncut'] = $row['totalUncut'];
                     $arr['Uncutcarat'] = $row['Uncutcarat'];

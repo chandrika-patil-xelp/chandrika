@@ -88,7 +88,7 @@ function getarraydata() {
     arrdata['color']=color;
     arrdata['quality']=quality;
     arrdata['metal']=metal;
-    arrdata['sz']=sz;
+    arrdata['sz']=sz;  
 }
 
 $('#add_to_cart').on('click', function () {
@@ -104,6 +104,11 @@ $('#add_to_cart').on('click', function () {
       cartdata['pid'] = arrdata['pid'];
       cartdata['price'] =totalNewPrice;
       cartdata['qty'] = 1;
+    
+      if(arrdata['quality']=== null || arrdata['quality']=== undefined){
+          arrdata['quality']= 0;
+          
+      }
       var chr = "" + arrdata['color'] + "|@|" + arrdata['metal'] + "|@|" + arrdata['quality'];
 
       cartdata['col_car_qty'] = chr;
@@ -471,7 +476,8 @@ $(document).ready(function () {
 			      bstr += ' are ';
 			    else
 			      bstr += ' is ';
-                           bstr += ' cast in <span class="semibold" >' + vl.mtlWgt + '</span> <span class="semibold">grams</span> of gold set with <span class="semibold">' + dt['solitaire']['results'][0].nofs + '</span> brilliant cut <span class="semibold">' + dt['solitaire']['results'][0].shape + '</span> Solitaire (Approx. <span class="semibold">' + dt['solitaire']['results'][0].carat + ' Carat</span>) certified by <span class="semibold">' + dt['basicDetails'].crtficte + '</span></div>';
+                           bstr += ' cast in <span class="semibold" >' + vl.mtlWgt + '</span> <span class="semibold">grams</span> of gold set with <span class="semibold">' + dt['solitaire']['results'][0].nofs + '</span> brilliant cut <span class="semibold">' + dt['solitaire']['results'][0].shape + '</span> Solitaire (Approx. <span class="semibold">' + dt['solitaire']['results'][0].carat + ' Carat</span>) and <span class="semibold"> '+dt['solitaire']['results'][0].clrty+' </span> quality <span class="semibold"> '+dt['solitaire']['results'][0].colr+' </span> color certified by <span class="semibold">' + dt['basicDetails'].crtficte + '</span></div>';
+                          
 			  //  bstr += 'cast in <span class="semibold" id="newWt">' + vl.mtlWgt + '</span> <span class="semibold">grams </span>of gold set with <span class="semibold">' + data['results']['solitaire']['results'][0].nofs + '</span> brilliant cut  <span class="semibold">' + dt['solitaire']['results'][0].shape + '</span> Solitaire (Approx. <span class="semibold">' + dt['solitaire']['results'][0].carat + ' Carat</span>) certified by <span class="semibold">' + dt['basicDetails'].crtficte + '</span> </div>';
                             break;
                         }

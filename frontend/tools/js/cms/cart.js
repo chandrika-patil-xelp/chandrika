@@ -16,7 +16,7 @@ function storecartdata(cartdata, chk)
         success: function (results) {
 	  var data=JSON.parse(results);
 	  common.addToStorage('jzeva_cartid', data.cartid);
-
+        
              getglobaldata();
             if (chk == 1) {
                 $("#niceCart").html("");
@@ -78,6 +78,9 @@ function displaycartdata()
                        cartstr += "<div class='cart_desc  fLeft' id='nwwt'>" + v.color + " " + v.jewelleryType + " | "+ v.carat + " | " + wht + "  grams";
 //                      cartstr += "Quality : " + v.quality + "  ";
                        cartstr += "<div class='cart_desc  fLeft' id='nwwt'>";
+                       if(v.dmdcarat === null )
+                             cartstr += "Solitaire " +v.Solicarat+"Ct |"+v.Soliclarity ;
+                         else
                        cartstr += "Diamonds " + v.dmdcarat + " Ct | " + v.quality ;
 		       if(parseInt(v.size) !== 0 )
 		       cartstr += " | Size " + v.size + "";

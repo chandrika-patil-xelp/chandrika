@@ -181,7 +181,6 @@ function generatelist(obj) {
            var Diaprc = obj['dmdQPricepercarat'];
        
     }
-    console.log(obj);
       if (obj['chldcatname'] == 'Rings' || obj['finejwellrycatname'] == 'Rings')
 	    bseSize = parseFloat(14);
       else if (obj['chldcatname'] == 'Bangles' || obj['finejwellrycatname'] == 'Bangles')
