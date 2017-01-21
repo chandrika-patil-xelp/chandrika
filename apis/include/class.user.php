@@ -1651,32 +1651,32 @@ class user extends DB {
 					<img src="'.DOMAIN.'frontend/emailer/jzeva_logo.png" alt="JZEVA" width="150" height="50">
 				    </div>
 				</div>
-				<div style="width:100%;height:auto;background-color:#fff;padding:25px;min-height:300px;padding-bottom:0px">
+				<div style="width:100%;height:auto;background-color:#fff;padding:25px;min-height:300px;padding-bottom:0px;box-sizing:border-box;">
 				    <div style="width:100%;height:auto;margin-bottom:30px;">
 					<div style="width:70px;height:60px;margin:auto">
 					    <img src="'.DOMAIN.'frontend/emailer/otp.png" alt="img" width="70" height="60">
 					</div>
 				    </div>
 				    <div style="width:100%;height:auto;font-size:20px;color:#0CCDB8;text-align:center;line-height:25px">Dear '.$gndr.'. '.$uname.'</div>
-				    <div style="width: 100%;height: auto;font-size: 13px;text-align: center;color: #333;line-height: 25px;margin-top: 10px;letter-spacing: 0.2em;"><span style="display:inline-block;line-height:25px;vertical-align:middle">THANK YOU FOR YOUR INTEREST IN JZEVA</span></div>
+				    <div style="width: 100%;height: auto;font-size: 13px;text-align: center;color: #333;line-height: 25px;margin-top: 10px;letter-spacing: 0.1em;"><span style="display:inline-block;line-height:25px;vertical-align:middle">THANK YOU FOR YOUR INTEREST IN JZEVA</span></div>
 				    <div style="width:100%;height:auto;font-size:14px;color:#333;text-align:center;line-height:25px;padding-top:10px;">We are glad to assist you in changing the password of your jzeva account</div>
 				    <div style="width:100%;height:auto;font-size:14px;color:#333;text-align:center;line-height:25px;padding-top:10px;"><span style="display:inline-block;line-height:25px;vertical-align:middle">Please use the OTP sent in this email to proceed with changing your password</span></div>
 				    <div style="width:100%;height:auto;font-size:45px;line-height:50px;color:#0CCDB8;text-align:center;margin-top: 10px;">'.$otp.'</div>
-				    <div style="width:100%;height:auto;padding:20px 25px;background-color:#222529;margin-top:25px">
+				    <div style="width:100%;height:auto;padding:20px 25px;background-color:#222529;margin-top:25px;box-sizing:border-box;">
 					<div style="width:100%;height:auto;font-size:12px;color:#fff;text-align:center;line-height:20px;margin-top:10px;">Should you have any question or require our assistance, our concierege services desk is available at</div>
 					<div style="width:100%;height:auto;font-size:12px;line-height:20px;color:#0CCDB8;text-align:center;margin-top:7px"><span style="display:inline-block;line-height:25px;vertical-align:middle">Call +997779990000 | Email <a href="" style="color:#0CCDB8;text-decoration:none">care@jzeva.com</a></span></div>
-					<div style="width:100%;height:auto;font-size:12px;line-height:25px;color:#999;text-align:center;margin-top: 4px;margin-bottom: 1px;text-decoration:none;"><span style="display:inline-block;line-height:25px;vertical-align:middle">( Monday to Friday 10AM - 10PM IST and Saturday 10AM - 10PM IST )</span></div>
+					<div style="width:100%;height:auto;font-size:12px;line-height:25px;color:#999;text-align:center;margin-top: 4px;margin-bottom: 1px;text-decoration:none;"><span style="display:inline-block;line-height:25px;vertical-align:middle">( Monday to Saturday 10AM - 9PM IST )</span></div>
 				    </div>
 				</div>
-				<div style="width:100%;height:auto;padding:0px 25px 25px 25px;background-color:#15181b;min-height:200px">
-				    <div style="width:100%;height:auto;padding:0px 25px 20px 25px;background-color:#222529">
+				<div style="width:100%;height:auto;padding:0px 25px 25px 25px;background-color:#15181b;min-height:200px;box-sizing:border-box;">
+				    <div style="width:100%;height:auto;padding:0px 25px 20px 25px;background-color:#222529;box-sizing:border-box;">
 					<div style="width:100%;height:auto;font-size:12px;color:#fff;text-align:center;line-height:25px;">We look forward to serving you in the future. Happy Shopping!!!</div>
 					 <div style="width:100%;height:auto;font-size:13px;color:#fff;text-align:center;line-height:25px;margin-top: 25px;">Yours Truly</div>
 					  <div style="width:100%;height:auto;font-size:14px;color:#fff;text-align:center;line-height:20px; margin-bottom: 15px;">JZEVA</div>
 				    </div>
 				    <div style="width:100%;height:auto;margin-top:50px;margin-bottom:15px">
 					<center>
-					<a href style="text-decoration:none"><div style="width:100%;cursor:pointer;color:#0CCDB8;display:inline-block;vertical-align:top;font-size:9px;padding:0px 5px;line-height:16px;height:25px">FOLLOW US</div></a><a href style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">FACEBOOK</div></a><a href style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">TWITTER</div></a><a href style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">INSTAGRAM</div></a><a href style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;letter-spacing:0.02em;height:16px">PINTEREST</div></a>
+					<a href style="text-decoration:none"><div style="width:100%;cursor:pointer;color:#0CCDB8;display:inline-block;vertical-align:top;font-size:9px;padding:0px 5px;line-height:16px;height:25px">FOLLOW US</div></a><a href style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">FACEBOOK</div></a><a href style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">INSTAGRAM</div></a><a href style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;letter-spacing:0.02em;height:16px">PINTEREST</div></a>
 					</center>
 				    </div>
 				    <div style="width:100%;height:auto;font-size:12px;color:#999;line-height:25px;text-align:center;margin-top:30px">You are receiving this email in response to an order or request you submitted to  <a href="" style="color:#999;text-decoration:none !important">www.jzeva.com</a></div>

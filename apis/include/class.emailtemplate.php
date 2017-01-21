@@ -82,7 +82,7 @@
 					<img src="'.DOMAIN.'frontend/emailer/jzeva_logo.png" alt="JZEVA" width="150" height="50">
 				    </div>
 				</div>
-				<div style="width:100%;height:auto;background-color:#fff;padding:25px;min-height:300px;padding-bottom:0px;box-sizing: border-box;">
+				<div style="width:100%;height:auto;background-color:#fff;padding:25px;min-height:300px;padding-bottom:0px;box-sizing:border-box;">
 				    <div style="width:100%;height:auto;margin-bottom:30px;">
 					<div style="width:70px;height:70px;margin:auto">
 					    <img src="'.DOMAIN.'frontend/emailer/confirm.png" alt="JZEVA" width="70" height="70">
@@ -239,14 +239,14 @@
 				    <img src="'.DOMAIN.'frontend/emailer/jzeva_logo.png" alt="JZEVA" width="150" height="50">
 				</div>
 			    </div>
-			      <div style="width:100%;height:auto;background-color:#fff;padding:25px;min-height:300px;padding-bottom:0px;box-sizing: border-box;">
+			      <div style="width:100%;height:auto;background-color:#fff;padding:25px;min-height:300px;padding-bottom:0px;box-sizing:border-box;">
 				  <div style="width:100%;height:auto;margin-bottom:30px;">
 				      <div style="width:70px;height:60px;margin:auto">
 					  <img src="'.DOMAIN.'frontend/emailer/signup.png" alt="img" width="70" height="60">
 				      </div>
 				  </div>
 				  <div style="width:100%;height:auto;font-size:20px;color:#0CCDB8;text-align:center;line-height:25px"> '.$gndr.'. '.$params['name'].'</div>
-				  <div style="width:100%;height:auto;font-size:13px;text-align:center;color:#333;line-height:25px;margin-top:10px;letter-spacing:0.2em;"><span style="display:inline-block;line-height:25px;;vertical-align:middle">WELCOME TO THE WORLD OF LUXURIOUS JEWELLERY</span></div>
+				  <div style="width:100%;height:auto;font-size:13px;text-align:center;color:#333;line-height:25px;margin-top:10px;letter-spacing:0.1em;"><span style="display:inline-block;line-height:25px;;vertical-align:middle">WELCOME TO THE WORLD OF LUXURIOUS JEWELLERY</span></div>
 				  <div style="width:100%;height:auto;font-size:14px;color:#333;line-height:25px;text-align:center;padding-top:10px;">We at jzeva extremely pleased to have you express interest in your collection</div>
 				  <div style="width:100%;height:auto;font-size:14px;color:#333;line-height:25px;text-align:center">Your profile has been created and can now be accessed by clicking on my account link at <a href="'.DOMAIN.'index.php?action=landing_page" style="text-decoration:none;color:#333">www.jzeva.com</a></div>
 				  <div style="width:100%;height:auto;font-size:14px;color:#333;line-height:25px;text-align:center">You can log on to your account at any time ,using this email address and your secure password</div>
@@ -302,18 +302,18 @@
 					      <span style="width:20px;height:30px;display:inline-block;vertical-align:top">
 						  <img src="'.DOMAIN.'frontend/emailer/iconn.png" alt="img" width="15" height="15" style="margin-top:7.5px">
 					      </span>
-					      <span style="display: inline-block;vertical-align: top;line-height:normal;font-size: 12px;width: calc(100% - 40px);margin-top:3px;">Save your valuable time when ordering at our e-shop</span>
+					      <span style="display: inline-block;vertical-align: top;line-height:normal;font-size: 12px;width: calc(100% - 40px);margin-top:9px;">Save your valuable time when ordering at our e-shop</span>
 					  </div>
 				      </div>
 				  </div>
-				  <div style="width:100%;height:auto;padding:20px 25px;background-color:#222529;margin-top:25px">
+				  <div style="width:100%;height:auto;padding:20px 25px;background-color:#222529;margin-top:25px;box-sizing:border-box;">
 				      <div style="width:100%;height:auto;font-size:12px;color:#fff;text-align:center;line-height:20px;margin-top:10px;">Should you have any question or require our assistance, our concierege services desk is available at</div>
 				      <div style="width:100%;height:auto;font-size:12px;line-height:20px;color:#0CCDB8;text-align:center;margin-top:7px"><span style="display:inline-block;line-height:25px;vertical-align:middle">Call +997779990000 | Email <a href="#" style="color:#0CCDB8;text-decoration:none">care@jzeva.com</a></span></div>
 				      <div style="width:100%;height:auto;font-size:12px;line-height:25px;color:#999;text-align:center;margin-top: 4px;margin-bottom: 1px;text-decoration:none;"><span style="display:inline-block;line-height:25px;vertical-align:middle">( Monday to Saturday 10AM - 9PM IST )</span></div>
 				  </div>
 			      </div>
 			      <div style="width:100%;height:auto;padding:0px 25px 25px 25px;background-color:#15181b;min-height:200px;box-sizing:border-box;">
-				  <div style="width:100%;height:auto;padding:0px 25px 20px 25px;background-color:#222529">
+				  <div style="width:100%;height:auto;padding:0px 25px 20px 25px;background-color:#222529;box-sizing:border-box;">
 				      <div style="width:100%;height:auto;font-size:12px;color:#fff;text-align:center;line-height:25px;">We look forward to serving you in the future. Happy Shopping!!!</div>
 				       <div style="width:100%;height:auto;font-size:13px;color:#fff;text-align:center;line-height:25px;margin-top: 25px;">Yours Truly</div>
 					<div style="width:100%;height:auto;font-size:14px;color:#fff;text-align:center;line-height:20px; margin-bottom: 15px;">JZEVA</div>
@@ -330,7 +330,7 @@
 		      </div>
 		  </body>
 	      </html>';
- 
+
 	  return $message;
 	}
 	
@@ -379,7 +379,7 @@
 					  <img src="'.DOMAIN.'frontend/emailer/jzeva_logo.png" alt="JZEVA" width="150" height="50">
 				      </div>
 				  </div>
-				  <div style="width:100%;height:auto;background-color:#fff;padding:25px;min-height:300px;padding-bottom:0px;box-sizing: border-box;">
+				  <div style="width:100%;height:auto;background-color:#fff;padding:25px;min-height:300px;padding-bottom:0px;box-sizing:border-box;">
 				      <div style="width:100%;height:auto;margin-bottom:25px;">
 					  <div style="width:60px;height:60px;margin:auto">
 					      <img src="'.DOMAIN.'frontend/emailer/shipping.png" alt="img" width="60" height="60">
@@ -390,21 +390,21 @@
 				      <div style="width:100%;height:auto;font-size:12px;color:#000;text-align:center;line-height:25px;margin-top: 3px"><span style="display:inline-block;line-height:25px;vertical-align:middle">'.$params['ordid'].' has been shipped from our location</span></div>
 				      <div style="width:100%;height:auto;font-size:12px;color:#000;text-align:center;line-height:25px;margin-top: 10px;"><span style="display:inline-block;line-height:25px;vertical-align:middle">If you have opted for cash on delivery please pay the amount to the</span></div>
 				       <div style="width:100%;height:auto;font-size:12px;color:#000;text-align:center;line-height:22px"><span style="display:inline-block;line-height:normal;vertical-align:middle">delivery personnel on receipt of your Jewellery</span></div>
-				      <div style="width:100%;height:auto;padding:20px 25px;background-color:#222529;margin-top:25px">
+				      <div style="width:100%;height:auto;padding:20px 25px;background-color:#222529;margin-top:25px;box-sizing:border-box;">
 					  <div style="width:100%;height:auto;font-size:12px;color:#fff;text-align:center;line-height:25px;margin-top:10px;"><span style="display:inline-block;line-height:25px;vertical-align:middle">Should you have any question or require our assistance, our concierege services desk is available at</span></div>
 					<div style="width:100%;height:auto;font-size:12px;line-height:20px;color:#0CCDB8;text-align:center;margin-top:7px"><span style="display:inline-block;line-height:25px;vertical-align:middle">Call +997779990000 | Email <a href="" style="color:#0CCDB8;text-decoration:none">care@jzeva.com</a></span></div>
 					<div style="width:100%;height:auto;font-size:12px;line-height:25px;color:#999;text-align:center;margin-top: 4px;margin-bottom: 1px;text-decoration:none;"><span style="display:inline-block;line-height:25px;vertical-align:middle">( Monday to Saturday 10AM - 9PM IST )</span></div>
 				      </div>
 				  </div>
 				  <div style="width:100%;height:auto;padding:0px 25px 25px 25px;background-color:#15181b;min-height:200px;box-sizing:border-box;">
-				    <div style="width:100%;height:auto;padding:0px 25px 20px 25px;background-color:#222529">
+				    <div style="width:100%;height:auto;padding:0px 25px 20px 25px;background-color:#222529;box-sizing:border-box;">
 					<div style="width:100%;height:auto;font-size:12px;color:#fff;text-align:center;line-height:25px;">We look forward to serving you in the future. Happy Shopping!!!</div>
 					 <div style="width:100%;height:auto;font-size:13px;color:#fff;text-align:center;line-height:25px;margin-top: 25px;">Yours Truly</div>
 					  <div style="width:100%;height:auto;font-size:14px;color:#fff;text-align:center;line-height:20px; margin-bottom: 15px;">JZEVA</div>
 				    </div>
 				    <div style="width:100%;height:auto;margin-top:50px;margin-bottom:15px">
 					<center>
-					  <a href style="text-decoration:none"><div style="width:100%;cursor:pointer;color:#0CCDB8;display:inline-block;vertical-align:top;font-size:9px;padding:0px 5px;line-height:16px;height:25px">FOLLOW US</div></a><a href style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">FACEBOOK</div></a><a href style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">TWITTER</div></a><a href style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">INSTAGRAM</div></a><a href style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;letter-spacing:0.02em;height:16px">PINTEREST</div></a>
+					  <a href style="text-decoration:none"><div style="width:100%;cursor:pointer;color:#0CCDB8;display:inline-block;vertical-align:top;font-size:9px;padding:0px 5px;line-height:16px;height:25px">FOLLOW US</div></a><a href style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">FACEBOOK</div></a><a href style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">INSTAGRAM</div></a><a href style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;letter-spacing:0.02em;height:16px">PINTEREST</div></a>
 					</center>
 				    </div>
 				    <div style="width:100%;height:auto;font-size:12px;color:#999;line-height:25px;text-align:center;margin-top:30px">You are receiving this email in response to an order or request you submitted to  <a href="'.DOMAIN.'index.php?action=landing_page" style="color:#999;text-decoration:none !important">www.jzeva.com</a></div>
