@@ -119,8 +119,20 @@
     background-size: auto 8px;
     background-position: left 3px center;
 }
-#rg .irs-min, .irs-max{display: none;}
+#rg .irs-max, .irs-min{display: none;}
 #ct .irs-min, .irs-max{display: none;}
+#rg .irs-min, .irs-max{display: none;}
+#ct .irs-max, .irs-min{display: none;}
+#slideRing .irs-max, .irs-min{display: block;}
+#slideRing .irs-min, .irs-max{display: block;}
+
+
+
+
+#RangeGuide .irs-max{display:block!important;}
+
+
+
 
 #ct .irs-from, .irs-to, .irs-single {}
 #ct .irs-to, .irs-single{}

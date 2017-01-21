@@ -1336,16 +1336,18 @@ input[type=radio]:checked ~ .selector_label:after {transform:translateX(0%);-web
 #forgot .btnContainr{width:140px;}
 .shadow_head{width:100%;height:100px;position:fixed;top:0;left:0;background:url(../img/grad.png);background-size:auto 100%;z-index: 100;background-repeat:repeat-x;pointer-events:none;}
 .gemBanner{width:100%;height:60vh;background-image:url('../img/.jpg');background-size:cover;background-position:center;background-repeat:no-repeat;position:absolute}
-.Terms .gemBanner{width:100%;height:60vh;background:#222529; position:absolute}
+
+.Terms .gemBanner{width:100%;height:60vh;background-image:url('../img/BESPOKE1.jpg');background:#222529; position:absolute}
 .homejzeva .gemBanner{width:100%;height:90vh;background-image:url('../img/23.jpg');background-size:cover;background-position:center;background-repeat:no-repeat;position:absolute}
 .gemBanner.fixedBanner{position:fixed}
 /*.gemBanner.fixer{position:fixed;z-index:20}*/
 .totProduct{height:50px;line-height:50px;font-size:11px;font-family:bolder;text-transform: uppercase;}
 .banner_over{width:100%;height:100%;position:absolute;top:0;left:0;background:#15181b;opacity:0}
 .coverImgsli{position:absolute; height:40vh; width:40%; left:20%; top:0; bottom:0; margin:auto;background-size:contain; background-position:left center;overflow:hidden;background:url('../img/icons/lorn.svg') no-repeat;background-size:contain; background-position:left center;}
-.coverImg{width:100%;height:100vh;background:url('../img/cover_1920.jpg') no-repeat;background-size:cover;background-position:center;position:relative;}
+.coverImg{width:100%;height:100vh;background:url('../img/25.jpg') no-repeat;background-size:cover;background-position:center;position:relative;}
+.coverImg2{width:100%;height:100vh;background:url('../img/BESPOKE1.jpg') no-repeat;background-size:cover;background-position:center;position:relative;}
 .cloadIn.coverImg:after{opacity:0.7;transform:translateY(0px);-webkit-transform:translateY(0px);-moz-transform:translateY(0px);-o-transform:translateY(0px);-ms-transform:translateY(0px)}
-.header.black_bg{background:#15181b}
+.header.black_bg{background:#15181b;}
 
 .ftabWrap{width: 100%;height: 40px; z-index:6;position:relative;background:#15181b;color:#fff;}
 .ftab_buffer{width:100%;height:auto;position:relative;z-index:20;text-align:center;transition:200ms;-webkit-transition:200ms;-moz-transition:200ms;-o-transition:200ms;-ms-transition:200ms;}
@@ -2282,6 +2284,7 @@ input[type=radio]:checked ~ .matchIcn{display:block;background:#53C9C7 url(../im
 
 
 .craftBnr .gemBanner{background:url("../img/h_craftmanship.jpg")no-repeat;background-size:cover;background-position: left;}
+.bespoke .gemBanner{background:url("../img/BESPOKE1.jpg")no-repeat;background-size:cover;background-position: left;}
 .promiseBnr .gemBanner{background:url("../img/h_ourpromise.jpg")no-repeat;background-size:cover;background-position: left;}
 .storyBnr .gemBanner{background:url("../img/h_ourstory.jpg")no-repeat;background-size:cover;background-position: left;}
 .responsibleBnr .gemBanner{background:url("../img/h_responsible.jpg")no-repeat;background-size:cover;background-position: left;}
@@ -2499,7 +2502,7 @@ input[type=radio]:checked ~ .matchIcn{display:block;background:#53C9C7 url(../im
 .noDiv{position:absolute;width: 100%;height: 100%;top:0;bottom: 0;right:0;margin: auto;}
 .sizeOuter{width: 100%;height: 275px;position: relative;}
 .circleOuter{width: 100%;height: 200px;line-height: 200px;text-align: center;}
-.invoice{width: 16%;height:50px;letter-spacing: 0.15em;text-transform: uppercase;font-size:11px;font-family: light;color: #15181b;  display: inline-block;}
+.invoice{width: 16%;height:50px;letter-spacing: 0.15em;text-transform: uppercase;font-size:11px;font-family: light;color: #15181b;  display: inline-block;word-wrap: break-word;}
 .MrTxt{width: 100%;font-size: 20px;font-family: semibold;letter-spacing: 0.15em;text-align: center; padding: 30px 0px 30px 0px;}
 .thankTxt{float: left;width: 100%;padding: 20px 0px;font-family:regular;color: #15181b;font-size: 13px;line-height: 19px;}
 .ringCircleB{width:100px;height:100px;border-radius:50%;display: inline-block;margin-top:15px;line-height:100px;font-size:12px;background-color: #fff;font-family:semibold;border: 2px solid #15181b;color: #15181b;text-align: center;}
