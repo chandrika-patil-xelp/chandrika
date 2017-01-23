@@ -1,6 +1,6 @@
   
  var gndrflg, mobile, shpngusrflg, shipngzpcodflg=1, glbcartdeatil, gndrflg, mobile, otpflg=0, userdata=[], newuserid, actn;
- var mailflag=1, mobflag=1, guestentflag=0;
+ var mailflag=1, mobflag=1, guestentflag=0, mailmob;
  $(document).ready(function(){
    
    actn= GetURLParameter('actn'); 
@@ -562,7 +562,10 @@ function signupotpsub()
 }
 
 function checkotp(otpval)
-{ 
+{
+  if(mailmob !== undefined)
+      var URL= APIDOMAIN + "index.php?action=checkopt&mobile="+mailmob+"&otpval="+otpval; 
+  else
       var URL= APIDOMAIN + "index.php?action=checkopt&mobile="+mobile+"&otpval="+otpval; 
    
       $.ajax({  url: URL, type: "GET",  datatype: "JSON", success: function(results) {
@@ -614,7 +617,8 @@ function checkotp(otpval)
 		      }
 		      else{
 			   hasitem(oldcartid,olduserid);
-		      } 
+		      }
+		      guestentflag = 1;
 		      if(actn == 'buy'){
 			  window.location.href = DOMAIN + "index.php?action=checkOutNew&actn=buy";
 		      }
@@ -791,7 +795,9 @@ function checkuser(inptval)
       $.ajax({  type:'POST',  
                 url:URL, 
                 success:function(res){
-	 
+		  guestentflag = 1; mailmob=undefined;
+		  $('#res_paswrd1').val('');	$('#res_paswrd1').blur();
+		  $('#res_paswrd2').val('');	$('#res_paswrd2').blur();
 	        common.msg(1,'Password Changed Successfully');  
 		 gResetSubmit();
 	   }
@@ -916,4 +922,16 @@ function checkuser(inptval)
   
   $('#res_paswrd1,#res_paswrd2').on('focus',function(){
     guestentflag = 7;
+  });
+  
+  $('#resendotp_fpas').click(function(){
+    if($.isNumeric(mobile))
+        sendotp(mobile);
+    else
+	sendemailotp(mobile);
+  });
+  
+  $('#signup_rotp').click(function(){
+   
+        sendotp(mobile); 
   });
