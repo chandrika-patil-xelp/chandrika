@@ -2605,7 +2605,7 @@ padding: 60px 70px 25px 70px;}
 .emptyGrid{width: 100%;position: absolute;height: 200px;top: 0;right: 0;bottom: 0;left: 0;margin: auto;}
 .emptyLogo{background:url(../img/icons/552.svg)no-repeat;background-position: center;    background-size: auto 100%;    width: 100%;    height: 100px;}
 
-
+.backTop{ position: fixed;width: 60px;right: 0;top: 90vh;height: 60px;background:#15181b url("../img/icons/543w.svg")no-repeat;background-position:center;background-size: auto 100%;z-index: 9;color: #fff;font-size: 12px;font-family: regular;padding: 5px;transform: rotate(-90deg);}
 
 @media only screen and (min-width:320px) and (max-width:767px){
 
