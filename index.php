@@ -316,5 +316,9 @@ switch ($action) {
         include TEMPLATE . 'guestaccount.html';
         break;
     
+     case 'bespoke':
+        $page = 'bespoke';
+        include TEMPLATE . 'bespoke.html';
+        break;
 }
 ?>
