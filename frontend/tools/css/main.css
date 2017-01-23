@@ -1343,7 +1343,7 @@ input[type=radio]:checked ~ .selector_label:after {transform:translateX(0%);-web
 /*.gemBanner.fixer{position:fixed;z-index:20}*/
 .totProduct{height:50px;line-height:50px;font-size:11px;font-family:bolder;text-transform: uppercase;}
 .banner_over{width:100%;height:100%;position:absolute;top:0;left:0;background:#15181b;opacity:0}
-.coverImgsli{position:absolute; height:40vh; width:30%; left:5%; top:0; bottom:0; margin:auto;background-size:contain; background-position:left center;overflow:hidden;    color: #FFFFFF;FONT-FAMILY: REGULAR;line-height: 30px; text-align: center;font-size: 14px;}
+.coverImgsli{position:absolute; height:40vh; width:30%; left:5%; top:0; bottom:0; margin:auto;background-size:contain; background-position:left center;overflow:hidden;color:#ffffff;font-family: regular;line-height: 30px; text-align:center;font-size: 14px;}
 .coverImgsli .actBtn{display: inline-block;margin: 40px 0px;z-index: 9;}
 .coverImg{width:100%;height:100vh;background:url('../img/25.jpg') no-repeat;background-size:cover;background-position:center;position:relative;}
 .coverImg2{width:100%;height:100vh;background:url('../img/26.jpg') no-repeat;background-size:cover;background-position:center;position:relative;}
