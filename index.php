@@ -315,6 +315,11 @@ switch ($action) {
         $page = 'guestaccount';
         include TEMPLATE . 'guestaccount.html';
         break;
+
+        case 'customerInvoice':
+        $page = 'customerInvoice';
+        include TEMPLATE . 'customerInvoice.html';
+        break;
     
      case 'bespoke':
         $page = 'bespoke';
