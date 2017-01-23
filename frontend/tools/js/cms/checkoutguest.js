@@ -1,9 +1,30 @@
   
  var gndrflg, mobile, shpngusrflg, shipngzpcodflg=1, glbcartdeatil, gndrflg, mobile, otpflg=0, userdata=[], newuserid, actn;
- var mailflag=1, mobflag=1;
+ var mailflag=1, mobflag=1, guestentflag=0;
  $(document).ready(function(){
    
    actn= GetURLParameter('actn'); 
+   
+   $(document).keypress(function(e){
+      if(e.which == 13)
+      {
+	 if(guestentflag == 1)
+	   signinsubmit();
+	 else if(guestentflag == 2)
+	   countguestsub();
+	 else if(guestentflag == 3)
+	   gsgnupsub();
+	 else if(guestentflag == 4)
+	   signupotpsub();
+	 else if(guestentflag == 5)
+	   gforgpasssub();
+	 else if(guestentflag == 6)
+	   gforgpassotpsub();
+	 else if(guestentflag == 7)
+	    gresetpasssub();
+      }
+   });
+   
  });
  
  function GetURLParameter(Param)
@@ -21,8 +42,13 @@
     }
 }
  
- $('#cnt_guest').click(function(){
+ $('#cnt_guest').click(function(){ 
+      countguestsub(); 
       
+ });
+
+ function countguestsub()
+ {
   var validationFlag = 1, shipngdata = {};
  
   var usrid = common.readFromStorage('jzeva_uid');
@@ -115,9 +141,7 @@
     }, 1000);
 
   } 
- });
-
- 
+ }
 
 $('#shpdpincode').on('keyup',function () {
   
@@ -199,6 +223,12 @@ function storeshippingdata(shipngdata)
 }
 
 $('#sign_in').click(function(){
+  
+  signinsubmit();
+});
+
+function signinsubmit()
+{
   
   var email = $("#inp_mob_mail").val();
   var pass = $("#paswrd").val();
@@ -302,9 +332,7 @@ $('#sign_in').click(function(){
     });
     } 
 
-});
-
- 
+}
  
 function hasitem(oldcartid,olduserid)
 {
@@ -398,8 +426,13 @@ function updatecartiddetail(oldcartid,olduserid,newcartid)
 
 
 $('#gSgnUpsbmt').click(function(){
-   
-    var name = $.trim($("#shpdname").val());
+   gsgnupsub();
+    
+});
+
+function gsgnupsub()
+{
+   var name = $.trim($("#shpdname").val());
    var email = $("#shpdemail").val();
      mobile = $("#shpdmobile").val();
    var pass = $("#shpdpaswrd").val(); 
@@ -490,8 +523,7 @@ $('#gSgnUpsbmt').click(function(){
 	        }
 });
      }
- 
-});
+}
 
 function  sendotp(mobile)
 { 	  
@@ -511,7 +543,12 @@ function  sendotp(mobile)
 }  
 
 $('#signupOtpSubmit').click(function(){
- 
+  signupotpsub();
+  
+});
+
+function signupotpsub()
+{
    var otpval=$('#signupotp').val(); 
      if(otpval.length == 6) { 
 	  checkotp(otpval); 
@@ -522,8 +559,7 @@ $('#signupOtpSubmit').click(function(){
      else{
        common.msg(0,'your entered otp is wrong');
      }
-   
-});
+}
 
 function checkotp(otpval)
 { 
@@ -616,6 +652,13 @@ function checkotp(otpval)
 }
 
 $('#gfSubmit').click(function(){
+    gforgpasssub();
+     
+});
+
+function gforgpasssub()
+{
+  
     mobile=$('#shpdemailid').val();
     
     var validationflg=1;
@@ -657,10 +700,9 @@ $('#gfSubmit').click(function(){
   	   otpflg=2;
   	   checkuser(mobile);  
     }
- 
-});
+}
 
- function checkuser(inptval)
+function checkuser(inptval)
  {
     if($.isNumeric(inptval))
     var URL= APIDOMAIN + "index.php?action=getUserdetailbymob&mob="+inptval; 
@@ -704,16 +746,28 @@ $('#gfSubmit').click(function(){
   }
   
   $('#gOtpSubmit').click(function(){
+    gforgpassotpsub();
+    
+  });
+  
+  function gforgpassotpsub()
+  {
+    
     var otp=$('#otptxt').val();
       if(otp.length == 6)
 	checkotp(otp);
       else
 	 common.msg(0,'Please Enter correct OTP');
-  });
-  
+  }
   
    $('#gResetSubmit').click(function () {
-      
+      gresetpasssub();
+       
+   });
+   
+  function gresetpasssub()
+   {
+     
     var pass = $("#res_paswrd1").val();
    var cpass = $("#res_paswrd2").val();
    var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
@@ -745,8 +799,7 @@ $('#gfSubmit').click(function(){
     }
     }
  
-        
-   });
+   }
    
     $('#shpdemail').blur(function(){
         var email=$('#shpdemail').val();
@@ -835,4 +888,32 @@ $('#gfSubmit').click(function(){
 		});
 	    }
 	}
+  });
+  
+  $('#inp_mob_mail,#paswrd').on('focus',function(){
+   guestentflag=1;
+  });
+   
+  $('#g_name,#g_mobl,#g_mail,#g_addr,#shpdpincode').on('focus',function(){
+   guestentflag=2;
+  });
+  
+  $('#shpdname,#shpdmobile,#shpdemail,#shpdpaswrd').on('focus',function(){
+   guestentflag=3;
+  });
+  
+  $('#signupotp').focus(function(){
+    guestentflag = 4;
+  });
+  
+  $('#shpdemailid').focus(function(){
+    guestentflag = 5;
+  });
+  
+  $('#otptxt').focus(function(){
+    guestentflag = 6;
+  });
+  
+  $('#res_paswrd1,#res_paswrd2').on('focus',function(){
+    guestentflag = 7;
   });

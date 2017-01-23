@@ -690,6 +690,7 @@
 
 
                         $('#g_sBack').click(function () {
+			    guestentflag = 1;
                             $('#guestSignup').addClass("dn");
                             $('#guestSignin').removeClass("dn");
 			    $('#shpdname').val('');	$('#shpdname').blur();
@@ -701,6 +702,7 @@
                         });
 
                         $('#g_fBack').click(function () {
+			    guestentflag = 1;
 			    $('#shpdemailid').val('');	  $('#shpdemailid').blur();
                             $('#guestforgot').addClass("dn");
                             $('#guestSignin').removeClass("dn");
@@ -709,6 +711,7 @@
                         });
 
                         $('#gotpBack2').click(function () {
+			    guestentflag = 3;
                             $('#guestOtp2').addClass("dn");
                             $('#guestSignup').removeClass("dn");
                             $('#guestOtp2').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
@@ -716,6 +719,7 @@
                         });
 
                         $('#gotpBack').click(function () {
+			    guestentflag = 5;
                             $('#guestOtp').addClass("dn");
                             $('#guestforgot').removeClass("dn");
                             $('#guestOtp').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
@@ -723,6 +727,7 @@
                         });
 
                         $('#gresetBack').click(function () {
+			    guestentflag = 6;
                             $('#guestReset').addClass("dn");
                             $('#guestOtp').removeClass("dn");
                             $('#guestReset').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
@@ -736,6 +741,7 @@
 
 
                         function gSgnUpsbmt() {
+			    guestentflag =4;
                             $('#guestOtp2').removeClass("dn");
                             $('#guestSignup').addClass("dn");
                             $('#guestSignup').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
@@ -751,6 +757,7 @@
                         }
 
                         function gOtpSubmit() {
+			    guestentflag = 7;
                             $('#guestReset').removeClass("dn");
                             $('#guestOtp').addClass("dn");
                             $('#guestOtp').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
@@ -759,6 +766,7 @@
 
 
                         function gfSubmit() {
+			    guestentflag = 6;
                             $('#guestOtp').removeClass("dn");
                             $('#guestforgot').addClass("dn");
                             $('#guestforgot').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
@@ -766,6 +774,9 @@
                         }
 
                         function gforgot() {
+			    guestentflag = 5;
+			    $('#inp_mob_mail').val('');	  $('#inp_mob_mail').blur();
+			    $('#paswrd').val('');	  $('#paswrd').blur();
                             $('#guestforgot').removeClass("dn");
                             $('#guestSignin').addClass("dn");
                             $('#guestSignin').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
@@ -773,6 +784,9 @@
                         }
 
                         function guestsUp() {
+			    guestentflag=3;
+			    $('#inp_mob_mail').val('');	  $('#inp_mob_mail').blur();
+			    $('#paswrd').val('');	  $('#paswrd').blur();
                             $('#guestSignup').removeClass("dn");
                             $('#guestSignin').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
                             $('#guestSignup').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
