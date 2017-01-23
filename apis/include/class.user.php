@@ -1936,9 +1936,15 @@ class user extends DB {
 			    (SELECT  GROUP_CONCAT(dname) FROM tbl_metal_color_master WHERE id = SUBSTRING_INDEX(combine, '|@|',1) AND active_flag !=2 ) AS color,
 			    (SELECT  GROUP_CONCAT(dname) FROM tbl_metal_purity_master WHERE id = SUBSTRING_INDEX(SUBSTRING_INDEX(combine,'|@|',2),'|@|',-1) AND active_flag !=2 ) AS Metalcarat,
 			    (SELECT  GROUP_CONCAT(dname) FROM tbl_diamond_quality_master WHERE id = SUBSTRING_INDEX(combine,'|@|',-1)  AND active_flag !=2 ) AS quality,
-
+			    (SELECT  GROUP_CONCAT(jewelleryType) FROM tbl_product_master WHERE productid = pid  AND active_flag !=2) AS jewelleryType, 
+                            (SELECT GROUP_CONCAT(catid) FROM tbl_category_product_mapping WHERE  productid =pid ) AS ccatid,
+			    (SELECT DISTINCT(NAME) FROM tbl_size_master WHERE  FIND_IN_SET(catid,ccatid) )AS ccatname,                  
+			    (SELECT  GROUP_CONCAT(metal_weight) FROM tbl_product_master WHERE productid = pid  AND active_flag !=2)                            AS metal_weight,
+			    (SELECT  GROUP_CONCAT(carat) FROM tbl_product_diamond_mapping WHERE productid = pid AND active_flag !=2 ) AS dmdcarat,
+			    (SELECT  GROUP_CONCAT(product_code) FROM tbl_product_master WHERE productid = pid AND active_flag !=2 ) AS product_code,
 
 			     (SELECT GROUP_CONCAT(shipping_id) FROM tbl_order_shipping_details WHERE shipping_id = shpId) AS shipngDet,
+			     (SELECT gender FROM tbl_order_shipping_details WHERE shipping_id = shpId) AS gender,
 			     (SELECT GROUP_CONCAT(name) FROM tbl_order_shipping_details WHERE FIND_IN_SET(shipping_id,shipngDet)) AS customername,
 			     (SELECT GROUP_CONCAT(mobile) FROM tbl_order_shipping_details WHERE FIND_IN_SET(shipping_id,shipngDet)) AS customerMob,
 			     (SELECT GROUP_CONCAT(city) FROM tbl_order_shipping_details WHERE FIND_IN_SET(shipping_id,shipngDet)) AS customerCity,
@@ -1970,6 +1976,20 @@ class user extends DB {
                      $reslt['pqty'] = ($row['pqty']!=NULL) ? $row['pqty'] : '';
                      $reslt['price'] = ($row['price']!=NULL) ? $row['price'] : '';
                      $reslt['cartid'] = ($row['cartid']!=NULL) ? $row['cartid'] : '';
+		     $reslt['jewelleryType'] = ($row['jewelleryType']!=NULL) ? $row['jewelleryType'] : ''; 
+		     $reslt['ccatid'] = $row['ccatid'];
+		     $reslt['ccatname'] = $row['ccatname'];
+		     $reslt['metal_weight'] = $row['metal_weight'];
+		     $reslt['dmdcarat'] = $row['dmdcarat'];
+		     $reslt['product_code'] = ($row['product_code']!=NULL) ? $row['product_code'] : '';
+		     
+		     if($row['jewelleryType'] === '1'){
+                             $reslt['jewelType'] ='Gold';
+                        }else  if($row['jewelleryType'] === '2'){
+                             $reslt['jewelType'] ='Plain Gold';
+                        }else  if($row['jewelleryType'] === '3'){
+                             $reslt['jewelType'] ='Platinum';
+                        }  
 
                      $reslt['order_date'] = ($row['order_date']);
                      $reslt['updatedon'] = ($row['updatedon']);
@@ -1983,6 +2003,7 @@ class user extends DB {
                      $reslt['product_code'] = ($row['product_code']!=NULL) ? $row['product_code'] : '';
 
                      $reslt['shipngDet'] = ($row['shipngDet']!=NULL) ? $row['shipngDet'] : '';
+		     $reslt['gender'] = ($row['gender']!=NULL) ? $row['gender'] : ''; 
                      $reslt['customername'] = ($row['prdimage']!=NULL) ? $row['customername'] : '';
                      $reslt['customerMob'] = ($row['prdname']!=NULL) ? $row['customerMob'] : '';
                      $reslt['customerCity'] = ($row['product_code']!=NULL) ? $row['customerCity'] : '';
