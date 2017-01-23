@@ -37,7 +37,7 @@
                     <div class="fLeft pCont">
                         <div class="fLeft orderCommon">
                             <div class="col100 fLeft" id="myordId">
-                                <div class = "fLeft orderOuter mar0">
+                                <!--<div class = "fLeft orderOuter mar0">-->
 <!--                                    <div class = "fLeft inShip" id="ordTitle">
                                         <div class = "fLeft Morder" >
                                             <div class = "fLeft col100 blStl">chandrika </div>
@@ -51,8 +51,8 @@
                                             <div class = "fLeft col100 regular" id = "ordDate"> 20/12/2017</div>
                                         </div>
                                     </div>-->
-                                </div>
-                                <div class="fLeft detailsOuter bNone" id="ordDetail">
+                                <!--</div>-->
+                                <!--<div class="fLeft detailsOuter bNone" id="ordDetail">-->
 <!--                                    <div class="orderParent fLeft transition300">
                                         <div class="fLeft orderImg bgCommon"></div>
                                         <div class="fLeft orderName">
@@ -84,7 +84,7 @@
                                             </div>
                                         </div>
                                     </div>-->
-                                </div>
+                                <!--</div>-->
                                 <!--                                <div class="fLeft orderOuter">
                                                                     <div class="fLeft inShip" id="ordTitle">
                                                                         <div class="fLeft Morder">
@@ -416,22 +416,22 @@
 			  gndr="Mr";
 			else if(gendr == 3)
 			  gndr="Mrs";
-			var ordermainstr="";
-		 	 
-			ordermainstr += '<div class = "fLeft inShip" id="ordTitle">';
-			ordermainstr += '<div class = "fLeft Morder" >';
-			ordermainstr += ' <div class = "fLeft col100 blStl">'+gndr+' '+obj['result'][0].customername+'</div>';
-			ordermainstr += ' <div class = "fLeft col100 shipAddr">'+obj['result'][0].customerAddrs+' </div>';
-			ordermainstr += ' <div class = "fLeft col100 shipAddr">'+obj['result'][0].customerCity+'-'+obj['result'][0].customerPincode+' </div>';
-			ordermainstr += ' <div class = "actBtn"> view invoice </div>';
-			ordermainstr += ' </div>';
-			ordermainstr += ' <div class = "fLeft Morder txt_right">';
-			ordermainstr += '  <div class = "fRight col100 semibold cartRup15b font18" id = "ordPrice">'+indianMoney(parseInt(obj['total']))+' </div>';
-			ordermainstr += '<div class = "fLeft col100 regular" id = "ordId">ID: '+obj['result'][0].oid+' </div>';
-			ordermainstr += ' <div class = "fLeft col100 regular" id = "ordDate">'+trndate+' </div>';
-			ordermainstr += ' </div>  </div> ';
+		//	var ordermainstr="";
+		 	orderstr += '   <div class = "fLeft orderOuter mar0">';
+			orderstr += '<div class = "fLeft inShip" id="ordTitle">';
+			orderstr += '<div class = "fLeft Morder" >';
+			orderstr += ' <div class = "fLeft col100 blStl">'+gndr+' '+obj['result'][0].customername+'</div>';
+			orderstr += ' <div class = "fLeft col100 shipAddr">'+obj['result'][0].customerAddrs+' </div>';
+			orderstr += ' <div class = "fLeft col100 shipAddr">'+obj['result'][0].customerCity+'-'+obj['result'][0].customerPincode+' </div>';
+			orderstr += ' <div class = "actBtn"> view invoice </div>';
+			orderstr += ' </div>';
+			orderstr += ' <div class = "fLeft Morder txt_right">';
+			orderstr += '  <div class = "fRight col100 semibold cartRup15b font18" id = "ordPrice">'+indianMoney(parseInt(obj['total']))+' </div>';
+			orderstr += '<div class = "fLeft col100 regular" id = "ordId">ID: '+obj['result'][0].oid+' </div>';
+			orderstr += ' <div class = "fLeft col100 regular" id = "ordDate">'+trndate+' </div>';
+			orderstr += ' </div>  </div> </div> ';
 			
-			$('.orderOuter').append(ordermainstr);
+			//$('.orderOuter').append(ordermainstr);
 			
                         $(obj['result']).each(function (s, v) {
 			     var wht;
@@ -448,7 +448,7 @@
                                 image = image.split(',');
                                 image = IMGDOMAIN + image[0];
                             }
-			    
+			    orderstr += '<div class="fLeft detailsOuter bNone" >';
 			    orderstr += '<div class="orderParent fLeft transition300">';
                         orderstr += '<div class="fLeft orderImg bgCommon" style="background: #fff url(\''+ image +'\')no-repeat;background-size: contain;background-position:center; background-color:#FFF;"></div>';
                         orderstr += '<div class="fLeft orderName">';
@@ -509,13 +509,13 @@
 
                         orderstr += '</center>'; 
                         orderstr += '</div>';
-                        orderstr += '</div>';
-     
+                        orderstr += '</div> </div>';
+			
 
                         });
 
-
-                        $('#ordDetail').append(orderstr);
+			$('#myordId').append(orderstr);
+                        
                     }
                 }
             });
