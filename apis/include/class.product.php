@@ -4425,20 +4425,20 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 	   $sql.="HAVING FIND_IN_SET(productid,prdid) ) AND    ";
         }
 
-        if ($dnmndcutflag == 1) {
-            $sql.=" productid IN (SELECT productid FROM tbl_product_diamond_mapping WHERE MATCH(shape) AGAINST('" . $dnmndcutval . "') AND active_flag=1 HAVING FIND_IN_SET(productid,prdid)) AND";
-        }
-        
 //        if ($dnmndcutflag == 1) {
-//	  $subfltmn=explode(',',$dnmndcutval); $subfltcnt=count($subfltmn); 
-//	  $sql.=" productid IN (SELECT productid FROM tbl_product_diamond_mapping WHERE  active_flag=1 AND ";
-//	  foreach($subfltmn as $subflkey=>$subfltval){
-//	     $sqlarr[] = "shape LIKE '%".$subfltval."%'";
-//	      
-//	  }
-//	 $sql.="".  implode(' OR ', $sqlarr);
-//	   $sql.="HAVING FIND_IN_SET(productid,prdid) ) AND    ";
+//            $sql.=" productid IN (SELECT productid FROM tbl_product_diamond_mapping WHERE MATCH(shape) AGAINST('" . $dnmndcutval . "') AND active_flag=1 HAVING FIND_IN_SET(productid,prdid)) AND";
 //        }
+        
+        if ($dnmndcutflag == 1) {
+	  $subfltmn=explode(',',$dnmndcutval); $subfltcnt=count($subfltmn); 
+	  $sql.=" productid IN (SELECT productid FROM tbl_product_diamond_mapping WHERE  active_flag=1 AND ";
+	  foreach($subfltmn as $subflkey=>$subfltval){
+	     $sqlarr[] = "shape LIKE '%".$subfltval."%'";
+	      
+	  }
+	 $sql.="".  implode(' OR ', $sqlarr);
+	   $sql.="HAVING FIND_IN_SET(productid,prdid) ) AND    ";
+        }
 
         if ($cattypeflag == 1) {
 	  $subfltmn=explode(',',$cattypeval); $subfltcnt=count($subfltmn); 
