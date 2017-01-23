@@ -172,8 +172,16 @@
         </div>
     </div>
 </div>
+  <div class="backTop"></div>
 <script type="text/javascript" src="<?php echo $jvs['header']; ?>"></script> 
 <script>
+    $(window).scroll(function(e){
+        var st = e.pageX;
+        console.log(st);
+    });
+      $('.backTop').click(function () {
+            $('body').animate({scrollTop: 0}, 'slow');
+        });
                 var flag = 1;
         function bindHeader()
         {

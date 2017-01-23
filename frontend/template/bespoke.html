@@ -2,6 +2,7 @@
 <body class="greyBg">
 
     <?php include 'Cart.html'?>
+    <?php include 'loader.html'?>
     <?php include 'header.html'?>
     <?php include 'login.html'?>
 
@@ -10,7 +11,7 @@
             <div class="coverImg2">
                 <div class="coverImgsli">
                     <div class="col100">Jewellery can be an extremely personal affair; it can hold a million emotions in it especially if it is for some one very special. We at Jzeva, would feel special to be a part of your personal journey of discovering your style and personality and inducing it in your jewellery.</div>
-                    <div class="col100"><center><div class="actBtn">know more</div></center></div>
+                    <div class="col100"><center><div class="actBtn" id="moreId">know more</div></center></div>
                 </div>
                 <div class="banner_over" id="banner_over"></div>
             </div>
@@ -208,4 +209,16 @@
         <?php include 'loaderStatic.html'?>
         <div class="overlay3 pointNone"></div>
     </div>
+    <script>
+        function loadComplete() {
+            $('.wrapper_max').removeClass('offsetEffects');
+        }
+        $(document).ready(function () {
+            load_page();
+        });
+
+        $('#moreId').click(function () {
+            $('body').animate({scrollTop: 400}, 'slow');
+        });
+    </script>
 </body>
