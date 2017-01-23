@@ -180,11 +180,11 @@ function generatelist(obj) {
      dmdPricehigh  = (Diacarat * DiaprcH); 
            var Diaprc = obj['dmdQPricepercarat'];
        
-    }
+    }  
       if (obj['chldcatname'] == 'Rings' || obj['finejwellrycatname'] == 'Rings')
 	    bseSize = parseFloat(14);
       else if (obj['chldcatname'] == 'Bangles' || obj['finejwellrycatname'] == 'Bangles')
-	    bseSize = parseFloat(2.4);
+	    bseSize = parseFloat(2.4);  
     
     
      if (obj['chldcatname'] == 'Rings' || obj['finejwellrycatname'] == 'Rings') 
@@ -1081,7 +1081,7 @@ function getprodbyid()
 		   przarr.push(m);
 		});
 		highp =przarr[przarr.length-1];
-		 
+		$('#gr_foot').removeClass('dpn');
 		var carat=res["allprdpz"]["allcarat"];
 		var carr=new Array();
 		$.each(carat,function(i,v){
@@ -1105,6 +1105,7 @@ function getprodbyid()
                     $('.gridLoad').addClass("dpn");
 		  }
                 $('#parnttyp').html(''); 
+		$('#gridDetail').html('');
 		var dplstr ='<a href="'+DOMAIN+'index.php?action=landing_page"><div class="breadH fLeft">Home</div></a>';
 		
 		if(obj[0]['parntcatname'] !== null){
@@ -1180,7 +1181,7 @@ function displayproduct(fltpage)
 	      }
 	      else
 	      {
-                $('.gridLoad').addClass("dn");
+                $('.gridLoad').addClass("dpn");
 		$('.emptyGrid').addClass('dpn');
                 getProdDtl = res["result"];
                 showwishbtn();
