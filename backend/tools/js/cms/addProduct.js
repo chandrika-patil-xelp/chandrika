@@ -2563,14 +2563,14 @@ function gemstonePrice()
        
        //  var gemstn_no = vl.totNo;
                 
-               var wgtcarat =parseFloat(carat)*parseFloat(gemstot); console.log(wgtcarat);
-        var total = parseFloat(price) * parseFloat(wgtcarat);
+             //  var wgtcarat =parseFloat(carat)*parseFloat(gemstot);
+        var total = parseFloat(price) * parseFloat(carat);
 
 
         str += "<li id='gemstonePrice_" + ids + "'>";
         str += "<div class='forComponent fLeft pl15'>" + gvalue + "</div>";
         str += "<div class='forRate fLeft'>" + price + "/ct</div>";
-        str += "<div class='forWeight fLeft'>" + wgtcarat + " ct</div>";
+        str += "<div class='forWeight fLeft'>" + carat + " ct</div>";
         str += "<div class='forPrice calc fLeft'>&#8377;" + total + "</div>";
         str += "</li>";
 

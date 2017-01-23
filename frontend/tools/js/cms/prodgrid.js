@@ -161,10 +161,10 @@ function generatelist(obj) {
     {
         var Gemscarat = obj['gemscarat'];
         var Gemsprc = obj['gemsPricepercarat'];
-        var Gemstot = obj['totalgems'];
-        var gemswgt =obj['gemswgt'];
+//        var Gemstot = obj['totalgems'];
+//        var gemswgt =obj['gemswgt'];
       
-        price = price + getGemsPrice(gemswgt, Gemsprc);
+        price = price + getGemsPrice(Gemscarat, Gemsprc);
 
     }
   

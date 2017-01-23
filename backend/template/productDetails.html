@@ -55,7 +55,7 @@
                                 </div>
 
                                 <div class="divCon1 fRight dn" id='gemCntDiv'>
-                                    <div class="fieldTitle1 fLeft">Total Gemstone(s)</div>
+                                    <div class="fieldTitle1 fLeft">Total types of Gemstone(s)</div>
                                     <div class="fieldTitle2 fmOpenB fRight" id='gemCnt'></div>
                                 </div>
                                 <div class="divCon1 fLeft dn" id='imgCntDiv'>
@@ -857,15 +857,15 @@
                 var gvalue = vl.gemNm;
                 var carat = vl.crat;
                 var price = vl.prcPrCrat;
-                var gemstn_no = vl.totNo;
+              //  var gemstn_no = vl.totNo;
                 
-               var wgtcarat =parseFloat(carat)*parseFloat(gemstn_no);
-                var total = parseFloat(price) * parseFloat(wgtcarat);
+              
+                var total = parseFloat(price) * parseFloat(carat);
                 total = total.toFixed();
                 str += "<li id='gemstonePrice_" + ids + "'>";
                 str += "<div class='forComponent fLeft pl15'>" + gvalue + "</div>";
                 str += "<div class='forRate fLeft'>" + price + "/ct</div>";
-                str += "<div class='forWeight fLeft'>" + wgtcarat + " ct</div>";
+                str += "<div class='forWeight fLeft'>" + carat + " ct</div>";
                 str += "<div class='forPrice calc fLeft'>&#8377;" + total + "</div>";
                 str += "</li>";
 

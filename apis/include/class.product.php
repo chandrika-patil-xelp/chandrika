@@ -3753,7 +3753,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
         $sqlcount = "SELECT productid,
 	      (SELECT GROUP_CONCAT(productid) FROM tbl_category_product_mapping WHERE catid= " . $cid . " AND active_flag =1 ) AS prdids
 	      FROM tbl_product_master WHERE active_flag =1 HAVING 
-	      FIND_IN_SET(productid,prdids)   ";
+	      FIND_IN_SET(productid,prdids) ";
         $rescnt = $this->query($sqlcount);
         $total = $this->numRows($rescnt);
 
@@ -3809,8 +3809,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                             (SELECT GROUP_CONCAT(carat) FROM tbl_product_gemstone_mapping WHERE FIND_IN_SET(gemstone_id,allGemstone) AND productid =pid) AS gemscarat ,
                             (SELECT GROUP_CONCAT(total_no) FROM tbl_product_gemstone_mapping WHERE FIND_IN_SET(gemstone_id,allGemstone) AND productid =pid) AS totalgems,
                             (SELECT GROUP_CONCAT(price_per_carat) FROM tbl_product_gemstone_mapping WHERE FIND_IN_SET(gemstone_id,allGemstone) AND productid =pid) AS gemsPricepercarat,
-                            (SELECT GROUP_CONCAT(carat * total_no) FROM tbl_product_gemstone_mapping WHERE FIND_IN_SET(gemstone_id,allGemstone) AND productid =pid) AS gemswgt,
-
+                          
                             (SELECT GROUP_CONCAT(solitaire_id) FROM tbl_product_solitaire_mapping WHERE productid = pid AND active_flag = 1 ) AS allSolitaire,
                             (SELECT GROUP_CONCAT(no_of_solitaire) FROM tbl_product_solitaire_mapping WHERE FIND_IN_SET(solitaire_id,allSolitaire) AND productid =pid) AS totalSolitaire,
                             (SELECT GROUP_CONCAT(carat) FROM tbl_product_solitaire_mapping WHERE FIND_IN_SET(solitaire_id,allSolitaire) AND productid =pid) AS Solicarat,
@@ -3912,8 +3911,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                 $arr['totalgems'] = $row['totalgems'];
                 $arr['gemscarat'] = $row['gemscarat'];
                 $arr['gemsPricepercarat'] = $row['gemsPricepercarat'];
-                $arr['gemswgt'] = $row['gemswgt'];
-
+           
                 $arr['allSolitaire'] = $row['allSolitaire'];
                 $arr['totalSolitaire'] = $row['totalSolitaire'];
                 $arr['Solicarat'] = $row['Solicarat'];
@@ -3967,8 +3965,8 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                 if ($arr['hasGem'] === '1') {
                     $Gemscarat = $row['gemscarat'];
                     $Gemsprc = $row['gemsPricepercarat'];
-                    $Gemswgt = $row['gemswgt'];
-                    $price = $price + ($Gemswgt * $Gemsprc);                 
+                   
+                    $price = $price + ($Gemscarat * $Gemsprc);                 
                 }
 	
                 if ($row['chldcatname'] == 'Rings' || $arr['finejwellrycatname'] == 'Rings') {
@@ -4209,9 +4207,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 		      (SELECT GROUP_CONCAT(carat) FROM tbl_product_gemstone_mapping WHERE FIND_IN_SET(gemstone_id,allGemstone) AND productid =pid) AS gemscarat ,
 		      (SELECT GROUP_CONCAT(total_no) FROM tbl_product_gemstone_mapping WHERE FIND_IN_SET(gemstone_id,allGemstone) AND productid =pid) AS totalgems,
 		      (SELECT GROUP_CONCAT(price_per_carat) FROM tbl_product_gemstone_mapping WHERE FIND_IN_SET(gemstone_id,allGemstone) AND productid =pid) AS gemsPricepercarat,
-                       (SELECT GROUP_CONCAT(carat * total_no) FROM tbl_product_gemstone_mapping WHERE FIND_IN_SET(gemstone_id,allGemstone) AND productid =pid) AS gemswgt,
-
-
+                      
 		      (SELECT GROUP_CONCAT(solitaire_id) FROM tbl_product_solitaire_mapping WHERE productid = pid AND active_flag = 1 ) AS allSolitaire,
 		      (SELECT GROUP_CONCAT(no_of_solitaire) FROM tbl_product_solitaire_mapping WHERE FIND_IN_SET(solitaire_id,allSolitaire) AND productid =pid) AS totalSolitaire,
 		      (SELECT IF(carat IS NULL,GROUP_CONCAT(carat),carat) FROM tbl_product_solitaire_mapping WHERE FIND_IN_SET(solitaire_id,allSolitaire) AND productid =pid) AS Solicarat,
@@ -4250,7 +4246,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 						       + ( making_charges * ( metal_weight + ((5 - 14) * 0.05) ) ) 
 						       + (   IF ( has_solitaire=1, SoliPricepercarat*Solicarat ,0) 
 							   + IF ( has_uncut=1, UncutPricepercarat*Uncutcarat, 0) 
-							   + IF ( has_gemstone=1, gemswgt*gemsPricepercarat, 0) 
+							   + IF ( has_gemstone=1, gemscarat*gemsPricepercarat, 0) 
 							 ) 
 							 )
 						  +
@@ -4261,7 +4257,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 						       + ( making_charges * ( metal_weight + ((5 - 14) * 0.05) ) ) 
 						       + (   IF ( has_solitaire=1, SoliPricepercarat*Solicarat ,0) 
 							   + IF ( has_uncut=1, UncutPricepercarat*Uncutcarat, 0) 
-							   + IF ( has_gemstone=1, gemswgt*gemsPricepercarat, 0) 
+							   + IF ( has_gemstone=1, gemscarat*gemsPricepercarat, 0) 
 							 ) 
 							 )
 						       * 0.01
@@ -4274,7 +4270,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 							+ ( making_charges * ( metal_weight + ((2.2 - 2.4) * 7) ) ) 
 							+ (   IF ( has_solitaire=1, SoliPricepercarat*Solicarat ,0) 
 							    + IF ( has_uncut=1, UncutPricepercarat*Uncutcarat, 0) 
-							    + IF ( has_gemstone=1, gemswgt*gemsPricepercarat, 0) 
+							    + IF ( has_gemstone=1, gemscarat*gemsPricepercarat, 0) 
 							  ) 
 						      )
 						    +
@@ -4285,13 +4281,13 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 							+ ( making_charges * ( metal_weight + ((2.2 - 2.4) * 7) ) ) 
 							+ (   IF ( has_solitaire=1, SoliPricepercarat*Solicarat ,0) 
 							    + IF ( has_uncut=1, UncutPricepercarat*Uncutcarat, 0) 
-							    + IF ( has_gemstone=1, gemswgt*gemsPricepercarat, 0) 
+							    + IF ( has_gemstone=1, gemscarat*gemsPricepercarat, 0) 
 							  ) 
 							)
 						      * 0.01 
 						      )
 						   ) 
-			      ELSE (((metal_weight*caratlowp)+(metal_weight*making_charges)+(dmdcarat*dmdlowp) + ( IF(has_solitaire=1,SoliPricepercarat*Solicarat,0) + IF(has_uncut=1,UncutPricepercarat*Uncutcarat,0) + IF(has_gemstone=1,gemswgt*gemsPricepercarat,0)))+(((metal_weight*caratlowp)+(metal_weight*making_charges)+(dmdcarat*dmdlowp) + ( IF(has_solitaire=1,SoliPricepercarat*Solicarat,0) + IF(has_uncut=1,UncutPricepercarat*Uncutcarat,0) + IF(has_gemstone=1,gemswgt*gemsPricepercarat,0)))*0.01))
+			      ELSE (((metal_weight*caratlowp)+(metal_weight*making_charges)+(dmdcarat*dmdlowp) + ( IF(has_solitaire=1,SoliPricepercarat*Solicarat,0) + IF(has_uncut=1,UncutPricepercarat*Uncutcarat,0) + IF(has_gemstone=1,gemscarat*gemsPricepercarat,0)))+(((metal_weight*caratlowp)+(metal_weight*making_charges)+(dmdcarat*dmdlowp) + ( IF(has_solitaire=1,SoliPricepercarat*Solicarat,0) + IF(has_uncut=1,UncutPricepercarat*Uncutcarat,0) + IF(has_gemstone=1,gemscarat*gemsPricepercarat,0)))*0.01))
 			      END   
 			           
 		      ) AS basicprize,
@@ -4486,8 +4482,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                 $arr['totalgems'] = $row['totalgems'];
                 $arr['gemscarat'] = $row['gemscarat'];
                 $arr['gemsPricepercarat'] = $row['gemsPricepercarat'];
-                  $arr['gemswgt'] = $row['gemswgt'];
-
+                
                 $arr['allSolitaire'] = $row['allSolitaire'];
                 $arr['totalSolitaire'] = $row['totalSolitaire'];
                 $arr['Solicarat'] = $row['Solicarat'];
@@ -4907,11 +4902,12 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                             (SELECT GROUP_CONCAT(carat) FROM tbl_product_gemstone_mapping WHERE FIND_IN_SET(gemstone_id,allGemstone) AND productid =pid) AS gemscarat ,
                             (SELECT GROUP_CONCAT(total_no) FROM tbl_product_gemstone_mapping WHERE FIND_IN_SET(gemstone_id,allGemstone) AND productid =pid) AS totalgems,
                             (SELECT GROUP_CONCAT(price_per_carat) FROM tbl_product_gemstone_mapping WHERE FIND_IN_SET(gemstone_id,allGemstone) AND productid =pid) AS gemsPricepercarat,
- 
+                           
                             (SELECT GROUP_CONCAT(solitaire_id) FROM tbl_product_solitaire_mapping WHERE productid = pid AND active_flag = 1 ) AS allSolitaire,
                             (SELECT GROUP_CONCAT(no_of_solitaire) FROM tbl_product_solitaire_mapping WHERE FIND_IN_SET(solitaire_id,allSolitaire) AND productid =pid) AS totalSolitaire,
                             (SELECT GROUP_CONCAT(carat) FROM tbl_product_solitaire_mapping WHERE FIND_IN_SET(solitaire_id,allSolitaire) AND productid =pid) AS Solicarat,
                             (SELECT GROUP_CONCAT(price_per_carat) FROM tbl_product_solitaire_mapping WHERE FIND_IN_SET(solitaire_id,allSolitaire) AND productid =pid) AS SoliPricepercarat,
+                            (SELECT GROUP_CONCAT(carat * no_of_solitaire) FROM tbl_product_solitaire_mapping WHERE FIND_IN_SET(solitaire_id,allSolitaire) AND productid =pid) AS soliwgt,
                             
                             (SELECT GROUP_CONCAT(uncut_id) FROM tbl_product_uncut_mapping WHERE productid = pid AND active_flag = 1 ) AS allUncut,
                             (SELECT GROUP_CONCAT(total_no) FROM tbl_product_uncut_mapping WHERE FIND_IN_SET(uncut_id,allUncut) AND productid =pid) AS totalUncut,
@@ -4957,14 +4953,17 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                 $arr['gemstoneName'] = $row['gemstoneName']; 
                 $arr['totalgems'] = $row['totalgems'];
                 $arr['gemscarat'] = $row['gemscarat'];
+            
                 $arr['gemsPricepercarat'] = $row['gemsPricepercarat']; 
                 $arr['allSolitaire'] = $row['allSolitaire'];
                 $arr['totalSolitaire'] = $row['totalSolitaire'];
                 $arr['Solicarat'] = $row['Solicarat'];
                 $arr['SoliPricepercarat'] = $row['SoliPricepercarat']; 
+                $arr['Soliwgt'] = $row['soliwgt'];
                 $arr['allUncut'] = $row['allUncut'];
                 $arr['totalUncut'] = $row['totalUncut'];
                 $arr['Uncutcarat'] = $row['Uncutcarat']; 
+                                        
 
                 if ($row['jewelleryType'] === '1') {
                     $arr['jwelType'] = 'Gold';
@@ -4979,8 +4978,9 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                 if ($arr['hasSol'] === '1') {
                     $Solicarat = $row['Solicarat'];
                     $Soliprc = $row['SoliPricepercarat'];
-
-                    $price = $price + ($Solicarat * $Soliprc);
+                    $Soliwgt = $row['soliwgt'];
+                    
+                    $price = $price + ($Soliwgt * $Soliprc);
                 }
                 if ($arr['hasDmd'] === '1') {
 
@@ -4997,9 +4997,8 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                 if ($arr['hasGem'] === '1') {
                     $Gemscarat = $row['gemscarat'];
                     $Gemsprc = $row['gemsPricepercarat'];
-
-
-                    $price = $price + ($Gemscarat * $Gemsprc);
+                  
+                    $price = $price + ($Gemscarat * $Gemsprc); 
                 }
 
                 if ($row['chldcatname'] == 'Rings') {
