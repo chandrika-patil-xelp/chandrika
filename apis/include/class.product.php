@@ -4138,12 +4138,12 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 	      foreach($atrval as $val)
 	      {
 		if(!in_array($val, $resl))
-		{
-		  $resl[]=$val; 
+		{ 
+		  $resl[]=$val;
 		}
 	      }
 	     
-	  } 
+	  }  
 	  $counts = sizeof($resl);
 	      if($counts > 1)
 	       $result[]=$resl;
@@ -4287,8 +4287,64 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 						      * 0.01 
 						      )
 						   ) 
+ 
+			      WHEN 'Fine Jewellery' THEN 
+						      (
+							  CASE finejwellrycatname
+								  WHEN 'Rings' THEN ( 
+										    ( 
+										    ( ( metal_weight + ((5 - 14) * 0.05) ) * caratlowp ) 
+										   + ( dmdcarat*dmdlowp ) 
+										   + ( making_charges * ( metal_weight + ((5 - 14) * 0.05) ) ) 
+										   + (   IF ( has_solitaire=1, SoliPricepercarat*Solicarat ,0) 
+										       + IF ( has_uncut=1, UncutPricepercarat*Uncutcarat, 0) 
+										       + IF ( has_gemstone=1, gemscarat*gemsPricepercarat, 0) 
+										     ) 
+										     )
+									      +
+										(
+										    ( 
+										    ( ( metal_weight + ((5 - 14) * 0.05) ) * caratlowp ) 
+										   + ( dmdcarat*dmdlowp ) 
+										   + ( making_charges * ( metal_weight + ((5 - 14) * 0.05) ) ) 
+										   + (   IF ( has_solitaire=1, SoliPricepercarat*Solicarat ,0) 
+										       + IF ( has_uncut=1, UncutPricepercarat*Uncutcarat, 0) 
+										       + IF ( has_gemstone=1, gemscarat*gemsPricepercarat, 0) 
+										     ) 
+										     )
+										   * 0.01
+										)
+										) 
+							        WHEN 'Bangles' THEN ( 
+										(
+										   ( ( metal_weight + ((2.2 - 2.4) * 7) )*caratlowp )
+										   + ( dmdcarat*dmdlowp ) 
+										   + ( making_charges * ( metal_weight + ((2.2 - 2.4) * 7) ) ) 
+										   + (   IF ( has_solitaire=1, SoliPricepercarat*Solicarat ,0) 
+										       + IF ( has_uncut=1, UncutPricepercarat*Uncutcarat, 0) 
+										       + IF ( has_gemstone=1, gemscarat*gemsPricepercarat, 0) 
+										     ) 
+										 )
+									       +
+										 (
+										   (
+										   ( ( metal_weight + ((2.2 - 2.4) * 7) )*caratlowp )
+										   + ( dmdcarat*dmdlowp ) 
+										   + ( making_charges * ( metal_weight + ((2.2 - 2.4) * 7) ) ) 
+										   + (   IF ( has_solitaire=1, SoliPricepercarat*Solicarat ,0) 
+										       + IF ( has_uncut=1, UncutPricepercarat*Uncutcarat, 0) 
+										       + IF ( has_gemstone=1, gemscarat*gemsPricepercarat, 0) 
+										     ) 
+										   )
+										 * 0.01 
+										 )
+									      ) 	  
+								  ELSE  (((metal_weight*caratlowp)+(metal_weight*making_charges)+(dmdcarat*dmdlowp) + ( IF(has_solitaire=1,SoliPricepercarat*Solicarat,0) + IF(has_uncut=1,UncutPricepercarat*Uncutcarat,0) + IF(has_gemstone=1,gemscarat*gemsPricepercarat,0)))+(((metal_weight*caratlowp)+(metal_weight*making_charges)+(dmdcarat*dmdlowp) + ( IF(has_solitaire=1,SoliPricepercarat*Solicarat,0) + IF(has_uncut=1,UncutPricepercarat*Uncutcarat,0) + IF(has_gemstone=1,gemscarat*gemsPricepercarat,0)))*0.01))
+								  END
+						      )  
+ 
 			      ELSE (((metal_weight*caratlowp)+(metal_weight*making_charges)+(dmdcarat*dmdlowp) + ( IF(has_solitaire=1,SoliPricepercarat*Solicarat,0) + IF(has_uncut=1,UncutPricepercarat*Uncutcarat,0) + IF(has_gemstone=1,gemscarat*gemsPricepercarat,0)))+(((metal_weight*caratlowp)+(metal_weight*making_charges)+(dmdcarat*dmdlowp) + ( IF(has_solitaire=1,SoliPricepercarat*Solicarat,0) + IF(has_uncut=1,UncutPricepercarat*Uncutcarat,0) + IF(has_gemstone=1,gemscarat*gemsPricepercarat,0)))*0.01))
-			      END   
+ 			      END   
 			           
 		      ) AS basicprize,
 			  ";  
