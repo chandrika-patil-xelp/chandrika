@@ -571,10 +571,13 @@
             if (($('#' + trkID).html()) === "track") {
                 $('#' + trkID).html(cls);
                 $('#' + trkID).parent().parent().parent().next().slideDown(400);
+		 $('#' + trkID).closest('.orderParent ').addClass('trOpen');
+		
             } else {
 
                 $('#' + trkID).html(trk);
                 $('#' + trkID).parent().parent().parent().next().slideUp(400);
+		    $('#' + trkID).closest('.orderParent ').removeClass('trOpen');
             }
         }
 
