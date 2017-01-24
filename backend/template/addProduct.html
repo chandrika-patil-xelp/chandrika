@@ -74,7 +74,7 @@ echo "<script>var edit=$edit; var pid = '$pid';</script>";
                         <div class="titleDiv txtCap fLeft">The Jewellery is*</div>
                         <div class="checkDiv fLeft">
                             <input type="radio" name="jType" class="filled-in" value="1" id="jType1" checked="">
-                            <label for="jType1">Gemstone</label>
+                            <label for="jType1">Gold</label>
                         </div>
                         <div class="checkDiv fLeft">
                             <input type="radio" name="jType" class="filled-in" value="2" id="jType2">
@@ -904,7 +904,6 @@ $(document).ready(function( ) {
 
     function getMultyCatMapping(allCid)
     {
-      
         var catArray=new Array();
         $('[name=prtcateg]').each(function() {
             if ($(this).is(':CHECKED'))
@@ -920,14 +919,15 @@ $(document).ready(function( ) {
         });
 
         values = {};
-        values['catid']=catArray.toString();
-        var dt=JSON.stringify(values);
+        values['catid']=catArray.toString(); 
+        var dt=JSON.stringify(values); 
         $.ajax({
             url:APIDOMAIN+"index.php?action=getMultyCatMapping",
             type:'POST',
             data:{dt: dt},
             success:function(res){
                 res=JSON.parse(res);
+              
                 attrValuesCallBack(res);
             }
         });

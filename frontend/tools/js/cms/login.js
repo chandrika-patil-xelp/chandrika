@@ -577,10 +577,16 @@ function sugnupsubmt()
 
     $('#sig_pgbak').click(function(){
 	signupBack();
+     
 	$('#name').val('');	    $('#name').blur();
 	$('#signupemail').val('');  $('#signupemail').blur();
 	$('#mobile').val('');	    $('#mobile').blur();
 	$('#signuppass').val('');   $('#signuppass').blur();
+    });
+    
+    $('.closeLogin').click(function(){
+        $('#email').val('');    
+         $('#pass').val('');    
     });
 
     $('#otp2pg_bak').click(function(){

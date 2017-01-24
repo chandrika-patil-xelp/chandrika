@@ -959,9 +959,36 @@
 		 onFinish:   function (data) { 
 		  var rangval="";
 		  rangval=data.from+';'+data.to;
+                  var chk=lowp+';'+highp;
+           if(rangval==chk){
+                 delete fltrarray.range;
+                 var arrcnt=0;
+      var arrobj=[];
+      $.map(fltrarray, function(v, k)
+      {
+	arrobj.push(k);
+	arrcnt++; 
+      });
+    
+      if(arrcnt == 1)
+      {
+	if (arrobj[0] == "catid")  
+	 getprodbyid(); 
+	else{
+	  fltrpage=2; fltrcnt=0;
+	  displayproduct(1);
+	}
+	  
+      } 
+      else{
+	  fltrpage=2; fltrcnt=0;
+	  displayproduct(1);
+	}
+             }
+           else{
 		     fltrarray.range = rangval;
 		     fltrpage=2; fltrcnt=0;
-		     displayproduct(1);
+		     displayproduct(1);}
 		}
               });
             
@@ -974,12 +1001,39 @@
 		onFinish:   function (data) { 
 		  var rangval="";
 		  rangval=data.from+';'+data.to;
+		    var chk=frstcar+';'+lastcar;
+           if(rangval==chk){
+                 delete fltrarray.carat;
+                 var arrcnt=0;
+      var arrobj=[];
+      $.map(fltrarray, function(v, k)
+      {
+	arrobj.push(k);
+	arrcnt++; 
+      });
+    
+      if(arrcnt == 1)
+      {
+	if (arrobj[0] == "catid")  
+	 getprodbyid(); 
+	else{
+	  fltrpage=2; fltrcnt=0;
+	  displayproduct(1);
+	}
+	  
+      } 
+      else{
+	  fltrpage=2; fltrcnt=0;
+	  displayproduct(1);
+	}
+             }
+           else{
 		     fltrarray.carat = rangval;
 		     fltrpage=2; fltrcnt=0;
-		     displayproduct(1);
-                     }
-   
-   });
+		     displayproduct(1);}
+		}
+              });
+            
 
             var vheight = 0;
             /*Overlay fade in/out  on menu hover*/

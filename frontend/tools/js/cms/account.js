@@ -296,28 +296,18 @@ function wishlist()
                 $('#nowishlst').addClass('dn');
                 var wishStr = "";
                 $(obj['result']).each(function (s, j) {
-
-
+                    
                     if (j.default_image !== null) {
                         var xyz = IMGDOMAIN + j.default_image;
                     } else {
-
-                        var xyz = j.prdimage; 
+                        if(j.prdimage !== null){
+                        var xyz = "";
+                        xyz=j.prdimage;
                         xyz = xyz.split(',');
-			xyz = IMGDOMAIN + xyz[1];
-			if(xyz === '')
 			xyz = IMGDOMAIN + xyz[0];
-                    }
-
-//
-                 //     if (obj['default_image'] != null) {
-
-//        proStr += '<div style="background:url(\'' + IMGDOMAIN + obj['default_image'] + '\')no-repeat ; background-size: contain ; background-position: center"  class=""></div>';
-//    } else if (images[0] == "uploads/noimg2.svg")
-//        proStr += '<div style="background:url(\'' + IMGDOMAIN + images[0] + '\')no-repeat ; background-size: auto 50% ; background-position: center"  class=""></div>';
-//    else
-//    proStr += '<div style="background:url(\'' + IMGDOMAIN + images[0] + '\')no-repeat ; background-size: contain ; background-position: center"  class=""></div>';
-
+		}else 
+                    xyz=BACKDOMAIN +'tools/img/noimage.svg';
+            }
                     wishStr += ' <div class="grid3 transition400 fadeInup">';
                     wishStr += ' <div class="facet_front wishClass" id="'+j.product_id+'_'+j.col_car_qty+'_'+j.size+'_'+s+'">';
                     wishStr += ' <div class="grid_item ">';
