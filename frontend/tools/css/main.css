@@ -2661,19 +2661,19 @@ input[type=number]::-webkit-outer-spin-button {
 .invInr{width: 100%;height:auto;margin: auto;background-color: #fff;padding: 30px 20px;padding-bottom: 0px;}
 .addDtls{width: 100%;height: auto;padding:30px 20px;}
 .comLogo{width:100%;height:80px;cursor:pointer;background-image: url(../img/jzeva_logo.png);background-size:auto 65px;background-position:left center;background-repeat: no-repeat;}
-.comAddrs{width: 100%;height: auto;font-size: 12px;font-family: bolder;letter-spacing: 0.1em;line-height: 20px;text-align: right;color: #15181b;}
-.homAddrs{width: 100%;height: auto;line-height: 20px;font-family: regular;font-size: 11px;text-align: right;color: #15181b;}
+.comAddrs{width: 100%;height: auto;font-size: 15px;font-family: bolder;letter-spacing: 0.1em;line-height: 20px;text-align: right;color: #15181b;}
+.homAddrs{width: 100%;height: auto;line-height: 20px;font-family: regular;font-size: 13px;text-align: right;color: #15181b;}
 /*.CUSINV .col50:nth-child(2){padding: 0px 20px;}*/
-.clInc{width: 100%;height: 100px;line-height: 80px;padding:20px 0px;letter-spacing: 0.2em;font-family: regular;background-color: #f3f3f3;color: #15181b;}
-.btmInc:after{content: "";width: 35px;height: 1px;background: #000;position: absolute;left: 0;right: 0;margin: auto;top:40px;}
+.clInc{width: 100%;height: 100px;line-height: 80px;padding:20px 0px;letter-spacing: 0.2em;font-family: regular;background-color: #f3f3f3;color: #15181b;font-size: 15px;}
+.btmInc:after{content: "";width: 35px;height: 1px;background: #000;position: absolute;left: 0;right: 0;margin: auto;top:40%;}
 .CUSINV .col100:nth-child(3){padding:40px 20px;}
 .blngSeq{width: 100%;height: 100%;font-size: 11px;line-height: 20px;letter-spacing: 0.15em;font-family: regular;}
 .prsnDtl{width: 100%;height: 100%;line-height: 20px;font-family: semibold;font-size: 15px;color: #15181b;letter-spacing: 0.2em;text-transform: uppercase;}
 .prslAdrs{width: 100%;height:auto;}
 .prsloc{width: 100%;height:auto;}
 .prsCty{width: 100%;height:auto;}
-.blwDtl{width: 100%;height: auto;line-height: 20px;font-size: 12px;font-family: regular;color:#15181b;}
-.inVoc{width: 100%;height: auto;text-align: right;font-size: 11px;color: #15181b;font-family: regular;}
+.blwDtl{width: 100%;height: auto;line-height: 20px;font-size: 13px;font-family: regular;color:#15181b;}
+.inVoc{width: 100%;height: auto;text-align: right;font-size: 13px;color: #15181b;font-family: regular;}
 .invocNo{width: 100%;height: auto;line-height: 25px;}
 .delDate{width: 100%;height: auto;line-height: 25px;}
 .CUSINV .col100:nth-child(4){padding:15px 20px;border-top: 1px solid #e6e6e6;border-bottom: 1px solid #e6e6e6;color: #222529;font-family: bolder;font-size: 12px;line-height: 20px;text-align: left;}
@@ -2696,21 +2696,21 @@ input[type=number]::-webkit-outer-spin-button {
 .cartRup15b{width: auto;background: url(../img/icons/519s15.svg);background-repeat: no-repeat;background-size: auto 10px;background-position:left center;padding-left: 11px;}
 .margn{margin-bottom: 30px;}
 .CUSINV .col100:nth-child(6){padding:10px 20px;border-top:1px solid #e6e6e6;border-bottom:1px solid #e6e6e6;margin-bottom: 70px;}
-.prcTag{width: auto;height: auto;font-size: 13px;color: #15181b;font-family: regular;}
-.amtDc{width: 60%;height: auto;text-align: right;font-size: 15px;font-family: bolder;}
+.prcTag{width: auto;height: auto;font-size: 15px;color: #15181b;font-family: regular;}
+.amtDc{width: 60%;height: auto;text-align: right;font-size: 18px;font-family: bolder;}
 .grndTs{width:auto;height: auto;text-align: right;font-size: 15px;font-family: regular;}
 .wdAuto{width: auto;height: auto;}
 .dePrsn{width: 100%;height: auto;line-height: 25px;font-size: 13px;font-family: regular;margin-bottom: 10px;}
-.dePrsn span{font-size: 13px;font-family: bolder;}
+.dePrsn span{font-size: 15px;font-family: bolder;}
 .CUSINV .col100:nth-child(7){padding: 20px;}
-.Regrd{width: 100%;height: auto;line-height: 15px;font-size: 12px;font-family: regular;}
+.Regrd{width: 100%;height: auto;line-height: 18px;font-size: 12px;font-family: regular;}
 .col60{width: 68%;height: auto;}
 .Regrd a{text-decoration: none;}
-.sale{width: 100%;height: auto;margin-top: 10px;font-size: 12px;font-family: regular;}
+.sale{width: 100%;height: auto;margin-top: 10px;font-size: 15px;font-family: regular;}
 .sale span{font-size: 12px;font-family: bolder;}
 .sale a{text-decoration: none;font-family: regular;}
 .fotr{width: 100%;height: 40px;line-height: 40px;padding: 0px 20px;background-color: #f3f3f3;}
-.wtAt{width: auto;height: auto;font-size: 12px;font-family: regular;}
+.wtAt{width: auto;height: auto;font-size: 13px;font-family: regular;}
 .cartRup15b1{background: url(../img/icons/519s15.svg);background-repeat: no-repeat;background-size: auto 10px;background-position:right 30px center;}
 .prcVal.cartRup15b{background-size: auto 8px;background-position: right 34px center;padding-left: 0px;width: 15%;}
 .amGen.cartRup15b{background-size: auto 8px;background-position: right 25px center;padding-left: 0px;width: 15%;}
