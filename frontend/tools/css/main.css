@@ -2656,8 +2656,8 @@ input[type=number]::-webkit-outer-spin-button {
 
 
 /*customer invoice code*/
-.containers{width: 100%;height: auto;}
-.InvGen{max-width: 800px;height: auto;margin: auto;display:table;width: 100%;}
+.containers{width: 100%;height: auto;background-color:#fff;}
+.InvGen{max-width: 1400px;height: auto;margin: auto;display:table;width: 100%;}
 .invInr{width: 100%;height:auto;margin: auto;background-color: #fff;padding: 30px 20px;padding-bottom: 0px;}
 .addDtls{width: 100%;height: auto;padding:30px 20px;}
 .comLogo{width:100%;height:80px;cursor:pointer;background-image: url(../img/jzeva_logo.png);background-size:auto 65px;background-position:left center;background-repeat: no-repeat;}
@@ -2682,7 +2682,7 @@ input[type=number]::-webkit-outer-spin-button {
 .qtDesp{width: 15%;height: auto;text-align: center;}
 .prcVal{width: 15%;height: auto;text-align: center;}
 .amGen{width: 15%;height: auto;text-align: center;}
-.CUSINV .col100:nth-child(5){padding:30px 20px; min-height: 500px;}
+.CUSINV .col100:nth-child(5){padding:30px 20px; min-height:1090px;}
 /*.CUSINV .col100:nth-child(6){margin-bottom: 20px;}*/
 .srLst{width: 10%;height: auto;}
 .prodBuy{width: 45%;height: auto;}
