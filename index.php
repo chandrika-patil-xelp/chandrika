@@ -325,5 +325,10 @@ switch ($action) {
         $page = 'bespoke';
         include TEMPLATE . 'bespoke.html';
         break;
+      
+     case 'invoice':
+        $page = 'invoice';
+        include TEMPLATE . 'customerInvoice.html';
+        break;
 }
 ?>
