@@ -239,7 +239,7 @@ $('#add_to_cart').on('click', function () {
 
  
 $('#buynow').on('click',function(){
-    
+   
     var size=$('#size').text(); 
     if(size == 'Select')
        common.msg(0,'Please select size');
@@ -650,7 +650,7 @@ $(document).ready(function () {
                                 dQstr += '<span class="semibold">SI (Very Slightly Included): </span>Diamonds have noticeable inclusions that are easy to very easy for a trained grader to see when viewed under 10x magnification<br>';
                                 dQstr += '<span class="semibold">GH:</span> G, H colour is the border line that segregates diamonds in colours. A GH colour diamond is considered a white diamond. Beyond the GH colour the diamonds start showing a glint of yellow fluorescence';
                                 dQstr += '</div>';
-                                 dQstr += '<div class="clarityInfo c6">';
+                                dQstr += '<div class="clarityInfo c6">';
                                 dQstr += '<span class="semibold">VS (Very Slightly Included):</span> Diamonds have minor inclusions that are difficult to somewhat easy for a trained grader to see when viewed under 10x magnification<br>';
                                 dQstr += '<span class="semibold">IJ:</span> I, J colour is the diamonds under careful and trained observation reveal a glint of yellow radiance, they are considered nearly colourless and are the most frequently bought colour of diamonds.';
                                 dQstr += '</div>';
@@ -674,11 +674,10 @@ $(document).ready(function () {
                                 getdmdprice(dvprc, dcarat);
 
                             });
-                            
-                             dQstr += '</div>';
-                              dQstr += '<div class="options_back fLeft"></div>';
+                            dQstr += '</div>';
+                            dQstr += '<center><div class="options_back"></div></center>';
                             $('#diQ').append(dQstr);
-
+                            
                             if (p_qlty !== undefined) {
                                 $("input[name='selectM']").each(function () {
                                     var val = $(this).val();
@@ -780,7 +779,7 @@ $(document).ready(function () {
                     });
                   
                     purstr += '</div>';
-                      purstr += '<div class="options_back fLeft"></div>';
+                      purstr += '<center><div class="options_back"></div></center>';
                     $('#pur').append(purstr);
                     if (p_qlty !== undefined) {
                         $("input[name='purity']").each(function () {
@@ -825,7 +824,7 @@ $(document).ready(function () {
                     });
                       
                   clrstr += '</div>';
-                   clrstr +='<div class="options_back fLeft"></div>';
+                   clrstr +='<center><div class="options_back"></div></center>';
                     
                     $('#colr').append(clrstr);
                     if (p_color !== undefined) {
