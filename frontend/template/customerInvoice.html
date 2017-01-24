@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<?php include 'jhead.html'?>
- <script src="js/jquery.js" type="text/javascript"></script>
+ <link rel="stylesheet" href="<?php echo DOMAIN ?>frontend/tools/css/main.css">
+ <script src="<?php echo DOMAIN ?>frontend/tools/js/jquery.js" type="text/javascript"></script>
        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<script type="text/javascript" src="//cdn.rawgit.com/niklasvh/html2canvas/0.5.0-alpha2/dist/html2canvas.min.js"></script>
 	<script type="text/javascript" src="//cdn.rawgit.com/MrRio/jsPDF/master/dist/jspdf.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script>
+	<script src="<?php echo DOMAIN ?>frontend/tools/js/jQuery.print.js"></script>
 <body style="background-color:#fff;">
   <div class="containers CUSINV fLeft">
      <div class="InvGen" id="inCnc">
@@ -223,31 +224,29 @@ function createPDF(){
 
                              while (heightLeft >= 0) {
                                position = heightLeft - imgHeight;
+			     
                              //  pdf.addPage();
                                pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
                                heightLeft -= pageHeight;
                              }
 
-                            var namefile = 'enrolement';
+                            var namefile = 'jzeva_orders';
                             pdf.save(namefile + ".pdf");
                          }
                     });
 }
-  
-      
-  
-    
-    
-    
+   
   
   $(document).ready(function(){
      getOrderdetails();
     setTimeout(function(){
       $('#create_pdf').click();
       },600);
-      
+      setTimeout(function () { 
+ 	window.close(); 
+      }, 1000);
   }); 
-  
+ 
   function getOrderdetails()
   {
     var URL=APIDOMAIN + "index.php?action=OrderDetailsbyordid&orderid="+ordid;
