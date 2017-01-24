@@ -822,7 +822,7 @@
             . "(SELECT  GROUP_CONCAT(has_gemstone) FROM tbl_product_master WHERE productid = pid AND active_flag = 1 ) AS hasGems,"
             ."(SELECT GROUP_CONCAT(gemstone_id) FROM tbl_product_gemstone_mapping WHERE productid = pid AND active_flag = 1 ) AS allGemstone,"
             ."(SELECT GROUP_CONCAT(gemstone_name) FROM tbl_gemstone_master WHERE FIND_IN_SET(id,allGemstone)) AS gemstoneName,"
-	    . "(SELECT  GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid  AND active_flag !=2 ORDER BY
+	    . "(SELECT  GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid  AND active_flag= 1 ORDER BY
                             image_sequence DESC) AS prdimage, 
 		(SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND active_flag =1 AND  default_img_flag=1) AS default_image ";
             
