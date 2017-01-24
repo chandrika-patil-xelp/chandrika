@@ -1640,7 +1640,7 @@ input[type=radio]:checked ~ .selector_label:after {transform:translateX(0%);-web
 .smUBot:hover:after{transform:translateX(120%);-moz-transform:translateX(120%);-webkit-transform:translateX(120%);-o-transform:translateX(120%);-ms-transform:translateX(120%);transition:450ms !important}
 .collCenter{height:180px;width:100%;position:absolute;left:0;top:0;bottom:0;margin:auto}
 .collectH{width:100%;color:#fff;position:relative;font-size:50px;font-family: thin;text-align:center;}
-.collectY{width:100%;color:#fff;position:relative;font-size:150px;font-family: thin;text-align:center;line-height:120px}
+.collectY{width:100%;color:#fff;position:relative;font-size:50px;font-family: thin;text-align:center;line-height:120px}
 .greyCont{width:100%;height:auto;background:#f3f3f3 url(../img/pattern.png);background-size:50px auto; }
 .wCont{width:100%;height:auto;background:#fff;padding-bottom:100%;position:relative;top:-80px;margin-bottom: 40px;}
 .animFade.wCont{opacity:1}
