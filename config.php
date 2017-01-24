@@ -42,9 +42,9 @@ else
 	$db['jzeva'] = array('localhost','root','','db_jzeva');
 }
 
-//define('SMSAPI','http://alerts.sinfini.com/api/web2sms.php?workingkey=A31cf85c3cc3b65100bf9bd7fbe30cd90&to=+91_MOBILE&sender=SIDEMO&message=_MESSAGE');
- define('SMSAPI','http://alerts.sinfini.com/api/web2sms.php?workingkey=A31cf85c3cc3b65100bf9bd7fbe30cd90&to=+91_MOBILE&sender=SIDEMO&message=_MESSAGE');
-//define('SMSAPI','http://alerts.sinfini.com/api/web2sms.php?workingkey=Ae24f0c241588043b00e0449d6e2a5664&to=+91_MOBILE&sender=jzeva&message=_MESSAGE');
+
+// define('SMSAPI','http://alerts.sinfini.com/api/web2sms.php?workingkey=A31cf85c3cc3b65100bf9bd7fbe30cd90&to=+91_MOBILE&sender=SIDEMO&message=_MESSAGE');
+  define('SMSAPI','http://123.63.33.43//blank/sms/user/urlsmstemp.php?username=wegus&pass=wegus@123&senderid=IWEGUS&dest_mobileno=+91_MOBILE&tempid=36890&F1=jzeva&F2=jzeva@123&F3=+919986814466&response=Y&message=_MESSAGE');
 
 define('BTEMPLATE',BACKWEBROOT.'template/');
 define('BINCLUDES',BACKWEBROOT.'include/');

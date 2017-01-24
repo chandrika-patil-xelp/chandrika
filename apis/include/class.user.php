@@ -561,7 +561,7 @@ class user extends DB {
 		global $db;
 		include APICLUDE.'class.emailtemplate.php';
 		$obj	= new emailtemplate($db['jzeva']);
-		$message=$obj->getshippingtemplate(array('userid'=>$userid,'ordid'=>$orderid));
+		$message=$obj->getshippingtemplate(array('userid'=>$userid,'ordid'=>$orderid,'pid'=>$pid));
 		$subject  = "JZEVA Order Shipped Detail"; 
 		$headers  = "Content-type:text/html;charset=UTF-8" . "<br/><br/>";
 		$headers .= 'From: care@jzeva.com' . "<br/><br/>";
@@ -1796,7 +1796,18 @@ class user extends DB {
 			    (SELECT address FROM tbl_order_shipping_details WHERE shipping_id=shpId) AS customerAddrs, 
 			    (SELECT transaction_id FROM tbl_transaction_master WHERE order_id=oid) AS transactionid, 
 			    (SELECT payment_mode FROM tbl_transaction_master WHERE order_id=oid) AS transactiontype, 
+			    (SELECT product_name FROM tbl_product_master WHERE productid=pid) AS prd_name,
+			    (SELECT product_code FROM tbl_product_master WHERE productid=pid) AS prd_code,
+			    (SELECT  GROUP_CONCAT(dname) FROM tbl_metal_color_master WHERE id = SUBSTRING_INDEX(combine, '|@|',1) AND active_flag = 1 ) AS color,
+			    (SELECT  GROUP_CONCAT(dname) FROM tbl_metal_purity_master WHERE id = SUBSTRING_INDEX(SUBSTRING_INDEX(combine,'|@|',2),'|@|',-1) AND active_flag = 1 ) AS carat,
+			    (SELECT  GROUP_CONCAT(dname) FROM tbl_diamond_quality_master WHERE id = SUBSTRING_INDEX(combine,'|@|',-1)  AND active_flag = 1 ) AS quality,
+			    (SELECT GROUP_CONCAT(catid) FROM tbl_category_product_mapping WHERE  productid =pid ) AS ccatid,
+			    (SELECT DISTINCT(NAME) FROM tbl_size_master WHERE  FIND_IN_SET(catid,ccatid) )AS ccatname,                       
+			    (SELECT  GROUP_CONCAT(metal_weight) FROM tbl_product_master WHERE productid = pid  AND active_flag =1) AS metal_weight,
+			    (SELECT GROUP_CONCAT(diamond_id) FROM tbl_product_diamond_mapping WHERE productid = pid AND active_flag = 1 ) AS allDimonds,
+			    (SELECT GROUP_CONCAT(carat) FROM tbl_product_diamond_mapping WHERE FIND_IN_SET(diamond_id,allDimonds)) AS dmdcarat,
 			    
+			    price/pqty as basic_prz,
 			    order_date AS orddt,
                             delivery_date AS deldt,
                             order_status AS ordsta,
@@ -1830,6 +1841,17 @@ class user extends DB {
                     $reslt['uaddres'] = ($row['customerAddrs']!=NULL) ? $row['customerAddrs'] : '';
                     $reslt['transactionid'] = ($row['transactionid']!=NULL) ? $row['transactionid'] : ''; 
 		    $reslt['transactiontype'] = ($row['transactiontype']!=NULL) ? $row['transactiontype'] : '';  
+		    $reslt['prd_name'] = ($row['prd_name']!=NULL) ? $row['prd_name'] : '';  
+		    $reslt['prd_code'] = ($row['prd_code']!=NULL) ? $row['prd_code'] : '';  
+		    $reslt['color'] = ($row['color']!=NULL) ? $row['color'] : '';  
+		    $reslt['carat'] = ($row['carat']!=NULL) ? $row['carat'] : '';
+		    $reslt['quality'] = ($row['quality']!=NULL) ? $row['quality'] : '';
+		    $reslt['ccatname'] = ($row['ccatname']!=NULL) ? $row['ccatname'] : '';
+		    $reslt['metal_weight'] = ($row['metal_weight']!=NULL) ? $row['metal_weight'] : '';
+		    $reslt['dmdcarat'] = ($row['dmdcarat']!=NULL) ? $row['dmdcarat'] : '';
+		    $reslt['basic_prz'] = ($row['basic_prz']!=NULL) ? $row['basic_prz'] : '';
+		    
+		    
                     $resp[] = $reslt;
 		    $totalprice+=($row['price'] != NULL) ?$row['price']:'';
                  }

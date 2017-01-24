@@ -113,7 +113,7 @@ function displayorders()
                     orderstr += '<div class="fLeft col100 blStl">' + e[0].customername + '</div>';
                     orderstr += '<div class="fLeft col100 shipAddr">' + e[0].customerAddrs + ' ' + e[0].customerCity + ' </div>';
                     orderstr += '<div class="fLeft col100 shipAddr">' +e[0].customerState + ' ' + e[0].customerPincode + '</div>';
-                    orderstr += '<div class="actBtn" id="dwninvoice">view invoice</div>';
+                    orderstr += '<div class="actBtn" id="'+e[0].oid+'" onclick="dwninvoice(this)">view invoice</div>';
                     orderstr += '</div>';
 
                     // orderstr += '</div>';
@@ -222,13 +222,17 @@ function displayorders()
 //                        orderstr += '<div class="fLeft shipTo">shipped to third party</div>';
                         orderstr += '</div>';
                         orderstr += '</div>';
-                        orderstr += '</div>';
+                        orderstr += '</div>'; 
                     });
                 });
-
+		
 
                 $('#myordId').append(orderstr);
 
+
+		
+		
+		
                 //  $('#ordTitle').html(ordTitle);
             }
         }
@@ -993,4 +997,14 @@ function trackslide(ths)
         $('#' + trkID).closest('.orderParent ').find('.trackOuter').slideUp(300);
           $('#' + trkID).closest('.orderParent ').removeClass('trOpen');
     }
+}
+
+
+function dwninvoice(ths)
+{
+  var ordid=$(ths).attr('id');
+   
+  var newtab= window.open(DOMAIN+"index.php?action=invoice&ordid="+ordid,'_blank');  
+  newtab.blur();
+  window.focus();
 }

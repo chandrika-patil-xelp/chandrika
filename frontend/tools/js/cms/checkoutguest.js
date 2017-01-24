@@ -450,16 +450,6 @@ function gsgnupsub()
      common.msg(0,'Please enter your Name'); 
       return false;
     }   
-    else if(email===''|| email=== null){
-       validationFlag=0;  
-         common.msg(0,'Please enter your Email-id'); 
-          return false;
-    }
-   else if (!reg.test(email)){
-      validationFlag=0;  
-       common.msg(0,'Invalid Email-id'); 
-        return false;
-    }
     else if(mobile===''|| mobile=== null){
        validationFlag=0;  
         common.msg(0,'Please enter your Mobile no.'); 
@@ -475,6 +465,16 @@ function gsgnupsub()
 	    common.msg(0,'Mobile number is Invalid'); 
 	    return false;
     }
+    else if(email===''|| email=== null){
+       validationFlag=0;  
+         common.msg(0,'Please enter your Email-id'); 
+          return false;
+    }
+   else if (!reg.test(email)){
+      validationFlag=0;  
+       common.msg(0,'Invalid Email-id'); 
+        return false;
+    } 
     else if(pass ===''|| pass === null){
        validationFlag=0;  
          common.msg(0,'Please enter your Password'); 

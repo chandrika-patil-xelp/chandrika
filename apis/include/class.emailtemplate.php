@@ -340,28 +340,29 @@
 			product_id AS pid,
 			user_id AS uid,
 			shipping_id AS shipid,
-			(SELECT product_name FROM  tbl_product_master  WHERE   productid=pid AND active_flag=1) AS prd_name, 
+			(SELECT product_name FROM  tbl_product_master  WHERE   productid=pid AND active_flag=1) AS product_name, 
 			(SELECT name FROM  tbl_order_shipping_details  WHERE   shipping_id=shipid) AS user_name,
-			(SELECT gender FROM  tbl_order_shipping_details  WHERE   shipping_id=shipid AND active_flag=1) AS shp_gender
+			(SELECT gender FROM  tbl_order_shipping_details  WHERE   shipping_id=shipid AND active_flag=1) AS shp_gender,
+			(SELECT product_name FROM  tbl_product_master  WHERE   productid=".$params['pid']." AND active_flag=1) AS prd_name
+			
 		  FROM
 		        tbl_order_master
 		  WHERE
 		        order_id=".$params['ordid']." AND active_flag=1"; 
 	   
 	  $ordres=  $this->query($ordsql);
-	  
+	  $ordrow= $this->fetchData($ordres);
 	  
 	  if($ordres)
 	  {
-	    while($ordrow= $this->fetchData($ordres)){
-	      $prdarr[]=$ordrow['prd_name'];
+	    
+	      $prdname=$ordrow['prd_name']; 
 	      $gender=$ordrow['shp_gender'];
 	      $usrname=$ordrow['user_name'];
-	    }
+	    
 	  }
 	  $gndr=  $this->getgender($gender); 
-	  $prdname=  implode(', ', $prdarr);
-	 
+	  
 	  $message='<html>
 		      <head>
 			  <title>shipped</title>
@@ -385,7 +386,7 @@
 					      <img src="'.DOMAIN.'frontend/emailer/shipping.png" alt="img" width="60" height="60">
 					  </div>
 				      </div>
-				      <div style="width:100%;height:auto;font-size:20px;color:#0CCDB8;text-align:center;line-height:28px">Dear '.$gndr.'. '.$usrname.'</div>
+				      <div style="width:100%;height:auto;font-size:20px;color:#0CCDB8;text-align:center;line-height:28px"> '.$gndr.'. '.$usrname.'</div>
 				      <div style="width:100%;height:auto;font-size:12px;text-align:center;color:#000;line-height:25px;margin-top:10px"><span style="display:inline-block;line-height:25px;vertical-align:middle">We are glad to inform you that your jzeva jewellery <span>'.$prdname.'</span> with order number</span></div>
 				      <div style="width:100%;height:auto;font-size:12px;color:#000;text-align:center;line-height:25px;margin-top: 3px"><span style="display:inline-block;line-height:25px;vertical-align:middle">'.$params['ordid'].' has been shipped from our location</span></div>
 				      <div style="width:100%;height:auto;font-size:12px;color:#000;text-align:center;line-height:25px;margin-top: 10px;"><span style="display:inline-block;line-height:25px;vertical-align:middle">If you have opted for cash on delivery please pay the amount to the</span></div>

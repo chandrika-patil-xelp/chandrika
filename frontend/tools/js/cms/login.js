@@ -114,7 +114,7 @@ $('#log').click(function(){
 
 function chklogin()
 {
-  var email = $("#email").val();console.log(email);
+  var email = $("#email").val();
   var pass = $("#pass").val();
   var validationFlag=1,URL;
   var filter = /^[0-9-+]+$/;
