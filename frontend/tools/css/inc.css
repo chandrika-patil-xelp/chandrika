@@ -100,7 +100,7 @@ div{display:block;box-sizing:border-box;}
 .btmInc:after{content: "";width: 35px;height: 1px;background: #000;position: absolute;left: 0;right: 0;margin: auto;top:40%;}
 .CUSINV .col100:nth-child(3){padding:30px 20px;}
 .blngSeq{width: 100%;height: 100%;font-size: 11px;line-height: 20px;letter-spacing: 0.15em;font-family: regular;}
-.prsnDtl{width: 100%;height: 100%;line-height: 20px;font-family: semibold;font-size: 13px;color: #15181b;letter-spacing: 0.2em;text-transform: uppercase;}
+.prsnDtl{width: 100%;height: 100%;line-height: 20px;font-family: semibold;font-size: 13px;color: #15181b;letter-spacing: 0.1em;text-transform: uppercase;}
 .prslAdrs{width: 100%;height:auto;}
 .prsloc{width: 100%;height:auto;}
 .prsCty{width: 100%;height:auto;}
@@ -123,14 +123,14 @@ div{display:block;box-sizing:border-box;}
 .qutVal{width: 15%;height: auto;}
 .prcCost{width: 15%;height: auto;}
 .amtCost{width: 15%;height: auto;}
-.alng{font-size: 15px;color: #15181b;font-family: semibold;line-height: 60px;text-align: center;}
+.alng{font-size: 13px;color: #15181b;font-family: semibold;line-height: 60px;text-align: center;}
 .algnGen{font-size: 12px;color: #15181b;font-family: semibold;line-height: 20px;}
 .cartRup15b{width: auto;background: url(../img/icons/519s15.svg);background-repeat: no-repeat;background-size: auto 10px;background-position:left center;padding-left: 11px;}
 .margn{margin-bottom: 30px;}
 .CUSINV .col100:nth-child(6){padding:10px 20px;border-top:1px solid #e6e6e6;border-bottom:1px solid #e6e6e6;margin-bottom: 20px;}
 .prcTag{width: auto;height: auto;font-size: 15px;color: #15181b;font-family: regular;}
-.amtDc{width: 60%;height: auto;text-align: right;font-size: 18px;font-family: bolder;}
-.grndTs{width:auto;height: auto;text-align: right;font-size: 15px;font-family: regular;}
+.amtDc{width: 60%;height: auto;text-align: right;font-size: 15px;font-family: bolder;}
+.grndTs{width:auto;height: auto;text-align: right;font-size: 13px;font-family: regular;padding-right: 6px;}
 .wdAuto{width: auto;height: auto;}
 .dePrsn{width: 100%;height: auto;line-height: 25px;font-size: 13px;font-family: regular;margin-bottom: 10px;}
 .dePrsn span{font-size: 13px;font-family: bolder;}
