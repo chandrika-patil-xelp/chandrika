@@ -1340,7 +1340,7 @@ input[type=radio]:checked ~ .selector_label:after {transform:translateX(0%);-web
 .coverImg2{width:100%;height:100vh;background:url('../img/banner/13.jpg') no-repeat;background-size:cover;background-position:center;position:relative;}
 .cloadIn.coverImg:after{opacity:0.7;transform:translateY(0px);-webkit-transform:translateY(0px);-moz-transform:translateY(0px);-o-transform:translateY(0px);-ms-transform:translateY(0px)}
 .header.black_bg{background:#15181b;}
-.spBespoke{width:100%;height:auto;padding:0 0px;font-size:17px;color:#15181b;font-family:light;line-height:28px}
+.spBespoke{width: 100%;height: auto;padding: 0 150px;font-size: 24px;color: #15181b;font-family: light;line-height: 40px;text-align: center;}
 .ftabWrap{width: 100%;height: 40px; z-index:6;position:relative;background:#15181b;color:#fff;}
 .ftab_buffer{width:100%;height:auto;position:relative;z-index:20;text-align:center;transition:200ms;-webkit-transition:200ms;-moz-transition:200ms;-o-transition:200ms;-ms-transition:200ms;}
 /*.ftab_buffer:hover{background:#15181b}*/
