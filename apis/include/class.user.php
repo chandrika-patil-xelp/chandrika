@@ -555,23 +555,64 @@ class user extends DB {
             $error = array('errCode' => 1, 'errMsg' => 'Parameter Missing');
             $result = array('results' => $resp, 'error' => $error);
             return $result;
-        } else {
+        } 
+	else 
+	{
+	  global $db;
+	  global $comm;
+	  $smssql="SELECT 
+			  shipping_id as shipid,
+			  product_id as pid,
+			  (SELECT name FROM tbl_order_shipping_details WHERE shipping_id=shipid)AS shipname,
+			  (SELECT mobile FROM tbl_order_shipping_details WHERE shipping_id=shipid)AS mobile,
+			  (SELECT gender FROM tbl_order_shipping_details WHERE shipping_id=shipid)AS gender,
+			  (SELECT email FROM tbl_order_shipping_details WHERE shipping_id=shipid)AS email,
+			  (SELECT product_name FROM tbl_product_master WHERE productid=pid)AS prd_name
+		    FROM tbl_order_master WHERE order_id=".$orderid."";
+
+	  $smsres =  $this->query($smssql);
+	  $smsrow = $this->fetchData($smsres);
+	  $email = $smsrow['email'];
+	  $gender = $smsrow['gender'];
+	  $usrname=$smsrow['shipname'];
+	  $prdname=$smsrow['prd_name'];
+	  $mobile=$smsrow['mobile'];
+
+	  $gndr="";
+	  if($gender == 1)
+	    $gndr="Ms";
+	  else if($gender == 2)
+	    $gndr="Mr";
+	  else if($gender == 3)
+	    $gndr="Mrs";
+	  
 	    if($params['ostatus'] == 5)
 	    {
-		global $db;
+		 
+		$txt = 'Dear '.$gndr.'.  '.$usrname.' your Jzeva jewellery '.$prdname.' with order number '.$orderid.' has been shipped. You can track your order on www.jzeva.com.';
+		 
+		$url = str_replace('_MOBILE', $mobile, SMSAPI);
+		$url = str_replace('_MESSAGE', urlencode($txt), $url);  
+		$smsurlres = $comm->executeCurl($url, true);
+		
+		
 		include APICLUDE.'class.emailtemplate.php';
 		$obj	= new emailtemplate($db['jzeva']);
 		$message=$obj->getshippingtemplate(array('userid'=>$userid,'ordid'=>$orderid,'pid'=>$pid));
 		$subject  = "JZEVA Order Shipped Detail"; 
 		$headers  = "Content-type:text/html;charset=UTF-8" . "<br/><br/>";
 		$headers .= 'From: care@jzeva.com' . "<br/><br/>";
-		$usrsql = "SELECT email FROM tbl_user_master WHERE user_id=".$userid;
-		$usrres =  $this->query($usrsql);
-		$usrrow = $this->fetchData($usrres);
-		$email = $usrrow['email'];
-
+		   
 		mail($email, $subject, $message, $headers);
-	      
+		 
+	    }
+	    else if($params['ostatus'] == 6)
+	    {
+	      $txt = 'Dear '.$gndr.'.  '.$usrname.' your Jzeva jewellery '.$prdname.' with order number '.$orderid.' has been Delivered. Thank you for shopping with Jzeva.com';
+		 
+	      $url = str_replace('_MOBILE', $mobile, SMSAPI);
+	      $url = str_replace('_MESSAGE', urlencode($txt), $url);  
+	      $smsurlres = $comm->executeCurl($url, true);
 	    }
             $sql = "UPDATE tbl_order_master SET  order_status =  \"" . $params['ostatus'] . "\" WHERE order_id=" . $params['orderid'] . " AND user_id=" . $params['userid'] . " AND product_id= ".$params['pid']." AND col_car_qty= '".$params['combn']."' AND size=".$params['sz']."";
               $res = $this->query($sql);
@@ -1657,7 +1698,7 @@ class user extends DB {
 					    <img src="'.DOMAIN.'frontend/emailer/otp.png" alt="img" width="70" height="60">
 					</div>
 				    </div>
-				    <div style="width:100%;height:auto;font-size:20px;color:#0CCDB8;text-align:center;line-height:25px">Dear '.$gndr.'. '.$uname.'</div>
+				    <div style="width:100%;height:auto;font-size:20px;color:#0CCDB8;text-align:center;line-height:25px"> '.$gndr.'. '.$uname.'</div>
 				    <div style="width: 100%;height: auto;font-size: 13px;text-align: center;color: #333;line-height: 25px;margin-top: 10px;letter-spacing: 0.1em;"><span style="display:inline-block;line-height:25px;vertical-align:middle">THANK YOU FOR YOUR INTEREST IN JZEVA</span></div>
 				    <div style="width:100%;height:auto;font-size:14px;color:#333;text-align:center;line-height:25px;padding-top:10px;">We are glad to assist you in changing the password of your jzeva account</div>
 				    <div style="width:100%;height:auto;font-size:14px;color:#333;text-align:center;line-height:25px;padding-top:10px;"><span style="display:inline-block;line-height:25px;vertical-align:middle">Please use the OTP sent in this email to proceed with changing your password</span></div>

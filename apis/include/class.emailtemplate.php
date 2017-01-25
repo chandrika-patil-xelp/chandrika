@@ -46,7 +46,7 @@
 			FROM
 			      tbl_order_shipping_details
 			WHERE
-			      shipping_id=".$params['data'][0]['shipping_id']." AND active_flag=1";
+			      shipping_id=".$params['data'][0]['shipping_id']."";
 
 	      $res=  $this->query($sql);
 	      $row=  $this->fetchData($res);
@@ -59,9 +59,9 @@
 	      $itms=COUNT($params['data']);
 
 	      if($itms > 1)
-		$itm=$itms." Items";
+		$itm=$itms."  Items";
 	      else
-		$itm=$itms." Item";
+		$itm=$itms."  Item";
 	  }
 	  
 	  
@@ -211,7 +211,7 @@
 		    </body>
 		</html>
 		';
-
+ 
           return $message;
         }
 
@@ -416,7 +416,7 @@
 		      </body>
 		  </html>      ';
 	  
-	   
+	 
 	  return $message;
 	}
 	

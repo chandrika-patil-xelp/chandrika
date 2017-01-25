@@ -239,8 +239,45 @@
 	 	           . "order_date = VALUES(order_date),delivery_date = VALUES(delivery_date),order_status = VALUES(order_status),"
 	 	            . "createdon = VALUES(createdon),updatedon = VALUES(updatedon),updatedby = VALUES(updatedby),payment = VALUES(payment),payment_type = VALUES(payment_type)";
 
-	        $res = $this->query($sql);
- 
+	         $res = $this->query($sql);
+	    
+	    $smssql="SELECT   
+			   product_id AS pid,
+			   shipping_id AS shipid,
+			   (SELECT name FROM tbl_order_shipping_details WHERE shipping_id=shipid)AS shipname,
+			   (SELECT mobile FROM tbl_order_shipping_details WHERE shipping_id=shipid)AS mobile,
+			   (SELECT gender FROM tbl_order_shipping_details WHERE shipping_id=shipid)AS gender,
+			   (SELECT email FROM tbl_order_shipping_details WHERE shipping_id=shipid)AS email,
+			   (SELECT product_name FROM tbl_product_master WHERE productid=pid)AS prd_name
+		     FROM
+			  tbl_order_master
+		     WHERE
+			  order_id=".$params['data'][0]['orderid'];
+		
+	    $smsres=  $this->query($smssql);
+	    $smsrow = $this->fetchData($smsres);
+	    
+	    $email = $smsrow['email'];
+	    $gender = $smsrow['gender'];
+	    $usrname=$smsrow['shipname'];
+	    $prdname=$smsrow['prd_name'];
+	    $mobile=$smsrow['mobile'];
+
+	    $gndr="";
+	    if($gender == 1)
+	      $gndr="Ms";
+	    else if($gender == 2)
+	      $gndr="Mr";
+	    else if($gender == 3)
+	      $gndr="Mrs";
+		
+	    global $comm;
+	    $txt = 'Dear '.$gndr.'. '.$usrname.' your Jzeva jewellery '.$prdname.' with order number '.$params['data'][0]['orderid'].' has been received. Thank you for shopping with Jzeva.com';
+		 
+	    $url = str_replace('_MOBILE', $mobile, SMSAPI);
+	    $url = str_replace('_MESSAGE', urlencode($txt), $url);  
+	    $smsurlres = $comm->executeCurl($url, true);
+		
             include APICLUDE.'class.emailtemplate.php';
             $obj	= new emailtemplate($db['jzeva']);
             $message	=$obj->genordrtemplate($params);
@@ -248,10 +285,7 @@
 	    $subject  = "JZEVA Order Detail"; 
             $headers  = "Content-type:text/html;charset=UTF-8" . "<br/><br/>";
             $headers .= 'From: care@jzeva.com' . "<br/><br/>";
-	    $usrsql = "SELECT email FROM tbl_user_master WHERE user_id=".$params['data'][0]['userid'];
-	    $usrres =  $this->query($usrsql);
-	    $usrrow = $this->fetchData($usrres);
-	    $email = $usrrow['email'];
+	     
 	    
 	    mail($email, $subject, $message, $headers);
 	    
@@ -945,13 +979,12 @@
              /** code for sign up ends **/
 
     private function generateId(){
-	 
+    
             $dt = date("YmdHis");
             $rd = mt_rand(11, 99);
             $genrd = $rd.$dt;
-	return $genrd; 
-
-        }
+		    return $genrd; 
+                }
  
 
 

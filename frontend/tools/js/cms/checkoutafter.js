@@ -75,7 +75,9 @@ $(document).ready(function () {
 	  url: URL,
 	  data: {dt: dt},
 	  success: function (data) {
-	    
+	    var reslt=JSON.parse(data);
+	    if(reslt['error']['err_code'] == 0)
+	    {
 	      common.msg(1, 'Your Order Placed successfully');
 	      if(buyid == orderid)
 	      {
@@ -93,7 +95,7 @@ $(document).ready(function () {
 		       getorderdata();
 		  }
 	      });
-
+	    }
 	  }
       });
   }
