@@ -865,7 +865,8 @@
                                             }, 500);
                                         }
                                         function opnscnd() {
-                                            bakflag = 2;
+                                            if(bakflag == 0)
+					      $('#shpd_bak').addClass('dn');
                                             chkouttentrflag = 5;
                                             shipng_id = 0;
                                             $('#shpdaddrs').val('');

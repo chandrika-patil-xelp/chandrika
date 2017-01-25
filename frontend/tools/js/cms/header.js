@@ -1,5 +1,14 @@
 $(document).ready(function(){
-  
+  $(window).scroll(function () {
+                   if ($(this).scrollTop() > 100) {
+                       $('.backTop').removeClass("dn");
+                   } else {
+                       $('.backTop').addClass("dn");
+                   }
+               });
+                $('.backTop').click(function () {
+                       $('html,body').animate({scrollTop: 0});
+                                        });
   getheader();
 });
 

@@ -902,10 +902,10 @@
          
       
   
-	  public function checkpassw($params){
+  public function checkpassw($params){
              
             $pass = (!empty($params['pass'])) ? trim($params['pass']) : "";
-            // print_r($params);
+          
              if(empty($pass)){
                 $resp = array();
                 $error = array('err_msg'=>0, 'err_code'=>'Parameters Missing');
@@ -914,12 +914,15 @@
             }
             
             $sql = "SELECT  
-		      user_id,user_name,logmobile,email,
-		      (SELECT DISTINCT(cart_id) FROM tbl_cart_master WHERE userid =user_id AND active_flag=1) AS cart_id,
-			 password
-                      FROM
-                        tbl_user_master 
-                      WHERE logmobile='".$params['mob']."' ";
+			  user_id,
+			  user_name,
+			  logmobile,
+			  email, 
+			  password
+                    FROM
+			  tbl_user_master 
+                    WHERE 
+			  logmobile='".$params['mob']."' ";
                      
             
             $res = $this->query($sql);
@@ -937,7 +940,7 @@
 			    $arr['uname'] = ($row['user_name']!=NULL) ? $row['user_name'] : '';
 			    $arr['mob'] = ($row['logmobile']!=NULL) ? $row['logmobile'] : '';
 			    $arr['email'] = ($row['email']!=NULL) ? $row['email'] : '';
-			    $arr['cart_id'] = ($row['cart_id']!=NULL) ? $row['cart_id'] : '';
+			   
 			    $resp =$arr; 	  
 			    $error = array('err_code'=>0, 'err_msg'=>'Password is correct');
 			 }

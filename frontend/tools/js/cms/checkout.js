@@ -9,7 +9,7 @@ $(document).ready(function () {
         openfst();
         displayaddrs(userid);
     } else {
-        closeThrd();
+        window.location.href=DOMAIN + 'index.php?action=checkoutGuest';
     }
 
     displaycartdetail();
@@ -278,60 +278,8 @@ function storecartdata(cartdata)
         }
     });
 }
-
-function checkotp(inptmob, otp)
-{
-
-    var URL = APIDOMAIN + "index.php/?action=checkopt&mobile=" + inptmob + "&otpval=" + otp;
-    $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results) {
-            var obj = JSON.parse(results);
-            var data = obj.result;
-            if (data !== undefined) {
-                if (data.otp == null) {
-                    common.msg(0, 'time is over plz try it again');
-                    $('.matchIcn').addClass('dn');
-                    $('.unmatchIcn').removeClass('dn');
-                } else {
-                    if (otp == data.otp) {
-                        if (logotpflag == 2) {
-                            getuserdetail(inptmob);
-
-                        } else {
-                            $('#resend_otp').addClass('dn');
-                            $('.matchIcn').removeClass('dn');
-                            $('.unmatchIcn').addClass('dn');
-                            $('#paswrd1id').removeClass('dn');
-                            $('#paswrd2id').removeClass('dn');
-                            $('.centerDvHldr').addClass('dn');
-                            $('#otp_countn').removeClass('dn');
-                            //common.msg(0,'otp is correct');
-                        }
-                    } else {
-                        $('.matchIcn').addClass('dn');
-                        $('.unmatchIcn').removeClass('dn');
-                        common.msg(0, 'your entered otp is wrong');
-                    }
-                }
-            }
-        }
-    });
-}
-
-$('#otp_countn').click(function () {
-    otpcontn();
-});
-
-function otpcontn()
-{
-    bakflag = 1;
-    if (contnu_enble == 1) {
-        $('#shpdmobile').val(inp_data);
-        openfst1();
-    } else {
-        common.msg(0, 'Please Enter Correct Password ');
-    }
-}
-
+ 
+  
 
 $('#shpng_sub').click(function () {
     shpngsubmt();
@@ -416,99 +364,8 @@ function shpngsubmt()
     }
 
 }
-
-$('#mob_mailsub').click(function () {
-    mob_mailsubmt();
-});
-
-function mob_mailsubmt()
-{
-    inp_data = $('#entereml').val();
-    var validationflg = 1;
-    if ($.isNumeric(inp_data)) {
-        if (inp_data === '' || inp_data === null) {
-            validationflg = 0;
-            common.msg(0, 'Please enter your Mobile no.');
-        } else if (isNaN(inp_data) || (inp_data.length < 10) || (inp_data.length > 11)) {
-            validationflg = 0;
-            common.msg(0, 'Invalid Mobile no ');
-        }
-
-        if (validationflg == 1) {
-            checkuser(inp_data);
-
-        }
-    } else {
-        var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
-        if (inp_data === '' || inp_data === null) {
-            common.msg(0, 'Please enter your Email.id or mobile no');
-            validationflg = 0;
-        } else if (!reg.test(inp_data)) {
-            common.msg(0, 'Invalid Email.id');
-            validationflg = 0;
-        }
-        if (validationflg == 1) {
-            checkuser(inp_data);
-            openThrd();
-            //  sendotpmail();
-        }
-    }
-}
-
-$('#otp1').on('keyup', function () {
-    var otp = $(this).val();
-    if (otp.length == 6)
-        checkotp(inp_data, otp);
-    else {
-        $('#paswrd1id').addClass('dn');
-        $('#paswrd2id').addClass('dn');
-        $('#otp_countn').addClass('dn');
-        $('#resend_otp').removeClass('dn');
-        $('.matchIcn1').addClass('dn');
-        $('.unmatchIcn1').addClass('dn');
-        $('#pswrd1').val('');
-        $('#pswrd1').blur();
-        $('#pswrd2').val('');
-        $('#pswrd2').blur();
-    }
-});
-
-$('#resend_otp').click(function () {
-    sendnewuserotp();
-});
-
-function sendnewuserotp()
-{
-    var URL = APIDOMAIN + "index.php/?action=sendnewuserotp&mobile=" + inp_data;
-    $.ajax({type: 'POST', url: URL, success: function (res) {
-            var data1 = JSON.parse(res);
-            if (data1['error']['err_code'] == 0) {
-                common.msg(1, data1['error']['err_msg']);
-            } else if (data1['error']['err_code'] == 1) {
-                common.msg(0, data1['error']['err_msg']);
-            } else if (data1['error']['err_code'] == 2) {
-                common.msg(0, data1['error']['err_msg']);
-            }
-        }
-    });
-}
-
-function sendotpmail()
-{
-    var URL = APIDOMAIN + "index.php/?action=sendnewuserotp&mobile=" + inp_data;
-    $.ajax({type: 'POST', url: URL, success: function (res) {
-            var data1 = JSON.parse(res);
-            if (data1['error']['err_code'] == 0) {
-                common.msg(0, data1['error']['err_msg']);
-            } else if (data1['error']['err_code'] == 1) {
-                common.msg(0, data1['error']['err_msg']);
-            } else if (data1['error']['err_code'] == 2) {
-                common.msg(0, data1['error']['err_msg']);
-            }
-        }
-    });
-}
-
+ 
+  
 function storeshippingdata()
 {
     if (validationFlag == 1) {
@@ -539,6 +396,7 @@ function displayaddrs(userid)
             var res = data['results'];
             if (res !== null) {
                 $('addr_main').html('');
+		$('#shpd_bak').removeClass('dn');
                 diff_adr += ' <div class="entrOtp fLeft semibold" onclick="opnscnd()" id="dd">Want to add different address ?</div>';
                 $('#intscrl').append(diff_adr);
                 $(res).each(function (r, v) {
@@ -570,7 +428,7 @@ function displayaddrs(userid)
 
                 });
 
-
+		bakflag = 1;
                 $('#intscrl').prepend(addstr);
                 $('#diff_adr').html('Add New Address');
 
@@ -633,248 +491,22 @@ $('#all_submt').click(function () {
     }
 
 });
-
-function checkuser(inpt)
-{
-    if ($.isNumeric(inpt)) {
-        var URL = APIDOMAIN + "index.php?action=getUserDetailsbyinpt&mobile=" + inpt;
-    } else {
-        var URL = APIDOMAIN + "index.php?action=getUserDetailsbyinpt&email=" + inpt;
-    }
-    $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results) {
-            var obj = JSON.parse(results);
-            if (obj['error']['Code'] == 0) {
-                if (obj['results'] == null || obj['results'] == undefined) {
-                    openThrd();
-                    $('#paswrd1id').addClass('dn');
-                    $('#paswrd2id').addClass('dn');
-                    $('.matchIcn').addClass('dn');
-                    $('.unmatchIcn1').addClass('dn');
-                    $('#otp_countn').addClass('dn');
-                    sendnewuserotp();
-                } else {
-                    openFifth();
-                }
-            }
-        }
-    });
-}
-
-$('#suboldusrpasw').click(function () {
-    suboldusrpass();
-});
-
-
-function suboldusrpass()
-{
-    var pass = $('#pswrd8').val();
-    var glbcartdeatil;
-    if (pass === '' || pass === null) {
-        common.msg(0, 'Please enter your Password');
-    } else {
-        var URL = APIDOMAIN + "index.php?action=checkpassw&pass=" + pass + "&mob=" + inp_data;
-
-        $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results) {
-                var obj = JSON.parse(results);
-                if (obj['error']['err_code'] == 0) {
-
-                    common.addToStorage('jzeva_uid', obj['result']['uid']);
-                    common.addToStorage("jzeva_email", obj['result']['email']);
-                    common.addToStorage("jzeva_name", obj['result']['uname']);
-                    common.addToStorage("jzeva_mob", obj['result']['mob']);
-
-                    if (obj['result']['cart_id'] !== null) {
-                        var oldcartid = common.readFromStorage('jzeva_cartid');
-                        var olduserid = common.readFromStorage('jzeva_uid');
-
-                        var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id=" + oldcartid + "&userid=" + olduserid + "";
-                        $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results) {
-                                var obj = JSON.parse(results);
-                                glbcartdeatil = obj.result;
-                            }
-                        });
-                    }
-                    setTimeout(function () {
-                        if (oldcartid !== "" || oldcartid !== null)
-                            hasitem(oldcartid, olduserid, glbcartdeatil);
-                    }, 1000);
-                    mtrmklm();
-                    displayaddrs(obj['result']['uid']);
-                    //  common.msg(0,obj['error']['err_msg']);
-                } else if (obj['error']['err_code'] == 1)
-                    common.msg(0, obj['error']['err_msg']);
-                else if (obj['error']['err_code'] == 2)
-                    common.msg(0, obj['error']['err_msg']);
-            }
-        });
-    }
-}
-
-
-function hasitem(oldcartid, olduserid, glbcartdeatil)
-{
-    var newcartid, hasusrid = [], ccnt = 0, hasoldcartid = [], ocnt = 0;
-    $(glbcartdeatil).each(function (r, v) {
-        if (v.userid != 0) {
-            hasusrid[ccnt] = v;
-            ccnt++;
-            newcartid = v.cart_id;
-        } else {
-            hasoldcartid[ocnt] = v;
-            ocnt++;
-        }
-    });
-    if (hasusrid == "" || hasusrid == null) {
-        updatecartiddetail(oldcartid, olduserid, newcartid);
-    } else
-    {
-        var start = 1, last = hasusrid.length;
-        $(hasusrid).each(function (r, v) {
-            var prdid = v.product_id;
-            var col_car_qty = v.col_car_qty;
-
-            $(hasoldcartid).each(function (m, n) {
-                if (prdid == n.product_id && col_car_qty == n.col_car_qty) {
-                    var price = parseInt(v.price);
-                    var j = parseInt(v.pqty);
-                    var l = parseInt(n.pqty);
-                    price = price / j;
-                    j = j + l;
-                    price = price * j;
-
-                    var dat = {};
-                    dat['cartid'] = v.cart_id;
-                    dat['pid'] = v.product_id;
-                    dat['userid'] = v.userid;
-                    dat['col_car_qty'] = v.col_car_qty;
-                    dat['qty'] = j;
-                    dat['price'] = price;
-                    dat['RBsize'] = v.size;
-                    var URL = APIDOMAIN + "index.php?action=addTocart";
-                    var data = dat;
-                    var dt = JSON.stringify(data);
-                    $.ajax({type: "post", url: URL, data: {dt: dt}, success: function (data) {
-
-                        }
-                    });
-                    var URL = APIDOMAIN + "index.php?action=removeItemFromCart&col_car_qty=" + col_car_qty + "&pid=" + prdid + "&cartid=" + n.cart_id + "&size=" + n.size;
-                    $.ajax({type: 'POST', url: URL, success: function (res) {
-
-                        }
-                    });
-                }
-            });
-            if (last == start) {
-                updatecartiddetail(oldcartid, olduserid, newcartid);
-            }
-            start++;
-        });
-    }
-}
-
-function updatecartiddetail(oldcartid, olduserid, newcartid)
-{
-    if (newcartid == "" || newcartid == null) {
-        var URL = APIDOMAIN + "index.php?action=updatecartdata&cartid=" + oldcartid + "&userid=" + olduserid + "&newcartid=" + oldcartid;
-    } else {
-        var URL = APIDOMAIN + "index.php?action=updatecartdata&cartid=" + oldcartid + "&userid=" + olduserid + "&newcartid=" + newcartid;
-    }
-    common.removeFromStorage('jzeva_cartid');
-    common.addToStorage('jzeva_cartid', newcartid);
-    $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results) {
-
-            displaycartdetail();
-        }
-    });
-}
-
+  
+ 
 
 function addrsel(ths)
 {
     var id = $(ths).attr('id');
     shipng_id = id;
 }
-
-function getuserdetail(inpt)
-{
-    if ($.isNumeric(inpt)) {
-        var URL = APIDOMAIN + "index.php?action=getUserDetailsbyinpt&mobile=" + inpt;
-    } else {
-        var URL = APIDOMAIN + "index.php?action=getUserDetailsbyinpt&email=" + inpt;
-    }
-    $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results) {
-            var obj = JSON.parse(results);
-
-            common.addToStorage('jzeva_uid', obj['results']['0'].user_id);
-            common.addToStorage('jzeva_cartid', obj['results']['0'].cart_id);
-            common.addToStorage("jzeva_email", obj['results']['0'].email);
-            common.addToStorage("jzeva_name", obj['results']['0'].user_name);
-            common.addToStorage("jzeva_mob", obj['results']['0'].logmobile);
-            lmtmkm();
-            displayaddrs(obj['results']['0'].user_id);
-        }
-    });
-}
-
+ 
 $('#shpd_bak').click(function () {
-    if (bakflag == 1) {
-        contnu_enble = 0;
-        $('#dlabel').text('Title');
-        gndrflg = undefined;
-        $('#paswrd1id').addClass('dn');
-        $('#paswrd2id').addClass('dn');
-        $('#otp_countn').addClass('dn');
-        $('.matchIcn1').addClass('dn');
-        openThrd();
-    } else if (bakflag == 2) {
-        var userid = common.readFromStorage('jzeva_uid');
-        $('#dlabel').text('Title');
-        gndrflg = undefined;
-        openfst();
-        displayaddrs(userid);
-    }
+      
+        gndrflg = undefined;  
+	openfst(); 
 });
 
-$('#log_otp').click(function () {
-    if ($.isNumeric(inp_data)) {
-        sendnewuserotp();
-    } else {
-        //mail
-    }
-});
-
-$('#sub_lototp').click(function () {
-    sublogwthotp();
-});
-
-function sublogwthotp()
-{
-    var otp = $('#shpdemail3').val();
-    if (otp == "" || otp == null)
-        common.msg(0, 'Please Enter OTP');
-    if ($.isNumeric(inp_data)) {
-        logotpflag = 2;
-        checkotp(inp_data, otp);
-    }
-
-}
-
-$('#resend_lotp').click(function () {
-    sendnewuserotp();
-});
-
-$('#bak_oldusrpg').click(function () {
-    bmtm();
-});
-
-$('#bak_nwursotppg').click(function () {
-    bmtm1();
-});
-
-$('#bak_logwthotp').click(function () {
-    bmtm2();
-});
-
+  
 function indianMoney(x) {
     x = x.toString();
     var afterPoint = '';
@@ -890,41 +522,7 @@ function indianMoney(x) {
 
     return res;
 }
-
-
-
-
-function createuser(name, email, city, addrs)
-{
-    if ($.isNumeric(inp_data)) {
-
-        var URLreg = APIDOMAIN + "index.php/?action=addnewUser&name=" + name + "&mobile=" + inp_data + "&pass=" + passwrd + "&email=" + email + "&city=" + city + "&gender=" + gndrflg + "&address=" + addrs;
-    } else {
-
-        shipngdata['email'] = mail;
-        var URLreg = APIDOMAIN + "index.php/?action=addnewUser&name=" + name + "&email=" + email + "&pass=" + passwrd + "&mobile=" + mobile + "&city=" + city + "&gender=" + gndrflg + "&address=" + addrs;
-    }
-
-    $.ajax({type: 'POST', url: URLreg, success: function (res) {
-
-            var data1 = JSON.parse(res);
-            if (data1['error']['err_code'] == 0)
-            {
-                var uid = data1['error']['userid'];
-                common.addToStorage('jzeva_uid', uid);
-                common.addToStorage("jzeva_email", email);
-                common.addToStorage("jzeva_name", name);
-                if ($.isNumeric(inp_data))
-                    common.addToStorage("jzeva_mob", inp_data);
-                else
-                    common.addToStorage("jzeva_mob", mobile);
-            } else if (data1['error']['err_code'] == 1)
-                common.msg(0, data1['error']['err_msg']);
-        }
-    });
-}
-
-
+ 
 
 function checkshpdpincode(zipcode)
 {
@@ -954,13 +552,7 @@ function checkshpdpincode(zipcode)
         common.msg(0, 'Please Enter correct Zip Code');
     }
 }
-
-$('.opt1').click(function () {
-    var id = $(this).attr('id');
-    id = id.split('_');
-    gndrflg = id[1];
-});
-
+ 
 $('#cntshpngchkout').click(function () {
     var lasturl = $.cookie('jzeva_currurl');
     window.location.href = DOMAIN + "index.php" + lasturl;
