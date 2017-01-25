@@ -2254,7 +2254,7 @@ input[type=radio]:checked ~ .matchIcn{display:block;background:#53C9C7 url(../im
 .ordersCard{width: 50%;height: auto;border-right: 1px solid #ccc;}
 .shipAddr{padding-bottom: 5px;line-height: 16px;}
 .cServices{}
-.cServices .gemBanner{background: #15181b}
+.cServices .gemBanner{background: #222529}
 .rHover:after{}
 .addrRemove{background: url("../img/icons/601w.svg")no-repeat;background-size: auto 20px;}
 .psImage{width:100%;height:100%;border: 1px solid;}
@@ -2275,11 +2275,11 @@ input[type=radio]:checked ~ .matchIcn{display:block;background:#53C9C7 url(../im
 
 
 
-.craftBnr .gemBanner{background:#15181b}
-.bespoke .gemBanner{background:url("../img/BESPOKE1.jpg")no-repeat;background-size:cover;background-position: left;}
-.promiseBnr .gemBanner{background:url("../img/h_ourpromise.jpg")no-repeat;background-size:cover;background-position: left;}
-.storyBnr .gemBanner{background:url("../img/h_ourstory.jpg")no-repeat;background-size:cover;background-position: left;}
-.responsibleBnr .gemBanner{background:url("../img/h_responsible.jpg")no-repeat;background-size:cover;background-position: left;}
+.craftBnr .gemBanner{background:#222529}
+.bespoke .gemBanner{background:#222529}
+.promiseBnr .gemBanner{background:#222529}
+.storyBnr .gemBanner{background:#222529}
+.responsibleBnr .gemBanner{background:#222529}
 
 /*.addrRemove:hover{transform: translateY(20px);}*/
 
