@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" href="../../frontend/tools/css/main.css">
-  <script src="../../frontend/tools/js/jquery.js" type="text/javascript"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script>
-   	<script type="text/javascript" src="//cdn.rawgit.com/niklasvh/html2canvas/0.5.0-alpha2/dist/html2canvas.min.js"></script>
-   <script src="../../frontend/tools/js/jQuery.print.js"></script>
+  <title>Invoice</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../../frontend/tools/css/inc.css">
+  <!-- <link href="../css/main.css" rel="stylesheet" type="text/css"/> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script>
+  <script src="../tools/js/jquery.js" type="text/javascript"></script>
+  <script src="../tools/js/html2canvas.js" type="text/javascript"></script>
+  <script src="../tools/js/jQuery.print.js" type="text/javascript"></script>
 </head>
 <body>
   <div class="containers CUSINV fLeft">
@@ -197,44 +201,35 @@
      </div>
   </div>
   <script>
-  (function(){
-var
-form = $('#toconvert'),
-cache_width = form.width(),
-//cache_height = form.height(),
-a4  =[ 595.28,  841.89];  // for a4 size paper width and height
+            var element = $("#toconvert");
+           $("#create_pdf").on('click', function () { //PDF Conversion
+                 $('body').scrollTop(30);
+                    html2canvas(element, {
+                    onrendered: function (canvas) {
+                           $('canvas').remove();
+                           var imgData = canvas.toDataURL("image/jpeg");
+                           var imgWidth = 210; //A4 Size
+                           var pageHeight = 297;
+                           var imgHeight = canvas.height * imgWidth / canvas.width;
+                           var heightLeft = imgHeight;
+                           var pdf = new jsPDF('p', 'mm','a4');
+                           var position = 0;
+                           pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+                             heightLeft -= pageHeight;
 
-$('#create_pdf').on('click',function(){
-$('body').scrollTop(0);
-createPDF();
-});
-//create pdf
-function createPDF(){
-getCanvas().then(function(canvas){
-var
-img = canvas.toDataURL("image/png"),
-doc = new jsPDF({
-unit:'px',
-format:'a4'
-});
-doc.addImage(img, 'JPEG', 20, 20);
-doc.save('techumber-html-to-pdf.pdf');
-form.width(cache_width);
-//        form.height(cache_height);
-});
-}
+                            while (heightLeft >= 0) {
+                              position = heightLeft - imgHeight;
+                              pdf.addPage();
+                              pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+                              heightLeft -= pageHeight;
+                            }
 
-// create canvas object
-function getCanvas(){
-form.width((a4[0]*1.33333) -80).css('max-width','none');
-return html2canvas(form,{
-imageTimeout:2000,
-removeContainer:true
-});
-}
+                           var namefile = 'receipt';
+                           pdf.save(namefile + ".pdf");
+                        }
+                   });
 
-}());
-</script>
-  </script>
+           });
+       </script>
 </body>
 </html>
