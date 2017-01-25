@@ -54,7 +54,7 @@ define('TEMPLATE',WEBROOT.'frontend/template/');
 define('INCLUDES',WEBROOT.'include/');
 define('APICLUDE',WEBROOT.'apis/include/');
 
-define('VERSION',1.25);
+define('VERSION',2.01);
 
 
 
@@ -87,7 +87,7 @@ $jvs = array();
     $jvs['common']              = BACKDOMAIN.'tools/js/Common.js?v='.VERSION;
     $jvs['nicescroll']          = BACKDOMAIN.'tools/js/lib/jquery.nicescroll.min.js?v='.VERSION;
     $jvs['rangeJS']          = BACKDOMAIN.'tools/js/lib/ion.rangeSlider.js?v='.VERSION;
-    
+
 
 
 
@@ -165,7 +165,7 @@ $jvs = array();
 
 	    $fjvs['tranfail']              = DOMAIN.'frontend/tools/js/cms/transactionfail.js?v='.VERSION;
 	    $jvs['chkoutguest']		  = DOMAIN.'frontend/tools/js/cms/checkoutguest.js?v='.VERSION;
-	    
+
 include APICLUDE.'common/class.common.php';
 $comm = new Common();
 $comm->clearParam($_GET);
