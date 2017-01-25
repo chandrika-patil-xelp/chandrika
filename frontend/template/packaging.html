@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<?php include 'jhead.html' ?>
+<body class="Terms">
+    <?php include 'Cart.html'?>
+      <?php include 'loader.html'?>
+    <?php include 'header.html'?>
+     <?php include 'login.html'?>
+    <div class="fLeft gemBanner">
+        <div class="banner_over" id ="banner_over"></div>
+        <div class="termHeading">Luxury Packaging</div>
+    </div>
+    <div class="wrapper_main   fLeft">
+        <div class="container2 fLeft">
+            <div class="col100">
+                <div class="wrapper_max offsetTop offsetEffects transition600">
+                    <div class="tCommon fLeft">
+                        <div  class="tHead fLeft"></div>
+                        <div class="fLeft pCont">
+                            <div  class="tCont fLeft">Luxury is consistently meeting and exceeding your customer’s expectations, and we at Jzeva believe in giving a complete 360° luxurious experience. A piece of art needs to be taken care of, stored properly and needs to be as good as new every time you look at it. Jzeva’s Luxury packaging just aims to do the same. We have specially designed out packaging keeping in mind the requirements to safe guard our jewellery and ensure that they look and feel the same way as it did the last time you wore it irrespective of the time gap.</div>                        </div>
+                    </div>
+                    <div class="tCommon fLeft">
+                        <div class="tHead fLeft">Jewellery Box</div>
+                        <div class="fLeft pCont">
+                            <div class="tCont fLeft">Every piece of jewellery you buy from Jzeva is delivered to you in a luxurious leatherette box, with appropriate and subtle branding on it.  The box is easy to store, easy to handle and easy to carry (if need be).</div>
+                        </div>
+                    </div>
+                    <div class="tCommon fLeft">
+                        <div class="tHead fLeft">Contents</div>
+                        <div class="fLeft pCont">
+                            <div class="tCont fLeft">The jewellery box will contain you Jzeva jewellery and Certificate of Authenticity hence you have all that you need to take care of your jewellery in box.</div>
+                        </div>
+                    </div>
+                    <div class="tCommon fLeft">
+                        <div class="tHead fLeft">Exterior Packaging</div>
+                        <div class="fLeft pCont">
+                            <div class="tCont fLeft">Your Jzeva jewellery will be shipped to you in a tamperproof, bubble wrapped and secure exterior packaging. The only way to get the jewellery out of this packing once it is sealed is by ripping the cover apart, hence you can be sure that you will be able recognise even if it tampered a tiny bit.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <?php include 'footer.html'?>
+
+    <script>
+    function loadComplete(){
+      $('.wrapper_max').removeClass('offsetEffects');
+    }
+        $(document).ready(function () {
+            load_page();
+        });
+        $(window).scroll(function () {
+            var sc = $('body').scrollTop();
+            var ht = $('.gemBanner').outerHeight(true) - 130;
+            if (ht > sc) {
+                var op = 1 - (ht - sc) / ht;
+                $('#banner_over').css({'opacity': op});
+
+            }
+            if (ht - sc <= 5) {
+                $('.header').addClass('black_bg');
+                console.log('if');
+            } else {
+                $('.header').removeClass('black_bg');
+                console.log('else');
+            }
+
+        });
+    </script>
+
+
+</body>
