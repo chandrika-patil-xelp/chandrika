@@ -328,7 +328,7 @@ switch ($action) {
       
      case 'invoice':
         $page = 'invoice';
-        include TEMPLATE . 'customerInvoice.html';
+        include WEBROOT . 'frontend/emailer/customerInc.html';
         break;
 }
 ?>
