@@ -233,6 +233,8 @@ $(document).ready(function () {
 		  gndrstr="Mr";
 		else if(gndr == 3)
 		  gndrstr="Mrs";
+		else
+		  gndrstr="Dear";
                 $('#uname').html(gndrstr+' '+ uname); 
                 $('#ordrID').html(v.oid);
            

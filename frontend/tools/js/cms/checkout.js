@@ -99,8 +99,10 @@ function displaycartdetail()
                         abc = abc.split(',');
                         abc = IMGDOMAIN + abc[0];
 		      }
-		      else
-			abc=BACKDOMAIN +'tools/img/noimage.svg'
+		      else{
+			//abc=BACKDOMAIN +'tools/img/noimage.svg'
+		      }
+			
                     }
                     totalprice += parseInt(v.price);
                     var bprize = parseInt(v.price / v.pqty);
@@ -112,7 +114,11 @@ function displaycartdetail()
                     
 
                     var chckoutstr = "<div class='cart_item'>";
-                    chckoutstr += "<div class='cart_image'><img src='" + abc + "' onerror='this.style.display=\"none\"'>";
+		    if(abc !== undefined)
+                        chckoutstr += "<div class='cart_image'><img src='" + abc + "' onerror='this.style.display=\"none\"'>";
+		      else
+			chckoutstr += "<div class='cart_image'><img src='' onerror='this.style.display=\"none\"'>";
+                    
                     chckoutstr += "</div>";
                     chckoutstr += "<div class='cart_name'>" + (v.prdname).toUpperCase() + "</div>";
                     chckoutstr += "<div class='cart_desc  fLeft' id='nwwt'>" + v.jewelleryType + " : " + wht + " gms &nbsp|&nbsp Diamond : " + v.dmdcarat + " Ct &nbsp|&nbsp ";
@@ -289,7 +295,7 @@ function shpngsubmt()
 {
     validationFlag = 1;
   var name, email, mobile;
-  var usrid = common.readFromStorage('jzeva_uid');
+  var usrid = common.readFromStorage('jzeva_uid'); 
     email=common.readFromStorage('jzeva_email');
     name = $('#shpdname').val(); 
     mobile = $('#shpdmobile').val();
@@ -301,7 +307,11 @@ function shpngsubmt()
     var letters = /^[a-zA-Z\s]+$/;
     var filter = /^[0-9-+]+$/;
     var addchk=/^[a-zA-Z0-9-#-'-,/ ]*$/;
-    if (name === '' || name === null) {
+    if(gndrflg == undefined || gndrflg == null){
+      validationFlag=0;  
+      common.msg(0,'Please Select Title');  
+    }
+    else if (name === '' || name === null) {
         validationFlag = 0;
         common.msg(0, 'Please enter your Name');
     } else if (!letters.test(name)) {
@@ -345,7 +355,7 @@ function shpngsubmt()
 
     if (validationFlag == 1)
     {
-
+        shipngdata['gender'] = gndrflg;
         shipngdata['name'] = name;
         shipngdata['email'] = email;
         shipngdata['mobile'] = mobile;
@@ -392,19 +402,22 @@ function displayaddrs(userid)
     var URL = APIDOMAIN + "index.php/?action=getshippingdatabyid&userid=" + userid;
     $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results) {
             var data = JSON.parse(results);
-
+	    
             var res = data['results'];
             if (res !== null) {
                 $('addr_main').html('');
-		$('#shpd_bak').removeClass('dn');
+		 
+		
                 diff_adr += ' <div class="entrOtp fLeft semibold" onclick="opnscnd()" id="dd">Want to add different address ?</div>';
                 $('#intscrl').append(diff_adr);
                 $(res).each(function (r, v) {
-
+		  
+		    var gender=v.gender;
+		    var gndrstr=getgender(gender);
                     addstr += ' <div class="col100 fLeft radTor poR">';
                     addstr += ' <div class="w50r fLeft">';
 
-                    addstr += ' <div class="checkName fLeft semibold" title=' + v.name + '  id="spnd_name">' + v.name + '</div>';
+                    addstr += ' <div class="checkName fLeft semibold" title=' + v.name + '  id="spnd_name">'+gndrstr+' ' + v.name + '</div>';
 //	  addstr += ' <div class="text fLeft txtOver">8123128747</div>';
                     addstr += ' <div class="text fLeft  semibold" title=' + v.email + '  id="spnd_email">'+v.mobile+' | ' + v.email + '</div>';
                 
@@ -412,7 +425,7 @@ function displayaddrs(userid)
 
                     addstr += ' <div class="text fLeft pad0"><span>' + v.address + '</span></div>';
                     addstr += ' <div class="text fLeft  pad0" title=' + v.city + '  id="spnd_city_pin">' + v.city + "-" + v.pincode + '</div>';
-
+		    addstr += ' <div class="text fLeft  pad0" >' + v.state + '</div>';
                     addstr += ' </div>';
                     addstr += '  <input type="radio" name="selectM"  class="filled-in dn" id="' + v.shipping_id + '">';
                     addstr += ' <label for="' + v.shipping_id + '" id="' + v.shipping_id + '" onclick="addrsel(this)"></label> ';
@@ -496,14 +509,22 @@ $('#all_submt').click(function () {
 
 function addrsel(ths)
 {
-    var id = $(ths).attr('id');
+    var id = $(ths).attr('id');console.log(id);
     shipng_id = id;
 }
  
-$('#shpd_bak').click(function () {
-      
+$('#shpd_bak').click(function () {console.log(shipng_id);
+      if(bakflag == 0)
+      {
+	var lasturl = $.cookie('jzeva_currurl');
+	window.location.href = DOMAIN + "index.php" + lasturl;
+      }
+      else
+      {
+	shipng_id=0;
         gndrflg = undefined;  
 	openfst(); 
+      } 
 });
 
   
@@ -557,3 +578,24 @@ $('#cntshpngchkout').click(function () {
     var lasturl = $.cookie('jzeva_currurl');
     window.location.href = DOMAIN + "index.php" + lasturl;
 });
+
+$('.opt1').click(function(){
+    var id=$(this).attr('id');
+    id=id.split('_');
+    gndrflg=id[1];  
+  });
+  
+function getgender(gndr)
+{
+  var gndrstr="";
+  if(gndr == 1)
+    gndrstr="Ms";
+  else if(gndr == 2)
+    gndrstr="Mr";
+  else if(gndr == 3)
+    gndrstr="Mrs";
+  else
+    gndrstr="Dear";
+  
+  return gndrstr;
+}

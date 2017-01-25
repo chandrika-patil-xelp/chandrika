@@ -152,19 +152,19 @@
                                     </div>
                                     <div class="frmDtls fLeft semibold">
                                         <div class="neadHide">
-                                            <!--                                            <div class="dropBox fLeft">
+                                                                                        <div class="dropBox fLeft">
                                                                                             <label  id="dlabel">Title</label>
                                                                                             <ul class="ulDiv dn">
                                                                                                 <li class="opt1" id="gnd_1">Ms</li>
                                                                                                 <li class="opt1" id="gnd_2">Mr</li>
                                                                                                 <li class="opt1" id="gnd_3">Mrs</li>
                                                                                             </ul>
-                                                                                        </div>-->
-                                            <div class="txtB fLeft w49">
+                                                                                        </div>
+                                            <div class="txtB fRight w78">
                                                 <input type="text" class="inp_box " autocomplete="off" id="shpdname" maxlength="30" onkeypress="return common.isCharacterKey(event, this.value);">
                                                 <div class="inp_label ">Name*</div>
                                             </div>
-                                            <div class="txtB  fRight w49">
+                                            <div class="txtB  fRight">
                                                 <input type="text" class="inp_box " autocomplete="off"  id="shpdmobile" maxlength="10" onkeypress="return common.isNumberKey(event, this.value);">
                                                 <div class="inp_label ">Mobile*</div>
                                             </div>
@@ -865,8 +865,7 @@
                                             }, 500);
                                         }
                                         function opnscnd() {
-                                            if(bakflag == 0)
-					      $('#shpd_bak').addClass('dn');
+                                             
                                             chkouttentrflag = 5;
                                             shipng_id = 0;
                                             $('#shpdaddrs').val('');

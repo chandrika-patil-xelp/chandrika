@@ -59,8 +59,10 @@ function displaycartdata()
                             abc = abc.split(',');
                             abc = IMGDOMAIN + abc[0];
 			  }
-			  else
-			    abc=BACKDOMAIN +'tools/img/noimage.svg'
+			  else{
+			   //  abc=BACKDOMAIN +'tools/img/noimage.svg';
+			  }
+			   
                         }
                         var bprize = parseInt(v.price / v.pqty);
                         var wht;
@@ -72,7 +74,10 @@ function displaycartdata()
 
                         cartstr = "<div class='cart_item'>";
 			cartstr += "<div class='opn_prdcart' id='" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "_" + v.size + "'>";
-                        cartstr += "<div class='cart_image' onclick='prdopen(this)'><img src='"+ abc +"' onerror='this.style.display=\"none\"'>";
+			if(abc !== undefined)
+			  cartstr += "<div class='cart_image' onclick='prdopen(this)'><img src='"+ abc +"' onerror='this.style.display=\"none\"'>";
+			else
+			  cartstr += "<div class='cart_image' onclick='prdopen(this)'><img src='' onerror='this.style.display=\"none\"'>";
                         cartstr += "</div>";
                         cartstr += "<div class='cart_name' onclick='prdopen(this)'>" + v.prdname + "</div>";
                        cartstr += "<div class='cart_desc  fLeft' id='nwwt'>" + v.color + " " + v.jewelleryType + " | "+ v.carat + " | " + wht + "  grams";

@@ -310,13 +310,16 @@ function wishlist()
                         xyz = xyz.split(',');
 			xyz = IMGDOMAIN + xyz[0];
 		}else 
-                    xyz=BACKDOMAIN +'tools/img/noimage.svg';
-            }
+                    var noimg=BACKDOMAIN +'tools/img/noimage.svg';
+            }console.log(noimg);
                     wishStr += ' <div class="grid3 transition400 fadeInup">';
                     wishStr += ' <div class="facet_front wishClass" id="'+j.product_id+'_'+j.col_car_qty+'_'+j.size+'_'+s+'">';
                     wishStr += ' <div class="grid_item ">';
                     wishStr += ' <div class="grid_img">';
-                    wishStr += ' <div style="background:url(\'' + xyz + '\')no-repeat ; background-size: contain ; background-position: center"></div></div>';
+		    if(noimg !== undefined)
+			wishStr += ' <div style="background:url(\'' + noimg + '\')no-repeat ; background-size:auto 50%; background-position: center"></div></div>';
+		    else
+			wishStr += ' <div style="background:url(\'' + xyz + '\')no-repeat ; background-size:contain; background-position: center"></div></div>';
                     wishStr += ' <div class="hovTr"  onclick="wshprdopen(this)"> ';
                     wishStr += ' <div class="hovTrans">';
                     wishStr += ' </div></div>';

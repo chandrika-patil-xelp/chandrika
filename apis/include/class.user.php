@@ -1163,7 +1163,7 @@ class user extends DB {
             $res = array('results' => $resp, 'error' => $error);
             return $res;
         }
-        $sql = "SELECT user_id,shipping_id,name,mobile,email,city,address,state,pincode,createdon FROM tbl_order_shipping_details WHERE user_id='" . $params['userid'] . "' AND active_flag=1 order by createdon DESC";
+        $sql = "SELECT user_id,shipping_id,name,mobile,email,city,address,state,pincode,gender,createdon FROM tbl_order_shipping_details WHERE user_id='" . $params['userid'] . "' AND active_flag=1 order by createdon DESC";
         $res = $this->query($sql);
         if ($res) {
             while ($row = $this->fetchData($res)) {
@@ -1176,7 +1176,9 @@ class user extends DB {
                 $arr['address'] = $row['address'];
                 $arr['state'] = $row['state'];
                 $arr['pincode'] = $row['pincode'];
+		$arr['gender'] = $row['gender'];
                 $arr['createdon'] = $row['createdon'];
+		
                 $reslt[] = $arr;
             }
             $err = array('Code' => 0, 'Msg' => 'Data fetched successfully');
