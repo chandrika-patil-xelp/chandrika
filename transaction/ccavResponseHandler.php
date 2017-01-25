@@ -26,8 +26,7 @@
  	 $get = APIDOMAIN . "index.php?action=addtransactiondata&order_id=".$arr['order_id']."&bank_ref_no=".$arr['bank_ref_no']."&order_status=".urlencode($arr['order_status'])."&failure_msg=".$arr['failure_message']."&payment_mode=".urlencode($arr['payment_mode'])."&status_code=".$arr['status_code']."&status_msg=".urlencode($arr['status_message'])."&amount=".urlencode($arr['amount'])."&offer_type=".$arr['offer_type']."&offer_code=".$arr['offer_code']."&discount_val=".urlencode($arr['discount_value'])."&jzeva_price=".urlencode($arr['mer_amount'])."&si_created=".$arr['si_created']."&si_ref_no=".$arr['si_ref_no']."&si_status=".$arr['si_status']."&trans_date=".urlencode($arr['trans_date'])."";
  	  $res=$comm->executeCurl($get);
 	  
-	 
-		 
+	   
 	echo "<center>";
 
 	for($i = 0; $i < $dataSize; $i++) 
@@ -37,19 +36,19 @@
 	}
 	if($order_status==="Success")
 	{
-	       //echo "<br>Thank you for shopping with us. Your credit card has been charged and your transaction is successful. We will be shipping your order to you soon.";
+	//	echo "<br>Thank you for shopping with us. Your credit card has been charged and your transaction is successful. We will be shipping your order to you soon.";
 	       $path=DOMAIN . 'confirmation/' .$arr['order_id'] ; 
 	       header('Location: '.$path) and exit;
 	}
 	else if($order_status==="Aborted")
 	{
-		// echo "<br>Thank you for shopping with us.We will keep you posted regarding the status of your order through e-mail";
-		$abortpath=DOMAIN . 'transaction/' . $order_status.'/'.$arr['order_id'];
+		//echo "<br>Thank you for shopping with us.We will keep you posted regarding the status of your order through e-mail";
+	        $abortpath=DOMAIN . 'transaction/' . $order_status.'/'.$arr['order_id'];
 		header('Location: '.$abortpath) and exit; 
 	}
 	else if($order_status==="Failure")
 	{
-	      //echo "<br>Thank you for shopping with us.However,the transaction has been declined.";
+		//echo "<br>Thank you for shopping with us.However,the transaction has been declined.";
 		$failpath=DOMAIN . 'transaction/' . $order_status.'/'.$arr['order_id'];
 		header('Location: '.$failpath) and exit; 
 	}
