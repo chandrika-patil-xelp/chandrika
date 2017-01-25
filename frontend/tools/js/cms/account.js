@@ -2,7 +2,7 @@
 var accntentrflag = 0, shpngvalidflag = 1;
 
 $(document).ready(function () {
-  $('html, body').animate({scrollTop: '0px'}, 300); 
+  $('html, body').animate({scrollTop: '0px'}, 300);
       displayorders();
     wishlist();
     persnlInfo();
@@ -35,7 +35,7 @@ $(document).ready(function () {
     var monthNames = ["Jan", "Feb", "March", "April", "May", "June",
 	"July", "Aug", "Sep", "Oct", "Nov", "Dec"];
     return monthNames[mnt];
-} 
+}
 
 function displayorders()
 {
@@ -67,22 +67,23 @@ function displayorders()
                 // var totalprice = $('#ordPrice').html(indianMoney(parseInt(obj.totalprice)));
                 var totalprice = indianMoney(parseInt(obj.totalprice));
                 $(obj['result']).each(function (r, e) {
-		 
-		    
+
+                    var gndr=e[0].gender;
+                    var gender= getgender(gndr);
                     var ordrdate = "";
                     ordrdate = e[0].order_date;
                     ordrdate = ordrdate.split(' ');
                     var ordDate = ordrdate[0];
 
-                   
-		    var yr=ordDate.toString().split("-")[0]; 
+
+		    var yr=ordDate.toString().split("-")[0];
 		    var dt =ordDate.toString().split("-")[1];
 		    var cc = ordDate.toString().split("-")[2];
 		    var cd = cc.split(0).join('');
 		    if(dt <10)
-                       dt = dt.split(0).join(''); 
-		    var month=getMonthNamebyVal(dt-1);  
- 	    
+                       dt = dt.split(0).join('');
+		    var month=getMonthNamebyVal(dt-1);
+
                     var updatedt ="";
                      updatedt += e[0].updatedon;
                     updatedt = updatedt.split(' ');
@@ -100,7 +101,7 @@ function displayorders()
                     var cnfDate = '' + cd + ' ' + month_Name + '';
                     var statusDate = '' + ds + ' ' + month_Name + '';
                     var trndate=''+cd+'-'+month+'-'+yr;
- 
+
 //                   if($('#oId').html()){
 //                   order += ' <div class="fLeft tabHead headLine borBtm " id="od">my orders</div>';
 //               }else
@@ -110,7 +111,7 @@ function displayorders()
                     orderstr += '<div class="fLeft inShip" id="ordTitle">';
                     orderstr += '<div class="fLeft Morder">';
                     // orderstr += '<div class="fLeft col100 bolder txt_Upper">Shipping address</div>';
-                    orderstr += '<div class="fLeft col100 blStl">' + e[0].customername + '</div>';
+                    orderstr += '<div class="fLeft col100 blStl"><span class="txt_Capital">'+gender +'</span> '+ e[0].customername + '</div>';
                     orderstr += '<div class="fLeft col100 shipAddr">' + e[0].customerAddrs + ' ' + e[0].customerCity + ' </div>';
                     orderstr += '<div class="fLeft col100 shipAddr">' +e[0].customerState + ' ' + e[0].customerPincode + '</div>';
                     orderstr += '<div class="actBtn" id="'+e[0].oid+'" onclick="dwninvoice(this)">view invoice</div>';
@@ -135,7 +136,7 @@ function displayorders()
                         } else {
                             wht = v.metal_weight;
                         }
-                       
+
                         var dmdcarat= v.dmdcarat;
 
                         var jweltype=v.jewelType;
@@ -222,17 +223,17 @@ function displayorders()
 //                        orderstr += '<div class="fLeft shipTo">shipped to third party</div>';
                         orderstr += '</div>';
                         orderstr += '</div>';
-                        orderstr += '</div>'; 
+                        orderstr += '</div>';
                     });
                 });
-		
+
 
                 $('#myordId').append(orderstr);
 
 
-		
-		
-		
+
+
+
                 //  $('#ordTitle').html(ordTitle);
             }
         }
@@ -243,7 +244,7 @@ function displayorders()
 
 
 }
- 
+
 
 function getweight(currentSize, catName, storedWt)
 {
@@ -300,7 +301,7 @@ function wishlist()
                 $('#nowishlst').addClass('dn');
                 var wishStr = "";
                 $(obj['result']).each(function (s, j) {
-                    
+
                     if (j.default_image !== null) {
                         var xyz = IMGDOMAIN + j.default_image;
                     } else {
@@ -309,7 +310,7 @@ function wishlist()
                         xyz=j.prdimage;
                         xyz = xyz.split(',');
 			xyz = IMGDOMAIN + xyz[0];
-		}else 
+		}else
                     var noimg=BACKDOMAIN +'tools/img/noimage.svg';
             }
                     wishStr += ' <div class="grid3 transition400 fadeInup">';
@@ -619,7 +620,7 @@ function savemyaddress() {
     shipngdata['state'] = state;
     shipngdata['pincode'] = zipcode;
     shipngdata['user_id'] = userid;
- 
+
     if (shpngvalidflag == 0 && validationFlag == 1)
         common.msg(0, 'Please Enter Correct Pin code');
 
@@ -860,6 +861,12 @@ function addAddress()
 //         $('#openAddrId').addClass("dn");
 //     }
   $('#openAddrId').toggleClass('dn');
+  $('#addr').val('');      $('#addr').blur();
+  $('#state').val('');     $('#state').blur();
+  $('#zipcode').val('');   $('#zipcode').blur();
+  $('#city').val('');      $('#city').blur();
+  $('#shp_name').val('');  $('#shp_name').blur();
+  $('#shp_mob').val('');   $('#shp_mob').blur();
  }
 
 function ordrinfo()
@@ -1006,8 +1013,23 @@ function trackslide(ths)
 function dwninvoice(ths)
 {
   var ordid=$(ths).attr('id');
-   
-  var newtab= window.open(DOMAIN+"index.php?action=invoice&ordid="+ordid,'_blank');  
+
+  var newtab= window.open(DOMAIN+"index.php?action=invoice&ordid="+ordid,'_blank');
   newtab.blur();
   window.focus();
+}
+
+function getgender(gndr)
+{
+  var gndrstr="";
+  if(gndr == 1)
+    gndrstr="Ms.";
+  else if(gndr == 2)
+    gndrstr="Mr.";
+  else if(gndr == 3)
+    gndrstr="Mrs.";
+  else
+    gndrstr="Dear";
+
+  return gndrstr;
 }

@@ -509,11 +509,11 @@ $('#all_submt').click(function () {
 
 function addrsel(ths)
 {
-    var id = $(ths).attr('id');console.log(id);
+    var id = $(ths).attr('id');
     shipng_id = id;
 }
 
-$('#shpd_bak').click(function () {console.log(shipng_id);
+$('#shpd_bak').click(function () {
       if(bakflag == 0)
       {
 	var lasturl = $.cookie('jzeva_currurl');
@@ -521,9 +521,10 @@ $('#shpd_bak').click(function () {console.log(shipng_id);
       }
       else
       {
-	shipng_id=0;
-        gndrflg = undefined;
-	openfst();
+         $('#'+shipng_id+'').prop('checked', false);
+	        shipng_id=0;
+         gndrflg = undefined;
+	       openfst();
       }
 });
 

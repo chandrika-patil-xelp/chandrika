@@ -1,6 +1,6 @@
 
 <?php
-  
+
     include_once APICLUDE . 'common/db.class.php';
 
     class us extends DB{
@@ -240,8 +240,8 @@
 	 	            . "createdon = VALUES(createdon),updatedon = VALUES(updatedon),updatedby = VALUES(updatedby),payment = VALUES(payment),payment_type = VALUES(payment_type)";
 
 	         $res = $this->query($sql);
-	    
-	    $smssql="SELECT   
+
+	    $smssql="SELECT
 			   product_id AS pid,
 			   shipping_id AS shipid,
 			   (SELECT name FROM tbl_order_shipping_details WHERE shipping_id=shipid)AS shipname,
@@ -253,10 +253,10 @@
 			  tbl_order_master
 		     WHERE
 			  order_id=".$params['data'][0]['orderid'];
-		
+
 	    $smsres=  $this->query($smssql);
 	    $smsrow = $this->fetchData($smsres);
-	    
+
 	    $email = $smsrow['email'];
 	    $gender = $smsrow['gender'];
 	    $usrname=$smsrow['shipname'];
@@ -274,22 +274,22 @@
 	      $gndr="Dear";
 	    global $comm;
 	    $txt = ''.$gndr.' '.$usrname.' your Jzeva jewellery '.$prdname.' with order number '.$params['data'][0]['orderid'].' has been received. Thank you for shopping with Jzeva.com';
-		 
+
 	    $url = str_replace('_MOBILE', $mobile, SMSAPI);
-	    $url = str_replace('_MESSAGE', urlencode($txt), $url);  
+	    $url = str_replace('_MESSAGE', urlencode($txt), $url);
 	    $smsurlres = $comm->executeCurl($url, true);
-		
+
             include APICLUDE.'class.emailtemplate.php';
             $obj	= new emailtemplate($db['jzeva']);
             $message	=$obj->genordrtemplate($params);
-	    
-	    $subject  = "JZEVA Order Detail"; 
+
+	    $subject  = "JZEVA Order Detail";
             $headers  = "Content-type:text/html;charset=UTF-8" . "<br/><br/>";
             $headers .= 'From: care@jzeva.com' . "<br/><br/>";
-	     
-	    
+
+
 	    mail($email, $subject, $message, $headers);
-	    
+
             $resp = array();
             if($res){
 
@@ -305,18 +305,18 @@
         }
 
         /** add orders ends **/
-        
+
         public function addOrderbackend($params)
 	{
-            global $comm; 
+            global $comm;
              $params= (json_decode($params[0],1));
               $orderid = (!empty($params['orderid'])) ? trim($params['orderid']) : '';
 	   if(empty($params['orderid'])){
 	      $orderid=  $this->generateId();
 	    }
             $ordstatus="";
-	    $updby="user"; 
-	    
+	    $updby="user";
+
             $sql = "INSERT INTO tbl_order_master (
                             order_id,
                             product_id,
@@ -328,47 +328,47 @@
 			    price,
                             order_date,
                             delivery_date,
-                            order_status, 
+                            order_status,
                             createdon,
                             updatedon,
                             updatedby,
                             payment,
                             payment_type
-                          ) 
+                          )
                           VALUES ";
 
 	    $sql .= " (".$orderid.", '".$params['pid']."','".$params['userid']."','".$params['shipping_id']."','".$params['col_car_qty'].""
 			    . "','".$params['size']."','".$params['pqty']."','".$params['prodpri']."',NOW(), NOW(),";
                $sql.= " '".$ordstatus."', NOW(), NOW(), '".$updby."',"
-                    . "'".$params['payment']."', '".$params['payment_type']."' ),";                     
-       $sql = trim($sql, ","); 
-	 	 
+                    . "'".$params['payment']."', '".$params['payment_type']."' ),";
+       $sql = trim($sql, ",");
+
                    $sql.="ON DUPLICATE KEY UPDATE user_id = VALUES(user_id),pqty = VALUES(pqty),price = VALUES(price),"
 	 	    . "order_date = VALUES(order_date),delivery_date = VALUES(delivery_date),order_status = VALUES(order_status),"
 	 	    . "createdon = VALUES(createdon),updatedon = VALUES(updatedon),updatedby = VALUES(updatedby),payment = VALUES(payment),payment_type = VALUES(payment_type)";
-                      
-	     
+
+
 	    $res = $this->query($sql);
             $resp = array();
             if($res){
-                
+
                 $error = array('err_code'=>0, 'err_msg'=>' Adding Order Details Inserted Successfully ' );
-                
+
             }else{
                 $error = array('err_code'=>1, 'err_msg'=>' Error IN Adding Order Details ' );
             }
-            
+
             $result = array('result'=>$resp, 'error'=>$error,'ordid'=>$orderid);
             return $result;
-            
+
         }
-        
-      
+
+
         /** GET ORDER DETAILS BY ORDER ID START **/
         public function getOrderDetailsByOrdIds($params){
             global $comm;
             if($params['orderid']){
-	      
+
                 $sql = "SELECT
                             order_id AS oid,
                             product_id AS pid,
@@ -418,7 +418,7 @@
                 if($res){
 		  $totalprice=0;
                  while ($row = $this->fetchData($res)){
-		   
+
                     $reslt['oid'] = ($row['oid']!=NULL) ? $row['oid'] : '';
                     $reslt['pid'] = ($row['pid']!=NULL) ? $row['pid'] : '';
                     $reslt['uid'] = ($row['uid']!=NULL) ? $row['uid'] : '';
@@ -529,13 +529,13 @@
 
 
 
-(SELECT  GROUP_CONCAT(metal_weight) FROM tbl_product_master WHERE productid = pid  AND active_flag !=2) 
+(SELECT  GROUP_CONCAT(metal_weight) FROM tbl_product_master WHERE productid = pid  AND active_flag !=2)
                             AS metal_weight,
-(SELECT  GROUP_CONCAT(jewelleryType) FROM tbl_product_master WHERE productid = pid  AND active_flag !=2) 
-                            AS jewelleryType,                           
-                         
+(SELECT  GROUP_CONCAT(jewelleryType) FROM tbl_product_master WHERE productid = pid  AND active_flag !=2)
+                            AS jewelleryType,
+
 (SELECT GROUP_CONCAT(catid) FROM tbl_category_product_mapping WHERE  productid =pid ) AS ccatid,
-                (SELECT DISTINCT(NAME) FROM tbl_size_master WHERE  FIND_IN_SET(catid,ccatid) )AS ccatname,                       
+                (SELECT DISTINCT(NAME) FROM tbl_size_master WHERE  FIND_IN_SET(catid,ccatid) )AS ccatname,
 
 
  (SELECT GROUP_CONCAT(shipping_id) FROM tbl_order_shipping_details WHERE shipping_id = shpId) AS shipngDet,
@@ -545,6 +545,7 @@
  (SELECT GROUP_CONCAT(state) FROM tbl_order_shipping_details WHERE FIND_IN_SET(shipping_id,shipngDet)) AS customerState,
  (SELECT GROUP_CONCAT(pincode) FROM tbl_order_shipping_details WHERE FIND_IN_SET(shipping_id,shipngDet)) AS customerPincode,
  (SELECT GROUP_CONCAT(address) FROM tbl_order_shipping_details WHERE FIND_IN_SET(shipping_id,shipngDet)) AS customerAddrs,
+ (SELECT GROUP_CONCAT(gender) FROM tbl_order_shipping_details WHERE shipping_id = shpId) AS gender,
  (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND active_flag = 1 AND  default_img_flag=1) AS default_image
 
  FROM tbl_order_master WHERE order_id= ".$params['order_id']." AND active_flag = 1 ";
@@ -598,14 +599,16 @@
                         $reslt['jewelleryType'] = $row['jewelleryType'];
                         $reslt['prc'] = $row['prc'];
                          $reslt['cnt'] = $row['cnt'];
-                         
+                         $reslt['gender'] = $row['gender'];
+
+
                           if($row['jewelleryType'] === '1'){
                              $reslt['jewelType'] ='Gold';
                         }else  if($row['jewelleryType'] === '2'){
                              $reslt['jewelType'] ='Plain Gold';
                         }else  if($row['jewelleryType'] === '3'){
                              $reslt['jewelType'] ='Platinum';
-                        }  
+                        }
 
                        if($row['payment_type']== '0'){
                            $reslt['payment_type'] ='Credit Card';
@@ -885,7 +888,7 @@
 
         /** code for sign up start **/
     public function signUp($params){
-	 
+
         //print_r($params);
         $userId = (!empty($params['uid'])) ? trim($params['uid']) : '';
         $name = (!empty($params['name'])) ? trim($params['name']) : '';
@@ -980,13 +983,13 @@
              /** code for sign up ends **/
 
     private function generateId(){
-    
+
             $dt = date("YmdHis");
             $rd = mt_rand(11, 99);
             $genrd = $rd.$dt;
-		    return $genrd; 
+		    return $genrd;
                 }
- 
+
 
 
   }

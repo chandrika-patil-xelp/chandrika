@@ -101,13 +101,13 @@ class user extends DB {
 	include 'class.emailtemplate.php';
 	$obj=  new emailtemplate($db['jzeva']);
 	$message=$obj->genwelcumtemplate($params);
-	
+
 	$subject  = "Welcome to JZEVA";
         $headers  = "Content-type:text/html;charset=UTF-8" . "<br/><br/>";
         $headers .= 'From: care@jzeva.com' . "<br/><br/>";
-  
+
 	mail($email, $subject, $message, $headers);
-	
+
         $result = array();
         if ($res) {
             $err = array('err_code' => 0, 'err_msg' => 'Data inserted successfully');
@@ -163,7 +163,7 @@ class user extends DB {
                     $arr['email'] = $row['email'];
                     $arr['password'] = $row['password'];
 		    $arr['is_vendor'] = $row['is_vendor'];
-                } 
+                }
                 if (md5($params['pass']) != $arr['password']) {
                     $error = array('err_code' => 1, 'err_msg' => 'Password incorrect');
                     $result = array('result' => $resp, 'error' => $error);
@@ -555,12 +555,12 @@ class user extends DB {
             $error = array('errCode' => 1, 'errMsg' => 'Parameter Missing');
             $result = array('results' => $resp, 'error' => $error);
             return $result;
-        } 
-	else 
+        }
+	else
 	{
 	  global $db;
 	  global $comm;
-	  $smssql="SELECT 
+	  $smssql="SELECT
 			  shipping_id as shipid,
 			  product_id as pid,
 			  (SELECT name FROM tbl_order_shipping_details WHERE shipping_id=shipid)AS shipname,
@@ -585,33 +585,33 @@ class user extends DB {
 	    $gndr="Mr";
 	  else if($gender == 3)
 	    $gndr="Mrs";
-	  
+
 	    if($params['ostatus'] == 5)
 	    {
-		 
+
 		$txt = 'Dear '.$gndr.'.  '.$usrname.' your Jzeva jewellery '.$prdname.' with order number '.$orderid.' has been shipped. You can track your order on www.jzeva.com.';
-		 
+
 		$url = str_replace('_MOBILE', $mobile, SMSAPI);
-		$url = str_replace('_MESSAGE', urlencode($txt), $url);  
+		$url = str_replace('_MESSAGE', urlencode($txt), $url);
 		$smsurlres = $comm->executeCurl($url, true);
-		
-		
+
+
 		include APICLUDE.'class.emailtemplate.php';
 		$obj	= new emailtemplate($db['jzeva']);
 		$message=$obj->getshippingtemplate(array('userid'=>$userid,'ordid'=>$orderid,'pid'=>$pid));
-		$subject  = "JZEVA Order Shipped Detail"; 
+		$subject  = "JZEVA Order Shipped Detail";
 		$headers  = "Content-type:text/html;charset=UTF-8" . "<br/><br/>";
 		$headers .= 'From: care@jzeva.com' . "<br/><br/>";
-		   
+
 		mail($email, $subject, $message, $headers);
-		 
+
 	    }
 	    else if($params['ostatus'] == 6)
 	    {
 	      $txt = 'Dear '.$gndr.'.  '.$usrname.' your Jzeva jewellery '.$prdname.' with order number '.$orderid.' has been Delivered. Thank you for shopping with Jzeva.com';
-		 
+
 	      $url = str_replace('_MOBILE', $mobile, SMSAPI);
-	      $url = str_replace('_MESSAGE', urlencode($txt), $url);  
+	      $url = str_replace('_MESSAGE', urlencode($txt), $url);
 	      $smsurlres = $comm->executeCurl($url, true);
 	    }
             $sql = "UPDATE tbl_order_master SET  order_status =  \"" . $params['ostatus'] . "\" WHERE order_id=" . $params['orderid'] . " AND user_id=" . $params['userid'] . " AND product_id= ".$params['pid']." AND col_car_qty= '".$params['combn']."' AND size=".$params['sz']."";
@@ -896,7 +896,7 @@ class user extends DB {
             $mobile = $row['logmobile'];
             $uname = urldecode($row['user_name']);
 	    $gndr=$row['gender'];
-	   
+
 	    global $comm;
                 $isValidate = true;
                 $msql = "SELECT
@@ -1178,7 +1178,7 @@ class user extends DB {
                 $arr['pincode'] = $row['pincode'];
 		$arr['gender'] = $row['gender'];
                 $arr['createdon'] = $row['createdon'];
-		
+
                 $reslt[] = $arr;
             }
             $err = array('Code' => 0, 'Msg' => 'Data fetched successfully');
@@ -1677,7 +1677,7 @@ class user extends DB {
 	    $gndr="Mrs";
 	  else
 	    $gndr="Dear";
-	  
+
 	  $message='<html>
 		    <head>
 			<title>otp email</title>
@@ -1730,8 +1730,8 @@ class user extends DB {
 			</div>
 		    </body>
 		</html>';
-	  
-	  
+
+
             return $message;
 	}
 
@@ -1767,7 +1767,7 @@ class user extends DB {
 
 	 public function getshipdatabyshipid($params) {
 
-        $shpid = (!empty($params['shpid'])) ? trim($params['shpid']) : ''; 
+        $shpid = (!empty($params['shpid'])) ? trim($params['shpid']) : '';
 
         if ($shpid == "" || $shpid == null ) {
             $resp = array();
@@ -1777,29 +1777,34 @@ class user extends DB {
         }
 
         $sql = "SELECT
-                user_id , 
-                 shipping_id ,
-		 name,
-		 mobile,
-		 email,
-		 city,
-		 address,
-		 state,
-		 pincode 
-                    FROM tbl_order_shipping_details WHERE shipping_id='" . $shpid . "' AND active_flag=1";
+                       user_id ,
+                       shipping_id ,
+                  		 name,
+                  		 mobile,
+                  		 email,
+                  		 city,
+                  		 address,
+                  		 state,
+                       gender,
+                  		 pincode
+                FROM
+                      tbl_order_shipping_details
+                WHERE
+                      shipping_id='" . $shpid . "' AND active_flag=1";
         $res = $this->query($sql);
         if ($res) {
             while ($row = $this->fetchData($res)) {
                 $arr['user_id'] = $row['user_id'];
                 $arr['shipping_id'] = $row['shipping_id'];
                 $arr['name'] = $row['name'];
-		$arr['mobile'] = $row['mobile'];
-		$arr['email'] = $row['email'];
+            		$arr['mobile'] = $row['mobile'];
+            		$arr['email'] = $row['email'];
                 $arr['city'] = $row['city'];
                 $arr['address'] = $row['address'];
                 $arr['state'] = $row['state'];
-                $arr['pincode'] = $row['pincode']; 
-		 
+                $arr['pincode'] = $row['pincode'];
+                $arr['gender'] = $row['gender'];
+
                 $reslt = $arr;
             }
             $err = array('Code' => 0, 'Msg' => 'Data fetched successfully');
@@ -1809,7 +1814,7 @@ class user extends DB {
         $result = array('results' => $reslt, 'error' => $err);
         return $result;
     }
-    
+
      public function OrderDetailsbyordid($params){
             global $comm;
             if(empty($params['orderid'])){
@@ -1818,8 +1823,8 @@ class user extends DB {
 	       $result=array('result' =>$reslt,'error'=>$error,'');
 	       return $result;
 	    }
-	        
-            
+
+
                 $sql = "SELECT
                             order_id AS oid,
                             product_id AS pid,
@@ -1829,7 +1834,7 @@ class user extends DB {
                             size,
                             pqty,
                             price,
-  
+
                             (SELECT name FROM tbl_order_shipping_details WHERE shipping_id=shpId) AS uname,
 			    (SELECT gender FROM tbl_order_shipping_details WHERE shipping_id=shpId) AS gender,
                             (SELECT mobile FROM tbl_order_shipping_details WHERE shipping_id=shpId) AS mobile,
@@ -1837,25 +1842,25 @@ class user extends DB {
                             (SELECT city FROM tbl_order_shipping_details WHERE shipping_id=shpId) AS customerCity,
 			    (SELECT state FROM tbl_order_shipping_details WHERE shipping_id=shpId) AS customerState,
 			    (SELECT pincode FROM tbl_order_shipping_details WHERE shipping_id=shpId) AS customerPincode,
-			    (SELECT address FROM tbl_order_shipping_details WHERE shipping_id=shpId) AS customerAddrs, 
-			    (SELECT transaction_id FROM tbl_transaction_master WHERE order_id=oid) AS transactionid, 
-			    (SELECT payment_mode FROM tbl_transaction_master WHERE order_id=oid) AS transactiontype, 
+			    (SELECT address FROM tbl_order_shipping_details WHERE shipping_id=shpId) AS customerAddrs,
+			    (SELECT transaction_id FROM tbl_transaction_master WHERE order_id=oid) AS transactionid,
+			    (SELECT payment_mode FROM tbl_transaction_master WHERE order_id=oid) AS transactiontype,
 			    (SELECT product_name FROM tbl_product_master WHERE productid=pid) AS prd_name,
 			    (SELECT product_code FROM tbl_product_master WHERE productid=pid) AS prd_code,
 			    (SELECT  GROUP_CONCAT(dname) FROM tbl_metal_color_master WHERE id = SUBSTRING_INDEX(combine, '|@|',1) AND active_flag = 1 ) AS color,
 			    (SELECT  GROUP_CONCAT(dname) FROM tbl_metal_purity_master WHERE id = SUBSTRING_INDEX(SUBSTRING_INDEX(combine,'|@|',2),'|@|',-1) AND active_flag = 1 ) AS carat,
 			    (SELECT  GROUP_CONCAT(dname) FROM tbl_diamond_quality_master WHERE id = SUBSTRING_INDEX(combine,'|@|',-1)  AND active_flag = 1 ) AS quality,
 			    (SELECT GROUP_CONCAT(catid) FROM tbl_category_product_mapping WHERE  productid =pid ) AS ccatid,
-			    (SELECT DISTINCT(NAME) FROM tbl_size_master WHERE  FIND_IN_SET(catid,ccatid) )AS ccatname,                       
+			    (SELECT DISTINCT(NAME) FROM tbl_size_master WHERE  FIND_IN_SET(catid,ccatid) )AS ccatname,
 			    (SELECT  GROUP_CONCAT(metal_weight) FROM tbl_product_master WHERE productid = pid  AND active_flag =1) AS metal_weight,
 			    (SELECT GROUP_CONCAT(diamond_id) FROM tbl_product_diamond_mapping WHERE productid = pid AND active_flag = 1 ) AS allDimonds,
 			    (SELECT GROUP_CONCAT(carat) FROM tbl_product_diamond_mapping WHERE FIND_IN_SET(diamond_id,allDimonds)) AS dmdcarat,
-			    
+
 			    price/pqty as basic_prz,
 			    order_date AS orddt,
                             delivery_date AS deldt,
                             order_status AS ordsta,
-                            active_flag AS actflg, 
+                            active_flag AS actflg,
                             payment AS pay
                             FROM tbl_order_master WHERE order_id = ".$params['orderid']." AND active_flag=1";
 
@@ -1864,10 +1869,10 @@ class user extends DB {
                 if($res){
 		  $totalprice=0;
                  while ($row = $this->fetchData($res)){
-		   
+
                     $reslt['oid'] = ($row['oid']!=NULL) ? $row['oid'] : '';
                     $reslt['pid'] = ($row['pid']!=NULL) ? $row['pid'] : '';
-                    $reslt['uid'] = ($row['uid']!=NULL) ? $row['uid'] : ''; 
+                    $reslt['uid'] = ($row['uid']!=NULL) ? $row['uid'] : '';
                     $reslt['uname'] = ($row['uname']!=NULL) ? $row['uname'] : '';
 		    $reslt['gender'] = ($row['gender']!=NULL) ? $row['gender'] : '';
                     $reslt['mobile'] = ($row['mobile']!=NULL) ? $row['mobile'] : '';
@@ -1883,19 +1888,19 @@ class user extends DB {
                     $reslt['ustate'] = ($row['customerState']!=NULL) ? $row['customerState'] : '';
                     $reslt['upin'] = ($row['customerPincode']!=NULL) ? $row['customerPincode'] : '';
                     $reslt['uaddres'] = ($row['customerAddrs']!=NULL) ? $row['customerAddrs'] : '';
-                    $reslt['transactionid'] = ($row['transactionid']!=NULL) ? $row['transactionid'] : ''; 
-		    $reslt['transactiontype'] = ($row['transactiontype']!=NULL) ? $row['transactiontype'] : '';  
-		    $reslt['prd_name'] = ($row['prd_name']!=NULL) ? $row['prd_name'] : '';  
-		    $reslt['prd_code'] = ($row['prd_code']!=NULL) ? $row['prd_code'] : '';  
-		    $reslt['color'] = ($row['color']!=NULL) ? $row['color'] : '';  
+                    $reslt['transactionid'] = ($row['transactionid']!=NULL) ? $row['transactionid'] : '';
+		    $reslt['transactiontype'] = ($row['transactiontype']!=NULL) ? $row['transactiontype'] : '';
+		    $reslt['prd_name'] = ($row['prd_name']!=NULL) ? $row['prd_name'] : '';
+		    $reslt['prd_code'] = ($row['prd_code']!=NULL) ? $row['prd_code'] : '';
+		    $reslt['color'] = ($row['color']!=NULL) ? $row['color'] : '';
 		    $reslt['carat'] = ($row['carat']!=NULL) ? $row['carat'] : '';
 		    $reslt['quality'] = ($row['quality']!=NULL) ? $row['quality'] : '';
 		    $reslt['ccatname'] = ($row['ccatname']!=NULL) ? $row['ccatname'] : '';
 		    $reslt['metal_weight'] = ($row['metal_weight']!=NULL) ? $row['metal_weight'] : '';
 		    $reslt['dmdcarat'] = ($row['dmdcarat']!=NULL) ? $row['dmdcarat'] : '';
 		    $reslt['basic_prz'] = ($row['basic_prz']!=NULL) ? $row['basic_prz'] : '';
-		    
-		    
+
+
                     $resp[] = $reslt;
 		    $totalprice+=($row['price'] != NULL) ?$row['price']:'';
                  }
@@ -1905,38 +1910,38 @@ class user extends DB {
                     $error = array('err_code'=>1, 'err_msg'=>' Error In Fetching Data ' );
                 }
 
-            
+
 
             $result = array('result'=>$resp, 'error'=>$error,'totalprice'=>$totalprice );
             return $result;
 
         }
-	
+
 	public function checktrackord($params) {
-       
+
 	    if (empty($params['orderid'])) {
 	      $res=array();
 	      $err=array('error_code'=>1,'err_msg'=>'Parameter Missing');
 	      $result=array('relust'=>$res,'error'=>$err);
-	      return $result; 
+	      return $result;
 	    }
-	  
-            $sql = "SELECT 
+
+            $sql = "SELECT
 			  DISTINCT(order_id)
-		    FROM 
-			  tbl_order_master 
-		    WHERE 
+		    FROM
+			  tbl_order_master
+		    WHERE
 			  order_id=".$params['orderid'] ."
 		    AND
 			  active_flag=1
 		    AND
-			  shipping_id IN (SELECT 
-						shipping_id 
-					  FROM 
-						  tbl_order_shipping_details 
-					  WHERE  
+			  shipping_id IN (SELECT
+						shipping_id
+					  FROM
+						  tbl_order_shipping_details
+					  WHERE
 						   ";
-	
+
 	    if(!empty($params['mobile'])){
 		  $sql.=" mobile=".$params['mobile'].") ";
 	    }
@@ -1946,36 +1951,36 @@ class user extends DB {
 
 	    $res = $this->query($sql);
 	    $row = $this->fetchData($res);
-            
-            if ($res) 
-	    { 
+
+            if ($res)
+	    {
                 if($this->numRows($res)>0)
 		{
-		  $reslt['order_id'] = $row['order_id']; 
+		  $reslt['order_id'] = $row['order_id'];
 		  $err = array('err_code' => 0, 'err_msg' => 'Data fetched successfully');
 		}
 		else
 		  $err = array('err_code' => 1, 'err_msg' => 'Please Enter Correct Data');
             }
-	    else 
+	    else
 	    {
                 $err = array('err_code' => 2, 'err_msg' => 'Error in fetching data');
             }
 	    $result = array();
             $results = array('result' => $reslt, 'error' => $err);
-            return $results; 
+            return $results;
     }
-	  
-    public function gettrackordrdetail($params) 
+
+    public function gettrackordrdetail($params)
     {
-      
+
 	if (empty($params['orderid'])) {
 	      $res=array();
 	      $err=array('error_code'=>1,'err_msg'=>'Parameter Missing');
 	      $result=array('relust'=>$res,'error'=>$err);
-	      return $result; 
+	      return $result;
 	}
-	  
+
         $sql = " SELECT
                             order_id AS oid,
                             product_id AS pid,
@@ -2002,9 +2007,9 @@ class user extends DB {
 			    (SELECT  GROUP_CONCAT(dname) FROM tbl_metal_color_master WHERE id = SUBSTRING_INDEX(combine, '|@|',1) AND active_flag !=2 ) AS color,
 			    (SELECT  GROUP_CONCAT(dname) FROM tbl_metal_purity_master WHERE id = SUBSTRING_INDEX(SUBSTRING_INDEX(combine,'|@|',2),'|@|',-1) AND active_flag !=2 ) AS Metalcarat,
 			    (SELECT  GROUP_CONCAT(dname) FROM tbl_diamond_quality_master WHERE id = SUBSTRING_INDEX(combine,'|@|',-1)  AND active_flag !=2 ) AS quality,
-			    (SELECT  GROUP_CONCAT(jewelleryType) FROM tbl_product_master WHERE productid = pid  AND active_flag !=2) AS jewelleryType, 
+			    (SELECT  GROUP_CONCAT(jewelleryType) FROM tbl_product_master WHERE productid = pid  AND active_flag !=2) AS jewelleryType,
                             (SELECT GROUP_CONCAT(catid) FROM tbl_category_product_mapping WHERE  productid =pid ) AS ccatid,
-			    (SELECT DISTINCT(NAME) FROM tbl_size_master WHERE  FIND_IN_SET(catid,ccatid) )AS ccatname,                  
+			    (SELECT DISTINCT(NAME) FROM tbl_size_master WHERE  FIND_IN_SET(catid,ccatid) )AS ccatname,
 			    (SELECT  GROUP_CONCAT(metal_weight) FROM tbl_product_master WHERE productid = pid  AND active_flag !=2)                            AS metal_weight,
 			    (SELECT  GROUP_CONCAT(carat) FROM tbl_product_diamond_mapping WHERE productid = pid AND active_flag !=2 ) AS dmdcarat,
 			    (SELECT  GROUP_CONCAT(product_code) FROM tbl_product_master WHERE productid = pid AND active_flag !=2 ) AS product_code,
@@ -2023,7 +2028,7 @@ class user extends DB {
 
 	      $res = $this->query($sql);
 
-         
+
 	      if($res)
 		{
 		     $prztotal=0;
@@ -2042,20 +2047,20 @@ class user extends DB {
                      $reslt['pqty'] = ($row['pqty']!=NULL) ? $row['pqty'] : '';
                      $reslt['price'] = ($row['price']!=NULL) ? $row['price'] : '';
                      $reslt['cartid'] = ($row['cartid']!=NULL) ? $row['cartid'] : '';
-		     $reslt['jewelleryType'] = ($row['jewelleryType']!=NULL) ? $row['jewelleryType'] : ''; 
+		     $reslt['jewelleryType'] = ($row['jewelleryType']!=NULL) ? $row['jewelleryType'] : '';
 		     $reslt['ccatid'] = $row['ccatid'];
 		     $reslt['ccatname'] = $row['ccatname'];
 		     $reslt['metal_weight'] = $row['metal_weight'];
 		     $reslt['dmdcarat'] = $row['dmdcarat'];
 		     $reslt['product_code'] = ($row['product_code']!=NULL) ? $row['product_code'] : '';
-		     
+
 		     if($row['jewelleryType'] === '1'){
                              $reslt['jewelType'] ='Gold';
                         }else  if($row['jewelleryType'] === '2'){
                              $reslt['jewelType'] ='Plain Gold';
                         }else  if($row['jewelleryType'] === '3'){
                              $reslt['jewelType'] ='Platinum';
-                        }  
+                        }
 
                      $reslt['order_date'] = ($row['order_date']);
                      $reslt['updatedon'] = ($row['updatedon']);
@@ -2069,7 +2074,7 @@ class user extends DB {
                      $reslt['product_code'] = ($row['product_code']!=NULL) ? $row['product_code'] : '';
 
                      $reslt['shipngDet'] = ($row['shipngDet']!=NULL) ? $row['shipngDet'] : '';
-		     $reslt['gender'] = ($row['gender']!=NULL) ? $row['gender'] : ''; 
+		     $reslt['gender'] = ($row['gender']!=NULL) ? $row['gender'] : '';
                      $reslt['customername'] = ($row['prdimage']!=NULL) ? $row['customername'] : '';
                      $reslt['customerMob'] = ($row['prdname']!=NULL) ? $row['customerMob'] : '';
                      $reslt['customerCity'] = ($row['product_code']!=NULL) ? $row['customerCity'] : '';
@@ -2094,11 +2099,11 @@ class user extends DB {
 		     else if($row['payment_type']== '4'){
 			 $reslt['payment_type'] ='COD';
 		     }
-                       
+
                      $resp[] = $reslt;
 		     $prztotal+=$reslt['price'] ;
                      }
-                  
+
             }
 	    else
 	    {
@@ -2106,10 +2111,10 @@ class user extends DB {
             }
             $results = array('result' => $resp, 'error' => $err,'total'=>$prztotal);
             return $results;
-            
+
     }
 
-    
+
 }
 
 ?>

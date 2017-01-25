@@ -65,7 +65,7 @@
                                                 <span class="fLeft txt_Capital">Diamonds 2.13Ct | SI - IJ | Size: 2.4</span>
                                                 <span class="fLeft"></span>
                                             </div>
-                                            <div class="fLeft col100 semibold ">Code:<span class="regular">JZEVA2555314956</span></div> 
+                                            <div class="fLeft col100 semibold ">Code:<span class="regular">JZEVA2555314956</span></div>
                                         </div>
                                         <div class="fLeft rsCont">
                                             <div class="ordPqty">2</div>
@@ -100,13 +100,13 @@
                                                                             <div class="fLeft col100 bolder cartRup15b" id="ordPrice"> 23,000</div>
                                                                         </div>
                                                                     </div>
-                                                                </div>--> 
+                                                                </div>-->
                                 <!--                                <div class="fLeft detailsOuter bNone" id="ordDetail">
                                                                     <div class="fLeft orderParent">
                                                                     <div class="fLeft orderImg bgCommon"></div>
                                                                     <div class="fLeft orderName">
                                                                         <div class="fLeft col100 semibold">Dual eternity ring</div>
-                                
+
                                                                         <div class="fLeft  col10">
                                                                             <span class="fLeft">Diamond Qty:</span>
                                                                             <span class="fLeft"></span>
@@ -179,9 +179,9 @@
                                                                             <div class="fLeft shipTo">shipped to third party</div>
                                                                         </div>
                                                                     </div>
-                                                                    
+
                                                                     </div>
-                                                                </div>--> 
+                                                                </div>-->
                                 <!--                                <div class="fLeft orderImg bgCommon"></div>
                                                                 <div class="fLeft orderName">
                                                                     <div class="fLeft col100 semibold">Dual eternity ring</div>
@@ -265,7 +265,7 @@
         </div>
     </div>
     <?php include 'footer.html'?>
-   
+
     <!--<script type="text/javascript" src="<?php echo $jvs['account']; ?>"></script>-->
 
     <script>
@@ -357,13 +357,13 @@
             }
 
         });
-	
+
 	function getMonthNamebyVal(mnt) {
 	    var monthNames = ["Jan", "Feb", "March", "April", "May", "June",
 		"July", "Aug", "Sep", "Oct", "Nov", "Dec"];
 	    return monthNames[mnt];
-	} 
-	
+	}
+
         function trackordr()
         {
 
@@ -373,22 +373,22 @@
             $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results)
                 {
                     var obj = JSON.parse(results);
-		   
+
                     if (obj["result"] !== null)
                     {
 		      var orderstr="";
                        var ordrdate = "";
                     ordrdate = obj["result"][0].order_date;
                     ordrdate = ordrdate.split(' ');
-                    var ordDate = ordrdate[0]; 
- 
+                    var ordDate = ordrdate[0];
+
 			var yr=ordDate.toString().split("-")[0];
 			var dt =ordDate.toString().split("-")[1];
 			var cc = ordDate.toString().split("-")[2];
 			var cd = cc.split(0).join('');
 			if(dt <10)
-			   dt = dt.split(0).join(''); 
-			var month=getMonthNamebyVal(dt-1);  
+			   dt = dt.split(0).join('');
+			var month=getMonthNamebyVal(dt-1);
 
 			var updatedt ="";
 			 updatedt += obj["result"][0].updatedon;
@@ -407,9 +407,9 @@
 			var cnfDate = '' + cd + ' ' + month_Name + '';
 			var statusDate = '' + ds + ' ' + month_Name + '';
 			var trndate=''+cd+'-'+month+'-'+yr;
-			 
+
 			var gndr;
-			var gendr=obj['result'][0].gender; 
+			var gendr=obj['result'][0].gender;
 			if(gendr == 1)
 			  gndr="Ms";
 			else if(gendr == 2)
@@ -423,16 +423,16 @@
 			orderstr += ' <div class = "fLeft col100 blStl">'+gndr+' '+obj['result'][0].customername+'</div>';
 			orderstr += ' <div class = "fLeft col100 shipAddr">'+obj['result'][0].customerAddrs+' </div>';
 			orderstr += ' <div class = "fLeft col100 shipAddr">'+obj['result'][0].customerCity+'-'+obj['result'][0].customerPincode+' </div>';
-			orderstr += ' <div class = "actBtn"> view invoice </div>';
+			orderstr += ' <div class = "actBtn" id="'+obj['result'][0].oid+'" onclick="dwninvoice(this)"> view invoice </div>';
 			orderstr += ' </div>';
 			orderstr += ' <div class = "fLeft Morder txt_right">';
 			orderstr += '  <div class = "fRight col100 semibold cartRup15b font18" id = "ordPrice">'+indianMoney(parseInt(obj['total']))+' </div>';
 			orderstr += '<div class = "fLeft col100 regular" id = "ordId">ID: '+obj['result'][0].oid+' </div>';
 			orderstr += ' <div class = "fLeft col100 regular" id = "ordDate">'+trndate+' </div>';
 			orderstr += ' </div>  </div> </div> ';
-			
+
 			//$('.orderOuter').append(ordermainstr);
-			
+
                         $(obj['result']).each(function (s, v) {
 			     var wht;
 			     if (v.ccatname !== null) {
@@ -440,7 +440,7 @@
                         } else {
 			      wht = v.metal_weight;
                         }
-			  
+
                             if (v.default_image !== null) {
                                 var image = IMGDOMAIN + v.default_image;
                             } else {
@@ -462,7 +462,7 @@
                         orderstr += '<span class="fLeft"></span>';
                         orderstr += '</div>';
                           orderstr += '<div class="fLeft col100 semibold ">Code:<span class="regular">' + v.product_code + '</span></div>';
-                       
+
                         orderstr += '</div>';
                         orderstr += '<div class="fLeft rsCont">';
 
@@ -507,15 +507,15 @@
                         orderstr += '</div>';
 
 
-                        orderstr += '</center>'; 
+                        orderstr += '</center>';
                         orderstr += '</div>';
                         orderstr += '</div> </div>';
-			
+
 
                         });
 
 			$('#myordId').append(orderstr);
-                        
+
                     }
                 }
             });
@@ -572,7 +572,7 @@
                 $('#' + trkID).html(cls);
                 $('#' + trkID).parent().parent().parent().next().slideDown(400);
 		 $('#' + trkID).closest('.orderParent ').addClass('trOpen');
-		
+
             } else {
 
                 $('#' + trkID).html(trk);
@@ -581,7 +581,7 @@
             }
         }
 
-	
+
 	function indianMoney(x) {
 	      x = x.toString();
 	      var afterPoint = '';
@@ -598,7 +598,7 @@
 
 	      return res;
 	}
-	
+
 	function getweight(currentSize, catName, storedWt)
 	{
 	    var mtlWgDav = 0;
@@ -632,7 +632,15 @@
 	    return newWeight;
 
 	}
-	
+
+  function dwninvoice(ths)
+  {
+    var ordid=$(ths).attr('id');
+
+    var newtab= window.open(DOMAIN+"index.php?action=invoice&ordid="+ordid,'_blank');
+    newtab.blur();
+    window.focus();
+  }
     </script>
 
 
