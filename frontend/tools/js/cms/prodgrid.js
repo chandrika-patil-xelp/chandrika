@@ -43,6 +43,9 @@ $(document).ready(function () {
     else if(catnm == 'bangles'){
       $('.fixedBanner').addClass('banner_bangles');
     }
+    else if(catnm == 'signature'){
+      $('.fixedBanner').addClass('banner_signature');
+    }
 
 
 //    if($.trim(menu) == 'bespoke')
