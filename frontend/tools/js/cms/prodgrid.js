@@ -46,6 +46,10 @@ $(document).ready(function () {
     else if(catnm == 'signature'){
       $('.fixedBanner').addClass('banner_signature');
     }
+    else if(catnm == 'fine-jewellery'){
+      $('.fixedBanner').addClass('banner_fine');
+    }
+
 
 
 //    if($.trim(menu) == 'bespoke')
