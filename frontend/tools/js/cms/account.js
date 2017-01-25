@@ -521,7 +521,7 @@ function persnlInfo() {
             $(obj['result']).each(function (k, l) {
                 profileStr += '<div class="proFields blStl font13">' + l.uname + '</div>';
                 profileStr += '<div class="proFields semibold font13">' + l.mob + '</div>';
-                profileStr += '<div class="proFields font13">' + l.email + '</div>';
+                profileStr += '<div class="proFields semibold  font13">' + l.email + '</div>';
             });
             $('#persnlDet').append(profileStr);
         }
