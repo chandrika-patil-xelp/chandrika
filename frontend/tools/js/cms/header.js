@@ -13,12 +13,12 @@ function getheader()
       
 		     var obj=JSON.parse(results);
 		     $(obj['root']).each(function(r,v){
-		      if(v.cat_name !== "Education")
-		      {  
+		      if(v.cat_name !== "Education" && v.cat_name !== "Bespoke")
+		      {
 			cnt=0;
 			var mainmn="";
 			var mainmn=v.cat_name; mainmn=mainmn.trim(' ');
-			mainmn=mainmn.toLowerCase().replace(' ','-'); 
+			mainmn=mainmn.toLowerCase().replace(' ','-');
 			mainheader+=" <div class='tabB fLeft'> <a href='"+DOMAIN+""+mainmn+"/pid-"+v.catid+"'> <div class='tab fLeft taba' >"+(v.cat_name).toUpperCase()+"  </div> </a> </div>"; 
 			 
 			 if(v['subcat'] == undefined)
@@ -51,6 +51,20 @@ function getheader()
 			    if(cnt % 2 == 1) 
 				 subheader+='</div>'; 
 			    subheader+='</div>';
+			 }
+		       }
+		       if($.trim(v.cat_name) == "Bespoke"){ 
+			  var mainmn="";
+			var mainmn=v.cat_name; mainmn=mainmn.trim(' ');
+			mainmn=mainmn.toLowerCase().replace(' ','-');
+			mainheader+=" <div class='tabB fLeft'> <a href='"+DOMAIN+"index.php?action=bespoke'> <div class='tab fLeft taba' >"+(v.cat_name).toUpperCase()+"  </div> </a> </div>"; 
+			
+			if(v['subcat'] == undefined)
+			 {
+			    subheader+= '<div class="menu_elm ">';
+			    subheader+= '<div class="menu_banner"></div>';
+			    subheader+= '</div>'; 
+			   
 			 }
 		       }
 		     });  
