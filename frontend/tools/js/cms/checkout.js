@@ -52,23 +52,23 @@ function displaycartdetail()
     var cartid = common.readFromStorage('jzeva_cartid');
     $('#scroll').html("");
     totalprice = 0;
-    $('#totprz_chkout').html(""); 
+    $('#totprz_chkout').html("");
     $('#totprz_chkout').removeClass('cartRupee');
-    if (actn == 'buy') 
+    if (actn == 'buy')
     {
-        var buyid = common.readFromStorage('jzeva_buyid'); 
+        var buyid = common.readFromStorage('jzeva_buyid');
         var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id=" + buyid;
     }
     else
     {
         var URL = APIDOMAIN + "index.php?action=getcartdetail&cart_id=" + cartid + "&userid=" + userid + "";
     }
-    
+
     $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results) {
-            
+
 	    var obj = JSON.parse(results);
             gblcheckodata = obj.result;
-            if (gblcheckodata == null) 
+            if (gblcheckodata == null)
 	    {
 	      setTimeout(function(){
                 $('#all_submt').addClass('dn');
@@ -84,14 +84,14 @@ function displaycartdetail()
 		  $("#noprdcrd").addClass("dn");
 		  $('#totlitem_chkout').removeClass('dn');
 		},1000);
-		
+
                 $(obj.result).each(function (r, v) {
-                    
-		    if (v.default_img !== null) 
+
+		    if (v.default_img !== null)
 		    {
                         abc = IMGDOMAIN + v.default_img;
-                    } 
-		    else 
+                    }
+		    else
 		    {
 		      if(v.prdimage !== null)
 		      {
@@ -102,23 +102,23 @@ function displaycartdetail()
 		      else{
 			//abc=BACKDOMAIN +'tools/img/noimage.svg'
 		      }
-			
+
                     }
                     totalprice += parseInt(v.price);
                     var bprize = parseInt(v.price / v.pqty);
                     var wht;
-                    if (v.ccatname !== null) 
+                    if (v.ccatname !== null)
                         wht = getweight(v.size, v.ccatname, v.metal_weight);
-		    else 
+		    else
                         wht = parseFloat(v.metal_weight).toFixed(3);
-                    
+
 
                     var chckoutstr = "<div class='cart_item'>";
 		    if(abc !== undefined)
                         chckoutstr += "<div class='cart_image'><img src='" + abc + "' onerror='this.style.display=\"none\"'>";
 		      else
 			chckoutstr += "<div class='cart_image'><img src='' onerror='this.style.display=\"none\"'>";
-                    
+
                     chckoutstr += "</div>";
                     chckoutstr += "<div class='cart_name'>" + (v.prdname).toUpperCase() + "</div>";
                     chckoutstr += "<div class='cart_desc  fLeft' id='nwwt'>" + v.jewelleryType + " : " + wht + " gms &nbsp|&nbsp Diamond : " + v.dmdcarat + " Ct &nbsp|&nbsp ";
@@ -138,9 +138,9 @@ function displaycartdetail()
                     chckoutstr += "<div class='cart_removew addrCommon' id='" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "_" + v.size + "' onclick='remove(this)' >";
                     chckoutstr += "</div>";
                     chckoutstr += "</div>";
-		    
+
 		      $('#scroll').append(chckoutstr);
-		    
+
                 });
 		setTimeout(function(){
 		    $('#totprz_chkout').addClass('cartRupee');
@@ -284,8 +284,8 @@ function storecartdata(cartdata)
         }
     });
 }
- 
-  
+
+
 
 $('#shpng_sub').click(function () {
     shpngsubmt();
@@ -295,9 +295,9 @@ function shpngsubmt()
 {
     validationFlag = 1;
   var name, email, mobile;
-  var usrid = common.readFromStorage('jzeva_uid'); 
+  var usrid = common.readFromStorage('jzeva_uid');
     email=common.readFromStorage('jzeva_email');
-    name = $('#shpdname').val(); 
+    name = $('#shpdname').val();
     mobile = $('#shpdmobile').val();
     var addrs = $('#shpdaddrs').val();
     var city = $('#shpdcity').val();
@@ -308,8 +308,8 @@ function shpngsubmt()
     var filter = /^[0-9-+]+$/;
     var addchk=/^[a-zA-Z0-9-#-'-,/ ]*$/;
     if(gndrflg == undefined || gndrflg == null){
-      validationFlag=0;  
-      common.msg(0,'Please Select Title');  
+      validationFlag=0;
+      common.msg(0,'Please Select Title');
     }
     else if (name === '' || name === null) {
         validationFlag = 0;
@@ -332,7 +332,7 @@ function shpngsubmt()
     } else if (!addchk.test(addrs)) {
         validationFlag = 0;
         common.msg(0, 'Please remove special characters from address');
-    } 
+    }
     else if (pincode === '' || pincode.length === 0) {
         validationFlag = 0;
         common.msg(0, 'Please enter your Zip code');
@@ -374,8 +374,8 @@ function shpngsubmt()
     }
 
 }
- 
-  
+
+
 function storeshippingdata()
 {
     if (validationFlag == 1) {
@@ -402,25 +402,25 @@ function displayaddrs(userid)
     var URL = APIDOMAIN + "index.php/?action=getshippingdatabyid&userid=" + userid;
     $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results) {
             var data = JSON.parse(results);
-	    
+
             var res = data['results'];
             if (res !== null) {
                 $('addr_main').html('');
-		 
-		
+
+
                 diff_adr += ' <div class="entrOtp fLeft semibold" onclick="opnscnd()" id="dd">Want to add different address ?</div>';
                 $('#intscrl').append(diff_adr);
                 $(res).each(function (r, v) {
-		  
+
 		    var gender=v.gender;
 		    var gndrstr=getgender(gender);
                     addstr += ' <div class="col100 fLeft radTor poR">';
                     addstr += ' <div class="w50r fLeft">';
 
-                    addstr += ' <div class="checkName fLeft semibold" title=' + v.name + '  id="spnd_name">'+gndrstr+' ' + v.name + '</div>';
+                    addstr += ' <div class="checkName fLeft semibold" title=' + v.name + '  id="spnd_name"><span class="txt_Capital">'+gndrstr+'</span> ' + v.name + '</div>';
 //	  addstr += ' <div class="text fLeft txtOver">8123128747</div>';
                     addstr += ' <div class="text fLeft  semibold" title=' + v.email + '  id="spnd_email">'+v.mobile+' | ' + v.email + '</div>';
-                
+
 
 
                     addstr += ' <div class="text fLeft pad0"><span>' + v.address + '</span></div>';
@@ -504,15 +504,15 @@ $('#all_submt').click(function () {
     }
 
 });
-  
- 
+
+
 
 function addrsel(ths)
 {
     var id = $(ths).attr('id');console.log(id);
     shipng_id = id;
 }
- 
+
 $('#shpd_bak').click(function () {console.log(shipng_id);
       if(bakflag == 0)
       {
@@ -522,12 +522,12 @@ $('#shpd_bak').click(function () {console.log(shipng_id);
       else
       {
 	shipng_id=0;
-        gndrflg = undefined;  
-	openfst(); 
-      } 
+        gndrflg = undefined;
+	openfst();
+      }
 });
 
-  
+
 function indianMoney(x) {
     x = x.toString();
     var afterPoint = '';
@@ -543,7 +543,7 @@ function indianMoney(x) {
 
     return res;
 }
- 
+
 
 function checkshpdpincode(zipcode)
 {
@@ -573,7 +573,7 @@ function checkshpdpincode(zipcode)
         common.msg(0, 'Please Enter correct Zip Code');
     }
 }
- 
+
 $('#cntshpngchkout').click(function () {
     var lasturl = $.cookie('jzeva_currurl');
     window.location.href = DOMAIN + "index.php" + lasturl;
@@ -582,9 +582,9 @@ $('#cntshpngchkout').click(function () {
 $('.opt1').click(function(){
     var id=$(this).attr('id');
     id=id.split('_');
-    gndrflg=id[1];  
+    gndrflg=id[1];
   });
-  
+
 function getgender(gndr)
 {
   var gndrstr="";
@@ -596,6 +596,6 @@ function getgender(gndr)
     gndrstr="Mrs";
   else
     gndrstr="Dear";
-  
+
   return gndrstr;
 }

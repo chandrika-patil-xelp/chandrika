@@ -270,9 +270,10 @@
 	      $gndr="Mr";
 	    else if($gender == 3)
 	      $gndr="Mrs";
-		
+	    else
+	      $gndr="Dear";
 	    global $comm;
-	    $txt = 'Dear '.$gndr.'. '.$usrname.' your Jzeva jewellery '.$prdname.' with order number '.$params['data'][0]['orderid'].' has been received. Thank you for shopping with Jzeva.com';
+	    $txt = ''.$gndr.' '.$usrname.' your Jzeva jewellery '.$prdname.' with order number '.$params['data'][0]['orderid'].' has been received. Thank you for shopping with Jzeva.com';
 		 
 	    $url = str_replace('_MOBILE', $mobile, SMSAPI);
 	    $url = str_replace('_MESSAGE', urlencode($txt), $url);  

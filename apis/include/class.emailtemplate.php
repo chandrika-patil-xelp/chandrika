@@ -154,7 +154,7 @@
 			      $qntystr="Quantity-<span style='color:#0CCDB8;'>".$quantity."</span>";
 			    $message.='     
 			      <div style="width:100%;height:auto;padding:10px;border:1px solid #ccc;margin-bottom: 10px;border-radius:2px;display:inline-block;box-sizing:border-box;">
-                                <div style="width:auto;height:auto;display:inline-block;vertical-align:top;"><img src="'.IMGDOMAIN.''.$prdimgs[0].'" alt="img" width="70" height="70"></div><div style="width:69%;height:auto;display:inline-block;vertical-align:top;padding-left: 10px;"><div style="width:100%;height:auto;font-size:12px;color:#333;line-height:20px">'.$prdname.'</div><div style="width:100%;height:auto;font-size:11px;color:#333;line-height:20px;text-align:left">Product Code : <span style="padding-left:0px">'.$prdcode.'</span></div><div style="width:auto;display:inline-block;height:auto;font-size:11px;color:#333;line-height:20px;text-align:left;margin-top: 5px;">Gold : '.$val['weight'].' gms | Diamond: '.$val['dmdcarat'].' Ct | Quality : '.$prdqlty.' | Purity: '.$prdcarat[0].' Ct | ';
+                                <div style="width:auto;height:auto;display:inline-block;vertical-align:top;"><img src="'.IMGDOMAIN.''.$prdimgs[0].'" alt="'.BACKDOMAIN.'tools/img/noimage.svg" width="70" height="70"></div><div style="width:69%;height:auto;display:inline-block;vertical-align:top;padding-left: 10px;"><div style="width:100%;height:auto;font-size:12px;color:#333;line-height:20px">'.$prdname.'</div><div style="width:100%;height:auto;font-size:11px;color:#333;line-height:20px;text-align:left">Product Code : <span style="padding-left:0px">'.$prdcode.'</span></div><div style="width:auto;display:inline-block;height:auto;font-size:11px;color:#333;line-height:20px;text-align:left;margin-top: 5px;">Gold : '.$val['weight'].' gms | Diamond: '.$val['dmdcarat'].' Ct | Quality : '.$prdqlty.' | Purity: '.$prdcarat[0].' Ct | ';
 			    if($val['size'] !== 0.0){
 						     $message.=' Size : 14.0 | ';
 						  }
@@ -179,7 +179,7 @@
 					      </div>
 					    <div style="width:100%;height:auto;padding-top:10px">
 						<div style="width:100%;height:auto;font-size:12px;color:#333;text-align:center;line-height:25px;text-align:left;">THE PRODUCT WILL BE DELIVERED TO</div>
-						<div style="width:100%;height:auto;text-align:left;font-size:11px;line-height:20px;margin-top:6px;color:#333"><b>'.$gndr.'. '.$name.'</b></div>
+						<div style="width:100%;height:auto;text-align:left;font-size:11px;line-height:20px;margin-top:6px;color:#333"><b>'.$gndr.' '.$name.'</b></div>
 						<div style="width:100%;height:auto;text-align:left;font-size:11px;color:#333;line-height:20px;margin-top:5px">'.$addrs.'</div>
 						<div style="width:100%;height:auto;text-align:left;font-size:11px;color:#333;line-height:20px;">'.$city.'-'.$pincode.'</div>
 						<div style="width:100%;height:auto;font-size:11px;color:#666;line-height:20px;text-align:left;margin-top:10px;padding-bottom: 15px;">Please login to your My jzeva account to view the status of your order</div>
@@ -245,7 +245,7 @@
 					  <img src="'.DOMAIN.'frontend/emailer/signup.png" alt="img" width="70" height="60">
 				      </div>
 				  </div>
-				  <div style="width:100%;height:auto;font-size:20px;color:#0CCDB8;text-align:center;line-height:25px"> '.$gndr.'. '.$params['name'].'</div>
+				  <div style="width:100%;height:auto;font-size:20px;color:#0CCDB8;text-align:center;line-height:25px"> '.$gndr.' '.$params['name'].'</div>
 				  <div style="width:100%;height:auto;font-size:13px;text-align:center;color:#333;line-height:25px;margin-top:10px;letter-spacing:0.1em;"><span style="display:inline-block;line-height:25px;;vertical-align:middle">WELCOME TO THE WORLD OF LUXURIOUS JEWELLERY</span></div>
 				  <div style="width:100%;height:auto;font-size:14px;color:#333;line-height:25px;text-align:center;padding-top:10px;">We at jzeva extremely pleased to have you express interest in your collection</div>
 				  <div style="width:100%;height:auto;font-size:14px;color:#333;line-height:25px;text-align:center">Your profile has been created and can now be accessed by clicking on my account link at <a href="'.DOMAIN.'index.php?action=landing_page" style="text-decoration:none;color:#333">www.jzeva.com</a></div>
@@ -386,7 +386,7 @@
 					      <img src="'.DOMAIN.'frontend/emailer/shipping.png" alt="img" width="60" height="60">
 					  </div>
 				      </div>
-				      <div style="width:100%;height:auto;font-size:20px;color:#0CCDB8;text-align:center;line-height:28px"> '.$gndr.'. '.$usrname.'</div>
+				      <div style="width:100%;height:auto;font-size:20px;color:#0CCDB8;text-align:center;line-height:28px"> '.$gndr.' '.$usrname.'</div>
 				      <div style="width:100%;height:auto;font-size:12px;text-align:center;color:#000;line-height:25px;margin-top:10px"><span style="display:inline-block;line-height:25px;vertical-align:middle">We are glad to inform you that your jzeva jewellery <span>'.$prdname.'</span> with order number</span></div>
 				      <div style="width:100%;height:auto;font-size:12px;color:#000;text-align:center;line-height:25px;margin-top: 3px"><span style="display:inline-block;line-height:25px;vertical-align:middle">'.$params['ordid'].' has been shipped from our location</span></div>
 				      <div style="width:100%;height:auto;font-size:12px;color:#000;text-align:center;line-height:25px;margin-top: 10px;"><span style="display:inline-block;line-height:25px;vertical-align:middle">If you have opted for cash on delivery please pay the amount to the</span></div>
@@ -423,12 +423,14 @@
 	public function getgender($params)
 	{
 	  if($params == 1)
-	    $gndr="Ms";
+	    $gndr="Ms.";
 	  else if($params == 2)
-	    $gndr="Mr";
+	    $gndr="Mr.";
 	  else if($params == 3)
-	    $gndr="Mrs";
-	 
+	    $gndr="Mrs.";
+	  else
+	    $gndr="Dear";
+	  
 	  return $gndr;
 	}
     }

@@ -1675,7 +1675,8 @@ class user extends DB {
 	    $gndr="Mr";
 	  else if($gnd == 3)
 	    $gndr="Mrs";
-	   
+	  else
+	    $gndr="Dear";
 	  
 	  $message='<html>
 		    <head>
