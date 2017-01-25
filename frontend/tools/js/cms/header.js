@@ -1,9 +1,9 @@
 $(document).ready(function(){
   $(window).scroll(function () {
                    if ($(this).scrollTop() > 100) {
-                       $('.backTop').removeClass("dn");
+                       $('.backTop').removeClass("scaleot");
                    } else {
-                       $('.backTop').addClass("dn");
+                       $('.backTop').addClass("scaleot");
                    }
                });
                 $('.backTop').click(function () {
@@ -19,7 +19,7 @@ function getheader()
   var cnt=0;
   var URL = APIDOMAIN + "index.php?action=getSubCat&catid=99999";
   $.ajax({ url: URL, type: "GET",datatype: "JSON",success: function(results) {
-      
+
 		     var obj=JSON.parse(results);
 		     $(obj['root']).each(function(r,v){
 		      if(v.cat_name !== "Education" && v.cat_name !== "Bespoke")
@@ -28,24 +28,24 @@ function getheader()
 			var mainmn="";
 			var mainmn=v.cat_name; mainmn=mainmn.trim(' ');
 			mainmn=mainmn.toLowerCase().replace(' ','-');
-			mainheader+=" <div class='tabB fLeft'> <a href='"+DOMAIN+""+mainmn+"/pid-"+v.catid+"'> <div class='tab fLeft taba' >"+(v.cat_name).toUpperCase()+"  </div> </a> </div>"; 
-			 
+			mainheader+=" <div class='tabB fLeft'> <a href='"+DOMAIN+""+mainmn+"/pid-"+v.catid+"'> <div class='tab fLeft taba' >"+(v.cat_name).toUpperCase()+"  </div> </a> </div>";
+
 			 if(v['subcat'] == undefined)
 			 {
 			    subheader+= '<div class="menu_elm ">';
 			    subheader+= '<div class="menu_banner"></div>';
-			    subheader+= '</div>'; 
-			   
+			    subheader+= '</div>';
+
 			 }
 			 else
 			 {
 			    subheader+='<div class="menu_elm ">';
-			    subheader+='<div class="col33 fLeft">'; 
+			    subheader+='<div class="col33 fLeft">';
 			    $(v['subcat']).each(function(p,t)
 			    {
 			       var submn="";
 			       submn=t.cat_name;   submn=submn.trim(' ');
-			       submn=submn.toLowerCase().replace(' ','-'); 
+			       submn=submn.toLowerCase().replace(' ','-');
 			       cnt++;
 			       subheader+='<div class="col100 fLeft">';
 			       subheader+='<a href="'+DOMAIN+''+submn+'/pid-'+t.catid+'"><div class="menu_list fLeft"  ';
@@ -55,37 +55,37 @@ function getheader()
 			       {
 				 subheader+='</div><div class="col33 fLeft">';
 			       }
-			       
+
 			    });
-			    if(cnt % 2 == 1) 
-				 subheader+='</div>'; 
+			    if(cnt % 2 == 1)
+				 subheader+='</div>';
 			    subheader+='</div>';
 			 }
 		       }
-		       if($.trim(v.cat_name) == "Bespoke"){ 
+		       if($.trim(v.cat_name) == "Bespoke"){
 			  var mainmn="";
 			var mainmn=v.cat_name; mainmn=mainmn.trim(' ');
 			mainmn=mainmn.toLowerCase().replace(' ','-');
-			mainheader+=" <div class='tabB fLeft'> <a href='"+DOMAIN+"index.php?action=bespoke'> <div class='tab fLeft taba' >"+(v.cat_name).toUpperCase()+"  </div> </a> </div>"; 
-			
+			mainheader+=" <div class='tabB fLeft'> <a href='"+DOMAIN+"index.php?action=bespoke'> <div class='tab fLeft taba' >"+(v.cat_name).toUpperCase()+"  </div> </a> </div>";
+
 			if(v['subcat'] == undefined)
 			 {
 			    subheader+= '<div class="menu_elm ">';
 			    subheader+= '<div class="menu_banner"></div>';
-			    subheader+= '</div>'; 
-			   
+			    subheader+= '</div>';
+
 			 }
 		       }
-		     });  
-		     
+		     });
+
 	 	$('.tab_buffer').prepend(mainheader);
 	 	$('.menuB').prepend(subheader);
 		bindHeader();
 		    }
-	       }); 
+	       });
 }
- 
- 
+
+
 
 $('#usrlogout').click(function () {
         common.removeFromStorage('jzeva_email');
@@ -96,29 +96,29 @@ $('#usrlogout').click(function () {
 	common.removeFromStorage('jzeva_buyid');
 	common.removeFromStorage('jzeva_shpid');
 
-        var URLactn = window.location.href; 
-        var accnvar = ''+URLactn; 
+        var URLactn = window.location.href;
+        var accnvar = ''+URLactn;
         accnvar = accnvar.replace(DOMAIN,'');
-	 
+
 	if (accnvar.indexOf('?') > -1)
-	{ 
-	  var linkarr = accnvar.split('?');  
+	{
+	  var linkarr = accnvar.split('?');
 	  if(linkarr[1].indexOf('&') > -1){
 	     var tmplinkarr=""+linkarr[1];
 	     tmplinkarr=tmplinkarr.split('&');
 	     var tmpaccnstr=""+tmplinkarr[0];
-	     tmpaccnstr=tmpaccnstr.split('='); 
+	     tmpaccnstr=tmpaccnstr.split('=');
 	     if (tmpaccnstr[1] == 'myaccount')
 	       window.location.href = DOMAIN + "index.php?action=landing_page";
-	     else 
-		window.location.href =DOMAIN +accnvar;   
+	     else
+		window.location.href =DOMAIN +accnvar;
 	  }
 	  else
-	    window.location.href =DOMAIN +accnvar;    
+	    window.location.href =DOMAIN +accnvar;
 	}
 	else
-	   window.location.href =DOMAIN +accnvar;   
-	 
+	   window.location.href =DOMAIN +accnvar;
+
     });
 
 
@@ -206,4 +206,3 @@ function GetURLParameter(Param)
         }
 
     });
- 
