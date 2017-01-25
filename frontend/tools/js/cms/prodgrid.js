@@ -1,4 +1,4 @@
-var dmdValue = metalValue = soliValue = gemsValue = uncutValue = basicValue = 0;
+var dmdValue = metalValue = soliValue = gemsValue = uncutValue = basicValue = 0, fnchldcatname;
 var carat=0;
 var lowp =0;
 var highp=0;
@@ -19,6 +19,16 @@ var hlist = "";
 
 $(document).ready(function () {
     $('html, body').animate({scrollTop: '0px'}, 300); 
+    var link=window.location.href;
+    
+    var urlstr=link.split(DOMAIN);
+    var url=""+urlstr[1];
+    var rl=url.split('/');
+    var catnm=rl[0];
+    console.log(catnm);
+    
+//    if($.trim(menu) == 'bespoke')
+//      window.open(DOMAIN+"index.php?action=bespoke");
     getmenu();
     // var URL = APIDOMAIN + "index.php/?action=getProGrid";
     getprodbyid();
@@ -828,10 +838,10 @@ function submenu(ths)
     pid = pid.replace(' ', '');
     pid = pid.toLowerCase();
     var menuid = $(ths).parent().attr('id');
-
+    
     switch (pid)
-    {
-        case 'stone':
+    { 
+	   case 'stone':
             if (fltrarray[pid] == undefined) {
                 fltrarray[pid] = {};
                 fltrarray[pid][menuid] = new Array();
@@ -843,7 +853,7 @@ function submenu(ths)
                 for (var l = 0; l < Object.keys(tmval).length; l++)
                 {
                     if (fltrarray[pid][menuid][l] == tid) {
-                        tmpflag = 1;
+			      tmpflag = 1;
                         if (Object.keys(tmval).length == 1)
                             delete fltrarray[pid];
                         else
@@ -853,7 +863,7 @@ function submenu(ths)
                 if (tmpflag == 0)
                     fltrarray[pid][menuid].push(tid);
             }
-            break;
+				break;
 
         case 'diamondcut':
             if (fltrarray[pid] == undefined) {
@@ -872,8 +882,8 @@ function submenu(ths)
                             delete fltrarray[pid];
                         else
                             fltrarray[pid][menuid].splice(l, 1);
+			      }
                     }
-                }
                 if (tmpflag == 0)
                     fltrarray[pid][menuid].push(tid);
             }
@@ -902,7 +912,7 @@ function submenu(ths)
                     fltrarray[pid][menuid].push(tid);
             }
             break;
-
+	   
         case 'for':
             if (fltrarray[pid] == undefined) {
                 fltrarray[pid] = {};
@@ -915,7 +925,7 @@ function submenu(ths)
                 for (var l = 0; l < Object.keys(tmval).length; l++)
                 {
                     if (fltrarray[pid][menuid][l] == tid) {
-                        tmpflag = 1;
+			      tmpflag = 1;
                         if (Object.keys(tmval).length == 1)
                             delete fltrarray[pid];
                         else
@@ -925,7 +935,7 @@ function submenu(ths)
                 if (tmpflag == 0)
                     fltrarray[pid][menuid].push(tid);
             }
-            break;
+				break;
 
         case 'pendanttype':
             if (fltrarray[pid] == undefined) {
@@ -944,8 +954,8 @@ function submenu(ths)
                             delete fltrarray[pid];
                         else
                             fltrarray[pid][menuid].splice(l, 1);
+			      }
                     }
-                }
                 if (tmpflag == 0)
                     fltrarray[pid][menuid].push(tid);
             }
@@ -987,7 +997,7 @@ function submenu(ths)
                 for (var l = 0; l < Object.keys(tmval).length; l++)
                 {
                     if (fltrarray[pid][menuid][l] == tid) {
-                        tmpflag = 1;
+			      tmpflag = 1;
                         if (Object.keys(tmval).length == 1)
                             delete fltrarray[pid];
                         else
@@ -1011,7 +1021,7 @@ function submenu(ths)
                 for (var l = 0; l < Object.keys(tmval).length; l++)
                 {
                     if (fltrarray[pid][menuid][l] == tid) {
-                        tmpflag = 1;
+			      tmpflag = 1;
                         if (Object.keys(tmval).length == 1)
                             delete fltrarray[pid];
                         else
@@ -1022,7 +1032,7 @@ function submenu(ths)
                     fltrarray[pid][menuid].push(tid);
             }
             break;
-
+ 
     }
 
    setTimeout(function () {
@@ -1049,7 +1059,7 @@ function submenu(ths)
 	  displayproduct(1);
 	}
   }, 500);
- 
+    
 }
  
 
@@ -1062,7 +1072,7 @@ function getprodbyid()
         success: function (res) {
 
        
-            res = JSON.parse(res);
+            res = JSON.parse(res); 
             if (res['error']['err_code'] == 0) {
 	      
 	      if(res['result'] == null){
@@ -1165,7 +1175,7 @@ function displayproduct(fltpage)
 {
     var limit = 12;
     fltrarray.catid = id;
-    var dt = JSON.stringify(fltrarray); 
+    var dt = JSON.stringify(fltrarray);  
     var URL = APIDOMAIN + "index.php?action=getprodByfiltr&page=" + fltpage + "&limit=" + limit + "&catid="+id;
     $.ajax({type: 'POST', url: URL, data: {dt: dt}, success: function (result) {
 
