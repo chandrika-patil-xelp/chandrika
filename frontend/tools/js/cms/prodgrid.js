@@ -18,15 +18,33 @@ var hlist = "";
 
 
 $(document).ready(function () {
-    $('html, body').animate({scrollTop: '0px'}, 300); 
+    $('html, body').animate({scrollTop: '0px'}, 300);
     var link=window.location.href;
-    
+
     var urlstr=link.split(DOMAIN);
     var url=""+urlstr[1];
     var rl=url.split('/');
     var catnm=rl[0];
     console.log(catnm);
-    
+    if(catnm == 'rings'){
+      $('.fixedBanner').addClass('banner_rings');
+    }
+    else if(catnm == 'necklaces'){
+      $('.fixedBanner').addClass('banner_necklaces');
+    }
+    else if(catnm == 'pendants'){
+      $('.fixedBanner').addClass('banner_pendants');
+    }
+
+    else if(catnm == 'earrings'){
+      $('.fixedBanner').addClass('banner_earrings');
+    }
+
+    else if(catnm == 'bangles'){
+      $('.fixedBanner').addClass('banner_bangles');
+    }
+
+
 //    if($.trim(menu) == 'bespoke')
 //      window.open(DOMAIN+"index.php?action=bespoke");
     getmenu();
@@ -77,35 +95,35 @@ function generatelist(obj) {
     var dmdQid=obj['DimondQuality'];
     var pricelow=0;
     var pricehigh=0;
-    
-    var dmq="",dmf; 
+
+    var dmq="",dmf;
     if(dmdQid !== null)
-    { 
-      dmq=dmdQid;  
-      dmf=dmq.split(','); 
+    {
+      dmq=dmdQid;
+      dmf=dmq.split(',');
       dmf=dmf[dmf.length-1];
     }
-    else 
+    else
       dmf=0;
 
 
-    var metalpur =obj['allmetalpurity'];   
-    
+    var metalpur =obj['allmetalpurity'];
+
     var mpur="",mpr;
     if(metalpur !== null){
       mpur=metalpur;
       mpr =mpur.split(',');
       mpr= mpr[mpr.length-1];
     }
-    
-  
-    var mcr =obj['default_color']; 
+
+
+    var mcr =obj['default_color'];
     if(mcr === null){
         var mcl =obj['allmetalcolor'];
 	var mclr="";
 	mclr=mcl;
 	mcr =mclr.split(',');
-        mcr= mcr[0]; 
+        mcr= mcr[0];
     }
    var chr = "" + mcr + "|@|" + mpr + "|@|" + dmf;
 
@@ -148,7 +166,7 @@ function generatelist(obj) {
      var changeInWeightsizehigh;
      var bseSize = 0;
      var vatRate = (1 / 100);
-   
+
     var price = 0;
     if (solitaire == '1' && solitaire !== 'null') {
         var Solicarat = obj['Solicarat'];
@@ -156,7 +174,7 @@ function generatelist(obj) {
         var Solitot = obj['totalSolitaire'];
 
          var wgtcarat =parseFloat(Solicarat)*parseFloat(Solitot);
-        price = price + getSoliPrice(wgtcarat, Soliprc); 
+        price = price + getSoliPrice(wgtcarat, Soliprc);
 
     }
     if (uncut == '1' && uncut !== 'null' && uncut !== '1')
@@ -173,56 +191,56 @@ function generatelist(obj) {
         var Gemsprc = obj['gemsPricepercarat'];
 //        var Gemstot = obj['totalgems'];
 //        var gemswgt =obj['gemswgt'];
-      
+
         price = price + getGemsPrice(Gemscarat, Gemsprc);
 
     }
-  
+
     var dmdPricelow=0;
     var dmdPricehigh=0;
     if (diamond == '1' && diamond !== 'null')
     {
         var Diacarat = obj['dmdcarat'];
-   
+
        var Diaprcl = obj['dmdlowp'];
       var DiaprcH = obj['dmdhighp'];
-     dmdPricelow  = (Diacarat * Diaprcl); 
-     dmdPricehigh  = (Diacarat * DiaprcH); 
+     dmdPricelow  = (Diacarat * Diaprcl);
+     dmdPricehigh  = (Diacarat * DiaprcH);
            var Diaprc = obj['dmdQPricepercarat'];
-       
-    }  
+
+    }
       if (obj['chldcatname'] == 'Rings' || obj['finejwellrycatname'] == 'Rings')
 	    bseSize = parseFloat(14);
       else if (obj['chldcatname'] == 'Bangles' || obj['finejwellrycatname'] == 'Bangles')
-	    bseSize = parseFloat(2.4);  
-    
-    
-     if (obj['chldcatname'] == 'Rings' || obj['finejwellrycatname'] == 'Rings') 
+	    bseSize = parseFloat(2.4);
+
+
+     if (obj['chldcatname'] == 'Rings' || obj['finejwellrycatname'] == 'Rings')
 	    mtlWgDav = 0.05;
-     else if (obj['chldcatname'] == 'Bangles'|| obj['finejwellrycatname'] == 'Bangles') 
+     else if (obj['chldcatname'] == 'Bangles'|| obj['finejwellrycatname'] == 'Bangles')
 	    mtlWgDav = 7;
-    
+
 
      if (obj['chldcatname'] === 'Rings' || obj['finejwellrycatname'] === 'Rings'){
-       
-   changeInWeightsizelow = (5 - bseSize) * mtlWgDav;   
+
+   changeInWeightsizelow = (5 - bseSize) * mtlWgDav;
    changeInWeightsizehigh = (25- bseSize) * mtlWgDav;
-    newWeightlow = parseFloat(Metalwgt) +parseFloat(changeInWeightsizelow); 
-    newWeighthigh = parseFloat(Metalwgt) +parseFloat(changeInWeightsizehigh); 
-   }                                                                       
+    newWeightlow = parseFloat(Metalwgt) +parseFloat(changeInWeightsizelow);
+    newWeighthigh = parseFloat(Metalwgt) +parseFloat(changeInWeightsizehigh);
+   }
    else if(obj['chldcatname'] === 'Bangles' || obj['finejwellrycatname'] === 'Bangles'){
-     changeInWeightsizelow = (2.2- bseSize) * mtlWgDav; 
+     changeInWeightsizelow = (2.2- bseSize) * mtlWgDav;
     changeInWeightsizehigh = (2.9- bseSize) * mtlWgDav;
     newWeightlow = parseFloat(Metalwgt) + parseFloat(changeInWeightsizelow);
     newWeighthigh = parseFloat(Metalwgt) + parseFloat(changeInWeightsizehigh);
    }
    else if((obj['chldcatname'] !== 'Rings' || obj['chldcatname'] !== 'Bangles') || (obj['finejwellrycatname'] !== 'Bangles' || obj['finejwellrycatname'] !== 'Rings')){
-        changeInWeightsizelow = (0- bseSize) * mtlWgDav;  
+        changeInWeightsizelow = (0- bseSize) * mtlWgDav;
    changeInWeightsizehigh = (0- bseSize) * mtlWgDav;
     newWeightlow = parseFloat(Metalwgt) + parseFloat(changeInWeightsizelow);
-    newWeighthigh = parseFloat(Metalwgt) + parseFloat(changeInWeightsizehigh); 
+    newWeighthigh = parseFloat(Metalwgt) + parseFloat(changeInWeightsizehigh);
    }
-   
+
     newWeightlow = newWeightlow.toFixed(3);
     newWeighthigh = newWeighthigh.toFixed(3);
 
@@ -231,35 +249,35 @@ function generatelist(obj) {
 //    price = price + getbasicprice(Makchrg, Metalwgt);//console.log("basicPrice-> "+price +"");
 var goldPricelowp=0;
 var goldPricehighp =0;
-     goldPricelowp = parseFloat(newWeightlow * caratlowp);  
-     goldPricehighp = parseFloat(newWeighthigh * carathighp); 
-    
+     goldPricelowp = parseFloat(newWeightlow * caratlowp);
+     goldPricehighp = parseFloat(newWeighthigh * carathighp);
+
        var mkChargeslowp = parseFloat(Makchrg * newWeightlow);
     var mkChargeshighp = parseFloat(Makchrg * newWeighthigh);
-    
-    
+
+
     var ttllowp = parseFloat(goldPricelowp + dmdPricelow + mkChargeslowp + price);
      var ttlhighp = parseFloat(goldPricehighp + dmdPricehigh + mkChargeshighp + price);
-     
-      var totalNewPricelow = Math.round(ttllowp + (ttllowp * vatRate)); 
-    var totalNewPricehigh = Math.round(ttlhighp + (ttlhighp * vatRate)); 
-   
- 
 
-    grandtotlow = totalNewPricelow.toFixed(); 
+      var totalNewPricelow = Math.round(ttllowp + (ttllowp * vatRate));
+    var totalNewPricehigh = Math.round(ttlhighp + (ttlhighp * vatRate));
+
+
+
+    grandtotlow = totalNewPricelow.toFixed();
      grandtothigh = totalNewPricehigh.toFixed();
-    grandtotallow = common.IND_money_format(grandtotlow, 0); 
-    grandtotalhigh = common.IND_money_format(grandtothigh, 0); 
+    grandtotallow = common.IND_money_format(grandtotlow, 0);
+    grandtotalhigh = common.IND_money_format(grandtothigh, 0);
     // grandtotal = Number(grandtot).toLocaleString('en');
 
-   var defprice = price + getPurPrice(Mprc, Metalwgt); 
+   var defprice = price + getPurPrice(Mprc, Metalwgt);
    defprice = defprice + getbasicprice(Makchrg, Metalwgt);
    defprice =  defprice + getdmdprice(Diacarat, Diaprc);
-   
+
 var vat = (1 / 100) * defprice;
-    gtotal = defprice + vat; 
+    gtotal = defprice + vat;
    grandtotal = gtotal.toFixed();
-     
+
     proStr += '<div class="grid3 transition400" id="' + obj['prdId'] + '"  >';
     // proStr += '<div class="noimgDiv"></div>';
     proStr += '<div class="facet_front">';
@@ -615,31 +633,31 @@ var limcount = 12;
 var fltrpage=2, fltrcnt=0;
 $('#gr_foot').on('click', function () {
   $('.gridLoad').removeClass("dpn");
-   setTimeout(function (){ 
+   setTimeout(function (){
      $('.gridLoad').addClass("dpn");
      },1500);
-     
+
   if(Object.keys(fltrarray).length > 1)
-  { 
-    var fltpage = fltrpage + fltrcnt++;  
-    var limit = 12;  
+  {
+    var fltpage = fltrpage + fltrcnt++;
+    var limit = 12;
     var fltrlimit = limit * fltpage;
-    
+
     var dt = JSON.stringify(fltrarray);
     var URL = APIDOMAIN + "index.php?action=getprodByfiltr&page=" + fltpage + "&limit=" + limit + "&catid="+id;
-    
- 
+
+
     $.ajax({type: 'POST', url: URL, data: {dt: dt}, success: function (result) {
 
             var res = JSON.parse(result);
 
             if (res['error']['err_code'] === 0) {
-	       getProdDtl = res["result"]; 
-              
+	       getProdDtl = res["result"];
+
 	        showwishbtn();
-		 
+
                 var total = res['total'];
-		
+
                 if (total == 1)
                     $('#total_Product').html("<strong>" + total + "</strong> Product");
                 else
@@ -654,7 +672,7 @@ $('#gr_foot').on('click', function () {
                         var str = '';
                         while (i < len)
                         {
-                            
+
                             str = generatelist(obj1[i]);
                             i++;
                             var k = i * 200;
@@ -682,10 +700,10 @@ $('#gr_foot').on('click', function () {
   else
   {
     var page3 = page2 + count++;
-    
+
     var limit = 12;
     var limitend = limit * page3;
-    
+
     var URL1 = APIDOMAIN + "index.php/?action=getProductdetailbycatid&id=" + id + "&page=" + page3 + "&limit=" + limit + "";
     var tot_len = 0;
     $.ajax({
@@ -696,7 +714,7 @@ $('#gr_foot').on('click', function () {
             res = JSON.parse(res);
 
             if (res['error']['err_code'] === 0) {
-	       getProdDtl = res["result"]; 
+	       getProdDtl = res["result"];
                 lowp=res["allprdpz"]["przperprdlow"][0];
                highp=res["allprdpz"]["przperprdhigh"][0];
                bindFilterUi();
@@ -716,7 +734,7 @@ $('#gr_foot').on('click', function () {
                         var str = '';
                         while (i < len)
                         {
-                            
+
                             str = generatelist(obj1[i]);
                             i++;
                             var k = i * 200;
@@ -748,23 +766,23 @@ function getmenu()
     var menuURL = APIDOMAIN + "index.php/?action=getfiltrmenus&catid=" + id;
     $.ajax({type: 'POST', url: menuURL, success: function (res) {
             var data = JSON.parse(res);
-	   
+
             var mainmenustr = "";
             var submenulist = "";
 
             if (data['result'] !== null) {
- 
-                var reslt=data['result'];   
+
+                var reslt=data['result'];
                 $(reslt).each(function (r, n) {
- 
+
 		  if(n.val !== null)
 		  {
                     mainmenustr += "<div class='ftabB ' >";
                     mainmenustr += "  <div class='ftab fLeft taba' >";
                     mainmenustr += " " + (n.attr_name).toUpperCase() + " </div> </div>";
-		
+
                     submenulist += "<div class='fmenu_elm fLeft' id='" + n.attributeid + "'>";
-                    $(n['val'][0]).each(function (q, p) {   
+                    $(n['val'][0]).each(function (q, p) {
                         var v = parseInt(p);
                         var iconstr = "";
                         if ($.isNumeric(v)) {
@@ -799,7 +817,7 @@ function getmenu()
                 submenulist += '<div class="rangeParent fLeft" id="rg">';
                 submenulist += '<div class="rngDv">';
                 submenulist += '<input type="text" value="" id="range" >';
-		
+
                 submenulist += '</div>';
                 submenulist += '</div>';
                 submenulist += '</div>';
@@ -838,9 +856,9 @@ function submenu(ths)
     pid = pid.replace(' ', '');
     pid = pid.toLowerCase();
     var menuid = $(ths).parent().attr('id');
-    
+
     switch (pid)
-    { 
+    {
 	   case 'stone':
             if (fltrarray[pid] == undefined) {
                 fltrarray[pid] = {};
@@ -897,7 +915,7 @@ function submenu(ths)
             } else
             {
                 var tmval = fltrarray[pid][menuid], tmpflag = 0;
-                
+
                 for (var l = 0; l < Object.keys(tmval).length; l++)
                 {
                     if (fltrarray[pid][menuid][l] == tid) {
@@ -912,7 +930,7 @@ function submenu(ths)
                     fltrarray[pid][menuid].push(tid);
             }
             break;
-	   
+
         case 'for':
             if (fltrarray[pid] == undefined) {
                 fltrarray[pid] = {};
@@ -921,7 +939,7 @@ function submenu(ths)
             } else
             {
                 var tmval = fltrarray[pid][menuid], tmpflag = 0;
-                
+
                 for (var l = 0; l < Object.keys(tmval).length; l++)
                 {
                     if (fltrarray[pid][menuid][l] == tid) {
@@ -969,7 +987,7 @@ function submenu(ths)
             } else
             {
                 var tmval = fltrarray[pid][menuid], tmpflag = 0;
-                
+
                 for (var l = 0; l < Object.keys(tmval).length; l++)
                 {
                     if (fltrarray[pid][menuid][l] == tid) {
@@ -1032,7 +1050,7 @@ function submenu(ths)
                     fltrarray[pid][menuid].push(tid);
             }
             break;
- 
+
     }
 
    setTimeout(function () {
@@ -1041,27 +1059,27 @@ function submenu(ths)
       $.map(fltrarray, function(v, k)
       {
 	arrobj.push(k);
-	arrcnt++; 
+	arrcnt++;
       });
-    
+
       if(arrcnt == 1)
       {
-	if (arrobj[0] == "catid")  
-	 getprodbyid(); 
+	if (arrobj[0] == "catid")
+	 getprodbyid();
 	else{
 	  fltrpage=2; fltrcnt=0;
 	  displayproduct(1);
 	}
-	  
-      } 
+
+      }
       else{
 	  fltrpage=2; fltrcnt=0;
 	  displayproduct(1);
 	}
   }, 500);
-    
+
 }
- 
+
 
 function getprodbyid()
 {
@@ -1071,10 +1089,10 @@ function getprodbyid()
         url: URL,
         success: function (res) {
 
-       
-            res = JSON.parse(res); 
+
+            res = JSON.parse(res);
             if (res['error']['err_code'] == 0) {
-	      
+
 	      if(res['result'] == null){
 		  $('.emptyGrid').removeClass('dpn');
 		  $('#gridDetail').html('');
@@ -1083,10 +1101,10 @@ function getprodbyid()
 	      }
 	      else
 	      {
-                getProdDtl = res["result"]; 
+                getProdDtl = res["result"];
                 var total = res["total"];
 		lowp=res["allprdpz"]["przperprdlow"][0];
-		var przarr=new Array(); 
+		var przarr=new Array();
 		$(res["allprdpz"]["przperprdlow"]).each(function(l,m){
 		   przarr.push(m);
 		});
@@ -1098,13 +1116,13 @@ function getprodbyid()
 		    var car=v;
 		    carr.push(v);
 		});
-               
+
                 frstcar=carr[0];
                 lastcar=carr[carr.length-1];
                // lastcar =Math.round(lastcar)+1;
-               
+
 		bindFilterUi();
- 	     
+
                 if (total === 1)
                     $('#total_Product').html("<strong>" + total + "</strong> Product");
                 else
@@ -1114,25 +1132,25 @@ function getprodbyid()
                     $('#gr_foot').addClass("dpn");
                     $('.gridLoad').addClass("dpn");
 		  }
-                $('#parnttyp').html(''); 
+                $('#parnttyp').html('');
 		$('#gridDetail').html('');
 		var dplstr ='<a href="'+DOMAIN+'index.php?action=landing_page"><div class="breadH fLeft">Home</div></a>';
-		
+
 		if(obj[0]['parntcatname'] !== null){
 		    var parnt = obj[0]['parntcatname'];
 		    var mainmn="";    mainmn=parnt;
 		    mainmn=mainmn.trim(' ');
-		    mainmn=mainmn.toLowerCase().replace(' ','-'); 
-		    var chld = obj[0]['chldcatname'];  
+		    mainmn=mainmn.toLowerCase().replace(' ','-');
+		    var chld = obj[0]['chldcatname'];
 		    dplstr += '<a href="'+DOMAIN+''+mainmn+'/pid-'+obj[0]['parntcatid']+'">';
 		    dplstr += '<div class="breadP fLeft">' + parnt + '</div></a>';
 		    dplstr += '<div class="breadP fLeft">' + chld + '</div>';
 		}
                 else{
-		    var parnt = obj[0]['chldcatname']; 
-		    dplstr += '<div class="breadP fLeft">' + parnt + '</div>'; 
+		    var parnt = obj[0]['chldcatname'];
+		    dplstr += '<div class="breadP fLeft">' + parnt + '</div>';
 		}
-                  
+
                 $('#parnttyp').append(dplstr);
                 var len = obj.length;
 
@@ -1168,21 +1186,21 @@ function getprodbyid()
             }
         }
     });
-    
+
 }
 
-function displayproduct(fltpage) 
+function displayproduct(fltpage)
 {
     var limit = 12;
     fltrarray.catid = id;
-    var dt = JSON.stringify(fltrarray);  
+    var dt = JSON.stringify(fltrarray);
     var URL = APIDOMAIN + "index.php?action=getprodByfiltr&page=" + fltpage + "&limit=" + limit + "&catid="+id;
     $.ajax({type: 'POST', url: URL, data: {dt: dt}, success: function (result) {
 
-            var res = JSON.parse(result); 
-	    
+            var res = JSON.parse(result);
+
             if (res['error']['err_code'] == 0) {
-		
+
 	      if(res['result'] == null){
 		  $('.emptyGrid').removeClass('dpn');
 		  $('#gridDetail').html('');
@@ -1204,14 +1222,14 @@ function displayproduct(fltpage)
 		if (total == 1)
                     $('#total_Product').html("<strong>" + total + "</strong> Product");
                 else if(total > 1)
-                    $('#total_Product').html("<strong>" + total + "</strong> Products"); 
+                    $('#total_Product').html("<strong>" + total + "</strong> Products");
                 else{
                  $('#total_Product').html("<strong>" + total + "</strong> Products");}
                 var obj = res["result"];
-              
+
                 if (obj !== null) {
                     var len = obj.length;
-                  
+
                     $('#gridDetail').html('');
                     var i = 0;
                     if (len > 0)
@@ -1244,17 +1262,17 @@ function displayproduct(fltpage)
             }
         }
     });
-    
+
 }
 
-  
-function makeAwish(th, e) 
+
+function makeAwish(th, e)
 {
-  var pid=$(th).attr('id').split('_'); 
+  var pid=$(th).attr('id').split('_');
   var prz=$(th).attr('data-price');
   var comb= $(th).attr('data-comb');
   var size=$(th).attr('data-size');
-  
+
   e.stopPropagation();
     //e.preventDefault();
   if ($(th).hasClass('beat')) {
@@ -1262,66 +1280,66 @@ function makeAwish(th, e)
       //Remove from wishlist
       common.msg(0,'This product is already in your wishlist');
   }
-  else 
-  { 
+  else
+  {
       var userid = common.readFromStorage('jzeva_uid');
-      if (userid == undefined || userid == null) 
-      { 
-	  openPopUp(); 
-      } 
-      else 
+      if (userid == undefined || userid == null)
+      {
+	  openPopUp();
+      }
+      else
       {
 	   $(th).addClass('beat');
 	   var userid, wishdata = {};
-	   wishdata['pid'] = pid[1]; 
+	   wishdata['pid'] = pid[1];
 	   wishdata['col_car_qty'] = comb;
 	   wishdata['price'] = prz;
-	   wishdata['user_id'] = userid; 
+	   wishdata['user_id'] = userid;
 	   wishdata['wish_id'] = '';
 	   wishdata['size'] = size;
 	   var URL = APIDOMAIN + "index.php?action=addtowishlist";
 	   var data = wishdata;
 	   var dt = JSON.stringify(data);
-	   $.ajax({type: "post", url: URL, data: {dt: dt}, success: function (results) { 
-		  var res=JSON.parse(results); 
+	   $.ajax({type: "post", url: URL, data: {dt: dt}, success: function (results) {
+		  var res=JSON.parse(results);
 		  if(res['error']['err_code'] == 0){
 		    wshlstflag = 1;
                     common.msg(1, 'This Product Added To Your Wishlist Successfully');
-                    $('#addwishlist').addClass("colorff5");  
+                    $('#addwishlist').addClass("colorff5");
 		  }
 		  else if(res['error']['err_code'] == 2){
 		     common.msg(0,res['error']['err_msg']);
 		  }
                   else{
 		    common.msg(0,res['error']['err_msg']);
-		  }  
+		  }
 	       }
 	   });
       }
-    } 
+    }
  }
 
 function showwishbtn()
 {
   var prdarr=new Array();
-  $(getProdDtl).each(function(p,q){ 
+  $(getProdDtl).each(function(p,q){
     prdarr.push(q.prdId);
   });
-  
-  var userid = common.readFromStorage('jzeva_uid'); 
-  if(userid != null || userid != undefined) 
+
+  var userid = common.readFromStorage('jzeva_uid');
+  if(userid != null || userid != undefined)
   {
       var URL = APIDOMAIN + "index.php?action=getwishdetail&userid=" + userid;
       $.ajax({type: 'POST', url: URL, success: function (res) {
 
-	      var data = JSON.parse(res); 
+	      var data = JSON.parse(res);
 	      $(data['result']).each(function (r, v) {
 
 		  if($.inArray(v.product_id,prdarr) !== -1)
-		  { 
-		     $('#prd_'+v.product_id).addClass('beat'); 
-		  } 
-	      }); 
+		  {
+		     $('#prd_'+v.product_id).addClass('beat');
+		  }
+	      });
       }
       });
   }

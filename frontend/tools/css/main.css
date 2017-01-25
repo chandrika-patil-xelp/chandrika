@@ -140,7 +140,12 @@ a{color:#666;}
 .tabB:hover .tabd, .selec.tabd{background:#222529 !important;color:#fff !important}
 .tabB:hover .tabe, .selec.tabe{background:#222529 !important;color:#fff !important}
 /*.tabWrap:hover .tab{background-color:#15181b;}*/
-
+/* BANNERS */
+.banner_rings{background:url(../img/banner/1.jpg) no-repeat;}
+.banner_necklaces{background:url(../img/banner/6.jpg) no-repeat;}
+.banner_earrings{background:url(../img/banner/3.jpg) no-repeat;}
+.banner_bangles{background:url(../img/banner/4.jpg) no-repeat;}
+.banner_pendants{background:url(../img/banner/9.jpg) no-repeat;}
 
 .selec{background:#22B9C7;color:#fff}
 .over_hide{overflow:hidden !important;}
@@ -394,7 +399,7 @@ a{color:#666;}
 .padLR25{padding: 0px 25px;}
 .padR0{padding-right: 0px;}
 .padR0{padding-right:0px!important;}
-.PRODUCT_GRID2.wrapper_main{padding-top:60vh;background-color: #f3f3f3;}
+.PRODUCT_GRID2.wrapper_main{padding-top:80vh;background-color: #f3f3f3;}
 
 .imgHolder{width:100%;height:100%;position:absolute;background-size:115%;background-position:center;cursor: w-resize;}
 .imgHolder img{width:100%;height:100%;border:0}
@@ -1320,7 +1325,7 @@ input[type=radio]:checked ~ .selector_label:after {transform:translateX(0%);-web
 /*forgot password*/
 #forgot .btnContainr{width:140px;}
 .shadow_head{width:100%;height:100px;position:fixed;top:0;left:0;background:url(../img/grad.png);background-size:auto 100%;z-index: 100;background-repeat:repeat-x;pointer-events:none;}
-.gemBanner{width:100%;height:60vh;background-image:url('../img/.jpg');background-size:cover;background-position:center;background-repeat:no-repeat;position:absolute}
+.gemBanner{width:100%;height:80vh;background-size:cover;background-position:center;background-repeat:no-repeat;position:absolute}
 
 .Terms .gemBanner{width:100%;height:60vh;background-image:url('../img/BESPOKE1.jpg');background:#222529; position:absolute}
 .homejzeva .gemBanner{width:100%;height:90vh;background-image:url('../img/23.jpg');background-size:cover;background-position:center;background-repeat:no-repeat;position:absolute}
