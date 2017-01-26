@@ -186,7 +186,9 @@ function chklogin()
 	 	    {
 		      if(logDetails['0']['is_vendor'] == 1)
 		      {
-			window.location.href=DOMAIN +"backend/index.php?action=products";
+			setTimeout(function(){
+			   window.location.href=DOMAIN +"backend/index.php?action=products";
+			},3000);
 		      }
 		      var obj=JSON.parse(results);
 		      glbcartdeatil=obj.result;
@@ -200,14 +202,14 @@ function chklogin()
 				//  common.addToStorage("jzeva_cartid", gencartId());
 			      }
 		      }
-		      else{
+		      else{  
 			    hasitem(oldcartid,olduserid);
 		      }
 		    common.msg(1,'Sign in successful');
 		    
 		    var URLactn = window.location.href;  
 		    setTimeout(function(){
-			window.location.href = URLactn;
+		 	window.location.href = URLactn;
 		    },3000)
 
 		    }
@@ -240,7 +242,7 @@ function hasitem(oldcartid,olduserid)
      updatecartiddetail(oldcartid,olduserid,newcartid);
     }
     else{
-
+       common.addToStorage('jzeva_cartid',newcartid); 
    var start=1,last=hasusrid.length;
    $(hasusrid).each(function(r,v){
       var prdid=v.product_id;

@@ -371,6 +371,7 @@ function removebuyitem(buyid)
     var URL = APIDOMAIN + "index.php?action=removCrtItemaftrcheckot&cartid=" + buyid + "&userid=NULL";
     $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results) {
             // console.log(results);
+	    common.removeFromStorage('jzeva_buyid');
         }
     });
 }

@@ -1,5 +1,5 @@
   
- var gndrflg, mobile, shpngusrflg, shipngzpcodflg=1, glbcartdeatil, gndrflg, mobile, otpflg=0, userdata=[], newuserid, actn;
+ var gndrflg, mobile, shpngusrflg, shipngzpcodflg=1, chkgustcartdata, gndrflg, mobile, otpflg=0, userdata=[], newuserid, actn;
  var mailflag=1, mobflag=1, guestentflag=0, mailmob;
  $(document).ready(function(){
    
@@ -303,10 +303,10 @@ function signinsubmit()
 	 	    success: function(results)
 	 	    {
 		      var obj=JSON.parse(results); 
-		      glbcartdeatil=obj.result;
+		      chkgustcartdata=obj.result;
 		      if(oldcartid=="" || oldcartid==null){
-			  if(glbcartdeatil!= null){
-			       var cartid=glbcartdeatil[0].cart_id;  
+			  if(chkgustcartdata != null){
+			       var cartid=chkgustcartdata[0].cart_id;  
 			  }
 			      if(cartid){
 				  common.addToStorage("jzeva_cartid", cartid);}
@@ -317,12 +317,15 @@ function signinsubmit()
 		      else{
 			    hasitem(oldcartid,olduserid);
 		      }
-		      if(actn == 'buy'){ 
-			    window.location.href = DOMAIN + "index.php?action=checkOutNew&actn=buy";
-		      }
-		      else
-			    window.location.href=DOMAIN + 'index.php?action=checkOutNew';
+		      setTimeout(function(){
+			  if(actn == 'buy'){ 
+				window.location.href = DOMAIN + "index.php?action=checkOutNew&actn=buy";
+			  }
+			  else
+				window.location.href=DOMAIN + 'index.php?action=checkOutNew';
+		      },2500);
 		    }
+		    
 		});  
             }
             else if(data['error']['err_code']==1){
@@ -339,7 +342,7 @@ function hasitem(oldcartid,olduserid)
 
    var newcartid,hasusrid=[],ccnt=0,hasoldcartid=[],ocnt=0; 
    
-  $(glbcartdeatil).each(function(r,v){
+  $(chkgustcartdata).each(function(r,v){
      if(v.userid!=0){
        hasusrid[ccnt]=v;ccnt++;
          newcartid=v.cart_id;  
@@ -352,7 +355,7 @@ function hasitem(oldcartid,olduserid)
      updatecartiddetail(oldcartid,olduserid,newcartid);  
     }
     else{
-       
+       common.addToStorage('jzeva_cartid',newcartid); 
    var start=1,last=hasusrid.length;
    $(hasusrid).each(function(r,v){  
       var prdid=v.product_id; 
@@ -607,10 +610,10 @@ function checkotp(otpval)
 	       $.ajax({  url: URL,  type: "GET", datatype: "JSON", success: function(results) {
 		   
 		      var obj=JSON.parse(results); 
-		      glbcartdeatil=obj.result; 
+		      chkgustcartdata=obj.result; 
 		      if(oldcartid=="" || oldcartid==null){
-			  if(glbcartdeatil!= null){
-			       var cartid=glbcartdeatil[0].cart_id;  
+			  if(chkgustcartdata!= null){
+			       var cartid=chkgustcartdata[0].cart_id;  
 			  }
 			  if(cartid){
 			      common.addToStorage("jzeva_cartid", cartid);} 
