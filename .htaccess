@@ -13,7 +13,7 @@ Options -Indexes
 RewriteEngine On
 
 #RewriteCond %{HTTP_HOST} ^jzeva.com$
-#RewriteRule ^([^/.]*)$ index.php?action=landing_page [QSA,L]
+RewriteRule ^([^/.]*)$ index.php?action=landing_page [QSA,L]
 RewriteRule ^([^/.]*)/(pid-[^/.]*)$	index.php?action=product_grid&id=$2 [L,QSA]
 
 RewriteRule ^((?i)FP-[^/.]*)$ index.php?action=resetpsw&id=$1 [QSA,L]
