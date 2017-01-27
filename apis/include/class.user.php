@@ -9,10 +9,10 @@ class user extends DB {
     }
 
     private function generateId() {
-        $curdate = date('YmdHis');
-        $rNo = mt_rand(11, 99);
-        $genId = $rNo . $curdate;
-        return $genId;
+          $dTime = round(microtime(true) * 1000); 
+	  $rNum = mt_rand(1, 9);
+	  $genrd = $rNum.$dTime;
+	  return $genrd; 
     }
 
     public function addUser($params) {
@@ -1708,7 +1708,7 @@ class user extends DB {
 				    <div style="width:100%;height:auto;font-size:45px;line-height:50px;color:#0CCDB8;text-align:center;margin-top: 10px;">'.$otp.'</div>
 				    <div style="width:100%;height:auto;padding:20px 25px;background-color:#222529;margin-top:25px;box-sizing:border-box;">
 					<div style="width:100%;height:auto;font-size:12px;color:#fff;text-align:center;line-height:20px;margin-top:10px;">Should you have any question or require our assistance, our concierege services desk is available at</div>
-					<div style="width:100%;height:auto;font-size:12px;line-height:20px;color:#0CCDB8;text-align:center;margin-top:7px"><span style="display:inline-block;line-height:25px;vertical-align:middle">Call +997779990000 | Email <a href="" style="color:#0CCDB8;text-decoration:none">care@jzeva.com</a></span></div>
+					<div style="width:100%;height:auto;font-size:12px;line-height:20px;color:#0CCDB8;text-align:center;margin-top:7px"><span style="display:inline-block;line-height:25px;vertical-align:middle">Call +91 7022248707 | Email <a href="" style="color:#0CCDB8;text-decoration:none">care@jzeva.com</a></span></div>
 					<div style="width:100%;height:auto;font-size:11px;line-height:25px;color:#999;text-align:center;margin-top: 4px;margin-bottom: 1px;text-decoration:none;"><span style="display:inline-block;line-height:25px;vertical-align:middle">( Monday to Saturday 10AM - 9PM IST )</span></div>
 				    </div>
 				</div>
@@ -1720,7 +1720,7 @@ class user extends DB {
 				    </div>
 				    <div style="width:100%;height:auto;margin-top:50px;margin-bottom:15px">
 					<center>
-					<a href style="text-decoration:none"><div style="width:100%;cursor:pointer;color:#0CCDB8;display:inline-block;vertical-align:top;font-size:9px;padding:0px 5px;line-height:16px;height:25px">FOLLOW US</div></a><a href style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">FACEBOOK</div></a><a href style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">INSTAGRAM</div></a><a href style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;letter-spacing:0.02em;height:16px">PINTEREST</div></a>
+					<a href style="text-decoration:none"><div style="width:100%;cursor:pointer;color:#0CCDB8;display:inline-block;vertical-align:top;font-size:9px;padding:0px 5px;line-height:16px;height:25px">FOLLOW US</div></a><a href="https://www.facebook.com/JzevaLuxury/?fref=ts" style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">FACEBOOK</div></a><a href="https://www.instagram.com/jzevaluxury/" style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">INSTAGRAM</div></a><a href="https://in.pinterest.com/JzevaLuxury/" style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;letter-spacing:0.02em;height:16px">PINTEREST</div></a>
 					</center>
 				    </div>
 				    <div style="width:100%;height:auto;font-size:12px;color:#999;line-height:25px;text-align:center;margin-top:30px">You are receiving this email in response to an order or request you submitted to  <a href="" style="color:#999;text-decoration:none !important">www.jzeva.com</a></div>

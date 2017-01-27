@@ -79,11 +79,10 @@
 
 
                 public function generateId() {
-                    $curdate = date('YmdHis');
-                    $rNo = mt_rand(11, 99);
-
-                    $genId = $rNo . $curdate;
-                    return $genId;
+                    $dTime = round(microtime(true) * 1000); 
+		    $rNum = mt_rand(1, 9);
+		    $genrd = $rNum.$dTime;
+		    return $genrd; 
                 }
 
 

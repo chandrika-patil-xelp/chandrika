@@ -1033,13 +1033,13 @@
     }
 
              /** code for sign up ends **/
-
+ 
     private function generateId(){
 
-            $dt = date("YmdHis");
-            $rd = mt_rand(11, 99);
-            $genrd = $rd.$dt;
-		    return $genrd;
+           $dTime = round(microtime(true) * 1000); 
+		    $rNum = mt_rand(1, 9);
+		    $genrd = $rNum.$dTime;
+		    return $genrd; 
                 }
 
 
