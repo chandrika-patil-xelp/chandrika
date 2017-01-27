@@ -10,7 +10,7 @@
 
         public function genordrtemplate($params)
         {
-	  $invsql="SELECT   
+	  $invsql="SELECT
 			 invoice_id
 		   FROM
 			 tbl_invoice_master
@@ -19,7 +19,7 @@
 	  $invres=  $this->query($invsql);
 	  $rowinv=  $this->fetchData($invres);
 	  $invoiceno=$rowinv['invoice_id'];
-	  
+
 	  if($params['data'][0]['userid'] !== null)
 	  {
 	      $sql="   SELECT
@@ -51,7 +51,7 @@
 	  else
 	  {
 	      $sql="   SELECT
-			       name,gender, address AS addr, city, pincode  
+			       name,gender, address AS addr, city, pincode
 			FROM
 			      tbl_order_shipping_details
 			WHERE
@@ -72,8 +72,8 @@
 	      else
 		$itm=$itms."  Item";
 	  }
-	  
-	  
+
+
 	  $message='<html>
 		    <head>
 			<title>confirm</title>
@@ -102,23 +102,23 @@
 				    <div style="width:100%;height:auto;font-size:14px;color:#333;text-align:center;line-height:0px"><span style="display:inline-block;line-height:25px;padding-top:10px;vertical-align:middle">We are glad to inform you that your order is now confirmed and will reach on the</span></div>
 				     <div style="width:100%;height:auto;font-size:14px;color:#333;text-align:center;line-height:0px"><span style="display:inline-block;line-height:normal;vertical-align:middle">promised date.</span></div>
 				    <div style="width:100%;height:auto;padding:0px;margin-top: 35px;">
-				    
-				    
+
+
 				    <div style="width:100%;height:auto;margin-bottom:5px">
                             <div style="width:32%;height:auto;line-height:15px;font-size:11px;color:#333;display:inline-block;vertical-align:top;text-align:center;">
-							    INVOICE NO 
+							    INVOICE NO
 								<span style="padding-left:1px;font-weight: bold;display: inline-block;width:100%;">
 							   '.$invoiceno.'
 							   </span>
 							</div>
 							<div style="width:32%;height:auto;line-height:15px;font-size:11px;color:#333;display:inline-block;vertical-align:top;text-align:center;">
-							   ORDER NO 
+							   ORDER NO
 							<span style="padding-left:1px;font-weight: bold;display: inline-block;width:100%;">
 							  '.$params['data'][0]['orderid'].'
 							   </span>
 							</div>
-							<div style="width:32%;height:auto;line-height:15px;font-size:11px;color:#333;display:inline-block;vertical-align:top;text-align:center;"> 
-							   DATE 
+							<div style="width:32%;height:auto;line-height:15px;font-size:11px;color:#333;display:inline-block;vertical-align:top;text-align:center;">
+							   DATE
 							<span style="padding-left:1px;font-weight: bold;display: inline-block;width:100%;">
 							 '.date("jS M Y").'
 							   </span>
@@ -126,13 +126,13 @@
                         </div>
                         <div style="width:100%;height:auto;padding:10px;background-color:#f3f3f3;text-align:left;color:#333;font-size:12px;line-height:15px;box-sizing:border-box;">'.$itm.'</div>
                         <div style="width:100%;height:auto;padding-top:15px;">
-                            <div style="width:100%;height:auto;margin-bottom:20px"> '; 
-	  
+                            <div style="width:100%;height:auto;margin-bottom:20px"> ';
+
 			foreach($params['data'] as $key=>$val)
                         {
                               $combn=$val['col_car_qty'];
                               list($col,$car,$qty)=explode('|@|',$combn);
- 
+
                               $psql=" SELECT
                                             product_name,
                                             product_code,
@@ -141,7 +141,7 @@
                                             (SELECT dname FROM tbl_metal_purity_master WHERE id=".$car.") AS prdcarat,
                                             (SELECT dname FROM tbl_diamond_quality_master WHERE id=".$qty.") AS prdqlty,
                                             (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id=".$val['pid'].") AS prdimg
-					    
+
                                       FROM
                                             tbl_product_master
                                       WHERE
@@ -161,7 +161,7 @@
                               $prdimgs=explode(',',$prdimgs);
 			      $quantity=(int)$val['pqty'];
 			      $qntystr="Quantity-<span style='color:#0CCDB8;'>".$quantity."</span>";
-			    $message.='     
+			    $message.='
 			      <div style="width:100%;height:auto;padding:10px;border:1px solid #ccc;margin-bottom: 10px;border-radius:2px;display:inline-block;box-sizing:border-box;">
                                 <div style="width:auto;height:auto;display:inline-block;vertical-align:top;"><img src="'.IMGDOMAIN.''.$prdimgs[0].'" alt="'.BACKDOMAIN.'tools/img/noimage.svg" width="70" height="70"></div><div style="width:69%;height:auto;display:inline-block;vertical-align:top;padding-left: 10px;"><div style="width:100%;height:auto;font-size:12px;color:#333;line-height:20px">'.$prdname.'</div><div style="width:100%;height:auto;font-size:11px;color:#333;line-height:20px;text-align:left">Product Code : <span style="padding-left:0px">'.$prdcode.'</span></div><div style="width:auto;display:inline-block;height:auto;font-size:11px;color:#333;line-height:20px;text-align:left;margin-top: 5px;">Gold : '.$val['weight'].' gms | Diamond: '.$val['dmdcarat'].' Ct | Quality : '.$prdqlty.' | Purity: '.$prdcarat[0].' Ct | ';
 			    if($val['size'] !== 0.0){
@@ -169,10 +169,10 @@
 						  }
 			      $message.='Color: '.$prdcolr.'</div><div style="width:auto;height:auto;font-size:11px;line-height:20px;text-align:left;margin-top:5px;display:inline-block;"> '.$qntystr.'</div> </div>
                             </div>';
-			       
+
 			      }
- 
-			       
+
+
                           $message.='  </div>
 					      <div style="width:100%;height:auto;padding:10px;background-color:#f3f3f3;box-sizing:border-box;">
 						  <div style="width:100%;height:auto;display:inline-block;vertical-align:top">
@@ -209,7 +209,7 @@
 				    </div>
 				    <div style="width:100%;height:auto;margin-top:50px;margin-bottom:15px">
 					<center>
-					<a href style="text-decoration:none"><div style="width:100%;cursor:pointer;color:#0CCDB8;display:inline-block;vertical-align:top;font-size:9px;padding:0px 5px;line-height:16px;height:25px">FOLLOW US</div></a><a href="https://www.facebook.com/JzevaLuxury/?fref=ts" style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">FACEBOOK</div></a><a href ="https://www.instagram.com/jzevaluxury/" style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">INSTAGRAM</div></a><a href="https://in.pinterest.com/JzevaLuxury/" style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;letter-spacing:0.02em;height:16px">PINTEREST</div></a>
+					<a href style="text-decoration:none"><div style="width:100%;cursor:pointer;color:#0CCDB8;display:inline-block;vertical-align:top;font-size:9px;padding:0px 5px;line-height:16px;height:25px">FOLLOW US</div></a><a href="https://www.facebook.com/JzevaLuxury/?fref=ts" style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">FACEBOOK</div></a><a href ="https://www.instagram.com/jzevaluxury/" style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">INSTAGRAM</div></a><a href ="https://in.pinterest.com/JzevaLuxury/" style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">PINTEREST</div></a>
 					</center>
 				    </div>
 				    <div style="width:100%;height:auto;font-size:12px;color:#999;line-height:25px;text-align:center;margin-top:30px">You are receiving this email in response to an order or request you submitted to  <a href="'.DOMAIN.'index.php?action=landing_page" style="color:#999;text-decoration:none !important">www.jzeva.com</a></div>
@@ -220,17 +220,17 @@
 		    </body>
 		</html>
 		';
-  
+
           return $message;
         }
 
-	
+
 	public function genwelcumtemplate($params)
 	{
-	 
-	 $gndr= $this->getgender($params['gender']); 
-	 
-	 
+
+	 $gndr= $this->getgender($params['gender']);
+
+
 	 $message='<html>
 		  <head>
 		      <title>login</title>
@@ -329,7 +329,7 @@
 				  </div>
 				  <div style="width:100%;height:auto;margin-top:50px;margin-bottom:15px">
 				      <center>
-				      <a href="#" style="text-decoration:none"><div style="width:100%;cursor:pointer;color:#0CCDB8;display:inline-block;vertical-align:top;font-size:9px;padding:0px 5px;line-height:16px;height:25px">FOLLOW US</div></a><a href="https://www.facebook.com/JzevaLuxury/?fref=ts" style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">FACEBOOK</div></a><a href="https://www.instagram.com/jzevaluxury/" style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">INSTAGRAM</div></a><a href="#" style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;letter-spacing:0.02em;height:16px">PINTEREST</div></a>
+				      <a href="#" style="text-decoration:none"><div style="width:100%;cursor:pointer;color:#0CCDB8;display:inline-block;vertical-align:top;font-size:9px;padding:0px 5px;line-height:16px;height:25px">FOLLOW US</div></a><a href="https://www.facebook.com/JzevaLuxury/?fref=ts" style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">FACEBOOK</div></a><a href="https://www.instagram.com/jzevaluxury/" style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">INSTAGRAM</div></a><a href ="https://in.pinterest.com/JzevaLuxury/" style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">PINTEREST</div></a>
 				      </center>
 				  </div>
 				  <div style="width:100%;height:auto;font-size:12px;color:#999;line-height:25px;text-align:center;margin-top:30px">You are receiving this email in response to an order or request you submitted to  <a href="'.DOMAIN.'index.php?action=landing_page" style="color:#999;text-decoration:none !important">www.jzeva.com</a></div>
@@ -342,36 +342,36 @@
 
 	  return $message;
 	}
-	
+
 	public function getshippingtemplate($params)
-	{ 
-	  $ordsql="SELECT 
+	{
+	  $ordsql="SELECT
 			product_id AS pid,
 			user_id AS uid,
 			shipping_id AS shipid,
-			(SELECT product_name FROM  tbl_product_master  WHERE   productid=pid AND active_flag=1) AS product_name, 
+			(SELECT product_name FROM  tbl_product_master  WHERE   productid=pid AND active_flag=1) AS product_name,
 			(SELECT name FROM  tbl_order_shipping_details  WHERE   shipping_id=shipid) AS user_name,
 			(SELECT gender FROM  tbl_order_shipping_details  WHERE   shipping_id=shipid AND active_flag=1) AS shp_gender,
 			(SELECT product_name FROM  tbl_product_master  WHERE   productid=".$params['pid']." AND active_flag=1) AS prd_name
-			
+
 		  FROM
 		        tbl_order_master
 		  WHERE
-		        order_id=".$params['ordid']." AND active_flag=1"; 
-	   
+		        order_id=".$params['ordid']." AND active_flag=1";
+
 	  $ordres=  $this->query($ordsql);
 	  $ordrow= $this->fetchData($ordres);
-	  
+
 	  if($ordres)
 	  {
-	    
-	      $prdname=$ordrow['prd_name']; 
+
+	      $prdname=$ordrow['prd_name'];
 	      $gender=$ordrow['shp_gender'];
 	      $usrname=$ordrow['user_name'];
-	    
+
 	  }
-	  $gndr=  $this->getgender($gender); 
-	  
+	  $gndr=  $this->getgender($gender);
+
 	  $message='<html>
 		      <head>
 			  <title>shipped</title>
@@ -414,7 +414,7 @@
 				    </div>
 				    <div style="width:100%;height:auto;margin-top:50px;margin-bottom:15px">
 					<center>
-					  <a href style="text-decoration:none"><div style="width:100%;cursor:pointer;color:#0CCDB8;display:inline-block;vertical-align:top;font-size:9px;padding:0px 5px;line-height:16px;height:25px">FOLLOW US</div></a><a href="https://www.facebook.com/JzevaLuxury/?fref=ts" style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">FACEBOOK</div></a><a href="https://www.instagram.com/jzevaluxury/" style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">INSTAGRAM</div></a><a href="https://in.pinterest.com/JzevaLuxury/" style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;letter-spacing:0.02em;height:16px">PINTEREST</div></a>
+					  <a href style="text-decoration:none"><div style="width:100%;cursor:pointer;color:#0CCDB8;display:inline-block;vertical-align:top;font-size:9px;padding:0px 5px;line-height:16px;height:25px">FOLLOW US</div></a><a href="https://www.facebook.com/JzevaLuxury/?fref=ts" style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">FACEBOOK</div></a><a href="https://www.instagram.com/jzevaluxury/" style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">INSTAGRAM</div></a><a href ="https://in.pinterest.com/JzevaLuxury/" style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">PINTEREST</div></a>
 					</center>
 				    </div>
 				    <div style="width:100%;height:auto;font-size:12px;color:#999;line-height:25px;text-align:center;margin-top:30px">You are receiving this email in response to an order or request you submitted to  <a href="'.DOMAIN.'index.php?action=landing_page" style="color:#999;text-decoration:none !important">www.jzeva.com</a></div>
@@ -424,11 +424,11 @@
 			  </div>
 		      </body>
 		  </html>      ';
-	  
-	 
+
+
 	  return $message;
 	}
-	
+
 	public function getgender($params)
 	{
 	  if($params == 1)
@@ -439,7 +439,7 @@
 	    $gndr="Mrs.";
 	  else
 	    $gndr="Dear";
-	  
+
 	  return $gndr;
 	}
     }
