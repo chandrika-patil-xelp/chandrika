@@ -239,8 +239,35 @@
 	 	           . "order_date = VALUES(order_date),delivery_date = VALUES(delivery_date),order_status = VALUES(order_status),"
 	 	            . "createdon = VALUES(createdon),updatedon = VALUES(updatedon),updatedby = VALUES(updatedby),payment = VALUES(payment),payment_type = VALUES(payment_type)";
 
-	         $res = $this->query($sql);
-
+	          $resord = $this->query($sql);
+        
+	if($resord)
+	{
+	  $invoiceid=$this->generateId();
+	  $invcsql="INSERT INTO 
+				tbl_invoice_master (
+				invoice_id,
+				order_id,
+				user_id,
+				createdon,
+				updatedon )
+		    VALUES(";
+	  $invcsql.="
+		    ".$invoiceid.",
+		    ".$params['data'][0]['orderid'].",
+		    ".$params['data'][0]['userid'].",
+		    NOW(),
+		    NOW() )
+		    ON DUPLICATE KEY UPDATE 
+		    order_id=	VALUES(order_id),
+		    user_id=	VALUES(user_id),
+		    createdon=	VALUES(createdon),
+		    updatedon=	VALUES(updatedon) ";
+	  $res=  $this->query($invcsql);
+	  
+	  if($res)
+	  {
+	      
 	    $smssql="SELECT
 			   product_id AS pid,
 			   shipping_id AS shipid,
@@ -255,13 +282,18 @@
 			  order_id=".$params['data'][0]['orderid'];
 
 	    $smsres=  $this->query($smssql);
-	    $smsrow = $this->fetchData($smsres);
+	    if($smsres){
+	      while($smsrow = $this->fetchData($smsres)){
+		  $email = $smsrow['email'];
+		  $gender = $smsrow['gender'];
+		  $usrname=$smsrow['shipname'];
+		  $prdnamarr[]=$smsrow['prd_name'];
+		  $mobile=$smsrow['mobile'];
+	      }
+	    }
+	    $prdname=implode(', ',$prdnamarr);
 
-	    $email = $smsrow['email'];
-	    $gender = $smsrow['gender'];
-	    $usrname=$smsrow['shipname'];
-	    $prdname=$smsrow['prd_name'];
-	    $mobile=$smsrow['mobile'];
+	   
 
 	    $gndr="";
 	    if($gender == 1)
@@ -274,11 +306,23 @@
 	      $gndr="Dear";
 	    global $comm;
 	    $txt = ''.$gndr.' '.$usrname.' your Jzeva jewellery '.$prdname.' with order number '.$params['data'][0]['orderid'].' has been received. Thank you for shopping with Jzeva.com';
-
+	    
 	    $url = str_replace('_MOBILE', $mobile, SMSAPI);
 	    $url = str_replace('_MESSAGE', urlencode($txt), $url);
 	    $smsurlres = $comm->executeCurl($url, true);
-
+	    
+	    $mobvndone=9007297981;
+	    $vndrtxt = 'Hi, We got one new order placed  for Product name '.$prdname.' with order number '.$params['data'][0]['orderid'].'.';
+	    $vndroneurl = str_replace('_MOBILE', $mobvndone, SMSAPI);
+	    $vndroneurl = str_replace('_MESSAGE', urlencode($vndrtxt), $vndroneurl);
+	    $smsurlvndres = $comm->executeCurl($vndroneurl, true);
+	    
+	    $mobvndtwo=7022248707;
+	    $vndrtxttwo = 'Hi, We got one new order placed  for Product name '.$prdname.' with order number '.$params['data'][0]['orderid'].'.';
+	    $vndrtwourl = str_replace('_MOBILE', $mobvndtwo, SMSAPI);
+	    $vndrtwourl = str_replace('_MESSAGE', urlencode($vndrtxttwo), $vndrtwourl);
+	    $smsurlvndrres = $comm->executeCurl($vndrtwourl, true);
+	    
             include APICLUDE.'class.emailtemplate.php';
             $obj	= new emailtemplate($db['jzeva']);
             $message	=$obj->genordrtemplate($params);
@@ -289,7 +333,15 @@
 
 
 	    mail($email, $subject, $message, $headers);
-
+ 
+            $error = array('err_code'=>0, 'err_msg'=>' Adding Order Details Inserted Successfully ' );
+	  }
+	  else
+	  {
+                $error = array('err_code'=>1, 'err_msg'=>' Error IN Adding Order Details ' );
+          }
+	}
+	
             $resp = array();
             if($res){
 

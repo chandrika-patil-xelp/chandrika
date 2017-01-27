@@ -67,8 +67,8 @@
           	</div>
           	<div class="col50 fLeft">
                     <div class="inVoc fLeft">
-                        <div class="invocNo fLeft">
-                            INVOICE NO - JZ0008
+                        <div class="invocNo fLeft" id="invoice_no">
+                            INVOICE NO - 
                        </div>
                        <div class="delDate fLeft">
                             DATE - 02-01-2017
@@ -313,7 +313,7 @@
                               heightLeft -= pageHeight;
                             }
 
-                           var namefile = 'receipt';
+                           var namefile = 'jzeva_invoice';
                            pdf.save(namefile + ".pdf");
                         }
                    });
@@ -327,7 +327,7 @@
        },200);
       setTimeout(function () { 
   	window.close(); 
-      }, 600);
+      }, 2000);
   });
   
   
@@ -353,6 +353,7 @@
 	$('#cust_state').html(data['result'][0].ustate);
 	$('#tot_amnt').html(data.totalprice);
 	$('#thnk_name').html(data['result'][0].uname);
+	$('#invoice_no').append(data['result'][0].invoiceno);
 	
 	var ords=data['result'], ordstr="",wht;
 	

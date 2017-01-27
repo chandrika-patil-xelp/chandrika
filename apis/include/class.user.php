@@ -1855,7 +1855,8 @@ class user extends DB {
 			    (SELECT  GROUP_CONCAT(metal_weight) FROM tbl_product_master WHERE productid = pid  AND active_flag =1) AS metal_weight,
 			    (SELECT GROUP_CONCAT(diamond_id) FROM tbl_product_diamond_mapping WHERE productid = pid AND active_flag = 1 ) AS allDimonds,
 			    (SELECT GROUP_CONCAT(carat) FROM tbl_product_diamond_mapping WHERE FIND_IN_SET(diamond_id,allDimonds)) AS dmdcarat,
-
+			    (SELECT invoice_id FROM tbl_invoice_master WHERE order_id=oid) AS invoiceno,
+			    
 			    price/pqty as basic_prz,
 			    order_date AS orddt,
                             delivery_date AS deldt,
@@ -1899,6 +1900,7 @@ class user extends DB {
 		    $reslt['metal_weight'] = ($row['metal_weight']!=NULL) ? $row['metal_weight'] : '';
 		    $reslt['dmdcarat'] = ($row['dmdcarat']!=NULL) ? $row['dmdcarat'] : '';
 		    $reslt['basic_prz'] = ($row['basic_prz']!=NULL) ? $row['basic_prz'] : '';
+		    $reslt['invoiceno'] = ($row['invoiceno']!=NULL) ? $row['invoiceno'] : '';
 
 
                     $resp[] = $reslt;
