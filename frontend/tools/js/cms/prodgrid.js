@@ -279,6 +279,7 @@ var goldPricehighp =0;
 
    var defprice = price + getPurPrice(Mprc, Metalwgt);
    defprice = defprice + getbasicprice(Makchrg, Metalwgt);
+    if (diamond == '1' && diamond !== null)
    defprice =  defprice + getdmdprice(Diacarat, Diaprc);
 
 var vat = (1 / 100) * defprice;
