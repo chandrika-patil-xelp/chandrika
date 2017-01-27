@@ -121,8 +121,12 @@ function displaycartdetail()
 
                     chckoutstr += "</div>";
                     chckoutstr += "<div class='cart_name'>" + (v.prdname).toUpperCase() + "</div>";
-                    chckoutstr += "<div class='cart_desc  fLeft' id='nwwt'>" + v.jewelleryType + " : " + wht + " gms &nbsp|&nbsp Diamond : " + v.dmdcarat + " Ct &nbsp|&nbsp ";
-                    chckoutstr += "Quality : " + v.quality + "  ";
+                     if(v.dmdcarat === null )
+                          
+                    chckoutstr += "<div class='cart_desc  fLeft' id='nwwt'>" + v.jewelleryType + " : " + wht + " gms &nbsp|&nbsp Solitaire : " + v.Solicarat + " Ct &nbsp|&nbsp Quality : " + v.Soliclarity + " ";
+                         else
+                    chckoutstr += "<div class='cart_desc  fLeft' id='nwwt'>" + v.jewelleryType + " : " + wht + " gms &nbsp|&nbsp Diamond : " + v.dmdcarat + " Ct &nbsp|&nbsp Quality : " + v.quality + " ";
+                    //chckoutstr += "Quality : " + v.quality + "  ";
                     chckoutstr += "<div class='cart_desc  fLeft' >";
                     chckoutstr += "Purity : " + v.carat + " &nbsp|&nbsp ";
                     if (v.ccatname !== null)
