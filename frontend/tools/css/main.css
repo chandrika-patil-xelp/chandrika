@@ -170,6 +170,7 @@ a{color:#666;}
 
 
 .addPointer{pointer-events: none;}
+.noLink .logoA {pointer-events:none}
 .menu_wrap .col100{margin-bottom:10px;}
 .left_arrow{padding-left:40px;background:url("../img/icons/13.svg")no-repeat;background-size:30px;background-position:left center;opacity:0.3}
 .left_arrow:hover{opacity:0.5}
@@ -1690,8 +1691,8 @@ input[type=radio]:checked ~ .selector_label:after {transform:translateX(0%);-web
 .galleryImg:nth-child(0){background:url(../img/1.jpg)no-repeat;background-position:center;background-size:cover;}
 .galleryImg:nth-child(1){background:url(../img/14.jpg)no-repeat;background-position:center;background-size:cover;}
 .galleryImg:nth-child(2){background:url(../img/1.jpg)no-repeat;background-position:center;background-size:cover;}
-.galleryImg:nth-child(3){background:url(../img/14.jpg)no-repeat;background-position:center;background-size:cover;}
-.galleryImg:nth-child(4){background:url(../img/1.jpg)no-repeat;background-position:center;background-size:cover;}
+.galleryImg:nth-child(3){background:url(../img/2.jpg)no-repeat;background-position:center;background-size:cover;}
+.galleryImg:nth-child(4){background:url(../img/3.jpg)no-repeat;background-position:center;background-size:cover;}
 
 /*login*/
 .loginPcnt{width:450px;height:500px;background:#fff;position:absolute;right:10%;top:0;bottom:0;margin:auto;border-radius:50%;padding:25px; padding-top: 80px;}
@@ -2583,7 +2584,7 @@ input[type=number]::-webkit-outer-spin-button {
 .emptyGrid{width: 100%;position: absolute;height: 200px;top: 0;right: 0;bottom: 0;left: 0;margin: auto;}
 .emptyLogo{background:url(../img/icons/552.svg)no-repeat;background-position: center;    background-size: auto 100%;    width: 100%;    height: 100px;}
 
-.backTop{cursor: pointer;position: fixed;width:50px;right:1%;top: 90vh;height:50px;background:linear-gradient(to left, #222529 0%, #15181b 100%) ;z-index: 9;color: #fff;font-size: 12px;font-family: regular;padding:5px;border-radius:50%;transition:300ms;-webkit-transition:300ms;-moz-transition:300ms;-o-transition:300ms;-ms-transition:300ms;}
+.backTop{cursor: pointer;position: fixed;width:50px;right:1%;top: 90vh;height:50px;background:linear-gradient(to bottom, #222529 0%, #15181b 100%) ;z-index: 9;color: #fff;font-size: 12px;font-family: regular;padding:5px;border-radius:50%;transition:300ms;-webkit-transition:300ms;-moz-transition:300ms;-o-transition:300ms;-ms-transition:300ms;}
 .backTop:after{content:"";position:absolute;left:0;top:0;width:100%;height:100%;background:url("../img/icons/543w.svg")no-repeat;background-position:center center;background-size: auto 30px;transform: rotate(-90deg);}
 .scaleot.backTop{transform:scale(0) ;-webkit-transform:scale(0) ;-moz-transform:scale(0) ;-o-transform:scale(0);-ms-transform:scale(0);}
 .mobileMess{width:100%;height:100%;position:fixed;top:0;left:0;background:#fff;z-index:1000;display:none;}
@@ -2591,7 +2592,6 @@ input[type=number]::-webkit-outer-spin-button {
 .mLoader{height:200px;width:100%;position:relative;float:left;transform:scale(0.7);}
 .mobFail{width:100%;height:40px;line-height:40px;text-align:center;color:#15181b;font-family:semibold;letter-spacing:0.2em;font-size:13px;float:left;margin-top:-40px;}
 @media only screen and (min-width:320px) and (max-width:767px){
-
     .tHead{width: 100%;text-align: left;}
     .pCont{width: 100%;padding: 0px;}
     .offsetTop{padding: 20px;}
@@ -2600,7 +2600,6 @@ input[type=number]::-webkit-outer-spin-button {
     .fooH{margin: 10px 0px;}
     .container2{padding-bottom:50px;}
     .tabWrap{display:none;}
-
 }
 @media only screen and (min-width: 320px) and (max-width: 479px){
     .logo {float:none !important;margin:auto;}
