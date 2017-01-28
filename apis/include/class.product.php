@@ -4520,7 +4520,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 	if ($rngflag == 1) 
 	{
 	   $lowprz=  explode(';', $rngval); 
-	   $sql .= "  HAVING ( basicprize  BETWEEN  ".$lowprz[0]." AND ".$lowprz[1].") AND  FIND_IN_SET(productid,prdid)";
+	   $sql .= "  HAVING ( TRUNCATE(basicprize,0)  BETWEEN  ".$lowprz[0]." AND ".$lowprz[1].") AND  FIND_IN_SET(productid,prdid)";
 	  
         }
 	else
