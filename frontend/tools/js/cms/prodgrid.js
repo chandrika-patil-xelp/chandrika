@@ -15,7 +15,7 @@ var stock = new Array();
 var aid;
 var stSearch = new Array();
 var hlist = "";
-
+var menuflag=1;
 
 $(document).ready(function () {
     $('html, body').animate({scrollTop: '0px'}, 300);
@@ -25,7 +25,7 @@ $(document).ready(function () {
     var url=""+urlstr[1];
     var rl=url.split('/');
     var catnm=rl[0];
-    console.log(catnm);
+  
     if(catnm == 'rings'){
       $('.fixedBanner').addClass('banner_rings');
     }
@@ -216,32 +216,32 @@ function generatelist(obj) {
            var Diaprc = obj['dmdQPricepercarat'];
 
     }
-      if (obj['chldcatname'] == 'Rings' || obj['finejwellrycatname'] == 'Rings')
+      if (obj['chldcatname'] == 'Rings' || obj['finejwellrycatname'] == 'Rings' || obj['signturecatname'] == 'Rings')
 	    bseSize = parseFloat(14);
-      else if (obj['chldcatname'] == 'Bangles' || obj['finejwellrycatname'] == 'Bangles')
+      else if (obj['chldcatname'] == 'Bangles' || obj['finejwellrycatname'] == 'Bangles' || obj['signturecatname'] == 'Bangles')
 	    bseSize = parseFloat(2.4);
 
 
-     if (obj['chldcatname'] == 'Rings' || obj['finejwellrycatname'] == 'Rings')
+     if (obj['chldcatname'] == 'Rings' || obj['finejwellrycatname'] == 'Rings' || obj['signturecatname'] == 'Rings')
 	    mtlWgDav = 0.05;
-     else if (obj['chldcatname'] == 'Bangles'|| obj['finejwellrycatname'] == 'Bangles')
+     else if (obj['chldcatname'] == 'Bangles'|| obj['finejwellrycatname'] == 'Bangles' || obj['signturecatname'] == 'Bangles')
 	    mtlWgDav = 7;
 
 
-     if (obj['chldcatname'] === 'Rings' || obj['finejwellrycatname'] === 'Rings'){
+     if (obj['chldcatname'] === 'Rings' || obj['finejwellrycatname'] === 'Rings' || obj['signturecatname'] == 'Rings'){
 
    changeInWeightsizelow = (5 - bseSize) * mtlWgDav;
    changeInWeightsizehigh = (25- bseSize) * mtlWgDav;
     newWeightlow = parseFloat(Metalwgt) +parseFloat(changeInWeightsizelow);
     newWeighthigh = parseFloat(Metalwgt) +parseFloat(changeInWeightsizehigh);
    }
-   else if(obj['chldcatname'] === 'Bangles' || obj['finejwellrycatname'] === 'Bangles'){
+   else if(obj['chldcatname'] === 'Bangles' || obj['finejwellrycatname'] === 'Bangles' || obj['signturecatname'] == 'Bangles'){
      changeInWeightsizelow = (2.2- bseSize) * mtlWgDav;
     changeInWeightsizehigh = (2.9- bseSize) * mtlWgDav;
     newWeightlow = parseFloat(Metalwgt) + parseFloat(changeInWeightsizelow);
     newWeighthigh = parseFloat(Metalwgt) + parseFloat(changeInWeightsizehigh);
    }
-   else if((obj['chldcatname'] !== 'Rings' || obj['chldcatname'] !== 'Bangles') || (obj['finejwellrycatname'] !== 'Bangles' || obj['finejwellrycatname'] !== 'Rings')){
+   else if((obj['chldcatname'] !== 'Rings' || obj['chldcatname'] !== 'Bangles') || (obj['finejwellrycatname'] !== 'Bangles' || obj['finejwellrycatname'] !== 'Rings') || (obj['signturecatname'] !== 'Bangles' || obj['signturecatname'] !== 'Rings')){
         changeInWeightsizelow = (0- bseSize) * mtlWgDav;
    changeInWeightsizehigh = (0- bseSize) * mtlWgDav;
     newWeightlow = parseFloat(Metalwgt) + parseFloat(changeInWeightsizelow);
@@ -643,7 +643,7 @@ $('#gr_foot').on('click', function () {
   $('.gridLoad').removeClass("dpn");
    setTimeout(function (){
      $('.gridLoad').addClass("dpn");
-     },1500);
+     },3000);
 
   if(Object.keys(fltrarray).length > 1)
   {
@@ -723,9 +723,7 @@ $('#gr_foot').on('click', function () {
 
             if (res['error']['err_code'] === 0) {
 	       getProdDtl = res["result"];
-                lowp=res["allprdpz"]["przperprdlow"][0];
-               highp=res["allprdpz"]["przperprdhigh"][0];
-               bindFilterUi();
+             
 	       showwishbtn();
                 var total = res['total'];
                 if (total == 1)
@@ -768,15 +766,16 @@ $('#gr_foot').on('click', function () {
     });
   }
 });
+var mainmenustr = "";
+var submenulist = "";
 
 function getmenu()
 {
-    var menuURL = APIDOMAIN + "index.php/?action=getfiltrmenus&catid=" + id;
+    var menuURL = APIDOMAIN + "index.php?action=getfiltrmenus&catid=" + id;
     $.ajax({type: 'POST', url: menuURL, success: function (res) {
             var data = JSON.parse(res);
 
-            var mainmenustr = "";
-            var submenulist = "";
+            
 
             if (data['result'] !== null) {
 
@@ -841,11 +840,9 @@ function getmenu()
 
 
             setTimeout(function () {
-                $('.ftab_buffer').prepend(mainmenustr);
-                $('.fmenuB').html(submenulist);
-                bindFilterUi();
-                getHeight();
-                chk();
+              
+              //  bindFilterUi();
+               
             }, 1000);
         }
     });
@@ -1109,28 +1106,29 @@ function getprodbyid()
 	      }
 	      else
 	      {
-                getProdDtl = res["result"];
-                var total = res["total"];
-		lowp=res["allprdpz"]["przperprdlow"][0];
-		var przarr=new Array();
-		$(res["allprdpz"]["przperprdlow"]).each(function(l,m){
-		   przarr.push(m);
-		});
-		highp =przarr[przarr.length-1];
-		$('#gr_foot').removeClass('dpn');
-		var carat=res["allprdpz"]["allcarat"];
+		if(menuflag == 1)
+		{
+		var przarr=new Array(); 
+		przarr=res["allprdpz"]["przperprdlow"];  
+		lowp=przarr[0];
+		highp =przarr[(przarr.length)-1]; 
+		 
 		var carr=new Array();
-		$.each(carat,function(i,v){
-		    var car=v;
-		    carr.push(v);
-		});
-
+		carr=res["allprdpz"]["allcarat"];
                 frstcar=carr[0];
-                lastcar=carr[carr.length-1];
-               // lastcar =Math.round(lastcar)+1;
-
+                lastcar= carr[(carr.length)-1]; 
+		
+		$('.ftab_buffer').prepend(mainmenustr);
+                $('.fmenuB').html(submenulist);
+		
 		bindFilterUi();
-
+		getHeight();
+                chk();
+	        }
+		getProdDtl = res["result"];
+                var total = res["total"];
+		$('#gr_foot').removeClass('dpn');
+		
                 if (total === 1)
                     $('#total_Product').html("<strong>" + total + "</strong> Product");
                 else
@@ -1201,6 +1199,7 @@ function displayproduct(fltpage)
 {
     var limit = 12;
     fltrarray.catid = id;
+    menuflag = 2;
     var dt = JSON.stringify(fltrarray);
     var URL = APIDOMAIN + "index.php?action=getprodByfiltr&page=" + fltpage + "&limit=" + limit + "&catid="+id;
     $.ajax({type: 'POST', url: URL, data: {dt: dt}, success: function (result) {

@@ -258,6 +258,8 @@ function getname()
 	  gndr="Mr";
 	else if(gendr == 3)
 	  gndr="Mrs";
+	else
+	  gndr="Dear";
 	$('#uname').html(gndr +' '+ name);  
     }
     });

@@ -231,9 +231,7 @@ function getshippingdata()
         		  gndrstr="Mr";
         		else if(gndr == 3)
         		  gndrstr="Mrs";
-        		else
-        		  gndrstr="Dear";
-
+        		
             $('#cust_name').html('<span class="txt_Capital">'+gndrstr+'</span> '+data.name);
             $('#cust_mobl').html(data.mobile+" | "+data.email);
 

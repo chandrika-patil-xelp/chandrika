@@ -599,8 +599,6 @@ function getgender(gndr)
     gndrstr="Mr";
   else if(gndr == 3)
     gndrstr="Mrs";
-  else
-    gndrstr="Dear";
-
+    
   return gndrstr;
 }
