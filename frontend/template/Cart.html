@@ -191,7 +191,7 @@
                     $('#check_out').click(function () {
                         var cururl = window.location.search;
                         var date = new Date();
-                        var minutes = 40;
+                        var minutes = 120;
                         date.setTime(date.getTime() + (minutes * 60 * 1000));
                         $.cookie("jzeva_currurl", null);
                         $.cookie("jzeva_currurl", cururl, {expires: date});
