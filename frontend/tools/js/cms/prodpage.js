@@ -3,7 +3,6 @@ var data = new Array();
 var glbquality;
 var glbcolor;
 var glbcarat;
-var catsize;
 var makchrg = 0;
 
 
@@ -314,8 +313,8 @@ $(document).ready(function () {
         success: function (res) {
 
             data = JSON.parse(res);
-
-            var dt = data['results'];
+            
+            var dt = data['results']; 
             var basic = dt['basicDetails'];
             var catAttr = dt['catAttr'];
             var vendor = dt['vendor'];
@@ -324,6 +323,8 @@ $(document).ready(function () {
             var solitaire = dt['solitaire'];
             var diamonds = dt['dimond'];
             var uncut = dt['uncut'];
+            var catid=basic['sngcatid'];
+            var catname=basic['sngcatname'];
 
             if (dt['catAttr']['results'][1]['name'] == 'Pendants') {
                 $('#Ifpendant').html('Chain Is Not Available With This Pendant');
@@ -342,9 +343,7 @@ $(document).ready(function () {
             var images = dt['images'];
 	    var othrimgs=dt['othimgs'];
 
-            catsize = dt['catAttr']['results'][1]['cid'];
-
-            getcatsize(catAttr, metalwgt);
+            getcatsize(catid,catname, metalwgt);
             if (data['error']['err_code'] == '0')
             {
                 var othrimgstr = "";
@@ -570,7 +569,7 @@ $(document).ready(function () {
                         //  $('#stn').html('Solitaire');
                         var solistr = "";
                         $(solitaire['results']).each(function (i, vl) {
-
+                            
                             var carat = vl.carat;
                             var price_per_carat = vl.prcPrCrat;
                             var tot_soli=vl.nofs;
@@ -928,11 +927,11 @@ var soliprc = 0;
 function getSoliPrice(carat, price_per_carat) {
 
     var solcarat = parseFloat(carat);
-    var solprc = parseFloat(price_per_carat);
+    var solprc = parseFloat(price_per_carat); 
     solipr = solprc * solcarat;
-    soliprc += solipr;
+    soliprc += solipr;  
     sol.push(soliprc);
-    soliValue = sol[gIndex];
+    soliValue = sol[gIndex]; 
 }
 
 var un = [];
@@ -1072,18 +1071,15 @@ var catid = 0;
 var totalNewPrice=0;
 var sizdefault;
 var sizdefaulval;
-function getcatsize(s, m) {
+function getcatsize(s,cn, m) {
     catid = s;
     metalwt = m;
-
-    catname = catid['results'][1]['name'];
-
+   catname= cn;
     if (catname == 'Rings' || catname == 'Bangles') {
-
-
+  
         $('#sizes').removeClass('dn');
-        var cid = catsize;
-        var URL = APIDOMAIN + "index.php/?action=getSizeListByCat&catid=" + catsize;
+      
+        var URL = APIDOMAIN + "index.php/?action=getSizeListByCat&catid=" + catid;
         var dat = "";
         $.ajax({
             type: 'POST',
@@ -1194,6 +1190,7 @@ function defaultPrice(a, b, c, d)
     dmdPricelow = storedDmdCarat * dmdlp;
     dmdPricehigh = storedDmdCarat * dmdhp;
     if (catname == 'Rings') {
+      
         changeInWeightsizelow = (5 - bseSize) * mtlWgDav;
         changeInWeightsizehigh = (25 - bseSize) * mtlWgDav;
         newWeightlow = parseFloat(storedWt + (changeInWeightsizelow));
@@ -1218,13 +1215,13 @@ function defaultPrice(a, b, c, d)
     goldPricehighp = parseFloat(carhp * newWeighthigh);
     var mkChargeslowp = parseFloat(storedMkCharge * newWeightlow);
     var mkChargeshighp = parseFloat(storedMkCharge * newWeighthigh);
-
+ 
     var ttllowp = parseFloat(goldPricelowp + dmdPricelow + mkChargeslowp + uncPrice + soliprc + gemsPrice);
     var ttlhighp = parseFloat(goldPricehighp + dmdPricehigh + mkChargeshighp + uncPrice + soliprc + gemsPrice);
     var totalNewPricelow = Math.round(ttllowp + (ttllowp * vatRate));
     var totalNewPricehigh = Math.round(ttlhighp + (ttlhighp * vatRate));
-  $('#pricel').html(totalNewPricelow);
-  $('#priceh').html(totalNewPricehigh);
+  $('#pricel').html(indianMoney(totalNewPricelow));
+  $('#priceh').html(indianMoney(totalNewPricehigh));
 }
 function calculatePrice()
 {
@@ -1283,7 +1280,7 @@ function calculatePrice()
     $('#newWt').html(newWeight + "");
 
     goldPrice = parseFloat(selPurity * newWeight);
-    var mkCharges = parseFloat(storedMkCharge * newWeight);
+    var mkCharges = parseFloat(storedMkCharge * newWeight); 
     var ttl = parseFloat(goldPrice + dmdPrice + mkCharges + uncPrice + soliprc + gemsPrice);
 
     totalNewPrice = Math.round(ttl + (ttl * vatRate));
