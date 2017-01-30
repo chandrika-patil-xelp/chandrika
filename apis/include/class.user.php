@@ -9,10 +9,10 @@ class user extends DB {
     }
 
     private function generateId() {
-          $dTime = round(microtime(true) * 1000); 
-	  $rNum = mt_rand(1, 9);
-	  $genrd = $rNum.$dTime;
-	  return $genrd; 
+        $dTime = round(microtime(true) * 1000);
+        $rNum = mt_rand(1, 9);
+        $genrd = $rNum . $dTime;
+        return $genrd;
     }
 
     public function addUser($params) {
@@ -95,18 +95,18 @@ class user extends DB {
                 . "city                  = \"" . urldecode($params['city']) . "\","
                 . "updated_by            = \"" . $params['userid'] . "\"";
 
-         $res = $this->query($sql);
+        $res = $this->query($sql);
 
-	global $db;
-	include 'class.emailtemplate.php';
-	$obj=  new emailtemplate($db['jzeva']);
-	$message=$obj->genwelcumtemplate($params);
+        global $db;
+        include 'class.emailtemplate.php';
+        $obj = new emailtemplate($db['jzeva']);
+        $message = $obj->genwelcumtemplate($params);
 
-	$subject  = "Welcome to JZEVA";
-        $headers  = "Content-type:text/html;charset=UTF-8" . "<br/><br/>";
+        $subject = "Welcome to JZEVA";
+        $headers = "Content-type:text/html;charset=UTF-8" . "<br/><br/>";
         $headers .= 'From: care@jzeva.com' . "<br/><br/>";
 
-	mail($email, $subject, $message, $headers);
+        mail($email, $subject, $message, $headers);
 
         $result = array();
         if ($res) {
@@ -162,7 +162,7 @@ class user extends DB {
                     $arr['mobile'] = $row['logmobile'];
                     $arr['email'] = $row['email'];
                     $arr['password'] = $row['password'];
-		    $arr['is_vendor'] = $row['is_vendor'];
+                    $arr['is_vendor'] = $row['is_vendor'];
                 }
                 if (md5($params['pass']) != $arr['password']) {
                     $error = array('err_code' => 1, 'err_msg' => 'Password incorrect');
@@ -173,12 +173,13 @@ class user extends DB {
             }
 
             $error = array('err_code' => 0, 'err_msg' => 'signed in successfully');
-        }
-        else {
-            if(!empty($email)){
-                $error = array('err_code' => 1, 'err_msg' => 'Email.id does not exist');}
-            if(!empty($mobile)){
-                $error = array('err_code' => 1, 'err_msg' => 'Mobile No does not exist');}
+        } else {
+            if (!empty($email)) {
+                $error = array('err_code' => 1, 'err_msg' => 'Email.id does not exist');
+            }
+            if (!empty($mobile)) {
+                $error = array('err_code' => 1, 'err_msg' => 'Mobile No does not exist');
+            }
             $result = array('result' => $resp, 'error' => $error);
             return $result;
         }
@@ -549,18 +550,16 @@ class user extends DB {
         $userid = (!empty($params['userid'])) ? trim($params['userid']) : '';
         $pid = (!empty($params['pid'])) ? trim($params['pid']) : '';
         $combn = (!empty($params['combn'])) ? trim($params['combn']) : '';
-        $size= (!empty($params['sz'])) ? trim($params['sz']) : '';
+        $size = (!empty($params['sz'])) ? trim($params['sz']) : '';
         if ((empty($orderid)) || (empty($userid))) {
             $resp = array();
             $error = array('errCode' => 1, 'errMsg' => 'Parameter Missing');
             $result = array('results' => $resp, 'error' => $error);
             return $result;
-        }
-	else
-	{
-	  global $db;
-	  global $comm;
-	  $smssql="SELECT
+        } else {
+            global $db;
+            global $comm;
+            $smssql = "SELECT
 			  shipping_id as shipid,
 			  product_id as pid,
 			  (SELECT name FROM tbl_order_shipping_details WHERE shipping_id=shipid)AS shipname,
@@ -568,54 +567,50 @@ class user extends DB {
 			  (SELECT gender FROM tbl_order_shipping_details WHERE shipping_id=shipid)AS gender,
 			  (SELECT email FROM tbl_order_shipping_details WHERE shipping_id=shipid)AS email,
 			  (SELECT product_name FROM tbl_product_master WHERE productid=pid)AS prd_name
-		    FROM tbl_order_master WHERE order_id=".$orderid."";
+		    FROM tbl_order_master WHERE order_id=" . $orderid . "";
 
-	  $smsres =  $this->query($smssql);
-	  $smsrow = $this->fetchData($smsres);
-	  $email = $smsrow['email'];
-	  $gender = $smsrow['gender'];
-	  $usrname=$smsrow['shipname'];
-	  $prdname=$smsrow['prd_name'];
-	  $mobile=$smsrow['mobile'];
+            $smsres = $this->query($smssql);
+            $smsrow = $this->fetchData($smsres);
+            $email = $smsrow['email'];
+            $gender = $smsrow['gender'];
+            $usrname = $smsrow['shipname'];
+            $prdname = $smsrow['prd_name'];
+            $mobile = $smsrow['mobile'];
 
-	  $gndr="";
-	  if($gender == 1)
-	    $gndr="Ms";
-	  else if($gender == 2)
-	    $gndr="Mr";
-	  else if($gender == 3)
-	    $gndr="Mrs";
+            $gndr = "";
+            if ($gender == 1)
+                $gndr = "Ms";
+            else if ($gender == 2)
+                $gndr = "Mr";
+            else if ($gender == 3)
+                $gndr = "Mrs";
 
-	    if($params['ostatus'] == 5)
-	    {
+            if ($params['ostatus'] == 5) {
 
-		$txt = 'Dear '.$gndr.'.  '.$usrname.' your Jzeva jewellery '.$prdname.' with order number '.$orderid.' has been shipped. You can track your order on www.jzeva.com.';
+                $txt = 'Dear ' . $gndr . '.  ' . $usrname . ' your Jzeva jewellery ' . $prdname . ' with order number ' . $orderid . ' has been shipped. You can track your order on www.jzeva.com.';
 
-		$url = str_replace('_MOBILE', $mobile, SMSAPI);
-		$url = str_replace('_MESSAGE', urlencode($txt), $url);
-		$smsurlres = $comm->executeCurl($url, true);
+                $url = str_replace('_MOBILE', $mobile, SMSAPI);
+                $url = str_replace('_MESSAGE', urlencode($txt), $url);
+                $smsurlres = $comm->executeCurl($url, true);
 
 
-		include APICLUDE.'class.emailtemplate.php';
-		$obj	= new emailtemplate($db['jzeva']);
-		$message=$obj->getshippingtemplate(array('userid'=>$userid,'ordid'=>$orderid,'pid'=>$pid));
-		$subject  = "JZEVA Order Shipped Detail";
-		$headers  = "Content-type:text/html;charset=UTF-8" . "<br/><br/>";
-		$headers .= 'From: care@jzeva.com' . "<br/><br/>";
+                include APICLUDE . 'class.emailtemplate.php';
+                $obj = new emailtemplate($db['jzeva']);
+                $message = $obj->getshippingtemplate(array('userid' => $userid, 'ordid' => $orderid, 'pid' => $pid));
+                $subject = "JZEVA Order Shipped Detail";
+                $headers = "Content-type:text/html;charset=UTF-8" . "<br/><br/>";
+                $headers .= 'From: care@jzeva.com' . "<br/><br/>";
 
-		mail($email, $subject, $message, $headers);
+                mail($email, $subject, $message, $headers);
+            } else if ($params['ostatus'] == 6) {
+                $txt = 'Dear ' . $gndr . '.  ' . $usrname . ' your Jzeva jewellery ' . $prdname . ' with order number ' . $orderid . ' has been Delivered. Thank you for shopping with Jzeva.com';
 
-	    }
-	    else if($params['ostatus'] == 6)
-	    {
-	      $txt = 'Dear '.$gndr.'.  '.$usrname.' your Jzeva jewellery '.$prdname.' with order number '.$orderid.' has been Delivered. Thank you for shopping with Jzeva.com';
-
-	      $url = str_replace('_MOBILE', $mobile, SMSAPI);
-	      $url = str_replace('_MESSAGE', urlencode($txt), $url);
-	      $smsurlres = $comm->executeCurl($url, true);
-	    }
-            $sql = "UPDATE tbl_order_master SET  order_status =  \"" . $params['ostatus'] . "\" WHERE order_id=" . $params['orderid'] . " AND user_id=" . $params['userid'] . " AND product_id= ".$params['pid']." AND col_car_qty= '".$params['combn']."' AND size=".$params['sz']."";
-              $res = $this->query($sql);
+                $url = str_replace('_MOBILE', $mobile, SMSAPI);
+                $url = str_replace('_MESSAGE', urlencode($txt), $url);
+                $smsurlres = $comm->executeCurl($url, true);
+            }
+            $sql = "UPDATE tbl_order_master SET  order_status =  \"" . $params['ostatus'] . "\" WHERE order_id=" . $params['orderid'] . " AND user_id=" . $params['userid'] . " AND product_id= " . $params['pid'] . " AND col_car_qty= '" . $params['combn'] . "' AND size=" . $params['sz'] . "";
+            $res = $this->query($sql);
             $result = array();
             if ($res) {
                 $err = array('err_code' => 0, 'err_msg' => 'Data updatetd successfully');
@@ -809,7 +804,7 @@ class user extends DB {
                 . ",\"" . urldecode($params['address']) . "\""
                 . ",\"" . urldecode(($params['state'])) . "\""
                 . ",\"" . urldecode(($params['pincode'])) . "\""
-		. ",\"" . urldecode(($params['gender'])) . "\""
+                . ",\"" . urldecode(($params['gender'])) . "\""
                 . ",1"
                 . ",now())"
                 . " ON DUPLICATE KEY UPDATE "
@@ -820,7 +815,7 @@ class user extends DB {
                 . "address  = \"" . $params['address'] . "\","
                 . "state    = \"" . urldecode($params['state']) . "\","
                 . "pincode  = \"" . urldecode($params['pincode']) . "\","
-		. "gender  = \"" . urldecode($params['gender']) . "\"";
+                . "gender  = \"" . urldecode($params['gender']) . "\"";
 
 
 
@@ -832,7 +827,7 @@ class user extends DB {
         } else {
             $err = array('err_code' => 1, 'err_msg' => 'Error in inserting');
         }
-        $results = array('result' => $result, 'error' => $err,'shipid'=>$ship_id);
+        $results = array('result' => $result, 'error' => $err, 'shipid' => $ship_id);
         return $results;
     }
 
@@ -867,19 +862,18 @@ class user extends DB {
         return $results;
     }
 
-    public function newforgotPass($params)
-    {
+    public function newforgotPass($params) {
 
-            $email = (!empty($params['email'])) ? trim($params['email']) : '';
+        $email = (!empty($params['email'])) ? trim($params['email']) : '';
 
-            if (empty($email)) {
+        if (empty($email)) {
 
-                $resp = array();
-                $error = array('Code' => 1, 'Msg' => 'Invalid parameters');
-                $res = array('results' => $resp, 'error' => $error);
-                return $res;
-            }
-            $vsql = "   SELECT
+            $resp = array();
+            $error = array('Code' => 1, 'Msg' => 'Invalid parameters');
+            $res = array('results' => $resp, 'error' => $error);
+            return $res;
+        }
+        $vsql = "   SELECT
                                 logmobile,
                                 user_name,
 				gender
@@ -889,17 +883,17 @@ class user extends DB {
                                 email=\"" . $email . "\"
                         AND
                                 is_active = 1";
-            $vres = $this->query($vsql);
+        $vres = $this->query($vsql);
 
-            $row = $this->fetchData($vres);
+        $row = $this->fetchData($vres);
 
-            $mobile = $row['logmobile'];
-            $uname = urldecode($row['user_name']);
-	    $gndr=$row['gender'];
+        $mobile = $row['logmobile'];
+        $uname = urldecode($row['user_name']);
+        $gndr = $row['gender'];
 
-	    global $comm;
-                $isValidate = true;
-                $msql = "SELECT
+        global $comm;
+        $isValidate = true;
+        $msql = "SELECT
                         *,
                         DATE_SUB(`updated_on`,INTERVAL - 10 MINUTE) as intervl,
                         now()
@@ -909,27 +903,24 @@ class user extends DB {
                                 mobile = " . $mobile . "
                         AND
                                 DATE_SUB(`updated_on`,INTERVAL - 10 MINUTE) > now() limit 1";
-                $mres = $this->query($msql);
-                  if ($mres)
-                    {
-                        $mrow = $this->fetchData($mres);
-                        if ($mrow['vcode'])
-                        {
-                            $rno = $mrow['vcode'];
-                             $isValidate = false;
-                        }
-                    }
-                    if ($isValidate)
-                    {
-                        $rno = rand(100000, 999999);
-                        $mssql = "INSERT
+        $mres = $this->query($msql);
+        if ($mres) {
+            $mrow = $this->fetchData($mres);
+            if ($mrow['vcode']) {
+                $rno = $mrow['vcode'];
+                $isValidate = false;
+            }
+        }
+        if ($isValidate) {
+            $rno = rand(100000, 999999);
+            $mssql = "INSERT
                                 INTO
                                             tbl_verification_code (mobile,vcode)
                                 VALUES
                                             (" . $mobile . ",
                                              " . $rno . ")";
-                        $msres = $this->query($mssql);
-                    }
+            $msres = $this->query($mssql);
+        }
 
 
 	          $subject  = "JZEVA password assistance";
@@ -1176,7 +1167,7 @@ class user extends DB {
                 $arr['address'] = $row['address'];
                 $arr['state'] = $row['state'];
                 $arr['pincode'] = $row['pincode'];
-		$arr['gender'] = $row['gender'];
+                $arr['gender'] = $row['gender'];
                 $arr['createdon'] = $row['createdon'];
 
                 $reslt[] = $arr;
@@ -1402,15 +1393,15 @@ class user extends DB {
     public function getallOrderDtails() {
         global $comm;
         $result = array();
-          $sqlcount = "  SELECT
+        $sqlcount = "  SELECT
                                     count(product_id) AS  cnt
                                             FROM
                                      tbl_order_master
                                          WHERE
                                       active_flag NOT IN(2)";
-            $rescnt= $this->query($sqlcount);
-            $row = $this->fetchData($rescnt);
-           $total = $row['cnt'];
+        $rescnt = $this->query($sqlcount);
+        $row = $this->fetchData($rescnt);
+        $total = $row['cnt'];
 
 
         $sql = "SELECT
@@ -1475,7 +1466,7 @@ class user extends DB {
         } else {
             $err = array('err_code' => 1, 'err_msg' => 'Error in fetching data');
         }
-        $results = array('result' => $result, 'error' => $err, 'total'=> $total);
+        $results = array('result' => $result, 'error' => $err, 'total' => $total);
         return $results;
     }
 
@@ -1503,6 +1494,7 @@ class user extends DB {
                         active_flag as aflag,
                         price as price,
                         payment as pm,
+                        (Select payment_mode from tbl_transaction_master where order_id=oid) as paymode,
 
 (SELECT  GROUP_CONCAT(product_name) FROM tbl_product_master WHERE productid = pid AND active_flag !=2 ) AS prdname,
 (SELECT  GROUP_CONCAT(procurement_cost) FROM tbl_product_master WHERE productid = pid AND active_flag !=2 ) AS procurementcost,
@@ -1577,57 +1569,58 @@ class user extends DB {
                 $arr['oid'] = $row['oid'];
                 $arr['pid'] = $row['pid'];
                 $arr['col_car_qty'] = $row['combine'];
-                  $arr['sz'] = $row['size'];
-                    $arr['shpid'] = $row['shpid'];
-                    $arr['prdSeo'] = $row['pseoname'];
-                      $arr['proccost'] = $row['procurementcost'];
-                       $arr['vendid'] = $row['vendid'];
-                        $arr['vendorname'] = $row['vendorname'];
-                     $arr['prodwgt'] = $row['prodwgt'];
-                     $arr['dmdsetting'] = $row['dmdsetting'];
-                      $arr['certificate'] = $row['certificate'];
-                     $arr['margin'] = $row['margin'];
-                      $arr['measurement'] = $row['measurement'];
-                      $arr['mkngchrg'] = $row['mkngchrg'];
+                $arr['sz'] = $row['size'];
+                $arr['shpid'] = $row['shpid'];
+                $arr['prdSeo'] = $row['pseoname'];
+                $arr['proccost'] = $row['procurementcost'];
+                $arr['vendid'] = $row['vendid'];
+                $arr['vendorname'] = $row['vendorname'];
+                $arr['prodwgt'] = $row['prodwgt'];
+                $arr['dmdsetting'] = $row['dmdsetting'];
+                $arr['certificate'] = $row['certificate'];
+                $arr['margin'] = $row['margin'];
+                $arr['measurement'] = $row['measurement'];
+                $arr['mkngchrg'] = $row['mkngchrg'];
                 $arr['uid'] = $row['uid'];
                 $arr['uname'] = $row['uname'];
                 $arr['umobile'] = $row['umobile'];
-                  $arr['odate'] = $comm->makeDate($row['odate']);
+                $arr['odate'] = $comm->makeDate($row['odate']);
                 $arr['ddate'] = $comm->makeDate($row['ddate']);
-                 $arr['ostatus'] = $row['ostatus'];
-                  $arr['aflag'] = $row['aflag'];
+                $arr['ostatus'] = $row['ostatus'];
+                $arr['aflag'] = $row['aflag'];
                 $arr['price'] = $row['price'];
                 $arr['pm'] = $row['pm'];
-                  $arr['prdname'] = $row['prdname'];
+                $arr['paymode'] = $row['paymode'];
+                $arr['prdname'] = $row['prdname'];
                 $arr['prdcode'] = $row['product_code'];
                 $arr['defimg'] = $row['default_img'];
-                  $arr['catgryname'] = $row['catgryname'];
+                $arr['catgryname'] = $row['catgryname'];
 
 
 
                 $arr['prdimg'] = $row['prdimage'];
-                    $arr['color'] = $row['color'];
+                $arr['color'] = $row['color'];
                 $arr['Metalcarat'] = $row['Metalcarat'];
                 $arr['quality'] = $row['quality'];
-                  $arr['jwelType'] = $row['jewelleryType'];
-                    $arr['mtlwgt'] = $row['metal_weight'];
-                      $arr['alldmd'] = $row['allDimonds'];
-                        $arr['dmdcarat'] = $row['dmdcarat'];
-                          $arr['totdmd'] = $row['totaldmd'];
-                            $arr['dmdshape'] = $row['shape'];
-                              $arr['allgems'] = $row['allGemstone'];
+                $arr['jwelType'] = $row['jewelleryType'];
+                $arr['mtlwgt'] = $row['metal_weight'];
+                $arr['alldmd'] = $row['allDimonds'];
+                $arr['dmdcarat'] = $row['dmdcarat'];
+                $arr['totdmd'] = $row['totaldmd'];
+                $arr['dmdshape'] = $row['shape'];
+                $arr['allgems'] = $row['allGemstone'];
 
-                    $arr['gemstoneName'] = $row['gemstoneName'];
+                $arr['gemstoneName'] = $row['gemstoneName'];
 
-                    $arr['totalgems'] = $row['totalgems'];
-                    $arr['gemscarat'] = $row['gemscarat'];
-                    $arr['gemsPricepercarat'] = $row['gemsPricepercarat'];
+                $arr['totalgems'] = $row['totalgems'];
+                $arr['gemscarat'] = $row['gemscarat'];
+                $arr['gemsPricepercarat'] = $row['gemsPricepercarat'];
 
-                    $arr['allSolit'] = $row['allSolitaire'];
-                    $arr['totalSolit'] = $row['totalSolitaire'];
-                    $arr['Solicarat'] = $row['Solicarat'];
-                    $arr['SoliPricepercarat'] = $row['SoliPricepercarat'];
-                     $arr['solishape'] = $row['solishape'];
+                $arr['allSolit'] = $row['allSolitaire'];
+                $arr['totalSolit'] = $row['totalSolitaire'];
+                $arr['Solicarat'] = $row['Solicarat'];
+                $arr['SoliPricepercarat'] = $row['SoliPricepercarat'];
+                $arr['solishape'] = $row['solishape'];
                 $arr['soliclr'] = $row['soliclr'];
                 $arr['soliclar'] = $row['soliclar'];
                 $arr['solicut'] = $row['solicut'];
@@ -1638,15 +1631,15 @@ class user extends DB {
                 $arr['solicrwnangle'] = $row['solicrwnangle'];
                 $arr['soligirdle'] = $row['soligirdle'];
 
-                    $arr['allUncut'] = $row['allUncut'];
-                    $arr['totalUncut'] = $row['totalUncut'];
-                    $arr['Uncutcarat'] = $row['Uncutcarat'];
-                    $arr['UncutPricepercarat'] = $row['UncutPricepercarat'];
-                    $arr['uncutqual'] = $row['uncutqual'];
-                    $arr['Uncutclr'] = $row['Uncutclr'];
+                $arr['allUncut'] = $row['allUncut'];
+                $arr['totalUncut'] = $row['totalUncut'];
+                $arr['Uncutcarat'] = $row['Uncutcarat'];
+                $arr['UncutPricepercarat'] = $row['UncutPricepercarat'];
+                $arr['uncutqual'] = $row['uncutqual'];
+                $arr['Uncutclr'] = $row['Uncutclr'];
 
-                 $arr['ccatid'] = $row['ccatid'];
-                  $arr['ccatname'] = $row['ccatname'];
+                $arr['ccatid'] = $row['ccatid'];
+                $arr['ccatname'] = $row['ccatname'];
 
                 $arr['email'] = $row['usremail'];
                 $arr['address'] = $row['shpadd'];
@@ -1667,18 +1660,17 @@ class user extends DB {
         return $results;
     }
 
-    	public function frgotpassotpTemplate($uname,$otp,$gnd)
-        {
-	  if($gnd == 1)
-	    $gndr="Ms";
-	  else if($gnd == 2)
-	    $gndr="Mr";
-	  else if($gnd == 3)
-	    $gndr="Mrs";
-	  else
-	    $gndr="Dear";
+    public function frgotpassotpTemplate($uname, $otp, $gnd) {
+        if ($gnd == 1)
+            $gndr = "Ms";
+        else if ($gnd == 2)
+            $gndr = "Mr";
+        else if ($gnd == 3)
+            $gndr = "Mrs";
+        else
+            $gndr = "Dear";
 
-	  $message='<html>
+        $message = '<html>
 		    <head>
 			<title>otp email</title>
 			<meta charset="UTF-8">
@@ -1692,20 +1684,20 @@ class user extends DB {
 			    <div style="width:100%;height:auto;margin:auto;max-width:750px">
 				<div style="width:100%;height:auto;margin-bottom: 30px;">
 				    <div style="width:150px;height:auto;margin:auto">
-					<img src="'.DOMAIN.'frontend/emailer/jzeva_logo.png" alt="JZEVA" width="150" height="50">
+					<img src="' . DOMAIN . 'frontend/emailer/jzeva_logo.png" alt="JZEVA" width="150" height="50">
 				    </div>
 				</div>
 				<div style="width:100%;height:auto;background-color:#fff;padding:25px;min-height:300px;padding-bottom:0px;box-sizing:border-box;">
 				    <div style="width:100%;height:auto;margin-bottom:30px;">
 					<div style="width:70px;height:60px;margin:auto">
-					    <img src="'.DOMAIN.'frontend/emailer/otp.png" alt="img" width="70" height="60">
+					    <img src="' . DOMAIN . 'frontend/emailer/otp.png" alt="img" width="70" height="60">
 					</div>
 				    </div>
-				    <div style="width:100%;height:auto;font-size:20px;color:#0CCDB8;text-align:center;line-height:25px"> '.$gndr.'. '.$uname.'</div>
+				    <div style="width:100%;height:auto;font-size:20px;color:#0CCDB8;text-align:center;line-height:25px"> ' . $gndr . '. ' . $uname . '</div>
 				    <div style="width: 100%;height: auto;font-size: 13px;text-align: center;color: #333;line-height: 25px;margin-top: 10px;letter-spacing: 0.1em;"><span style="display:inline-block;line-height:25px;vertical-align:middle">THANK YOU FOR YOUR INTEREST IN JZEVA</span></div>
 				    <div style="width:100%;height:auto;font-size:14px;color:#333;text-align:center;line-height:25px;padding-top:10px;">We are glad to assist you in changing the password of your jzeva account</div>
 				    <div style="width:100%;height:auto;font-size:14px;color:#333;text-align:center;line-height:25px;padding-top:10px;"><span style="display:inline-block;line-height:25px;vertical-align:middle">Please use the OTP sent in this email to proceed with changing your password</span></div>
-				    <div style="width:100%;height:auto;font-size:45px;line-height:50px;color:#0CCDB8;text-align:center;margin-top: 10px;">'.$otp.'</div>
+				    <div style="width:100%;height:auto;font-size:45px;line-height:50px;color:#0CCDB8;text-align:center;margin-top: 10px;">' . $otp . '</div>
 				    <div style="width:100%;height:auto;padding:20px 25px;background-color:#222529;margin-top:25px;box-sizing:border-box;">
 					<div style="width:100%;height:auto;font-size:12px;color:#fff;text-align:center;line-height:20px;margin-top:10px;">Should you have any question or require our assistance, our concierege services desk is available at</div>
 					<div style="width:100%;height:auto;font-size:12px;line-height:20px;color:#0CCDB8;text-align:center;margin-top:7px"><span style="display:inline-block;line-height:25px;vertical-align:middle">Call +91 7022248707 | Email <a href="" style="color:#0CCDB8;text-decoration:none">care@jzeva.com</a></span></div>
@@ -1732,44 +1724,40 @@ class user extends DB {
 		</html>';
 
 
-            return $message;
-	}
+        return $message;
+    }
 
+    public function checkusertype($params) {
+        $userid = (!empty($params['userid'])) ? trim($params['userid']) : '';
 
-	public function checkusertype($params)
-	{
-	  $userid=(!empty($params['userid'])) ? trim($params['userid']): '';
+        if (($userid == "" || $userid == null)) {
 
-	  if (($userid == "" || $userid == null)) {
+            $resp = array();
+            $error = array('Code' => 1, 'Msg' => 'Invalid parameter ');
+            $res = array('results' => $resp, 'error' => $error);
+            return $res;
+        }
 
-                $resp = array();
-                $error = array('Code' => 1, 'Msg' => 'Invalid parameter ');
-                $res = array('results' => $resp, 'error' => $error);
-                return $res;
-          }
+        $sql = "select is_vendor "
+                . " from tbl_user_master where user_id=" . $params['userid'] . "";
 
-	    $sql="select is_vendor "
-		    . " from tbl_user_master where user_id=".$params['userid']."";
+        $res = $this->query($sql);
+        if ($res) {
 
-	    $res=  $this->query($sql);
-	    if($res){
+            $row = $this->fetchData($res);
+            $result['is_vendor'] = $row['is_vendor'];
+        } else {
+            $err = array('err_code' => 1, 'err_msg' => 'Error in fetching data');
+        }
+        $results = array('result' => $result, 'error' => $err);
+        return $results;
+    }
 
-	      $row=  $this->fetchData($res);
-	      $result['is_vendor']=$row['is_vendor'];
-	    }
-            else
-            {
-               $err = array('err_code' => 1, 'err_msg' => 'Error in fetching data');
-            }
-            $results = array('result' => $result, 'error' => $err);
-            return $results;
-	}
-
-	 public function getshipdatabyshipid($params) {
+    public function getshipdatabyshipid($params) {
 
         $shpid = (!empty($params['shpid'])) ? trim($params['shpid']) : '';
 
-        if ($shpid == "" || $shpid == null ) {
+        if ($shpid == "" || $shpid == null) {
             $resp = array();
             $error = array('Code' => 1, 'Msg' => 'Invalid parameter');
             $res = array('results' => $resp, 'error' => $error);
@@ -1797,8 +1785,8 @@ class user extends DB {
                 $arr['user_id'] = $row['user_id'];
                 $arr['shipping_id'] = $row['shipping_id'];
                 $arr['name'] = $row['name'];
-            		$arr['mobile'] = $row['mobile'];
-            		$arr['email'] = $row['email'];
+                $arr['mobile'] = $row['mobile'];
+                $arr['email'] = $row['email'];
                 $arr['city'] = $row['city'];
                 $arr['address'] = $row['address'];
                 $arr['state'] = $row['state'];
@@ -1815,17 +1803,17 @@ class user extends DB {
         return $result;
     }
 
-     public function OrderDetailsbyordid($params){
-            global $comm;
-            if(empty($params['orderid'])){
-	       $reslt=array();
-	       $error = array('err_code'=>1, 'err_msg'=>' Parameter missing' );
-	       $result=array('result' =>$reslt,'error'=>$error,'');
-	       return $result;
-	    }
+    public function OrderDetailsbyordid($params) {
+        global $comm;
+        if (empty($params['orderid'])) {
+            $reslt = array();
+            $error = array('err_code' => 1, 'err_msg' => ' Parameter missing');
+            $result = array('result' => $reslt, 'error' => $error, '');
+            return $result;
+        }
 
 
-                $sql = "SELECT
+        $sql = "SELECT
                             order_id AS oid,
                             product_id AS pid,
                             user_id AS uid,
@@ -1863,77 +1851,75 @@ class user extends DB {
                             order_status AS ordsta,
                             active_flag AS actflg,
                             payment AS pay
-                            FROM tbl_order_master WHERE order_id = ".$params['orderid']." AND active_flag=1";
+                            FROM tbl_order_master WHERE order_id = " . $params['orderid'] . " AND active_flag=1";
 
-                $res = $this->query($sql);
+        $res = $this->query($sql);
 
-                if($res){
-		  $totalprice=0;
-                 while ($row = $this->fetchData($res)){
+        if ($res) {
+            $totalprice = 0;
+            while ($row = $this->fetchData($res)) {
 
-                    $reslt['oid'] = ($row['oid']!=NULL) ? $row['oid'] : '';
-                    $reslt['pid'] = ($row['pid']!=NULL) ? $row['pid'] : '';
-                    $reslt['uid'] = ($row['uid']!=NULL) ? $row['uid'] : '';
-                    $reslt['uname'] = ($row['uname']!=NULL) ? $row['uname'] : '';
-		    $reslt['gender'] = ($row['gender']!=NULL) ? $row['gender'] : '';
-                    $reslt['mobile'] = ($row['mobile']!=NULL) ? $row['mobile'] : '';
-                    $reslt['email'] = ($row['email']!=NULL) ? $row['email'] : '';
-                    $reslt['orddt'] = $comm->makeDate($row['orddt']);
-                    $reslt['deldt'] = $comm->makeDate($row['deldt']);
-                    $reslt['actflg'] = ($row['actflg']!=NULL) ? $row['actflg'] : '';
-                    $reslt['ppri'] = ($row['price']!=NULL) ? $row['price'] : '';
-                    $reslt['size'] = ($row['size']!=NULL) ? $row['size'] : '';
-                    $reslt['pqty'] = ($row['pqty']!=NULL) ? $row['pqty'] : '';
-                    $reslt['pay'] = ($row['pay']!=NULL) ? $row['pay'] : '';
-                    $reslt['ucity'] = ($row['customerCity']!=NULL) ? $row['customerCity'] : '';
-                    $reslt['ustate'] = ($row['customerState']!=NULL) ? $row['customerState'] : '';
-                    $reslt['upin'] = ($row['customerPincode']!=NULL) ? $row['customerPincode'] : '';
-                    $reslt['uaddres'] = ($row['customerAddrs']!=NULL) ? $row['customerAddrs'] : '';
-                    $reslt['transactionid'] = ($row['transactionid']!=NULL) ? $row['transactionid'] : '';
-		    $reslt['transactiontype'] = ($row['transactiontype']!=NULL) ? $row['transactiontype'] : '';
-		    $reslt['prd_name'] = ($row['prd_name']!=NULL) ? $row['prd_name'] : '';
-		    $reslt['prd_code'] = ($row['prd_code']!=NULL) ? $row['prd_code'] : '';
-		    $reslt['color'] = ($row['color']!=NULL) ? $row['color'] : '';
-		    $reslt['carat'] = ($row['carat']!=NULL) ? $row['carat'] : '';
-		    $reslt['quality'] = ($row['quality']!=NULL) ? $row['quality'] : '';
-		    $reslt['ccatname'] = ($row['ccatname']!=NULL) ? $row['ccatname'] : '';
-		    $reslt['metal_weight'] = ($row['metal_weight']!=NULL) ? $row['metal_weight'] : '';
-		    $reslt['dmdcarat'] = ($row['dmdcarat']!=NULL) ? $row['dmdcarat'] : '';
-		    $reslt['basic_prz'] = ($row['basic_prz']!=NULL) ? $row['basic_prz'] : '';
-		    $reslt['invoiceno'] = ($row['invoiceno']!=NULL) ? $row['invoiceno'] : '';
-
-
-                    $resp[] = $reslt;
-		    $totalprice+=($row['price'] != NULL) ?$row['price']:'';
-                 }
-                    $error = array('err_code'=>0, 'err_msg'=>' Data fetched successfully ' );
-
-                }else{
-                    $error = array('err_code'=>1, 'err_msg'=>' Error In Fetching Data ' );
-                }
+                $reslt['oid'] = ($row['oid'] != NULL) ? $row['oid'] : '';
+                $reslt['pid'] = ($row['pid'] != NULL) ? $row['pid'] : '';
+                $reslt['uid'] = ($row['uid'] != NULL) ? $row['uid'] : '';
+                $reslt['uname'] = ($row['uname'] != NULL) ? $row['uname'] : '';
+                $reslt['gender'] = ($row['gender'] != NULL) ? $row['gender'] : '';
+                $reslt['mobile'] = ($row['mobile'] != NULL) ? $row['mobile'] : '';
+                $reslt['email'] = ($row['email'] != NULL) ? $row['email'] : '';
+                $reslt['orddt'] = $comm->makeDate($row['orddt']);
+                $reslt['deldt'] = $comm->makeDate($row['deldt']);
+                $reslt['actflg'] = ($row['actflg'] != NULL) ? $row['actflg'] : '';
+                $reslt['ppri'] = ($row['price'] != NULL) ? $row['price'] : '';
+                $reslt['size'] = ($row['size'] != NULL) ? $row['size'] : '';
+                $reslt['pqty'] = ($row['pqty'] != NULL) ? $row['pqty'] : '';
+                $reslt['pay'] = ($row['pay'] != NULL) ? $row['pay'] : '';
+                $reslt['ucity'] = ($row['customerCity'] != NULL) ? $row['customerCity'] : '';
+                $reslt['ustate'] = ($row['customerState'] != NULL) ? $row['customerState'] : '';
+                $reslt['upin'] = ($row['customerPincode'] != NULL) ? $row['customerPincode'] : '';
+                $reslt['uaddres'] = ($row['customerAddrs'] != NULL) ? $row['customerAddrs'] : '';
+                $reslt['transactionid'] = ($row['transactionid'] != NULL) ? $row['transactionid'] : '';
+                $reslt['transactiontype'] = ($row['transactiontype'] != NULL) ? $row['transactiontype'] : '';
+                $reslt['prd_name'] = ($row['prd_name'] != NULL) ? $row['prd_name'] : '';
+                $reslt['prd_code'] = ($row['prd_code'] != NULL) ? $row['prd_code'] : '';
+                $reslt['color'] = ($row['color'] != NULL) ? $row['color'] : '';
+                $reslt['carat'] = ($row['carat'] != NULL) ? $row['carat'] : '';
+                $reslt['quality'] = ($row['quality'] != NULL) ? $row['quality'] : '';
+                $reslt['ccatname'] = ($row['ccatname'] != NULL) ? $row['ccatname'] : '';
+                $reslt['metal_weight'] = ($row['metal_weight'] != NULL) ? $row['metal_weight'] : '';
+                $reslt['dmdcarat'] = ($row['dmdcarat'] != NULL) ? $row['dmdcarat'] : '';
+                $reslt['basic_prz'] = ($row['basic_prz'] != NULL) ? $row['basic_prz'] : '';
+                $reslt['invoiceno'] = ($row['invoiceno'] != NULL) ? $row['invoiceno'] : '';
 
 
-
-            $result = array('result'=>$resp, 'error'=>$error,'totalprice'=>$totalprice );
-            return $result;
-
+                $resp[] = $reslt;
+                $totalprice+=($row['price'] != NULL) ? $row['price'] : '';
+            }
+            $error = array('err_code' => 0, 'err_msg' => ' Data fetched successfully ');
+        } else {
+            $error = array('err_code' => 1, 'err_msg' => ' Error In Fetching Data ');
         }
 
-	public function checktrackord($params) {
 
-	    if (empty($params['orderid'])) {
-	      $res=array();
-	      $err=array('error_code'=>1,'err_msg'=>'Parameter Missing');
-	      $result=array('relust'=>$res,'error'=>$err);
-	      return $result;
-	    }
 
-            $sql = "SELECT
+        $result = array('result' => $resp, 'error' => $error, 'totalprice' => $totalprice);
+        return $result;
+    }
+
+    public function checktrackord($params) {
+
+        if (empty($params['orderid'])) {
+            $res = array();
+            $err = array('error_code' => 1, 'err_msg' => 'Parameter Missing');
+            $result = array('relust' => $res, 'error' => $err);
+            return $result;
+        }
+
+        $sql = "SELECT
 			  DISTINCT(order_id)
 		    FROM
 			  tbl_order_master
 		    WHERE
-			  order_id=".$params['orderid'] ."
+			  order_id=" . $params['orderid'] . "
 		    AND
 			  active_flag=1
 		    AND
@@ -1944,44 +1930,38 @@ class user extends DB {
 					  WHERE
 						   ";
 
-	    if(!empty($params['mobile'])){
-		  $sql.=" mobile=".$params['mobile'].") ";
-	    }
-	    else if(!empty($params['email'])){
-		  $sql.=" email='".$params['email']."' )";
-	    }
+        if (!empty($params['mobile'])) {
+            $sql.=" mobile=" . $params['mobile'] . ") ";
+        } else if (!empty($params['email'])) {
+            $sql.=" email='" . $params['email'] . "' )";
+        }
 
-	    $res = $this->query($sql);
-	    $row = $this->fetchData($res);
+        $res = $this->query($sql);
+        $row = $this->fetchData($res);
 
-            if ($res)
-	    {
-                if($this->numRows($res)>0)
-		{
-		  $reslt['order_id'] = $row['order_id'];
-		  $err = array('err_code' => 0, 'err_msg' => 'Data fetched successfully');
-		}
-		else
-		  $err = array('err_code' => 1, 'err_msg' => 'Please Enter Correct Data');
-            }
-	    else
-	    {
-                $err = array('err_code' => 2, 'err_msg' => 'Error in fetching data');
-            }
-	    $result = array();
-            $results = array('result' => $reslt, 'error' => $err);
-            return $results;
+        if ($res) {
+            if ($this->numRows($res) > 0) {
+                $reslt['order_id'] = $row['order_id'];
+                $err = array('err_code' => 0, 'err_msg' => 'Data fetched successfully');
+            } else
+                $err = array('err_code' => 1, 'err_msg' => 'Please Enter Correct Data');
+        }
+        else {
+            $err = array('err_code' => 2, 'err_msg' => 'Error in fetching data');
+        }
+        $result = array();
+        $results = array('result' => $reslt, 'error' => $err);
+        return $results;
     }
 
-    public function gettrackordrdetail($params)
-    {
+    public function gettrackordrdetail($params) {
 
-	if (empty($params['orderid'])) {
-	      $res=array();
-	      $err=array('error_code'=>1,'err_msg'=>'Parameter Missing');
-	      $result=array('relust'=>$res,'error'=>$err);
-	      return $result;
-	}
+        if (empty($params['orderid'])) {
+            $res = array();
+            $err = array('error_code' => 1, 'err_msg' => 'Parameter Missing');
+            $result = array('relust' => $res, 'error' => $err);
+            return $result;
+        }
 
         $sql = " SELECT
                             order_id AS oid,
@@ -2026,96 +2006,89 @@ class user extends DB {
 			     (SELECT GROUP_CONCAT(address) FROM tbl_order_shipping_details WHERE FIND_IN_SET(shipping_id,shipngDet)) AS customerAddrs,
 			     (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND active_flag = 1 AND  default_img_flag=1) AS default_image
 
-	      FROM tbl_order_master WHERE order_id= ".$params['orderid']." AND active_flag = 1 ";
+	      FROM tbl_order_master WHERE order_id= " . $params['orderid'] . " AND active_flag = 1 ";
 
-	      $res = $this->query($sql);
-
-
-	      if($res)
-		{
-		     $prztotal=0;
-                     while ($row = $this->fetchData($res)){
-
-                     $reslt['oid'] = ($row['oid']!=null) ? $row['oid'] : '';
-                     $reslt['pid'] = ($row['pid']!=NULL) ? $row['pid'] : '';
-                     $reslt['uid'] = ($row['uid']!=NULL) ? $row['uid'] : '';
-                     $reslt['prdSeoname'] = ($row['prdSeoname']!=NULL) ? $row['prdSeoname'] : '';
-                     $reslt['shipping_id'] = ($row['shipping_id']!=NULL) ? $row['shipping_id'] : '';
-                     $reslt['col_car_qty'] = ($row['col_car_qty']!=NULL) ? $row['col_car_qty'] : '';
-                     $reslt['size'] = ($row['size']!=NULL) ? $row['size'] : '';
-                     $reslt['color'] = ($row['color']!=NULL) ? $row['color'] : '';
-                     $reslt['Metalcarat'] = ($row['Metalcarat']!=NULL) ? $row['Metalcarat'] : '';
-                      $reslt['quality'] = ($row['quality']!=NULL) ? $row['quality'] : '';
-                     $reslt['pqty'] = ($row['pqty']!=NULL) ? $row['pqty'] : '';
-                     $reslt['price'] = ($row['price']!=NULL) ? $row['price'] : '';
-                     $reslt['cartid'] = ($row['cartid']!=NULL) ? $row['cartid'] : '';
-		     $reslt['jewelleryType'] = ($row['jewelleryType']!=NULL) ? $row['jewelleryType'] : '';
-		     $reslt['ccatid'] = $row['ccatid'];
-		     $reslt['ccatname'] = $row['ccatname'];
-		     $reslt['metal_weight'] = $row['metal_weight'];
-		     $reslt['dmdcarat'] = $row['dmdcarat'];
-		     $reslt['product_code'] = ($row['product_code']!=NULL) ? $row['product_code'] : '';
-
-		     if($row['jewelleryType'] === '1'){
-                             $reslt['jewelType'] ='Gold';
-                        }else  if($row['jewelleryType'] === '2'){
-                             $reslt['jewelType'] ='Plain Gold';
-                        }else  if($row['jewelleryType'] === '3'){
-                             $reslt['jewelType'] ='Platinum';
-                        }
-
-                     $reslt['order_date'] = ($row['order_date']);
-                     $reslt['updatedon'] = ($row['updatedon']);
-                     $reslt['order_status'] = ($row['order_status']!=NULL) ? $row['order_status'] : '';
-                     $reslt['active_flag'] = ($row['active_flag']!=NULL) ? $row['active_flag'] : '';
-                     $reslt['product_price'] = ($row['product_price']!=NULL) ? $row['product_price'] : '';
-                     $reslt['payment'] = ($row['payment']!=NULL) ? $row['payment'] : '';
-                     $reslt['payment_type'] = ($row['payment_type']!=NULL) ? $row['payment_type'] : '';
-                     $reslt['prdimage'] = ($row['prdimage']!=NULL) ? $row['prdimage'] : '';
-                     $reslt['prdname'] = ($row['prdname']!=NULL) ? $row['prdname'] : '';
-                     $reslt['product_code'] = ($row['product_code']!=NULL) ? $row['product_code'] : '';
-
-                     $reslt['shipngDet'] = ($row['shipngDet']!=NULL) ? $row['shipngDet'] : '';
-		     $reslt['gender'] = ($row['gender']!=NULL) ? $row['gender'] : '';
-                     $reslt['customername'] = ($row['prdimage']!=NULL) ? $row['customername'] : '';
-                     $reslt['customerMob'] = ($row['prdname']!=NULL) ? $row['customerMob'] : '';
-                     $reslt['customerCity'] = ($row['product_code']!=NULL) ? $row['customerCity'] : '';
-                     $reslt['customerState'] = ($row['shipngDet']!=NULL) ? $row['customerState'] : '';
-                     $reslt['customerPincode'] = ($row['prdimage']!=NULL) ? $row['customerPincode'] : '';
-                     $reslt['customerAddrs'] = ($row['prdname']!=NULL) ? $row['customerAddrs'] : '';
-                     $reslt['default_image'] = $row['default_image'];
-                     $reslt['prc'] = $row['prc'];
-                     $reslt['cnt'] = $row['cnt'];
+        $res = $this->query($sql);
 
 
+        if ($res) {
+            $prztotal = 0;
+            while ($row = $this->fetchData($res)) {
 
-		     if($row['payment_type']== '0'){
-			 $reslt['payment_type'] ='Credit Card';
-		     }else if($row['payment_type']== '1'){
-			 $reslt['payment_type'] ='Debit Card';
-		     }else if($row['payment_type']== '2'){
-			 $reslt['payment_type'] ='Net Banking';
-		     }else if($row['payment_type']== '3'){
-			 $reslt['payment_type'] ='EMI';
-		     }
-		     else if($row['payment_type']== '4'){
-			 $reslt['payment_type'] ='COD';
-		     }
+                $reslt['oid'] = ($row['oid'] != null) ? $row['oid'] : '';
+                $reslt['pid'] = ($row['pid'] != NULL) ? $row['pid'] : '';
+                $reslt['uid'] = ($row['uid'] != NULL) ? $row['uid'] : '';
+                $reslt['prdSeoname'] = ($row['prdSeoname'] != NULL) ? $row['prdSeoname'] : '';
+                $reslt['shipping_id'] = ($row['shipping_id'] != NULL) ? $row['shipping_id'] : '';
+                $reslt['col_car_qty'] = ($row['col_car_qty'] != NULL) ? $row['col_car_qty'] : '';
+                $reslt['size'] = ($row['size'] != NULL) ? $row['size'] : '';
+                $reslt['color'] = ($row['color'] != NULL) ? $row['color'] : '';
+                $reslt['Metalcarat'] = ($row['Metalcarat'] != NULL) ? $row['Metalcarat'] : '';
+                $reslt['quality'] = ($row['quality'] != NULL) ? $row['quality'] : '';
+                $reslt['pqty'] = ($row['pqty'] != NULL) ? $row['pqty'] : '';
+                $reslt['price'] = ($row['price'] != NULL) ? $row['price'] : '';
+                $reslt['cartid'] = ($row['cartid'] != NULL) ? $row['cartid'] : '';
+                $reslt['jewelleryType'] = ($row['jewelleryType'] != NULL) ? $row['jewelleryType'] : '';
+                $reslt['ccatid'] = $row['ccatid'];
+                $reslt['ccatname'] = $row['ccatname'];
+                $reslt['metal_weight'] = $row['metal_weight'];
+                $reslt['dmdcarat'] = $row['dmdcarat'];
+                $reslt['product_code'] = ($row['product_code'] != NULL) ? $row['product_code'] : '';
 
-                     $resp[] = $reslt;
-		     $prztotal+=$reslt['price'] ;
-                     }
+                if ($row['jewelleryType'] === '1') {
+                    $reslt['jewelType'] = 'Gold';
+                } else if ($row['jewelleryType'] === '2') {
+                    $reslt['jewelType'] = 'Plain Gold';
+                } else if ($row['jewelleryType'] === '3') {
+                    $reslt['jewelType'] = 'Platinum';
+                }
 
+                $reslt['order_date'] = ($row['order_date']);
+                $reslt['updatedon'] = ($row['updatedon']);
+                $reslt['order_status'] = ($row['order_status'] != NULL) ? $row['order_status'] : '';
+                $reslt['active_flag'] = ($row['active_flag'] != NULL) ? $row['active_flag'] : '';
+                $reslt['product_price'] = ($row['product_price'] != NULL) ? $row['product_price'] : '';
+                $reslt['payment'] = ($row['payment'] != NULL) ? $row['payment'] : '';
+                $reslt['payment_type'] = ($row['payment_type'] != NULL) ? $row['payment_type'] : '';
+                $reslt['prdimage'] = ($row['prdimage'] != NULL) ? $row['prdimage'] : '';
+                $reslt['prdname'] = ($row['prdname'] != NULL) ? $row['prdname'] : '';
+                $reslt['product_code'] = ($row['product_code'] != NULL) ? $row['product_code'] : '';
+
+                $reslt['shipngDet'] = ($row['shipngDet'] != NULL) ? $row['shipngDet'] : '';
+                $reslt['gender'] = ($row['gender'] != NULL) ? $row['gender'] : '';
+                $reslt['customername'] = ($row['prdimage'] != NULL) ? $row['customername'] : '';
+                $reslt['customerMob'] = ($row['prdname'] != NULL) ? $row['customerMob'] : '';
+                $reslt['customerCity'] = ($row['product_code'] != NULL) ? $row['customerCity'] : '';
+                $reslt['customerState'] = ($row['shipngDet'] != NULL) ? $row['customerState'] : '';
+                $reslt['customerPincode'] = ($row['prdimage'] != NULL) ? $row['customerPincode'] : '';
+                $reslt['customerAddrs'] = ($row['prdname'] != NULL) ? $row['customerAddrs'] : '';
+                $reslt['default_image'] = $row['default_image'];
+                $reslt['prc'] = $row['prc'];
+                $reslt['cnt'] = $row['cnt'];
+
+
+
+                if ($row['payment_type'] == '0') {
+                    $reslt['payment_type'] = 'Credit Card';
+                } else if ($row['payment_type'] == '1') {
+                    $reslt['payment_type'] = 'Debit Card';
+                } else if ($row['payment_type'] == '2') {
+                    $reslt['payment_type'] = 'Net Banking';
+                } else if ($row['payment_type'] == '3') {
+                    $reslt['payment_type'] = 'EMI';
+                } else if ($row['payment_type'] == '4') {
+                    $reslt['payment_type'] = 'COD';
+                }
+
+                $resp[] = $reslt;
+                $prztotal+=$reslt['price'];
             }
-	    else
-	    {
-                $err = array('err_code' => 1, 'err_msg' => 'Error in fetching data');
-            }
-            $results = array('result' => $resp, 'error' => $err,'total'=>$prztotal);
-            return $results;
-
+        } else {
+            $err = array('err_code' => 1, 'err_msg' => 'Error in fetching data');
+        }
+        $results = array('result' => $resp, 'error' => $err, 'total' => $prztotal);
+        return $results;
     }
-
 
 }
 
