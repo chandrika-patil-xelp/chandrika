@@ -4232,7 +4232,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 			      WHEN 'Rings' THEN ( 
 							( 
 							( ( metal_weight + ((5 - 14) * 0.05) ) * caratlowp ) 
-						       + ( dmdcarat*dmdlowp ) 
+						       + (IF(has_diamond=1,dmdcarat*dmdlowp,0))
 						       + ( making_charges * ( metal_weight + ((5 - 14) * 0.05) ) ) 
 						       + (   IF ( has_solitaire=1, SoliPricepercarat*Soliwgt ,0) 
 							   + IF ( has_uncut=1, UncutPricepercarat*Uncutcarat, 0) 
@@ -4243,7 +4243,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 						    (
 							( 
 							( ( metal_weight + ((5 - 14) * 0.05) ) * caratlowp ) 
-						       + ( dmdcarat*dmdlowp ) 
+						       + (IF(has_diamond=1,dmdcarat*dmdlowp,0))
 						       + ( making_charges * ( metal_weight + ((5 - 14) * 0.05) ) ) 
 						       + (   IF ( has_solitaire=1, SoliPricepercarat*Soliwgt ,0) 
 							   + IF ( has_uncut=1, UncutPricepercarat*Uncutcarat, 0) 
@@ -4256,7 +4256,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 			      WHEN 'Bangles' THEN ( 
 						     (
 							( ( metal_weight + ((2.2 - 2.4) * 7) )*caratlowp )
-							+ ( dmdcarat*dmdlowp ) 
+							+ (IF(has_diamond=1,dmdcarat*dmdlowp,0))
 							+ ( making_charges * ( metal_weight + ((2.2 - 2.4) * 7) ) ) 
 							+ (   IF ( has_solitaire=1, SoliPricepercarat*Soliwgt ,0) 
 							    + IF ( has_uncut=1, UncutPricepercarat*Uncutcarat, 0) 
@@ -4267,7 +4267,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 						      (
 							(
 							( ( metal_weight + ((2.2 - 2.4) * 7) )*caratlowp )
-							+ ( dmdcarat*dmdlowp ) 
+							+ (IF(has_diamond=1,dmdcarat*dmdlowp,0))
 							+ ( making_charges * ( metal_weight + ((2.2 - 2.4) * 7) ) ) 
 							+ (   IF ( has_solitaire=1, SoliPricepercarat*Soliwgt ,0) 
 							    + IF ( has_uncut=1, UncutPricepercarat*Uncutcarat, 0) 
@@ -4284,7 +4284,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 								  WHEN 'Rings' THEN ( 
 										    ( 
 										    ( ( metal_weight + ((5 - 14) * 0.05) ) * caratlowp ) 
-										   + ( dmdcarat*dmdlowp ) 
+										   + (IF(has_diamond=1,dmdcarat*dmdlowp,0))
 										   + ( making_charges * ( metal_weight + ((5 - 14) * 0.05) ) ) 
 										   + (   IF ( has_solitaire=1, SoliPricepercarat*Soliwgt ,0) 
 										       + IF ( has_uncut=1, UncutPricepercarat*Uncutcarat, 0) 
@@ -4295,7 +4295,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 										(
 										    ( 
 										    ( ( metal_weight + ((5 - 14) * 0.05) ) * caratlowp ) 
-										   + ( dmdcarat*dmdlowp ) 
+										   + (IF(dmdcarat IS NULL,0,dmdcarat*dmdlowp)) 
 										   + ( making_charges * ( metal_weight + ((5 - 14) * 0.05) ) ) 
 										   + (   IF ( has_solitaire=1, SoliPricepercarat*Soliwgt ,0) 
 										       + IF ( has_uncut=1, UncutPricepercarat*Uncutcarat, 0) 
@@ -4308,7 +4308,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 							        WHEN 'Bangles' THEN ( 
 										(
 										   ( ( metal_weight + ((2.2 - 2.4) * 7) )*caratlowp )
-										   + ( dmdcarat*dmdlowp ) 
+										   + (IF(has_diamond=1,dmdcarat*dmdlowp,0))
 										   + ( making_charges * ( metal_weight + ((2.2 - 2.4) * 7) ) ) 
 										   + (   IF ( has_solitaire=1, SoliPricepercarat*Soliwgt ,0) 
 										       + IF ( has_uncut=1, UncutPricepercarat*Uncutcarat, 0) 
@@ -4319,7 +4319,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 										 (
 										   (
 										   ( ( metal_weight + ((2.2 - 2.4) * 7) )*caratlowp )
-										   + ( dmdcarat*dmdlowp ) 
+										   + (IF(has_diamond=1,dmdcarat*dmdlowp,0))
 										   + ( making_charges * ( metal_weight + ((2.2 - 2.4) * 7) ) ) 
 										   + (   IF ( has_solitaire=1, SoliPricepercarat*Soliwgt ,0) 
 										       + IF ( has_uncut=1, UncutPricepercarat*Uncutcarat, 0) 
@@ -4329,7 +4329,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 										 * 0.01 
 										 )
 									      ) 	  
-								  ELSE  (((metal_weight*caratlowp)+(metal_weight*making_charges)+(dmdcarat*dmdlowp) + ( IF(has_solitaire=1,SoliPricepercarat*Soliwgt,0) + IF(has_uncut=1,UncutPricepercarat*Uncutcarat,0) + IF(has_gemstone=1,gemscarat*gemsPricepercarat,0)))+(((metal_weight*caratlowp)+(metal_weight*making_charges)+(dmdcarat*dmdlowp) + ( IF(has_solitaire=1,SoliPricepercarat*Soliwgt,0) + IF(has_uncut=1,UncutPricepercarat*Uncutcarat,0) + IF(has_gemstone=1,gemscarat*gemsPricepercarat,0)))*0.01))
+								  ELSE  (((metal_weight*caratlowp)+(metal_weight*making_charges)+(IF(has_diamond=1,dmdcarat*dmdlowp,0)) + ( IF(has_solitaire=1,SoliPricepercarat*Soliwgt,0) + IF(has_uncut=1,UncutPricepercarat*Uncutcarat,0) + IF(has_gemstone=1,gemscarat*gemsPricepercarat,0)))+(((metal_weight*caratlowp)+(metal_weight*making_charges)+(IF(has_diamond=1,dmdcarat*dmdlowp,0)) + ( IF(has_solitaire=1,SoliPricepercarat*Soliwgt,0) + IF(has_uncut=1,UncutPricepercarat*Uncutcarat,0) + IF(has_gemstone=1,gemscarat*gemsPricepercarat,0)))*0.01))
 								  END
 						      )  
 			       
@@ -4339,7 +4339,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 								  WHEN 'Rings' THEN ( 
 										    ( 
 										    ( ( metal_weight + ((5 - 14) * 0.05) ) * caratlowp ) 
-										   + ( dmdcarat*dmdlowp ) 
+										   + (IF(has_diamond=1,dmdcarat*dmdlowp,0))
 										   + ( making_charges * ( metal_weight + ((5 - 14) * 0.05) ) ) 
 										   + (   IF ( has_solitaire=1, SoliPricepercarat*Soliwgt ,0) 
 										       + IF ( has_uncut=1, UncutPricepercarat*Uncutcarat, 0) 
@@ -4350,7 +4350,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 										(
 										    ( 
 										    ( ( metal_weight + ((5 - 14) * 0.05) ) * caratlowp ) 
-										   + ( dmdcarat*dmdlowp ) 
+										   + (IF(has_diamond=1,dmdcarat*dmdlowp,0))
 										   + ( making_charges * ( metal_weight + ((5 - 14) * 0.05) ) ) 
 										   + (   IF ( has_solitaire=1, SoliPricepercarat*Soliwgt ,0) 
 										       + IF ( has_uncut=1, UncutPricepercarat*Uncutcarat, 0) 
@@ -4363,7 +4363,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 							        WHEN 'Bangles' THEN ( 
 										(
 										   ( ( metal_weight + ((2.2 - 2.4) * 7) )*caratlowp )
-										   + ( dmdcarat*dmdlowp ) 
+										   + (IF(has_diamond=1,dmdcarat*dmdlowp,0))
 										   + ( making_charges * ( metal_weight + ((2.2 - 2.4) * 7) ) ) 
 										   + (   IF ( has_solitaire=1, SoliPricepercarat*Soliwgt ,0) 
 										       + IF ( has_uncut=1, UncutPricepercarat*Uncutcarat, 0) 
@@ -4374,7 +4374,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 										 (
 										   (
 										   ( ( metal_weight + ((2.2 - 2.4) * 7) )*caratlowp )
-										   + ( dmdcarat*dmdlowp ) 
+										   + (IF(has_diamond=1,dmdcarat*dmdlowp,0))
 										   + ( making_charges * ( metal_weight + ((2.2 - 2.4) * 7) ) ) 
 										   + (   IF ( has_solitaire=1, SoliPricepercarat*Soliwgt ,0) 
 										       + IF ( has_uncut=1, UncutPricepercarat*Uncutcarat, 0) 
@@ -4384,11 +4384,11 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 										 * 0.01 
 										 )
 									      ) 	  
-								  ELSE  (((metal_weight*caratlowp)+(metal_weight*making_charges)+(dmdcarat*dmdlowp) + ( IF(has_solitaire=1,SoliPricepercarat*Soliwgt,0) + IF(has_uncut=1,UncutPricepercarat*Uncutcarat,0) + IF(has_gemstone=1,gemscarat*gemsPricepercarat,0)))+(((metal_weight*caratlowp)+(metal_weight*making_charges)+(dmdcarat*dmdlowp) + ( IF(has_solitaire=1,SoliPricepercarat*Soliwgt,0) + IF(has_uncut=1,UncutPricepercarat*Uncutcarat,0) + IF(has_gemstone=1,gemscarat*gemsPricepercarat,0)))*0.01))
+								  ELSE  (((metal_weight*caratlowp)+(metal_weight*making_charges)+(IF(has_diamond=1,dmdcarat*dmdlowp,0)) + ( IF(has_solitaire=1,SoliPricepercarat*Soliwgt,0) + IF(has_uncut=1,UncutPricepercarat*Uncutcarat,0) + IF(has_gemstone=1,gemscarat*gemsPricepercarat,0)))+(((metal_weight*caratlowp)+(metal_weight*making_charges)+(IF(has_diamond=1,dmdcarat*dmdlowp,0)) + ( IF(has_solitaire=1,SoliPricepercarat*Soliwgt,0) + IF(has_uncut=1,UncutPricepercarat*Uncutcarat,0) + IF(has_gemstone=1,gemscarat*gemsPricepercarat,0)))*0.01))
 								  END
 						      )
 						      
-			      ELSE (((metal_weight*caratlowp)+(metal_weight*making_charges)+(dmdcarat*dmdlowp) + ( IF(has_solitaire=1,SoliPricepercarat*Solicarat,0) + IF(has_uncut=1,UncutPricepercarat*Uncutcarat,0) + IF(has_gemstone=1,gemscarat*gemsPricepercarat,0)))+(((metal_weight*caratlowp)+(metal_weight*making_charges)+(dmdcarat*dmdlowp) + ( IF(has_solitaire=1,SoliPricepercarat*Soliwgt,0) + IF(has_uncut=1,UncutPricepercarat*Uncutcarat,0) + IF(has_gemstone=1,gemscarat*gemsPricepercarat,0)))*0.01))
+			      ELSE (((metal_weight*caratlowp)+(metal_weight*making_charges)+(IF(has_diamond=1,dmdcarat*dmdlowp,0)) + ( IF(has_solitaire=1,SoliPricepercarat*Soliwgt,0) + IF(has_uncut=1,UncutPricepercarat*Uncutcarat,0) + IF(has_gemstone=1,gemscarat*gemsPricepercarat,0)))+(((metal_weight*caratlowp)+(metal_weight*making_charges)+(IF(has_diamond=1,dmdcarat*dmdlowp,0)) + ( IF(has_solitaire=1,SoliPricepercarat*Soliwgt,0) + IF(has_uncut=1,UncutPricepercarat*Uncutcarat,0) + IF(has_gemstone=1,gemscarat*gemsPricepercarat,0)))*0.01))
  			      END   
 			           
 		      ) AS basicprize,
@@ -4550,7 +4550,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                 $arr['createdon'] = $row['createdon'];
                 $arr['updatedon'] = $row['updatedon'];
                 $arr['updatedby'] = $row['updatedby'];
-                $arr['hasDmd'] = $row['has_diamond'];
+                
                 $arr['caratlowp'] = $row['caratlowp'];
                 $arr['carathighp'] = $row['carathighp'];
                 $arr['dmdlowp'] = $row['dmdlowp'];
