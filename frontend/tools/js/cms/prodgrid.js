@@ -213,32 +213,32 @@ var grandtotal = 0;
            var Diaprc = obj['dmdQPricepercarat'];
 
     }
-      if (obj['chldcatname'] == 'Rings' || obj['finejwellrycatname'] == 'Rings' || obj['signturecatname'] == 'Rings')
+      if (obj['chldcatname'] == 'Rings' || obj['signturecatname'] == 'Rings')
 	    bseSize = parseFloat(14);
-      else if (obj['chldcatname'] == 'Bangles' || obj['finejwellrycatname'] == 'Bangles' || obj['signturecatname'] == 'Bangles')
+      else if (obj['chldcatname'] == 'Bangles' || obj['signturecatname'] == 'Bangles')
 	    bseSize = parseFloat(2.4);
 
 
-     if (obj['chldcatname'] == 'Rings' || obj['finejwellrycatname'] == 'Rings' || obj['signturecatname'] == 'Rings')
+     if (obj['chldcatname'] == 'Rings' || obj['signturecatname'] == 'Rings')
 	    mtlWgDav = 0.05;
-     else if (obj['chldcatname'] == 'Bangles'|| obj['finejwellrycatname'] == 'Bangles' || obj['signturecatname'] == 'Bangles')
+     else if (obj['chldcatname'] == 'Bangles' || obj['signturecatname'] == 'Bangles')
 	    mtlWgDav = 7;
 
 
-     if (obj['chldcatname'] === 'Rings' || obj['finejwellrycatname'] === 'Rings' || obj['signturecatname'] == 'Rings'){
+     if (obj['chldcatname'] === 'Rings' || obj['signturecatname'] == 'Rings'){
 
    changeInWeightsizelow = (5 - bseSize) * mtlWgDav;
    changeInWeightsizehigh = (25- bseSize) * mtlWgDav;
     newWeightlow = parseFloat(Metalwgt) +parseFloat(changeInWeightsizelow);
     newWeighthigh = parseFloat(Metalwgt) +parseFloat(changeInWeightsizehigh);
    }
-   else if(obj['chldcatname'] === 'Bangles' || obj['finejwellrycatname'] === 'Bangles' || obj['signturecatname'] == 'Bangles'){
+   else if(obj['chldcatname'] === 'Bangles' || obj['signturecatname'] == 'Bangles'){
      changeInWeightsizelow = (2.2- bseSize) * mtlWgDav;
     changeInWeightsizehigh = (2.9- bseSize) * mtlWgDav;
     newWeightlow = parseFloat(Metalwgt) + parseFloat(changeInWeightsizelow);
     newWeighthigh = parseFloat(Metalwgt) + parseFloat(changeInWeightsizehigh);
    }
-   else if((obj['chldcatname'] !== 'Rings' || obj['chldcatname'] !== 'Bangles') || (obj['finejwellrycatname'] !== 'Bangles' || obj['finejwellrycatname'] !== 'Rings') || (obj['signturecatname'] !== 'Bangles' || obj['signturecatname'] !== 'Rings')){
+   else if((obj['chldcatname'] !== 'Rings' || obj['chldcatname'] !== 'Bangles') || (obj['signturecatname'] !== 'Bangles' || obj['signturecatname'] !== 'Rings')){
         changeInWeightsizelow = (0- bseSize) * mtlWgDav;
    changeInWeightsizehigh = (0- bseSize) * mtlWgDav;
     newWeightlow = parseFloat(Metalwgt) + parseFloat(changeInWeightsizelow);
