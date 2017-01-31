@@ -1,20 +1,12 @@
 var dmdValue = metalValue = soliValue = gemsValue = uncutValue = basicValue = 0, fnchldcatname;
-var carat=0;
 var lowp =0;
 var highp=0;
 var frstcar=0;
 var lastcar=0;
-var grandtotal = 0;
-var grandtot = 0;
-var grandtotallow = 0;
-var grandtotalhigh=0;
-var grandtotlow = 0;
-var grandtothigh=0;
+
 var getProdDtl = new Array();
-var stock = new Array();
-var aid;
 var stSearch = new Array();
-var hlist = "";
+
 var menuflag=1;
 
 $(document).ready(function () {
@@ -62,7 +54,7 @@ $(document).ready(function () {
     showwishbtn();
     },1000);
 });
-var Metalwgt;
+
 function generatelist(obj) {
 
     var proStr = "";
@@ -166,7 +158,11 @@ function generatelist(obj) {
         var d;
 
     }
-
+var grandtotallow = 0;
+var grandtotalhigh=0;
+var grandtotlow = 0;
+var grandtothigh=0;
+var grandtotal = 0;
   var newWeightlow;
     var newWeighthigh;
     var mtlWgDav=0;
@@ -252,9 +248,6 @@ function generatelist(obj) {
     newWeightlow = newWeightlow.toFixed(3);
     newWeighthigh = newWeighthigh.toFixed(3);
 
-
-//    price = price + getPurPrice(Mprc, Metalwgt); //console.log("goldPrice-> "+price +"");
-//    price = price + getbasicprice(Makchrg, Metalwgt);//console.log("basicPrice-> "+price +"");
 var goldPricelowp=0;
 var goldPricehighp =0;
      goldPricelowp = parseFloat(newWeightlow * caratlowp);
@@ -276,7 +269,6 @@ var goldPricehighp =0;
      grandtothigh = totalNewPricehigh.toFixed();
     grandtotallow = common.IND_money_format(grandtotlow, 0);
     grandtotalhigh = common.IND_money_format(grandtothigh, 0);
-    // grandtotal = Number(grandtot).toLocaleString('en');
 
    var defprice = price + getPurPrice(Mprc, Metalwgt);
    defprice = defprice + getbasicprice(Makchrg, Metalwgt);
@@ -1109,16 +1101,20 @@ function getprodbyid()
 	      {
 		if(menuflag == 1)
 		{
-		var przarr=new Array(); 
-		przarr=res["allprdpz"]["przperprdlow"];  
-		lowp=przarr[0];
-		highp =przarr[(przarr.length)-1]; 
-		 
-		var carr=new Array();
-		carr=res["allprdpz"]["allcarat"];
-                frstcar=carr[0];
-                lastcar= carr[(carr.length)-1]; 
+		//var przarr=new Array(); 
+//		przarr=res["allprdpz"]["przperprdlow"];  
+//		lowp=przarr[0];
+                    
+		//highp =przarr[(przarr.length)-1]; 
+		 lowp=res["allprdpz"]["min"];  
+		highp=res["allprdpz"]["max"]; 
+//		var carr=new Array();
+//		carr=res["allprdpz"]["allcarat"];
+//                frstcar=carr[0];
+//                lastcar= carr[(carr.length)-1]; 
 		
+                frstcar=res["allprdpz"]["mincar"];
+                lastcar=res["allprdpz"]["maxcar"];
 		$('.ftab_buffer').prepend(mainmenustr);
                 $('.fmenuB').html(submenulist);
 		
@@ -1169,7 +1165,6 @@ function getprodbyid()
                     while (i < len)
                     {
                         str = generatelist(obj[i]);
-                        //stock.push(obj[i]);
                         stSearch.push(obj[i]);
                         i++;
                         var k = i * 200;
