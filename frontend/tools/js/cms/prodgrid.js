@@ -20,6 +20,7 @@ var menuflag=1;
 $(document).ready(function () {
     $('html, body').animate({scrollTop: '0px'}, 300);
     var link=window.location.href;
+    getmenu();
 
     var urlstr=link.split(DOMAIN);
     var url=""+urlstr[1];
@@ -54,7 +55,7 @@ $(document).ready(function () {
 
 //    if($.trim(menu) == 'bespoke')
 //      window.open(DOMAIN+"index.php?action=bespoke");
-    getmenu();
+    
     // var URL = APIDOMAIN + "index.php/?action=getProGrid";
     getprodbyid();
     setTimeout(function(){
@@ -1128,6 +1129,7 @@ function getprodbyid()
 		getProdDtl = res["result"];
                 var total = res["total"];
 		$('#gr_foot').removeClass('dpn');
+		$('.emptyGrid').addClass('dpn');
 		
                 if (total === 1)
                     $('#total_Product').html("<strong>" + total + "</strong> Product");

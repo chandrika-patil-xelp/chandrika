@@ -195,10 +195,21 @@
 
         public function addOrdersdetail($params)
 	{
-            global $comm, $db;
-             $params= (json_decode($params[0],1));
-
-
+	  global $comm, $db;
+	  $params= (json_decode($params[0],1));
+	     
+	  $transsql="SELECT 
+			  order_status
+		     FROM  
+			  tbl_transaction_master
+		     WHERE
+			  order_id=".$params['data'][0]['orderid']."";
+	  $trnsres=  $this->query($transsql);
+	  $trnsrow=  $this->fetchData($trnsres);
+	  $trnstatus=$trnsrow['order_status'];
+	  
+	  if(stristr($trnstatus,'Success'))
+	  {	  
 	    $updby="user";
 
             $sql = "INSERT INTO tbl_order_master (
@@ -342,7 +353,7 @@
           }
 	}
 	
-            $resp = array();
+            
             if($res){
 
                 $error = array('err_code'=>0, 'err_msg'=>' Adding Order Details Inserted Successfully ' );
@@ -350,7 +361,11 @@
             }else{
                 $error = array('err_code'=>1, 'err_msg'=>' Error IN Adding Order Details ' );
             }
-
+	}
+	else{
+	  $error = array('err_code'=>1, 'err_msg'=>' Transaction is not successfull ' );
+	}
+	    $resp = array();
             $result = array('result'=>$resp, 'error'=>$error);
             return $result;
 

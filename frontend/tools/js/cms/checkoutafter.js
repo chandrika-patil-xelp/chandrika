@@ -96,6 +96,9 @@ $(document).ready(function () {
 		  }
 	      });
 	    }
+	    else if(reslt['error']['err_code'] == 1){
+	       window.location.href=DOMAIN +'transaction/Aborted/'+orderid;
+	    }
 	  }
       });
   }
@@ -212,7 +215,7 @@ $(document).ready(function () {
     $.ajax({ url: URL, type: "GET", datatype: "JSON", success: function (results) {
 
             var obj = JSON.parse(results);
-     
+    
 	    var totprdcnt=0;
             var dt = obj['result'];
  
