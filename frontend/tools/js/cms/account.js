@@ -53,9 +53,9 @@ function displayorders()
         datatype: "JSON",
         success: function (results)
         {
-
+            
             var obj = JSON.parse(results);
-
+            console.log(obj);
             if (obj["result"] == null) {
                 $('#noordrs').removeClass('dn');
                 $('.orderOuter').addClass('dn');
@@ -159,7 +159,10 @@ function displayorders()
                         orderstr += '<span class="fLeft"></span>';
                         orderstr += '</div>';                      ;
                         orderstr += '<div class="fLeft  col100">';
-                        orderstr += '<span class="fLeft txt_Capital">Diamonds '+ dmdcarat +'Ct | '+ v.quality + (v.size != 0.0 ? ' | Size: '+v.size  : '') +'</span>';
+                       if(v.dmdcarat === null )
+                       orderstr += '<span class="fLeft txt_Capital">Solitaire '+v.Solicarat+'Ct | '+ v.Soliclarity + (v.size != 0.0 ? ' | Size: '+v.size  : '') +'</span>';   
+                         else
+                        orderstr += '<span class="fLeft txt_Capital">Diamonds '+ v.dmdcarat +'Ct | '+ v.quality + (v.size != 0.0 ? ' | Size: '+v.size  : '') +'</span>';
                         orderstr += '<span class="fLeft"></span>';
                         orderstr += '</div>';
                           orderstr += '<div class="fLeft col100 semibold ">Code:<span class="regular">' + v.product_code + '</span></div>';
@@ -301,7 +304,7 @@ function wishlist()
                 $('#nowishlst').addClass('dn');
                 var wishStr = "";
                 $(obj['result']).each(function (s, j) {
-
+                 
                     if (j.default_image !== null) {
                         var xyz = IMGDOMAIN + j.default_image;
                     } else {
@@ -398,6 +401,7 @@ function wishlist()
                             break;
                         }
                     }
+                    
                     wishStr += ' ' + Nstr + '</div>';
                     wishStr += '   <div class="grid_price txtOver transition300" onclick="wshprdopen(this)"><span class="cartRup15b"><span>  ' + indianMoney(parseInt(j.price)) + '</div>';
                     wishStr += '  <div class="action_btns dn">';
