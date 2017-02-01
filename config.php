@@ -165,6 +165,7 @@ $jvs = array();
 
 	    $fjvs['tranfail']              = DOMAIN.'frontend/tools/js/cms/transactionfail.js?v='.VERSION;
 	    $jvs['chkoutguest']		  = DOMAIN.'frontend/tools/js/cms/checkoutguest.js?v='.VERSION;
+         $fjvs['jqueryUi']                   = DOMAIN.'frontend/tools/js/jqueryUi.js?v='.VERSION;
 
 include APICLUDE.'common/class.common.php';
 $comm = new Common();
