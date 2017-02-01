@@ -184,12 +184,7 @@ function chklogin()
 	 	    datatype: "JSON",
 	 	    success: function(results)
 	 	    {
-		      if(logDetails['0']['is_vendor'] == 1)
-		      {
-			setTimeout(function(){
-			   window.location.href=DOMAIN +"backend/index.php?action=products";
-			},3000);
-		      }
+		      
 		      var obj=JSON.parse(results);
 		      glbcartdeatil=obj.result;
 		      if(oldcartid=="" || oldcartid==null){
@@ -206,12 +201,19 @@ function chklogin()
 			    hasitem(oldcartid,olduserid);
 		      }
 		    common.msg(1,'Sign in successful');
-		    
-		    var URLactn = window.location.href;  
-		    setTimeout(function(){
-		 	window.location.href = URLactn;
-		    },3000)
-
+		    if(logDetails['0']['is_vendor'] == 1)
+		    {
+		      setTimeout(function(){
+			 window.location.href=DOMAIN +"backend/index.php?action=products";
+		      },3000);
+		    }
+		    else
+		    {   
+		      var URLactn = window.location.href;  
+		      setTimeout(function(){
+			  window.location.href = URLactn;
+		      },3000)
+		    }
 		    }
 		});
             }
