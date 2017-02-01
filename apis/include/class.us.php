@@ -253,7 +253,7 @@
 	          $resord = $this->query($sql);
         
 	if($resord)
-	{
+	{  
 	  $invoiceid=$this->generateId();
 	  $invcsql="INSERT INTO 
 				tbl_invoice_master (
@@ -266,16 +266,11 @@
 	  $invcsql.="
 		    ".$invoiceid.",
 		    ".$params['data'][0]['orderid'].",
-		    ".$params['data'][0]['userid'].",
+		    '".$params['data'][0]['userid']."',
 		    NOW(),
-		    NOW() )
-		    ON DUPLICATE KEY UPDATE 
-		    order_id=	VALUES(order_id),
-		    user_id=	VALUES(user_id),
-		    createdon=	VALUES(createdon),
-		    updatedon=	VALUES(updatedon) ";
+		    NOW() ) ";
 	  $res=  $this->query($invcsql);
-	  
+	 
 	  if($res)
 	  {
 	      
@@ -321,20 +316,20 @@
 	    $url = str_replace('_MOBILE', $mobile, SMSAPI);
 	    $url = str_replace('_MESSAGE', urlencode($txt), $url);
 	    $smsurlres = $comm->executeCurl($url, true);
-	    
+ 
 //	    $mobvndone=9007297981;
 //	    $vndrtxt = 'Hi, We got one new order placed  for Product name '.$prdname.' with order number '.$params['data'][0]['orderid'].'.';
 //	    $vndroneurl = str_replace('_MOBILE', $mobvndone, SMSAPI);
 //	    $vndroneurl = str_replace('_MESSAGE', urlencode($vndrtxt), $vndroneurl);
 //	    $smsurlvndres = $comm->executeCurl($vndroneurl, true);
-	    
+ 	 
 //	    $mobvndtwo=7022248707;
 //	    $vndrtxttwo = 'Hi, We got one new order placed  for Product name '.$prdname.' with order number '.$params['data'][0]['orderid'].'.';
 //	    $vndrtwourl = str_replace('_MOBILE', $mobvndtwo, SMSAPI);
 //	    $vndrtwourl = str_replace('_MESSAGE', urlencode($vndrtxttwo), $vndrtwourl);
 //	    $smsurlvndrres = $comm->executeCurl($vndrtwourl, true);
 	    
-            include APICLUDE.'class.emailtemplate.php';
+             include APICLUDE.'class.emailtemplate.php';
             $obj	= new emailtemplate($db['jzeva']);
             $message	=$obj->genordrtemplate($params);
 
