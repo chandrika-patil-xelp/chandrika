@@ -352,7 +352,7 @@ m += money[i];
 
 return m.split("").reverse().join("");
    };
-   
+
    this.isCharacterKey = function (event) {
         var key = window.event ? event.keyCode : event.which;
          if (key < 48 || key > 57) {
@@ -360,5 +360,21 @@ return m.split("").reverse().join("");
         } else
             return false;
     };
- 
+
 }
+
+
+/*js for mobile login popup niyaz*/
+$(document).ready(function(){
+  $('#signInId').velocity({translateY: "100%"}, {duration: 300, delay: 0, display: "block", ease: "ease-out"});
+   $('.mlogn').on('click',function(){
+   $('#signInId').velocity({translateY: "-50px"}, {duration: 300, delay: 0, display: "block", ease: "ease-out"});
+   $('.sideNav').velocity({translateX: "-100%"}, {duration: 300, delay: 0, display: "none", ease: "ease-out"});
+    $("body").addClass("posFix");
+       });
+  //
+  //  $('#cc').on('click',function(){
+  //  $('#signInId').velocity({translateY: "100px"}, {duration: 300, delay: 0, display: "block", ease: "ease-out"});
+  //   $(".swipe_aftr").addClass("dn");
+  //      });
+     });
