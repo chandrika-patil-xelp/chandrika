@@ -30,7 +30,7 @@ $(document).ready(function () {
     });
 
 });
-
+ 
  function getMonthNamebyVal(mnt) {
     var monthNames = ["Jan", "Feb", "March", "April", "May", "June",
 	"July", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -824,22 +824,30 @@ function resetpasswrd()
 }
 
 $('#pId').click(function () {
+    var obj = { Title: 'account', Url: "index.php?action=myaccount&actn=pId" };
+    history.pushState(obj, obj.Title, obj.Url);
     perninfo();
 });
 
 $('#oId').click(function () {
+    var obj = { Title: 'account', Url: "index.php?action=myaccount&actn=oId" };
+    history.pushState(obj, obj.Title, obj.Url);
     ordrinfo();
 });
 
 $('#sId').click(function () {
+    var obj = { Title: 'account', Url: "index.php?action=myaccount&actn=sId" };
+    history.pushState(obj, obj.Title, obj.Url);
     saveadrinfo();
 });
 
-$('#cId').click(function () {
+$('#cId').click(function () { 
     chngpasrd();
 });
 
 $('#wId').click(function () {
+    var obj = { Title: 'account', Url: "index.php?action=myaccount&actn=wId" };
+    history.pushState(obj, obj.Title, obj.Url);
     whlist();
 });
 
@@ -1030,4 +1038,4 @@ function getgender(gndr)
     gndrstr="Mrs.";
     
   return gndrstr;
-}
+} 
