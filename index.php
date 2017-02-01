@@ -334,5 +334,16 @@ switch ($action) {
         $page = 'invoice';
         include WEBROOT . 'frontend/emailer/customerInc.html';
         break;
+
+        case 'customerInc':
+        $page = 'customerInc';
+        include TEMPLATE . 'customerInc.html';
+        break;
+
+
+        case 'mheader':
+        $page = 'mheader';
+        include TEMPLATE . 'mheader.html';
+        break;
 }
 ?>
