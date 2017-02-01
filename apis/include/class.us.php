@@ -322,17 +322,17 @@
 	    $url = str_replace('_MESSAGE', urlencode($txt), $url);
 	    $smsurlres = $comm->executeCurl($url, true);
 	    
-	    $mobvndone=9007297981;
-	    $vndrtxt = 'Hi, We got one new order placed  for Product name '.$prdname.' with order number '.$params['data'][0]['orderid'].'.';
-	    $vndroneurl = str_replace('_MOBILE', $mobvndone, SMSAPI);
-	    $vndroneurl = str_replace('_MESSAGE', urlencode($vndrtxt), $vndroneurl);
-	    $smsurlvndres = $comm->executeCurl($vndroneurl, true);
+//	    $mobvndone=9007297981;
+//	    $vndrtxt = 'Hi, We got one new order placed  for Product name '.$prdname.' with order number '.$params['data'][0]['orderid'].'.';
+//	    $vndroneurl = str_replace('_MOBILE', $mobvndone, SMSAPI);
+//	    $vndroneurl = str_replace('_MESSAGE', urlencode($vndrtxt), $vndroneurl);
+//	    $smsurlvndres = $comm->executeCurl($vndroneurl, true);
 	    
-	    $mobvndtwo=7022248707;
-	    $vndrtxttwo = 'Hi, We got one new order placed  for Product name '.$prdname.' with order number '.$params['data'][0]['orderid'].'.';
-	    $vndrtwourl = str_replace('_MOBILE', $mobvndtwo, SMSAPI);
-	    $vndrtwourl = str_replace('_MESSAGE', urlencode($vndrtxttwo), $vndrtwourl);
-	    $smsurlvndrres = $comm->executeCurl($vndrtwourl, true);
+//	    $mobvndtwo=7022248707;
+//	    $vndrtxttwo = 'Hi, We got one new order placed  for Product name '.$prdname.' with order number '.$params['data'][0]['orderid'].'.';
+//	    $vndrtwourl = str_replace('_MOBILE', $mobvndtwo, SMSAPI);
+//	    $vndrtwourl = str_replace('_MESSAGE', urlencode($vndrtxttwo), $vndrtwourl);
+//	    $smsurlvndrres = $comm->executeCurl($vndrtwourl, true);
 	    
             include APICLUDE.'class.emailtemplate.php';
             $obj	= new emailtemplate($db['jzeva']);
