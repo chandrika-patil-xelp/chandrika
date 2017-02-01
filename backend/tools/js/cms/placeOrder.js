@@ -188,7 +188,9 @@ $(document).ready(function(){
       var URL = APIDOMAIN + "index.php?action=addtransactiondata&order_id="+encodeURIComponent(ordid)+"&bank_ref_no="+transid+"&order_status=Success&payment_mode="+encodeURIComponent(pymntmode)+"&amount="+encodeURIComponent(price)+"&trans_date="+encodeURIComponent(toda)+"&Cheque_Date="+encodeURIComponent(chkdate)+"&transactionflag=1";
 		$.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results)
 		{
-		  
+		  setTimeout(function(){
+		    window.location.href=DOMAIN+"backend/index.php?action=orders";
+		  },1000);
 		}
 	      });
       
