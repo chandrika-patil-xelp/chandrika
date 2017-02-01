@@ -1486,8 +1486,13 @@ class user extends DB {
                         shipping_id as shpid,
                         (Select product_seo_name from tbl_product_master where productid=pid) as pseoname,
                         user_id as uid,
-                        (SELECT user_name from tbl_user_master WHERE user_id=uid) AS uname,
-                        (SELECT logmobile from tbl_user_master WHERE user_id=uid) AS umobile,
+                        (SELECT name from tbl_order_shipping_details WHERE shipping_id=shpid) AS uname,
+                        (SELECT mobile from tbl_order_shipping_details WHERE shipping_id=shpid) AS umobile,
+                        (SELECT email from tbl_order_shipping_details WHERE shipping_id=shpid) AS usremail,
+                         (SELECT address FROM tbl_order_shipping_details WHERE shipping_id = shpid )AS shpadd,
+                        (SELECT city FROM tbl_order_shipping_details WHERE shipping_id = shpid )AS shpcity,
+                        (SELECT state FROM tbl_order_shipping_details WHERE shipping_id = shpid )AS shpstate,
+                        (SELECT pincode FROM tbl_order_shipping_details WHERE shipping_id = shpid )AS shppin,
                         order_date as odate,
                         delivery_date as ddate,
                         order_status as ostatus,
@@ -1495,7 +1500,6 @@ class user extends DB {
                         price as price,
                         payment as pm,
                         (Select payment_mode from tbl_transaction_master where order_id=oid) as paymode,
-
 (SELECT  GROUP_CONCAT(product_name) FROM tbl_product_master WHERE productid = pid AND active_flag !=2 ) AS prdname,
 (SELECT  GROUP_CONCAT(procurement_cost) FROM tbl_product_master WHERE productid = pid AND active_flag !=2 ) AS procurementcost,
 (SELECT  GROUP_CONCAT(diamond_setting) FROM tbl_product_master WHERE productid = pid AND active_flag !=2 ) AS dmdsetting,
@@ -1547,16 +1551,10 @@ class user extends DB {
 (SELECT GROUP_CONCAT(quality) FROM tbl_product_uncut_mapping WHERE FIND_IN_SET(uncut_id,allUncut) AND productid =pid) AS uncutqual,
 (SELECT GROUP_CONCAT(color) FROM tbl_product_uncut_mapping WHERE FIND_IN_SET(uncut_id,allUncut) AND productid =pid) AS Uncutclr,
 
-
 (SELECT GROUP_CONCAT(catid) FROM tbl_category_product_mapping WHERE  productid =pid ) AS ccatid,
 (SELECT DISTINCT(NAME) FROM tbl_size_master WHERE  FIND_IN_SET(catid,ccatid) )AS ccatname,
 (SELECT GROUP_CONCAT(cat_name) FROM tbl_category_master WHERE  FIND_IN_SET(catid,ccatid) )AS catgryname,
-                        (SELECT GROUP_CONCAT(email) FROM tbl_user_master WHERE user_id = uid )AS usremail,
-                        (SELECT GROUP_CONCAT(address) FROM tbl_order_shipping_details WHERE shipping_id = shpid )AS shpadd,
-                        (SELECT GROUP_CONCAT(city) FROM tbl_order_shipping_details WHERE shipping_id = shpid )AS shpcity,
-                        (SELECT GROUP_CONCAT(state) FROM tbl_order_shipping_details WHERE shipping_id = shpid )AS shpstate,
-
-                        (SELECT GROUP_CONCAT(pincode) FROM tbl_order_shipping_details WHERE shipping_id = shpid )AS shppin,
+                      
                         (SELECT  GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid  AND active_flag !=2) AS prdimage,
                         (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND active_flag = 1 AND  default_img_flag=1) AS default_img
                         FROM tbl_order_master WHERE order_id=" . $params['orderid'] . " AND product_id= " . $params['pid'] . " AND col_car_qty='" . $params['combn'] . "' AND size=" . $params['sz'];
