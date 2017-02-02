@@ -133,7 +133,7 @@
                         <div class="wJzeva fLeft">
                             <div class="absHeader animFade">WHY JZEVA?</div>
 
-                             <!--<div class="jzgrid grStyl1"></div>-->
+                            <!--<div class="jzgrid grStyl1"></div>-->
                             <a   href='<?php echo DOMAIN?>index.php?action=craftsmanship'><div class="jzgrid grStyl2 animFade">
                                     <div class="hovTr">
                                         <div class="hovTrans">
@@ -248,7 +248,7 @@
         });
 
         $(window).scroll(function () {
-            var sc = $('body').scrollTop();
+            var sc = $(window).scrollTop();
             var ht = $('#banner_over').outerHeight(true) - 60;
             if (ht > sc) {
                 var op = 1 - (ht - sc) / ht;

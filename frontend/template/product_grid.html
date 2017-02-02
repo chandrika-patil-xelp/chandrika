@@ -952,10 +952,14 @@
          
     $("#range").ionRangeSlider({
                 type:"double",
-                 min:lowp,
-                 max:highp,
+                 min:Math.floor(lowp),
+                 max:Math.ceil(highp),
                  grid:true,
                  step:200,
+                 prettify_separator: ",",
+			prettify: function(val) {
+						return common.IND_money_format(val);
+			},
 		 onFinish:   function (data) { 
 		  var rangval="";
 		  rangval=data.from+';'+data.to;
