@@ -205,30 +205,28 @@
       
         $(document).ready(function(){ 
               getOrderDetails();
-	 
+	
             $("input[name='status']").bind('click', function(event) {
-                 stopPropGate(event);
+                   stopPropGate(event);
                  var st=$(this).val();
-                     showLoader();
-                   
-                  if($(this). prop("checked") == true){
-                    changeOrderStatus(st);  
+                       showLoader();
+                 
+                  if($(this). prop("checked") == true){ 
+                     changeOrderStatus(st);  
                   }
                   else if($(this). prop("checked") == false){ 
-			changeOrderStatus(st-1);   
+		  	changeOrderStatus(st-1);   
                   } 
                  
                 if((st !== '7') && (st !== '8')){
-                    $("[name='status']").each( function(r,v) {
+                    $("input[name='status']").each( function(r,v) {
                         if ($(this).val() < st) 
-                            $(this).attr('checked', true); 
+                            $(this).prop('checked', true); 
+			else if($(this).val() > st)
+			    $(this).prop('checked', false); 
                     });  
-                }
-               
-                
-            });
-            
-             
+                } 
+            }); 
         });
          
         function stopPropGate(event)
