@@ -1486,6 +1486,7 @@ class user extends DB {
                         shipping_id as shpid,
                         (Select product_seo_name from tbl_product_master where productid=pid) as pseoname,
                         user_id as uid,
+                       
                         (SELECT name from tbl_order_shipping_details WHERE shipping_id=shpid) AS uname,
                         (SELECT mobile from tbl_order_shipping_details WHERE shipping_id=shpid) AS umobile,
                         (SELECT email from tbl_order_shipping_details WHERE shipping_id=shpid) AS usremail,
@@ -1500,6 +1501,7 @@ class user extends DB {
                         price as price,
                         payment as pm,
                         (Select payment_mode from tbl_transaction_master where order_id=oid) as paymode,
+                        (SELECT transaction_id from tbl_transaction_master WHERE order_id=oid) AS transcId,
 (SELECT  GROUP_CONCAT(product_name) FROM tbl_product_master WHERE productid = pid AND active_flag !=2 ) AS prdname,
 (SELECT  GROUP_CONCAT(procurement_cost) FROM tbl_product_master WHERE productid = pid AND active_flag !=2 ) AS procurementcost,
 (SELECT  GROUP_CONCAT(diamond_setting) FROM tbl_product_master WHERE productid = pid AND active_flag !=2 ) AS dmdsetting,
@@ -1589,6 +1591,7 @@ class user extends DB {
                 $arr['price'] = $row['price'];
                 $arr['pm'] = $row['pm'];
                 $arr['paymode'] = $row['paymode'];
+                $arr['transcId'] = $row['transcId'];
                 $arr['prdname'] = $row['prdname'];
                 $arr['prdcode'] = $row['product_code'];
                 $arr['defimg'] = $row['default_img'];
