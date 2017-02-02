@@ -4219,8 +4219,8 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 		      (SELECT GROUP_CONCAT(cat_name) FROM tbl_category_master WHERE FIND_IN_SET(catid,finejwellrycatid) AND active_flag=1 ) AS finejwellrycatname,
 		      (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND active_flag != 2 AND  default_img_flag=1) AS default_image,
 		      (SELECT GROUP_CONCAT(catid) FROM tbl_category_product_mapping WHERE  productid =pid AND active_flag=1 AND catid!= ".$cid." ) AS signturecatids,
-		      (SELECT GROUP_CONCAT(cat_name) FROM tbl_category_master WHERE FIND_IN_SET(catid,signturecatids) AND active_flag=1 AND pcatid!= 99999) AS signturecatname,  
-
+		      (SELECT GROUP_CONCAT(cat_name) FROM tbl_category_master WHERE FIND_IN_SET(catid,signturecatids) AND active_flag=1 AND pcatid!= 99999) AS signturecatname,
+		        
 		      (SELECT   
 			  CASE chldcatname 
 			      WHEN 'Rings' THEN ( 
@@ -4278,7 +4278,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 								  WHEN 'Rings' THEN ( 
 										    ( 
 										    ( ( metal_weight + ((5 - 14) * 0.05) ) * caratlowp ) 
-										   + (IF(has_diamond=1,dmdcarat*dmdlowp,0))
+						       + (IF(has_diamond=1,dmdcarat*dmdlowp,0))
 										   + ( making_charges * ( metal_weight + ((5 - 14) * 0.05) ) ) 
 										   + (   IF ( has_solitaire=1, SoliPricepercarat*Soliwgt ,0) 
 										       + IF ( has_uncut=1, UncutPricepercarat*Uncutcarat, 0) 
@@ -4291,42 +4291,42 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 										    ( ( metal_weight + ((5 - 14) * 0.05) ) * caratlowp ) 
 										   + (IF(dmdcarat IS NULL,0,dmdcarat*dmdlowp)) 
 										   + ( making_charges * ( metal_weight + ((5 - 14) * 0.05) ) ) 
-										   + (   IF ( has_solitaire=1, SoliPricepercarat*Soliwgt ,0) 
-										       + IF ( has_uncut=1, UncutPricepercarat*Uncutcarat, 0) 
-										       + IF ( has_gemstone=1, gemscarat*gemsPricepercarat, 0) 
-										     ) 
-										     )
-										   * 0.01
-										)
-										) 
-							        WHEN 'Bangles' THEN ( 
-										(
+						       + (   IF ( has_solitaire=1, SoliPricepercarat*Soliwgt ,0) 
+							   + IF ( has_uncut=1, UncutPricepercarat*Uncutcarat, 0) 
+							   + IF ( has_gemstone=1, gemscarat*gemsPricepercarat, 0) 
+							 ) 
+							 )
+						       * 0.01
+						    )
+						) 
+			      WHEN 'Bangles' THEN ( 
+						     (
 										   ( ( metal_weight + ((2.2 - 2.4) * 7) )*caratlowp )
-										   + (IF(has_diamond=1,dmdcarat*dmdlowp,0))
+							+ (IF(has_diamond=1,dmdcarat*dmdlowp,0))
 										   + ( making_charges * ( metal_weight + ((2.2 - 2.4) * 7) ) ) 
-										   + (   IF ( has_solitaire=1, SoliPricepercarat*Soliwgt ,0) 
-										       + IF ( has_uncut=1, UncutPricepercarat*Uncutcarat, 0) 
-										       + IF ( has_gemstone=1, gemscarat*gemsPricepercarat, 0) 
-										     ) 
-										 )
-									       +
-										 (
-										   (
+							+ (   IF ( has_solitaire=1, SoliPricepercarat*Soliwgt ,0) 
+							    + IF ( has_uncut=1, UncutPricepercarat*Uncutcarat, 0) 
+							    + IF ( has_gemstone=1, gemscarat*gemsPricepercarat, 0) 
+							  ) 
+						      )
+						    +
+						      (
+							(
 										   ( ( metal_weight + ((2.2 - 2.4) * 7) )*caratlowp )
-										   + (IF(has_diamond=1,dmdcarat*dmdlowp,0))
+							+ (IF(has_diamond=1,dmdcarat*dmdlowp,0))
 										   + ( making_charges * ( metal_weight + ((2.2 - 2.4) * 7) ) ) 
-										   + (   IF ( has_solitaire=1, SoliPricepercarat*Soliwgt ,0) 
-										       + IF ( has_uncut=1, UncutPricepercarat*Uncutcarat, 0) 
-										       + IF ( has_gemstone=1, gemscarat*gemsPricepercarat, 0) 
-										     ) 
-										   )
-										 * 0.01 
-										 )
-									      ) 	  
+							+ (   IF ( has_solitaire=1, SoliPricepercarat*Soliwgt ,0) 
+							    + IF ( has_uncut=1, UncutPricepercarat*Uncutcarat, 0) 
+							    + IF ( has_gemstone=1, gemscarat*gemsPricepercarat, 0) 
+							  ) 
+							)
+						      * 0.01 
+						      )
+						   ) 
 								  ELSE  (((metal_weight*caratlowp)+(metal_weight*making_charges)+(IF(has_diamond=1,dmdcarat*dmdlowp,0)) + ( IF(has_solitaire=1,SoliPricepercarat*Soliwgt,0) + IF(has_uncut=1,UncutPricepercarat*Uncutcarat,0) + IF(has_gemstone=1,gemscarat*gemsPricepercarat,0)))+(((metal_weight*caratlowp)+(metal_weight*making_charges)+(IF(has_diamond=1,dmdcarat*dmdlowp,0)) + ( IF(has_solitaire=1,SoliPricepercarat*Soliwgt,0) + IF(has_uncut=1,UncutPricepercarat*Uncutcarat,0) + IF(has_gemstone=1,gemscarat*gemsPricepercarat,0)))*0.01))
 								  END
 						      )  
-			       
+ 
 			      WHEN 'Signature' THEN 
 						      (
 							  CASE signturecatname
@@ -4380,8 +4380,8 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 									      ) 	  
 								  ELSE  (((metal_weight*caratlowp)+(metal_weight*making_charges)+(IF(has_diamond=1,dmdcarat*dmdlowp,0)) + ( IF(has_solitaire=1,SoliPricepercarat*Soliwgt,0) + IF(has_uncut=1,UncutPricepercarat*Uncutcarat,0) + IF(has_gemstone=1,gemscarat*gemsPricepercarat,0)))+(((metal_weight*caratlowp)+(metal_weight*making_charges)+(IF(has_diamond=1,dmdcarat*dmdlowp,0)) + ( IF(has_solitaire=1,SoliPricepercarat*Soliwgt,0) + IF(has_uncut=1,UncutPricepercarat*Uncutcarat,0) + IF(has_gemstone=1,gemscarat*gemsPricepercarat,0)))*0.01))
 								  END
-						      )
-						      
+						      )  
+			        	      
 			      ELSE (((metal_weight*caratlowp)+(metal_weight*making_charges)+(IF(has_diamond=1,dmdcarat*dmdlowp,0)) + ( IF(has_solitaire=1,SoliPricepercarat*Soliwgt,0) + IF(has_uncut=1,UncutPricepercarat*Uncutcarat,0) + IF(has_gemstone=1,gemscarat*gemsPricepercarat,0)))+(((metal_weight*caratlowp)+(metal_weight*making_charges)+(IF(has_diamond=1,dmdcarat*dmdlowp,0)) + ( IF(has_solitaire=1,SoliPricepercarat*Soliwgt,0) + IF(has_uncut=1,UncutPricepercarat*Uncutcarat,0) + IF(has_gemstone=1,gemscarat*gemsPricepercarat,0)))*0.01))
  			      END   
 			           
@@ -4469,13 +4469,13 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 //        }
         
         if ($dnmndcutflag == 1) {
-	  $subfltmn=explode(',',$dnmndcutval); $subfltcnt=count($subfltmn); 
+	  $subfldmncuttmn=explode(',',$dnmndcutval); $subfltcnt=count($subfldmncuttmn); 
 	  $sql.=" productid IN (SELECT productid FROM tbl_product_diamond_mapping WHERE  active_flag=1 AND ";
-	  foreach($subfltmn as $subflkey=>$subfltval){
-	     $sqlarr[] = "shape LIKE '%".$subfltval."%'";
+	  foreach($subfldmncuttmn as $subflkey=>$subfltval){
+	     $sqldmncutarr[] = "shape LIKE '%".$subfltval."%'";
 	      
 	  }
-	 $sql.="".  implode(' OR ', $sqlarr);
+	 $sql.="".  implode(' OR ', $sqldmncutarr);
 	   $sql.="HAVING FIND_IN_SET(productid,prdid) ) AND    ";
         }
 
@@ -4483,10 +4483,10 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 	  $subfltmn=explode(',',$cattypeval); $subfltcnt=count($subfltmn); 
 	  $sql.=" productid IN (SELECT productid FROM tbl_product_attributes_mapping WHERE  active_flag=1 AND ";
 	  foreach($subfltmn as $subflkey=>$subfltval){
-	     $sqlarr[] = "value LIKE '%".$subfltval."%'";
+	     $sqlcatarr[] = "value LIKE '%".$subfltval."%'";
 	      
 	  }
-	 $sql.="".  implode(' OR ', $sqlarr);
+	 $sql.="".  implode(' OR ', $sqlcatarr);
 	   $sql.="HAVING FIND_IN_SET(productid,prdid) ) AND    ";
         }
 
@@ -4631,7 +4631,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                     $newWeightlow = $row['metal_weight'] + $changeInWeightsizelow;
                     $newWeighthigh = $row['metal_weight'] + $changeInWeightsizehigh;
                 } else if ($row['chldcatname'] === 'Bangles' || $arr['finejwellrycatname'] == 'Bangles') {
-                    $changeInWeightsizelow = (2.2 - 2.4) * 7;
+                    $changeInWeightsizelow = (2.2 - 2.4) * 7;  
                     $changeInWeightsizehigh = (2.9 - 2.4) * 7;
                     $newWeightlow = $row['metal_weight'] + $changeInWeightsizelow;
                     $newWeighthigh = $row['metal_weight'] + $changeInWeightsizehigh;
@@ -4640,7 +4640,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                     $changeInWeightsizehigh = (0 - 0) * $mtlWgDav;
                     $newWeightlow = $row['metal_weight'] + $changeInWeightsizelow;
                     $newWeighthigh = $row['metal_weight'] + $changeInWeightsizehigh;
-                }
+                } 
 
                 $newWeightlow = $newWeightlow;
                 $newWeighthigh = $newWeighthigh;

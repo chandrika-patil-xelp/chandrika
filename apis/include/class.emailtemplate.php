@@ -105,19 +105,19 @@
 
 
 				    <div style="width:100%;height:auto;margin-bottom:5px">
-                            <div style="width:32%;height:auto;line-height:15px;font-size:11px;color:#333;display:inline-block;vertical-align:top;text-align:center;">
+                            <div style="width:33%;height:auto;line-height:15px;font-size:11px;color:#333;display:inline-block;vertical-align:top;text-align:center;">
 							    INVOICE NO
 								<span style="padding-left:1px;font-weight: bold;display: inline-block;width:100%;">
 							   '.$invoiceno.'
 							   </span>
 							</div>
-							<div style="width:32%;height:auto;line-height:15px;font-size:11px;color:#333;display:inline-block;vertical-align:top;text-align:center;">
+							<div style="width:33%;height:auto;line-height:15px;font-size:11px;color:#333;display:inline-block;vertical-align:top;text-align:center;">
 							   ORDER NO
 							<span style="padding-left:1px;font-weight: bold;display: inline-block;width:100%;">
 							  '.$params['data'][0]['orderid'].'
 							   </span>
 							</div>
-							<div style="width:32%;height:auto;line-height:15px;font-size:11px;color:#333;display:inline-block;vertical-align:top;text-align:center;">
+							<div style="width:33%;height:auto;line-height:15px;font-size:11px;color:#333;display:inline-block;vertical-align:top;text-align:center;">
 							   DATE
 							<span style="padding-left:1px;font-weight: bold;display: inline-block;width:100%;">
 							 '.date("jS M Y").'
@@ -209,7 +209,7 @@
 				    </div>
 				    <div style="width:100%;height:auto;margin-top:50px;margin-bottom:15px">
 					<center>
-					<a href style="text-decoration:none"><div style="width:100%;cursor:pointer;color:#0CCDB8;display:inline-block;vertical-align:top;font-size:9px;padding:0px 5px;line-height:16px;height:25px">FOLLOW US</div></a><a href="https://www.facebook.com/JzevaLuxury/?fref=ts" style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">FACEBOOK</div></a><a href ="https://www.instagram.com/jzevaluxury/" style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">INSTAGRAM</div></a><a href ="https://in.pinterest.com/JzevaLuxury/" style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;letter-spacing:0.02em;height:16px">PINTEREST</div></a>
+					<a href style="text-decoration:none"><div style="width:100%;cursor:pointer;color:#0CCDB8;display:inline-block;vertical-align:top;font-size:9px;padding:0px 5px;line-height:16px;height:25px">FOLLOW US</div></a><a href="https://www.facebook.com/JzevaLuxury/?fref=ts" style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">FACEBOOK</div></a><a href ="https://www.instagram.com/jzevaluxury/" style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">INSTAGRAM</div></a><a href ="https://in.pinterest.com/JzevaLuxury/" style="text-decoration:none"><div style="width:auto;cursor:pointer;padding:0px 5px;color:#fff;display:inline-block;vertical-align:top;font-size:9px;line-height:16px;border-right:1px solid #fff;letter-spacing:0.02em;height:16px">PINTEREST</div></a>
 					</center>
 				    </div>
 				    <div style="width:100%;height:auto;font-size:12px;color:#999;line-height:25px;text-align:center;margin-top:30px">You are receiving this email in response to an order or request you submitted to  <a href="'.DOMAIN.'index.php?action=landing_page" style="color:#999;text-decoration:none !important">www.jzeva.com</a></div>
