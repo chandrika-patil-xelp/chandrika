@@ -210,14 +210,14 @@ function storeshippingdata(shipngdata)
 
 	var data = JSON.parse(res); 
 	 var shipid=data.shipid;
-	 common.addToStorage('jzeva_shpid');  
+	 common.addToStorage('jzeva_shpid',shipid);  
 	 
 	  if(actn == 'buy')
 	  { 
-	      window.location.href = DOMAIN + "index.php?action=checkoutBefore&shpid="+shipid+"&actn=buy";
+	      window.location.href = DOMAIN + "index.php?action=checkoutBefore&actn=buy";
 	  }
 	  else
-	      window.location.href = DOMAIN + "index.php?action=checkoutBefore&shpid="+shipid;
+	       window.location.href = DOMAIN + "index.php?action=checkoutBefore";
     }
     }); 
 }

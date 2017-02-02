@@ -1,5 +1,7 @@
-$(document).ready(function () {
-    common.addToStorage('jzeva_shpid', shpid);
+var shpid;
+
+$(document).ready(function () { 
+    shpid=common.readFromStorage('jzeva_shpid');
     displaycartdetail();
     getshippingdata();
 });

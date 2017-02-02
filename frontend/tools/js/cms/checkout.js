@@ -492,12 +492,13 @@ $('#shpdpincode').on('keyup', function () {
 
 function  storeorderdata()
 {
+    common.addToStorage('jzeva_shpid',shipng_id);
     if (actn == 'buy') {
         var buyid = common.readFromStorage('jzeva_buyid');
         cartid = buyid;
-        window.location.href = DOMAIN + "index.php?action=checkoutBefore&shpid=" + shipng_id + "&actn=buy";
+        window.location.href = DOMAIN + "index.php?action=checkoutBefore&actn=buy";
     } else
-        window.location.href = DOMAIN + "index.php?action=checkoutBefore&shpid=" + shipng_id;
+        window.location.href = DOMAIN + "index.php?action=checkoutBefore";
 }
 
 $('#all_submt').click(function () {
