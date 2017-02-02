@@ -17,8 +17,8 @@ $(document).ready(function(){
 	  var pincode=$('#pincode').val();
 	  var city=$('#city').val();
 	  var state=$('#state').val();
+	  var letters = /^[a-zA-Z\s]+$/;
 	 
-	  var letters = /^[A-Za-z]+$/;
 	  var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
 	  var validationFlag=1;
 	  
