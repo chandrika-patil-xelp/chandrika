@@ -29,7 +29,7 @@ $(document).ready(function(){
 	  }
 	  else if (!letters.test(name)) {
 	    validationFlag = 0;
-	    common.toast(0, 'Name should be alphanumeric');
+	    common.toast(0, 'Name should be in Character');
 	  } 
 	  else if (telno === '' || telno === null) {
 	    validationFlag = 0;
