@@ -551,7 +551,7 @@ class user extends DB {
         $pid = (!empty($params['pid'])) ? trim($params['pid']) : '';
         $combn = (!empty($params['combn'])) ? trim($params['combn']) : '';
         $size = (!empty($params['sz'])) ? trim($params['sz']) : '';
-        if ((empty($orderid)) || (empty($userid))) {
+        if (empty($orderid)) {
             $resp = array();
             $error = array('errCode' => 1, 'errMsg' => 'Parameter Missing');
             $result = array('results' => $resp, 'error' => $error);
@@ -1721,7 +1721,7 @@ class user extends DB {
 		    </body>
 		</html>';
 
-
+ 
         return $message;
     }
 
