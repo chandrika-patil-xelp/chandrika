@@ -2715,8 +2715,17 @@ input[type=number]::-webkit-outer-spin-button {
     background-position: top;
     position: relative;
     padding-bottom: 70%;}
-
+ .gemBanner{width: 100%;
+    height: auto;
+    background-size: contain;
+    background-position: top;
+    background-repeat: no-repeat;
+    position: absolute;
+    padding-bottom: 53%;}
+ .fooTxt{padding: 0 8px;}
+ .PRODUCT_GRID2.wrapper_main{padding-top: 43vh;}
 .spBespoke{font-size: 17px;padding: 0px;}
+.PRODUCT_GRID2 .grid3{width:100%;height: auto;}
     .tHead{width: 100%;text-align: left;}
     .pCont{width: 100%;padding: 0px;}
     .offsetTop{padding: 20px;}
