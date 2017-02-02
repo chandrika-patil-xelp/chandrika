@@ -2883,6 +2883,7 @@ input[type=number]::-webkit-outer-spin-button {
 .closeLogin{width: 50px;height: 50px;}
 .txtTitle{font-size: 15px;}
 .mobFail{display: none;}
+.mnDvs{width: 100%;height: 100vh;z-index: 20000!important;bottom: unset;top: 50px;}
 
 }
 .c_icon{background:url("../img/icons/360.svg")no-repeat;background-size:auto  30px;background-position:center;width: 35px;height: 35px;display: inline-block;position: absolute;}
