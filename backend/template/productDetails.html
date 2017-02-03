@@ -911,7 +911,7 @@
             var str = "<li class='headLi' id='forGold'><div class='forComponent fLeft'>Gold</div></li>";
             var mpval = mpurity.length;
          
-            var carat = data['results']['basicDetails'].mtlWgt
+            var carat = data['results']['basicDetails'].mtlWgt;
             var crPrice;
 
             var total;
@@ -940,9 +940,9 @@
                 crPrice = getGoldRates(mpurity[0]);
                 total = parseFloat(crPrice) * parseFloat(carat);
             }
-
+          
             var gprc = getGoldRates(mpurity[0]);
-            var gptotal = parseFloat(gprc) * parseFloat(carat);
+            var gptotal = parseFloat(gprc) * parseFloat(carat); 
             gptotal = gptotal.toFixed();
             str += "<li id='goldPrice'>";
             str += "<div class='forComponent fLeft pl15'>" + sstr + "</div>";
@@ -965,7 +965,7 @@
              var str = "<li class='headLi' id='forSize'><div class='forComponent fLeft'> Bangle Size(s)</div></li>";
         }
             var wth=calweight(data['results']['basicDetails'].mtlWgt);
-             
+          
          
          var typstr = "<select id='sizePs' name='sizval'  onchange=\"setsizePrice(this);\">";
          
@@ -1128,7 +1128,7 @@
             {
                var wrate=$('#goldWeight1').text().split(' ');
 	       var tot = val * parseFloat(wrate); 
-               
+              
             } 
 	    else
             var tot = val * parseFloat($('#goldWeight1').attr('data-weight'));
@@ -1266,7 +1266,7 @@ var col_car_qty= ""+clrval+"|@|"+gldval+"|@|"+dmndval;
 	    }
 	    var changeInWeight = (currentSize - bseSize) * mtlWgDav; 
 	    newWeight = parseFloat(storedWt) + parseFloat(changeInWeight);
-	    newWeight = newWeight.toFixed(2);
+	    newWeight = newWeight.toFixed(3);
 	    return newWeight;
 	   // $('#newWt').html(newWeight + " gms");
 	}
