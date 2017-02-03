@@ -54,7 +54,7 @@ define('TEMPLATE',WEBROOT.'frontend/template/');
 define('INCLUDES',WEBROOT.'include/');
 define('APICLUDE',WEBROOT.'apis/include/');
 
-define('VERSION',2.02);
+define('VERSION',2.03);
 
 
 
