@@ -55,7 +55,7 @@ function displayorders()
         {
             
             var obj = JSON.parse(results);
-            console.log(obj);
+           
             if (obj["result"] == null) {
                 $('#noordrs').removeClass('dn');
                 $('.orderOuter').addClass('dn');
