@@ -1105,9 +1105,10 @@ function getprodbyid()
 //		przarr=res["allprdpz"]["przperprdlow"];  
 //		lowp=przarr[0];
                     
-		//highp =przarr[(przarr.length)-1]; 
-		 lowp=res["allprdpz"]["min"];  
-		highp=res["allprdpz"]["max"]; 
+		
+		 lowp=res["allprdpz"]["min"];              
+		 highp=res["allprdpz"]["max"]; 
+               // highp=common.IND_money_format(high,0);
 //		var carr=new Array();
 //		carr=res["allprdpz"]["allcarat"];
 //                frstcar=carr[0];
@@ -1218,7 +1219,7 @@ function displayproduct(fltpage)
                 getProdDtl = res["result"];
                 showwishbtn();
                 var total = res["total"];
-                if(total < 12){
+                if(total <= 12){
 		  $('#gr_foot').addClass('dpn');
 		}
 		else
