@@ -11,8 +11,7 @@ include '../config.php';
     if($res['error']['err_code'] ==0)
     { 
       $ordid=$res['result'][0]['cart_id'];
-      //$price=$res['totalprice'];
-     $price=1;
+       $price=$res['totalprice']; 
     }
     
     $billngurl=APIDOMAIN . "index.php?action=getshipdatabyshipid&shpid=".$shipid;
