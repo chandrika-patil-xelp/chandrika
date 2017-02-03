@@ -1159,7 +1159,7 @@ function defaultPrice(a, b, c, d)
 
     var dmdlp = a;
     var dmdhp = b;
-    var carlp = c;
+    var carlp = c; 
     var carhp = d;
 
     var vatRate = (1 / 100);
@@ -1213,11 +1213,11 @@ function defaultPrice(a, b, c, d)
     newWeighthigh = newWeighthigh.toFixed(3);
 
 
-    goldPricelowp = parseFloat(carlp * newWeightlow);
-    goldPricehighp = parseFloat(carhp * newWeighthigh);
-    var mkChargeslowp = parseFloat(storedMkCharge * newWeightlow);
-    var mkChargeshighp = parseFloat(storedMkCharge * newWeighthigh);
- 
+    goldPricelowp = parseFloat((carlp * newWeightlow).toFixed());
+    goldPricehighp = parseFloat((carhp * newWeighthigh).toFixed());
+    
+    var mkChargeslowp = parseFloat((storedMkCharge * newWeightlow).toFixed());
+    var mkChargeshighp = parseFloat((storedMkCharge * newWeighthigh).toFixed());
     var ttllowp = parseFloat(goldPricelowp + dmdPricelow + mkChargeslowp + uncPrice + soliprc + gemsPrice);
     var ttlhighp = parseFloat(goldPricehighp + dmdPricehigh + mkChargeshighp + uncPrice + soliprc + gemsPrice);
     var totalNewPricelow = Math.round(ttllowp + (ttllowp * vatRate));
@@ -1277,12 +1277,12 @@ function calculatePrice()
 
     var changeInWeight = (currentSize - bseSize) * mtlWgDav;
     newWeight = parseFloat(storedWt + (changeInWeight));
-    newWeight = newWeight.toFixed(3);
+    newWeight = newWeight.toFixed(3); 
 
     $('#newWt').html(newWeight + "");
 
-    goldPrice = parseFloat(selPurity * newWeight);
-    var mkCharges = parseFloat(storedMkCharge * newWeight); 
+    goldPrice = parseFloat((selPurity * newWeight).toFixed());
+    var mkCharges = parseFloat((storedMkCharge * newWeight).toFixed()); 
     var ttl = parseFloat(goldPrice + dmdPrice + mkCharges + uncPrice + soliprc + gemsPrice);
 
     totalNewPrice = Math.round(ttl + (ttl * vatRate));
