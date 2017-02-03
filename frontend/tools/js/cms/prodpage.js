@@ -292,6 +292,7 @@ $('#buynow').on('click',function(){
 
 $(document).ready(function () {
     $('html, body').animate({scrollTop: '0px'}, 300);
+    $('.prodCarousel').addClass('dn');
     showwishbtn();
     pid = GetURLParameter('pid');
     var comb = GetURLParameter('comb');
@@ -368,6 +369,7 @@ $(document).ready(function () {
 
 		if(othrimgs['images'] !== null)
 		{
+		$('.prodCarousel').removeClass('dn');
 		var  othrimgstr = "";
 		othrimgstr +='<div class="prevArrow" onclick="movePrImg(true)"></div>';
                 othrimgstr +=' <div class="nextArrow" onclick="movePrImg(false)"></div>';
