@@ -3757,7 +3757,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
         $sqlcount = "SELECT productid,
 	      (SELECT GROUP_CONCAT(productid) FROM tbl_category_product_mapping WHERE catid= " . $cid . " AND active_flag =1 ) AS prdids
 	      FROM tbl_product_master WHERE active_flag =1 HAVING 
-	      FIND_IN_SET(productid,prdids) AND  1< (SELECT COUNT(product_image) FROM tbl_product_image_mapping WHERE product_id= productid AND active_flag=1)";
+	      FIND_IN_SET(productid,prdids) AND  1< (SELECT COUNT(product_id) FROM tbl_product_image_mapping WHERE product_id= productid AND active_flag=1)";
         $rescnt = $this->query($sqlcount);
         $total = $this->numRows($rescnt);
 
@@ -3847,7 +3847,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 			    
 	  FROM tbl_product_master WHERE active_flag =1 AND productid  IN (SELECT
 	    productid FROM tbl_category_product_mapping WHERE catid=" . $cid . " AND active_flag =1)
-                 AND 1< (SELECT COUNT(product_image) FROM tbl_product_image_mapping WHERE product_id= productid AND active_flag=1  )";
+                 AND 1< (SELECT COUNT(product_id) FROM tbl_product_image_mapping WHERE product_id= productid AND active_flag=1)";
 
         $price = $comm->IND_money_format(price);
 
@@ -4000,11 +4000,11 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                 $goldPricelowp = $newWeightlow * $row['caratlowp'];
                 $goldPricehighp = $newWeighthigh * $row['carathighp'];
 
-                $mkChargeslowp = $row['making_charges'] * $newWeightlow;
-                $mkChargeshighp = $row['making_charges'] * $newWeighthigh;
+                $mkChargeslowp = round($row['making_charges'] * $newWeightlow);
+                $mkChargeshighp = round($row['making_charges'] * $newWeighthigh);
 
-                $ttllowp = ($goldPricelowp + $dmdPricelow + $mkChargeslowp + $price);
-                $ttlhighp = ($goldPricehighp + $dmdPricehigh + $mkChargeshighp + $price);
+                $ttllowp = round($goldPricelowp + $dmdPricelow + $mkChargeslowp + $price);
+                $ttlhighp = round($goldPricehighp + $dmdPricehigh + $mkChargeshighp + $price);
 
                 $totalNewPricelow = round($ttllowp + ($ttllowp * $vatRate));
                 $totalNewPricehigh = round($ttlhighp + ($ttlhighp * $vatRate));
@@ -4068,13 +4068,13 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 
       $sql="SELECT
 		  attributeid , attr_name, attr_values,
-		  (SELECT GROUP_CONCAT(productid) FROM tbl_category_product_mapping WHERE catid=".$params['catid']." AND active_flag=1) AS catprds
+		  (SELECT GROUP_CONCAT(productid) FROM tbl_category_product_mapping WHERE catid=".$params['catid']." AND active_flag=1 AND  1< (SELECT COUNT(product_id) FROM tbl_product_image_mapping WHERE product_id= productid AND active_flag=1) ) AS catprds
                   
 	    FROM  
 		  tbl_attribute_master
 	    WHERE
 		  active_flag=1 AND attributeid IN
-		  (SELECT attributeid FROM tbl_category_attribute_mapping WHERE catid=".$params['catid']." AND active_flag=1)
+		  (SELECT attributeid FROM tbl_category_attribute_mapping WHERE catid=".$params['catid']." AND active_flag=1 )
                      
               ";
        $res = $this->query($sql);
@@ -4120,7 +4120,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 		  active_flag=1
 	   
 	    AND
-		 productid IN (".$catprd.")
+		 productid IN (".$catprd.") 
 	    AND
 		 productid IN (SELECT productid FROM tbl_product_master WHERE active_flag=1 )
               " ;
@@ -4446,12 +4446,12 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 	if ($rngflag == 1) 
 	{
 	   $lowprz=  explode(';', $rngval); 
-	   $sql .= "  HAVING ( TRUNCATE(basicprize,0)  BETWEEN  ".$lowprz[0]." AND ".$lowprz[1].") AND  FIND_IN_SET(productid,prdid) AND  1< (SELECT COUNT(product_image) FROM tbl_product_image_mapping WHERE product_id= productid AND active_flag=1  )";
+	   $sql .= "  HAVING ( TRUNCATE(basicprize,0)  BETWEEN  ".$lowprz[0]." AND ".$lowprz[1].") AND  FIND_IN_SET(productid,prdid) AND  1< (SELECT COUNT(product_id) FROM tbl_product_image_mapping WHERE product_id= productid AND active_flag=1  )";
 	  
         }
 	else
 	{
-	   $sql .= "  HAVING FIND_IN_SET(productid,prdid)    AND  1< (SELECT COUNT(product_image) FROM tbl_product_image_mapping WHERE product_id= productid AND active_flag=1)";
+	   $sql .= "  HAVING FIND_IN_SET(productid,prdid)  AND  1< (SELECT COUNT(product_id) FROM tbl_product_image_mapping WHERE product_id= productid AND active_flag=1)";
 	}
         
 	$totcntsql=$sql;
@@ -5033,11 +5033,11 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                 $goldPricelowp = $newWeightlow * $row['caratlowp'];
                 $goldPricehighp = $newWeighthigh * $row['carathighp'];
 
-                $mkChargeslowp = $row['making_charges'] * $newWeightlow;
-                $mkChargeshighp = $row['making_charges'] * $newWeighthigh;
+                $mkChargeslowp = round($row['making_charges'] * $newWeightlow);
+                $mkChargeshighp = round($row['making_charges'] * $newWeighthigh);
 
-                $ttllowp = ($goldPricelowp + $dmdPricelow + $mkChargeslowp + $price); 
-                $ttlhighp = ($goldPricehighp + $dmdPricehigh + $mkChargeshighp + $price);
+                $ttllowp = round($goldPricelowp + $dmdPricelow + $mkChargeslowp + $price); 
+                $ttlhighp = round($goldPricehighp + $dmdPricehigh + $mkChargeshighp + $price);
 
                 $totalNewPricelow = round($ttllowp + ($ttllowp * $vatRate));
                 $totalNewPricehigh = round($ttlhighp + ($ttlhighp * $vatRate));
