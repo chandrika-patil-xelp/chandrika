@@ -3757,7 +3757,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
         $sqlcount = "SELECT productid,
 	      (SELECT GROUP_CONCAT(productid) FROM tbl_category_product_mapping WHERE catid= " . $cid . " AND active_flag =1 ) AS prdids
 	      FROM tbl_product_master WHERE active_flag =1 HAVING 
-	      FIND_IN_SET(productid,prdids) ";
+	      FIND_IN_SET(productid,prdids) AND  1< (SELECT COUNT(product_image) FROM tbl_product_image_mapping WHERE product_id= productid AND active_flag=1)";
         $rescnt = $this->query($sqlcount);
         $total = $this->numRows($rescnt);
 
@@ -3847,7 +3847,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 			    
 	  FROM tbl_product_master WHERE active_flag =1 AND productid  IN (SELECT
 	    productid FROM tbl_category_product_mapping WHERE catid=" . $cid . " AND active_flag =1)
-	      AND 1 < (SELECT COUNT(product_image) FROM tbl_product_image_mapping WHERE product_id= productid AND active_flag=1 )";
+                 AND 1< (SELECT COUNT(product_image) FROM tbl_product_image_mapping WHERE product_id= productid AND active_flag=1  )";
 
         $price = $comm->IND_money_format(price);
 
@@ -4334,6 +4334,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
  			      END   
 			           
 		     ) ) AS basicprize,
+                  
 			  ";  
 		   
 	
@@ -4445,12 +4446,12 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 	if ($rngflag == 1) 
 	{
 	   $lowprz=  explode(';', $rngval); 
-	   $sql .= "  HAVING ( TRUNCATE(basicprize,0)  BETWEEN  ".$lowprz[0]." AND ".$lowprz[1].") AND  FIND_IN_SET(productid,prdid)";
+	   $sql .= "  HAVING ( TRUNCATE(basicprize,0)  BETWEEN  ".$lowprz[0]." AND ".$lowprz[1].") AND  FIND_IN_SET(productid,prdid) AND  1< (SELECT COUNT(product_image) FROM tbl_product_image_mapping WHERE product_id= productid AND active_flag=1  )";
 	  
         }
 	else
 	{
-	   $sql .= "  HAVING FIND_IN_SET(productid,prdid)";
+	   $sql .= "  HAVING FIND_IN_SET(productid,prdid)    AND  1< (SELECT COUNT(product_image) FROM tbl_product_image_mapping WHERE product_id= productid AND active_flag=1)";
 	}
         
 	$totcntsql=$sql;
