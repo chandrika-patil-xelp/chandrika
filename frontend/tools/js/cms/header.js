@@ -1,15 +1,39 @@
+var headrentrflg=0;
+
 $(document).ready(function(){
-  $(window).scroll(function () {
-                   if ($(this).scrollTop() > 100) {
-                       $('.backTop').removeClass("scaleot");
-                   } else {
-                       $('.backTop').addClass("scaleot");
-                   }
-               });
-                $('.backTop').click(function () {
-                       $('html,body').animate({scrollTop: 0});
-                                        });
-  getheader();
+      var actnp = GetURLParameter('actn');
+      var usid = common.readFromStorage('jzeva_uid');
+      if (actnp == "lognpopup") {
+	  setTimeout(function () {
+	      if (usid == null || usid == undefined)
+		  openPopUp();
+	  }, 3000);
+
+      }
+ 
+      $(window).scroll(function () {
+	    if ($(this).scrollTop() > 100) {
+		$('.backTop').removeClass("scaleot");
+	    } else {
+		$('.backTop').addClass("scaleot");
+	    }
+      });
+      $('.backTop').click(function () {
+	    $('html,body').animate({scrollTop: 0});
+      });
+      getheader();
+
+      $(document).keypress(function(e){
+	    if(e.which == 13)
+	    {
+		if(headrentrflg == 1)
+		{
+		     track_ord();
+		}
+	    }
+
+      });
+
 });
 
 function getheader()
@@ -121,19 +145,7 @@ $('#usrlogout').click(function () {
 
     });
 
-
-$(document).ready(function () {
-        var actnp = GetURLParameter('actn');
-        var usid = common.readFromStorage('jzeva_uid');
-        if (actnp == "lognpopup") {
-            setTimeout(function () {
-                if (usid == null || usid == undefined)
-                    openPopUp();
-            }, 3000);
-
-        }
-});
-
+  
 function GetURLParameter(Param)
 {
         var PageURL = window.location.search;
@@ -148,7 +160,13 @@ function GetURLParameter(Param)
 }
 
  $('#Track_ord').click(function () {
-        var ordno = $('#ord_no').val();
+    track_ord();   
+
+    });
+    
+ function track_ord()
+ {
+     var ordno = $('#ord_no').val();
         var inptdata = $('#ord_email').val();
         var validationFlag = 1;
         var filter = /^[0-9-+]+$/;
@@ -197,12 +215,12 @@ function GetURLParameter(Param)
                     var data = JSON.parse(res);
 
                     if (data['error']['err_code'] == 0) {
-                        var ordid = data['result']['order_id'];
+                        var ordid = data['result']['order_id']; 
+                        headrentrflg=0;
                         window.location.href = DOMAIN + "index.php?action=guestaccount&trkid=" + ordid;
                     } else if (data['error']['err_code'] == 1)
                         common.msg(0, data['error']['err_msg']);
                 }
             });
         }
-
-    });
+ }
