@@ -214,7 +214,7 @@
     });
       $('.backTop').click(function () {
             $('body').animate({scrollTop: 0}, 'slow');
-        });
+    });
                 var flag = 1;
         function bindHeader()
         {
@@ -230,12 +230,14 @@
 
 
             function guestpopUp() {
+                headrentrflg=1;
                 $('.loginOverlay').velocity({opacity: [1, 0]});
                 $('#guestPar').removeClass("dn");
                 $('#guestPar').velocity({translateY: [0, '150%']}, {duration: 150, delay: 100, easing: ''});
                 $('#guestChild').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
             }
             function guestpopUpClose() {
+                headrentrflg=0;
                 $('.loginOverlay').velocity({opacity: [0, 1]});
                 $('#guestPar').addClass("dn");
                 $('#guestPar').velocity({translateY: ['150%', 0]}, {duration: 150, delay: 100, easing: ''});
