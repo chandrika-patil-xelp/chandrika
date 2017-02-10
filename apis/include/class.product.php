@@ -4224,7 +4224,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 		      (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND active_flag != 2 AND  default_img_flag=1) AS default_image,
 
 		      (SELECT TRUNCATE((((metal_weight - 0.45 ) * caratlowp)+SIGN(((metal_weight - 0.45 ) * caratlowp))*(POW(10,(1-0))/18)),0))as ringchk,
-		      (SELECT ROUND(ROUND((metal_weight - 1.4 ),3)* caratlowp))AS bngchk,
+		      (SELECT TRUNCATE((((metal_weight - 1.4 ) * caratlowp)+SIGN(((metal_weight - 1.4 ) * caratlowp))*(POW(10,(1-0))/18)),0))as bngchk, 
 		      (SELECT ROUND(ROUND(metal_weight,3)* caratlowp ))AS othrchk,
 		      (SELECT ROUND(metal_weight* making_charges ))AS mkchrg,
 		      (SELECT IF(has_diamond=1,dmdcarat*dmdlowp,0))AS dmdchrg,
@@ -4968,9 +4968,9 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 			    (SELECT GROUP_CONCAT(catid) FROM tbl_category_product_mapping WHERE  productid =pid AND active_flag=1 ) AS signturecatids,
 			    (SELECT GROUP_CONCAT(cat_name) FROM tbl_category_master WHERE FIND_IN_SET(catid,signturecatids) AND active_flag=1 AND pcatid!= 99999) AS signturecatname
 			   
-	  FROM tbl_product_master WHERE active_flag =1 AND productid  IN (SELECT
+	  FROM tbl_product_master WHERE active_flag =1 AND productid  IN (SELECT  
 	    productid FROM tbl_category_product_mapping WHERE catid=" . $cid . " AND active_flag =1) AND  1< (SELECT COUNT(product_id) FROM tbl_product_image_mapping WHERE product_id= productid AND active_flag=1)";
-
+ 
         $price = $comm->IND_money_format(price);
 
         $res = $this->query($sql);
