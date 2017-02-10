@@ -250,11 +250,11 @@ var grandtotal = 0;
 
 var goldPricelowp=0;
 var goldPricehighp =0;
-     goldPricelowp = parseFloat(newWeightlow * caratlowp);
-     goldPricehighp = parseFloat(newWeighthigh * carathighp);
+     goldPricelowp = parseFloat((newWeightlow * caratlowp).toFixed());
+     goldPricehighp = parseFloat((newWeighthigh * carathighp).toFixed());
 
-       var mkChargeslowp = parseFloat(Makchrg * newWeightlow);
-    var mkChargeshighp = parseFloat(Makchrg * newWeighthigh);
+       var mkChargeslowp = parseFloat((Makchrg * newWeightlow).toFixed());
+    var mkChargeshighp = parseFloat((Makchrg * newWeighthigh).toFixed());
 
 
     var ttllowp = parseFloat(goldPricelowp + dmdPricelow + mkChargeslowp + price);
