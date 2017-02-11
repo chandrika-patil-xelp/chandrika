@@ -10,6 +10,7 @@ var stSearch = new Array();
 var menuflag=1;
 
 $(document).ready(function () {
+    
     $('html, body').animate({scrollTop: '0px'}, 300);
     var link=window.location.href;
     getmenu();
@@ -1080,7 +1081,7 @@ function submenu(ths)
 
 
 function getprodbyid()
-{
+{ 
     var URL = APIDOMAIN + "index.php?action=getProductdetailbycatid&id=" + id;
     $.ajax({
         type: 'POST',
@@ -1090,7 +1091,7 @@ function getprodbyid()
 
             res = JSON.parse(res);
             if (res['error']['err_code'] == 0) {
-
+               
 	      if(res['result'] == null){
 		  $('.emptyGrid').removeClass('dpn');
 		  $('#gridDetail').html('');
@@ -1134,6 +1135,7 @@ function getprodbyid()
                 chk();
 	        }
 		getProdDtl = res["result"];
+                 showwishbtn();
                 var total = res["total"];
 		$('#gr_foot').removeClass('dpn');
 		$('.emptyGrid').addClass('dpn');
@@ -1190,7 +1192,7 @@ function getprodbyid()
 //                                            bindhover();
 
 
-                    }
+                    }                 
                     //$('#gridDetail').append(str);
                     //  var $(we)= str;
 
