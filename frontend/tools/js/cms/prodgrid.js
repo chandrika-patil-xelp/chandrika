@@ -51,9 +51,9 @@ $(document).ready(function () {
     
     // var URL = APIDOMAIN + "index.php/?action=getProGrid";
     getprodbyid();
-    setTimeout(function(){
-    showwishbtn();
-    },1000);
+//    setTimeout(function(){
+//    showwishbtn();
+//    },1000);
 });
 
 function generatelist(obj) {
