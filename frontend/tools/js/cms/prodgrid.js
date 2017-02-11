@@ -1104,7 +1104,7 @@ function getprodbyid()
 		//var przarr=new Array(); 
 //		przarr=res["allprdpz"]["przperprdlow"];  
 //		lowp=przarr[0];
-                    
+       
 		
 		 lowp=res["allprdpz"]["min"];              
 		 highp=res["allprdpz"]["max"]; 
@@ -1113,11 +1113,21 @@ function getprodbyid()
 //		carr=res["allprdpz"]["allcarat"];
 //                frstcar=carr[0];
 //                lastcar= carr[(carr.length)-1]; 
-		
-                frstcar=res["allprdpz"]["mincar"];
+	
+                frstcar=res["allprdpz"]["mincar"];	
                 lastcar=res["allprdpz"]["maxcar"];
 		$('.ftab_buffer').prepend(mainmenustr);
                 $('.fmenuB').html(submenulist);
+		
+		if(frstcar == lastcar)
+		  $('#fltr_crt').addClass('dn');
+		else
+		  $('#fltr_crt').removeClass('dn');
+		
+		if(lowp == highp)
+		  $('#fltr_prz').addClass('dn');
+		else
+		  $('#fltr_prz').removeClass('dn');
 		
 		bindFilterUi();
 		getHeight();
@@ -1197,7 +1207,7 @@ function displayproduct(fltpage)
 {
     var limit = 12;
     fltrarray.catid = id;
-    menuflag = 2;
+    menuflag = 2; 
     var dt = JSON.stringify(fltrarray);
     var URL = APIDOMAIN + "index.php?action=getprodByfiltr&page=" + fltpage + "&limit=" + limit + "&catid="+id;
     $.ajax({type: 'POST', url: URL, data: {dt: dt}, success: function (result) {

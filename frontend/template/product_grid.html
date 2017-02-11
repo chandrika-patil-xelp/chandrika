@@ -3,7 +3,7 @@
 <body class="greyBg">
     <?php include 'Cart.html'?>
     <script>
-      var   id = " <?php echo $_GET['id'];  ?>";
+      var   id = "<?php echo $_GET['id'];  ?>";
     </script>
     <?php include 'loader.html'?>
     <?php include 'header.html'?>
@@ -22,7 +22,7 @@
                             <div class="filterH fLeft">
                                 <div class="breadCont fLeft" id="parnttyp">
                                     <div class="breadH fLeft">Home</div>
-                                </div>                                
+                                </div>
                                 <div class="totProduct fRight"  id="total_Product">Products</div>
                             </div>
                             <div class="ftabWrap fRight ">
@@ -68,11 +68,11 @@
                                         </div>
                                     </div>-->
                                     <div class="ftabB">
-                                        <div class="ftab fLeft tabe">
+                                        <div class="ftab fLeft tabe" id="fltr_prz">
                                             PRICE
                                         </div>
                                     </div>
-                                    <div class="ftabB">
+                                    <div class="ftabB" id="fltr_crt">
                                         <div class="ftab fLeft tabe">
                                             CARAT
                                         </div>
@@ -177,7 +177,7 @@
                                                                                                                                         <div class="labBuffer">Casual</div>
                                                                                                                                     </div>
                                                                                                                                 </div>
-                                        
+
                                                                                                                                 <div class="filterCommon designerIc">
                                                                                                                                     <div class="filterLabel">
                                                                                                                                         <div class="labBuffer">designer</div>
@@ -196,7 +196,7 @@
                                                                                 </div>
                                                                                 <div class="fmenu_elm fLeft" id="ringStyle">
                                                                                                                                 <div class="fLeft ringContr poR">
-                                        
+
                                                                                                                                     <div class="filterCommon solitaireIc">
                                                                                                                                         <div class="filterLabel">
                                                                                                                                             <div class="labBuffer">Solitaire</div>
@@ -282,11 +282,11 @@
                                                                                                                                             <div class="labBuffer">illusion</div>
                                                                                                                                         </div>
                                                                                                                                     </div>
-                                        
+
                                                                                                                                 </div>
                                                                                      <div class="colbox5"></div>
                                                                                 </div>
-                                        
+
                                                                                 <div class="fmenu_elm fLeft" ID="diamondID">
                                                                                     <div class="fLeft ringContr poR">
                                                                                         <div class="filterCommon roundIc">
@@ -342,7 +342,7 @@
                                                                                     </div>
                                                                                     <div class="colbox5"></div>
                                                                                 </div>
-                                        
+
                                                                                 <div class="fmenu_elm fLeft ffader">
                                                                                     <div class="fLeft ringContr">
                                                                                         <center>
@@ -476,7 +476,7 @@
                                                                                                     <div class="labBuffer">TOPAZ</div>
                                                                                                 </div>
                                                                                             </div>
-                                        
+
                                                                                             <div class="filterCommon tormalineIc gemstone27">
                                                                                                 <div class="filterLabel">
                                                                                                     <div class="labBuffer">TORMALINE</div>
@@ -492,7 +492,7 @@
                                                                                                     <div class="labBuffer">ZIRCON</div>
                                                                                                 </div>
                                                                                             </div>
-                                        
+
                                                                                         </center>
                                                                                     </div>
                                                                                      <div class="colbox6"></div>
@@ -567,13 +567,13 @@
       </div>
           <div class="loader_quote  fmSansL">The meek may inherit the earth but not its mineral rights</div>
     </div> -->
-   
+
 
     <!--<script type="text/javascript" src="<?php echo $jvs['prodGrid']; ?>"></script>-->
 
     <script>
 
- 
+
         function load_page() {
 
             $('.black_slider').velocity({translateX: [0, '-100%']}, {duration: 400, delay: 2000, easing: 'easeInOutExp', complete: function () {
@@ -947,9 +947,9 @@
             $('.fmenu_elm').each(function () {
                 $(this).attr('initHeight', $(this).outerHeight(true));
             });
-        } 
+        }
 	 function bindFilterUi(){
-         
+
     $("#range").ionRangeSlider({
                 type:"double",
                  min:Math.floor(lowp),
@@ -964,7 +964,7 @@
 		  var rangval="";
 		  rangval=data.from+';'+data.to;
                   var chk=lowp+';'+highp;
-           if(rangval==chk){
+		  if(rangval==chk){
                  delete fltrarray.range;
                  var arrcnt=0;
       var arrobj=[];
@@ -985,28 +985,28 @@
 	  
       } 
       else{
-	  fltrpage=2; fltrcnt=0;
-	  displayproduct(1);
-	}
+			fltrpage=2; fltrcnt=0;
+			displayproduct(1); 
+		  }
              }
-           else{
+		  else{
 		     fltrarray.range = rangval;
-		     fltrpage=2; fltrcnt=0;
-		     displayproduct(1);}
-		}
+			fltrpage=2; fltrcnt=0;
+			displayproduct(1);}
+		  }
               });
-            
+ 
               $("#carat").ionRangeSlider({
                 type: "double",
                 min:frstcar,
                 max:lastcar,
                 grid: true,
 		step:0.05,
-		onFinish:   function (data) { 
+		onFinish:   function (data) {
 		  var rangval="";
 		  rangval=data.from+';'+data.to;
 		    var chk=frstcar+';'+lastcar;
-           if(rangval==chk){
+		  if(rangval==chk){
                  delete fltrarray.carat;
                  var arrcnt=0;
       var arrobj=[];
@@ -1027,17 +1027,17 @@
 	  
       } 
       else{
-	  fltrpage=2; fltrcnt=0;
-	  displayproduct(1);
-	}
+		       fltrpage=2; fltrcnt=0;
+		       displayproduct(1); 
+		  }
              }
-           else{
+		  else{
 		     fltrarray.carat = rangval;
-		     fltrpage=2; fltrcnt=0;
-		     displayproduct(1);}
-		}
+			    fltrpage=2; fltrcnt=0;
+			    displayproduct(1);}
+		  }
               });
-            
+
 
             var vheight = 0;
             /*Overlay fade in/out  on menu hover*/
