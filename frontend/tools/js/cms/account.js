@@ -21,8 +21,8 @@ $(document).ready(function () {
 
     $(document).keypress(function (e) {
         if (e.which == 13)
-        {
-            if (accntentrflag == 1)
+        {  
+            if (accntentrflag == 1) 
                 savemyaddress();
             else if (accntentrflag == 2)
                 resetpasswrd();
@@ -558,10 +558,12 @@ function storenewpass(newpass)
 
 
 $('#shpaddr').on('click', function () {
+    
     savemyaddress();
 });
 
 function savemyaddress() {
+   
     var shipngdata = {};
     var userid = common.readFromStorage('jzeva_uid');
 
@@ -872,6 +874,11 @@ function addAddress()
 //         $("#plusCont").addClass("plusBlack");
 //         $('#openAddrId').addClass("dn");
 //     }
+    if($('#openAddrId').hasClass('dn')){
+        accntentrflag=1;
+    } else{
+        accntentrflag=0;
+    }
   $('#openAddrId').toggleClass('dn');
   $('#addr').val('');      $('#addr').blur();
   $('#state').val('');     $('#state').blur();
@@ -879,8 +886,8 @@ function addAddress()
   $('#city').val('');      $('#city').blur();
   $('#shp_name').val('');  $('#shp_name').blur();
   $('#shp_mob').val('');   $('#shp_mob').blur();
+ 
  }
-
 function ordrinfo()
 {
     accntentrflag = 5;
