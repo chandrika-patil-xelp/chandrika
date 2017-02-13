@@ -394,7 +394,7 @@ var vat = (1 / 100) * defprice;
     //proStr += '<div class="soc_elem soc_comment transition300"></div>';
     //proStr += '<div class="soc_elem soc_share transition300"></div>';
     //proStr += '</div>';
-    proStr += '<a  target="_blank" href="' + DOMAIN + 'index.php?action=product_page&pid=' + obj['prdId'] + '"><div class="custBtn1" >customise</div></a>';
+    proStr += '<div class="custBtn1" onclick="custmz(' + obj['prdId'] + ')">customise</div>';
     proStr += '</div>';
     proStr += '</div>';
     proStr += '<div class="facet_back" >';
