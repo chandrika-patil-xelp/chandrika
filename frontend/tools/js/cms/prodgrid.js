@@ -359,7 +359,7 @@ var vat = (1 / 100) * defprice;
         case 5:
         {
             var gemstn = obj.gemstoneName;
-            Nstr += '<span> Φ ' + gemstn + ' /span>';
+            Nstr += '<span> Φ ' + gemstn + ' </span>';
             break;
         }
         case 6:
