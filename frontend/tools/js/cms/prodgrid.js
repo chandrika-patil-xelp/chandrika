@@ -82,13 +82,13 @@ function generatelist(obj) {
     var Mprc = obj['purprice'];
     var Mcarat = obj['purity'];
     var Makchrg = obj['making_charges'];
-   var Metalwgt = obj['metal_weight'];
+    var Metalwgt = obj['metal_weight']; 
     var gender = obj['gender'];
     var jType = obj['jwelType'];
     var Mclr = obj['allmetalcolor'];
     var gemsName = obj['gemstoneName'];
     var Dshape = obj['shape'];
-    var pid = obj['prdId'];
+    var pid = obj['prdId']; 
     var dmdlowp = obj['dmdlowp'];
     var dmdhighp = obj['dmdhighp'];
     var caratlowp = obj['caratlowp'];
@@ -169,7 +169,7 @@ var grandtotal = 0;
     var mtlWgDav=0;
      var changeInWeightsizelow;
      var changeInWeightsizehigh;
-     var bseSize = 0;
+     var bseSize = 0; 
      var vatRate = (1 / 100);
 
     var price = 0;
@@ -177,7 +177,7 @@ var grandtotal = 0;
         var Solicarat = obj['Solicarat'];
         var Soliprc = obj['SoliPricepercarat'];
         var Solitot = obj['totalSolitaire'];
-
+ 
          var wgtcarat =parseFloat(Solicarat)*parseFloat(Solitot);
         price = price + getSoliPrice(wgtcarat, Soliprc);
 
@@ -199,7 +199,7 @@ var grandtotal = 0;
 
         price = price + getGemsPrice(Gemscarat, Gemsprc);
 
-    }
+   }
 
     var dmdPricelow=0;
     var dmdPricehigh=0;
@@ -390,11 +390,11 @@ var vat = (1 / 100) * defprice;
     proStr += '</div>';
     //proStr += '<div class="soc_icons dn">';
     proStr += '<div class="soc_abs soc_wish2 transition300 fRight" onclick="makeAwish(this, event)" id="prd_'+obj['prdId']+'"  data-size="'+bseSize+'" data-price="'+grandtotal+'" data-comb ="'+chr+'"></div>';
-
+ 
     //proStr += '<div class="soc_elem soc_comment transition300"></div>';
     //proStr += '<div class="soc_elem soc_share transition300"></div>';
     //proStr += '</div>';
-    proStr += '<div class="custBtn1" onclick="custmz(' + obj['prdId'] + ')">customise</div>';
+    proStr += '<a  target="_blank" href="' + DOMAIN + 'index.php?action=product_page&pid=' + obj['prdId'] + '"><div class="custBtn1" >customise</div></a>';
     proStr += '</div>';
     proStr += '</div>';
     proStr += '<div class="facet_back" >';
@@ -521,9 +521,9 @@ var vat = (1 / 100) * defprice;
 }
 
 
-function custmz(i){
+function custmz(i){ 
  var pid =i;
-   window.open(DOMAIN + 'index.php?action=product_page&pid=' +pid);
+    window.open(DOMAIN + 'index.php?action=product_page&pid=' +pid);
 }
 
 function imgLoad(p, event) {
@@ -591,7 +591,7 @@ function getGemsPrice(gemc, gemp) {
     var gp = gemp.split(',');
     var gprc = 0;
     $(gp).each(function (i, v) {
-
+    
     });
     $(gc).each(function (i, vl) {
 
@@ -620,10 +620,10 @@ function getdmdprice(dvprc, dcarat) {
 
 
 function getPurPrice(Mprc, mwght) {
-
+ 
     var mprc = parseFloat(Mprc);
     var metalwght = parseFloat(mwght);
-    var mpurprc = mprc * metalwght;
+    var mpurprc = mprc * metalwght; 
 
     metalValue = mpurprc;
     return metalValue;
@@ -1135,7 +1135,7 @@ function getprodbyid()
                 chk();
 	        }
 		getProdDtl = res["result"];
-                 showwishbtn();
+		showwishbtn();
                 var total = res["total"];
 		$('#gr_foot').removeClass('dpn');
 		$('.emptyGrid').addClass('dpn');
@@ -1342,7 +1342,7 @@ function showwishbtn()
   $(getProdDtl).each(function(p,q){
     prdarr.push(q.prdId);
   });
-
+ 
   var userid = common.readFromStorage('jzeva_uid');
   if(userid != null || userid != undefined)
   {
