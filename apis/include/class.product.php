@@ -3979,7 +3979,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                 if ($row['chldcatname'] == 'Rings' || $row['signturecatname'] == 'Rings') {
 
                     $changeInWeightsizelow = (5 - 14) * 0.05;
-                    $changeInWeightsizehigh = (25 - 14) * 0.05;
+                    $changeInWeightsizehigh = (26 - 14) * 0.05;
                     $newWeightlow = $row['metal_weight'] + $changeInWeightsizelow;
                     $newWeighthigh = $row['metal_weight'] + $changeInWeightsizehigh;
                 } else if ($row['chldcatname'] === 'Bangles' || $row['signturecatname'] == 'Bangles') { 
@@ -4610,7 +4610,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                 if ($row['chldcatname'] == 'Rings' || $row['signturecatname'] == 'Rings') {
 
                     $changeInWeightsizelow = (5 - 14) * 0.05;
-                    $changeInWeightsizehigh = (25 - 14) * 0.05;
+                    $changeInWeightsizehigh = (26 - 14) * 0.05;
                     $newWeightlow = $row['metal_weight'] + $changeInWeightsizelow;
                     $newWeighthigh = $row['metal_weight'] + $changeInWeightsizehigh;
                 } else if ($row['chldcatname'] === 'Bangles' || $row['signturecatname'] == 'Bangles') { 
@@ -4861,7 +4861,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                 if ($row['chldcatname'] == 'Rings') {
 
                     $changeInWeightsizelow = (5 - 14) * 0.05;
-                    $changeInWeightsizehigh = (25 - 14) * 0.05;
+                    $changeInWeightsizehigh = (26 - 14) * 0.05;
                     $newWeightlow = $row['metal_weight'] + $changeInWeightsizelow;
                     $newWeighthigh = $row['metal_weight'] + $changeInWeightsizehigh;
                 } else if ($row['chldcatname'] === 'Bangles') {
@@ -5050,7 +5050,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                 if ($row['chldcatname'] == 'Rings' || $row['signturecatname'] == 'Rings') {
 
                     $changeInWeightsizelow = (5 - 14) * 0.05;
-                    $changeInWeightsizehigh = (25 - 14) * 0.05;
+                    $changeInWeightsizehigh = (26 - 14) * 0.05;
                     $newWeightlow = $row['metal_weight'] + $changeInWeightsizelow;
                     $newWeighthigh = $row['metal_weight'] + $changeInWeightsizehigh;
                 } else if ($row['chldcatname'] === 'Bangles' || $row['signturecatname'] == 'Bangles') {

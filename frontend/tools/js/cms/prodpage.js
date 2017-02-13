@@ -1194,7 +1194,7 @@ function defaultPrice(a, b, c, d)
     if (catname == 'Rings') {
       
         changeInWeightsizelow = (5 - bseSize) * mtlWgDav;
-        changeInWeightsizehigh = (25 - bseSize) * mtlWgDav;
+        changeInWeightsizehigh = (26 - bseSize) * mtlWgDav;
         newWeightlow = parseFloat(storedWt + (changeInWeightsizelow));
         newWeighthigh = parseFloat(storedWt + (changeInWeightsizehigh));
     } else if (catname == 'Bangles') {

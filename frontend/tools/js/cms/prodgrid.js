@@ -229,7 +229,7 @@ var grandtotal = 0;
      if (obj['chldcatname'] === 'Rings' || obj['signturecatname'] == 'Rings'){
 
    changeInWeightsizelow = (5 - bseSize) * mtlWgDav;
-   changeInWeightsizehigh = (25- bseSize) * mtlWgDav;
+   changeInWeightsizehigh = (26- bseSize) * mtlWgDav;
     newWeightlow = parseFloat(Metalwgt) +parseFloat(changeInWeightsizelow);
     newWeighthigh = parseFloat(Metalwgt) +parseFloat(changeInWeightsizehigh);
    }
