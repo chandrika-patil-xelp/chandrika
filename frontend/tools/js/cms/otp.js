@@ -61,7 +61,6 @@ function sendmail(email)
 			    type:'POST',
 			    url:URL,
 			    success:function(res){
-			      console.log(res);
 			    }
 		    });  
 }

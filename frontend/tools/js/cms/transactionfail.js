@@ -277,7 +277,7 @@ function getname()
 }
 
 $('.cntshptrnfail').click(function(){
-   var lasturl=$.cookie('jzeva_currurl'); console.log(lasturl);
+   var lasturl=$.cookie('jzeva_currurl');
     window.location.href=DOMAIN +"index.php"+lasturl; 
 });
 

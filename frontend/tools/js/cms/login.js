@@ -310,7 +310,6 @@ function updatecartiddetail(oldcartid,olduserid,newcartid)
 	 	    datatype: "JSON",
 	 	    success: function(results)
 	 	    {
-		   //   console.log(results);
 		    }
 		  });
 
@@ -478,7 +477,6 @@ function sugnupsubmt()
       $.ajax({  type:'POST',
                 url:URL,
                 success:function(res){
-	      // console.log(res);
 	        common.msg(1,'Password updated successfully');
 		resetSubmit();
 	   }

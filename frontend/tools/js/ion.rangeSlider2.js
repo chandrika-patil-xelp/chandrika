@@ -581,7 +581,6 @@
         },
 
         pointerDown: function (target, e) {
-            console.log("gdsh");
             e.preventDefault();
             var x = e.pageY || e.originalEvent.touches && e.originalEvent.touches[0].pageY;
             if (e.button === 2) {

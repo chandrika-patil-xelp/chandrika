@@ -109,7 +109,6 @@ function getCookie(cname){
                 data: cartDet,
                 contentType: "application/json",
                 success: function (){
-                    console.log('data');
                 }
 
             });
