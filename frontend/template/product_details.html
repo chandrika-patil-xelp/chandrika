@@ -884,14 +884,12 @@
     $("#increment").click(function(){
         a++;
        $("#text").text(a); 
-       console.log(a);
         $("#decrement").removeClass("pNone");
     });
     
     $("#decrement").click(function(){
         a--;
        $("#text").text(a);
-       console.log(a);
        if(a==1){
           $("#decrement").addClass("pNone");  
         }

@@ -10,6 +10,8 @@
         <div class="termHeading">frequently asked questions</div>
     </div>
     <div class="wrapper_main   fLeft">
+        <?php include 'mheader.html' ?>
+        <div class="swipe fLeft" id="lftt"></div>
         <div class="container2 fLeft">
             <div class="col100">
                 <div class="wrapper_max offsetTop offsetEffects transition600">
@@ -58,13 +60,10 @@
             }
             if (ht - sc <= 5) {
                 $('.header').addClass('black_bg');
-                console.log('if');
             } else {
                 $('.header').removeClass('black_bg');
-                console.log('else');
             }
             //           if(ht-sc<=60){
-            //           console.log(sc);
             //           $('.gemBanner').addClass('fixer');
             //       }
             //       else{

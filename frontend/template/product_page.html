@@ -10,10 +10,12 @@
     <!-- <div class="fLeft gemBanner"></div> -->
 
     <div class="wrapper_main fLeft PRODUCT_PAGE">
+          <?php include 'mheader.html' ?>
+        <div class="swipe fLeft" id="lftt"></div>
         <div class="wrapper" id="wrapper">
             <div class="wrapper_max">
                 <div class="container poR">
-                    <div class="fLeft prodCarousel">
+                    <div class="fLeft prodCarousel dn">
                         <!--                            <div class="prevArrow" onclick="movePrImg(true)"></div>
                                                    <div class="nextArrow" onclick="movePrImg(false)"></div>
                                                    <div class="inCarousel transition300" id="othrimgs">
@@ -285,7 +287,6 @@
             grid: true,
             onChange: function (data) {
                 var sVal = data.from_value;
-//                console.log(sVal);
 
                 $('#size').text("Size " + data.from_value);
                 $('.ringCircle').html(sVal);
@@ -317,7 +318,6 @@
 
                 $('#size').text("Size " + data.from_value);
                 $('.ringCircleB').html(sVal);
-//                console.log(sVal);
                 if (t < sVal) {
                     incB();
                 } else {
@@ -533,8 +533,6 @@
             //runner();
 
             wid = $('.rota').width();
-
-
 
         });
 

@@ -1,16 +1,16 @@
 
 <?php include 'jhead.html' ?>
 <body class="greyBg noLink">
-   <?php include 'loader.html'?>
+    <?php include 'loader.html'?>
     <?php include 'Cart.html'?>
     <?php include 'header.html'?>
-     <?php include 'login.html'?>
-
+    <?php include 'login.html'?>
+    <?php include 'mheader.html' ?>
     <div class="wrapper_main fLeft HOME_PAGE fadcrs">
-      <?php include 'mheader.html' ?>
+        
         <div class="swipe fLeft" id="lftt"></div>
         <div class="wrapper">
-            <div class="coverImg">
+            <div class="coverImg mBanner">
                 <!--<div class="coverImgsli"></div>-->
                 <div class="banner_over" id="banner_over"></div>
             </div>
@@ -228,7 +228,7 @@
         });
 
         function loadComplete() {
-        //$('.coverImgsli').addClass('mehB');
+            //$('.coverImgsli').addClass('mehB');
         }
         /* Radia Button */
         $('.selector1').click(function () {
@@ -287,13 +287,12 @@
         }
         var kkk= -1;
         function runslider() {
-          kkk++;
-          if(kkk==4){
-            clearTimeout(stop);
-            runslider();
-            kkk=0;
-            console.log('clear');
-          }
+            kkk++;
+            if (kkk == 4) {
+                clearTimeout(stop);
+                runslider();
+                kkk = 0;
+            }
 
           clearTimeout(stop);
             gallerChange();
@@ -382,7 +381,6 @@
           });
 
         // Hammer(document.getElementById("lftt")).on("swiperight", function() {
-        //   console.log("asa");
         //   $('.sideNav').velocity({translateX: "0%"}, {duration: 300, delay: 0, display: "block", ease: "ease-out"});
         //   $('.swipe').addClass('swipe_aftr');
         //   $('body').addClass('posFix');

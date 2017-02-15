@@ -537,7 +537,6 @@
         $('.co_tab').click(function () {
             var ip = $(this).index();
             var k = ip * 50 + 50;
-            console.log(ip);
             $('.co_tab').removeClass('selecT');
             $(this).addClass('selecT');
             $('.co_panel').removeClass('active');
@@ -574,14 +573,12 @@
             $("#incrmnt").click(function () {
                 a++;
                 $(".item_amt").text(a);
-//                console.log(a);
                 $("#drcmnt").removeClass("pNone");
             });
 
             $("#drcmnt").click(function () {
                 a--;
                 $(".item_amt").text(a);
-//                console.log(a);
                 if (a == 1) {
                     $("#drcmnt").addClass("pNone");
                 }
@@ -589,7 +586,6 @@
 
             $('.pay_tab').click(function () {
                 var idx = $(this).index();
-//                console.log(idx);
                 var lt = (idx) * 25 + 2.5;
                 $('.pay_panel').addClass('dn');
                 $('.pay_panel').eq(idx).removeClass('dn');
@@ -662,7 +658,6 @@
         $('.bankUl li').click(function (evt) {
             evt.stopPropagation();
             var txt = $(this).text();
-//            console.log(txt);
             txt = txt.trim();
             $(this).closest('.autoSgstCnt').find('input').val(txt);
             $(this).parent().slideUp();

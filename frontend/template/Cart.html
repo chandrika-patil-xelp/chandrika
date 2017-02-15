@@ -37,14 +37,13 @@
         <!-- </div> -->
     </div>
    <div class="fLeft totalItem dn checBtnIndx" id="totitm_cart">
-
+        <div class="transition300 mar0  closeCartM" id="closeCart"></div>
                     <div class="fLeft col100 cart_name semibold ">Total Price</div>
                     <div class="fLeft cart_price"><span class="total_price_gen  colorfff cartRupee font25" id="totprz_cart">126,000</span>
                         <div class="actBtn  fLeft bolder pad10  colorfff fRight" id="check_out">CHECKOUT</div>
                     </div>
-
         <!-- <div class="closeCart"></div> -->
-    </div>
+   </div>
 
     <div class="col100 fLeft " id="nocart">
         <div class="wrapper_max">
@@ -70,6 +69,7 @@
         </div>
         </div>-->
         <div class="cart_gen fLeft">
+            <div class="checkmBtn bolder" id='check_out1'>checkout</div>
             <div class="incart_gen fLeft" id="niceCart"></div>
             <!-- <div class="cart_item" id="cartItems">
                 <div class="cart_image"></div>
@@ -206,6 +206,25 @@
 			}
 
                     });
+                    $('#check_out1').click(function () {
+                        var cururl = window.location.search;
+                        var date = new Date();
+                        var minutes = 120;
+                        date.setTime(date.getTime() + (minutes * 60 * 1000));
+                        $.cookie("jzeva_currurl", null);
+                        $.cookie("jzeva_currurl", cururl, {expires: date});
+			var userid=common.readFromStorage('jzeva_uid');
+			if(userid == null || userid == undefined)
+			{
+			  window.location.href=DOMAIN + 'index.php?action=checkoutGuest';
+			}
+			else
+			{
+			  load_checkout();
+			}
+
+                    });
+                    
                     $('#chkout').click(function () {
                         load_checkout();
                     });
@@ -239,7 +258,10 @@
 //    });
 
                     $(document).ready(function () {
+                        var win = $(window).width();
+                       if(win > 768){
                         $('#niceCart').niceScroll({cursorcolor: "#000000", touchbehavior: true, cursorwidth: "4px", autohidemode: false, cursorborder: "0px solid #fff", cursoropacitymin: "0.3", cursoropacitymax: "0.3", railpadding: {top: 2, right: 2, left: 2, bottom: 2}});
-                        $('#cartMain').niceScroll({cursorcolor: "#000000", touchbehavior: true, cursorwidth: "4px", autohidemode: false, cursorborder: "0px solid #fff", cursoropacitymin: "0.3", cursoropacitymax: "0.3", railpadding: {top: 2, right: 2, left: 2, bottom: 2}});
+                    }
+//                        $('#cartMain').niceScroll({cursorcolor: "#000000", touchbehavior: true, cursorwidth: "4px", autohidemode: false, cursorborder: "0px solid #fff", cursoropacitymin: "0.3", cursoropacitymax: "0.3", railpadding: {top: 2, right: 2, left: 2, bottom: 2}});
                     });
 </script>

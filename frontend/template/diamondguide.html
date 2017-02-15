@@ -2,14 +2,16 @@
 <?php include 'jhead.html' ?>
 <body class="Terms">
     <?php include 'Cart.html'?>
-     <?php include 'loader.html'?>
+    <?php include 'loader.html'?>
     <?php include 'header.html'?>
-     <?php include 'login.html'?>
+    <?php include 'login.html'?>
     <div class="fLeft gemBanner">
         <div class="banner_over" id ="banner_over"></div>
         <div class="termHeading">diamond guide</div>
     </div>
-    <div class="wrapper_main   fLeft">
+    <div class="wrapper_main  fLeft">
+        <?php include 'mheader.html'?>
+        <div class="swipe fLeft" id="lftt"></div>
         <div class="container2 fLeft">
             <div class="col100">
                 <div class="wrapper_max offsetTop offsetEffects transition600">
@@ -32,73 +34,127 @@
                             <div class="subH semibold fLeft">Clarity</div>
                             <div class="fLeft tCont">As everything else in this word, diamonds are not perfect, Diamonds have internal features called inclusions and blemishes. These internal features effect the grading of a diamond giving it a clarity rating ranging from Flawless to Included. </div>
                             <div class="fLeft tCont">Only 20% of the diamonds mined across the world are fit to be used in jewellery the rest are just relegated to industrial use. Having said that, a flawless diamond is so rare that it is possible to spend a lifetime being part of the jewellery industry but never see one. Flawless diamonds command the highest prices. </div>
-                            <div class="chartH fLeft">The Diamond grading chart follows the chart below:</div>
-                            <div class="dtable fLeft">
-                                <div class="drow fLeft">
-                                    <div class="rowTxt fLeft">Category</div>
-                                    <div class="rowTxt fLeft">Flawless</div>
-                                    <div class="rowTxt fLeft">Internally Flawless</div>
-                                    <div class="rowTxt fLeft pad3">Very Very Slightly Included</div>
-                                    <div class="rowTxt fLeft">Slightly Included</div>
-                                    <div class="rowTxt fLeft bNone">Included</div>
-                                </div>
-                                <div class="drow fLeft bNone">
-                                    <div class="rowTxt fLeft">Grade</div>
-                                    <div class="rowTxt fLeft">FL</div>
-                                    <div class="rowTxt fLeft">IF</div>
-                                    <div class="rowTxt fLeft">
-                                        <div class='fLeft subRow bRight'>VVS1</div>
-                                        <div class='fRight subRow'>VVS2</div>
-                                    </div>
-                                    <div class="rowTxt fLeft">
-                                        <div class='fLeft subRow bRight'>SI1</div>
-                                        <div class='fRight subRow'>SI2</div>
-                                    </div>
-                                    <div class="rowTxt fLeft bNone">Included</div>
-                                </div>
+                            <div class="chartH fLeft lh0">The Diamond grading chart follows the chart below:</div>
+
+                                                                                <div class="dtable fLeft">
+                                                                                        <div class="drow fLeft">
+                                                                                            <div class="rowTxt fLeft">Category</div>
+                                                                                            <div class="rowTxt fLeft">Flawless</div>
+                                                                                            <div class="rowTxt fLeft">Internally Flawless</div>
+                                                                                            <div class="rowTxt fLeft pad3">Very Very Slightly Included</div>
+                                                                                            <div class="rowTxt fLeft">Slightly Included</div>
+                                                                                            <div class="rowTxt fLeft bNone">Included</div>
+                                                                                        </div>
+                                                                                        <div class="drow fLeft bNone">
+                                                                                            <div class="rowTxt fLeft">Grade</div>
+                                                                                            <div class="rowTxt fLeft">FL</div>
+                                                                                            <div class="rowTxt fLeft">IF</div>
+                                                                                            <div class="rowTxt fLeft">
+                                                                                                <div class='fLeft subRow bRight'>VVS1</div>
+                                                                                                <div class='fRight subRow'>VVS2</div>
+                                                                                            </div>
+                                                                                            <div class="rowTxt fLeft">
+                                                                                                <div class='fLeft subRow bRight'>SI1</div>
+                                                                                                <div class='fRight subRow'>SI2</div>
+                                                                                            </div>
+                                                                                            <div class="rowTxt fLeft bNone">Included</div>
+                                                                                        </div>
+                                                                                    </div>
+                            <div class="fLeft table_Cont dn">
+                                <table class="diamondTable">
+                                    <tbody>
+                                        <!--<tr class="semibold">The Diamond grading chart follows the chart below:</tr>-->
+                                        <tr>
+                                            <th>Category</th>
+                                            <th>Flawless</th>
+                                            <th>Internally Flawless</th>
+                                            <th>Very Very Slightly Included</th>
+                                            <th>Slightly Included</th>
+                                            <th>Included</th>
+                                        </tr>
+                                        <tr>
+                                            <td>Grade</td>
+                                            <td>FL</td>
+                                            <td>IF</td>
+                                            <td><div class="fLeft col50">VVS1</div><div class="fRight col50">VVS2</div></td>
+                                            <td><div class="fLeft col50">SI1</div><div class="fRight col50">SI2</div></td>
+                                            <td>Included</td>  
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                             <div class="fLeft tCont">All else being equal, the price per carat increases with the clarity of the diamond, since diamonds with good clarity are both rarer and more desirable for use as gemstones</div>
                             <div class="subH semibold fLeft">Color</div>
                             <div class="fLeft tCont">Color in the context of measuring a diamonds quality is based on the presence of a faint yellow or brown sting, Diamonds of specific colours like pink, green, blue, black etc are treated separately as fancy diamonds and have different parameters to measure quality.</div>
                             <div class="chartH fLeft">The color of the diamond varies on a scale of D to Z as shown below</div>
-                            <div class="fLeft dtable">
-                                <div class="fLeft drow">
-                                    <div class="letters fLeft">d</div>
-                                    <div class="letters fLeft">e</div>
-                                    <div class="letters fLeft">f</div>
-                                    <div class="letters fLeft">g</div>
-                                    <div class="letters fLeft">h</div>
-                                    <div class="letters fLeft">i</div>
-                                    <div class="letters fLeft">j</div>
-                                    <div class="letters fLeft">k</div>
-                                    <div class="letters fLeft">l</div>
-                                    <div class="letters fLeft">m</div>
-                                    <div class="letters fLeft">n</div>
-                                    <div class="letters fLeft">o</div>
-                                    <div class="letters fLeft">p</div>
-                                    <div class="letters fLeft">q</div>
-                                    <div class="letters fLeft">r</div>
-                                    <div class="letters fLeft">s</div>
-                                    <div class="letters fLeft">t</div>
-                                    <div class="letters fLeft">u</div>
-                                    <div class="letters fLeft">v</div>
-                                    <div class="letters fLeft">w</div>
-                                    <div class="letters fLeft">x</div>
-                                    <div class="letters fLeft">y</div>
-                                    <div class="letters fLeft">z</div>
-                                </div>
-                                <div class="drow fLeft">
-                                    <div class="fLeft lettersresult w1">colourless</div>
-                                    <div class="fLeft lettersresult w2">near colourless</div>
-                                    <div class="fLeft lettersresult w1">faint yellow</div>
-                                    <div class="fLeft lettersresult w3">very light yellow</div>
-                                    <div class="fLeft lettersresult w4">light yellow</div>
-                                </div>
+                                                        <div class="fLeft dtable">
+                                                            <div class="fLeft drow">
+                                                                <div class="letters fLeft">d</div>
+                                                                <div class="letters fLeft">e</div>
+                                                                <div class="letters fLeft">f</div>
+                                                                <div class="letters fLeft">g</div>
+                                                                <div class="letters fLeft">h</div>
+                                                                <div class="letters fLeft">i</div>
+                                                                <div class="letters fLeft">j</div>
+                                                                <div class="letters fLeft">k</div>
+                                                                <div class="letters fLeft">l</div>
+                                                                <div class="letters fLeft">m</div>
+                                                                <div class="letters fLeft">n</div>
+                                                                <div class="letters fLeft">o</div>
+                                                                <div class="letters fLeft">p</div>
+                                                                <div class="letters fLeft">q</div>
+                                                                <div class="letters fLeft">r</div>
+                                                                <div class="letters fLeft">s</div>
+                                                                <div class="letters fLeft">t</div>
+                                                                <div class="letters fLeft">u</div>
+                                                                <div class="letters fLeft">v</div>
+                                                                <div class="letters fLeft">w</div>
+                                                                <div class="letters fLeft">x</div>
+                                                                <div class="letters fLeft">y</div>
+                                                                <div class="letters fLeft">z</div>
+                                                            </div>
+                                                            <div class="drow fLeft">
+                                                                <div class="fLeft lettersresult w1">colourless</div>
+                                                                <div class="fLeft lettersresult w2">near colourless</div>
+                                                                <div class="fLeft lettersresult w1">faint yellow</div>
+                                                                <div class="fLeft lettersresult w3">very light yellow</div>
+                                                                <div class="fLeft lettersresult w4">light yellow</div>
+                                                            </div>
+                                                        </div>
+
+                            <div class="fLeft table_Cont dn">
+                                <table class="diamondTable col_pad">
+                                    <tbody>
+                                        <!--<tr class="semibold">The Diamond grading chart follows the chart below:</tr>-->
+                                        <tr>
+                                            <th>
+                                                <div class="fLeft tBox t_Box1">d</div><div class="tBox t_Box1">e</div><div class="tBox t_Box1">f</div>
+                                            </th>
+                                            <th>
+                                                <div class="tBox t_Box3">g</div><div class="tBox t_Box3">h</div><div class="tBox t_Box3">i</div><div class="tBox t_Box3">j</div></th>
+                                            <th>
+                                                <div class="tBox t_Box1">k</div><div class="tBox t_Box1">l</div><div class="tBox t_Box1">m</div>
+                                            </th>
+                                            <th>
+                                                <div class="tBox t_Box4 t_Box4">n</div><div class="tBox t_Box4">o</div><div class="tBox t_Box4">p</div><div class="tBox t_Box4">q</div><div class="tBox t_Box4">r</div>
+                                            </th>
+                                            <th>
+                                                <div class="tBox t_Box2">s</div><div class="tBox t_Box2">t</div><div class="tBox t_Box2">u</div><div class="tBox t_Box2">v</div><div class="tBox t_Box2">w</div><div class="tBox t_Box2">x</div><div class="tBox t_Box2">y</div><div class="tBox t_Box2">z</div>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <td>colourless</td>
+                                            <td>near colourless</td>
+                                            <td>faint yellow</td>
+                                            <td>very light yellow</td>
+                                            <td>light yellow</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
+
                             <div class="subH semibold fLeft">Cut</div>
                             <div class="fLeft  tCont">Diamond cutting is an art of processing a rough diamond obtained from a mine to making it into a gemstone usable in jewellery. The precision in which a diamond is cut decides how much light it reflects. Cuts are graded as follows:</div>
-
-
                             <div class="fLeft points regular subHm">Excellent
                                 <span class="tCont fLeft">Cut to the most exacting standards these diamonds will reflect the maximum possible light. The hearts and arrows patterns formed will be the clearest in case of Excellent cut diamonds.</span></div>
                             <div class="fLeft points regular subHm">IDEAL
@@ -111,28 +167,18 @@
                                 <span class="tCont fLeft">Adequate quality cut which reflects some light while maximizing weight. While not as brilliant as a good cut, still a quality diamond. Jzeva doesn’t use Fair cut diamonds in its designs. </span></div>
                             <div class="fLeft points regular subHm">POOR
                                 <span class="tCont fLeft">Inadequate quality cut that reflects minimal amount of light. Brilliant Earth does not provide diamonds with cut grades of poor. Jzeva doesn’t use Poor cut diamonds in its designs.</span></div>
-
-
                         </div>
                     </div>
-
-
-
-
-
-
-
                 </div>
             </div>
         </div>
-
     </div>
     <?php include 'footer.html'?>
-   
+
     <script>
-    function loadComplete(){
-      $('.wrapper_max').removeClass('offsetEffects');
-    }
+        function loadComplete() {
+            $('.wrapper_max').removeClass('offsetEffects');
+        }
         $(document).ready(function () {
             load_page();
         });
@@ -146,13 +192,11 @@
             }
             if (ht - sc <= 5) {
                 $('.header').addClass('black_bg');
-                console.log('if');
             } else {
                 $('.header').removeClass('black_bg');
-                console.log('else');
             }
             //           if(ht-sc<=60){
-            //           console.log(sc);
+           
             //           $('.gemBanner').addClass('fixer');
             //       }
             //       else{

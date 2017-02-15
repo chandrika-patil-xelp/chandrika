@@ -33,8 +33,7 @@ $(".rota").on("mousemove", function(e) {
         //       sEnd=1;
         //  }
            staticCord=parseInt(staticCord);
-           console.log("staticCord:" + staticCord);
-              console.log("j:" + j);
+
              x=x+staticCord -j ;
              k=x/d ;
              k=(k) %30;
@@ -47,7 +46,6 @@ $(".rota").on("mousemove", function(e) {
 
     // else{
     //   staticCord=e.pageX;
-    //    console.log("staticCord:" + staticCord);
     // }
 });
 $(".rota").on("mouseup", function(e) {

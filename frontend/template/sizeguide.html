@@ -2,14 +2,16 @@
 <?php include 'jhead.html' ?>
 <body class="Terms">
     <?php include 'Cart.html'?>
-        <?php include 'loader.html'?>
+    <?php include 'loader.html'?>
     <?php include 'header.html'?>
-     <?php include 'login.html'?>
+    <?php include 'login.html'?>
     <div class="fLeft gemBanner">
         <div class="banner_over" id ="banner_over"></div>
         <div class="termHeading">ring Sizing Guide</div>
     </div>
     <div class="wrapper_main  fLeft">
+        <?php include 'mheader.html' ?>
+        <div class="swipe fLeft" id="lftt"></div>
         <div class="container2 fLeft">
             <div class="col100">
                 <div class="wrapper_max offsetTop offsetEffects transition600">
@@ -36,7 +38,7 @@
                             <div class="fLeft pCont pad0">
                                 <div class="tCont fLeft points">Take one of the rings that you already own, ensure that It fits you well.</div>
                                 <div class="tCont fLeft points">Take a scale and measure the diameter (the largest distance) of the inner edges of the ring.</div>
-                                
+
                             </div>
                             <div class="tCont fLeft">Once you know the diameter compare it to the chart below to find your ring size.</div>
                             <div class="tCont fLeft">
@@ -166,9 +168,9 @@
                                 <div class="dtable fLeft">
                                     <div class="hRow fLeft">
                                         <div class="fLeft shRow ">Ring Size(Indian)</div>
-                                        <div class="fLeft shRow ">Circumference(In mm)</div>
+                                        <div class="fLeft shRow ">Circumference<br>(In mm)</div>
                                         <div class="fLeft shRow ">Ring Size(Indian)</div>
-                                        <div class="fLeft shRow ">Circumference(In mm)</div>
+                                        <div class="fLeft shRow ">Circumference<br>(In mm)</div>
                                     </div>
                                     <div class="sizeRow fLeft">
                                         <div class="fLeft sRow">6</div>
@@ -259,12 +261,12 @@
         </div>
     </div>
     <?php include 'footer.html'?>
-  
+
     <script>
 
-    function loadComplete(){
-      $('.wrapper_max').removeClass('offsetEffects');
-    }
+        function loadComplete() {
+            $('.wrapper_max').removeClass('offsetEffects');
+        }
         $(document).ready(function () {
             load_page();
         });
@@ -278,10 +280,8 @@
             }
             if (ht - sc <= 5) {
                 $('.header').addClass('black_bg');
-                console.log('if');
             } else {
                 $('.header').removeClass('black_bg');
-                console.log('else');
             }
             //           if(ht-sc<=60){
             //           console.log(sc);

@@ -4,12 +4,14 @@
     <?php include 'Cart.html'?>
     <?php include 'loader.html'?>
     <?php include 'header.html'?>
-     <?php include 'login.html'?>
+    <?php include 'login.html'?>
     <div class="fLeft gemBanner">
         <div class="banner_over" id="banner_over"></div>
         <div class="termHeading">warranty and repair</div>
     </div>
     <div class="wrapper_main   fLeft">
+        <?php include 'mheader.html' ?>
+        <div class="swipe fLeft" id="lftt"></div>
         <div class="container2 fLeft">
             <div class="col100">
                 <div class="wrapper_max offsetTop offsetEffects transition600">
@@ -42,11 +44,11 @@
         </div>
     </div>
     <?php include 'footer.html'?>
-    
+
     <script>
-    function loadComplete(){
-      $('.wrapper_max').removeClass('offsetEffects');
-    }
+        function loadComplete() {
+            $('.wrapper_max').removeClass('offsetEffects');
+        }
         $(document).ready(function () {
             load_page();
         });
@@ -61,10 +63,8 @@
             }
             if (ht - sc <= 5) {
                 $('.header').addClass('black_bg');
-                console.log('if');
             } else {
                 $('.header').removeClass('black_bg');
-                console.log('else');
             }
 
         });

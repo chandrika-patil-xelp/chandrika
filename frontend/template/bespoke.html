@@ -10,6 +10,8 @@
         <div class="banner_over" id="banner_over"></div>
     </div>
     <div class="wrapper_main fLeft HOME_PAGE">
+        <?php include 'mheader.html' ?>
+        <div class="swipe fLeft" id="lftt"></div>
         <div class="wrapper">
             <div class="coverImg2">
                 <!-- <div class="coverImgsli">
@@ -233,16 +235,16 @@
                 $('#banner_over').css({'opacity': op});
             }
             if (ht - sc <= 5) {
-                console.log(ht);
+             
                 $('.header').addClass('black_bg');
                 console.log('if');
             } else {
-                console.log('else');
+       
                 $('.header').removeClass('black_bg');
 
             }
             //           if(ht-sc<=60){
-            //           console.log(sc);
+       
             //           $('.gemBanner').addClass('fixer');
             //       }
             //       else{

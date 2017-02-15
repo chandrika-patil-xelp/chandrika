@@ -1,5 +1,8 @@
 <?php include 'jhead.html' ?>
-<body class="greyBg"  >
+
+<body class="greyBg">
+    <?php include 'mheader.html'?>
+    <div class="swipe fLeft" id="lftt"></div>
     <?php include 'Cart.html' ?>
     <div class="entrotppopup">
         <div class="enterotpCnt regular">
@@ -34,7 +37,7 @@
     </div>
     <div class="chkoutHeader poR">
         <div class="wrapper_max">
-	  <a href="<?php echo DOMAIN ?>index.php?action=landing_page"><div class="logo fLeft" ></div></a>
+            <a href="<?php echo DOMAIN ?>index.php?action=landing_page"><div class="logo fLeft" ></div></a>
             <div class="fLeft callUs">Got Question? call us on 9880824707</div>
             <div class="payOption fRight">
                 <div class="col50 pay certiIc fRight">certified jewellery</div>
@@ -48,17 +51,22 @@
         <div class="wrapper chkout">
             <div class="darkCont fadeInup runslider" id="darkCont">
                 <div class="wrapper_max">
+                    <div class="mediaBtn">
+                        <div class="col50 fLeft"><div class="actBtn" id="mConfirm">confirm address</div></div>
+                        <div class="col50 fRight"><div class="actBtn fRight" id="mProd">products</div></div>
+                    </div>
                     <div class="homeCollect">
                         <div class="colleCont dTab ePadding" id="addOpt">
                             <div class="tabDaddrss1 semibold dn">DELIVERY OPTION</div>
                             <!--<div class="tabDaddrss semibold">DELIVERY ADDRESS</div>-->
                             <div class="yetanotherbuffer">
                                 <div class="fadeCnt fLeft" id="scndup">
+
                                     <div class="dAdrsshdr fLeft semibold">CONFIRM ADDRESS
                                         <div class="cbrdr"></div>
                                     </div>
                                     <div class="delvrAdress fLeft regular" id="intscrl">
-                                         <!--<div class="entrOtp fLeft semibold" onclick="opnscnd()">Want to add different address?</div>-->
+                                        <!--<div class="entrOtp fLeft semibold" onclick="opnscnd()">Want to add different address?</div>-->
                                         <!--<div class="col100 fLeft radTor">
                                           <div class="w50r fLeft">
                                               <div class="text fLeft" id="spnd_name">Janardan prasanna ghosh</div>
@@ -152,14 +160,14 @@
                                     </div>
                                     <div class="frmDtls fLeft semibold">
                                         <div class="neadHide">
-                                                                                        <div class="dropBox fLeft">
-                                                                                            <label  id="dlabel">Title</label>
-                                                                                            <ul class="ulDiv dn">
-                                                                                                <li class="opt1" id="gnd_1">Ms</li>
-                                                                                                <li class="opt1" id="gnd_2">Mr</li>
-                                                                                                <li class="opt1" id="gnd_3">Mrs</li>
-                                                                                            </ul>
-                                                                                        </div>
+                                            <div class="dropBox fLeft">
+                                                <label  id="dlabel">Title</label>
+                                                <ul class="ulDiv dn">
+                                                    <li class="opt1" id="gnd_1">Ms</li>
+                                                    <li class="opt1" id="gnd_2">Mr</li>
+                                                    <li class="opt1" id="gnd_3">Mrs</li>
+                                                </ul>
+                                            </div>
                                             <div class="txtB fRight w78">
                                                 <input type="text" class="inp_box " autocomplete="off" id="shpdname" maxlength="30" onkeypress="return common.isCharacterKey(event, this.value);">
                                                 <div class="inp_label ">Name*</div>
@@ -363,7 +371,7 @@
                                             <div class="sgnUptxt fLeft regular"><span>Continue as a guest</span> </div>
                                         </div>-->
                         <div class="colleCont v2 black">
-                              <div class="fLeft totalItem txt_center blackShade" id="totlitem_chkout">
+                            <div class="fLeft totalItem txt_center blackShade" id="totlitem_chkout">
                                 <div class="fLeft col100 cart_name light colorfff">Cart Value
                                 </div>
                                 <div class="fLeft cart_price font35 colorfff"><span class="total_price  font35" id="totprz_chkout"></span>
@@ -872,8 +880,8 @@
                                             $('#shpdcity').val('');
                                             $('#shpdstate').val('');
                                             $('#shpdpincode').val('');
-					    $('#shpdname').val('');
-					    $('#shpdmobile').val('');
+                                            $('#shpdname').val('');
+                                            $('#shpdmobile').val('');
                                             $('.txtB ').removeClass('focul');
                                             $('#fstup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
                                             $('#scndup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
@@ -1011,6 +1019,16 @@
                                             }
                                         });
 
+                                        $('#mProd').click(function () {
+                                            $('.dTab').addClass('dn');
+                                            $('.v2').css("display", "block");
+                                        });
+
+                                        $('#mConfirm').click(function () {
+
+                                            $('.dTab').removeClass('dn');
+                                            $('.v2').css("display", "none");
+                                        });
 
 
     </script>
