@@ -677,7 +677,7 @@
     </div>
 
     <?php include 'footer.html'?>
-   
+
     <script>
 //        $('.hideDiv').velocity({opacity: [0]});
 //        $('.imgHead').velocity({opacity: [1]});
@@ -703,7 +703,6 @@
         $('.closeGem').click(function () {
             $('#tid').text('');
             var imgId = $('.imageOutr').index();
-            console.log(imgId);
             $('.imageOutr').removeClass("title_eff");
             fchild = $('.imageOutr').children(':first-child').attr("id");
             $(fchild).removeClass("title_eff");
@@ -747,10 +746,8 @@
             }
             if (ht - sc <= 5) {
                 $('.header').addClass('black_bg');
-                console.log('if');
             } else {
                 $('.header').removeClass('black_bg');
-                console.log('else');
             }
         });
 
