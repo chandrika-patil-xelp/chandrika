@@ -1,79 +1,312 @@
 <div class="mheader">
     <div class="menuLHeader fLeft"></div>
-   <div class="mlogoHeader"></div>
-   <div class="mCart fRight"></div>
-    </div>
-<div class="sideNav" id="leftMenu">
-  <div class="menuWrapper">
-    <div class="crssLheader"></div>
-                 <div class="div100 fLeft" id="menudivCont">
-                   <div class="asa fLeft open">
-                  <div class="sideNav_tab" id="fnJwl">
-                        FINE JEWELLERY
+    <a class="logoA" href="<?php echo DOMAIN ?>"><div class="mlogoHeader"></div></a>
+    <div class="mCart mcartIc fRight"></div>
+    <div class="mCart guestTrack fRight" id="mediaTrack"></div>
+    <div class="mCart userprofile fRight" id="mediaUsr"></div>
+</div>
+<div class="sideNav dn" id="leftMenu">
+    <div class="menuWrapper">
+        <div class="crssLheader"></div>
+        <div class="div100 fLeft" id="menudivCont">
+            <div class="asa fLeft open">
+                <div class="sideNav_tab" id="fnJwl">
+                    FINE JEWELLERY
+                </div>
+                <div class="collap fLeft dn">
+                    <div class="meucot fLeft">
+                        RINGS
                     </div>
-                    <div class="collap fLeft dn">
-                       <div class="meucot fLeft">
-                          RINGS
-                       </div>
-                       <div class="meucot fLeft">
-                          EARRINGS
-                       </div>
-                       <div class="meucot fLeft">
-                          NECKLACES
-                       </div>
-                       <div class="meucot fLeft">
-                          BANGLES
-                       </div>
-                       <div class="meucot fLeft">
-                          PENDANTS
-                       </div>
+                    <div class="meucot fLeft">
+                        EARRINGS
                     </div>
-                  </div>
-                  <div class="asa fLeft">
-                   <div class="sideNav_tab">
-                         BESPOKE
+                    <div class="meucot fLeft">
+                        NECKLACES
                     </div>
-                  </div>
-                  <div class="asa fLeft">
-                    <div class="sideNav_tab">
-                           PRODUCTS
+                    <div class="meucot fLeft">
+                        BANGLES
                     </div>
-                  </div>
-                  <div class="asa fLeft">
-                    <div class="sideNav_tab">
-                         SIGNATURE
+                    <div class="meucot fLeft">
+                        PENDANTS
                     </div>
-                  </div>
-                  <div class="asa fLeft">
-                    <div class="sideNav_tab" id="educ">
-                          EDUCATION
-                    </div>
-                    <div class="collap fLeft dn">
-                       <div class="meucot fLeft">
-                          GEMSTONE GUIDE
-                       </div>
-                       <div class="meucot fLeft">
-                          JEWELLERY GUIDE
-                       </div>
-                       <div class="meucot fLeft">
-                          PRECIOUS METAL GUIDE
-                       </div>
-                       <div class="meucot fLeft">
-                          DIAMOND GUIDE
-                       </div>
-                       <div class="meucot fLeft">
-                          SIZING GUIDE
-                       </div>
-                       <div class="meucot fLeft">
-                          BANGLE GUIDE
-                       </div>
-                    </div>
-                  </div>
-                  <div class="asa fLeft">
-                    <div class="sideNav_tab cc5 mlogn">
-                        LOGIN
-                    </div>
-                  </div>
                 </div>
             </div>
+            <div class="asa fLeft">
+                <a href='<?php echo DOMAIN?>index.php?action=bespoke'><div class="sideNav_tab">
+                        BESPOKE
+                    </div></a>
+            </div>
+
+            <div class="asa fLeft">
+                <div class="sideNav_tab">
+                    SIGNATURE
+                </div>
+            </div>
+            <div class="asa fLeft">
+                <div class="sideNav_tab" id="educ">
+                    EDUCATION
+                </div>
+                <div class="collap fLeft dn">
+                    <a   href='<?php echo DOMAIN?>index.php?action=gemstoneGuideNew'><div class="meucot fLeft">
+                            GEMSTONE GUIDE
+                        </div></a>
+                    <a href='<?php echo DOMAIN?>index.php?action=jewellerycare'><div class="meucot fLeft">
+                            JEWELLERY GUIDE
+                        </div></a>
+                    <a href='<?php echo DOMAIN?>index.php?action=preciousmetalguide'><div class="meucot fLeft">
+                            PRECIOUS METAL GUIDE
+                        </div></a>
+                    <a   href='<?php echo DOMAIN?>index.php?action=diamondguide'><div class="meucot fLeft">
+                            DIAMOND GUIDE
+                        </div></a>
+                    <a href='<?php echo DOMAIN?>index.php?action=sizeguide'><div class="meucot fLeft">
+                            RING SIZING GUIDE
+                        </div></a>
+                    <a href='<?php echo DOMAIN?>index.php?action=bangleguide'><div class="meucot fLeft">
+                            BANGLE SIZING GUIDE
+                        </div></a>
+                </div>
+            </div>
+            <center>
+                <div class="mediaL">
+                    <div class="col50 actBtn cc5 mlogn">
+                        LOGIN
+                    </div>
+                </div>
+            </center>
         </div>
+    </div>
+</div>
+<script type="text/javascript" src="<?php echo $jvs['cart']; ?>"></script>
+
+<script type="text/javascript">
+
+            $('.mcartIc').click(function () {
+        $('body').addClass('posFix');
+        openCart();
+    });
+
+    $('.mlogn').on('click', function () {
+        openPopUp();
+        sideNav();
+    });
+
+    $('#mediaUsr').click(function () {
+        openPopUp();
+    });
+    $('#mediaTrack').click(function () {
+        guestpopUp();
+    });
+
+    function guestpopUp() {
+        $('.loginOverlay').velocity({opacity: [1, 0]});
+        $('#guestPar').removeClass("dn");
+        $('#guestPar').velocity({translateY: [0, '150%']}, {duration: 150, delay: 100, easing: ''});
+        $('#guestChild').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+    }
+    function guestpopUpClose() {
+        $('.loginOverlay').velocity({opacity: [0, 1]});
+        $('#guestPar').addClass("dn");
+        $('#guestPar').velocity({translateY: ['150%', 0]}, {duration: 150, delay: 100, easing: ''});
+//                $('#guestPar').velocity({opacity: [0, 1]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+        $('#guestChild').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+    }
+
+    $('.signinbtn').click(function () {
+        signup();
+    });
+
+    $(window).scroll(function () {
+
+        var sc = $(window).scrollTop();
+        var ht = $('#banner_over').outerHeight(true) - 60;
+        if (ht > sc) {
+            var op = 1 - (ht - sc) / ht;
+            $('#banner_over').css({'opacity': op});
+        }
+        if (ht - sc <= 5) {
+            $('.mheader').addClass('black_bg');
+        } else {
+            $('.mheader').removeClass('black_bg');
+        }
+
+    });
+
+    $('.sideNav').velocity({translateX: "-100%"}, {duration: 0, delay: 0, display: "none", ease: "ease-out"});
+    $('.menuLHeader').on('click', function () {
+        getheader();
+        $('.sideNav').velocity({translateX: "0%"}, {duration: 300, delay: 0, display: "block", ease: "ease-out"});
+        $(".swipe").addClass("swipe_aftr");
+        $(".swipe_aftr").removeClass("dn");
+        $("body").addClass("posFix");
+    });
+    // $('.swipe_aftr').on('click',function(){
+    //      $('.sideNav').velocity({translateX: "100%"}, {duration: 300, delay: 0, display: "none", ease: "ease-out"});
+    //        $(".swipe").removeClass("swipe_aftr");
+    //          $("body").removeClass("posFix");
+    //      });
+
+    $(document).on('click', '#lftt', function () {
+        $(this).removeClass('swipe_aftr');
+        $('.sideNav').velocity({translateX: "-100%"}, {duration: 300, delay: 0, display: "none", ease: "ease-out"});
+        $("body").removeClass("posFix");
+    });
+
+    $('.crssLheader').on('click', function () {
+        sideNav();
+    });
+
+    function sideNav() {
+        $('.sideNav').velocity({translateX: "-100%"}, {duration: 300, delay: 0, display: "none", ease: "ease-out"});
+        $("body").removeClass("posFix");
+        $(".swipe").removeClass("swipe_aftr");
+    }
+
+    function openCart() {
+        $('.cart').css({'display': 'block'});
+        $('.search_bar').removeClass('search_open');
+        $('.tabWrap , .tabWrap2').addClass('deactive');
+        $('.wrapper').removeClass('pointNone');
+        $('.cart').velocity({translateX: [0, '100%']}, {duration: 300, easing: 'easeInOutExp'});
+        $('.overlay2').velocity({opacity: [1, 0]}, {duration: 300, easing: 'swing', display: 'block'});
+        //$('body').css({'overflow': 'hidden'});
+        $('.wrapper').addClass('pointNone');
+        $('.cart_item').each(function (i) {
+            var t = (i * 30) + 50;
+            $(this).velocity({translateX: [0, '100%']}, {duration: 600, delay: t, easing: [0.2, 1, 0.3, 1]});
+        });
+    }
+
+    function openPopUp() {
+        $('.wrapper_main').bind('keyup mouseup',
+                function (e) {
+                    $('body a').attr("tabindex", "-1");
+                    if (e.which === 9) {
+                        // focus from tab
+                        return false;
+                    }
+                });
+
+        entrflg = 4;
+//             $('.overlay').stop(true, true).fadeTo(200, 1);        
+        $('#signInId').removeClass("dn");
+        $('#loginId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+        $('.loginOverlay').velocity({opacity: [1, 0]});
+//          $('.overlay').velocity({display: "block"});
+        $('.menu_wrap').css("height", "0");
+        $('.head_wrap').addClass("addPointer");
+        $('.wrapper_max').addClass("addPointer");
+        $('#loginId').css("opacity", "1");
+        $('#forgot,#otpOuter,#otpOuter2,#signUpId').addClass("dn")
+        $('.outerContr,.deleteContr').css("z-index", "203", "opacity", "1");
+        $(this).parent().parent().addClass("addPointer");
+        $('.ftabB').addClass("addPointer");
+        $('.outerContr').velocity({translateY: [0, '150%']}, {duration: 150, delay: 100, easing: ''});
+    }
+
+
+    Hammer(document.getElementById("leftMenu")).on("swipeleft", function () {
+        $(".sideNav").hide('slide', {direction: 'left'}, 300);
+        $(".swipe").removeClass("swipe_aftr");
+        $("body").removeClass("posFix");
+    });
+
+
+    $(document).ready(function () {
+
+        var faqTab = $('.sideNav_tab'),
+                faqTabContainer = $('.div100');
+
+        if (faqTab.length) {
+
+            faqTab.off('.sideNav_tab').on('click', function () {
+                var faqRow = $(this).parent(),
+                        faqContent = $(this).parent().find('.collap');
+                faqTabContainer.find('.collap').not(faqContent).stop().slideUp('slow');
+                faqTabContainer.find('.asa').not(faqRow).removeClass('open');
+
+                faqContent.stop().slideToggle('slow', function () {
+                    faqRow.toggleClass('open', faqContent.is(':visible'));
+                });
+            });
+
+        }
+
+    });
+
+
+//function getheader()
+//{
+//  var mainheader="";
+//  var subheader="";
+//  var cnt=0;
+//  var URL = APIDOMAIN + "index.php?action=getSubCat&catid=99999";
+//  $.ajax({ url: URL, type: "GET",datatype: "JSON",success: function(results) {
+//
+//		     var obj=JSON.parse(results);
+//		     $(obj['root']).each(function(r,v){
+//		      if(v.cat_name !== "Education" && v.cat_name !== "Bespoke")
+//		      {
+//			cnt=0;
+//			var mainmn="";
+//			var mainmn=v.cat_name; mainmn=mainmn.trim(' ');
+//			mainmn=mainmn.toLowerCase().replace(' ','-');
+//			mainheader+=" <div class='tabB fLeft'> <a href='"+DOMAIN+""+mainmn+"/pid-"+v.catid+"'> <div class='tab fLeft taba' >"+(v.cat_name).toUpperCase()+"  </div> </a> </div>";
+//
+//			 if(v['subcat'] == undefined)
+//			 {
+//			    subheader+= '<div class="menu_elm ">';
+//			    subheader+= '<div class="menu_banner"></div>';
+//			    subheader+= '</div>';
+//
+//			 }
+//			 else
+//			 {
+//			    subheader+='<div class="menu_elm ">';
+//			    subheader+='<div class="col33 fLeft">';
+//			    $(v['subcat']).each(function(p,t)
+//			    {
+//			       var submn="";
+//			       submn=t.cat_name;   submn=submn.trim(' ');
+//			       submn=submn.toLowerCase().replace(' ','-');
+//			       cnt++;
+//			       subheader+='<div class="col100 fLeft">';
+//			       subheader+='<a href="'+DOMAIN+''+submn+'/pid-'+t.catid+'"><div class="menu_list fLeft"  ';
+//			       subheader+='id="'+v.cat_name+'_'+t.catid+'">'+t.cat_name+'</div></a>';
+//			       subheader+='</div>';
+//			       if(cnt % 2 == 0)
+//			       {
+//				 subheader+='</div><div class="col33 fLeft">';
+//			       }
+//
+//			    });
+//			    if(cnt % 2 == 1)
+//				 subheader+='</div>';
+//			    subheader+='</div>';
+//			 }
+//		       }
+//		       if($.trim(v.cat_name) == "Bespoke"){
+//			  var mainmn="";
+//			var mainmn=v.cat_name; mainmn=mainmn.trim(' ');
+//			mainmn=mainmn.toLowerCase().replace(' ','-');
+//			mainheader+=" <div class='tabB fLeft'> <a href='"+DOMAIN+"index.php?action=bespoke'> <div class='tab fLeft taba' >"+(v.cat_name).toUpperCase()+"  </div> </a> </div>";
+//
+//			if(v['subcat'] == undefined)
+//			 {
+//			    subheader+= '<div class="menu_elm ">';
+//			    subheader+= '<div class="menu_banner"></div>';
+//			    subheader+= '</div>';
+//
+//			 }
+//		       }
+//		     });
+//
+//	 	$('.tab_buffer').prepend(mainheader);
+//	 	$('.menuB').prepend(subheader);
+//		bindHeader();
+//		    }
+//	       });
+//}
+
+
+</script>
