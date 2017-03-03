@@ -1779,7 +1779,7 @@ input[type=radio]:checked ~ .selector_label:after {transform:translateX(0%);-web
 .grStyl4 .grCap{transform: rotate(-90deg);transform-origin:0 0 ;left:-18px;bottom:-12px;}
 .grStyl5 .grCap{transform: rotate(-90deg);transform-origin:0 0 ;left:-18px;bottom:-12px;}
 .grStyl6 .grCap{transform: rotate(-90deg);transform-origin:195px 0;right:0px;top:-12px;}
-.grStyl7 .grCap{right:-4px;transform: rotate(-90deg);transform-origin: 268px 0;top: -70px;height: auto;height: 11px;left: -15PX;}
+.grStyl7 .grCap{right:-4px;bottom: -20PX;}
 .wCont  .col30{display:inline-block;vertical-align:top;width:28%;height:57%;transition-delay:400ms;-webkit-transition-delay:400ms;-moz-transition-delay:400ms;-ms-transition-delay:400ms;-o-transition-delay:400ms}
 .hovTr{width:100%;height:100%;position:absolute;left:0;top:0;overflow:hidden}
 /*.hovTrans{width:100%;height:100%;position:absolute;left:0;top:0;background:rgba(0,0,0,0.50);    border: 5px solid #222529;}*/
