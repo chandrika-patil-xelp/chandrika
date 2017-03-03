@@ -295,7 +295,8 @@
                var paymode=l.paymode; 
                var transcId= l.transcId;
                 $('#payType').html(paymode);
-               $('#transcId').html(transcId);
+		if(transcId !== 'undefined')
+		  $('#transcId').html(transcId);
               
                 $("input[name='status']").each(function(){
                     var val=$(this).val();
@@ -572,17 +573,19 @@
                             
                             $('.backtxtSelect').removeClass('dn');
                             
-                          
+                         
                             if (dt.defimg !== null) {
                             var image = IMGDOMAIN + dt.defimg;
                         } else {
                             var image = dt.prdimg;
-                            image = image.split(',');
-                            image = IMGDOMAIN + image[0];
+			    if (dt.prdimg !== null){
+			      image = image.split(',');
+			      image = IMGDOMAIN + image[0];
+			  }
                         }
                         
                          
-                            
+                      if (image !== null){   
                               if (image.length>0)
                         {
                             
@@ -601,6 +604,7 @@
                         else{
                             $('.prd_img').addClass('noimage');
                         }
+		      }
         }
         
        

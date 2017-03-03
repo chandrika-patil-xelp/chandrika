@@ -772,7 +772,7 @@
                 //var customiz=data['results']['dimond']['results'][i]['QMast'].count;
                 var customiz = vl['QMast'].count;
                 var dquality = vl['QMast']['results'];
-                  
+           
                 if (customiz > 1)
                 {
                   
@@ -794,7 +794,12 @@
              //  $('#diamondPs option').last().prop('selected',true);
                 } else
                 {
-                    typstr = dquality[0].dVal + " - " + vl.shape;
+		    var qltyval=vl['QMast']['results'][0];
+		    var val = getDqualityVal(qltyval.dVal);
+		    var opt = qltyval.dVal + "  " + vl.shape;
+		    var typstr = "<select name='dmndclarity' id='diamondPs" + ids + "'  onchange=\"setDmdPrice(this);\">";
+			typstr += "<option value='" + val + "' id='"+qltyval.id+"' >" + opt + "</option> </select>"; 
+//			typstr = dquality[0].dVal + " - " + vl.shape;
                     prc = dquality[0].prcPrCrat;
                     price = parseFloat(prc) * parseFloat(carat);
 
@@ -809,7 +814,7 @@
                 //  console.log(dquality[0].prcPrCrat); 
 
                 str += "<li id='diamondPrice_" + ids + "' >";
-                str += "<div class='forComponent fLeft pl15'>" + typstr + "</div>";
+                str += "<div class='forComponent fLeft pl15' id='dmd_qulty_lst'>" + typstr + "</div>";
                 str += "<div class='forRate fLeft' id='diamondRate_" + ids + "'  data-weight='" + carat + "'>" + inprc + "/ct</div>";
                 str += "<div class='forWeight fLeft'>" + carat + " ct</div>";
                 str += "<div class='forPrice calc fLeft' id='diamondTotal_" + ids + "'>&#8377;" + incpfix + "</div>";
@@ -910,7 +915,7 @@
 
             var str = "<li class='headLi' id='forGold'><div class='forComponent fLeft'>Gold</div></li>";
             var mpval = mpurity.length;
-         
+              
             var carat = data['results']['basicDetails'].mtlWgt;
             var crPrice;
 
@@ -935,8 +940,13 @@
 
             } else
             {
+		var txt = "Gold -" + metalid[0].dVal;
+		var val = getGoldRates(metalid[0].dVal); 
+		var sstr = "<select name='goldval' id='goldPrice1'  onchange=\"setGoldPrice();\">";
+		    sstr += "<option value='" + val + "' id='"+metalid[0].id+"' >" + txt + "</option> </select>";
+		
                 var gold = mpurity[0];
-                sstr = "<div>" + gold + "</div>";
+//                sstr = "<div>" + gold + "</div>";
                 crPrice = getGoldRates(mpurity[0]);
                 total = parseFloat(crPrice) * parseFloat(carat);
             }
@@ -1144,7 +1154,7 @@
         }
  var aa=new Array();
   $('.placeOrderBtn').bind('click', function () {
-      
+	
          var dmndval=$('select[name="dmndclarity"] option:selected').attr('id');
          var siz=$('select[name="sizval"] option:selected').text();
           var catname = data['results']['catAttr']['results'][1].name;
@@ -1155,7 +1165,7 @@
       
       var gldval=$('select[name="goldval"] option:selected').attr('id'); 
       var clrval=$('select[name="colr"] option:selected').attr('id');  
-   
+ 
 var col_car_qty= ""+clrval+"|@|"+gldval+"|@|"+dmndval;
         var price =parseInt($('#grandTotal').text().replace(/[^0-9.]/g, ""));
      
