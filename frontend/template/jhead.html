@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
         <link rel="stylesheet" href="<?php echo $fcss['bxslider'];?>">
-        
+
         <link rel='shortcut icon' type='image/x-icon' href='<?php echo FAVICON;?>'/>
 
         <!-- <link rel="stylesheet" href="<?php echo $fcss['home'];?>"> -->
@@ -34,6 +34,29 @@
         <script type="text/javascript" src="<?php echo  $fjvs['numerator']; ?>"></script>
         <script>
                     var DOMAIN = "<?php echo DOMAIN;?>";
+        </script>
+
+        <script>
+            $('#userAccnt').on('click', function() {
+                var userid = common.readFromStorage('jzeva_uid');
+
+                if (userid == null)
+                {
+                    openPopUp();
+                }
+                else
+                {
+                    window.location.href = DOMAIN + "index.php?action=myaccount&actn=pId";
+                }
+            });
+
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-90567467-1', 'auto');
+            ga('send', 'pageview');
         </script>
     </head>
 </html>
