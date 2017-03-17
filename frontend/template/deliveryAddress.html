@@ -4,7 +4,7 @@
     <body>
         <script>  var shipng_id = "<?php echo $_GET['shpid'];  ?>";</script>
         <script>
-            var BWEBROOT = '<?php echo BACKWEBROOT?>';
+//            var BWEBROOT = '<?php echo BACKWEBROOT?>';
             var DOMAIN = '<?php echo DOMAIN?>';
             var APIDOMAIN = '<?php echo APIDOMAIN?>';
             var IMGDOMAIN = '<?php echo IMGDOMAIN ?>';
@@ -125,7 +125,7 @@
 
 
                                 setTimeout(function () {
-                                     window.location.href = DOMAIN + "index.php?action=checkoutAfter&ordid=" + cartid;
+                                      window.location.href = DOMAIN + "index.php?action=checkoutAfter&ordid=" + cartid;
                                 }, 2000);
 
                                 common.removeFromStorage('jzeva_cartid');
