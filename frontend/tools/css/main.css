@@ -2951,7 +2951,7 @@ input[type=number]::-webkit-outer-spin-button {
     .offsetTop{padding: 20px;}
 }
 @media only screen and (min-width:0px) and (max-width:1024px){
-    .mobileMess{display:block !important}
+/*    .mobileMess{display:block !important}*/
     /*  body{overflow:hidden}*/
 }
 /*customer invoice code*/
@@ -3378,3 +3378,18 @@ input[type=number]::-webkit-outer-spin-button {
 .button_label{width:100% ; font-size:12px;font-family:bolder;display:table;text-align: center;font-size: 12px;    font-family: semibold;letter-spacing: 0.35em;text-transform: uppercase;}
 .page_loader2 .cs-loader-inner , .page_loader .cs-loader-inner {transform: translateY(0%);top: 35%;color: #000;background: transparent;text-align: center;z-index: 20;display: block;opacity: 1;}
 .padTB25{padding:25px 0px!important;}
+/*mobile filter*/
+@media only screen and (max-width: 1024px) {
+.fmenu_wrap{display:none;position:fixed;padding-top:50px;top:0;min-height:100vh;height:100% !important;width:100vw;background:#fff;overflow:auto;}
+.fmenu_elm{display:block !important;position:relative;padding:20px 0px;}
+.rngDv{position:relative;width:80%;}
+.fmenu_wrap .closeLogin{display:block !important;z-index:1001;}
+.container2{float:left;width:100vw;}
+.filter{width:auto;height:100%;}
+.filter .ftab:after{content:"";width:20px;height:20px;top: 10px;left: 10px;bottom:0;margin:unset;position:absolute; background:url('../img/filter_white.svg') no-repeat;background-size:30px;background-position:center}
+.filter .ftab{padding-left:40px;}
+.wrapper_zindex{z-index:500;overflow:hidden;}
+.ftab_buffer{display:none;}
+.mFilterhead{border-bottom:1px solid #e6e6e6;width: 100vw; height: 50px;line-height: 50px; position: fixed;top: 0;left: 0;background: #fff;text-align: center;font-family: semibold;font-size: 13px;text-transform: uppercase;letter-spacing: 0.03em;color: #15181b;z-index:500;}
+.fakeApplybtn{width: auto;height: 30px;line-height: 29px; border-radius: 3px;border: 1px solid #15181b;font-family: semibold;letter-spacing: 0.15em; padding: 0 20px;float: left;margin: auto;font-size: 11px; position: absolute;top: 0;bottom: 0;left: 15px;}
+}
