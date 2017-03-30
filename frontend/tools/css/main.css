@@ -3380,6 +3380,7 @@ input[type=number]::-webkit-outer-spin-button {
 .padTB25{padding:25px 0px!important;}
 /*mobile filter*/
 @media only screen and (max-width: 1024px) {
+.filterCommon{width:33.33%;}   
 .fmenu_wrap{display:none;position:fixed;padding-top:50px;top:0;min-height:100vh;height:100% !important;width:100vw;background:#fff;overflow:auto;}
 .fmenu_elm{display:block !important;position:relative;padding:20px 0px;}
 .rngDv{position:relative;width:80%;}
