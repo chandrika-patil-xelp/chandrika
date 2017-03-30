@@ -7,6 +7,9 @@ $(document).ready(function () {
     wishlist();
     persnlInfo();
     displayaddrs();
+    actn=''+actn;
+    actn=actn.split(' ');
+    actn=actn[1];
     if (actn == 'pId')
         perninfo();
     else if (actn == 'oId')
@@ -17,6 +20,8 @@ $(document).ready(function () {
         chngpasrd();
     else if (actn == 'wId')
         whlist();
+    else
+        perninfo();
 
 
     $(document).keypress(function (e) {
@@ -830,19 +835,19 @@ function resetpasswrd()
 }
 
 $('#pId').click(function () {
-    var obj = { Title: 'account', Url: "index.php?action=myaccount&actn=pId" };
+    var obj = { Title: 'account', Url: "pId" };
     history.pushState(obj, obj.Title, obj.Url);
     perninfo();
 });
 
 $('#oId').click(function () {
-    var obj = { Title: 'account', Url: "index.php?action=myaccount&actn=oId" };
+    var obj = { Title: 'account', Url: "oId" };
     history.pushState(obj, obj.Title, obj.Url);
     ordrinfo();
 });
 
 $('#sId').click(function () {
-    var obj = { Title: 'account', Url: "index.php?action=myaccount&actn=sId" };
+    var obj = { Title: 'account', Url: "sId" };
     history.pushState(obj, obj.Title, obj.Url);
     saveadrinfo();
 });
@@ -852,7 +857,7 @@ $('#cId').click(function () {
 });
 
 $('#wId').click(function () {
-    var obj = { Title: 'account', Url: "index.php?action=myaccount&actn=wId" };
+    var obj = { Title: 'account', Url: "wId" };
     history.pushState(obj, obj.Title, obj.Url);
     whlist();
 });

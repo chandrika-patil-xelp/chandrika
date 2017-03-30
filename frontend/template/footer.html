@@ -30,31 +30,31 @@
                     <!--                   <a  target="_blank" href='<?php echo DOMAIN?>index.php?action=myaccount'><div class="fooTxt fLeft">my account</div></a>-->
                 </div>
                 <div class="col100 fLeft">
-                    <a  href='<?php echo DOMAIN?>index.php?action=contact'><div class="fooTxt fLeft">contact us</div></a>
+                    <a  href='<?php echo DOMAIN?>Contact-Us'><div class="fooTxt fLeft">contact us</div></a>
                 </div>
                 <!--                <div class="col100 fLeft">
                                     <div class="fooTxt fLeft">track order</div>
                                 </div>-->
                 <div class="col100 fLeft">
-                    <a  href='<?php echo DOMAIN?>index.php?action=shipping'><div class="fooTxt fLeft">shipping</div></a>
+                    <a  href='<?php echo DOMAIN?>Shipping'><div class="fooTxt fLeft">shipping</div></a>
                 </div>
                 <div class="col100 fLeft">
-                    <a  href='<?php echo DOMAIN?>index.php?action=randc'><div class="fooTxt fLeft">returns and exchange</div></a>
+                    <a  href='<?php echo DOMAIN?>Return-And-Exchange'><div class="fooTxt fLeft">returns and exchange</div></a>
                 </div>
                 <div class="col100 fLeft">
-                    <a  href='<?php echo DOMAIN?>index.php?action=warranty'><div class="fooTxt fLeft">warranty and repairs</div></a>
+                    <a  href='<?php echo DOMAIN?>Warranty-And-Repairs'><div class="fooTxt fLeft">warranty and repairs</div></a>
                 </div>
             </div>
             <div class="footerCont1 fLeft">
                 <div class="fooH">information</div>
                 <div class="col100 fLeft">
-                    <a href='<?php echo DOMAIN?>index.php?action=tandc'><div class="fooTxt fLeft">terms and condition </div></a>
+                    <a href='<?php echo DOMAIN?>Terms-And-Conditions'><div class="fooTxt fLeft">terms and condition </div></a>
                 </div>
                 <div class="col100 fLeft">
-                    <a  href='<?php echo DOMAIN?>index.php?action=privacy'><div class="fooTxt fLeft">privacy policy</div></a>
+                    <a  href='<?php echo DOMAIN?>Privacy-Policy'><div class="fooTxt fLeft">privacy policy</div></a>
                 </div>
                 <div class="col100 fLeft">
-                    <a href='<?php echo DOMAIN?>index.php?action=faq'><div class="fooTxt fLeft">FAQ</div></a>
+                    <a href='<?php echo DOMAIN?>Faq'><div class="fooTxt fLeft">FAQ</div></a>
                 </div>
                 <!-- <div class="col100 fLeft">
                     <div class="fooTxt fLeft">help</div>
@@ -63,22 +63,22 @@
             <div class="footerCont1 fLeft">
                 <div class="fooH">jewelopedia</div>
                 <div class="col100 fLeft">
-                    <a  href='<?php echo DOMAIN?>index.php?action=gemstoneGuideNew'><div class="fooTxt fLeft">gemstone guide</div></a>
+                    <a  href='<?php echo DOMAIN?>Gemstone-Guide'><div class="fooTxt fLeft">gemstone guide</div></a>
                 </div>
                 <div class="col100 fLeft">
-                    <a href='<?php echo DOMAIN?>index.php?action=diamondguide'><div class="fooTxt fLeft">diamond guide</div></a>
+                    <a href='<?php echo DOMAIN?>Diamond-Guide'><div class="fooTxt fLeft">diamond guide</div></a>
                 </div>
                 <div class="col100 fLeft">
-                    <a href='<?php echo DOMAIN?>index.php?action=preciousmetalguide'><div class="fooTxt fLeft">precious metal guide</div></a>
+                    <a href='<?php echo DOMAIN?>Precious-Metal-Guide'><div class="fooTxt fLeft">precious metal guide</div></a>
                 </div>
                 <div class="col100 fLeft">
-                    <a href='<?php echo DOMAIN?>index.php?action=jewellerycare'><div class="fooTxt fLeft">jewellery care</div></a>
+                    <a href='<?php echo DOMAIN?>Jewellery-Care'><div class="fooTxt fLeft">jewellery care</div></a>
                 </div>
                 <div class="col100 fLeft">
-                    <a href='<?php echo DOMAIN?>index.php?action=sizeguide'><div class="fooTxt fLeft">Ring sizing guide</div></a>
+                    <a href='<?php echo DOMAIN?>Ring-Size-Guide'><div class="fooTxt fLeft">Ring sizing guide</div></a>
                 </div>
                 <div class="col100 fLeft">
-                    <a href='<?php echo DOMAIN?>index.php?action=bangleguide'><div class="fooTxt fLeft">Bangle sizing guide</div></a>
+                    <a href='<?php echo DOMAIN?>Bangle-Size-Guide'><div class="fooTxt fLeft">Bangle sizing guide</div></a>
                 </div>
             </div>
             <div class="footerCont1 fLeft resHello">
@@ -97,3 +97,18 @@
 </div>
 <!-- DOMAIN + "index.php?action=product_page&pid="+ pid; -->
 <div class="footer fLeft">©2016 created by xelpmoc.in</div>
+
+<script>
+    $('#userAccnt').on('click', function () {
+        var userid = common.readFromStorage('jzeva_uid');
+
+        if (userid == null)
+        {
+            openPopUp();
+        } else {
+            window.location.href = DOMAIN + "MyAccount/actn-pId";
+        }
+    });
+
+
+</script>

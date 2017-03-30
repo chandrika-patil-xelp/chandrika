@@ -3748,7 +3748,36 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
         $result = array('result' => $resp, 'error' => $error);
         return $result;
     }
-
+// Api for title,keyword and descrption for SEO
+    public function getProDesOfcatid($params){
+          global $comm;
+         $id = (!empty($params['id'])) ? trim($params['id']) : '';
+       
+         $sql="SELECT cat_name,
+                        description,
+                        title,
+                        keywords
+                        From tbl_category_master Where catid= " . $id . " AND active_flag=1";
+        $res = $this->query($sql);
+         if ($res) {
+            while ($row = $this->fetchData($res)) {
+                $arr['cat_name']=$row['cat_name'];
+                $arr['descrp']=$row['description'];
+                $arr['title']=$row['title'];
+                $arr['keywrd']=$row['keywords'];
+                $reslt=$arr;
+            }
+             
+            $error = array('err_code' => 0, 'err_msg' => 'details fetched successfully');
+        } else {
+            $error = array('err_code' => 1, 'err_msg' => 'error in fetching details');
+        }
+         
+         
+         $result = array('result' => $reslt, 'error' => $error);
+        return $result;
+                        
+    }
    public function getProductdetailbycatid($params) {
 
         global $comm;
@@ -3840,7 +3869,9 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 			    
 			    (SELECT pcatid FROM tbl_category_master WHERE catid =" . $cid . " AND active_flag=1) AS cpcatid,
 			    (SELECT cat_name FROM tbl_category_master WHERE catid = cpcatid AND active_flag=1) AS parntcatname,
+                           
 			    (SELECT cat_name FROM tbl_category_master WHERE catid =" . $cid . " AND active_flag=1) AS chldcatname,
+      
 			    (SELECT GROUP_CONCAT(catid) FROM tbl_category_product_mapping WHERE  productid =pid AND active_flag=1 ) AS signturecatids,
 			    (SELECT GROUP_CONCAT(cat_name) FROM tbl_category_master WHERE FIND_IN_SET(catid,signturecatids) AND active_flag=1 AND pcatid!= 99999) AS signturecatname,
 			    (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND active_flag != 2 AND  default_img_flag=1) AS default_image
@@ -3939,6 +3970,8 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
                 $arr['parntcatname'] = $row['parntcatname'];
                 $arr['chldcatname'] = $row['chldcatname'];  
 		$arr['signturecatname'] = $row['signturecatname']; 
+               
+                
                 if ($row['jewelleryType'] === '1') {
                     $arr['jwelType'] = 'Gold';
                 } else if ($row['jewelleryType'] === '2') {

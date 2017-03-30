@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Jzeva - <?php echo $page;?></title>
+        <title><?php echo $title;?></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <meta name="title" content="<?php echo $title;?>">
+        <meta name="description" content="<?php echo $descp;?>">
+        <meta name="keywords" content="<?php echo $keywords;?>">
         <link rel="stylesheet" href="<?php echo $fcss['bxslider'];?>">
 
         <link rel='shortcut icon' type='image/x-icon' href='<?php echo FAVICON;?>'/>
@@ -46,7 +49,7 @@
                 }
                 else
                 {
-                    window.location.href = DOMAIN + "index.php?action=myaccount&actn=pId";
+                    window.location.href = DOMAIN + "MyAccount/actn-pId";
                 }
             });
 
@@ -58,5 +61,7 @@
             ga('create', 'UA-90567467-1', 'auto');
             ga('send', 'pageview');
         </script>
+        
+       
     </head>
 </html>

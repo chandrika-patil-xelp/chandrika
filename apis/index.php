@@ -940,7 +940,13 @@ switch($action)
         $res=$obj->setImagedeflt($params);
     break;
 
+    
 
+  case 'getProDesOfcatid':
+        include APICLUDE.'class.product.php';
+        $obj = new product($db['jzeva']);
+        $res = $obj->getProDesOfcatid($params);
+  break;
   case 'getProductdetailbycatid':
         include APICLUDE.'class.product.php';
         $obj = new product($db['jzeva']);

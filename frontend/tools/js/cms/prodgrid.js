@@ -20,27 +20,27 @@ $(document).ready(function () {
     var rl=url.split('/');
     var catnm=rl[0];
   
-    if(catnm == 'rings'){
+    if(catnm == 'Rings'){
       $('.fixedBanner').addClass('banner_rings');
     }
-    else if(catnm == 'necklaces'){
+    else if(catnm == 'Necklaces'){
       $('.fixedBanner').addClass('banner_necklaces');
     }
-    else if(catnm == 'pendants'){
+    else if(catnm == 'Pendants'){
       $('.fixedBanner').addClass('banner_pendants');
     }
 
-    else if(catnm == 'earrings'){
+    else if(catnm == 'Earrings'){
       $('.fixedBanner').addClass('banner_earrings');
     }
 
-    else if(catnm == 'bangles'){
+    else if(catnm == 'Bangles'){
       $('.fixedBanner').addClass('banner_bangles');
     }
-    else if(catnm == 'signature'){
+    else if(catnm == 'Signature'){
       $('.fixedBanner').addClass('banner_signature');
     }
-    else if(catnm == 'fine-jewellery'){
+    else if(catnm == 'Fine-Jewellery'){
       $('.fixedBanner').addClass('banner_fine');
     }
 
@@ -126,6 +126,7 @@ function generatelist(obj) {
 	mcr =mclr.split(',');
         mcr= mcr[0];
     }
+    
    var chr = "" + mcr + "|@|" + mpr + "|@|" + dmf;
 
     if (obj['totalgems'] !== null && obj['totalgems'] !== undefined && obj['gemstoneName'] !== null && obj['gemstoneName'] !== undefined && obj['gemscarat'] !== null && obj['gemscarat'] !== undefined) {
@@ -280,6 +281,16 @@ var vat = (1 / 100) * defprice;
     gtotal = defprice + vat;
    grandtotal = gtotal.toFixed();
 
+var prodNSplt=''+ obj['prdNm'] +'';
+      prodNSplt=prodNSplt.trim(' ');
+      prodNSplt=prodNSplt.toLowerCase();
+      prodNSplt=prodNSplt.replace(/\b[a-z]/g, function(letter){
+           return letter.toUpperCase();
+      });
+      prodNSplt=prodNSplt.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-');
+ 
+      var prodNSplts='Product-Details/'+prodNSplt+'-'+ obj['jwelType']+''+'/pid-'+obj['prdId'];
+   
     proStr += '<div class="grid3 transition400" id="' + obj['prdId'] + '"  >';
     // proStr += '<div class="noimgDiv"></div>';
     proStr += '<div class="facet_front">';
@@ -301,7 +312,7 @@ var vat = (1 / 100) * defprice;
 //    proStr += '</div>';
     proStr += '</div>';
     proStr += '</div>';
-    proStr += '<a  target="_blank" href="' + DOMAIN + 'index.php?action=product_page&pid=' + obj['prdId'] + '"></a>';
+    proStr += '<a  target="_blank" href="' + DOMAIN + prodNSplts+'"></a>';
     proStr += '<div class="grid_dets">';
     proStr += '<div class="grid_name txtOver transition300">' + obj['prdNm'] + '</div>';
     //proStr += '<div class="col100 color666">';
@@ -339,21 +350,26 @@ var vat = (1 / 100) * defprice;
         case 1:
         {
             Nstr += '<span> Φ Solitaire</span>';
+       
+           //  var link=''+ obj['prdNm'] +''|''+ obj['jwelType']+''|'Solitaire'|'Jzeva';
             break;
         }
         case 2:
         {
             Nstr += '<span> Φ Diamond</span>';
+        
             break;
         }
         case 3:
         {
             Nstr += '<span> Φ Solitaire </span>';
+         
             break;
         }
         case 4:
         {
             Nstr += '<span> Φ Diamond</span>';
+          
             break;
         }
         case 5:
@@ -379,8 +395,12 @@ var vat = (1 / 100) * defprice;
             break;
         }
     }
+    
+
+
     proStr += ' ' + Nstr + '</div>';
-    proStr += '<div class="grid_price txtOver transition300" onclick=\" custmz('+obj['prdId']+')\"><span class="cartRup15b padR0">' + grandtotallow + '</span><span class="toTxt"> to  </span> <span  class="cartRup15b"> '+grandtotalhigh+'</span></div>';
+
+    proStr += '<div class="grid_price txtOver transition300" \"><a  target="_blank" style="text-decoration:none" href="' + DOMAIN + prodNSplts+'"><span class="cartRup15b padR0">' + grandtotallow + '</span><span class="toTxt"> to  </span> <span  class="cartRup15b"> '+grandtotalhigh+'</span></a></div>';
     proStr += '<div class="fmSansB smBtnDiv fLeft transition300">';
 //    proStr += '<span class="u_line point lettSpace fLeft"  onclick=\"getProId(\''+ obj['prdId'] + '\')\">View Product</span>';
     proStr += '<div class="v360Btn" onclick=\"imgLoad(' + obj['prdId'] + ', event)\"></div>';
@@ -394,7 +414,7 @@ var vat = (1 / 100) * defprice;
     //proStr += '<div class="soc_elem soc_comment transition300"></div>';
     //proStr += '<div class="soc_elem soc_share transition300"></div>';
     //proStr += '</div>';
-    proStr += '<div class="custBtn1" onclick="custmz(' + obj['prdId'] + ')">customise</div>';
+    proStr += '<a  target="_blank" href="' + DOMAIN + prodNSplts+'"><div class="custBtn1">customise</div></a>';
     proStr += '</div>';
     proStr += '</div>';
     proStr += '<div class="facet_back" >';
@@ -523,7 +543,8 @@ var vat = (1 / 100) * defprice;
 
 function custmz(i){ 
  var pid =i;
-    window.open(DOMAIN + 'index.php?action=product_page&pid=' +pid);
+ 
+    window.open(DOMAIN+'' + pid+'');
 }
 
 function imgLoad(p, event) {

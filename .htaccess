@@ -12,6 +12,31 @@ Options -Indexes
 
 RewriteEngine On
 
+RewriteRule ^((?i)Terms-And-Conditions)$    index.php?action=tandc [L]
+RewriteRule ^((?i)Contact-Us)$    index.php?action=contact [L]
+RewriteRule ^((?i)Shipping)$    index.php?action=shipping [L]
+RewriteRule ^((?i)Return-And-Exchange)$   index.php?action=randc [L]
+RewriteRule ^((?i)Warranty-And-Repairs)$   index.php?action=warranty [L]
+RewriteRule ^((?i)Privacy-Policy)$   index.php?action=privacy [L]
+RewriteRule ^((?i)Faq)$   index.php?action=faq [L]
+RewriteRule ^((?i)Gemstone-Guide)$   index.php?action=gemstoneGuideNew [L]
+RewriteRule ^((?i)Diamond-Guide)$   index.php?action=diamondguide [L]
+RewriteRule ^((?i)Precious-Metal-Guide)$   index.php?action=preciousmetalguide [L]
+RewriteRule ^((?i)Jewellery-Care)$   index.php?action=jewellerycare [L]
+RewriteRule ^((?i)Ring-Size-Guide)$   index.php?action=sizeguide [L]
+RewriteRule ^((?i)Bangle-Size-Guide)$   index.php?action=bangleguide [L]
+RewriteRule ^((?i)Packaging)$   index.php?action=packaging [L]
+RewriteRule ^((?i)OurPromise)$   index.php?action=ourPromise [L]
+RewriteRule ^((?i)OurStory)$   index.php?action=ourStory [L]
+RewriteRule ^((?i)Concierge-Services)$   index.php?action=conciergeServices [L]
+RewriteRule ^((?i)Responsible-Fashion)$   index.php?action=responsiblef [L]
+RewriteRule ^((?i)Craftsmanship)$   index.php?action=craftsmanship [L]
+
+
+
+RewriteRule ^((?i)MyAccount)/(actn-[^/.]*)$ index.php?action=myaccount&actn=$2 [L,QSA]
+RewriteRule ^((?i)Bespoke)$ index.php?action=bespoke [QSA,L]
+RewriteRule ^([^/.]*)/([^/.]*)/(pid-[^/.]*)$ index.php?action=product_page&pid=$3 [L,QSA]
 #RewriteCond %{HTTP_HOST} ^jzeva.com$
 RewriteRule ^([^/.]*)$ index.php?action=landing_page [QSA,L]
 RewriteRule ^([^/.]*)/(pid-[^/.]*)$	index.php?action=product_grid&id=$2 [L,QSA]
@@ -20,3 +45,6 @@ RewriteRule ^((?i)FP-[^/.]*)$ index.php?action=resetpsw&id=$1 [QSA,L]
 RewriteRule ^((?i)CU_[^/.]*)$ index.php?action=paymentfail&ordid=$1 [QSA,L]
 RewriteRule ^([^/.]*)/([^/.]*)/([^/.]*)$ index.php?action=paymentfail&status=$2&ordid=$3 [QSA,L]
 RewriteRule ^([^/.]*)/([^/.]*)$ index.php?action=checkoutAfter&ordid=$2 [QSA,L]
+
+
+ErrorDocument 404 https://www.jzeva.com

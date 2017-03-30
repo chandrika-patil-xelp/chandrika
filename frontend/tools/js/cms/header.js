@@ -50,8 +50,13 @@ function getheader()
 		      {
 			cnt=0;
 			var mainmn="";
-			var mainmn=v.cat_name; mainmn=mainmn.trim(' ');
-			mainmn=mainmn.toLowerCase().replace(' ','-');
+			var mainmn=v.cat_name;   
+                        mainmn=mainmn.trim(' ');
+                         mainmn=mainmn.replace(/\b[a-z]/g, function(letter){
+           return letter.toUpperCase();
+      });
+                     mainmn=mainmn.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-');
+			
 			mainheader+=" <div class='tabB fLeft'> <a href='"+DOMAIN+""+mainmn+"/pid-"+v.catid+"'> <div class='tab fLeft taba' >"+(v.cat_name).toUpperCase()+"  </div> </a> </div>";
 
 			 if(v['subcat'] == undefined)
@@ -69,7 +74,12 @@ function getheader()
 			    {
 			       var submn="";
 			       submn=t.cat_name;   submn=submn.trim(' ');
-			       submn=submn.toLowerCase().replace(' ','-');
+                                submn=submn.replace(/\b[a-z]/g, function(letter){
+           return letter.toUpperCase();
+      });
+                     submn=submn.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-');
+                  
+			      // submn=submn.toLowerCase().replace(' ','-');
 			       cnt++;
 			       subheader+='<div class="col100 fLeft">';
 			       subheader+='<a href="'+DOMAIN+''+submn+'/pid-'+t.catid+'"><div class="menu_list fLeft"  ';
@@ -86,11 +96,12 @@ function getheader()
 			    subheader+='</div>';
 			 }
 		       }
+                       
 		       if($.trim(v.cat_name) == "Bespoke"){
 			  var mainmn="";
 			var mainmn=v.cat_name; mainmn=mainmn.trim(' ');
 			mainmn=mainmn.toLowerCase().replace(' ','-');
-			mainheader+=" <div class='tabB fLeft'> <a href='"+DOMAIN+"index.php?action=bespoke'> <div class='tab fLeft taba' >"+(v.cat_name).toUpperCase()+"  </div> </a> </div>";
+			mainheader+=" <div class='tabB fLeft'> <a href='"+DOMAIN+"Bespoke'> <div class='tab fLeft taba' >"+(v.cat_name).toUpperCase()+"  </div> </a> </div>";
 
 			if(v['subcat'] == undefined)
 			 {
@@ -123,25 +134,14 @@ $('#usrlogout').click(function () {
         var URLactn = window.location.href;
         var accnvar = ''+URLactn;
         accnvar = accnvar.replace(DOMAIN,'');
-
-	if (accnvar.indexOf('?') > -1)
-	{
-	  var linkarr = accnvar.split('?');
-	  if(linkarr[1].indexOf('&') > -1){
-	     var tmplinkarr=""+linkarr[1];
-	     tmplinkarr=tmplinkarr.split('&');
-	     var tmpaccnstr=""+tmplinkarr[0];
-	     tmpaccnstr=tmpaccnstr.split('=');
-	     if (tmpaccnstr[1] == 'myaccount')
-	       window.location.href = DOMAIN + "index.php?action=landing_page";
-	     else
-		window.location.href =DOMAIN +accnvar;
-	  }
-	  else
-	    window.location.href =DOMAIN +accnvar;
+        var tmpaccnvar=accnvar.split('/'); 
+	if (tmpaccnvar[0] == 'MyAccount')
+	{ 
+	    window.location.href = DOMAIN + "index.php?action=landing_page"; 
 	}
 	else
-	   window.location.href =DOMAIN +accnvar;
+	    window.location.href =DOMAIN +accnvar;
+	 
 
     });
 

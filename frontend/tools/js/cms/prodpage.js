@@ -290,11 +290,11 @@ $('#buynow').on('click',function(){
 });
 
 
-$(document).ready(function () {
+$(document).ready(function () {    
     $('html, body').animate({scrollTop: '0px'}, 300);
     $('.prodCarousel').addClass('dn');
     showwishbtn();
-    pid = GetURLParameter('pid');
+
     var comb = GetURLParameter('comb');
     psize = GetURLParameter('sz');
     if (comb !== undefined) {
@@ -428,7 +428,7 @@ $(document).ready(function () {
 
                     var type = 0;
                     if (basic.hasSol == 1) {
-
+                        
                         type = 1;
                     }
                     if (basic.hasDmd == 1) {
