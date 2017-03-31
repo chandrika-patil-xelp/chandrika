@@ -108,10 +108,11 @@ class user extends DB {
 
         mail($email, $subject, $message, $headers);
 
-        $result = array();
+        $result = array('user_id'=>$userid);
         if ($res) {
             $err = array('err_code' => 0, 'err_msg' => 'Data inserted successfully');
         } else {
+	    $result = array();
             $err = array('err_code' => 1, 'err_msg' => 'Error in inserting');
         }
         $results = array('result' => $result, 'error' => $err);
