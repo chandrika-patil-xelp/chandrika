@@ -15,7 +15,15 @@
                 </div>
                 <section>
                     <div class="divCon fLeft">
-                        <div class="divCon2 fLeft mTop0">
+                        <div class="divCon2 fLeft sWid mTop0">
+                            <div class="titleDiv txtCap fLeft">Select Title</div>
+                            <select id="vendorList"  class="txtSelect fLeft fmOpenR font14 c666">
+                                <option>Mr</option>
+                                <option>Ms</option>
+                                <option>Mrs</option>
+                            </select>
+                        </div>
+                        <div class="divCon2 fLeft sw40 mTop0">
                             <div class="titleDiv txtCap fLeft">Customer Name</div>
                             <input name="" type="text" id="name" maxlength="40" autocomplete="false"  placeholder="Enter customer name" class="txtInput fLeft fmOpenR font14 c666">
                         </div>
@@ -152,184 +160,205 @@
     <!--Category Value Map-->
 
 
-   <script type="text/javascript" src="<?php echo $jvs['placeOrder']; ?>"></script>
+    <script type="text/javascript" src="<?php echo $jvs['placeOrder']; ?>"></script>
 
 
-   
+
     <script>
 
-        var lId = "";
-        $('.comP').click(function () {
-            var g = $(this).attr("id");
-       
-                    
-            
-          
-                $('.' + g + "_cls").removeClass("dn");
-                if (lId !== g)
-                {
-                    $('.' + lId + "_cls").addClass("dn");
+            var lId = "";
+    $('.comP').click(function () {
+        var g = $(this).attr("id");
+
+
+
+
+        $('.' + g + "_cls").removeClass("dn");
+        if (lId !== g)
+        {
+            $('.' + lId + "_cls").addClass("dn");
+        }
+        lId = g;
+    });
+
+
+    $('#prc').html(price);
+
+    if (sz !== '') {
+        $('#szdv').removeClass('dn');
+        $('#sz').html(sz);
+    }
+
+    var URL = APIDOMAIN + "index.php/?action=getProductById&pid=" + pid;
+    $.ajax({
+        type: 'POST',
+        url: URL,
+        success: function (res) {
+
+            data = JSON.parse(res);
+
+            var dt = data['results'];
+            var basic = dt['basicDetails'];
+            var catAttr = dt['catAttr'];
+            var vendor = dt['vendor'];
+            var metalPurity = dt['metalPurity'];
+            var metalColor = dt['metalColor'];
+            var solitaire = dt['solitaire'];
+            var diamonds = dt['dimond'];
+            var uncut = dt['uncut'];
+            var gemstone = dt['gamestone'];
+
+            $(basic).each(function (i, vl) {
+
+                var proname = vl.prdNm;
+                $('#pcode').text(vl.prdCod);
+                $('#proname').text(vl.prdNm);
+
+                var type = 0;
+                if (basic.hasSol == 1) {
+
+                    type = 1;
                 }
-                lId = g;
+                if (basic.hasDmd == 1) {
+                    type = 2;
+                }
+                if (basic.hasSol == 1 && basic.hasDmd == 1) {
+                    type = 3;
+                }
+                if (basic.hasDmd == 1 && basic.hasUnct == 1) {
+                    type = 4;
+                }
+                if (basic.hasGem == 1) {
+
+                    if (gemstone.count == 1) {
+
+                        type = 5
+                    }
+                    if (gemstone.count > 1) {
+
+                        type = 6;
+                    }
+                }
+                if (basic.hasDmd == 1 && basic.hasGem == 1) {
+                    if (gemstone.count == 1) {
+                        // var gemstn = gemstone.results[0].gemNm;
+                        type = 7;
+                    }
+                    if (gemstone.count > 1) {
+
+                        type = 8;
+                    }
+
+                }
+
+                var bstr = "";
+                switch (type) {
+
+                    case 1:
+                    {
+
+                        bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span> is casted in <span class="semibold" id="newWt">' + chgwt + '</span> grams of gold set with brilliant cut <span class="semibold">' + dt['solitaire']['results'][0].nofs + '</span> ' + dt['solitaire']['results'][0].shape + ' Solitaire (Approx. ' + dt['solitaire']['results'][0].carat + ' Ct) </div>';
+                        break;
+                    }
+                    case 2:
+                    {
+
+                        bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span> is casted in <span class="semibold" id="newWt">' + chgwt + '</span> grams of gold set with brilliant cut <span class="semibold">' + dt['dimond']['results'][0].totNo + '</span> ' + dt['dimond']['results'][0].shape + ' Diamonds (Approx. ' + dt['dimond']['results'][0].crat + ' Ct) </div>';
+                        break;
+                    }
+                    case 3:
+                    {
+
+                        bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span> is casted in <span class="semibold" id="newWt">' + chgwt + '</span> grams of gold set with brilliant cut <span class="semibold">' + dt['dimond']['results'][0].totNo + '</span> ' + dt['dimond']['results'][0].shape + ' Diamonds (Approx. ' + dt['dimond']['results'][0].crat + ' Ct) and a <span class="semibold">' + dt['solitaire']['results'][0].carat + ' Ct</span> ' + dt['solitaire']['results'][0].shape + ' Solitaire of ' + dt['solitaire']['results'][0].colr + ' color </div>';
+                        break;
+                    }
+                    case 4:
+                    {
+                        Nstr += '<span>Diamond</span>';
+                        dmdsoli = "Diamond";
+                        break;
+                    }
+                    case 5:
+                    {
+                        var gemstn = gemstone.results[0].gemNm;
+
+
+                        break;
+                    }
+                    case 6:
+                    {
+
+                        break;
+                    }
+                    case 7:
+                    {
+                        gemstn = gemstone.results[0].gemNm;
+
+                        bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span> is casted in <span class="semibold" id="newWt">' + chgwt + '</span> grams of gold set with brilliant cut <span class="semibold">' + dt['dimond']['results'][0].totNo + '</span> ' + dt['dimond']['results'][0].shape + ' Diamonds (Approx. ' + dt['dimond']['results'][0].crat + ' Ct) and a <span class="semibold">' + dt['gamestone']['results'][0].crat + ' Ct</span> ' + dt['gamestone']['results'][0].gemNm + ' </div>';
+
+                        break;
+                    }
+
+                    case 8:
+                    {
+
+                        bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span> is casted in <span class="semibold" id="newWt" >' + chgwt + '</span> grams of gold set with brilliant cut <span class="semibold">' + dt['dimond']['results'][0].totNo + '</span> ' + dt['dimond']['results'][0].shape + ' Diamonds (Approx. ' + dt['dimond']['results'][0].crat + ' Ct), <span class="semibold">' + dt['gamestone']['results'][0].crat + ' Ct</span> ' + dt['gamestone']['results'][0].gemNm + ' and a <span class="semibold">' + dt['gamestone']['results'][1].crat + ' Ct</span> ' + dt['gamestone']['results'][1].gemNm + '  </div>';
+
+                        break;
+                    }
+
+                }
+
+                $('#shortdesc').html(bstr);
+
+
             });
-
-          
-        $('#prc').html(price);
-
-        if (sz !== '') {
-            $('#szdv').removeClass('dn');
-            $('#sz').html(sz);
         }
 
-        var URL = APIDOMAIN + "index.php/?action=getProductById&pid=" + pid;
-        $.ajax({
-            type: 'POST',
-            url: URL,
-            success: function (res) {
-
-                data = JSON.parse(res);
-	 
-                var dt = data['results'];
-                var basic = dt['basicDetails'];
-                var catAttr = dt['catAttr'];
-                var vendor = dt['vendor'];
-                var metalPurity = dt['metalPurity'];
-                var metalColor = dt['metalColor'];
-                var solitaire = dt['solitaire'];
-                var diamonds = dt['dimond'];
-                var uncut = dt['uncut'];
-                var gemstone = dt['gamestone'];
-
-                $(basic).each(function (i, vl) {
-
-                    var proname = vl.prdNm;
-                    $('#pcode').text(vl.prdCod);
-                    $('#proname').text(vl.prdNm);
-
-                    var type = 0;
-                    if (basic.hasSol == 1) {
-
-                        type = 1;
-                    }
-                    if (basic.hasDmd == 1) {
-                        type = 2;
-                    }
-                    if (basic.hasSol == 1 && basic.hasDmd == 1) {
-                        type = 3;
-                    }
-                    if (basic.hasDmd == 1 && basic.hasUnct == 1) {
-                        type = 4;
-                    }
-                    if (basic.hasGem == 1) {
-
-                        if (gemstone.count == 1) {
-
-                            type = 5
-                        }
-                        if (gemstone.count > 1) {
-
-                            type = 6;
-                        }
-                    }
-                    if (basic.hasDmd == 1 && basic.hasGem == 1) {
-                        if (gemstone.count == 1) {
-                            // var gemstn = gemstone.results[0].gemNm;
-                            type = 7;
-                        }
-                        if (gemstone.count > 1) {
-
-                            type = 8;
-                        }
-
-                    }
-
-                    var bstr = "";
-                    switch (type) {
-
-                        case 1:
-                        {
-
-                            bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span> is casted in <span class="semibold" id="newWt">' + chgwt + '</span> grams of gold set with brilliant cut <span class="semibold">' + dt['solitaire']['results'][0].nofs + '</span> ' + dt['solitaire']['results'][0].shape + ' Solitaire (Approx. ' + dt['solitaire']['results'][0].carat + ' Ct) </div>';
-                            break;
-                        }
-                        case 2:
-                        {
-
-                            bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span> is casted in <span class="semibold" id="newWt">' + chgwt + '</span> grams of gold set with brilliant cut <span class="semibold">' + dt['dimond']['results'][0].totNo + '</span> ' + dt['dimond']['results'][0].shape + ' Diamonds (Approx. ' + dt['dimond']['results'][0].crat + ' Ct) </div>';
-                            break;
-                        }
-                        case 3:
-                        {
-
-                            bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span> is casted in <span class="semibold" id="newWt">' + chgwt + '</span> grams of gold set with brilliant cut <span class="semibold">' + dt['dimond']['results'][0].totNo + '</span> ' + dt['dimond']['results'][0].shape + ' Diamonds (Approx. ' + dt['dimond']['results'][0].crat + ' Ct) and a <span class="semibold">' + dt['solitaire']['results'][0].carat + ' Ct</span> ' + dt['solitaire']['results'][0].shape + ' Solitaire of ' + dt['solitaire']['results'][0].colr + ' color </div>';
-                            break;
-                        }
-                        case 4:
-                        {
-                            Nstr += '<span>Diamond</span>';
-                            dmdsoli = "Diamond";
-                            break;
-                        }
-                        case 5:
-                        {
-                            var gemstn = gemstone.results[0].gemNm;
+    });
 
 
-                            break;
-                        }
-                        case 6:
-                        {
 
-                            break;
-                        }
-                        case 7:
-                        {
-                            gemstn = gemstone.results[0].gemNm;
+    $("#dlabel").click(function () {
+        $('.dropBox label').removeClass("act");
+        $(this).parent().addClass("drop");
+        $(this).next().slideDown("slow");
+    });
 
-                            bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span> is casted in <span class="semibold" id="newWt">' + chgwt + '</span> grams of gold set with brilliant cut <span class="semibold">' + dt['dimond']['results'][0].totNo + '</span> ' + dt['dimond']['results'][0].shape + ' Diamonds (Approx. ' + dt['dimond']['results'][0].crat + ' Ct) and a <span class="semibold">' + dt['gamestone']['results'][0].crat + ' Ct</span> ' + dt['gamestone']['results'][0].gemNm + ' </div>';
+    $(".dropBox ul li").click(function () {
+        $('.dropBox label').addClass("act");
+        $(this).parent().parent().removeClass("drop");
+        var liTxt = $(this).html();
+        $(".dropBox label").text(liTxt);
+        $(this).parent().slideUp("slow");
+    });
 
-                            break;
-                        }
-
-                        case 8:
-                        {
-
-                            bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span> is casted in <span class="semibold" id="newWt" >' + chgwt + '</span> grams of gold set with brilliant cut <span class="semibold">' + dt['dimond']['results'][0].totNo + '</span> ' + dt['dimond']['results'][0].shape + ' Diamonds (Approx. ' + dt['dimond']['results'][0].crat + ' Ct), <span class="semibold">' + dt['gamestone']['results'][0].crat + ' Ct</span> ' + dt['gamestone']['results'][0].gemNm + ' and a <span class="semibold">' + dt['gamestone']['results'][1].crat + ' Ct</span> ' + dt['gamestone']['results'][1].gemNm + '  </div>';
-
-                            break;
-                        }
-
-                    }
-
-                    $('#shortdesc').html(bstr);
-
-
-                });
+    $(document).click(function (event) {
+        if (!$(event.target).closest('.dropBox').length)
+        {
+            if ($('.dropBox').find('ul').is(":visible"))
+            {
+                $('.dropBox').find('ul').slideUp('swing');
+                $('.dropBox').removeClass("drop");
             }
-
-        });
-
-
-	
-	 
-	
-	
-	
-     
-        
+        }
+    });
 
 
-        
-            
 
 
-    
-    
 
-      
 
-       
-      
+
+
+
+
+
+
+
+
+
+
     </script>
 </body>
 </html>
