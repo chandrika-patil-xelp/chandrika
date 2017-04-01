@@ -5,7 +5,7 @@
     <?php include 'Cart.html'?>
     <?php include 'header.html'?>
     <?php include 'login.html'?>
-    <?php include 'mheader.html' ?>
+    <?php include 'mheader.html'?>
     <div class="wrapper_main fLeft HOME_PAGE fadcrs">
         
         <div class="swipe fLeft" id="lftt"></div>
@@ -380,73 +380,11 @@
                   $(".swipe").removeClass("swipe_aftr");
           });
 
-        // Hammer(document.getElementById("lftt")).on("swiperight", function() {
-        //   $('.sideNav').velocity({translateX: "0%"}, {duration: 300, delay: 0, display: "block", ease: "ease-out"});
-        //   $('.swipe').addClass('swipe_aftr');
-        //   $('body').addClass('posFix');
-        // });
-        // Hammer(document.getElementById("leftMenu")).on("swipeleft", function() {
-        //   $('.sideNav').velocity({translateX: "100%"}, {duration: 300, delay: 0, display: "none", ease: "ease-out"});
-        //   $('.swipe').removeClass('swipe_aftr');
-        //    $('body').removeClass('posFix');
-        //  });
-        // $('.sideNav_tab').click(function() {
-        //   $(this).addClass('niyaz');
-        //   $(this).parent().parent().find('.asa').each(function(){
-        //
-        //
-        // //var slideDir=  $(this).find('.collap').is(':visible') ? 'slideUp' : 'slideDown';
-        //
-        //   if($(this).children().hasClass('niyaz'))
-        //   {
-        //
-        //   }
-        //   else{
-        //   $(this).find('.collap').velocity('slideUp');
-        // }
-        //
-        //
-        //   });
-        //   $(this).removeClass('niyaz');
-        //     var slideDir = $('.collap').is(':visible') ? 'slideUp' : 'slideDown';
-        //      $(this).parent().find('.collap').velocity(slideDir);
-        //
-        //
-        //
-        //     });
-
-	  //   Hammer(document.getElementById("lftt")).on("swipeleft", function() {
-		// $(".sideNav").show('slide',{direction:'left'}, 300);
-    //     });
-        Hammer(document.getElementById("leftMenu")).on("swipeleft", function() {
-		$(".sideNav").hide('slide',{direction:'left'},  300);
-  $(".swipe").removeClass("swipe_aftr");
-     $("body").removeClass("posFix");
-       });
-
-
-       $(document).ready(function() {
-
-	var faqTab = $('.sideNav_tab'),
-        faqTabContainer = $('.div100');
-
-	if(faqTab.length){
-
-		faqTab.off('sideNav_tab').on('click', function(){
-			var faqRow = $(this).parent(),
-			    faqContent = $(this).parent().find('.collap');
-
-			    faqTabContainer.find('.collap').not(faqContent).stop().slideUp('slow');
-                faqTabContainer.find('.asa').not(faqRow).removeClass('open');
-
-			    faqContent.stop().slideToggle('slow', function() {
-					faqRow.toggleClass('open', faqContent.is(':visible'));
-				});
-		});
-
-	}
-
-});
+        
+       
+    
+    
+    
     </script>
 
 </body>
