@@ -420,7 +420,7 @@ a{color:#666;}
 .drop_dn{}
 .drop_dets{width:100%;height:150px;float:left;display:none;background:#e6e6e6;position:absolute;top:40px;left:0;z-index:10}
 .price_light{font-size:36px; color:#15181b;width: 100%;height:85px;font-family:regular;position:relative}
-.price_lightm{font-size:36px; color:#15181b;width: 100%;height:85px;font-family:regular;position:relative}
+.price_lightm{font-size:20px; color:#15181b;width: 100%;height:85px;font-family:regular;position:relative;padding-top:10px;}
 .rota{width:100%;height:100%;position:relative;max-width:100%;margin:auto}
 .rota_buffer{width:100%; height:100%;position:absolute;left:0;right:0;background:#fff ;margin: auto;padding:20px;top: 0;}
 
@@ -2715,8 +2715,9 @@ input[type=number]::-webkit-outer-spin-button {
 .inCarousel{width:100%;height: 100%;padding: 0;margin: 0;list-style-type: none;white-space: nowrap;background: #fff;}
 .emptyGrid{width: 100%;position: absolute;height: 200px;top: 0;right: 0;bottom: 0;left: 0;margin: auto;}
 .emptyLogo{background:url(../img/icons/552.svg)no-repeat;background-position: center;    background-size: auto 100%;    width: 100%;    height: 100px;}
-
-.backTop{cursor: pointer;position: fixed;width:50px;right:1%;top: 90vh;height:50px;background:linear-gradient(to bottom, #222529 0%, #15181b 100%) ;z-index: 9;color: #fff;font-size: 12px;font-family: regular;padding:5px;border-radius:50%;transition:300ms;-webkit-transition:300ms;-moz-transition:300ms;-o-transition:300ms;-ms-transition:300ms;}
+/*.floatFil{display:none;}*/
+.backTop{cursor:pointer;position: fixed;width:50px;right:1%;top: 90vh;height:50px;background:linear-gradient(to bottom, #222529 0%, #15181b 100%) ;z-index: 9;color: #fff;font-size: 12px;font-family: regular;padding:5px;border-radius:50%;transition:300ms;-webkit-transition:300ms;-moz-transition:300ms;-o-transition:300ms;-ms-transition:300ms;}
+/*.prd .floatFil{display: block!important;cursor: pointer;position: fixed;width:50px;left:1%;top: 90vh;height:50px;background:linear-gradient(to bottom, #222529 0%, #15181b 100%) ;z-index: 9;color: #fff;font-size: 12px;font-family: regular;padding:5px;border-radius:50%;transition:300ms;-webkit-transition:300ms;-moz-transition:300ms;-o-transition:300ms;-ms-transition:300ms;}*/
 .backTop:after{content:"";position:absolute;left:0;top:0;width:100%;height:100%;background:url("../img/icons/543w.svg")no-repeat;background-position:center center;background-size: auto 30px;transform: rotate(-90deg);-webkit-transform: rotate(-90deg);-ms-transform: rotate(-90deg);-moz-transform: rotate(-90deg);-o-transform: rotate(-90deg);}
 .scaleot.backTop{transform:scale(0) ;-webkit-transform:scale(0) ;-moz-transform:scale(0) ;-o-transform:scale(0);-ms-transform:scale(0);}
 .mobileMess{width:100%;height:100%;position:fixed;top:0;left:0;background:#fff;z-index:1000;display:none;}
@@ -3069,6 +3070,10 @@ input[type=number]::-webkit-outer-spin-button {
 .button_label{width:100% ; font-size:12px;font-family:bolder;display:table;text-align: center;font-size: 12px;    font-family: semibold;letter-spacing: 0.35em;text-transform: uppercase;}
 .page_loader2 .cs-loader-inner , .page_loader .cs-loader-inner {transform: translateY(0%);top: 35%;color: #000;background: transparent;text-align: center;z-index: 20;display: block;opacity: 1;}
 .padTB25{padding:25px 0px!important;}
+
+#Mprice{display: none;}
+#mDesc{display: none;}
+
 .myaccount .tHead{display:block;transform: translateX(0);}
 @media only screen and (max-width:1024px){
     .mobileMess{display:block !important}
@@ -3169,6 +3174,7 @@ input[type=number]::-webkit-outer-spin-button {
    .mob_icondiv .pay.certiIc,.mob_icondiv .pay.lifeIc,.mob_icondiv .pay.secureIc{background-position:center;text-align:center;}
    .CHECKOUT_PAGE .ePadding{padding:55px 0 0 0 !important;}
    .mob_submit{display:block;}
+    .collCenterb{    padding: 122px 60px;}
     .myaccount .pCont{    width: 100%;
     padding-left: 0px;
     padding-top: 40px;}
@@ -3195,7 +3201,6 @@ input[type=number]::-webkit-outer-spin-button {
     cursor: pointer;
     background: url(../img/icons/removeW.svg) no-repeat;
     background-size: 25px;background-position: center;}
-    
 }
 
 
@@ -3211,20 +3216,25 @@ input[type=number]::-webkit-outer-spin-button {
     .userInfo{display:none;}
     .details_buffer{text-align: left}
     #Mprice{display:block!important;}
-    #wPrice{display: none;}
-
-    #Mprice .cartRupeeB{background-size: auto 15px;background-position: left 5px;padding: 0px 18px;width: auto;display: inline-block;}
-    #Mprice .price_light{font-sisze:20px;}
-    
-
-    .div360{width:40px;height:40px;position:absolute;top: 0;background:url(../img/icons/360.svg)no-repeat;background-position:center;background-size: auto 25px;z-index: 99;top:0;}
+    #Wprice{display:none;}
+    .details_buffer:nth-child(3){display:none;}
+    .darkCont{border-top: 1px solid #e6e6e6;}
+    #Mprice .cartRupeeB{background-size:auto 15px;background-position: left 5px;padding: 0px 18px;width: auto;display: inline-block;}
+    .div360{display: none;}
+    .mdiv360{width:40px;height:40px;position:absolute;top: 0;background:url(../img/icons/360.svg)no-repeat;background-position:center;background-size: auto 25px;z-index: 99;    top: 60px;left: 0px;}
     .likeD{display:block;width:40px;
            position:absolute;
            right:0;
            background:url(../img/icons/550.svg)no-repeat;
            background-size:auto 45px;
            background-position:center;
-           height:40px;    z-index: 1;}
+           height:40px;z-index: 9;    top: 60px;
+    right: 0px;}
+    #wishW{display: none;}
+    #mDesc{    display: inline-block;
+    height: auto;
+   padding: 25px 15px 25px 15px;
+    border-bottom: 1px solid #e6e6e6;}
 
     .imgHolder{background-size: auto 100%!important;}
     .tCommon{padding: 0px;}
@@ -3384,9 +3394,9 @@ input[type=number]::-webkit-outer-spin-button {
     .logo {float:none !important;margin:auto;}
     .tab_buffer{display:none;}
     .wrapper_main {width: 100%;height: auto;display: table;}
-    .wrapper {height: auto; max-height: initial;padding:60px 20px 20px 20px;}
-    .details_head {font-size: 35px; line-height: 40px;text-align: center;}
-    .para {text-align: center;margin: 5px 0px;}
+    .wrapper {height: auto; max-height: initial;padding:60px 15px 20px 15px;}
+    .details_head {font-size:25px; line-height: 40px;text-align: center;padding: 0px;}
+    .para {text-align: center; margin: 30px 0px;}
     /*.container {width:100%;height:auto;float:left;display:block;padding-top: 100vw;}*/
     .details_cont { width:100%;height:auto;display:block;}
     .details_buffer {width:100%;height:auto;float:left;position:relative;margin:initial;}
@@ -3397,18 +3407,20 @@ input[type=number]::-webkit-outer-spin-button {
     .rota_bufferm {padding:0px;width: 100%;height: 100%;position: absolute;left: 0;right: 0; background: #fff;margin: auto;}
     .options_buffer { width: 100%;height:60vh;position: relative;top:initial;bottom:initial;margin: initial;}
     .PRODUCT_PAGE .wrapper_max {max-width:initial;height: auto;float: left;}
-    .colleCont{width: 100%;height: auto; float: left;position: relative;left:initial;top:initial;overflow:initial; background-color: #fff;word-wrap: break-word;padding: 130px 0px;}
+    .colleCont{width:100%;height: auto; float: left;position: relative;left:initial;top:initial;overflow:initial; background-color: #fff;word-wrap: break-word;padding:25px 0px;}
+    
     .smUlineb {position:relative;top:0;}
     .homeCollect {float:left;padding-top:0px;}
     .PRODUCT_PAGE .collCenterb {width:100%;height:auto;position:relative;left:initial;top:initial;bottom:initial;margin:initial;padding: 20px;}
     /*.smUline {top:10px;}*/
-    .PRODUCT_PAGE .darkCont {padding: 40px 0 40px 0;}
+    .PRODUCT_PAGE .darkCont {padding:0px 0 40px 0;}
     .PRODUCT_PAGE .collCenter {width:100%;height:auto;float:left;padding:20px;position:relative;left:initial;top:initial;bottom:initial;margin:initial;}
     .mbloff{display:none;}
     .mbledvHld{display:block;}
     .mbloff{display:none !important;}
     .marTop60{margin:35px 0px;}
     .colleCont.v2{padding-top: 150px;}
+    .PRODUCT_PAGE .colleCont.v2{padding: 55px 2px 25px 0px!important;}
     .details_buffer .actBtn{float: left!important;}
     .userInfo{left: 45%;}
     .grid3 .soc_abs{transform: scale(1);
@@ -3416,8 +3428,12 @@ input[type=number]::-webkit-outer-spin-button {
                     -moz-transform: scale(1);
                     -o-transform: scale(1);
                     -ms-transform: scale(1);}
-/*checkout*/
+    #wDis{display: none;}
+    .writefaggery .para{margin: 0px;font-size: 10px;}
+    /*checkout*/
 .jwlCnt .cart_price{margin-top:10px;}
 .cart_item .amt_selector{top:6px;}
 .jwlCnt{height:380px;}
+
 }
+
