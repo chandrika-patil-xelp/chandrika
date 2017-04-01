@@ -42,6 +42,8 @@
     <div class="chkoutHeader poR">
         <div class="wrapper_max">
 	  <a href="<?php echo DOMAIN ?>index.php?action=landing_page"><div class="logo fLeft"></div></a>
+          <a class="logoA" href="<?php echo DOMAIN ?>"><div class="mlogoHeader"></div></a>
+          <div class="payHelp fRight mob_help">Need Help?</div>
             <div class="fLeft callUs">Got Question? call us on 9880824707</div>
             <div class="payOption fRight">
                 <div class="col50 pay certiIc fRight">certified jewellery</div>
@@ -49,6 +51,10 @@
                 <div class="col50 pay secureIc fRight">secure payements</div>
             </div>
         </div>
+    </div>
+    <div class="checkoutheader_mobile fLeft">
+        <div class="actBtn button fLeft" id="mob_signin">sign in</div>
+        <div class="actBtn button fLeft" id="mob_guest">GUEST</div>
     </div>
     <div class="wrapper_main fLeft CHECKOUT_PAGE">
         <div class="wrapper chkout">
@@ -1032,6 +1038,14 @@
                             }
                         });
 
-
+//                    checkout mobile
+                   $('#mob_guest').click(function () {
+                        $('.colleCont.v2').css({"display":"block"});
+                       $('#guestSignin').css({"display":"none"});
+                   });
+                   $('#mob_signin').click(function () {
+                        $('.colleCont.v2').css({"display":"none"});
+                       $('#guestSignin').css({"display":"block"});
+                   });
     </script>
 </body>
