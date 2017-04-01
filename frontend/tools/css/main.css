@@ -3069,8 +3069,7 @@ input[type=number]::-webkit-outer-spin-button {
 .button_label{width:100% ; font-size:12px;font-family:bolder;display:table;text-align: center;font-size: 12px;    font-family: semibold;letter-spacing: 0.35em;text-transform: uppercase;}
 .page_loader2 .cs-loader-inner , .page_loader .cs-loader-inner {transform: translateY(0%);top: 35%;color: #000;background: transparent;text-align: center;z-index: 20;display: block;opacity: 1;}
 .padTB25{padding:25px 0px!important;}
-
-
+.myaccount .tHead{display:block;transform: translateX(0);}
 @media only screen and (max-width:1024px){
     .mobileMess{display:block !important}
     /*.imageOutr{width: 100%;}*/
@@ -3170,12 +3169,43 @@ input[type=number]::-webkit-outer-spin-button {
    .mob_icondiv .pay.certiIc,.mob_icondiv .pay.lifeIc,.mob_icondiv .pay.secureIc{background-position:center;text-align:center;}
    .CHECKOUT_PAGE .ePadding{padding:55px 0 0 0 !important;}
    .mob_submit{display:block;}
-
+    .myaccount .pCont{    width: 100%;
+    padding-left: 0px;
+    padding-top: 40px;}
+    .myaccount .tHead{    position: absolute;
+    background-color: #fff;
+    height: 100%;
+    z-index: 1;
+    transform: translateX(-115%);
+    transition: 300ms;top: 0px;padding-top: 40px;display:block;border-right: 1px solid #f3f3f3;}
+    .pCont .log-Icn{    position: absolute;
+    left: 0px;
+    top: -8px;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    background: url(../img/icons/myacc.svg) no-repeat;
+    background-size: 30px;
+    background-position: center;}
+    .log-Crs{position: absolute;
+    right: 0px;
+    top: 5px;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    background: url(../img/icons/removeW.svg) no-repeat;
+    background-size: 25px;background-position: center;}
+    
 }
 
 
 @media only screen and (max-width:480px){
-
+    .myaccount .tHead {width: 250px;}
+    .myaccount .offsetTop {padding: 40px 0px 40px 0px;}
+    .pCont .log-Icn{left:15px;}
+    .myaccount .grid3{width:100%;}
+    .myaccount .orderCommon{padding:0 20px;}
+    .myaccount .orderCommon:nth-child(2){padding:0;}
     .wrapper_max{display: inline-block}
     .rota_buffer{padding: 0px;}
     .userInfo{display:none;}

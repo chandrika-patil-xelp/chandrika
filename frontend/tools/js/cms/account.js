@@ -33,7 +33,19 @@ $(document).ready(function () {
                 resetpasswrd();
         }
     });
-
+    
+    /*slide panel of myacc*/
+    $('.log-Icn').on('click',function(){
+        $('#side_menus').css({"transform":"translateX(-20px)","transition":"300ms"}); 
+    });
+    $('.log-Crs').on('click',function(){
+        $('#side_menus').css({"transform":"translateX(-115%)","transition":"300ms"}); 
+    });
+    $( window ).resize(function() {
+        if((window.outerWidth) > 768){
+            $('#side_menus').css({"transform":"translateX(-20px)","transition":"300ms","display":"block"});
+        }
+    });
 });
  
  function getMonthNamebyVal(mnt) {
