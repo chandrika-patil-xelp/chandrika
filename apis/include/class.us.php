@@ -370,7 +370,7 @@
 
         public function addOrderbackend($params)
 	{
-            global $comm;
+            global $comm , $db;
              $params= (json_decode($params[0],1));
               $orderid = (!empty($params['orderid'])) ? trim($params['orderid']) : '';
 	   if(empty($params['orderid'])){
@@ -413,10 +413,106 @@
 	    $res = $this->query($sql);
             $resp = array();
             if($res){
+                $invoiceid=$this->generateId();
+                $invcsql="INSERT INTO 
+                                      tbl_invoice_master (
+                                      invoice_id,
+                                      order_id,
+                                      user_id,
+                                      createdon,
+                                      updatedon )
+                          VALUES(";
+                $invcsql.="
+                          ".$invoiceid.",
+                          ".$orderid.",
+                          '".$params['userid']."',
+                          NOW(),
+                          NOW() ) ";
+                $resinvc=  $this->query($invcsql);
+	      
+	    $smssql="SELECT
+			   product_id AS pid,
+			   shipping_id AS shipid,
+			   (SELECT name FROM tbl_order_shipping_details WHERE shipping_id=shipid)AS shipname,
+			   (SELECT mobile FROM tbl_order_shipping_details WHERE shipping_id=shipid)AS mobile,
+			   (SELECT gender FROM tbl_order_shipping_details WHERE shipping_id=shipid)AS gender,
+			   (SELECT email FROM tbl_order_shipping_details WHERE shipping_id=shipid)AS email,
+			   (SELECT product_name FROM tbl_product_master WHERE productid=pid)AS prd_name
+		     FROM
+			  tbl_order_master
+		     WHERE
+			  order_id=".$orderid;
 
-                $error = array('err_code'=>0, 'err_msg'=>' Adding Order Details Inserted Successfully ' );
+	    $smsres=  $this->query($smssql);
+	    if($smsres){
+	      while($smsrow = $this->fetchData($smsres)){
+		  $email = $smsrow['email'];
+		  $gender = $smsrow['gender'];
+		  $usrname=$smsrow['shipname'];
+		  $prdnamarr[]=$smsrow['prd_name'];
+		  $mobile=$smsrow['mobile'];
+	      }
+	    }
+	    $prdname=implode(', ',$prdnamarr);
 
-            }else{
+	   
+
+	    $gndr="";
+	    if($gender == 1)
+	      $gndr="Ms";
+	    else if($gender == 2)
+	      $gndr="Mr";
+	    else if($gender == 3)
+	      $gndr="Mrs";
+	    else
+	      $gndr="Dear";
+	    global $comm;
+	    $txt = ''.$gndr.' '.$usrname.' your Jzeva jewellery '.$prdname.' with order number '.$orderid.' has been received. Thank you for shopping with Jzeva.com';
+	    
+	    $url = str_replace('_MOBILE', $mobile, SMSAPI);
+	    $url = str_replace('_MESSAGE', urlencode($txt), $url);
+	    $smsurlres = $comm->executeCurl($url, true);
+// 
+//	    $mobvndone=9007297981;
+//	    $vndrtxt = 'Hi, We got one new order placed  for Product name '.$prdname.' with order number '.$params['data'][0]['orderid'].'.';
+//	    $vndroneurl = str_replace('_MOBILE', $mobvndone, SMSAPI);
+//	    $vndroneurl = str_replace('_MESSAGE', urlencode($vndrtxt), $vndroneurl);
+//	    $smsurlvndres = $comm->executeCurl($vndroneurl, true);
+// 	 
+//	    $mobvndtwo=7022248707;
+//	    $vndrtxttwo = 'Hi, We got one new order placed  for Product name '.$prdname.' with order number '.$params['data'][0]['orderid'].'.';
+//	    $vndrtwourl = str_replace('_MOBILE', $mobvndtwo, SMSAPI);
+//	    $vndrtwourl = str_replace('_MESSAGE', urlencode($vndrtxttwo), $vndrtwourl);
+//	    $smsurlvndrres = $comm->executeCurl($vndrtwourl, true);
+	    $paramarr;
+            $paramarr['orderid']=$orderid;
+            $paramarr['userid']=$params['userid'];
+            $paramarr['shipping_id']=$params['shipping_id'];
+            $paramarr['pid']=$params['pid'];
+            $paramarr['col_car_qty']=$params['col_car_qty'];
+            $paramarr['size']=$params['size'];
+            $paramarr['pqty']=$params['pqty'];
+            $paramarr['prodpri']=$params['prodpri'];
+            $paramarr['dmd_carat']=$params['dmd_carat'];
+            $paramarr['weight']=$params['weight'];
+            $paramarr['usrname']=$usrname;
+            $paramarr['gender']=$gender;
+            
+            
+             include APICLUDE.'class.emailtemplate.php';
+            $obj	= new emailtemplate($db['jzeva']); 
+            $message	=$obj->genBackordrtemplate($paramarr);
+//print_r($message);die;
+	    $subject  = "JZEVA Order Detail";
+            $headers  = "Content-type:text/html;charset=UTF-8" . "<br/><br/>";
+            $headers .= 'From: care@jzeva.com' . "<br/><br/>";
+        
+
+	    mail($email, $subject, $message, $headers);
+     
+            $error = array('err_code'=>0, 'err_msg'=>' Adding Order Details Inserted Successfully ' );
+	  }
+            else{
                 $error = array('err_code'=>1, 'err_msg'=>' Error IN Adding Order Details ' );
             }
 

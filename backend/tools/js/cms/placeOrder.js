@@ -8,8 +8,17 @@ $(document).ready(function(){
  
   
   $('#submit').click(function(){
-	  
-	  var userid=common.readFromStorage('jzeva_uid');
+	  var gendrflag;
+	  var gender=$('#vendorList').val();
+	  if(gender == "Mr"){
+	    gendrflag=2;
+	  }
+	  else if(gender == "Ms"){
+	    gendrflag=1;
+	  }
+	  else if(gender == "Mrs"){
+	    gendrflag=3;
+	  }
 	  var name=$('#name').val();
 	  var telno=$('#mobile').val();
 	  var email=$('#email').val();
@@ -79,19 +88,43 @@ $(document).ready(function(){
 	      shipngdata['pincode'] = pincode;
 	      shipngdata['state'] = state;
 	      shipngdata['city'] = city;
-	      shipngdata['user_id'] = userid;
+	      
+	      
+	      var URL = APIDOMAIN + "index.php?action=getUserdetailbymob&mob="+telno+"&email="+email; 
+	      $.ajax({type: "GET", url: URL, success: function (res) { 
+		  var data = JSON.parse(res);
+		  if(data['result']['user_id'] == null || data['result']['user_id'] == undefined){
+		    
+		    var URLreg= APIDOMAIN + "index.php?action=addUser&name="+name+"&email="+email+"&mobile="+telno+"&pass=''&gender="+gendrflag;
+		    $.ajax({  type:'POST', url:URLreg,success:function(res){
+			     var data1 = JSON.parse(res);
+			     if(data1['error']['err_code']==0){
+			       cust_userid=data1['result']['user_id'];
+			     }
+			     else if(data1['error']['err_code']==1){
+				 common.toast(0,data1['error']['err_msg']);
+			     }
+		    }
+		    });	   
+		  } 
+		  else if(data['result']['user_id'] !== null || data['result']['user_id'] !== undefined){
+		    cust_userid=data['result']['user_id'];
+		  }
+		  setTimeout(function(){
+		      shipngdata['user_id'] = cust_userid;
+		      var URL = APIDOMAIN + "index.php?action=addshippingdetail";
+		      var data = shipngdata;
+		      var dt = JSON.stringify(data);
+		      $.ajax({type: "post", url: URL, data: {dt: dt}, success: function (res) {
 
-	      var URL = APIDOMAIN + "index.php?action=addshippingdetail";
-	      var data = shipngdata;
-	      var dt = JSON.stringify(data);
-	      $.ajax({type: "post", url: URL, data: {dt: dt}, success: function (res) {
-		  
-		  var data = JSON.parse(res); 
-		  var shipid=data['shipid'];
-		  orderdata(shipid);
-		 
+			  var data = JSON.parse(res); 
+			  var shipid=data['shipid'];
+			  orderdata(shipid); 
+			}
+		      });	
+		  },1000);
 		}
-	      });
+	      }); 
 	}
 	});
 
@@ -101,8 +134,8 @@ $(document).ready(function(){
        var shipid=shp;
     
     var ordrdata = {};
-     var userid = common.readFromStorage('jzeva_uid');
- 
+    
+                                    
                                     ordrdata['pid'] = pid; 
                                     ordrdata['size'] = sz; 
                                     ordrdata['shipping_id'] = shipid;
@@ -110,11 +143,14 @@ $(document).ready(function(){
 				    ordrdata['updatedby'] = "";
 				    ordrdata['payment'] = "";
 				    ordrdata['payment_type'] = "";
-                                    ordrdata['userid'] = userid;
+                                    ordrdata['userid'] = cust_userid;
                                     ordrdata['prodpri'] = price;
                                     ordrdata['col_car_qty'] = col_car_qty;
 				    ordrdata['pqty'] = 1;
-                                 
+                                    ordrdata['dmd_carat'] = $('#dmn_car').text();
+                                     ordrdata['weight']=$('#newWt').text();
+                                   ordrdata['gend']= $('#vendorList').val();
+                                   
 //                                   ordrdata['orderid'] = ''; 
 //                                   data[0] = ordrdata;
 //                                   var ordobj={};
@@ -137,14 +173,13 @@ $(document).ready(function(){
 	     {
 		common.toast(1, 'Order Placed successfully');
 		ordid=data['ordid'];
-		 addtransactiondata();
+                addtransactiondata();
 	     } 
 	    }
 	});
                 
     }
-    
-    
+ 
     function addtransactiondata()
     {
       
@@ -189,7 +224,7 @@ $(document).ready(function(){
 		$.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results)
 		{
 		  setTimeout(function(){
-		    window.location.href=DOMAIN+"backend/index.php?action=orders";
+		   window.location.href=DOMAIN+"backend/index.php?action=orders";
 		  },1000);
 		}
 	      });

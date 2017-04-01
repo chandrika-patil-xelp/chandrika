@@ -414,7 +414,7 @@ var prodNSplt=''+ obj['prdNm'] +'';
     //proStr += '<div class="soc_elem soc_comment transition300"></div>';
     //proStr += '<div class="soc_elem soc_share transition300"></div>';
     //proStr += '</div>';
-    proStr += '<a  target="_blank" href="' + DOMAIN + prodNSplts+'"><div class="custBtn1">customise</div></a>';
+    proStr += '<div class="custBtn1" data-for="'+ prodNSplts+'" onclick="custmz(this )">customise</div>';
     proStr += '</div>';
     proStr += '</div>';
     proStr += '<div class="facet_back" >';
@@ -541,10 +541,9 @@ var prodNSplt=''+ obj['prdNm'] +'';
 }
 
 
-function custmz(i){ 
- var pid =i;
- 
-    window.open(DOMAIN+'' + pid+'');
+function custmz(ths){ 
+ var lnk =$(ths).attr('data-for');
+    window.open(DOMAIN+'' + lnk+'');
 }
 
 function imgLoad(p, event) {

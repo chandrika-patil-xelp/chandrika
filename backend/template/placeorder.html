@@ -257,19 +257,19 @@
                     case 1:
                     {
 
-                        bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span> is casted in <span class="semibold" id="newWt">' + chgwt + '</span> grams of gold set with brilliant cut <span class="semibold">' + dt['solitaire']['results'][0].nofs + '</span> ' + dt['solitaire']['results'][0].shape + ' Solitaire (Approx. ' + dt['solitaire']['results'][0].carat + ' Ct) </div>';
+                        bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span> is casted in <span class="semibold" id="newWt">' + chgwt + '</span> grams of gold set with brilliant cut <span class="semibold">' + dt['solitaire']['results'][0].nofs + '</span> ' + dt['solitaire']['results'][0].shape + ' Solitaire (Approx. <span id="dmn_car">' + dt['solitaire']['results'][0].carat + ' </span>Ct) </div>';
                         break;
                     }
                     case 2:
                     {
 
-                        bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span> is casted in <span class="semibold" id="newWt">' + chgwt + '</span> grams of gold set with brilliant cut <span class="semibold">' + dt['dimond']['results'][0].totNo + '</span> ' + dt['dimond']['results'][0].shape + ' Diamonds (Approx. ' + dt['dimond']['results'][0].crat + ' Ct) </div>';
+                        bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span> is casted in <span class="semibold" id="newWt">' + chgwt + '</span> grams of gold set with brilliant cut <span class="semibold">' + dt['dimond']['results'][0].totNo + '</span> ' + dt['dimond']['results'][0].shape + ' Diamonds (Approx. <span id="dmn_car">' + dt['dimond']['results'][0].crat + '</span> Ct) </div>';
                         break;
                     }
                     case 3:
                     {
 
-                        bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span> is casted in <span class="semibold" id="newWt">' + chgwt + '</span> grams of gold set with brilliant cut <span class="semibold">' + dt['dimond']['results'][0].totNo + '</span> ' + dt['dimond']['results'][0].shape + ' Diamonds (Approx. ' + dt['dimond']['results'][0].crat + ' Ct) and a <span class="semibold">' + dt['solitaire']['results'][0].carat + ' Ct</span> ' + dt['solitaire']['results'][0].shape + ' Solitaire of ' + dt['solitaire']['results'][0].colr + ' color </div>';
+                        bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span> is casted in <span class="semibold" id="newWt">' + chgwt + '</span> grams of gold set with brilliant cut <span class="semibold">' + dt['dimond']['results'][0].totNo + '</span> ' + dt['dimond']['results'][0].shape + ' Diamonds (Approx. <span id="dmn_car">' + dt['dimond']['results'][0].crat + ' </span>Ct) and a <span class="semibold">' + dt['solitaire']['results'][0].carat + ' Ct</span> ' + dt['solitaire']['results'][0].shape + ' Solitaire of ' + dt['solitaire']['results'][0].colr + ' color </div>';
                         break;
                     }
                     case 4:
@@ -294,7 +294,7 @@
                     {
                         gemstn = gemstone.results[0].gemNm;
 
-                        bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span> is casted in <span class="semibold" id="newWt">' + chgwt + '</span> grams of gold set with brilliant cut <span class="semibold">' + dt['dimond']['results'][0].totNo + '</span> ' + dt['dimond']['results'][0].shape + ' Diamonds (Approx. ' + dt['dimond']['results'][0].crat + ' Ct) and a <span class="semibold">' + dt['gamestone']['results'][0].crat + ' Ct</span> ' + dt['gamestone']['results'][0].gemNm + ' </div>';
+                        bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span> is casted in <span class="semibold" id="newWt">' + chgwt + '</span> grams of gold set with brilliant cut <span class="semibold">' + dt['dimond']['results'][0].totNo + '</span> ' + dt['dimond']['results'][0].shape + ' Diamonds (Approx. <span id="dmn_car">' + dt['dimond']['results'][0].crat + ' </span>Ct) and a <span class="semibold">' + dt['gamestone']['results'][0].crat + ' Ct</span> ' + dt['gamestone']['results'][0].gemNm + ' </div>';
 
                         break;
                     }
@@ -302,7 +302,7 @@
                     case 8:
                     {
 
-                        bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span> is casted in <span class="semibold" id="newWt" >' + chgwt + '</span> grams of gold set with brilliant cut <span class="semibold">' + dt['dimond']['results'][0].totNo + '</span> ' + dt['dimond']['results'][0].shape + ' Diamonds (Approx. ' + dt['dimond']['results'][0].crat + ' Ct), <span class="semibold">' + dt['gamestone']['results'][0].crat + ' Ct</span> ' + dt['gamestone']['results'][0].gemNm + ' and a <span class="semibold">' + dt['gamestone']['results'][1].crat + ' Ct</span> ' + dt['gamestone']['results'][1].gemNm + '  </div>';
+                        bstr += '<div class="para fLeft">The <span class="semibold">' + vl.prdNm + '</span> is casted in <span class="semibold" id="newWt" >' + chgwt + '</span> grams of gold set with brilliant cut <span class="semibold">' + dt['dimond']['results'][0].totNo + '</span> ' + dt['dimond']['results'][0].shape + ' Diamonds (Approx. <span id="dmn_car">' + dt['dimond']['results'][0].crat + '</span> Ct), <span class="semibold">' + dt['gamestone']['results'][0].crat + ' Ct</span> ' + dt['gamestone']['results'][0].gemNm + ' and a <span class="semibold">' + dt['gamestone']['results'][1].crat + ' Ct</span> ' + dt['gamestone']['results'][1].gemNm + '  </div>';
 
                         break;
                     }
