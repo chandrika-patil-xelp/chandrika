@@ -3,7 +3,6 @@
 <script>  var actn = "<?php echo $_GET['actn'];  ?>";</script>
 <body class="greyBg"  >
     <?php include 'Cart.html' ?>
-
     <div class="cartPopup dn" id="cartpID">
         <div class="inCartPop" id="inCartID">
             <div class="txtTitle mar0" id="rmvpoptxt">Do you want to delete this addresses</div>
@@ -18,6 +17,8 @@
     <div class="chkoutHeader">
         <div class="wrapper_max">
 	  <a href="<?php echo DOMAIN ?>index.php?action=landing_page"><div class="logo fLeft" id="jzeva_log"></div></a>
+           <a class="logoA" href="<?php echo DOMAIN ?>"><div class="mlogoHeader"></div></a> 
+           <div class="payHelp fRight mob_help">Need Help?</div>
             <div class="fLeft callUs">Got Question? call us on 9880824707</div>
             <div class="payOption fRight">
                 <div class="col50 pay certiIc fRight">certified jewellery</div>
@@ -26,6 +27,10 @@
                 <div class="payHelp fRight">Need Help?</div>
             </div>
         </div>
+    </div>
+    <div class="checkoutheader_mobile fLeft">
+        <div class="actBtn button fLeft checkout_details">DETAILS</div>
+        <div class="actBtn button fLeft cart_first">CART</div>
     </div>
     <div class="wrapper_main fLeft CHECKOUT_PAGE checkoutBefore">
         <div class="wrapper chkout">
@@ -52,6 +57,13 @@
                                             <div class="text fLeft pad0" id="adcity"></div>
                                             <div class="text fLeft pad0" id="state"></div>
                                         </div>
+                                        <div class="mob_icondiv fLeft">
+                                            <div class="payOption fLeft">
+                                                <div class="col50 pay certiIc fRight">certified jewellery</div>
+                                                <div class="col50 pay lifeIc fRight">Life time exchange</div>
+                                                <div class="col50 pay secureIc fRight">secure payements</div>
+                                            </div>
+                                        </div>    
                                     </div>
                                 </div>
                                 <div class="cnclSbmt fLeft bolder">
@@ -119,6 +131,11 @@
                                                                     </div>-->
                                 </div>
 
+                            </div>
+                            <div class="mob_submit fLeft">
+                               <div class="actBtn button">
+                                  SUBMIT
+                               </div>
                             </div>
                         </div>
                     </div>
@@ -403,7 +420,14 @@
         }
     });
 
+//tabs
 
-
-
+$('.checkout_details').click(function () {
+    $('#smry').css({"display":"block"});
+    $('.colleCont.v2.black').css({"display":"none"});
+});
+$('.cart_first').click(function () {
+     $('.colleCont.v2.black').css({"display":"block"});
+    $('#smry').css({"display":"none"});
+});
     </script>
