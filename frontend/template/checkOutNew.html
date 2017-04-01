@@ -1,7 +1,6 @@
 <?php include 'jhead.html' ?>
 
 <body class="greyBg">
-    <?php include 'mheader.html'?>
     <div class="swipe fLeft" id="lftt"></div>
     <?php include 'Cart.html' ?>
     <div class="entrotppopup">
@@ -38,6 +37,8 @@
     <div class="chkoutHeader poR">
         <div class="wrapper_max">
             <a href="<?php echo DOMAIN ?>index.php?action=landing_page"><div class="logo fLeft" ></div></a>
+            <a class="logoA" href="<?php echo DOMAIN ?>"><div class="mlogoHeader"></div></a>
+            <div class="payHelp fRight mob_help">Need Help?</div>
             <div class="fLeft callUs">Got Question? call us on 9880824707</div>
             <div class="payOption fRight">
                 <div class="col50 pay certiIc fRight">certified jewellery</div>
@@ -47,12 +48,16 @@
             </div>
         </div>
     </div>
+    <div class="checkoutheader_mobile fLeft">
+        <div class="actBtn button fLeft checkout_details">DETAILS</div>
+        <div class="actBtn button fLeft cart_first">CART</div>
+    </div>
     <div class="wrapper_main fLeft CHECKOUT_PAGE">
         <div class="wrapper chkout">
             <div class="darkCont fadeInup runslider" id="darkCont">
                 <div class="wrapper_max">
                     <div class="mediaBtn">
-                        <div class="col50 fLeft"><div class="actBtn" id="mConfirm">confirm address</div></div>
+<!--                        <div class="col50 fLeft"><div class="actBtn" id="mConfirm">confirm address</div></div>-->
                         <div class="col50 fRight"><div class="actBtn fRight" id="mProd">products</div></div>
                     </div>
                     <div class="homeCollect">
@@ -488,6 +493,12 @@
                              </div>
                          </div>
                          </div>-->
+<!--                            for mobile-->
+                            <div class="mob_submit fLeft">
+                               <div class="actBtn button">
+                                  SUBMIT
+                               </div>
+                            </div>
                         </div>
                     </div>
 
@@ -1029,7 +1040,15 @@
                                             $('.dTab').removeClass('dn');
                                             $('.v2').css("display", "none");
                                         });
-
+//                       details and cart tabs                
+                        $('.checkout_details').click(function () {
+                           $('#scndup').css({"display":"block"});
+                           $('.colleCont.v2.black').css({"display":"none"});
+                       });
+                       $('.cart_first').click(function () {
+                            $('.colleCont.v2.black').css({"display":"block"});
+                           $('#scndup').css({"display":"none"});
+                       });
 
     </script>
 </body>
