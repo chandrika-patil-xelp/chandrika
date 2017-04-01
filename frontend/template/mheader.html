@@ -1,3 +1,4 @@
+
 <div class="mheader">
     <div class="menuLHeader fLeft"></div>
     <a class="logoA" href="<?php echo DOMAIN ?>"><div class="mlogoHeader"></div></a>
@@ -31,11 +32,12 @@
                     </div>
                 </div>
             </div>
+             <a href='<?php echo DOMAIN?>index.php?action=bespoke'><div class="sideNav_tab">
             <div class="asa fLeft">
-                <a href='<?php echo DOMAIN?>index.php?action=bespoke'><div class="sideNav_tab">
+               
                         BESPOKE
-                    </div></a>
-            </div>
+                    </div>
+            </div></a>
 
             <div class="asa fLeft">
                 <div class="sideNav_tab">
@@ -140,6 +142,7 @@
         $(".swipe_aftr").removeClass("dn");
         $("body").addClass("posFix");
     });
+    
     // $('.swipe_aftr').on('click',function(){
     //      $('.sideNav').velocity({translateX: "100%"}, {duration: 300, delay: 0, display: "none", ease: "ease-out"});
     //        $(".swipe").removeClass("swipe_aftr");

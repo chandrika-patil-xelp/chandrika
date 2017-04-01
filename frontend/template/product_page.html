@@ -1,8 +1,8 @@
 <?php include 'jhead.html'?>
 
 <body class="greyBg blackHead">
- <script>
-      var   pid = "<?php echo $_GET['pid'];  ?>";
+    <script>
+        var pid = "<?php echo $_GET['pid'];  ?>";
     </script>
     <div class=""></div>
     <?php include 'Cart.html' ?>
@@ -10,10 +10,12 @@
     <?php include 'header.html' ?>
     <?php include 'login.html' ?>
     <!-- <div class="fLeft gemBanner"></div> -->
-    
+
     <div class="wrapper_main fLeft PRODUCT_PAGE">
-          <?php include 'mheader.html' ?>
+        <?php include 'mheader.html' ?>
         <div class="swipe fLeft" id="lftt"></div>
+         <div class="mdiv360"></div>
+         <div class="likeD"></div>
         <div class="wrapper" id="wrapper">
             <div class="wrapper_max">
                 <div class="container poR">
@@ -41,7 +43,17 @@
                             </div>
                             <div class="details_desc fLeft" id="htCh">
                                 <div class="writefaggery fLeft">
+                                    
                                     <div class="para fLeft pr_head "  id="stn"><span>White gold, diamond</span></div>
+                                    <div class="price_lightm fLeft " id="Mprice">
+                                        <center> <div class="col100  cartRupeeB" id="m_price">456454</div></center>
+                                        <div class="ch_cont fLeft" id="ch_price">
+                                            <div class="drNoob">
+                                                <div class="labBuffer">Previous Price:</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col100" id="wDis">
                                     <div class="para fLeft" id="descrp">Diamants Legers de Cartier ring 18K white gold, set with a brilliant-cut diamond of 0.13 carat.</div>
                                     <!-- <div class="para  fLeft"><span class="actBtn fRight" id="showDetails">MORE INFO</span></div>
                                     <div class="para  fLeft">
@@ -49,8 +61,10 @@
                                         <div class="col33 fRight point   icnCmnt transition300"></div>
                                         <div class="col33 fRight point review_btn icnShre transition300"></div>
                                     </div> -->
+                                    
                                     <div class="col100 fLeft" id="shortdesc">
                                         <div class="para fLeft mTop10">The <span class="semibold">Sophie Ring</span> is casted in <span class="semibold">3.9</span> grams of gold set with brilliant cut <span class="semibold">36</span> Round Diamonds (Approx. 0.33 Carat) and <span class="semibold">2</span> Carats of Ruby. </div></div>
+                                    </div>
                                 </div>
                                 <!-- More Info DO NOT DELETE -->
                                 <!-- <div class="para  fLeft"><span class="actBtn fRight " id="showDetails">MORE INFO</span></div>
@@ -58,7 +72,7 @@
                                     <div class="closewritefaggery"></div>
                                 </div> -->
                             </div>
-                            <div class="col100 fRight marTop60">
+                            <div class="col100 fRight marTop60" id="wishW">
                                 <div class="actBtn  fRight bolder pad10" id="addwishlist">add to WISHLIST</div>
                             </div>
                         </div>
@@ -67,6 +81,7 @@
 
                         <div class="rota_buffer">
                             <div class="div360"></div>
+                        
                             <div class="userInfo dwnArrow fLeft"></div>
                             <div class="rota" id="img-view">
                             </div>
@@ -115,7 +130,8 @@
                                   </div>
                                 </div> -->
 
-                                <div class="price_light fLeft">
+                                <div class="price_light fLeft" id="Wprice">
+
                                     <div class="col100 fLeft cartRupeeB" id="price"></div>
                                     <div class="ch_cont fLeft" id="ch_price">
                                         <div class="drNoob">
@@ -241,6 +257,12 @@
 
         <div class="darkCont fLeft">
             <div class="wrapper_max">
+                <div class="col100" id="mDesc">
+                    <div class="smUlineb">description</div>
+                    <div class="para fLeft" id="descrp">Diamants Legers de Cartier ring 18K white gold, set with a brilliant-cut diamond of 0.13 carat.</div>
+                    <div class="col100 fLeft" id="shortdesc">
+                                        <div class="para fLeft mTop10 mar0">The <span class="semibold">Sophie Ring</span> is casted in <span class="semibold">3.9</span> grams of gold set with brilliant cut <span class="semibold">36</span> Round Diamonds (Approx. 0.33 Carat) and <span class="semibold">2</span> Carats of Ruby. </div></div>
+                </div>
                 <div class="homeCollect">
                     <!-- <div class="colleCont ">
                        <div class="smUlineb">White Gold</div>
@@ -285,7 +307,7 @@
             type: "single",
             from: 9,
             values: [
-                "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25" ,"26"],
+                "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26"],
             grid: true,
             onChange: function (data) {
                 var sVal = data.from_value;
@@ -332,7 +354,7 @@
         var slider = $("#slideBangle").data("ionRangeSlider");
         slider.reset();
         slider.update({
-            from:  2,
+            from: 2,
         });
 
         var val = 0;
