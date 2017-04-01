@@ -88,7 +88,7 @@ $(document).ready(function(){
 	      shipngdata['pincode'] = pincode;
 	      shipngdata['state'] = state;
 	      shipngdata['city'] = city;
-	      
+	      shipngdata['gender'] = gendrflag;
 	      
 	      var URL = APIDOMAIN + "index.php?action=getUserdetailbymob&mob="+telno+"&email="+email; 
 	      $.ajax({type: "GET", url: URL, success: function (res) { 
@@ -135,7 +135,7 @@ $(document).ready(function(){
     
     var ordrdata = {};
     
-                                    
+ 
                                     ordrdata['pid'] = pid; 
                                     ordrdata['size'] = sz; 
                                     ordrdata['shipping_id'] = shipid;
