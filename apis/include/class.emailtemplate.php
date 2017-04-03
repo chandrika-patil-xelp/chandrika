@@ -539,14 +539,14 @@
 							  '.$params['orderid'].'
 							   </span>
 							</div>
-							<div style="width:33%;height:auto;line-height:15px;font-size:11px;color:#333;display:inline-block;vertical-align:top;text-align:center;">
+							<div style="width:32%;height:auto;line-height:15px;font-size:11px;color:#333;display:inline-block;vertical-align:top;text-align:center;">
 							   DATE
 							<span style="padding-left:1px;font-weight: bold;display: inline-block;width:100%;">
 							 '.date("jS M Y").'
 							   </span>
                             </div>
                         </div>
-                        <div style="width:100%;height:auto;padding:10px;background-color:#f3f3f3;text-align:left;color:#333;font-size:12px;line-height:15px;box-sizing:border-box;"> 1 </div>
+                        <div style="width:100%;height:auto;padding:10px;background-color:#f3f3f3;text-align:left;color:#333;font-size:12px;line-height:15px;box-sizing:border-box;"> 1 Item</div>
                         <div style="width:100%;height:auto;padding-top:15px;">
                             <div style="width:100%;height:auto;margin-bottom:20px"> ';
 
@@ -643,7 +643,7 @@
  
           return $message;
         }
-        
+         
 	public function getgender($params)
 	{
 	  if($params == 1)
