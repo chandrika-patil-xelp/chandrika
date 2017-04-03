@@ -43,7 +43,7 @@
                             </div>
                             <div class="details_desc fLeft" id="htCh">
                                 <div class="writefaggery fLeft">
-                                    
+
                                     <div class="para fLeft pr_head "  id="stn"><span>White gold, diamond</span></div>
                                     <div class="price_lightm fLeft " id="Mprice">
                                         <center> <div class="col100  cartRupeeB" id="m_price">456454</div></center>
@@ -61,7 +61,7 @@
                                         <div class="col33 fRight point   icnCmnt transition300"></div>
                                         <div class="col33 fRight point review_btn icnShre transition300"></div>
                                     </div> -->
-                                    
+
                                     <div class="col100 fLeft" id="shortdesc">
                                         <div class="para fLeft mTop10">The <span class="semibold">Sophie Ring</span> is casted in <span class="semibold">3.9</span> grams of gold set with brilliant cut <span class="semibold">36</span> Round Diamonds (Approx. 0.33 Carat) and <span class="semibold">2</span> Carats of Ruby. </div></div>
                                     </div>
@@ -81,7 +81,7 @@
 
                         <div class="rota_buffer">
                             <div class="div360"></div>
-                        
+
                             <div class="userInfo dwnArrow fLeft"></div>
                             <div class="rota" id="img-view">
                             </div>
@@ -192,7 +192,7 @@
                                                                                     <div class="para fLeft mar0">Know your ring size</div>
                                                                                 </center>
                                                                             </div>
-                                    
+
                                                                             <div class="col100 sizeOuter fLeft bangclass">
                                                                                 <div class="incrCont incrIcon r0" id="incB"></div>
                                                                                 <div class="incrCont decrIcon l0" id="decB"></div>
@@ -219,7 +219,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="ringSlider fRight">                                                                       
+                                        <div class="ringSlider fRight">
                                             <input type="text" id="slideRing">
                                         </div>
                                         <div class="col100 fLeft"><center><div class="options_back sizbak"></div></center></div>
@@ -241,12 +241,12 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="ringSlider fRight">                                                                       
+                                        <div class="ringSlider fRight">
                                             <input type="text" id="slideBangle">
                                         </div>
                                         <div class="col100 fLeft"><center><div class="options_back sizbak"></div></center></div>
                                     </div>
-                                </div>                                       
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -269,16 +269,16 @@
                        <div class="collCenterb ">
                          White gold is an alloy of gold and at least one white metal, usually nickel, manganese or palladium. In order to make the gold white, it is combined with metal alloys that are white in nature and plated with an extremely hard element called rhodium. Although strong, rhodium may wear away over time. Replating is a simple process that can be done to restore whiteness to rhodium-plated jewelry.
                        </div>
-    
-    
-    
+
+
+
                      </div>
                      <div class="colleCont v2">
                        <div class="smUline ">White Gold</div>
                        <div class="collCenter ">
                          White gold is an alloy of gold and at least one white metal, usually nickel, manganese or palladium. In order to make the gold white, it is combined with metal alloys that are white in nature and plated with an extremely hard element called rhodium. Although strong, rhodium may wear away over time. Replating is a simple process that can be done to restore whiteness to rhodium-plated jewelry.
                        </div>
-    
+
                      </div>-->
                 </div>
             </div>
@@ -670,6 +670,83 @@
             $('.rota_wrap ').toggleClass('rota_exstate');
             $('.container').toggleClass('over_hide');
         });
+
+//Touch 360
+var lastPt=null;
+var staticCord=0;
+var x=0;
+var j=0;
+var k=0;
+var s=0;
+var sEnd=0;
+function init() {
+  var touchzone = document.getElementById("img-view");
+  touchzone.addEventListener("touchstart", getcor, false);
+  touchzone.addEventListener("touchmove", draw, false);
+  touchzone.addEventListener("touchend", end, false);
+}
+function getcor(e){
+  e.preventDefault();
+     clearTimeout(stop);
+     //sEnd=0;
+     flag=0;
+     j=e.touches[0].pageX;
+      s=i;
+}
+function draw(e) {
+  var imgNummer =$('.imgHolder').length;
+  e.preventDefault();
+   //clearTimeout(stop);
+  lastPt = {x:e.touches[0].pageX, y:e.touches[0].pageY};
+   x=e.touches[0].pageX;
+  var wid= $(window).width();
+      var d= (wid/imgNummer)/1.3;
+      var g=0;
+      if(sEnd==1){
+        g=0;
+    }
+    else{
+      g = ((s* wid)/imgNummer )/1.3;
+      staticCord=0;
+    }
+      staticCord=parseInt(staticCord);
+        x=x+staticCord -j +g;
+        k=x/d ;
+        k=(k) %imgNummer;
+        k= Math.floor(k) ;
+        $('.imgHolder').addClass('dn');
+        $('.imgHolder').eq(k).removeClass('dn');
+        i=k;
+}
+function end(e) {
+  e.preventDefault();
+  staticCord=x;
+  sEnd=1;
+}
+var stop;
+$(document).ready(function(){
+  s=i;
+
+init();
+});
+var left=0;
+ var i =0;
+function function1() {
+    i=(i+1)%imgNummer;
+  $('.imgHolder').addClass('dn');
+  $('.imgHolder').eq(i).removeClass('dn');
+}
+function runner() {
+    sEnd=0;
+    function1();
+   stop=  setTimeout(function() {
+        runner();
+    }, 70);
+}
+
+
+
+
 
 
 
