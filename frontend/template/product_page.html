@@ -686,7 +686,7 @@ function init() {
   touchzone.addEventListener("touchend", end, false);
 }
 function getcor(e){
-  e.preventDefault();
+//  e.preventDefault();
      clearTimeout(stop);
      //sEnd=0;
      flag=0;
@@ -695,7 +695,7 @@ function getcor(e){
 }
 function draw(e) {
   var imgNummer =$('.imgHolder').length;
-  e.preventDefault();
+  //e.preventDefault();
    //clearTimeout(stop);
   lastPt = {x:e.touches[0].pageX, y:e.touches[0].pageY};
    x=e.touches[0].pageX;
@@ -719,7 +719,7 @@ function draw(e) {
         i=k;
 }
 function end(e) {
-  e.preventDefault();
+//  e.preventDefault();
   staticCord=x;
   sEnd=1;
 }
