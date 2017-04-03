@@ -29,7 +29,7 @@ function displaycartdetail()
 
 	        setTimeout(function(){
 
-		  $('#submt').removeClass('dn');
+		  $('#submt,#proceed_payment').removeClass('dn');
 		  $("#noprdinchkotbefr").addClass("dn");
 		  $('#totitm_chckbefor').removeClass('dn');
 		  $('#urords').removeClass('dn');
@@ -79,9 +79,10 @@ function displaycartdetail()
 		      chckoutstr += "Size : " + v.size + " &nbsp|&nbsp ";
                     chckoutstr += "Color : " + v.color + "";
                     chckoutstr += "</div>";
-                    chckoutstr += "<div class='cart_price cartRup15 fLeft'><span class='price_gen'> " + indianMoney(bprize) + "</span></div>";
+                    chckoutstr += "<div class='cart_price cartRup15 fLeft'><span class='price_gen'> " + indianMoney(bprize) + "</span>";
                     chckoutstr += "<div class='amt_selector' id='" + v.cart_id + "'>";
                     chckoutstr += "<div class='item_amt fLeft '>" + v.pqty + "</div>";
+                    chckoutstr += "</div>";        
                     chckoutstr += "</div>";
                     chckoutstr += "</div>";
 
@@ -244,7 +245,7 @@ function getshippingdata()
     });
 }
 
-$('#submt').click(function () {
+$('#submt,#proceed_payment').click(function () {
     var cartid ;
     if (actn == 'buy') {
         var buyid = common.readFromStorage('jzeva_buyid');
@@ -380,7 +381,7 @@ function removebuyitem(buyid)
     });
 }
 
-$('#chck_bak').click(function(){
+$('#chck_bak,#backto_chek').click(function(){
    var userid=common.readFromStorage('jzeva_uid');
    if(userid == undefined || userid == null)
    {
