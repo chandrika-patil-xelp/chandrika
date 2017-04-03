@@ -8,6 +8,7 @@
     <?php include 'loader.html'?>
     <?php include 'header.html'?>
     <?php include 'login.html'?>
+    <?php include 'mheader.html' ?>
     <div class="fLeft gemBanner fixedBanner"><div class="banner_over" id ="banner_over"></div></div>
     <div class="wrapper_main fLeft PRODUCT_GRID2">
         <!-- <div class="overlay2 transition300"></div> -->
@@ -956,95 +957,99 @@
                 $(this).attr('initHeight', $(this).outerHeight(true));
             });
         }
-	 function bindFilterUi(){
+        function bindFilterUi() {
 
-    $("#range").ionRangeSlider({
-                type:"double",
-                 min:Math.floor(lowp),
-                 max:Math.ceil(highp),
-                 grid:true,
-                 step:200,
-                 prettify_separator: ",",
-			prettify: function(val) {
-						return common.IND_money_format(val);
-			},
-		 onFinish:   function (data) { 
-		  var rangval="";
-		  rangval=data.from+';'+data.to;
-                  var chk=lowp+';'+highp;
-		  if(rangval==chk){
-                 delete fltrarray.range;
-                 var arrcnt=0;
-      var arrobj=[];
-      $.map(fltrarray, function(v, k)
-      {
-	arrobj.push(k);
-	arrcnt++; 
-      });
-    
-      if(arrcnt == 1)
-      {
-	if (arrobj[0] == "catid")  
-	 getprodbyid(); 
-	else{
-	  fltrpage=2; fltrcnt=0;
-	  displayproduct(1);
-	}
-	  
-      } 
-      else{
-			fltrpage=2; fltrcnt=0;
-			displayproduct(1); 
-		  }
-             }
-		  else{
-		     fltrarray.range = rangval;
-			fltrpage=2; fltrcnt=0;
-			displayproduct(1);}
-		  }
-              });
- 
-              $("#carat").ionRangeSlider({
+            $("#range").ionRangeSlider({
                 type: "double",
-                min:frstcar,
-                max:lastcar,
+                min: Math.floor(lowp),
+                max: Math.ceil(highp),
                 grid: true,
-		step:0.05,
-		onFinish:   function (data) {
-		  var rangval="";
-		  rangval=data.from+';'+data.to;
-		    var chk=frstcar+';'+lastcar;
-		  if(rangval==chk){
-                 delete fltrarray.carat;
-                 var arrcnt=0;
-      var arrobj=[];
-      $.map(fltrarray, function(v, k)
-      {
-	arrobj.push(k);
-	arrcnt++; 
-      });
-    
-      if(arrcnt == 1)
-      {
-	if (arrobj[0] == "catid")  
-	 getprodbyid(); 
-	else{
-	  fltrpage=2; fltrcnt=0;
-	  displayproduct(1);
-	}
-	  
-      } 
-      else{
-		       fltrpage=2; fltrcnt=0;
-		       displayproduct(1); 
-		  }
-             }
-		  else{
-		     fltrarray.carat = rangval;
-			    fltrpage=2; fltrcnt=0;
-			    displayproduct(1);}
-		  }
-              });
+                step: 200,
+                prettify_separator: ",",
+                prettify: function (val) {
+                    return common.IND_money_format(val);
+                },
+                onFinish: function (data) {
+                    var rangval = "";
+                    rangval = data.from + ';' + data.to;
+                    var chk = lowp + ';' + highp;
+                    if (rangval == chk) {
+                        delete fltrarray.range;
+                        var arrcnt = 0;
+                        var arrobj = [];
+                        $.map(fltrarray, function (v, k)
+                        {
+                            arrobj.push(k);
+                            arrcnt++;
+                        });
+
+                        if (arrcnt == 1)
+                        {
+                            if (arrobj[0] == "catid")
+                                getprodbyid();
+                            else {
+                                fltrpage = 2;
+                                fltrcnt = 0;
+                                displayproduct(1);
+                            }
+
+                        } else {
+                            fltrpage = 2;
+                            fltrcnt = 0;
+                            displayproduct(1);
+                        }
+                    } else {
+                        fltrarray.range = rangval;
+                        fltrpage = 2;
+                        fltrcnt = 0;
+                        displayproduct(1);
+                    }
+                }
+            });
+
+            $("#carat").ionRangeSlider({
+                type: "double",
+                min: frstcar,
+                max: lastcar,
+                grid: true,
+                step: 0.05,
+                onFinish: function (data) {
+                    var rangval = "";
+                    rangval = data.from + ';' + data.to;
+                    var chk = frstcar + ';' + lastcar;
+                    if (rangval == chk) {
+                        delete fltrarray.carat;
+                        var arrcnt = 0;
+                        var arrobj = [];
+                        $.map(fltrarray, function (v, k)
+                        {
+                            arrobj.push(k);
+                            arrcnt++;
+                        });
+
+                        if (arrcnt == 1)
+                        {
+                            if (arrobj[0] == "catid")
+                                getprodbyid();
+                            else {
+                                fltrpage = 2;
+                                fltrcnt = 0;
+                                displayproduct(1);
+                            }
+
+                        } else {
+                            fltrpage = 2;
+                            fltrcnt = 0;
+                            displayproduct(1);
+                        }
+                    } else {
+                        fltrarray.carat = rangval;
+                        fltrpage = 2;
+                        fltrcnt = 0;
+                        displayproduct(1);
+                    }
+                }
+            });
 
 
             var vheight = 0;
