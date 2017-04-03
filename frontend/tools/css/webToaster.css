@@ -205,17 +205,21 @@ button.toast-close-button {
 }
 @media all and (min-width: 241px) and (max-width: 480px) {
     #toast-container>div {
-        padding: 8px 8px 8px 50px;
-        width: 18em
+       padding: 17px 8px 14px 40px;
+        width: 18em;
+    height: 50px;
     }
     #toast-container .toast-close-button {
         right: -.2em;
         top: -.2em
     }
+    #toast-container>.toast-error{width:100%;top:0;}
+    #toast-container{top: 0;}
+    
 }
 @media all and (min-width: 481px) and (max-width: 768px) {
     #toast-container>div {
-        padding: 15px 15px 15px 50px;
+        padding: 13px 8px 14px 40px;
         width: 25em
     }
 }
