@@ -98,16 +98,16 @@ function displaycartdata()
 //                        cartstr += "Color : " + v.color + "";
 //                        cartstr += "</div>";
                         cartstr += "</div>";
-                        cartstr += "<div class='cart_price cartRup15 fLeft'><span class='price_gen'> " + indianMoney(bprize) + "</span></div>";
-			
-
-			cartstr += "</div>";
-			 cartstr += "</div>";
+                        cartstr += "<div class='cart_price cartRup15 fLeft'><span class='price_gen'> " + indianMoney(bprize) + "</span>";
                         cartstr += "<div class='amt_selector' id='" + v.cart_id + "'>";
                         cartstr += "<a href='#' onclick='subqnty(this)'  id='sub_" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "_" + v.size + "'><div class='cart_btn fLeft sub_no'></div></a>";
                         cartstr += "<div class='item_amt fLeft '>" + v.pqty + "</div>";
                         cartstr += " <a href='#' onclick='addqnty(this)'  id='add_" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "_" + v.size + "'><div class='cart_btn fLeft add_no' ></div></a>"
+                        cartstr += "</div>";       
                         cartstr += "</div>";
+			cartstr += "</div>";
+			 cartstr += "</div>";
+                        
          cartstr += "<div class='cart_removew addrCommon' id='" + v.product_id + "_" + r + "_" + v.col_car_qty + "_" + v.cart_id + "_" + v.size + "'onclick='cremove(this)'>";
 			cartstr += "</div>";
 
