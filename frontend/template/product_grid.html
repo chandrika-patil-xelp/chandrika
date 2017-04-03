@@ -79,13 +79,11 @@
                                     </div>
                                 </div>
                                 <div class="filter" id="filter">
-                                    <div class="ftab fLeft">
-                                        FILTER
-                                    </div>
+                                    
                                 </div>
                                 <div class="fmenu_wrap">
                                     <div class="mFilterhead">
-                                           Filter
+                                           FILTER
                                       <div class="closeLogin close_filter dn" onclick="closeFilter();"></div>
                                     </div>
                                     <div class="checkmBtn bolder" onclick="closeFilter();">APPLY FILTER</div>
@@ -1150,11 +1148,13 @@
 //       close fmenu_wrap
         function closeFilter(){
         $('.fmenu_wrap').velocity('stop').velocity({height: [0]}, {duration: 200, easing: 'ease-in-out', display: 'none'})
+        $('.fmenu_wrap').removeClass('filter_display');
         $('.wrapper').removeClass('wrapper_zindex');
         $('body').removeClass('over_hide');
         };
         $('#filter').click(function () {
             $('.fmenu_wrap').velocity('stop').velocity({height: [0]}, {duration: 200, easing: 'ease-in-out', display: 'block'})
+            $('.fmenu_wrap').addClass('filter_display');
             $('.fmenu_elm').removeClass('dn');
             $('.wrapper').addClass('wrapper_zindex');
             $('body').addClass('over_hide');
