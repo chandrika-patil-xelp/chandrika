@@ -1289,6 +1289,8 @@ function calculatePrice()
 
     var abc = $('#price').html();
     $('#price').text(totalNewPrice);
+    $('#m_price').text(totalNewPrice);
+    
     $('#price').numerator({
         toValue: totalNewPrice,
         delimiter: ',',
@@ -1297,6 +1299,7 @@ function calculatePrice()
         },
         onComplete: function () {
             $("#price").html(IND_money_format(totalNewPrice).toLocaleString('en'));
+             $('#m_price').html(IND_money_format(totalNewPrice).toLocaleString('en'));
         }
 
 
