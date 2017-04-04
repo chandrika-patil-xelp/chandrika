@@ -167,7 +167,7 @@ a{color:#666;}
 .menu_list:hover{color:#53C9C7;}
 .menu_list:hover:after{transform:translateX(120%);-moz-transform:translateX(120%);-webkit-transform: translateX(120%);-o-transform: translateX(120%);-ms-transform: translateX(120%);transition: 450ms !important; -moz-transition: 450ms !important; -ms-transition:450ms !important; -o-transition: 450ms !important;-webkit-transition:450ms !important;}
 
-.wrapper_zindex{z-index:500 !important;overflow:hidden;}
+.wrapper_zindex{z-index:1000 !important;overflow:hidden;}
 .addPointer{pointer-events: none;}
 .noLink .logoA {pointer-events:none}
 .menu_wrap .col100{margin-bottom:10px;}
@@ -231,7 +231,7 @@ a{color:#666;}
 .cart_foot{width:100%;position:absolute;bottom:0;height:50px;background:#2d2d2d;color:#fff;text-align:center;line-height:50px;cursor:pointer;font-size:18px;}
 .amt_selector{width:70px;height:20px;position:absolute;left:80%;bottom:0px;font-size:13px}
 .cart_remove{width:40px;height:40px;position:absolute;left:-10px; top: 0;bottom:0;margin:auto;cursor:pointer;background: url(../img/icons/remove.svg) no-repeat; background-size: 20px; background-position: center;}
-.cart_removew{width:50px;height:50px;position:absolute;left:-10px; top: 0;bottom:0;margin:auto;cursor:pointer;background: url(../img/icons/removeG.svg) no-repeat; background-size: 20px; background-position: center;}
+.cart_removew{width:50px;height:50px;position:absolute;left:-10px; top: -10px;bottom:0;margin:auto;cursor:pointer;background: url(../img/icons/removeG.svg) no-repeat; background-size: 20px; background-position: center;}
 .totalItem .actBtn{position:absolute;top:0;bottom:0;right:20px;margin:auto}
 .cart_desc{line-height: 16px;font-family: regular;width:100%;min-height:20px;height:auto;font-size:11px;color:#999;text-transform: capitalize;}
 .cart_sub{width:100%;height:90px;padding:10px 55% 10px 10px;border-bottom:1px solid #e6e6e6; position:relative;color:#fff}
@@ -3170,7 +3170,7 @@ input[type=number]::-webkit-outer-spin-button {
    .mob_icondiv .pay.certiIc,.mob_icondiv .pay.lifeIc,.mob_icondiv .pay.secureIc{background-position:center;text-align:center;}
    .CHECKOUT_PAGE .ePadding{padding:54px 0 0 0 !important;}
    .jwlCnt .cart_item{height:120px !important;}
-   .cart_removew{top:-30px;}
+   .cart_removew{top:-15px;}
    .mob_submit{display:block;}
     .collCenterb{    padding: 122px 60px;}
     .myaccount .pCont{    width: 100%;
@@ -3325,7 +3325,7 @@ input[type=number]::-webkit-outer-spin-button {
     .payOption{display: none;}
     .cart_image{width:50px;height:50px;left: 35px;top:22px;}
     .cart_gen{padding: 0 10px 0 10px;}
-    .cart_removew{width:30px;height:30px;left:0;top:-25px;}
+    .cart_removew{width:30px;height:30px;left:0;top:-10px;}
     .inCartPop{width:310px;}
     .cart{width: 100%;z-index:99999;height:100%!important;overflow:hidden!important;}
     .closeCartM{width:25px;height:25px;background: url(../img/icons/removeW.svg)no-repeat;background-size: auto 100%;background-position: left;cursor:pointer; position:absolute;right:10px;top:10px;}
@@ -3451,7 +3451,6 @@ input[type=number]::-webkit-outer-spin-button {
     .writefaggery .para{margin: 0px;font-size: 10px;}
     /*checkout*/
 .jwlCnt .cart_price{margin-top:10px;}
-.cart_item .amt_selector{top:6px;}
 .orderParent{padding: 20px 20px 20px 60px;}
 .orderImg{width: 40px;height: 40px;margin: auto;top: 0px;bottom: 0;}
 .orderName{width: 70%;padding-right: 5px;}
