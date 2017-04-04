@@ -287,7 +287,7 @@
 
 
         <?php include 'footer.html'?>
-        <div class="mBtns" style="display: none;">
+        <div class="mBtns dn">
             <div class="col50 fLeft  padXr5">
                 <div class="actBtn  fLeft bolder pad10 " id="add_to_cart">ADD TO CART</div>
             </div>
@@ -312,9 +312,8 @@
 
             $(window).scroll(function () {
             var win = $(window).scrollTop();
-            console.log("win", $(window).scrollTop());
+            
             if (win >= 200) {
-                console.log("reached");
                 $('.mBtns').removeClass('dn');
             } else if (win < 200) {
                 $('.mBtns').addClass('dn');
