@@ -3,13 +3,14 @@ include '../config.php';
 
     $ord=$_GET['ordid'];
     $shipid=$_GET['shipid'];
-    
+    echo "<pre>";print_r($ord);print_r('  ');print_r($shipid);
     global $comm;
     $url = APIDOMAIN . "index.php?action=getcartdetail&cart_id=" . $ord; 
+    echo "<pre>";print_r($url);
     $res = $comm->executeCurl($url);
  
     if($res['error']['err_code'] ==0)
-    { echo "<pre>";print_r($res['totalprice']);
+    {
       $ordid=$res['result'][0]['cart_id'];
        $price=$res['totalprice']; 
     }
