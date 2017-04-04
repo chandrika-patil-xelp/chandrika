@@ -1387,7 +1387,7 @@ function getmobfilter()
             if(n.val !== null)
             {
               mainmenustr += "<div class='gtabB ' >";
-              mainmenustr += "  <div class='jtab lLeft iaba' >";
+              mainmenustr += "  <div class='jtab fLeft iaba' >";
               mainmenustr += " " + (n.attr_name).toUpperCase() + " </div> </div>";
 
               mainmenustr += "<div class='fmenu_elm fLeft' id='" + n.attributeid + "'>";
