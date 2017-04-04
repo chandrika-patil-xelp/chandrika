@@ -10,7 +10,7 @@ var stSearch = new Array();
 var menuflag=1;
 
 $(document).ready(function () {
-    
+
     $('html, body').animate({scrollTop: '0px'}, 300);
     var link=window.location.href;
     getmenu();
@@ -19,7 +19,7 @@ $(document).ready(function () {
     var url=""+urlstr[1];
     var rl=url.split('/');
     var catnm=rl[0];
-  
+
     if(catnm == 'Rings'){
       $('.fixedBanner').addClass('banner_rings');
     }
@@ -48,7 +48,7 @@ $(document).ready(function () {
 
 //    if($.trim(menu) == 'bespoke')
 //      window.open(DOMAIN+"index.php?action=bespoke");
-    
+
     // var URL = APIDOMAIN + "index.php/?action=getProGrid";
     getprodbyid();
 //    setTimeout(function(){
@@ -82,13 +82,13 @@ function generatelist(obj) {
     var Mprc = obj['purprice'];
     var Mcarat = obj['purity'];
     var Makchrg = obj['making_charges'];
-    var Metalwgt = obj['metal_weight']; 
+    var Metalwgt = obj['metal_weight'];
     var gender = obj['gender'];
     var jType = obj['jwelType'];
     var Mclr = obj['allmetalcolor'];
     var gemsName = obj['gemstoneName'];
     var Dshape = obj['shape'];
-    var pid = obj['prdId']; 
+    var pid = obj['prdId'];
     var dmdlowp = obj['dmdlowp'];
     var dmdhighp = obj['dmdhighp'];
     var caratlowp = obj['caratlowp'];
@@ -126,7 +126,7 @@ function generatelist(obj) {
 	mcr =mclr.split(',');
         mcr= mcr[0];
     }
-    
+
    var chr = "" + mcr + "|@|" + mpr + "|@|" + dmf;
 
     if (obj['totalgems'] !== null && obj['totalgems'] !== undefined && obj['gemstoneName'] !== null && obj['gemstoneName'] !== undefined && obj['gemscarat'] !== null && obj['gemscarat'] !== undefined) {
@@ -160,17 +160,17 @@ function generatelist(obj) {
         var d;
 
     }
-var grandtotallow = 0;
-var grandtotalhigh=0;
-var grandtotlow = 0;
-var grandtothigh=0;
-var grandtotal = 0;
+  var grandtotallow = 0;
+  var grandtotalhigh=0;
+  var grandtotlow = 0;
+  var grandtothigh=0;
+  var grandtotal = 0;
   var newWeightlow;
     var newWeighthigh;
     var mtlWgDav=0;
      var changeInWeightsizelow;
      var changeInWeightsizehigh;
-     var bseSize = 0; 
+     var bseSize = 0;
      var vatRate = (1 / 100);
 
     var price = 0;
@@ -178,7 +178,7 @@ var grandtotal = 0;
         var Solicarat = obj['Solicarat'];
         var Soliprc = obj['SoliPricepercarat'];
         var Solitot = obj['totalSolitaire'];
- 
+
          var wgtcarat =parseFloat(Solicarat)*parseFloat(Solitot);
         price = price + getSoliPrice(wgtcarat, Soliprc);
 
@@ -288,9 +288,9 @@ var prodNSplt=''+ obj['prdNm'] +'';
            return letter.toUpperCase();
       });
       prodNSplt=prodNSplt.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-');
- 
+
       var prodNSplts='Product-Details/'+prodNSplt+'-'+ obj['jwelType']+''+'/pid-'+obj['prdId'];
-   
+
     proStr += '<div class="grid3 transition400" id="' + obj['prdId'] + '"  >';
     // proStr += '<div class="noimgDiv"></div>';
     proStr += '<div class="facet_front">';
@@ -350,26 +350,26 @@ var prodNSplt=''+ obj['prdNm'] +'';
         case 1:
         {
             Nstr += '<span> Φ Solitaire</span>';
-       
+
            //  var link=''+ obj['prdNm'] +''|''+ obj['jwelType']+''|'Solitaire'|'Jzeva';
             break;
         }
         case 2:
         {
             Nstr += '<span> Φ Diamond</span>';
-        
+
             break;
         }
         case 3:
         {
             Nstr += '<span> Φ Solitaire </span>';
-         
+
             break;
         }
         case 4:
         {
             Nstr += '<span> Φ Diamond</span>';
-          
+
             break;
         }
         case 5:
@@ -395,7 +395,7 @@ var prodNSplt=''+ obj['prdNm'] +'';
             break;
         }
     }
-    
+
 
 
     proStr += ' ' + Nstr + '</div>';
@@ -410,7 +410,7 @@ var prodNSplt=''+ obj['prdNm'] +'';
     proStr += '</div>';
     //proStr += '<div class="soc_icons dn">';
     proStr += '<div class="soc_abs soc_wish2 transition300 fRight" onclick="makeAwish(this, event)" id="prd_'+obj['prdId']+'"  data-size="'+bseSize+'" data-price="'+grandtotal+'" data-comb ="'+chr+'"></div>';
- 
+
     //proStr += '<div class="soc_elem soc_comment transition300"></div>';
     //proStr += '<div class="soc_elem soc_share transition300"></div>';
     //proStr += '</div>';
@@ -541,7 +541,7 @@ var prodNSplt=''+ obj['prdNm'] +'';
 }
 
 
-function custmz(ths){ 
+function custmz(ths){
  var lnk =$(ths).attr('data-for');
     window.open(DOMAIN+'' + lnk+'');
 }
@@ -611,7 +611,7 @@ function getGemsPrice(gemc, gemp) {
     var gp = gemp.split(',');
     var gprc = 0;
     $(gp).each(function (i, v) {
-    
+
     });
     $(gc).each(function (i, vl) {
 
@@ -640,10 +640,10 @@ function getdmdprice(dvprc, dcarat) {
 
 
 function getPurPrice(Mprc, mwght) {
- 
+
     var mprc = parseFloat(Mprc);
     var metalwght = parseFloat(mwght);
-    var mpurprc = mprc * metalwght; 
+    var mpurprc = mprc * metalwght;
 
     metalValue = mpurprc;
     return metalValue;
@@ -737,7 +737,7 @@ $('#gr_foot').on('click', function () {
 
             if (res['error']['err_code'] === 0) {
 	       getProdDtl = res["result"];
-             
+
 	       showwishbtn();
                 var total = res['total'];
                 if (total == 1)
@@ -788,16 +788,12 @@ function getmenu()
     var menuURL = APIDOMAIN + "index.php?action=getfiltrmenus&catid=" + id;
     $.ajax({type: 'POST', url: menuURL, success: function (res) {
             var data = JSON.parse(res);
-
-            
-
             if (data['result'] !== null) {
-
                 var reslt=data['result'];
                 $(reslt).each(function (r, n) {
 
-		  if(n.val !== null)
-		  {
+            		  if(n.val !== null)
+          		    {
                     mainmenustr += "<div class='ftabB ' >";
                     mainmenustr += "  <div class='ftab fLeft taba' >";
                     mainmenustr += " " + (n.attr_name).toUpperCase() + " </div> </div>";
@@ -823,8 +819,8 @@ function getmenu()
                             iconstr = p.toLowerCase();
                             iconstr = iconstr.replace(' ', '');
                         }
-			var submn="";	    submn=n.attr_name;
-			submn=submn.replace(' ','');
+                  			var submn="";	    submn=n.attr_name;
+                  			submn=submn.replace(' ','');
                         submenulist += "<div class='filterCommon "+submn+"_" + iconstr + "Ic' onclick='submenu(this)' ";
                         submenulist += " id='" + p + "_" + n.attr_name + "' >";
                         submenulist += " <div class='filterLabel' >";
@@ -832,7 +828,7 @@ function getmenu()
                         submenulist += " </div> </div>";
                     });
                     submenulist += "</div>";
-		  }
+                  }
                 });
                 submenulist += "<div class='fmenu_elm fLeft'>";
                 submenulist += '<div class="rangeParent fLeft" id="rg">';
@@ -851,16 +847,11 @@ function getmenu()
                 submenulist += '</div>';
                 mainmenustr += " ";
             }
-
-
             setTimeout(function () {
-              
               //  bindFilterUi();
-               
             }, 1000);
         }
     });
-
 }
 var fltrarray = {};
 
@@ -1101,7 +1092,7 @@ function submenu(ths)
 
 
 function getprodbyid()
-{ 
+{
     var URL = APIDOMAIN + "index.php?action=getProductdetailbycatid&id=" + id;
     $.ajax({
         type: 'POST',
@@ -1111,7 +1102,7 @@ function getprodbyid()
 
             res = JSON.parse(res);
             if (res['error']['err_code'] == 0) {
-               
+
 	      if(res['result'] == null){
 		  $('.emptyGrid').removeClass('dpn');
 		  $('#gridDetail').html('');
@@ -1122,34 +1113,34 @@ function getprodbyid()
 	      {
 		if(menuflag == 1)
 		{
-		//var przarr=new Array(); 
-//		przarr=res["allprdpz"]["przperprdlow"];  
-//		lowp=przarr[0];
-       
-		
-		 lowp=res["allprdpz"]["min"];              
-		 highp=res["allprdpz"]["max"]; 
-               // highp=common.IND_money_format(high,0);
-//		var carr=new Array();
-//		carr=res["allprdpz"]["allcarat"];
-//                frstcar=carr[0];
-//                lastcar= carr[(carr.length)-1]; 
-	
-                frstcar=res["allprdpz"]["mincar"];	
+		//var przarr=new Array();
+		// przarr=res["allprdpz"]["przperprdlow"];
+		// lowp=przarr[0];
+
+
+		 lowp=res["allprdpz"]["min"];
+		 highp=res["allprdpz"]["max"];
+    //            highp=common.IND_money_format(high,0);
+		// var carr=new Array();
+		// carr=res["allprdpz"]["allcarat"];
+    //            frstcar=carr[0];
+    //            lastcar= carr[(carr.length)-1];
+
+                frstcar=res["allprdpz"]["mincar"];
                 lastcar=res["allprdpz"]["maxcar"];
 		$('.ftab_buffer').prepend(mainmenustr);
                 $('.fmenuB').html(submenulist);
-		
+
 		if(frstcar == lastcar)
 		  $('#fltr_crt').addClass('dn');
 		else
 		  $('#fltr_crt').removeClass('dn');
-		
+
 		if(lowp == highp)
 		  $('#fltr_prz').addClass('dn');
 		else
 		  $('#fltr_prz').removeClass('dn');
-		
+
 		bindFilterUi();
 		getHeight();
                 chk();
@@ -1159,7 +1150,7 @@ function getprodbyid()
                 var total = res["total"];
 		$('#gr_foot').removeClass('dpn');
 		$('.emptyGrid').addClass('dpn');
-		
+
                 if (total === 1)
                     $('#total_Product').html("<strong>" + total + "</strong> Product");
                 else
@@ -1206,13 +1197,13 @@ function getprodbyid()
                         $(str).appendTo('#gridDetail');
                         setTimeout(function () {
                             $('#gridDetail').find('.grid3').addClass('fadeInup');
-//                                              bindhover();
+                                            //  bindhover();
                         }, 100);
 
-//                                            bindhover();
+                                          //  bindhover();
 
 
-                    }                 
+                    }
                     //$('#gridDetail').append(str);
                     //  var $(we)= str;
 
@@ -1229,7 +1220,7 @@ function displayproduct(fltpage)
 {
     var limit = 12;
     fltrarray.catid = id;
-    menuflag = 2; 
+    menuflag = 2;
     var dt = JSON.stringify(fltrarray);
     var URL = APIDOMAIN + "index.php?action=getprodByfiltr&page=" + fltpage + "&limit=" + limit + "&catid="+id;
     $.ajax({type: 'POST', url: URL, data: {dt: dt}, success: function (result) {
@@ -1283,10 +1274,10 @@ function displayproduct(fltpage)
                             $(str).appendTo('#gridDetail');
                             setTimeout(function () {
                                 $('#gridDetail').find('.grid3').addClass('fadeInup');
-//                                              bindhover();
+                                            //  bindhover();
                             }, 100);
 
-//                                            bindhover();
+                                          //  bindhover();
 
 
                         }
@@ -1362,7 +1353,7 @@ function showwishbtn()
   $(getProdDtl).each(function(p,q){
     prdarr.push(q.prdId);
   });
- 
+
   var userid = common.readFromStorage('jzeva_uid');
   if(userid != null || userid != undefined)
   {
@@ -1380,4 +1371,77 @@ function showwishbtn()
       }
       });
   }
+}
+
+function getmobfilter()
+{
+  var menuURL = APIDOMAIN + "index.php?action=getfiltrmenus&catid=" + id;
+  $.ajax({type: 'POST', url: menuURL, success: function (res) {
+      var data = JSON.parse(res);
+      if (data['result'] !== null) {
+          mainmenustr='';
+          submenulist='';
+          var reslt=data['result'];
+          $(reslt).each(function (r, n) {
+
+            if(n.val !== null)
+            {
+              mainmenustr += "<div class='gtabB ' >";
+              mainmenustr += "  <div class='jtab lLeft iaba' >";
+              mainmenustr += " " + (n.attr_name).toUpperCase() + " </div> </div>";
+
+              mainmenustr += "<div class='fmenu_elm fLeft' id='" + n.attributeid + "'>";
+              $(n['val'][0]).each(function (q, p) {
+                  var v = parseInt(p);
+                  var iconstr = "";
+                  if ($.isNumeric(v)) {
+                      if (v == 1)
+                          iconstr = "one";
+                      if (v == 2)
+                          iconstr = "two";
+                      if (v == 3)
+                          iconstr = "three";
+                      if (v == 4)
+                          iconstr = "four";
+                      var sr = "";
+                      sr = p.toLowerCase();
+                      sr = sr.split(' ');
+                      iconstr += sr[1];
+                  } else {
+                      iconstr = p.toLowerCase();
+                      iconstr = iconstr.replace(' ', '');
+                  }
+                  var submn="";	    submn=n.attr_name;
+                  submn=submn.replace(' ','');
+                  mainmenustr += "<div class='filterCommon "+submn+"_" + iconstr + "Ic' onclick='submenu(this)' ";
+                  mainmenustr += " id='" + p + "_" + n.attr_name + "' >";
+                  mainmenustr += " <div class='filterLabel' >";
+                  mainmenustr += " <div class='labBuffer'  >" + p + "</div>";
+                  mainmenustr += " </div> </div>";
+              });
+              mainmenustr += "</div>";
+            }
+          });
+          mainmenustr += "<div class='fmenu_elm fLeft'>";
+          mainmenustr += '<div class="rangeParent fLeft" id="rg">';
+          mainmenustr += '<div class="rngDv">';
+          mainmenustr += '<input type="text" value="" id="range" >';
+
+          mainmenustr += '</div>';
+          mainmenustr += '</div>';
+          mainmenustr += '</div>';
+          mainmenustr += "<div class='fmenu_elm fLeft'>";
+          mainmenustr += '<div class="rangeParent fLeft" id="ct">';
+          mainmenustr += '<div class="rngDv">';
+          mainmenustr += '<input type="text" id="carat" value="">';
+          mainmenustr += '</div>';
+          mainmenustr += '</div>';
+          mainmenustr += '</div>';
+          mainmenustr += " ";
+          setTimeout(function(){
+            $('.fmenuB').html(mainmenustr);
+          },1000);
+      }
+  }
+  });
 }

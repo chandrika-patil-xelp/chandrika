@@ -1160,6 +1160,8 @@
         }
         ;
         $('#filter').click(function () {
+            $('.fmenuB').html('');
+            getmobfilter();
             $('.fmenu_wrap').velocity('stop').velocity({height: [0]}, {duration: 200, easing: 'ease-in-out', display: 'block'})
             $('.fmenu_wrap').addClass('filter_display');
             $('.fmenu_elm').removeClass('dn');
