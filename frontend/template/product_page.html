@@ -14,8 +14,8 @@
     <div class="wrapper_main fLeft PRODUCT_PAGE">
         <?php include 'mheader.html' ?>
         <div class="swipe fLeft" id="lftt"></div>
-         <div class="mdiv360"></div>
-         <div class="likeD"></div>
+        <div class="mdiv360"></div>
+        <div class="likeD"></div>
         <div class="wrapper" id="wrapper">
             <div class="wrapper_max">
                 <div class="container poR">
@@ -54,16 +54,16 @@
                                         </div>
                                     </div>
                                     <div class="col100" id="wDis">
-                                    <div class="para fLeft" id="descrp">Diamants Legers de Cartier ring 18K white gold, set with a brilliant-cut diamond of 0.13 carat.</div>
-                                    <!-- <div class="para  fLeft"><span class="actBtn fRight" id="showDetails">MORE INFO</span></div>
-                                    <div class="para  fLeft">
-                                        <div class="col33 fRight point  icnLike transition300"></div>
-                                        <div class="col33 fRight point   icnCmnt transition300"></div>
-                                        <div class="col33 fRight point review_btn icnShre transition300"></div>
-                                    </div> -->
+                                        <div class="para fLeft" id="descrp">Diamants Legers de Cartier ring 18K white gold, set with a brilliant-cut diamond of 0.13 carat.</div>
+                                        <!-- <div class="para  fLeft"><span class="actBtn fRight" id="showDetails">MORE INFO</span></div>
+                                        <div class="para  fLeft">
+                                            <div class="col33 fRight point  icnLike transition300"></div>
+                                            <div class="col33 fRight point   icnCmnt transition300"></div>
+                                            <div class="col33 fRight point review_btn icnShre transition300"></div>
+                                        </div> -->
 
-                                    <div class="col100 fLeft" id="shortdesc">
-                                        <div class="para fLeft mTop10">The <span class="semibold">Sophie Ring</span> is casted in <span class="semibold">3.9</span> grams of gold set with brilliant cut <span class="semibold">36</span> Round Diamonds (Approx. 0.33 Carat) and <span class="semibold">2</span> Carats of Ruby. </div></div>
+                                        <div class="col100 fLeft" id="shortdesc">
+                                            <div class="para fLeft mTop10">The <span class="semibold">Sophie Ring</span> is casted in <span class="semibold">3.9</span> grams of gold set with brilliant cut <span class="semibold">36</span> Round Diamonds (Approx. 0.33 Carat) and <span class="semibold">2</span> Carats of Ruby. </div></div>
                                     </div>
                                 </div>
                                 <!-- More Info DO NOT DELETE -->
@@ -139,7 +139,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="action_btns">
+
+                                <div class="action_btns fixBtn">
                                     <div class="col50 fLeft  padXr5">
                                         <div class="actBtn  fLeft bolder pad10 " id="add_to_cart">ADD TO CART</div>
                                     </div>
@@ -261,7 +262,7 @@
                     <div class="smUlineb">description</div>
                     <div class="para fLeft" id="descrp">Diamants Legers de Cartier ring 18K white gold, set with a brilliant-cut diamond of 0.13 carat.</div>
                     <div class="col100 fLeft" id="shortdesc">
-                                        <div class="para fLeft mTop10 mar0">The <span class="semibold">Sophie Ring</span> is casted in <span class="semibold">3.9</span> grams of gold set with brilliant cut <span class="semibold">36</span> Round Diamonds (Approx. 0.33 Carat) and <span class="semibold">2</span> Carats of Ruby. </div></div>
+                        <div class="para fLeft mTop10 mar0">The <span class="semibold">Sophie Ring</span> is casted in <span class="semibold">3.9</span> grams of gold set with brilliant cut <span class="semibold">36</span> Round Diamonds (Approx. 0.33 Carat) and <span class="semibold">2</span> Carats of Ruby. </div></div>
                 </div>
                 <div class="homeCollect">
                     <!-- <div class="colleCont ">
@@ -286,6 +287,14 @@
 
 
         <?php include 'footer.html'?>
+        <div class="mBtns" style="display: none;">
+            <div class="col50 fLeft  padXr5">
+                <div class="actBtn  fLeft bolder pad10 " id="add_to_cart">ADD TO CART</div>
+            </div>
+            <div class="col50 fLeft  padX15">
+                <div class="actBtn  fRight bolder pad10 " id="buynow">buy now</div>
+            </div>
+        </div>
     </div>
 
 
@@ -301,7 +310,18 @@
 
     <script>
 
-                var t = 0;
+            $(window).scroll(function () {
+            var win = $(window).scrollTop();
+            console.log("win", $(window).scrollTop());
+            if (win >= 200) {
+                console.log("reached");
+                $('.mBtns').velocity({duration: 200}, {display: block});
+            } else if (win < 200) {
+                $('.mBtns').addClass('dn');
+            }
+        });
+
+        var t = 0;
 
         $('#slideRing').ionRangeSlider({
             type: "single",
@@ -672,77 +692,76 @@
         });
 
 //Touch 360
-var lastPt=null;
-var staticCord=0;
-var x=0;
-var j=0;
-var k=0;
-var s=0;
-var sEnd=0;
-function init() {
-  var touchzone = document.getElementById("img-view");
-  touchzone.addEventListener("touchstart", getcor, false);
-  touchzone.addEventListener("touchmove", draw, false);
-  touchzone.addEventListener("touchend", end, false);
-}
-function getcor(e){
+        var lastPt = null;
+        var staticCord = 0;
+        var x = 0;
+        var j = 0;
+        var k = 0;
+        var s = 0;
+        var sEnd = 0;
+        function init() {
+            var touchzone = document.getElementById("img-view");
+            touchzone.addEventListener("touchstart", getcor, false);
+            touchzone.addEventListener("touchmove", draw, false);
+            touchzone.addEventListener("touchend", end, false);
+        }
+        function getcor(e) {
 //  e.preventDefault();
-     clearTimeout(stop);
-     //sEnd=0;
-     flag=0;
-     j=e.touches[0].pageX;
-      s=i;
-}
-function draw(e) {
-  var imgNummer =$('.imgHolder').length;
-  //e.preventDefault();
-   //clearTimeout(stop);
-  lastPt = {x:e.touches[0].pageX, y:e.touches[0].pageY};
-   x=e.touches[0].pageX;
-  var wid= $(window).width();
-      var d= (wid/imgNummer)/1.3;
-      var g=0;
-      if(sEnd==1){
-        g=0;
-    }
-    else{
-      g = ((s* wid)/imgNummer )/1.3;
-      staticCord=0;
-    }
-      staticCord=parseInt(staticCord);
-        x=x+staticCord -j +g;
-        k=x/d ;
-        k=(k) %imgNummer;
-        k= Math.floor(k) ;
-        $('.imgHolder').addClass('dn');
-        $('.imgHolder').eq(k).removeClass('dn');
-        i=k;
-}
-function end(e) {
+            clearTimeout(stop);
+            //sEnd=0;
+            flag = 0;
+            j = e.touches[0].pageX;
+            s = i;
+        }
+        function draw(e) {
+            var imgNummer = $('.imgHolder').length;
+            //e.preventDefault();
+            //clearTimeout(stop);
+            lastPt = {x: e.touches[0].pageX, y: e.touches[0].pageY};
+            x = e.touches[0].pageX;
+            var wid = $(window).width();
+            var d = (wid / imgNummer) / 1.3;
+            var g = 0;
+            if (sEnd == 1) {
+                g = 0;
+            } else {
+                g = ((s * wid) / imgNummer) / 1.3;
+                staticCord = 0;
+            }
+            staticCord = parseInt(staticCord);
+            x = x + staticCord - j + g;
+            k = x / d;
+            k = (k) % imgNummer;
+            k = Math.floor(k);
+            $('.imgHolder').addClass('dn');
+            $('.imgHolder').eq(k).removeClass('dn');
+            i = k;
+        }
+        function end(e) {
 //  e.preventDefault();
-  staticCord=x;
-  sEnd=1;
-}
-var stop;
-$(document).ready(function(){
-  s=i;
+            staticCord = x;
+            sEnd = 1;
+        }
+        var stop;
+        $(document).ready(function () {
+            s = i;
 
-init();
-});
-var left=0;
- var i =0;
-function function1() {
-    i=(i+1)%imgNummer;
-  $('.imgHolder').addClass('dn');
-  $('.imgHolder').eq(i).removeClass('dn');
-}
-function runner() {
-    sEnd=0;
-    function1();
-   stop=  setTimeout(function() {
-        runner();
-    }, 70);
-}
+            init();
+        });
+        var left = 0;
+        var i = 0;
+        function function1() {
+            i = (i + 1) % imgNummer;
+            $('.imgHolder').addClass('dn');
+            $('.imgHolder').eq(i).removeClass('dn');
+        }
+        function runner() {
+            sEnd = 0;
+            function1();
+            stop = setTimeout(function () {
+                runner();
+            }, 70);
+        }
 
 
 
