@@ -2343,6 +2343,7 @@ input[type=radio]:checked ~ .matchIcn{display:block;background:#53C9C7  url(../i
 .wishBox{width:32%;height:40vh;border:1px solid #ccc;padding:10px;margin-right:9px;}
 .wishClass{}
 .wishClass .custBtn1{bottom: 27%;}
+.PRODUCT_GRID2 .custBtn1{bottom: 30%;opacity: 1;}
 .wishImg{height: 70%;background: url("")no-repeat;}
 .EditAddr .button{padding:0 10px;}
 .wCart{width: 50%;}
@@ -3253,12 +3254,7 @@ input[type=number]::-webkit-outer-spin-button {
     display: none;
     z-index: 11111;}
     .swipe{width: 20px; left:0px;height: 100%;position: fixed;top: 50px;z-index: 999;background: transparent;z-index: 11111;}
-    .menuWrapper{width: 100%;
-    height: 100vh;
-    padding:15px 20px 20px 20px;
-      overflow: scroll;
-      
-    }
+    .menuWrapper{width: 100%;height: calc(100vh - 50px);padding:15px 20px 20px 20px;overflow: scroll;}
     .crssLheader{z-index: 1;width: 25px;height: 25px;background: transparent url(../img/crossB.svg)no-repeat;  background-position: center;  background-size: auto 25px;transform: rotate(90deg);-webkit-transform: rotate(90deg);-ms-transform: rotate(90deg);-moz-transform: rotate(90deg);-o-transform: rotate(90deg);position: absolute;top: 10px;right: 10px;}
     .div100{width: 100%;height: auto;}
     .mlogoHeader{width: 120px;height:100%;background:url(../img/jzevalogo.svg)no-repeat;background-size: auto 15px;background-position:left;z-index: 20;position: absolute;left:40px;}
