@@ -31,12 +31,12 @@
                     </div>
                 </div>
             </div>
-             <a href='<?php echo DOMAIN?>index.php?action=bespoke'><div class="sideNav_tab">
-            <div class="asa fLeft">
-               
+            <a href='<?php echo DOMAIN?>index.php?action=bespoke'><div class="sideNav_tab">
+                    <div class="asa fLeft">
+
                         BESPOKE
                     </div>
-            </div></a>
+                </div></a>
 
             <div class="asa fLeft">
                 <div class="sideNav_tab">
@@ -48,47 +48,49 @@
                     EDUCATION
                 </div>
                 <div class="collap fLeft dn">
-                    <a   href='<?php echo DOMAIN?>index.php?action=gemstoneGuideNew'><div class="meucot fLeft">
+                    <a   href='<?php echo DOMAIN?>Gemstone-Guide'><div class="meucot fLeft">
                             GEMSTONE GUIDE
                         </div></a>
-                    <a href='<?php echo DOMAIN?>index.php?action=jewellerycare'><div class="meucot fLeft">
-                            JEWELLERY GUIDE
-                        </div></a>
-                    <a href='<?php echo DOMAIN?>index.php?action=preciousmetalguide'><div class="meucot fLeft">
-                            PRECIOUS METAL GUIDE
-                        </div></a>
-                    <a   href='<?php echo DOMAIN?>index.php?action=diamondguide'><div class="meucot fLeft">
+                    <a   href='<?php echo DOMAIN?>Diamond-Guide'><div class="meucot fLeft">
                             DIAMOND GUIDE
+                        </div></a>
+                    <a href='<?php echo DOMAIN?>index.php?action=jewellerycare'><div class="meucot fLeft">
+                            JEWELLERY CARE
                         </div></a>
                     <a href='<?php echo DOMAIN?>index.php?action=sizeguide'><div class="meucot fLeft">
                             RING SIZING GUIDE
+                        </div></a>
+                    <a href='<?php echo DOMAIN?>index.php?action=preciousmetalguide'><div class="meucot fLeft">
+                            PRECIOUS METAL GUIDE
                         </div></a>
                     <a href='<?php echo DOMAIN?>index.php?action=bangleguide'><div class="meucot fLeft">
                             BANGLE SIZING GUIDE
                         </div></a>
                 </div>
             </div>
-              <div class="asa fLeft">
+            <div class="asa fLeft">
                 <div class="sideNav_tab inMheader" id="Acc">
                     MYACCOUNT
                 </div>
                 <div class="collap fLeft dn">
-                    <a   href='<?php echo DOMAIN?>index.php?action=gemstoneGuideNew'><div class="meucot fLeft">
+                    <a   href='<?php echo DOMAIN?>MyAccount/actn-oId'><div class="meucot fLeft">
                             MY ORDERS
                         </div></a>
-                    <a href='<?php echo DOMAIN?>index.php?action=jewellerycare'><div class="meucot fLeft">
-                           PERSONAL INFO
-                        </div></a>
-                    <a href='<?php echo DOMAIN?>index.php?action=preciousmetalguide'><div class="meucot fLeft">
-                            SAVED ADDRESSES
-                        </div></a>
-                    <a   href='<?php echo DOMAIN?>index.php?action=diamondguide'><div class="meucot fLeft">
+                      <a  href='<?php echo DOMAIN?>MyAccount/actn-wId'><div class="meucot fLeft">
                             WISHLIST
                         </div></a>
-                    <a href='<?php echo DOMAIN?>index.php?action=sizeguide'><div class="meucot fLeft">
-                          CHANGE PASSWORD
+                    <a href='<?php echo DOMAIN?>MyAccount/actn-pId'><div class="meucot fLeft">
+                            PERSONAL INFO
                         </div></a>
-                  
+                      
+                    <a href='<?php echo DOMAIN?>MyAccount/actn-cId'><div class="meucot fLeft">
+                            CHANGE PASSWORD
+                        </div></a>
+                    <a href='<?php echo DOMAIN?>MyAccount/actn-sId'><div class="meucot fLeft">
+                            SAVED ADDRESSES
+                        </div></a>
+                
+
                 </div>
             </div>
             <center>
@@ -164,12 +166,12 @@
         $(".swipe_aftr").removeClass("dn");
         $("body").addClass("posFix");
     });
-    
-    // $('.swipe_aftr').on('click',function(){
-    //      $('.sideNav').velocity({translateX: "100%"}, {duration: 300, delay: 0, display: "none", ease: "ease-out"});
-    //        $(".swipe").removeClass("swipe_aftr");
-    //          $("body").removeClass("posFix");
-    //      });
+
+     $('.swipe_aftr').on('click',function(){
+          $('.sideNav').velocity({translateX: "100%"}, {duration: 300, delay: 0, display: "none", ease: "ease-out"});
+            $(".swipe").removeClass("swipe_aftr");
+              $("body").removeClass("posFix");
+          });
 
     $(document).on('click', '#lftt', function () {
         $(this).removeClass('swipe_aftr');

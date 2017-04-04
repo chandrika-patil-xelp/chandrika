@@ -3,14 +3,15 @@
 <body class="greyBg">
     <?php include 'Cart.html'?>
     <script>
-      var   id = "<?php echo $_GET['id'];  ?>";
+        var id = "<?php echo $_GET['id'];  ?>";
     </script>
     <?php include 'loader.html'?>
     <?php include 'header.html'?>
     <?php include 'login.html'?>
-    <?php include 'mheader.html' ?>
+    <?php include 'mheader.html'?>
     <div class="fLeft gemBanner fixedBanner"><div class="banner_over" id ="banner_over"></div></div>
     <div class="wrapper_main fLeft PRODUCT_GRID2">
+        <div class="swipe fLeft" id="lftt"></div>
         <!-- <div class="overlay2 transition300"></div> -->
         <div class="wrapper fLeft">
             <div class="review_cont">
@@ -80,12 +81,12 @@
                                     </div>
                                 </div>
                                 <div class="filter" id="filter">
-                                    
+
                                 </div>
                                 <div class="fmenu_wrap">
                                     <div class="mFilterhead">
-                                           FILTER
-                                      <div class="closeLogin close_filter dn" onclick="closeFilter();"></div>
+                                        FILTER
+                                        <div class="closeLogin close_filter dn" onclick="closeFilter();"></div>
                                     </div>
                                     <div class="checkmBtn bolder" onclick="closeFilter();">APPLY FILTER</div>
                                     <div class="fmenuB">
@@ -518,8 +519,8 @@
                         <div class="grid_cont fLeft">
                             <div class="emptyGrid dpn">
                                 <center>
-                                <div class="emptyLogo"></div>
-                                <div class="fooH mar0 color666">no products found</div>
+                                    <div class="emptyLogo"></div>
+                                    <div class="fooH mar0 color666">no products found</div>
                                 </center>
                             </div>
                             <div class="col100 fLeft poR" id="gridDetail"></div>
@@ -1151,19 +1152,35 @@
                 }});
         }
 //       close fmenu_wrap
-        function closeFilter(){
-        $('.fmenu_wrap').velocity('stop').velocity({height: [0]}, {duration: 200, easing: 'ease-in-out', display: 'none'})
-        $('.fmenu_wrap').removeClass('filter_display');
-        $('.wrapper').removeClass('wrapper_zindex');
-        $('body').removeClass('over_hide');
-        };
+        function closeFilter() {
+            $('.fmenu_wrap').velocity('stop').velocity({height: [0]}, {duration: 200, easing: 'ease-in-out', display: 'none'})
+            $('.fmenu_wrap').removeClass('filter_display');
+            $('.wrapper').removeClass('wrapper_zindex');
+            $('body').removeClass('over_hide');
+        }
+        ;
         $('#filter').click(function () {
             $('.fmenu_wrap').velocity('stop').velocity({height: [0]}, {duration: 200, easing: 'ease-in-out', display: 'block'})
             $('.fmenu_wrap').addClass('filter_display');
             $('.fmenu_elm').removeClass('dn');
             $('.wrapper').addClass('wrapper_zindex');
             $('body').addClass('over_hide');
-       });
+        });
+
+        $('.sideNav').velocity({translateX: "-100%"}, {duration: 0, delay: 0, display: "none", ease: "ease-out"});
+        $('.menuLHeader').on('click', function () {
+            $('.sideNav').velocity({translateX: "0%"}, {duration: 300, delay: 0, display: "block", ease: "ease-out"});
+            $(".swipe").addClass("swipe_aftr");
+            $(".swipe_aftr").removeClass("dn");
+            $("body").addClass("posFix");
+        });
+        $(document).on('click', '#lftt', function () {
+            $(this).removeClass('swipe_aftr');
+            $('.sideNav').velocity({translateX: "-100%"}, {duration: 300, delay: 0, display: "none", ease: "ease-out"});
+            $("body").removeClass("posFix");
+        });
+
+
     </script>
 
     <script type="text/javascript" src="<?php echo $jvs['prodGrid']; ?>"></script>

@@ -362,13 +362,7 @@
               $(".swipe_aftr").removeClass("dn");
               $("body").addClass("posFix");
           });
-          // $('.swipe_aftr').on('click',function(){
-          //      $('.sideNav').velocity({translateX: "100%"}, {duration: 300, delay: 0, display: "none", ease: "ease-out"});
-          //        $(".swipe").removeClass("swipe_aftr");
-          //          $("body").removeClass("posFix");
-          //      });
-
-               $(document).on('click','#lftt',function(){
+                      $(document).on('click','#lftt',function(){
                  $(this).removeClass('swipe_aftr');
                  $('.sideNav').velocity({translateX: "-100%"}, {duration: 300, delay: 0, display: "none", ease: "ease-out"});
                  $("body").removeClass("posFix");
