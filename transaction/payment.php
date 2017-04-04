@@ -9,7 +9,7 @@ include '../config.php';
     $res = $comm->executeCurl($url);
  
     if($res['error']['err_code'] ==0)
-    { 
+    { echo "<pre>";print_r($res['totalprice']);
       $ordid=$res['result'][0]['cart_id'];
        $price=$res['totalprice']; 
     }
@@ -23,18 +23,18 @@ include '../config.php';
 <html>
   <body>
     <form method="post" name="redirect" action="ccavRequestHandler.php" >
-      <input type="hidden" name="merchant_id" value="87218" />
-      <input type="hidden" name="order_id" value="<?php echo $ordid ?>" />
-      <input type="hidden" name="amount" value="<?php echo $price ?>" />
-      <input type="hidden" name="currency" value="INR" />
-      <input type="hidden" name="redirect_url" value="<?php echo DOMAIN ?>transaction/ccavResponseHandler.php" />
-      <input type="hidden" name="cancel_url" value="<?php echo DOMAIN ?>transaction/Failure/<?php echo $ordid ?>"/>
-      <input type="hidden" name="language" value="EN"/>
-      <input type="hidden" name="billing_country" value="India"/>
-      <input type="hidden" name="billing_tel" value="<?php echo $biltel ?>"/>
-      <input type="hidden" name="billing_email" value="<?php echo $bilmail ?>"/>
+      <input type="text" name="merchant_id" value="87218" />
+      <input type="text" name="order_id" value="<?php echo $ordid ?>" />
+      <input type="text" name="amount" value="<?php echo $price ?>" />
+      <input type="text" name="currency" value="INR" />
+      <input type="text" name="redirect_url" value="<?php echo DOMAIN ?>transaction/ccavResponseHandler.php" />
+      <input type="text" name="cancel_url" value="<?php echo DOMAIN ?>transaction/Failure/<?php echo $ordid ?>"/>
+      <input type="text" name="language" value="EN"/>
+      <input type="text" name="billing_country" value="India"/>
+      <input type="text" name="billing_tel" value="<?php echo $biltel ?>"/>
+      <input type="text" name="billing_email" value="<?php echo $bilmail ?>"/>
       
     </form>
-    <script language='javascript'>document.redirect.submit();</script>
+    <script language='javascript'>document.redirec.submit();</script>
   </body> 
 </html>
