@@ -13,7 +13,7 @@ $(document).ready(function () {
 
     $('html, body').animate({scrollTop: '0px'}, 300);
     var link=window.location.href;
-    getmenu();
+ 
 
     var urlstr=link.split(DOMAIN);
     var url=""+urlstr[1];
@@ -44,7 +44,19 @@ $(document).ready(function () {
       $('.fixedBanner').addClass('banner_fine');
     }
 
+      var winSiz = $(window).width();
+      var htSize = $(window).height();
 
+       if (winSiz > 960) 
+       { 
+              getmenu();
+       }  
+       else{
+           setTimeout(function(){
+                    getmobfilter();
+           },1000);
+       
+       }
 
 //    if($.trim(menu) == 'bespoke')
 //      window.open(DOMAIN+"index.php?action=bespoke");
@@ -1422,6 +1434,9 @@ function getmobfilter()
               mainmenustr += "</div>";
             }
           });
+          mainmenustr += "<div class='gtabB ' >";
+          mainmenustr += "  <div class='jtab fLeft iaba' >";
+          mainmenustr += " PRICE </div> </div>";
           mainmenustr += "<div class='fmenu_elm fLeft'>";
           mainmenustr += '<div class="rangeParent fLeft" id="rg">';
           mainmenustr += '<div class="rngDv">';
@@ -1430,6 +1445,9 @@ function getmobfilter()
           mainmenustr += '</div>';
           mainmenustr += '</div>';
           mainmenustr += '</div>';
+          mainmenustr += "<div class='gtabB ' >";
+          mainmenustr += "  <div class='jtab fLeft iaba' >";
+          mainmenustr += " CARAT </div> </div>";
           mainmenustr += "<div class='fmenu_elm fLeft'>";
           mainmenustr += '<div class="rangeParent fLeft" id="ct">';
           mainmenustr += '<div class="rngDv">';
@@ -1440,6 +1458,9 @@ function getmobfilter()
           mainmenustr += " ";
           setTimeout(function(){
             $('.fmenuB').html(mainmenustr);
+                bindFilterUi();
+		getHeight();
+                chk();
           },1000);
       }
   }
