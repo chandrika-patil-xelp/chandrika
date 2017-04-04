@@ -2718,7 +2718,7 @@ input[type=number]::-webkit-outer-spin-button {
 .emptyGrid{width: 100%;position: absolute;height: 200px;top: 0;right: 0;bottom: 0;left: 0;margin: auto;}
 .emptyLogo{background:url(../img/icons/552.svg)no-repeat;background-position: center;    background-size: auto 100%;    width: 100%;    height: 100px;}
 /*.floatFil{display:none;}*/
-.backTop{cursor:pointer;position: fixed;width:40px;right:5%;bottom: 25px;height:40px;background:linear-gradient(to bottom, #222529 0%, #15181b 100%) ;z-index: 9;color: #fff;font-size: 12px;font-family: regular;padding:5px;border-radius:50%;transition:300ms;-webkit-transition:300ms;-moz-transition:300ms;-o-transition:300ms;-ms-transition:300ms;}
+.backTop{cursor:pointer;position:fixed;width:40px;right:5%;bottom:5%;height:40px;background:linear-gradient(to bottom, #222529 0%, #15181b 100%) ;z-index: 9;color: #fff;font-size: 12px;font-family: regular;padding:5px;border-radius:50%;transition:300ms;-webkit-transition:300ms;-moz-transition:300ms;-o-transition:300ms;-ms-transition:300ms;}
 /*.prd .floatFil{display: block!important;cursor: pointer;position: fixed;width:50px;left:1%;top: 90vh;height:50px;background:linear-gradient(to bottom, #222529 0%, #15181b 100%) ;z-index: 9;color: #fff;font-size: 12px;font-family: regular;padding:5px;border-radius:50%;transition:300ms;-webkit-transition:300ms;-moz-transition:300ms;-o-transition:300ms;-ms-transition:300ms;}*/
 .backTop:after{content:"";position:absolute;left:0;top:0;width:100%;height:100%;background:url("../img/icons/543w.svg")no-repeat;background-position:center center;background-size: auto 30px;transform: rotate(-90deg);-webkit-transform: rotate(-90deg);-ms-transform: rotate(-90deg);-moz-transform: rotate(-90deg);-o-transform: rotate(-90deg);}
 .scaleot.backTop{transform:scale(0) ;-webkit-transform:scale(0) ;-moz-transform:scale(0) ;-o-transform:scale(0);-ms-transform:scale(0);}
@@ -3158,7 +3158,7 @@ input[type=number]::-webkit-outer-spin-button {
     .wishClass .custBtn1{bottom: 28%;}
     .bigTxt .fooTxt{font-size: 11px;}
     .fPhone{    background-position: 17px 40px;
-                background-size: auto 30px;}
+                background-size: auto 25px;}
 
     .fPayment{ background-position: 17px 40px;
                background-size: auto 30px;}
@@ -3192,7 +3192,7 @@ input[type=number]::-webkit-outer-spin-button {
     .total_price{font-size:30px !important;}  
     .chkout .darkCont{padding:0px 0 0px 0}
     .CHECKOUT_PAGE .delvrAdress{height:auto;overflow:auto;}
-    .button.actBtn{font-size:11px;}
+    .button.actBtn{font-size:11px;padding: 0px 20px;}
     .CHECKOUT_PAGE .halfCircle{display:none;}
     .chkoutHeader{position:fixed;height:55px;}
     #sign_in{margin:90px 0px 45px 0;}
@@ -3260,6 +3260,49 @@ input[type=number]::-webkit-outer-spin-button {
     cursor: pointer;
     background: url(../img/icons/removeW.svg) no-repeat;
     background-size: 25px;background-position: center;}
+    
+    .collCenter{height: 80px;}
+    .colleCont{padding: 185px 0px;}
+    .darkCont{    padding: 50px 25px 130px 25px;}
+    .galleryCover{left: -26px;}
+    .PRODUCT_GRID2 .custBtn1{bottom: 25%;opacity: 1;}
+    .PRODUCT_GRID2 .grid3{width: 50%;height: 80vh;}
+    .PRODUCT_GRID2 .soc_abs{transform: scale(1);}
+    .head_wrap{display: none;}
+    
+    .mheader{width: 100%;height: 50px;position: fixed;top: 0;left: 0;right:0px;z-index:199;display: block;}
+    .menuLHeader{width:40px;height:100%;background: transparent url(../img/89.svg)no-repeat;background-position:center;background-size: auto 25px;cursor: pointer;}
+    .sideNav{    width: 280px;
+    height: 100%;
+    background-color: #15181b;
+    position: fixed;
+    left: 0;
+    top: 0px;
+    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.1);
+    color: #2d2d2d;
+    overflow: auto;
+    display: none;
+    z-index: 11111;}
+    .swipe{width: 20px; left:0px;height: 100%;position: fixed;top: 50px;z-index: 999;background: transparent;z-index: 11111;}
+    .menuWrapper{width: 100%;height: calc(100vh - 50px);padding:15px 20px 20px 20px;overflow: scroll;}
+    .mlogoHeader{width: 120px;height:100%;background:url(../img/jzevalogo.svg)no-repeat;background-size: auto 15px;background-position:left;z-index: 20;position: absolute;left:40px;}
+    .sideNav_tab{color:#fff;font-family: bolder;font-size: 11px;width: 100%;height: 50px;line-height: 50px;letter-spacing: 0.15em;}
+    .swipe_aftr{width: 100%;top: 0;background: rgba(0,0,0,0.6);top: 0;z-index: 9999;right:0px;}
+    .swipe_aftr{left: 280px;width: 100%;background: #fff;opacity: 0.7;top: 0;}
+    .meucot{color:#fff;font-family: semibold;font-size: 11px;width: 100%;height: 50px;line-height: 50px;letter-spacing: 0.15em;text-transform: uppercase;}
+    .asa{width: 100%;height: auto;}
+    .collap{width: 100%;height: 100%;padding: 0px 20px;}
+    .mobWpar{width: 100%;height: auto;padding-top: 40px;display: inline-block;}
+    .inMheader{background: url(../img/icons/28.svg) no-repeat;    background-size: 13px;    background-position: right;} 
+    .mCart{width: 40px;height:100%;position: relative;}
+    .mcartIc{    background: url(../img/icons/502w.svg) no-repeat;
+                 background-size: 20px;
+                 background-position: center;}
+    .guestTrack{background:url(../img/icons/549.svg) no-repeat; background-size:30px;background-position: center;position:relative;}
+    .userprofile{background:url(../img/icons/501w.svg) no-repeat; background-size:20px;background-position: center;position:relative;}
+    .mheader.black_bg{background:#15181b;}
+    /*#lftt{display:none;}*/
+    
 }
 
 
@@ -3297,7 +3340,6 @@ input[type=number]::-webkit-outer-spin-button {
     border-bottom: 1px solid #e6e6e6;}
     .h_ome .colleCont{padding: 130px 0px!important;}
     .filTop{cursor:pointer;position: fixed;width:40px;right:5%;top: 90vh;height:40px;background:linear-gradient(to bottom, #222529 0%, #15181b 100%) ;z-index: 9;color: #fff;font-size: 12px;font-family: regular;padding:5px;border-radius:50%;transition:300ms;-webkit-transition:300ms;-moz-transition:300ms;-o-transition:300ms;-ms-transition:300ms;}
-    .imgHolder{background-size: auto 100%!important;}
     .tCommon{padding: 0px;}
     .tCommon .tHead{margin: 15px 0 0;}
     .mheader.black_bg{background:#15181b;}
@@ -3328,19 +3370,18 @@ input[type=number]::-webkit-outer-spin-button {
     .mobWpar{width: 100%;height: auto;padding-top: 40px;display: inline-block;}
     .fadcrs{overflow: hidden;}
     .mCart{width: 40px;height:100%;position: relative;}
-    .mcartIc{    background: url(../img/icons/502w.svg) no-repeat;
+    .mcartIc{background: url(../img/icons/502w.svg) no-repeat;
                  background-size: 20px;
                  background-position: center;}
-
     sign in page
     .mobileMess{background:unset;}
-    .outerContr{width: 100%;height: 100vh;z-index: 20000!important;bottom:unset;top:0px;}
+    .outerContr{width: 100%;height: 100vh;z-index: 20000!important;bottom:unset;top:0px;overflow: scroll;}
     .loginCont{padding: 80px 25px 80px 25px;height: 100%;}    .closeLogin{width: 50px;height: 50px;}
     .txtTitle{font-size: 15px;}
     .mnDvs{width: 100%;height: 100vh;z-index: 20000!important;bottom: unset;top: 50px;}
     .sideNav .mediaL{width: 100%;
     height: 50px;
-    line-height: 50px;
+    line-height:50px;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -3394,7 +3435,7 @@ input[type=number]::-webkit-outer-spin-button {
     .mediaBtn .actBtn{margin-top: 10px;height: 100%;}
 
     /*.v2{display:none}*/
-    .cart .payOption{padding:8px;}
+    .cart .payOption{    padding: 15px 0px 15px 0px;}
     .cart .pay{width:30%;}
     .secureIc{background-size: auto 60%;}
     .lifeIc{background-size: auto 60%;}
@@ -3557,6 +3598,21 @@ input[type=number]::-webkit-outer-spin-button {
     #openAddrId .filterSec .button.actBtn{float:none;}
     #myaddrs .col50{padding: 0;}
     #myaddrs .defaulDiv{ padding: 10px;border:1px solid #e6e6e6;border-right: none;border-left: none;}
+    .mBtns{    width: 100%;
+    height: 50px;
+    float: left;
+    position: fixed;
+    bottom: 0%;
+    /* border: 1px solid black; */
+    /* z-index: 999; */
+    background-color: #15181b;
+    color: #fff;
+    /* line-height: 50px; */
+       padding: 13px 5px 0px 5px;
+    z-index: 10;}
+  .fixBtn{display: none;}
+  
+    
 }
 @media only screen and (max-width:375px){
     .grStyl5 .grCap{left:50px;}
