@@ -3101,6 +3101,10 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 @media only screen and (max-width:768px){
+    #myaddrs .col50{padding:0}
+    #myaddrs .defaulDiv{border: 1px solid #e6e6e6;border-right: 0;border-left: 0;padding-left: 5px;}
+    #myordId .orderOuter{border-right:0;border-left:0;}
+    .wishClass .custBtn1{bottom: 28%;}
     .bigTxt .fooTxt{font-size: 11px;}
     .fhelpSection{    padding: 35px 0px 35px 60px;}
     .fPhone{    background-position: 17px 40px;
@@ -3115,6 +3119,7 @@ input[type=number]::-webkit-outer-spin-button {
     .spBespoke{padding: 0px;}
     .imgLarge{background-size:auto 60%;background-position: top;}
     .offsetTop{padding:20px;}
+    .myAcc .offsetTop{padding-top: 0;}
     .imageOutr {width:20%;}
     .collectH{font-size:35px;}
     .grStyl7 .grCap{bottom:-27px;}
@@ -3174,26 +3179,25 @@ input[type=number]::-webkit-outer-spin-button {
    .cart_removew{top:-15px;}
    .mob_submit{display:block;}
     .collCenterb{    padding: 122px 60px;}
-    .myaccount .pCont{    width: 100%;
-    padding-left: 0px;
-    padding-top: 40px;}
+    .myaccount .pCont{width: 100%;padding-left: 0px;margin-top: 40px;border: 1px solid #e6e6e6;border-left: 0;border-right: 0;}
     .myaccount .tHead{    position: absolute;
     background-color: #fff;
     height: 100%;
     z-index: 1;
     transform: translateX(-115%);
-    transition: 300ms;top: 0px;padding-top: 40px;display:block;border-right: 1px solid #f3f3f3;}
+    transition: 300ms;top: 0px;padding-top: 40px;display:block;border-right: 1px solid #f3f3f3;    overflow-y: auto;
+    padding-bottom: 20px;}
     .pCont .log-Icn{    position: absolute;
     left: 0px;
-    top: -8px;
+    top: -38px;
     width: 35px;
     height: 35px;
     cursor: pointer;
     background: url(../img/icons/myacc.svg) no-repeat;
-    background-size: 30px;
+    background-size: 25px;
     background-position: center;}
     .log-Crs{position: absolute;
-    right: 0px;
+    right: 15px;
     top: 5px;
     width: 35px;
     height: 35px;
@@ -3204,8 +3208,9 @@ input[type=number]::-webkit-outer-spin-button {
 
 
 @media only screen and (max-width:480px){
-    .myaccount .tHead {width: 250px; z-index: 11;}
+    .myaccount .tHead {width: 250px; z-index: 11;border-right: 1px solid #f3f3f3;}
     .myaccount .offsetTop {padding: 40px 0px 40px 0px;}
+    .myAcc .offsetTop{padding-top: 0}
     .pCont .log-Icn{left:15px;}
     .myaccount .grid3{width:100%;}
     .myaccount .orderCommon{padding:0 20px;}
@@ -3489,7 +3494,15 @@ input[type=number]::-webkit-outer-spin-button {
     .mFilterhead{border-bottom:1px solid #e6e6e6;width: 100vw; height: 50px;line-height: 50px; position: fixed;top: 0;left: 0;background: #fff;padding:0px 50px 0px 20px;font-family: semibold;font-size: 13px;text-transform: uppercase;letter-spacing: 0.35em;color: #15181b;z-index:500;}
     .fakeApplybtn{width: auto;height: 30px;line-height: 29px; border-radius: 3px;border: 1px solid #15181b;font-family: semibold;letter-spacing: 0.15em; padding: 0 20px;float: left;margin: auto;font-size: 11px; position: absolute;top: 0;bottom: 0;left: 15px;}
     .orderParent{padding: 20px 20px 20px 60px;}
-    .fmenuB .taba{display:block !important;}
+    #saveAddrId {padding:0;}
+    #saveAddrId .EditAddr{padding: 10px;border-right: none;border-left:none;}
+    #openAddrId .w49:nth-child(3){width:100%!important;}
+    #openAddrId .w49:nth-child(4){float:left;}
+    #openAddrId .w49:nth-child(5){float:right;}
+    #openAddrId .w49:nth-child(6){float:left;}
+    #openAddrId .filterSec .button.actBtn{float:none;}
+    #myaddrs .col50{padding: 0;}
+    #myaddrs .defaulDiv{ padding: 10px;border:1px solid #e6e6e6;border-right: none;border-left: none;}
 }
 @media only screen and (max-width:375px){
     .grStyl5 .grCap{left:50px;}
