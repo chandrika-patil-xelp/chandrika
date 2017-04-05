@@ -2342,7 +2342,6 @@ input[type=radio]:checked ~ .matchIcn{display:block;background:#53C9C7  url(../i
 .tOuter:before{content:"";position:absolute;border-left:1px solid #ccc;width:10px;top:-6px;height:10px;left:10%;border-bottom:1px solid #ccc;transform:rotate(135deg);-ms-transform:rotate(135deg);-moz-transform:rotate(135deg);-webkit-transform:rotate(135deg);-o-transform:rotate(135deg);background-color:#fff;}
 .wishBox{width:32%;height:40vh;border:1px solid #ccc;padding:10px;margin-right:9px;}
 .wishClass{}
-.wishClass .custBtn1{bottom: 27%;}
 
 .wishImg{height: 70%;background: url("")no-repeat;}
 .EditAddr .button{padding:0 10px;}
@@ -3455,7 +3454,7 @@ input[type=number]::-webkit-outer-spin-button {
     /*.cart{width: 100%;}*/ 
     .PRODUCT_GRID2.wrapper_main{padding-top: 40vh;}
     .spBespoke{font-size: 17px;padding: 0px;    line-height: 30px;}
-    .wishClass .custBtn1{bottom: 33%;opacity: 1;}
+    .wishClass .custBtn1{bottom:122px;opacity: 1;}
     .grid_dets:before{top:-3px;}
     .PRODUCT_GRID2 .grid3{width:100%;height: auto;}
     .tHead{width:100%;text-align:left;line-height:20px;margin: 10px 0px;}
