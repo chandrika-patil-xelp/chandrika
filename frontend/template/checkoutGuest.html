@@ -714,7 +714,7 @@
                             $('#guestforgot').addClass("dn");
                             $('#guestSignin').removeClass("dn");
                             $('#guestforgot').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-                            $('#guestSignin').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+                            $('#guestSignin').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out',display:'block'});
                         });
 
                         $('#gotpBack2').click(function () {
@@ -786,7 +786,7 @@
 			    $('#paswrd').val('');	  $('#paswrd').blur();
                             $('#guestforgot').removeClass("dn");
                             $('#guestSignin').addClass("dn");
-                            $('#guestSignin').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+                            $('#guestSignin').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out',display: 'none'});
                             $('#guestforgot').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
                         }
 
@@ -1041,11 +1041,13 @@
 //                    checkout mobile
                    $('#mob_guest').click(function () {
                         $('.colleCont.v2').css({"display":"block"});
-                       $('#guestSignin').css({"display":"none"});
+                       $('#guestSignin').css({'display':'none'});
+                       $('#guestSignup,#guestforgot').addClass("dn");
                    });
                    $('#mob_signin').click(function () {
                         $('.colleCont.v2').css({"display":"none"});
-                       $('#guestSignin').css({"display":"block"});
-                   });
+                       $('#guestSignin').velocity({opacity: [1, 0]}, {duration: 0, delay: 0, easing: 'ease-in-out',display: 'block'});                   
+                      $('#guestSignup,#guestforgot').addClass("dn");
+                     });
     </script>
 </body>
