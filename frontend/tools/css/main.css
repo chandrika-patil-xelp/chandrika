@@ -3262,7 +3262,8 @@ input[type=number]::-webkit-outer-spin-button {
     cursor: pointer;
     background: url(../img/icons/removeW.svg) no-repeat;
     background-size: 25px;background-position: center;}
-    
+    .tabHead{line-height: 50px;height: auto;}
+    #pChange .col50{width:100%;}
     .collCenter{height: 80px;}
     .colleCont{padding: 185px 0px;}
     .darkCont{    padding: 50px 25px 130px 25px;}
@@ -3304,12 +3305,11 @@ input[type=number]::-webkit-outer-spin-button {
     .userprofile{background:url(../img/icons/501w.svg) no-repeat; background-size:20px;background-position: center;position:relative;}
     .mheader.black_bg{background:#15181b;}
     /*#lftt{display:none;}*/
-    
 }
 
 
 @media only screen and (max-width:480px){
-    .myaccount .tHead {width: 250px; z-index: 11;border-right: 1px solid #f3f3f3;}
+    .myaccount .tHead {width: 250px; z-index: 11;border-right: 1px solid #f3f3f3;margin:0;}
     .myaccount .offsetTop {padding: 40px 0px 40px 0px;}
     .myAcc .offsetTop{padding-top: 0}
     .pCont .log-Icn{left:15px;}
@@ -3548,15 +3548,15 @@ input[type=number]::-webkit-outer-spin-button {
     .writefaggery .para{margin: 0px;font-size: 10px;}
     /*checkout*/
 .orderParent{padding: 20px 20px 20px 60px;}
-.orderImg{width: 40px;height: 40px;margin: auto;top: 0px;bottom: 0;}
+.orderImg{width: 40px;height: 40px; margin-top: 25px;;top: 0px;bottom: 0;}
 .orderName{width: 70%;padding-right: 5px;}
 .rsCont{position: absolute;right: 25px;height: 35px;}
-.ordPqty{width: 35px;height: 35px;line-height: 35px;    border: 1px solid #e6e6e6;    font-size: 14px;left:13px;margin: 0;}
+.ordPqty{width: 35px;height: 35px;line-height: 35px;border: 1px solid #e6e6e6;font-size: 14px;left:13px;margin: 0;right: -5px; left: inherit;}
 .ordRt .col100{text-align: left;}
 .ordRt{padding-top: 45px;width: 30%;height: auto;padding-left: 5px;}
 .filterSec{padding-top: 10px;}
-.filterSec .button.actBtn{font-size: 13px;float:left;}
-.ordRt .cartRup15b{font-size: 13px!important;float: none!important;padding-left: 12px;} 
+.filterSec .button.actBtn{font-size: 9px;}
+.ordRt .cartRup15b{font-size: 13px!important;padding-left: 12px;} 
 .contactH{font-size: 22px;}
 .contactH2{font-size: 22px!important;} 
 .bangle .dtable{width:100%}

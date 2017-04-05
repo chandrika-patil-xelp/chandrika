@@ -1067,3 +1067,14 @@ function getgender(gndr)
     
   return gndrstr;
 } 
+/*target for my account page*/
+ var w = window.outerWidth;
+    if(w <= 768){
+    function targt(e) {
+        if(e.target.id == "side_menus" || e.target.id == "fooH" || e.target.id == 'log-Icn'){
+            $('#side_menus').css({"transform":"translateX(-20px)","transition":"300ms"});
+        }else{
+            $('#side_menus').css({"transform":"translateX(-115%)","transition":"300ms"});
+        }   
+    }
+}
