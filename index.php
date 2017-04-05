@@ -56,7 +56,11 @@ switch ($action) {
         break;
     case 'packaging':
         $page = 'packaging';
-        $title='Our Luxury Packaging | Jzeva';
+        $title='Packaging | Jzeva';
+        $keywors="Buy Jewellery online India,  Buy diamond jewellery online India,  diamond Jewellery,  white gold Jewellery,  fine Jewellery, fine ring, diamond ring, fine diamond necklace, fine pendants,  engagement ring, engagement band, eternity band, wedding band, wedding necklace, wedding party Jewellery, engagement Jewellery, cts, size, sz, 14kt, 18kt, 22kt, free shipping,  inspired, INDIAN HANDMADE, pave diamond, 
+motif diamond, natural diamond, genuine diamond, Simulated Diamond, Stunning diamond, Sparkling diamond, Buy now, discounted Jewellery, men's Jewellery, Diamond accented, solitaire diamond, EXQUISITE jewellery, exceptional jewellery,, classic diamond, 
+men's Jewellery, womens Jewellery, branded Jewellery, rare jewellery, royal jewellery,
+women's Jewellery, princess cut, solid gold, pretty jewellery, gorgeous jewellery, estate Jewellery, Fabulous jewellery, online jewellery, Rose Gold, White Gold, Platinum, Gold, gemstone jewellery, International Jewellery, modern Jewellery, chic Jewellery, trendy Jewellery, Sexy Designs, Diamond Rings, Diamond Earrings, Diamond Pendants, Pendant sets, Solitaire rings, Solitaire Earrings, Diamond Bangles, Diamonds Necklace, precious Jewellery, Diamond Jewellery,  luxury Jewellery, luxury lifestyle, designer jewellery, Wedding jewellery, Diamond jewellery below 20000, High end diamond jewellery";
         include TEMPLATE . 'packaging.html';
         break;
     case 'login1':
@@ -93,8 +97,16 @@ switch ($action) {
         $par_id=$params['id']; 
         $url = APIDOMAIN . 'index.php?action=getProDesOfcatid&id='. $par_id;
         $res = $comm->executeCurl($url);
-  
-      $title=$res['result']['title'];
+        
+      $titl=$res['result']['title'];
+       $titl= $titl; 
+      
+      $title= trim(preg_replace('/\s\s+/', ' ', $titl));
+       $dom=DOMAIN;
+      $domi= explode('/' , $dom);
+      $domain=$domi[3]; 
+        $domain=ucwords($domain);
+      $title=$title.' | '.$domain;
       $desc=$res['result']['descrp'];
       $descp= trim(preg_replace('/\s\s+/', ' ', $desc));
       $keywords=$res['result']['keywrd'];
@@ -102,11 +114,14 @@ switch ($action) {
         break;
     case 'landing_page':
         $page = 'product_page';
-        $titl='Online Designer Jewellery Store | Jzeva';
+        $titl='Precious Designer Jewellery | Jzeva';
         $title= trim(preg_replace('/\s\s+/', ' ', $titl));
-        $desc="India's best Online Designer Precious Jewellery Store.";
+        $desc="India's best Online Designer Precious Jewellery Store. | Curated Designs | Certified Diamonds | Lifetime Exchange | Luxury Packaging | Complimentary Shipping | Customised Jewellery";
         $descp= trim(preg_replace('/\s\s+/', ' ', $desc));
-        $keywords= 'Curated Designs,Certified Diamonds, Lifetime Exchange,Luxury Packaging,Complimentary Shipping,Customised Jewellery';
+        $keywords= "Buy Jewellery online India,  Buy diamond jewellery online India,  diamond Jewellery,  white gold Jewellery,  fine Jewellery, fine ring, diamond ring, fine diamond necklace, fine pendants,  engagement ring, engagement band, eternity band, wedding band, wedding necklace, wedding party Jewellery, engagement Jewellery, cts, size, sz, 14kt, 18kt, 22kt, free shipping,  inspired, INDIAN HANDMADE, pave diamond, 
+motif diamond, natural diamond, genuine diamond, Simulated Diamond, Stunning diamond, Sparkling diamond, Buy now, discounted Jewellery, men's Jewellery, Diamond accented, solitaire diamond, EXQUISITE jewellery, exceptional jewellery,, classic diamond, 
+men's Jewellery, womens Jewellery, branded Jewellery, rare jewellery, royal jewellery,
+women's Jewellery, princess cut, solid gold, pretty jewellery, gorgeous jewellery, estate Jewellery, Fabulous jewellery, online jewellery, Rose Gold, White Gold, Platinum, Gold, gemstone jewellery, International Jewellery, modern Jewellery, chic Jewellery, trendy Jewellery, Sexy Designs, Diamond Rings, Diamond Earrings, Diamond Pendants, Pendant sets, Solitaire rings, Solitaire Earrings, Diamond Bangles, Diamonds Necklace, precious Jewellery, Diamond Jewellery,  luxury Jewellery, luxury lifestyle, designer jewellery, Wedding jewellery, Diamond jewellery below 20000, High end diamond jewellery";
         include TEMPLATE . 'landing_page.html';
         break;
     case 'product_page':
@@ -124,7 +139,7 @@ switch ($action) {
        $atrs='Solitaire';   
       }else{
       $atrs=$res['results']['attrVals']['result'][1]['value'];}
-      $title=$prdNm.' made of '.$metal.' and '.$atrs.' | '.Jzeva;
+      $title=$prdNm.' | '.$metal.' | '.$atrs.' | '.Jzeva;
       $desc=$res['results']['basicDetails']['productDescription'];
       $descp= trim(preg_replace('/\s\s+/', ' ', $desc));
       $keywords=$res['results']['basicDetails']['prdSeo'];
@@ -190,56 +205,91 @@ switch ($action) {
         break;
     case 'tandc':
         $page = 'tandc';
-        $title='Terms And Conditions | Jzeva';
-      
+        $title='Terms and Conditions | Jzeva';
+        $keyword='Buy Jewellery online India,  Buy diamond jewellery online India,  diamond Jewellery,  white gold Jewellery,  fine Jewellery, fine ring, diamond ring, fine diamond necklace, fine pendants,  engagement ring, engagement band, eternity band, wedding band, wedding necklace, wedding party Jewellery, engagement Jewellery, cts, size, sz, 14kt, 18kt, 22kt, free shipping,  inspired, INDIAN HANDMADE, pave diamond, 
+motif diamond, natural diamond, genuine diamond, Simulated Diamond, Stunning diamond, Sparkling diamond, Buy now, discounted Jewellery, mens Jewellery, Diamond accented, solitaire diamond, EXQUISITE jewellery, exceptional jewellery,, classic diamond, 
+mens Jewellery, womens Jewellery, branded Jewellery, rare jewellery, royal jewellery,
+womens Jewellery, princess cut, solid gold, pretty jewellery, gorgeous jewellery, estate Jewellery, Fabulous jewellery, online jewellery, Rose Gold, White Gold, Platinum, Gold, gemstone jewellery, International Jewellery, modern Jewellery, chic Jewellery, trendy Jewellery, Sexy Designs, Diamond Rings, Diamond Earrings, Diamond Pendants, Pendant sets, Solitaire rings, Solitaire Earrings, Diamond Bangles, Diamonds Necklace, precious Jewellery, Diamond Jewellery,  luxury Jewellery, luxury lifestyle, designer jewellery, Wedding jewellery, Diamond jewellery below 20000, High end diamond jewellery';
         include TEMPLATE . 'tandc.html';
         break;
     case 'privacy':
         $page = 'privacy';
          $title='Privacy Policy | Jzeva';
+          $keyword="Buy Jewellery online India,  Buy diamond jewellery online India,  diamond Jewellery,  white gold Jewellery,  fine Jewellery, fine ring, diamond ring, fine diamond necklace, fine pendants,  engagement ring, engagement band, eternity band, wedding band, wedding necklace, wedding party Jewellery, engagement Jewellery, cts, size, sz, 14kt, 18kt, 22kt, free shipping,  inspired, INDIAN HANDMADE, pave diamond, 
+motif diamond, natural diamond, genuine diamond, Simulated Diamond, Stunning diamond, Sparkling diamond, Buy now, discounted Jewellery, men's Jewellery, Diamond accented, solitaire diamond, EXQUISITE jewellery, exceptional jewellery,, classic diamond, 
+men's Jewellery, womens Jewellery, branded Jewellery, rare jewellery, royal jewellery,
+women's Jewellery, princess cut, solid gold, pretty jewellery, gorgeous jewellery, estate Jewellery, Fabulous jewellery, online jewellery, Rose Gold, White Gold, Platinum, Gold, gemstone jewellery, International Jewellery, modern Jewellery, chic Jewellery, trendy Jewellery, Sexy Designs, Diamond Rings, Diamond Earrings, Diamond Pendants, Pendant sets, Solitaire rings, Solitaire Earrings, Diamond Bangles, Diamonds Necklace, precious Jewellery, Diamond Jewellery,  luxury Jewellery, luxury lifestyle, designer jewellery, Wedding jewellery, Diamond jewellery below 20000, High end diamond jewellery";
         include TEMPLATE . 'privacy.html';
         break;
     case 'contact':
         $page = 'contact';
         $title='Contact Us | Jzeva';
+        $keyword="Buy Jewellery online India,  Buy diamond jewellery online India,  diamond Jewellery,  white gold Jewellery,  fine Jewellery, fine ring, diamond ring, fine diamond necklace, fine pendants,  engagement ring, engagement band, eternity band, wedding band, wedding necklace, wedding party Jewellery, engagement Jewellery, cts, size, sz, 14kt, 18kt, 22kt, free shipping,  inspired, INDIAN HANDMADE, pave diamond, 
+motif diamond, natural diamond, genuine diamond, Simulated Diamond, Stunning diamond, Sparkling diamond, Buy now, discounted Jewellery, men's Jewellery, Diamond accented, solitaire diamond, EXQUISITE jewellery, exceptional jewellery,, classic diamond, 
+men's Jewellery, womens Jewellery, branded Jewellery, rare jewellery, royal jewellery,
+women's Jewellery, princess cut, solid gold, pretty jewellery, gorgeous jewellery, estate Jewellery, Fabulous jewellery, online jewellery, Rose Gold, White Gold, Platinum, Gold, gemstone jewellery, International Jewellery, modern Jewellery, chic Jewellery, trendy Jewellery, Sexy Designs, Diamond Rings, Diamond Earrings, Diamond Pendants, Pendant sets, Solitaire rings, Solitaire Earrings, Diamond Bangles, Diamonds Necklace, precious Jewellery, Diamond Jewellery,  luxury Jewellery, luxury lifestyle, designer jewellery, Wedding jewellery, Diamond jewellery below 20000, High end diamond jewellery";
         include TEMPLATE . 'contact.html';
         break;
     case 'warranty':
         $page = 'warranty';
-        $title='Our Warranty And Repairs | Jzeva';
+        $title='Warranty and Repairs | Jzeva';
+        $keyword="Buy Jewellery online India,  Buy diamond jewellery online India,  diamond Jewellery,  white gold Jewellery,  fine Jewellery, fine ring, diamond ring, fine diamond necklace, fine pendants,  engagement ring, engagement band, eternity band, wedding band, wedding necklace, wedding party Jewellery, engagement Jewellery, cts, size, sz, 14kt, 18kt, 22kt, free shipping,  inspired, INDIAN HANDMADE, pave diamond, 
+motif diamond, natural diamond, genuine diamond, Simulated Diamond, Stunning diamond, Sparkling diamond, Buy now, discounted Jewellery, men's Jewellery, Diamond accented, solitaire diamond, EXQUISITE jewellery, exceptional jewellery,, classic diamond, 
+men's Jewellery, womens Jewellery, branded Jewellery, rare jewellery, royal jewellery,
+women's Jewellery, princess cut, solid gold, pretty jewellery, gorgeous jewellery, estate Jewellery, Fabulous jewellery, online jewellery, Rose Gold, White Gold, Platinum, Gold, gemstone jewellery, International Jewellery, modern Jewellery, chic Jewellery, trendy Jewellery, Sexy Designs, Diamond Rings, Diamond Earrings, Diamond Pendants, Pendant sets, Solitaire rings, Solitaire Earrings, Diamond Bangles, Diamonds Necklace, precious Jewellery, Diamond Jewellery,  luxury Jewellery, luxury lifestyle, designer jewellery, Wedding jewellery, Diamond jewellery below 20000, High end diamond jewellery";
         include TEMPLATE . 'warranty.html';
         break;
     case 'randc':
         $page = 'randc';
-        $title='Our Returns And Exchange Policy | Jzeva';
+        $title='Returns and Exchange | Jzeva';
+        $keywords=" Buy Jewellery online India,  Buy diamond jewellery online India,  diamond Jewellery,  white gold Jewellery,  fine Jewellery, fine ring, diamond ring, fine diamond necklace, fine pendants,  engagement ring, engagement band, eternity band, wedding band, wedding necklace, wedding party Jewellery, engagement Jewellery, cts, size, sz, 14kt, 18kt, 22kt, free shipping,  inspired, INDIAN HANDMADE, pave diamond, 
+motif diamond, natural diamond, genuine diamond, Simulated Diamond, Stunning diamond, Sparkling diamond, Buy now, discounted Jewellery, men's Jewellery, Diamond accented, solitaire diamond, EXQUISITE jewellery, exceptional jewellery,, classic diamond, 
+men's Jewellery, womens Jewellery, branded Jewellery, rare jewellery, royal jewellery,
+women's Jewellery, princess cut, solid gold, pretty jewellery, gorgeous jewellery, estate Jewellery, Fabulous jewellery, online jewellery, Rose Gold, White Gold, Platinum, Gold, gemstone jewellery, International Jewellery, modern Jewellery, chic Jewellery, trendy Jewellery, Sexy Designs, Diamond Rings, Diamond Earrings, Diamond Pendants, Pendant sets, Solitaire rings, Solitaire Earrings, Diamond Bangles, Diamonds Necklace, precious Jewellery, Diamond Jewellery,  luxury Jewellery, luxury lifestyle, designer jewellery, Wedding jewellery, Diamond jewellery below 20000, High end diamond jewellery";
         include TEMPLATE . 'randc.html';
         break;
     case 'diamondguide':
         $page = 'diamondguide';
-        $title='Have a Look on Diamond Guide | Jzeva';
+        $title='Diamond Guide | Jzeva';
         $desc="Learn about the Diamond Quality,Diamond Colour,Diamond Cut and Carat.";
+        $keyword="Buy Jewellery online India,  Buy diamond jewellery online India,  diamond Jewellery,  white gold Jewellery,  fine Jewellery, fine ring, diamond ring, fine diamond necklace, fine pendants,  engagement ring, engagement band, eternity band, wedding band, wedding necklace, wedding party Jewellery, engagement Jewellery, cts, size, sz, 14kt, 18kt, 22kt, free shipping,  inspired, INDIAN HANDMADE, pave diamond, 
+motif diamond, natural diamond, genuine diamond, Simulated Diamond, Stunning diamond, Sparkling diamond, Buy now, discounted Jewellery, men's Jewellery, Diamond accented, solitaire diamond, EXQUISITE jewellery, exceptional jewellery,, classic diamond, 
+men's Jewellery, womens Jewellery, branded Jewellery, rare jewellery, royal jewellery,
+women's Jewellery, princess cut, solid gold, pretty jewellery, gorgeous jewellery, estate Jewellery, Fabulous jewellery, online jewellery, Rose Gold, White Gold, Platinum, Gold, gemstone jewellery, International Jewellery, modern Jewellery, chic Jewellery, trendy Jewellery, Sexy Designs, Diamond Rings, Diamond Earrings, Diamond Pendants, Pendant sets, Solitaire rings, Solitaire Earrings, Diamond Bangles, Diamonds Necklace, precious Jewellery, Diamond Jewellery,  luxury Jewellery, luxury lifestyle, designer jewellery, Wedding jewellery, Diamond jewellery below 20000, High end diamond jewellery";
         $descp= trim(preg_replace('/\s\s+/', ' ', $desc));
 
         include TEMPLATE . 'diamondguide.html';
         break;
     case 'preciousmetalguide':
         $page = 'preciousmetalguide';
-        $title='Precious Metal Guide | Jzeva';
+        $title='Precious Metal | Jzeva';
         $desc=" Learn how to clean precious jewellery, how to care diamond & gemstone jewellery";
         $descp= trim(preg_replace('/\s\s+/', ' ', $desc));
+        $keywords="Buy Jewellery online India,  Buy diamond jewellery online India,  diamond Jewellery,  white gold Jewellery,  fine Jewellery, fine ring, diamond ring, fine diamond necklace, fine pendants,  engagement ring, engagement band, eternity band, wedding band, wedding necklace, wedding party Jewellery, engagement Jewellery, cts, size, sz, 14kt, 18kt, 22kt, free shipping,  inspired, INDIAN HANDMADE, pave diamond, 
+motif diamond, natural diamond, genuine diamond, Simulated Diamond, Stunning diamond, Sparkling diamond, Buy now, discounted Jewellery, men's Jewellery, Diamond accented, solitaire diamond, EXQUISITE jewellery, exceptional jewellery,, classic diamond, 
+men's Jewellery, womens Jewellery, branded Jewellery, rare jewellery, royal jewellery,
+women's Jewellery, princess cut, solid gold, pretty jewellery, gorgeous jewellery, estate Jewellery, Fabulous jewellery, online jewellery, Rose Gold, White Gold, Platinum, Gold, gemstone jewellery, International Jewellery, modern Jewellery, chic Jewellery, trendy Jewellery, Sexy Designs, Diamond Rings, Diamond Earrings, Diamond Pendants, Pendant sets, Solitaire rings, Solitaire Earrings, Diamond Bangles, Diamonds Necklace, precious Jewellery, Diamond Jewellery,  luxury Jewellery, luxury lifestyle, designer jewellery, Wedding jewellery, Diamond jewellery below 20000, High end diamond jewellery";
         include TEMPLATE . 'preciousmetalguide.html';
         break;
+    
     case 'jewellerycare':
         $page = 'jewellerycare';
-        $title='Learn to Care Your Jewellery | Jzeva';
+        $title='Jewellery Care | Jzeva';
         $desc=" Learn how to clean precious jewellery, how to care diamond & gemstone jewellery";
         $descp= trim(preg_replace('/\s\s+/', ' ', $desc));
-
+        $keyword="Buy Jewellery online India,  Buy diamond jewellery online India,  diamond Jewellery,  white gold Jewellery,  fine Jewellery, fine ring, diamond ring, fine diamond necklace, fine pendants,  engagement ring, engagement band, eternity band, wedding band, wedding necklace, wedding party Jewellery, engagement Jewellery, cts, size, sz, 14kt, 18kt, 22kt, free shipping,  inspired, INDIAN HANDMADE, pave diamond, 
+motif diamond, natural diamond, genuine diamond, Simulated Diamond, Stunning diamond, Sparkling diamond, Buy now, discounted Jewellery, men's Jewellery, Diamond accented, solitaire diamond, EXQUISITE jewellery, exceptional jewellery,, classic diamond, 
+men's Jewellery, womens Jewellery, branded Jewellery, rare jewellery, royal jewellery,
+women's Jewellery, princess cut, solid gold, pretty jewellery, gorgeous jewellery, estate Jewellery, Fabulous jewellery, online jewellery, Rose Gold, White Gold, Platinum, Gold, gemstone jewellery, International Jewellery, modern Jewellery, chic Jewellery, trendy Jewellery, Sexy Designs, Diamond Rings, Diamond Earrings, Diamond Pendants, Pendant sets, Solitaire rings, Solitaire Earrings, Diamond Bangles, Diamonds Necklace, precious Jewellery, Diamond Jewellery,  luxury Jewellery, luxury lifestyle, designer jewellery, Wedding jewellery, Diamond jewellery below 20000, High end diamond jewellery";
         include TEMPLATE . 'jewellerycare.html';
         break;
     case 'responsiblef':
         $page = 'responsiblef';
-        $title=' Our Jewellery hasn’t caused any Violations to Human-Rights or the Environment. | Jzeva';
+        $title=' Responisble Fashion | Jzeva';
+        $keywords="Buy Jewellery online India,  Buy diamond jewellery online India,  diamond Jewellery,  white gold Jewellery,  fine Jewellery, fine ring, diamond ring, fine diamond necklace, fine pendants,  engagement ring, engagement band, eternity band, wedding band, wedding necklace, wedding party Jewellery, engagement Jewellery, cts, size, sz, 14kt, 18kt, 22kt, free shipping,  inspired, INDIAN HANDMADE, pave diamond, 
+motif diamond, natural diamond, genuine diamond, Simulated Diamond, Stunning diamond, Sparkling diamond, Buy now, discounted Jewellery, men's Jewellery, Diamond accented, solitaire diamond, EXQUISITE jewellery, exceptional jewellery,, classic diamond, 
+men's Jewellery, womens Jewellery, branded Jewellery, rare jewellery, royal jewellery,
+women's Jewellery, princess cut, solid gold, pretty jewellery, gorgeous jewellery, estate Jewellery, Fabulous jewellery, online jewellery, Rose Gold, White Gold, Platinum, Gold, gemstone jewellery, International Jewellery, modern Jewellery, chic Jewellery, trendy Jewellery, Sexy Designs, Diamond Rings, Diamond Earrings, Diamond Pendants, Pendant sets, Solitaire rings, Solitaire Earrings, Diamond Bangles, Diamonds Necklace, precious Jewellery, Diamond Jewellery,  luxury Jewellery, luxury lifestyle, designer jewellery, Wedding jewellery, Diamond jewellery below 20000, High end diamond jewellery";
         include TEMPLATE . 'responsiblef.html';
         break;
 //    case 'gemstoneguide':
@@ -248,12 +298,20 @@ switch ($action) {
 //        break;
     case 'faq':
         $page = 'faq';
-         $title='Frequently Asked Questions | Jzeva';
+         $title="FAQ's | Jzeva";
+         $keyword="Buy Jewellery online India,  Buy diamond jewellery online India,  diamond Jewellery,  white gold Jewellery,  fine Jewellery, fine ring, diamond ring, fine diamond necklace, fine pendants,  engagement ring, engagement band, eternity band, wedding band, wedding necklace, wedding party Jewellery, engagement Jewellery, cts, size, sz, 14kt, 18kt, 22kt, free shipping,  inspired, INDIAN HANDMADE, pave diamond, 
+motif diamond, natural diamond, genuine diamond, Simulated Diamond, Stunning diamond, Sparkling diamond, Buy now, discounted Jewellery, men's Jewellery, Diamond accented, solitaire diamond, EXQUISITE jewellery, exceptional jewellery,, classic diamond, 
+men's Jewellery, womens Jewellery, branded Jewellery, rare jewellery, royal jewellery,
+women's Jewellery, princess cut, solid gold, pretty jewellery, gorgeous jewellery, estate Jewellery, Fabulous jewellery, online jewellery, Rose Gold, White Gold, Platinum, Gold, gemstone jewellery, International Jewellery, modern Jewellery, chic Jewellery, trendy Jewellery, Sexy Designs, Diamond Rings, Diamond Earrings, Diamond Pendants, Pendant sets, Solitaire rings, Solitaire Earrings, Diamond Bangles, Diamonds Necklace, precious Jewellery, Diamond Jewellery,  luxury Jewellery, luxury lifestyle, designer jewellery, Wedding jewellery, Diamond jewellery below 20000, High end diamond jewellery";
         include TEMPLATE . 'faq.html';
         break;
     case 'sizeguide':
         $page = 'sizeguide';
-        $title="Look Your Ring Size - Rings Guide";
+        $title="Ring Sizing Guide | Jzeva";
+        $keywords="Buy Jewellery online India,  Buy diamond jewellery online India,  diamond Jewellery,  white gold Jewellery,  fine Jewellery, fine ring, diamond ring, fine diamond necklace, fine pendants,  engagement ring, engagement band, eternity band, wedding band, wedding necklace, wedding party Jewellery, engagement Jewellery, cts, size, sz, 14kt, 18kt, 22kt, free shipping,  inspired, INDIAN HANDMADE, pave diamond, 
+motif diamond, natural diamond, genuine diamond, Simulated Diamond, Stunning diamond, Sparkling diamond, Buy now, discounted Jewellery, men's Jewellery, Diamond accented, solitaire diamond, EXQUISITE jewellery, exceptional jewellery,, classic diamond, 
+men's Jewellery, womens Jewellery, branded Jewellery, rare jewellery, royal jewellery,
+women's Jewellery, princess cut, solid gold, pretty jewellery, gorgeous jewellery, estate Jewellery, Fabulous jewellery, online jewellery, Rose Gold, White Gold, Platinum, Gold, gemstone jewellery, International Jewellery, modern Jewellery, chic Jewellery, trendy Jewellery, Sexy Designs, Diamond Rings, Diamond Earrings, Diamond Pendants, Pendant sets, Solitaire rings, Solitaire Earrings, Diamond Bangles, Diamonds Necklace, precious Jewellery, Diamond Jewellery,  luxury Jewellery, luxury lifestyle, designer jewellery, Wedding jewellery, Diamond jewellery below 20000, High end diamond jewellery";
         include TEMPLATE . 'sizeguide.html';
         break;
     case 'myaccount':
@@ -264,17 +322,29 @@ switch ($action) {
         break;
     case 'shipping':
         $page = 'shipping';
-        $title='Shipping Details | Jzeva';
+        $title='Shipping | Jzeva';
+        $keywords="Buy Jewellery online India,  Buy diamond jewellery online India,  diamond Jewellery,  white gold Jewellery,  fine Jewellery, fine ring, diamond ring, fine diamond necklace, fine pendants,  engagement ring, engagement band, eternity band, wedding band, wedding necklace, wedding party Jewellery, engagement Jewellery, cts, size, sz, 14kt, 18kt, 22kt, free shipping,  inspired, INDIAN HANDMADE, pave diamond, 
+motif diamond, natural diamond, genuine diamond, Simulated Diamond, Stunning diamond, Sparkling diamond, Buy now, discounted Jewellery, men's Jewellery, Diamond accented, solitaire diamond, EXQUISITE jewellery, exceptional jewellery,, classic diamond, 
+men's Jewellery, womens Jewellery, branded Jewellery, rare jewellery, royal jewellery,
+women's Jewellery, princess cut, solid gold, pretty jewellery, gorgeous jewellery, estate Jewellery, Fabulous jewellery, online jewellery, Rose Gold, White Gold, Platinum, Gold, gemstone jewellery, International Jewellery, modern Jewellery, chic Jewellery, trendy Jewellery, Sexy Designs, Diamond Rings, Diamond Earrings, Diamond Pendants, Pendant sets, Solitaire rings, Solitaire Earrings, Diamond Bangles, Diamonds Necklace, precious Jewellery, Diamond Jewellery,  luxury Jewellery, luxury lifestyle, designer jewellery, Wedding jewellery, Diamond jewellery below 20000, High end diamond jewellery";
         include TEMPLATE . 'shipping.html';
         break;
     case 'bangleguide':
         $page = 'bangleguide';
-        $title='Look Your Bangle Size - Bangles Guide';
+        $title='Bangle Sizing Guide | Jzeva';
+        $keywords="Buy Jewellery online India,  Buy diamond jewellery online India,  diamond Jewellery,  white gold Jewellery,  fine Jewellery, fine ring, diamond ring, fine diamond necklace, fine pendants,  engagement ring, engagement band, eternity band, wedding band, wedding necklace, wedding party Jewellery, engagement Jewellery, cts, size, sz, 14kt, 18kt, 22kt, free shipping,  inspired, INDIAN HANDMADE, pave diamond, 
+motif diamond, natural diamond, genuine diamond, Simulated Diamond, Stunning diamond, Sparkling diamond, Buy now, discounted Jewellery, men's Jewellery, Diamond accented, solitaire diamond, EXQUISITE jewellery, exceptional jewellery,, classic diamond, 
+men's Jewellery, womens Jewellery, branded Jewellery, rare jewellery, royal jewellery,
+women's Jewellery, princess cut, solid gold, pretty jewellery, gorgeous jewellery, estate Jewellery, Fabulous jewellery, online jewellery, Rose Gold, White Gold, Platinum, Gold, gemstone jewellery, International Jewellery, modern Jewellery, chic Jewellery, trendy Jewellery, Sexy Designs, Diamond Rings, Diamond Earrings, Diamond Pendants, Pendant sets, Solitaire rings, Solitaire Earrings, Diamond Bangles, Diamonds Necklace, precious Jewellery, Diamond Jewellery,  luxury Jewellery, luxury lifestyle, designer jewellery, Wedding jewellery, Diamond jewellery below 20000, High end diamond jewellery";
         include TEMPLATE . 'bangleguide.html';
         break;
     case 'conciergeServices':
         $page = 'conciergeServices';
-        $title='Concierge Services | Jzeva';
+        $title='Conceirge Services | Jzeva';
+        $keywords="Buy Jewellery online India,  Buy diamond jewellery online India,  diamond Jewellery,  white gold Jewellery,  fine Jewellery, fine ring, diamond ring, fine diamond necklace, fine pendants,  engagement ring, engagement band, eternity band, wedding band, wedding necklace, wedding party Jewellery, engagement Jewellery, cts, size, sz, 14kt, 18kt, 22kt, free shipping,  inspired, INDIAN HANDMADE, pave diamond, 
+motif diamond, natural diamond, genuine diamond, Simulated Diamond, Stunning diamond, Sparkling diamond, Buy now, discounted Jewellery, men's Jewellery, Diamond accented, solitaire diamond, EXQUISITE jewellery, exceptional jewellery,, classic diamond, 
+men's Jewellery, womens Jewellery, branded Jewellery, rare jewellery, royal jewellery,
+women's Jewellery, princess cut, solid gold, pretty jewellery, gorgeous jewellery, estate Jewellery, Fabulous jewellery, online jewellery, Rose Gold, White Gold, Platinum, Gold, gemstone jewellery, International Jewellery, modern Jewellery, chic Jewellery, trendy Jewellery, Sexy Designs, Diamond Rings, Diamond Earrings, Diamond Pendants, Pendant sets, Solitaire rings, Solitaire Earrings, Diamond Bangles, Diamonds Necklace, precious Jewellery, Diamond Jewellery,  luxury Jewellery, luxury lifestyle, designer jewellery, Wedding jewellery, Diamond jewellery below 20000, High end diamond jewellery";
         include TEMPLATE . 'conciergeServices.html';
         break;
     case 'gemstonenew':
@@ -287,26 +357,41 @@ switch ($action) {
         break;
     case 'ourPromise':
         $page = 'ourPromise';
-        $title='Our Promise to the Customers | Jzeva';
+        $title='Our Promise | Jzeva';
+        $keywords="Buy Jewellery online India,  Buy diamond jewellery online India,  diamond Jewellery,  white gold Jewellery,  fine Jewellery, fine ring, diamond ring, fine diamond necklace, fine pendants,  engagement ring, engagement band, eternity band, wedding band, wedding necklace, wedding party Jewellery, engagement Jewellery, cts, size, sz, 14kt, 18kt, 22kt, free shipping,  inspired, INDIAN HANDMADE, pave diamond, 
+motif diamond, natural diamond, genuine diamond, Simulated Diamond, Stunning diamond, Sparkling diamond, Buy now, discounted Jewellery, men's Jewellery, Diamond accented, solitaire diamond, EXQUISITE jewellery, exceptional jewellery,, classic diamond, 
+men's Jewellery, womens Jewellery, branded Jewellery, rare jewellery, royal jewellery,
+women's Jewellery, princess cut, solid gold, pretty jewellery, gorgeous jewellery, estate Jewellery, Fabulous jewellery, online jewellery, Rose Gold, White Gold, Platinum, Gold, gemstone jewellery, International Jewellery, modern Jewellery, chic Jewellery, trendy Jewellery, Sexy Designs, Diamond Rings, Diamond Earrings, Diamond Pendants, Pendant sets, Solitaire rings, Solitaire Earrings, Diamond Bangles, Diamonds Necklace, precious Jewellery, Diamond Jewellery,  luxury Jewellery, luxury lifestyle, designer jewellery, Wedding jewellery, Diamond jewellery below 20000, High end diamond jewellery";
         include TEMPLATE . 'ourPromise.html';
         break;
     case 'ourStory':
         $page = 'ourStory';
-        $title='Our Story Behind Our Jewellery| Jzeva';
+        $title='Our Story | Jzeva';
+        $keywords="Buy Jewellery online India,  Buy diamond jewellery online India,  diamond Jewellery,  white gold Jewellery,  fine Jewellery, fine ring, diamond ring, fine diamond necklace, fine pendants,  engagement ring, engagement band, eternity band, wedding band, wedding necklace, wedding party Jewellery, engagement Jewellery, cts, size, sz, 14kt, 18kt, 22kt, free shipping,  inspired, INDIAN HANDMADE, pave diamond, 
+motif diamond, natural diamond, genuine diamond, Simulated Diamond, Stunning diamond, Sparkling diamond, Buy now, discounted Jewellery, men's Jewellery, Diamond accented, solitaire diamond, EXQUISITE jewellery, exceptional jewellery,, classic diamond, 
+men's Jewellery, womens Jewellery, branded Jewellery, rare jewellery, royal jewellery,
+women's Jewellery, princess cut, solid gold, pretty jewellery, gorgeous jewellery, estate Jewellery, Fabulous jewellery, online jewellery, Rose Gold, White Gold, Platinum, Gold, gemstone jewellery, International Jewellery, modern Jewellery, chic Jewellery, trendy Jewellery, Sexy Designs, Diamond Rings, Diamond Earrings, Diamond Pendants, Pendant sets, Solitaire rings, Solitaire Earrings, Diamond Bangles, Diamonds Necklace, precious Jewellery, Diamond Jewellery,  luxury Jewellery, luxury lifestyle, designer jewellery, Wedding jewellery, Diamond jewellery below 20000, High end diamond jewellery";
         include TEMPLATE . 'ourStory.html';
         break;
     case 'craftsmanship':
         $page = 'craftsmanship';
-        $title='Craftmanship | Jzeva';
+        $title='Craftsmanship | Jzeva';
+        $keywords="Buy Jewellery online India,  Buy diamond jewellery online India,  diamond Jewellery,  white gold Jewellery,  fine Jewellery, fine ring, diamond ring, fine diamond necklace, fine pendants,  engagement ring, engagement band, eternity band, wedding band, wedding necklace, wedding party Jewellery, engagement Jewellery, cts, size, sz, 14kt, 18kt, 22kt, free shipping,  inspired, INDIAN HANDMADE, pave diamond, 
+motif diamond, natural diamond, genuine diamond, Simulated Diamond, Stunning diamond, Sparkling diamond, Buy now, discounted Jewellery, men's Jewellery, Diamond accented, solitaire diamond, EXQUISITE jewellery, exceptional jewellery,, classic diamond, 
+men's Jewellery, womens Jewellery, branded Jewellery, rare jewellery, royal jewellery,
+women's Jewellery, princess cut, solid gold, pretty jewellery, gorgeous jewellery, estate Jewellery, Fabulous jewellery, online jewellery, Rose Gold, White Gold, Platinum, Gold, gemstone jewellery, International Jewellery, modern Jewellery, chic Jewellery, trendy Jewellery, Sexy Designs, Diamond Rings, Diamond Earrings, Diamond Pendants, Pendant sets, Solitaire rings, Solitaire Earrings, Diamond Bangles, Diamonds Necklace, precious Jewellery, Diamond Jewellery,  luxury Jewellery, luxury lifestyle, designer jewellery, Wedding jewellery, Diamond jewellery below 20000, High end diamond jewellery";
         include TEMPLATE . 'craftsmanship.html';
         break;
   
     case 'gemstoneGuideNew':
         $page = 'gemstoneGuideNew';
-        $title='Have a Look on Gemstone Guide | Jzeva';
+        $title='Gemstone Guide | Jzeva';
          $desc="Buy Gemstone studded Jewellery";
         $descp= trim(preg_replace('/\s\s+/', ' ', $desc));
-        $keywords="Ruby,Emerald,Amber,Pearl,Amethyst,Sapphire,Blue-Topaz,Red-Coral,Moonstone,Aquamarine,Tanzanite,Jade";
+        $keywords="Buy Jewellery online India,  Buy diamond jewellery online India,  diamond Jewellery,  white gold Jewellery,  fine Jewellery, fine ring, diamond ring, fine diamond necklace, fine pendants,  engagement ring, engagement band, eternity band, wedding band, wedding necklace, wedding party Jewellery, engagement Jewellery, cts, size, sz, 14kt, 18kt, 22kt, free shipping,  inspired, INDIAN HANDMADE, pave diamond, 
+motif diamond, natural diamond, genuine diamond, Simulated Diamond, Stunning diamond, Sparkling diamond, Buy now, discounted Jewellery, men's Jewellery, Diamond accented, solitaire diamond, EXQUISITE jewellery, exceptional jewellery,, classic diamond, 
+men's Jewellery, womens Jewellery, branded Jewellery, rare jewellery, royal jewellery,
+women's Jewellery, princess cut, solid gold, pretty jewellery, gorgeous jewellery, estate Jewellery, Fabulous jewellery, online jewellery, Rose Gold, White Gold, Platinum, Gold, gemstone jewellery, International Jewellery, modern Jewellery, chic Jewellery, trendy Jewellery, Sexy Designs, Diamond Rings, Diamond Earrings, Diamond Pendants, Pendant sets, Solitaire rings, Solitaire Earrings, Diamond Bangles, Diamonds Necklace, precious Jewellery, Diamond Jewellery,  luxury Jewellery, luxury lifestyle, designer jewellery, Wedding jewellery, Diamond jewellery below 20000, High end diamond jewellery";
       
         include TEMPLATE . 'gemstoneGuideNew.html';
         break;
@@ -389,8 +474,8 @@ switch ($action) {
 
      case 'bespoke':
         $page = 'bespoke';
-        $title='Bespoke Designer Jewellery | Jzeva';
-       
+        $title='Customised Jewellery - Bespoke Designer Jewellery | Jzeva';
+        $keyword="Customised Jewellery, desinger, bespoke jewellery, make your own jewellery, personalised jewellery, custom jewellery, made to order, design your own jewellery, wedding jewellery";
         include TEMPLATE . 'bespoke.html';
         break;
 
