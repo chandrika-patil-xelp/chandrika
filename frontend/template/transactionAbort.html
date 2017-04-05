@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php include 'jhead.html' ?>
 <script>  var orderid = "<?php echo $_GET['ordid'];  ?>";</script>
-<body class="greyBg">
+<body class="greyBg trans_failed">
     <?php include 'Cart.html'?>
 
     <div class="cartPopup dn" id="cartpID">
@@ -16,13 +16,20 @@
         </div>
     </div>
     <div class="chkoutHeader">
-        <div class="logo fLeft"></div>
-        <div class="fLeft callUs">Got Question? call us on 7022248707</div>
-        <div class="payOption fRight">
-            <div class="col50 pay certiIc fRight">certified jewellery</div>
-            <div class="col50 pay lifeIc fRight">Life time exchange</div>
-            <div class="col50 pay secureIc fRight">secure payements</div>
-        </div>
+        <div class="wrapper_max">
+            <div class="logo fLeft"></div>
+            <a class="logoA" href="<?php echo DOMAIN ?>"><div class="mlogoHeader"></div></a>
+            <div class="fLeft callUs">Got Question? call us on 7022248707</div>
+            <div class="payOption fRight">
+                <div class="col50 pay certiIc fRight">certified jewellery</div>
+                <div class="col50 pay lifeIc fRight">Life time exchange</div>
+                <div class="col50 pay secureIc fRight">secure payements</div>
+            </div>
+        </div>    
+    </div>
+    <div class="checkoutheader_mobile fLeft">
+        <div class="actBtn button fLeft" id="abort_details">DETAILS</div>
+        <div class="actBtn button fLeft" id="abort_cart">CART</div>
     </div>
     <div class="wrapper_main fLeft CHECKOUT_PAGE checkoutafter">
         <div class="wrapper chkout">
@@ -54,6 +61,15 @@
                                     </div>
                                 </center>
                             </div>
+                            <div class="mob_icondiv fLeft">
+                                <div class="payOption fLeft">
+                                    <center>
+                                    <div class="col50 pay secureIc">secure payements</div> 
+                                    <div class="col50 pay lifeIc">Life time exchange</div>
+                                    <div class="col50 pay certiIc">certified jewellery</div>
+                                    </center>
+                                </div>
+                            </div>   
                         </div>
                         <!--//black side cont-->
                         <div class="colleCont v2 black">
@@ -96,9 +112,10 @@
                     </div>
                 </div>
             </div>
+            <?php include 'footer.html'?>
         </div>
     </div>
-   <div class="checkFoo fLeft">
+<!--   <div class="checkFoo fLeft">
          <div class="cartBox fLeft pad25">
                 <div class="cartHd helpIc fLeft"></div>
                 <div class="cartTxt font12 fLeft">Need help ?</div>
@@ -129,7 +146,7 @@
                 <div class="pad0  infoTxt font11 fLeft">free rapid and secure delivery</div>
                 <div class="infoTxt font11 jzevaColor fLeft">2 YEARS WARRANTY ON ALL PRODUCTS</div>
             </div>
-<!--        <center>
+        <center>
             <div class="col100">
                 <img src="frontend/tools/img/icons/10.jpg" alt="no-image">
                 <img src="frontend/tools/img/icons/02.jpg" alt="no-image">
@@ -137,8 +154,8 @@
                 <img src="frontend/tools/img/icons/04.jpg" alt="no-image">
                 <img src="frontend/tools/img/icons/05.jpg" alt="no-image">
             </div>
-        </center>-->
-    </div>
+        </center>
+    </div>-->
 
     <script type="text/javascript" src="<?php echo $jvs['checkoutafter']; ?>"></script>
     <script type="text/javascript" src="<?php echo $fjvs['Common']; ?>"></script>
@@ -350,7 +367,14 @@
         }
     });
 
-
-
+//mobile tabs
+$('#abort_details').click(function () {
+    $('#addOpt').css({"display":"block"});
+    $('.colleCont.v2.black').css({"display":"none"});
+});
+$('#abort_cart').click(function () {
+     $('.colleCont.v2.black').css({"display":"block"});
+    $('#addOpt').css({"display":"none"});
+});
 
     </script>
