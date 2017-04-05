@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php include 'jhead.html' ?>
 
-<body class="greyBg">
+<body class="greyBg trans_failed">
     <?php include 'Cart.html'?>
 
     <div class="cartPopup dn" id="cartpID">
@@ -18,6 +18,7 @@
     <div class="chkoutHeader poR">
           <div class="wrapper_max">
             <div class="logo fLeft" id="jzevalog"></div>
+            <a class="logoA" href="<?php echo DOMAIN ?>"><div class="mlogoHeader"></div></a>
             <div class="fLeft callUs">Got Question? call us on 9880824707</div>
             <div class="payOption fRight">
                 <div class="col50 pay certiIc fRight">certified jewellery</div>
@@ -26,6 +27,10 @@
                 <div class="payHelp fRight dn">Need Help?</div>
             </div>
         </div>
+    </div>
+    <div class="checkoutheader_mobile fLeft">
+        <div class="actBtn button fLeft" id="failed_details">DETAILS</div>
+        <div class="actBtn button fLeft" id="failed_cart">CART</div>
     </div>
     <div class="wrapper_main fLeft CHECKOUT_PAGE checkoutafter">
         <div class="wrapper chkout">
@@ -56,8 +61,18 @@
                                             <div class="col50 fRight txt_left btnFill"><div class="actBtn button margL20" id="tryagn">try again</div></div>
                                         </center>
                                     </div>
+                                    
                                 </center>
                             </div>
+                            <div class="mob_icondiv fLeft">
+                                <div class="payOption fLeft">
+                                    <center>
+                                    <div class="col50 pay secureIc">secure payements</div> 
+                                    <div class="col50 pay lifeIc">Life time exchange</div>
+                                    <div class="col50 pay certiIc">certified jewellery</div>
+                                    </center>
+                                </div>
+                            </div>   
                         </div>
                         <!--//black side cont-->
 
@@ -331,7 +346,15 @@
         }
     });
 
-
+//mobile tabs
+$('#failed_details').click(function () {
+    $('#addOpt').css({"display":"block"});
+    $('.colleCont.v2.black').css({"display":"none"});
+});
+$('#failed_cart').click(function () {
+     $('.colleCont.v2.black').css({"display":"block"});
+    $('#addOpt').css({"display":"none"});
+});
 
 
     </script>
