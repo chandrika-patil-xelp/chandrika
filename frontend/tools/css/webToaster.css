@@ -213,9 +213,11 @@ button.toast-close-button {
         right: -.2em;
         top: -.2em
     }
-    #toast-container>.toast-error{width:100%;top:0;}
-    #toast-container>.toast-info{width:100%;top:0;}
-    #toast-container{top: 0;}
+    #toast-container>.toast-error{width:100%;top:0;height: auto;}
+    #toast-container>.toast-info{width:100%;top:0;height: auto;}
+    #toast-container{top:0;height: auto;}
+    #toast-container .toast-message{background-size: auto 25px;
+    background-position: right -3px;padding: 0px 25px 0px 0px;}
 
 }
 @media all and (min-width: 481px) and (max-width: 768px) {
@@ -223,8 +225,19 @@ button.toast-close-button {
         padding: 13px 8px 14px 40px;
         width: 25em
     }
-    #toast-container>.toast-error{width:100%;top:0;}
-    #toast-container>.toast-toast-info{width:100%;top:0;}
-    #toast-container{top: 0;}
-
+     #toast-container .toast-close-button {
+        right: -.2em;
+        top: -.2em
+    }
+    #toast-container>.toast-error{width:100%;top:0;height: auto;}
+    #toast-container>.toast-info{width:100%;top:0;height: auto;}
+    #toast-container{top:0;height: auto;}
+    #toast-container .toast-message{background-size: auto 25px;
+    background-position: right -3px;padding: 0px 25px 0px 0px;}
+    
+/*    #toast-container>.toast-error{width:100%;top:0;}
+    #toast-container>.toast-toast-info{width: 100%;height:50px;line-height: 25px;top: 0;}
+    #toast-container{height: 50px;top: 0px;}
+    #toast-container .toast-message{background-size: auto 25px;
+    background-position: right -3px;padding: 0px 25px 0px 0px;}*/
 }
