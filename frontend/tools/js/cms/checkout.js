@@ -71,7 +71,7 @@ function displaycartdetail()
             if (gblcheckodata == null)
 	    {
 	      setTimeout(function(){
-                $('#all_submt').addClass('dn');
+                $('#all_submt,#all_submtNew').addClass('dn');
                 $("#noprdcrd").removeClass("dn");
                 $('#totlitem_chkout').addClass('dn');
 		$('#totprz_chkout').removeClass('cartRupee');
@@ -80,7 +80,7 @@ function displaycartdetail()
 	    else
 	    {
 		setTimeout(function(){
-		  $('#all_submt').removeClass('dn');
+		  $('#all_submt,#all_submtNew').removeClass('dn');
 		  $("#noprdcrd").addClass("dn");
 		  $('#totlitem_chkout').removeClass('dn');
 		},1000);
