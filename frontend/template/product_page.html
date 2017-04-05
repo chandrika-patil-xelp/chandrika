@@ -1,6 +1,6 @@
 <?php include 'jhead.html'?>
 
-<body class="greyBg blackHead">
+<body class="greyBg blackHead prodPg">
     <script>
         var pid = "<?php echo $_GET['pid'];  ?>";
     </script>
@@ -15,7 +15,7 @@
         <?php include 'mheader.html' ?>
         <div class="swipe fLeft" id="lftt"></div>
         <div class="mdiv360"></div>
-        <div class="likeD"></div>
+        <div class="likeD" onclick="makeAwish(this, event)"></div>
         <div class="wrapper" id="wrapper">
             <div class="wrapper_max">
                 <div class="container poR">
@@ -287,12 +287,12 @@
 
 
         <?php include 'footer.html'?>
-        <div class="mBtns dn">
+        <div class="mBtns transition600">
             <div class="col50 fLeft  padXr5">
-                <div class="actBtn  fLeft bolder pad10 " id="add_to_cart">ADD TO CART</div>
+                <div class="actBtn txtCenter  bolder " id="add_to_cart">ADD TO CART</div>
             </div>
             <div class="col50 fLeft  padX15">
-                <div class="actBtn  fRight bolder pad10 " id="buynow">buy now</div>
+                <div class="actBtn  txtCenter bolder  " id="buynow">buy now</div>
             </div>
         </div>
     </div>
@@ -312,11 +312,12 @@
 
             $(window).scroll(function () {
             var win = $(window).scrollTop();
-            
-            if (win >= 200) {
-                $('.mBtns').removeClass('dn');
-            } else if (win < 200) {
-                $('.mBtns').addClass('dn');
+            if (win >= 300) {
+                console.log("if");
+                $('.mBtns').addClass('dMbtn');
+            } else if (win < 300) {
+                console.log("else");
+                $('.mBtns').removeClass('dMbtn');
             }
         });
 
