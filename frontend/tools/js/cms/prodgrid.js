@@ -299,8 +299,10 @@ var prodNSplt=''+ obj['prdNm'] +'';
       prodNSplt=prodNSplt.replace(/\b[a-z]/g, function(letter){
            return letter.toUpperCase();
       });
-      prodNSplt=prodNSplt.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-');
 
+      //prodNSplt=prodNSplt.replace(/[^a-z0-9\s]/gi, ''); 
+      prodNSplt=prodNSplt.replace(/[_\s]/g, '-');
+  
       var prodNSplts='Product-Details/'+prodNSplt+'-'+ obj['jwelType']+''+'/pid-'+obj['prdId'];
 
     proStr += '<div class="grid3 transition400" id="' + obj['prdId'] + '"  >';
@@ -553,7 +555,7 @@ var prodNSplt=''+ obj['prdNm'] +'';
 }
 
 
-function custmz(ths){
+function custmz(ths){  
  var lnk =$(ths).attr('data-for');
     window.open(DOMAIN+'' + lnk+'');
 }

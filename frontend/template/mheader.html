@@ -1,4 +1,11 @@
 
+<script> 
+    var DOMAIN = '<?php echo DOMAIN?>';
+    var APIDOMAIN = '<?php echo APIDOMAIN?>';
+    var IMGDOMAIN = '<?php echo IMGDOMAIN ?>';
+    var page = '<?php echo $page?>';
+
+</script>
 <div class="mheader">
     <div class="menuLHeader fLeft"></div>
     <a class="logoA" href="<?php echo DOMAIN ?>"><div class="mlogoHeader"></div></a>
@@ -10,7 +17,7 @@
     <div class="menuWrapper">
         <div class="div100 fLeft" id="menudivCont">
             <div class="asa fLeft open">
-                <div class="sideNav_tab inMheader" id="fnJwl">
+<!--                <div class="sideNav_tab inMheader" id="fnJwl">
                     FINE JEWELLERY
                 </div>
                 <div class="collap fLeft">
@@ -29,7 +36,7 @@
                     <div class="meucot fLeft">
                         PENDANTS
                     </div>
-                </div>
+                </div>-->
             </div>
             <a href='<?php echo DOMAIN?>index.php?action=bespoke'><div class="sideNav_tab">
                     <div class="asa fLeft">
@@ -38,11 +45,11 @@
                     </div>
                 </div></a>
 
-            <div class="asa fLeft">
+<!--            <div class="asa fLeft">
                 <div class="sideNav_tab">
                     SIGNATURE
                 </div>
-            </div>
+            </div>-->
             <div class="asa fLeft">
                 <div class="sideNav_tab inMheader" id="educ">
                     EDUCATION
@@ -68,7 +75,7 @@
                         </div></a>
                 </div>
             </div>
-            <div class="asa fLeft">
+            <div class="asa fLeft" >
                 <div class="sideNav_tab inMheader" id="Acc">
                     MYACCOUNT
                 </div>
@@ -95,7 +102,7 @@
             </div>
             <center>
                 <div class="mediaL">
-                    <div class="col50 actBtn cc5 mlogn">
+                    <div class="col50 actBtn cc5 mlogn" id="Musrlogout">
                         LOGIN
                     </div>
                 </div>
@@ -104,6 +111,7 @@
     </div>
 </div>
 <script type="text/javascript" src="<?php echo $jvs['cart']; ?>"></script>
+<script type="text/javascript" src="<?php echo $jvs['mheader']; ?>"></script>
 
 <script type="text/javascript">
 
@@ -117,9 +125,7 @@
         sideNav();
     });
 
-    $('#mediaUsr').click(function () {
-        openPopUp();
-    });
+   
     $('#mediaTrack').click(function () {
         guestpopUp();
     });
@@ -160,7 +166,7 @@
 
     $('.sideNav').velocity({translateX: "-100%"}, {duration: 0, delay: 0, display: "none", ease: "ease-out"});
     $('.menuLHeader').on('click', function () {
-        getheader();
+       
         $('.sideNav').velocity({translateX: "0%"}, {duration: 300, delay: 0, display: "block", ease: "ease-out"});
         $(".swipe").addClass("swipe_aftr");
         $(".swipe_aftr").removeClass("dn");
@@ -239,27 +245,27 @@
     });
 
 
-    $(document).ready(function () {
-
-        var faqTab = $('.sideNav_tab'),
-                faqTabContainer = $('.div100');
-
-        if (faqTab.length) {
-
-            faqTab.off('.sideNav_tab').on('click', function () {
-                var faqRow = $(this).parent(),
-                        faqContent = $(this).parent().find('.collap');
-                faqTabContainer.find('.collap').not(faqContent).stop().slideUp('slow');
-                faqTabContainer.find('.asa').not(faqRow).removeClass('open');
-
-                faqContent.stop().slideToggle('slow', function () {
-                    faqRow.toggleClass('open', faqContent.is(':visible'));
-                });
-            });
-
-        }
-
-    });
+//    $(document).ready(function () {
+//
+//        var faqTab = $('.sideNav_tab'),
+//                faqTabContainer = $('.div100');
+//
+//        if (faqTab.length) {
+//
+//            faqTab.off('.sideNav_tab').on('click', function () {
+//                var faqRow = $(this).parent(),
+//                        faqContent = $(this).parent().find('.collap');
+//                faqTabContainer.find('.collap').not(faqContent).stop().slideUp('slow');
+//                faqTabContainer.find('.asa').not(faqRow).removeClass('open');
+//
+//                faqContent.stop().slideToggle('slow', function () {
+//                    faqRow.toggleClass('open', faqContent.is(':visible'));
+//                });
+//            });
+//
+//        }
+//
+//    });
 
 
 //function getheader()

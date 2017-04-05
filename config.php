@@ -158,6 +158,7 @@ $jvs = array();
             $jvs['otp']                 = DOMAIN.'frontend/tools/js/cms/otp.js?v='.VERSION;
             $jvs['resetpass']                 = DOMAIN.'frontend/tools/js/cms/resetpass.js?v='.VERSION;
 	    $jvs['header']		      = DOMAIN.'frontend/tools/js/cms/header.js?v='.VERSION;
+            $jvs['mheader']		      = DOMAIN.'frontend/tools/js/cms/Mheader.js?v='.VERSION;
 	    $jvs['account']		      = DOMAIN.'frontend/tools/js/cms/account.js?v='.VERSION;
 	    $jvs['checkoutbefore']          = DOMAIN.'frontend/tools/js/cms/checkoutbefore.js?v='.VERSION;
 	    $fjvs['cookie']              = DOMAIN.'frontend/tools/js/jquery.cookie.js?v='.VERSION;
