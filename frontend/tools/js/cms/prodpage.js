@@ -237,7 +237,205 @@ $('#add_to_cart').on('click', function () {
 });
 
 
+$('#add_to_cart_mob').on('click', function () {
+
+    getarraydata();
+    var size=$('#size').text();
+    if(size == 'Select')
+       common.msg(0,'Please select size');
+    else
+    {
+      $(this).addClass('pointNone');
+      var userid, cartdata = {};
+      cartdata['pid'] = arrdata['pid'];
+      cartdata['price'] =totalNewPrice;
+      cartdata['qty'] = 1;
+
+      if(arrdata['quality']=== null || arrdata['quality']=== undefined){
+          arrdata['quality']= 0;
+
+      }
+      var chr = "" + arrdata['color'] + "|@|" + arrdata['metal'] + "|@|" + arrdata['quality'];
+
+      cartdata['col_car_qty'] = chr;
+      cartdata['RBsize'] = arrdata['sz'];
+
+      var userid = common.readFromStorage('jzeva_uid');
+      var cartid = common.readFromStorage('jzeva_cartid');
+
+      if (userid == "" || userid == null) {
+	  userid = common.readFromStorage('jzeva_uid');
+	  if (cartid == "" || cartid == null) {
+	    cartdata['cartid'] = '';
+	  }
+	  else{
+	     cartdata['cartid'] = cartid;
+	  }
+      } else {
+	  cartdata['userid'] = userid;
+	  cartdata['cartid'] = cartid;
+      }
+
+        var flag = 0;
+        if (gblcartdata == null || gblcartdata == "") {
+	    flag = 1;
+	}
+	else
+	{
+	  $(gblcartdata).each(function (r, v) {
+
+            if ((cartdata.col_car_qty == v.col_car_qty && cartdata.pid == v.product_id) && parseFloat(cartdata.RBsize) == parseFloat(v.size)) {
+
+		  cartdata['qty'] = parseInt(v.pqty) + 1;
+		  cartdata['price'] = parseInt(cartdata['price']) * cartdata.qty;
+		  flag = 2;
+            } else if ((cartdata.col_car_qty == v.col_car_qty && cartdata.pid == v.product_id) && (parseFloat(cartdata.RBsize) == parseFloat(v.size))) {
+		  cartdata['qty'] = parseInt(v.pqty) + 1;
+		  cartdata['price'] = parseInt(cartdata['price']) * cartdata.qty;
+		  flag = 2;
+            }
+	  });
+	}
+
+    setTimeout(function(){
+	if( flag == 2)
+	{
+	    $('#rmvpoptxt').html('This Product is already in your cart do want to add one more');
+	    cartpopUp();
+	    $('#cYes').unbind();
+	    $('#cYes').click(function () {
+	        storecartdata(cartdata, 1);
+	       cartpopUpClose();
+	       $('#add_to_cart_mob').removeClass('pointNone');
+
+	        var wd = $('.rota').outerWidth();
+                var ht = $('.rota').outerHeight();
+                var cart = $('.cartIcon');
+                var imgtodrag;
+                $('.rota .imgHolder').each(function (i) {
+                    if (!$(this).hasClass("dn")) {
+                        imgtodrag = $(this);
+                    }
+                });
+                if (imgtodrag) {
+                    var imgclone = imgtodrag.clone()
+                            .offset({
+                                top: imgtodrag.offset().top,
+                                left: imgtodrag.offset().left
+                            })
+                            .css({
+                                'opacity': '0.7',
+                                'position': 'absolute',
+                                'height': ht,
+                                'width': wd,
+                                'z-index': '900',
+                                'display': 'block'
+                            })
+                            .appendTo($('body'))
+                            .velocity({top: cart.offset().top + 20, left: cart.offset().left + 30, width: 0, height: 0, opacity: [0.1]}, {duration: 1000, easing: 'easeInOutExpo',
+                                complete: function () {
+                                    $(this).detach();
+                                }});
+                }
+
+	    });
+	    $('#cNo').click(function () {
+		cartpopUpClose();
+		$('#add_to_cart_mob').removeClass('pointNone');
+		$('#cNo').unbind();
+	    });
+	}
+	else
+	{
+	    storecartdata(cartdata, 1);
+	    $('#add_to_cart_mob').removeClass('pointNone');
+	     var wd = $('.rota').outerWidth();
+                var ht = $('.rota').outerHeight();
+                var cart = $('.cartIcon');
+                var imgtodrag;
+                $('.rota .imgHolder').each(function (i) {
+                    if (!$(this).hasClass("dn")) {
+                        imgtodrag = $(this);
+                    }
+                });
+                if (imgtodrag) {
+                    var imgclone = imgtodrag.clone()
+                            .offset({
+                                top: imgtodrag.offset().top,
+                                left: imgtodrag.offset().left
+                            })
+                            .css({
+                                'opacity': '0.7',
+                                'position': 'absolute',
+                                'height': ht,
+                                'width': wd,
+                                'z-index': '900',
+                                'display': 'block'
+                            })
+                            .appendTo($('body'))
+                            .velocity({top: cart.offset().top + 20, left: cart.offset().left + 30, width: 0, height: 0, opacity: [0.1]}, {duration: 1000, easing: 'easeInOutExpo',
+                                complete: function () {
+                                    $(this).detach();
+                                }});
+                }
+	}
+    },500);
+    }
+});
+
 $('#buynow').on('click',function(){
+
+    var size=$('#size').text();
+    if(size == 'Select')
+       common.msg(0,'Please select size');
+    else
+    {
+      getarraydata();
+      var userid, buydata = {};
+      buydata['pid'] = arrdata['pid'];
+      buydata['price'] = totalNewPrice;
+      buydata['qty'] = 1;
+      var chr ="" + arrdata['color'] + "|@|" + arrdata['metal'] + "|@|" + arrdata['quality'];
+
+      buydata['col_car_qty'] = chr;
+      buydata['RBsize'] =arrdata['sz'];
+      buydata['buyid'] = '';
+      buydata['cartid'] = '';
+      buydata['userid'] = '';
+      var URL = APIDOMAIN + "index.php?action=addTocart";
+
+      var data = buydata;
+      var dt = JSON.stringify(data);
+      $.ajax({
+	  type: "post",
+	  url: URL,
+	  data: {dt: dt},
+	  success: function (results) {
+	    var data=JSON.parse(results);
+	    var cururl = window.location.search;
+	    var date = new Date();
+	    var minutes = 40;
+	    date.setTime(date.getTime() + (minutes * 60 * 1000));
+	    $.cookie("jzeva_currurl", null);
+	    $.cookie("jzeva_currurl", cururl, {expires: date});
+	    common.addToStorage('jzeva_buyid', data.cartid);
+	    userid=common.readFromStorage('jzeva_uid');
+	    if(userid == null || userid == undefined)
+	    {
+	      window.location.href=DOMAIN + 'index.php?action=checkoutGuest&actn=buy';
+	    }
+	    else
+	    {
+	       window.location.assign(DOMAIN + 'index.php?action=checkOutNew&actn=buy');
+	    }
+
+	  }
+      });
+    }
+
+});
+
+$('#buynow_mob').on('click',function(){
 
     var size=$('#size').text();
     if(size == 'Select')
