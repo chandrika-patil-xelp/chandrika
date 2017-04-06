@@ -3082,21 +3082,22 @@ input[type=number]::-webkit-outer-spin-button {
 #scndup,.fadeCnt{height:450px;}
 
 }
-@media only screen and (max-width:1024px){
-    
-    
+@media only screen and (max-width:1024px){ 
 .mobileMess{display:block !important}
 /*    checkout*/
+.CHECKOUT_PAGE .cartEmptyImg{height:120px;background-position:center;background-size: auto 85%;}
+.CHECKOUT_PAGE .colleCont.dTab.ePadding{padding:50px 0 0 0 !important;}    
+.CHECKOUT_PAGE .colleCont.v2.black{padding:30px 10px;}  
+.CHECKOUT_PAGE .jwlCnt{min-height:250px;height:auto;padding-bottom:30px;}  
 .CHECKOUT_PAGE .fadeCnt{padding:75px 25px 25px 25px;position:relative;height:100%;}
 .checkout_details{background:#fff;}
 #scndup{height:auto;padding:25px;}
-.colleCont.v2.black{padding:30px 10px;}
 .chkoutHeader .payOption{width:75%;}
 .CHECKOUT_PAGE .wrapper{min-height:unset;}
 .jwlCnt .cart_item{height:120px !important;}
 .CHECKOUT_PAGE .delvrAdress{height:290px;}
 .footerH{padding: 10px;}
-.CHECKOUT_PAGE .ePadding{padding:0 !important;}
+/*.CHECKOUT_PAGE .ePadding{padding:0 !important;}*/
 .addOpt{padding:40px;}
 .guestPadng{padding:75px 25px 25px 25px !important;}
 .halfCircle{width:40px;line-height:40px;right:-20px;font-size:12px;}
@@ -3122,16 +3123,16 @@ input[type=number]::-webkit-outer-spin-button {
     #cnt_guest{margin:40px 0 30px 0;}
     #mob_signin{background:#fff;}
     .frmDtls{margin:42px 0 20px 0;}
-/*   .CHECKOUT_PAGE #guestOtp2,.CHECKOUT_PAGE ,.CHECKOUT_PAGE #guestSignup{position:absolute;}*/
     .CHECKOUT_PAGE #guestOtp2,.CHECKOUT_PAGE #guestSignup{position:absolute;}
    #guestforgot{position:relative;}
    .CHECKOUT_PAGE #guestOtp2,.CHECKOUT_PAGE #guestSignup{padding-bottom:100px;}
    .CHECKOUT_PAGE .transBtns{position:relative;float:left;}
-   .chkoutHeader .payHelp{position:absolute;top:15px;right:50px;width:auto;display:block;}
+   .chkoutHeader .payHelp{position:absolute;top:15px;right:20px;width:auto;display:block;}
    .checkoutheader_mobile{width:100%;height:50px;position:relative;top:55px;background:#222529;}
    .checkoutheader_mobile{display:block;}
    .checkoutheader_mobile .actBtn{width:50%;text-align:center;height:100%;margin:0;line-height:50px;}
    .checkoutheader_mobile .actBtn:last-child{background: #222529;color:#fff;}
+   .checkoutheader_mobile .actBtn:first-child{background:#fff;}
    .CHECKOUT_PAGE .hdrcrsTxt .intTxt{font-size:14px;}
    .CHECKOUT_PAGE .guestSignup{left:0;bottom:25px;}
     .payOption{position: absolute;} 
@@ -3141,17 +3142,23 @@ input[type=number]::-webkit-outer-spin-button {
     .homeCollect{padding: 0px;float:left;}
     .colleCont{width: 100%;height: auto; float: left;position: relative;left:initial;top:initial;overflow:initial; background-color: #fff;word-wrap: break-word;padding: 130px 0px;}
     .wrapper_main {width: 100%;height: auto;display: table;}
-    .colleCont{width: 100%;height: auto; float: left;position: relative;left:initial;top:initial;overflow:initial; background-color: #fff;word-wrap: break-word;padding: 130px 0px;}
-    .mlogoHeader{width: 120px;height:100%;background:url(../img/jzevalogo.svg)no-repeat;background-size: auto 15px;background-position:left;z-index: 20;position: absolute;left:40px;top:0;}
+    .chkoutHeader .mlogoHeader{display:block;width: 120px;height:100%;background:url(../img/jzevalogo.svg)no-repeat;background-size: auto 15px;background-position:left;z-index: 20;position: absolute;left:20px;top:0;}
     .mob_icondiv{width:100%;height:135px;background:#fff;}
     .chkoutHeader .logo{display:none;}
     .mob_icondiv .payOption{display:block;position:relative;height:135px;padding:25px;width:100%;}
    .mob_icondiv .pay{width:30%;padding-left:0;padding:40px 0 0 0;float:none;display:inline-block;}
    .mob_icondiv .pay.certiIc,.mob_icondiv .pay.lifeIc,.mob_icondiv .pay.secureIc{background-position:center;text-align:center;}
-   .CHECKOUT_PAGE .ePadding{padding:54px 0 0 0 !important;}
+/*   .CHECKOUT_PAGE .ePadding{padding:54px 0 0 0 !important;}*/
    .jwlCnt .cart_item{height:120px !important;}
    .cart_removew{top:-15px;}
    .mob_submit{display:block;}
+   /*   transaction failed page*/
+  .trans_failed #addOpt,.trans_failed .colleCont.v2.black{padding-top:80px !important;}
+   #addOpt .transBtns{bottom:0;margin:0px 0px 20px 0px;}
+   #addOpt .extra{position:unset;}
+   .trans_failed .chkoutHeader .payOption{display:block;width:auto;right:20px;}
+   .trans_failed .chkoutHeader .payHelp{display:none;}
+   .trans_failed .mob_icondiv{display:none;}
 }
 
 @media only screen and (max-width:768px){
@@ -3184,53 +3191,6 @@ input[type=number]::-webkit-outer-spin-button {
             position: absolute;
             left: 50px;
             top: 50px;} 
-/*        checkout
-    .amt_selector{left:60%;}
-    .mob_help{display:block;}
-    .CHECKOUT_PAGE .dAdrsshdr{margin:10px 0px;}
-    .CHECKOUT_PAGE .cnclSbmt{position:relative;padding:0px 20px;}
-    .CHECKOUT_PAGE .cnclSbmt .col50{width:auto;}
-    .CHECKOUT_PAGE .wrapper{min-height:unset;}
-    .colleCont.v2.black{display:none;padding:50px 40px;}
-    .total_price{font-size:30px !important;}  
-    .chkout .darkCont{padding:0px 0 0px 0}
-    .CHECKOUT_PAGE .delvrAdress{height:auto;overflow:auto;}
-    .button.actBtn{font-size:11px;padding: 0px 20px;}
-    .CHECKOUT_PAGE .halfCircle{display:none;}
-    .chkoutHeader{position:fixed;height:55px;}
-    #sign_in{margin:90px 0px 45px 0;}
-    #cnt_guest{margin:40px 0 30px 0;}
-    #mob_signin{background:#fff;}
-    .frmDtls{margin:42px 0 20px 0;}
-   .CHECKOUT_PAGE #guestOtp2,.CHECKOUT_PAGE #guestforgot,.CHECKOUT_PAGE #guestSignup{position:absolute;}
-   #guestforgot{position:relative;}
-   .CHECKOUT_PAGE #guestOtp2,.CHECKOUT_PAGE #guestSignup{padding-bottom:100px;}
-   .CHECKOUT_PAGE .transBtns{position:relative;float:left;}
-   .chkoutHeader .payHelp{position:absolute;top:15px;right:50px;width:auto;display:block;}
-   .checkoutheader_mobile{width:100%;height:50px;position:relative;top:55px;background:#222529;}
-   .checkoutheader_mobile{display:block;}
-   .checkoutheader_mobile .actBtn{width:50%;text-align:center;height:100%;margin:0;line-height:50px;}
-   .checkoutheader_mobile .actBtn:last-child{background: #222529;color:#fff;}
-   .CHECKOUT_PAGE .hdrcrsTxt .intTxt{font-size:14px;}
-   .CHECKOUT_PAGE .guestSignup{left:0;bottom:25px;}
-    .payOption{position: absolute;bottom: 0px;} 
-    .chkoutHeader .payOption{display:none;}
-    .chkoutHeader .callUs{display:none;}
-    .chkoutHeader .mheader{width:100%!important;}
-    .homeCollect{padding: 0px;float:left;}
-    .colleCont{width: 100%;height: auto; float: left;position: relative;left:initial;top:initial;overflow:initial; background-color: #fff;word-wrap: break-word;padding: 130px 0px;}
-    .wrapper_main {width: 100%;height: auto;display: table;}
-    .colleCont{width: 100%;height: auto; float: left;position: relative;left:initial;top:initial;overflow:initial; background-color: #fff;word-wrap: break-word;padding: 130px 0px;}
-    .mlogoHeader{width: 120px;height:100%;background:url(../img/jzevalogo.svg)no-repeat;background-size: auto 15px;background-position:left;z-index: 20;position: absolute;left:40px;top:0;}
-    .mob_icondiv{width:100%;height:135px;background:#fff;}
-    .chkoutHeader .logo{display:none;}
-    .mob_icondiv .payOption{display:block;position:relative;height:135px;padding:25px;width:100%;}
-   .mob_icondiv .pay{width:30%;padding-left:0;padding:40px 0 0 0;float:none;display:inline-block;}
-   .mob_icondiv .pay.certiIc,.mob_icondiv .pay.lifeIc,.mob_icondiv .pay.secureIc{background-position:center;text-align:center;}
-   .CHECKOUT_PAGE .ePadding{padding:54px 0 0 0 !important;}
-   .jwlCnt .cart_item{height:120px !important;}
-   .cart_removew{top:-15px;}
-   .mob_submit{display:block;}*/
 /*help   footer*/
     .fhelpSection{width:100%;border-bottom: 1px solid #e6e6e6;height:auto;    padding: 35px 20px 35px 60px;}
     .fhelpSection:last-child{border:none;}
@@ -3307,6 +3267,11 @@ input[type=number]::-webkit-outer-spin-button {
     .mheader.black_bg{background:#15181b;}
     .wishClass .custBtn1{bottom:122px;opacity: 1;}
     /*#lftt{display:none;}*/
+ /*checkout*/    
+ 
+/*transaction failed page */
+.trans_failed .chkoutHeader .payOption{display:none;}
+.trans_failed .mob_icondiv{display:block;border-top:1px solid #e6e6e6;}
 }
 
 
@@ -3572,8 +3537,7 @@ input[type=number]::-webkit-outer-spin-button {
     background-size: 13px;
     background-position: right;}   
     /*checkout*/ 
-.colleCont.v2.black{padding:30px 10px;}  
-.jwlCnt{height:360px;}
+.CHECKOUT_PAGE .wrapper_max{float:left;}
 /*mobile filter*/
 .mobileMess{display:block !important}
     /*.imageOutr{width: 100%;}*/
@@ -3622,7 +3586,8 @@ input[type=number]::-webkit-outer-spin-button {
   .totProduct{font-size: 10px;}
   .breadP{padding: 0 0px 0 20px;}
   .breadH{padding: 0 0px 0 20px;}
-    
+ /*transaction failed page */
+.trans_failed .thankTxt{padding:20px;}   
 }
 @media only screen and (max-width:375px){
     .grStyl5 .grCap{left:50px;}
