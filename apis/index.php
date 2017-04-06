@@ -1157,6 +1157,21 @@ case 'orderTrack':
         $obj	= new user($db['jzeva']); 
         $res	=$obj->gettrackordrdetail($params);
   break;
+ // FOR SITEMAP
+case 'createurl':
+        include APICLUDE.'class.urlxml.php';
+        $obj	= new urlxml($db['jzeva']); 
+        $result	=$obj->createurl($tmpparams);
+        $res = $result;
+    break;
+
+ case 'generalMap':
+            include APICLUDE.'class.urlxml.php';
+            $obj = new urlxml($db['jzeva']);
+            $result = $obj->generalMap($params);
+            $res = $result;
+          break;
+
 
   } 
 echo json_encode($res);
