@@ -638,6 +638,7 @@ $(document).ready(function () {
                     $('#vpro').text(vl.prdCod);
                     $('#proname').text(vl.prdNm);
                     $('#descrp').text(vl.productDescription);
+                    $('#Mdescrp').text(vl.productDescription);
                     var metalwght = vl.mtlWgt;
 
                     var makingchrg = vl.mkngCrg;
@@ -814,6 +815,7 @@ $(document).ready(function () {
                     }
                     $('#stn').append(Nstr);
                     $('#shortdesc').html(bstr);
+                    $('#Mshortdesc').html(bstr);
 
 
                     if (basic.hasSol == 1)
