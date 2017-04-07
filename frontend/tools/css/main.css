@@ -3277,7 +3277,14 @@ input[type=number]::-webkit-outer-spin-button {
 
 
 @media only screen and (max-width:480px){
-    
+
+    .soc_wish2.beat:after{opacity:0;}
+    .soc_wish2.beat:before{opacity:1;}
+    .soc_wish2.beat{transform:scale(1);-webkit-transform:scale(1);-moz-transform:scale(1);-o-transform:scale(1);-ms-transform:scale(1);}
+    .soc_wish2:after{content:"";width:100%;height:100%;position:absolute;top:0;left:0;background:url(../img/icons/550.svg)no-repeat;background-size:auto 100%;background-position: center;opacity:1;transition:200ms;-webkit-transition:200ms;-moz-transition:200ms;-o-transition:200ms;-ms-transition:200ms;}
+.soc_wish2:before{content:"";width:100%;height:100%;position:absolute;top:0;left:0;background:url(../img/icons/like_fill.svg)no-repeat;background-size:auto 100%;background-position: center;opacity:0;transition:200ms;-webkit-transition:200ms;-moz-transition:200ms;-o-transition:200ms;-ms-transition:200ms;}
+
+
     .cartCount{width: 16px;
     height: 16px;
     right: 6px;
@@ -3304,7 +3311,7 @@ input[type=number]::-webkit-outer-spin-button {
     .likeD{display:block;width:40px;
            position:absolute;
            right:0;
-           background:url(../img/icons/550.svg)no-repeat;
+           /*background:url(../img/icons/550.svg)no-repeat;*/
            background-size:auto 45px;
            background-position:center;
            height:40px;z-index: 9;    top: 60px;
