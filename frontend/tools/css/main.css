@@ -8,7 +8,7 @@ html{width:100%;height:100%;font-variant-numeric: lining-nums;
      -o-font-feature-settings:"lnum" 1;
      -webkit-font-feature-settings:"lnum" 1;
      font-feature-settings:"lnum" 1;}
-body{padding:0;margin:0;overflow-x:hidden;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;}
+body{padding:0;margin:0;overflow-x:hidden;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;webkit-tap-highlight-color: transparent;}
 
 textarea:focus, input:focus , select:focus ,option:focus{
     outline: none;
@@ -3250,12 +3250,11 @@ input[type=number]::-webkit-outer-spin-button {
     overflow: auto;
     display: none;
     z-index: 11111;}
-    .swipe{width: 20px; left:0px;height: 100%;position: fixed;top: 50px;z-index: 999;background: transparent;z-index: 11111;}
+    .swipe{width: 20px; left:0px;height: 100%;position: fixed;top: 50px;background: transparent;}
+    .swipe_aftr{left:0px;width: 100%;background: #15181b;opacity: 0.7;top: 0;left:0;z-index:9999;}
     .menuWrapper{width: 100%;height: calc(100vh - 50px);padding:15px 20px 20px 20px;overflow: scroll;}
     .mlogoHeader{width: 120px;height:100%;background:url(../img/jzevalogo.svg)no-repeat;background-size: auto 15px;background-position:left;z-index: 20;position: absolute;left:40px;}
     .sideNav_tab{color:#fff;font-family: bolder;font-size: 11px;width: 100%;height: 50px;line-height: 50px;letter-spacing: 0.15em;}
-    .swipe_aftr{width: 100%;top: 0;background: rgba(0,0,0,0.6);top: 0;z-index: 9999;right:0px;}
-    .swipe_aftr{left: 280px;width: 100%;background: #fff;opacity: 0.7;top: 0;}
     .meucot{color:#fff;font-family: semibold;font-size: 11px;width: 100%;height: 50px;line-height: 50px;letter-spacing: 0.15em;text-transform: uppercase;}
     .asa{width: 100%;height: auto;}
     .collap{width: 100%;height: 100%;padding: 0px 20px;}
@@ -3334,14 +3333,12 @@ input[type=number]::-webkit-outer-spin-button {
     overflow: auto;
     display: none;
     z-index: 11111;}
-    .swipe{width: 20px; left:0px;height: 100%;position: fixed;top: 50px;z-index: 999;background: transparent;z-index: 11111;}
     .menuWrapper{width: 100%;height: calc(100vh - 100px);padding:15px 20px 20px 20px;overflow: auto;}
     .crssLheader{z-index: 1;width: 25px;height: 25px;background: transparent url(../img/crossB.svg)no-repeat;  background-position: center;  background-size: auto 25px;transform: rotate(90deg);-webkit-transform: rotate(90deg);-ms-transform: rotate(90deg);-moz-transform: rotate(90deg);-o-transform: rotate(90deg);position: absolute;top: 10px;right: 10px;}
     .div100{width: 100%;height: auto;}
     .mlogoHeader{width: 120px;height:100%;background:url(../img/jzevalogo.svg)no-repeat;background-size: auto 15px;background-position:left;z-index: 20;position: absolute;left:40px;}
     .sideNav_tab{color:#fff;font-family: bolder;font-size: 11px;width: 100%;height: 50px;line-height: 50px;letter-spacing: 0.15em;}
     .posFix{position: fixed;left: 0;right: 0;margin: auto;}
-    .swipe_aftr{left:0px;width: 100%;background: #15181b;opacity: 0.7;top: 0;left:0;z-index: 9999;}
     .meucot{color:#fff;font-family: semibold;font-size: 11px;width: 100%;height: 50px;line-height: 50px;letter-spacing: 0.15em;text-transform: uppercase;}
     .asa{width: 100%;height: auto;}
     .collap{width: 100%;height: 100%;padding: 0px 20px;}
