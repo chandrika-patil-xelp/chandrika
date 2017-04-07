@@ -1170,21 +1170,6 @@
             $('.PRODUCT_GRID2.wrapper_main').addClass('pad0');
             $('body').addClass('over_hide');
         });
-
-        $('.sideNav').velocity({translateX: "-100%"}, {duration: 0, delay: 0, display: "none", ease: "ease-out"});
-        $('.menuLHeader').on('click', function () {
-            $('.sideNav').velocity({translateX: "0%"}, {duration: 300, delay: 0, display: "block", ease: "ease-out"});
-            $(".swipe").addClass("swipe_aftr");
-            $(".swipe_aftr").removeClass("dn");
-            $("body").addClass("posFix");
-        });
-        $(document).on('click', '#lftt', function () {
-            $(this).removeClass('swipe_aftr');
-            $('.sideNav').velocity({translateX: "-100%"}, {duration: 300, delay: 0, display: "none", ease: "ease-out"});
-            $("body").removeClass("posFix");
-        });
-
-
     </script>
 
     <script type="text/javascript" src="<?php echo $jvs['prodGrid']; ?>"></script>
