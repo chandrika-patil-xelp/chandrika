@@ -154,6 +154,7 @@ a{color:#666;}
 .menuB{width:100%;height:100%;position:relative;background:#f0f0f0;}
 .overlay{width:100%;height:100vh;position:fixed;background:rgba(0,0,0,0.55);z-index:13;opacity:0;pointer-events:none;}
 .loginOverlay{width:100%;height:100vh;position:fixed;background:rgba(0,0,0,0.55);z-index:13;opacity:0;pointer-events:none;}
+.guestOverlay{width:100%;height:100vh;position:fixed;background:rgba(0,0,0,0.55);z-index:13;opacity:0;pointer-events:none;}
 .overlay2{width:100%;height:100vh;position:fixed;background:rgba(0,0,0,0.2);z-index:13;opacity:0;cursor:pointer;display:none}
 .overlay3{width:100%;height:100%;position:fixed; background:rgba(255,255,255,0.8);z-index: 30;opacity:0;}
 .overlayF{width:100%;height:100vh;position:fixed;background:rgba(0,0,0,0.0);z-index:13;display:none;top:0; left:0;opacity:0;pointer-events:none;}
@@ -1832,7 +1833,7 @@ input[type=radio]:checked ~ .selector_label:after {transform:translateX(0%);-web
 .keyeffect{transform:translateX(-100%);transition:600ms ease-in-out;}
 .popUpOuter{z-index: 200;width:100%;height:100%;position:fixed;top:0;left:0;right:0;bottom:0;/* opacity: 0.5; */background-color: rgba(0,0,0,0.3);}
 .closeLogin{content: "";background: url(../img/close_black.svg)no-repeat;background-size: auto 50%;position: absolute;width: 60px;height: 60px;top: 0;right: 0;background-position: center;cursor: pointer;}
-.closeLogin1{content: "";background: url(../img/close_black.svg)no-repeat;background-size: auto 50%;position: absolute;width: 60px;height: 60px;top: 0;right: 0;background-position: center;cursor: pointer;}
+.closeLogin1{content:"";background: url(../img/close_black.svg)no-repeat;background-size: auto 50%;position: absolute;width: 60px;height: 60px;top: 0;right: 0;background-position: center;cursor: pointer;}
 
 
 /*T and C*/
@@ -3075,6 +3076,7 @@ input[type=number]::-webkit-outer-spin-button {
 #Mprice{display: none;}
 #mDesc{display: none;}
 .myaccount .tHead{display:block;transform: translateX(0);}
+.mheader{display: none;} 
 @media only screen and (max-width:1200px){
 .chkoutHeader .logo{width:150px;} 
 .chkoutHeader{padding:0px 20px;}
@@ -3152,6 +3154,7 @@ input[type=number]::-webkit-outer-spin-button {
    .jwlCnt .cart_item{height:120px !important;}
    .cart_removew{top:-15px;}
    .mob_submit{display:block;}
+   .mheader{display: none;}
    /*   transaction failed page*/
   .trans_failed #addOpt,.trans_failed .colleCont.v2.black{padding-top:80px !important;}
    #addOpt .transBtns{bottom:0;margin:0px 0px 20px 0px;}
@@ -3595,3 +3598,4 @@ input[type=number]::-webkit-outer-spin-button {
 @media only screen and (max-width:320px){
     .grStyl5 .grCap{left:-11px;}
 }
+.closeG{}
