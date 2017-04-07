@@ -21,7 +21,12 @@ $(document).ready(function(){
       $('.backTop').click(function () {
 	    $('html,body').animate({scrollTop: 0});
       });
-      getheader();
+      var sz = $(window).width();
+     
+      if(sz > 960){
+            getheader(); 
+      }
+   
 
       $(document).keypress(function(e){
 	    if(e.which == 13)
@@ -59,6 +64,7 @@ $(document).ready(function(){
 
 function getheader()
 {
+  
   var mainheader="";
   var subheader="";
   var cnt=0;
