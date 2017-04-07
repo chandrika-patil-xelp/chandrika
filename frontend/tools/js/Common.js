@@ -371,6 +371,11 @@ $(document).ready(function(){
    $('.sideNav').velocity({translateX: "-100%"}, {duration: 300, delay: 0, display: "none", ease: "ease-out"});
     $("body").addClass("posFix");
        });
+   jQuery('#lftt').on('click',function(){
+    $(this).removeClass('swipe_aftr');
+    $('.sideNav').velocity({translateX: "-100%"}, {duration: 300, delay: 0, display: "none", ease: "ease-out"});
+    $("body").removeClass("posFix");
+    });     
   //
   //  $('#cc').on('click',function(){
   //  $('#signInId').velocity({translateY: "100px"}, {duration: 300, delay: 0, display: "block", ease: "ease-out"});
