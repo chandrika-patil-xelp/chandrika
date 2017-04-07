@@ -368,7 +368,6 @@ return m.split("").reverse().join("");
 $(document).ready(function(){
   $('#signInId').velocity({translateY: "150%"}, {duration: 300, delay: 0, display: "block", ease: "ease-out"});
    $('.mlogn').on('click',function(){
-   $('#signInId').velocity({translateY: "-50px"}, {duration: 300, delay: 0, display: "block", ease: "ease-out"});
    $('.sideNav').velocity({translateX: "-100%"}, {duration: 300, delay: 0, display: "none", ease: "ease-out"});
     $("body").addClass("posFix");
        });
