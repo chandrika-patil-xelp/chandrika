@@ -48,7 +48,7 @@
 
     <div class="inGuest fLeft" id="guestChild">
 
-        <div class="closeLogin1 closeG"></div>
+        <div class="closeLogin1 closeG dn"></div>
         <div class="txtTitle">Please enter the relevant information</div>
         <div class="txtB fLeft">
             <input type="text" class="inp_box " maxlength="30" id="ord_no" autocomplete="off" onkeypress="return common.isNumberKey(event, this.value);">
@@ -218,10 +218,12 @@
              $(document).on("click", '.closeLogin1', function () {
                  console.log("close");
                 $('.head_wrap').removeClass("pointNone");
+                
                 $('.closeLogin1').unbind('click');
                 guestpopUpClose();
             });
               $(document).on("click", '#guestId', function () {
+                  $('.closeLogin1').removeClass('dn');
                 $('.head_wrap').addClass("pointNone");
                 guestpopUp();
             });
