@@ -655,6 +655,7 @@ function sugnupsubmt()
       $('#signuppass').val('');	  $('#signuppass').blur();
       $('#femail').val('');	  $('#femail').blur();
        $(".swipe_aftr").addClass("dn");
+       $("body").removeClass("posFix");
       gndrflg=undefined;
  }
 
