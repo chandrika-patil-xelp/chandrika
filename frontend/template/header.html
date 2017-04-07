@@ -1,11 +1,12 @@
 
-<script> 
+<script>
     var DOMAIN = '<?php echo DOMAIN?>';
     var APIDOMAIN = '<?php echo APIDOMAIN?>';
     var IMGDOMAIN = '<?php echo IMGDOMAIN ?>';
     var page = '<?php echo $page?>';
 
 </script>
+
 
 <!--<div class="mobileMess">
   <div class="cHead"></div>
@@ -42,12 +43,12 @@
   <div class="mobFail fLeft font13">Going mobile soon!</div>
   <div class="mobFail font11 fLeft">Please visit jzeva.com on your computer</div>
 </div>-->
-<div class="loginOverlay"></div>
+<div class="guestOverlay"></div>
 <div class="guestPopup dn" id="guestPar">
 
     <div class="inGuest fLeft" id="guestChild">
 
-        <div class="closeLogin1" id="closeGuest"></div>
+        <div class="closeLogin1 closeG" onclick="guestpopUpClose();"></div>
         <div class="txtTitle">Please enter the relevant information</div>
         <div class="txtB fLeft">
             <input type="text" class="inp_box " maxlength="30" id="ord_no" autocomplete="off" onkeypress="return common.isNumberKey(event, this.value);">
@@ -70,7 +71,7 @@
     <div class="overlay"></div>
     <div class="overlay2 " onclick="closeCart()"></div>
     <div class="header">
-      <a class="logoA" href="<?php echo DOMAIN ?>"><div class="logo fLeft"></div></a>
+        <a class="logoA" href="<?php echo DOMAIN ?>"><div class="logo fLeft"></div></a>
     </div>
     <div class="tabWrap fRight">
 
@@ -105,7 +106,6 @@
             </div>
             <div class="tabB tab2 fLeft" id="guestId">
                 <div class="tab guestTrack">
-
                 </div>
             </div>
             <div class="tabB tab2 fLeft">
@@ -204,45 +204,31 @@
         </div>
     </div>
 </div>
-  <div class="backTop scaleot"></div>
+
+<div class="backTop scaleot"></div>
 <script type="text/javascript" src="<?php echo $jvs['header']; ?>"></script>
 <script>
-    $(window).scroll(function(e){
-        var st = e.pageX;
-
-    });
-      $('.backTop').click(function () {
+                $(window).scroll(function (e) {
+            var st = e.pageX;
+        });
+        $('.backTop').click(function () {
             $('body').animate({scrollTop: 0}, 'slow');
-    });
-                var flag = 1;
+        });
+        var flag = 1;
         function bindHeader()
         {
+            
             $(document).on("click", '#guestId', function () {
                 $('.head_wrap').addClass("pointNone");
                 guestpopUp();
             });
 
             $(document).on("click", '#closeGuest', function () {
+                console.log("guest login");
                 $('.head_wrap').removeClass("pointNone");
                 guestpopUpClose();
             });
-
-
-            function guestpopUp() {
-                headrentrflg=1;
-                $('.loginOverlay').velocity({opacity: [1, 0]});
-                $('#guestPar').removeClass("dn");
-                $('#guestPar').velocity({translateY: [0, '150%']}, {duration: 150, delay: 100, easing: ''});
-                $('#guestChild').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-            }
-            function guestpopUpClose() {
-                headrentrflg=0;
-                $('.loginOverlay').velocity({opacity: [0, 1]});
-                $('#guestPar').addClass("dn");
-                $('#guestPar').velocity({translateY: ['150%', 0]}, {duration: 150, delay: 100, easing: ''});
-//                $('#guestPar').velocity({opacity: [0, 1]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-                $('#guestChild').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-            }
+            
 
 
             /*Overlay fade in/out  on menu hover*/
@@ -254,36 +240,35 @@
             /*Main menu slidedown/slideup , Menu tab colour change*/
             $('.tabB').mouseover(function () {
                 var userid = common.readFromStorage('jzeva_uid');
-		var idx = $(this).index();
-		if( $('.menu_elm').eq(idx).find('.menu_list').length!=0){
-                if ($(this).attr('id') === 'userProfId')
-                {
-                    if (userid === null)
+                var idx = $(this).index();
+                if ($('.menu_elm').eq(idx).find('.menu_list').length != 0) {
+                    if ($(this).attr('id') === 'userProfId')
                     {
-                        $('.overlay').stop(true, true).fadeTo(200, 0);
-                        $('.tab').removeClass('selec');
-                        $('.menu_wrap').velocity('stop').velocity({height: [0]}, {duration: 200, easing: 'ease-in-out', display: 'block'});
-                    } else {
+                        if (userid === null)
+                        {
+                            $('.overlay').stop(true, true).fadeTo(200, 0);
+                            $('.tab').removeClass('selec');
+                            $('.menu_wrap').velocity('stop').velocity({height: [0]}, {duration: 200, easing: 'ease-in-out', display: 'block'});
+                        } else {
+                            $('.header').addClass('blackPseudo');
+                            $('.overlay').stop(true, true).delay(150).fadeTo(200, 1);
+                            $('.tab').removeClass('selec');
+                            $('.menu_wrap').velocity('stop').velocity({height: [180]}, {duration: 200, delay: 150, easing: 'ease-in-out', display: 'block'});
+
+                        }
+                    } else
+                    {
                         $('.header').addClass('blackPseudo');
                         $('.overlay').stop(true, true).delay(150).fadeTo(200, 1);
                         $('.tab').removeClass('selec');
                         $('.menu_wrap').velocity('stop').velocity({height: [180]}, {duration: 200, delay: 150, easing: 'ease-in-out', display: 'block'});
-
                     }
-                } else
-                {
-                    $('.header').addClass('blackPseudo');
-                    $('.overlay').stop(true, true).delay(150).fadeTo(200, 1);
+                } else {
+                    $('.overlay').stop(true, true).fadeTo(200, 0);
                     $('.tab').removeClass('selec');
-                    $('.menu_wrap').velocity('stop').velocity({height: [180]}, {duration: 200, delay: 150, easing: 'ease-in-out', display: 'block'});
-                }
-	      }
-	      else{
-		 $('.overlay').stop(true, true).fadeTo(200, 0);
-                        $('.tab').removeClass('selec');
-                        $('.menu_wrap').velocity('stop').velocity({height: [0]}, {duration: 200, easing: 'ease-in-out', display: 'block'});
+                    $('.menu_wrap').velocity('stop').velocity({height: [0]}, {duration: 200, easing: 'ease-in-out', display: 'block'});
 
-	      }
+                }
             });
             //console.log("mouseout", flag);
             $('.tabWrap').mouseleave(function () {
@@ -301,25 +286,24 @@
             $('.tab').mouseenter(function () {
                 var k = $(this).closest('.tabB').index();
 
-		if( $('.menu_elm').eq(k).find('.menu_list').length!=0)
-		{
+                if ($('.menu_elm').eq(k).find('.menu_list').length != 0)
+                {
 
-                $('.menu_elm').css({'z-index': '50'}).removeClass('tab_select').addClass('remo');
-                $('.menu_elm').eq(k).css({'z-index': '9999'}).addClass('tab_select').removeClass('remo');
-                $('.menu_elm').eq(k).stop(true, true).slideDown(200, function () {
-                    $('.remo').css({'display': 'none'});
-                });
-	      }
-	      else{
-		 $('.overlay').stop(true, true).fadeTo(200, 0);
-                $('.menu_wrap').velocity('stop').velocity({height: [0]}, {duration: 200, easing: 'ease-in-out', display: 'none',
-                    complete: function () {
-                        $('.menu_elm').stop(true, true).css({'display': 'block'});
-                    }
-                });
-                $('.tab').removeClass('selec');
-                $('.header').removeClass('blackPseudo');
-	      }
+                    $('.menu_elm').css({'z-index': '50'}).removeClass('tab_select').addClass('remo');
+                    $('.menu_elm').eq(k).css({'z-index': '9999'}).addClass('tab_select').removeClass('remo');
+                    $('.menu_elm').eq(k).stop(true, true).slideDown(200, function () {
+                        $('.remo').css({'display': 'none'});
+                    });
+                } else {
+                    $('.overlay').stop(true, true).fadeTo(200, 0);
+                    $('.menu_wrap').velocity('stop').velocity({height: [0]}, {duration: 200, easing: 'ease-in-out', display: 'none',
+                        complete: function () {
+                            $('.menu_elm').stop(true, true).css({'display': 'block'});
+                        }
+                    });
+                    $('.tab').removeClass('selec');
+                    $('.header').removeClass('blackPseudo');
+                }
             });
             /* Maintain colour of tab while hovering on corresponding submenu*/
             $('.menu_elm').mouseenter(function () {
@@ -371,7 +355,7 @@
             });
         }
         function closeCart() {
-                cartF = 0;
+            cartF = 0;
             $('.cart').velocity({translateX: ['100%', 0]}, {duration: 300, easing: 'easeInOutExp', complete: function () {
                     $('.wrapper').removeClass('pointNone');
                     $('.overlay2').velocity({opacity: [0, 1]}, {duration: 300, easing: 'swing', display: 'none'})

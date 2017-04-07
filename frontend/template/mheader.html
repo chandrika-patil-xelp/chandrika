@@ -1,5 +1,5 @@
 
-<script> 
+<script>
     var DOMAIN = '<?php echo DOMAIN?>';
     var APIDOMAIN = '<?php echo APIDOMAIN?>';
     var IMGDOMAIN = '<?php echo IMGDOMAIN ?>';
@@ -17,26 +17,26 @@
     <div class="menuWrapper">
         <div class="div100 fLeft" id="menudivCont">
             <div class="asa fLeft open">
-<!--                <div class="sideNav_tab inMheader" id="fnJwl">
-                    FINE JEWELLERY
-                </div>
-                <div class="collap fLeft">
-                    <div class="meucot fLeft ">
-                        RINGS
-                    </div>
-                    <div class="meucot fLeft">
-                        EARRINGS
-                    </div>
-                    <div class="meucot fLeft">
-                        NECKLACES
-                    </div>
-                    <div class="meucot fLeft">
-                        BANGLES
-                    </div>
-                    <div class="meucot fLeft">
-                        PENDANTS
-                    </div>
-                </div>-->
+                <!--                <div class="sideNav_tab inMheader" id="fnJwl">
+                                    FINE JEWELLERY
+                                </div>
+                                <div class="collap fLeft">
+                                    <div class="meucot fLeft ">
+                                        RINGS
+                                    </div>
+                                    <div class="meucot fLeft">
+                                        EARRINGS
+                                    </div>
+                                    <div class="meucot fLeft">
+                                        NECKLACES
+                                    </div>
+                                    <div class="meucot fLeft">
+                                        BANGLES
+                                    </div>
+                                    <div class="meucot fLeft">
+                                        PENDANTS
+                                    </div>
+                                </div>-->
             </div>
             <a href='<?php echo DOMAIN?>index.php?action=bespoke'><div class="sideNav_tab">
                     <div class="asa fLeft">
@@ -45,11 +45,11 @@
                     </div>
                 </div></a>
 
-<!--            <div class="asa fLeft">
-                <div class="sideNav_tab">
-                    SIGNATURE
-                </div>
-            </div>-->
+            <!--            <div class="asa fLeft">
+                            <div class="sideNav_tab">
+                                SIGNATURE
+                            </div>
+                        </div>-->
             <div class="asa fLeft">
                 <div class="sideNav_tab inMheader" id="educ">
                     EDUCATION
@@ -75,7 +75,7 @@
                         </div></a>
                 </div>
             </div>
-            <div class="asa fLeft" >
+            <div class="asa fLeft">
                 <div class="sideNav_tab inMheader" id="Acc">
                     MYACCOUNT
                 </div>
@@ -83,21 +83,19 @@
                     <a   href='<?php echo DOMAIN?>MyAccount/actn-oId'><div class="meucot fLeft">
                             MY ORDERS
                         </div></a>
-                      <a  href='<?php echo DOMAIN?>MyAccount/actn-wId'><div class="meucot fLeft">
+                    <a  href='<?php echo DOMAIN?>MyAccount/actn-wId'><div class="meucot fLeft">
                             WISHLIST
                         </div></a>
                     <a href='<?php echo DOMAIN?>MyAccount/actn-pId'><div class="meucot fLeft">
                             PERSONAL INFO
                         </div></a>
-                      
+
                     <a href='<?php echo DOMAIN?>MyAccount/actn-cId'><div class="meucot fLeft">
                             CHANGE PASSWORD
                         </div></a>
                     <a href='<?php echo DOMAIN?>MyAccount/actn-sId'><div class="meucot fLeft">
                             SAVED ADDRESSES
                         </div></a>
-                
-
                 </div>
             </div>
             <center>
@@ -119,25 +117,32 @@
         $('body').addClass('posFix');
         openCart();
     });
-
     $('.mlogn').on('click', function () {
         openPopUp();
         sideNav();
     });
 
-   
     $('#mediaTrack').click(function () {
+        console.log("open guest");
         guestpopUp();
     });
+    
+//    $('#mGuest').click(function () {
+//        console.log("close guest");
+//        guestpopUpClose();
+//    });
 
     function guestpopUp() {
         $('.loginOverlay').velocity({opacity: [1, 0]});
+//        $('.loginOverlay').stop(true, true).fadeTo(200, 0);
+
         $('#guestPar').removeClass("dn");
         $('#guestPar').velocity({translateY: [0, '150%']}, {duration: 150, delay: 100, easing: ''});
         $('#guestChild').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
     }
     function guestpopUpClose() {
         $('.loginOverlay').velocity({opacity: [0, 1]});
+//          $('.loginOverlay').stop(true, true).fadeTo(0, 200);
         $('#guestPar').addClass("dn");
         $('#guestPar').velocity({translateY: ['150%', 0]}, {duration: 150, delay: 100, easing: ''});
 //                $('#guestPar').velocity({opacity: [0, 1]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
@@ -166,7 +171,7 @@
 
     $('.sideNav').velocity({translateX: "-100%"}, {duration: 0, delay: 0, display: "none", ease: "ease-out"});
     $('.menuLHeader').on('click', function () {
-       
+
         $('.sideNav').velocity({translateX: "0%"}, {duration: 300, delay: 0, display: "block", ease: "ease-out"});
         $(".swipe").addClass("swipe_aftr");
         $(".swipe_aftr").removeClass("dn");
