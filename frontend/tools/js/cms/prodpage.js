@@ -136,7 +136,7 @@ $('#add_to_cart').on('click', function () {
 	else
 	{
 	  $(gblcartdata).each(function (r, v) {
-
+             
             if ((cartdata.col_car_qty == v.col_car_qty && cartdata.pid == v.product_id) && parseFloat(cartdata.RBsize) == parseFloat(v.size)) {
 
 		  cartdata['qty'] = parseInt(v.pqty) + 1;
@@ -487,6 +487,58 @@ $('#buynow_mob').on('click',function(){
 
 });
 
+function makeAwish(th, e)
+{
+  var pid=$(th).attr('id').split('_');
+  var prz=$(th).attr('data-price');
+  var comb= $(th).attr('data-comb');
+  var size=$(th).attr('data-size');
+
+  e.stopPropagation();
+    //e.preventDefault();
+  if ($(th).hasClass('beat')) {
+      // $(th).removeClass('beat');
+      //Remove from wishlist
+      common.msg(0,'This product is already in your wishlist');
+  }
+  else
+  {
+      var userid = common.readFromStorage('jzeva_uid');
+      if (userid == undefined || userid == null)
+      {
+	  openPopUp();
+      }
+      else
+      {
+	   $(th).addClass('beat');
+	   var userid, wishdata = {};
+	   wishdata['pid'] = pid[1];
+	   wishdata['col_car_qty'] = comb;
+	   wishdata['price'] = prz;
+	   wishdata['user_id'] = userid;
+	   wishdata['wish_id'] = '';
+	   wishdata['size'] = size;
+	   var URL = APIDOMAIN + "index.php?action=addtowishlist";
+	   var data = wishdata;
+	   var dt = JSON.stringify(data);
+	   $.ajax({type: "post", url: URL, data: {dt: dt}, success: function (results) {
+		  var res=JSON.parse(results);
+		  if(res['error']['err_code'] == 0){
+		    wshlstflag = 1;
+                    common.msg(1, 'This Product Added To Your Wishlist Successfully');
+                    $('#addwishlist').addClass("colorff5");
+		  }
+		  else if(res['error']['err_code'] == 2){
+		     common.msg(0,res['error']['err_msg']);
+		  }
+                  else{
+		    common.msg(0,res['error']['err_msg']);
+		  }
+	       }
+	   });
+      }
+    }
+ }
 
 $(document).ready(function () {    
     $('html, body').animate({scrollTop: '0px'}, 300);
@@ -541,13 +593,13 @@ $(document).ready(function () {
             var gemstone = dt['gamestone'];
             var images = dt['images'];
 	    var othrimgs=dt['othimgs'];
-
+   
             getcatsize(catid,catname, metalwgt);
             if (data['error']['err_code'] == '0')
             {
                 var othrimgstr = "";
                 var dn = '';
-
+                   
                 $(images['images']).each(function (i, v) {
 
                     var vdef = IMGDOMAIN + dt['basicDetails']['default_image'];
@@ -1056,7 +1108,7 @@ $(document).ready(function () {
                     defaultPrice(dmdlowp, dmdhighp, caratlowp, carathighp);
 
 		     getDesc(dmdsoli, jweltype);
-
+                     
                 });
 
 
@@ -1500,11 +1552,14 @@ function calculatePrice()
              $('#m_price').html(IND_money_format(totalNewPrice).toLocaleString('en'));
         }
 
-
+        
     });
 //var abc = IND_money_format(totalNewPrice).toLocaleString('en');
     $('#ch_price').find('.labBuffer').append(' @ ' + abc);
 
+ var comb = GetURLParameter('comb');
+ var wish= '<div class="likeD" onclick="makeAwish(this, event)" id="prd_'+pid+'"  data-size="'+psize+'" data-price="'+totalNewPrice+'" data-comb ="'+comb+'"></div>';
+       $('#wsh').append(wish);
 
 }
 
