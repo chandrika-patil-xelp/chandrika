@@ -354,31 +354,6 @@
                 }
             });
         }
-
-        $('.sideNav').velocity({translateX: "-100%"}, {duration:0, delay: 0, display: "none", ease: "ease-out"});
-   	 $('.menuLHeader').on('click',function(){
-          $('.sideNav').velocity({translateX: "0%"}, {duration: 300, delay: 0, display: "block", ease: "ease-out"});
-            $(".swipe").addClass("swipe_aftr");
-              $(".swipe_aftr").removeClass("dn");
-              $("body").addClass("posFix");
-          });
-                      $(document).on('click','#lftt',function(){
-                 $(this).removeClass('swipe_aftr');
-                 $('.sideNav').velocity({translateX: "-100%"}, {duration: 300, delay: 0, display: "none", ease: "ease-out"});
-                 $("body").removeClass("posFix");
-               });
-
-               $('.crssLheader').on('click',function(){
-  		       $('.sideNav').velocity({translateX: "-100%"}, {duration: 300, delay: 0, display: "none", ease: "ease-out"});
-                  $("body").removeClass("posFix");
-                  $(".swipe").removeClass("swipe_aftr");
-          });
-
-        
-       
-    
-    
-    
     </script>
 
 </body>
