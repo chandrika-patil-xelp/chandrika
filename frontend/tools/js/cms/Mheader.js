@@ -45,6 +45,7 @@ $(document).ready(function () {
     if (usid)
     {
         $('#Musrlogout').html('Logout');
+        $('#mediaUsr').addClass('dn');
 
         $('#Musrlogout').click(function () {
 
