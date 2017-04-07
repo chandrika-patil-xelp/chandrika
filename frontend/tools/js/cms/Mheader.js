@@ -35,6 +35,7 @@ $(document).ready(function () {
 
     }
     $('#mediaUsr').click(function () {
+           $('.closeLogin').removeClass('dn');
         if (!usid) {
             openPopUp();
 
