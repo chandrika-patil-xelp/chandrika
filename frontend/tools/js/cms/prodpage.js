@@ -1558,7 +1558,7 @@ function calculatePrice()
     $('#ch_price').find('.labBuffer').append(' @ ' + abc);
 
  var comb = GetURLParameter('comb');
- var wish= '<div class="likeD" onclick="makeAwish(this, event)" id="prd_'+pid+'"  data-size="'+psize+'" data-price="'+totalNewPrice+'" data-comb ="'+comb+'"></div>';
+ var wish= '<div class="likeD soc_wish2" onclick="makeAwish(this, event)" id="prd_'+pid+'"  data-size="'+psize+'" data-price="'+totalNewPrice+'" data-comb ="'+comb+'"></div>';
        $('#wsh').append(wish);
 
 }
