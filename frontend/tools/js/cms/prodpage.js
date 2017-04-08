@@ -435,8 +435,7 @@ $('#buynow').on('click',function(){
 
 });
 
-$('#buynow_mob').on('click',function(){
-
+   jQuery('#buynow_mob').on('click',function(){
     var size=$('#size').text();
     if(size == 'Select')
        common.msg(0,'Please select size');
