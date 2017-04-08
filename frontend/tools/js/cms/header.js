@@ -52,8 +52,8 @@ $(document).ready(function(){
                 $('#guestChild').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
             }
             function guestpopUpClose() {
+                 $('.head_wrap').removeClass("pointNone");
                 headrentrflg = 0;
-                  $('.head_wrap').removeClass("pointNone");
                 $('.guestOverlay').velocity({opacity: [0, 1]});
                 $('#guestPar').addClass("dn");
                 $('#guestPar').velocity({translateY: ['150%', 0]}, {duration: 150, delay: 100, easing: ''});

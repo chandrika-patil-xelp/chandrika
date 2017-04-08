@@ -244,19 +244,20 @@ function track_ord()
     }
 }
 
-function guestpopUp() {
-    $('.loginOverlay').velocity({opacity: [1, 0]});
-//        $('.loginOverlay').stop(true, true).fadeTo(200, 0);
-
-    $('#guestPar').removeClass("dn");
-    $('#guestPar').velocity({translateY: [0, '150%']}, {duration: 150, delay: 100, easing: ''});
-    $('#guestChild').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-}
-function guestpopUpClose() {
-    $('.loginOverlay').velocity({opacity: [0, 1]});
-//          $('.loginOverlay').stop(true, true).fadeTo(0, 200);
-    $('#guestPar').addClass("dn");
-    $('#guestPar').velocity({translateY: ['150%', 0]}, {duration: 150, delay: 100, easing: ''});
-//                $('#guestPar').velocity({opacity: [0, 1]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-    $('#guestChild').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-}
+//function guestpopUp() {
+//    $('.loginOverlay').velocity({opacity: [1, 0]});
+////        $('.loginOverlay').stop(true, true).fadeTo(200, 0);
+//
+//    $('#guestPar').removeClass("dn");
+//    $('#guestPar').velocity({translateY: [0, '150%']}, {duration: 150, delay: 100, easing: ''});
+//    $('#guestChild').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+//}
+//function guestpopUpClose() {
+//    
+//    $('.loginOverlay').velocity({opacity: [0, 1]});
+////          $('.loginOverlay').stop(true, true).fadeTo(0, 200);
+//    $('#guestPar').addClass("dn");
+//    $('#guestPar').velocity({translateY: ['150%', 0]}, {duration: 150, delay: 100, easing: ''});
+////                $('#guestPar').velocity({opacity: [0, 1]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+//    $('#guestChild').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+//}
