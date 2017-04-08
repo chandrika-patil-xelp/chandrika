@@ -207,6 +207,7 @@
     }
 
     function openPopUp() {
+        $('.closeLogin').removeClass('dn');
         $('.wrapper_main').bind('keyup mouseup',
                 function (e) {
                     $('body a').attr("tabindex", "-1");
