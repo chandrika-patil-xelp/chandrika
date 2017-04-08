@@ -134,6 +134,7 @@
 //    });
 
     function guestpopUp() {
+          $('.head_wrap').addClass("pointNone");
         $('.loginOverlay').velocity({opacity: [1, 0]});
 //        $('.loginOverlay').stop(true, true).fadeTo(200, 0);
 
@@ -142,6 +143,7 @@
         $('#guestChild').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
     }
     function guestpopUpClose() {
+          $('.head_wrap').removeClass("pointNone");
         $('.loginOverlay').velocity({opacity: [0, 1]});
 //          $('.loginOverlay').stop(true, true).fadeTo(0, 200);
         $('#guestPar').addClass("dn");

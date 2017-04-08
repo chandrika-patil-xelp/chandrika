@@ -217,18 +217,17 @@
         var flag = 1;
         function bindHeader()
         {
-            
+
             $(document).on("click", '#guestId', function () {
-               
-                               guestpopUp();
+                $('.head_wrap').addClass("pointNone");
+                guestpopUp();
             });
 
-            $(document).on("click", '#closeGuest', function () {
-                console.log("guest login");
-                $('.head_wrap').removeClass("pointNone");
-                guestpopUpClose();
-            });
-            
+//            $(document).on("click", '#closeGuest', function () {
+//                $('.head_wrap').removeClass("pointNone");
+//                guestpopUpClose();
+//            });
+
 
             /*Overlay fade in/out  on menu hover*/
             $('.tabWrap').mouseover(function () {
