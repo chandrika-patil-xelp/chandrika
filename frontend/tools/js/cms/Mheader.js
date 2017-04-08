@@ -118,7 +118,7 @@ function getmheader()
                     if (v.catid == 3620161108090939) {
                         mainheader += '<a  style="text-decoration:none" href="' + DOMAIN + '' + mainmn + '/pid-' + v.catid + '"><div class="sideNav_tab" data-catid="' + v.catid + '" >' + (v.cat_name).toUpperCase() + '</div></a>';
                     } else {
-                        mainheader += '<div class="sideNav_tab  inMheader" data-catid="' + v.catid + '" >' + (v.cat_name).toUpperCase() + '</div>';
+                        mainheader += '<div class="sideNav_tab siden  inMheader" data-catid="' + v.catid + '" >' + (v.cat_name).toUpperCase() + '</div>';
                     }
                     if (v['subcat'] !== undefined)
                     {
