@@ -294,7 +294,7 @@ function storecartdata(cartdata)
 
 
 
-$('#shpng_sub').click(function () {
+$('#shpng_sub,#shpng_subMob').click(function () {
     shpngsubmt();
 });
 
@@ -521,7 +521,7 @@ function addrsel(ths)
     shipng_id = id;
 }
 
-$('#shpd_bak').click(function () {
+$('#shpd_bak,#shpd_bakMob').click(function () {
       if(bakflag == 0)
       {
 	var lasturl = $.cookie('jzeva_currurl');
