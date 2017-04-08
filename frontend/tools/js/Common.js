@@ -374,8 +374,9 @@ $(document).ready(function(){
    jQuery('#lftt').on('click',function(){
     $(this).removeClass('swipe_aftr');
     $('.sideNav').velocity({translateX: "-100%"}, {duration: 300, delay: 0, display: "none", ease: "ease-out"});
-    $("body").removeClass("posFix");
-    });     
+    $('body').removeClass("posFix");
+    $('.menuWrapper').scrollTop(0);
+    });
   //
   //  $('#cc').on('click',function(){
   //  $('#signInId').velocity({translateY: "100px"}, {duration: 300, delay: 0, display: "block", ease: "ease-out"});
