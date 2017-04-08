@@ -100,6 +100,7 @@
 
 <script>
     $('#userAccnt').on('click', function () {
+        $('.closeLogin').removeClass('dn');
         var userid = common.readFromStorage('jzeva_uid');
 
         if (userid == null)
