@@ -1153,6 +1153,7 @@
         }
 //       close fmenu_wrap
         function closeFilter() {
+            $('html,body').scrollTop(0);
             $('.fmenu_wrap').velocity('stop').velocity({height: [0]}, {duration: 200, easing: 'ease-in-out', display: 'none'})
             $('.fmenu_wrap').removeClass('filter_display');
             $('.wrapper').removeClass('wrapper_zindex');
