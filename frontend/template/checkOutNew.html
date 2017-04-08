@@ -65,7 +65,7 @@
                             <div class="tabDaddrss1 semibold dn">DELIVERY OPTION</div>
                             <!--<div class="tabDaddrss semibold">DELIVERY ADDRESS</div>-->
                             <div class="yetanotherbuffer">
-                                <div class="fadeCnt fLeft" id="scndup">
+                                <div class="fadeCnt fLeft mobile_height" id="scndup">
 
                                     <div class="dAdrsshdr fLeft semibold">CONFIRM ADDRESS
                                         <div class="cbrdr"></div>
@@ -150,6 +150,11 @@
                                             <div class="button actBtn mar0" id="all_submt">SUBMIT</div>
                                         </center>
                                     </div>
+                                    <div class="mob_submit fLeft">
+                                        <div class="actBtn button" id="all_submtNew">
+                                           SUBMIT
+                                        </div>
+                                    </div>
                                 </div>
 
 
@@ -203,11 +208,19 @@
                                             <div class="inp_label ">State*</div>
                                         </div>
                                     </div>
-                                    <div class="cnclSbmt fLeft bolder">
+                                    <div class="cnclSbmt fLeft bolder webCheck_btn">
                                         <center>
                                             <div class="col50 fLeft"><div class="actBtn button mar0" id="shpd_bak">BACK</div></div>
                                             <div class="col50 fRight"><div class="actBtn button mar0" id="shpng_sub">SUBMIT</div></div>
                                         </center>
+                                    </div>
+                                    <div class="mob_submit fLeft checkout_new">
+                                        <div class="col50 actBtn button" id="shpd_bakMob">
+                                           BACK
+                                        </div>
+                                        <div class="col50 actBtn button" id="shpng_subMob">
+                                          SUBMIT
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="fadeCnt fLeft" id="thrdup">
@@ -375,7 +388,7 @@
                                             <div class="dvdr fLeft"></div>
                                             <div class="sgnUptxt fLeft regular"><span>Continue as a guest</span> </div>
                                         </div>-->
-                        <div class="colleCont v2 black">
+                        <div class="colleCont v2 black mobile_height">
                             <div class="fLeft totalItem txt_center blackShade" id="totlitem_chkout">
                                 <div class="fLeft col100 cart_name light colorfff">Cart Value
                                 </div>
@@ -1043,11 +1056,13 @@
 //                       details and cart tabs                
                         $('.checkout_details').click(function () {
                            $('.yetanotherbuffer').css({"display":"block","opacity":"1"});
+                           $('#intscrl').scrollTop(0);
                            $('.colleCont.v2.black').css({"display":"none"});
                        });
                        $('.cart_first').click(function () {
                             $('.colleCont.v2.black').css({"display":"block"});
                            $('.yetanotherbuffer').css({"display":"none"});
-                       });   
+                           $('#scroll').scrollTop(0);
+                       });        
     </script>
 </body>
