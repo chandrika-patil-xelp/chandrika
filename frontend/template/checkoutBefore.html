@@ -40,52 +40,62 @@
                         <!--                        /*take code from here*/-->
 
                         <div class="colleCont dTab ePadding" id="addOpt">
-                            <div class="col100 fLeft">
-                                <div class="dAdrsshdr fLeft semibold">confirm DETAILS
-                                    <div class="cbrdr"></div>
-                                </div>
-                            </div>
-                            <div class="yetanotherbuffer" id="smry">
-                                <div class="summary fLeft">
-                                    <div class="col100 fLeft radTor poR">
-                                        <div class="w50r fLeft">
-                                            <div class="checkName fLeft semibold" id="cust_name"></div>
-<!--                                            <div class="text fLeft " ></div>
-                                            <div class="text fLeft " id="cust_email"></div>-->
-                                            <div class="text fLeft  semibold" id="cust_mobl"></div>
-                                            <div class="text fLeft pad0"><span id="addr"></span></div>
-                                            <div class="text fLeft pad0" id="adcity"></div>
-                                            <div class="text fLeft pad0" id="state"></div>
-                                        </div>
-                                        <div class="mob_icondiv fLeft">
-                                            <div class="payOption fLeft">
-                                                <center>
-                                                <div class="col50 pay secureIc">secure payements</div> 
-                                                <div class="col50 pay lifeIc">Life time exchange</div>
-                                                <div class="col50 pay certiIc">certified jewellery</div>
-                                                </center>
-                                            </div>
-                                        </div>    
+                            <div class="mobile_height fLeft" id="selected_address">
+                                <div class="col100 fLeft">
+                                    <div class="dAdrsshdr fLeft semibold">confirm DETAILS
+                                        <div class="cbrdr"></div>
                                     </div>
                                 </div>
-                                <div class="cnclSbmt fLeft bolder">
-                                    <center>
-<!--
-                                        <div class="col50 fLeft"><div class="actBtn button mar0" id="smryBack">Back</div></div>
+                                <div class="yetanotherbuffer" id="smry">
+                                    <div class="summary fLeft">
+                                        <div class="col100 fLeft radTor poR">
+                                            <div class="w50r fLeft">
+                                                <div class="checkName fLeft semibold" id="cust_name"></div>
+    <!--                                            <div class="text fLeft " ></div>
+                                                <div class="text fLeft " id="cust_email"></div>-->
+                                                <div class="text fLeft  semibold" id="cust_mobl"></div>
+                                                <div class="text fLeft pad0"><span id="addr"></span></div>
+                                                <div class="text fLeft pad0" id="adcity"></div>
+                                                <div class="text fLeft pad0" id="state"></div>
+                                            </div>
+                                            <div class="mob_icondiv fLeft">
+                                                <div class="payOption fLeft">
+                                                    <center>
+                                                    <div class="col50 pay secureIc">secure payements</div> 
+                                                    <div class="col50 pay lifeIc">Life time exchange</div>
+                                                    <div class="col50 pay certiIc">certified jewellery</div>
+                                                    </center>
+                                                </div>
+                                            </div>    
+                                        </div>
+                                    </div>
+                                    <div class="cnclSbmt fLeft bolder webCheck_btn">
+                                        <center>
+    <!--
+                                            <div class="col50 fLeft"><div class="actBtn button mar0" id="smryBack">Back</div></div>
 
-                                        <div class="col50 fLeft"><div class="actBtn button mar0">Back</div></div>-->
+                                            <div class="col50 fLeft"><div class="actBtn button mar0">Back</div></div>-->
 
-                                        <div class="col50 fLeft"><div class="actBtn button mar0" id="chck_bak">Back</div></div>
-                                        <div class="col50 fRight"><div class="actBtn button mar0" id="submt">PROCEED TO PAYMENT</div></div>
-                                    </center>
+                                            <div class="col50 fLeft"><div class="actBtn button mar0" id="chck_bak">Back</div></div>
+                                            <div class="col50 fRight"><div class="actBtn button mar0" id="submt">PROCEED TO PAYMENT</div></div>
+                                        </center>
+                                    </div>
+                                    <div class="mob_submit fLeft checkout_before">
+                                        <div class="col50 actBtn button" id="chck_bak">
+                                           BACK
+                                        </div>
+                                        <div class="col50 actBtn button" id="submt">
+                                           PAYMENT
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            </div>    
                         </div>
 
 
 
                         <!--//black side cont-->
-                        <div class="colleCont v2 black">
+                        <div class="colleCont v2 black mobile_height">
 
                             <div class="fLeft totalItem txt_center colorfff" id="totitm_chckbefor">
                                 <div class="fLeft col100 cart_name light colorfff">Cart Value
@@ -134,12 +144,12 @@
                                 </div>
 
                             </div>
-                            <div class="mob_submit fLeft">
-                               <div class="actBtn button fLeft" id="backto_chek">
+                            <div class="mob_submit fLeft checkout_before">
+                               <div class="col50 actBtn button fLeft" id="backto_chek">
                                   BACK
                                </div>
-                                <div class="actBtn button fRight" id="proceed_payment">
-                                  PROCEED TO PAYMENT
+                                <div class="col50 actBtn button fRight" id="proceed_payment">
+                                  PAYMENT
                                </div>
                             </div>
                         </div>
@@ -428,11 +438,12 @@
 //tabs
 
 $('.checkout_details').click(function () {
-    $('#smry,.dAdrsshdr').css({"display":"block"});
+    $('#selected_address,.dAdrsshdr').css({"display":"block"});
     $('.colleCont.v2.black').css({"display":"none"});
 });
 $('.cart_first').click(function () {
      $('.colleCont.v2.black').css({"display":"block"});
-    $('#smry,.dAdrsshdr').css({"display":"none"});
+    $('#selected_address,.dAdrsshdr').css({"display":"none"});
+     $('#scrollchckbfr').scrollTop(0);
 });
     </script>
