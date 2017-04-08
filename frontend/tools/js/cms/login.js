@@ -661,6 +661,7 @@ function sugnupsubmt()
 
   $(document).on('click', '#userProfId', function () {
 	  var uid=common.readFromStorage('jzeva_uid');
+          $('.closeLogin').removeClass('dn');
 	  if(uid == null || uid == "")
             openPopUp();
   });

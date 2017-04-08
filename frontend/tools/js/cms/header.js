@@ -45,6 +45,7 @@ $(document).ready(function(){
 
             function guestpopUp() {
                 headrentrflg = 1;
+                 $('.head_wrap').addClass("pointNone");
                 $('.guestOverlay').velocity({opacity: [1, 0]});
                 $('#guestPar').removeClass("dn");
                 $('#guestPar').velocity({translateY: [0, '150%']}, {duration: 150, delay: 100, easing: ''});
