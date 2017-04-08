@@ -3253,6 +3253,15 @@ input[type=number]::-webkit-outer-spin-button {
     overflow: auto;
     display: none;
     z-index: 11111;}
+    .sideNav .mediaL{width: 100%;
+    height: 50px;
+    line-height:50px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: #222529;
+    z-index: 999999;    padding: 14px 0px;
+    color: #fff;}
     .swipe{width: 20px; left:0px;height: 100%;position: fixed;top: 50px;background: transparent;}
     .swipe_aftr{left:0px;width: 100%;background: #15181b;opacity: 0.7;top: 0;left:0;z-index:9999;}
     .menuWrapper{width: 100%;height: calc(100vh - 50px);padding:15px 20px 20px 20px;overflow: scroll;}
@@ -3364,15 +3373,6 @@ input[type=number]::-webkit-outer-spin-button {
     .loginCont{padding: 80px 25px 80px 25px;height: 100%;}    .closeLogin{width: 50px;height: 50px;}
     .txtTitle{font-size: 15px;}
     .mnDvs{width: 100%;height: 100vh;z-index: 20000!important;bottom: unset;top: 50px;}
-    .sideNav .mediaL{width: 100%;
-    height: 50px;
-    line-height:50px;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    background: #222529;
-    z-index: 999999;    padding: 14px 0px;
-    color: #fff;}
     .header{display: none;}
     .mheader.black_bg{background:#15181b;}
     .mheader{width: 100%;height:55px;position: fixed;top: 0;left: 0;right:0px;z-index: 1000;display: block;}
