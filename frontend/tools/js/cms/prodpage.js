@@ -526,7 +526,7 @@ function makeAwish(th, e)
 		  if(res['error']['err_code'] == 0){
 		    wshlstflag = 1;
                     common.msg(1, 'This Product Added To Your Wishlist Successfully');
-                    $('#addwishlist').addClass("colorff5");
+                    $('.soc_wish2').addClass("beat");
 		  }
 		  else if(res['error']['err_code'] == 2){
 		     common.msg(0,res['error']['err_msg']);
@@ -1625,7 +1625,7 @@ function showwishbtn()
             setTimeout(function () {
                 if (wshlstflag == 1) {
                     $('#addwishlist').html("In wishlist").addClass("colorff5");
-//                    $('.addWish').addClass("moveWish");
+                    $('.soc_wish2').addClass("beat");
                 } else {
                     //   console.log('not in wishlist');
                 }
