@@ -3091,6 +3091,13 @@ input[type=number]::-webkit-outer-spin-button {
     .rota_wrap{width:45%;}
     .options{width:30%;}
 }
+@media only screen and (max-device-width: 1024px) and (orientation: landscape){
+.mobile_height{min-height:439px;}  
+.outerContr,.guestPopup{height:100%;overflow:auto;}
+}
+@media only screen and (max-device-width: 768px) and (orientation: landscape){
+.termHeading{top:80px;}
+}
 @media only screen and (max-width:1024px){ 
    .custBtn1{bottom:95px;opacity: 1;}
   .grid_img{padding-bottom:90%;}
@@ -3098,7 +3105,7 @@ input[type=number]::-webkit-outer-spin-button {
 /*    checkout*/
 #guestSignin,#guestSignup,#guestforgot{padding-top:25px !important;}
 .webCheck_btn{display:none;}
-.mobile_height{height:calc(100vh - 159px) !important;min-height:400px;overflow:auto !important;position:relative !important;}
+.mobile_height{height:calc(100vh - 100px) !important;overflow:auto !important;position:relative !important;}
 .CHECKOUT_PAGE .cartEmptyImg{height:120px;background-position:center;background-size: auto 85%;}
 .CHECKOUT_PAGE .colleCont.dTab.ePadding{padding:50px 0 0 0 !important;}    
 .CHECKOUT_PAGE .colleCont.v2.black{padding:0px 10px 0px 10px;}  
@@ -3143,7 +3150,7 @@ input[type=number]::-webkit-outer-spin-button {
    #guestforgot{position:relative;}
    .CHECKOUT_PAGE #guestOtp2,.CHECKOUT_PAGE #guestSignup{padding-bottom:100px;}
    .CHECKOUT_PAGE .transBtns{position:relative;float:left;}
-   .chkoutHeader .payHelp{position:absolute;top:15px;right:20px;width:auto;display:block;}
+   .chkoutHeader .payHelp1{position:absolute;top:15px;right:20px;width:auto;display:block;padding-left: 35px; height: 30px;background: url(../img/icons/548.svg)no-repeat; background-size: auto 75%;background-position: left 3px;cursor: pointer;font-size: 9px; font-family: regular;color: #999; line-height: 30px;}
    .checkoutheader_mobile{width:100%;height:50px;position:relative;top:55px;background:#222529;}
    .checkoutheader_mobile{display:block;}
    .checkoutheader_mobile .actBtn{width:50%;text-align:center;height:50px;margin:0;line-height:50px;}
@@ -3181,7 +3188,7 @@ input[type=number]::-webkit-outer-spin-button {
    .trans_failed .chkoutHeader .payHelp{display:none;}
    .trans_failed .mob_icondiv{display:none;}
    .PRODUCT_GRID2 .soc_abs{transform: scale(1);}
-   
+   .PRODUCT_PAGE .mheader {background: #15181b!important;}
    .black_bg{background:#15181b!important;}
     .mheader{display: block;width: 100%;height: 50px;position: fixed;top: 0;left: 0;right:0px;z-index: 199;display: block;}
     .head_wrap{display: none;}
@@ -3241,10 +3248,11 @@ input[type=number]::-webkit-outer-spin-button {
     .loginOverlay{z-index: 40;}
     .tab{padding: 0 15px;font-size: 9px;}
     .spBespoke{padding: 0px;}
-    .imgLarge{background-size:auto 60%;background-position: top;}
+    .imgLarge{background-size:auto 30%;background-position: top;}
+    .hideDivafter{padding:0 20px 0px 20px;height:620px;}
     .offsetTop{padding:20px;}
     .myAcc .offsetTop{padding-top: 0;}
-    .imageOutr {width:20%;}
+    .imageOutr {width:33.33%;}
     .collectH{font-size:35px;}
     .grStyl7 .grCap{bottom:-27px;}
     .grStyl6 .grCap{    right: 95px;
@@ -3256,6 +3264,7 @@ input[type=number]::-webkit-outer-spin-button {
             left: 50px;
             top: 50px;} 
     /*help   footer*/
+    .footerCont1{width:100%;}
     .fhelpSection{width:100%;border-bottom: 1px solid #e6e6e6;height:auto;    padding: 35px 20px 35px 60px;}
     .fhelpSection:last-child{border:none;}
     .helpFooterW{height: auto;}
