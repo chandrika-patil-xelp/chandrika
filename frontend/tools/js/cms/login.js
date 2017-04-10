@@ -640,13 +640,12 @@ function sugnupsubmt()
    {
       entrflg = 11;
       $('.loginOverlay').stop(true, true).fadeTo(200, 0);
-
-       $('.head_wrap').removeClass("addPointer");
+      $('.head_wrap').removeClass("addPointer");
       $('.ftabB').removeClass("addPointer");
       $('.wrapper_max').removeClass("addPointer");
       $('.fade').fadeOut("slow");
       $('.outerContr').css("z-index", "203", "opacity", "0");
-      $('.outerContr').velocity({translateY: ['150%', 0]}, {duration: 150, delay: 100, easing: ''});
+      $('.outerContr').velocity({translateY: ['100vh', 0]}, {duration: 150, delay: 100, easing: ''});
       $('.fade').fadeIn();
       $('#dlabel').text('Title');
       $('#name').val('');	  $('#name').blur();

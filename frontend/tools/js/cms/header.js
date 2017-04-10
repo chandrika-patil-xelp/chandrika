@@ -45,10 +45,10 @@ $(document).ready(function(){
 
             function guestpopUp() {
                 headrentrflg = 1;
-                 $('.head_wrap').addClass("pointNone");
+                $('.head_wrap').addClass("pointNone");
                 $('.guestOverlay').velocity({opacity: [1, 0]});
                 $('#guestPar').removeClass("dn");
-                $('#guestPar').velocity({translateY: [0, '150%']}, {duration: 150, delay: 100, easing: ''});
+                $('#guestPar').velocity({translateY: [0, '100vh']}, {duration: 150, delay: 100, easing: ''});
                 $('#guestChild').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
             }
             function guestpopUpClose() {
@@ -56,7 +56,7 @@ $(document).ready(function(){
                 headrentrflg = 0;
                 $('.guestOverlay').velocity({opacity: [0, 1]});
                 $('#guestPar').addClass("dn");
-                $('#guestPar').velocity({translateY: ['150%', 0]}, {duration: 150, delay: 100, easing: ''});
+                $('#guestPar').velocity({translateY: ['100vh', 0]}, {duration: 150, delay: 100, easing: ''});
 //                $('#guestPar').velocity({opacity: [0, 1]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
                 $('#guestChild').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
                 
