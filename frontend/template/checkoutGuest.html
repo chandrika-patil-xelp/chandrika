@@ -43,7 +43,7 @@
         <div class="wrapper_max">
 	  <a href="<?php echo DOMAIN ?>index.php?action=landing_page"><div class="logo fLeft"></div></a>
           <a class="logoA" href="<?php echo DOMAIN ?>"><div class="mlogoHeader"></div></a>
-          <div class="payHelp fRight mob_help">Need Help?</div>
+          <div class="payHelp1 fRight mob_help" id="mob_help">Need Help?</div>
             <div class="fLeft callUs">Got Question? call us on 9880824707</div>
             <div class="payOption fRight">
                 <div class="col50 pay certiIc fRight">certified jewellery</div>
@@ -674,7 +674,12 @@
     <!--<script type="text/javascript" src="<?php echo $jvs['checkout']; ?>"></script>-->
     <script type="text/javascript" src="<?php echo $fjvs['Common']; ?>"></script>
     <script type="text/javascript">
-
+                        $('.payHelp').click(function () {
+                            $('body').animate({scrollTop: 1000}, 'slow');
+                        });
+                         $('#mob_help').click(function () {
+                            $('body').animate({scrollTop: 465}, 'slow');
+                        });
                          $('#guestReset,#guestOtp,#guestOtp2,#guestforgot,#guestSignup').velocity({opacity: [0]}, {duration: 0, easing: 'ease-in-out'});
                         $("#gSignup").click(function () {
                             guestsUp();
