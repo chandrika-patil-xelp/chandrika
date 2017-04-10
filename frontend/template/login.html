@@ -327,7 +327,6 @@
                             return false;
                         }
                     });
-
             entrflg = 4;
 //             $('.overlay').stop(true, true).fadeTo(200, 1);        
             $('#signInId').removeClass("dn");
@@ -342,7 +341,7 @@
             $('.outerContr,.deleteContr').css("z-index", "203", "opacity", "1");
             $(this).parent().parent().addClass("addPointer");
             $('.ftabB').addClass("addPointer");
-            $('.outerContr').velocity({translateY: [0, '150%']}, {duration: 150, delay: 100, easing: ''});
+            $('.outerContr').velocity({translateY: [0, '100vh']}, {duration: 150, delay: 100, easing: ''});
         }
 
 

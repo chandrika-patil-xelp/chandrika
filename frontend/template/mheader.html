@@ -139,7 +139,7 @@
 //        $('.loginOverlay').stop(true, true).fadeTo(200, 0);
 
         $('#guestPar').removeClass("dn");
-        $('#guestPar').velocity({translateY: [0, '150%']}, {duration: 150, delay: 100, easing: ''});
+        $('#guestPar').velocity({translateY: [0, '100vh']}, {duration: 150, delay: 100, easing: ''});
         $('#guestChild').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
     }
     function guestpopUpClose() {
@@ -147,7 +147,7 @@
         $('.loginOverlay').velocity({opacity: [0, 1]});
 //          $('.loginOverlay').stop(true, true).fadeTo(0, 200);
         $('#guestPar').addClass("dn");
-        $('#guestPar').velocity({translateY: ['150%', 0]}, {duration: 150, delay: 100, easing: ''});
+        $('#guestPar').velocity({translateY: ['100vh', 0]}, {duration: 150, delay: 100, easing: ''});
 //                $('#guestPar').velocity({opacity: [0, 1]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
         $('#guestChild').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
     }
@@ -228,11 +228,11 @@
         $('.head_wrap').addClass("addPointer");
         $('.wrapper_max').addClass("addPointer");
         $('#loginId').css("opacity", "1");
-        $('#forgot,#otpOuter,#otpOuter2,#signUpId').addClass("dn")
+        $('#forgot,#otpOuter,#otpOuter2,#signUpId').addClass("dn");
         $('.outerContr,.deleteContr').css("z-index", "203", "opacity", "1");
         $(this).parent().parent().addClass("addPointer");
         $('.ftabB').addClass("addPointer");
-        $('.outerContr').velocity({translateY: [0, '150%']}, {duration: 150, delay: 100, easing: ''});
+        $('.outerContr').velocity({translateY: [0, '100vh']}, {duration: 150, delay: 100, easing: ''});
     }
 
 
