@@ -4,7 +4,7 @@ $(document).ready(function () {
 
     var winSiz = $(window).width();
     var htSize = $(window).height();
-    if (winSiz < 960) {
+    if (winSiz <= 1024) {
         getmheader();
     }
 
