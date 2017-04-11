@@ -3094,7 +3094,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 @media only screen and (max-width:1024px){ 
    .custBtn1{bottom:95px;opacity: 1;}
-  .grid_img{padding-bottom:90%;}
+/*  .grid_img{padding-bottom:90%;}*/
 .mobileMess{display:block !important}
 /*    checkout*/
 #guestSignin,#guestSignup,#guestforgot{padding-top:25px !important;}
@@ -3330,7 +3330,7 @@ line-height: 20px;
     .darkCont{    padding: 50px 25px 130px 25px;}
     .galleryCover{left: -26px;}
     .PRODUCT_GRID2 .custBtn1{opacity: 1;}
-    .PRODUCT_GRID2 .grid3{width: 50%;height: 80vh;}
+    .PRODUCT_GRID2 .grid3{width: 50%;height: 80vh;min-height:345px;}
     .PRODUCT_GRID2 .soc_abs{transform: scale(1);}
     .head_wrap{display: none;}
 
@@ -3708,7 +3708,7 @@ line-height: 20px;
     #openAddrId .w49:nth-child(6){float:left;}
     #openAddrId .filterSec .button.actBtn{float:none;}
     #myaddrs .col50{padding: 0;}
-    #myaddrs .defaulDiv{ padding: 10px;border:1px solid #e6e6e6;border-right: none;border-left: none;}
+    #myaddrs .defaulDiv{ padding: 10px 55px 10px 10px;border:1px solid #e6e6e6;border-right: none;border-left: none;}
     .mBtns{width: 100%;
            height: 50px;
            float: left;
@@ -3744,5 +3744,5 @@ line-height: 20px;
 .outerContr,.guestPopup{height:100%;overflow:auto;}
 }
 @media only screen and (max-device-width: 768px) and (orientation: landscape){
-.termHeading{top:80px;}
+.termHeading{top:50px;}
 }
