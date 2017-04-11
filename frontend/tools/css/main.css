@@ -3091,13 +3091,6 @@ input[type=number]::-webkit-outer-spin-button {
     .rota_wrap{width:45%;}
     .options{width:30%;}
 }
-@media only screen and (max-device-width: 1024px) and (orientation: landscape){
-.mobile_height{min-height:439px;}  
-.outerContr,.guestPopup{height:100%;overflow:auto;}
-}
-@media only screen and (max-device-width: 768px) and (orientation: landscape){
-.termHeading{top:80px;}
-}
 @media only screen and (max-width:1024px){ 
    .custBtn1{bottom:95px;opacity: 1;}
   .grid_img{padding-bottom:90%;}
@@ -3520,7 +3513,7 @@ input[type=number]::-webkit-outer-spin-button {
     .tabWrap{display:none;}
     .imageOutr{width: 50%;}
     /*.hideDiv{display:none;}*/
-    .hideDiv{height: auto;padding: 0px 20px 0px 20px;}
+    .hideDiv{height:100%;padding: 0px 20px 0px 20px;}
     .define{width:100%;}
     .imgLarge{width: 100%;background-size: auto 100%;height: 300px;background-position: top;}
     .detailsImg{width: 100%;}
@@ -3706,3 +3699,10 @@ input[type=number]::-webkit-outer-spin-button {
     .grStyl5 .grCap{left:-11px;}
 }
 .closeG{}
+@media only screen and (max-device-width: 1024px) and (orientation: landscape){
+.mobile_height{min-height:439px;}  
+.outerContr,.guestPopup{height:100%;overflow:auto;}
+}
+@media only screen and (max-device-width: 768px) and (orientation: landscape){
+.termHeading{top:80px;}
+}
