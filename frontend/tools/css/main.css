@@ -3508,7 +3508,7 @@ line-height: 20px;
     .overFlow{overflow: hidden;}
     .checkmBtn{display:block!important;position: fixed;bottom: 0;width: 100%;left: 0;height: 55px;line-height: 55px;text-align: center;background-color: #53C7C9; z-index: 999999;letter-spacing: 0.35em;color: #ffffff;text-transform: uppercase;font-size: 12px;}
     #totitm_cart .actBtn{display: none;}
-    .delvrAdress .w50r{padding:35px 15px 35px 60px;}
+    .delvrAdress .w50r{padding:35px 15px 35px 65px;}
     .totalItem{margin-bottom: 0px;padding:15px;} 
     .galleryCover{left:-15px;}
     .termHeading{top: 135px;} 
