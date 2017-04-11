@@ -47,7 +47,7 @@ $(document).ready(function () {
       var winSiz = $(window).width();
       var htSize = $(window).height();
 
-       if (winSiz > 480) 
+       if (winSiz > 1024) 
        { 
               getmenu();
        }  
