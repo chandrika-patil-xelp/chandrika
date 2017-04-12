@@ -2,6 +2,7 @@
 <?php include 'jhead.html' ?>
 <body class="Terms bangle">
     <?php include 'Cart.html'?>
+    <?php include 'loader.html'?>
     <?php include 'header.html'?>
     <?php include 'login.html'?>
   
@@ -154,9 +155,13 @@
     </div>
     <?php include 'footer.html'?>
     <script>
+        function loadComplete() {
+            $('.wrapper_max').removeClass('offsetEffects');
+        }
         $(document).ready(function () {
             $('html, body').animate({scrollTop: '0px'}, 300);
             $('.wrapper_max').removeClass('offsetEffects');
+            load_page();
         });
         $(window).scroll(function () {
             var sc = $('body').scrollTop();
