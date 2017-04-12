@@ -3514,13 +3514,13 @@ line-height: 20px;
     .checkmBtn{display:block!important;position: fixed;bottom: 0;width: 100%;left: 0;height: 55px;line-height: 55px;text-align: center;background-color: #53C7C9; z-index: 999999;letter-spacing: 0.35em;color: #ffffff;text-transform: uppercase;font-size: 12px;}
     #totitm_cart .actBtn{display: none;}
     .delvrAdress .w50r{padding:35px 15px 35px 65px;}
-    .totalItem{margin-bottom: 0px;padding:15px;} 
+    .totalItem{margin-bottom: 0px;padding:15px 50px 15px 15px;} 
     .galleryCover{left:-15px;}
     .termHeading{top: 135px;} 
     .inGuest{padding: 80px 25px 80px 25px;height:100%;}   
     .guestPopup{width:100%;height:100vh;z-index:9999;overflow:auto;}
     .closeLogin1{width: 50px;height: 50px;}
-    .incart_gen{height: calc(100vh - 150px);padding-bottom:30px;}
+    .incart_gen{height: calc(100vh - 180px);padding-bottom:30px;}
     .cartEmptyImg{background-position:center 105%;height:250px;background-size: auto 45%;}
     .cart_item{padding:20px 0px 5px 105px;}
     .checkoutBefore .cart_item{padding-left:65px;}
