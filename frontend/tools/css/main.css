@@ -3419,7 +3419,7 @@ input[type=number]::-webkit-outer-spin-button {
                line-height: 16px;
                font-size:9px;z-index:0;top: 27px;}
     .myaccount .tHead {width: 250px; z-index: 11;border-right: 1px solid #f3f3f3;margin:0;}
-    .myaccount .offsetTop {padding: 40px 0px 40px 0px;}
+    .myaccount .offsetTop {padding: 40px 10px 40px 10px;}
     .myAcc .offsetTop{padding-top: 0}
     .pCont .log-Icn{left:15px;}
     .myaccount .grid3{width:100%;}
