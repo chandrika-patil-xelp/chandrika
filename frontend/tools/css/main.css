@@ -3091,6 +3091,8 @@ input[type=number]::-webkit-outer-spin-button {
     .rota_wrap{width:45%;}
     .options{width:30%;}
     .grid_img {padding-bottom: 80%;}
+/*    checkout after page*/
+.checkoutafter .invoice{width:25%;padding:0px 10px;}
 }
 @media only screen and (max-width:1024px){ 
    .custBtn1{bottom:95px;opacity: 1;}
@@ -3223,9 +3225,8 @@ input[type=number]::-webkit-outer-spin-button {
     .div100{width: 100%;height: auto;}
     .darkCont{padding: 180px 30px 180px 30px;}
     .PRODUCT_GRID2 .grid3{height: 35.5vw;}
-/*   today */
-    .tCommon .width14{width:25% !important;}
-     .spBespoke{font-size: 17px;padding: 0px;    line-height: 30px;}
+  .tCommon .width14{width:25% !important;}
+  .spBespoke{font-size: 17px;padding: 0px;    line-height: 30px;}
  .offsetTop {
     padding: 40px 15px 40px 15px;
 }
@@ -3256,6 +3257,9 @@ line-height: 20px;
     .mFilterhead{border-bottom:1px solid #e6e6e6;width: 100vw; height: 50px;line-height: 50px; position: fixed;top: 0;left: 0;background: #fff;padding:0px 50px 0px 20px;font-family: semibold;font-size: 13px;text-transform: uppercase;letter-spacing: 0.35em;color: #15181b;z-index:500;}
     .fakeApplybtn{width: auto;height: 30px;line-height: 29px; border-radius: 3px;border: 1px solid #15181b;font-family: semibold;letter-spacing: 0.15em; padding: 0 20px;float: left;margin: auto;font-size: 11px; position: absolute;top: 0;bottom: 0;left: 15px;}
     .checkmBtn{display:block!important;position: fixed;bottom: 0;width: 100%;left: 0;height: 55px;line-height: 55px;text-align: center;background-color: #53C7C9; z-index: 999999;letter-spacing: 0.35em;color: #ffffff;text-transform: uppercase;font-size: 12px;}
+/*checkout after page*/
+.checkoutafter .thankTxt{padding:20px;}
+.checkoutafter .mob_icondiv{border-top:1px solid #e6e6e6;}
 }
 
 @media only screen and (max-width:768px){
@@ -3381,7 +3385,6 @@ line-height: 20px;
     .trans_failed .chkoutHeader .payOption{display:none;}
     .trans_failed .mob_icondiv{display:block;border-top:1px solid #e6e6e6;}
     .backTop{cursor:pointer;position:fixed;width:40px;right:5%;bottom:5%;height:40px;background:linear-gradient(to bottom, #222529 0%, #15181b 100%) ;z-index: 9;color: #fff;font-size: 12px;font-family: regular;padding:5px;border-radius:50%;transition:300ms;-webkit-transition:300ms;-moz-transition:300ms;-o-transition:300ms;-ms-transition:300ms;}
-/*today code*/
 .gemBanner {
     width: 100%;
     height: auto;
@@ -3401,7 +3404,9 @@ line-height: 20px;
 .coverImg2{height:70vh;background-position: top;}
 .gemBanner{padding-bottom:53%;}
 .bangle .dtable{width:60%;}
-.filterCommon{width:33.33%;} 
+.filterCommon{width:33.33%;}
+/*checkout after page*/
+.checkoutafter .invoice{width: 50%; padding: 0px 20px;float:left;}
 }
 
 
@@ -3731,6 +3736,8 @@ line-height: 20px;
     .breadH{padding: 0 0px 0 20px;}
     /*transaction failed page */
     .trans_failed .thankTxt{padding:20px;}   
+   /*checkout after page*/
+   .checkoutafter .invoice{width: 100%; padding: 0px 20px;float:left;}
 }
 @media only screen and (max-width:375px){
     .grStyl5 .grCap{left:50px;}
@@ -3742,6 +3749,7 @@ line-height: 20px;
 @media only screen and (max-device-width: 1024px) and (orientation: landscape){
 .mobile_height{min-height:439px;}  
 .outerContr,.guestPopup{height:100%;overflow:auto;}
+.offsetTop{z-index:199;}
 }
 @media only screen and (max-device-width: 768px) and (orientation: landscape){
 .termHeading{top:50px;}
