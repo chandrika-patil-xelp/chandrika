@@ -438,7 +438,7 @@ a{color:#666;}
 .padLR25{padding: 0px 25px;}
 .padR0{padding-right: 0px;}
 .padR0{padding-right:0px!important;}
-.PRODUCT_GRID2.wrapper_main{padding-top:80vh;background-color: #f3f3f3;}
+.PRODUCT_GRID2.wrapper_main{padding-top:79vh;background-color: #f3f3f3;}
 
 .imgHolder{width:100%;height:100%;position:absolute;background-size:115%;background-position:center;cursor: w-resize;}
 .imgHolder img{width:100%;height:100%;border:0}
@@ -3228,9 +3228,7 @@ input[type=number]::-webkit-outer-spin-button {
     .PRODUCT_GRID2 .grid3{height: 35.5vw;}
   .tCommon .width14{width:25% !important;}
   .spBespoke{font-size: 17px;padding: 0px;    line-height: 30px;}
- .offsetTop {
-    padding: 40px 15px 40px 15px;
-}
+ .bangle .dtable{width:85%;}
 .gemBanner {
     width: 100%;
     height: auto;
@@ -3240,11 +3238,7 @@ input[type=number]::-webkit-outer-spin-button {
     position: absolute;
     padding-bottom: 53%;
 }
-.tHead {
-width: 100%;
-text-align: left;
-line-height: 20px;
-}
+.Terms .offsetTop{padding:40px;display:inline-block;}
     .filterCommon{width:20%;}   
     .fmenu_wrap{display:none !important;position:fixed;padding:60px 0 60px 0;top:0;min-height:100vh;height:100% !important;width:100vw;background:#fff;overflow:auto;}
     .filter_display{display:block !important;}
@@ -3282,7 +3276,6 @@ line-height: 20px;
     .spBespoke{padding: 0px;}
     .imgLarge{background-size:auto 30%;background-position: top;}
     .hideDivafter{padding:0 20px 0px 20px;height:620px;}
-    .offsetTop{padding:20px;}
     .myAcc .offsetTop{padding-top: 0;}
     .imageOutr {width:33.33%;}
     .collectH{font-size:30px;}
@@ -3396,12 +3389,13 @@ line-height: 20px;
     padding-bottom: 50%;
 }
 .PRODUCT_GRID2.wrapper_main {
-    padding-top: 60vh;
+    padding-top: 45vh;
 }
 .pCont {
     width: 100%;
     padding: 0px;
 }
+.tHead{width:100%;text-align:left;}
 .coverImg2{height:70vh;background-position: top;}
 .gemBanner{padding-bottom:53%;}
 .bangle .dtable{width:60%;}
@@ -3556,13 +3550,13 @@ line-height: 20px;
     .gemBanner{width: 100%;height: auto;background-size: contain;background-position: top;background-repeat: no-repeat;position: absolute;padding-bottom: 53%;}
     .fooTxt{padding: 0 8px;}
     /*.cart{width: 100%;}*/ 
-    .PRODUCT_GRID2.wrapper_main{padding-top: 40vh;}
+    .PRODUCT_GRID2.wrapper_main{padding-top: 39vh;}
     .wishClass .custBtn1{bottom:122px;opacity: 1;}
     .grid_dets:before{top:-3px;}
     .PRODUCT_GRID2 .grid3{width:100%;height: auto;}
     .tHead{width:100%;text-align:left;line-height:20px;margin: 10px 0px;}
     .pCont{width: 100%;padding: 0px;}
-    .offsetTop{padding:40px 15px 40px 15px;}
+    .offsetTop{padding:40px 20px 40px 20px;}
     .footerH{padding: 25px 25px;}
     .footerCont1{width: 100%;}
     .fooH{margin: 10px 0px;}
@@ -3750,8 +3744,12 @@ line-height: 20px;
 @media only screen and (max-device-width: 1024px) and (orientation: landscape){
 .mobile_height{min-height:439px;}  
 .outerContr,.guestPopup{height:100%;overflow:auto;}
-.offsetTop{z-index:199;}
 }
 @media only screen and (max-device-width: 768px) and (orientation: landscape){
+.termHeading{top:50px;}
+.PRODUCT_GRID2.wrapper_main{padding-top:400px;}
+.coverImg2{height:100vh;}
+}
+@media only screen and (max-device-width: 480px) and (orientation: landscape){
 .termHeading{top:50px;}
 }
