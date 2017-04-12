@@ -178,10 +178,10 @@ function GetURLParameter(Param)
     }
 }
 
-$('#Track_ord').click(function () {
-    track_ord();
-
-});
+//$('#Track_ord').click(function () {
+//    track_ord();
+//
+//});
 
 function track_ord()
 {
