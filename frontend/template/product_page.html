@@ -104,7 +104,7 @@
                                 <div class="desc_row fLeft  font12  transition300" id="leadtime"><div class="col100 font12 fLeft"> RANGE:<span class="cartRup15b padR3 semibold" id="pricel"> 26,000</span><span class="toTxt  semibold">to</span>  <span  class="cartRup15b semibold" id="priceh">26,000</span></div> </div>
                                 <div class="desc_row fLeft  font12 transition300 bolder" id="Ifpendant"></div>
                                 <div class="cardHead fLeft" id="custm">Customise</div>
-                                <div class="cust_cont poR fLeft">
+                                <div class="cust_cont poR fLeft" id="wCustom">
                                     <div class="drop_dn fLeft dn" id="clar">
                                         <div class="attTitle">Quality</div>
                                         <div class="actBtn font12 regular" id="qual"></div>
@@ -287,17 +287,95 @@
             </div>
         </div>
 
+        <div class="m_cust dn">
+            <div class="cardHead fleft" id="custm">Customise Your Earring</div>
+            <div class="cust_cont poR fLeft"  id="mCustom">
+
+                <div class="drop_dn fLeft dn" id="mclar">
+                    <div class="attTitle">Quality</div>
+                    <div class="actBtn font12 regular" id="qual"></div>
+                </div>
+
+                <div class="sLeft">
+                    <div class="selector_cont" >
+                        <center id="mdiQ">
+
+                        </center>
+                    </div>
+                </div>
+
+                <div class="drop_dn fLeft  " id="mcolor">
+                    <div class="attTitle">Color</div>
+                    <div class="actBtn font12 regular" id="clr"></div>
+                </div>
+
+                <div class="sLeft">
+                    <div class="selector_cont">
+                        <center  id="mclr">
+
+                        </center>
+                    </div>
+                </div>
+
+                <div class="drop_dn fLeft " id="mpurity">
+                    <div class="attTitle">Purity</div>
+                    <div class="actBtn font12 regular" id="carat"></div>
+                </div>
+                <div class="sLeft">
+                    <div class="selector_cont pur">
+                        <center id="mpure">
+
+                        </center>
+                    </div>
+                </div>
+
+                <div class="drop_dn fLeft dn" id="msizes">
+                    <!--                                                                             <div class="attTitle">Size</div>
+                                                            <div class="actBtn font12 regular"></div>
+                                                                                                   <div class="actBtn font12 bolder" id="size" > </div>
+                                                          <div class="selectDefault"></div>-->
+
+
+                </div>
+                                <div class="sLeft" id="msize">
+                                    <center>
+                                        <div class="col100 fLeft" id="mRingGuide">
+                                            <div class="szCir fLeft">
+                                                <div class="fLeft col100">
+                                                    <div class="col100 sizeOuter fLeft ringclass">
+                                                        <div class="circleOuter fLeft">
+                                                            <div class="ringCircle transition600 poR"> 14</div>
+                                                        </div>
+                                                        <center>
+                                                            <div class="col100 fLeft"><div class="col50"><div class="actBtn" id="mringGuide">size guide</div></div></div>
+                                                            <div class="para fLeft mar0">Know your ring size</div>
+                                                        </center>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ringSlider fRight">
+                                                <input type="text" id="mslideRing">
+                                            </div>
+                                            <div class="col100 fLeft"><center><div class="options_back sizbak"></div></center></div>
+                                        </div>
+                                    </center>
+                                </div>
+
+            </div> 
+            <div class="mcustClose"></div>  
+
+            <div class="checkmBtn bolder">CUSTOMIZE</div>
+        </div>
+
 
         <?php include 'footer.html'?>
         <div class="mBtns transition600">
-            <div class="col50 fLeft  padXr5">
-                <div class="actBtn txtCenter  bolder " id="add_to_cart_mob">ADD TO CART</div>
-            </div>
+            <div class="mobCart txtCenter  bolder " id="add_to_cart_mob"></div>
             <div class="col50 fLeft  padX15">
-                <div class="actBtn  txtCenter bolder  " id="buynow_mob">buy now</div>
+                <div class="col100  mRupeeB" id="m_price">25,152</div>
+                <div class="actBtn  txtCenter fLeft bolder" id="mCst">customise</div>
             </div>
         </div>
-    </div>
 
 
 
@@ -323,9 +401,23 @@
             }
         });
 
+        $('#mCst').click(function () {
+            console.log("custi");
+            $('body').addClass('posFix');
+            $('.m_cust').removeClass('dn');
+            $('.m_cust').velocity({translateY: [0, '100vh']}, {duration: 400, delay: 100});
+        });
+
+        $('.mcustClose').click(function () {
+            $('body').removeClass('posFix');
+            $('.m_cust').addClass('dn');
+            $('.m_cust').velocity({translateY: ['100vh', 0]}, {duration: 400, delay: 100});
+        });
+
+
         var t = 0;
 
-        $('#slideRing').ionRangeSlider({
+        $('#slideRing,#mslideRing').ionRangeSlider({
             type: "single",
             from: 9,
             values: [
@@ -343,7 +435,7 @@
                     dec();
                 }
                 t = sVal;
-//               calculatePrice();
+                //               calculatePrice();
             },
         });
 
@@ -370,7 +462,7 @@
                     decB();
                 }
                 t = sVal;
-//                calculatePrice();
+                //                calculatePrice();
             },
         });
         var slider = $("#slideBangle").data("ionRangeSlider");
@@ -383,7 +475,7 @@
         var moveCount = 0;
         function movePrImg(flag)
         {
-//                    alert("jhdkfj");
+            //                    alert("jhdkfj");
             var totalThumbs = $(".carouselBox").length;
             var liWidth = ($(".carouselBox").outerWidth());
             if (!flag)
@@ -425,7 +517,7 @@
             $('.ringCircle').css('width', val1 + 'px');
             $('.ringCircle').css('height', val2 + 'px');
             $('.ringCircle').css('line-height', val3 + 'px');
-//            $('.ringCircle').html(incVal);
+            //            $('.ringCircle').html(incVal);
             tmp++;
             calweight();
         }
@@ -473,7 +565,7 @@
             $('#bangCircle').css("width", valb1 + 'px');
             $('#bangCircle').css("height", valb2 + 'px');
             $('#bangCircle').css('line-height', valb3 + 'px');
-//            $('#bangCircle').html(incVal_b);
+            //            $('#bangCircle').html(incVal_b);
             tmp_b = parseFloat(tmp_b) + 0.1;
             calweight();
         }
@@ -492,9 +584,9 @@
             $('#bangCircle').css("width", valb1);
             $('#bangCircle').css("height", valb2);
             $('#bangCircle').css("line-height", valb3 + 'px');
-//            $('#bangCircle').html(Math.round(dTxt_b * 10) / 10);
+            //            $('#bangCircle').html(Math.round(dTxt_b * 10) / 10);
             var decValb = Math.round(dTxt_b * 10) / 10;
-//            $('#size').text("Size " + decValb);
+            //            $('#size').text("Size " + decValb);
             tmp_b = tmp_b - 0.1;
             calweight();
         }
@@ -585,17 +677,26 @@
         /* Customisation */
         var j = 0;
         $('.drop_dn').click(function () {
-            if (!$(this).hasClass('pointNone')) {
-                exprice = $('#price').text();
+            var w = $(window).width();
+            if (w <= 1024) {
+                $('#wCustom').addClass('dn');
+                $('.m_cust').removeClass('dn');
+            } else {
+                $('#wCustom').removeClass('dn');
+                $('.m_cust').addClass('dn');
 
-                j = $(this).index();
-                //$('body').addClass('over_hide');
-                $('.selectClose,.cust_cont2').removeClass("dn");
-                $('.cust_cont2').velocity({scale: [1, 3], opacity: [1, 0]}, {duration: 100, easing: 'swing', display: 'block'});
-                $('#cust').velocity({scale: [3, 1], opacity: [0, 1]}, {duration: 200, easing: 'swing', display: 'none', complete: function () {
-                        //  $('body').removeClass('over_hide')
-                    }});
-                $('.selector_cont').eq(j).velocity({scale: [1, 0.5], opacity: [1, 0]}, {delay: '50', duration: '150', display: 'block'});
+                if (!$(this).hasClass('pointNone')) {
+                    exprice = $('#price').text();
+
+                    j = $(this).index();
+                    //$('body').addClass('over_hide');
+                    $('.selectClose,.cust_cont2').removeClass("dn");
+                    $('.cust_cont2').velocity({scale: [1, 3], opacity: [1, 0]}, {duration: 100, easing: 'swing', display: 'block'});
+                    $('#cust').velocity({scale: [3, 1], opacity: [0, 1]}, {duration: 200, easing: 'swing', display: 'none', complete: function () {
+                            //  $('body').removeClass('over_hide')
+                        }});
+                    $('.selector_cont').eq(j).velocity({scale: [1, 0.5], opacity: [1, 0]}, {delay: '50', duration: '150', display: 'block'});
+                }
             }
         });
         $(document).on("click", ".options_back", function () {
@@ -693,7 +794,7 @@
             $('.container').toggleClass('over_hide');
         });
 
-//Touch 360
+        //Touch 360
         var lastPt = null;
         var staticCord = 0;
         var x = 0;
@@ -708,7 +809,7 @@
             touchzone.addEventListener("touchend", end, false);
         }
         function getcor(e) {
-//  e.preventDefault();
+            //  e.preventDefault();
             clearTimeout(stop);
             //sEnd=0;
             flag = 0;
@@ -740,7 +841,7 @@
             i = k;
         }
         function end(e) {
-//  e.preventDefault();
+            //  e.preventDefault();
             staticCord = x;
             sEnd = 1;
         }
@@ -771,28 +872,28 @@
 
 
 
-//        var val = 0;
-//        var moveCount = 0;
-//        function movePrImg(flag) {
-//            alert("ndjuhsndf");
-//            var totalThumbs = $(".productCont").length;
-//            var liWidth = ($(".productCont").outerWidth());
-//
-//
-//            if (!flag) {
-//                if (moveCount < (totalThumbs - 1)) {
-//                    val = val - liWidth;
-//                    $(".productCont").css({transform: 'translateX(' + val + 'px)'});
-//                    moveCount++;
-//                }
-//            } else if (flag) {
-//                if (moveCount > 0) {
-//                    val = val + liWidth;
-//                    $(".productCont").css({transform: 'translateX(' + val + 'px)'});
-//                    moveCount--;
-//                }
-//            }
-//        }
+        //        var val = 0;
+        //        var moveCount = 0;
+        //        function movePrImg(flag) {
+        //            alert("ndjuhsndf");
+        //            var totalThumbs = $(".productCont").length;
+        //            var liWidth = ($(".productCont").outerWidth());
+        //
+        //
+        //            if (!flag) {
+        //                if (moveCount < (totalThumbs - 1)) {
+        //                    val = val - liWidth;
+        //                    $(".productCont").css({transform: 'translateX(' + val + 'px)'});
+        //                    moveCount++;
+        //                }
+        //            } else if (flag) {
+        //                if (moveCount > 0) {
+        //                    val = val + liWidth;
+        //                    $(".productCont").css({transform: 'translateX(' + val + 'px)'});
+        //                    moveCount--;
+        //                }
+        //            }
+        //        }
 
 
 
