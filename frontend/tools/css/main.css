@@ -3096,7 +3096,7 @@ input[type=number]::-webkit-outer-spin-button {
 .checkoutafter .invoice{width:25%;padding:0px 10px;}
 }
 @media only screen and (max-width:1024px){ 
-   .custBtn1{bottom:95px;opacity: 1;}
+    .custBtn1{bottom:95px;opacity: 1;}
 /*  .grid_img{padding-bottom:90%;}*/
 .mobileMess{display:block !important}
 /*    checkout*/
@@ -3228,6 +3228,54 @@ input[type=number]::-webkit-outer-spin-button {
     .div100{width: 100%;height: auto;}
     .darkCont{padding: 180px 30px 180px 30px;}
     .PRODUCT_GRID2 .grid3{height: 35.5vw;}
+
+    
+    /*customise section*/
+    .options_buffer {width: 100%;height:20vh;position: relative;top:initial;bottom:initial;margin: initial;}
+    .cardHead{width: 100%;
+              height:50px;
+              position:fixed;
+              top:0px;   
+              font-size: 12px;
+              font-family: semibold;
+              letter-spacing: 0.35em;
+              line-height: 40px;
+              color: #15181b;
+              text-transform:uppercase;padding-left: 10px;}
+    .mobCart{width:20%;height:100%;float: right;background: url(../img/icons/502w.svg) no-repeat;background-size: 18px;background-position:center;    border-left: 1px solid;}
+    .mobPrice{width:80%;height: 100%;}
+    .mRupeeB{background: url(../img/icons/519w.svg);background-repeat: no-repeat;background-size: auto 16px;    background-position: left 5px center;    padding: 0px 24px;font-size: 18px;}    #wCustom{display:none!important;}
+    /*.cust_cont2{display: none;}*/
+    #mCustom{display: block!important;}
+    .m_cust{
+        position:fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index:9999;background-color:#ffffff;padding:45px 10px 10px 10px;transform:translateY(100vh);}
+    .mcustClose{width:25px;height:25px;background: url(../img/icons/removeW.svg)no-repeat;background-size: auto 100%;background-position: left;cursor:pointer; position:absolute;right:10px;z-index:10;top:10px;}
+    .selector_cont{position: initial;top: 50px;display: block;    opacity: 1;}
+    .scrolCont{width:100%;height:50px;border:1px solid #e6e6e6;z-index:99999;position: absolute;top: 0;left: 0;}
+    .sDown{width:100%;height:50px;border:1px solid #e6e6e6;position:absolute;top: 0;left: 0;z-index: 99999;}
+    .sLeft{width:100%;height:auto;}
+    .sLeft .options_back{display: none;}
+    .sLeft .clarityInfo{display: none;}
+    .cust_cont{width: 100%;height: 100%;min-height:calc(100vh - 105px);overflow: auto;}
+     .mBtns{display:block;}
+     .mBtns{width: 100%;
+           height: 60px;
+           float: left;
+           position: fixed;
+           bottom: 0%;
+           /* border: 1px solid black; */
+           /* z-index: 999; */
+           background-color: #15181b;
+           color: #fff;
+           /* line-height: 50px; */
+           padding: 13px 8px 13px 8px;
+           z-index: 10;display: none;transform: translateY(20px);}
+    .dMbtn{display: block;transform: translateY(0px);transition-delay: 600ms;}
   .tCommon .width14{width:25% !important;}
   .spBespoke{font-size: 17px;padding: 0px;    line-height: 30px;}
  .bangle .dtable{width:85%;}
@@ -3408,7 +3456,15 @@ input[type=number]::-webkit-outer-spin-button {
 
 
 @media only screen and (max-width:480px){
+    .selector_cont{position: initial;top: 50px;display: block;    opacity: 1;}
+    .scrolCont{width:100%;height:50px;border:1px solid #e6e6e6;z-index:99999;position: absolute;top: 0;left: 0;}
+    .sDown{width:100%;height:50px;border:1px solid #e6e6e6;position:absolute;top: 0;left: 0;z-index: 99999;}
+    .sLeft{width:100%;height:auto;}
+    .sLeft .options_back{display: none;}
+    .sLeft .clarityInfo{display: none;}
+    .cust_cont{width: 100%;height: 100%;min-height:calc(100vh - 105px);overflow: auto;}
 
+    .drop_dn{position:relative;z-index:2;}
     .soc_wish2.beat:after{opacity:0;}
     .soc_wish2.beat:before{opacity:1;}
     .soc_wish2.beat{transform:scale(1);-webkit-transform:scale(1);-moz-transform:scale(1);-o-transform:scale(1);-ms-transform:scale(1);}
@@ -3711,7 +3767,7 @@ input[type=number]::-webkit-outer-spin-button {
     #myaddrs .col50{padding: 0;}
     #myaddrs .defaulDiv{ padding: 10px 55px 10px 10px;border:1px solid #e6e6e6;border-right: none;border-left: none;}
     .mBtns{width: 100%;
-           height: 50px;
+           height: 60px;
            float: left;
            position: fixed;
            bottom: 0%;
@@ -3720,7 +3776,7 @@ input[type=number]::-webkit-outer-spin-button {
            background-color: #15181b;
            color: #fff;
            /* line-height: 50px; */
-           padding: 13px 0px 13px 0px;
+           padding: 13px 8px 13px 8px;
            z-index: 10;display: none;transform: translateY(20px);}
     .dMbtn{display: block;transform: translateY(0px);transition-delay: 600ms;}
     .fixBtn{display: none;}
@@ -3732,6 +3788,32 @@ input[type=number]::-webkit-outer-spin-button {
     .breadH{padding: 0 0px 0 20px;}
     /*transaction failed page */
     .trans_failed .thankTxt{padding:20px;}   
+    /*customise section*/
+    .options_buffer {width: 100%;height:20vh;position: relative;top:initial;bottom:initial;margin: initial;}
+    .cardHead{width: 100%;
+              height:50px;
+              position:fixed;
+              top:0px;   
+              font-size: 12px;
+              font-family: semibold;
+              letter-spacing: 0.35em;
+              line-height: 40px;
+              color: #15181b;
+              text-transform:uppercase;padding-left: 10px;}
+    .mobCart{width:20%;height:100%;float: right;background: url(../img/icons/502w.svg) no-repeat;background-size: 18px;background-position:center;    border-left: 1px solid;}
+    .mobPrice{width:80%;height: 100%;}
+    .mRupeeB{background: url(../img/icons/519w.svg);background-repeat: no-repeat;background-size: auto 16px;    background-position: left 5px center;    padding: 0px 24px;font-size: 18px;}    #wCustom{display:none!important;}
+    /*.cust_cont2{display: none;}*/
+    #mCustom{display: block!important;}
+    .m_cust{
+        position:fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index:9999;background-color:#ffffff;padding:45px 10px 10px 10px;transform:translateY(100vh);}
+    .mcustClose{width:25px;height:25px;background: url(../img/icons/removeW.svg)no-repeat;background-size: auto 100%;background-position: left;cursor:pointer; position:absolute;right:10px;z-index:10;top:10px;}
+ 
    /*checkout after page*/
    .checkoutafter .invoice{width: 100%; padding: 0px 20px;float:left;}
 }
