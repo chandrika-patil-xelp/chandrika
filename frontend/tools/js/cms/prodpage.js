@@ -847,6 +847,7 @@ $(document).ready(function () {
                         var dQstr = "";
 
                         $('#clar').removeClass('dn');
+                        $('#mclar').removeClass('dn'); 
                         $(diamonds['results']).each(function (i, vl) {
 
                             var dcarat = vl.crat;
@@ -929,6 +930,7 @@ $(document).ready(function () {
                             dQstr += '</div>';
                             dQstr += '<center><div class="options_back"></div></center>';
                             $('#diQ').append(dQstr);
+                             $('#mdiQ').append(dQstr);
 
                             if (p_qlty !== undefined) {
                                 $("input[name='selectM']").each(function () {
@@ -1033,6 +1035,8 @@ $(document).ready(function () {
                     purstr += '</div>';
                       purstr += '<center><div class="options_back"></div></center>';
                     $('#pur').append(purstr);
+                    $('#mpure').append(purstr);
+                    
                     if (p_qlty !== undefined) {
                         $("input[name='purity']").each(function () {
                             var val = $(this).val();
@@ -1079,6 +1083,7 @@ $(document).ready(function () {
                    clrstr +='<center><div class="options_back"></div></center>';
 
                     $('#colr').append(clrstr);
+                    $('#mclr').append(clrstr);
                     if (p_color !== undefined) {
                         $("input[name='metal']").each(function () {
                             var val = $(this).val();
@@ -1331,6 +1336,7 @@ function getcatsize(s,cn, m) {
     if (catname == 'Rings' || catname == 'Bangles') {
   
         $('#sizes').removeClass('dn');
+//         $('#msizes').removeClass('dn');
       
         var URL = APIDOMAIN + "index.php/?action=getSizeListByCat&catid=" + catid;
         var dat = "";
@@ -1379,6 +1385,7 @@ function getcatsize(s,cn, m) {
                     });
 
                     $('#sizes').html(strd);
+//                     $('#msizes').html(strd);
 
 //                   $('.options_back').click(function(){
 //                        if (catname == 'Rings') {
@@ -1714,8 +1721,8 @@ $('.dwnArrow').click(function(){
 var e;
 
 $('.sizbak').click(function () {
-
     var size = $('#size').text();
+     // var msize = $('#msize').text();
 //     calculatePrice();
     setTimeout(function () {
         $(e).closest('.selector_cont ').find('.options_back').click();
@@ -1738,11 +1745,13 @@ $('.sizbak').click(function () {
         if (size == 'Select') {
             var rngval = $('.ringCircle').text();
             $('#size').html('SIZE ' + rngval);
+              //$('#msize').html('SIZE ' + rngval);
         }
     } else if (catname == 'Bangles') {
         if (size == 'Select') {
             var bngval = $('#bangCircle').text();
             $('#size').html('SIZE ' + bngval);
+             //$('#msize').html('SIZE ' + bngval);
         }
     }
 });
