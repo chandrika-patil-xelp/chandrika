@@ -765,7 +765,7 @@
                             $('#guestSignin').removeClass("dn");
                             $('#guestReset').addClass("dn");
                             $('#guestReset').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-                            $('#guestSignin').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+                            $('#guestSignin').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out',display:'block'});
                         }
 
                         function gOtpSubmit() {
@@ -1047,12 +1047,12 @@
                    $('#mob_guest').click(function () {
                         $('.colleCont.v2').css({"display":"block"});
                        $('#guestSignin').css({'display':'none'});
-                       $('#guestSignup,#guestforgot').addClass("dn");
+                       $('#guestSignup,#guestforgot,#guestOtp,#guestOtp2,#guestReset').addClass("dn");
                    });
                    $('#mob_signin').click(function () {
                         $('.colleCont.v2').css({"display":"none"});
                        $('#guestSignin').velocity({opacity: [1, 0]}, {duration: 0, delay: 0, easing: 'ease-in-out',display: 'block'});                   
-                      $('#guestSignup,#guestforgot').addClass("dn");
+                      $('#guestSignup,#guestforgot,#guestOtp,#guestOtp2,#guestReset').addClass("dn");
                      });
     </script>
 </body>
