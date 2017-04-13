@@ -847,19 +847,19 @@ function resetpasswrd()
 }
 
 $('#pId').click(function () {
-    var obj = { Title: 'account', Url: "pId" };
+    var obj = { Title: 'account', Url: "actn-pId" };
     history.pushState(obj, obj.Title, obj.Url);
     perninfo();
 });
 
 $('#oId').click(function () {
-    var obj = { Title: 'account', Url: "oId" };
+    var obj = { Title: 'account', Url: "actn-oId" };
     history.pushState(obj, obj.Title, obj.Url);
     ordrinfo();
 });
 
 $('#sId').click(function () {
-    var obj = { Title: 'account', Url: "sId" };
+    var obj = { Title: 'account', Url: "actn-sId" };
     history.pushState(obj, obj.Title, obj.Url);
     saveadrinfo();
 });
@@ -869,7 +869,7 @@ $('#cId').click(function () {
 });
 
 $('#wId').click(function () {
-    var obj = { Title: 'account', Url: "wId" };
+    var obj = { Title: 'account', Url: "actn-wId" };
     history.pushState(obj, obj.Title, obj.Url);
     whlist();
 });
@@ -1070,6 +1070,7 @@ function getgender(gndr)
 /*target for my account page*/
  var w = window.outerWidth;
     if(w <= 768){
+       
     function targt(e) {
         if(e.target.id == "side_menus" || e.target.id == "fooH" || e.target.id == 'log-Icn'){
             $('#side_menus').css({"transform":"translateX(-20px)","transition":"300ms"});
@@ -1077,4 +1078,8 @@ function getgender(gndr)
             $('#side_menus').css({"transform":"translateX(-115%)","transition":"300ms"});
         }   
     }
+}else  if(w > 768){
+     function targt(e) {
+         
+     }
 }
