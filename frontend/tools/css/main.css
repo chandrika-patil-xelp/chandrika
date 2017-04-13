@@ -3452,6 +3452,7 @@ input[type=number]::-webkit-outer-spin-button {
 .filterCommon{width:33.33%;}
 /*checkout after page*/
 .checkoutafter .invoice{width: 50%; padding: 0px 20px;float:left;}
+.Terms .offsetTop{padding:40px 10px;}
 }
 
 
@@ -3832,7 +3833,11 @@ input[type=number]::-webkit-outer-spin-button {
 .termHeading{top:50px;}
 .PRODUCT_GRID2.wrapper_main{padding-top:400px;}
 .coverImg2{height:100vh;}
+.HOME_PAGE #darkCont .colleCont{padding:135px 0px;}
+.HOME_PAGE #darkCont .smUBot{bottom:20px;}
+.HOME_PAGE #darkCont .smUline{top:50px;}
 }
 @media only screen and (max-device-width: 480px) and (orientation: landscape){
-.termHeading{top:50px;}
+.HOME_PAGE #darkCont .smUline{top:35px;}   
 }
+
