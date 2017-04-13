@@ -3108,7 +3108,7 @@ input[type=number]::-webkit-outer-spin-button {
 .CHECKOUT_PAGE .colleCont.v2.black{padding:0px 10px 0px 10px;}  
 .CHECKOUT_PAGE .colleCont.v2.black .totalItem{margin-top:30px;}
 .CHECKOUT_PAGE .jwlCnt{height:270px;padding-bottom:30px;}  
-.CHECKOUT_PAGE .fadeCnt{padding:0px 25px 25px 25px !important;position:relative;height:100%;}
+.CHECKOUT_PAGE .fadeCnt{padding:25px !important;position:relative;height:100%;}
 .checkout_details{background:#fff;}
 #scndup{height:auto;padding:25px;}
 .chkoutHeader .payOption{width:75%;}
