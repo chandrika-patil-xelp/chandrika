@@ -1051,7 +1051,7 @@
                    });
                    $('#mob_signin').click(function () {
                         $('.colleCont.v2').css({"display":"none"});
-                       $('#guestSignin').velocity({opacity: [1, 0]}, {duration: 0, delay: 0, easing: 'ease-in-out',display: 'block'});                   
+                       $('#guestSignin').velocity({translateY: [0, 20], opacity: [1, 0]},{duration: 0, delay: 0, easing: 'ease-in-out',display: 'block'});                   
                       $('#guestSignup,#guestforgot,#guestOtp,#guestOtp2,#guestReset').addClass("dn");
                      });
     </script>
