@@ -148,3 +148,8 @@ width: 13px!important;}
     border-style: solid !important;
     border-color: transparent !important;
 }
+@media only screen and (max-width:1024px){
+    .irs-with-grid .irs-grid {
+    display: none;
+}
+}
