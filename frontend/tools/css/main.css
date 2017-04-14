@@ -3103,13 +3103,14 @@ input[type=number]::-webkit-outer-spin-button {
 #guestSignin,#guestSignup,#guestforgot{padding-top:25px !important;}
 #fstup{padding-top:0 !important;}
 .webCheck_btn{display:none;}
-.mobile_height{width:100vw;height:calc(100vh - 155px) !important;overflow:auto !important;position:relative !important;}
+.mobile_height{width:100vw;height:calc(100vh - 155px) !important;position:relative !important;}
 .CHECKOUT_PAGE .cartEmptyImg{height:120px;background-position:center;background-size: auto 85%;}
 .CHECKOUT_PAGE .colleCont.dTab.ePadding{padding:54px 0 0 0 !important;}    
 .CHECKOUT_PAGE .colleCont.v2.black{padding:0px 10px 0px 10px;}  
 .CHECKOUT_PAGE .colleCont.v2.black .totalItem{margin-top:30px;}
 .CHECKOUT_PAGE .jwlCnt{height:270px;padding-bottom:30px;}  
 .CHECKOUT_PAGE .fadeCnt{padding:25px !important;position:relative;height:100%;}
+.chkout #scndup{padding-top:0px !important;}
 .checkout_details{background:#fff;}
 #scndup{height:auto;padding:25px;}
 .chkoutHeader .payOption{width:75%;}
