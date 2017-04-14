@@ -391,15 +391,20 @@
     <script>
 
             $(window).scroll(function () {
-            var win = $(window).scrollTop();
-            if (win >= 300) {
-              
-                $('.mBtns').addClass('dMbtn');
-            } else if (win < 300) {
-                
-                $('.mBtns').removeClass('dMbtn');
-            }
-        });
+                if ( $(this).width() <= 1024 ) {    
+                    var win = $(window).scrollTop();
+                    if (win >= 300) {
+                        $('.mBtns').addClass('dMbtn');
+                        $('.footer').addClass('mBot60');
+                        $('.backTop').css({'bottom':'80px'});
+                    } else if (win < 300) {
+
+                        $('.mBtns').removeClass('dMbtn');
+                        $('.footer').removeClass('mBot60');
+                        $('.backTop').css({'bottom':'2%'});
+                    }
+                }
+            });
 
         $('#mCst').click(function () {
             console.log("custi");
