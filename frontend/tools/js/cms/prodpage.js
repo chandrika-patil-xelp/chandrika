@@ -570,7 +570,8 @@ $(document).ready(function () {
 
             data = JSON.parse(res);
             
-            var dt = data['results']; 
+            dt = data['results']; 
+          
             var basic = dt['basicDetails'];
             var catAttr = dt['catAttr'];
             var vendor = dt['vendor'];
