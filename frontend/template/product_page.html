@@ -288,12 +288,12 @@
         </div>
 
         <div class="m_cust dn">
-            <div class="cardHead fleft" id="custm">Customise Your Earring</div>
+            <div class="cardHead fleft" id="Mob_custm">Customise Your Earring</div>
             <div class="cust_cont poR fLeft"  id="mCustom">
 
                 <div class="drop_dn fLeft dn" id="mclar">
                     <div class="attTitle">Quality</div>
-                    <div class="actBtn font12 regular" id="qual"></div>
+                    <div class="actBtn font12 regular" id="mqual"></div>
                 </div>
 
                 <div class="sLeft">
@@ -306,12 +306,12 @@
 
                 <div class="drop_dn fLeft  " id="mcolor">
                     <div class="attTitle">Color</div>
-                    <div class="actBtn font12 regular" id="clr"></div>
+                    <div class="actBtn font12 regular" id="mclr" ></div>
                 </div>
 
                 <div class="sLeft">
                     <div class="selector_cont">
-                        <center  id="mclr">
+                        <center id="mcolr">
 
                         </center>
                     </div>
@@ -319,7 +319,7 @@
 
                 <div class="drop_dn fLeft " id="mpurity">
                     <div class="attTitle">Purity</div>
-                    <div class="actBtn font12 regular" id="carat"></div>
+                    <div class="actBtn font12 regular" id="mobcarat"></div>
                 </div>
                 <div class="sLeft">
                     <div class="selector_cont pur">
@@ -329,42 +329,70 @@
                     </div>
                 </div>
 
-                <div class="drop_dn fLeft dn" id="msizes">
-                    <!--                                                                             <div class="attTitle">Size</div>
-                                                            <div class="actBtn font12 regular"></div>
-                                                                                                   <div class="actBtn font12 bolder" id="size" > </div>
-                                                          <div class="selectDefault"></div>-->
+                <div class="drop_dn fLeft dn" id="mobdvsizes">
+                                                                                                                     <div class="attTitle">Size</div>
+                                                                                <div class="actBtn font12 regular"></div>
+                                                                                                                       <div class="actBtn font12 bolder"  >Select </div>
+                                                                              <div class="selectDefault"></div>
 
 
                 </div>
-                                <div class="sLeft" id="msize">
-                                    <center>
-                                        <div class="col100 fLeft" id="mRingGuide">
-                                            <div class="szCir fLeft">
-                                                <div class="fLeft col100">
-                                                    <div class="col100 sizeOuter fLeft ringclass">
-                                                        <div class="circleOuter fLeft">
-                                                            <div class="ringCircle transition600 poR"> 14</div>
-                                                        </div>
-                                                        <center>
-                                                            <div class="col100 fLeft"><div class="col50"><div class="actBtn" id="mringGuide">size guide</div></div></div>
-                                                            <div class="para fLeft mar0">Know your ring size</div>
-                                                        </center>
+                <div  id="mobSize">
+                    <div class="sLeft"  >
+                        <center>
+                            <div class="col100 fLeft" id="mRingGuide">
+                                <div class="szCir fLeft">
+                                    <div class="fLeft col100">
+                                        <div class="col100 sizeOuter fLeft ringclass">
+                                            <div class="circleOuter fLeft">
+                                                <div class="mringCircle transition600 poR"> 14</div>
+                                            </div>
+                                            <center>
+                                                <div class="col100 fLeft"><div class="col50"><div class="actBtn" id="mringGuide">size guide</div></div></div>
+                                                <div class="para fLeft mar0">Know your ring size</div>
+                                            </center>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ringSlider fRight">
+                                    <input type="text" id="mslideRing">
+                                </div>
+                                <div class="col100 fLeft"><center><div class="options_back sizbak"></div></center></div>
+                            </div>
+                            
+
+                            
+                            <div class="col100 fLeft" id="mBangleGuide">
+                                        <div class="szCir fLeft">
+                                            <div class="fLeft col100">
+                                                <div class="col100 sizeOuter fLeft bangclass">
+                                                    <!--<div class="incrCont incrIcon r0" id="incB"></div>-->
+                                                    <!--<div class="incrCont decrIcon l0" id="decB"></div>-->
+                                                    <div class="circleOuter fLeft">
+                                                        <div class="mringCircleB transition600 poR" id="mbangCircle">2.4</div>
                                                     </div>
+                                                    <center>
+                                                        <div class="col100 fLeft"><div class="col50"><div class="actBtn" id="bangleGuide">size guide</div></div></div>
+                                                        <div class="para fLeft mar0">Know your bangle size</div>
+                                                    </center>
                                                 </div>
                                             </div>
-                                            <div class="ringSlider fRight">
-                                                <input type="text" id="mslideRing">
-                                            </div>
-                                            <div class="col100 fLeft"><center><div class="options_back sizbak"></div></center></div>
                                         </div>
-                                    </center>
-                                </div>
+                                        <div class="ringSlider fRight">
+                                            <input type="text" id="mslideBangle">
+                                        </div>
+                                        <div class="col100 fLeft"><center><div class="options_back sizbak"></div></center></div>
+                             </div>
+                             
+                        </center>
+                    </div>
+                </div>
+
 
             </div> 
             <div class="mcustClose"></div>  
 
-            <div class="checkmBtn bolder">CUSTOMIZE</div>
+            <div class="checkmBtn bolder" id="mobsz" >CUSTOMIZE</div>
         </div>
 
 
@@ -379,16 +407,16 @@
 
 
 
-    <div class="overlay3 pointNone"></div>
-    <div class="close_fs dn"></div>
-    <div class="lat_logo dn">
-    </div>
+        <div class="overlay3 pointNone"></div>
+        <div class="close_fs dn"></div>
+        <div class="lat_logo dn">
+        </div>
 
 
-    <script type="text/javascript" src="<?php echo $jvs['prodpage']; ?>"></script>
-    <script type="text/javascript" src="<?php echo  $fjvs['rangeNewJS']; ?>"></script>
+        <script type="text/javascript" src="<?php echo $jvs['prodpage']; ?>"></script>
+        <script type="text/javascript" src="<?php echo  $fjvs['rangeNewJS']; ?>"></script>
 
-    <script>
+        <script>
 
             $(window).scroll(function () {
                 if ( $(this).width() <= 1024 ) {    
@@ -407,13 +435,14 @@
             });
 
         $('#mCst').click(function () {
-            console.log("custi");
+          
             $('body').addClass('posFix');
             $('.m_cust').removeClass('dn');
             $('.m_cust').velocity({translateY: [0, '100vh']}, {duration: 400, delay: 100});
         });
 
-        $('.mcustClose').click(function () {
+        $('.mcustClose ,#mobsz').click(function () {
+          
             $('body').removeClass('posFix');
             $('.m_cust').addClass('dn');
             $('.m_cust').velocity({translateY: ['100vh', 0]}, {duration: 400, delay: 100});
@@ -430,9 +459,11 @@
             grid: true,
             onChange: function (data) {
                 var sVal = data.from_value;
-
+               
                 $('#size').text("Size " + data.from_value);
-                $('.ringCircle').html(sVal);
+                 $('#mbsize').text("Size " + data.from_value);
+                $('.ringCircle ,.mringCircle').html(sVal);
+               
 
                 if (t < sVal) {
                     inc();
@@ -440,17 +471,18 @@
                     dec();
                 }
                 t = sVal;
-                //               calculatePrice();
+      
+              
             },
         });
 
-        var slider = $("#slideRing").data("ionRangeSlider");
+        var slider = $("#slideRing,#mslideRing").data("ionRangeSlider");
         slider.reset();
         slider.update({
             from: 9
         });
         var t = 0;
-        $('#slideBangle').ionRangeSlider({
+        $('#slideBangle,#mslideBangle').ionRangeSlider({
             type: "single",
             from: 2,
             values: [
@@ -460,7 +492,8 @@
                 var sVal = data.from_value;
 
                 $('#size').text("Size " + data.from_value);
-                $('.ringCircleB').html(sVal);
+                $('#mbsize').text("Size " + data.from_value);
+                $('.ringCircleB,.mringCircleB').html(sVal);
                 if (t < sVal) {
                     incB();
                 } else {
@@ -470,7 +503,7 @@
                 //                calculatePrice();
             },
         });
-        var slider = $("#slideBangle").data("ionRangeSlider");
+        var slider = $("#slideBangle,#mslideBangle").data("ionRangeSlider");
         slider.reset();
         slider.update({
             from: 2,
@@ -504,13 +537,14 @@
 
         var tmp;
         setTimeout(function () {
-            tmp = $('.ringCircle').html();
+            tmp = $('.ringCircle,.mringCircle').html();
+             
         }, 1000);
         var val1, val2, val3;
         var w, h, lh;
-        val1 = $('.ringCircle').width();
-        val2 = $('.ringCircle').height();
-        val3 = $('.ringCircle').css('line-height');
+        val1 = $('.ringCircle , .mringCircle').width();
+        val2 = $('.ringCircle , .mringCircle').height();
+        val3 = $('.ringCircle , .mringCircle').css('line-height');
         function inc() {
             var incVal = parseInt(tmp) + 1;
             if (incVal > 26) {
@@ -519,9 +553,9 @@
             val1 = val1 + 1;
             val2 = val2 + 1;
             val3 = parseInt(val3) + 1;
-            $('.ringCircle').css('width', val1 + 'px');
-            $('.ringCircle').css('height', val2 + 'px');
-            $('.ringCircle').css('line-height', val3 + 'px');
+            $('.ringCircle ,.mringCircle').css('width', val1 + 'px');
+            $('.ringCircle ,.mringCircle').css('height', val2 + 'px');
+            $('.ringCircle ,.mringCircle').css('line-height', val3 + 'px');
             //            $('.ringCircle').html(incVal);
             tmp++;
             calweight();
@@ -536,9 +570,9 @@
             val1 = val1 - 1;
             val2 = val2 - 1;
             val3 = parseInt(val3) - 1;
-            $('.ringCircle').css('width', val1 + 'px');
-            $('.ringCircle').css('height', val2 + 'px');
-            $('.ringCircle').css("line-height", val3 + 'px');
+            $('.ringCircle, .mringCircle').css('width', val1 + 'px');
+            $('.ringCircle , .mringCircle').css('height', val2 + 'px');
+            $('.ringCircle , .mringCircle').css("line-height", val3 + 'px');
             tmp--;
             calweight();
         }
@@ -546,16 +580,17 @@
         //bangles size code
         var tmp_b;
         setTimeout(function () {
-            tmp_b = $('.ringCircleB').html();
+                        tmp_b = $('#bangCircle,#mbangCircle').html();
         }, 1000);
         var addval_b = 20;
         var valb1, valb2, valb3;
         var w, h, lh;
-        valb1 = $('#bangCircle').width();
-        valb2 = $('#bangCircle').height();
-        valb3 = $('#bangCircle').css('line-height');
+        valb1 = $('#bangCircle,#mbangCircle').width();
+        valb2 = $('#bangCircle,#mbangCircle').height();
+        valb3 = $('#bangCircle,#mbangCircle').css('line-height');
 
         function incB() {
+           
             var inc = Math.round(tmp_b * 10) / 10;
             var incVal_b = parseFloat(inc + 0.1).toFixed(1);
             if (incVal_b >= 3.0) {
@@ -563,13 +598,14 @@
             }
             var incValb = Math.round(incVal_b * 10) / 10;
             $('#size').text("Size " + incVal_b);
+             $('#mbsize').text("Size " + incVal_b);
             valb1 = valb1 + 5;
             valb2 = valb2 + 5;
             valb3 = parseInt(valb3) + 5;
 
-            $('#bangCircle').css("width", valb1 + 'px');
-            $('#bangCircle').css("height", valb2 + 'px');
-            $('#bangCircle').css('line-height', valb3 + 'px');
+            $('#bangCircle,#mbangCircle').css("width", valb1 + 'px');
+            $('#bangCircle,#mbangCircle').css("height", valb2 + 'px');
+            $('#bangCircle,#mbangCircle').css('line-height', valb3 + 'px');
             //            $('#bangCircle').html(incVal_b);
             tmp_b = parseFloat(tmp_b) + 0.1;
             calweight();
@@ -586,9 +622,9 @@
             valb1 = valb1 - 5;
             valb2 = valb2 - 5;
             valb3 = parseInt(valb3) - 5;
-            $('#bangCircle').css("width", valb1);
-            $('#bangCircle').css("height", valb2);
-            $('#bangCircle').css("line-height", valb3 + 'px');
+            $('#bangCircle,#mbangCircle').css("width", valb1);
+            $('#bangCircle,#mbangCircle').css("height", valb2);
+            $('#bangCircle,#mbangCircle').css("line-height", valb3 + 'px');
             //            $('#bangCircle').html(Math.round(dTxt_b * 10) / 10);
             var decValb = Math.round(dTxt_b * 10) / 10;
             //            $('#size').text("Size " + decValb);
@@ -599,10 +635,15 @@
         $('#ringGuide').click(function () {
             window.open(DOMAIN + "index.php?action=sizeguide");
         });
+          $('#mringGuide').click(function () {
+            window.open(DOMAIN + "index.php?action=sizeguide");
+        });
         $('#bangleGuide').click(function () {
             window.open(DOMAIN + "index.php?action=bangleguide");
         });
-
+        $('#mbangleGuide').click(function () {
+            window.open(DOMAIN + "index.php?action=bangleguide");
+        });
 
         var exprice = 0;
         var i = 0;
@@ -684,9 +725,12 @@
         $('.drop_dn').click(function () {
             var w = $(window).width();
             if (w <= 1024) {
+               
                 $('#wCustom').addClass('dn');
                 $('.m_cust').removeClass('dn');
             } else {
+             //   alert('web');
+                $('#mobSize').remove();
                 $('#wCustom').removeClass('dn');
                 $('.m_cust').addClass('dn');
 
@@ -919,8 +963,8 @@
             var sz;
             $('.selectOptions').click(function () {
                 sz = $(this).text();
-                $('#size').html(sz);
-
+            
+                
                 //calculatePrice();
                 $(this).closest('.selectOptionC').fadeOut('150ms').siblings('.selectDefault').removeClass('pointNone');
                 setTimeout(function () {
@@ -944,11 +988,23 @@
 
             if (catname == 'Bangles') {
                 $("#BangleGuide").removeClass("dn");
+                 $("#mBangleGuide").removeClass("dn");
                 $('#RingGuide').addClass('dn');
+                 $('#mRingGuide').addClass('dn');
             } else if (catname == 'Rings') {
                 $('#BangleGuide').addClass('dn');
+                  $('#mBangleGuide').addClass('dn');
                 $("#RingGuide").removeClass("dn");
+                $("#mRingGuide").removeClass("dn");
             }
+
+            if (catname == 'Rings' || catname == 'Bangles')
+            {
+                $('#mobSize').add();
+            } else {
+                $('#mobSize').remove();
+            }
+
 
             if (!$(event.target).closest('.selectDefault').length)
             {
@@ -989,6 +1045,6 @@
         });
 
 
-    </script>
+        </script>
 
 </body>

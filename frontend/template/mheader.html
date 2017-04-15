@@ -7,7 +7,7 @@
 
 </script>
 <div class="mheader">
-    <div class="menuLHeader fLeft"></div>
+    <div class="menuLHeader fLeft" id="mheadr"></div>
     <a class="logoA" href="<?php echo DOMAIN ?>"><div class="mlogoHeader"></div></a>
     <div class="mCart mcartIc fRight"><div class="cartCount">0</div></div>
     <div class="mCart guestTrack fRight" id="mediaTrack"></div>
@@ -124,7 +124,7 @@
 
     $('#mediaTrack').click(function () {
          $('.closeLogin').removeClass('dn');
-        console.log("open guest");
+       
         guestpopUp();
     });
     

@@ -4,7 +4,11 @@
  $(document).ready(function(){
    
    actn= GetURLParameter('actn'); 
-   
+ var uid=  common.readFromStorage('jzeva_uid');
+ if(uid){
+    window.history.go(-1);
+  //  window.location.href = DOMAIN + "index.php?action=checkOutNew"; 
+ }
    $(document).keypress(function(e){
       if(e.which == 13)
       {

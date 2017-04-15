@@ -81,13 +81,13 @@
             function detailsCallBack(data) {
                 if (data['error']['err_code'] == '0')
                 {
-
-                    var custData = data['result']['user'];
+                 
+                    var custData = data['result']['user'][0];
                     var orders = data['result']['orders'];
 
-                    $('#uname').text(custData.name);
-                    $('#umobile').text(custData.mb);
-                    $('#uemail').text(custData.em);
+                    $('#uname').text(custData.uname);
+                    $('#umobile').text(custData.mob);
+                    $('#uemail').text(custData.email);
                     $('#ucity').text(custData.city);
                     var gen = "Female";
                     if (custData.gn == 1)
@@ -102,17 +102,17 @@
                     var adstr = "";
                     adstr += "<div class='divCon1 fLeft brdN'>";
                     adstr += " <div class='addrsIcon'></div>";
-                    adstr += "<div class='fLeft fmOpenR adrs'>" + custData.address + "";
+                    adstr += "<div class='fLeft fmOpenR adrs'>" + custData.addr + "";
                     adstr += "</div>";
                     adstr += "</div>";
-                    $('#uaddress').append(adstr);
+                    //$('#uaddress').append(adstr);
 
                     $(orders).each(function (i, vl) {
-                        console.log(vl);
+                       
                         var ostr = "";
 
                         var imgpath = getPrdImages(vl.pid);
-                        console.log(imgpath);
+                   
 
                         ostr += "<div class='orderComm fLeft'>";
                         ostr += "<div class='prdInfo fLeft brdN w10'>";
@@ -188,7 +188,8 @@
                         ostr += "</div>";
                         ostr += "</div>";
                         ostr += "</div>";
-                        ostr += "<a href='" + DOMAIN + "backend/index.php?action=ord_detail&orderid=" + vl.oid + "'><div class='logoutBtn fLeft fmOpenR font13'>View Order Details</div></a>";
+                      //  ostr += "<a href='" + DOMAIN + "backend/index.php?action=ord_detail&orderid=" + vl.oid + "'><div class='logoutBtn fLeft fmOpenR font13'>View Order Details</div></a>";
+                         ostr+="<a href='" + DOMAIN + "backend/index.php?action=ord_detail&orderid=" + vl.oid + "&pid="+vl.pid+"&combn="+vl.col_car_qty+"&sz="+vl.size+"'><div class='logoutBtn fLeft fmOpenR font13'>View Order Details</div></a>";
                         ostr += "</div>";
 
                         if (vl.ostatus < 6)
@@ -230,7 +231,7 @@
             }
             
             function sendResetLink(){
-                console.log(userid);
+              
                 common.toast(1,"Password reset link sent to user");
             }
             

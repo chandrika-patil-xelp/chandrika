@@ -70,7 +70,9 @@ function getheader()
   var subheader="";
   var cnt=0;
   var URL = APIDOMAIN + "index.php?action=getSubCat&catid=99999";
-  $.ajax({ url: URL, type: "GET",datatype: "JSON",success: function(results) {
+ 
+         
+ $.ajax({ url: URL, type: "GET",datatype: "JSON",success: function(results) {
 
 		     var obj=JSON.parse(results);
 		     $(obj['root']).each(function(r,v){
@@ -151,15 +153,19 @@ function getheader()
 
 
 $('#usrlogout').click(function () {
-        common.removeFromStorage('jzeva_email');
+    
+    common.removeFromStorage('jzeva_email');
         common.removeFromStorage('jzeva_name');
         common.removeFromStorage('jzeva_uid');
         common.removeFromStorage('jzeva_mob');
         common.removeFromStorage('jzeva_cartid');
 	common.removeFromStorage('jzeva_buyid');
 	common.removeFromStorage('jzeva_shpid');
-
-        var URLactn = window.location.href;
+     common.msg(1, 'You are Successfully Logout');
+     setTimeout(function () {
+	 
+          var URLactn = window.location.href;
+      
         var accnvar = ''+URLactn;
         accnvar = accnvar.replace(DOMAIN,'');
         var tmpaccnvar=accnvar.split('/'); 
@@ -168,9 +174,12 @@ $('#usrlogout').click(function () {
 	    window.location.href = DOMAIN + "index.php?action=landing_page"; 
 	}
 	else
+             
 	    window.location.href =DOMAIN +accnvar;
-	 
-
+	  }, 3000);
+       
+ 
+         
     });
 
   

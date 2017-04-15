@@ -508,8 +508,26 @@ class user extends DB {
         global $comm;
         if ($params['userid']) {
 
-            $sql = "SELECT (order_id) as oid,product_id as pid,(Select product_seo_name from tbl_product_master where productid=pid) as pname,user_id as uid,order_date as odate,delivery_date as ddate,order_status as ostatus,active_flag as aflag, product_price as price ,payment as pm  FROM tbl_order_master WHERE user_id=" . $params['userid'] . " ORDER BY order_date DESC";
-            $res = $this->query($sql);
+//            $sql = "SELECT (order_id) as oid,product_id as pid,(Select product_name from tbl_product_master where productid=pid) as pname,user_id as uid,order_date as odate,delivery_date as ddate,order_status as ostatus,active_flag as aflag, product_price as price ,payment as pm  FROM tbl_order_master WHERE user_id=" . $params['userid'] . " ORDER BY order_date DESC";
+//            $res = $this->query($sql);
+            
+            $sql="SELECT order_id as oid,
+                        product_id as pid,
+                        (Select product_name from tbl_product_master where productid=pid) as pname,
+                        user_id as uid,
+                        col_car_qty,
+                        size,
+                        order_date as odate,
+                       delivery_date as ddate,
+                       order_status as ostatus,
+                       active_flag as aflag,
+                       price as price ,
+                       payment as pm 
+                       FROM tbl_order_master WHERE user_id=" . $params['userid'] . " ORDER BY order_date DESC
+                    
+                    ";
+             $res = $this->query($sql);
+            
             $result = array();
             if ($res) {
                 while ($row = $this->fetchData($res)) {
@@ -542,6 +560,64 @@ class user extends DB {
         $results = array('result' => array('user' => $user['result'], 'orders' => $orders['result']), 'error' => $err);
         return $results;
     }
+    
+      public function getUserDetailsById($params){
+            
+            if(!empty($params['userid'])){
+            
+                        $sql = "SELECT 
+                                    user_id,
+                                    user_name,
+                                    logmobile,
+                                    email,
+                                    city,
+                                    address,
+                                    is_vendor,
+                                    date_time,
+                                    update_time,
+                                    updated_by,
+                                    subscribe,
+                                    is_active,
+                                    pass_flag,
+                                    gender 
+                                  FROM
+                                    tbl_user_master 
+                                  WHERE user_id = ".$params['userid']." ";
+                        
+                        $res = $this->query($sql);
+                        
+                        if($res){
+                            
+                            while ($row = $this->fetchData($res)){
+                                
+                                $reslt['uid'] = trim($row['user_id']!=NULL) ? $row['user_id'] : '' ;
+                                $reslt['uname'] = trim($row['user_name']!=NULL) ? $row['user_name'] : '' ;
+                                $reslt['mob'] = trim($row['logmobile']!=NULL) ? $row['logmobile'] : '' ;
+                                $reslt['email'] = trim($row['email']!=NULL) ? $row['email'] : '' ;
+                                $reslt['city'] = trim($row['city']!=NULL) ? $row['city'] : '' ;
+                                $reslt['addr'] = trim(mb_convert_encoding($row['address'], 'UTF-8')!=NULL) ? mb_convert_encoding($row['address'], 'UTF-8') : '' ;
+                                $reslt['isVen'] = trim($row['is_vendor']) ? $row['is_vendor'] : '' ;
+                                $reslt['gender'] = trim($row['gender']) ? $row['gender'] : '' ;
+                                $resp[] = $reslt;        
+                                $error = array('err_code'=>0, 'err_msg'=>' User Details By Id Fetched Successfully ' );
+                            }
+                        }else{
+                            $error = array('err_code'=>1, 'err_msg'=>' Error In Fetching User Details By Id ' );
+                        }
+
+                        $result = array('result'=>$resp, 'error'=>$error );
+                        return $result;
+            
+            }else{
+
+                    $resp = array();
+                    $error = array('err_code'=>1, 'err_msg'=>' Parameters Missing ' );
+                    $result = array('result'=>$resp, 'error'=>$error ); 
+                    return $result;
+                }
+
+            }
+
 
     public function changeOrderStatus($params) {
 

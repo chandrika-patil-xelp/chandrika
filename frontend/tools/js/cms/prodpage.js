@@ -55,22 +55,25 @@ function IND_money_format(money)
 
 var pid, psize;
 var arrdata = {};
+var dt;
 function getarraydata() {
-
-
+ 
     arrdata['pid']=pid;
 
-    if (data['results']['dimond']['results'] !== null) {
+    if (dt['dimond']['results'] !== null) {
       //var quality =$('#qual').attr('qual_id');
         var xx = $('#qual').attr('qual_id').split('_');
+           var xx = $('#mqual').attr('qual_id').split('_');
         var quality = xx[xx.length - 1];
     }
-    if (data['results']['metalColor']['results'] !== null) {
+    if (dt['metalColor']['results'] !== null) {
         var yy = $('#clr').attr('clr_id').split('_');
+        var yy = $('#mclr').attr('clr_id').split('_');
         var color = yy[yy.length - 1];
     }
-    if (data['results']['metalPurity']['results'] !== null) {
+    if (dt['metalPurity']['results'] !== null) {
         var zz = $('#carat').attr('carat_id').split('_');
+        var zz = $('#mobcarat').attr('carat_id').split('_');
         var metal = zz[zz.length - 1];
     }
 
@@ -88,6 +91,7 @@ function getarraydata() {
     arrdata['quality']=quality;
     arrdata['metal']=metal;
     arrdata['sz']=sz;
+   
 }
 
 $('#add_to_cart').on('click', function () {
@@ -406,11 +410,12 @@ $('#buynow').on('click',function(){
 
       var data = buydata;
       var dt = JSON.stringify(data);
-      $.ajax({
+     $.ajax({
 	  type: "post",
 	  url: URL,
 	  data: {dt: dt},
 	  success: function (results) {
+     
 	    var data=JSON.parse(results);
 	    var cururl = window.location.search;
 	    var date = new Date();
@@ -462,6 +467,7 @@ $('#buynow').on('click',function(){
 	  url: URL,
 	  data: {dt: dt},
 	  success: function (results) {
+
 	    var data=JSON.parse(results);
 	    var cururl = window.location.search;
 	    var date = new Date();
@@ -583,6 +589,7 @@ $(document).ready(function () {
             catgry = catgry.slice(0, -1);
 
             $('#custm').html('Customise Your ' + catgry);
+            $('#Mob_custm').html('Customise Your ' + catgry);
             storedWt = parseFloat(dt['basicDetails']['mtlWgt']);
             storedMkCharge = parseFloat(dt['basicDetails']['mkngCrg']);
 
@@ -727,7 +734,7 @@ $(document).ready(function () {
 			      bstr += ' are ';
 			    else
 			      bstr += ' is ';
-                           bstr += ' cast in <span class="semibold" >' + vl.mtlWgt + '</span> <span class="semibold">grams</span> of gold set with <span class="semibold">' + dt['solitaire']['results'][0].nofs + '</span> brilliant cut <span class="semibold">' + dt['solitaire']['results'][0].shape + '</span> Solitaire (Approx. <span class="semibold">' + dt['solitaire']['results'][0].carat + ' Carat</span>) and <span class="semibold"> '+dt['solitaire']['results'][0].clrty+' </span> quality <span class="semibold"> '+dt['solitaire']['results'][0].colr+' </span> color certified by <span class="semibold">' + dt['basicDetails'].crtficte + '</span></div>';
+                           bstr += ' cast in <span class="semibold mobWgt" >' + vl.mtlWgt + '</span> <span class="semibold">grams</span> of gold set with <span class="semibold">' + dt['solitaire']['results'][0].nofs + '</span> brilliant cut <span class="semibold">' + dt['solitaire']['results'][0].shape + '</span> Solitaire (Approx. <span class="semibold">' + dt['solitaire']['results'][0].carat + ' Carat</span>) and <span class="semibold"> '+dt['solitaire']['results'][0].clrty+' </span> quality <span class="semibold"> '+dt['solitaire']['results'][0].colr+' </span> color certified by <span class="semibold">' + dt['basicDetails'].crtficte + '</span></div>';
 
 			  //  bstr += 'cast in <span class="semibold" id="newWt">' + vl.mtlWgt + '</span> <span class="semibold">grams </span>of gold set with <span class="semibold">' + data['results']['solitaire']['results'][0].nofs + '</span> brilliant cut  <span class="semibold">' + dt['solitaire']['results'][0].shape + '</span> Solitaire (Approx. <span class="semibold">' + dt['solitaire']['results'][0].carat + ' Carat</span>) certified by <span class="semibold">' + dt['basicDetails'].crtficte + '</span> </div>';
                             break;
@@ -741,7 +748,7 @@ $(document).ready(function () {
 			      bstr += ' are ';
 			    else
 			      bstr += ' is ';
-			    bstr += ' cast in <span class="semibold" id="newWt">' + vl.mtlWgt + '</span> <span class="semibold">grams</span> of gold set with <span class="semibold">' + dt['dimond']['results'][0].totNo + '</span> brilliant cut <span class="semibold">' + dt['dimond']['results'][0].shape + '</span> Diamonds (Approx. <span class="semibold">' + dt['dimond']['results'][0].crat + ' Carat</span>) certified by <span class="semibold">' + dt['basicDetails'].crtficte + '</span></div>';
+			    bstr += ' cast in <span class="semibold mobWgt" id="newWt">' + vl.mtlWgt + '</span> <span class="semibold">grams</span> of gold set with <span class="semibold">' + dt['dimond']['results'][0].totNo + '</span> brilliant cut <span class="semibold">' + dt['dimond']['results'][0].shape + '</span> Diamonds (Approx. <span class="semibold">' + dt['dimond']['results'][0].crat + ' Carat</span>) certified by <span class="semibold">' + dt['basicDetails'].crtficte + '</span></div>';
                             break;
                         }
                         case 3:
@@ -754,7 +761,7 @@ $(document).ready(function () {
 			      bstr += ' are ';
 			    else
 			      bstr += ' is ';
-			    bstr += 'cast in <span class="semibold" id="newWt">' + vl.mtlWgt + '</span> <span class="semibold">grams</span> of gold set with <span class="semibold">' + dt['dimond']['results'][0].totNo + '</span> brilliant cut <span class="semibold">' + dt['dimond']['results'][0].shape + '</span> Diamonds (Approx. <span class="semibold">' + dt['dimond']['results'][0].crat + ' Carat</span>)  and <span class="semibold">'+dt['solitaire']['results'][0].nofs +'</span>';
+			    bstr += 'cast in <span class="semibold mobWgt" id="newWt">' + vl.mtlWgt + '</span> <span class="semibold">grams</span> of gold set with <span class="semibold">' + dt['dimond']['results'][0].totNo + '</span> brilliant cut <span class="semibold">' + dt['dimond']['results'][0].shape + '</span> Diamonds (Approx. <span class="semibold">' + dt['dimond']['results'][0].crat + ' Carat</span>)  and <span class="semibold">'+dt['solitaire']['results'][0].nofs +'</span>';
 			  if(dt['solitaire'].count > 1)
 			    bstr += ' Solitaires of <span class="semibold">' + dt['solitaire']['results'][0].carat + ' Carats</span> ';
 			  else
@@ -792,7 +799,7 @@ $(document).ready(function () {
 			      bstr += ' are ';
 			    else
 			      bstr += ' is ';
-			    bstr += 'cast in <span class="semibold" id="newWt">' + vl.mtlWgt + '</span> <span class="semibold">grams</span> of gold set with <span class="semibold">' + dt['dimond']['results'][0].totNo + '</span> brilliant cut <span class="semibold">' + dt['dimond']['results'][0].shape + '</span> Diamonds (Approx. <span class="semibold">' + dt['dimond']['results'][0].crat + ' Carat</span>) certified by <span class="semibold">' + dt['basicDetails'].crtficte + '</span> and  <span class="semibold">' + dt['gamestone']['results'][0].crat + ' Carat</span> ' + dt['gamestone']['results'][0].gemNm + ' </div>';
+			    bstr += 'cast in <span class="semibold mobWgt" id="newWt">' + vl.mtlWgt + '</span> <span class="semibold">grams</span> of gold set with <span class="semibold">' + dt['dimond']['results'][0].totNo + '</span> brilliant cut <span class="semibold">' + dt['dimond']['results'][0].shape + '</span> Diamonds (Approx. <span class="semibold">' + dt['dimond']['results'][0].crat + ' Carat</span>) certified by <span class="semibold">' + dt['basicDetails'].crtficte + '</span> and  <span class="semibold">' + dt['gamestone']['results'][0].crat + ' Carat</span> ' + dt['gamestone']['results'][0].gemNm + ' </div>';
 
                             break;
                         }
@@ -806,7 +813,7 @@ $(document).ready(function () {
 			      bstr += ' are ';
 			    else
 			      bstr += ' is ';
-			    bstr += 'cast in <span class="semibold" id="newWt" >' + vl.mtlWgt + ' </span><span class="semibold">grams</span> of gold set with <span class="semibold">' + dt['dimond']['results'][0].totNo + '</span> brilliant cut <span class="semibold">' + dt['dimond']['results'][0].shape + '</span> Diamonds (Approx. <span class="semibold">' + dt['dimond']['results'][0].crat + ' Carat</span>) certified by <span class="semibold">' + dt['basicDetails'].crtficte + '</span>, <span class="semibold">' + dt['gamestone']['results'][0].crat + ' Carat</span> ' + dt['gamestone']['results'][0].gemNm + ' and  <span class="semibold">' + dt['gamestone']['results'][1].crat + ' Carat</span> ' + dt['gamestone']['results'][1].gemNm + '  </div>';
+			    bstr += 'cast in <span class="semibold mobWgt"  id="newWt" >' + vl.mtlWgt + ' </span><span class="semibold">grams</span> of gold set with <span class="semibold">' + dt['dimond']['results'][0].totNo + '</span> brilliant cut <span class="semibold">' + dt['dimond']['results'][0].shape + '</span> Diamonds (Approx. <span class="semibold">' + dt['dimond']['results'][0].crat + ' Carat</span>) certified by <span class="semibold">' + dt['basicDetails'].crtficte + '</span>, <span class="semibold">' + dt['gamestone']['results'][0].crat + ' Carat</span> ' + dt['gamestone']['results'][0].gemNm + ' and  <span class="semibold">' + dt['gamestone']['results'][1].crat + ' Carat</span> ' + dt['gamestone']['results'][1].gemNm + '  </div>';
 
                             break;
                         }
@@ -862,13 +869,22 @@ $(document).ready(function () {
                                         dval = y.dVal;
                                         $('#qual').text(y.dVal);
                                         $('#qual').attr('qual_id', y.id);
+                                        
+                                         $('#mqual').text(y.dVal);
+                                        $('#mqual').attr('qual_id', y.id);
                                     }
                                 } else if (y.id == "9") {
                                     $('#qual').text(y.dVal);
                                     $('#qual').attr('qual_id', y.id);
+                                    
+                                     $('#mqual').text(y.dVal);
+                                    $('#mqual').attr('qual_id', y.id);
                                 } else {
                                     $('#qual').text(y.dVal);
                                     $('#qual').attr('qual_id', y.id);
+                                    
+                                     $('#mqual').text(y.dVal);
+                                    $('#mqual').attr('qual_id', y.id);
                                 }
 
 
@@ -930,7 +946,7 @@ $(document).ready(function () {
                             dQstr += '</div>';
                             dQstr += '<center><div class="options_back"></div></center>';
                             $('#diQ').append(dQstr);
-                             $('#mdiQ').append(dQstr);
+                            $('#mdiQ').append(dQstr);
 
                             if (p_qlty !== undefined) {
                                 $("input[name='selectM']").each(function () {
@@ -998,12 +1014,18 @@ $(document).ready(function () {
                                 pval = val.dVal;
                                 $('#carat').text(val.dNm);
                                 $('#carat').attr('carat_id', val.id);
+                                
+                                  $('#mobcarat').text(val.dNm);
+                                $('#mobcarat').attr('carat_id', val.id);
                             }
                         } else {
                             if (k == 0) {
 
                                 $('#carat').text(val.dNm);
                                 $('#carat').attr('carat_id', val.id);
+                                
+                                  $('#mobcarat').text(val.dNm);
+                                $('#mobcarat').attr('carat_id', val.id);
                             }
                         }
                         metalprc = val.prc;
@@ -1056,17 +1078,26 @@ $(document).ready(function () {
                             if (p_color == vl.id) {
                                 $('#clr').text(vl.dNm);
                                 $('#clr').attr('clr_id', vl.id);
+                                
+                                 $('#mclr').text(vl.dNm);
+                                $('#mclr').attr('clr_id', vl.id);
                                 colrval = vl.dVal;
                             }
                         }
 			else if(defltcolor == vl.id){
 			      $('#clr').text(vl.dNm);
 			      $('#clr').attr('clr_id', vl.id);
+                              
+                                  $('#mclr').text(vl.dNm);
+			      $('#mclr').attr('clr_id', vl.id);
 			      defltcolval = vl.dVal;
 			} else {
                             if (j == 0) {
                                 $('#clr').text(vl.dNm);
                                 $('#clr').attr('clr_id', vl.id);
+                                
+                                $('#mclr').text(vl.dNm);
+                                $('#mclr').attr('clr_id', vl.id);
                             }
                         }
                         clrstr += '<div class="rad_wrap">';
@@ -1083,7 +1114,7 @@ $(document).ready(function () {
                    clrstr +='<center><div class="options_back"></div></center>';
 
                     $('#colr').append(clrstr);
-                    $('#mclr').append(clrstr);
+                    $('#mcolr').append(clrstr);
                     if (p_color !== undefined) {
                         $("input[name='metal']").each(function () {
                             var val = $(this).val();
@@ -1230,6 +1261,9 @@ function setdmd(e) {
 
     $('#qual').attr("qual_id", a);
     $('#qual').html(va);
+    
+       $('#mqual').attr("qual_id", a);
+    $('#mqual').html(va);
 
     // glbquality=s;
     setTimeout(function () {
@@ -1237,7 +1271,7 @@ function setdmd(e) {
         $('#ch_price').find('.labBuffer').empty();
         $('#ch_price').find('.labBuffer').append('Previous Price:');
         $('#ch_price').velocity({opacity: [1, 0]});
-
+        
         calculatePrice();
 
     }, 400);
@@ -1269,6 +1303,9 @@ function setmetal(m) {
 
     $('#carat').attr("carat_id", b); //changes
     $('#carat').html(wx);
+    
+       $('#mobcarat').attr("carat_id", b); //changes
+    $('#mobcarat').html(wx);
     // glbcarat=t;
 
     setTimeout(function () {
@@ -1304,6 +1341,9 @@ function setclr(c) {
     var cl = cl - 2;
     $('#clr').html(cr);
     $('#clr').attr("clr_id", cc);
+    
+       $('#mclr').html(cr);
+    $('#mclr').attr("clr_id", cc);
 
     setTimeout(function () {
         $(c).closest('.selector_cont').find('.options_back').click();
@@ -1335,82 +1375,57 @@ function getcatsize(s,cn, m) {
    catname= cn;
     if (catname == 'Rings' || catname == 'Bangles') {
   
-        $('#sizes').removeClass('dn');
-//         $('#msizes').removeClass('dn');
-      
-        var URL = APIDOMAIN + "index.php/?action=getSizeListByCat&catid=" + catid;
-        var dat = "";
-        $.ajax({
-            type: 'POST',
-            url: URL,
-            success: function (res) {
-                dat = JSON.parse(res);
-
-                var strd = "";
-                var str = "";
-                if (catname == 'Rings') {
-                    sizdefault = dat.result[9]['id'];
-                    sizdefaulval = dat.result[9]['sval'];
-
-                    sizdefaulval = parseInt(sizdefaulval);
+       $('#sizes').removeClass('dn');
+       $('#mobdvsizes').removeClass('dn');
+            var strd = "";
+         var mobstrd = "";
+          var w = $(window).width();
+            if (w <= 1024) {
+               
+                mobstrd += '<div class="attTitle">Size</div>';
+                     mobstrd += '<div class="actBtn font12 regular" id="mbsize"> Select</div>';
+                     
+                                                                
+                      $('#mobdvsizes').html(mobstrd);
+                    
+            }else{
+                   strd += '<div class="attTitle">Size</div>';
+                    strd += '<div class="actBtn font12 regular" id="size">Select</div>';
+              
+                                                                                                                   
+                     $('#sizes').html(strd);
+                 }
+                       
+               
+                      if (psize !== undefined){
+                        $('#size').html('SIZE ' + psize);
+                         $('#mbsize').html('SIZE ' + psize);
+                      }
+                    
+                  if (catname == 'Rings') {
+                   
                     if (psize !== undefined) {
                         psize = parseInt(psize);
                         $('.ringCircle').html(psize);
+                        $('.mringCircle').html(psize);
                     }
-                } else if (catname == 'Bangles') {
-
-                    sizdefault = dat.result[2]['id'];
-                    sizdefaulval = dat.result[2]['sval'];
+                } 
+                if (catname == 'Bangles') {
+                 
                     if (psize !== undefined)
+                    { 
+                     
                         $('.ringCircleB').html(psize);
+                         $('.mringCircleB').html(psize);
+                    }
                 }
+                   
 
-                if (dat['error']['err_code'] == '0')
-                {
-                    strd += '<div class="attTitle">Size</div>';
-                    strd += '<div class="actBtn font12 regular" id="size">Select</div>';
-
-//		     if(psize !== undefined)
-//			  strd+= '<div class="actBtn font12 bolder" id="size" >Size  ' + psize + '</div>';
-//		     else
-//			  strd+= '<div class="actBtn font12 bolder" id="size" >Size  ' + sizdefaulval + '</div>';
-                    // strd += '<div class="actBtn font12 bolder"  data-size="' + sizdefault + '">Size ' + sizdefaulval + '</div>';
-
-                    $(dat.result).each(function (x, y) {
-
-                        if (y.sval == 0.0) {
-                            y.sval = 'None';
-                        }
-
-                    });
-
-                    $('#sizes').html(strd);
-//                     $('#msizes').html(strd);
-
-//                   $('.options_back').click(function(){
-//                        if (catname == 'Rings') {
-//                             $('#size').text("Size"+"Select");
-//                    $('#size').text("Size " +14);
-//
-//                       } else if(catname == 'Bangles'){
-//                            $('#size').html("Select");
-//
-//                       $('#size').text("Size " +2.4);
-//                   }
-//
-//                });
-
-                    if (psize !== undefined)
-                        $('#size').html('SIZE ' + psize);
-
-                    bindDrop();
-                    getarraydata();
-                }
-            }
-        });
-
-    }
+   }
+  
+   
 }
+
 
 function defaultPrice(a, b, c, d)
 {
@@ -1498,11 +1513,23 @@ function calculatePrice()
     var bseSize = 0;
 
     if (catname == 'Rings') {
-        currentSize = $('.ringCircle').text();
+         var w = $(window).width();
+            if (w <= 1024) {
+        currentSize = $('.mringCircle').text();
+    }else{
+            currentSize = $('.ringCircle').text(); 
+        }
         bseSize = parseFloat(14);
-    } else if (catname == 'Bangles') {
-        bseSize = parseFloat(2.4);
-        currentSize = $('.ringCircleB').text();
+    }
+    if (catname == 'Bangles') {
+      
+          var w = $(window).width();
+            if (w <= 1024) {
+        currentSize = $('.mringCircleB').text();
+            }else{
+               currentSize = $('.ringCircleB').text();  
+            }
+          bseSize = parseFloat(2.4);
     }
 
     if (catname == 'Rings') {
@@ -1537,7 +1564,14 @@ function calculatePrice()
     newWeight = parseFloat(storedWt + (changeInWeight));
     newWeight = newWeight.toFixed(3); 
 
-    $('#newWt').html(newWeight + "");
+   
+    
+      var w = $(window).width();
+            if (w <= 1024) {
+     $('.mobWgt').html(newWeight + "");
+ }else{
+      $('#newWt').html(newWeight + "");
+ }
 
     goldPrice = parseFloat((selPurity * newWeight).toFixed());
     var mkCharges = parseFloat((storedMkCharge * newWeight).toFixed()); 
@@ -1549,7 +1583,7 @@ function calculatePrice()
     $('#price').text(totalNewPrice);
     $('#m_price').text(totalNewPrice);
     
-    $('#price').numerator({
+    $('#price,#m_price').numerator({
         toValue: totalNewPrice,
         delimiter: ',',
         onStart: function () {
@@ -1562,12 +1596,15 @@ function calculatePrice()
 
         
     });
+  //  $('#prevPrc').append(' @ ' + abc);
 //var abc = IND_money_format(totalNewPrice).toLocaleString('en');
     $('#ch_price').find('.labBuffer').append(' @ ' + abc);
-
+  var w = $(window).width();
+            if (w <= 1024) {
  var comb = GetURLParameter('comb');
  var wish= '<div class="likeD soc_wish2" onclick="makeAwish(this, event)" id="prd_'+pid+'"  data-size="'+psize+'" data-price="'+totalNewPrice+'" data-comb ="'+comb+'"></div>';
        $('#wsh').append(wish);
+            }
 
 }
 
@@ -1720,9 +1757,9 @@ $('.dwnArrow').click(function(){
 });
 var e;
 
-$('.sizbak').click(function () {
+$('.sizbak ').click(function () {
     var size = $('#size').text();
-     // var msize = $('#msize').text();
+  
 //     calculatePrice();
     setTimeout(function () {
         $(e).closest('.selector_cont ').find('.options_back').click();
@@ -1742,16 +1779,45 @@ $('.sizbak').click(function () {
     }, 8000);
 
     if (catname == 'Rings') {
-        if (size == 'Select') {
+        if (size == 'Select')  {
             var rngval = $('.ringCircle').text();
             $('#size').html('SIZE ' + rngval);
-              //$('#msize').html('SIZE ' + rngval);
+        
+              
         }
     } else if (catname == 'Bangles') {
         if (size == 'Select') {
             var bngval = $('#bangCircle').text();
+            
             $('#size').html('SIZE ' + bngval);
-             //$('#msize').html('SIZE ' + bngval);
+        
+            
         }
     }
+});
+
+
+$('#mobsz ').click(function () {
+  
+    var Msiz=$('#mbsize').text();
+//     calculatePrice();
+    setTimeout(function () {
+        $(e).closest('.selector_cont ').find('.options_back').click();
+        $('#ch_price').find('.labBuffer').empty();
+        $('#ch_price').find('.labBuffer').append('Previous Price:');
+        $('#ch_price').velocity({opacity: [1, 0]});
+
+        calculatePrice();
+
+    }, 400);
+    setTimeout(function () {
+        $('#ch_price').addClass('showCh');
+    }, 800);
+    setTimeout(function () {
+        $('#ch_price').removeClass('showCh');
+        $('#ch_price').velocity({opacity: [0, 1]});
+    }, 8000);
+  
+     $('#newWt').html(newWeight + "");
+    
 });

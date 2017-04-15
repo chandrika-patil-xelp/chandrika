@@ -1,12 +1,19 @@
 var headrentrflg = 0;
 
 $(document).ready(function () {
-
+  
+  
     var winSiz = $(window).width();
     var htSize = $(window).height();
-    if (winSiz <= 1024) {
-        getmheader();
-    }
+    
+     
+      if(winSiz <=960){
+            getmheader(); 
+      }
+//     if (winSiz <= 1024) {
+//        getmheader();
+//    }
+    
 
     var faqTab = $('.sideNav_tab'),
             faqTabContainer = $('.div100');
@@ -91,12 +98,14 @@ $(document).ready(function () {
 
 });
 
+
 function getmheader()
 {
     var mainheader = "";
     var subheader = "";
     var cnt = 0;
     var URL = APIDOMAIN + "index.php?action=getSubCat&catid=99999";
+    
     $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results) {
             var obj = JSON.parse(results);
 
