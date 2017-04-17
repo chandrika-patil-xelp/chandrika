@@ -946,8 +946,13 @@ $(document).ready(function () {
                             });
                             dQstr += '</div>';
                             dQstr += '<center><div class="options_back"></div></center>';
-                            $('#diQ').append(dQstr);
-                            $('#mdiQ').append(dQstr);
+                            
+                            var w = $(window).width();
+                  if (w <= 1024)  
+                           $('#mdiQ').append(dQstr);
+                  else
+                      $('#diQ').append(dQstr);
+                       
 
                             if (p_qlty !== undefined) {
                                 $("input[name='selectM']").each(function () {
@@ -1046,7 +1051,7 @@ $(document).ready(function () {
                         purstr += '<label for="purity_' + k + '_' + val.id + '"></label>';
                         purstr += '<div class="check2">' + karstr[1] + '</div>';
                         purstr += '<span class=" selector_label">';
-                        purstr += '<div class="labBuffer">' + val.dVal + '</div>';
+                        purstr += '<div class="labBuffer" >' + val.dVal + '</div>';
                         purstr += '</span>';
                         purstr += '</div>';
                         //    purstr += '</center>';
@@ -1054,11 +1059,17 @@ $(document).ready(function () {
                         getPurPrice(metalprc, metalwght);
                         //  something(metalprc);
                     });
-
+                    
                     purstr += '</div>';
                       purstr += '<center><div class="options_back"></div></center>';
+                      
+                         var w = $(window).width();
+            if (w <= 1024) 
+                 $('#mpure').append(purstr);
+                else
                     $('#pur').append(purstr);
-                    $('#mpure').append(purstr);
+                
+                  
                     
                     if (p_qlty !== undefined) {
                         $("input[name='purity']").each(function () {
@@ -1113,9 +1124,13 @@ $(document).ready(function () {
 
                   clrstr += '</div>';
                    clrstr +='<center><div class="options_back"></div></center>';
-
+                   
+                    var w = $(window).width();
+            if (w <= 1024) {
+                $('#mcolr').append(clrstr);
+            }else{
                     $('#colr').append(clrstr);
-                    $('#mcolr').append(clrstr);
+                }
                     if (p_color !== undefined) {
                         $("input[name='metal']").each(function () {
                             var val = $(this).val();
@@ -1269,19 +1284,19 @@ function setdmd(e) {
     // glbquality=s;
     setTimeout(function () {
         $(e).closest('.selector_cont ').find('.options_back').click();
-        $('#ch_price').find('.labBuffer').empty();
-        $('#ch_price').find('.labBuffer').append('Previous Price:');
-        $('#ch_price').velocity({opacity: [1, 0]});
+        $('#ch_price,#mch_price').find('.labBuffer').empty();
+        $('#ch_price,#mch_price').find('.labBuffer').append('Previous Price:'); 
+        $('#ch_price,#mch_price').velocity({opacity: [1, 0]});
         
         calculatePrice();
 
     }, 400);
     setTimeout(function () {
-        $('#ch_price').addClass('showCh');
+        $('#ch_price,#mch_price').addClass('showCh');
     }, 800);
     setTimeout(function () {
-        $('#ch_price').removeClass('showCh');
-        $('#ch_price').velocity({opacity: [0, 1]});
+        $('#ch_price,#mch_price').removeClass('showCh');
+        $('#ch_price,#mch_price').velocity({opacity: [0, 1]});
     }, 8000);
 
     $("input[name='selectM']").each(function () {
@@ -1311,18 +1326,18 @@ function setmetal(m) {
 
     setTimeout(function () {
         $(m).closest('.selector_cont ').find('.options_back').click();
-        $('#ch_price').find('.labBuffer').empty();
-        $('#ch_price').find('.labBuffer').append('Previous Price:');
-        $('#ch_price').velocity({opacity: [1, 0]});
+        $('#ch_price,#mch_price').find('.labBuffer').empty();
+        $('#ch_price,#mch_price').find('.labBuffer').append('Previous Price:');
+        $('#ch_price,#mch_price').velocity({opacity: [1, 0]});
         calculatePrice();
 
     }, 400);
     setTimeout(function () {
-        $('#ch_price').addClass('showCh');
+        $('#ch_price,#mch_price').addClass('showCh');
     }, 800);
     setTimeout(function () {
-        $('#ch_price').removeClass('showCh');
-        $('#ch_price').velocity({opacity: [0, 1]});
+        $('#ch_price,#mch_price').removeClass('showCh');
+        $('#ch_price,#mch_price').velocity({opacity: [0, 1]});
     }, 8000);
     $("input[name='purity']").each(function () {
         $(this).attr('disabled', true);
@@ -1597,9 +1612,8 @@ function calculatePrice()
 
         
     });
-  //  $('#prevPrc').append(' @ ' + abc);
-//var abc = IND_money_format(totalNewPrice).toLocaleString('en');
-    $('#ch_price').find('.labBuffer').append(' @ ' + abc);
+  
+    $('#ch_price,#mch_price').find('.labBuffer').append(' @ ' + abc);
   var w = $(window).width();
             if (w <= 1024) {
  var comb = GetURLParameter('comb');
@@ -1804,19 +1818,19 @@ $('#mobsz ').click(function () {
 //     calculatePrice();
     setTimeout(function () {
         $(e).closest('.selector_cont ').find('.options_back').click();
-        $('#ch_price').find('.labBuffer').empty();
-        $('#ch_price').find('.labBuffer').append('Previous Price:');
-        $('#ch_price').velocity({opacity: [1, 0]});
+        $('#mch_price').find('.labBuffer').empty();
+        $('#mch_price').find('.labBuffer').append('Previous Price:');
+        $('#mch_price').velocity({opacity: [1, 0]});
 
         calculatePrice();
 
     }, 400);
     setTimeout(function () {
-        $('#ch_price').addClass('showCh');
+        $('#mch_price').addClass('showCh');
     }, 800);
     setTimeout(function () {
-        $('#ch_price').removeClass('showCh');
-        $('#ch_price').velocity({opacity: [0, 1]});
+        $('#mch_price').removeClass('showCh');
+        $('#mch_price').velocity({opacity: [0, 1]});
     }, 8000);
   
      $('#newWt').html(newWeight + "");
