@@ -3104,6 +3104,7 @@ input[type=number]::-webkit-outer-spin-button {
     .checkoutafter .invoice{width:25%;padding:0px 10px;}
 }
 @media only screen and (max-width:1024px){ 
+    .mbloff{display:none !important;}
     .custBtn1{bottom:95px;opacity: 1;}
     /*  .grid_img{padding-bottom:90%;}*/
     .mobileMess{display:block !important}
@@ -3158,7 +3159,7 @@ input[type=number]::-webkit-outer-spin-button {
     .CHECKOUT_PAGE #guestOtp2,.CHECKOUT_PAGE #guestSignup{padding-bottom:100px;}
     .CHECKOUT_PAGE .transBtns{position:relative;float:left;}
     .chkoutHeader .payHelp1{position:absolute;top:15px;right:20px;width:auto;display:block;padding-left: 35px; height: 30px;background: url(../img/icons/548.svg)no-repeat; background-size: auto 75%;background-position: left 3px;cursor: pointer;font-size: 9px; font-family: regular;color: #999; line-height: 30px;}
-    .checkoutheader_mobile{width:100%;height:50px;position:fixed;top:55px;z-index:50;background:#222529;}
+    .checkoutheader_mobile{width:100%;height:50px;position:fixed;top:55px;z-index:50;}
     .checkoutheader_mobile{display:block;}
     .checkoutheader_mobile .actBtn{width:50%;text-align:center;height:50px;margin:0;line-height:50px;}
     .checkoutheader_mobile .actBtn:last-child{background: #222529;color:#fff;}
