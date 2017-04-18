@@ -19,6 +19,7 @@
         <div class="wrapper_max">
             <div class="logo fLeft"></div>
             <a class="logoA" href="<?php echo DOMAIN ?>"><div class="mlogoHeader"></div></a>
+            <div class="payHelp1 fRight mob_help" id="mob_help">Need Help?</div>
             <div class="fLeft callUs">Got Question? call us on 7022248707</div>
             <div class="payOption fRight">
                 <div class="col50 pay certiIc fRight">certified jewellery</div>
@@ -53,7 +54,7 @@
                                     </div>
 
                                     <!--<div class="">Your Order number is : <span>122334456566</span></div>-->
-                                    <div class="transBtns">
+                                    <div class="transBtns webCheck_btn">
                                         <center>
                                             <div class="col50 fLeft txt_right"><div class="actBtn button">continue shopping</div></div>
                                             <div class="col50 fRight txt_left btnFill"><div class="actBtn button margL20">try again</div></div>
@@ -72,7 +73,7 @@
                             </div>   
                         </div>
                         <!--//black side cont-->
-                        <div class="colleCont v2 black">
+                        <div class="colleCont v2 black mobile_height">
                             <div class="fLeft totalItem txt_center colorfff">
                                 <div class="fLeft col100 cart_name light colorfff">Grand Total
                                 </div>
@@ -113,6 +114,14 @@
                 </div>
             </div>
             <?php include 'footer.html'?>
+        </div>
+        <div class="mBtns fLeft txt_center transition600 pad0">
+            <div class="col50 actBtn button">
+              CONTINUE SHOPPING
+            </div>
+            <div class="col50 actBtn button">
+              TRY AGAIN
+            </div>
         </div>
     </div>
 <!--   <div class="checkFoo fLeft">
@@ -375,6 +384,24 @@ $('#abort_details').click(function () {
 $('#abort_cart').click(function () {
      $('.colleCont.v2.black').css({"display":"block"});
     $('#addOpt').css({"display":"none"});
+});
+$(window).scroll(function () {
+    if ( $(this).width() <= 1024 ) {    
+        var win = $(window).scrollTop();
+        if (win >= 200) {
+            $('.mBtns').addClass('dMbtn');
+            $('.footer').addClass('mBot60');
+            $('.backTop').css({'bottom':'80px'});
+        } else if (win < 200) {
+
+            $('.mBtns').removeClass('dMbtn');
+            $('.footer').removeClass('mBot60');
+            $('.backTop').css({'bottom':'2%'});
+        }
+    }
+});
+$('#mob_help').click(function () {
+    $('body').animate({scrollTop: 445}, 'slow');
 });
 
     </script>
