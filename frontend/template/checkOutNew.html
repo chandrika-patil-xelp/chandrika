@@ -150,11 +150,6 @@
                                             <div class="button actBtn mar0" id="all_submt">SUBMIT</div>
                                         </center>
                                     </div>
-                                    <div class="mob_submit fLeft">
-                                        <div class="actBtn button" id="all_submtNew">
-                                           SUBMIT
-                                        </div>
-                                    </div>
                                 </div>
 
 
@@ -213,14 +208,6 @@
                                             <div class="col50 fLeft"><div class="actBtn button mar0" id="shpd_bak">BACK</div></div>
                                             <div class="col50 fRight"><div class="actBtn button mar0" id="shpng_sub">SUBMIT</div></div>
                                         </center>
-                                    </div>
-                                    <div class="mob_submit fLeft checkout_new">
-                                        <div class="col50 actBtn button" id="shpd_bakMob">
-                                           BACK
-                                        </div>
-                                        <div class="col50 actBtn button" id="shpng_subMob">
-                                          SUBMIT
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="fadeCnt fLeft" id="thrdup">
@@ -507,15 +494,28 @@
                          </div>
                          </div>-->
 <!--                            for mobile-->
-                            <div class="mob_submit fLeft">
+<!--                            <div class="mob_submit fLeft">
                                <div class="actBtn button" id="all_submtNew">
                                   SUBMIT
                                </div>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
 
                 </div>
+            </div>
+        </div>
+        <div class="mBtns fLeft txt_center transition600 pad0" id="addr_listsub">
+            <div class="actBtn button" id="all_submtNew">
+               SUBMIT
+            </div>
+        </div>
+        <div class="mBtns fLeft txt_center transition600 checkout_new mbloff pad0" id="diff_addr">
+            <div class="col50 actBtn button" id="shpd_bakMob">
+               BACK
+            </div>
+            <div class="col50 actBtn button" id="shpng_subMob">
+              SUBMIT
             </div>
         </div>
     </div>
@@ -913,6 +913,9 @@
                                             $('#fstup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
                                             $('#scndup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
 //                                            $('.neadHide').addClass('dn');
+                                            $('#diff_addr').removeClass('mbloff');
+                                            $('#addr_listsub').addClass('dn');
+                                            $('body').scrollTop(0);
                                         }
                                         function openThrd() {
                                             chkouttentrflag = 3;
@@ -1059,13 +1062,31 @@
 //                       details and cart tabs                
                         $('.checkout_details').click(function () {
                            $('.yetanotherbuffer').css({"display":"block","opacity":"1"});
-                           $('#intscrl').scrollTop(0);
+                           $('body').scrollTop(0);
                            $('.colleCont.v2.black').css({"display":"none"});
+                            $('#diff_addr').addClass('mbloff');
+                            $('#fstup').velocity({translateY: [-20, 0], opacity: [0, 1]}, {duration: 300, easing: 'easeInOut', display: 'none'});
+                            $('#scndup').velocity({translateY: [0, 20], opacity: [1, 0]}, {duration: 300, easing: 'easeInOut', display: 'block'});
                        });
                        $('.cart_first').click(function () {
                             $('.colleCont.v2.black').css({"display":"block"});
                            $('.yetanotherbuffer').css({"display":"none"});
-                           $('#scroll').scrollTop(0);
-                       });        
+                           $('body').scrollTop(0);
+                           $('#diff_addr').addClass('mbloff');
+                           
+                       });  
+                       $(window).scroll(function () {
+                        if ( $(this).width() <= 1024 ) {    
+                            var win = $(window).scrollTop();
+                            if (win >= 0) {
+                                $('.footer').addClass('mBot60');
+                                $('.backTop').css({'bottom':'80px'});
+                            } else if (win < 0) {
+                                $('.footer').removeClass('mBot60');
+                                $('.backTop').css({'bottom':'2%'});
+                            }
+                        }
+                    });
+                       
     </script>
 </body>
