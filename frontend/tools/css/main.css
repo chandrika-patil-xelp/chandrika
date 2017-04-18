@@ -3136,7 +3136,7 @@ input[type=number]::-webkit-outer-spin-button {
     .guestSignup{bottom:12px;}
     #cnt_guest{margin:0px;}
 
-    .delvrAdress .col100{width:100%;margin:0 0 10px 0;}
+    .delvrAdress .col100{width:100vw;margin:0 0 10px 0;}
     .delvrAdress .w50r{padding:35px 15px 35px 115px;}
     .amt_selector{left:60%;}
     .mob_help{display:block;}
