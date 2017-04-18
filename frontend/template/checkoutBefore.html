@@ -80,14 +80,14 @@
                                             <div class="col50 fRight"><div class="actBtn button mar0" id="submt">PROCEED TO PAYMENT</div></div>
                                         </center>
                                     </div>
-                                    <div class="mob_submit fLeft checkout_before">
+<!--                                    <div class="mob_submit fLeft checkout_before">
                                         <div class="col50 actBtn button" id="chck_bak">
                                            BACK
                                         </div>
                                         <div class="col50 actBtn button" id="submt">
                                            PAYMENT
                                         </div>
-                                    </div>
+                                    </div>-->
                                 </div>
                             </div>    
                         </div>
@@ -144,19 +144,19 @@
                                 </div>
 
                             </div>
-                            <div class="mob_submit fLeft checkout_before">
-                               <div class="col50 actBtn button fLeft" id="backto_chek">
-                                  BACK
-                               </div>
-                                <div class="col50 actBtn button fRight" id="proceed_payment">
-                                  PAYMENT
-                               </div>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
               <?php include 'footer.html'?>
+        </div>
+        <div class="mBtns transition600 checkout_before fLeft pad0">
+            <div class="col50 actBtn button fLeft" id="backto_chek">
+               BACK
+            </div>
+             <div class="col50 actBtn button fRight" id="proceed_payment">
+               PAYMENT
+            </div>
         </div>
     </div>
 
@@ -443,10 +443,23 @@
 $('.checkout_details').click(function () {
     $('#selected_address,.dAdrsshdr').css({"display":"block"});
     $('.colleCont.v2.black').css({"display":"none"});
+    $('body').scrollTop(0);
 });
 $('.cart_first').click(function () {
      $('.colleCont.v2.black').css({"display":"block"});
     $('#selected_address,.dAdrsshdr').css({"display":"none"});
-     $('#scrollchckbfr').scrollTop(0);
+     $('body').scrollTop(0);
+});
+$(window).scroll(function () {
+    if ( $(this).width() <= 1024 ) {    
+        var win = $(window).scrollTop();
+        if (win >= 0) {
+            $('.footer').addClass('mBot60');
+            $('.backTop').css({'bottom':'80px'});
+        } else if (win < 0) {
+            $('.footer').removeClass('mBot60');
+            $('.backTop').css({'bottom':'2%'});
+        }
+    }
 });
     </script>
