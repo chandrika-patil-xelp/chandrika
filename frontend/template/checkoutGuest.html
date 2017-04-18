@@ -800,6 +800,7 @@
 			    $('#inp_mob_mail').val('');	  $('#inp_mob_mail').blur();
 			    $('#paswrd').val('');	  $('#paswrd').blur();
                             $('#guestSignup').removeClass("dn");
+                            $('body').scrollTop(0);
                             $('#guestSignin').velocity({opacity: [0, 1], translateY: [20, 0]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
                             $('#guestSignup').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
                         }
