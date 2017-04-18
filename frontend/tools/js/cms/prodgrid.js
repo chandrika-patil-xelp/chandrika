@@ -891,7 +891,7 @@ function submenu(ths)
             } else
             {
                 var tmval = fltrarray[pid][menuid], tmpflag = 0;
-                ;
+               
                 for (var l = 0; l < Object.keys(tmval).length; l++)
                 {
                     if (fltrarray[pid][menuid][l] == tid) {
@@ -1237,7 +1237,7 @@ function displayproduct(fltpage)
     menuflag = 2;
     var dt = JSON.stringify(fltrarray);
     var URL = APIDOMAIN + "index.php?action=getprodByfiltr&page=" + fltpage + "&limit=" + limit + "&catid="+id;
-    $.ajax({type: 'POST', url: URL, data: {dt: dt}, success: function (result) {
+    $.ajax({type: 'POST', url: URL,async:true, data: {dt: dt}, success: function (result) {
 
             var res = JSON.parse(result);
 

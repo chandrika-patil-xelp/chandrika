@@ -65,7 +65,9 @@ $(document).ready(function () {
             common.removeFromStorage('jzeva_buyid');
             common.removeFromStorage('jzeva_shpid');
 
-
+   common.msg(1, 'You are Successfully Logout');
+     setTimeout(function () {
+	 
             var URLactn = window.location.href;
             var accnvar = '' + URLactn;
             accnvar = accnvar.replace(DOMAIN, '');
@@ -75,7 +77,7 @@ $(document).ready(function () {
                 window.location.href = DOMAIN + "index.php?action=landing_page";
             } else
                 window.location.href = DOMAIN + accnvar;
-
+            },3000);
 
 
         });

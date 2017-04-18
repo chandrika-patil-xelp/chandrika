@@ -7,8 +7,10 @@
                 <div class="wrapperMax">
                     <div class="couponCont fLeft">
                         <div class="prdSearchDiv fLeft fmOpenR">
-                            <input type="text"  autocomplete="off" class="prdSeachTxt fRight fmOpenR" placeholder=" Search customer">
+                             <div class="commTitle2 fLeft"><span id="totalCust" >No</span> Customers</div>
+                            <input type="text"  autocomplete="off" class="prdSeachTxt lsearchTxt fRight fmOpenR marR" placeholder=" Search customer">
                         </div>
+                         
                         <div class="cpListHeader fLeft fmOpenB">
                             <div class="date fLeft">Name</div>
                             <div class="prdName fLeft">E-mail Id </div>
@@ -16,10 +18,12 @@
                             <div class="prdImg fLeft">Past Orders </div>
                             <div class="acct fLeft"></div>
                         </div>
-                        <ul class="couponList fLeft fmOpenR" id='users'></ul>
-                        <div class="noresDiv fLeft" id="noresults">
+                        <ul class="couponList fLeft fmOpenR searchDiv" id='users'></ul>
+                      
+                        <div class="noresDiv fLeft dn " id="noresults" >
                             <div class="noresults font25 fLeft">No records found</div>
                         </div>
+                       
                     </div>
                 </div>
             </div>
@@ -28,25 +32,29 @@
         <div class="loader dn"></div>
         
         <?php include 'loader.html';?>
+
         <script>
             $(document).ready(function()
             {
-                common.showLoader();
+             // common.showLoader();
+             
                 getUserList();
-                $('.prdSeachTxt').bind('keyup', function() {
-                    var total=$("li").size();
-                    var dncnt=0;
-                    
-                    $("li").each(function() {
-                        if ($(this).html().toLowerCase().search(_this.val().toLowerCase()) < 0) {
-                            $(this).addClass('dn');
-                            dncnt++;
-                        }
-                        else {
-                        $(this).removeClass('dn');
-                        }
-                    });
-                });
+               
+//               $('.prdSeachTxt').bind('keyup', function() {
+//                    var total=$("li").size();
+//                    var dncnt=0;
+//                    
+//                    $("li").each(function() {
+//                        
+//                        if ($(this).html().toLowerCase().search(_this.val().toLowerCase()) < 0) {
+//                            $(this).addClass('dn');
+//                            dncnt++;
+//                        }
+//                        else {
+//                        $(this).removeClass('dn');
+//                        }
+//                    });
+//              });
             });
             
             
@@ -56,22 +64,26 @@
                     url:APIDOMAIN+"index.php?action=getUserList",
                     type:'POST',
                     success:function(res){
-                        res=JSON.parse(res);
-                        userListCallBack(res);
-                    }
-                });
-            }
-        
-            function userListCallBack(data)
-            {
+                       var data=JSON.parse(res);
+                       var total=data['result'].length
+                     
+                    $('#totalCust').html(total);
                 var str="";
                 
                 if(data["error"]["err_code"]==0)
                 {
+//                   if(data['result'] == null  ){
+//                $('#noresults').removeClass('dn');
+//            }
+//            else{
+//                $('#noresults').add();
+//               //  common.hideLoader();
+//            }
+            
                     $(data['result']).each(function(i,v){
-                        
-                        str+="<li>";
-                        str+="<div class=' date fLeft  '>";
+                       
+                        str+="<li class='transition300 searchRow'>";
+                        str+="<div class=' date fLeft '>";
                         str+="<span class='upSpan fmOpenB'>"+v.name+"</span>";
                         str+="<span class='lwSpan'>"+v.mb+"</span>";
                         str+="</div>";
@@ -83,32 +95,56 @@
                         str+="<div class='fRight fmOpenR transition300 resetPsw' onclick=\"sendResetLink('"+v.uid+"')\">Reset</div>";
                         str+="</div>";
                         str+="</li>";
+                        
+                       
                     });
-                    
-                    
-                    
+                  
                     $('#users').append(str);
-                    if(str.length>0)
-                        $('#noresults').addClass('dn');
-                    else
-                        $('#noresults').removeClass('dn');
-                    common.hideLoader();
-                    
+
+         
                 }
-                else
-                {
-                    //common.toast(0,"Error in fetching data");
-                    $('#noresults').removeClass('dn');
-                    common.hideLoader();
-                }
+               
+                    }
+                });
             }
+        
+           
             
             function sendResetLink(uid){
                 common.toast(1,"Password reset link sent to user");
             }
             
+            $('.lsearchTxt').bind('keyup', function() 
+        {
+            var _this = $(this);
+            var obj=$(this).parent().siblings('.searchDiv');
+            var resultCount = 0;
+            $(".searchRow").each(function()
+            {
+                if ($(this).html().toLowerCase().search(_this.val().toLowerCase()) < 0)
+                {
+                    $(this).addClass('dn');
+                    $('#noresults').removeClass('dn');
+                }
+                else
+                {
+                    resultCount++;
+                    $('#totalCust').html(resultCount);
+                    $(this).removeClass('dn');
+                }
+            });
+           
+            if(resultCount==0) {
+                $('#noresults').remove('dn');
+                $('#totalCust').html(resultCount);
+            } else { 
+                $('.searchDiv').next().addClass('dn');
+            }
+});
+            
             
         
         </script>
+      
     </body>
 </html>
