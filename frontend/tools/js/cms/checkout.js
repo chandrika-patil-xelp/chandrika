@@ -534,6 +534,7 @@ $('#shpd_bak,#shpd_bakMob').click(function () {
          gndrflg = undefined;
 	       openfst();
       }
+      $('#diff_addr').addClass('mbloff');
 });
 
 
