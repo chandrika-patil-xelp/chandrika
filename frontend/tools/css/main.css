@@ -3285,7 +3285,7 @@ input[type=number]::-webkit-outer-spin-button {
            background-color: #15181b;
            color: #fff;
            /* line-height: 50px; */
-           padding: 10px 15px 10px 15px;
+           padding: 10px 0px 10px 15px;
            z-index: 10;display: none;transform: translateY(20px);}
     .dMbtn{display: block;transform: translateY(0px);transition-delay: 600ms;}
 
@@ -3426,7 +3426,7 @@ input[type=number]::-webkit-outer-spin-button {
     .tabHead{line-height: 50px;height: auto;}
     #pChange .col50{width:100%;}
     .collCenter{height: 80px;}
-    .colleCont{padding: 150px 0px;}
+   .HOME_PAGE .colleCont{padding: 150px 0px;}
     .HOME_PAGE .darkCont{ padding: 50px 0px 130px 0px;}
     .darkCont{padding: 50px 25px 130px 25px;}
     .galleryCover{left: -26px;}
@@ -3509,6 +3509,7 @@ input[type=number]::-webkit-outer-spin-button {
 
     /* product details page */
     .colleCont{position: relative;left:initial;top:initial;overflow:initial; background-color: #fff;}
+    .PRODUCT_PAGE .colleCont{width:100%;}
     .smUlineb {position:relative;top:0;}
     .homeCollect {float:left;padding-top:0px;}
     .PRODUCT_PAGE .collCenterb {width:100%;height:auto;position:relative;left:initial;top:initial;bottom:initial;margin:initial;padding:40px;}
@@ -3522,7 +3523,7 @@ input[type=number]::-webkit-outer-spin-button {
     .PRODUCT_PAGE .colleCont.v2{padding:70px 2px 25px 0px!important;}
 
     /*footer mobile*/
-    .fooH:after{    content: "";
+    .footerH .fooH:after{    content: "";
                     background: url(../img/icons/543.svg)no-repeat;
                     background-size: auto 20px;
                     background-position: center;
@@ -3946,14 +3947,7 @@ input[type=number]::-webkit-outer-spin-button {
     #tcust{display: none!important;}
 
     /*footer mobile*/
-    .fooH:after{    content: "";
-                    background: url(../img/icons/543.svg)no-repeat;
-                    background-size: auto 20px;
-                    background-position: center;
-                    width: 25px;
-                    height: 25px;
-                    position: absolute;
-                    right: 20px;    transform: rotate(90deg);}
+    .footerH .fooH:after{content: "";background: url(../img/icons/543.svg)no-repeat; background-size: auto 20px;background-position: center;width: 25px;height: 25px; position: absolute;right: 20px;    transform: rotate(90deg);}
     .fooH{width: 100%;}
     .fSlide{height: auto;display: none;}
     .afterSlide:after{transform: rotate(-90deg);-webkit-transform: rotate(-90deg);}
