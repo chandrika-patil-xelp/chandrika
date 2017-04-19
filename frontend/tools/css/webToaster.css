@@ -231,7 +231,7 @@ button.toast-close-button {
     }
     #toast-container>.toast-error{width:100%;top:0;height: auto;}
     #toast-container>.toast-info{width:100%;top:0;height: auto;}
-    #toast-container{top:0;height: auto;}
+    #toast-container{top:0;}
     #toast-container .toast-message{background-size: auto 25px;
     background-position: right -3px;padding: 0px 25px 0px 0px;}
     
