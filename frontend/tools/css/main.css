@@ -3769,7 +3769,7 @@ input[type=number]::-webkit-outer-spin-button {
     .wJzeva{width:calc(100% - 40px);height: calc(100% - 314px);padding:15px;position:relative;left:20px;top:60px;}
     .wCont{width:100%;height:auto;background: #fff;padding-bottom: 20%;position: relative;top: -80px;margin-bottom: 40px;}
     .absHeader{width: 160px;top: -25px;font-size: 25px;font-family: bolder;color: #15181b;}
-    .hovTr{position: relative;}
+/*    .hovTr{position: relative;}*/
     .wCont  .col30{width:100%;}
     .grStyl2 .grCap{left: -27px;}
     .grStyl3 .grCap{right:30px;top:195px;    transform: rotate(90deg);}
