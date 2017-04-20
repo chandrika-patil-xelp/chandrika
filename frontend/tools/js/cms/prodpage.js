@@ -4,8 +4,8 @@ var glbquality;
 var glbcolor;
 var glbcarat;
 var makchrg = 0;
-
-
+var combn;
+var totalNewPrice=0;
 var storedWt;
 var storedMkCharge = 0;
 var storedDmdCarat = 0;
@@ -352,6 +352,7 @@ $('#add_to_cart_mob').on('click', function () {
 	else
 	{
 	    storecartdata(cartdata, 1);
+              common.msg(1,'This Product Added to your Cart Successfully!');
 	    $('#add_to_cart_mob').removeClass('pointNone');
 	     var wd = $('.rota').outerWidth();
                 var ht = $('.rota').outerHeight();
@@ -545,7 +546,8 @@ function makeAwish(th, e)
     }
  }
 
-$(document).ready(function () {    
+$(document).ready(function () { 
+   
     $('html, body').animate({scrollTop: '0px'}, 300);
     $('.prodCarousel').addClass('dn');
     showwishbtn();
@@ -558,6 +560,7 @@ $(document).ready(function () {
         var p_purity = comb[1];
         var p_color = comb[0];
     }
+
 
 
     var URL = APIDOMAIN + "index.php?action=getProductById&pid=" + pid;
@@ -950,7 +953,7 @@ $(document).ready(function () {
                             var w = $(window).width();
                   if (w <= 1024)  
                            $('#mdiQ').append(dQstr);
-                  else
+                       else
                       $('#diQ').append(dQstr);
                        
 
@@ -1047,7 +1050,9 @@ $(document).ready(function () {
                         //  purstr += '<center>';
                         purstr += '<div class="rad_wrap">';
                         //" id="purity_'+k+'_'+val.id+'"   onchange=\"GoldPrice('+val.prc+')\"  class="filled-in dn">';
+                        
                         purstr += '<input type="radio" name="purity" id="purity_' + k + '_' + val.id + '" value="' + val.dVal + '" data-price="' + val.prc + '" onclick="setmetal(this)" class="filled-in dn">';
+                      
                         purstr += '<label for="purity_' + k + '_' + val.id + '"></label>';
                         purstr += '<div class="check2">' + karstr[1] + '</div>';
                         purstr += '<span class=" selector_label">';
@@ -1167,7 +1172,9 @@ $(document).ready(function () {
 
             }
             setTimeout(function () {
+                
                 calculatePrice();
+                defaultFilterPrice = totalNewPrice;
             }, 500);
         }
 
@@ -1175,14 +1182,11 @@ $(document).ready(function () {
 
 
     });
-
-
-
-
+ 
 
 });
 
-
+var defaultFilterPrice = 0;
 
 
 var bs = [];
@@ -1287,7 +1291,7 @@ function setdmd(e) {
         $('#ch_price,#mch_price').find('.labBuffer').empty();
         $('#ch_price,#mch_price').find('.labBuffer').append('Previous Price:'); 
         $('#ch_price,#mch_price').velocity({opacity: [1, 0]});
-        
+         
         calculatePrice();
 
     }, 400);
@@ -1305,10 +1309,11 @@ function setdmd(e) {
     setTimeout(function () {
         $("input[name='selectM']").each(function () {
             $(this).attr('disabled', false);
+       
         });
     }, 1000);
 }
-
+   
 function setmetal(m) {
     var mt = $(m).closest('.rad_wrap').index();
     var wx = $(m).val();
@@ -1382,7 +1387,7 @@ var grandtot = 0;
 var gtotal = 0
 var catname;
 var catid = 0;
-var totalNewPrice=0;
+
 var sizdefault;
 var sizdefaulval;
 function getcatsize(s,cn, m) {
@@ -1514,12 +1519,26 @@ function defaultPrice(a, b, c, d)
   $('#pricel').html(indianMoney(totalNewPricelow));
   $('#priceh').html(indianMoney(totalNewPricehigh));
 }
+
+
 function calculatePrice()
 {
     var vatRate = (1 / 100);
     var selDiamond = parseFloat($('input[name="selectM"]:checked').attr('data-value'));
     var selPurity = parseFloat($('input[name="purity"]:checked').attr('data-price'));
-
+    
+    var setClr= ($('input[name="metal"]:checked').attr('id'));
+    setClr=setClr.split('_');
+    setClr=setClr[2];
+    var setMetl=($('input[name="purity"]:checked').attr('id'));
+    setMetl=setMetl.split('_');
+    setMetl=setMetl[2];
+     var setDmd=($('input[name="selectM"]:checked').attr('id'));
+    setDmd=setDmd.split('_');
+    setDmd=setDmd[2];
+ 
+     combn=setClr+"|@|"+setMetl+"|@|"+setDmd; 
+            
     var currentSize;
     var mtlWgDav = 0;
     var dmdPrice = 0;
@@ -1597,7 +1616,6 @@ function calculatePrice()
 
     var abc = $('#price').html();
     $('#price').text(totalNewPrice);
-    $('#m_price').text(totalNewPrice);
     
     $('#price,#m_price').numerator({
         toValue: totalNewPrice,
@@ -1614,11 +1632,16 @@ function calculatePrice()
     });
   
     $('#ch_price,#mch_price').find('.labBuffer').append(' @ ' + abc);
-  var w = $(window).width();
+ 
+   
+var w = $(window).width();
             if (w <= 1024) {
- var comb = GetURLParameter('comb');
- var wish= '<div class="likeD soc_wish2" onclick="makeAwish(this, event)" id="prd_'+pid+'"  data-size="'+psize+'" data-price="'+totalNewPrice+'" data-comb ="'+comb+'"></div>';
-       $('#wsh').append(wish);
+ 
+var wish = '<div class="likeD soc_wish2" onclick="makeAwish(this, event)" id="prd_'+pid+'"  data-size="'+currentSize+'" data-price="'+totalNewPrice+'" data-comb ="'+combn+'"></div>';
+
+        $('#wsh').html(wish);
+        
+        
             }
 
 }
@@ -1683,7 +1706,10 @@ function showwishbtn()
             setTimeout(function () {
                 if (wshlstflag == 1) {
                     $('#addwishlist').html("In wishlist").addClass("colorff5");
+                    var w = $(window).width();
+            if (w <= 1024) 
                     $('.soc_wish2').addClass("beat");
+                
                 } else {
                     //   console.log('not in wishlist');
                 }
@@ -1726,7 +1752,7 @@ function getDesc(dmdsol, jwlty) {
     });
 
 }
-
+ 
 function calweight()
 {
     var currentSize;
@@ -1813,9 +1839,13 @@ $('.sizbak ').click(function () {
 
 
 $('#mobsz ').click(function () {
-  
+  common.msg(1, 'Customization Done');
     var Msiz=$('#mbsize').text();
-//     calculatePrice();
+ 
+      setTimeout(function () {
+         showwishbtn(); 
+      },500);
+  
     setTimeout(function () {
         $(e).closest('.selector_cont ').find('.options_back').click();
         $('#mch_price').find('.labBuffer').empty();
