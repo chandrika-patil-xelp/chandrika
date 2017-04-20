@@ -3349,9 +3349,10 @@ input[type=number]::-webkit-outer-spin-button {
     .PRODUCT_PAGE .collCenterb {width:100%;height:auto;position:relative;left:initial;top:initial;bottom:initial;margin:initial;padding:40px;}
     .PRODUCT_PAGE .colleCont.v2{padding:70px 2px 25px 0px!important;}
     .PRODUCT_PAGE .wrapper{}
-    .PRODUCT_PAGE .details_cont{width: 40%;}
-    .PRODUCT_PAGE .rota_wrap{width: 60%;left: 40%;}
-    .PRODUCT_PAGE .options{width: 100%;}
+    .PRODUCT_PAGE .details_cont{width: 40%;height:60%;}
+     #addwishlist{position:absolute;right:-140%;bottom:-20vh;}
+    .PRODUCT_PAGE .rota_wrap{width: 60%;left: 40%;height:60%;}
+    .PRODUCT_PAGE .options{width: 100%;height:40%;}
     .another_buffer .cardHead{display: none;} 
     .colleCont.v2{padding-top: 150px;}
     .PRODUCT_PAGE .colleCont.v2{padding:70px 2px 25px 0px!important;}
@@ -3518,11 +3519,13 @@ input[type=number]::-webkit-outer-spin-button {
     .PRODUCT_PAGE .wrapper{}
     .PRODUCT_PAGE .details_cont{width: 40%;}
     .PRODUCT_PAGE .rota_wrap{width: 60%;left: 40%;}
-    .PRODUCT_PAGE .options{width: 100%;}
+    .PRODUCT_PAGE .options{width: 100%;height:40%;}
     .another_buffer .cardHead{display: none;} 
     .colleCont.v2{padding-top: 150px;}
     .PRODUCT_PAGE .colleCont.v2{padding:70px 2px 25px 0px!important;}
-
+    .PRODUCT_PAGE .price_light{height:60px;}
+    .PRODUCT_PAGE .details_buffer{height:100%;}
+    .PRODUCT_PAGE .details_head{font-size:25px;line-height:20px;}
     /*footer mobile*/
     .footerH .fooH:after{    content: "";
                     background: url(../img/icons/543.svg)no-repeat;
@@ -3589,7 +3592,7 @@ input[type=number]::-webkit-outer-spin-button {
     .sLeft{width:100%;height:auto;}
     .sLeft .options_back{display: none;}
     .sLeft .clarityInfo{display: none;}
-    .cust_cont{width: 100%;height:calc(100vh - 105px);overflow: auto;}
+    .cust_cont{width: 100%;height:calc(100vh - 180px);overflow: auto;}
 
     .drop_dn{position:relative;z-index:2;}
     .soc_wish2.beat:after{opacity:0;}
@@ -3664,9 +3667,9 @@ input[type=number]::-webkit-outer-spin-button {
     .fadcrs{overflow:hidden;}
     .mCart{width:40px;height:100%;position: relative;}
     .mcartIc{background:url(../img/icons/502w.svg) no-repeat;background-size: 20px;background-position: center;}
-    sign in page
+/*    sign in page*/
     .mobileMess{background:unset;}
-    .outerContr{width:100%;height:100vh;z-index:20000!important;bottom:unset;top:0px;overflow: auto;}
+    .outerContr{width:100vw;height:100vh;z-index:20000!important;bottom:unset;top:0px;overflow: auto;}
     .loginCont{padding:80px 25px 80px 25px;height: 100%;}    
     .closeLogin{width: 50px;height: 50px;}
     .txtTitle{font-size: 15px;}
