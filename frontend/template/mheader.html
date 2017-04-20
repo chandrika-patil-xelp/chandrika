@@ -135,7 +135,7 @@
 //    });
 
     function guestpopUp() {
-          $('.head_wrap').addClass("pointNone");
+          $('.mheader').addClass("pointNone");
         $('.loginOverlay').velocity({opacity: [1, 0]});
 //        $('.loginOverlay').stop(true, true).fadeTo(200, 0);
 
@@ -144,7 +144,7 @@
         $('#guestChild').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
     }
     function guestpopUpClose() {
-          $('.head_wrap').removeClass("pointNone");
+          $('.mheader').removeClass("pointNone");
         $('.loginOverlay').velocity({opacity: [0, 1]});
 //          $('.loginOverlay').stop(true, true).fadeTo(0, 200);
         $('#guestPar').addClass("dn");
@@ -226,7 +226,7 @@
         $('.loginOverlay').velocity({opacity: [1, 0]});
 //          $('.overlay').velocity({display: "block"});
         $('.menu_wrap').css("height", "0");
-        $('.head_wrap').addClass("addPointer");
+        $('.mheader').addClass("addPointer");
         $('.wrapper_max').addClass("addPointer");
         $('#loginId').css("opacity", "1");
         $('#forgot,#otpOuter,#otpOuter2,#signUpId').addClass("dn");
