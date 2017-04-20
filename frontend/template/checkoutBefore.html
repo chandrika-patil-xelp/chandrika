@@ -218,7 +218,7 @@
         $('body').animate({scrollTop: 1000}, 'slow');
     });
     $('#mob_help').click(function () {
-        $('body').animate({scrollTop: 445}, 'slow');
+        $('html,body').animate({ scrollTop: $("#need_help").offset().top},'slow');
     });
     $('#scrollchckbfr').niceScroll({cursorcolor: "#000000", touchbehavior: true, cursorwidth: "4px", autohidemode: false, cursorborder: "0px solid #fff", cursoropacitymin: "0.3", cursoropacitymax: "0.3", railpadding: {top: 2, right: 2, left: 2, bottom: 2}});
 
