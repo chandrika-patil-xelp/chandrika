@@ -19,6 +19,7 @@
         <div class="wrapper_max">
 	  <a href="<?php echo DOMAIN ?>index.php?action=landing_page"><div class="logo fLeft"></div></a>
           <a class="logoA" href="<?php echo DOMAIN ?>"><div class="mlogoHeader"></div></a>
+          <div class="payHelp1 fRight mob_help" id="mob_help">Need Help?</div>
             <div class="fLeft callUs" style="color:#999999">Got Question? call us on 9880824707</div>
             <div class="payOption fRight">
                 <div class="col50 pay certiIc fRight">certified jewellery</div>
@@ -160,7 +161,9 @@
     $('.payHelp').click(function () {
         $('body').animate({scrollTop: 1000}, 'slow');
     });
-
+    $('#mob_help').click(function () {
+    $('html,body').animate({ scrollTop: $("#need_help").offset().top},'slow');
+    });
     $('#nice').niceScroll({cursorcolor: "#000000", touchbehavior: true, cursorwidth: "4px", autohidemode: false, cursorborder: "0px solid #fff", cursoropacitymin: "0.3", cursoropacitymax: "0.3", railpadding: {top: 2, right: 2, left: 2, bottom: 2}});
 
     $('.inp_box').focus(function () {
