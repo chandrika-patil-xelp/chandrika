@@ -799,8 +799,8 @@
                                         $('body').animate({scrollTop: 1000}, 'slow');
                                         });
                                          $('#mob_help').click(function () {
-                                            $('body').animate({scrollTop: 445}, 'slow');
-                                        });
+                                            $('html,body').animate({ scrollTop: $("#need_help").offset().top},'slow');
+                                            });
 
                                         $("#dlabel").click(function () {
                                             $('.dropBox label').addClass("act");
