@@ -641,6 +641,7 @@ function sugnupsubmt()
       entrflg = 11;
       $('.loginOverlay').stop(true, true).fadeTo(200, 0);
       $('.head_wrap').removeClass("addPointer");
+      $('.mheader').removeClass("addPointer");
       $('.ftabB').removeClass("addPointer");
       $('.wrapper_max').removeClass("addPointer");
       $('.fade').fadeOut("slow");
