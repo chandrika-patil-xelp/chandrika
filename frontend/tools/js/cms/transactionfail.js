@@ -25,7 +25,7 @@
      
  });
  
- $('#tryagn').click(function(){
+ $('#tryagn,#tryagn_mob').click(function(){
  
     window.location.href=DOMAIN+"transaction/payment.php?ordid="+ordid+"&shipid="+shipid;
  });
