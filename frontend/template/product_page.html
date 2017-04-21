@@ -48,8 +48,8 @@
                                 <div class="writefaggery fLeft">
 
                                     <div class="para fLeft pr_head "  id="stn"><span>White gold, diamond</span></div>
-                                    <div class="price_lightm fLeft " id="Mprice">
-                                        <center> <div class="col100  cartRupeeB" id="m_price1">456454</div></center>
+                                    <div class="price_lightm fLeft Mprc dn" >
+                                        <center> <div class="col100  cartRupeeB" id="m_price1"></div></center>
                                         <div class="ch_cont fLeft" id="mch_price">
                                             <div class="drNoob">
                                                 <div class="labBuffer">Previous Price:</div>
@@ -436,7 +436,7 @@
             });
 
         $('#mCst').click(function () {
-          
+          oncustm=$('#m_price').text(); 
             $('body').addClass('posFix');
             $('.m_cust').removeClass('dn');
             $('.m_cust').velocity({translateY: [0, '100vh']}, {duration: 400, delay: 100});
@@ -975,6 +975,7 @@
         //JZEVA DROPDOWN
 
         function bindDrop() {
+           
             var sz;
             $('.selectOptions').click(function () {
                 sz = $(this).text();
@@ -1044,6 +1045,7 @@
 
 
         $('#sizeback').click(function () {
+           
             setTimeout(function () {
                 $('#ch_price').find('.labBuffer').empty();
                 $('#ch_price').find('.labBuffer').append('Previous Price:');

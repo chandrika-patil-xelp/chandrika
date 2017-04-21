@@ -1,4 +1,5 @@
 
+var oncustm=0;
 var data = new Array();
 var glbquality;
 var glbcolor;
@@ -1293,7 +1294,7 @@ function setdmd(e) {
         $('#ch_price,#mch_price').velocity({opacity: [1, 0]});
          
         calculatePrice();
-
+    
     }, 400);
     setTimeout(function () {
         $('#ch_price,#mch_price').addClass('showCh');
@@ -1334,8 +1335,9 @@ function setmetal(m) {
         $('#ch_price,#mch_price').find('.labBuffer').empty();
         $('#ch_price,#mch_price').find('.labBuffer').append('Previous Price:');
         $('#ch_price,#mch_price').velocity({opacity: [1, 0]});
+       
         calculatePrice();
-
+  
     }, 400);
     setTimeout(function () {
         $('#ch_price,#mch_price').addClass('showCh');
@@ -1614,9 +1616,20 @@ function calculatePrice()
 
     totalNewPrice = Math.round(ttl + (ttl * vatRate));
 
-    var abc = $('#price').html();
+    var webprc = $('#price').html();
+    var mobprc=$('#m_price').html();
     $('#price').text(totalNewPrice);
-    
+    var w = $(window).width();
+            if (w <= 1024) {
+                $('.Mprc').removeClass('dn');
+     $('#m_price').text(totalNewPrice);
+     
+  $('#mch_price').find('.labBuffer').append(' @ ' + oncustm); 
+  
+var wish = '<div class="likeD soc_wish2" onclick="makeAwish(this, event)" id="prd_'+pid+'"  data-size="'+currentSize+'" data-price="'+totalNewPrice+'" data-comb ="'+combn+'"></div>';
+
+        $('#wsh').html(wish);
+            }
     $('#price,#m_price').numerator({
         toValue: totalNewPrice,
         delimiter: ',',
@@ -1631,19 +1644,8 @@ function calculatePrice()
         
     });
   
-    $('#ch_price,#mch_price').find('.labBuffer').append(' @ ' + abc);
+    $('#ch_price').find('.labBuffer').append(' @ ' + webprc);
  
-   
-var w = $(window).width();
-            if (w <= 1024) {
- 
-var wish = '<div class="likeD soc_wish2" onclick="makeAwish(this, event)" id="prd_'+pid+'"  data-size="'+currentSize+'" data-price="'+totalNewPrice+'" data-comb ="'+combn+'"></div>';
-
-        $('#wsh').html(wish);
-        
-        
-            }
-
 }
 
 $('#addwishlist').click(function () {
@@ -1837,11 +1839,10 @@ $('.sizbak ').click(function () {
     }
 });
 
-
 $('#mobsz ').click(function () {
   common.msg(1, 'Customization Done');
-    var Msiz=$('#mbsize').text();
- 
+    var Msiz=$('#mbsize').text(); 
+   
       setTimeout(function () {
          showwishbtn(); 
       },500);
@@ -1851,7 +1852,7 @@ $('#mobsz ').click(function () {
         $('#mch_price').find('.labBuffer').empty();
         $('#mch_price').find('.labBuffer').append('Previous Price:');
         $('#mch_price').velocity({opacity: [1, 0]});
-
+       
         calculatePrice();
 
     }, 400);
