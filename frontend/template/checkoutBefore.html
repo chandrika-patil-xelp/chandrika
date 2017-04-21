@@ -39,8 +39,7 @@
                     <div class="homeCollect">
                         <!--                        /*take code from here*/-->
 
-                        <div class="colleCont dTab ePadding" id="addOpt">
-                            <div class="mobile_height fLeft" id="selected_address">
+                        <div class="colleCont dTab ePadding selected_address" id="addOpt">
                                 <div class="col100 fLeft">
                                     <div class="dAdrsshdr fLeft semibold">confirm DETAILS
                                         <div class="cbrdr"></div>
@@ -88,14 +87,13 @@
                                            PAYMENT
                                         </div>
                                     </div>-->
-                                </div>
-                            </div>    
+                                </div> 
                         </div>
 
 
 
                         <!--//black side cont-->
-                        <div class="colleCont v2 black mobile_height">
+                        <div class="colleCont v2 black checkbefore_cart">
 
                             <div class="fLeft totalItem txt_center colorfff" id="totitm_chckbefor">
                                 <div class="fLeft col100 cart_name light colorfff">Cart Value
@@ -441,13 +439,13 @@
 //tabs
 
 $('.checkout_details').click(function () {
-    $('#selected_address,.dAdrsshdr').css({"display":"block"});
+    $('.selected_address,.dAdrsshdr').css({"display":"block"});
     $('.colleCont.v2.black').css({"display":"none"});
     $('body').scrollTop(0);
 });
 $('.cart_first').click(function () {
      $('.colleCont.v2.black').css({"display":"block"});
-    $('#selected_address,.dAdrsshdr').css({"display":"none"});
+    $('.selected_address,.dAdrsshdr').css({"display":"none"});
      $('body').scrollTop(0);
 });
 $(window).scroll(function () {
