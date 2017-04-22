@@ -7,7 +7,8 @@
 <body>
     <div class="container addProduct">
         <?php include 'jBheader.html' ?>
-        <div class="contents fLeft" id=''>
+        
+        <div class="contents fLeft" >
             <div class="wrapperMax fmOpenR">
                 <div class="noresDiv fLeft dn" id='noresults'>
                     <div class="noresults font25 fLeft">There are no categories available.</div>
@@ -148,14 +149,15 @@
                     <center>
                         <div class="cancelBtn transition300 fmOpenR poR" onclick="">CANCEL</div>
 
-                        <div class="submitBtn transition300 fmOpenR poR" onclick="" id="submit">SUBMIT</div>
+                        <div class="submitBtn transition300 fmOpenR poR disabled"  id="submit">SUBMIT</div>
 
                     </center>
                 </div>
             </div>
         </div>
     </div>
-
+        <div class="overlay dn"></div>
+        <div class="loader dn"></div>
 
     <!--Category Value Map-->
 

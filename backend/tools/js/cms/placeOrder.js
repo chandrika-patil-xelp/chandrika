@@ -1,13 +1,21 @@
 
 var ordid;
 
-$(document).ready(function(){
-  
-});
+ function showLoader()
+            {
+                $('.overlay').removeClass('dn');
+                $('.loader').removeClass('dn');
+            }
+ function hideLoader()
+            {
+                $('.overlay').addClass('dn');
+                $('.loader').addClass('dn');
+            }
 
- 
-  
-  $('#submit').click(function(){
+$(document).ready(function(){
+
+  $('#submit').on('click',function(){
+
 	  var gendrflag;
 	  var gender=$('#vendorList').val();
 	  if(gender == "Mr"){
@@ -76,11 +84,12 @@ $(document).ready(function(){
 	    validationFlag = 0;
 	     common.toast(0,'Please enter your state name'); 
 	  } 
+	
 	  
-	 
 	  var shipngdata={};
 	  if(validationFlag == 1)
 	  {
+            
 	      shipngdata['name'] = name;
 	      shipngdata['email'] = email;
 	      shipngdata['mobile'] = telno;
@@ -89,7 +98,7 @@ $(document).ready(function(){
 	      shipngdata['state'] = state;
 	      shipngdata['city'] = city;
 	      shipngdata['gender'] = gendrflag;
-	      
+	   showLoader();
 	      var URL = APIDOMAIN + "index.php?action=getUserdetailbymob&mob="+telno+"&email="+email; 
 	      $.ajax({type: "GET", url: URL, success: function (res) { 
 		  var data = JSON.parse(res);
@@ -102,6 +111,7 @@ $(document).ready(function(){
 			       cust_userid=data1['result']['user_id'];
 			     }
 			     else if(data1['error']['err_code']==1){
+                               
 				 common.toast(0,data1['error']['err_msg']);
 			     }
 		    }
@@ -120,13 +130,19 @@ $(document).ready(function(){
 			  var data = JSON.parse(res); 
 			  var shipid=data['shipid'];
 			  orderdata(shipid); 
+                           
 			}
 		      });	
 		  },1000);
+                  
 		}
 	      }); 
+              
 	}
+     
+  
 	});
+});
 
 
    function orderdata(shp)
@@ -174,6 +190,7 @@ $(document).ready(function(){
 		common.toast(1, 'Order Placed successfully');
 		ordid=data['ordid'];
                 addtransactiondata();
+            
 	     } 
 	    }
 	});
@@ -225,7 +242,8 @@ $(document).ready(function(){
 		{
 		  setTimeout(function(){
 		   window.location.href=DOMAIN+"backend/index.php?action=orders";
-		  },1000);
+		  },250);
+                  hideLoader();
 		}
 	      });
       
