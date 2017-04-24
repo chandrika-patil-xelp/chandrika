@@ -4,13 +4,14 @@ $(document).ready(function(){
    
       var actnp = GetURLParameter('actn');
       var usid = common.readFromStorage('jzeva_uid');
-//      if (actnp == "lognpopup") {
-//	  setTimeout(function () {
-//	      if (usid == null || usid == undefined)
-//            openPopUp();
-//	  }, 250);
-//
-//      }
+     
+          if (actnp == "lognpopup") {
+        setTimeout(function () {
+            if (usid == null || usid == undefined)
+                openPopUp();
+        }, 3000);
+
+    }
  
       $(window).scroll(function () {
 	    if ($(this).scrollTop() > 100) {
