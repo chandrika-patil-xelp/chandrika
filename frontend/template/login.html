@@ -318,31 +318,32 @@
 
         var flag;
 
-        function openPopUp() {
-            $('.wrapper_main').bind('keyup mouseup',
-                    function (e) {
-                        $('body a').attr("tabindex", "-1");
-                        if (e.which === 9) {
-                            // focus from tab
-                            return false;
-                        }
-                    });
-            entrflg = 4;
-//             $('.overlay').stop(true, true).fadeTo(200, 1);        
-            $('#signInId').removeClass("dn");
-            $('#loginId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
-            $('.loginOverlay').velocity({opacity: [1, 0]});
-//          $('.overlay').velocity({display: "block"});
-            $('.menu_wrap').css("height", "0");
-            $('.head_wrap').addClass("addPointer");
-            $('.wrapper_max').addClass("addPointer");
-            $('#loginId').css("opacity", "1");
-            $('#forgot,#otpOuter,#otpOuter2,#signUpId').addClass("dn")
-            $('.outerContr,.deleteContr').css("z-index", "203", "opacity", "1");
-            $(this).parent().parent().addClass("addPointer");
-            $('.ftabB').addClass("addPointer");
-            $('.outerContr').velocity({translateY: [0, '100vh']}, {duration: 150, delay: 100, easing: ''});
-        }
+//        function openPopUp() {
+//            $('.wrapper_main').bind('keyup mouseup',
+//                    function (e) {
+//                        $('body a').attr("tabindex", "-1");
+//                        if (e.which === 9) {
+//                            // focus from tab
+//                            return false;
+//                        }
+//                    });
+//            entrflg = 4;
+////             $('.overlay').stop(true, true).fadeTo(200, 1);        
+//            $('#signInId').removeClass("dn");
+//            $('#loginId').velocity({opacity: [1, 0], translateY: [0, 20]}, {duration: 400, delay: 100, easing: 'ease-in-out'});
+//            $('.loginOverlay').velocity({opacity: [1, 0]});
+////          $('.overlay').velocity({display: "block"});
+//            $('.menu_wrap').css("height", "0");
+//            $('.head_wrap').addClass("addPointer");
+//            $('.wrapper_max').addClass("addPointer");
+//            $('#loginId').css("opacity", "1");
+//            $('#forgot,#otpOuter,#otpOuter2,#signUpId').addClass("dn")
+//            $('.outerContr,.deleteContr').css("z-index", "203", "opacity", "1");
+//            $(this).parent().parent().addClass("addPointer");
+//            $('.ftabB').addClass("addPointer");
+//            $('.outerContr').velocity({translateY: [0, '100vh']}, {duration: 150, delay: 100, easing: ''});
+//        }
+
 
 
 

@@ -1,15 +1,16 @@
 var headrentrflg=0;
 
 $(document).ready(function(){
+   
       var actnp = GetURLParameter('actn');
       var usid = common.readFromStorage('jzeva_uid');
-      if (actnp == "lognpopup") {
-	  setTimeout(function () {
-	      if (usid == null || usid == undefined)
-		  openPopUp();
-	  }, 3000);
-
-      }
+//      if (actnp == "lognpopup") {
+//	  setTimeout(function () {
+//	      if (usid == null || usid == undefined)
+//            openPopUp();
+//	  }, 250);
+//
+//      }
  
       $(window).scroll(function () {
 	    if ($(this).scrollTop() > 100) {
@@ -174,7 +175,6 @@ $('#usrlogout').click(function () {
 	    window.location.href = DOMAIN + "index.php?action=landing_page"; 
 	}
 	else
-             
 	    window.location.href =DOMAIN +accnvar;
 	  }, 3000);
        

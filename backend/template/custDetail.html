@@ -65,9 +65,11 @@
                     async: false,
                     success: function (res) {
                         res = JSON.parse(res);
+                       if(res['images'] !== null){
                         img = res['images'][0];
                         return img;
-
+                     }
+                  
                     }
 
                 });
@@ -174,8 +176,8 @@
                         ostr += "</div>";
 
 
-                        var odate = vl.odate.split("|")
-                        var ddate = vl.ddate.split("|")
+                        var odate = vl.odate.split("|");
+                        var ddate = vl.ddate.split("|");
 
                         ostr += "<div class='fieldTitle fLeft fmOpenR brdN'>";
                         ostr += "<div class='fields fLeft fmOpenB'>Order Date<span class='fRight padR'>:</span></div>";

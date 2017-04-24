@@ -523,7 +523,7 @@ class user extends DB {
                        active_flag as aflag,
                        price as price ,
                        payment as pm 
-                       FROM tbl_order_master WHERE user_id=" . $params['userid'] . " ORDER BY order_date DESC
+                       FROM tbl_order_master WHERE user_id=" . $params['userid'] . " AND active_flag=1 ORDER BY order_date DESC 
                     
                     ";
              $res = $this->query($sql);
@@ -582,7 +582,7 @@ class user extends DB {
                                     gender 
                                   FROM
                                     tbl_user_master 
-                                  WHERE user_id = ".$params['userid']." ";
+                                  WHERE user_id = ".$params['userid']." AND is_active=1";
                         
                         $res = $this->query($sql);
                         
@@ -628,6 +628,7 @@ class user extends DB {
         $pid = (!empty($params['pid'])) ? trim($params['pid']) : '';
         $combn = (!empty($params['combn'])) ? trim($params['combn']) : '';
         $size = (!empty($params['sz'])) ? trim($params['sz']) : '';
+      
         if (empty($orderid)) {
             $resp = array();
             $error = array('errCode' => 1, 'errMsg' => 'Parameter Missing');
@@ -636,16 +637,22 @@ class user extends DB {
         } else {
             global $db;
             global $comm;
+            $updt=" UPDATE  tbl_order_master set delivery_date = now() Where order_id=" . $orderid . " AND active_flag=1 ";
+            $updres = $this->query($updt);
+             
             $smssql = "SELECT
 			  shipping_id as shipid,
 			  product_id as pid,
+                          order_date as odate,
+                          delivery_date as ddate,
 			  (SELECT name FROM tbl_order_shipping_details WHERE shipping_id=shipid)AS shipname,
 			  (SELECT mobile FROM tbl_order_shipping_details WHERE shipping_id=shipid)AS mobile,
 			  (SELECT gender FROM tbl_order_shipping_details WHERE shipping_id=shipid)AS gender,
 			  (SELECT email FROM tbl_order_shipping_details WHERE shipping_id=shipid)AS email,
 			  (SELECT product_name FROM tbl_product_master WHERE productid=pid)AS prd_name
-		    FROM tbl_order_master WHERE order_id=" . $orderid . "";
-
+		    FROM tbl_order_master WHERE order_id=" . $orderid . " AND active_flag=1
+                      ";
+        
             $smsres = $this->query($smssql);
             $smsrow = $this->fetchData($smsres);
             $email = $smsrow['email'];
