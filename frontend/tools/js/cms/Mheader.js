@@ -34,17 +34,17 @@ $(document).ready(function () {
     }
     var actnp = GetURLParameter('actn');
     var usid = common.readFromStorage('jzeva_uid');
-    if (actnp == "lognpopup") {
-        setTimeout(function () {
-            if (usid == null || usid == undefined)
-                openPopUp();
-        }, 3000);
-
-    }
+//    if (actnp == "lognpopup") {
+//        setTimeout(function () {
+//            if (usid == null || usid == undefined)
+//                openPopUp();
+//        }, 3000);
+//
+//    }
     $('#mediaUsr').click(function () {
            $('.closeLogin').removeClass('dn');
         if (!usid) {
-            openPopUp();
+          openPopUp();
 
         }
 
