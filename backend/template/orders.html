@@ -50,7 +50,7 @@
                 type:'GET',
                 success:function(res){
                     var res=JSON.parse(res);
-                   
+                
                       $('#totalord').html(res.total);
                       listCallBack(res);
                 }
@@ -82,7 +82,12 @@
                 var ddate=vl.ddate.split("|");
                 
                 str+="<span class='upSpan'>"+odate[0]+"</span>";
+               
+               if(vl.ostatus==6)
                 str+="<span class='lwSpan'>"+ddate[0]+"</span>";
+                else
+                str+="<span class='lwSpan'>-</span>"; 
+                  
                 str+="</div>";
 
                 str+="<div class='acct fLeft fmOpenB'><span class='rSign'>"+vl.price+"</span></div>";
