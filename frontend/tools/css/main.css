@@ -2373,7 +2373,7 @@ input[type=radio]:checked ~ .matchIcn{display:block;background:#53C9C7  url(../i
 .myaccount .grid3{width:50%;}
 .myaccount .grid3:hover{}
 .myaccount .hovTr:hover{}
-.myaccount .offsetTop{display:-webkit-box;}
+.myaccount .offsetTop{display:flex;}
 
 /*.myaccount .col50{padding-right: 40px;}*/
 .myaccount .txtB{margin-bottom: 20px;}
@@ -3703,9 +3703,9 @@ input[type=number]::-webkit-outer-spin-button {
     .inGuest{padding: 80px 25px 80px 25px;height:100%;}   
     .guestPopup{width:100%;height:100vh;z-index:9999;overflow:auto;margin:0;bottom:initial;right:initial;}
     .closeLogin1{width: 50px;height: 50px;}
-    .incart_gen{height: calc(100vh - 180px);padding-bottom:30px;}
+    .incart_gen{height: calc(100vh - 150px);padding-bottom:30px;}
     .cartEmptyImg{background-position:center 105%;height:250px;background-size: auto 45%;}
-    .cart_item{padding:20px 0px 5px 105px;}
+    .cart_item{padding:10px 0px 5px 105px;}
     .checkoutBefore .cart_item{padding-left:65px;}
     .payOption{display: none;}
     .cart_image{width:50px;height:50px;left: 35px;top:22px;}
@@ -3984,6 +3984,8 @@ input[type=number]::-webkit-outer-spin-button {
     .HOME_PAGE #darkCont .colleCont{padding:135px 0px;}
     .HOME_PAGE #darkCont .smUBot{bottom:20px;}
     .HOME_PAGE #darkCont .smUline{top:50px;}
+    .incart_gen{height:calc(100vh - 200px);}
+    .totalItem{margin-bottom:0px;}
 }
 @media only screen and (max-device-width: 480px) and (orientation: landscape){
     .termHeading{top:50px;}
