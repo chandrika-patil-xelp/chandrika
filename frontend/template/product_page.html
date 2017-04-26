@@ -3,6 +3,8 @@
 <body class="greyBg blackHead prodPg">
     <script>
         var pid = "<?php echo $_GET['pid'];  ?>";
+
+        var sizeOfJewe = '<?=$_GET['sz'];?>';
     </script>
     <div class=""></div>
     <?php include 'Cart.html' ?>
@@ -480,14 +482,22 @@
                 $('.ringCircle ,.mringCircle').html(sVal);
                
 
-                if (t < sVal) {
-                    inc();
-                } else {
-                    dec();
-                }
+                var ringsSlider = ["5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26"];
+                var sliderIndexNo = ringsSlider.indexOf(Math.round(sVal).toString());
+
+                if (sliderIndexNo == -1)
+                    sliderIndexNo = 9;
+                var value = 56 + sliderIndexNo;
+                
+                   console.log("this ring val",value);
+                $('.ringCircle ,.mringCircle').css('width', value + 'px');
+                $('.ringCircle ,.mringCircle').css('height', value + 'px');
+                $('.ringCircle ,.mringCircle').css('line-height', value + 'px');
+                $('.ringCircle ,.mringCircle').html(Math.round(sVal));
+
                 t = sVal;
-      
-              
+
+                calweight();
             },
         });
 
@@ -500,28 +510,38 @@
         $('#slideBangle,#mslideBangle').ionRangeSlider({
             type: "single",
             from: 2,
+            from_value: 2.9,
             values: [
                 "2.2", "2.3", "2.4", "2.5", "2.6", "2.7", "2.8", "2.9"],
             grid: true,
             onChange: function (data) {
-                var sVal = data.from_value;
 
+                var sVal = data.from_value;
                 $('#size').text("Size " + data.from_value);
                 $('#mbsize').text("Size " + data.from_value);
                 $('.ringCircleB,.mringCircleB').html(sVal);
-                if (t < sVal) {
-                    incB();
-                } else {
-                    decB();
-                }
+
+                var bangSlider = ["2.2", "2.3", "2.4", "2.5", "2.6", "2.7", "2.8", "2.9"];
+                var bangIndexNo = bangSlider.indexOf((sVal).toString());
+                console.log("this bangle index", bangIndexNo);
+                if (bangIndexNo == -1)
+                    bangIndexNo = 2;
+                var value = 90 + (bangIndexNo * 5);
+                 console.log("this bangle val",value);
+                $('#bangCircle,#mbangCircle').css("width", value + 'px');
+                $('#bangCircle,#mbangCircle').css("height", value + 'px');
+                $('#bangCircle,#mbangCircle').css('line-height', value + 'px');
+                $('#bangCircle,#mbangCircle').html((sVal));
+
                 t = sVal;
-                //                calculatePrice();
+                calculatePrice();
             },
         });
+
         var slider = $("#slideBangle,#mslideBangle").data("ionRangeSlider");
         slider.reset();
         slider.update({
-            from: 2,
+            from: 3
         });
 
         var val = 0;
@@ -550,103 +570,7 @@
         }
 
 
-        var tmp;
-        setTimeout(function () {
-            tmp = $('.ringCircle,.mringCircle').html();
-             
-        }, 1000);
-        var val1, val2, val3;
-        var w, h, lh;
-        val1 = $('.ringCircle , .mringCircle').width();
-        val2 = $('.ringCircle , .mringCircle').height();
-        val3 = $('.ringCircle , .mringCircle').css('line-height');
-        function inc() {
-            var incVal = parseInt(tmp) + 1;
-            if (incVal > 26) {
-                return false;
-            }
-            val1 = val1 + 1;
-            val2 = val2 + 1;
-            val3 = parseInt(val3) + 1;
-            $('.ringCircle ,.mringCircle').css('width', val1 + 'px');
-            $('.ringCircle ,.mringCircle').css('height', val2 + 'px');
-            $('.ringCircle ,.mringCircle').css('line-height', val3 + 'px');
-            //            $('.ringCircle').html(incVal);
-            tmp++;
-            calweight();
-        }
-        //
-
-        function dec() {
-            var dTxt = tmp - 1;
-            if (dTxt < 5) {
-                return false;
-            }
-            val1 = val1 - 1;
-            val2 = val2 - 1;
-            val3 = parseInt(val3) - 1;
-            $('.ringCircle, .mringCircle').css('width', val1 + 'px');
-            $('.ringCircle , .mringCircle').css('height', val2 + 'px');
-            $('.ringCircle , .mringCircle').css("line-height", val3 + 'px');
-            tmp--;
-            calweight();
-        }
-
-        //bangles size code
-        var tmp_b;
-        setTimeout(function () {
-                        tmp_b = $('#bangCircle,#mbangCircle').html();
-        }, 1000);
-        var addval_b = 20;
-        var valb1, valb2, valb3;
-        var w, h, lh;
-        valb1 = $('#bangCircle,#mbangCircle').width();
-        valb2 = $('#bangCircle,#mbangCircle').height();
-        valb3 = $('#bangCircle,#mbangCircle').css('line-height');
-
-        function incB() {
-           
-            var inc = Math.round(tmp_b * 10) / 10;
-            var incVal_b = parseFloat(inc + 0.1).toFixed(1);
-            if (incVal_b >= 3.0) {
-                return false;
-            }
-            var incValb = Math.round(incVal_b * 10) / 10;
-            $('#size').text("Size " + incVal_b);
-             $('#mbsize').text("Size " + incVal_b);
-            valb1 = valb1 + 5;
-            valb2 = valb2 + 5;
-            valb3 = parseInt(valb3) + 5;
-
-            $('#bangCircle,#mbangCircle').css("width", valb1 + 'px');
-            $('#bangCircle,#mbangCircle').css("height", valb2 + 'px');
-            $('#bangCircle,#mbangCircle').css('line-height', valb3 + 'px');
-            //            $('#bangCircle').html(incVal_b);
-            tmp_b = parseFloat(tmp_b) + 0.1;
-            calweight();
-        }
-
-        function decB() {
-            var rtxt = $(this).parent().next();
-            var dTxt_b = tmp_b - 0.1;
-            if (dTxt_b <= 0.0) {
-                return false;
-            } else if (dTxt_b < 2.1) {
-                return false;
-            }
-            valb1 = valb1 - 5;
-            valb2 = valb2 - 5;
-            valb3 = parseInt(valb3) - 5;
-            $('#bangCircle,#mbangCircle').css("width", valb1);
-            $('#bangCircle,#mbangCircle').css("height", valb2);
-            $('#bangCircle,#mbangCircle').css("line-height", valb3 + 'px');
-            //            $('#bangCircle').html(Math.round(dTxt_b * 10) / 10);
-            var decValb = Math.round(dTxt_b * 10) / 10;
-            //            $('#size').text("Size " + decValb);
-            tmp_b = tmp_b - 0.1;
-            calweight();
-        }
-
+      
         $('#ringGuide').click(function () {
             window.open(DOMAIN + "index.php?action=sizeguide");
         });
