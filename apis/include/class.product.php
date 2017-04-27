@@ -2371,8 +2371,8 @@ class product extends DB {
                                                     tbl_category_product_mapping
                                             WHERE
                                                     productid =" . $params['pid'] . "
-                                            AND
-                                                    active_flag =1
+                                          
+                                        
                                         )
                         ORDER BY
                                 topParent DESC,
@@ -3780,7 +3780,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
     }
    public function getProductdetailbycatid($params) {
 
-        global $comm;
+       global $comm;
         $cid = urldecode($params['id']);
         $allprzs=  $this->getallprzbycatid(array('id'=>$params['id'])); 
         $sqlcount = "SELECT productid,
@@ -3797,34 +3797,21 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 		    productid,
                              productid AS pid,
                              product_code,
-                             vendorid,
-                             vendor_prd_code,
-                             leadTime,
-			     returneligible,
-			     productDescription,
                              jewelleryType,
                              product_name,
-                             product_seo_name,
-			     gender,
                              product_weight,
                              diamond_setting,
                              metal_weight,
                              making_charges,
-			     procurement_cost,
-			     margin,
-			     measurement,
 			     customise_purity,
 			     customise_color,
-			     certificate,
+			   
                              has_diamond,
                              has_solitaire,
                              has_uncut,
                              has_gemstone,
                              active_flag, 
 			     default_color,
-                             createdon,
-                             updatedon,
-                             updatedby,
 			     (SELECT GROUP_CONCAT(diamond_id) FROM tbl_product_diamond_mapping WHERE productid = pid AND active_flag = 1 ) AS allDimonds,
                             (SELECT GROUP_CONCAT(carat) FROM tbl_product_diamond_mapping WHERE FIND_IN_SET(diamond_id,allDimonds)) AS dmdcarat,
                             (SELECT GROUP_CONCAT(total_no) FROM tbl_product_diamond_mapping WHERE FIND_IN_SET(diamond_id,allDimonds)) AS totaldmd,
@@ -3880,7 +3867,7 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 	    productid FROM tbl_category_product_mapping WHERE catid=" . $cid . " AND active_flag =1)
                  AND 1< (SELECT COUNT(product_id) FROM tbl_product_image_mapping WHERE product_id= productid AND active_flag=1)";
 
-        $price = $comm->IND_money_format(price);
+       $price = $comm->IND_money_format(price);
 
         $page = ($params['page'] ? $params['page'] : 1);
         $limit = ($params['limit'] ? $params['limit'] : 12);
@@ -3899,33 +3886,33 @@ FROM tbl_diamond_quality_master having  find_in_set(id,qid)
 
                 $arr['prdId'] = $row['productid'];
                 $arr['prdCod'] = $row['product_code'];
-                $arr['vendorid'] = $row['vendorid'];
-                $arr['vendor_prd_code'] = $row['vendor_prd_code'];
-                $arr['leadTime'] = $row['leadTime'];
-                $arr['returneligible'] = $row['returneligible'];
-                $arr['productDescription'] = $row['productDescription'];
+             //   $arr['vendorid'] = $row['vendorid'];
+                //$arr['vendor_prd_code'] = $row['vendor_prd_code'];
+              //  $arr['leadTime'] = $row['leadTime'];
+               // $arr['returneligible'] = $row['returneligible'];
+               // $arr['productDescription'] = $row['productDescription'];
                 $arr['jewelleryType'] = $row['jewelleryType'];
                 $arr['prdNm'] = $row['product_name'];
-                $arr['product_seo_name'] = $row['product_seo_name'];
-                $arr['gender'] = $row['gender'];
+                //$arr['product_seo_name'] = $row['product_seo_name'];
+                //$arr['gender'] = $row['gender'];
                 $arr['product_weight'] = $row['product_weight'];
                 $arr['diamond_setting'] = $row['diamond_setting'];
                 $arr['metal_weight'] = $row['metal_weight'];
                 $arr['making_charges'] = $row['making_charges'];
-                $arr['procurement_cost'] = $row['procurement_cost'];
-                $arr['margin'] = $row['margin'];
-                $arr['measurement'] = $row['measurement'];
+                //$arr['procurement_cost'] = $row['procurement_cost'];
+               // $arr['margin'] = $row['margin'];
+               // $arr['measurement'] = $row['measurement'];
                 $arr['custPurty'] = $row['customise_purity'];
                 $arr['custClor'] = $row['customise_color'];
-                $arr['certificate'] = $row['certificate'];
+                //$arr['certificate'] = $row['certificate'];
                 $arr['hasDmd'] = $row['has_diamond'];
                 $arr['hasSol'] = $row['has_solitaire'];
                 $arr['hasUnct'] = $row['has_uncut'];
                 $arr['hasGem'] = $row['has_gemstone'];
                 $arr['active_flag'] = $row['active_flag'];
-                $arr['createdon'] = $row['createdon'];
-                $arr['updatedon'] = $row['updatedon'];
-                $arr['updatedby'] = $row['updatedby'];
+               // $arr['createdon'] = $row['createdon'];
+               // $arr['updatedon'] = $row['updatedon'];
+               // $arr['updatedby'] = $row['updatedby'];
                 $arr['hasDmd'] = $row['has_diamond'];
                 $arr['caratlowp'] = $row['caratlowp'];
                 $arr['carathighp'] = $row['carathighp'];
