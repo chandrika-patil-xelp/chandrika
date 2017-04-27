@@ -334,10 +334,10 @@
             $message	=$obj->genordrtemplate($params);
 
 	    $subject  = "JZEVA Order Detail";
-            $headers  = "Content-type:text/html;charset=UTF-8" . "<br/><br/>";
-            $headers .= 'From: care@jzeva.com' . "<br/><br/>";
-
-
+             $headers = "MIME-Version: 1.0" . "\r\n";
+             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+             $headers .= 'From: <care@jzeva.com>' . "\r\n";
+                          
 	    mail($email, $subject, $message, $headers);
  
             $error = array('err_code'=>0, 'err_msg'=>' Adding Order Details Inserted Successfully ' );
@@ -504,8 +504,9 @@
             $message	=$obj->genBackordrtemplate($paramarr);
 //print_r($message);die;
 	    $subject  = "JZEVA Order Detail";
-            $headers  = "Content-type:text/html;charset=UTF-8" . "<br/><br/>";
-            $headers .= 'From: care@jzeva.com' . "<br/><br/>";
+              $headers = "MIME-Version: 1.0" . "\r\n";
+             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+             $headers .= 'From: <care@jzeva.com>' . "\r\n";
         
 
 	    mail($email, $subject, $message, $headers);

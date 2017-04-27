@@ -103,9 +103,10 @@ class user extends DB {
         $message = $obj->genwelcumtemplate($params);
 
         $subject = "Welcome to JZEVA";
-        $headers = "Content-type:text/html;charset=UTF-8" . "<br/><br/>";
-        $headers .= 'From: care@jzeva.com' . "<br/><br/>";
-
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+        $headers .= 'From: <care@jzeva.com>' . "\r\n";
+     
         mail($email, $subject, $message, $headers);
 
         $result = array('user_id'=>$userid);
@@ -682,8 +683,9 @@ class user extends DB {
                 $obj = new emailtemplate($db['jzeva']);
                 $message = $obj->getshippingtemplate(array('userid' => $userid, 'ordid' => $orderid, 'pid' => $pid));
                 $subject = "JZEVA Order Shipped Detail";
-                $headers = "Content-type:text/html;charset=UTF-8" . "<br/><br/>";
-                $headers .= 'From: care@jzeva.com' . "<br/><br/>";
+                $headers = "MIME-Version: 1.0" . "\r\n";
+                $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+                $headers .= 'From: <care@jzeva.com>' . "\r\n";
 
                 mail($email, $subject, $message, $headers);
             } else if ($params['ostatus'] == 6) {
@@ -1009,8 +1011,9 @@ class user extends DB {
 
 	          $subject  = "JZEVA password assistance";
             $message=$this->frgotpassotpTemplate($uname,$rno,$gndr);
-            $headers  = "Content-type:text/html;charset=UTF-8" . "<br/><br/>";
-            $headers .= 'From: care@jzeva.com' . "<br/><br/>";
+             $headers = "MIME-Version: 1.0" . "\r\n";
+             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+             $headers .= 'From: <care@jzeva.com>' . "\r\n";
 
             if (!empty($email))
             {
