@@ -738,7 +738,7 @@ li .prdViewImgBtn{}
 .ordersPage .prdName{width:16%;text-align: center;}
 .ordersPage .dmdWt{width:18%;text-align: center;}
 .ordersPage .metalWt{width:13%;text-align: center;}
-.ordersPage .acct{width:14%;text-align: center;padding-left:10px;position: relative;}
+.ordersPage .acct{width:12%;text-align: center;padding-left:10px;position: relative;}
 .viewM{vertical-align: top; display: inline-block;width: 40px;height: 40px!important;line-height: 40px; color: #fff;background: url(../img/next_arrow.svg)no-repeat;background-size: auto 80%;background-position: center;padding: 0!important;cursor: pointer;}
 .viewM:hover{background-color: #f0f0f0;border-radius: 2px;}
 .rsSpan{width:20px;height:20px;background-image: url('../img/rupee6.svg');background-repeat: no-repeat;display: inline-block;background-size: auto 80%;background-position: center;position: absolute;top: 0;bottom: 0; margin: auto;left: 42px;}
@@ -991,3 +991,7 @@ a{cursor:pointer;}
     
 .sWid{width:8%!important;margin-right: 10px!important;}
 .sw40{width: 40%!important;}
+
+.dwnM{vertical-align: top;display: inline-block;width: 40px;height: 40px!important;line-height: 40px;color: #fff;background: url(../img/Download_W.svg)no-repeat;background-size: auto 80%;background-position: center;padding: 0!important;cursor: pointer;}
+.dwnM:hover{background-color: #f0f0f0;border-radius: 2px;}
+
