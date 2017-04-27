@@ -694,7 +694,7 @@
                             AS jewelleryType,
 
 (SELECT GROUP_CONCAT(catid) FROM tbl_category_product_mapping WHERE  productid =pid ) AS ccatid,
-                (SELECT DISTINCT(NAME) FROM tbl_size_master WHERE  FIND_IN_SET(catid,ccatid) )AS ccatname,
+   (SELECT DISTINCT(NAME) FROM tbl_size_master WHERE  FIND_IN_SET(catid,ccatid) )AS ccatname,
    (SELECT shipping_id from tbl_order_shipping_details WHERE shipping_id=shpid) AS shipngDet,
    (SELECT name from tbl_order_shipping_details WHERE shipping_id=shpid) AS customername,
    (SELECT mobile from tbl_order_shipping_details WHERE shipping_id=shpid) AS customerMob,
@@ -707,6 +707,7 @@
 
  FROM tbl_order_master WHERE order_id= ".$params['order_id']." AND active_flag = 1 ";
 
+                
 
                 $res = $this->query($sql);
 
@@ -740,12 +741,12 @@
                        $reslt['product_code'] = ($row['product_code']!=NULL) ? $row['product_code'] : '';
 
                        $reslt['shipngDet'] = ($row['shipngDet']!=NULL) ? $row['shipngDet'] : '';
-                      $reslt['customername'] = ($row['prdimage']!=NULL) ? $row['customername'] : '';
-                       $reslt['customerMob'] = ($row['prdname']!=NULL) ? $row['customerMob'] : '';
-                       $reslt['customerCity'] = ($row['product_code']!=NULL) ? $row['customerCity'] : '';
-                       $reslt['customerState'] = ($row['shipngDet']!=NULL) ? $row['customerState'] : '';
-                      $reslt['customerPincode'] = ($row['prdimage']!=NULL) ? $row['customerPincode'] : '';
-                       $reslt['customerAddrs'] = ($row['prdname']!=NULL) ? $row['customerAddrs'] : '';
+                      $reslt['customername'] = ($row['customername']!=NULL) ? $row['customername'] : '';
+                       $reslt['customerMob'] = ($row['customerMob']!=NULL) ? $row['customerMob'] : '';
+                       $reslt['customerCity'] = ($row['customerCity']!=NULL) ? $row['customerCity'] : '';
+                       $reslt['customerState'] = ($row['customerState']!=NULL) ? $row['customerState'] : '';
+                      $reslt['customerPincode'] = ($row['customerPincode']!=NULL) ? $row['customerPincode'] : '';
+                       $reslt['customerAddrs'] = ($row['customerAddrs']!=NULL) ? $row['customerAddrs'] : '';
                       $reslt['default_image'] = $row['default_image'];
                        $reslt['dmdcarat'] = $row['dmdcarat'];
                        $reslt['Solicarat'] = $row['Solicarat'];
