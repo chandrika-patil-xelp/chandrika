@@ -242,10 +242,10 @@ class user extends DB {
             $message .= "For any assistance, Call: 022-32623263. Email: info@jzeva.com";
             $message .= "<br/><br/>";
             $message .= "Team JZEVA";
-
-            $headers = "Content-type:text/html;charset=UTF-8" . "<br/><br/>";
-
-            $headers .= 'From: info@jzeva.com' . "<br/><br/>";
+           $headers = "MIME-Version: 1.0" . "\r\n";
+           $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+           $headers .= 'From: <care@jzeva.com>' . "\r\n";
+            
 
             $mail = mail($row['email'], $subject, $message, $headers);
 
