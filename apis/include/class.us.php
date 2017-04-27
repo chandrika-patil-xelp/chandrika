@@ -673,8 +673,8 @@
 
                             (SELECT product_seo_name FROM tbl_product_master WHERE productid=pid) AS prdSeoname,
 (SELECT  GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid  AND active_flag !=2) AS prdimage,
-(SELECT  GROUP_CONCAT(product_name) FROM tbl_product_master WHERE productid = pid AND active_flag !=2 ) AS prdname,
-(SELECT  GROUP_CONCAT(product_code) FROM tbl_product_master WHERE productid = pid AND active_flag !=2 ) AS product_code,
+(SELECT  product_name FROM tbl_product_master WHERE productid = pid AND active_flag !=2 ) AS prdname,
+(SELECT  product_code FROM tbl_product_master WHERE productid = pid AND active_flag !=2 ) AS product_code,
 
 (SELECT  GROUP_CONCAT(carat) FROM tbl_product_diamond_mapping WHERE productid = pid AND active_flag !=2 ) AS dmdcarat,
 (SELECT GROUP_CONCAT(solitaire_id) FROM tbl_product_solitaire_mapping WHERE productid = pid AND active_flag = 1 ) AS allSolitaire,
@@ -695,17 +695,15 @@
 
 (SELECT GROUP_CONCAT(catid) FROM tbl_category_product_mapping WHERE  productid =pid ) AS ccatid,
                 (SELECT DISTINCT(NAME) FROM tbl_size_master WHERE  FIND_IN_SET(catid,ccatid) )AS ccatname,
-
-
- (SELECT GROUP_CONCAT(shipping_id) FROM tbl_order_shipping_details WHERE shipping_id = shpId) AS shipngDet,
- (SELECT GROUP_CONCAT(name) FROM tbl_order_shipping_details WHERE FIND_IN_SET(shipping_id,shipngDet)) AS customername,
- (SELECT GROUP_CONCAT(mobile) FROM tbl_order_shipping_details WHERE FIND_IN_SET(shipping_id,shipngDet)) AS customerMob,
- (SELECT GROUP_CONCAT(city) FROM tbl_order_shipping_details WHERE FIND_IN_SET(shipping_id,shipngDet)) AS customerCity,
- (SELECT GROUP_CONCAT(state) FROM tbl_order_shipping_details WHERE FIND_IN_SET(shipping_id,shipngDet)) AS customerState,
- (SELECT GROUP_CONCAT(pincode) FROM tbl_order_shipping_details WHERE FIND_IN_SET(shipping_id,shipngDet)) AS customerPincode,
- (SELECT GROUP_CONCAT(address) FROM tbl_order_shipping_details WHERE FIND_IN_SET(shipping_id,shipngDet)) AS customerAddrs,
- (SELECT GROUP_CONCAT(gender) FROM tbl_order_shipping_details WHERE shipping_id = shpId) AS gender,
- (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = pid AND active_flag = 1 AND  default_img_flag=1) AS default_image
+   (SELECT shipping_id from tbl_order_shipping_details WHERE shipping_id=shpid) AS shipngDet,
+   (SELECT name from tbl_order_shipping_details WHERE shipping_id=shpid) AS customername,
+   (SELECT mobile from tbl_order_shipping_details WHERE shipping_id=shpid) AS customerMob,
+   (SELECT city from tbl_order_shipping_details WHERE shipping_id=shpid) AS customerCity,
+   (SELECT state from tbl_order_shipping_details WHERE shipping_id=shpid) AS customerState,
+   (SELECT pincode from tbl_order_shipping_details WHERE shipping_id=shpid) AS customerPincode,
+   (SELECT address from tbl_order_shipping_details WHERE shipping_id=shpid) AS customerAddrs,
+   (SELECT gender from tbl_order_shipping_details WHERE shipping_id=shpid) AS gender,
+ (SELECT product_image FROM tbl_product_image_mapping WHERE product_id = pid AND active_flag =1 AND  default_img_flag=1) AS default_image
 
  FROM tbl_order_master WHERE order_id= ".$params['order_id']." AND active_flag = 1 ";
 
