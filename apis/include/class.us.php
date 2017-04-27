@@ -783,10 +783,9 @@
                        }
                        $reslt['cnt']=$total;
                         $reslt['total']=$totprice;
-                     $resp[] = $reslt;
+                     $resp = $reslt;
 
-
-
+                   
                      }
                    // $error = array('err_code'=>0, 'err_msg'=>' Fetched Data Successfully ');
 
@@ -803,23 +802,23 @@
 
 
         /** GET ALL USER DETAILS START **/
-        public function getAllUDetail($params){
-
-            if($params['userid']){
-
-                $user = $this->getUserDetailsById($params);
-                $orders = $this->getOrderDetailsByUserId($params);
-
-                $error = array('err_code'=>0, 'err_msg'=>' Data Fetched Successfully ');
-
-            }else{
-                $error = array('err_code'=>1, 'err_msg'=>' Parameters Missing ' );
-            }
-
-            $result = array('users'=>$user['result'], 'orders'=>$orders['result'], 'error'=>$error );
-            return $result;
-
-        }
+//        public function getAllUDetail($params){
+//
+//            if($params['userid']){
+//
+//                $user = $this->getUserDetailsById($params);
+//                $orders = $this->getOrderDetailsByUserId($params);
+//
+//                $error = array('err_code'=>0, 'err_msg'=>' Data Fetched Successfully ');
+//
+//            }else{
+//                $error = array('err_code'=>1, 'err_msg'=>' Parameters Missing ' );
+//            }
+//
+//            $result = array('users'=>$user['result'], 'orders'=>$orders['result'], 'error'=>$error );
+//            return $result;
+//
+//        }
 
         /** GET ALL USER DETAILS ENDS **/
 
@@ -1124,7 +1123,7 @@
                      while ($row = $this->fetchData($res)){
                             $ordids=array('order_id'=>$row['order_id']);
                             $resl[]=  $this->getOrderDetailsByUserId($ordids);
-
+                           
                      }
 
                      $error = array('err_code'=>0, 'err_msg'=>' Fetched Data Successfully ');

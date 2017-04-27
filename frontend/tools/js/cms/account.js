@@ -84,11 +84,11 @@ function displayorders()
                 // var totalprice = $('#ordPrice').html(indianMoney(parseInt(obj.totalprice)));
                 var totalprice = indianMoney(parseInt(obj.totalprice));
                 $(obj['result']).each(function (r, e) {
-
-                    var gndr=e[0].gender;
+                    
+                    var gndr=e.gender;
                     var gender= getgender(gndr);
                     var ordrdate = "";
-                    ordrdate = e[0].order_date;
+                    ordrdate = e.order_date;
                     ordrdate = ordrdate.split(' ');
                     var ordDate = ordrdate[0];
 
@@ -102,7 +102,7 @@ function displayorders()
 		    var month=getMonthNamebyVal(dt-1);
 
                     var updatedt ="";
-                     updatedt += e[0].updatedon;
+                     updatedt += e.updatedon;
                     updatedt = updatedt.split(' ');
                     var upDate= updatedt[0];
 
@@ -128,17 +128,17 @@ function displayorders()
                     orderstr += '<div class="fLeft inShip" id="ordTitle">';
                     orderstr += '<div class="fLeft Morder">';
                     // orderstr += '<div class="fLeft col100 bolder txt_Upper">Shipping address</div>';
-                    orderstr += '<div class="fLeft col100 blStl"><span class="txt_Capital">'+gender +'</span> '+ e[0].customername + '</div>';
-                    orderstr += '<div class="fLeft col100 shipAddr">' + e[0].customerAddrs + ' ' + e[0].customerCity + ' </div>';
-                    orderstr += '<div class="fLeft col100 shipAddr">' +e[0].customerState + ' ' + e[0].customerPincode + '</div>';
-                    orderstr += '<div class="actBtn" id="'+e[0].oid+'" onclick="dwninvoice(this)">view invoice</div>';
+                    orderstr += '<div class="fLeft col100 blStl"><span class="txt_Capital">'+gender +'</span> '+ e.customername + '</div>';
+                    orderstr += '<div class="fLeft col100 shipAddr">' + e.customerAddrs + ' ' + e.customerCity + ' </div>';
+                    orderstr += '<div class="fLeft col100 shipAddr">' +e.customerState + ' ' + e.customerPincode + '</div>';
+                    orderstr += '<div class="actBtn" id="'+e.oid+'" onclick="dwninvoice(this)">view invoice</div>';
                     orderstr += '</div>';
 
                     // orderstr += '</div>';
                     orderstr += '<div class="fLeft Morder txt_right">';
-                    orderstr += '<div class="fRight col100 semibold cartRup15b font18" id="ordPrice">&nbsp' +indianMoney(parseInt(e[0].total)) + '</div>';
+                    orderstr += '<div class="fRight col100 semibold cartRup15b font18" id="ordPrice">&nbsp' +indianMoney(parseInt(e.total)) + '</div>';
                     // orderstr += '<div class="fLeft col100">Order No</div>';
-                    orderstr += '<div class="fLeft col100 regular" id="ordId">ID: ' + e[0].oid + '</div>';
+                    orderstr += '<div class="fLeft col100 regular" id="ordId">ID: ' + e.oid + '</div>';
                     orderstr += '<div class="fLeft col100 regular" id="ordDate">' + trndate + '</div>';
                     // orderstr += '<div class="fLeft col100">Total price</div>';
 
@@ -307,7 +307,7 @@ function wishlist()
     var wishstr = "";
     $.ajax({
         url: wishURL,
-        type: "GET",
+        type: "POST",
         datatype: "JSON",
         success: function (res)
         {
@@ -535,7 +535,7 @@ function persnlInfo() {
 
     $.ajax({
         url: perInfoURL,
-        type: "GET",
+        type: "POST",
         datatype: "JSON",
         success: function (res)
         {
@@ -690,7 +690,7 @@ function displayaddrs() {
 
     $.ajax({
         url: URL,
-        type: "GET",
+        type: "POST",
         datatype: "JSON",
         success: function (results) {
             var data = JSON.parse(results);
@@ -743,7 +743,7 @@ function removeaddr(ths)
         var shpid = $(ths).attr('id');
         var userid = localStorage.getItem('jzeva_uid');
         var URL = APIDOMAIN + "index.php/?action=removeShipngdetail&shipping_id=" + shpid + "&user_id=" + userid;
-        $.ajax({url: URL, type: "GET", datatype: "JSON", success: function (results) {
+        $.ajax({url: URL, type: "POST", datatype: "JSON", success: function (results) {
 
                 var data = JSON.parse(results);
                 common.msg(1, 'Your Address Removed Successfully')
@@ -769,7 +769,7 @@ $('#zipcode').keyup(function () {
             var URL = APIDOMAIN + "index.php?action=viewbyPincode&code=" + zipcode;
             $.ajax({
                 url: URL,
-                type: "GET",
+                type: "POST",
                 datatype: "JSON",
                 success: function (results)
                 {
@@ -818,7 +818,7 @@ function resetpasswrd()
     var mobl = common.readFromStorage('jzeva_mob');
     var URL = APIDOMAIN + "index.php?action=checkpassw&pass=" + oldpas + "&mob=" + mobl;
     $.ajax({url: URL,
-        type: "GET",
+        type: "POST",
         datatype: "JSON",
         success: function (results) {
             var obj = JSON.parse(results);
