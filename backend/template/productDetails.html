@@ -360,6 +360,7 @@
 
                         var locCat = new Array();
                         $.each(catAttr.results, function (i, vl) {
+                          
                             locCat.push(vl.name);
                         });
 
@@ -1048,10 +1049,10 @@
 
         function genPriceSection()
         {
+           
+            var basic = data['results']['basicDetails']; 
 
-            var basic = data['results']['basicDetails'];
-
-            var catname = data['results']['catAttr']['results'][1].name;
+            var catname = data['results']['catAttr']['results'].name;
             var str = "";
             if (basic.hasSol == 1)
             {
