@@ -89,8 +89,8 @@ div{display:block;box-sizing:border-box;}
 
 /*customer invoice code*/
 .containers{width: 100%;height: auto;}
-.InvGen{max-width: 800px;height: auto;margin: auto;display:table;width: 100%;}
-.invInr{width: 100%;height:auto;margin: auto;background-color: #fff;padding: 20px 20px;padding-bottom: 0px;}
+.InvGen{max-width: 800px;height: auto;margin: auto;display:table;width: 100%;background-color: #fff;}
+.invInr{width: 100%;height:auto;margin: auto;padding: 20px 20px;padding-bottom: 0px;background-color: #fff;}
 .addDtls{width: 100%;height: auto;padding:20px 20px;}
 .comLogo{width:100%;height:80px;cursor:pointer;background-image: url(../img/jzeva_logo.png);background-size:auto 65px;background-position:left center;background-repeat: no-repeat;}
 .comAddrs{width: 100%;height: auto;font-size: 13px;font-family: bolder;letter-spacing: 0.1em;line-height: 20px;text-align: right;color: #15181b;}
@@ -148,3 +148,4 @@ div{display:block;box-sizing:border-box;}
 .amGen.cartRup15b{background-size: auto 8px;background-position: right 25px center;padding-left: 0px;width: 15%;}
 .addrs{width: 100%;height: auto;}.addf{width: auto;height: 50px;line-height: 50px;text-align: center;background-color: #2CC185;color: #fff;font-size: 13px;padding: 0px 20px;margin: 10px 0px;cursor: pointer;}
 .cols100{width: 100%;height: auto;}
+.containers.CUSINV{background-color: #fff;}
