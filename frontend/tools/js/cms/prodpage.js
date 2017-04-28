@@ -604,7 +604,7 @@ $(document).ready(function () {
             var gemstone = dt['gamestone'];
             var images = dt['images'];
             var othrimgs = dt['othimgs'];
-
+            if(catname == 'Rings' || catname == 'Bangles')
             changeSize(catname);
 
             getcatsize(catid, catname, metalwgt);
@@ -1871,31 +1871,51 @@ $('#mobsz ').click(function () {
 });
 
 function changeSize(catName) {
-    console.log("fgcsf");
-    var sliderIndexNo = 9;
+ 
+   var sliderIndexNo;
     var slider = '', ringsSlider = '';
+     var w = $(window).width();
     if (catName == "Rings") {
+       
         ringsSlider = ["5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26"];
-        sliderIndexNo = ringsSlider.indexOf(Math.round(sizeOfJewe).toString());
+        sliderIndexNo = ringsSlider.indexOf(Math.round(psize).toString());
 
         if (sliderIndexNo == -1)
             sliderIndexNo = 9;
-        var value = 56 + sliderIndexNo;
+        var value = 56 + sliderIndexNo; 
         $('.ringCircle ,.mringCircle').css('width', value + 'px');
         $('.ringCircle ,.mringCircle').css('height', value + 'px');
         $('.ringCircle ,.mringCircle').css('line-height', value + 'px');
-        if (sizeOfJewe)
-            $('.ringCircle ,.mringCircle').html(Math.round(sizeOfJewe));
-        slider = $("#slideRing,#mslideRing").data("ionRangeSlider");
-    } else {
-        sliderIndexNo = 3;
+        if(psize)
+            $('.ringCircle ,.mringCircle').html(Math.round(psize));
+       
+        slider = $("#slideRing").data("ionRangeSlider");
+         
+            if (w <= 1024) {
+        slider = $("#mslideRing").data("ionRangeSlider");
+            }
+    }
+    else if(catName == "Bangles") {
+         
         ringsSlider = ["2.2", "2.3", "2.4", "2.5", "2.6", "2.7", "2.8", "2.9"];
-
-        sliderIndexNo = ringsSlider.indexOf(sizeOfJewe.toString());
+          sliderIndexNo = ringsSlider.indexOf(psize);
         if (sliderIndexNo == -1)
-            sliderIndexNo = 3;
-
-        slider = $("#slideBangle,#mslideBangle").data("ionRangeSlider");
+            sliderIndexNo = 2; 
+      
+          var value = 90 + (sliderIndexNo * 5); 
+          $('#bangCircle,#mbangCircle').css("width", value + 'px');
+            $('#bangCircle,#mbangCircle').css("height", value + 'px');
+            $('#bangCircle,#mbangCircle').css('line-height', value + 'px');
+       
+         if(psize)
+            $('#bangCircle,#mbangCircle').html(psize);
+        
+        slider = $("#slideBangle").data("ionRangeSlider");
+         if (w <= 1024) 
+        slider = $("#mslideBangle").data("ionRangeSlider");
+    
+    
+       
     }
     slider.reset();
     slider.update({

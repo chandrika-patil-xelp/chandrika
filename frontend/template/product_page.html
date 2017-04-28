@@ -4,7 +4,6 @@
     <script>
         var pid = "<?php echo $_GET['pid'];  ?>";
 
-        var sizeOfJewe = '<?=$_GET['sz'];?>';
     </script>
     <div class=""></div>
     <?php include 'Cart.html' ?>
@@ -442,10 +441,15 @@
             $('body').addClass('posFix');
             $('.m_cust').removeClass('dn');
             $('.m_cust').velocity({translateY: [0, '100vh']}, {duration: 400, delay: 100});
+            setTimeout(function(){
+                if(catname == "Rings" || catname == "Bangles")
+            changeSize(catname);
+        },250);
+            
         });
 
         $('.mcustClose').click(function () {
-      common.msg(1, 'Customization Closed');
+      common.msg(1, 'Customization is not happened!');
             $('body').removeClass('posFix');
             $('.m_cust').addClass('dn');
          
@@ -469,6 +473,7 @@
         var t = 0;
 
         $('#slideRing,#mslideRing').ionRangeSlider({
+            
             type: "single",
             from: 9,
             values: [
@@ -488,8 +493,7 @@
                 if (sliderIndexNo == -1)
                     sliderIndexNo = 9;
                 var value = 56 + sliderIndexNo;
-                
-                   console.log("this ring val",value);
+               
                 $('.ringCircle ,.mringCircle').css('width', value + 'px');
                 $('.ringCircle ,.mringCircle').css('height', value + 'px');
                 $('.ringCircle ,.mringCircle').css('line-height', value + 'px');
@@ -523,11 +527,11 @@
 
                 var bangSlider = ["2.2", "2.3", "2.4", "2.5", "2.6", "2.7", "2.8", "2.9"];
                 var bangIndexNo = bangSlider.indexOf((sVal).toString());
-                console.log("this bangle index", bangIndexNo);
+           
                 if (bangIndexNo == -1)
                     bangIndexNo = 2;
                 var value = 90 + (bangIndexNo * 5);
-                 console.log("this bangle val",value);
+               
                 $('#bangCircle,#mbangCircle').css("width", value + 'px');
                 $('#bangCircle,#mbangCircle').css("height", value + 'px');
                 $('#bangCircle,#mbangCircle').css('line-height', value + 'px');
