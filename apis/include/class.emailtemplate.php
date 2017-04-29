@@ -140,12 +140,12 @@
                                             (SELECT dname FROM tbl_metal_color_master WHERE id=".$col.") AS prdcolor,
                                             (SELECT dname FROM tbl_metal_purity_master WHERE id=".$car.") AS prdcarat,
                                             (SELECT dname FROM tbl_diamond_quality_master WHERE id=".$qty.") AS prdqlty,
-                                            (SELECT IF(default_img_flag=1,default_img_flag,GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id=".$val['pid']." AND active_flag=1)) AS prdimg
-                    
+                                             (SELECT GROUP_CONCAT(product_image)FROM tbl_product_image_mapping WHERE product_id=".$val['pid']." AND default_img_flag=1) AS defimg,
+                                            (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id=".$val['pid'].") AS prdimg
                                       FROM
                                             tbl_product_master
                                       WHERE
-                                            productid=".$val['pid']." AND active_flag=1";
+                                            productid=".$val['pid']." AND active_flag !=2";
 
                               $pres= $this->query($psql);
                               $prow= $this->fetchData($pres);
@@ -158,12 +158,14 @@
                               $prdqlty=$prow['prdqlty'];
                               $prdimgs=$prow['prdimg'];
                               $prddeldt=date('Y-m-d', strtotime("+".$prow['leadTime']." days"));
-                            if(!empty($prdimgs)){
-                                $prdimgs=explode(',',$prdimgs);
-                                $prdimgs=$prdimgs[0];
+                           $prdimgs=$prow['prdimg'];
+                              $defimg =$prow['defimg'];
+                              if($defimg)
+                                  $prdimgs=$defimg;
+                              else{
+                                   $prdimgs=explode(',',$prdimgs);
+                                     $prdimgs=$prdimgs[0];
                               }
-                              else
-                                $prdimgs=BACKDOMAIN.'tools/img/noimage.svg';
                               
 			      $quantity=(int)$val['pqty'];
 			      $qntystr="Quantity-<span style='color:#0CCDB8;'>".$quantity."</span>";
@@ -568,12 +570,12 @@
                                             (SELECT dname FROM tbl_metal_color_master WHERE id=".$col.") AS prdcolor,
                                             (SELECT dname FROM tbl_metal_purity_master WHERE id=".$car.") AS prdcarat,
                                             (SELECT dname FROM tbl_diamond_quality_master WHERE id=".$qty.") AS prdqlty,
-                                            (SELECT IF(default_img_flag=1,default_img_flag,GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id=".$val['pid']." AND active_flag=1)) AS prdimg
-                    
-                                      FROM
+                                            (SELECT GROUP_CONCAT(product_image)FROM tbl_product_image_mapping WHERE product_id=".$params['pid']." AND default_img_flag=1) AS defimg,
+                                            (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id=".$params['pid'].") AS prdimg
+                                       FROM
                                             tbl_product_master
                                       WHERE
-                                            productid=".$params['pid']." AND active_flag=1";
+                                            productid=".$params['pid']." AND active_flag !=2";
 
                               $pres= $this->query($psql);
                               $prow= $this->fetchData($pres);
@@ -585,13 +587,17 @@
 			      $prdcarat=  explode(' ', $prdcarat);
                               $prdqlty=$prow['prdqlty'];
                               $prdimgs=$prow['prdimg'];
-                              $prddeldt=date('Y-m-d', strtotime("+".$prow['leadTime']." days"));
-                               if(!empty($prdimgs)){
-                                $prdimgs=explode(',',$prdimgs);
-                                $prdimgs=$prdimgs[0];
+                              $defimg =$prow['defimg'];
+                              if($defimg)
+                                  $prdimgs=$defimg;
+                              else{
+                                   $prdimgs=explode(',',$prdimgs);
+                                     $prdimgs=$prdimgs[0];
                               }
-                              else
-                                $prdimgs=BACKDOMAIN.'tools/img/noimage.svg';
+                              if($prdimgs == '')
+                                  $prdimgs=BACKDOMAIN.'tools/img/noimage.svg';
+                              
+                              $prddeldt=date('Y-m-d', strtotime("+".$prow['leadTime']." days"));
                               
 			      $quantity=(int)$params['pqty'];
 			      $qntystr="Quantity-<span style='color:#0CCDB8;'>".$quantity."</span>";

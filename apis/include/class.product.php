@@ -2018,11 +2018,11 @@ class product extends DB {
                                     (SELECT max(price) FROM tbl_metal_purity_master WHERE FIND_IN_SET(id,allmetalpurity)) AS carathighp,
 
 				   (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id = prdid AND active_flag != 2 AND  default_img_flag=1) AS default_image,
-                                   (SELECT GROUP_CONCAT(catid) FROM tbl_category_product_mapping WHERE productid = prdid AND active_flag = 1 ) AS catids,
-				   (SELECT GROUP_CONCAT(catid) FROM tbl_category_master WHERE FIND_IN_SET(catid,catids) AND pcatid != 99999 AND active_flag = 1 ) AS sngcatid,
-                                   (SELECT GROUP_CONCAT(cat_name) FROM tbl_category_master WHERE FIND_IN_SET(catid,catids) AND pcatid != 99999 AND active_flag = 1 ) AS sngcatname,
+                                   (SELECT GROUP_CONCAT(catid) FROM tbl_category_product_mapping WHERE productid = prdid AND active_flag != 2 ) AS catids,
+				   (SELECT GROUP_CONCAT(catid) FROM tbl_category_master WHERE FIND_IN_SET(catid,catids) AND pcatid != 99999 AND active_flag != 2 ) AS sngcatid,
+                                   (SELECT GROUP_CONCAT(cat_name) FROM tbl_category_master WHERE FIND_IN_SET(catid,catids) AND pcatid != 99999 AND active_flag != 2 ) AS sngcatname,
 				  
-				   (SELECT GROUP_CONCAT(size_value) FROM tbl_size_master WHERE catid=sngcatid AND active_flag = 1 ) AS sizes
+				   (SELECT GROUP_CONCAT(size_value) FROM tbl_size_master WHERE catid=sngcatid  ) AS sizes
                             FROM
                                     tbl_product_master
                             WHERE
@@ -2031,6 +2031,7 @@ class product extends DB {
             $res = $this->query($productSql);
             if ($res) {
                 if ($row = $this->fetchData($res)) {
+                    
                     $arr['prdId'] = $row['productid'];
                     $arr['prdCod'] = $row['product_code'];
                     $arr['productDescription'] = stripslashes(addslashes($row['productDescription']));
