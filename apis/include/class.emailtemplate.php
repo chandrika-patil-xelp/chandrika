@@ -140,8 +140,8 @@
                                             (SELECT dname FROM tbl_metal_color_master WHERE id=".$col.") AS prdcolor,
                                             (SELECT dname FROM tbl_metal_purity_master WHERE id=".$car.") AS prdcarat,
                                             (SELECT dname FROM tbl_diamond_quality_master WHERE id=".$qty.") AS prdqlty,
-                                            (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id=".$val['pid'].") AS prdimg
-
+                                            (SELECT IF(default_img_flag=1,default_img_flag,GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id=".$val['pid']." AND active_flag=1)) AS prdimg
+                    
                                       FROM
                                             tbl_product_master
                                       WHERE
@@ -158,12 +158,18 @@
                               $prdqlty=$prow['prdqlty'];
                               $prdimgs=$prow['prdimg'];
                               $prddeldt=date('Y-m-d', strtotime("+".$prow['leadTime']." days"));
-                              $prdimgs=explode(',',$prdimgs);
+                            if(!empty($prdimgs)){
+                                $prdimgs=explode(',',$prdimgs);
+                                $prdimgs=$prdimgs[0];
+                              }
+                              else
+                                $prdimgs=BACKDOMAIN.'tools/img/noimage.svg';
+                              
 			      $quantity=(int)$val['pqty'];
 			      $qntystr="Quantity-<span style='color:#0CCDB8;'>".$quantity."</span>";
 			    $message.='
 			      <div style="width:100%;height:auto;padding:10px;border:1px solid #ccc;margin-bottom: 10px;border-radius:2px;display:inline-block;box-sizing:border-box;">
-                                <div style="width:auto;height:auto;display:inline-block;vertical-align:top;"><img src="'.IMGDOMAIN.''.$prdimgs[0].'" alt="'.BACKDOMAIN.'tools/img/noimage.svg" width="70" height="70"></div><div style="width:69%;height:auto;display:inline-block;vertical-align:top;padding-left: 10px;"><div style="width:100%;height:auto;font-size:12px;color:#333;line-height:20px">'.$prdname.'</div><div style="width:100%;height:auto;font-size:11px;color:#333;line-height:20px;text-align:left">Product Code : <span style="padding-left:0px">'.$prdcode.'</span></div><div style="width:auto;display:inline-block;height:auto;font-size:11px;color:#333;line-height:20px;text-align:left;margin-top: 5px;">Gold : '.$val['weight'].' gms | Diamond: '.$val['dmdcarat'].' Ct | Quality : '.$prdqlty.' | Purity: '.$prdcarat[0].' Ct | ';
+                                <div style="width:auto;height:auto;display:inline-block;vertical-align:top;"><img src="'.IMGDOMAIN.''.$prdimgs.'" alt="'.BACKDOMAIN.'tools/img/noimage.svg" width="70" height="70"></div><div style="width:69%;height:auto;display:inline-block;vertical-align:top;padding-left: 10px;"><div style="width:100%;height:auto;font-size:12px;color:#333;line-height:20px">'.$prdname.'</div><div style="width:100%;height:auto;font-size:11px;color:#333;line-height:20px;text-align:left">Product Code : <span style="padding-left:0px">'.$prdcode.'</span></div><div style="width:auto;display:inline-block;height:auto;font-size:11px;color:#333;line-height:20px;text-align:left;margin-top: 5px;">Gold : '.$val['weight'].' gms | Diamond: '.$val['dmdcarat'].' Ct | Quality : '.$prdqlty.' | Purity: '.$prdcarat[0].' Ct | ';
 			    if($val['size'] !== 0.0){
 						     $message.=' Size : 14.0 | ';
 						  }
@@ -562,8 +568,8 @@
                                             (SELECT dname FROM tbl_metal_color_master WHERE id=".$col.") AS prdcolor,
                                             (SELECT dname FROM tbl_metal_purity_master WHERE id=".$car.") AS prdcarat,
                                             (SELECT dname FROM tbl_diamond_quality_master WHERE id=".$qty.") AS prdqlty,
-                                            (SELECT GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id=".$params['pid'].") AS prdimg
-
+                                            (SELECT IF(default_img_flag=1,default_img_flag,GROUP_CONCAT(product_image) FROM tbl_product_image_mapping WHERE product_id=".$val['pid']." AND active_flag=1)) AS prdimg
+                    
                                       FROM
                                             tbl_product_master
                                       WHERE
@@ -580,12 +586,18 @@
                               $prdqlty=$prow['prdqlty'];
                               $prdimgs=$prow['prdimg'];
                               $prddeldt=date('Y-m-d', strtotime("+".$prow['leadTime']." days"));
-                              $prdimgs=explode(',',$prdimgs);
+                               if(!empty($prdimgs)){
+                                $prdimgs=explode(',',$prdimgs);
+                                $prdimgs=$prdimgs[0];
+                              }
+                              else
+                                $prdimgs=BACKDOMAIN.'tools/img/noimage.svg';
+                              
 			      $quantity=(int)$params['pqty'];
 			      $qntystr="Quantity-<span style='color:#0CCDB8;'>".$quantity."</span>";
 			    $message.='
 			      <div style="width:100%;height:auto;padding:10px;border:1px solid #ccc;margin-bottom: 10px;border-radius:2px;display:inline-block;box-sizing:border-box;">
-                                <div style="width:auto;height:auto;display:inline-block;vertical-align:top;"><img src="'.IMGDOMAIN.''.$prdimgs[0].'" alt="'.BACKDOMAIN.'tools/img/noimage.svg" width="70" height="70"></div><div style="width:69%;height:auto;display:inline-block;vertical-align:top;padding-left: 10px;"><div style="width:100%;height:auto;font-size:12px;color:#333;line-height:20px">'.$prdname.'</div><div style="width:100%;height:auto;font-size:11px;color:#333;line-height:20px;text-align:left">Product Code : <span style="padding-left:0px">'.$prdcode.'</span></div><div style="width:auto;display:inline-block;height:auto;font-size:11px;color:#333;line-height:20px;text-align:left;margin-top: 5px;">Gold : '.$params['weight'].' gms | Diamond: '.$params['dmd_carat'].' Ct | Quality : '.$prdqlty.' | Purity: '.$prdcarat[0].' Ct | ';
+                                <div style="width:auto;height:auto;display:inline-block;vertical-align:top;"><img src="'.IMGDOMAIN.''.$prdimgs.'" alt="'.BACKDOMAIN.'tools/img/noimage.svg" width="70" height="70"></div><div style="width:69%;height:auto;display:inline-block;vertical-align:top;padding-left: 10px;"><div style="width:100%;height:auto;font-size:12px;color:#333;line-height:20px">'.$prdname.'</div><div style="width:100%;height:auto;font-size:11px;color:#333;line-height:20px;text-align:left">Product Code : <span style="padding-left:0px">'.$prdcode.'</span></div><div style="width:auto;display:inline-block;height:auto;font-size:11px;color:#333;line-height:20px;text-align:left;margin-top: 5px;">Gold : '.$params['weight'].' gms | Diamond: '.$params['dmd_carat'].' Ct | Quality : '.$prdqlty.' | Purity: '.$prdcarat[0].' Ct | ';
 			    if($params['size'] !== 0.0){
 						     $message.=' Size : '.$params['size'].' | ';
 						  }

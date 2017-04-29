@@ -1291,19 +1291,19 @@ function setdmd(e) {
     // glbquality=s;
     setTimeout(function () {
         $(e).closest('.selector_cont ').find('.options_back').click();
-        $('#ch_price,#mch_price').find('.labBuffer').empty();
-        $('#ch_price,#mch_price').find('.labBuffer').append('Previous Price:'); 
-        $('#ch_price,#mch_price').velocity({opacity: [1, 0]});
+        $('#ch_price,#mch_price,#tch_price').find('.labBuffer').empty();
+        $('#ch_price,#mch_price,#tch_price').find('.labBuffer').append('Previous Price:'); 
+        $('#ch_price,#mch_price,#tch_price').velocity({opacity: [1, 0]});
          
         calculatePrice();
     
     }, 400);
     setTimeout(function () {
-        $('#ch_price,#mch_price').addClass('showCh');
+        $('#ch_price,#mch_price,#tch_price').addClass('showCh');
     }, 800);
     setTimeout(function () {
-        $('#ch_price,#mch_price').removeClass('showCh');
-        $('#ch_price,#mch_price').velocity({opacity: [0, 1]});
+        $('#ch_price,#mch_price,#tch_price').removeClass('showCh');
+        $('#ch_price,#mch_price,#tch_price').velocity({opacity: [0, 1]});
     }, 8000);
 
     $("input[name='selectM']").each(function () {
@@ -1334,19 +1334,19 @@ function setmetal(m) {
 
     setTimeout(function () {
         $(m).closest('.selector_cont ').find('.options_back').click();
-        $('#ch_price,#mch_price').find('.labBuffer').empty();
-        $('#ch_price,#mch_price').find('.labBuffer').append('Previous Price:');
-        $('#ch_price,#mch_price').velocity({opacity: [1, 0]});
+        $('#ch_price,#mch_price,#tch_price').find('.labBuffer').empty();
+        $('#ch_price,#mch_price,#tch_price').find('.labBuffer').append('Previous Price:');
+        $('#ch_price,#mch_price,#tch_price').velocity({opacity: [1, 0]});
        
         calculatePrice();
   
     }, 400);
     setTimeout(function () {
-        $('#ch_price,#mch_price').addClass('showCh');
+        $('#ch_price,#mch_price,#tch_price').addClass('showCh');
     }, 800);
     setTimeout(function () {
-        $('#ch_price,#mch_price').removeClass('showCh');
-        $('#ch_price,#mch_price').velocity({opacity: [0, 1]});
+        $('#ch_price,#mch_price,#tch_price').removeClass('showCh');
+        $('#ch_price,#mch_price,#tch_price').velocity({opacity: [0, 1]});
     }, 8000);
     $("input[name='purity']").each(function () {
         $(this).attr('disabled', true);
@@ -1620,18 +1620,33 @@ function calculatePrice()
 
     var webprc = $('#price').html();
     var mobprc=$('#m_price').html();
+     $('#tch_price').addClass('dn');
+      $('#tprice').addClass('dn');
     $('#price').text(totalNewPrice);
     var w = $(window).width();
-            if (w <= 1024) {
-                $('.Mprc').removeClass('dn');
+            if (w <= 768) {
+      $('#tprice').removeClass('dn');
+     $('#tprice').text(totalNewPrice);
+       $('#tch_price').removeClass('dn');
+     $('#Wprice').addClass('dn');
+     $('#ch_price').addClass('dn');
+     $('#mch_price').addClass('dn');
+      $('#tch_price').find('.labBuffer').empty();
+     $('#tch_price').find('.labBuffer').append(' Previous Price: @ ' + oncustm);
+            }
+   if(w <=425){
+       $('#tprice').addClass('dn');
+       $('#tch_price').addClass('dn');
+        $('.Mprc').removeClass('dn');
      $('#m_price').text(totalNewPrice);
-     
+      $('#mch_price').removeClass('dn');
   $('#mch_price').find('.labBuffer').append(' @ ' + oncustm); 
-  
-var wish = '<div class="likeD soc_wish2" onclick="makeAwish(this, event)" id="prd_'+pid+'"  data-size="'+currentSize+'" data-price="'+totalNewPrice+'" data-comb ="'+combn+'"></div>';
+  var wish = '<div class="likeD soc_wish2" onclick="makeAwish(this, event)" id="prd_'+pid+'"  data-size="'+currentSize+'" data-price="'+totalNewPrice+'" data-comb ="'+combn+'"></div>';
 
         $('#wsh').html(wish);
-            }
+   }
+
+         
     $('#price,#m_price').numerator({
         toValue: totalNewPrice,
         delimiter: ',',
@@ -1641,6 +1656,7 @@ var wish = '<div class="likeD soc_wish2" onclick="makeAwish(this, event)" id="pr
         onComplete: function () {
             $("#price").html(IND_money_format(totalNewPrice).toLocaleString('en'));
              $('#m_price').html(IND_money_format(totalNewPrice).toLocaleString('en'));
+              $('#tprice').html(IND_money_format(totalNewPrice).toLocaleString('en'));
         }
 
         
@@ -1851,22 +1867,23 @@ $('#mobsz ').click(function () {
   
     setTimeout(function () {
         $(e).closest('.selector_cont ').find('.options_back').click();
-        $('#mch_price').find('.labBuffer').empty();
-        $('#mch_price').find('.labBuffer').append('Previous Price:');
-        $('#mch_price').velocity({opacity: [1, 0]});
+        $('#mch_price,#tch_price').find('.labBuffer').empty();
+        $('#mch_price,#tch_price').find('.labBuffer').append('Previous Price:');
+        $('#mch_price,#tch_price').velocity({opacity: [1, 0]});
        
         calculatePrice();
 
     }, 400);
     setTimeout(function () {
-        $('#mch_price').addClass('showCh');
+        $('#mch_price,#tch_price').addClass('showCh');
     }, 800);
     setTimeout(function () {
-        $('#mch_price').removeClass('showCh');
-        $('#mch_price').velocity({opacity: [0, 1]});
+        $('#mch_price,#tch_price').removeClass('showCh');
+        $('#mch_price,#tch_price').velocity({opacity: [0, 1]});
     }, 8000);
   
      $('#newWt').html(newWeight + "");
+     
     
 });
 
@@ -1878,6 +1895,7 @@ function changeSize(catName) {
     if (catName == "Rings") {
        
         ringsSlider = ["5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26"];
+       if(psize)
         sliderIndexNo = ringsSlider.indexOf(Math.round(psize).toString());
 
         if (sliderIndexNo == -1)
@@ -1888,7 +1906,8 @@ function changeSize(catName) {
         $('.ringCircle ,.mringCircle').css('line-height', value + 'px');
         if(psize)
             $('.ringCircle ,.mringCircle').html(Math.round(psize));
-       
+     
+     
         slider = $("#slideRing").data("ionRangeSlider");
          
             if (w <= 1024) {

@@ -138,11 +138,24 @@
 
                                     <div class="col100 fLeft cartRupeeB" id="price"></div>
                                     <div class="ch_cont fLeft" id="ch_price">
+                                        <div class="drNoob" id="prevWeb">
+                                            <div class="labBuffer" >Previous Price:1111 </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                  <div class="price_light fLeft" id="tabprice">
+
+                                    <div class="col100 fLeft cartRupeeB" id="tprice"></div>
+                                     
+                                     <div class="ch_cont fLeft" id="tch_price">
                                         <div class="drNoob">
                                             <div class="labBuffer" >Previous Price:1111 </div>
                                         </div>
                                     </div>
+                                    
                                 </div>
+                              
 
                                 <div class="action_btns fixBtn">
                                     <div class="col50 fLeft  padXr5">
@@ -441,7 +454,9 @@
             $('body').addClass('posFix');
             $('.m_cust').removeClass('dn');
             $('.m_cust').velocity({translateY: [0, '100vh']}, {duration: 400, delay: 100});
+              
             setTimeout(function(){
+             if(psize)
                 if(catname == "Rings" || catname == "Bangles")
             changeSize(catname);
         },250);
