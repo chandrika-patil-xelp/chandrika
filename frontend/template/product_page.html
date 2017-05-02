@@ -142,17 +142,26 @@
                                             <div class="labBuffer" >Previous Price:1111 </div>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
-                                 <div class="action_btns fixBtn">
+                                
+                                <div class="price_light fLeft" id="tabprice">
+
+                                    <div class="col100 fLeft cartRupeeB" id="tprice"></div>
+
+                                    <div class="ch_cont fLeft" id="tch_price">
+                                        <div class="drNoob">
+                                            <div class="labBuffer" >Previous Price:1111 </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="action_btns fixBtn">
                                     <div class="col50 fLeft  padXr5">
                                         <div class="actBtn  fLeft bolder pad10 " id="add_to_cart">ADD TO CART</div>
                                     </div>
-
                                     <div class="col50 fLeft  padX15">
                                         <div class="actBtn  fRight bolder pad10 " id="buynow">buy now</div>
                                     </div>
-
                                     <!--                                     <div class="col50 fLeft  padXl5">
                                                                             <div class="cartBtn fRight bolder" id="add_to_cart"><div class="adddCart fRight"></div>ADD TO CART</div>
                                                                         </div>-->
@@ -160,20 +169,6 @@
                                                                             <div class="wishBtn fRight bolder" id="addwishlist"><div class="addWish fRight"></div>WISHLIST</div>
                                                                         </div>-->
                                 </div>
-                                  <div class="price_light fLeft" id="tabprice">
-
-                                    <div class="col100 fLeft cartRupeeB" id="tprice"></div>
-                                     
-                                     <div class="ch_cont fLeft" id="tch_price">
-                                        <div class="drNoob">
-                                            <div class="labBuffer" >Previous Price:1111 </div>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                              
-
-                               
                             </div>
                             <div class="cust_cont2 dn">
                                 <div class="fLeft selectClose"></div>
@@ -346,10 +341,10 @@
                 </div>
 
                 <div class="drop_dn fLeft dn" id="mobdvsizes">
-                                                                                                                     <div class="attTitle">Size</div>
-                                                                                <div class="actBtn font12 regular"></div>
-                                                                                                                       <div class="actBtn font12 bolder"  >Select </div>
-                                                                              <div class="selectDefault"></div>
+                    <div class="attTitle">Size</div>
+                    <div class="actBtn font12 regular"></div>
+                    <div class="actBtn font12 bolder"  >Select </div>
+                    <div class="selectDefault"></div>
 
 
                 </div>
@@ -1004,6 +999,15 @@
                 $('#ch_price').velocity({opacity: [0, 1]});
             }, 8000);
         });
+
+            $('.mcustClose').click(function(){
+                
+               $('#rmvpoptxt').html('Do you want to customize?'); 
+                  cartpopUp();
+                  $('#cYes').click(function(){
+                         cartpopUpClose();
+                  });
+            });
 
 
         </script>
