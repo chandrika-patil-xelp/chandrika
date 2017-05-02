@@ -3363,8 +3363,9 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 @media only screen and (max-width:768px){
-    .diamondL{transform:scale(0.5);}
+    
     #myaddrs .col50{padding:0}
+    .diamondL{transform:scale(0.5);}
     #myaddrs .defaulDiv{border: 1px solid #e6e6e6;border-right: 0;border-left: 0;padding-left: 5px;}
     #myordId .orderOuter{border-right:0;border-left:0;}
     .wishClass .custBtn1{bottom: 28%;}
@@ -3573,7 +3574,7 @@ input[type=number]::-webkit-outer-spin-button {
 .Terms .offsetTop{padding:40px 10px;}
  input[type="text"],input[type="password"],input[type="number"]{font-size:16px !important;}
 
-
+#tabprice{display:block!important;}
 
     /*    .colleCont{width:100%;height: auto; float: left;position: relative;left:initial;top:initial;overflow:initial; background-color: #fff;word-wrap: break-word;padding:25px 0px;}
         .smUlineb {position:relative;top:0;}
@@ -3586,7 +3587,8 @@ input[type=number]::-webkit-outer-spin-button {
 
 
 @media only screen and (max-width:480px){
-
+    .Mprc{display:block;}
+    #tab{display: none!important;}
     .selector_cont{position: initial;top: 50px;display: block;    opacity: 1;}
     .scrolCont{width:100%;height:50px;border:1px solid #e6e6e6;z-index:99999;position: absolute;top: 0;left: 0;}
     .sDown{width:100%;height:50px;border:1px solid #e6e6e6;position:absolute;top: 0;left: 0;z-index: 99999;}
@@ -3991,3 +3993,4 @@ input[type=number]::-webkit-outer-spin-button {
     .termHeading{top:50px;}
     .HOME_PAGE #darkCont .smUline{top:35px;}   
 }
+#tabprice{display:none;}
